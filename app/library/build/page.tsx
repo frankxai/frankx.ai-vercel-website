@@ -11,7 +11,7 @@ const REPO_URL = 'https://github.com/frankxai/library-os';
 export const metadata: Metadata = {
   title: 'Build Your Library — The Open-Source Library OS | FrankX',
   description:
-    'Turn every book you read into a permanent, SEO-indexed deep-dive on your own website. Free open-source repo, paid tiers from €27 starter kits to done-for-you authority sites.',
+    'Turn every book you read into a permanent, SEO-indexed deep-dive on your own website. Free open-source repo. Paid tiers in design — waitlist only.',
   keywords: [
     'Library OS',
     'book knowledge system',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Build Your Library — Open-Source Library OS',
     description:
-      'Every book you read becomes a permanent asset on your own website. Free repo + paid tiers up to done-for-you authority libraries.',
+      'Every book you read becomes a permanent asset on your own website. Free repo. Paid tiers in design — waitlist only.',
     type: 'article',
     url: PAGE_URL,
     siteName: 'FrankX',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Build Your Library — Library OS',
-    description: 'Permanent book deep-dives on your own domain. Free + paid.',
+    description: 'Permanent book deep-dives on your own domain. Free repo, waitlist for paid tiers.',
   },
 };
 
@@ -50,8 +50,7 @@ const totalChapters = bookReviews.reduce((acc, r) => acc + (r.chapters?.length ?
 type Tier = {
   id: 'oss' | 'starter' | 'curator' | 'dfy' | 'enterprise';
   name: string;
-  price: string;
-  cadence?: string;
+  status: string;
   tagline: string;
   description: string;
   features: string[];
@@ -65,7 +64,7 @@ const tiers: Tier[] = [
   {
     id: 'oss',
     name: 'Open Source',
-    price: 'Free',
+    status: 'Available',
     tagline: 'The foundation',
     description: 'Clone the repo, run the commands, publish your library. MIT-licensed. No strings.',
     features: [
@@ -83,7 +82,7 @@ const tiers: Tier[] = [
   {
     id: 'starter',
     name: 'Starter Kit',
-    price: '€27',
+    status: 'In design — waitlist',
     tagline: 'Fork-and-go',
     description: 'A pre-configured fork seeded with 10 starter book entries and 1 deep-dive — so your library looks credible on day one.',
     features: [
@@ -91,17 +90,17 @@ const tiers: Tier[] = [
       '10 seeded book entries across genres',
       '1 fully-deepened example (quotes + chapters + recs)',
       'Vercel deploy button — live in 5 minutes',
-      'Email-gated PDF: "The 50-Book Authority Library Playbook"',
+      'PDF: "The 50-Book Authority Library Playbook"',
       'Discord access for setup support',
     ],
-    cta: { label: 'Join the early-access list', href: '/library/build?tier=starter#signup' },
+    cta: { label: 'Join the waitlist', href: '#signup' },
     icon: BookOpen,
     color: 'emerald',
   },
   {
     id: 'curator',
     name: "Curator's OS",
-    price: '€197',
+    status: 'In design — waitlist',
     tagline: 'The full system',
     description: 'Everything in Starter, plus 50 fully-deepened book entries — you skip 50+ hours of curation and ship an instant authority site.',
     features: [
@@ -113,7 +112,7 @@ const tiers: Tier[] = [
       'Private community + monthly office hours',
       'Lifetime updates',
     ],
-    cta: { label: 'Join the early-access list', href: '/library/build?tier=curator#signup' },
+    cta: { label: 'Join the waitlist', href: '#signup' },
     icon: Layers,
     color: 'violet',
     featured: true,
@@ -121,7 +120,7 @@ const tiers: Tier[] = [
   {
     id: 'dfy',
     name: 'Done-For-You',
-    price: '€997',
+    status: 'In design — waitlist',
     tagline: 'I build it on your domain',
     description: 'I build a 50-book deepened library on your domain, voice-matched to your existing content. You wake up with an authority asset that ranks.',
     features: [
@@ -133,15 +132,14 @@ const tiers: Tier[] = [
       'Lifetime access to Curator\'s OS updates',
       'Private 1:1 onboarding call',
     ],
-    cta: { label: 'Apply for a build slot', href: '/library/build?tier=dfy#signup' },
+    cta: { label: 'Join the waitlist', href: '#signup' },
     icon: Wrench,
     color: 'amber',
   },
   {
     id: 'enterprise',
     name: 'Enterprise / Publisher',
-    price: 'From €4,997',
-    cadence: '/year',
+    status: 'By conversation',
     tagline: 'Multi-author libraries',
     description: 'For publishers, universities, and content companies running multi-author book corpora at scale.',
     features: [
@@ -177,11 +175,11 @@ const faqs = [
   },
   {
     q: 'Do I need to be a developer to use the open-source repo?',
-    a: 'You need to be comfortable with one terminal command (clone) and one click (Vercel deploy). If you can publish a Next.js site, you can run Library OS. If you can\'t — that\'s exactly what the Starter Kit and Done-For-You tiers exist for.',
+    a: 'You need to be comfortable with one terminal command (clone) and one click (Vercel deploy). If you can publish a Next.js site, you can run Library OS. If you can\'t — that\'s exactly what the Starter Kit and Done-For-You tiers will exist for. Both are on the waitlist.',
   },
   {
-    q: 'Why is the repo MIT-licensed if you also sell paid tiers?',
-    a: 'The repo is the foundation; the paid tiers are leverage on top. Same model as Tailwind, Vercel, and Plausible — give the tool, sell the time-savings. The OSS users become advocates; the paid users save 50+ hours of manual curation. Both win.',
+    q: 'Are the paid tiers available now?',
+    a: 'No. The OSS repo is the only thing shipping right now. Starter Kit, Curator\'s OS, and Done-For-You are in design — they go to the waitlist first when ready. No pricing is set. No drip sequence. One honest email when the kits open.',
   },
   {
     q: 'Can I see a real one running?',
@@ -206,20 +204,13 @@ function ArticleJsonLd() {
         ],
       },
       {
-        '@type': 'Product',
+        '@type': 'SoftwareApplication',
         name: 'Library OS',
         description: 'Open-source book intelligence system. Capture, extract, enrich, and publish every book into a permanent deep-dive on your own website.',
-        brand: { '@type': 'Brand', name: 'FrankX' },
-        url: PAGE_URL,
-        offers: tiers.map((t) => ({
-          '@type': 'Offer',
-          name: t.name,
-          description: t.description,
-          price: t.price === 'Free' ? '0' : t.price.replace(/[^0-9]/g, ''),
-          priceCurrency: 'EUR',
-          availability: 'https://schema.org/InStock',
-          url: t.cta.href.startsWith('http') ? t.cta.href : `${SITE_URL}${t.cta.href}`,
-        })),
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Web',
+        url: REPO_URL,
+        license: 'https://opensource.org/licenses/MIT',
       },
       {
         '@type': 'FAQPage',
@@ -270,7 +261,7 @@ export default function LibraryBuildPage() {
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed mb-10">
-            Library OS turns the books you read into deep-dives on your own SEO-indexed website — with quotes, chapter summaries, JSON-LD schema, and the connections between ideas. Free open-source foundation. Paid leverage on top.
+            Library OS turns the books you read into deep-dives on your own SEO-indexed website — with quotes, chapter summaries, JSON-LD schema, and the connections between ideas. Free open-source foundation. Paid tiers in design — waitlist only.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -281,13 +272,13 @@ export default function LibraryBuildPage() {
               className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-white/90 transition"
             >
               <Github className="h-4 w-4" />
-              Clone the repo (free)
+              Clone the repo
             </Link>
             <Link
-              href="#tiers"
+              href="#signup"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
             >
-              See paid tiers
+              Join the waitlist
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -396,13 +387,13 @@ export default function LibraryBuildPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-              Choose your tier
+              The tiers
             </p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-              Free foundation. Paid leverage.
+              Free foundation. Paid leverage in design.
             </h2>
             <p className="text-base text-white/60 max-w-2xl mx-auto">
-              The repo is MIT — clone it and ship today. Each paid tier saves you a different amount of time. Pick the one that matches the time you don&apos;t have.
+              The repo is MIT — clone it and ship today. Everything beyond the repo is in design and on the waitlist. No pricing is set, no drip sequence, no marketing automation.
             </p>
           </div>
 
@@ -432,9 +423,10 @@ export default function LibraryBuildPage() {
                   <h3 className="text-lg font-semibold text-white">{tier.name}</h3>
                   <p className={`text-xs mt-0.5 mb-4 ${c.chipText}`}>{tier.tagline}</p>
 
-                  <div className="flex items-baseline gap-1 mb-4">
-                    <span className="text-3xl font-bold text-white">{tier.price}</span>
-                    {tier.cadence && <span className="text-xs text-white/40">{tier.cadence}</span>}
+                  <div className="mb-4">
+                    <span className={`inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${c.chipBg} ${c.accent}`}>
+                      {tier.status}
+                    </span>
                   </div>
 
                   <p className="text-sm text-white/55 leading-relaxed mb-5">{tier.description}</p>
@@ -476,17 +468,17 @@ export default function LibraryBuildPage() {
             Why open source
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
-            The repo is the gift. The leverage is the trade.
+            The repo is the gift. Everything else is in design.
           </h2>
           <div className="prose prose-invert prose-lg max-w-none text-white/70 space-y-5">
             <p>
               The Library OS repo will always be MIT. You can clone it, fork it, white-label it, sell your own service on top of it. We&apos;d be honored.
             </p>
             <p>
-              The paid tiers exist because some people want the asset without the curation work. €197 for 50 deepened books is roughly €4 per book — versus 1+ hour per book of doing it yourself. €997 for done-for-you is the trade for thought leaders whose hour is worth more than that.
+              The paid tiers exist on paper — Starter Kit, Curator&apos;s OS, Done-For-You — because some people want the asset without the curation work. None of them ships today. The waitlist gets the first honest signal when one does.
             </p>
             <p className="text-white">
-              Same pattern as Tailwind, Vercel, Plausible, ConvertKit. Give the foundation. Sell the leverage. Both sides win.
+              Same pattern as Tailwind, Vercel, Plausible, ConvertKit. Give the foundation. Build the leverage in public. Ship when it&apos;s real.
             </p>
           </div>
         </div>
@@ -522,18 +514,18 @@ export default function LibraryBuildPage() {
       <section id="signup" className="py-20 lg:py-28">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Get notified when paid tiers ship
+            Join the waitlist
           </h2>
           <p className="text-base text-white/60 mb-8">
-            Starter Kit and Curator&apos;s OS open in waves. Drop your email — first wave gets founder pricing and lifetime updates.
+            Starter Kit, Curator&apos;s OS, and Done-For-You are in design. No pricing is set. Drop your email and you&apos;ll get one honest message when there&apos;s something real to share.
           </p>
           <EmailSignup
             listType="newsletter"
             placeholder="you@domain.com"
-            buttonText="Get on the list"
+            buttonText="Join the waitlist"
           />
           <p className="mt-6 text-xs text-white/40">
-            No spam. One email when the kits open. Unsubscribe anytime.
+            No drip sequence. No marketing automation. One message when we ship.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-white/40">

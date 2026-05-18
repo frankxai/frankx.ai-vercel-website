@@ -6,7 +6,6 @@ import { containerVariants, itemVariants, fadeUp, fadeUpHero } from '@/lib/motio
 // ── Brand tokens ──
 const gold = '#D4AF37'
 const goldMuted = 'rgba(212, 175, 55, 0.4)'
-const goldSubtle = 'rgba(212, 175, 55, 0.1)'
 const teal = 'rgba(20, 184, 166, 0.6)'
 
 // ── The Vision: Trinity AI is not 5 products. It's one system. ──
@@ -97,7 +96,7 @@ const timeline = [
       'Living Memory captures first 10,000 interactions per user.',
       'Hashems 1959 goes live — the case study that proves the model.',
       'Vital Intelligence integrates with 3 major wearable platforms.',
-      'First 200 users experience AI that actually knows them.',
+      'First 200 waitlist members experience AI that actually knows them.',
     ],
   },
   {
@@ -199,7 +198,7 @@ export default function TrinityAllianceClient() {
           <div className="mt-16 flex items-center justify-center gap-6 text-xs tracking-widest text-zinc-600">
             <span>ARCANEA × TRINITY AI</span>
             <span className="h-3 w-px bg-zinc-700" />
-            <span>2026</span>
+            <span>2026 · WAITLIST</span>
           </div>
         </motion.div>
       </section>
@@ -409,12 +408,6 @@ export default function TrinityAllianceClient() {
               color: 'rgba(59, 130, 246, 0.5)',
             },
             {
-              name: 'Stripe',
-              role: 'Revenue Engine',
-              desc: 'Subscriptions, usage-based billing, marketplace payouts. Every tier, every transaction, every split — automated.',
-              color: 'rgba(245, 158, 11, 0.5)',
-            },
-            {
               name: 'OpenClaw',
               role: 'Agent Framework',
               desc: 'The existing subagent system — battle-tested. Enhanced with Guardian Protocol guardrails, personality persistence, and Living Memory.',
@@ -470,92 +463,6 @@ export default function TrinityAllianceClient() {
         </motion.div>
       </Section>
 
-      {/* ───────────────── REVENUE ENGINE ───────────────── */}
-      <Section>
-        <motion.div {...fadeUp}>
-          <SectionLabel>The Revenue Engine</SectionLabel>
-          <SectionHeading>Every brother pays. Every brother earns.</SectionHeading>
-          <SectionSub>
-            Not a flat fee. A living ecosystem where subscribing to Trinity gives you
-            AI superpowers — and contributing back (skills, agents, workflows) creates
-            passive income. The more the community builds, the more everyone earns.
-          </SectionSub>
-        </motion.div>
-
-        <motion.div
-          className="mb-8 space-y-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {[
-            {
-              tier: 'Trinity Core',
-              price: '€49/mo',
-              target: 'Every conscious gentleman',
-              features: 'Personal Jarvis agent · Living Memory (10K interactions/mo) · 2 Guardian agents · Community marketplace access',
-              revenue: '500 users = €24,500/mo',
-            },
-            {
-              tier: 'Trinity Pro',
-              price: '€199/mo',
-              target: 'Entrepreneurs & builders',
-              features: 'Unlimited context · All 4 Guardian agents · Custom subagents · Vital Intelligence (biometric) · Priority Claude API · Private MCP servers',
-              revenue: '100 users = €19,900/mo',
-            },
-            {
-              tier: 'Trinity Sovereign',
-              price: '€999/mo',
-              target: 'Families & organizations',
-              features: 'Self-hosted option · Own LLM integration · Collective Wisdom vault · White-label capability · Dedicated infrastructure · Full data export',
-              revenue: '20 orgs = €19,980/mo',
-            },
-            {
-              tier: 'Marketplace',
-              price: '70/30 split',
-              target: 'Community contributors',
-              features: 'Sell skills, agent templates, MCP integrations, workflow automations · Brothers contribute their best systems · Community curates quality',
-              revenue: 'Passive — scales with every contributor',
-            },
-          ].map((plan, i) => (
-            <motion.div
-              key={plan.tier}
-              variants={itemVariants}
-              className="flex flex-col gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 sm:flex-row sm:items-start sm:justify-between"
-            >
-              <div className="flex-1">
-                <div className="mb-1 flex items-center gap-3">
-                  <span className="text-sm font-medium text-white">{plan.tier}</span>
-                  <span className="text-sm font-light" style={{ color: gold }}>{plan.price}</span>
-                </div>
-                <div className="mb-2 text-[11px] text-zinc-600">{plan.target}</div>
-                <div className="text-xs leading-relaxed text-zinc-500">{plan.features}</div>
-              </div>
-              <div className="shrink-0 text-right">
-                <div className="text-xs text-zinc-600">{plan.revenue}</div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="rounded-xl border p-5"
-          style={{ borderColor: `${gold}33`, background: `linear-gradient(to right, ${goldSubtle}, transparent)` }}
-          {...fadeUp}
-        >
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <div className="text-sm" style={{ color: gold }}>Combined Potential at Scale</div>
-              <div className="text-xs text-zinc-500">620 subscribers + marketplace revenue + white-label licensing</div>
-            </div>
-            <div className="text-3xl font-extralight text-white">
-              €64K+<span className="text-sm text-zinc-500">/mo</span>
-            </div>
-          </div>
-        </motion.div>
-      </Section>
-
       {/* ───────────────── SOVEREIGNTY LADDER ───────────────── */}
       <Section>
         <motion.div {...fadeUp}>
@@ -584,7 +491,6 @@ export default function TrinityAllianceClient() {
                 { service: 'Intelligence', cloud: 'Claude API (Anthropic)', icon: '◆' },
                 { service: 'Hosting', cloud: 'Vercel Edge + Sandbox', icon: '◆' },
                 { service: 'Database', cloud: 'Supabase (managed Postgres)', icon: '◆' },
-                { service: 'Payments', cloud: 'Stripe', icon: '◆' },
                 { service: 'Connectivity', cloud: 'Remote MCP servers', icon: '◆' },
               ],
             },
@@ -596,7 +502,6 @@ export default function TrinityAllianceClient() {
                 { service: 'Intelligence', cloud: 'Claude API + local Llama/Mistral for private queries', icon: '◇' },
                 { service: 'Hosting', cloud: 'Vercel (public) + own servers (private)', icon: '◇' },
                 { service: 'Database', cloud: 'Self-hosted Postgres + vector DB', icon: '◇' },
-                { service: 'Payments', cloud: 'Stripe (unchanged)', icon: '◆' },
                 { service: 'Connectivity', cloud: 'Self-hosted MCP server hub', icon: '◇' },
               ],
             },

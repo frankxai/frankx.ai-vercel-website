@@ -54,29 +54,26 @@ const steps = [
 
 const tiers = [
   {
-    name: 'Core',
-    price: '49',
+    name: 'Tier 1 — Core',
     features: [
       'Guardian Protocol with value alignment',
-      'Living Memory — 10 GB sovereign storage',
+      'Living Memory — sovereign storage allotment',
       'Basic biometric integration',
       'Single-user agent constellation',
     ],
   },
   {
-    name: 'Pro',
-    price: '199',
+    name: 'Tier 2 — Pro',
     highlight: true,
     features: [
       'Everything in Core',
-      'Living Memory — 100 GB with full history',
+      'Living Memory — extended history',
       'Advanced vital intelligence with wearables',
       'Priority agent orchestration',
     ],
   },
   {
-    name: 'Sovereign',
-    price: '999',
+    name: 'Tier 3 — Sovereign',
     features: [
       'Everything in Pro',
       'Unlimited sovereign data with self-hosting option',
@@ -86,7 +83,7 @@ const tiers = [
   },
 ]
 
-const techStack = ['Claude Agent SDK', 'Vercel', 'Supabase', 'Stripe', 'MCP', 'OpenClaw']
+const techStack = ['Claude Agent SDK', 'Vercel', 'Supabase', 'MCP', 'OpenClaw']
 
 /* ── Component ── */
 
@@ -104,7 +101,7 @@ export default function TrinityProductClient() {
         <section className="flex min-h-[80vh] flex-col items-center justify-center px-6 pt-32 pb-20 text-center">
           <motion.div {...fadeUpHero} className="mx-auto max-w-3xl">
             <span className="mb-6 inline-block rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 text-xs font-medium tracking-wider text-[#D4AF37] uppercase">
-              Coming 2026
+              Coming 2026 — Waitlist Only
             </span>
             <h1 className="font-serif text-5xl font-bold tracking-tight text-white sm:text-7xl">
               Trinity AI
@@ -191,13 +188,15 @@ export default function TrinityProductClient() {
           </motion.div>
         </section>
 
-        {/* ── Pricing Preview ── */}
+        {/* ── Tier Preview (Waitlist) ── */}
         <section className="px-6 py-24">
           <motion.div {...fadeUp} className="mx-auto mb-16 max-w-2xl text-center">
             <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
-              Pricing Preview
+              Three Tiers in Design
             </h2>
-            <p className="mt-4 text-white/40">Early access pricing. Subject to change.</p>
+            <p className="mt-4 text-white/40">
+              Pricing and terms are not set. Waitlist members hear first.
+            </p>
           </motion.div>
 
           <motion.div
@@ -219,13 +218,14 @@ export default function TrinityProductClient() {
               >
                 {tier.highlight && (
                   <span className="absolute -top-3 left-6 rounded-full bg-[#D4AF37]/20 px-3 py-0.5 text-xs font-medium text-[#D4AF37]">
-                    Recommended
+                    Most expected
                   </span>
                 )}
                 <h3 className="text-lg font-semibold text-white">{tier.name}</h3>
-                <div className="mt-3 flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-white">&euro;{tier.price}</span>
-                  <span className="text-sm text-white/30">/mo</span>
+                <div className="mt-3">
+                  <span className="inline-block rounded-full bg-white/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/60">
+                    Waitlist
+                  </span>
                 </div>
                 <ul className="mt-6 space-y-3">
                   {tier.features.map((f) => (
@@ -235,16 +235,16 @@ export default function TrinityProductClient() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  className={`mt-8 w-full rounded-lg py-2.5 text-sm font-medium transition ${
+                <Link
+                  href="/waitlist?ref=trinity-ai-product"
+                  className={`mt-8 block w-full rounded-lg py-2.5 text-center text-sm font-medium transition ${
                     tier.highlight
                       ? 'bg-[#D4AF37]/20 text-[#D4AF37] hover:bg-[#D4AF37]/30'
                       : 'bg-white/[0.06] text-white/70 hover:bg-white/[0.1]'
                   }`}
                 >
                   Join Waitlist
-                </button>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

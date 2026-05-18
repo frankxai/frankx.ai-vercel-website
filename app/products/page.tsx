@@ -12,7 +12,6 @@ import {
   Cpu,
   CheckCircle2,
   Package,
-  Shield,
   Zap,
   Users,
   Star,
@@ -69,7 +68,7 @@ function ProductsBackground() {
   )
 }
 
-// Product data - structured for premium display
+// Product data - all flagged "waitlist" or "preview" until launch terms are set.
 const products = [
   {
     id: 'vibe-os',
@@ -78,7 +77,7 @@ const products = [
     tagline: 'Suno Music Mastery',
     description:
       'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    status: 'active',
+    status: 'preview',
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
@@ -95,7 +94,7 @@ const products = [
     tagline: 'Life Architecture OS',
     description:
       'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
-    status: 'active',
+    status: 'preview',
     href: '/soulbook',
     color: 'cyan',
     highlights: [
@@ -111,7 +110,7 @@ const products = [
     tagline: 'Genre-Specific Music Generation',
     description:
       'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
-    status: 'active',
+    status: 'preview',
     href: '/products/suno-prompt-library',
     color: 'violet',
     highlights: [
@@ -127,8 +126,8 @@ const products = [
     tagline: 'Prompt library + workflow rituals',
     description:
       'A digital kit with prompts, templates, and rollout rituals for consistent output.',
-    status: 'early-access',
-    href: '/newsletter?ref=creative-ai-toolkit-early-access',
+    status: 'waitlist',
+    href: '/newsletter?ref=creative-ai-toolkit-waitlist',
     color: 'amber',
     highlights: [
       '100+ validated prompts across storytelling, marketing, and operations',
@@ -143,8 +142,8 @@ const products = [
     tagline: 'Strategic Storytelling OS',
     description:
       'Story frameworks, editorial calendars, and prompt stacks to build authority.',
-    status: 'early-access',
-    href: '/newsletter?ref=creation-chronicles-early-access',
+    status: 'waitlist',
+    href: '/newsletter?ref=creation-chronicles-waitlist',
     color: 'cyan',
     highlights: [
       'Strategic story architecture and messaging frameworks',
@@ -159,8 +158,8 @@ const products = [
     tagline: 'Multi-modal AI Studio',
     description:
       'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
-    status: 'early-access',
-    href: '/newsletter?ref=generative-creator-os-early-access',
+    status: 'waitlist',
+    href: '/newsletter?ref=generative-creator-os-waitlist',
     color: 'violet',
     highlights: [
       'Multi-modal asset generation pipelines',
@@ -175,8 +174,8 @@ const products = [
     tagline: 'Developer AI Mastery',
     description:
       'Agentic playbooks, prompt stacks, and governance checklists for builders.',
-    status: 'early-access',
-    href: '/newsletter?ref=agentic-creator-os-early-access',
+    status: 'waitlist',
+    href: '/newsletter?ref=agentic-creator-os-waitlist',
     color: 'rose',
     highlights: [
       'Claude Code and Cursor mastery systems',
@@ -229,8 +228,8 @@ const colorMap = {
   },
 }
 
-// Early Access Modal Component
-function EarlyAccessModal({
+// Waitlist Modal
+function WaitlistModal({
   product,
   isOpen,
   onClose,
@@ -268,7 +267,7 @@ function EarlyAccessModal({
         <div className="mb-6">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-medium mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            Early Access
+            Waitlist
           </span>
           <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
           <p className="text-sm text-slate-400">{product.tagline}</p>
@@ -277,10 +276,10 @@ function EarlyAccessModal({
         {/* CTA */}
         <div className="space-y-4">
           <p className="text-sm text-slate-400">
-            This product is in development. Join the early access list to get:
+            This product is in design. Join the waitlist and you&apos;ll get:
           </p>
           <ul className="space-y-2">
-            {['Priority launch access', 'Exclusive early pricing', 'Behind-the-scenes updates'].map(
+            {['One honest message when it ships', 'No drip sequence, no marketing automation', 'First look at the launch terms'].map(
               (item) => (
                 <li key={item} className="flex items-center gap-2 text-sm text-slate-300">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
@@ -292,7 +291,7 @@ function EarlyAccessModal({
 
           <EmailSignup
             compact
-            buttonText="Join Early Access"
+            buttonText="Join the waitlist"
             listType="courses-waitlist"
           />
         </div>
@@ -357,7 +356,8 @@ export default function ProductsPage() {
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               The exact frameworks, prompts, and workflows I use in my own creative practice
-              and enterprise work. No theory — just what actually works.
+              and enterprise work. No theory — just what actually works. Nothing sells today —
+              every product opens to the waitlist first.
             </motion.p>
           </div>
         </section>
@@ -369,7 +369,7 @@ export default function ProductsPage() {
               {products.map((product, index) => {
                 const Icon = product.icon
                 const colors = colorMap[product.color as keyof typeof colorMap]
-                const isActive = product.status === 'active'
+                const isPreview = product.status === 'preview'
 
                 return (
                   <motion.div
@@ -379,12 +379,12 @@ export default function ProductsPage() {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isActive ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
+                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isPreview ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
                         {/* Featured badge */}
                         {product.featured && (
                           <div className="absolute right-6 top-6">
-                            <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-medium text-emerald-400">
-                              Available Now
+                            <span className="rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-400">
+                              Waitlist Open
                             </span>
                           </div>
                         )}
@@ -425,19 +425,12 @@ export default function ProductsPage() {
                         {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
                           <div className="flex items-center gap-2">
-                            {isActive ? (
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
-                                <CheckCircle2 className="w-3.5 h-3.5" />
-                                Available
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                                <Sparkles className="w-3.5 h-3.5" />
-                                Early Access
-                              </span>
-                            )}
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                              <Sparkles className="w-3.5 h-3.5" />
+                              Waitlist
+                            </span>
                           </div>
-                          {isActive ? (
+                          {isPreview ? (
                             <Link
                               href={product.href}
                               onClick={() =>
@@ -445,14 +438,14 @@ export default function ProductsPage() {
                               }
                               className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
                             >
-                              <span className="text-sm font-medium">Explore</span>
+                              <span className="text-sm font-medium">Preview</span>
                               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                           ) : (
                             <button
                               onClick={() => {
                                 setOpenModal(product.id)
-                                trackEvent('early_access_click', { productId: product.id })
+                                trackEvent('waitlist_click', { productId: product.id })
                               }}
                               className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
                             >
@@ -474,9 +467,9 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex flex-wrap justify-center gap-6 md:gap-10">
               {[
-                { icon: Sparkles, label: 'Early Access Benefits', color: 'text-amber-400' },
-                { icon: Zap, label: 'Priority Launch Access', color: 'text-cyan-400' },
-                { icon: Users, label: 'Exclusive Community', color: 'text-violet-400' },
+                { icon: Sparkles, label: 'Waitlist-First', color: 'text-amber-400' },
+                { icon: Zap, label: 'Honest Notifications', color: 'text-cyan-400' },
+                { icon: Users, label: 'Direct From Frank', color: 'text-violet-400' },
                 { icon: Star, label: 'Battle-Tested Systems', color: 'text-emerald-400' },
               ].map((badge, i) => (
                 <motion.div
@@ -516,7 +509,7 @@ export default function ProductsPage() {
               {[
                 {
                   title: 'Battle-Tested Prompts',
-                  description: 'Every prompt has been used in real projects. No theoretical examples—just what actually works in production.',
+                  description: 'Every prompt has been used in real projects. No theoretical examples — just what actually works in production.',
                   icon: Sparkles,
                   color: 'emerald',
                 },
@@ -528,7 +521,7 @@ export default function ProductsPage() {
                 },
                 {
                   title: 'Continuous Updates',
-                  description: 'AI tools evolve fast. Your purchase includes all future updates as I refine and expand these systems.',
+                  description: 'AI tools evolve fast. Waitlist members hear when new versions ship — no drip sequence, just real updates.',
                   icon: Star,
                   color: 'violet',
                 },
@@ -578,19 +571,19 @@ export default function ProductsPage() {
               {[
                 {
                   q: "How are these different from other AI courses?",
-                  a: "These aren't courses—they're operating systems. You get the exact frameworks, prompts, and workflows I use daily in my own creative practice and enterprise work. No fluff, just what works.",
+                  a: "These aren't courses — they're operating systems. You get the exact frameworks, prompts, and workflows I use daily in my own creative practice and enterprise work. No fluff, just what works.",
                 },
                 {
                   q: "Do I need technical experience?",
                   a: "Vibe OS and The Creator's Soulbook are designed for beginners. Creative AI Toolkit and Generative Creator OS are for intermediate users who want to go deeper.",
                 },
                 {
-                  q: "Which products are available now?",
-                  a: "Vibe OS, The Creator's Soulbook, and the Suno Prompt Bundles are available now. Other products are in Early Access—join the list to get priority launch access and exclusive pricing.",
+                  q: "Can I buy anything right now?",
+                  a: "No. Every product on this page is in design or final review. Each one opens to the waitlist first. Drop your email on the product you care about and you'll get one honest message when it ships.",
                 },
                 {
-                  q: "What do I get by joining Early Access?",
-                  a: "Early Access members get priority launch notification, exclusive early-bird pricing, behind-the-scenes development updates, and direct input on product refinement.",
+                  q: "What does joining the waitlist actually mean?",
+                  a: "One email when the product ships. No drip sequence. No marketing automation. You get the launch terms first, then you decide.",
                 },
               ].map((faq, i) => (
                 <motion.div
@@ -609,7 +602,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Bottom CTA - Early Access */}
+        {/* Bottom CTA */}
         <section className="py-16 pb-24">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
@@ -624,16 +617,15 @@ export default function ProductsPage() {
 
               <div className="relative flex flex-col items-center gap-8 text-center">
                 <div className="max-w-2xl">
-                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-6">
-                    <CheckCircle2 className="w-4 h-4" />
-                    Ready to Create
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Waitlist Open
                   </span>
                   <h2 className="text-2xl font-bold text-white sm:text-3xl mb-4">
-                    Start building with our systems today
+                    Get on the list for the next launch
                   </h2>
                   <p className="text-slate-400">
-                    Vibe OS, The Creator's Soulbook, and Suno Prompt Bundles are available now.
-                    Join early access for upcoming launches with exclusive pricing.
+                    Vibe OS, The Creator&apos;s Soulbook, and the Suno Prompt Bundles preview the systems below. Nothing sells today — every product opens to the waitlist first.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
@@ -644,7 +636,7 @@ export default function ProductsPage() {
                     }
                     className="group flex-1 flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30"
                   >
-                    Explore Vibe OS
+                    Preview Vibe OS
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link
@@ -654,7 +646,7 @@ export default function ProductsPage() {
                     }
                     className="group flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-3 font-medium text-white hover:border-white/40 hover:bg-white/5 transition-all"
                   >
-                    Newsletter
+                    Join the waitlist
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -664,12 +656,12 @@ export default function ProductsPage() {
         </section>
       </main>
 
-      {/* Early Access Modals */}
+      {/* Waitlist Modals */}
       <AnimatePresence>
         {products
-          .filter((p) => p.status === 'early-access' && p.id === openModal)
+          .filter((p) => p.status === 'waitlist' && p.id === openModal)
           .map((product) => (
-            <EarlyAccessModal
+            <WaitlistModal
               key={product.id}
               product={product}
               isOpen={openModal === product.id}
