@@ -1,8 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Copy, Check, ExternalLink, Sparkles, ArrowRight } from 'lucide-react'
+import { marked } from 'marked'
+import DOMPurify from 'isomorphic-dompurify'
 import type { WorkshopPrompt } from '@/lib/workshop-prompts'
+
+marked.setOptions({ gfm: true, breaks: false })
 
 interface PromptCardProps {
   prompt: WorkshopPrompt
@@ -63,6 +67,14 @@ const ACCENT_MAP = {
 export function PromptCard({ prompt }: PromptCardProps) {
   const [copied, setCopied] = useState(false)
 
+  const renderedBody = useMemo(() => {
+    const html = marked.parse(prompt.body, { async: false }) as string
+    return DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'br', 'hr', 'h1', 'h2', 'h3', 'h4'],
+      ALLOWED_ATTR: [],
+    })
+  }, [prompt.body])
+
   function handleCopy() {
     navigator.clipboard.writeText(prompt.body)
     setCopied(true)
@@ -90,19 +102,32 @@ export function PromptCard({ prompt }: PromptCardProps) {
         <p className="text-sm text-zinc-400 leading-relaxed">{prompt.subtitle}</p>
       </div>
 
-      {/* Prompt body — scrollable, mono, readable on mobile. The
-          data-workshop-prompt-body attribute exposes the prompt text
+      {/* Prompt body — rendered markdown on screen, raw markdown on copy.
+          The data-workshop-prompt-body attribute exposes raw prompt text
           to browser agents (Comet, Operator, Computer Use). */}
       <div className="relative">
-        <div className="max-h-64 sm:max-h-72 overflow-y-auto p-4 sm:p-5 bg-[#0a0a0b]/40">
-          <pre
+        <div className="max-h-72 sm:max-h-80 overflow-y-auto px-5 sm:px-6 py-5 bg-[#0a0a0b]/40">
+          <div
             data-workshop-prompt-body={prompt.id}
-            className="text-[11px] sm:text-[13px] text-zinc-300 leading-relaxed font-mono whitespace-pre-wrap break-words"
-          >
-            {prompt.body}
-          </pre>
+            className="text-[13px] sm:text-[14px] text-zinc-300 leading-[1.7]
+                       [&>p]:mb-3
+                       [&>p:last-child]:mb-0
+                       [&_strong]:text-white [&_strong]:font-semibold
+                       [&_em]:text-zinc-200 [&_em]:italic
+                       [&_ul]:my-3 [&_ul]:pl-5 [&_ul]:space-y-1.5 [&_ul]:list-none
+                       [&_ol]:my-3 [&_ol]:pl-5 [&_ol]:space-y-1.5 [&_ol]:list-decimal [&_ol]:marker:text-violet-300/60
+                       [&_ul>li]:relative [&_ul>li]:pl-3 [&_ul>li]:before:content-['·'] [&_ul>li]:before:absolute [&_ul>li]:before:-left-1 [&_ul>li]:before:text-violet-300/60
+                       [&_blockquote]:my-4 [&_blockquote]:pl-4 [&_blockquote]:border-l-2 [&_blockquote]:border-violet-400/40 [&_blockquote]:text-zinc-200 [&_blockquote]:italic [&_blockquote]:font-[var(--font-serif-editorial)]
+                       [&_pre]:my-3 [&_pre]:p-3 [&_pre]:rounded-lg [&_pre]:bg-black/40 [&_pre]:border [&_pre]:border-white/[0.06] [&_pre]:overflow-x-auto
+                       [&_pre>code]:text-[12px] [&_pre>code]:text-emerald-200 [&_pre>code]:font-mono
+                       [&_code]:text-[12px] [&_code]:text-emerald-200 [&_code]:bg-white/[0.04] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded
+                       [&_h1]:text-base [&_h1]:font-semibold [&_h1]:text-white [&_h1]:mt-4 [&_h1]:mb-2
+                       [&_h2]:text-sm [&_h2]:font-semibold [&_h2]:text-white [&_h2]:mt-4 [&_h2]:mb-2
+                       [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-violet-200 [&_h3]:mt-3 [&_h3]:mb-1.5"
+            dangerouslySetInnerHTML={{ __html: renderedBody }}
+          />
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-[#0a0a0b]/80 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#0a0a0b]/95 to-transparent pointer-events-none" />
       </div>
 
       {/* Action bar — Copy primary, AI targets secondary */}
