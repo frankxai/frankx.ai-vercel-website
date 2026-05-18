@@ -18,7 +18,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Mail } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Mail } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import { IkigaiWizard } from '@/components/workshops/ikigai/IkigaiWizard'
 import { SynthesisPanel } from '@/components/workshops/ikigai/SynthesisPanel'
@@ -138,6 +138,96 @@ const CHAPTERS: ChapterMeta[] = [
     english: 'Three visuals you walk out with',
     duration: '15 min',
     module: 8,
+  },
+]
+
+// ─── Foundations — what this workshop sits on top of ─────────────────────
+interface Foundation {
+  kanji: string
+  label: string
+  title: string
+  href: string
+  body: string
+  external?: boolean
+}
+
+const FOUNDATIONS: Foundation[] = [
+  {
+    kanji: '識',
+    label: 'research',
+    title: 'Conscious AI Operating Systems',
+    href: '/research/conscious-ai-operating-systems',
+    body: 'The substrate research behind this workshop. Why "operate your AI" beats "use your AI" — and how that reframes the creator economy.',
+  },
+  {
+    kanji: '本',
+    label: 'library',
+    title: 'The Library OS',
+    href: '/library',
+    body: 'Book intelligence Frank reads through. Ikigai (García & Miralles), The Little Book of Ikigai (Mogi), Designing Your Life (Burnett & Evans) — all annotated, quoted, indexed.',
+  },
+  {
+    kanji: '型',
+    label: 'prompt library',
+    title: '98 patterns, red-teamed',
+    href: '/prompts',
+    body: 'The full pattern library that powers this workshop\'s 13 prompts. Eval-gated, voice-checked, MIT-licensed. Borrow what works for your own practice.',
+  },
+]
+
+// ─── Where this belongs — the FrankX OS context ──────────────────────────
+interface OSContext {
+  module: string
+  href: string
+  role: string
+}
+
+const OS_CONTEXT: OSContext[] = [
+  { module: 'Workshop OS', href: '/os/workshops', role: 'this workshop ships here' },
+  { module: 'Library OS', href: '/library', role: 'the books behind the masters' },
+  { module: 'Prompt Hub', href: '/prompts', role: 'the patterns you keep using' },
+  { module: 'Research Hub', href: '/research', role: 'the thinking under the practice' },
+]
+
+// ─── Continue your practice — post-workshop forward path ─────────────────
+interface NextStep {
+  kanji: string
+  label: string
+  title: string
+  href: string
+  body: string
+  external?: boolean
+}
+
+const NEXT_STEPS: NextStep[] = [
+  {
+    kanji: '日',
+    label: 'daily',
+    title: 'Daily — drop into a prompt',
+    href: '/prompts',
+    body: 'Workshop ends. The practice begins tomorrow. Pick one prompt from the library each morning. Voice-check, run, ship. Compounding beats intensity.',
+  },
+  {
+    kanji: '週',
+    label: 'weekly',
+    title: 'Weekly — book a follow-up workshop',
+    href: '/workshops',
+    body: 'AI in 2026 for Graduates, the Founder\'s Circle, the bespoke ones. The same hands that built this run the next.',
+  },
+  {
+    kanji: '月',
+    label: 'monthly',
+    title: 'Monthly — return to the books',
+    href: '/library',
+    body: 'Kamiya\'s Ikigai-ni-Tsuite, Mogi\'s Little Book of Ikigai, Garcia & Miralles\' Ikigai. Three lenses on the same word. Read one chapter a month.',
+  },
+  {
+    kanji: '年',
+    label: 'yearly',
+    title: 'Yearly — submit your year-one artifact',
+    href: 'mailto:frank@frankx.ai?subject=Ikigai+year-one+artifact',
+    body: 'Twelve months from today, send Frank what you shipped. The best three become guest features on the next cohort. Closing the loop is the practice.',
+    external: true,
   },
 ]
 
@@ -456,6 +546,61 @@ export default function IkigaiV3Page() {
         </div>
       </section>
 
+      {/* ─── Foundations — what this workshop stands on ─────────────── */}
+      <section className="py-20 sm:py-28 border-t border-white/[0.04]" aria-labelledby="foundations">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="text-center mb-12">
+              <p id="foundations" className="text-xs uppercase tracking-[0.32em] text-zinc-500 mb-4 [font-family:var(--font-serif-editorial)] italic">
+                Foundations
+              </p>
+              <h2 className="text-2xl sm:text-3xl text-zinc-200 max-w-2xl mx-auto leading-[1.4] [font-family:var(--font-serif-editorial)] italic">
+                A workshop is only as deep as the research it sits on. Three places to read deeper before you walk.
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {FOUNDATIONS.map((f, i) => (
+                <motion.a
+                  key={f.title}
+                  href={f.href}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <span
+                      className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
+                      style={{ fontWeight: 200 }}
+                      aria-hidden
+                    >
+                      {f.kanji}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
+                  </div>
+                  <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-500 mb-2">
+                    {f.label}
+                  </p>
+                  <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+                    {f.title}
+                  </h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
+                    {f.body}
+                  </p>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ─── 00 · 直観 · Initial Read ────────────────────────────────── */}
       <ChapterIntro meta={CHAPTERS[0]} />
       <ChapterBody>
@@ -594,6 +739,114 @@ export default function IkigaiV3Page() {
         </div>
       </ChapterBody>
 
+      {/* ─── Where this belongs — FrankX OS context ──────────────────── */}
+      <section className="py-20 sm:py-28 border-t border-white/[0.04]" aria-labelledby="os-context">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="text-center mb-10">
+              <p id="os-context" className="text-xs uppercase tracking-[0.32em] text-zinc-500 mb-4 [font-family:var(--font-serif-editorial)] italic">
+                Where this belongs
+              </p>
+              <h2 className="text-xl sm:text-2xl text-zinc-300 leading-[1.5] [font-family:var(--font-serif-editorial)] italic max-w-xl mx-auto">
+                The workshop is one node in a larger operating system. The same hands ship every surface.
+              </h2>
+            </div>
+            <ul className="space-y-3 max-w-xl mx-auto">
+              {OS_CONTEXT.map((c) => (
+                <li key={c.module}>
+                  <Link
+                    href={c.href}
+                    className="group flex items-center justify-between gap-4 rounded-xl border border-white/[0.04] hover:border-white/[0.12] bg-white/[0.01] hover:bg-white/[0.03] px-5 py-4 transition-colors"
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 group-hover:bg-amber-300 transition-colors" />
+                      <span className="text-sm font-semibold text-white">{c.module}</span>
+                      <span className="text-zinc-700">&middot;</span>
+                      <span className="text-sm text-zinc-400 [font-family:var(--font-serif-editorial)] italic">
+                        {c.role}
+                      </span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── Continue your practice — daily / weekly / monthly / yearly ─ */}
+      <section className="py-20 sm:py-28 border-t border-white/[0.04]" aria-labelledby="continue-practice">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="text-center mb-12">
+              <p id="continue-practice" className="text-xs uppercase tracking-[0.32em] text-zinc-500 mb-4 [font-family:var(--font-serif-editorial)] italic">
+                Continue the practice
+              </p>
+              <h2 className="text-2xl sm:text-3xl text-zinc-100 max-w-2xl mx-auto leading-[1.4] [font-family:var(--font-serif-editorial)] italic">
+                Ikigai is not a workshop. It is a way of opening tomorrow morning.
+              </h2>
+              <p className="text-sm text-zinc-500 mt-4 max-w-xl mx-auto leading-relaxed">
+                Four cadences. Four kanji. Pick the one you can actually hold.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              {NEXT_STEPS.map((s, i) => {
+                const Tag = s.external ? 'a' : Link
+                const linkProps = s.external
+                  ? { href: s.href, target: '_blank', rel: 'noopener noreferrer' }
+                  : { href: s.href }
+                return (
+                  <motion.div
+                    key={s.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Tag
+                      {...linkProps}
+                      className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors h-full"
+                    >
+                      <div className="flex items-start justify-between gap-4 mb-4">
+                        <span
+                          className="text-5xl text-white/85 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
+                          style={{ fontWeight: 200 }}
+                          aria-hidden
+                        >
+                          {s.kanji}
+                        </span>
+                        <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors flex-shrink-0 mt-2" />
+                      </div>
+                      <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-500 mb-2">
+                        {s.label}
+                      </p>
+                      <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+                        {s.title}
+                      </h3>
+                      <p className="text-sm text-zinc-400 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
+                        {s.body}
+                      </p>
+                    </Tag>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ─── Closing colophon ──────────────────────────────────────── */}
       <footer className="py-24 border-t border-white/[0.04]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
@@ -604,11 +857,14 @@ export default function IkigaiV3Page() {
           >
             生
           </div>
-          <p className="text-sm text-zinc-500 leading-relaxed [font-family:var(--font-serif-editorial)] italic mb-8">
-            The walk is not the end. The walk is the daily small thing — the reason
+          <p className="text-base sm:text-lg text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic mb-3">
+            The walk is not the end. The walk is the small daily thing — the reason
             you wake up tomorrow and write the post you committed to.
           </p>
-          <div className="flex items-center justify-between text-xs text-zinc-600">
+          <p className="text-xs text-zinc-600 mb-8">
+            Designed and shipped by Frank Riemer &middot; <Link href="/" className="hover:text-zinc-400 transition-colors">frankx.ai</Link>
+          </p>
+          <div className="flex items-center justify-between text-xs text-zinc-600 pt-8 border-t border-white/[0.04]">
             <Link
               href="/workshops/ikigai-branding"
               className="inline-flex items-center gap-1.5 hover:text-zinc-300 transition-colors"
