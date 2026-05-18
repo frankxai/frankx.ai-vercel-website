@@ -36,7 +36,7 @@ import { IkigaiVenn } from '@/components/workshops/ikigai/IkigaiVenn'
 import { IkigaiWisdom } from '@/components/workshops/ikigai/IkigaiWisdom'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
 import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
-import { WORKSHOP_PROMPTS } from '@/lib/workshop-prompts'
+import { WORKSHOP_PROMPTS_V5 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v5'
 import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
 import { getWorkshopBySlug } from '@/data/workshops'
 
