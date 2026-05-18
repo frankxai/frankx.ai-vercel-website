@@ -141,7 +141,7 @@ export default function ThankYouContent() {
             You&apos;re subscribed to <span className="text-cyan-400 font-semibold">{recs.streamName}</span>
           </p>
           <p className="text-sm text-gray-500 mb-8">
-            Your first issue is on its way — check your inbox.
+            You're on the waitlist. We'll send the first issue when it ships.
           </p>
 
           {/* What's Next */}

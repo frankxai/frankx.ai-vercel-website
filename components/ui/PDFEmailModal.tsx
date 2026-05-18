@@ -125,17 +125,17 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                       </div>
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-3 font-['Poppins']">
-                      It's On The Way! ✨
+                      You're on the waitlist!
                     </h3>
                     <p className="text-gray-300 text-lg mb-2">
-                      Check your inbox, <span className="text-cyan-400 font-medium">{name}</span>
+                      Thanks, <span className="text-cyan-400 font-medium">{name}</span>
                     </p>
                     <p className="text-gray-400 text-sm">
-                      <strong className="text-white">{pdfTitle}</strong> just landed at {email}
+                      We'll let you know when <strong className="text-white">{pdfTitle}</strong> ships to {email}
                     </p>
                     <div className="mt-6 p-4 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-purple-600/10 border border-cyan-500/20">
                       <p className="text-sm text-gray-300">
-                        💡 While you wait, explore our other creator guides
+                        💡 In the meantime, explore the rest of the site
                       </p>
                     </div>
                   </div>
@@ -148,11 +148,11 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-purple-600/30 rounded-2xl blur-xl" />
                       </div>
                       <Dialog.Title className="text-2xl md:text-3xl font-bold text-white text-center mb-3 font-['Poppins']">
-                        Your Guide Awaits
+                        Join the waitlist
                       </Dialog.Title>
                       <p className="text-gray-300 text-center text-base leading-relaxed">
-                        Get <strong className="text-white">{pdfTitle}</strong> delivered to your inbox.<br/>
-                        <span className="text-sm text-gray-400">Same framework I use in the studio.</span>
+                        Be notified when <strong className="text-white">{pdfTitle}</strong> ships.<br/>
+                        <span className="text-sm text-gray-400">No drip sequence. One honest notification.</span>
                       </p>
                     </div>
 
@@ -310,19 +310,19 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                         {isLoading ? (
                           <>
                             <Loader2 className="w-5 h-5 animate-spin relative z-10" />
-                            <span className="relative z-10">Sending to your inbox...</span>
+                            <span className="relative z-10">Adding to waitlist...</span>
                           </>
                         ) : (
                           <>
                             <Mail className="w-5 h-5 relative z-10 group-hover:rotate-12 transition-transform" />
-                            <span className="relative z-10">Send My Guide →</span>
+                            <span className="relative z-10">Join waitlist →</span>
                           </>
                         )}
                       </button>
 
                       <div className="text-center space-y-1">
                         <p className="text-xs text-gray-400">
-                          🔒 Your email stays with us. Zero spam, pure value.
+                          🔒 Your email stays with us. No spam. One honest notification when we ship.
                         </p>
                         <p className="text-[10px] text-gray-500">
                           Join 10,000+ creators crafting with AI
