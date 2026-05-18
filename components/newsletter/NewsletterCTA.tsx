@@ -90,7 +90,7 @@ export default function NewsletterCTA() {
               you&apos;ll see what resonates.
             </p>
             <p className="relative mx-auto mb-8 max-w-sm text-xs text-blue-400/60 italic">
-              &ldquo;I&apos;ll be in your inbox. No fluff. Just the signal.&rdquo; — FRANK-Ω
+              &ldquo;When there&apos;s something honest to share, you&apos;ll get one note. No drip sequence. No fluff.&rdquo; — FRANK-Ω
             </p>
             <div className="relative flex flex-wrap justify-center gap-4">
               <a

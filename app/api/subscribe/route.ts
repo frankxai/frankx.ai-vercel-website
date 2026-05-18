@@ -162,8 +162,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: listType === 'music-lab'
-        ? 'Check your email for your free prompts!'
-        : 'Successfully subscribed!',
+        ? 'You're on the music-lab waitlist. We'll let you know when prompts are ready.'
+        : 'You're on the waitlist. We'll be in touch when there's something honest to share.',
       subscriber: data.id,
     })
   } catch (error) {
