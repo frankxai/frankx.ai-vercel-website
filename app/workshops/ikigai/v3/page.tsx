@@ -17,7 +17,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, MotionConfig, useReducedMotion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Mail } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import { IkigaiWizard } from '@/components/workshops/ikigai/IkigaiWizard'
@@ -141,6 +141,34 @@ const CHAPTERS: ChapterMeta[] = [
   },
 ]
 
+// ─── NextStepBody — shared body for the Continue-Practice cards ──────────
+// (Defined outside the page component to avoid re-creating per render.)
+function NextStepBody({ step }: { step: NextStep }) {
+  return (
+    <>
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <span
+          className="text-5xl text-white/85 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
+          style={{ fontWeight: 200 }}
+          aria-hidden="true"
+        >
+          {step.kanji}
+        </span>
+        <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors flex-shrink-0 mt-2" />
+      </div>
+      <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
+        {step.label}
+      </p>
+      <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+        {step.title}
+      </h3>
+      <p className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
+        {step.body}
+      </p>
+    </>
+  )
+}
+
 // ─── Foundations — what this workshop sits on top of ─────────────────────
 interface Foundation {
   kanji: string
@@ -250,14 +278,15 @@ const INTERMEZZOS = [
   },
 ]
 
-// ─── Animated SVG kanji — strokes draw on mount ───────────────────────────
+// ─── Animated kanji — h1 LCP element, strokes draw on mount ──────────────
 function AnimatedKanji() {
   return (
-    <div
+    <h1
       aria-label="生き甲斐 — ikigai — a reason to wake up"
-      className="select-none flex items-baseline justify-center gap-2 [font-family:var(--font-jp-serif)] font-light text-white/95"
+      className="select-none flex items-baseline justify-center gap-2 [font-family:var(--font-jp-serif)] font-light text-white/95 m-0"
     >
       <motion.span
+        aria-hidden="true"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -267,6 +296,7 @@ function AnimatedKanji() {
         生
       </motion.span>
       <motion.span
+        aria-hidden="true"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 0.7, y: 0 }}
         transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -276,6 +306,7 @@ function AnimatedKanji() {
         き
       </motion.span>
       <motion.span
+        aria-hidden="true"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -285,6 +316,7 @@ function AnimatedKanji() {
         甲
       </motion.span>
       <motion.span
+        aria-hidden="true"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.4, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -293,7 +325,7 @@ function AnimatedKanji() {
       >
         斐
       </motion.span>
-    </div>
+    </h1>
   )
 }
 
@@ -301,7 +333,7 @@ function AnimatedKanji() {
 function VerticalKanjiRail({ active }: { active: number | null }) {
   return (
     <nav
-      aria-label="Chapter rail"
+      aria-label="Workshop chapters"
       className="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-3 z-30 [font-family:var(--font-jp-serif)] print:hidden"
     >
       {CHAPTERS.map((c, i) => {
@@ -310,20 +342,23 @@ function VerticalKanjiRail({ active }: { active: number | null }) {
           <Link
             key={c.numeral}
             href={`#chapter-${c.numeral.replace('.', '-')}`}
-            className={`group flex items-center gap-2 text-xs transition-all duration-500 ${
-              isActive ? 'text-white' : 'text-zinc-700 hover:text-zinc-400'
+            aria-label={`Chapter ${c.numeral} ${c.romaji} — ${c.english}`}
+            aria-current={isActive ? 'location' : undefined}
+            className={`group flex items-center gap-2 text-xs transition-all duration-500 min-h-[24px] py-1 px-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+              isActive ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'
             }`}
-            title={`${c.numeral} · ${c.romaji} · ${c.english}`}
           >
             <span
+              aria-hidden="true"
               className={`text-base leading-none transition-all duration-500 ${
-                isActive ? 'opacity-100 scale-110' : 'opacity-50 group-hover:opacity-90'
+                isActive ? 'opacity-100 scale-110' : 'opacity-60 group-hover:opacity-100'
               }`}
               style={{ fontWeight: isActive ? 400 : 200 }}
             >
               {c.jp.charAt(0)}
             </span>
             <span
+              aria-hidden="true"
               className={`text-[10px] uppercase tracking-[0.16em] tabular-nums transition-opacity duration-500 ${
                 isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
               }`}
@@ -377,7 +412,7 @@ function ChapterIntro({ meta }: { meta: ChapterMeta }) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.1] mb-3 [font-family:var(--font-serif-editorial)] italic">
               {meta.english}.
             </h2>
-            <p className="text-sm uppercase tracking-[0.18em] text-zinc-600 [font-family:var(--font-serif-editorial)] italic">
+            <p className="text-sm uppercase tracking-[0.18em] text-zinc-400 [font-family:var(--font-serif-editorial)] italic">
               chapter {meta.numeral} &middot; {meta.duration}
             </p>
           </div>
@@ -427,32 +462,41 @@ export default function IkigaiV3Page() {
   const workshop = getWorkshopBySlug('ikigai-branding')!
   const [ikigai, setIkigai] = useState<IkigaiState>(emptyIkigai)
   const [activeChapter, setActiveChapter] = useState<number | null>(null)
+  const shouldReduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
-  const heroParallaxY = useTransform(scrollYProgress, [0, 0.15], [0, -120])
+  const heroParallaxY = useTransform(
+    scrollYProgress,
+    [0, 0.15],
+    shouldReduceMotion ? [0, 0] : [0, -120],
+  )
   const heroParallaxOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0])
 
+  // Single IntersectionObserver across all chapters — consolidated from 10
+  // separate observers per the performance audit. Indexes via id lookup.
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const observers: IntersectionObserver[] = []
-    CHAPTERS.forEach((c, i) => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.25) {
+            const slug = (e.target as HTMLElement).id.replace('chapter-', '').replace('-', '.')
+            const idx = CHAPTERS.findIndex((c) => c.numeral === slug)
+            if (idx !== -1) setActiveChapter(idx)
+          }
+        })
+      },
+      { threshold: 0.3 },
+    )
+    CHAPTERS.forEach((c) => {
       const slug = c.numeral.replace('.', '-')
       const el = document.getElementById(`chapter-${slug}`)
-      if (!el) return
-      const o = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting && e.intersectionRatio > 0.2) setActiveChapter(i)
-          })
-        },
-        { threshold: [0.2, 0.5, 0.8] },
-      )
-      o.observe(el)
-      observers.push(o)
+      if (el) observer.observe(el)
     })
-    return () => observers.forEach((o) => o.disconnect())
+    return () => observer.disconnect()
   }, [])
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <VerticalKanjiRail active={activeChapter} />
 
@@ -466,15 +510,15 @@ export default function IkigaiV3Page() {
           aria-hidden
           className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] rounded-full bg-[#3b3380]/[0.06] blur-[180px] pointer-events-none"
         />
-        <div className="absolute top-6 left-6 right-6 flex items-center justify-between text-xs text-zinc-500 z-10">
+        <div className="absolute top-6 left-6 right-6 flex items-center justify-between text-xs text-zinc-400 z-10">
           <Link
             href="/workshops/ikigai-branding"
-            className="inline-flex items-center gap-1.5 hover:text-zinc-300 transition-colors [font-family:var(--font-serif-editorial)] italic"
+            className="inline-flex items-center gap-1.5 hover:text-zinc-200 transition-colors [font-family:var(--font-serif-editorial)] italic rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
             Back to canonical
           </Link>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] text-zinc-400 [font-family:var(--font-serif-editorial)] italic">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] text-zinc-300 [font-family:var(--font-serif-editorial)] italic">
             V3 &middot; Editorial Cinema
           </div>
         </div>
@@ -487,36 +531,38 @@ export default function IkigaiV3Page() {
             transition={{ duration: 1.0, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 sm:mt-12 text-center"
           >
-            <p className="text-xs uppercase tracking-[0.32em] text-zinc-500 mb-3">
+            <p className="text-xs uppercase tracking-[0.32em] text-zinc-400 mb-3">
               i&middot;ki&middot;gai
             </p>
-            <p className="text-base sm:text-lg max-w-xl mx-auto text-zinc-400 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
+            <p className="text-base sm:text-lg max-w-xl mx-auto text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
               the small, daily reason a life feels worth waking up to.
             </p>
-            <p className="mt-3 text-xs text-zinc-600 max-w-md mx-auto">
-              <span className="text-zinc-300">{workshop.duration}</span>
-              <span className="mx-2 text-zinc-700">&middot;</span>
+            <p className="mt-3 text-xs text-zinc-400 max-w-md mx-auto">
+              <span className="text-zinc-200">{workshop.duration}</span>
+              <span aria-hidden="true" className="mx-2 text-zinc-500">&middot;</span>
               <span>{workshop.audience}</span>
             </p>
           </motion.div>
         </div>
 
-        {/* Scroll cue */}
+        {/* Scroll cue — bobs gently; pauses entirely when reduced-motion is on */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 6, 0] }}
+          animate={{ opacity: 1, y: shouldReduceMotion ? 0 : [0, 6, 0] }}
           transition={{
             opacity: { duration: 1, delay: 2.6 },
-            y: { duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 2.6 },
+            y: shouldReduceMotion
+              ? { duration: 0 }
+              : { duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 2.6 },
           }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         >
           <Link
             href={`#chapter-${CHAPTERS[0].numeral.replace('.', '-')}`}
-            className="flex flex-col items-center gap-2 text-xs uppercase tracking-[0.32em] text-zinc-500 hover:text-zinc-300 transition-colors [font-family:var(--font-serif-editorial)] italic"
+            className="flex flex-col items-center gap-2 text-xs uppercase tracking-[0.32em] text-zinc-400 hover:text-zinc-200 transition-colors [font-family:var(--font-serif-editorial)] italic rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-2 py-1"
           >
             <span>Begin</span>
-            <span className="block w-px h-8 bg-gradient-to-b from-zinc-500 to-transparent" />
+            <span aria-hidden="true" className="block w-px h-8 bg-gradient-to-b from-zinc-400 to-transparent" />
           </Link>
         </motion.div>
       </motion.section>
@@ -566,35 +612,38 @@ export default function IkigaiV3Page() {
 
             <div className="grid md:grid-cols-3 gap-5">
               {FOUNDATIONS.map((f, i) => (
-                <motion.a
+                <motion.div
                   key={f.title}
-                  href={f.href}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors"
                 >
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <span
-                      className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
-                      style={{ fontWeight: 200 }}
-                      aria-hidden
-                    >
-                      {f.kanji}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
-                  </div>
-                  <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-500 mb-2">
-                    {f.label}
-                  </p>
-                  <h3 className="text-base font-semibold text-white mb-2 leading-snug">
-                    {f.title}
-                  </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
-                    {f.body}
-                  </p>
-                </motion.a>
+                  <Link
+                    href={f.href}
+                    className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black h-full"
+                  >
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <span
+                        className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
+                        style={{ fontWeight: 200 }}
+                        aria-hidden="true"
+                      >
+                        {f.kanji}
+                      </span>
+                      <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
+                    </div>
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
+                      {f.label}
+                    </p>
+                    <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+                      {f.title}
+                    </h3>
+                    <p className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
+                      {f.body}
+                    </p>
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -761,17 +810,18 @@ export default function IkigaiV3Page() {
                 <li key={c.module}>
                   <Link
                     href={c.href}
-                    className="group flex items-center justify-between gap-4 rounded-xl border border-white/[0.04] hover:border-white/[0.12] bg-white/[0.01] hover:bg-white/[0.03] px-5 py-4 transition-colors"
+                    prefetch={false}
+                    className="group flex items-center justify-between gap-4 rounded-xl border border-white/[0.04] hover:border-white/[0.12] bg-white/[0.01] hover:bg-white/[0.03] px-5 py-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   >
                     <span className="flex items-center gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 group-hover:bg-amber-300 transition-colors" />
+                      <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-amber-300 transition-colors" />
                       <span className="text-sm font-semibold text-white">{c.module}</span>
-                      <span className="text-zinc-700">&middot;</span>
-                      <span className="text-sm text-zinc-400 [font-family:var(--font-serif-editorial)] italic">
+                      <span aria-hidden="true" className="text-zinc-500">&middot;</span>
+                      <span className="text-sm text-zinc-300 [font-family:var(--font-serif-editorial)] italic">
                         {c.role}
                       </span>
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                    <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
                   </Link>
                 </li>
               ))}
@@ -803,10 +853,8 @@ export default function IkigaiV3Page() {
 
             <div className="grid sm:grid-cols-2 gap-5">
               {NEXT_STEPS.map((s, i) => {
-                const Tag = s.external ? 'a' : Link
-                const linkProps = s.external
-                  ? { href: s.href, target: '_blank', rel: 'noopener noreferrer' }
-                  : { href: s.href }
+                const sharedCls =
+                  'group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black'
                 return (
                   <motion.div
                     key={s.title}
@@ -815,30 +863,20 @@ export default function IkigaiV3Page() {
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <Tag
-                      {...linkProps}
-                      className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors h-full"
-                    >
-                      <div className="flex items-start justify-between gap-4 mb-4">
-                        <span
-                          className="text-5xl text-white/85 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
-                          style={{ fontWeight: 200 }}
-                          aria-hidden
-                        >
-                          {s.kanji}
-                        </span>
-                        <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors flex-shrink-0 mt-2" />
-                      </div>
-                      <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-500 mb-2">
-                        {s.label}
-                      </p>
-                      <h3 className="text-base font-semibold text-white mb-2 leading-snug">
-                        {s.title}
-                      </h3>
-                      <p className="text-sm text-zinc-400 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
-                        {s.body}
-                      </p>
-                    </Tag>
+                    {s.external ? (
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={sharedCls}
+                      >
+                        <NextStepBody step={s} />
+                      </a>
+                    ) : (
+                      <Link href={s.href} prefetch={false} className={sharedCls}>
+                        <NextStepBody step={s} />
+                      </Link>
+                    )}
                   </motion.div>
                 )
               })}
@@ -851,37 +889,46 @@ export default function IkigaiV3Page() {
       <footer className="py-24 border-t border-white/[0.04]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div
-            className="text-7xl text-white/20 mb-6 select-none [font-family:var(--font-jp-serif)]"
+            className="text-7xl text-white/30 mb-6 select-none [font-family:var(--font-jp-serif)]"
             style={{ fontWeight: 200 }}
-            aria-hidden
+            aria-hidden="true"
           >
             生
           </div>
-          <p className="text-base sm:text-lg text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic mb-3">
+          <p className="text-base sm:text-lg text-zinc-200 leading-relaxed [font-family:var(--font-serif-editorial)] italic mb-3">
             The walk is not the end. The walk is the small daily thing — the reason
             you wake up tomorrow and write the post you committed to.
           </p>
-          <p className="text-xs text-zinc-600 mb-8">
-            Designed and shipped by Frank Riemer &middot; <Link href="/" className="hover:text-zinc-400 transition-colors">frankx.ai</Link>
+          <p className="text-xs text-zinc-400 mb-8">
+            Designed and shipped by Frank Riemer &middot;{' '}
+            <Link
+              href="/"
+              prefetch={false}
+              className="hover:text-zinc-200 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              frankx.ai
+            </Link>
           </p>
-          <div className="flex items-center justify-between text-xs text-zinc-600 pt-8 border-t border-white/[0.04]">
+          <div className="flex items-center justify-between text-xs text-zinc-400 pt-8 border-t border-white/[0.04]">
             <Link
               href="/workshops/ikigai-branding"
-              className="inline-flex items-center gap-1.5 hover:text-zinc-300 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-zinc-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
             >
-              <ArrowLeft className="w-3 h-3" />
+              <ArrowLeft className="w-3 h-3" aria-hidden="true" />
               Canonical V1
             </Link>
             <Link
               href="/workshops/ikigai/v2"
-              className="inline-flex items-center gap-1.5 hover:text-zinc-300 transition-colors"
+              prefetch={false}
+              className="inline-flex items-center gap-1.5 hover:text-zinc-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
             >
               Compare V2
-              <ArrowRight className="w-3 h-3" />
+              <ArrowRight className="w-3 h-3" aria-hidden="true" />
             </Link>
           </div>
         </div>
       </footer>
     </div>
+    </MotionConfig>
   )
 }

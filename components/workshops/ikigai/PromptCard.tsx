@@ -69,8 +69,12 @@ export function PromptCard({ prompt }: PromptCardProps) {
 
   const renderedBody = useMemo(() => {
     const html = marked.parse(prompt.body, { async: false }) as string
+    // ALLOWED_ATTR=[] strips href/onclick/style/class — every future markdown
+    // link silently loses its href. Trade-off accepted: defends against
+    // contributor pastes of raw HTML. h1–h4 intentionally NOT allowed so
+    // prompt bodies cannot inject into the page's heading outline.
     return DOMPurify.sanitize(html, {
-      ALLOWED_TAGS: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'br', 'hr', 'h1', 'h2', 'h3', 'h4'],
+      ALLOWED_TAGS: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'br', 'hr'],
       ALLOWED_ATTR: [],
     })
   }, [prompt.body])
@@ -135,15 +139,17 @@ export function PromptCard({ prompt }: PromptCardProps) {
         {/* Copy button — full-width on mobile, prominent */}
         <button
           onClick={handleCopy}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20"
+          aria-label={copied ? 'Prompt copied to clipboard' : 'Copy prompt to clipboard'}
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
         >
           {copied ? (
             <>
-              <Check className="w-4 h-4" /> Copied — now paste into your AI
+              <Check className="w-4 h-4" aria-hidden="true" />
+              <span role="status" aria-live="polite">Copied — now paste into your AI</span>
             </>
           ) : (
             <>
-              <Copy className="w-4 h-4" /> Copy prompt
+              <Copy className="w-4 h-4" aria-hidden="true" /> Copy prompt
             </>
           )}
         </button>
@@ -161,15 +167,15 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 href={t.href(prompt.body)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border cursor-pointer ${ACCENT_MAP[t.accent]} transition-colors`}
-                title={t.note ? `Opens new chat — paste the copied prompt` : `Opens with prompt pre-filled`}
+                aria-label={`Open ${t.name} in a new tab${t.note ? ' — then paste the copied prompt' : ' with the prompt pre-filled'}`}
+                className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border cursor-pointer ${ACCENT_MAP[t.accent]} transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
               >
-                <span className={`flex items-center justify-center w-6 h-6 rounded border ${ACCENT_MAP[t.accent]} font-bold text-[11px]`}>
+                <span aria-hidden="true" className={`flex items-center justify-center w-6 h-6 rounded border ${ACCENT_MAP[t.accent]} font-bold text-[11px]`}>
                   {t.glyph}
                 </span>
                 <span>{t.name}</span>
-                {t.note && <span className="text-[10px] opacity-60">· {t.note}</span>}
-                <ExternalLink className="w-3 h-3 opacity-60 ml-0.5" />
+                {t.note && <span aria-hidden="true" className="text-[10px] opacity-60">· {t.note}</span>}
+                <ExternalLink aria-hidden="true" className="w-3 h-3 opacity-60 ml-0.5" />
               </a>
             ))}
           </div>
