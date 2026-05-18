@@ -33,7 +33,10 @@ const CIRCLES: CircleSpec[] = [
   { cx: 260, cy: 400, r: 200, label: 'what pays', position: 'left' },
 ]
 
-const LABEL_POSITIONS: Record<CircleSpec['position'], { x: number; y: number; anchor: string }> = {
+const LABEL_POSITIONS: Record<
+  CircleSpec['position'],
+  { x: number; y: number; anchor: 'middle' | 'end' | 'start' }
+> = {
   top: { x: 400, y: 40, anchor: 'middle' },
   right: { x: 770, y: 408, anchor: 'end' },
   bottom: { x: 400, y: 770, anchor: 'middle' },
