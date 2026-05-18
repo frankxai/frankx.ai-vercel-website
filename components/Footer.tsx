@@ -100,7 +100,7 @@ export default function Footer() {
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Work with me</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/start" className="hover:text-white transition-colors">Start here</Link></li>
-              <li><Link href="/products" className="hover:text-white transition-colors">Build (€0–€2,997)</Link></li>
+              <li><Link href="/products" className="hover:text-white transition-colors">Build</Link></li>
               <li><Link href="/inner-circle" className="text-rose-400/70 hover:text-rose-300 transition-colors">Founder&apos;s Circle</Link></li>
               <li><Link href="/coaching" className="hover:text-white transition-colors">Coaching</Link></li>
               <li><Link href="/work-with-me" className="hover:text-white transition-colors">Studio</Link></li>

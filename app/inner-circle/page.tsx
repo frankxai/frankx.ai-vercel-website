@@ -158,7 +158,7 @@ const FAQS = [
   {
     question: 'When does the Inner Circle launch?',
     answer:
-      'We\'re currently in waitlist mode. Join now to be first in line for launch pricing, onboarding bonuses, and early access to the vault.',
+      'We\'re currently in waitlist mode. Join now to be first in line when the Inner Circle opens.',
   },
   {
     question: 'What\'s included in the free Signal tier?',
@@ -609,7 +609,7 @@ export default function InnerCirclePage() {
             <Award className="mx-auto mb-6 h-16 w-16 text-[#F59E0B]" />
             <h2 className="mb-6 text-4xl font-bold text-white text-balance md:text-5xl">Reserve Your Spot</h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-400 text-balance">
-              Be first to receive Inner Circle pricing, launch bonuses, and the onboarding guide.
+              Be first to know when the Inner Circle opens.
             </p>
 
             <div className="mx-auto max-w-md">
@@ -630,7 +630,7 @@ export default function InnerCirclePage() {
                 <Check className="h-4 w-4 text-[#10B981]" /> Unsubscribe anytime
               </span>
               <span className="flex items-center gap-1">
-                <Check className="h-4 w-4 text-[#10B981]" /> Early access pricing
+                <Check className="h-4 w-4 text-[#10B981]" /> Early access when we open
               </span>
             </div>
             </GlowCard>
