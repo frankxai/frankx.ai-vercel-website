@@ -181,11 +181,18 @@ interface Foundation {
 
 const FOUNDATIONS: Foundation[] = [
   {
+    kanji: '長',
+    label: 'flagship research',
+    title: 'Blue Zones, Ikigai, and the AI Era',
+    href: '/research/blue-zones-ikigai-ai-era',
+    body: 'Where ikigai actually came from — Kamiya (1966), Buettner (2005), García & Miralles (2016) — and why AI makes the Okinawan question load-bearing for everyone.',
+  },
+  {
     kanji: '識',
-    label: 'research',
+    label: 'adjacent research',
     title: 'Conscious AI Operating Systems',
     href: '/research/conscious-ai-operating-systems',
-    body: 'The substrate research behind this workshop. Why "operate your AI" beats "use your AI" — and how that reframes the creator economy.',
+    body: 'The architectural answer. Sovereign AI as the instrument of meaning, never the replacement for it.',
   },
   {
     kanji: '本',
