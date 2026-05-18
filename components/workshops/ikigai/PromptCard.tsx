@@ -92,12 +92,13 @@ export function PromptCard({ prompt }: PromptCardProps) {
       data-workshop-module={prompt.module}
       data-workshop-prompt-title={prompt.title}
     >
-      {/* Header */}
+      {/* Header — no "Module N" label: the section header already shows it,
+          and the V5 fractional-numbering scheme caused mismatched labels. */}
       <div className="px-5 sm:px-6 pt-5 sm:pt-6 pb-4 border-b border-white/[0.04]">
         <div className="flex items-center gap-2 mb-2">
           <Sparkles className="w-4 h-4 text-violet-300 flex-shrink-0" />
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-violet-300">
-            Prompt · Module {prompt.module}
+            Prompt
           </p>
         </div>
         <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight mb-1.5 leading-tight">
