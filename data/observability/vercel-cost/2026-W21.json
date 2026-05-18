@@ -1,0 +1,36 @@
+{
+  "week": "2026-W21",
+  "generatedAt": "2026-05-18T07:11:04Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-05-11T07:11:22Z",
+  "windowEnd": "2026-05-18T07:11:04Z",
+  "metrics": {
+    "count_total": 48,
+    "count_production": 23,
+    "count_preview": 25,
+    "count_skipped": 2,
+    "count_error": 3,
+    "duration_p50_seconds": 337,
+    "duration_p95_seconds": 444,
+    "duration_max_seconds": 515,
+    "total_build_minutes": 256.2,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 20,
+    "ready_deploys_total": 43,
+    "total_build_minutes_method": "sample_mean_extrapolation: mean=357.5s × 43 READY deploys (20/43 sampled)"
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "+8",
+    "count_total": "+28",
+    "total_build_minutes": "+167"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "RED: count_error=3 (threshold: >=2 → RED). 2 errors on preview branch feat/ikigai-upgrade-3-2026-W20 (PR#66 — first two commits failed, third commit on same branch succeeded). 1 error on production (dpl_ooMUbMjqeDBYgqrY2KdfnsuywGsD: feat(vis) VIS initial ship on main — resolved in the immediately following production commit fix(os) lime color token). All 3 errors were self-correcting within the same session; zero user-facing downtime detected.",
+    "RED: count_total=48 vs W20=20 (+140%, threshold: >+30% → RED). High-volume feature week: 9 PRs merged (PRs #60–72), including ikigai workshop upgrades #1–7 ahead of NL Digital 2026-05-19 and Madrid 2026-05-27 deliveries. Preview deploy inflation driven by multi-commit feature branches (feat/ikigai-upgrade-3 alone had 3 preview builds, feat/ikigai-upgrade-4 had 2). Not a runaway build signal — active delivery sprint.",
+    "RED: total_build_minutes≈256 vs W20=88.68 (+189%, threshold: >+30% → RED). Driven entirely by the deploy count surge — per-build p50 is only +8s vs baseline. Individual build health is stable.",
+    "duration_max_seconds=515s for dpl_C56QfBdBBvTTaziVuu5vvvJBytxJ (PR#63: partnerships 3-tier taxonomy + prompt-hub combined squash-merge on production) — 53% above sample median (337s). Fat squash-merge touching many components (partnerships hub, 4 partner pages, prompt-hub types, crisis-routing). One-off event; prior builds for same surface were 337s.",
+    "duration_p50_seconds=337s (+8s vs W20 329s, +2.4%): YELLOW range (271–360s). Build times are stable — turbopack gains from Phase 3 audit are holding. p50 drift within measurement noise; no regression."
+  ]
+}
