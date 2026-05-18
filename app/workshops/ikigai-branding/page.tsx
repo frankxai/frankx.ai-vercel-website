@@ -1,42 +1,31 @@
 'use client'
 
 /**
- * Ikigai & Branding Workshop — CANONICAL
+ * Ikigai & Branding Workshop — CANONICAL (refresh 2026-05-18)
  *
- * Promoted from V7 (audience-aware synthesis). V1's English-first structure
- * with three V6 imports — NB2 brushstroke hero, NB2 Venn diagram, V5
- * superintelligent prompts — and one Japanese accent (Kamiya quote mid-page).
+ * What changed in this refresh per Frank's direction:
+ *   - Kanji 生き甲斐 moved into the hero as a left-column anchor (desktop),
+ *     stacks above title on mobile. Replaces the "ikigai is a Japanese word"
+ *     paragraph as the cultural cue — Japanese minimalism, not exposition.
+ *   - V8 clean prompts (1 Coach + 7 micros). ~750 words total. No
+ *     "frontier-class reasoning model" preambles. Three options not eight.
+ *   - 7 essential modules — Map, Stress-Test, Statement, Brand, Plan,
+ *     Ship, Commit. Drops AI-Companion (tool catalog lives at /stack) and
+ *     Visual-Kit (bonus, moved to V8 preview only).
+ *   - Drops V1 fallback components — IkigaiWizard, SynthesisPanel,
+ *     BrandingBridge, ContentOperatingPlan. The audience pastes prompts;
+ *     they don't manually walk forms.
+ *   - Hero trimmed — no "Show on-page HUD" toggle, no module-count badge.
+ *     Two CTAs only: Open the Coach + pick a path.
  *
- * Earlier preview iterations remain live at /workshops/ikigai/v2 through /v7
- * for design comparison. This is the canonical page audiences land on.
+ * What stayed (Frank: "normal workshop page is still better"):
+ *   - NB2 brushstroke hero (variant-1) — V4 generation
+ *   - NB2 Venn diagram (variant-1) — V6 generation
+ *   - Kamiya quote between Module 3 and Module 4
+ *   - WorkshopPath, WorkshopProgressRail, PresenterOverlay, EmailSignup
  *
- * Original V7 architecture preserved (with the V7 chip removed):
- *
- *   1. NB2 brushstroke hero (V4 generation, variant-1) — replaces the
- *      generic Venn JPG that V1 had
- *   2. NB2 Venn diagram (V6 generation, variant-1) — the structural anchor
- *      after the WorkshopPath
- *   3. V5 superintelligent prompts (lib/workshop-prompts-v5.ts) — peer-
- *      collaborator stance, abundance, embedded image-gen, eval ≥4.2
- *
- * Drops everything else from V3-V6:
- *   - Kanji chapter prefixes (直観 chokkan, 探求 tankyū, …) — alienating
- *     for English-speaking creators
- *   - Inter-chapter intermezzo spreads — editorial-magazine pivot
- *   - "Note before we begin" cultural-primer detours
- *   - IkigaiWisdom 3-master panel — folded to one Kamiya pull-quote
- *   - Noto Serif JP global font load — saves bandwidth, no page-level kanji
- *
- * Keeps from V1:
- *   - WorkshopPath orientation cards (3 paths to start)
- *   - WorkshopProgressRail (sticky pill, English labels)
- *   - Coach GPT card pattern (alternative chat-mode entry)
- *   - English module names (Module 1, 2, 3 — no kanji prefix)
- *   - Site-consistent visual register (dark glass, violet→amber accents)
- *
- * Audience: creators, operators, AI-curious humans at NLDigital + Madrid
- * + frankx.ai visitors. English-fluent. Want frameworks they can apply,
- * not cultural deep dives.
+ * V1-V8 preview archive lives at /workshops/ikigai/v2 through /v8 for
+ * design comparison. This is the page audiences land on.
  */
 
 import { useEffect, useState } from 'react'
@@ -48,36 +37,28 @@ import {
   ArrowRight,
   ArrowUpRight,
   Clock,
-  Layers,
   Users,
   Mail,
-  Sparkles,
-  Compass,
   MessageSquareMore,
   Presentation,
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
-import { IkigaiWizard } from '@/components/workshops/ikigai/IkigaiWizard'
-import { SynthesisPanel } from '@/components/workshops/ikigai/SynthesisPanel'
-import { BrandingBridge } from '@/components/workshops/ikigai/BrandingBridge'
-import { ContentOperatingPlan } from '@/components/workshops/ikigai/ContentOperatingPlan'
 import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
+import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
 import { WorkshopPath } from '@/components/workshops/ikigai/WorkshopPath'
 import { WorkshopProgressRail } from '@/components/workshops/ikigai/WorkshopProgressRail'
-import { WORKSHOP_PROMPTS_V5 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v5'
-import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
+import { WORKSHOP_PROMPTS_V8 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v8'
 import { getWorkshopBySlug } from '@/data/workshops'
 
-// Hero brushstroke variant — 1-4. Files at /public/images/workshops/ikigai-branding/v4-hero-variant-{1..4}.jpg
 const HERO_VARIANT: 1 | 2 | 3 | 4 = 1
-// Venn diagram NB2 variant — 1-4. Files at /public/images/workshops/ikigai-branding/v6-venn-variant-{1..4}.jpg
 const VENN_VARIANT: 1 | 2 | 3 | 4 = 1
 
 const PRESENTER_SECTIONS = [
   'intro',
   'venn',
+  'coach',
   'start',
   'module-1',
   'module-2',
@@ -86,10 +67,19 @@ const PRESENTER_SECTIONS = [
   'module-5',
   'module-6',
   'module-7',
-  'module-8',
-  'module-9',
   'continue',
 ]
+
+// V8 Coach prompt (id 'coach', module 0) — the spine of the workshop.
+const COACH_PROMPT = WORKSHOP_PROMPTS.find((p) => p.id === 'coach')!
+
+interface StackLinkProps {
+  label: string
+  title: string
+  body: string
+  href?: string
+  external?: boolean
+}
 
 function StackLink({
   label,
@@ -97,13 +87,7 @@ function StackLink({
   body,
   href = '/stack',
   external = false,
-}: {
-  label: string
-  title: string
-  body: string
-  href?: string
-  external?: boolean
-}) {
+}: StackLinkProps) {
   const cls =
     'group flex items-start justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.03] hover:border-white/[0.12] p-5 sm:p-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]'
   const inner = (
@@ -131,7 +115,7 @@ function StackLink({
 }
 
 interface ModuleHeaderProps {
-  number: string
+  number: number
   title: string
   duration: string
   lead: string
@@ -159,9 +143,41 @@ function ModuleHeader({ number, title, duration, lead, accent }: ModuleHeaderPro
   )
 }
 
+/**
+ * Kanji anchor for the hero left column. Each character on its own line,
+ * vertical brush-calligraphy column. Romaji + meaning below — quiet,
+ * sourced authority instead of explanation.
+ */
+function KanjiAnchor() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -16 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+      className="select-none"
+      aria-hidden="true"
+    >
+      <div className="flex flex-col items-start gap-0 leading-none font-light tracking-[-0.04em]">
+        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-white/90">生</span>
+        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-violet-300/85">き</span>
+        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-white/90">甲</span>
+        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-amber-300/85">斐</span>
+      </div>
+      <div className="mt-5 pl-1">
+        <p className="text-[10px] uppercase tracking-[0.32em] text-zinc-500">
+          i&middot;ki&middot;gai
+        </p>
+        <p className="text-[13px] text-zinc-400 italic mt-1.5 leading-snug [font-family:var(--font-serif-editorial)]">
+          <span className="text-zinc-300">iki</span> &mdash; to live ·{' '}
+          <span className="text-zinc-300">kai</span> &mdash; a reason worth waking for
+        </p>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function IkigaiBrandingWorkshopPage() {
   const workshop = getWorkshopBySlug('ikigai-branding')!
-  const [ikigai, setIkigai] = useState<IkigaiState>(emptyIkigai)
   const [presenterActive, setPresenterActive] = useState(false)
 
   useEffect(() => {
@@ -174,100 +190,90 @@ export default function IkigaiBrandingWorkshopPage() {
     <div className="min-h-screen bg-[#0a0a0b]">
       <WorkshopProgressRail />
 
-      {/* ─── Hero ────────────────────────────────────────────────── */}
+      {/* ─── Hero — kanji left, content right ────────────────────── */}
       <section id="intro" className="relative pt-28 pb-12 overflow-hidden scroll-mt-24">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.05] via-amber-500/[0.02] to-transparent pointer-events-none" />
         <div className="absolute top-20 left-1/3 w-[500px] h-[500px] bg-violet-500/[0.06] rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-40 right-1/3 w-[400px] h-[400px] bg-amber-500/[0.05] rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/workshops"
-            className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-8 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1 py-0.5"
+            className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-10 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1 py-0.5"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             All workshops
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded-full border bg-emerald-500/15 text-emerald-400 border-emerald-500/25">
-                Beginner-friendly
-              </span>
-              <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-                <Clock className="w-3.5 h-3.5" aria-hidden="true" />
-                {workshop.duration}
-              </span>
-              <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-                <Layers className="w-3.5 h-3.5" aria-hidden="true" />
-                9 modules
-              </span>
-              <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-                <Users className="w-3.5 h-3.5" aria-hidden="true" />
-                Creators &middot; operators &middot; AI-curious
-              </span>
+          <div className="grid lg:grid-cols-[auto,1fr] gap-x-14 gap-y-10 items-center">
+            {/* Kanji anchor — left column on desktop, top on mobile */}
+            <div className="flex justify-start">
+              <KanjiAnchor />
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Ikigai &amp; Branding{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-amber-400">
-                Workshop
-              </span>
-            </h1>
-            <p className="text-lg sm:text-xl text-zinc-300 mb-6 max-w-2xl leading-relaxed">
-              A walk through ikigai with your AI as peer collaborator — not a tutorial bot.
-              Map your purpose, write your sentence, ship a 30-day plan, walk out with three
-              brand-launch visuals.
-            </p>
+            {/* Title + body + CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded-full border bg-emerald-500/15 text-emerald-400 border-emerald-500/25">
+                  Beginner-friendly
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+                  <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                  {workshop.duration}
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+                  <Users className="w-3.5 h-3.5" aria-hidden="true" />
+                  Creators &middot; operators &middot; AI-curious
+                </span>
+              </div>
 
-            <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
-              {workshop.overview}
-            </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+                Ikigai &amp; Branding{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-amber-400">
+                  Workshop
+                </span>
+              </h1>
+              <p className="text-lg text-zinc-300 mb-8 max-w-xl leading-relaxed">
+                One Coach. Seven modules. Walk out with a one-sentence purpose, a brand,
+                a 30-day plan, and the artifact you publish today.
+              </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="#start"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                Start the workshop
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-              <a
-                href="/go/ikigai-coach"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-3 rounded-lg text-sm font-medium text-zinc-200 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                Prefer a chat? Open Coach GPT
-              </a>
-            </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="#coach"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                >
+                  Open the Coach
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="#start"
+                  className="inline-flex items-center gap-1.5 px-4 py-3 rounded-lg text-sm font-medium text-zinc-200 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                >
+                  Or pick a path
+                </Link>
+              </div>
 
-            <div className="mt-5 pt-5 border-t border-white/[0.04] flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-zinc-500">
-              <span>Facilitating?</span>
-              <Link
-                href="/workshops/ikigai-branding/present"
-                className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-violet-200 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1"
-              >
-                <Presentation className="w-3.5 h-3.5" aria-hidden="true" />
-                Open presenter mode
-              </Link>
-              <span className="text-zinc-700">·</span>
-              <button
-                onClick={() => setPresenterActive((v) => !v)}
-                className="text-zinc-400 hover:text-zinc-200 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1"
-              >
-                {presenterActive ? 'Hide' : 'Show'} on-page HUD
-              </button>
-            </div>
-          </motion.div>
+              <div className="mt-6 pt-5 border-t border-white/[0.04] text-xs text-zinc-500">
+                <span>Facilitating? </span>
+                <Link
+                  href="/workshops/ikigai-branding/present"
+                  className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-violet-200 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1"
+                >
+                  <Presentation className="w-3.5 h-3.5" aria-hidden="true" />
+                  Open presenter mode
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ─── NB2 brushstroke hero — visual anchor ────────────────── */}
+      {/* ─── NB2 brushstroke hero ────────────────────────────────── */}
       <section className="pb-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-3xl overflow-hidden border border-white/[0.06] shadow-[0_20px_80px_-20px_rgba(59,51,128,0.35)]">
@@ -288,13 +294,8 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Path orientation ─────────────────────────────────────── */}
-      <div id="start" className="scroll-mt-24">
-        <WorkshopPath />
-      </div>
-
-      {/* ─── NB2 Venn — structural anchor (the framework explained) ─── */}
-      <section id="venn" className="py-12 sm:py-16 scroll-mt-24">
+      {/* ─── The framework — NB2 Venn ────────────────────────────── */}
+      <section id="venn" className="py-10 sm:py-14 scroll-mt-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-violet-300 mb-2">
@@ -304,9 +305,8 @@ export default function IkigaiBrandingWorkshopPage() {
               Four questions. One word at the center.
             </h2>
             <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed">
-              <em>Ikigai</em> is a Japanese word — roughly &ldquo;a reason to wake&rdquo;. The
-              four-circle Venn is the modern entry point: where what you love, what you&apos;re
-              good at, what the world needs, and what pays meet.
+              The four-circle Venn is the entry point: where what you love, what
+              you&apos;re good at, what the world needs, and what pays meet.
             </p>
           </div>
 
@@ -314,7 +314,7 @@ export default function IkigaiBrandingWorkshopPage() {
             <div className="relative rounded-3xl overflow-hidden border border-white/[0.06] shadow-[0_20px_60px_-20px_rgba(59,51,128,0.3)]">
               <Image
                 src={`/images/workshops/ikigai-branding/v6-venn-variant-${VENN_VARIANT}.jpg`}
-                alt="The four-circle Ikigai Venn diagram — what you love, what you are good at, what the world needs, what pays — with the kanji 生き甲斐 at the center where all four overlap."
+                alt="The four-circle Ikigai Venn diagram — what you love, what you are good at, what the world needs, what pays — with the kanji 生き甲斐 at the center."
                 width={2048}
                 height={2048}
                 sizes="(max-width: 768px) 90vw, 448px"
@@ -322,8 +322,8 @@ export default function IkigaiBrandingWorkshopPage() {
               />
             </div>
             <figcaption className="text-center text-xs text-zinc-500 mt-5 max-w-md mx-auto leading-relaxed">
-              The Venn is scaffolding. The depth comes from the longevity research and the
-              Japanese masters who wrote about ikigai before the West did —{' '}
+              The Venn is scaffolding. The depth comes from the longevity research and
+              the Japanese masters who wrote about ikigai before the West did —{' '}
               <Link
                 href="/research/blue-zones-ikigai-ai-era"
                 className="text-violet-300 hover:text-violet-200 transition-colors underline underline-offset-4"
@@ -336,95 +336,84 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Optional Module 0 — Initial Read (V5 M0 prompt) ────── */}
-      <section className="pb-12 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[0.04] p-6 sm:p-7">
-            <div className="flex items-baseline justify-between gap-3 mb-3 flex-wrap">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-amber-300 inline-flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-                Optional · run before Module 1
-              </p>
-              <span className="text-[10px] uppercase tracking-[0.18em] text-zinc-400">3 min</span>
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
-              Start with what your AI already knows about you
-            </h3>
-            <p className="text-sm text-zinc-300 mb-5 leading-relaxed">
-              Most workshops start from a blank page. This one starts from a hypothesis. Run
-              this prompt first — your AI uses memory, files, and context to put eight
-              candidate Ikigai directions on the table. The Socratic walk in Module 1 then
-              falsifies or sharpens the bet.
+      {/* ─── THE COACH — primary entry ───────────────────────────── */}
+      <section
+        id="coach"
+        className="relative pb-16 pt-4 scroll-mt-24 overflow-hidden"
+      >
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent pointer-events-none" />
+        <div className="absolute top-12 left-1/4 w-[400px] h-[400px] bg-violet-500/[0.05] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-32 right-1/4 w-[300px] h-[300px] bg-amber-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-amber-300 mb-2">
+              The spine of this workshop
             </p>
-            <PromptStack module={0} prompts={WORKSHOP_PROMPTS} label="Run this first" />
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
+              Open the Ikigai &amp; Branding Coach
+            </h2>
+            <p className="text-base text-zinc-300 max-w-xl mx-auto leading-relaxed">
+              One prompt. One conversation. Your AI walks the whole arc with you —
+              Map → Statement → Brand → Plan → Ship — one question at a time.
+            </p>
+            <p className="text-sm text-zinc-500 max-w-xl mx-auto leading-relaxed mt-3">
+              Then drop into the modules below when you want to sharpen a phase.
+            </p>
           </div>
+
+          <PromptCard prompt={COACH_PROMPT} />
         </div>
       </section>
 
-      {/* ─── Module 1 — The Ikigai Map ────────────────────────────── */}
+      {/* ─── Path orientation — for the linear walkers ───────────── */}
+      <div id="start" className="scroll-mt-24">
+        <WorkshopPath />
+      </div>
+
+      {/* ─── Module 1 — The Map ──────────────────────────────────── */}
       <section id="module-1" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
-            number="1"
-            title="The Ikigai Map"
-            duration="15 min"
+            number={1}
+            title="The Map"
+            duration="8 min"
             accent="violet"
-            lead="Walk the four circles. Your AI brings the questions, you bring the specifics. We're looking for named moments and real evidence — not categories."
+            lead="Three ikigai directions on the table — safe, stretch, wild — drawn from what your AI already knows about you. Three, not eight."
           />
-          <PromptStack module={1} prompts={WORKSHOP_PROMPTS} label="The AI-native path" />
-          <details className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
-              Or do the wizard manually — works without AI
-            </summary>
-            <div className="mt-4">
-              <IkigaiWizard value={ikigai} onChange={setIkigai} />
-            </div>
-          </details>
+          <PromptStack module={1} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
       </section>
 
-      {/* ─── Module 2 — Stress-Test the Loves ─────────────────────── */}
+      {/* ─── Module 2 — Stress-Test ──────────────────────────────── */}
       <section id="module-2" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
-            number="2"
-            title="Stress-Test the Loves"
-            duration="10 min"
+            number={2}
+            title="Stress-Test"
+            duration="8 min"
             accent="emerald"
-            lead="Most Ikigai walks die at the doubt step — &ldquo;I can&apos;t have fun AND earn from this.&rdquo; This prompt asks your AI to bring eight verified humans who already do, with real revenue mechanism. Anti-fabrication gated."
+            lead="Three real humans already earning a living from your direction. Named. Sourced. Or marked unverified. The doubt step dies with evidence."
           />
-          <PromptStack module={1.5} prompts={WORKSHOP_PROMPTS} label="Validate dreams against reality" />
+          <PromptStack module={2} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
       </section>
 
-      {/* ─── Module 3 — Your Purpose Statement ────────────────────── */}
+      {/* ─── Module 3 — The Statement ────────────────────────────── */}
       <section id="module-3" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
-            number="3"
-            title="Your Purpose Statement"
+            number={3}
+            title="The Statement"
             duration="10 min"
             accent="amber"
-            lead="Eight versions of your one-line Ikigai statement, ranked by how much each costs to claim. You pick the one to ship today and the one to ship in twelve months."
+            lead="Three versions of your one-line ikigai statement, ranked by claim-cost. The one you ship today and the one you're growing into."
           />
-          <PromptStack module={2} prompts={WORKSHOP_PROMPTS} label="The AI-native path" />
-          <details className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
-              Or draft manually below
-            </summary>
-            <div className="mt-4">
-              <SynthesisPanel
-                value={ikigai}
-                onStatementChange={(statement) =>
-                  setIkigai((prev) => ({ ...prev, statement }))
-                }
-              />
-            </div>
-          </details>
+          <PromptStack module={3} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
       </section>
 
-      {/* ─── Kamiya quote — the one Japanese cultural moment ─────── */}
+      {/* ─── Kamiya quote — the one cultural moment ──────────────── */}
       <section className="py-12 sm:py-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.figure
@@ -435,8 +424,8 @@ export default function IkigaiBrandingWorkshopPage() {
           >
             <blockquote>
               <p className="text-xl sm:text-2xl text-zinc-200 leading-[1.5] [font-family:var(--font-serif)] italic">
-                &ldquo;Ikigai is the most universal feeling of meaning we have — the quiet
-                sense that one&apos;s life is worth living.&rdquo;
+                &ldquo;Ikigai is the most universal feeling of meaning we have — the
+                quiet sense that one&apos;s life is worth living.&rdquo;
               </p>
             </blockquote>
             <figcaption className="mt-6 text-xs uppercase tracking-[0.24em] text-zinc-500">
@@ -446,25 +435,17 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Module 4 — From Purpose to Brand ─────────────────────── */}
+      {/* ─── Module 4 — Brand ────────────────────────────────────── */}
       <section id="module-4" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
-            number="4"
-            title="From Purpose to Brand"
+            number={4}
+            title="The Brand"
             duration="10 min"
             accent="violet"
-            lead="Positioning, one-reader avatar with a first name, three pillars that survive 52 weeks of weekly publishing. The bridge from who you are to who you serve."
+            lead="Positioning, one reader with a first name, three pillars that survive twelve months of weekly publishing. Built on your actual words, not invented."
           />
-          <PromptStack module={3} prompts={WORKSHOP_PROMPTS} label="The AI-native path" />
-          <details className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
-              Or work the bridge exercises manually
-            </summary>
-            <div className="mt-4">
-              <BrandingBridge value={ikigai} />
-            </div>
-          </details>
+          <PromptStack module={4} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
       </section>
 
@@ -472,83 +453,49 @@ export default function IkigaiBrandingWorkshopPage() {
       <section id="module-5" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
-            number="5"
+            number={5}
             title="The 30-Day Plan"
-            duration="12 min"
+            duration="8 min"
             accent="sky"
-            lead="A calendar anchored to your one reader's actual week. Plus your first Monday post — five drafts, kill three, ship one."
+            lead="A rhythm someone with a job can hold. Four Monday topics, one mid-week ritual, one end-of-month artifact."
           />
-          <PromptStack
-            module={4}
-            prompts={WORKSHOP_PROMPTS}
-            label="The AI-native path — these prompts generate your plan"
-          />
-          <details className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
-            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
-              Or use the interactive plan builder below
-            </summary>
-            <div className="mt-4">
-              <ContentOperatingPlan value={ikigai} />
-            </div>
-          </details>
+          <PromptStack module={5} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
       </section>
 
-      {/* ─── Module 6 — Your AI Companion ────────────────────────── */}
+      {/* ─── Module 6 — Ship the Artifact ────────────────────────── */}
       <section id="module-6" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
-            number="6"
-            title="Your AI Companion"
-            duration="8 min"
-            accent="violet"
-            lead="One opinionated primary AI plus a pair for what your primary can't do. Tool catalog deferred to frankx.ai/stack so this workshop stays focused on the practice."
-          />
-          <PromptStack module={5} prompts={WORKSHOP_PROMPTS} label="Pick your primary companion" />
-          <div className="mt-6">
-            <StackLink
-              label="full tool catalog"
-              title="The GenCreator Stack lives at frankx.ai/stack"
-              body="The five jobs every creator runs (Capture · Think · Make · Ship · Measure), the AI companions Frank actually uses, the swap-in alternatives. One canonical surface."
-              href="/stack"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Module 7 — Ship the Live Artifact ───────────────────── */}
-      <section id="module-7" className="pb-12 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ModuleHeader
-            number="7"
-            title="Ship the Live Artifact"
+            number={6}
+            title="Ship the Artifact"
             duration="10 min"
             accent="amber"
-            lead="One real LinkedIn post, one 60-second video script, one cover image — all generated in one prompt response. Before you leave this page."
+            lead="Three artifacts in one response — a LinkedIn post, a 60-second script, an image-gen prompt. Same idea, three shapes. Use your actual words."
           />
-          <PromptStack module={6} prompts={WORKSHOP_PROMPTS} label="Ship one artifact now" />
+          <PromptStack module={7} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
       </section>
 
-      {/* ─── Module 8 — Lock the Commitment ──────────────────────── */}
-      <section id="module-8" className="pb-12 scroll-mt-24">
+      {/* ─── Module 7 — Commitment + Resource Pack ───────────────── */}
+      <section id="module-7" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <ModuleHeader
-            number="8"
-            title="Lock the 30-Day Commitment"
+            number={7}
+            title="Lock the Commitment"
             duration="5 min"
             accent="emerald"
-            lead="Four artifacts scheduled at fixed cadence (72h, day 14, day 21, day 30) plus the accountability text you send to one human in the next 90 seconds."
+            lead="Three calendar entries plus the SMS you send to one human asking them to check in on you at day 14. Done in 90 seconds."
           />
-          <PromptStack module={7} prompts={WORKSHOP_PROMPTS} label="Lock the commitment" />
+          <PromptStack module={8} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
 
           <GlowCard color="emerald">
             <div className="p-6 sm:p-8 text-center">
               <Mail className="w-8 h-8 text-emerald-400 mx-auto mb-3" aria-hidden="true" />
               <h3 className="text-xl font-semibold text-white mb-2">Get the Resource Pack</h3>
               <p className="text-sm text-zinc-400 mb-5 max-w-md mx-auto">
-                Templates for the positioning sentence, audience-of-one, 30-day plan, and the
-                GenCreator Stack checklist. Plus a Day-7 check-in from Frank.
+                Templates for the positioning sentence, audience-of-one, 30-day plan, and
+                the GenCreator Stack checklist. Plus a Day-7 check-in from Frank.
               </p>
               <div className="max-w-sm mx-auto">
                 <EmailSignup
@@ -567,10 +514,12 @@ export default function IkigaiBrandingWorkshopPage() {
               aria-hidden="true"
             />
             <div>
-              <p className="text-sm font-semibold text-white mb-1">Prefer a conversation?</p>
+              <p className="text-sm font-semibold text-white mb-1">
+                Prefer the chat-only path?
+              </p>
               <p className="text-sm text-zinc-400 mb-3">
-                The free Ikigai &amp; Branding Coach GPT can walk you through everything on
-                this page via chat.
+                The free Ikigai &amp; Branding Coach GPT runs the same arc as one
+                conversation — Coach prompt prefilled.
               </p>
               <a
                 href="/go/ikigai-coach"
@@ -586,22 +535,11 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Module 9 — Brand Launch Kit ─────────────────────────── */}
-      <section id="module-9" className="pb-16 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ModuleHeader
-            number="9"
-            title="Brand Launch Kit"
-            duration="15 min"
-            accent="rose"
-            lead="Three image-gen prompts the AI writes directly in its response — wallpaper for your phone, a poster for your 30-day plan, and your selfie annotated with your mission. Paste into Nano Banana 2, GPT-Image, or Sora."
-          />
-          <PromptStack module={8} prompts={WORKSHOP_PROMPTS} label="Generate your visual kit" />
-        </div>
-      </section>
-
       {/* ─── Continue the practice ───────────────────────────────── */}
-      <section id="continue" className="pb-24 scroll-mt-24 border-t border-white/[0.04] pt-16 sm:pt-20">
+      <section
+        id="continue"
+        className="pb-24 scroll-mt-24 border-t border-white/[0.04] pt-16 sm:pt-20"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-violet-300 mb-2">
