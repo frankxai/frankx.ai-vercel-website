@@ -44,6 +44,7 @@ import {
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
+import { IkigaiVenn } from '@/components/workshops/ikigai/IkigaiVenn'
 import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
 import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
@@ -53,7 +54,6 @@ import { WORKSHOP_PROMPTS_V8 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const HERO_VARIANT: 1 | 2 | 3 | 4 = 1
-const VENN_VARIANT: 1 | 2 | 3 | 4 = 1
 
 const PRESENTER_SECTIONS = [
   'intro',
@@ -159,9 +159,9 @@ function KanjiAnchor() {
     >
       <div className="flex flex-row lg:flex-col items-start gap-3 lg:gap-0 leading-none font-light tracking-[-0.04em]">
         <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">生</span>
-        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-violet-300/85">き</span>
+        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">き</span>
         <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">甲</span>
-        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-amber-300/85">斐</span>
+        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">斐</span>
       </div>
       <div className="mt-4 lg:mt-5 lg:pl-1">
         <p className="text-[10px] uppercase tracking-[0.32em] text-zinc-500">
@@ -243,13 +243,15 @@ export default function IkigaiBrandingWorkshopPage() {
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
-                <Link
-                  href="#coach"
+                <a
+                  href="/go/ikigai-coach"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
-                  Open the Coach
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
+                  Open the Coach GPT
+                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                </a>
                 <Link
                   href="#start"
                   className="inline-flex items-center gap-1.5 px-4 py-3 rounded-lg text-sm font-medium text-zinc-200 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
@@ -310,17 +312,8 @@ export default function IkigaiBrandingWorkshopPage() {
             </p>
           </div>
 
-          <figure className="max-w-md mx-auto">
-            <div className="relative rounded-3xl overflow-hidden border border-white/[0.06] shadow-[0_20px_60px_-20px_rgba(59,51,128,0.3)]">
-              <Image
-                src={`/images/workshops/ikigai-branding/v6-venn-variant-${VENN_VARIANT}.jpg`}
-                alt="The four-circle Ikigai Venn diagram — what you love, what you are good at, what the world needs, what pays — with the kanji 生き甲斐 at the center."
-                width={2048}
-                height={2048}
-                sizes="(max-width: 768px) 90vw, 448px"
-                className="w-full h-auto"
-              />
-            </div>
+          <figure>
+            <IkigaiVenn />
             <figcaption className="text-center text-xs text-zinc-500 mt-5 max-w-md mx-auto leading-relaxed">
               The Venn is scaffolding. The depth comes from the longevity research and
               the Japanese masters who wrote about ikigai before the West did —{' '}
@@ -360,6 +353,31 @@ export default function IkigaiBrandingWorkshopPage() {
             <p className="text-sm text-zinc-500 max-w-xl mx-auto leading-relaxed mt-3">
               Then drop into the modules below when you want to sharpen a phase.
             </p>
+          </div>
+
+          {/* Primary path — open the custom GPT (free, in ChatGPT) */}
+          <div className="flex flex-col items-center mb-8">
+            <a
+              href="/go/ikigai-coach"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-base font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Open the Coach GPT (free, in ChatGPT)
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+            <p className="text-[11px] text-zinc-500 mt-2">
+              opens in a new tab · no signup required
+            </p>
+          </div>
+
+          {/* Divider — secondary path for paste-into-your-own-AI */}
+          <div className="flex items-center gap-3 max-w-md mx-auto mb-6">
+            <span className="flex-1 h-px bg-white/[0.06]" aria-hidden="true" />
+            <span className="text-[10px] uppercase tracking-[0.24em] text-zinc-500">
+              Or paste into your own AI
+            </span>
+            <span className="flex-1 h-px bg-white/[0.06]" aria-hidden="true" />
           </div>
 
           <PromptCard prompt={COACH_PROMPT} />
@@ -432,6 +450,26 @@ export default function IkigaiBrandingWorkshopPage() {
               — Mieko Kamiya, Ikigai-ni-Tsuite, 1966
             </figcaption>
           </motion.figure>
+        </div>
+      </section>
+
+      {/* ─── Bridge visual — purpose → brand ─────────────────────── */}
+      <section className="pb-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <figure className="rounded-3xl overflow-hidden border border-white/[0.06] shadow-[0_20px_60px_-20px_rgba(59,51,128,0.3)]">
+            <Image
+              src="/images/workshops/ikigai-branding/purpose-to-brand-flow.jpg"
+              alt="From purpose to brand — a diagram bridging the one-line ikigai statement to brand positioning"
+              width={2048}
+              height={1280}
+              sizes="(max-width: 768px) 90vw, 768px"
+              className="w-full h-auto"
+            />
+          </figure>
+          <p className="text-center text-xs text-zinc-500 mt-4 max-w-md mx-auto leading-relaxed">
+            From the one-sentence purpose to a brand that holds twelve months of weekly
+            publishing. Module 4 walks the bridge.
+          </p>
         </div>
       </section>
 
@@ -559,7 +597,7 @@ export default function IkigaiBrandingWorkshopPage() {
               label="daily"
               title="The Prompt Library — 98 patterns, red-teamed"
               body="Drop into one each morning. Eval-gated, voice-checked, MIT-licensed — fork what works for your own daily practice."
-              href="/prompts"
+              href="/prompt-library"
             />
             <StackLink
               label="weekly"

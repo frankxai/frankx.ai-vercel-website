@@ -11,12 +11,13 @@ interface ProgressSection {
 }
 
 const SECTIONS: ProgressSection[] = [
-  { id: 'module-1', label: 'Map', minutes: 15 },
-  { id: 'synthesis', label: 'Statement', minutes: 10 },
-  { id: 'brand-bridge', label: 'Brand', minutes: 10 },
-  { id: 'content-plan', label: 'Plan', minutes: 12 },
-  { id: 'gencreator-stack', label: 'Stack', minutes: 8 },
-  { id: 'activation', label: 'Ship', minutes: 5 },
+  { id: 'module-1', label: 'Map', minutes: 8 },
+  { id: 'module-2', label: 'Stress-Test', minutes: 8 },
+  { id: 'module-3', label: 'Statement', minutes: 10 },
+  { id: 'module-4', label: 'Brand', minutes: 10 },
+  { id: 'module-5', label: 'Plan', minutes: 8 },
+  { id: 'module-6', label: 'Ship', minutes: 10 },
+  { id: 'module-7', label: 'Lock', minutes: 5 },
 ]
 
 /**
@@ -92,7 +93,7 @@ export function WorkshopProgressRail() {
           />
         </div>
         <Link
-          href="#activation"
+          href="#module-6"
           className="hidden sm:inline-flex items-center gap-1 text-[10px] font-medium text-zinc-400 hover:text-white transition-colors px-1.5 py-0.5"
         >
           Skip to ship
