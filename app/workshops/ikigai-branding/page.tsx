@@ -144,9 +144,9 @@ function ModuleHeader({ number, title, duration, lead, accent }: ModuleHeaderPro
 }
 
 /**
- * Kanji anchor for the hero left column. Each character on its own line,
- * vertical brush-calligraphy column. Romaji + meaning below — quiet,
- * sourced authority instead of explanation.
+ * Kanji anchor for the hero. Vertical brush-calligraphy column on
+ * desktop (lg+), compact horizontal row on mobile to keep the top
+ * uncluttered. Romaji + meaning below — quiet authority, not exposition.
  */
 function KanjiAnchor() {
   return (
@@ -157,17 +157,17 @@ function KanjiAnchor() {
       className="select-none"
       aria-hidden="true"
     >
-      <div className="flex flex-col items-start gap-0 leading-none font-light tracking-[-0.04em]">
-        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-white/90">生</span>
-        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-violet-300/85">き</span>
-        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-white/90">甲</span>
-        <span className="text-[68px] sm:text-[88px] lg:text-[104px] text-amber-300/85">斐</span>
+      <div className="flex flex-row lg:flex-col items-start gap-3 lg:gap-0 leading-none font-light tracking-[-0.04em]">
+        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">生</span>
+        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-violet-300/85">き</span>
+        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">甲</span>
+        <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-amber-300/85">斐</span>
       </div>
-      <div className="mt-5 pl-1">
+      <div className="mt-4 lg:mt-5 lg:pl-1">
         <p className="text-[10px] uppercase tracking-[0.32em] text-zinc-500">
           i&middot;ki&middot;gai
         </p>
-        <p className="text-[13px] text-zinc-400 italic mt-1.5 leading-snug [font-family:var(--font-serif-editorial)]">
+        <p className="text-[13px] text-zinc-400 italic mt-1.5 leading-snug max-w-[15rem] [font-family:var(--font-serif-editorial)]">
           <span className="text-zinc-300">iki</span> &mdash; to live ·{' '}
           <span className="text-zinc-300">kai</span> &mdash; a reason worth waking for
         </p>
