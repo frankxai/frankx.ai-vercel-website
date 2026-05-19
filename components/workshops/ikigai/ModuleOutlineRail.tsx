@@ -37,15 +37,15 @@ const MODULES: ModuleEntry[] = [
 
 export function ModuleOutlineRail() {
   const [activeId, setActiveId] = useState<string | null>(null)
-  const [visible, setVisible] = useState(false)
+  const [heroOut, setHeroOut] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Show the rail only once the hero has scrolled out of view
+    // Fade rail in once the hero has scrolled out of view
     const hero = document.getElementById('intro')
     const heroObserver = new IntersectionObserver(
-      (entries) => entries.forEach((e) => setVisible(!e.isIntersecting)),
+      (entries) => entries.forEach((e) => setHeroOut(!e.isIntersecting)),
       { threshold: 0.1 },
     )
     if (hero) heroObserver.observe(hero)
@@ -75,12 +75,12 @@ export function ModuleOutlineRail() {
     }
   }, [])
 
-  if (!visible) return null
-
   return (
     <aside
       aria-label="Workshop module outline"
-      className="hidden lg:flex fixed left-5 xl:left-8 top-1/2 -translate-y-1/2 z-30 flex-col gap-1.5 print:hidden"
+      className={`hidden lg:flex fixed left-5 xl:left-8 top-1/2 -translate-y-1/2 z-30 flex-col gap-1.5 print:hidden transition-opacity duration-500 ${
+        heroOut ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
     >
       {MODULES.map((m) => {
         const isActive = activeId === m.id
