@@ -83,7 +83,7 @@ Put 3 possible ikigai directions on the table:
 
 For each, write three lines:
 - The named moment in my life that points to it
-- The earnable mechanism — a transaction, not a feeling
+- The earnable mechanism — a real transaction (subscription, sponsorship, product, service)
 - The doubt I'd raise about it
 
 If you have no memory of me, ask me three quick questions first, then write the three directions.
