@@ -37,7 +37,7 @@ export async function generateMetadata({
   const ogImage = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
 
   return {
-    title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
+    title: `${review.title} by ${review.author} — Book Review & Key Insights`,
     description,
     keywords: [
       ...review.categories,

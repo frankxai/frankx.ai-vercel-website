@@ -143,6 +143,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/courses/agent-architecture-systems',
     '/courses/creator-business-systems',
     '/workshops/ikigai-branding',
+    '/workshops/ikigai/v2',
+    '/workshops/ikigai/v3',
+    '/workshops/ikigai/v4',
+    '/workshops/ikigai/v6',
+    '/workshops/ikigai/v8',
     '/workshops/ai-2026-graduates',
     '/workshops/build-first-ai-agent',
     '/workshops/ai-music-masterclass',
@@ -253,7 +258,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
     { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
-    { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
@@ -310,6 +314,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/blue-zones-ikigai-ai-era', priority: 0.9, changeFrequency: 'monthly' as const },
   ]
 
   // Library OS hub + manifesto/build/quotes funnels

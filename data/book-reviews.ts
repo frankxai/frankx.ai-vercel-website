@@ -5688,6 +5688,18 @@ export const bookReviews: BookReview[] = [
     ],
     continueReading: [
       {
+        title: 'Blue Zones, Ikigai, and the AI Era',
+        author: 'Frank Riemer',
+        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
+        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+      },
+      {
+        title: 'The Ikigai workshop — 75-minute walk',
+        author: 'Frank Riemer',
+        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
+        url: 'https://frankx.ai/workshops/ikigai-branding',
+      },
+      {
         title: 'The Little Book of Ikigai',
         author: 'Ken Mogi',
         reason: 'Mogi explicitly references Kamiya and treats his five-pillar framework as a Japanese-native distillation of the same lineage. The closest English-language proxy to Kamiya\'s thinking.',
@@ -5845,6 +5857,18 @@ export const bookReviews: BookReview[] = [
       },
     ],
     continueReading: [
+      {
+        title: 'Blue Zones, Ikigai, and the AI Era',
+        author: 'Frank Riemer',
+        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
+        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+      },
+      {
+        title: 'The Ikigai workshop — 75-minute walk',
+        author: 'Frank Riemer',
+        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
+        url: 'https://frankx.ai/workshops/ikigai-branding',
+      },
       {
         title: 'The Blue Zones Solution',
         author: 'Dan Buettner',
@@ -6068,6 +6092,18 @@ export const bookReviews: BookReview[] = [
     ],
     continueReading: [
       {
+        title: 'Blue Zones, Ikigai, and the AI Era',
+        author: 'Frank Riemer',
+        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
+        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+      },
+      {
+        title: 'The Ikigai workshop — 75-minute walk',
+        author: 'Frank Riemer',
+        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
+        url: 'https://frankx.ai/workshops/ikigai-branding',
+      },
+      {
         title: 'The Little Book of Ikigai',
         author: 'Ken Mogi',
         reason: 'The Japanese-native counterweight. Where García & Miralles import the Western Venn, Mogi explicitly rejects it and gives the Five Pillars. Read both for the inside-out and outside-in views.',
@@ -6284,6 +6320,18 @@ export const bookReviews: BookReview[] = [
       },
     ],
     continueReading: [
+      {
+        title: 'Blue Zones, Ikigai, and the AI Era',
+        author: 'Frank Riemer',
+        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
+        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+      },
+      {
+        title: 'The Ikigai workshop — 75-minute walk',
+        author: 'Frank Riemer',
+        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
+        url: 'https://frankx.ai/workshops/ikigai-branding',
+      },
       {
         title: 'Ikigai-ni-Tsuite',
         author: 'Mieko Kamiya',
