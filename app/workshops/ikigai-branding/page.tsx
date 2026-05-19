@@ -43,10 +43,10 @@ import {
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
+import { ModuleOutlineRail } from '@/components/workshops/ikigai/ModuleOutlineRail'
 import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
 import { WorkshopPath } from '@/components/workshops/ikigai/WorkshopPath'
-import { WorkshopProgressRail } from '@/components/workshops/ikigai/WorkshopProgressRail'
 import { WORKSHOP_PROMPTS_V9 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v9'
 import { getWorkshopBySlug } from '@/data/workshops'
 
@@ -122,7 +122,7 @@ export default function IkigaiBrandingWorkshopPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <WorkshopProgressRail />
+      <ModuleOutlineRail />
 
       {/* ─── Hero — kanji left, content right ────────────────────── */}
       <section id="intro" className="relative pt-28 pb-12 overflow-hidden scroll-mt-24">
@@ -450,6 +450,88 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
+      {/* ─── The broader practice (foundations cards, moved up from footer) ─── */}
+      <section className="pb-16 scroll-mt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-violet-300 mb-2">
+              The broader practice
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
+              Where this workshop sits
+            </h2>
+            <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
+              Four threads run alongside this workshop. Glance at them now; come back
+              after the modules to extend the practice.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              {
+                kanji: '究',
+                label: 'research',
+                title: 'Blue Zones, Ikigai, and the AI Era',
+                body: 'The flagship research grounding this workshop. Twelve minutes. Sourced and FAQ’d.',
+                href: '/research/blue-zones-ikigai-ai-era',
+              },
+              {
+                kanji: '型',
+                label: 'patterns',
+                title: 'The Prompt Library',
+                body: 'Drop into one each morning. Red-teamed, MIT-licensed — fork what works for your own daily practice.',
+                href: '/prompt-library',
+              },
+              {
+                kanji: '本',
+                label: 'library',
+                title: 'The Library — books, annotated',
+                body: 'Kamiya, Mogi, García &amp; Miralles, Buettner. Read one chapter a month. The lineage of the word.',
+                href: '/library',
+              },
+              {
+                kanji: '塾',
+                label: 'workshops',
+                title: 'Other live workshops',
+                body: 'AI in 2026 for graduates, Sovereign Leadership, the bespoke ones. The same hands run the next.',
+                href: '/workshops',
+              },
+            ].map((f) => (
+              <Link
+                key={f.title}
+                href={f.href}
+                prefetch={false}
+                className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] h-full"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <span
+                    className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
+                    style={{ fontWeight: 200 }}
+                    aria-hidden="true"
+                  >
+                    {f.kanji}
+                  </span>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors flex-shrink-0 mt-1"
+                  />
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
+                  {f.label}
+                </p>
+                <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+                  {f.title}
+                </h3>
+                <p
+                  className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic"
+                  dangerouslySetInnerHTML={{ __html: f.body }}
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── Path orientation — for the linear walkers ───────────── */}
       <div id="start" className="scroll-mt-24">
         <WorkshopPath />
@@ -639,90 +721,23 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Continue the practice ───────────────────────────────── */}
+      {/* ─── Closing — practice begins tomorrow + slim nav ───────── */}
       <section
         id="continue"
         className="pb-24 scroll-mt-24 border-t border-white/[0.04] pt-16 sm:pt-20"
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-violet-300 mb-2">
-              Continue the practice
-            </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
               Ikigai is not a workshop. It is a way of opening tomorrow morning.
             </h2>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
-              The workshop ends. The practice begins tomorrow. Pick one cadence you can
-              actually hold.
+              The modules end. The practice begins tomorrow. The four threads at the top
+              of this page are your next stops when you&apos;re ready.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              {
-                kanji: '究',
-                label: 'research',
-                title: 'Blue Zones, Ikigai, and the AI Era',
-                body: 'The flagship research grounding this workshop. Twelve minutes. Sourced and FAQ’d.',
-                href: '/research/blue-zones-ikigai-ai-era',
-              },
-              {
-                kanji: '型',
-                label: 'patterns',
-                title: 'The Prompt Library',
-                body: 'Drop into one each morning. Red-teamed, MIT-licensed — fork what works for your own daily practice.',
-                href: '/prompt-library',
-              },
-              {
-                kanji: '本',
-                label: 'library',
-                title: 'The Library — books, annotated',
-                body: 'Kamiya, Mogi, García &amp; Miralles, Buettner. Read one chapter a month. The lineage of the word.',
-                href: '/library',
-              },
-              {
-                kanji: '塾',
-                label: 'workshops',
-                title: 'Other live workshops',
-                body: 'AI in 2026 for graduates, Sovereign Leadership, the bespoke ones. The same hands run the next.',
-                href: '/workshops',
-              },
-            ].map((f) => (
-              <Link
-                key={f.title}
-                href={f.href}
-                prefetch={false}
-                className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] h-full"
-              >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <span
-                    className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
-                    style={{ fontWeight: 200 }}
-                    aria-hidden="true"
-                  >
-                    {f.kanji}
-                  </span>
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors flex-shrink-0 mt-1"
-                  />
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
-                  {f.label}
-                </p>
-                <h3 className="text-base font-semibold text-white mb-2 leading-snug">
-                  {f.title}
-                </h3>
-                <p
-                  className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic"
-                  dangerouslySetInnerHTML={{ __html: f.body }}
-                />
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between pt-12 mt-12 border-t border-white/[0.04]">
+          <div className="flex items-center justify-between pt-2 mt-2">
             <Link
               href="/workshops"
               className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1 py-0.5"

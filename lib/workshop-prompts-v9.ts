@@ -318,7 +318,7 @@ Then choose the ONE post I should publish FIRST today, and explain why. State th
 
 Write one strong LinkedIn post from the best content idea.
 
-If the content idea is missing, infer the strongest one from this chat.
+If a specific content idea has been discussed earlier in this chat, use it. **If this chat is empty or no idea is on the table, infer a strong, plausible post topic for an experienced professional building a personal brand and proceed — do not ask me to provide one. State your inferred topic in one line at the top, then write the post.**
 
 Use this structure:
 
@@ -418,7 +418,7 @@ You are my creative director and AI image-generation prompt engineer.
 
 Turn the post or idea into premium visual content for LinkedIn.
 
-If the post is missing, infer the strongest post from this chat.
+If a post has been discussed earlier in this chat, use it. **If this chat is empty or no post is on the table, infer a strong, plausible post topic for an experienced professional building a personal brand and proceed — do not ask me to paste one. State your inferred post topic in one line at the top, then build the visual concepts.**
 
 First, extract:
 - core message
