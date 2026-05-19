@@ -281,7 +281,7 @@ export default function BlueZonesIkigaiResearchPage() {
           <p className="text-sm text-zinc-400 mt-6 max-w-2xl leading-relaxed">
             Updated 2026-05-18 &middot; 12-minute read &middot; Sources at the bottom &middot;{' '}
             <Link
-              href="/workshops/ikigai/v4"
+              href="/workshops/ikigai-branding"
               className="text-violet-300 hover:text-violet-200 transition-colors underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-sm"
             >
               practical translation in the Ikigai workshop
@@ -544,77 +544,18 @@ export default function BlueZonesIkigaiResearchPage() {
             <p>
               The Ikigai workshop on this site is the operational version of this research.
               It compresses Kamiya, Mogi, García &amp; Miralles, and the Blue Zones research
-              into a 75-minute walk &mdash; ten chapters, thirteen prompts that work in any AI
-              assistant, four cadences for after.
-            </p>
-            <p>
-              Four versions are live for design comparison. Pick the one that reads right
-              for you. They run the same prompt registry; they differ in editorial register
-              and structural depth.
+              into a 90-minute walk &mdash; one Coach prompt, seven modules, and the artefacts
+              you publish before you stand up.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              href="/workshops/ikigai/v4"
-              className="group block rounded-2xl border border-violet-500/30 bg-violet-500/[0.04] hover:bg-violet-500/[0.08] hover:border-violet-500/50 p-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-violet-200">
-                  Recommended
-                </p>
-                <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-violet-300 group-hover:text-violet-100 transition-colors" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                V4 &middot; Composed Canonical
-              </h3>
-              <p className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
-                The synthesis. V1 structure + V2 clarity + V3 cinematic depth +
-                per-chapter meaning anchors + this research linked back. The deepest version.
-              </p>
-            </Link>
+          <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/workshops/ikigai-branding"
-              className="group block rounded-2xl border border-white/[0.08] bg-white/[0.015] hover:bg-white/[0.03] hover:border-white/[0.16] p-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400">
-                  Original canonical
-                </p>
-                <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                V1 &middot; Original
-              </h3>
-              <p className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
-                The first canonical surface. Wizard-driven UX, 6 prompts, Workshop Path
-                orientation. Still the URL search engines know.
-              </p>
-            </Link>
-          </div>
-
-          <div className="mt-3 grid sm:grid-cols-2 gap-4">
-            <Link
-              href="/workshops/ikigai/v2"
-              className="group block rounded-2xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-1.5">
-                V2 &middot; editorial clean
-              </p>
-              <p className="text-sm text-zinc-300 leading-snug">
-                Wisdom panel + 13 prompts + serif accents. The clean editorial pass.
-              </p>
-            </Link>
-            <Link
-              href="/workshops/ikigai/v3"
-              className="group block rounded-2xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-1.5">
-                V3 &middot; editorial cinema
-              </p>
-              <p className="text-sm text-zinc-300 leading-snug">
-                Black canvas + Japanese chapter framing + WCAG-elevated.
-              </p>
+              Open the workshop
+              <ArrowUpRight aria-hidden="true" className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -722,7 +663,7 @@ export default function BlueZonesIkigaiResearchPage() {
               All research
             </Link>
             <Link
-              href="/workshops/ikigai/v4"
+              href="/workshops/ikigai-branding"
               className="inline-flex items-center gap-1.5 text-violet-300 hover:text-violet-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
             >
               Walk the Ikigai workshop
