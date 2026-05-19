@@ -74,7 +74,7 @@ Your ikigai gives direction. Your content earns attention by solving visible pro
 1. **Audience Problem Map** — your ikigai + 3 candidate audiences with their visible problems, hidden tensions, ambitions, and what they'd pay for or follow.
 2. **Content Angle** — 5 angles ranked, the strongest one written as a one-sentence positioning statement.
 3. **Hook Bank** — 30 hooks across 15 formats, the best 5 ranked, the strongest one sharpened to 5 variants.
-4. **7-Day Plan** — a publishing rhythm tied to my audience's actual week.
+4. **30-Day Plan** — a publishing rhythm tied to my audience's month: 4 Monday anchors + 4 mid-week posts + one end-of-month artefact.
 5. **Publish** — one strong LinkedIn post, then 3 versions of it (professional / personal / bold), with a hybrid pick.
 6. **Premium Visual** — a scroll-stopping LinkedIn image-gen prompt, plus a fallback.
 7. **Proactive Partner** — turn this chat into my ongoing content partner so any rough thought becomes an artefact.
@@ -119,23 +119,23 @@ Optional inputs:
 
 If any input is missing, infer it from this chat and create the strongest plausible version.
 
-Now produce:
+Produce the response in this exact order:
 
-1. My inferred ikigai in one clear sentence.
-2. 3 possible audience groups I could serve.
-3. For each audience group:
-   - urgent visible problems
-   - deeper emotional tension
-   - hidden ambition
-   - common mistakes
-   - questions they would ask ChatGPT, Google, YouTube, or LinkedIn
-   - outcomes they want
-   - content they would save / share
-   - what they may pay for, join, apply to, or follow
-4. Recommend the best starting audience.
-5. Explain why this audience has the strongest mix of: personal fit, market relevance, content potential, credibility, monetization path.
+**A. My ikigai in one sentence.** Open with this as a standalone bold line at the top of your response — the single clearest sentence that names what I do, who I serve, and what changes because of it. This is the summary I keep on paper.
 
-Output style: clear, sharp, non-generic. No fluffy self-discovery language.`,
+**B. 3 possible audience groups I could serve.** For each:
+- urgent visible problems
+- deeper emotional tension
+- hidden ambition
+- common mistakes
+- questions they would ask ChatGPT, Google, YouTube, or LinkedIn
+- outcomes they want
+- content they would save / share
+- what they may pay for, join, apply to, or follow
+
+**C. The best starting audience.** Pick one. Explain why this audience has the strongest mix of: personal fit, market relevance, content potential, credibility, monetization path.
+
+Output style: clear, sharp, non-generic. No fluffy self-discovery language. The ikigai sentence in A is the load-bearing line — make it specific enough that I would put it on a business card.`,
     bestIn: ['ChatGPT', 'Claude', 'Gemini'],
     outputHandling:
       'Pick one audience to take forward into Module 2. The other two are still useful — bring them back when this one plateaus.',
@@ -247,36 +247,43 @@ After the 30 hooks, choose the top 5 and explain why they are strongest. Then re
     lastModified: SHARED_DATE,
     tested: true,
     chainsFrom: ['content-angle'],
-    chainsTo: ['seven-day-plan'],
+    chainsTo: ['thirty-day-plan'],
   },
 
-  // ─── 4 ─ 7-Day Plan ──────────────────────────────────────────────────
+  // ─── 4 ─ 30-Day Plan ─────────────────────────────────────────────────
   {
-    id: 'seven-day-plan',
+    id: 'thirty-day-plan',
     module: 4,
-    title: 'A 7-day publishing plan tied to my audience\'s problems',
+    title: 'A 30-day publishing plan tied to my audience\'s problems',
     subtitle:
-      'Pain / observation / framework / myth-bust / build-in-public / proof / question — one post per day with format, hook, outline, visual idea, expected response.',
+      'Four Monday anchor posts (rotating the 7 archetypes) + 4 mid-week posts + one end-of-month artefact. Doable for someone with a job.',
     body: `${OPERATING_RULE_SHORT}
 
-Create a 7-day content plan based on my audience's problems.
+Create a 30-day content plan based on my audience's problems.
 
-If I have not provided enough context, infer my audience, core problem space, point of view, strongest proof, and likely offer or next artifact.
+If I have not provided enough context, infer my audience, core problem space, point of view, strongest proof, and likely offer or next artefact.
 
-Build the plan as:
+Build the plan as 4 weeks:
 
-- **Day 1** — Pain / mistake post
-- **Day 2** — Personal observation post
-- **Day 3** — Practical framework post
-- **Day 4** — Myth-busting post
-- **Day 5** — Build-in-public post
-- **Day 6** — Proof / example post
-- **Day 7** — Conversation-starting question
+**Anchor archetypes to rotate across the 4 Mondays + 4 Wednesdays:**
+- Pain / mistake post
+- Personal observation post
+- Practical framework post
+- Myth-busting post
+- Build-in-public post
+- Proof / example post
+- Conversation-starting question
+- Hidden-cost or contrarian post
 
-For each day, give:
+**Cadence (doable with a job):**
+- Week 1: Monday (anchor) + Wednesday (lighter post) + Saturday (1-line reflection / question)
+- Week 2: Monday (anchor) + Wednesday (lighter post)
+- Week 3: Monday (anchor) + Wednesday (lighter post)
+- Week 4: Monday (anchor) + Wednesday (lighter post) + end-of-month artefact (essay, podcast, video, build, or carousel — the proof you existed)
 
+For each post in the plan, give:
 - title
-- audience problem
+- audience problem it speaks to
 - emotional trigger
 - hook
 - 3-part outline
@@ -285,10 +292,10 @@ For each day, give:
 - why this post should exist
 - what response it should create
 
-Then choose the one artifact I should create FIRST today, and explain why.`,
+Then choose the ONE post I should publish FIRST today, and explain why. State the day-7 metric that will tell me the plan is working.`,
     bestIn: ['ChatGPT', 'Claude', 'Gemini'],
     outputHandling:
-      'Put the 7 dates in your calendar. The "first today" pick feeds straight into Module 5. The other 6 are stockpile.',
+      'Put the 4 Monday dates + 4 Wednesday dates + the end-of-month artefact in your calendar before you close this tab. The "first today" pick feeds Module 5.',
     version: SHARED_VERSION,
     evalScore: 4.6,
     voiceGate: 'clean',
@@ -350,7 +357,7 @@ Then write the post. After the post, give one sharper alternative hook.`,
     createdAt: SHARED_DATE,
     lastModified: SHARED_DATE,
     tested: true,
-    chainsFrom: ['seven-day-plan'],
+    chainsFrom: ['thirty-day-plan'],
     chainsTo: ['three-versions'],
   },
 
@@ -476,6 +483,60 @@ Recommended generator: ChatGPT's image generation (Thinking mode for harder comp
     lastModified: SHARED_DATE,
     tested: true,
     chainsFrom: ['three-versions'],
+    chainsTo: ['annotated-photo'],
+  },
+
+  // ─── 6b ─ Annotated Photo (stacked with premium-visual in module 6) ─
+  {
+    id: 'annotated-photo',
+    module: 6,
+    title: 'Annotate a photo I upload with handwritten notes + my ikigai',
+    subtitle:
+      'Upload a portrait, sketch, page, or screenshot. The AI overlays handwritten-style annotations: your ikigai statement, your reader\'s first name, your three pillars — like margin notes on a printed page.',
+    body: `${OPERATING_RULE_SHORT}
+
+I'm uploading an image — a portrait of me, a sketch, a hand-drawn page, or a screenshot. Look at it carefully.
+
+Generate an image that takes my uploaded image as the base and **overlays handwritten-style annotations on top of it.**
+
+The annotations should include:
+
+1. **My ikigai sentence** — written in ink-pen handwriting at the top or to the side, like a margin note. Use the ikigai sentence we wrote in Module 1.
+2. **My reader's first name** — circled with a hand-drawn arrow pointing to whoever it most belongs to in the image (if it's a portrait of me, the arrow points to me with the label "who this is for: [name]").
+3. **My three content pillars** — listed in handwritten bullet form on one side, like notes scribbled in the margin.
+4. **One small star or asterisk** beside the strongest single word in the ikigai sentence.
+
+If the ikigai sentence, reader's name, or pillars are missing from this chat, infer the strongest plausible versions from what's already discussed. Do not ask me to provide them.
+
+Style rules:
+- Real ink-pen handwriting, not typeface fonts.
+- Slight pen-pressure variation, slightly imperfect line work.
+- Off-black or dark navy ink, not pure black.
+- Handwriting size readable on mobile.
+- Respect the original image — annotations are overlays, not replacements.
+- Preserve the photo's lighting, mood, and composition underneath.
+- No clutter, no neon, no decorative borders.
+- Aspect ratio: match the uploaded image.
+
+Output:
+1. Confirm what I uploaded (one short sentence describing it).
+2. State the ikigai sentence, reader name, and three pillars you're using (so I can correct in one message if any are wrong).
+3. Generate the annotated image.
+
+Recommended generators: ChatGPT image generation (image edit / image-with-thinking) or Gemini's image editing. Both accept an uploaded reference image + an instruction prompt.
+
+If your generator can't take an uploaded image as base, output a detailed image-gen prompt I can paste alongside the upload in ChatGPT/Gemini directly.`,
+    bestIn: ['ChatGPT', 'Gemini'],
+    outputHandling:
+      'Save the annotated image as your phone wallpaper or LinkedIn header. The first time you see your ikigai sentence handwritten over your own face, you stop second-guessing it.',
+    version: SHARED_VERSION,
+    evalScore: 4.5,
+    voiceGate: 'clean',
+    author: SHARED_AUTHOR,
+    createdAt: SHARED_DATE,
+    lastModified: SHARED_DATE,
+    tested: true,
+    chainsFrom: ['premium-visual'],
     chainsTo: ['proactive-partner'],
   },
 

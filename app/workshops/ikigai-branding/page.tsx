@@ -257,13 +257,13 @@ export default function IkigaiBrandingWorkshopPage() {
               },
               {
                 n: '04',
-                t: 'A 7-day publishing plan + your first LinkedIn post (in 3 versions)',
-                b: 'Daily posts tied to your audience’s actual week. Then one post written, plus 3 alternate voices, plus a hybrid that combines the strongest parts.',
+                t: 'A 30-day publishing plan + your first LinkedIn post (in 3 versions)',
+                b: 'Four Monday anchors + mid-week posts + an end-of-month artefact. Then one post written today, plus 3 alternate voices, plus a hybrid that combines the strongest parts.',
               },
               {
                 n: '05',
-                t: 'A premium image-gen prompt + a chat that’s now your proactive content partner',
-                b: 'A scroll-stopping LinkedIn visual prompt with a no-text fallback. And a chat that turns any rough thought you paste later into a publishable artefact.',
+                t: 'A premium image-gen prompt + your face annotated with your statement + a proactive content partner',
+                b: 'A scroll-stopping LinkedIn visual. An annotated portrait with your ikigai sentence in handwritten ink over it. And a chat that turns any rough thought you paste later into a publishable artefact.',
               },
             ].map((o) => (
               <li
@@ -539,15 +539,15 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Module 4 — 7-Day Plan ───────────────────────────────── */}
+      {/* ─── Module 4 — 30-Day Plan ──────────────────────────────── */}
       <section id="module-4" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={4}
-            title="7-Day Plan"
-            duration="10 min"
+            title="30-Day Plan"
+            duration="12 min"
             accent="sky"
-            lead="A publishing rhythm tied to your audience’s actual week. Pain / observation / framework / myth-bust / build-in-public / proof / question — one post per day."
+            lead="A publishing rhythm tied to your audience’s month. Four Monday anchor posts rotating across pain / observation / framework / myth-bust / build-in-public / proof / question — plus mid-week posts and one end-of-month artefact. Doable for someone with a job."
           />
           <PromptStack module={4} prompts={WORKSHOP_PROMPTS} label="Paste into the latest ChatGPT" />
         </div>
@@ -567,17 +567,17 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* ─── Module 6 — Premium Visual ───────────────────────────── */}
+      {/* ─── Module 6 — Premium Visual + Annotated Photo ─────────── */}
       <section id="module-6" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={6}
-            title="Premium Visual"
-            duration="10 min"
+            title="Premium Visual + Annotated Photo"
+            duration="14 min"
             accent="rose"
-            lead="Three visual concepts (infographic / carousel cover / bold metaphor), then a ready-to-paste image-gen prompt for ChatGPT image generation, plus a no-text fallback."
+            lead="Two prompts. First, three visual concepts for your post plus a ready-to-paste image-gen prompt. Second, upload a portrait or sketch and have ChatGPT or Gemini overlay handwritten-style annotations of your ikigai statement, your reader’s name, and your three pillars."
           />
-          <PromptStack module={6} prompts={WORKSHOP_PROMPTS} label="Paste into ChatGPT image gen" />
+          <PromptStack module={6} prompts={WORKSHOP_PROMPTS} label="Two prompts — design + annotate" />
         </div>
       </section>
 
