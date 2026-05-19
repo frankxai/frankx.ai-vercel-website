@@ -355,7 +355,7 @@ export default function IkigaiBrandingWorkshopPage() {
 
       {/* ─── The framework — NB2 Venn ────────────────────────────── */}
       <section id="venn" className="py-10 sm:py-14 scroll-mt-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-violet-300 mb-2">
               The framework
@@ -369,16 +369,16 @@ export default function IkigaiBrandingWorkshopPage() {
             </p>
           </div>
 
-          <figure className="max-w-md mx-auto">
+          <figure className="max-w-2xl mx-auto px-2 sm:px-0">
             <Image
               src="/images/workshops/ikigai-branding/ikigai-venn.jpg"
               alt="The four-circle Ikigai Venn diagram — what you love, what you are good at, what the world needs, what pays — with the kanji 生き甲斐 at the center."
               width={1400}
               height={1400}
-              sizes="(max-width: 768px) 90vw, 448px"
-              className="w-full h-auto rounded-3xl border border-white/[0.06] shadow-[0_20px_60px_-20px_rgba(59,51,128,0.3)]"
+              sizes="(max-width: 768px) 92vw, 672px"
+              className="w-full h-auto rounded-3xl border border-white/[0.06] shadow-[0_24px_80px_-20px_rgba(59,51,128,0.35)]"
             />
-            <figcaption className="text-center text-xs text-zinc-500 mt-5 max-w-md mx-auto leading-relaxed">
+            <figcaption className="text-center text-xs text-zinc-500 mt-6 max-w-lg mx-auto leading-relaxed">
               The Venn is scaffolding. The depth comes from the longevity research and
               the Japanese masters who wrote about ikigai before the West did —{' '}
               <Link
