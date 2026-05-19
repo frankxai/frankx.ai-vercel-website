@@ -29,6 +29,7 @@ import {
   mascotImage,
   mascotWithSpeech,
 } from './email-design-system'
+import { unsubscribeUrl } from './email-config'
 
 interface EmailTemplate {
   subject: string
@@ -378,3 +379,61 @@ export function albumReleaseEmail(data: {
     html: emailWrapper(content, `${data.albumTitle} — ${data.albumDescription}`),
   }
 }
+// ─── 8. Newsletter Confirmation (DOI) ────────────────────────────
+
+function unsubscribeFooterHtml(email: string): string {
+  const u = unsubscribeUrl(email)
+  return `
+    <div style="margin-top: 32px; padding-top: 18px; border-top: 1px solid ${T.borderSubtle}; font-family: ${T.fontStack}; font-size: 12px; color: ${T.textMuted}; text-align: center; line-height: 1.6;">
+      <p style="margin: 0 0 6px 0;">
+        FrankX · Frank Riemer · AI Architect
+      </p>
+      <p style="margin: 0;">
+        You're receiving this because you joined the AI Architect Newsletter.
+        <br />
+        <a href="${u}" style="color: ${T.textMuted}; text-decoration: underline;">Unsubscribe at any time</a>.
+      </p>
+    </div>
+  `
+}
+
+export function newsletterConfirmationEmail(data: {
+  recipientName: string
+  email: string
+  confirmUrl: string
+}): EmailTemplate {
+  const name = data.recipientName || 'there'
+
+  const content = glassCard(
+    `
+    <h1 class="h1" style="font-family: ${T.fontStack}; font-size: 24px; font-weight: 700; color: ${T.textPrimary}; margin: 0 0 16px 0; line-height: 1.3; letter-spacing: -0.02em;">
+      Confirm your subscription, ${name}.
+    </h1>
+
+    <p style="font-family: ${T.fontStack}; font-size: 15px; color: ${T.textSecondary}; line-height: 1.65; margin: 0 0 24px 0;">
+      You just signed up for the AI Architect Newsletter. One quick step: click the button below to confirm. After that, you'll receive issues as they ship — no drip sequence, no marketing automation. One honest message when there's something real to share.
+    </p>
+
+    ${ctaButton('Confirm subscription', data.confirmUrl)}
+
+    <p style="font-family: ${T.fontStack}; font-size: 13px; color: ${T.textMuted}; line-height: 1.6; margin: 20px 0 0 0;">
+      If the button doesn't work, paste this URL into your browser:
+      <br />
+      <a href="${data.confirmUrl}" style="color: ${T.accentPurple}; word-break: break-all;">${data.confirmUrl}</a>
+    </p>
+
+    <p style="font-family: ${T.fontStack}; font-size: 13px; color: ${T.textMuted}; line-height: 1.6; margin: 18px 0 0 0;">
+      Didn't sign up? Just ignore this email — your address won't be added to any list until you confirm.
+    </p>
+    `,
+    { accentColor: T.accentPurple, accentPosition: 'top' }
+  )
+
+  return {
+    subject: 'Confirm your AI Architect Newsletter subscription',
+    html: emailWrapper(content, 'One quick click to confirm — no drip sequence after.') + unsubscribeFooterHtml(data.email),
+  }
+}
+
+export { unsubscribeFooterHtml }
+

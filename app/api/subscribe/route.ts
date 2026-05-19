@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { musicPromptsEmail, newsletterWelcomeEmail } from '@/lib/email-templates'
+import { musicPromptsEmail, newsletterWelcomeEmail, newsletterConfirmationEmail } from '@/lib/email-templates'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { notifyAdmin } from '@/lib/notify-admin'
+import { confirmUrl, FROM_ADDRESS } from '@/lib/email-config'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -47,6 +48,30 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   },
 }
 
+async function sendConfirmationEmail(email: string, name: string) {
+  if (!RESEND_API_KEY) return
+
+  const template = newsletterConfirmationEmail({
+    recipientName: name || 'Creator',
+    email,
+    confirmUrl: confirmUrl(email),
+  })
+
+  await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: FROM_ADDRESS,
+      to: email,
+      subject: template.subject,
+      html: template.html,
+    }),
+  })
+}
+
 async function sendWelcomeEmail(email: string, name: string, listType: string) {
   if (!RESEND_API_KEY) return
 
@@ -73,7 +98,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Frank <frank@mail.frankx.ai>',
+      from: FROM_ADDRESS,
       to: email,
       subject: template.subject,
       html: template.html,
@@ -112,7 +137,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         email,
         first_name: name || undefined,
-        unsubscribed: false,
+        unsubscribed: true, // DOI: contact starts unconfirmed; flipped by /api/subscribe/confirm
       }),
     })
 
@@ -135,21 +160,12 @@ export async function POST(request: NextRequest) {
 
     const data = await resendResponse.json()
 
-    // Send welcome/delivery email (non-blocking)
-    sendWelcomeEmail(email, name, listType).catch((err) =>
-      console.error('Welcome email error:', err)
+    // DOI: send confirmation email (non-blocking). The welcome email and
+    // welcome-sequence enqueue happen only after the user clicks the
+    // confirmation link, which lands at /api/subscribe/confirm.
+    sendConfirmationEmail(email, name).catch((err) =>
+      console.error('Confirmation email error:', err)
     )
-
-    // Enqueue for welcome sequence (Day 2 + Day 5 follow-ups)
-    // Dynamic import — KV may not be configured in all environments
-    import('@vercel/kv').then(({ kv }) =>
-      kv.set(`welcome:${email}`, {
-        email,
-        name: name || '',
-        subscribedAt: new Date().toISOString(),
-        step1SentAt: new Date().toISOString(),
-      })
-    ).catch((err) => console.error('Welcome queue error:', err))
 
     // Notify admin (non-blocking)
     notifyAdmin({
@@ -162,8 +178,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: listType === 'music-lab'
-        ? "You're on the music-lab waitlist. We'll let you know when prompts are ready."
-        : "You're on the waitlist. We'll be in touch when there's something honest to share.",
+        ? "Check your email to confirm. Once you click the confirm link, you'll be on the music-lab waitlist."
+        : "Check your email to confirm. Once you click the confirm link, you'll be on the AI Architect Newsletter list.",
       subscriber: data.id,
     })
   } catch (error) {
