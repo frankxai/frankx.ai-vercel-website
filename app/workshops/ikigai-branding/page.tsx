@@ -22,13 +22,13 @@
  *   - NB2 brushstroke hero (variant-1) — V4 generation
  *   - NB2 Venn diagram (variant-1) — V6 generation
  *   - Kamiya quote between Module 3 and Module 4
- *   - WorkshopPath, WorkshopProgressRail, PresenterOverlay, EmailSignup
+ *   - WorkshopPath, WorkshopProgressRail, EmailSignup
  *
- * V1-V8 preview archive lives at /workshops/ikigai/v2 through /v8 for
- * design comparison. This is the page audiences land on.
+ * V1 (the former V4-composed-canonical) is the single archive at
+ * /workshops/ikigai/v1 — unlinked from canonical, kept for reference.
+ * This is the page audiences land on.
  */
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -40,11 +40,9 @@ import {
   Users,
   Mail,
   MessageSquareMore,
-  Presentation,
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
-import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
 import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
 import { WorkshopPath } from '@/components/workshops/ikigai/WorkshopPath'
@@ -53,22 +51,6 @@ import { WORKSHOP_PROMPTS_V8 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const HERO_VARIANT: 1 | 2 | 3 | 4 = 1
-
-const PRESENTER_SECTIONS = [
-  'intro',
-  'what-you-leave-with',
-  'venn',
-  'coach',
-  'start',
-  'module-1',
-  'module-2',
-  'module-3',
-  'module-4',
-  'module-5',
-  'module-6',
-  'module-7',
-  'continue',
-]
 
 // V8 Coach prompt (id 'coach', module 0) — the spine of the workshop.
 const COACH_PROMPT = WORKSHOP_PROMPTS.find((p) => p.id === 'coach')!
@@ -137,13 +119,6 @@ function KanjiAnchor() {
 
 export default function IkigaiBrandingWorkshopPage() {
   const workshop = getWorkshopBySlug('ikigai-branding')!
-  const [presenterActive, setPresenterActive] = useState(false)
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('present') === '1') setPresenterActive(true)
-  }, [])
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -219,16 +194,6 @@ export default function IkigaiBrandingWorkshopPage() {
                 </Link>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-white/[0.04] text-xs text-zinc-500">
-                <span>Facilitating? </span>
-                <Link
-                  href="/workshops/ikigai-branding/present"
-                  className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-violet-200 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1"
-                >
-                  <Presentation className="w-3.5 h-3.5" aria-hidden="true" />
-                  Open presenter mode
-                </Link>
-              </div>
             </motion.div>
           </div>
         </div>
@@ -767,8 +732,6 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* Presenter HUD overlay */}
-      <PresenterOverlay sectionIds={PRESENTER_SECTIONS} active={presenterActive} />
     </div>
   )
 }

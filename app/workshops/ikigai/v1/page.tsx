@@ -1059,22 +1059,11 @@ export default function IkigaiV4Page() {
                 className="inline-flex items-center gap-1.5 hover:text-zinc-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
               >
                 <ArrowLeft className="w-3 h-3" aria-hidden="true" />
-                V1 canonical
+                Back to the workshop
               </Link>
-              <Link
-                href="/workshops/ikigai/v2"
-                prefetch={false}
-                className="hover:text-zinc-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
-              >
-                V2 editorial clean
-              </Link>
-              <Link
-                href="/workshops/ikigai/v3"
-                prefetch={false}
-                className="hover:text-zinc-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black px-1 py-0.5"
-              >
-                V3 editorial cinema
-              </Link>
+              <span className="text-zinc-500 italic [font-family:var(--font-serif-editorial)]">
+                V1 archive — design-thinking-composed reference
+              </span>
             </div>
           </div>
         </footer>
