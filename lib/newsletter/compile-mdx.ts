@@ -71,13 +71,24 @@ export function parseBody(content: string): Block[] {
       continue
     }
 
-    // Heading → start a section
+    // Heading → emit a heading-only section, then fall through so subsequent
+    // paragraphs and lists are parsed as ordered blocks at the top level.
     if (line.startsWith('## ')) {
       seenHeading = true
       const heading = line.slice(3).trim()
-      const { body, items, end } = collectSection(lines, i + 1)
-      blocks.push({ type: 'section', heading, body, items })
-      i = end
+      blocks.push({ type: 'section', heading })
+      i++
+      continue
+    }
+
+    // Top-level list (paragraph-adjacent, preserves order)
+    if (line.startsWith('- ')) {
+      const items: string[] = []
+      while (i < lines.length && lines[i].startsWith('- ')) {
+        items.push(lines[i].slice(2).trim())
+        i++
+      }
+      blocks.push({ type: 'list', items })
       continue
     }
 
@@ -146,33 +157,6 @@ export function parseBody(content: string): Block[] {
   return blocks
 }
 
-function collectSection(
-  lines: string[],
-  start: number,
-): { body: string; items?: string[]; end: number } {
-  const bodyLines: string[] = []
-  const items: string[] = []
-  let i = start
-
-  while (i < lines.length) {
-    const line = lines[i]
-    if (isBlockStart(line)) break
-    if (line.startsWith('- ')) {
-      items.push(line.slice(2).trim())
-      i++
-      continue
-    }
-    bodyLines.push(line)
-    i++
-  }
-
-  return {
-    body: bodyLines.join('\n').trim(),
-    items: items.length ? items : undefined,
-    end: i,
-  }
-}
-
 function isBlockStart(line: string): boolean {
   return (
     line.startsWith('## ') ||
@@ -180,6 +164,7 @@ function isBlockStart(line: string): boolean {
     line.startsWith('```') ||
     line.startsWith(':::') ||
     line.startsWith('—') ||
+    line.startsWith('- ') ||
     /^\[[^\]]+\]\([^)]+\)\{\.cta\}/.test(line)
   )
 }

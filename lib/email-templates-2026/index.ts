@@ -214,16 +214,18 @@ function renderPlainText(issue: CompiledIssue, meta: StreamMeta): string {
     '',
   ]
   for (const b of issue.blocks) {
-    if (b.type === 'intro' || (b.type === 'section' && !b.heading)) {
+    if (b.type === 'intro') {
       lines.push(b.body || '', '')
     } else if (b.type === 'section') {
-      lines.push(b.heading || '', '', b.body || '', '')
-      if (b.items) {
-        for (const item of b.items) lines.push(`• ${item}`)
-        lines.push('')
-      }
+      if (b.heading) lines.push(b.heading, '')
+      if (b.body) lines.push(b.body, '')
+    } else if (b.type === 'list') {
+      for (const item of b.items || []) lines.push(`• ${item}`)
+      lines.push('')
     } else if (b.type === 'pullquote') {
       lines.push(`"${b.body}"`, b.author ? `— ${b.author}` : '', '')
+    } else if (b.type === 'code') {
+      lines.push(b.body || '', '')
     } else if (b.type === 'cta') {
       lines.push(`→ ${b.label}: ${b.href}`, '')
     } else if (b.type === 'signoff') {

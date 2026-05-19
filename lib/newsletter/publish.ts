@@ -92,12 +92,18 @@ async function sendViaResend(
 
   if (dryRun) {
     const to = toOverride || 'frank@frankx.ai'
+    // Only prefix with [DRY] when there's no explicit recipient — an explicit
+    // --to is a real test send and should look pristine in the recipient's inbox.
+    const testSubject = toOverride ? subject : `[DRY] ${subject}`
     const res = await fetch(`${RESEND_API}/emails`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from, to, subject: `[DRY] ${subject}`, html, text }),
+      body: JSON.stringify({ from, to, subject: testSubject, html, text }),
     })
-    if (!res.ok) return { ok: false, error: `Resend dry-run ${res.status}` }
+    if (!res.ok) {
+      const errText = await res.text()
+      return { ok: false, error: `Resend ${res.status}: ${errText.slice(0, 200)}` }
+    }
     const data = (await res.json()) as { id?: string }
     return { ok: true, id: data.id }
   }
