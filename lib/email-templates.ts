@@ -1,4 +1,5 @@
 import { socialLinks } from '@/lib/social-links'
+import { unsubscribeUrl } from './email-config'
 
 /**
  * Email Template System v2.0 for FrankX.AI
@@ -585,5 +586,66 @@ export function albumReleaseEmail(data: {
   return {
     subject: `New album: ${data.albumTitle}`,
     html: emailWrapper(content, `${data.albumTitle} — ${data.albumDescription}`)
+  }
+}
+
+// ─── Unsubscribe Footer (CAN-SPAM / GDPR) ─────────────────────────
+// Appended to every marketing email. Uses the HMAC-signed unsubscribe
+// URL from lib/email-config so one click works without login.
+
+
+export function unsubscribeFooterHtml(email: string): string {
+  const url = unsubscribeUrl(email)
+  return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto;">
+      <tr>
+        <td align="center" style="padding: 20px 24px 32px 24px;">
+          <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; color: #64748B; line-height: 1.6; margin: 0;">
+            You're receiving this because you subscribed at frankx.ai.
+            <br />
+            <a href="${url}" style="color: #94A3B8; text-decoration: underline;">Unsubscribe</a>
+            &nbsp;·&nbsp; FrankX, Amsterdam, NL
+          </p>
+        </td>
+      </tr>
+    </table>`
+}
+
+// ─── Double-Opt-In Confirmation ───────────────────────────────────
+
+export function newsletterConfirmationEmail(data: {
+  recipientName: string
+  email: string
+  confirmUrl: string
+}): EmailTemplate {
+  const name = data.recipientName || 'there'
+
+  const content = `
+    <h1 style="font-size: 24px; font-weight: 700; color: #F8FAFC; margin: 0 0 16px 0; line-height: 1.3; letter-spacing: -0.02em;">
+      Confirm your subscription, ${name}.
+    </h1>
+
+    <p style="font-size: 15px; color: #CBD5E1; line-height: 1.65; margin: 0 0 24px 0;">
+      You just signed up at frankx.ai. One quick step: click the button below to confirm.
+      After that, you'll receive issues as they ship — no drip sequence, no marketing
+      automation. One honest message when there's something real to share.
+    </p>
+
+    ${ctaButton('Confirm subscription', data.confirmUrl)}
+
+    <p style="font-size: 13px; color: #64748B; line-height: 1.6; margin: 20px 0 0 0;">
+      If the button doesn't work, paste this URL into your browser:
+      <br />
+      <a href="${data.confirmUrl}" style="color: #A78BFA; word-break: break-all;">${data.confirmUrl}</a>
+    </p>
+
+    <p style="font-size: 13px; color: #64748B; line-height: 1.6; margin: 18px 0 0 0;">
+      Didn't sign up? Just ignore this email — your address won't be added to any list
+      until you confirm.
+    </p>`
+
+  return {
+    subject: 'Confirm your FrankX newsletter subscription',
+    html: emailWrapper(content, 'One quick click to confirm — nothing sends until you do.'),
   }
 }
