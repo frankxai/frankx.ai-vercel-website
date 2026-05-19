@@ -1,32 +1,32 @@
 'use client'
 
 /**
- * Ikigai & Branding Workshop — CANONICAL (refresh 2026-05-18)
+ * Ikigai & Branding Workshop — CANONICAL
  *
- * What changed in this refresh per Frank's direction:
- *   - Kanji 生き甲斐 moved into the hero as a left-column anchor (desktop),
- *     stacks above title on mobile. Replaces the "ikigai is a Japanese word"
- *     paragraph as the cultural cue — Japanese minimalism, not exposition.
- *   - V8 clean prompts (1 Coach + 7 micros). ~750 words total. No
- *     "frontier-class reasoning model" preambles. Three options not eight.
- *   - 7 essential modules — Map, Stress-Test, Statement, Brand, Plan,
- *     Ship, Commit. Drops AI-Companion (tool catalog lives at /stack) and
- *     Visual-Kit (bonus, moved to V8 preview only).
- *   - Drops V1 fallback components — IkigaiWizard, SynthesisPanel,
- *     BrandingBridge, ContentOperatingPlan. The audience pastes prompts;
- *     they don't manually walk forms.
- *   - Hero trimmed — no "Show on-page HUD" toggle, no module-count badge.
- *     Two CTAs only: Open the Coach + pick a path.
+ * Current prompt stack: V9 (audience-first, proactive — see lib/workshop-prompts-v9.ts).
+ * Core principle (Frank, 2026-05-19): "Never ask the participant to complete the
+ * system. Make the assistant complete the system from weak signals."
  *
- * What stayed (Frank: "normal workshop page is still better"):
- *   - NB2 brushstroke hero (variant-1) — V4 generation
- *   - NB2 Venn diagram (variant-1) — V6 generation
- *   - Kamiya quote between Module 3 and Module 4
- *   - WorkshopPath, WorkshopProgressRail, EmailSignup
+ * Seven modules:
+ *   1. Audience Problem Map
+ *   2. Content Angle
+ *   3. Hook Bank
+ *   4. 7-Day Plan
+ *   5. Publish — Post + 3 Versions (two prompts stacked)
+ *   6. Premium Visual
+ *   7. Proactive Partner
  *
- * V1 (the former V4-composed-canonical) is the single archive at
- * /workshops/ikigai/v1 — unlinked from canonical, kept for reference.
- * This is the page audiences land on.
+ * Plus the Coach prompt which carries the full Universal Operating Rule
+ * and the 7-module arc as one paste.
+ *
+ * Page structure: kanji left-rail hero → NB2 brushstroke → 5-outcome panel →
+ * AI-as-mirror framing → original ikigai-venn raster → Coach card → 7 modules
+ * → Kamiya quote between M2 and M3 → purpose-to-brand-flow bridge image →
+ * email signup at Module 7 → kanji cards (究/型/本/塾).
+ *
+ * V1 (the former V4 design-thinking-composed preview) is the single archive
+ * at /workshops/ikigai/v1 — unlinked from canonical, noindex, kept for
+ * facilitator reference.
  */
 
 import Link from 'next/link'
@@ -47,7 +47,7 @@ import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
 import { WorkshopPath } from '@/components/workshops/ikigai/WorkshopPath'
 import { WorkshopProgressRail } from '@/components/workshops/ikigai/WorkshopProgressRail'
-import { WORKSHOP_PROMPTS_V8 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v8'
+import { WORKSHOP_PROMPTS_V9 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v9'
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const HERO_VARIANT: 1 | 2 | 3 | 4 = 1
@@ -172,8 +172,9 @@ export default function IkigaiBrandingWorkshopPage() {
                 </span>
               </h1>
               <p className="text-lg text-zinc-300 mb-8 max-w-xl leading-relaxed">
-                One Coach. Seven modules. Walk out with a one-sentence purpose, a brand,
-                a 30-day plan, and the artifact you publish today.
+                Your ikigai gives direction. Your content earns attention by solving
+                visible problems for real people. AI helps you translate the invisible
+                part of you into something others can recognize, use, and remember.
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
@@ -241,28 +242,28 @@ export default function IkigaiBrandingWorkshopPage() {
             {[
               {
                 n: '01',
-                t: 'Your one-sentence ikigai statement',
-                b: 'Two versions — the one you ship today, and the one you grow into by next year.',
+                t: 'An audience problem map',
+                b: 'Three candidate audience groups with their visible problems, hidden tensions, ambitions, and what they’d actually pay for or follow.',
               },
               {
                 n: '02',
-                t: 'A brand positioning that holds 12 months',
-                b: 'One reader with a first name, three pillars that survive a year of weekly publishing.',
+                t: 'Your content angle in one sentence',
+                b: 'Who you serve, the painful state they’re in, the future state they want, and the distinct mechanism you bring.',
               },
               {
                 n: '03',
-                t: 'A 30-day rhythm you can actually hold',
-                b: 'Four Monday topics, one mid-week ritual, one end-of-month artifact. Built for someone with a job.',
+                t: 'A 30-hook bank across 15 formats',
+                b: 'Mistake, contrarian, before/after, curiosity, identity, hidden-cost, strong-belief. Best 5 ranked, strongest sharpened to 5 variants.',
               },
               {
                 n: '04',
-                t: 'Three named humans living from your direction',
-                b: 'Real first names with revenue mechanisms, sourced or marked unverified. The doubt step becomes a research step.',
+                t: 'A 7-day publishing plan + your first LinkedIn post (in 3 versions)',
+                b: 'Daily posts tied to your audience’s actual week. Then one post written, plus 3 alternate voices, plus a hybrid that combines the strongest parts.',
               },
               {
                 n: '05',
-                t: 'One artefact you publish today',
-                b: 'A LinkedIn post + a 60-second script + an image-gen prompt, all from one Coach response.',
+                t: 'A premium image-gen prompt + a chat that’s now your proactive content partner',
+                b: 'A scroll-stopping LinkedIn visual prompt with a no-text fallback. And a chat that turns any rough thought you paste later into a publishable artefact.',
               },
             ].map((o) => (
               <li
@@ -342,6 +343,12 @@ export default function IkigaiBrandingWorkshopPage() {
               Not ground truth. Context engineering, not authority. We train it across
               sessions &mdash; every new conversation starts a little less from zero.
             </p>
+
+            <p className="text-center text-[12px] text-zinc-500 mt-4 max-w-xl mx-auto leading-relaxed">
+              Operating rule for every prompt below: if it asks for input you don&apos;t
+              have, the AI infers it from your context. State your assumptions, proceed.
+              You correct course; it never waits for perfect input.
+            </p>
           </div>
         </div>
       </section>
@@ -404,11 +411,13 @@ export default function IkigaiBrandingWorkshopPage() {
               Open the Ikigai &amp; Branding Coach
             </h2>
             <p className="text-base text-zinc-300 max-w-xl mx-auto leading-relaxed">
-              One prompt. One conversation. Your AI walks the whole arc with you —
-              Map → Statement → Brand → Plan → Ship — one question at a time.
+              One prompt. One conversation. Your AI runs ahead — infers what you
+              haven&apos;t said, makes strong assumptions, and hands you publishable
+              artefacts at each step. You correct course; it never waits for perfect
+              input.
             </p>
             <p className="text-sm text-zinc-500 max-w-xl mx-auto leading-relaxed mt-3">
-              Then drop into the modules below when you want to sharpen a phase.
+              Then drop into the 7 modules below to sharpen any phase.
             </p>
           </div>
 
@@ -446,45 +455,45 @@ export default function IkigaiBrandingWorkshopPage() {
         <WorkshopPath />
       </div>
 
-      {/* ─── Module 1 — The Map ──────────────────────────────────── */}
+      {/* ─── Module 1 — Audience Problem Map ─────────────────────── */}
       <section id="module-1" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={1}
-            title="The Map"
-            duration="8 min"
+            title="Audience Problem Map"
+            duration="15 min"
             accent="violet"
-            lead="Three ikigai directions on the table — safe, stretch, wild — drawn from what your AI already knows about you."
+            lead="Your ikigai gives direction. The content is for them, not about you. Three candidate audiences with visible problems, hidden tensions, and what they’d pay for."
           />
-          <PromptStack module={1} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={1} prompts={WORKSHOP_PROMPTS} label="Paste into the latest ChatGPT" />
         </div>
       </section>
 
-      {/* ─── Module 2 — Stress-Test ──────────────────────────────── */}
+      {/* ─── Module 2 — Content Angle ────────────────────────────── */}
       <section id="module-2" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={2}
-            title="Stress-Test"
-            duration="8 min"
-            accent="emerald"
-            lead="Three real humans already earning a living from your direction. Named with sourced links, or marked unverified. The doubt step becomes a research step."
+            title="Content Angle"
+            duration="12 min"
+            accent="amber"
+            lead="Five angles scored on clarity, usefulness, originality, credibility, emotional pull, and commercial potential. The strongest one written as a one-sentence positioning."
           />
-          <PromptStack module={2} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={2} prompts={WORKSHOP_PROMPTS} label="Paste into the latest ChatGPT" />
         </div>
       </section>
 
-      {/* ─── Module 3 — The Statement ────────────────────────────── */}
+      {/* ─── Module 3 — Hook Bank ────────────────────────────────── */}
       <section id="module-3" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={3}
-            title="The Statement"
-            duration="10 min"
-            accent="amber"
-            lead="Three versions of your one-line ikigai statement, ranked by claim-cost. The one you ship today and the one you're growing into."
+            title="Hook Bank"
+            duration="12 min"
+            accent="emerald"
+            lead="30 hooks across 15 formats — mistake, contrarian, before/after, curiosity, identity, hidden-cost, strong-belief. Best 5 ranked, strongest sharpened to 5 variants."
           />
-          <PromptStack module={3} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={3} prompts={WORKSHOP_PROMPTS} label="Paste into the latest ChatGPT" />
         </div>
       </section>
 
@@ -524,65 +533,65 @@ export default function IkigaiBrandingWorkshopPage() {
             />
           </figure>
           <p className="text-center text-xs text-zinc-500 mt-4 max-w-md mx-auto leading-relaxed">
-            From the one-sentence purpose to a brand that holds twelve months of weekly
-            publishing. Module 4 walks the bridge.
+            From hooks to a publishing plan. Module 4 ties the bank to your reader’s
+            actual week.
           </p>
         </div>
       </section>
 
-      {/* ─── Module 4 — Brand ────────────────────────────────────── */}
+      {/* ─── Module 4 — 7-Day Plan ───────────────────────────────── */}
       <section id="module-4" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={4}
-            title="The Brand"
+            title="7-Day Plan"
             duration="10 min"
-            accent="violet"
-            lead="Positioning, one reader with a first name, three pillars that survive twelve months of weekly publishing. Built from what you actually said earlier in the conversation."
+            accent="sky"
+            lead="A publishing rhythm tied to your audience’s actual week. Pain / observation / framework / myth-bust / build-in-public / proof / question — one post per day."
           />
-          <PromptStack module={4} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={4} prompts={WORKSHOP_PROMPTS} label="Paste into the latest ChatGPT" />
         </div>
       </section>
 
-      {/* ─── Module 5 — The 30-Day Plan ──────────────────────────── */}
+      {/* ─── Module 5 — Publish (post + 3 versions, two prompts) ─── */}
       <section id="module-5" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={5}
-            title="The 30-Day Plan"
-            duration="8 min"
-            accent="sky"
-            lead="A rhythm someone with a job can hold. Four Monday topics, one mid-week ritual, one end-of-month artifact."
+            title="Publish — Post + 3 Versions"
+            duration="14 min"
+            accent="amber"
+            lead="One strong LinkedIn post written from the best content idea, then three alternate voices (useful / personal / bold), then a hybrid that combines the strongest parts."
           />
-          <PromptStack module={5} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={5} prompts={WORKSHOP_PROMPTS} label="Two prompts — paste them in order" />
         </div>
       </section>
 
-      {/* ─── Module 6 — Ship the Artifact ────────────────────────── */}
+      {/* ─── Module 6 — Premium Visual ───────────────────────────── */}
       <section id="module-6" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ModuleHeader
             number={6}
-            title="Ship the Artifact"
+            title="Premium Visual"
             duration="10 min"
-            accent="amber"
-            lead="Three artifacts in one response — a LinkedIn post, a 60-second script, an image-gen prompt. Same idea, three shapes. Use your actual words."
+            accent="rose"
+            lead="Three visual concepts (infographic / carousel cover / bold metaphor), then a ready-to-paste image-gen prompt for ChatGPT image generation, plus a no-text fallback."
           />
-          <PromptStack module={7} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={6} prompts={WORKSHOP_PROMPTS} label="Paste into ChatGPT image gen" />
         </div>
       </section>
 
-      {/* ─── Module 7 — Commitment + Resource Pack ───────────────── */}
+      {/* ─── Module 7 — Proactive Partner + Resource Pack ────────── */}
       <section id="module-7" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <ModuleHeader
             number={7}
-            title="Lock the Commitment"
-            duration="5 min"
-            accent="emerald"
-            lead="Three calendar entries plus the SMS you send to one human asking them to check in on you at day 14. Done in 90 seconds."
+            title="Proactive Partner"
+            duration="8 min"
+            accent="violet"
+            lead="Turn this chat into your ongoing content partner. Any half-thought you paste later becomes an audience problem, an angle, 5 hooks, a draft, a visual direction, and a publish-or-refine recommendation."
           />
-          <PromptStack module={8} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
+          <PromptStack module={7} prompts={WORKSHOP_PROMPTS} label="Paste into the latest ChatGPT" />
 
           <GlowCard color="emerald">
             <div className="p-6 sm:p-8 text-center">
