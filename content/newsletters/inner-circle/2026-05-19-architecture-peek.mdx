@@ -1,0 +1,41 @@
+---
+stream: inner-circle
+subject: "Architecture peek: how the new newsletter actually works"
+preheader: "MDX in, three platforms out. With numbers."
+slug: 2026-05-19-architecture-peek
+date: 2026-05-19
+mascotMood: hero
+status: draft
+ctaUrl: https://frankx.ai/inner-circle
+ctaLabel: See the internals
+subjectVariants:
+  - "Architecture peek: how the new newsletter actually works"
+  - "Inside the newsletter system, with numbers"
+---
+
+You're getting this on the Inner Circle list because I owe you the version that doesn't hide the engineering. The system that just sent you this email took 11 hours to build, costs $0 a month above what I was already paying, and replaces three half-built systems I was maintaining out of habit.
+
+## What it is
+
+One MDX file per issue. Six Claude Code subagents that produce it. A publisher that sends to Resend, Beehiiv, and Substack from a single command. Substack imports from an RSS feed I control. Beehiiv tags posts by stream. Resend handles the actual broadcast targeting the existing audience (4,200 contacts across 6 topics).
+
+## Numbers that matter
+
+- **Cost:** $0 incremental — Resend Pro covers everything, Beehiiv free tier covers ≤2,500 subs, Substack is free.
+- **Time per issue, end-to-end:** ~25 minutes once the agents are briefed. Most of that is editorial review.
+- **Lines of code added:** 783. About a third is the email template; a third is the publisher; a third is the agent definitions.
+- **Tests:** Zero, deliberately. The dry-run flow is the test.
+
+## What I'm watching
+
+Three streams ship to all three platforms in parallel for the next 4 sends. After that, I drop any platform whose click-per-sent is more than 15% below the leader. I'm betting Resend wins on `ai-architect` and `inner-circle`, Beehiiv wins on `creation-chronicles`, and Substack carries `music-lab` because of its built-in audience graph. Will find out.
+
+> The point isn't to pick a winner. The point is to make the experiment cheap enough that the answer is honest.
+
+## What I cut
+
+A scheduling cron. A custom A/B testing harness. A preference center rewrite. Each was tempting. Each would have added two days. Each can ship later when I have data that says they're needed.
+
+[See the internals](https://frankx.ai/inner-circle){.cta}
+
+— Frank

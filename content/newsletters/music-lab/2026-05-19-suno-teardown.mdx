@@ -1,0 +1,47 @@
+---
+stream: music-lab
+subject: "Suno prompt teardown: one track, full breakdown"
+preheader: "What's actually in the prompt that made the track land."
+slug: 2026-05-19-suno-teardown
+date: 2026-05-19
+mascotMood: chill
+status: draft
+ctaUrl: https://frankx.ai/music-lab
+ctaLabel: Get the prompt library
+subjectVariants:
+  - "Suno prompt teardown: one track, full breakdown"
+  - "The 11 words that made the track work"
+---
+
+Pulled up a track I shipped last weekend that hit different. Spent an hour reverse-engineering my own prompt. Eleven words were doing eighty percent of the work, and they're not the ones I would have predicted.
+
+## The track
+
+Two-and-a-half minute downtempo electronic piece, slightly melancholic but not sad. The kind of thing I'd put on at 11pm with the lights low. Took me three Suno generations to land it. The prompt that finally worked:
+
+```
+slow burn analog synth, breathy female vocal, tape hiss, 78bpm,
+warm low end, no drums until 0:40, intimate studio recording
+```
+
+## What's doing the work
+
+The technical specs you'd expect — bpm, instrument list — matter less than I thought. The three phrases pulling the most weight:
+
+- `tape hiss` — gives Suno permission to lean into texture instead of clarity
+- `no drums until 0:40` — buys you a real intro instead of an immediate four-on-the-floor
+- `intimate studio recording` — closes the mix. No reverb tail, vocals up front.
+
+## What I cut from earlier attempts
+
+`epic`, `cinematic`, `emotional`. Every adjective Suno has been trained on like a child taught only superlatives. Cut them. Replace with sensory specifics. "Tape hiss" beats "warm." "Breathy" beats "emotional."
+
+> Suno doesn't reward feelings. It rewards textures.
+
+## The pattern
+
+Most of my best prompts are sensory + structural. What does it sound like (physical), and where does it go (temporal). Drop the genre tags. Drop the adjectives. Tell Suno what you'd hear in the room.
+
+[Get the prompt library](https://frankx.ai/music-lab){.cta}
+
+— F

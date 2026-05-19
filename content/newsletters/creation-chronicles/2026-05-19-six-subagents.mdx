@@ -1,0 +1,41 @@
+---
+stream: creation-chronicles
+subject: "Six subagents, one editorial spine"
+preheader: "Why I rebuilt the newsletter system from scratch this week."
+slug: 2026-05-19-six-subagents
+date: 2026-05-19
+mascotMood: celebrating
+status: draft
+ctaUrl: https://frankx.ai/newsletter
+ctaLabel: See the new system
+subjectVariants:
+  - "Six subagents, one editorial spine"
+  - "What shipped: a newsletter system that actually ships"
+---
+
+Tuesday at 11pm I realized the old newsletter setup was a graveyard. Six streams defined in a JSON file, mascots sitting in a folder, a Resend audience that hadn't been broadcast to in months. Real readers were waiting. So I tore it down and rebuilt it the way it should have been from the start.
+
+## What shipped this week
+
+The new system is one file per issue, six specialist subagents that produce it, and a publisher that fans out to Resend, Beehiiv, and Substack in a single command. Substack imports from an RSS feed we control. Beehiiv tags posts by stream. Resend handles the actual broadcast.
+
+- **Editor** picks the angle and brief
+- **Researcher** finds the substance with WebSearch + WebFetch
+- **Copywriter** writes the MDX in the right voice
+- **Designer** picks the mascot mood and renders the preview
+- **Publisher** sends to all three platforms
+- **Analyst** decides after 4 sends which platforms to keep
+
+## The part that almost broke
+
+Resend's broadcast API needs `topic_ids`, not contact filters. I'd assumed they were interchangeable. They aren't — and the dry-run flow caught it before the live send. Lesson: a `--dry-run` flag that sends to my own inbox is worth more than every unit test combined for code that touches production email.
+
+> The hardest part wasn't the code. It was deciding what *not* to automate.
+
+## What I cut
+
+A scheduling cron. An A/B testing harness. A subscriber preference UI overhaul. Each of those would have added two days. None of them block the first send.
+
+[See the new system](https://frankx.ai/newsletter){.cta}
+
+— Frank, from the studio

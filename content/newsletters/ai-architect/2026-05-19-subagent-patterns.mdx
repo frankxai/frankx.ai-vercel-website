@@ -1,0 +1,53 @@
+---
+stream: ai-architect
+subject: "Subagent patterns I'm actually shipping"
+preheader: "Six agents, three slash commands, one MDX file. Here's the architecture."
+slug: 2026-05-19-subagent-patterns
+date: 2026-05-19
+mascotMood: thinking
+status: draft
+ctaUrl: https://frankx.ai/blog
+ctaLabel: Read the deep-dive
+subjectVariants:
+  - "Subagent patterns I'm actually shipping"
+  - "Six subagents, one block tree"
+---
+
+I spent the last week wiring six Claude Code subagents into one editorial pipeline. The pattern that finally worked isn't agent autonomy or fancy orchestration. It's a single block tree and a sequence of slash commands that pass control between agents explicitly.
+
+## The shape
+
+A newsletter issue is a single MDX file. The compiler turns it into a typed block tree:
+
+```ts
+type Block =
+  | { type: 'intro'; body: string }
+  | { type: 'section'; heading?: string; body: string; items?: string[] }
+  | { type: 'pullquote'; body: string; author?: string }
+  | { type: 'code'; language: string; body: string }
+  | { type: 'cta'; label: string; href: string }
+  | { type: 'signoff'; body: string }
+```
+
+Three renderers consume the same tree: `render-email` (Resend HTML), `render-beehiiv` (Beehiiv API), `render-rss` (RFC-822 for Substack import). One source, three formats, no parallel templates to drift apart.
+
+## Why subagents and not autonomous agents
+
+The fashionable move is to let the model run a loop. I didn't. Each subagent has narrow tools and a single job. The user fires a slash command, the command invokes agents in sequence, control returns to the user between phases. The agents can't see each other's context — they pass briefs as the user's input on each handoff.
+
+- `newsletter-editor` has WebSearch + Edit, plans the issue
+- `newsletter-researcher` has WebSearch + WebFetch only, no Edit
+- `newsletter-copywriter` has Write/Edit but no network
+- `newsletter-publisher` has Bash + Read but no Write to content/
+
+The pattern works because the user is still in the loop. One bad draft costs a re-run, not a bad send.
+
+> The mistake is making agents talk to each other. Make them talk to the user.
+
+## What surprised me
+
+The Researcher agent is the highest-leverage one. Without it, the Copywriter writes plausibly-correct LinkedIn slop. With it, the Copywriter has primary sources and internal context and can't *help* but write something substantive.
+
+[Read the deep-dive](https://frankx.ai/blog){.cta}
+
+— F
