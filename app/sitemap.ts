@@ -270,6 +270,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-ops/architecture', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-ops/patterns', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-ops/models-2026', priority: 0.7, changeFrequency: 'weekly' as const },
+    // LLM Provider Directory Hub
+    { url: '/llm-hub', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/ai-ops/maturity', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-ops/accelerator-packs', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },

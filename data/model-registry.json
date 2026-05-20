@@ -1,10 +1,119 @@
 {
-  "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
-  "_version": "1.0.0",
-  "_updated": "2026-02-06",
+  "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data, providers, and agentic platforms",
+  "_version": "1.1.0",
+  "_updated": "2026-05-20",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
 
   "models": {
+    "gemini-3-5-flash": {
+      "name": "Gemini 3.5 Flash",
+      "id": "gemini-3-5-flash",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-05-20",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "audio", "code"],
+      "pricing": {
+        "input_per_1m": 0.30,
+        "output_per_1m": 2.50
+      },
+      "benchmarks": {
+        "terminal_bench_2_1": 76.2,
+        "gdpval_aa_elo": 1656,
+        "mcp_atlas": 83.6,
+        "charxiv": 84.2
+      },
+      "key_capabilities": [
+        "Strongest Google agentic + coding model to date",
+        "Frontier intelligence at less than half the cost of comparable flagships",
+        "Optimized for long-horizon agentic tasks",
+        "Native tool use, structured outputs, function calling",
+        "Available in Gemini Enterprise Agent Platform, AI Studio, Antigravity"
+      ],
+      "acos_tier": "sonnet",
+      "frankx_notes": "I/O '26 announcement (May 20, 2026). Beats Gemini 3.1 Pro on multiple benchmarks at a fraction of the cost. The new default for cost-sensitive agentic workloads.",
+      "sources": [
+        "https://cloud.google.com/blog/products/ai-machine-learning/innovations-from-google-io-26-on-google-cloud",
+        "https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-collection/"
+      ]
+    },
+    "gemini-3-5-pro": {
+      "name": "Gemini 3.5 Pro",
+      "id": "gemini-3-5-pro",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-06-15",
+      "status": "preview",
+      "architecture": "dense",
+      "context_window": 2000000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "audio", "video", "code"],
+      "pricing": {
+        "input_per_1m": 2.50,
+        "output_per_1m": 12.00
+      },
+      "benchmarks": {
+        "status": "Currently in testing — full benchmarks at GA"
+      },
+      "key_capabilities": [
+        "Top-tier reasoning, multimodal, and agentic performance",
+        "Coming next month after I/O '26 (mid-June 2026)",
+        "Higher-tier complement to Gemini 3.5 Flash"
+      ],
+      "acos_tier": "opus",
+      "frankx_notes": "Announced at I/O '26 as 'coming next month'. Currently in testing. Pro tier sits above Flash for complex reasoning and the broadest modality support.",
+      "sources": [
+        "https://cloud.google.com/blog/products/ai-machine-learning/innovations-from-google-io-26-on-google-cloud"
+      ]
+    },
+    "gemini-omni": {
+      "name": "Gemini Omni",
+      "id": "gemini-omni",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-06-01",
+      "status": "preview",
+      "architecture": "dense-multimodal",
+      "context_window": 1000000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "audio", "video", "video-generation"],
+      "pricing": {
+        "status": "Enterprise pricing at GA"
+      },
+      "key_capabilities": [
+        "Generate dynamic video from text, audio, image, and video inputs",
+        "Natural-language video editing and composition",
+        "Virtual try-ons, post-production, personalized video narratives",
+        "First Google model with native video generation in the Omni family"
+      ],
+      "acos_tier": "specialty",
+      "frankx_notes": "Multimodal generation model. Positions Google against Sora 2 and Veo 3 lineage. Available via Gemini API and Agent Platform API in coming weeks.",
+      "sources": [
+        "https://cloud.google.com/blog/products/ai-machine-learning/innovations-from-google-io-26-on-google-cloud"
+      ]
+    },
+    "gemini-omni-flash": {
+      "name": "Gemini Omni Flash",
+      "id": "gemini-omni-flash",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-06-01",
+      "status": "preview",
+      "architecture": "dense-multimodal",
+      "modalities": ["text", "vision", "audio", "video", "video-generation"],
+      "key_capabilities": [
+        "Faster, lower-cost video-generation variant of Gemini Omni",
+        "Rolling out via Gemini API and Agent Platform API"
+      ],
+      "acos_tier": "specialty",
+      "frankx_notes": "Production-ready video gen at Flash economics.",
+      "sources": [
+        "https://cloud.google.com/blog/products/ai-machine-learning/innovations-from-google-io-26-on-google-cloud"
+      ]
+    },
     "claude-opus-4-6": {
       "name": "Claude Opus 4.6",
       "id": "claude-opus-4-6",
@@ -176,7 +285,7 @@
       "organization": "google",
       "family": "gemini",
       "released": "2025-12-01",
-      "status": "ga",
+      "status": "available",
       "architecture": "dense",
       "context_window": 2000000,
       "modalities": ["text", "vision", "audio", "video"],
@@ -198,34 +307,405 @@
       "context_window": 1000000,
       "modalities": ["text", "vision"],
       "sources": []
+    },
+    "deepseek-v3-2": {
+      "name": "DeepSeek V3.2",
+      "id": "deepseek-v3-2",
+      "organization": "deepseek",
+      "family": "deepseek",
+      "released": "2026-01-15",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "671B total, 37B active",
+      "context_window": 128000,
+      "modalities": ["text", "code"],
+      "pricing": {
+        "input_per_1m": 0.27,
+        "output_per_1m": 1.10
+      },
+      "key_capabilities": [
+        "Open-weight MIT license",
+        "Strong reasoning at fraction of frontier cost",
+        "Most cost-effective frontier-class model"
+      ],
+      "sources": ["https://platform.deepseek.com/docs"]
+    },
+    "mistral-large-3": {
+      "name": "Mistral Large 3",
+      "id": "mistral-large-3",
+      "organization": "mistral",
+      "family": "mistral",
+      "released": "2026-02-01",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 256000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 2.0,
+        "output_per_1m": 6.0
+      },
+      "key_capabilities": [
+        "European data sovereignty",
+        "Multilingual frontier model",
+        "Apache 2.0 small models, commercial Large tier"
+      ],
+      "sources": ["https://mistral.ai/news/"]
+    },
+    "qwen3-coder-next": {
+      "name": "Qwen3-Coder-Next",
+      "id": "qwen3-coder-next",
+      "organization": "alibaba",
+      "family": "qwen",
+      "released": "2026-01-20",
+      "status": "ga",
+      "architecture": "dense",
+      "parameters": "3B active",
+      "context_window": 256000,
+      "modalities": ["text", "code"],
+      "benchmarks": {
+        "swe_bench_verified": 70.6,
+        "swe_bench_pro": 44.3
+      },
+      "key_capabilities": [
+        "70.6% SWE-bench at only 3B params",
+        "Apache 2.0 license",
+        "Most efficient open coding model"
+      ],
+      "sources": ["https://qwenlm.github.io/"]
+    },
+    "command-a-reasoning": {
+      "name": "Cohere Command A Reasoning",
+      "id": "command-a-reasoning",
+      "organization": "cohere",
+      "family": "command",
+      "released": "2026-01-01",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 256000,
+      "modalities": ["text", "vision"],
+      "key_capabilities": [
+        "Enterprise reasoning specialist",
+        "EU data sovereignty available",
+        "Strong RAG + tool-use performance"
+      ],
+      "sources": ["https://docs.cohere.com/"]
     }
   },
 
   "organizations": {
     "anthropic": {
       "name": "Anthropic",
+      "slug": "anthropic",
       "url": "https://anthropic.com",
-      "models": ["claude-opus-4-6", "claude-opus-4-5", "claude-sonnet-4-5", "claude-haiku-4-5"]
+      "models": ["claude-opus-4-6", "claude-opus-4-5", "claude-sonnet-4-5", "claude-haiku-4-5"],
+      "founded": 2021,
+      "headquarters": "San Francisco, CA",
+      "one_liner": "Frontier reasoning + agentic coding with safety as a first-class design constraint",
+      "flagship_model_id": "claude-opus-4-6",
+      "capability_focus": ["reasoning", "coding", "agentic-infra"],
+      "agentic_platforms": ["claude-code", "claude-agent-sdk"],
+      "pricing_tier_summary": "premium",
+      "accent_color": "#a855f7",
+      "notable_tech": ["Adaptive thinking", "1M context (beta)", "Compaction API", "Agent Teams", "MCP"]
     },
     "openai": {
       "name": "OpenAI",
+      "slug": "openai",
       "url": "https://openai.com",
-      "models": ["gpt-5-2-pro"]
+      "models": ["gpt-5-2-pro"],
+      "founded": 2015,
+      "headquarters": "San Francisco, CA",
+      "one_liner": "General-purpose frontier intelligence with the broadest production footprint",
+      "flagship_model_id": "gpt-5-2-pro",
+      "capability_focus": ["reasoning", "multimodal", "voice", "coding"],
+      "agentic_platforms": ["codex", "operator", "responses-api"],
+      "pricing_tier_summary": "premium",
+      "accent_color": "#10b981",
+      "notable_tech": ["First 90% ARC-AGI-1", "Realtime API", "GPT-5 series", "Sora 2"]
     },
     "google": {
       "name": "Google DeepMind",
+      "slug": "google-deepmind",
       "url": "https://deepmind.google",
-      "models": ["gemini-3-pro"]
+      "models": ["gemini-3-5-flash", "gemini-3-5-pro", "gemini-omni", "gemini-omni-flash", "gemini-3-pro"],
+      "founded": 2014,
+      "headquarters": "Mountain View, CA + London, UK",
+      "one_liner": "Frontier multimodality plus the deepest integration into a full agentic enterprise stack",
+      "flagship_model_id": "gemini-3-5-pro",
+      "capability_focus": ["multimodal", "video-gen", "reasoning", "agentic-infra"],
+      "agentic_platforms": ["antigravity-2", "gemini-spark", "ai-studio", "vertex-ai", "gemini-enterprise-agent-platform"],
+      "pricing_tier_summary": "mid",
+      "accent_color": "#4285F4",
+      "notable_tech": ["TPU v6e + TPU 8T/8I", "Gemini Omni video gen", "Antigravity 2.0", "Imagen 4", "Veo 3.5"]
     },
     "xai": {
       "name": "xAI",
+      "slug": "xai",
       "url": "https://x.ai",
-      "models": ["grok-4-1"]
+      "models": ["grok-4-1"],
+      "founded": 2023,
+      "headquarters": "Palo Alto, CA",
+      "one_liner": "Long-context reasoning with real-time X integration and aggressive pricing",
+      "flagship_model_id": "grok-4-1",
+      "capability_focus": ["reasoning", "agentic-infra"],
+      "agentic_platforms": ["grok-api"],
+      "pricing_tier_summary": "mid",
+      "accent_color": "#ef4444",
+      "notable_tech": ["2M context", "LMArena #1", "Colossus training cluster"]
     },
     "meta": {
       "name": "Meta AI",
+      "slug": "meta",
       "url": "https://ai.meta.com",
-      "models": ["llama-4-maverick"]
+      "models": ["llama-4-maverick"],
+      "founded": 2013,
+      "headquarters": "Menlo Park, CA",
+      "one_liner": "Open-weight MoE leadership powering the largest fine-tuning ecosystem",
+      "flagship_model_id": "llama-4-maverick",
+      "capability_focus": ["coding", "agentic-infra"],
+      "agentic_platforms": ["llama-stack"],
+      "pricing_tier_summary": "open",
+      "accent_color": "#f59e0b",
+      "notable_tech": ["400B/17B MoE", "10M context (Scout)", "Llama Stack"]
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "slug": "deepseek",
+      "url": "https://deepseek.com",
+      "models": ["deepseek-v3-2"],
+      "founded": 2023,
+      "headquarters": "Hangzhou, China",
+      "one_liner": "Frontier-class reasoning at fraction-of-a-cent economics under MIT license",
+      "flagship_model_id": "deepseek-v3-2",
+      "capability_focus": ["reasoning", "coding"],
+      "agentic_platforms": ["deepseek-api"],
+      "pricing_tier_summary": "budget",
+      "accent_color": "#06b6d4",
+      "notable_tech": ["671B/37B MoE", "MIT license", "Cost curve disruption"]
+    },
+    "mistral": {
+      "name": "Mistral AI",
+      "slug": "mistral",
+      "url": "https://mistral.ai",
+      "models": ["mistral-large-3"],
+      "founded": 2023,
+      "headquarters": "Paris, France",
+      "one_liner": "European data sovereignty plus the strongest mixed open/commercial small-model lineup",
+      "flagship_model_id": "mistral-large-3",
+      "capability_focus": ["multimodal", "coding", "reasoning"],
+      "agentic_platforms": ["mistral-le-chat", "mistral-api"],
+      "pricing_tier_summary": "mid",
+      "accent_color": "#ff7000",
+      "notable_tech": ["EU sovereignty", "Codestral", "Mixtral MoE", "Apache 2.0 small models"]
+    },
+    "cohere": {
+      "name": "Cohere",
+      "slug": "cohere",
+      "url": "https://cohere.com",
+      "models": ["command-a-reasoning"],
+      "founded": 2019,
+      "headquarters": "Toronto, Canada",
+      "one_liner": "Enterprise RAG + retrieval primitives with European data residency",
+      "flagship_model_id": "command-a-reasoning",
+      "capability_focus": ["reasoning", "agentic-infra"],
+      "agentic_platforms": ["cohere-platform", "north"],
+      "pricing_tier_summary": "mid",
+      "accent_color": "#39594d",
+      "notable_tech": ["Command A series", "Embed 4 multimodal", "Rerank 3.5", "EU sovereignty"]
+    },
+    "alibaba": {
+      "name": "Alibaba Qwen",
+      "slug": "alibaba-qwen",
+      "url": "https://qwenlm.github.io",
+      "models": ["qwen3-coder-next"],
+      "founded": 2017,
+      "headquarters": "Hangzhou, China",
+      "one_liner": "The most efficient open coding family — frontier capability at 3B active parameters",
+      "flagship_model_id": "qwen3-coder-next",
+      "capability_focus": ["coding", "multimodal"],
+      "agentic_platforms": ["qwen-chat"],
+      "pricing_tier_summary": "open",
+      "accent_color": "#615ced",
+      "notable_tech": ["Qwen3-Coder-Next 3B", "Apache 2.0", "Qwen-VL multimodal"]
+    }
+  },
+
+  "agentic_platforms": {
+    "antigravity-2": {
+      "name": "Google Antigravity 2.0",
+      "id": "antigravity-2",
+      "org": "google",
+      "type": "desktop+cli",
+      "released": "2026-05-20",
+      "flagship_model_id": "gemini-3-5-flash",
+      "url": "https://antigravity.google/",
+      "one_liner": "Enterprise agent-building workspace with desktop app, CLI, and Agent Platform integration",
+      "tags": ["enterprise", "ide", "agent-builder"]
+    },
+    "gemini-spark": {
+      "name": "Gemini Spark",
+      "id": "gemini-spark",
+      "org": "google",
+      "type": "personal-agent",
+      "released": "2026-05-20",
+      "flagship_model_id": "gemini-3-5-pro",
+      "url": "https://cloud.google.com/gemini-enterprise",
+      "one_liner": "24/7 personal AI agent that executes multi-step workflows across Workspace, custom connectors, and the open web",
+      "tags": ["personal-agent", "workspace", "enterprise"]
+    },
+    "ai-studio": {
+      "name": "Google AI Studio",
+      "id": "ai-studio",
+      "org": "google",
+      "type": "web",
+      "url": "https://aistudio.google.com/",
+      "one_liner": "Browser-based playground for prototyping with the Gemini API",
+      "tags": ["playground", "api"]
+    },
+    "vertex-ai": {
+      "name": "Vertex AI",
+      "id": "vertex-ai",
+      "org": "google",
+      "type": "cloud-platform",
+      "url": "https://cloud.google.com/vertex-ai",
+      "one_liner": "Google Cloud's full MLOps platform for training, serving, and orchestrating models",
+      "tags": ["cloud", "mlops", "enterprise"]
+    },
+    "gemini-enterprise-agent-platform": {
+      "name": "Gemini Enterprise Agent Platform",
+      "id": "gemini-enterprise-agent-platform",
+      "org": "google",
+      "type": "agent-platform",
+      "released": "2026-05-20",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform",
+      "one_liner": "Managed Agents API plus governance, evaluations, and CodeMender security baked in",
+      "tags": ["enterprise", "managed-agents", "governance"]
+    },
+    "claude-code": {
+      "name": "Claude Code",
+      "id": "claude-code",
+      "org": "anthropic",
+      "type": "cli+ide",
+      "url": "https://docs.claude.com/en/docs/claude-code",
+      "one_liner": "Terminal-native agentic coding with Agent Teams and MCP",
+      "tags": ["cli", "agentic-coding", "mcp"]
+    },
+    "claude-agent-sdk": {
+      "name": "Claude Agent SDK",
+      "id": "claude-agent-sdk",
+      "org": "anthropic",
+      "type": "sdk",
+      "url": "https://docs.claude.com/en/api/agent-sdk/overview",
+      "one_liner": "Programmatic Claude-Code primitives for building custom agents",
+      "tags": ["sdk", "agent-builder"]
+    },
+    "codex": {
+      "name": "OpenAI Codex CLI",
+      "id": "codex",
+      "org": "openai",
+      "type": "cli",
+      "url": "https://openai.com/codex/",
+      "one_liner": "Terminal-native coding agent on GPT-5 family",
+      "tags": ["cli", "agentic-coding"]
+    },
+    "operator": {
+      "name": "OpenAI Operator",
+      "id": "operator",
+      "org": "openai",
+      "type": "computer-use",
+      "url": "https://openai.com/index/introducing-operator/",
+      "one_liner": "Browser-native computer-use agent for web tasks",
+      "tags": ["computer-use", "web"]
+    },
+    "responses-api": {
+      "name": "OpenAI Responses API",
+      "id": "responses-api",
+      "org": "openai",
+      "type": "api",
+      "url": "https://platform.openai.com/docs/api-reference/responses",
+      "one_liner": "Stateful, tool-using primitive for agentic OpenAI applications",
+      "tags": ["api", "stateful"]
+    },
+    "grok-api": {
+      "name": "xAI Grok API",
+      "id": "grok-api",
+      "org": "xai",
+      "type": "api",
+      "url": "https://docs.x.ai/",
+      "one_liner": "Long-context API with real-time X integration",
+      "tags": ["api", "long-context"]
+    },
+    "llama-stack": {
+      "name": "Llama Stack",
+      "id": "llama-stack",
+      "org": "meta",
+      "type": "sdk",
+      "url": "https://github.com/meta-llama/llama-stack",
+      "one_liner": "Open-weight agentic stack with tool use, safety shields, and evaluations",
+      "tags": ["open-source", "sdk"]
+    },
+    "deepseek-api": {
+      "name": "DeepSeek API",
+      "id": "deepseek-api",
+      "org": "deepseek",
+      "type": "api",
+      "url": "https://platform.deepseek.com/",
+      "one_liner": "Frontier-class reasoning API at budget pricing",
+      "tags": ["api", "budget"]
+    },
+    "mistral-le-chat": {
+      "name": "Mistral Le Chat",
+      "id": "mistral-le-chat",
+      "org": "mistral",
+      "type": "web",
+      "url": "https://chat.mistral.ai/",
+      "one_liner": "European chat with code interpreter, web search, and image gen",
+      "tags": ["chat", "eu"]
+    },
+    "mistral-api": {
+      "name": "Mistral API",
+      "id": "mistral-api",
+      "org": "mistral",
+      "type": "api",
+      "url": "https://docs.mistral.ai/",
+      "one_liner": "European-hosted commercial + open Mistral models",
+      "tags": ["api", "eu"]
+    },
+    "cohere-platform": {
+      "name": "Cohere Platform",
+      "id": "cohere-platform",
+      "org": "cohere",
+      "type": "api",
+      "url": "https://cohere.com/platform",
+      "one_liner": "Enterprise RAG, embed, and rerank primitives",
+      "tags": ["enterprise", "rag"]
+    },
+    "north": {
+      "name": "Cohere North",
+      "id": "north",
+      "org": "cohere",
+      "type": "workspace-agent",
+      "url": "https://cohere.com/north",
+      "one_liner": "Secure enterprise workspace agent",
+      "tags": ["enterprise", "agent"]
+    },
+    "qwen-chat": {
+      "name": "Qwen Chat",
+      "id": "qwen-chat",
+      "org": "alibaba",
+      "type": "web",
+      "url": "https://chat.qwen.ai/",
+      "one_liner": "Multimodal chat across the Qwen family",
+      "tags": ["chat", "multimodal"]
+    },
+    "cursor": {
+      "name": "Cursor",
+      "id": "cursor",
+      "org": "third-party",
+      "type": "ide",
+      "url": "https://cursor.com/",
+      "one_liner": "Frontier-model-agnostic agentic IDE — works with Claude, GPT, Gemini",
+      "tags": ["ide", "model-agnostic"]
     }
   },
 
@@ -236,5 +716,5 @@
     "haiku": "claude-haiku-4-5"
   },
 
-  "last_updated": "2026-02-06"
+  "last_updated": "2026-05-20"
 }
