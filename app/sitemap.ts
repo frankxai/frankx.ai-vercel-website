@@ -67,6 +67,35 @@ function getProductSlugs(): string[] {
   }
 }
 
+// Get all newsletter issue slugs (published only — drafts excluded from sitemap)
+function getNewsletterIssues(): { slug: string; date: string; status: string }[] {
+  const issuesDir = path.join(process.cwd(), 'content/newsletters/issues')
+  try {
+    const files = fs.readdirSync(issuesDir)
+    return files
+      .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
+      .map((file) => {
+        try {
+          const content = fs.readFileSync(path.join(issuesDir, file), 'utf8')
+          const { data } = matter(content)
+          if (!data.slug) return null
+          return {
+            slug: data.slug as string,
+            date: (data.date as string) || '',
+            status: (data.status as string) || 'draft',
+          }
+        } catch {
+          return null
+        }
+      })
+      .filter((e): e is { slug: string; date: string; status: string } => e !== null)
+      // Only published issues hit the sitemap; drafts are noindex'd at the page level
+      .filter((e) => e.status === 'sent' || e.status === 'archived')
+  } catch {
+    return []
+  }
+}
+
 // Prompt library categories
 const PROMPT_CATEGORIES = [
   'writing',
@@ -132,6 +161,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/testimonials',
     '/affiliates',
     '/newsletter',
+    '/newsletter/archive',
     '/workshops',
     '/team',
   ]
@@ -143,11 +173,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/courses/agent-architecture-systems',
     '/courses/creator-business-systems',
     '/workshops/ikigai-branding',
-    '/workshops/ikigai/v2',
-    '/workshops/ikigai/v3',
-    '/workshops/ikigai/v4',
-    '/workshops/ikigai/v6',
-    '/workshops/ikigai/v8',
     '/workshops/ai-2026-graduates',
     '/workshops/build-first-ai-agent',
     '/workshops/ai-music-masterclass',
@@ -258,6 +283,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
     { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
@@ -314,7 +340,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/blue-zones-ikigai-ai-era', priority: 0.9, changeFrequency: 'monthly' as const },
   ]
 
   // Library OS hub + manifesto/build/quotes funnels
@@ -634,14 +659,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Partners — affiliate transparency hub (workshop tools + pursued programs)
-  entries.push({
-    url: `${BASE_URL}/partners`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  })
-
   // Partnerships — strategic-partner hub + per-partner deep pages
   entries.push({
     url: `${BASE_URL}/partnerships`,
@@ -650,28 +667,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   })
   listPartners().forEach(partner => {
-    const isFeatured =
-      partner.status === 'active' || partner.status === 'strategic-alignment'
     entries.push({
       url: `${BASE_URL}/partnerships/${partner.slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: isFeatured ? 0.8 : 0.5,
+      priority: partner.status === 'active' ? 0.8 : 0.5,
     })
   })
 
-  // /partnerships/proposal/* is intentionally NOT indexed (noindex + robots.txt
-  // disallow). Unlisted proposals are share-by-URL only.
-
-  // Work — engagement hub + per-engagement case studies
-  entries.push({
-    url: `${BASE_URL}/work`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.7,
+  // Newsletter issues — published only (drafts noindex'd at page level)
+  getNewsletterIssues().forEach((issue) => {
+    entries.push({
+      url: `${BASE_URL}/newsletter/archive/${issue.slug}`,
+      lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    })
   })
-  // Per-engagement entries are added once content/work/index.ts registers them.
-  // /work/proposal/* is intentionally NOT indexed (share-by-URL only).
 
   return entries
 }

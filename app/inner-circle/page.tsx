@@ -6,6 +6,7 @@ import { motion, useInView } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
+import { INNER_CIRCLE_FAQS } from '@/lib/inner-circle-faqs'
 import {
   Shield,
   Zap,
@@ -149,33 +150,7 @@ const CADENCE = [
   },
 ]
 
-const FAQS = [
-  {
-    question: 'What is the Inner Circle?',
-    answer:
-      'The Inner Circle is FrankX\'s premium community for builders and creators serious about AI. You get access to the vault, live labs, templates, prompt packs, and direct support from the agent collective.',
-  },
-  {
-    question: 'When does the Inner Circle launch?',
-    answer:
-      'We\'re currently in waitlist mode. Join now to be first in line when the Inner Circle opens.',
-  },
-  {
-    question: 'What\'s included in the free Signal tier?',
-    answer:
-      'Signal members receive the weekly Creation Chronicles dispatch, access to public blog posts and research, and early product announcements. It\'s the best way to stay connected with FrankX intelligence.',
-  },
-  {
-    question: 'How are the live labs structured?',
-    answer:
-      'You receive a pre-lab brief 48 hours before. During the session, we build in real time and ship something real. After, every lab drops into the Vault with a recap, templates, and implementation checklist.',
-  },
-  {
-    question: 'What does Alliance include?',
-    answer:
-      'Alliance is our enterprise tier with custom strategy work, dedicated agent builds, executive briefings, and bespoke governance frameworks. Contact us to discuss your specific needs.',
-  },
-]
+const FAQS = INNER_CIRCLE_FAQS
 
 function AnimatedShield() {
   return (
@@ -427,11 +402,30 @@ export default function InnerCirclePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mb-12 max-w-3xl text-xl text-slate-400 text-balance md:text-2xl"
+            className="mx-auto mb-8 max-w-3xl text-xl text-slate-400 text-balance md:text-2xl"
           >
             The exclusive community for builders and creators serious about mastering AI and shipping products that
             matter.
           </motion.p>
+
+          {/* Above-fold primary CTA — added 2026-05-20 per hub-audit P1.1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          >
+            <Link
+              href="#signup"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#AB47C7]/40 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60"
+            >
+              Join the Waitlist — June 1 2026
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <span className="text-xs text-white/40">
+              Free to join · Single-click unsubscribe · No spam
+            </span>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -451,14 +445,42 @@ export default function InnerCirclePage() {
               href="#signup"
               className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/50 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60"
             >
-              Join the Waitlist
+              Join the Waitlist — June 1 2026
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              href="/creation-chronicles"
+              href="/newsletter"
               className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20"
             >
-              Explore Creation Chronicles
+              Read the Newsletter
+            </Link>
+          </motion.div>
+
+          {/* Inline supporting links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/40"
+          >
+            <Link href="/acos" className="hover:text-white/70 transition-colors">
+              Agentic Creator OS
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/library" className="hover:text-white/70 transition-colors">
+              Book Library
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/prompt-library" className="hover:text-white/70 transition-colors">
+              Prompt Library
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/research" className="hover:text-white/70 transition-colors">
+              Research
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/blog" className="hover:text-white/70 transition-colors">
+              Blog
             </Link>
           </motion.div>
         </div>
@@ -469,10 +491,10 @@ export default function InnerCirclePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { number: '38', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]' },
-              { number: '75+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]' },
-              { number: '12K+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]' },
-              { number: '70+', label: 'Articles', icon: FileText, color: 'text-[#10B981]' },
+              { number: '24+', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]', href: '/acos' },
+              { number: '70+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]', href: '/acos' },
+              { number: '12K+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]', href: '/music' },
+              { number: '70+', label: 'Articles', icon: FileText, color: 'text-[#10B981]', href: '/blog' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -609,7 +631,7 @@ export default function InnerCirclePage() {
             <Award className="mx-auto mb-6 h-16 w-16 text-[#F59E0B]" />
             <h2 className="mb-6 text-4xl font-bold text-white text-balance md:text-5xl">Reserve Your Spot</h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-400 text-balance">
-              Be first to know when the Inner Circle opens.
+              Be first to receive Inner Circle pricing, launch bonuses, and the onboarding guide.
             </p>
 
             <div className="mx-auto max-w-md">
@@ -630,7 +652,7 @@ export default function InnerCirclePage() {
                 <Check className="h-4 w-4 text-[#10B981]" /> Unsubscribe anytime
               </span>
               <span className="flex items-center gap-1">
-                <Check className="h-4 w-4 text-[#10B981]" /> Early access when we open
+                <Check className="h-4 w-4 text-[#10B981]" /> Early access pricing
               </span>
             </div>
             </GlowCard>

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import { socialHandles } from './social-links'
+
 const siteUrl = 'https://frankx.ai'
 
 export const siteConfig = {
@@ -8,7 +10,7 @@ export const siteConfig = {
   description:
     'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
   url: siteUrl,
-  twitter: '@frankxai',
+  twitter: socialHandles.twitter,
   // Static fallback. /api/og dynamic route has empty-body issues in Next 16
   // + next/og — using a real file ensures social shares always have an image.
   ogImage: '/hero-homepage.png',
@@ -16,7 +18,7 @@ export const siteConfig = {
     'ai architect',
     'ai music creation',
     'suno ai',
-    'ai systems architecture',
+    'ai architecture',
     'agentic workflows',
     'creator tools',
     'enterprise ai',
@@ -34,6 +36,11 @@ type CreateMetadataOptions = {
   publishedTime?: string
   updatedTime?: string
   authors?: string[]
+  /**
+   * When true, emits robots: { index: false, follow: false }
+   * — used for draft pages, unlisted proposals, internal-only surfaces.
+   */
+  noindex?: boolean
 }
 
 export function createMetadata({
@@ -46,6 +53,7 @@ export function createMetadata({
   publishedTime,
   updatedTime,
   authors,
+  noindex = false,
 }: CreateMetadataOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString()
 
@@ -56,6 +64,15 @@ export function createMetadata({
     alternates: {
       canonical: url,
     },
+    ...(noindex
+      ? {
+          robots: {
+            index: false,
+            follow: false,
+            googleBot: { index: false, follow: false },
+          },
+        }
+      : {}),
     openGraph: {
       title,
       description,

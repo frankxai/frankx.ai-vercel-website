@@ -10183,6 +10183,43 @@
           "createdAt": "2026-02-18"
         }
       ]
+    },
+    {
+      "id": "studio-assets",
+      "name": "Studio Hero Assets",
+      "description": "Hero images for /studio content operations hub and producer detail pages.",
+      "count": 1,
+      "coverImage": "/images/bio/dawn-studio.jpg",
+      "accent": "from-emerald-500/20 to-cyan-500/20",
+      "borderAccent": "border-emerald-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "studio-assets/dawn-studio-hero",
+          "filename": "dawn-studio.jpg",
+          "src": "/images/bio/dawn-studio.jpg",
+          "thumbnail": null,
+          "collection": "studio-assets",
+          "format": "jpg",
+          "width": 5504,
+          "height": 3072,
+          "fileSize": 8076342,
+          "title": "Dawn studio — content operations dashboard",
+          "alt": "Dawn-lit workspace with multiple monitors showing a content operations dashboard, drawer of phones capturing on the side",
+          "usage": [
+            "/studio (hero)",
+            "/studio/visual (hero)"
+          ],
+          "tags": [
+            "studio",
+            "hero",
+            "content-ops",
+            "dashboard"
+          ],
+          "createdAt": "2026-04-29",
+          "addedToManifest": "2026-05-21"
+        }
+      ]
     }
   ]
 }

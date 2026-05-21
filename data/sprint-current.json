@@ -1,195 +1,175 @@
 {
+  "_meta": {
+    "regenerationPolicy": "Update on every Sunday Palace Review. Sprint plan in docs/planning/2026-W{n}-sprint.md is the canonical source — this JSON is the machine-readable shadow that backs /sprint.",
+    "lastUpdated": "2026-05-20",
+    "canonicalDoc": "docs/planning/2026-W21-sprint.md"
+  },
   "current": {
-    "id": "week-10",
-    "label": "Week 10",
-    "theme": "Revenue Activation",
-    "tagline": "Infrastructure is built. Time to turn systems into income.",
-    "dateRange": "Feb 23 - Mar 1, 2026",
+    "id": "week-21",
+    "label": "Week 21",
+    "theme": "Deliver NLDigital. Ship Newsletter Issue 1. Lock June 1 launch.",
+    "tagline": "Workshop delivered. Newsletter goes live Friday. Inner Circle gravity locked for June 1.",
+    "dateRange": "May 18-24, 2026",
     "status": "active",
     "goals": [
       {
-        "id": "revenue-activate",
-        "title": "Activate Revenue Channels",
-        "description": "Lemon Squeezy products live, affiliate signups complete, first template sale",
+        "id": "nldigital-amplify",
+        "title": "NLDigital Amplification Loop (Day 1-5)",
+        "description": "Workshop delivered Tue 5/19. 14-day amplification kicks off. @amplification-liaison drafts reposts; Frank ratifies. CRM touchpoints logged.",
         "priority": "critical",
+        "status": "in-progress",
+        "track": "distribution",
+        "tasks": [
+          { "text": "NLDigital workshop delivered Tue 5/19", "done": true },
+          { "text": "Day 1-2 attendee post sweep (Wed-Thu)", "done": false },
+          { "text": "First /amplify-attendee drafts ratified", "done": false },
+          { "text": "/crm-log touchpoints for posting attendees", "done": false },
+          { "text": "Mid-loop health check Mon 5/25 (Day 7)", "done": false }
+        ]
+      },
+      {
+        "id": "newsletter-issue-1",
+        "title": "Newsletter Issue 1 ships Friday 5/22",
+        "description": "Resend wired. /newsletter/archive route + double-opt-in HMAC token. First issue is Issue 1 — don't backfill placeholders. The forcing function for the publishing layer.",
+        "priority": "critical",
+        "status": "in-progress",
+        "track": "content",
+        "tasks": [
+          { "text": "Newsletter Issue 1 substrate + voice spec", "done": true },
+          { "text": "Issue 1 draft (theme: foundations of the operating loop)", "done": true },
+          { "text": "/newsletter/archive route shipped", "done": true },
+          { "text": "Double-opt-in HMAC token flow validated", "done": false },
+          { "text": "Frank reviews + edits Issue 1 voice", "done": false },
+          { "text": "Friday 5/22 send via Resend", "done": false }
+        ]
+      },
+      {
+        "id": "inner-circle-june-1",
+        "title": "Inner Circle June 1 Launch Prep",
+        "description": "Inner Circle = primary gravity for June 1. Three waitlist surfaces locked: /inner-circle (primary), /newsletter (secondary), /waitlist?ref= (tertiary).",
+        "priority": "high",
         "status": "planned",
         "track": "product",
         "tasks": [
-          {
-            "text": "Create Lemon Squeezy products for top 5 templates",
-            "done": false
-          },
-          {
-            "text": "Sign up for Railway, n8n, Vercel affiliate programs",
-            "done": false
-          },
-          {
-            "text": "Create GitHub template repos for deploy buttons",
-            "done": false
-          },
-          { "text": "Wire checkout buttons on /shop/templates", "done": false }
+          { "text": "Aggressive nav sweep — hide 10-12 pages, noindex, keep bodies", "done": false },
+          { "text": "Inner Circle copy + value-prop audit", "done": false },
+          { "text": "Three waitlist surfaces verified single-source-of-truth", "done": false },
+          { "text": "June 1 launch checklist drafted", "done": false }
         ]
       },
       {
-        "id": "newsletter-first-send",
-        "title": "Ship First Newsletter Edition",
-        "description": "Send Creation Chronicles #1 to subscriber list via Resend",
-        "priority": "critical",
-        "status": "planned",
-        "track": "content",
+        "id": "integrity-guard",
+        "title": "Build @integrity-guard agent",
+        "description": "Automates the rules from Mon 5/19 integrity sweep. Brand voice check, AI-slop detection, claim audit, schema validation. Pre-publish gate.",
+        "priority": "high",
+        "status": "in-progress",
+        "track": "technical",
         "tasks": [
-          { "text": "Write Creation Chronicles #1 content", "done": false },
-          { "text": "Test email rendering across clients", "done": false },
-          { "text": "Send to subscriber list via Resend MCP", "done": false },
-          { "text": "Set up weekly cadence automation", "done": false }
+          { "text": "Agent definition + scope", "done": true },
+          { "text": "Integration with /factory pre-publish step", "done": true },
+          { "text": "First-run smoke test against shipped routes", "done": false },
+          { "text": "Documented in AGENTS.md + acos-meta", "done": true }
         ]
       },
       {
-        "id": "social-launch",
-        "title": "Launch Social Content Pipeline",
-        "description": "Push 8 drafted posts live, set up X/LinkedIn via Zapier",
+        "id": "madrid-prep",
+        "title": "Madrid W22 Prep + W21 Healthcheck",
+        "description": "Adigital + 1 enterprise must confirm by Thu 5/22 (T-5 to Wed 5/27 wheels-up). Trip pivots to network visit if no confirms.",
         "priority": "high",
         "status": "planned",
         "track": "distribution",
         "tasks": [
-          {
-            "text": "Set up Zapier MCP actions for X and LinkedIn",
-            "done": false
-          },
-          {
-            "text": "Review and approve 8 drafted social posts",
-            "done": false
-          },
-          { "text": "Publish first batch across platforms", "done": false },
-          { "text": "Track engagement and iterate on voice", "done": false }
+          { "text": "Adigital confirmation status Thu 5/22", "done": false },
+          { "text": "Enterprise slot confirmation Fri 5/23", "done": false },
+          { "text": "Run-of-show locked for confirmed workshops", "done": false },
+          { "text": "W22 plan reviewed Sun 5/24 Palace Review", "done": false }
         ]
       },
       {
-        "id": "homepage-sync",
-        "title": "Reconcile Homepage & Ship Polish",
-        "description": "Sync HomePageElite between repos, fix remaining design inconsistencies",
+        "id": "foundations-sprint",
+        "title": "Site Foundations Sprint (2026-05-20)",
+        "description": "Autonomous 2h sprint: tsconfig scope fix, brand violation cleanup, 3 new commands (/hub-audit /traffic-week /newsletter-week), @integrity-guard agent, CLAUDE.md + AGENTS.md refresh, handover doc.",
         "priority": "high",
-        "status": "planned",
+        "status": "in-progress",
         "track": "technical",
         "tasks": [
-          {
-            "text": "Reconcile HomePageElite between private and production repos",
-            "done": false
-          },
-          {
-            "text": "Regenerate 7 images from image-regeneration-queue",
-            "done": false
-          },
-          {
-            "text": "Deploy v0-pro variants (Soulbook, Coaching, Community)",
-            "done": false
-          },
-          {
-            "text": "Visual QA pass on top 10 pages post-design-system",
-            "done": false
-          }
-        ]
-      },
-      {
-        "id": "product-sprint-test",
-        "title": "First Product Team Sprint",
-        "description": "Test /product-team-launch end-to-end on a real product",
-        "priority": "high",
-        "status": "planned",
-        "track": "product",
-        "tasks": [
-          {
-            "text": "Choose sprint target (Vibe OS or template product)",
-            "done": false
-          },
-          { "text": "Run /product-team-launch command", "done": false },
-          {
-            "text": "Complete full sprint cycle through deploy",
-            "done": false
-          },
-          {
-            "text": "Document learnings and iterate on orchestration",
-            "done": false
-          }
-        ]
-      },
-      {
-        "id": "blog-cadence",
-        "title": "Publish 2 Blog Articles",
-        "description": "Keep content velocity — AI music story + Claude Code mastery",
-        "priority": "medium",
-        "status": "planned",
-        "track": "content",
-        "tasks": [
-          {
-            "text": "Write '12,000 AI Songs: What I Learned' article",
-            "done": false
-          },
-          { "text": "Write Claude Code power user article", "done": false },
-          {
-            "text": "Generate hero images via Visual Creation Council",
-            "done": false
-          },
-          {
-            "text": "Publish and distribute via social pipeline",
-            "done": false
-          }
+          { "text": "tsconfig.json scope tightened (frankx/, ai-architect-academy/, packages/euipo-mcp/, library-os/, etc.)", "done": true },
+          { "text": "Expanded AI title → AI Architect on /home metadata", "done": true },
+          { "text": "data/sprint-current.json reflects W21 reality (was stale at Week 10)", "done": true },
+          { "text": "/hub-audit command built", "done": true },
+          { "text": "/traffic-week command built", "done": true },
+          { "text": "/newsletter-week command built", "done": true },
+          { "text": "@integrity-guard agent built", "done": true },
+          { "text": "CLAUDE.md + AGENTS.md + MEMORY.md updated", "done": true },
+          { "text": "Handover doc + commit + push", "done": true },
+          { "text": "Newsletter archive routes + lib + manifest shipped", "done": true },
+          { "text": "Inner Circle JSON-LD schema (Org + Service + FAQPage + Breadcrumb)", "done": true },
+          { "text": "HomePageElite ACOS counts honest (24+ agents / 70+ skills / 15+ commands)", "done": true },
+          { "text": "createMetadata gained noindex param", "done": true },
+          { "text": "WeeklyIssueCallout component on /newsletter landing", "done": true },
+          { "text": "All work merged to main (5 commits → caught up + cherry-picks)", "done": true },
+          { "text": "Inner Circle above-fold primary CTA + trust micro-copy", "done": true },
+          { "text": "Issue 1 voice polish (Tuesday/Centraal anchoring)", "done": true },
+          { "text": "/hub-audit /workshops 2nd pilot — PASS", "done": true },
+          { "text": "/hub-audit /research 3rd pilot — PASS", "done": true },
+          { "text": "Library [slug] above-fold newsletter CTA", "done": true },
+          { "text": "Research [slug] above-fold newsletter CTA", "done": true },
+          { "text": "Issue 1 final polish (gate 3: unsourced 99% claim fixed)", "done": true },
+          { "text": "/hub-audit /studio 4th pilot — WARN (first non-PASS, validates command)", "done": true },
+          { "text": "ProducerPlaceholderPage gravity CTA prop (1 component → 7 pages)", "done": true },
+          { "text": "Studio index tertiary newsletter CTA", "done": true },
+          { "text": "Vault-manifest entry for dawn-studio hero", "done": true },
+          { "text": "Issue 2 draft + manifest entry (theme: the fourth hub failed)", "done": true },
+          { "text": "/hub-audit /partnerships 5th pilot — PASS", "done": true },
+          { "text": "llms.txt route noindex header (defense-in-depth)", "done": true },
+          { "text": "/hub-audit /papa 6th pilot — PASS (memorial-context calibrated)", "done": true },
+          { "text": "/hub-audit v2 spec drafted (--archetype, multilingual parity, component findings)", "done": true }
         ]
       }
     ]
   },
   "lastWeek": {
-    "id": "week-09",
-    "label": "Week 9",
-    "theme": "The Polish",
-    "tagline": "Making everything feel like one cohesive brand.",
-    "dateRange": "Feb 16-22, 2026",
+    "id": "week-20",
+    "label": "Week 20",
+    "theme": "Pillar Consolidation",
+    "tagline": "AIS public, AES planned, Partnerships swarm live, storage cleanup, speaking spec.",
+    "dateRange": "May 11-17, 2026",
     "stats": {
-      "commits": 39,
-      "linesAdded": 126584,
-      "filesChanged": 1038,
-      "shipped": 12,
-      "grade": "S"
+      "commits": 47,
+      "linesAdded": 28500,
+      "filesChanged": 312,
+      "shipped": 9,
+      "grade": "A"
     },
     "highlights": [
       {
-        "title": "Design System Standardization",
-        "description": "240+ files unified to consistent tokens",
+        "title": "AIS (Agentic Intelligence System) Public OSS",
+        "description": "github.com/frankxai/agentic-intelligence-system MIT. 12 commits. Plan A v0.1 substrate (ais-core + ais-emit, 26/26 tests).",
         "impact": "major"
       },
       {
-        "title": "ACOS v10.2",
-        "description": "Magic words, todo continuation, Starlight wired",
+        "title": "Partnerships Swarm",
+        "description": "3-agent parallel swarm. Lane B credibility patches + Lane A /work/ namespace + Lane C unlisted /partnerships/proposal/[slug]. PR #71 → c65ca85f.",
         "impact": "major"
       },
       {
-        "title": "Brand Identity Overhaul",
-        "description": "Axi in nav, new favicon, mascot-first policy",
+        "title": "ACOS dev→public sync",
+        "description": "FrankX .claude/agents/* + .claude/commands/* now 1:1 mirror to github.com/frankxai/agentic-creator-os. 28-file Trees-API sync.",
         "impact": "major"
       },
       {
-        "title": "Video Vault",
-        "description": "132 curated videos with lightbox and watchlists",
+        "title": "Meta-Architecture three-layer spec",
+        "description": "Layer 0 SIS primitives → Layer 1 Intelligence Systems → Layer 2 canonical harness. /ais slash command shipped (6 lanes).",
         "impact": "major"
       },
       {
-        "title": "6-Stream Newsletter",
-        "description": "Content intelligence with per-stream subscribe",
-        "impact": "major"
-      },
-      {
-        "title": "Visual Creation Council",
-        "description": "Quality-gated image pipeline with structural enforcement",
+        "title": "Ikigai V8 → V9 Coach-driven prompts",
+        "description": "Audience-first proactive 8-prompt stack. Core principle: make the assistant complete the system from weak signals.",
         "impact": "medium"
       },
       {
-        "title": "Content Voice DNA",
-        "description": "Authentic voice codified into automation rules",
-        "impact": "medium"
-      },
-      {
-        "title": "Product Team System",
-        "description": "6-team orchestration ready for first sprint",
+        "title": "Storage + Speaking spec",
+        "description": "WSL vhdx compact procedure documented. Speaking surfaces spec drafted, 5 open questions surfaced.",
         "impact": "medium"
       }
     ]

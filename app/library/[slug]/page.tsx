@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
-import { QuoteShareToolbar } from '@/components/share/QuoteShareToolbar';
 
 const SITE_URL = 'https://frankx.ai';
 
@@ -37,22 +36,15 @@ export async function generateMetadata({
   const ogImage = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
 
   return {
-    title: `${review.title} by ${review.author} — Book Review & Key Insights`,
+    title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
     description,
     keywords: [
       ...review.categories,
       review.author,
-      review.title,
-      `${review.title} ${review.author}`,
       `${review.title} summary`,
-      `${review.title} review`,
       `${review.title} key insights`,
-      `${review.title} explained`,
-      `${review.title} book review`,
-      `${review.author} ${review.title}`,
       'book review',
       'book summary',
-      'book key insights',
     ],
     authors: [{ name: 'Frank' }],
     alternates: { canonical },
@@ -201,19 +193,12 @@ export default async function ReviewPage({
     ? booksRegistry.find((b) => b.slug === review.relatedBook)
     : null;
 
-  const reviewCategories = new Set(review.categories);
-  const scoredReviews = bookReviews
+  const otherReviews = bookReviews
     .filter((r) => r.slug !== review.slug)
-    .map((r) => ({
-      review: r,
-      score: r.categories.filter((c) => reviewCategories.has(c)).length,
-    }))
-    .sort((a, b) => b.score - a.score || (b.review.reviewDate > a.review.reviewDate ? 1 : -1));
-  const otherReviews = scoredReviews.slice(0, 3).map((s) => s.review);
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <QuoteShareToolbar />
       {/* Back Link */}
       <div className="max-w-3xl mx-auto px-6 pt-28 pb-4">
         <Link
@@ -289,6 +274,29 @@ export default async function ReviewPage({
           </div>
         </section>
       )}
+
+      {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit library P1.1 */}
+      <section className="max-w-3xl mx-auto px-6 pb-12" aria-label="Newsletter call-to-action">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.04] px-6 py-5">
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-400/70 mb-2">
+              The FrankX Newsletter
+            </p>
+            <p className="text-white/80 text-[14px] leading-relaxed">
+              One book breakdown like this. One spotlight from the operating loop. Every Friday.
+            </p>
+          </div>
+          <Link
+            href="/newsletter"
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap"
+          >
+            Subscribe free
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        </div>
+      </section>
 
       {/* Table of Contents */}
       <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
@@ -379,54 +387,37 @@ export default async function ReviewPage({
             map back to the book so you can re-read them in context.
           </p>
           <div className="space-y-4">
-            {review.quotes.map((quote, i) => {
-              const quoteId = `q-${review.slug}-${i + 1}`;
-              // Permalink points at the dedicated /q/{n} page so social shares
-              // get the per-quote OpenGraph image. Anchor still works for
-              // in-page navigation; the share URL is what amplifies.
-              const permalink = `${SITE_URL}/library/${review.slug}/q/${i + 1}`;
-              return (
-                <figure
-                  key={i}
-                  id={quoteId}
-                  tabIndex={0}
-                  data-shareable="quote"
-                  data-quote-text={quote.text}
-                  data-quote-author={review.author}
-                  data-quote-source={review.title}
-                  data-quote-permalink={permalink}
-                  className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-6 pl-8 scroll-mt-24 outline-none focus-visible:border-rose-400/30 focus-visible:ring-2 focus-visible:ring-rose-400/20"
+            {review.quotes.map((quote, i) => (
+              <figure
+                key={i}
+                className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-6 pl-8"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute top-3 left-3 text-rose-400/40 font-serif text-5xl leading-none select-none"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-3 left-3 text-rose-400/40 font-serif text-5xl leading-none select-none"
-                  >
-                    &ldquo;
-                  </span>
-                  <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
-                    {quote.text}
-                  </blockquote>
-                  {(quote.chapter || quote.context) && (
-                    <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
-                      {quote.chapter && (
-                        <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
-                          {quote.chapter}
-                        </p>
-                      )}
-                      {quote.context && (
-                        <p className="text-[13px] text-white/50 leading-relaxed">
-                          {quote.context}
-                        </p>
-                      )}
-                    </figcaption>
-                  )}
-                </figure>
-              );
-            })}
+                  &ldquo;
+                </span>
+                <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
+                  {quote.text}
+                </blockquote>
+                {(quote.chapter || quote.context) && (
+                  <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
+                    {quote.chapter && (
+                      <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
+                        {quote.chapter}
+                      </p>
+                    )}
+                    {quote.context && (
+                      <p className="text-[13px] text-white/50 leading-relaxed">
+                        {quote.context}
+                      </p>
+                    )}
+                  </figcaption>
+                )}
+              </figure>
+            ))}
           </div>
-          <p className="mt-6 text-[12px] text-white/30">
-            Tip: highlight any quote to share it. Press <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-[10px]">S</kbd> while focused on a quote for keyboard share.
-          </p>
         </section>
       )}
 
@@ -532,14 +523,8 @@ export default async function ReviewPage({
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {review.continueReading.map((item, i) => {
-              const isInternalLink = item.url?.startsWith('/');
               const cardInner = (
                 <>
-                  {isInternalLink && (
-                    <p className="text-[10px] uppercase tracking-wider text-cyan-400/60 mb-2">
-                      In this Library
-                    </p>
-                  )}
                   <h3 className="text-[15px] font-semibold text-white group-hover:text-cyan-200 transition-colors leading-snug">
                     {item.title}
                   </h3>
@@ -549,7 +534,7 @@ export default async function ReviewPage({
                   </p>
                   {item.url && (
                     <span className="inline-flex items-center gap-1 mt-4 text-[12px] text-cyan-400/60 group-hover:text-cyan-300 transition-colors">
-                      {isInternalLink ? 'Read the review' : 'Get the book'}
+                      Get the book
                       <svg
                         className="w-3 h-3"
                         fill="none"
@@ -570,14 +555,6 @@ export default async function ReviewPage({
 
               const className =
                 'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-all';
-
-              if (item.url && isInternalLink) {
-                return (
-                  <Link key={i} href={item.url} className={className}>
-                    {cardInner}
-                  </Link>
-                );
-              }
 
               return item.url ? (
                 <a

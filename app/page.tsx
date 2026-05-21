@@ -1,19 +1,20 @@
 import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata } from '@/lib/seo'
+import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { getAllBlogPosts } from '@/lib/blog'
-import { socialLinks } from '@/lib/social-links'
+import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
   description:
-    'AI Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
+    'AI Architect at Oracle EMEA AI Center of Excellence. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',
     'suno ai',
-    'ai systems architecture',
+    'ai architecture',
     'ai workflow automation',
     'creator tools',
     'agentic workflows',
@@ -45,11 +46,11 @@ const personSchema = {
   sameAs: [
     socialLinks.linkedin,
     socialLinks.github,
-    'https://suno.com/@frankx',
-    'https://x.com/frankxeth',
+    socialLinks.suno,
+    socialLinks.twitter,
   ],
   knowsAbout: [
-    'AI Systems Architecture',
+    'AI Architecture',
     'AI Music Creation',
     'Suno AI',
     'Enterprise AI Strategy',
@@ -65,7 +66,7 @@ const organizationSchema = {
   sameAs: [
     socialLinks.linkedin,
     socialLinks.github,
-    'https://suno.com/@frankx',
+    socialLinks.suno,
   ],
   description:
     'AI systems and creator tools. Building practical workflows for the Golden Age of Intelligence.',
@@ -75,7 +76,7 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle EMEA and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',
@@ -90,7 +91,7 @@ const homepageFAQs = [
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free and open-source on GitHub.',
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',
@@ -111,9 +112,22 @@ export default function Page() {
       date: p.date,
     }))
 
+  const libraryBooks = bookReviews
+    .filter((r) => (r.quotes?.length ?? 0) > 0 && (r.chapters?.length ?? 0) > 0)
+    .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
+    .slice(0, 5)
+    .map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      author: r.author,
+      coverImage: r.coverImage,
+      quoteCount: r.quotes?.length ?? 0,
+      chapterCount: r.chapters?.length ?? 0,
+    }))
+
   return (
     <>
-      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} />
+      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} libraryBooks={libraryBooks} />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />

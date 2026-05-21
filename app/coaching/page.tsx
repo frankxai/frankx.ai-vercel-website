@@ -28,7 +28,7 @@ import {
 const coverageAreas = [
   {
     icon: Brain,
-    title: 'AI Systems Architecture',
+    title: 'AI Architecture',
     description:
       'Agent orchestration, MCP integration, Claude Code workflows, and production-ready AI systems.',
     color: '#AB47C7',

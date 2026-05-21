@@ -26,9 +26,14 @@ interface ProducerPageProps {
   producerId: ProducerMeta['id']
   /** Optional override: provide a different exampleSentence for the hero. */
   exampleSentence?: string
+  /**
+   * Optional override: replace the default above-fold primary CTA.
+   * Default = /newsletter for planned producers, /inner-circle for shipped producers.
+   */
+  primaryCta?: { label: string; href: string }
 }
 
-export function ProducerPlaceholderPage({ producerId, exampleSentence }: ProducerPageProps) {
+export function ProducerPlaceholderPage({ producerId, exampleSentence, primaryCta }: ProducerPageProps) {
   const producer = getProducer(producerId)
 
   if (!producer) {
@@ -44,6 +49,13 @@ export function ProducerPlaceholderPage({ producerId, exampleSentence }: Produce
   const Icon = ICON_MAP[producer.id] ?? Layers
   const captureTypes = producer.acceptedCaptureTypes.map((c) => getCaptureType(c)).filter(Boolean)
   const platforms = producer.targetPlatforms.map((p) => getPersona(p)).filter(Boolean)
+
+  // Default CTA based on producer status — gravity-surface routing per /hub-audit gate 8
+  const defaultPrimary =
+    producer.status === 'shipped' || producer.status === 'partial'
+      ? { label: 'Join Inner Circle beta', href: '/inner-circle' }
+      : { label: 'Get launch updates', href: '/newsletter' }
+  const cta = primaryCta ?? defaultPrimary
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -91,7 +103,15 @@ export function ProducerPlaceholderPage({ producerId, exampleSentence }: Produce
           {exampleSentence && (
             <p className="text-base text-white/55 italic max-w-2xl mb-10">{exampleSentence}</p>
           )}
+          {/* Above-fold primary CTA — added 2026-05-21 per /hub-audit studio P0 (gravity routing) */}
           <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href={cta.href}
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-white/90 transition-colors"
+            >
+              {cta.label}
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
             <Link
               href="/studio"
               className="inline-flex items-center gap-2 rounded-full bg-white/5 px-5 py-2.5 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"

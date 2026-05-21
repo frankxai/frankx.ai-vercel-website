@@ -48,11 +48,21 @@ interface BookData {
   coverImage: string
 }
 
+interface LibraryBookData {
+  slug: string
+  title: string
+  author: string
+  coverImage: string
+  quoteCount: number
+  chapterCount: number
+}
+
 interface HomePageEliteProps {
   latestPosts?: LatestPost[]
   faqs?: FAQItem[]
   featuredTrack?: FeaturedTrackData
   books?: BookData[]
+  libraryBooks?: LibraryBookData[]
 }
 
 // ============================================================================
@@ -402,7 +412,7 @@ function AuthorityBar() {
 const products = [
   {
     title: 'Agentic Creator OS',
-    description: '75+ skills, 38 agents, 35+ commands. The open-source operating system for Claude Code.',
+    description: 'Open-source operating system for Claude Code. 24+ specialized agents, 70+ skills, 15+ commands.',
     href: '/acos',
     color: 'emerald' as const,
   },
@@ -743,10 +753,10 @@ function BooksShowcase({ books }: { books: BookData[] }) {
         >
           <div>
             <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/50 font-medium mb-3">
-              Library
+              Frank&apos;s Books
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
-              Books & Writing
+              Books &amp; Writing
             </h2>
             <p className="text-base text-white/50 max-w-lg">
               Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
@@ -756,7 +766,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
             href="/books"
             className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors flex-shrink-0"
           >
-            Browse Library
+            Browse books
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
@@ -790,6 +800,104 @@ function BooksShowcase({ books }: { books: BookData[] }) {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// LIBRARY OS — Curated book deep-dives + open-source system
+// ============================================================================
+
+function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) {
+  if (!libraryBooks || libraryBooks.length === 0) return null
+
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
+        >
+          <div>
+            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
+              The Library OS · Open Source
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+              Every book, a permanent asset
+            </h2>
+            <p className="text-base text-white/55 max-w-xl">
+              Curated deep-dives — quotes, chapter summaries, and the connections between ideas. Built on the open-source <Link href="/library/approach" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-emerald-400/60 transition">Library OS</Link>. Clone it. Run it. Make your reading life public.
+            </p>
+          </div>
+          <div className="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
+            <Link
+              href="/library"
+              className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+            >
+              Browse the Library
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/library/build"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-1.5 text-xs font-medium text-emerald-200 hover:bg-emerald-400/10 hover:border-emerald-400/50 transition-colors"
+            >
+              Build your own
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          {libraryBooks.slice(0, 5).map((book, i) => (
+            <motion.div
+              key={book.slug}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+            >
+              <Link href={`/library/${book.slug}`} className="group block">
+                <div className="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 shadow-lg shadow-black/30 group-hover:shadow-xl group-hover:shadow-black/40 transition-shadow ring-1 ring-white/5 group-hover:ring-emerald-400/30">
+                  <Image
+                    src={book.coverImage}
+                    alt={`${book.title} by ${book.author}`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-2 left-2 right-2 flex items-center gap-2 text-[10px] text-white/90">
+                    <span className="rounded-full bg-emerald-500/20 backdrop-blur px-2 py-0.5 ring-1 ring-emerald-400/40">
+                      {book.quoteCount} quotes
+                    </span>
+                    <span className="rounded-full bg-white/10 backdrop-blur px-2 py-0.5 ring-1 ring-white/20">
+                      {book.chapterCount} ch
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                  {book.title}
+                </h3>
+                <p className="text-xs text-white/40 line-clamp-1">{book.author}</p>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/40"
+        >
+          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
+          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
+          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> SEO + JSON-LD per book</span>
+          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> 3 commands, 1 schema</span>
+        </motion.div>
       </div>
     </section>
   )
@@ -1239,6 +1347,7 @@ export default function HomePageElite({
   faqs = [],
   featuredTrack,
   books = [],
+  libraryBooks = [],
 }: HomePageEliteProps) {
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
@@ -1299,8 +1408,11 @@ export default function HomePageElite({
         {/* 9. Design Lab — image grid */}
         <DesignLab />
 
-        {/* 10. Books showcase — cover grid */}
+        {/* 10. Frank's Books — cover grid */}
         <BooksShowcase books={books} />
+
+        {/* 10b. Library OS — open-source book deep-dives */}
+        <LibraryShowcase libraryBooks={libraryBooks} />
 
         {/* 11. Latest Articles — expanded to 6 */}
         <LatestArticles posts={latestPosts} />

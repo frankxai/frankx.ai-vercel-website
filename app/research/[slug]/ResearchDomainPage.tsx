@@ -225,7 +225,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   </div>
                   <p className="text-white/90 leading-relaxed">{domain.tldr}</p>
                   <div className="mt-3 pt-3 border-t border-white/5">
-                    <div className="flex items-center gap-4 text-xs text-white/30">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-white/30">
                       <span className="flex items-center gap-1.5">
                         <Calendar className="w-3 h-3" />
                         Updated {domain.lastUpdated}
@@ -242,6 +242,20 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       )}
                     </div>
                   </div>
+                </div>
+
+                {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit research P1.2 */}
+                <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-3.5">
+                  <p className="text-sm text-white/55 leading-relaxed">
+                    Research briefs like this — one per week. <span className="text-white/75">Validated sources, no filler.</span>
+                  </p>
+                  <Link
+                    href="/newsletter"
+                    className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 px-3.5 py-1.5 text-xs font-medium text-white/80 transition-colors whitespace-nowrap"
+                  >
+                    Subscribe
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
                 </div>
               </motion.div>
 

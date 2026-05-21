@@ -139,6 +139,14 @@ export default function StudioIndexPage() {
             >
               See the flow
             </Link>
+            {/* Gravity-surface CTA — added 2026-05-21 per /hub-audit studio P0 */}
+            <Link
+              href="/newsletter"
+              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              Subscribe for producer launches
+              <ArrowRight className="h-3 w-3" aria-hidden />
+            </Link>
           </div>
         </div>
       </section>

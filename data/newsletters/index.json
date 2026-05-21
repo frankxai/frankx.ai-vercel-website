@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "description": "Manifest of weekly newsletter issues. Source of truth for /newsletter/archive index. Maintained by /newsletter-week archive mode.",
+    "lastUpdated": "2026-05-21",
+    "substrate": "content/newsletters/issues/*.mdx",
+    "loader": "lib/newsletter-issues.ts"
+  },
+  "issues": [
+    {
+      "issue": 1,
+      "slug": "issue-1-the-six-layer-operating-loop",
+      "subject": "Issue 1: The 6-layer operating loop",
+      "preview": "What it means to publish without the scramble",
+      "date": "2026-05-22",
+      "sendAt": "2026-05-22T11:00:00+02:00",
+      "sentAt": null,
+      "theme": "The system that ships every Friday",
+      "status": "draft",
+      "crossPost": false,
+      "gateStatus": "pending",
+      "resendMessageId": null,
+      "recipientCount": null
+    },
+    {
+      "issue": 2,
+      "slug": "issue-2-the-fourth-hub-failed",
+      "subject": "Issue 2: The fourth hub failed",
+      "preview": "What 90 minutes of pre-publish review looks like when you cut it to 12",
+      "date": "2026-05-29",
+      "sendAt": "2026-05-29T11:00:00+02:00",
+      "sentAt": null,
+      "theme": "Excellence gates in practice",
+      "status": "draft",
+      "crossPost": false,
+      "gateStatus": "pending",
+      "resendMessageId": null,
+      "recipientCount": null
+    }
+  ]
+}

@@ -128,6 +128,13 @@ export async function GET(
     headers: {
       'content-type': 'text/plain; charset=utf-8',
       'cache-control': 'public, max-age=3600, s-maxage=86400',
+      // Defense-in-depth: this surface is for AI fetchers (ChatGPT/Claude/Perplexity/
+      // Gemini extracting context), NOT for search-engine indexing. AI agents that
+      // fetch the URL directly still get the content; this header just keeps the .txt
+      // out of search results to avoid thin-content / duplicate-content SEO penalties
+      // since the HTML page at /partnerships/<slug> carries the same information in
+      // rich form. Added 2026-05-21 per /hub-audit partnerships v1 finding.
+      'x-robots-tag': 'noindex, nofollow',
     },
   })
 }
