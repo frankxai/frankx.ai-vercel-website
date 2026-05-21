@@ -17,8 +17,9 @@
 import { notFound } from 'next/navigation'
 import { verifyToken } from '@/lib/workshop-portal'
 import { FrankXOSHeader } from '@/components/os/FrankXOSHeader'
-import { readFileSync, existsSync } from 'fs'
-import { resolve } from 'path'
+import peopleData from '@/data/crm/people.json'
+import workshopsData from '@/data/crm/workshops.json'
+import engagementsData from '@/data/crm/engagements.json'
 import Link from 'next/link'
 import {
   Calendar,
@@ -52,19 +53,7 @@ async function submitTakeaway(formData: FormData) {
   }))
 }
 
-// ─── Data helpers (server-side read) ─────────────────────────────
-
-const ROOT = process.cwd()
-
-function readJson<T>(relativePath: string): T[] {
-  const fullPath = resolve(ROOT, relativePath)
-  if (!existsSync(fullPath)) return []
-  try {
-    return JSON.parse(readFileSync(fullPath, 'utf8')) as T[]
-  } catch {
-    return []
-  }
-}
+// ─── Data types ─────────────────────────────────────────────────
 
 interface CRMPerson {
   id: string
@@ -98,16 +87,6 @@ interface CRMEngagement {
     content_url?: string
     reposted_by_frank?: boolean
   }
-}
-
-function getAttendeeProfile(workshopDir: string, personId: string): string | null {
-  if (!workshopDir) return null
-  const path = resolve(ROOT, workshopDir, 'attendees', `${personId}.md`)
-  if (!existsSync(path)) return null
-  const raw = readFileSync(path, 'utf8')
-  // Extract "Why they're in the room" section as a preview
-  const match = raw.match(/##\s+Why they['']re in the room([\s\S]*?)(?:\n##|$)/)
-  return match ? match[1].trim().slice(0, 400) : raw.slice(0, 400)
 }
 
 // ─── Sub-components ───────────────────────────────────────────────
@@ -286,9 +265,9 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
   const { personId, workshopId } = payload
 
   // Load CRM data
-  const people       = readJson<CRMPerson>('data/crm/people.json')
-  const workshops    = readJson<CRMWorkshop>('data/crm/workshops.json')
-  const engagements  = readJson<CRMEngagement>('data/crm/engagements.json')
+  const people = peopleData as CRMPerson[]
+  const workshops = workshopsData as CRMWorkshop[]
+  const engagements = engagementsData as CRMEngagement[]
 
   const person   = people.find(p => p.id === personId)
   const workshop = workshops.find(w => w.id === workshopId)
@@ -312,9 +291,6 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
   }
 
   const firstName = person.name.split(' ')[0]
-
-  // Load attendee-specific prep brief
-  const prepBriefPreview = getAttendeeProfile(workshop.notes_path ?? '', personId)
 
   // Filter engagements for this person + this workshop
   const myEngagements = engagements.filter(
@@ -359,19 +335,6 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
             )}
           </div>
         </SectionCard>
-
-        {/* Prep brief preview */}
-        {prepBriefPreview && (
-          <SectionCard>
-            <h2 className="text-sm font-medium text-zinc-300 mb-3">Why you were in the room</h2>
-            <p className="text-sm text-zinc-400 leading-relaxed whitespace-pre-line">
-              {prepBriefPreview}
-              {prepBriefPreview.length >= 400 && (
-                <span className="text-zinc-600"> [truncated]</span>
-              )}
-            </p>
-          </SectionCard>
-        )}
 
         {/* Content kit */}
         <SectionCard>
