@@ -627,7 +627,7 @@ function CreativeWorlds() {
           <div className="relative aspect-[21/9] sm:aspect-[21/7]">
             <Image
               src="/images/arcanea/eldrian-conclave-20260301.webp"
-              alt="The Eldrian Conclave — five guardians of Arcanea"
+              alt="Cinematic AI world-building concept art"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 1200px"
@@ -642,20 +642,17 @@ function CreativeWorlds() {
               Creative Worlds
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
-              Arcanea
+              Creative Systems Lab
             </h2>
             <p className="text-sm sm:text-base text-white/50 max-w-lg mb-6">
-              An AI-native fantasy civilization. Five Eldrian guardians, ten gates of mastery, a living world-state.
-              Where AI meets mythology.
+              Experiments in AI-native storytelling, design systems, media pipelines, and autonomous creative infrastructure.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="https://arcanea.ai"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/map"
                 className="inline-flex items-center gap-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-200 px-5 py-2.5 text-sm font-medium transition-colors"
               >
-                Enter Arcanea
+                Explore the System
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
