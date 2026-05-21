@@ -81,7 +81,7 @@ const learningPaths = [
     title: 'Claude Code Mastery',
     description: 'From basic prompting to autonomous agent workflows. Learn the patterns that 10x your coding velocity.',
     topics: ['CLAUDE.md configuration', 'Multi-file editing', 'Test-driven prompting', 'Agent orchestration'],
-    href: '/prompt-library/agent-development',
+    href: '/prompt-library',
     color: 'orange',
   },
   {
@@ -89,7 +89,7 @@ const learningPaths = [
     title: 'Agentic Patterns',
     description: 'Build production-grade autonomous systems. MCP servers, tool chains, and multi-agent coordination.',
     topics: ['MCP architecture', 'Tool composition', 'State management', 'Error recovery'],
-    href: '/prompt-library/ai-architecture',
+    href: '/prompt-library',
     color: 'violet',
   },
   {
@@ -97,7 +97,7 @@ const learningPaths = [
     title: 'Workflow Automation',
     description: 'Automate your entire development lifecycle. From PR reviews to deployment pipelines.',
     topics: ['Git automation', 'CI/CD integration', 'Code review agents', 'Documentation generation'],
-    href: '/prompt-library/coding',
+    href: '/prompt-library',
     color: 'cyan',
   },
 ]
@@ -224,7 +224,7 @@ export default function DevelopersPage() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                href="/prompt-library/agent-development"
+                href="/prompt-library"
                 className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
               >
                 <Sparkles className="h-5 w-5" />
@@ -444,14 +444,14 @@ export default function DevelopersPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/prompt-library/agent-development"
+                  href="/prompt-library"
                   className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
                 >
                   <Bot className="h-5 w-5" />
                   Agent Development Prompts
                 </Link>
                 <Link
-                  href="/prompt-library/coding"
+                  href="/prompt-library"
                   className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
                 >
                   <Code2 className="h-5 w-5" />

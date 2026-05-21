@@ -80,7 +80,7 @@ const creativePaths = [
     title: 'Music Production',
     description: 'Create original songs, beats, and soundscapes with Suno AI. From ambient focus music to commercial releases.',
     topics: ['Suno prompts', 'Genre mastery', 'Song structure', 'Commercial licensing'],
-    href: '/prompt-library/music-creation',
+    href: '/prompt-library',
     color: 'pink',
   },
   {
@@ -88,7 +88,7 @@ const creativePaths = [
     title: 'Writing & Storytelling',
     description: 'Craft compelling content, from blog posts to books. Master AI-assisted writing without losing your voice.',
     topics: ['Blog frameworks', 'Story structure', 'Voice preservation', 'SEO writing'],
-    href: '/prompt-library/writing',
+    href: '/prompt-library',
     color: 'violet',
   },
   {
@@ -96,7 +96,7 @@ const creativePaths = [
     title: 'Visual Creation',
     description: 'Generate stunning images for any creative project. Master Midjourney, DALL-E, and Stable Diffusion.',
     topics: ['Prompt engineering', 'Style control', 'Composition', 'Commercial use'],
-    href: '/prompt-library/image-generation',
+    href: '/prompt-library',
     color: 'cyan',
   },
 ]
@@ -223,7 +223,7 @@ export default function CreatorsPage() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                href="/prompt-library/music-creation"
+                href="/prompt-library"
                 className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
               >
                 <Music className="h-5 w-5" />
@@ -578,21 +578,21 @@ export default function CreatorsPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/prompt-library/music-creation"
+                  href="/prompt-library"
                   className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
                 >
                   <Music className="h-5 w-5" />
                   Music Prompts
                 </Link>
                 <Link
-                  href="/prompt-library/writing"
+                  href="/prompt-library"
                   className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
                 >
                   <PenLine className="h-5 w-5" />
                   Writing Prompts
                 </Link>
                 <Link
-                  href="/prompt-library/image-generation"
+                  href="/prompt-library"
                   className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
                 >
                   <ImageIcon className="h-5 w-5" />

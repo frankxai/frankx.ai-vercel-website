@@ -1,6 +1,6 @@
 FrankX.AI Link Checker Report
 ================================================================================
-Generated: 2026-05-21T19:13:57.830Z
+Generated: 2026-05-21T19:33:51.854Z
 Total Issues Found: 2
 ================================================================================
 
@@ -10,8 +10,8 @@ Other errors: 2 issues
 --------------------------------------------------------------------------------
 
 1. Page: Homepage
-   Href: /library/meditations
-   Link text: "16 quotes12 chMeditationsMarcus Aurelius"
+   Href: /library/build
+   Link text: "Build your own"
 
 2. Page: Realm
    Href: /realm
@@ -24,8 +24,8 @@ Homepage: 1 issues
 --------------------------------------------------------------------------------
 
 1. Failed to fetch link: fetch failed
-   Href: /library/meditations
-   Link text: "16 quotes12 chMeditationsMarcus Aurelius"
+   Href: /library/build
+   Link text: "Build your own"
 
 Realm: 1 issues
 --------------------------------------------------------------------------------

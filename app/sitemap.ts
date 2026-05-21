@@ -96,24 +96,6 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
-// Prompt library categories
-const PROMPT_CATEGORIES = [
-  'writing',
-  'music-creation',
-  'image-generation',
-  'creative',
-  'coding',
-  'ai-architecture',
-  'agent-development',
-  'business',
-  'social-media',
-  'marketing',
-  'productivity',
-  'personal-development',
-  'spiritual',
-  'learning',
-]
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
@@ -605,16 +587,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/guides/${slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
-  // Prompt library categories
-  PROMPT_CATEGORIES.forEach(category => {
-    entries.push({
-      url: `${BASE_URL}/prompt-library/${category}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
       priority: 0.7,
     })
   })
