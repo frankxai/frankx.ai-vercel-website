@@ -60,7 +60,7 @@ const revenueStats: RevenueStats = {
 }
 
 const contentCalendar: CalendarEvent[] = [
-  { id: '1', title: 'Tool of the Week: Cursor AI Deep Dive', date: '2026-03-24', type: 'drop', tier: 'pro', status: 'scheduled' },
+  { id: '1', title: 'Tool of the Week: Cursor AI Field Test', date: '2026-03-24', type: 'drop', tier: 'pro', status: 'scheduled' },
   { id: '2', title: 'Prompt Drop: 5 Production-Ready System Prompts', date: '2026-03-25', type: 'drop', tier: 'pro', status: 'scheduled' },
   { id: '3', title: 'Suno Workflow: Genre-Blending Techniques', date: '2026-03-26', type: 'drop', tier: 'pro', status: 'draft' },
   { id: '4', title: 'Community Showcase Spotlight', date: '2026-03-27', type: 'drop', tier: 'all', status: 'scheduled' },

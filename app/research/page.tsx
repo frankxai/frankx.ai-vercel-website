@@ -469,7 +469,7 @@ function MethodologySection() {
     {
       number: '02',
       title: 'Deep Analysis',
-      description: 'Multi-agent deep dives into promising signals with cross-referencing across primary and secondary sources',
+      description: 'Multi-agent analysis of promising signals with cross-referencing across primary and secondary sources',
       icon: Brain,
     },
     {
@@ -586,87 +586,6 @@ function CTASection() {
   )
 }
 
-function FlagshipArticles() {
-  const shouldReduceMotion = useReducedMotion()
-  const articles = [
-    {
-      kanji: '長',
-      label: 'meaning · longevity · ai era',
-      title: 'Blue Zones, Ikigai, and the AI Era',
-      href: '/research/blue-zones-ikigai-ai-era',
-      blurb:
-        'What 110-year-olds in Okinawa understand about meaning that AI is now forcing the rest of us to learn.',
-      readingTime: '12 min',
-    },
-    {
-      kanji: '識',
-      label: 'sovereign ai · architecture',
-      title: 'Conscious AI Operating Systems',
-      href: '/research/conscious-ai-operating-systems',
-      blurb:
-        'Sovereign AI architectures that integrate biometrics, persistent memory, and ethical guardrails.',
-      readingTime: '15 min',
-    },
-  ]
-  return (
-    <section className="py-12 md:py-16 border-b border-white/[0.04]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
-          className="mb-8"
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <FileText className="w-5 h-5 text-violet-400" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Flagship Articles</h2>
-          </div>
-          <p className="text-white/50 max-w-2xl">
-            Deep editorial pieces &mdash; sourced, FAQ&rsquo;d, schema-marked, designed to be cited.
-            The longform thinking beneath the domain navigation.
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-2 gap-4">
-          {articles.map((a, i) => (
-            <motion.div
-              key={a.href}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + i * 0.08 }}
-            >
-              <Link
-                href={a.href}
-                className="group relative block rounded-2xl border border-violet-500/[0.18] bg-violet-500/[0.03] hover:bg-violet-500/[0.06] hover:border-violet-500/[0.32] p-6 h-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <span
-                    className="text-4xl text-white/85 leading-none font-light group-hover:text-white transition-colors"
-                    aria-hidden="true"
-                    style={{ fontFamily: 'var(--font-jp-serif), serif' }}
-                  >
-                    {a.kanji}
-                  </span>
-                  <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-violet-300 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-2">
-                  {a.label}
-                </p>
-                <h3 className="text-lg font-semibold text-white mb-2 leading-snug">
-                  {a.title}
-                </h3>
-                <p className="text-sm text-white/70 leading-relaxed mb-3">{a.blurb}</p>
-                <p className="text-[11px] text-white/40 uppercase tracking-wider">
-                  {a.readingTime} read
-                </p>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export default function ResearchPage() {
   return (
     <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
@@ -704,7 +623,6 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
-        <FlagshipArticles />
         <FeaturedSpotlight />
         <DomainsGrid />
         <ResearchTeamSection />

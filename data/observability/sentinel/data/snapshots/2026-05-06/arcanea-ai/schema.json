@@ -1,0 +1,70 @@
+{
+  "fetchedAt": "2026-05-06T22:34:12.813Z",
+  "host": "arcanea.ai",
+  "routes": [
+    {
+      "route": "/",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/manifesto",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/realms",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/seekers",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    }
+  ]
+}

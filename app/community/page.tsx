@@ -104,7 +104,7 @@ const currentConnections = [
   },
   {
     title: 'Blog',
-    description: 'Deep dives on AI tools, workflows, and creative systems.',
+    description: 'Field notes on AI tools, workflows, and creative systems.',
     href: '/blog',
     external: false,
   },

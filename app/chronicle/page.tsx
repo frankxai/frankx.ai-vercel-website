@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = 'https://www.frankx.ai';
 
 export const metadata: Metadata = {
   title: 'The Starlight Chronicle — A Practice of Witnessing | FrankX',
@@ -86,7 +86,7 @@ const pillars = [
     n: '02',
     title: 'ACOS — 99 Agents',
     role: 'Personal AI CoE',
-    body: 'The implementation of the same six-pillar AI Center of Excellence framework Frank builds for Fortune 500 enterprises at Oracle — translated to personal scale.',
+    body: 'The implementation of the same six-pillar AI Center of Excellence framework Frank works with in enterprise settings at Oracle, translated to personal scale.',
     href: '/acos/agents',
   },
   {

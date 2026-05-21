@@ -16,11 +16,11 @@ import {
   BookOpen,
   GraduationCap,
   Heart,
+  Euro,
 } from 'lucide-react'
 
 import { createMetadata } from '@/lib/seo'
 import { PromptVaultFAQ } from './faq'
-import { EmailSignup } from '@/components/email-signup'
 
 // ── Metadata ──
 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: 'Creator Prompt Vault — 66 Battle-Tested AI Prompts | FrankX',
     description:
-      '66 production-grade AI prompts across 14 categories. From the creator who built 12,000+ AI songs and 40+ AI agents. Claude, ChatGPT, Suno, Midjourney. Waitlist only.',
+      '66 production-grade AI prompts across 14 categories. From the creator who built 12,000+ AI songs and 40+ AI agents. Claude, ChatGPT, Suno, Midjourney.',
     path: '/products/prompt-vault',
     keywords: [
       'ai prompts',
@@ -50,6 +50,17 @@ export const metadata: Metadata = {
       description:
         '66 production-grade AI prompts across 14 categories. Built by an AI Architect who ships daily.',
       brand: { '@type': 'Brand', name: 'FrankX' },
+      offers: {
+        '@type': 'Offer',
+        price: '19',
+        priceCurrency: 'EUR',
+        availability: 'https://schema.org/InStock',
+        url: 'https://frankx.ai/products/prompt-vault',
+        seller: {
+          '@type': 'Person',
+          name: 'Frank Riemer',
+        },
+      },
     }),
   },
 }
@@ -102,11 +113,6 @@ const samplePrompts = [
 
 const faqs = [
   {
-    question: 'Is the vault available to buy today?',
-    answer:
-      'No. The Creator Prompt Vault is in final review. Join the waitlist and you will get one honest message when it ships — no drip sequence, no marketing automation. No pricing is set until launch.',
-  },
-  {
     question: 'What AI tools do these prompts work with?',
     answer:
       'The vault covers Claude, ChatGPT, Gemini, Suno, Midjourney, DALL-E, Stable Diffusion, Claude Code, Cursor, and more. Each prompt specifies which AI tool it is optimized for, though most can be adapted across platforms.',
@@ -119,10 +125,15 @@ const faqs = [
   {
     question: 'Do I get updates when new prompts are added?',
     answer:
-      'Yes. The vault is a living collection. Waitlist members get the launch terms first — current trajectory: 5-10 new prompts per month as new techniques are tested and validated.',
+      'Yes. The vault is a living collection. Purchasers receive access to all future prompt additions at the same price. Current trajectory: 5-10 new prompts per month as new techniques are tested and validated.',
   },
   {
-    question: 'What format will the prompts come in?',
+    question: 'Can I use these prompts commercially?',
+    answer:
+      'Absolutely. Every prompt comes with a commercial license. Use them in your business, your agency, your products. The only restriction is redistribution — you may use the outputs commercially but cannot resell the prompt pack itself.',
+  },
+  {
+    question: 'What format do the prompts come in?',
     answer:
       'Delivered as a beautifully formatted PDF with a linked table of contents, plus raw markdown files for easy copy-paste. Each prompt includes: the prompt itself, usage notes, recommended AI tool, expected output format, and customization variables.',
   },
@@ -173,7 +184,7 @@ export default function PromptVaultPage() {
           <div className="mx-auto max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-4 py-2 text-sm font-medium text-[#8B5CF6]">
               <Sparkles className="h-4 w-4" />
-              66 Prompts · 14 Categories · Waitlist Open
+              66 Prompts · 14 Categories · Instant Download
             </div>
 
             <h1 className="mb-6 text-4xl font-bold leading-tight text-balance md:text-6xl lg:text-7xl">
@@ -210,14 +221,15 @@ export default function PromptVaultPage() {
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <a
-                href="#waitlist"
+                href="#buy"
                 className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
               >
-                Join the waitlist
+                Get the Prompt Vault
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
-              <div className="text-sm text-slate-500">
-                We&apos;ll send one honest message when it ships.
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold text-white">€19</span>
+                <span className="text-sm text-slate-500">one-time purchase</span>
               </div>
             </div>
           </div>
@@ -261,7 +273,7 @@ export default function PromptVaultPage() {
           </div>
 
           <p className="mt-8 text-center text-sm text-slate-500">
-            66 total prompts · Continuously growing · Waitlist members hear first
+            66 total prompts · Continuously growing · All future additions included
           </p>
         </section>
 
@@ -361,29 +373,39 @@ export default function PromptVaultPage() {
           <PromptVaultFAQ faqs={faqs} />
         </section>
 
-        {/* Waitlist CTA */}
-        <section id="waitlist" className="mx-auto max-w-4xl px-6 py-20">
+        {/* Final CTA */}
+        <section id="buy" className="mx-auto max-w-4xl px-6 py-20">
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-md sm:p-12">
             <div className="absolute inset-0 bg-gradient-to-r from-[#8B5CF6]/10 via-[#EC4899]/10 to-[#F59E0B]/10" />
 
             <div className="relative z-10 text-center">
               <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                Join the waitlist
+                Unlock 66 Production-Grade Prompts
               </h2>
               <p className="mx-auto mb-8 max-w-lg text-lg leading-relaxed text-slate-400">
-                The Creator Prompt Vault is in final review. We don&apos;t sell it yet. Drop your email — you&apos;ll get one honest message when it ships.
+                Stop writing prompts from scratch. Start with battle-tested templates that produce
+                results from day one.
               </p>
 
-              <div className="mx-auto max-w-md">
-                <EmailSignup
-                  listType="newsletter"
-                  placeholder="you@domain.com"
-                  buttonText="Join the waitlist"
-                />
+              <div className="mb-6 flex flex-col items-center gap-4">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-5xl font-bold text-white">€19</span>
+                  <span className="text-slate-500">one-time</span>
+                </div>
+                <a
+                  href="https://frankxai.gumroad.com/l/prompt-vault"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
+                >
+                  <Euro className="h-6 w-6" />
+                  Buy Now — Instant Download
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
 
-              <p className="mt-6 text-sm text-slate-500">
-                No drip sequence. No marketing automation. One message when there&apos;s something real to share.
+              <p className="text-sm text-slate-500">
+                PDF + Markdown files · Commercial license included · All future updates free
               </p>
             </div>
           </div>

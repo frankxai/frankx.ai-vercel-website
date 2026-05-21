@@ -1,0 +1,65 @@
+{
+  "fetchedAt": "2026-05-06T22:34:21.091Z",
+  "host": "arcanea-ai-appx.vercel.app",
+  "routes": [
+    {
+      "route": "/",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/agents",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        },
+        {
+          "valid": false,
+          "type": "ItemList",
+          "known": true,
+          "missing": [
+            "itemListElement"
+          ]
+        }
+      ],
+      "allValid": false
+    },
+    {
+      "route": "/console",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "WebApplication",
+          "known": false,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    }
+  ]
+}

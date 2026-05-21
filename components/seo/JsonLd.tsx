@@ -18,7 +18,7 @@ type JsonLdType =
   | 'CollectionPage'
 
 type JsonLdProps = {
-  type: JsonLdType
+  type?: JsonLdType
   data: Record<string, unknown>
   id?: string
 }
@@ -138,7 +138,9 @@ export function buildCourseData(data: {
 // structured data.
 export default function JsonLd({ type, data, id }: JsonLdProps) {
   const reactId = useId()
-  const scriptId = id || `json-ld-${type.toLowerCase()}-${reactId.replace(/:/g, '')}`
+  const schemaType =
+    type || (typeof data['@type'] === 'string' ? (data['@type'] as JsonLdType) : 'Thing')
+  const scriptId = id || `json-ld-${schemaType.toLowerCase()}-${reactId.replace(/:/g, '')}`
 
   return (
     <script
@@ -147,7 +149,7 @@ export default function JsonLd({ type, data, id }: JsonLdProps) {
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'https://schema.org',
-          '@type': type,
+          '@type': schemaType,
           ...data,
         }),
       }}

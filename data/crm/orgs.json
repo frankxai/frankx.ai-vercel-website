@@ -1,0 +1,35 @@
+[
+  {
+    "id": "o_nldigital",
+    "name": "NLDigital",
+    "domain": "nldigital.nl",
+    "linkedin": "https://linkedin.com/company/nldigital",
+    "category": "industry-association",
+    "city": "Amsterdam",
+    "country": "NL",
+    "notes": "Dutch digital industry association. Host of the 2026-05-19 sovereign-leadership workshop — Frank's first delivery of this format.",
+    "created_at": "2026-04-22T12:00:00Z"
+  },
+  {
+    "id": "o_adigital",
+    "name": "Adigital",
+    "domain": "adigital.org",
+    "linkedin": "https://linkedin.com/company/adigitalorg",
+    "category": "industry-association",
+    "city": "Madrid",
+    "country": "ES",
+    "notes": "Spanish digital association — equivalent of NLDigital. Target for Madrid trip 2026-05-27. Warm intro path: Oracle Spain network.",
+    "created_at": "2026-04-22T12:00:00Z"
+  },
+  {
+    "id": "o_oracle_emea",
+    "name": "Oracle EMEA AI Center of Excellence",
+    "domain": "oracle.com",
+    "linkedin": "https://linkedin.com/company/oracle",
+    "category": "enterprise",
+    "city": "Amsterdam",
+    "country": "NL",
+    "notes": "Frank's current employer. AI Architect role. Internal network used for introductions (esp. Oracle Spain → Adigital).",
+    "created_at": "2026-04-22T12:00:00Z"
+  }
+]

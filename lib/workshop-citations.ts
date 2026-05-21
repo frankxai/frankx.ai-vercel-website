@@ -107,7 +107,7 @@ export const FRANK_CREDENTIALS = {
   catalog: '12,000+ AI-produced tracks',
   site: 'frankx.ai',
   proofPoints: [
-    'Designs CoE frameworks for Fortune 500 enterprises',
+    'Designs enterprise AI Center of Excellence frameworks',
     'Same patterns open-sourced for individual creators',
     'Multi-pillar operating system: SIS · ACOS · IIS · Workshop OS · Library OS',
   ],
@@ -190,4 +190,3 @@ export const UNSPOKEN_DOUBTS: UnspokenDoubt[] = [
     acknowledgment: 'Most people do. The Day-7 check-in is how this workshop is different.',
   },
 ]
-

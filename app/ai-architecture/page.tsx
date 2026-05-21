@@ -299,6 +299,7 @@ export default function AIArchitectureHubPage() {
                 alt="Codex — AI Architecture Specialist"
                 width={64}
                 height={64}
+                priority
                 className="rounded-2xl"
                 style={{ boxShadow: '0 0 30px -6px rgba(16,185,129,0.4)' }}
               />

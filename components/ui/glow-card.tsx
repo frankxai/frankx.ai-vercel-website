@@ -117,10 +117,10 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
        
       ref={cardRef as any}
       className={cn(baseClass, onClick && 'cursor-pointer')}
-      onPointerMove={handlers.onPointerMove as React.PointerEventHandler<HTMLDivElement>}
-      onPointerLeave={handlers.onPointerLeave}
-      onTouchMove={handlers.onTouchMove as React.TouchEventHandler<HTMLDivElement>}
-      onTouchEnd={handlers.onTouchEnd}
+      onPointerMove={handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLDivElement>}
+      onPointerLeave={handlers.onPointerLeave as unknown as React.PointerEventHandler<HTMLDivElement>}
+      onTouchMove={handlers.onTouchMove as unknown as React.TouchEventHandler<HTMLDivElement>}
+      onTouchEnd={handlers.onTouchEnd as unknown as React.TouchEventHandler<HTMLDivElement>}
       onClick={onClick}
     >
       {glowLayers}

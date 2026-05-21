@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 import { GlowCard } from '@/components/ui/glow-card'
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FrankX Lab — AI Tools & Experiments',
     description:
-      'The full stack of AI tools Frank has built. InfoGenius, ACOS, Arcanea, Music Lab — bring your own key or join the waitlist for the hosted version.',
+      'The full stack of AI tools Frank has built. InfoGenius, ACOS, Arcanea, Music Lab — bring your own key or subscribe.',
     images: [{ url: '/images/mascot/frank-omega-thinking-v1.png' }],
   },
 }
@@ -145,7 +146,7 @@ export default function LabPage() {
 
           <p className="text-xl text-white/50 leading-relaxed mb-10 max-w-xl">
             Every tool Frank has built — powered by frontier models. Research-grounded infographics.
-            Creator intelligence. World-building AI. Bring your own key, or join the waitlist for the hosted version.
+            Creator intelligence. World-building AI. Bring your own key or subscribe.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -169,7 +170,7 @@ export default function LabPage() {
             {[
               { n: '4', label: 'AI tools' },
               { n: 'Gemini 3 Pro', label: 'Primary engine' },
-              { n: 'BYOK', label: 'How it runs today' },
+              { n: 'BYOK', label: 'Free tier' },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl font-black text-white">{s.n}</div>
@@ -260,7 +261,7 @@ export default function LabPage() {
             <span className="text-xs uppercase tracking-widest text-blue-400">How it works</span>
             <h2 className="text-4xl font-black text-white mt-3">Bring Your Own Key</h2>
             <p className="text-white/50 mt-3 max-w-xl mx-auto">
-              Connect your own Google AI API key and run frontier-model
+              No subscription required. Connect your own Google AI API key and run frontier-model
               tools at near-zero cost. Frank pays for his experiments — you pay for yours.
             </p>
           </div>
@@ -300,7 +301,7 @@ export default function LabPage() {
         </div>
       </section>
 
-      {/* ── Hosted Tier Teaser (Waitlist) ── */}
+      {/* ── Pro Tier Teaser ── */}
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="p-10 rounded-3xl border border-violet-500/20 bg-violet-500/5 text-center relative overflow-hidden">
@@ -308,7 +309,7 @@ export default function LabPage() {
             <span className="relative inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-1.5 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-300">
-                In design — FrankX Lab Hosted
+                Coming — FrankX Lab Pro
               </span>
             </span>
             <h2 className="relative text-4xl font-black text-white mb-4">
@@ -318,13 +319,14 @@ export default function LabPage() {
               </span>
             </h2>
             <p className="relative text-white/50 mb-8 max-w-lg mx-auto leading-relaxed">
-              One destination. All tools. Frank&apos;s infrastructure handles the keys, billing, and rate limits. You just generate. Waitlist only — no pricing set, one honest message when it ships.
+              One subscription. All tools. Frank&apos;s API infrastructure handles the keys,
+              billing, and rate limits. You just generate. €19/month when it launches.
             </p>
             <Link
-              href="/waitlist?ref=lab-hosted"
+              href="/newsletter"
               className="relative inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
             >
-              Join the waitlist
+              Get early access
               <span>→</span>
             </Link>
           </div>

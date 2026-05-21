@@ -20,7 +20,7 @@ import {
 import { FrankXOSHeader } from '@/components/os/FrankXOSHeader'
 import { osModules, getConnections, type ModuleColor, type OSModule } from '@/data/os-modules'
 
-const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart }
+const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart, Layers }
 
 const COLOR_TOKENS: Record<ModuleColor, { text: string; bg: string; border: string; glow: string }> = {
   cyan: {

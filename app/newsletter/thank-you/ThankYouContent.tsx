@@ -27,7 +27,7 @@ const STREAM_RECOMMENDATIONS: Record<
     character: { src: '/images/team/arion-mamoru.png', name: 'Arion & Mamoru' },
     resources: [
       { href: '/vibe', label: 'Vibe OS', desc: 'State management for creators', gradient: 'from-purple-500/10 to-purple-600/10', border: 'border-purple-500/30' },
-      { href: '/blog', label: 'Read the Blog', desc: 'Deep dives into AI creation', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
+      { href: '/blog', label: 'Read the Blog', desc: 'Field notes on AI creation', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
       { href: '/shop', label: 'Shop Templates', desc: 'Premium AI blueprints', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },
     ],
   },
@@ -82,7 +82,7 @@ const DEFAULT_RECS = {
   streamName: 'FrankX Newsletter',
   character: { src: '/images/mascot/mascot-v25-crystal-familiar.png', name: 'Axi' },
   resources: [
-    { href: '/blog', label: 'Read the Blog', desc: 'AI creation deep dives', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
+    { href: '/blog', label: 'Read the Blog', desc: 'AI creation field notes', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
     { href: '/shop', label: 'Shop Templates', desc: 'Premium AI blueprints', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },
     { href: '/products', label: 'All Products', desc: 'The complete ecosystem', gradient: 'from-purple-500/10 to-purple-600/10', border: 'border-purple-500/30' },
   ],
@@ -141,7 +141,7 @@ export default function ThankYouContent() {
             You&apos;re subscribed to <span className="text-cyan-400 font-semibold">{recs.streamName}</span>
           </p>
           <p className="text-sm text-gray-500 mb-8">
-            You're on the waitlist. We'll send the first issue when it ships.
+            Your first issue is on its way — check your inbox.
           </p>
 
           {/* What's Next */}

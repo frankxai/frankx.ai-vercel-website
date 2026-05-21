@@ -49,22 +49,6 @@ export const bookReviews: BookReview[] = [
         q: 'Who is Atomic Habits NOT for?',
         a: 'People facing structural rather than behavioral problems — clinical addiction, severe environmental constraints, or mental-health conditions — will not find it sufficient. It also under-delivers for people whose problem is not "not doing enough" but "doing too much of the wrong thing." For most motivated adults with routine reshape needs, it is unmatched.',
       },
-      {
-        q: 'How long does it take for a habit to become automatic according to Atomic Habits?',
-        a: 'Clear cites the 2009 University College London study by Phillippa Lally — the average time was 66 days, with a range of 18 to 254 days. Clear explicitly rejects the popular "21 days" myth. The variance depends on habit complexity, individual biology, and consistency. The takeaway: do not panic if a habit hasn\'t stuck at three weeks; expect two to three months for most behavioural shifts.',
-      },
-      {
-        q: 'What is the two-minute rule in Atomic Habits?',
-        a: 'Make any new habit take less than two minutes to start. "Read before bed" becomes "read one page." "Run a marathon" becomes "put on running shoes." The point is not the achievement — it is establishing the cue-response loop. Once the two-minute version is automatic, the habit can grow. The rule defeats friction by making the entry threshold trivially low.',
-      },
-      {
-        q: 'How does Atomic Habits handle breaking bad habits?',
-        a: 'Invert the Four Laws. Make the cue invisible (remove the trigger from your environment), the craving unattractive (highlight the cost), the response difficult (add friction — locks, distance, time delay), and the reward unsatisfying (use accountability, public commitment, or a habit contract). Clear treats bad-habit removal as the same loop run in reverse.',
-      },
-      {
-        q: 'What is the Goldilocks rule and why does it matter for habit retention?',
-        a: 'Habits need to feel manageable but not boring — at the edge of your current ability. Too easy and you disengage; too hard and you quit. Clear cites the variable-difficulty studies in motivation research: the sweet spot is roughly 4% beyond your current capacity. The rule explains why most people abandon habits in the boredom phase, not the difficulty phase.',
-      },
     ],
     quotes: [
       {
@@ -270,8 +254,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Deep Work',
         author: 'Cal Newport',
-        reason: 'Already in this library — if Atomic Habits is how to make any habit stick, Deep Work is the specific habit with the highest leverage in the knowledge economy. Read Atomic Habits for the operating system; read Deep Work for the highest-ROI process to install on it.',
-        url: '/library/deep-work',
+        reason: 'If Atomic Habits is how to make any habit stick, Deep Work is the specific habit with the highest leverage in the knowledge economy. Complementary, not overlapping.',
+        url: 'https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692',
       },
       {
         title: 'The Checklist Manifesto',
@@ -380,22 +364,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'How does Deep Work relate to Atomic Habits?',
         a: 'Complementary. Atomic Habits tells you how to install any habit. Deep Work tells you which habit matters most in the knowledge economy. Read Atomic Habits for the mechanism; read Deep Work for the target.',
-      },
-      {
-        q: 'How many hours of deep work can a person do per day?',
-        a: 'Newport cites the research consensus: 4 hours maximum for trained practitioners (deliberate-practice research from Anders Ericsson), with 1–2 hours being the realistic ceiling for most knowledge workers without prior training. Beyond that point, cognitive output degrades sharply. The implication: do not aim for 8-hour deep-work days — aim for 2–4 hours of genuine deep work and accept that the rest of the day will be shallow.',
-      },
-      {
-        q: 'What is the difference between flow and deep work?',
-        a: 'Flow (Csíkszentmihályi) is a subjective state — full absorption, time distortion, intrinsic reward — that can occur in any activity. Deep work (Newport) is an objective category — cognitively demanding professional work in a distraction-free state. The two overlap: deep work often produces flow, and flow correlates with high-quality output. But you can be in flow during a video game, and you can do deep work without enjoying it.',
-      },
-      {
-        q: 'Is deep work compatible with parenting and family life?',
-        a: 'Newport addresses this directly. He recommends fixed-schedule productivity — declare working hours (e.g., 9 to 5:30) and refuse to extend them. The constraint forces ruthless prioritization within deep-work blocks and protects family time afterward. Many readers report this is the book\'s most freeing argument: deep work is not about working more hours, it is about getting more done in the hours you already have.',
-      },
-      {
-        q: 'How do you protect deep work in an open-office environment?',
-        a: 'Newport\'s tactical advice: claim physical separation (conference rooms, library, café) for deep blocks; use noise-cancelling headphones as a social signal; schedule deep work in early mornings before the office fills; negotiate fixed office-presence hours with management; use the rhythmic philosophy (daily deep block at a fixed time). The organizational culture is a constraint, but rarely an absolute one — most knowledge workers have more discretion than they exercise.',
       },
     ],
     quotes: [
@@ -535,8 +503,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'The War of Art',
         author: 'Steven Pressfield',
-        reason: 'Already in this library — Pressfield names what Newport analyzes: Resistance, the force that stops you from doing the work. Both books agree on the diagnosis, approach it differently. Newport is systems; Pressfield is psychology. Read together for the complete focus operating system.',
-        url: '/library/the-war-of-art',
+        reason: 'Pressfield names what Newport analyzes — Resistance, the force that stops you from doing the work. Both books agree on the diagnosis, approach it differently. Newport is systems, Pressfield is psychology.',
+        url: 'https://www.amazon.com/War-Art-Through-Creative-Battles/dp/1936891026',
       },
     ],
     videos: [
@@ -621,22 +589,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Who is the Alchemist, and why is the book named for him?',
         a: 'The Alchemist Santiago meets in the desert is not primarily a chemist — he is a teacher who transforms lead into gold and students into seers. The title points at the real subject: the transformation of the self, using experience as the catalyst.',
-      },
-      {
-        q: 'What is the Soul of the World in The Alchemist?',
-        a: 'Coelho\'s term for the unified intelligence underlying all things — drawn from alchemical, Sufi, and Romantic traditions. To "speak the Language of the World" is to perceive this underlying unity directly, not as theory. The concept resembles Hegel\'s Geist, the Tao, or what Emerson called the Over-Soul. Coelho intentionally keeps the term ambiguous — it works as metaphysics, psychology, or literary device depending on the reader.',
-      },
-      {
-        q: 'Why has The Alchemist sold over 150 million copies?',
-        a: 'It is one of the best-selling books of all time and has been translated into 80+ languages. Reasons include: short and accessible (under 200 pages), parable structure that travels across cultures, universal "follow your dream" narrative, endorsements from Madonna, Will Smith, Pharrell, and Bill Clinton, and the rare quality of being equally compelling at age 18 and age 60. Its commercial success is itself a Coelho-style argument — a writer who gives himself entirely to a book the world rejects (Coelho\'s first publisher dropped it) eventually finds the readership the work was for.',
-      },
-      {
-        q: 'Is the "follow your dreams" message naive or dangerous?',
-        a: 'Critics argue it is. Coelho oversimplifies — not everyone has a clear Personal Legend, and "the universe conspires" can shade into magical thinking. The novel works best read as parable, not policy: it argues for orienting your life around something larger than comfort, not for abandoning responsibilities on a hunch. The principle of favorability requires action, not just belief — Santiago crosses a desert, gets robbed, works for a year — and Coelho is explicit about that cost.',
-      },
-      {
-        q: 'How does The Alchemist relate to Joseph Campbell\'s hero\'s journey?',
-        a: 'It is one of the cleanest examples of Campbell\'s monomyth in modern literature. Santiago receives the call (the dream), refuses then accepts (sells his sheep), crosses thresholds (the desert), meets mentors (the King, the Alchemist), faces ordeals (robbery, war, transformation into wind), and returns transformed. Reading Campbell after Coelho reveals the structural skeleton; reading Coelho after Campbell shows the form fully alive in a single small book.',
       },
     ],
     quotes: [
@@ -770,8 +722,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Man\'s Search for Meaning',
         author: 'Viktor Frankl',
-        reason: 'Already in this library — Frankl makes the same argument as Coelho: meaning, not pleasure, is the basis of a well-lived life. But Frankl reaches it from inside a concentration camp instead of a shepherd\'s tale. Dark mirror; same conclusion. The pairing is one of the most illuminating in the library.',
-        url: '/library/mans-search-for-meaning',
+        reason: 'Frankl makes the same argument as Coelho — meaning, not pleasure, is the basis of a well-lived life — but from inside a concentration camp instead of a shepherd\'s tale. Dark mirror; same conclusion.',
+        url: 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
       },
     ],
     videos: [
@@ -856,22 +808,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Is Goggins\'s approach sustainable long-term?',
         a: 'Honest answer: his own life contains injuries, relationship difficulties, and extreme cost. The book is not a template for a balanced life. It is a corrective for people who have drifted into under-effort. Apply the mindset selectively; Goggins himself has moderated in later work (Never Finished, 2022).',
-      },
-      {
-        q: 'How much weight did David Goggins lose in Can\'t Hurt Me?',
-        a: '106 pounds in three months — from 297 to 191 lbs. Goggins describes the precise mechanism: a calorie-restricted diet (estimated 1,200–1,500 calories), daily long-distance running starting at very low pace, and the Accountability Mirror Post-it system to face daily failure without dropping the goal. The speed is unusual; Goggins acknowledges the physical and mental cost. The book is honest about extremes.',
-      },
-      {
-        q: 'What is the "Cookie Jar" technique?',
-        a: 'Goggins\'s mental tool for sourcing fuel during extreme effort. You build a mental jar of past victories — the harder things you have already done — and reach into it when current effort feels unbearable. The technique uses memory as evidence of capacity. Examples Goggins uses: surviving childhood, completing Hell Week, finishing Badwater on broken legs. Modern psychology calls this "self-efficacy retrieval"; Goggins calls it the cookie jar.',
-      },
-      {
-        q: 'Is it dangerous to follow Goggins\'s training methodology?',
-        a: 'Yes, if applied literally without context. Goggins himself has had multiple injuries, surgeries, and a heart condition (atrial fibrillation, congenital). He acknowledges this. The book\'s value is the framework, not the literal program — apply the 40% Rule, the Accountability Mirror, the cookie jar, and the calluses-on-the-mind model. Calibrate the physical specifics to your own body, age, history, and recovery capacity. Goggins is a case study in extremes, not a coach prescribing for the average reader.',
-      },
-      {
-        q: 'How does Goggins\'s mindset compare to Stoic philosophy?',
-        a: 'They share most conclusions — discomfort builds capacity, suffering reveals character, you control only your response — but reach them by different routes. The Stoics argue from reason; Goggins argues from extreme experience. Marcus Aurelius and Epictetus would recognize Goggins\'s framework instantly; Goggins discovered it by walking through Hell Week three times rather than reading. Pair Marcus and Goggins for a complete view: ancient theory, modern applied case.',
       },
     ],
     quotes: [
@@ -1022,8 +958,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Man\'s Search for Meaning',
         author: 'Viktor Frankl',
-        reason: 'Already in this library — a different kind of survival literature. Frankl in a concentration camp reaches some of the same conclusions Goggins reaches in SEAL training: suffering is bearable when attached to meaning. Worth reading against Goggins to see what each gets right and where they diverge — meaning vs. callusing, philosophy vs. pain-forging.',
-        url: '/library/mans-search-for-meaning',
+        reason: 'A different kind of survival literature. Frankl in a concentration camp reaches some of the same conclusions Goggins reaches in SEAL training — suffering is bearable when attached to meaning. Worth reading against Goggins to see what each gets right.',
+        url: 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
       },
     ],
     videos: [
@@ -1108,22 +1044,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Which chapter matters most for modern readers?',
         a: 'Persistence. Every self-help book since 1937 rediscovers this chapter\'s thesis — that persistence is a trained response, not a personality trait, and most people quit roughly where success begins. If you read only one chapter, make it this one.',
-      },
-      {
-        q: 'Did Andrew Carnegie really commission Think and Grow Rich?',
-        a: 'According to Hill, yes — in 1908, Carnegie reportedly gave Hill an unpaid 20-year assignment to interview the wealthiest Americans and codify their methods. Some historians dispute the literal accuracy of Hill\'s account (Carnegie left no written record of the commission), but Hill produced ~500 documented interviews and the book\'s structure clearly reflects Carnegie\'s philosophy. Whether the founding story is exact, the resulting work is genuinely Carnegie-tradition.',
-      },
-      {
-        q: 'How is Think and Grow Rich different from The Law of Attraction?',
-        a: 'The Law of Attraction (popularized by Rhonda Byrne\'s The Secret, 2006) is a narrowed, mystical-only reading of Hill\'s broader principle. Hill requires desire + plan + persistence + mastermind + action. The Secret often presents intention alone as sufficient. Hill himself would have rejected the simplification — every chapter beyond Chapter 2 (Desire) is about action, not just thought.',
-      },
-      {
-        q: 'Is Hill\'s principle of "Sex Transmutation" still relevant?',
-        a: 'The framing is dated, but the principle is sound. Hill argues that creative drive (which he labels "sex energy" in 1937 language) can be channeled into productive work. Modern psychology calls this sublimation (Freud) or domain-specific channeling of arousal-based motivation (Csíkszentmihályi\'s flow research). The principle holds: if you have surplus energy, intentional redirection into focused work outperforms either suppression or undirected expression. Modern readers get more clarity from Csíkszentmihályi.',
-      },
-      {
-        q: 'Should I read Think and Grow Rich or a more modern self-development book first?',
-        a: 'For practical implementation, start with a modern book — Atomic Habits (Clear), Mindset (Dweck), or Deep Work (Newport). They have better research, clearer mechanisms, and more applicable advice. Read Think and Grow Rich as historical context — to understand the lineage that shaped almost every self-help book of the past 80 years. Hill is the source code; modern books are the refinements.',
       },
     ],
     quotes: [
@@ -1303,8 +1223,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Atomic Habits',
         author: 'James Clear',
-        reason: 'Already in this library — Hill\'s persistence chapter, modernized. Clear\'s Four Laws are a behavioral refinement of Hill\'s intuition that persistence is a trainable habit. Read Hill for the 1937 source, Clear for the 2018 mechanism.',
-        url: '/library/atomic-habits',
+        reason: 'Hill\'s persistence chapter, modernized. Clear\'s Four Laws are a behavioral refinement of Hill\'s intuition that persistence is a trainable habit.',
+        url: 'https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299',
       },
     ],
     videos: [
@@ -1389,22 +1309,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'What is the "existential vacuum" Frankl describes as a modern epidemic?',
         a: 'Frankl observed in post-war patients a new kind of neurosis — not from suppressed drives (Freud) or inferiority (Adler), but from a sense of meaninglessness. Symptoms: boredom, apathy, "Sunday neurosis" (weekend emptiness), behavioral compulsions to fill the void. He argued the condition was epidemic in the 20th century and would grow. Fifty years later, he looks correct.',
-      },
-      {
-        q: 'Did Frankl actually write Man\'s Search for Meaning in nine days?',
-        a: 'Yes. After his liberation in 1945, Frankl wrote Part One (his Auschwitz memoir) in nine days in 1946, originally intended for anonymous publication. Friends convinced him to attach his name. Part Two (the Logotherapy primer) was added at the publisher\'s request to give the book theoretical weight. The compression explains the prose\'s intensity — it was written in a single sustained burst of need.',
-      },
-      {
-        q: 'What is "paradoxical intention" in Logotherapy?',
-        a: 'A clinical technique Frankl developed for treating phobias and obsessive behaviors. The patient is instructed to deliberately try to bring on the feared symptom — the insomniac tries to stay awake; the trembling-handed musician tries to tremble more; the social-phobic tries to sweat. Hyper-intention sabotages the symptom because anxiety requires the gap between fear and resistance. Removing resistance collapses the gap. Modern CBT has rediscovered the technique under the label "exposure with response prevention."',
-      },
-      {
-        q: 'How is Logotherapy different from CBT (Cognitive Behavioral Therapy)?',
-        a: 'Logotherapy and CBT share techniques — both use cognitive reframing, both treat behavior as influenced by thought, both emphasize present-tense responsibility. The difference is content. CBT focuses on identifying and correcting distorted thoughts; Logotherapy focuses on locating meaning. Donald Robertson and others argue Logotherapy was an early proto-CBT; Frankl himself argued Logotherapy goes deeper because meaning, not just accurate thinking, is the ultimate driver of mental health.',
-      },
-      {
-        q: 'Is Frankl\'s framework useful for people who haven\'t experienced extreme trauma?',
-        a: 'Yes — that is its primary application. Frankl explicitly argues that Logotherapy is for the "existential vacuum" of ordinary modern life: the meaninglessness, boredom, and quiet despair of comfortable people. The camps were the laboratory; the patient is the comfortable but disoriented citizen. Frankl believed the existential vacuum would become the dominant 20th-century neurosis — and post-2000 mental-health data suggests he was right.',
       },
     ],
     quotes: [
@@ -1546,8 +1450,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Meditations',
         author: 'Marcus Aurelius',
-        reason: 'Already in this library — Frankl explicitly admired Stoicism. Marcus\'s "the impediment to action advances action" is the ancient version of Frankl\'s "attitudinal value." Read together for the two-millennia conversation on choosing one\'s response: Marcus from a Roman throne, Frankl from Auschwitz.',
-        url: '/library/meditations',
+        reason: 'Frankl explicitly admired Stoicism. Marcus\'s "the impediment to action advances action" is the ancient version of Frankl\'s "attitudinal value." Read together for the two-millennia conversation on choosing one\'s response.',
+        url: 'https://www.amazon.com/Meditations-New-Translation-Marcus-Aurelius/dp/0812968255',
       },
       {
         title: 'Night',
@@ -1664,22 +1568,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'How does The War of Art relate to Deep Work?',
         a: 'Pressfield names the enemy; Newport engineers the defenses. Pressfield is psychology; Newport is systems. Read together: Pressfield tells you you\'re at war, Newport tells you how to fortify the battlefield. Both agree on the diagnosis.',
-      },
-      {
-        q: 'What is the difference between Resistance and procrastination?',
-        a: 'Procrastination is one of Resistance\'s many disguises, not its full identity. Pressfield\'s Resistance is more comprehensive — it includes procrastination, perfectionism, self-medication, busy-work, manufactured drama, "research" that never ends, and physical ailments that appear only before the work. Calling it procrastination minimizes it. Resistance is the underlying force; procrastination is one tactic.',
-      },
-      {
-        q: 'How long should I read The War of Art — once or daily?',
-        a: 'Pressfield himself uses it daily, opening to a random chapter as part of his morning ritual before writing. The chapters are deliberately short for this purpose. Most serious creators read it cover-to-cover once and then keep it on their desk for the rest of their career. Treat it as a sword on the wall — a reference for combat, not a book to finish and shelve.',
-      },
-      {
-        q: 'Is "turning pro" a one-time decision or a daily one?',
-        a: 'Both. Pressfield describes it as a single fundamental decision — you have either turned pro or you have not — but executes it daily. The amateur waits for inspiration and quits when it is hard; the professional shows up regardless. Each morning the decision is renewed by action. There is no certificate; the turning is the ongoing showing-up.',
-      },
-      {
-        q: 'Does The War of Art apply outside creative work?',
-        a: 'Yes — Pressfield is explicit. Resistance opposes any move from a lower to higher state: starting a business, recovering from addiction, beginning therapy, getting fit, ending a bad relationship. The framework applies anywhere ambition meets growth. Many readers report the book has more impact on their entrepreneurial or recovery work than on writing.',
       },
     ],
     quotes: [
@@ -1804,8 +1692,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Deep Work',
         author: 'Cal Newport',
-        reason: 'Already in this library — Pressfield names the enemy; Newport engineers the defenses. Read together for the complete psychology-and-systems framework for finishing creative work: Pressfield is the diagnosis, Newport is the treatment plan.',
-        url: '/library/deep-work',
+        reason: 'Pressfield names the enemy; Newport engineers the defenses. Read together for the complete psychology-and-systems framework for finishing creative work.',
+        url: 'https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692',
       },
       {
         title: 'Show Your Work!',
@@ -1902,22 +1790,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Is Meditations religious?',
         a: 'Marcus is a religious Stoic — he speaks of "the gods" and "providence" throughout — but the framework is compatible with atheism, theism, or agnosticism. The practical discipline (control your mind, do your duty, accept fate) does not depend on any specific metaphysics. Most modern readers engage it as secular philosophy.',
-      },
-      {
-        q: 'In what order should I read the twelve books of Meditations?',
-        a: 'Book 1 (Marcus\'s gratitude list to teachers and family) reads as a foreword and is the easiest entry point. Books 2 through 12 can be read in any order — they are not chronological. Most readers benefit from short daily readings rather than cover-to-cover. Hays\'s translation includes thematic organization in his introduction, useful as a non-linear map.',
-      },
-      {
-        q: 'Was Marcus Aurelius a good emperor?',
-        a: 'Yes, with caveats. He governed competently through the Antonine Plague, the Parthian War, and the Marcomannic Wars. He was the last of the "Five Good Emperors" before the dynastic succession failed with his son Commodus. Modern historians critique his persecution of Christians and his choice of heir, but the practical philosophy of Meditations was authored by a man who lived its principles under genuine duress.',
-      },
-      {
-        q: 'What is premeditatio malorum and how do I use it?',
-        a: 'The Stoic morning practice of imagining what could go wrong before the day begins — Marcus opens Book II with it: "Begin each day by telling yourself: today I shall be meeting with interference, ingratitude, insolence..." The function is not pessimism; it is calibration. By rehearsing difficulty in advance, you reduce the emotional shock when it arrives. Modern CBT has rediscovered the technique as decatastrophizing.',
-      },
-      {
-        q: 'How does Meditations differ from Eastern philosophy like Buddhism?',
-        a: 'Stoicism and Buddhism share remarkable conclusions — focus on the present, accept what you cannot control, recognize the impermanence of all things — but diverge on metaphysics. Marcus\'s Stoicism is tied to a rational cosmos (Logos) ordered by providence; Buddhism makes no such metaphysical commitment and emphasizes the cessation of desire. The practical disciplines overlap; the underlying worldviews do not. Reading both is illuminating.',
       },
     ],
     quotes: [
@@ -2099,8 +1971,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Man\'s Search for Meaning',
         author: 'Viktor Frankl',
-        reason: 'Already in this library — the modern extreme-conditions application of the Stoic frame. Frankl in a concentration camp reaches Marcus\'s conclusions independently: your inner response to what happens is the one thing nobody can take. The most powerful continuation of Meditations\' core lesson, rediscovered 1,800 years later under different barbarism.',
-        url: '/library/mans-search-for-meaning',
+        reason: 'The modern extreme-conditions application of the Stoic frame. Frankl in a concentration camp reaches Marcus\'s conclusions independently — your inner response to what happens is the one thing nobody can take. Dark mirror to Meditations.',
+        url: 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
       },
     ],
     videos: [
@@ -2320,12 +2192,6 @@ export const bookReviews: BookReview[] = [
         reason: 'The personal side of the same lesson. If you run Profit First at the company and Your Money or Your Life at home, you will be in the top 1% of founders for financial health.',
         url: 'https://www.amazon.com/Your-Money-Life-Transforming-Relationship/dp/0143115766',
       },
-      {
-        title: 'Money: Master the Game',
-        author: 'Tony Robbins',
-        reason: 'Already in this library — Robbins runs Profit First\'s logic at the personal-investment level: pay yourself first, automate the percentage, let the system enforce discipline. Pair Profit First (business cash) with Money Master the Game (personal wealth) for a complete financial operating system.',
-        url: '/library/money-master-the-game',
-      },
     ],
     videos: [
       {
@@ -2378,26 +2244,6 @@ export const bookReviews: BookReview[] = [
         q: 'What is the main criticism of Profit First?',
         a: 'Accountants note it is behavioral psychology wrapped around basic cash envelopes, not a new accounting principle. That is also its strength: it works because it is behavioral, not because it is clever.',
       },
-      {
-        q: 'What percentages should I use for each Profit First account?',
-        a: 'Michalowicz publishes Target Allocation Percentages (TAPs) by revenue bracket. For sub-$250K real revenue: 5% Profit, 50% Owner\'s Pay, 15% Tax, 30% Operating Expenses. At $1M–$5M the targets shift to 15% Profit, 10% Owner\'s Pay, 15% Tax, 60% OpEx. Start with your current allocation, compare to the target, and close the gap by 1–2 percentage points each quarter — not all at once.',
-      },
-      {
-        q: 'How long does it take to see profit with Profit First?',
-        a: 'Your first quarterly distribution can happen within 90 days of setup, even at a 1% profit allocation. Most operators reach their full target allocation within 12–18 months. The system works fastest for businesses with healthy revenue but bloated expenses; slower for businesses that need to grow revenue first. Michalowicz argues 90 days of behavioural discipline beats five years of better accounting software.',
-      },
-      {
-        q: 'What if my business is too small for five separate bank accounts?',
-        a: 'Even solo freelancers running $50K/year benefit from the discipline. Some banks charge per account; Michalowicz recommends online banks (Capital One, Mercury, Relay) that offer free sub-accounts. The minimum viable version is just two accounts — Income and Profit, separated. The behavioural firewall of "money I cannot see" works at any scale.',
-      },
-      {
-        q: 'Is Profit First just envelope budgeting for businesses?',
-        a: 'Mechanically, yes — the innovation is treating profit as a non-negotiable envelope and forcing the business to live within the remaining envelopes. Critics point out it is behavioural psychology, not new accounting. Michalowicz\'s response: that is the point. Most cash-flow problems are behavioural, not arithmetic.',
-      },
-      {
-        q: 'Does Profit First work for venture-backed or growth-stage companies?',
-        a: 'It is a poor fit for venture-backed startups optimising for growth over profitability — the entire model assumes profit is the goal, not market capture. Profit First fits owner-operated businesses (freelancers, agencies, e-commerce, services) doing $0–$10M in revenue. Above that, it can adapt with custom TAPs, but the original five-account discipline is designed for owners who pay themselves and want cash to feel calm.',
-      },
     ],
   },
   {
@@ -2447,22 +2293,6 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Should I read The Fabric of Reality or The Beginning of Infinity first?',
         a: 'The Fabric of Reality (1997) lays the foundation — the four strands, Popperian epistemology, the multiverse argument. The Beginning of Infinity (2011) builds on it with a more mature framework around "good explanations" and reaches further into ethics, creativity, and progress. Fabric of Reality first, Beginning of Infinity as the payoff.',
-      },
-      {
-        q: 'How does Deutsch\'s multiverse differ from Marvel or pop-culture multiverses?',
-        a: 'Deutsch\'s multiverse is a literal consequence of quantum mechanics — every quantum event splits the universe into all physically possible outcomes. There is no travel between universes, no narrative continuity, no parallel selves making different life choices. The branches are uncountable, mostly nearly-identical, and physically real. Pop-culture multiverses are dramatic devices; Deutsch\'s is a physics claim grounded in the Everett interpretation.',
-      },
-      {
-        q: 'Why does Deutsch reject the Copenhagen interpretation of quantum mechanics?',
-        a: 'Copenhagen treats quantum measurement as a collapse of possibilities into one classical reality, but Deutsch argues this is unexplained — what counts as "measurement"? Why should observation alter physical law? Many-worlds takes the wave function literally: every outcome happens, in different branches. For Deutsch, that is the parsimonious reading and the only one that makes quantum computation make physical sense.',
-      },
-      {
-        q: 'What is constructor theory and how does it relate to The Fabric of Reality?',
-        a: 'Constructor theory is Deutsch\'s later programme (with Chiara Marletto, 2010s onwards) — a physics framed in terms of which transformations are possible vs impossible, rather than initial conditions and laws of motion. It generalises the computational view from Fabric of Reality. If Fabric of Reality says "the universe is computable", constructor theory says "the universe is best described by what tasks it permits and forbids."',
-      },
-      {
-        q: 'How does The Fabric of Reality differ from Penrose\'s The Emperor\'s New Mind?',
-        a: 'They argue opposite positions on the same question. Penrose claims human consciousness is non-computable — there is something in mathematical insight that no Turing machine can replicate. Deutsch claims the Turing principle: any physical process, including conscious thought, can in principle be simulated by a universal computer. Reading both is the sharpest way to stress-test either side of the AGI question.',
       },
     ],
     quotes: [
@@ -5639,6 +5469,68 @@ export const bookReviews: BookReview[] = [
     ],
   },
   {
+    slug: 'no-bad-parts',
+    title: 'No Bad Parts',
+    author: 'Richard C. Schwartz',
+    coverImage: '/images/library/no-bad-parts.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-05-03',
+    categories: ['Psychology', 'Self-Development', 'IFS', 'Inner Work'],
+    readingTime: '7 min',
+    publicationYear: 2021,
+    tldr: 'Schwartz, the founder of Internal Family Systems, makes the case that the mind is not one voice — it is a system of parts (managers, firefighters, exiles) governed by a Self with eight leadership qualities. There are no bad parts, only burdened ones. The model is one of the cleanest available frameworks for personal development, leadership, and (in our extension) for designing self-led AI architectures.',
+    keyInsights: [
+      'The mind is naturally plural — managers handle daily life, firefighters react to pain, exiles carry wounds, and a core Self capable of leadership holds the whole system',
+      'No bad parts, only burdened ones — every part has a protective logic; the work is not deletion but unburdening and integration',
+      'The 8 Cs of Self-leadership (calm, clarity, compassion, courage, confidence, curiosity, creativity, connectedness) are diagnostic for whether Self or a part is currently leading',
+      'Most personal-development failure is part-capture — a manager part (perfectionism, control) running the system in the absence of Self-led leadership',
+      'IFS extends beyond therapy: Schwartz applies it to leadership, relationships, parenting, and creative work — anywhere internal multiplicity shows up under pressure',
+    ],
+    bestFor: [
+      'High performers whose ambition has started running them instead of the other way around',
+      'Founders and executives who want a shared vocabulary for inner-team dynamics',
+      'Coaches, therapists, and reflective practitioners',
+      'AI architects looking for structural metaphors for sovereign agentic systems (see No Bad Parts: Sovereign AI)',
+    ],
+    amazonUrl: 'https://www.amazon.com/No-Bad-Parts-Restoring-Wholeness/dp/1683646681',
+    faq: [
+      { q: 'Is "No Bad Parts" a therapy book?', a: 'It is written for the general reader as a self-leadership and personal-development book, while drawing on Schwartz\'s clinical work. The IFS Institute notes the clinical evidence base for IFS is still developing — treat the book as a strong working model for daily reflection and leadership, not a substitute for therapy where trauma is involved.' },
+      { q: 'How does this connect to AI architecture?', a: 'The structural insight — internal multiplicity governed by a Self — translates surprisingly well to multi-agent system design. We extend this in the FrankX research piece "No Bad Parts: What Richard Schwartz Teaches Us About Building Sovereign AI" and the Self-Led AI Architecture research domain.' },
+      { q: 'Should I read this or do IFS therapy?', a: 'Both, in order. Read the book for the model. Use the daily Self-led check-in for governance. Use a trained IFS practitioner for trauma work. The book gives you the vocabulary; the practitioner does the unburdening.' },
+    ],
+    continueReading: [
+      {
+        title: 'Internal Family Systems Therapy',
+        author: 'Richard C. Schwartz',
+        reason: 'Schwartz\'s clinical text. Heavier than No Bad Parts; the source for practitioners. Read this if you want the technical model in full.',
+        url: 'https://www.amazon.com/Internal-Family-Systems-Therapy-Second/dp/1462541461',
+      },
+      {
+        title: 'Self-Therapy',
+        author: 'Jay Earley',
+        reason: 'A workbook approach to applying IFS yourself. Bridges the gap between reading the model and using it daily.',
+        url: 'https://www.amazon.com/Self-Therapy-Step-Step-Cutting-Edge-Psychotherapy/dp/0984392777',
+      },
+      {
+        title: 'The Body Keeps the Score',
+        author: 'Bessel van der Kolk',
+        reason: 'Pairs with IFS on trauma\'s structural impact. Van der Kolk explicitly cites IFS as one of the modalities he respects.',
+        url: 'https://www.amazon.com/Body-Keeps-Score-Healing-Trauma/dp/0143127748',
+      },
+    ],
+    videos: [
+      {
+        title: 'Richard Schwartz on Internal Family Systems',
+        creator: 'Various long-form podcasts',
+        url: 'https://www.youtube.com/results?search_query=Richard+Schwartz+IFS+podcast',
+        description: 'Schwartz across multiple long-form interviews. Strong audio entry point.',
+        duration: '60-120m',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
     slug: 'ikigai-ni-tsuite',
     title: 'Ikigai-ni-Tsuite (生きがいについて)',
     author: 'Mieko Kamiya',
@@ -5687,18 +5579,6 @@ export const bookReviews: BookReview[] = [
       },
     ],
     continueReading: [
-      {
-        title: 'Blue Zones, Ikigai, and the AI Era',
-        author: 'Frank Riemer',
-        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
-        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
-      },
-      {
-        title: 'The Ikigai workshop — 75-minute walk',
-        author: 'Frank Riemer',
-        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
-        url: 'https://frankx.ai/workshops/ikigai-branding',
-      },
       {
         title: 'The Little Book of Ikigai',
         author: 'Ken Mogi',
@@ -5857,18 +5737,6 @@ export const bookReviews: BookReview[] = [
       },
     ],
     continueReading: [
-      {
-        title: 'Blue Zones, Ikigai, and the AI Era',
-        author: 'Frank Riemer',
-        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
-        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
-      },
-      {
-        title: 'The Ikigai workshop — 75-minute walk',
-        author: 'Frank Riemer',
-        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
-        url: 'https://frankx.ai/workshops/ikigai-branding',
-      },
       {
         title: 'The Blue Zones Solution',
         author: 'Dan Buettner',
@@ -6092,18 +5960,6 @@ export const bookReviews: BookReview[] = [
     ],
     continueReading: [
       {
-        title: 'Blue Zones, Ikigai, and the AI Era',
-        author: 'Frank Riemer',
-        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
-        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
-      },
-      {
-        title: 'The Ikigai workshop — 75-minute walk',
-        author: 'Frank Riemer',
-        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
-        url: 'https://frankx.ai/workshops/ikigai-branding',
-      },
-      {
         title: 'The Little Book of Ikigai',
         author: 'Ken Mogi',
         reason: 'The Japanese-native counterweight. Where García & Miralles import the Western Venn, Mogi explicitly rejects it and gives the Five Pillars. Read both for the inside-out and outside-in views.',
@@ -6320,18 +6176,6 @@ export const bookReviews: BookReview[] = [
       },
     ],
     continueReading: [
-      {
-        title: 'Blue Zones, Ikigai, and the AI Era',
-        author: 'Frank Riemer',
-        reason: 'The companion research on this site — the four-author lineage (Kamiya 1966, Buettner 2005, García & Miralles 2016, Mogi 2017) and why ikigai becomes load-bearing as AI removes the structural force behind routine work. 12-minute read.',
-        url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
-      },
-      {
-        title: 'The Ikigai workshop — 75-minute walk',
-        author: 'Frank Riemer',
-        reason: 'The practical translation of this lineage into a self-guided walk. 10 chapters, 13 prompts that work in any AI assistant. Free.',
-        url: 'https://frankx.ai/workshops/ikigai-branding',
-      },
       {
         title: 'Ikigai-ni-Tsuite',
         author: 'Mieko Kamiya',

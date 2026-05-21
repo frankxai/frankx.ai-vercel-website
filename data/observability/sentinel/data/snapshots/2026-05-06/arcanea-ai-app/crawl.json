@@ -1,0 +1,81 @@
+{
+  "fetchedAt": "2026-05-06T22:34:21.087Z",
+  "host": "arcanea-ai-appx.vercel.app",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://arcanea-ai-appx.vercel.app/",
+      "redirected": false,
+      "ttfbMs": 806,
+      "contentLength": 98896,
+      "title": "Arcanea™ — Creative Intelligence Platform",
+      "description": "A creative multiverse: chat with AI, build fantasy worlds, share what you make, and turn imagination into products. 190K+ words of creative philosophy. Free to start.",
+      "canonical": "https://arcanea.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "WebApplication",
+        "WebSite",
+        "Organization"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea — Creative Intelligence Platform",
+        "description": "Creative AI partners, a philosophy library, and creation studio in one platform.",
+        "image": "https://arcanea.ai/opengraph-image?f418b139b3751c53",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/agents",
+      "status": 200,
+      "finalUrl": "https://arcanea-ai-appx.vercel.app/agents",
+      "redirected": false,
+      "ttfbMs": 140,
+      "contentLength": 154649,
+      "title": "Agents — AI That Creates For You | Arcanea",
+      "description": "Browse and run autonomous AI agents that write stories, build worlds, compose music, design characters, and more. Powered by the Arcanea Intelligence System.",
+      "canonical": "https://arcanea.ai/agents",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "WebApplication",
+        "ItemList"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea Agents — AI That Creates For You",
+        "description": "Autonomous AI agents for creators. Write, build, compose, design — powered by the Ten Gates.",
+        "image": null,
+        "type": null
+      }
+    },
+    {
+      "route": "/console",
+      "status": 404,
+      "finalUrl": "https://arcanea-ai-appx.vercel.app/console",
+      "redirected": false,
+      "ttfbMs": 126,
+      "contentLength": 68970,
+      "title": "Page Not Found | Arcanea",
+      "description": "This page does not exist. Find your way back to Arcanea.",
+      "canonical": "https://arcanea.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "WebApplication"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea — Creative Intelligence Platform",
+        "description": "Creative AI partners, a philosophy library, and creation studio in one platform.",
+        "image": "https://arcanea.ai/opengraph-image?f418b139b3751c53",
+        "type": "website"
+      }
+    }
+  ]
+}

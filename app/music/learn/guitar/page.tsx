@@ -37,7 +37,7 @@ const youtubeChannels = [
     handle: '@PaulDavids',
     url: 'https://www.youtube.com/@PaulDavids',
     lang: 'EN',
-    desc: 'Intermediate to advanced content with cinematic production quality. Deep dives into tone, technique, and music theory that make you a more complete guitarist.',
+    desc: 'Intermediate to advanced content with cinematic production quality. Focused lessons on tone, technique, and music theory that make you a more complete guitarist.',
   },
   {
     name: 'Bernth',

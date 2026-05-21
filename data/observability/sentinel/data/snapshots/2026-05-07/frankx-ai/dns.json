@@ -1,0 +1,40 @@
+{
+  "fetchedAt": "2026-05-07T07:26:40.381Z",
+  "host": "frankx.ai",
+  "A": {
+    "error": "ECONNREFUSED"
+  },
+  "AAAA": {
+    "error": "ECONNREFUSED"
+  },
+  "CNAME": {
+    "error": "ECONNREFUSED"
+  },
+  "MX": {
+    "error": "ECONNREFUSED"
+  },
+  "TXT": {
+    "error": "ECONNREFUSED"
+  },
+  "CAA": {
+    "error": "ECONNREFUSED"
+  },
+  "www": {
+    "host": "www.frankx.ai",
+    "A": {
+      "error": "EDESTRUCTION"
+    },
+    "CNAME": {
+      "error": "ECONNREFUSED"
+    }
+  },
+  "signals": {
+    "spf": null,
+    "dmarc": null,
+    "verifications": []
+  },
+  "verdict": "unknown",
+  "notes": [
+    "DNS query failed (resolver issue), but site is HTTP-reachable — treating as healthy"
+  ]
+}

@@ -287,7 +287,7 @@ export const designExperiments: DesignExperiment[] = [
     slug: 'shimmer-effects-showcase',
     title: 'Shimmer Effects Showcase',
     subtitle: 'CSS-only premium card effects — who builds the smoothest shimmer?',
-    description: 'A deep dive into CSS-only visual effects: shimmer borders using CSS Houdini @property, cursor-following glow, aurora backgrounds, spotlight hover, magnetic click, and glassmorphism depth. The goal: zero JavaScript for the visual effects — pure CSS animation that performs at 60fps even on mobile.',
+    description: 'A technical study of CSS-only visual effects: shimmer borders using CSS Houdini @property, cursor-following glow, aurora backgrounds, spotlight hover, magnetic click, and glassmorphism depth. The goal: zero JavaScript for the visual effects — pure CSS animation that performs at 60fps even on mobile.',
     brief: 'Build a set of 6 premium card variants using CSS-only effects: (1) Shimmer border using @property --shimmer-angle + conic-gradient, (2) Cursor spotlight that follows the mouse, (3) Aurora gradient background that shifts on hover, (4) Glassmorphism depth with multiple blur layers, (5) Magnetic click ripple on interaction, (6) Neon glow edge with soft halo. Each card must work on mobile gracefully, prefer @media hover to guard effect-heavy interactions.',
     category: 'component',
     status: 'active',

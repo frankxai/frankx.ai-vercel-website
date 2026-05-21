@@ -55,7 +55,7 @@ const phases = [
     icon: Brain,
     duration: '2-4 hours per domain',
     description:
-      'Multi-agent deep dives into promising signals with systematic extraction of quantitative data, qualitative insights, and strategic implications.',
+      'Multi-agent analysis of promising signals with systematic extraction of quantitative data, qualitative insights, and strategic implications.',
     details: [
       'Extract specific metrics: market size, adoption rates, performance benchmarks',
       'Map competitive landscapes with validated market share data',
@@ -395,7 +395,7 @@ export default function MethodologyPage() {
                 Explore the Research
               </h2>
               <p className="text-sm text-white/50 mb-6 max-w-lg mx-auto">
-                Dive into any of our {researchDomains.length} research domains. Every finding is
+                Explore any of our {researchDomains.length} research domains. Every finding is
                 cross-referenced and regularly updated.
               </p>
               <Link

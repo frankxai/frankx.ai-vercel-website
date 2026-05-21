@@ -176,10 +176,10 @@ export default function PapaHomePage() {
             Riemer (geb. Gorte). Vater von Frank.
           </p>
           <Link
-            href="/familie/stammbaum"
+            href="/familie"
             className="mt-6 inline-flex items-center gap-2 text-xs text-white/40 transition-colors hover:text-amber-300/70"
           >
-            Stammbaum ansehen
+            Familie Riemer ansehen
             <ArrowRight className="h-3 w-3" />
           </Link>
         </div>

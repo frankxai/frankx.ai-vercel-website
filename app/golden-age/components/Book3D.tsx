@@ -40,10 +40,10 @@ function BookCover({ isHovered }: { isHovered: boolean }) {
   });
 
   // Golden amber gradient colors
-  const coverColor = new THREE.Color('#d97706');
-  const spineColor = new THREE.Color('#92400e');
-  const pageColor = new THREE.Color('#fefce8');
-  const goldAccent = new THREE.Color('#fbbf24');
+  const coverColor = '#d97706';
+  const spineColor = '#92400e';
+  const pageColor = '#fefce8';
+  const goldAccent = '#fbbf24';
 
   return (
     <group ref={meshRef} rotation={[0.1, -0.15, 0]}>

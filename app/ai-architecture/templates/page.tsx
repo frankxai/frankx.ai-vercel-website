@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -151,94 +152,6 @@ const templates = [
     lemonSqueezyVariantId: '',
     deployPlatforms: ['railway'],
   },
-  {
-    id: 'sovereign-knowledge-vault',
-    title: 'Sovereign Knowledge Vault',
-    subtitle: 'Family & business intelligence',
-    price: 149,
-    originalPrice: 249,
-    icon: Shield,
-    color: 'emerald',
-    features: [
-      '3-tier vault (Personal/Family/Business)',
-      'pgvector semantic search',
-      'Row-level security policies',
-      'Knowledge encoding pipeline',
-      'Voice transcription (Whisper)',
-      'Full data export & sovereignty',
-    ],
-    techStack: ['Supabase', 'pgvector', 'Claude API', 'Whisper', 'Next.js'],
-    includesOCI: false,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['vercel', 'railway'],
-  },
-  {
-    id: 'vital-intelligence-mcp',
-    title: 'Vital Intelligence MCP',
-    subtitle: 'Health-aware AI server',
-    price: 79,
-    originalPrice: 129,
-    icon: Zap,
-    color: 'rose',
-    features: [
-      'Apple Health + Oura + Whoop',
-      '5 MCP health tools',
-      'Cognitive state scoring',
-      'Adaptive task scheduling',
-      'Wellness interventions',
-      'One-click deploy to Railway',
-    ],
-    techStack: ['MCP SDK', 'TypeScript', 'Railway', 'Supabase'],
-    includesOCI: false,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['railway'],
-  },
-  {
-    id: 'starlight-intelligence',
-    title: 'Starlight Intelligence',
-    subtitle: 'Multi-model AI router',
-    price: 199,
-    originalPrice: 349,
-    icon: Server,
-    color: 'violet',
-    features: [
-      'Multi-model routing (Claude/Gemini/Local)',
-      'Intent classification (16 categories)',
-      'Reasoning bank with learning',
-      'Agent coordination protocol',
-      'Cost optimization engine',
-      'Telemetry dashboard',
-    ],
-    techStack: ['Claude SDK', 'Gemini API', 'Ollama', 'Supabase', 'Vercel'],
-    includesOCI: false,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['vercel', 'railway'],
-  },
-  {
-    id: 'conscious-agent-platform',
-    title: 'Conscious Agent Platform',
-    subtitle: 'Multi-tenant AI with ethics',
-    price: 299,
-    originalPrice: 499,
-    icon: Users,
-    color: 'cyan',
-    features: [
-      'Per-user Jarvis instances',
-      'Guardian Protocol guardrails',
-      'Living Memory vault',
-      'OpenClaw 4-agent constellation',
-      'Stripe subscriptions built-in',
-      'MCP connectivity hub',
-    ],
-    techStack: ['Claude Agent SDK', 'Supabase', 'Stripe', 'Vercel', 'MCP'],
-    includesOCI: false,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['vercel', 'railway'],
-  },
 ]
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
@@ -277,12 +190,6 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
     border: 'border-amber-500/20 hover:border-amber-500/40',
     icon: 'bg-amber-500/20 text-amber-400',
     badge: 'bg-amber-500 text-white',
-  },
-  rose: {
-    bg: 'bg-rose-500/5',
-    border: 'border-rose-500/20 hover:border-rose-500/40',
-    icon: 'bg-rose-500/20 text-rose-400',
-    badge: 'bg-rose-500 text-white',
   },
 }
 
@@ -388,8 +295,20 @@ function TemplateCard({
 export default function TemplatesPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
+      {/* Hero */}
+      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
+        <div className="relative aspect-[21/9]">
+          <Image src="/images/architectures/llmops.png" alt="LLMOps architecture diagram" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 left-0 p-6">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
+          <h1 className="text-2xl font-bold text-white">Starter Templates</h1>
+        </div>
+      </div>
+
       {/* Header */}
-      <section className="pt-32 pb-12">
+      <section className="pt-8 pb-12">
         <div className="mx-auto max-w-6xl px-6">
           <Link
             href="/ai-architecture"

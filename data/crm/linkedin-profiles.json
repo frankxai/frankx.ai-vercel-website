@@ -1,0 +1,26 @@
+[
+  {
+    "linkedin": "https://linkedin.com/in/EXAMPLE-oracle-spain-contact",
+    "name": "(Placeholder — Oracle Spain contact)",
+    "org_name": "Oracle Spain",
+    "target_list": "oracle-spain-transition",
+    "priority": 1,
+    "notes": "Seed entry. Replace with real Oracle Spain contacts who can warm-intro to Adigital. Frank to populate this week."
+  },
+  {
+    "linkedin": "https://linkedin.com/company/adigitalorg",
+    "name": "(Adigital leadership — TBD)",
+    "org_name": "Adigital",
+    "target_list": "adigital",
+    "priority": 1,
+    "notes": "Target org for Madrid workshop. Awaiting Oracle Spain intro path."
+  },
+  {
+    "linkedin": "https://linkedin.com/company/nldigital",
+    "name": "(NLDigital program leads)",
+    "org_name": "NLDigital",
+    "target_list": "nldigital",
+    "priority": 1,
+    "notes": "Host for 2026-05-19 workshop. Identify and brief the 2-3 program leads responsible for member engagement."
+  }
+]

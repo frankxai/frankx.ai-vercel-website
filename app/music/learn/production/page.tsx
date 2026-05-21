@@ -366,7 +366,7 @@ export default function ProductionPage() {
               Start Producing
             </h2>
             <p className="mt-3 text-white/50">
-              Explore AI-generated music or dive into the theory that makes production intuitive.
+              Explore AI-generated music or study the theory that makes production intuitive.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link

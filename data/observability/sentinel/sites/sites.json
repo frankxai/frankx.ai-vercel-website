@@ -1,0 +1,153 @@
+[
+  {
+    "id": "frankx-ai",
+    "name": "FrankX",
+    "host": "frankx.ai",
+    "altHosts": ["www.frankx.ai"],
+    "owner": "frank",
+    "stack": "nextjs",
+    "deployTarget": "vercel",
+    "vercelProject": "frankx-ai-vercel-website",
+    "githubRepo": "frankxai/frankx.ai-vercel-website",
+    "productionBranch": "main",
+    "localPath": "C:\\Users\\frank\\FrankX",
+    "criticalRoutes": [
+      "/", "/os", "/library", "/workshops", "/research",
+      "/papa", "/design", "/network", "/start-here", "/build"
+    ],
+    "freshnessRules": [
+      { "pattern": "/papa/", "maxAgeDays": null, "reason": "Memorial — never stale by design" },
+      { "pattern": "/research/", "maxAgeDays": 30, "reason": "Research recency expectation" },
+      { "pattern": "/blog/", "maxAgeDays": 90, "reason": "Blog cadence baseline" },
+      { "pattern": "/library/", "maxAgeDays": 180, "reason": "Books are slow content" },
+      { "pattern": "/", "maxAgeDays": 60, "reason": "Default freshness" }
+    ],
+    "slo": { "performance": 90, "lcp": 2500, "inp": 200, "cls": 0.1, "tbt": 200 },
+    "targetQueries": [
+      "AI architect frameworks",
+      "personal AI center of excellence",
+      "agentic content officer",
+      "creator AI operating system",
+      "Frank Riemer AI"
+    ],
+    "languages": ["en", "de", "ru", "hr"],
+    "brandStandards": {
+      "design": "design.md",
+      "taste": "taste.md",
+      "voice": ".claude/skills/frankx-meta.md"
+    },
+    "tags": ["flagship", "public", "multilingual"],
+    "notes": "Two-repo deploy (FrankX → frankx.ai-vercel-website). Watch for sync drift."
+  },
+  {
+    "id": "arcanea-ai",
+    "name": "Arcanea",
+    "host": "arcanea.ai",
+    "owner": "frank",
+    "stack": "nextjs",
+    "deployTarget": "vercel",
+    "vercelProject": "arcanea-ai",
+    "githubRepo": "frankxai/Arcanea",
+    "productionBranch": "main",
+    "localPath": "C:\\Users\\frank\\Arcanea",
+    "criticalRoutes": ["/", "/manifesto", "/realms", "/seekers"],
+    "freshnessRules": [
+      { "pattern": "/manifesto", "maxAgeDays": null, "reason": "Foundational document" },
+      { "pattern": "/", "maxAgeDays": 90, "reason": "Default" }
+    ],
+    "slo": { "performance": 90, "lcp": 2500, "inp": 200, "cls": 0.1, "tbt": 200 },
+    "targetQueries": ["arcanea consciousness", "arcanean realms", "AI mythology framework"],
+    "languages": ["en"],
+    "tags": ["public", "mythology"],
+    "notes": "Mythology-heavy. AI-slop detection should expect intentional poetic language."
+  },
+  {
+    "id": "gencreator-ai",
+    "name": "GenCreator",
+    "host": "gencreator.ai",
+    "owner": "frank",
+    "stack": "nextjs",
+    "deployTarget": "vercel",
+    "vercelProject": "gencreator-ai",
+    "githubRepo": "frankxai/gencreator.ai",
+    "productionBranch": "main",
+    "localPath": "C:\\Users\\frank\\gencreator.ai",
+    "criticalRoutes": ["/", "/manifesto", "/playbook", "/start"],
+    "freshnessRules": [
+      { "pattern": "/playbook", "maxAgeDays": 30, "reason": "Tactics decay fast" },
+      { "pattern": "/", "maxAgeDays": 60, "reason": "Default" }
+    ],
+    "slo": { "performance": 92, "lcp": 2200, "inp": 180, "cls": 0.1, "tbt": 180 },
+    "targetQueries": ["generative creator economy", "AI human collaboration creators", "creator AI playbook"],
+    "languages": ["en"],
+    "tags": ["public", "commercial"],
+    "notes": "Code-complete per memory. Verify go-live state on first scan."
+  },
+  {
+    "id": "starlight-intelligence",
+    "name": "Starlight Intelligence",
+    "host": "starlight-intelligence.ai",
+    "owner": "frank",
+    "stack": "nextjs",
+    "deployTarget": "vercel",
+    "vercelProject": "starlight-intelligence",
+    "githubRepo": "frankxai/Starlight-Intelligence-System",
+    "productionBranch": "main",
+    "localPath": "C:\\Users\\frank\\Starlight-Intelligence-System",
+    "criticalRoutes": ["/", "/protocol", "/layers", "/canon"],
+    "freshnessRules": [
+      { "pattern": "/protocol", "maxAgeDays": null, "reason": "SIP — versioned, not dated" },
+      { "pattern": "/canon", "maxAgeDays": null, "reason": "Canonical — never stale" },
+      { "pattern": "/", "maxAgeDays": 90, "reason": "Default" }
+    ],
+    "slo": { "performance": 95, "lcp": 2000, "inp": 150, "cls": 0.05, "tbt": 150 },
+    "targetQueries": [
+      "Starlight Intelligence System", "SIP protocol",
+      "sovereign intelligence substrate", "AI memory palace"
+    ],
+    "languages": ["en"],
+    "tags": ["public", "oss", "substrate"],
+    "notes": "OSS substrate. Schema validity is critical — this is the public spec."
+  },
+  {
+    "id": "vibeclubs-ai",
+    "name": "VibeClubs",
+    "host": "vibeclubs.ai",
+    "owner": "frank",
+    "stack": "nextjs",
+    "deployTarget": "vercel",
+    "vercelProject": "vibeclubs-ai",
+    "githubRepo": "frankxai/vibeclubs.ai",
+    "productionBranch": "main",
+    "criticalRoutes": ["/", "/clubs", "/sessions"],
+    "freshnessRules": [
+      { "pattern": "/sessions", "maxAgeDays": 14, "reason": "Events must be current" },
+      { "pattern": "/", "maxAgeDays": 60, "reason": "Default" }
+    ],
+    "slo": { "performance": 88, "lcp": 2800, "inp": 200, "cls": 0.1, "tbt": 250 },
+    "targetQueries": ["vibe clubs music events", "AI music community"],
+    "languages": ["en"],
+    "tags": ["public", "events"],
+    "notes": "Confirm scaffold state on first scan — may be early-stage."
+  },
+  {
+    "id": "arcanea-ai-app",
+    "name": "Arcanea App",
+    "host": "arcanea-ai-appx.vercel.app",
+    "owner": "frank",
+    "stack": "nextjs",
+    "deployTarget": "vercel",
+    "vercelProject": "arcanea-ai-app",
+    "githubRepo": "frankxai/arcanea-ai-app",
+    "productionBranch": "main",
+    "criticalRoutes": ["/", "/agents", "/console"],
+    "freshnessRules": [
+      { "pattern": "/", "maxAgeDays": 30, "reason": "Active dev" }
+    ],
+    "slo": { "performance": 85, "lcp": 3000, "inp": 250, "cls": 0.1, "tbt": 300 },
+    "targetQueries": ["arcanea multi-agent app", "AI agent orchestration arcanea"],
+    "languages": ["en"],
+    "tags": ["app", "multi-agent", "private"],
+    "notes": "Multi-agent infra. May be auth-walled — Sentinel falls back to public routes only."
+  }
+]

@@ -35,7 +35,7 @@ export function VideoGallery() {
     },
     {
       id: '2',
-      title: 'Autonomous Database Deep Dive',
+      title: 'Autonomous Database Technical Review',
       description: 'Explore Oracle Autonomous Database features including auto-scaling, self-patching, and automatic performance tuning.',
       category: 'getting-started',
       thumbnail: getYouTubeThumbnail('djcBOv3hqss'),

@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { bookReviews } from '@/data/book-reviews';
 import type { BookReview, BookQuote } from '@/app/books/types';
-import { QuoteShareToolbar } from '@/components/share/QuoteShareToolbar';
 
 const SITE_URL = 'https://frankx.ai';
 
@@ -126,7 +125,6 @@ export default function LibraryQuotesPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
       <QuotesJsonLd quotes={quotes} />
-      <QuoteShareToolbar />
 
       {/* Back link */}
       <div className="max-w-5xl mx-auto px-6 pt-28 pb-4">
@@ -173,10 +171,6 @@ export default function LibraryQuotesPage() {
             Curated quotes from every deep-dived book in the library. Each quote carries
             its chapter reference and, where useful, the one-sentence framing of why it
             matters. Click any book title to open its full hub.
-          </p>
-          <p className="mt-4 text-[13px] text-rose-300/60 max-w-2xl">
-            <span className="text-rose-300/90">Tip:</span> highlight any line to share or
-            copy it with a permalink — works on desktop and mobile.
           </p>
 
           {/* Stats */}
@@ -270,49 +264,36 @@ export default function LibraryQuotesPage() {
 
               {/* Quotes */}
               <div className="space-y-4">
-                {bookQuotes.map((q, i) => {
-                  const quoteId = `q-${book.slug}-${i + 1}`;
-                  // Permalink points at the dedicated /q/{n} page so social
-                  // shares get the per-quote OpenGraph image card.
-                  const permalink = `${SITE_URL}/library/${book.slug}/q/${i + 1}`;
-                  return (
-                    <figure
-                      key={i}
-                      id={quoteId}
-                      tabIndex={0}
-                      data-shareable="quote"
-                      data-quote-text={q.text}
-                      data-quote-author={book.author}
-                      data-quote-source={book.title}
-                      data-quote-permalink={permalink}
-                      className={`relative rounded-2xl border p-6 pl-8 scroll-mt-24 outline-none focus-visible:ring-2 focus-visible:ring-rose-400/30 ${getAccent(book)}`}
+                {bookQuotes.map((q, i) => (
+                  <figure
+                    key={i}
+                    className={`relative rounded-2xl border p-6 pl-8 ${getAccent(book)}`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-3 left-3 text-rose-400/30 font-serif text-5xl leading-none select-none"
                     >
-                      <span
-                        aria-hidden="true"
-                        className="absolute top-3 left-3 text-rose-400/30 font-serif text-5xl leading-none select-none"
-                      >
-                        &ldquo;
-                      </span>
-                      <blockquote className="text-white/85 leading-relaxed text-[16px] font-light italic">
-                        {q.text}
-                      </blockquote>
-                      {(q.chapter || q.context) && (
-                        <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1.5">
-                          {q.chapter && (
-                            <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
-                              {q.chapter}
-                            </p>
-                          )}
-                          {q.context && (
-                            <p className="text-[13.5px] text-white/50 leading-relaxed">
-                              {q.context}
-                            </p>
-                          )}
-                        </figcaption>
-                      )}
-                    </figure>
-                  );
-                })}
+                      &ldquo;
+                    </span>
+                    <blockquote className="text-white/85 leading-relaxed text-[16px] font-light italic">
+                      {q.text}
+                    </blockquote>
+                    {(q.chapter || q.context) && (
+                      <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1.5">
+                        {q.chapter && (
+                          <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
+                            {q.chapter}
+                          </p>
+                        )}
+                        {q.context && (
+                          <p className="text-[13.5px] text-white/50 leading-relaxed">
+                            {q.context}
+                          </p>
+                        )}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
               </div>
 
               {/* Book CTA */}

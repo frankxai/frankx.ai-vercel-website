@@ -72,7 +72,7 @@ const pillars = [
     name: 'Expression',
     icon: Sparkles,
     color: '#43BFE3',
-    description: 'Unleash your creative force and authentic voice',
+    description: 'Build your creative force and authentic voice',
     angle: 308.57,
   },
 ]
@@ -347,7 +347,7 @@ export default function SoulbookPage() {
             </h1>
 
             <p className="mx-auto mb-12 max-w-2xl text-pretty text-xl leading-relaxed text-white/70 md:text-2xl">
-              A revolutionary framework for conscious living. Transform your life through 7 foundational pillars, creative expression, and purpose alignment.
+              A practical framework for conscious living. Transform your life through 7 foundational pillars, creative expression, and purpose alignment.
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">

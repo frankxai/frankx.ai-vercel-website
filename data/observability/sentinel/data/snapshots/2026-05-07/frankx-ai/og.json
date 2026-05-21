@@ -1,0 +1,183 @@
+{
+  "fetchedAt": "2026-05-07T07:25:27.821Z",
+  "host": "frankx.ai",
+  "routes": [
+    {
+      "route": "/",
+      "ogImage": "https://frankx.ai/hero-homepage.png",
+      "ogTitle": "FrankX — AI Architect &amp; Creator",
+      "ogDescription": "AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": {
+        "ok": true,
+        "status": 200,
+        "contentType": "image/png",
+        "contentLength": 1120994
+      },
+      "issues": []
+    },
+    {
+      "route": "/os",
+      "ogImage": "https://frankx.ai/hero-homepage.png",
+      "ogTitle": "FrankX Intelligence Hub",
+      "ogDescription": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": {
+        "ok": true,
+        "status": 200,
+        "contentType": "image/png",
+        "contentLength": 1120994
+      },
+      "issues": [
+        "og-image-duplicate"
+      ]
+    },
+    {
+      "route": "/library",
+      "ogImage": null,
+      "ogTitle": "The Library | FrankX",
+      "ogDescription": "Key insights from the books that matter most.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": null,
+      "issues": [
+        "no-og-image"
+      ]
+    },
+    {
+      "route": "/workshops",
+      "ogImage": "https://frankx.ai/hero-homepage.png",
+      "ogTitle": "AI Workshops | FrankX",
+      "ogDescription": "Pre-built AI workshop templates for university professors, corporate trainers, and bootcamp instructors. Structured agendas, instructor notes, and resource packs included.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": {
+        "ok": true,
+        "status": 200,
+        "contentType": "image/png",
+        "contentLength": 1120994
+      },
+      "issues": [
+        "og-image-duplicate"
+      ]
+    },
+    {
+      "route": "/research",
+      "ogImage": "https://frankx.ai/images/brand/og-template.png",
+      "ogTitle": "Research Intelligence Hub | FrankX.AI",
+      "ogDescription": "Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": {
+        "ok": true,
+        "status": 200,
+        "contentType": "image/png",
+        "contentLength": 414694
+      },
+      "issues": []
+    },
+    {
+      "route": "/papa",
+      "ogImage": null,
+      "ogTitle": "Papa — Witali Riemer (1969–2018)",
+      "ogDescription": "Ein Sohn-Archiv für Witali Riemer und das Erbe, das er weitergegeben hat.",
+      "ogType": "profile",
+      "twitterCard": "summary_large_image",
+      "imageHead": null,
+      "issues": [
+        "no-og-image"
+      ]
+    },
+    {
+      "route": "/design",
+      "ogImage": null,
+      "ogTitle": "The FrankX Design System",
+      "ogDescription": "Tokens, taste, and source — open and version-controlled. Built on Google Labs DESIGN.md.",
+      "ogType": "article",
+      "twitterCard": "summary_large_image",
+      "imageHead": null,
+      "issues": [
+        "no-og-image"
+      ]
+    },
+    {
+      "route": "/network",
+      "ogImage": null,
+      "ogTitle": "FrankX Network — Sitemap as a Graph",
+      "ogDescription": "Browse every page and image on frankx.ai as an interactive network graph.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": null,
+      "issues": [
+        "no-og-image"
+      ]
+    },
+    {
+      "route": "/start-here",
+      "ogImage": "https://frankx.ai/hero-homepage.png",
+      "ogTitle": "FrankX Intelligence Hub",
+      "ogDescription": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": {
+        "ok": true,
+        "status": 200,
+        "contentType": "image/png",
+        "contentLength": 1120994
+      },
+      "issues": [
+        "og-image-duplicate"
+      ]
+    },
+    {
+      "route": "/build",
+      "ogImage": "https://frankx.ai/hero-homepage.png",
+      "ogTitle": "FrankX Intelligence Hub",
+      "ogDescription": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "imageHead": {
+        "ok": true,
+        "status": 200,
+        "contentType": "image/png",
+        "contentLength": 1120994
+      },
+      "issues": [
+        "og-image-duplicate"
+      ]
+    }
+  ],
+  "distinctImages": 2,
+  "duplicateGroups": [
+    {
+      "image": "https://frankx.ai/hero-homepage.png",
+      "routes": [
+        "/",
+        "/os"
+      ]
+    },
+    {
+      "image": "https://frankx.ai/hero-homepage.png",
+      "routes": [
+        "/",
+        "/workshops"
+      ]
+    },
+    {
+      "image": "https://frankx.ai/hero-homepage.png",
+      "routes": [
+        "/",
+        "/start-here"
+      ]
+    },
+    {
+      "image": "https://frankx.ai/hero-homepage.png",
+      "routes": [
+        "/",
+        "/build"
+      ]
+    }
+  ]
+}

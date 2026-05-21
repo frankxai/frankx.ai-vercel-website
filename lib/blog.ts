@@ -49,19 +49,6 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   if (!normalized.keywords && normalized.seo?.keywords) {
     normalized.keywords = normalized.seo.keywords
   }
-  // Normalize categories array → category string for legacy plural frontmatter.
-  // Without this, RSS feed and other consumers crash on `escapeXml(undefined)`.
-  if (!normalized.category && Array.isArray(normalized.categories) && normalized.categories.length > 0) {
-    normalized.category = normalized.categories[0]
-  }
-  // Final defense: ensure category is always a string so consumers can call
-  // .replace() etc. without null checks. Title/description/author get the
-  // same fallback so RSS, sitemap, and listing pages never throw on a
-  // malformed post.
-  if (typeof normalized.category !== 'string') normalized.category = ''
-  if (typeof normalized.title !== 'string') normalized.title = ''
-  if (typeof normalized.description !== 'string') normalized.description = ''
-  if (typeof normalized.author !== 'string') normalized.author = ''
   return normalized
 }
 
@@ -83,8 +70,6 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
         ...normalizeFrontmatter(data),
       } as BlogPost
     })
-    // Hide drafts from public listings and static generation
-    .filter((post) => !(post as BlogPost & { draft?: boolean }).draft)
 
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 })
@@ -98,17 +83,12 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
     const { data, content } = matter(fileContents)
     const readTime = readingTime(content)
 
-    const post = {
+    return {
       slug,
       content,
       readingTime: readTime.text,
       ...normalizeFrontmatter(data),
-    } as BlogPost & { draft?: boolean }
-
-    // Draft posts return null so the page renders 404
-    if (post.draft) return null
-
-    return post
+    } as BlogPost
   } catch {
     return null
   }

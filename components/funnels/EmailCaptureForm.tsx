@@ -14,9 +14,9 @@ interface EmailCaptureFormProps {
 }
 
 const EmailCaptureForm: React.FC<EmailCaptureFormProps> = ({
-  title = 'Join the waitlist',
-  description = 'Be notified when we ship. No drip sequence, no marketing automation — one honest message when there is something real to share.',
-  buttonText = 'Join waitlist',
+  title = 'Join Our Community',
+  description = 'Get the latest insights, resources, and updates delivered to your inbox.',
+  buttonText = 'Subscribe',
   className,
 }) => {
   const [email, setEmail] = useState('');
@@ -39,7 +39,7 @@ const EmailCaptureForm: React.FC<EmailCaptureFormProps> = ({
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-4 text-lg font-semibold text-green-300"
           >
-            You're on the waitlist. We'll be in touch when there's something to share.
+            Thank you for subscribing!
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">

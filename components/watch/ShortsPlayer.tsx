@@ -369,7 +369,7 @@ export function ShortsPlayer({ shorts, initialIndex = 0, onClose }: ShortsPlayer
             <section
               key={s.id}
               ref={(el) => {
-                itemRefs.current[i] = el
+                itemRefs.current[i] = el as HTMLDivElement | null
               }}
               data-index={i}
               className="h-[100dvh] w-full snap-start snap-always flex items-center justify-center relative"

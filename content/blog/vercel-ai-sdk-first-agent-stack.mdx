@@ -1,0 +1,197 @@
+---
+title: "Why Vercel AI SDK is the right first-agent stack in 2026"
+description: "A straight comparison of Vercel AI SDK, Claude Agent SDK, OpenAI Agents SDK, Google ADK, and no-code options. The central path for your first agent — and why it isn't a Vercel ad."
+date: "2026-04-24"
+author: "Frank"
+category: "AI Architecture"
+tags:
+  - Vercel AI SDK
+  - AI Agents
+  - Claude Agent SDK
+  - OpenAI Agents
+  - Google ADK
+keywords:
+  - vercel ai sdk tutorial
+  - best ai agent framework 2026
+  - vercel ai sdk vs claude agent sdk
+  - first ai agent stack
+  - ai agent framework comparison
+image: '/images/blog/vercel-ai-sdk-first-agent-hero.png'
+readingGoal: "Decide in 10 minutes which stack to pick for your first agent. Bookmark as a reference when evaluating the next SDK."
+featured: true
+---
+
+# The central-path problem
+
+You want to build your first AI agent. You Google "how to build an AI agent" and you get 847 tutorials on 12 different stacks. LangGraph. AgentKit. Claude Agent SDK. OpenAI Agents SDK. Google ADK. Oracle ADK. n8n. Dify. Notion AI. Zapier AI. CrewAI. Autogen.
+
+This is the central-path problem. Every stack has its own docs, own primitives, own opinion. The ecosystem rewards framework loyalty but punishes indecision. **You need to pick one**, but you also need the one you pick to **transfer** to the next stack when you outgrow it.
+
+My answer — after shipping agents on nine frameworks at Oracle, at FrankX, and with workshop participants — is that **[Vercel AI SDK](https://sdk.vercel.ai/docs) is the central path for your first agent in 2026.** It's the default I recommend at the [Build Your First AI Agent workshop](/workshops/build-first-ai-agent), and this post is the written version of why.
+
+<Callout type="tip">
+This is not a Vercel ad. I'm not paid to write it. Vercel is where I deploy everything anyway. The argument is architectural, not financial. Read it, disagree, build on the stack you prefer. But start with the six primitives (model, tool, memory, loop, spec, deploy) and you'll be fine wherever you land.
+</Callout>
+
+## The criteria
+
+A good first-agent stack needs five things:
+
+1. **Provider portability.** You should be able to swap Claude for GPT-5 for Gemini without rewriting the agent. Anything less teaches bad architecture.
+2. **A language your audience already uses.** Most web builders know TypeScript. If the stack is Python-only or requires learning a new DSL, the on-ramp is too steep.
+3. **Fast time-to-first-working-agent.** Under 30 minutes from `git clone` to a working agent with a tool and structured output. The 90-minute workshop format doesn't work otherwise.
+4. **A deploy path that fits your mental model.** You should be able to put the agent on the public internet in one command. Anything that requires wrangling Kubernetes is the wrong starter.
+5. **Architectural primitives that transfer.** If you invest 10 hours learning the stack, 9 of those hours should be learning concepts — not framework ceremony.
+
+Vercel AI SDK hits all five.
+
+## The comparison
+
+| Criterion | Vercel AI SDK | Claude Agent SDK | OpenAI Agents SDK | Google ADK | n8n / Dify |
+|---|---|---|---|---|---|
+| Provider portability | All major providers, one API | Claude only (by design) | OpenAI only (by design) | Gemini primary | Multi via plugins |
+| Language | TypeScript + JavaScript | TypeScript or Python | Python primary, JS secondary | Python primary | No-code visual |
+| Time to first working agent | **~20 min** | ~30 min | ~30 min | ~45 min | ~45-60 min |
+| Deploy target | Vercel (1 command), any Node host | Any Node/Python host, Claude Managed | Any Node/Python host | GCP-native | Self-host or cloud |
+| Ecosystem | MCP, all provider SDKs | MCP, Claude-specific | AgentKit visual layer | A2A multi-agent | Plugin ecosystems |
+| Transfer to other stacks | **High** — same primitives | Some | Some | Some | Low (workflow model) |
+
+**Vercel AI SDK is not better at every criterion.** Claude Agent SDK has the best reasoning model. OpenAI Agents has the largest install base. Google ADK is best for multi-agent. n8n is best for no-code. What makes Vercel AI SDK central is that it's **the best compromise for a learner's first agent** — provider-agnostic so the portability lesson lands, TypeScript-native so most web builders can use it, fast enough to ship in 90 minutes.
+
+## The portability demo
+
+Here's the whole argument in 15 lines. This is the exact code in the [workshop starter repo](https://github.com/frankxai/first-agent-vercel-aisdk):
+
+```ts
+import { anthropic } from '@ai-sdk/anthropic'
+import { openai } from '@ai-sdk/openai'
+import { google } from '@ai-sdk/google'
+import type { LanguageModel } from 'ai'
+
+export function getModel(): LanguageModel {
+  const name = process.env.AGENT_PROVIDER ?? 'anthropic'
+  if (name === 'anthropic') return anthropic('claude-sonnet-4-6')
+  if (name === 'openai') return openai('gpt-5')
+  return google('gemini-2.5-pro')
+}
+```
+
+The rest of the agent — the tool, the memory, the loop, the structured output, the Agent Card — doesn't know or care which model it got. Change `AGENT_PROVIDER=anthropic` to `AGENT_PROVIDER=openai` and you're on OpenAI. **That's the portability lesson.** No other mainstream stack demonstrates it this cleanly.
+
+In Claude Agent SDK, the provider is Claude by design. In OpenAI Agents SDK, it's OpenAI. That's not a bug — those SDKs are model-specific on purpose, and they give you access to model-specific features (Claude's caching, OpenAI's code interpreter) that a provider-agnostic SDK can't. Once you know which provider you're building on, the model-specific SDK usually wins.
+
+But for your **first** agent, you don't know which provider you'll be on in 6 months. Provider portability is the learner's insurance policy.
+
+## Why not LangGraph, CrewAI, Autogen, etc.
+
+Because they're not actually agent frameworks — they're **orchestration frameworks**. They give you `StateGraph`, `Crew`, `GroupChat` abstractions before you understand what an agent is. They add concepts before they earn them.
+
+LangGraph is excellent once you have a multi-step, multi-agent workflow. It is the wrong place to start because it teaches you LangGraph's opinions about state before you've formed your own opinion about what state your agent needs.
+
+CrewAI is excellent once you have a team of agents collaborating on a task. It is the wrong place to start because it teaches coordination before you've shipped a single agent.
+
+Start simple. Ship the six primitives. Learn the orchestration frameworks when you need orchestration. Not before.
+
+## Why not go straight to a model-specific SDK
+
+If you already know which model you want — for example, you have Anthropic credits and you want Claude's reasoning + MCP ecosystem — go straight to Claude Agent SDK. You'll ship faster than on Vercel AI SDK because the Claude SDK gives you access to Claude-specific features directly.
+
+But if you don't know which model yet, you're getting two benefits from Vercel AI SDK:
+1. You can try three models in one afternoon.
+2. When you pick your preferred provider, the transition to a model-specific SDK is a one-day exercise because the **primitives are the same**.
+
+That's the architectural argument. Vercel AI SDK is the **learning stack**. Your eventual production stack may or may not be Vercel AI SDK. But the six primitives transfer.
+
+## Why not no-code (n8n, Notion AI, Dify)
+
+No-code is a legitimate production path, not a second-class one. At the [Build Your First AI Agent workshop](/workshops/build-first-ai-agent), Branch B4 covers n8n, Notion AI, and Dify because they're the right answer for a chunk of the audience.
+
+**When to pick no-code over code:**
+
+- You're building a workflow automation, not a reasoning agent. Most "agents" at SMBs are really n8n workflows with an LLM node in the middle.
+- Your team can't or won't write TypeScript. Accepting that reality beats fighting it.
+- You want to self-host for data-residency reasons. n8n and Dify self-host cleanly; Vercel doesn't.
+- Your primary integration surface is an existing tool (Notion, Airtable, etc.) and the LLM is a feature, not the product.
+
+**When to pick code over no-code:**
+
+- You need custom tool logic that isn't in a plugin library.
+- You want a specific structured-output schema with typed validation.
+- Your agent is itself a product you'll ship to customers.
+- You want the Agent Card and API surface that no-code tools don't expose natively.
+
+The [workshop's no-code branch](/workshops/build-first-ai-agent) builds the same research-assistant agent on n8n, Notion AI, and Dify so you can see the tradeoffs with your eyes, not with my claims.
+
+## The specific gotchas
+
+Vercel AI SDK is my top recommendation. It's not perfect. Four gotchas worth knowing:
+
+1. **Structured output reliability varies by provider.** `generateObject` works cleanly with Claude and GPT. Gemini sometimes returns valid JSON that doesn't quite match the schema. If you need rock-solid structured output across providers, test each one and pin the provider where it matters.
+2. **Provider-specific features aren't exposed.** Claude's prompt caching, OpenAI's code interpreter, Gemini's 2M-token context — these need the model-specific SDK to access cleanly. Vercel AI SDK exposes the common subset.
+3. **Rate limit handling is your responsibility.** The SDK doesn't retry or back off by default. For production, wrap your calls with a retry library.
+4. **Cost tracking is DIY.** The `usage` field tells you tokens; you have to multiply by provider prices yourself. For multi-provider agents, this is surprisingly annoying.
+
+None of these are dealbreakers for a first agent. All of them matter if you're scaling a production system. At that point, either pin a provider and use the model-specific SDK, or build your own abstraction layer — which is now a 2-week project, not a 2-month one, because you already know the six primitives.
+
+## The upgrade paths
+
+Once you've built your first agent on Vercel AI SDK, you can go in five directions:
+
+1. **Pin to Claude** → move to Claude Agent SDK for access to MCP, Managed Agents, and prompt caching. One-day migration.
+2. **Pin to OpenAI** → move to OpenAI Agents SDK + AgentKit for visual workflow composition. One-day migration.
+3. **Multi-agent** → move to LangGraph or Google ADK for multi-agent orchestration with real state machines.
+4. **Enterprise** → adopt the [Oracle Open Agent Specification (OAS)](/guides/first-agent-primer) to define the agent portably and generate stacks for Oracle ADK and others. Week-long project, but pays back across multiple agents.
+5. **No-code for the team** → rebuild the core logic as an n8n workflow for the rest of the org. Valuable when the agent needs to integrate with 10 other tools.
+
+Each of these is a one- to two-week project. Each of them re-uses the tools, schemas, and Agent Card from your first agent. **That's the transfer payoff.**
+
+## How to actually start
+
+Three paths, in order of fastest to thoroughest:
+
+### Fastest: clone the starter
+
+```bash
+git clone https://github.com/frankxai/first-agent-vercel-aisdk
+cd first-agent-vercel-aisdk
+pnpm install
+cp .env.example .env
+# add an Anthropic API key
+pnpm dev
+```
+
+You're ready in 10 minutes. Ship it to Vercel in another 60 seconds.
+
+### Medium: the workshop
+
+90 minutes of guided build, with every primitive explained as you go. The [Build Your First AI Agent workshop](/workshops/build-first-ai-agent) ships the same agent as the starter repo, but you leave with the mental model and the five branch paths for where to go next.
+
+### Thorough: the primer
+
+If you prefer long-form reading over live delivery, the [First Agent Primer guide](/guides/first-agent-primer) is the 30-minute written version. Same content, different medium.
+
+All three paths land you with the same artifact: a working research-assistant agent, a valid Google A2A Agent Card, a 3-case eval harness, and the six primitives as a mental model you can apply to every future agent framework.
+
+## The bet
+
+In 2027, the agent framework landscape will look different. New SDKs will ship. Some of today's frameworks will fade. The specific SDK you're using for your first agent in 2026 is probably not the SDK you'll be using in 2028.
+
+But the six primitives — model, tool, memory, loop, spec, deploy — will still be the right mental model. That's the bet. Pick a learning stack that teaches the primitives cleanly, and the next framework is a 30-minute read, not a month of re-learning.
+
+Vercel AI SDK is the cleanest teacher of the primitives I've found. That's why it's central.
+
+---
+
+**Ready to ship?** Three honest paths from here:
+
+- **Free** — [Get the Six Primitives Primer](/start-here): 8-page handout + 10-day email course teaching each primitive with code. Many builders ship on just this.
+- **€7 — [Six Primitives Pack](/build/six-primitives-pack):** the polished 60-page pocket book + 5 Agent Card templates + 15 eval cases + Vercel deploy checklist. Lifetime, 30-day refund.
+- **€197 — [Six Primitives Toolkit](/build/six-primitives-toolkit):** six branch deep-dives, 30+ Agent Cards, 50-pattern cookbook, 100-case evals, Discord community. The workhorse tier most builders settle at.
+
+Or just clone the [MIT-licensed starter](https://github.com/frankxai/first-agent-vercel-aisdk) and ship with what you read above. Both are valid paths.
+
+---
+
+<Callout type="insight">
+**The workshop is the fastest path.** 90 minutes, one working agent, six branches to pick from. [/workshops/build-first-ai-agent](/workshops/build-first-ai-agent) — free.
+</Callout>

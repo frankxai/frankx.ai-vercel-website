@@ -1,0 +1,94 @@
+{
+  "fetchedAt": "2026-05-06T22:34:15.332Z",
+  "host": "gencreator.ai",
+  "routes": [
+    {
+      "route": "/",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebPage",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/manifesto",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/playbook",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/start",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebPage",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    }
+  ]
+}

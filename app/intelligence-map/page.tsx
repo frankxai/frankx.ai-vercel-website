@@ -675,7 +675,7 @@ export default function IntelligenceMapPage() {
               </h2>
               <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-slate-400">
                 This entire system is documented and replicable. The same 6-pillar AI Center of
-                Excellence framework used at Fortune 500 companies, translated for individual
+                Excellence framework used in enterprise environments, translated for individual
                 creators at a fraction of the cost.
               </p>
 

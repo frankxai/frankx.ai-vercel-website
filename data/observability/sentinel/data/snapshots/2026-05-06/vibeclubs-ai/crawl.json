@@ -1,0 +1,76 @@
+{
+  "fetchedAt": "2026-05-06T22:34:19.263Z",
+  "host": "vibeclubs.ai",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://vibeclubs.ai/",
+      "redirected": false,
+      "ttfbMs": 675,
+      "contentLength": 94080,
+      "title": "Vibeclubs — Host a vibeclub",
+      "description": "Claude Code + your crew + a soundtrack. Lock in for 90 minutes, ship the thing, recap lands on your profile. Open source. Works on Meet, Discord, Zoom, anywhere.",
+      "canonical": null,
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Vibeclubs — Host a vibeclub",
+        "description": "Claude Code + your crew + a soundtrack. Lock in, ship, recap lands on your profile. Open source.",
+        "image": "https://vibeclubs.ai/api/og",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/clubs",
+      "status": 404,
+      "finalUrl": "https://vibeclubs.ai/clubs",
+      "redirected": false,
+      "ttfbMs": 86,
+      "contentLength": 27861,
+      "title": "Vibeclubs — Host a vibeclub",
+      "description": "Claude Code + your crew + a soundtrack. Lock in for 90 minutes, ship the thing, recap lands on your profile. Open source. Works on Meet, Discord, Zoom, anywhere.",
+      "canonical": null,
+      "hreflang": [],
+      "hasJsonLd": false,
+      "jsonLdScriptCount": 0,
+      "jsonLdTypes": [],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Vibeclubs — Host a vibeclub",
+        "description": "Claude Code + your crew + a soundtrack. Lock in, ship, recap lands on your profile. Open source.",
+        "image": "https://vibeclubs.ai/api/og",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/sessions",
+      "status": 404,
+      "finalUrl": "https://vibeclubs.ai/sessions",
+      "redirected": false,
+      "ttfbMs": 154,
+      "contentLength": 27861,
+      "title": "Vibeclubs — Host a vibeclub",
+      "description": "Claude Code + your crew + a soundtrack. Lock in for 90 minutes, ship the thing, recap lands on your profile. Open source. Works on Meet, Discord, Zoom, anywhere.",
+      "canonical": null,
+      "hreflang": [],
+      "hasJsonLd": false,
+      "jsonLdScriptCount": 0,
+      "jsonLdTypes": [],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Vibeclubs — Host a vibeclub",
+        "description": "Claude Code + your crew + a soundtrack. Lock in, ship, recap lands on your profile. Open source.",
+        "image": "https://vibeclubs.ai/api/og",
+        "type": "website"
+      }
+    }
+  ]
+}

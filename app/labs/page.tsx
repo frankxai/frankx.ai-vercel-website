@@ -39,7 +39,7 @@ const labFormats = [
   },
   {
     icon: Brain,
-    title: 'Agent Deep Dives',
+    title: 'Agent Field Labs',
     description: 'Focused builds on Claude, Gemini, and multi-agent workflows with templates and live testing.',
     color: 'from-[#F59E0B] to-[#D97706]',
     borderColor: 'border-[#F59E0B]/30',
@@ -123,7 +123,7 @@ export default function LabsPage() {
             </h1>
 
             <p className="mb-12 text-xl leading-relaxed text-slate-400 text-balance md:text-2xl">
-              Live build sessions, ritual labs, and agent deep dives for AI builders who ship.
+              Live build sessions, ritual labs, and agent field labs for AI builders who ship.
             </p>
 
             <motion.div className="flex flex-wrap justify-center gap-4" variants={itemVariants}>

@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { notifyAdmin } from '@/lib/notify-admin';
+import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
+
+// Simple file-based feedback storage
+// In production, you'd use a database or analytics service
+const FEEDBACK_DIR = join(process.cwd(), 'data', 'feedback');
+const FEEDBACK_FILE = join(FEEDBACK_DIR, 'chapter-feedback.jsonl');
 
 interface FeedbackPayload {
   type: 'chapter_feedback' | 'chapter_comment';
@@ -14,6 +20,7 @@ export async function POST(request: NextRequest) {
   try {
     const body: FeedbackPayload = await request.json();
 
+    // Validate required fields
     if (!body.type || !body.chapter || !body.timestamp) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -21,40 +28,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Ensure feedback directory exists
+    if (!existsSync(FEEDBACK_DIR)) {
+      mkdirSync(FEEDBACK_DIR, { recursive: true });
+    }
+
+    // Append feedback as JSON line
     const feedbackEntry = {
       ...body,
       userAgent: request.headers.get('user-agent') || 'unknown',
       receivedAt: new Date().toISOString(),
     };
 
-    // Store in KV if available, log otherwise
-    try {
-      const { kv } = await import('@vercel/kv');
-      const key = `feedback:${Date.now()}:${body.chapter}`;
-      await kv.set(key, feedbackEntry);
-      await kv.lpush('feedback:list', JSON.stringify(feedbackEntry));
-    } catch {
-      // KV not configured — log only (still better than crashing)
-      console.log('[Feedback] KV unavailable, logged to console:', JSON.stringify(feedbackEntry));
-    }
+    appendFileSync(FEEDBACK_FILE, JSON.stringify(feedbackEntry) + '\n', 'utf-8');
 
+    // Log for analytics (could send to external service)
     console.log('[Feedback]', {
       type: body.type,
       chapter: body.chapter,
       feedback: body.feedback,
       hasComment: !!body.comment,
     });
-
-    // Notify admin (non-blocking)
-    notifyAdmin({
-      formType: 'feedback',
-      email: 'anonymous@frankx.ai',
-      details: {
-        Chapter: body.chapter,
-        'Feedback Type': body.feedback || body.type,
-        ...(body.comment ? { Comment: body.comment } : {}),
-      },
-    }).catch(console.error);
 
     return NextResponse.json({ success: true });
   } catch (error) {

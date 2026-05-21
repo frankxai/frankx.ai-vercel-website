@@ -1,289 +1,168 @@
 {
-  "version": "1.0",
-  "generatedAt": "2026-02-19T11:30:00Z",
-  "weeks": [
+  "version": "2.0",
+  "generatedAt": "2026-05-04T13:30:00Z",
+  "owner": "frankx",
+  "regenerationPolicy": "Update on every Sunday Palace Review (W{n}). Sprint plan in docs/planning/2026-W{n}-sprint.md is the canonical source — this JSON is the machine-readable shadow.",
+  "forcingFunctions": [
     {
-      "week": "2026-W08",
-      "label": "Feb 17-23 — Launch Week",
-      "theme": "Content Pipeline Activation",
-      "days": [
-        {
-          "date": "2026-02-19",
-          "platform": "x",
-          "pillar": "ai-architecture",
-          "source": "ai-engineering-without-hype-willison",
-          "type": "thread",
-          "status": "queued",
-          "note": "Already generated, in social-queue.json"
-        },
-        {
-          "date": "2026-02-19",
-          "platform": "linkedin",
-          "pillar": "ai-architecture",
-          "source": "ai-engineering-without-hype-willison",
-          "type": "post",
-          "status": "queued"
-        },
-        {
-          "date": "2026-02-20",
-          "platform": "x",
-          "pillar": "creator-tools",
-          "source": "build-your-own-jarvis-claude-code",
-          "type": "thread",
-          "status": "draft"
-        },
-        {
-          "date": "2026-02-20",
-          "platform": "linkedin",
-          "pillar": "creator-tools",
-          "source": "build-your-own-jarvis-claude-code",
-          "type": "post",
-          "status": "draft"
-        },
-        {
-          "date": "2026-02-21",
-          "platform": "x",
-          "pillar": "ai-business",
-          "source": "the-great-transition-build-your-own-business",
-          "type": "thread",
-          "status": "draft"
-        },
-        {
-          "date": "2026-02-21",
-          "platform": "linkedin",
-          "pillar": "ai-business",
-          "source": "the-great-transition-build-your-own-business",
-          "type": "post",
-          "status": "draft"
-        },
-        {
-          "date": "2026-02-22",
-          "platform": "newsletter",
-          "pillar": "all",
-          "source": "weekly-digest",
-          "type": "email",
-          "status": "planned",
-          "note": "Week's top 3 articles + 1 music drop"
-        },
-        {
-          "date": "2026-02-23",
-          "platform": "youtube",
-          "pillar": "ai-architecture",
-          "source": "VMj-3S1tku0",
-          "type": "short",
-          "status": "planned",
-          "note": "Opus Pro clip: 'What is a neural network in 60s'"
-        }
+      "id": "thursday-routine-2026-05-07",
+      "date": "2026-05-07T07:00:00Z",
+      "label": "Thu 09:00 Amsterdam — AoI second-wave routine",
+      "type": "scheduled-agent",
+      "ref": "trig_01BYn4ComPZTJ15KLyFho6qg",
+      "model": "claude-sonnet-4-6",
+      "decision": "ship-or-hold based on flagship audience signal",
+      "shipsIfPositive": [
+        "research/series/architecture-of-intelligence (series page)",
+        "blog/ai-agents-inner-family",
+        "blog/no-bad-parts-ai-debugging",
+        "blog/inner-hr-ai-agent",
+        "blog/predictive-mind-reality-models",
+        "blog/meaning-as-operating-system",
+        "blog/embodied-creator-os",
+        "blog/memory-as-exile-ai",
+        "blog/agent-family-architecture",
+        "guides/internal-family-systems-personal-development",
+        "guides/ifs-ai-agent-architecture",
+        "guides/inner-hr-ai",
+        "library/no-bad-parts (Schwartz)"
       ]
     },
     {
-      "week": "2026-W09",
-      "label": "Feb 24 - Mar 2 — Authority Week",
-      "theme": "Technical Depth + Credibility",
-      "days": [
-        {
-          "date": "2026-02-24",
-          "platform": "linkedin",
-          "pillar": "ai-architecture",
-          "source": "production-agent-patterns-7-pillars",
-          "type": "post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-02-25",
-          "platform": "x",
-          "pillar": "creator-tools",
-          "source": "claude-code-mastery-top-resources",
-          "type": "thread",
-          "status": "draft"
-        },
-        {
-          "date": "2026-02-25",
-          "platform": "linkedin",
-          "pillar": "creator-tools",
-          "source": "claude-code-mastery-top-resources",
-          "type": "post",
-          "status": "draft"
-        },
-        {
-          "date": "2026-02-26",
-          "platform": "linkedin",
-          "pillar": "ai-business",
-          "source": "intelligence-revolution-2025",
-          "type": "post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-02-27",
-          "platform": "x",
-          "pillar": "meta-content",
-          "source": "agentic-ai-roadmap-2026",
-          "type": "thread",
-          "status": "planned"
-        },
-        {
-          "date": "2026-02-28",
-          "platform": "all",
-          "pillar": "creative-systems",
-          "source": "suno-prompt-engineering-complete-guide",
-          "type": "thread+post",
-          "status": "draft"
-        },
-        {
-          "date": "2026-03-01",
-          "platform": "newsletter",
-          "pillar": "all",
-          "source": "weekly-digest",
-          "type": "email",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-02",
-          "platform": "youtube",
-          "pillar": "creative-systems",
-          "source": "n9iv24yI04nI",
-          "type": "short",
-          "status": "planned",
-          "note": "Opus Pro clip: Rick Rubin 'Remove ego from creation'"
-        }
-      ]
+      "id": "nldigital-workshop-2026-05-19",
+      "date": "2026-05-19",
+      "label": "NLDigital workshop",
+      "type": "live-event",
+      "tMinusFromToday": 15,
+      "owner": "frank",
+      "deliverables": ["briefs", "run-of-show", "demo", "follow-up content kit"]
     },
     {
-      "week": "2026-W10",
-      "label": "Mar 3-9 — Growth Week",
-      "theme": "Viral Potential + Community",
-      "days": [
-        {
-          "date": "2026-03-03",
-          "platform": "linkedin",
-          "pillar": "ai-architecture",
-          "source": "multi-agent-orchestration-patterns-2026",
-          "type": "post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-04",
-          "platform": "x",
-          "pillar": "creator-tools",
-          "source": "mcp-doctor-claude-code-server-optimization",
-          "type": "thread",
-          "status": "queued",
-          "note": "Already in social-queue.json"
-        },
-        {
-          "date": "2026-03-05",
-          "platform": "linkedin",
-          "pillar": "ai-business",
-          "source": "agi-2026-opportunities-students-creators",
-          "type": "post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-06",
-          "platform": "x",
-          "pillar": "meta-content",
-          "source": "misinformation-guardian-hackathon-build-log-2026",
-          "type": "thread",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-07",
-          "platform": "all",
-          "pillar": "creative-systems",
-          "source": "vibe-os-platform-introduction",
-          "type": "thread+post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-08",
-          "platform": "newsletter",
-          "pillar": "all",
-          "source": "weekly-digest",
-          "type": "email",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-09",
-          "platform": "youtube",
-          "pillar": "ai-architecture",
-          "source": "eTTMUWP5B0s",
-          "type": "short",
-          "status": "planned",
-          "note": "Opus Pro clip: 'The exploratory coding loop'"
-        }
-      ]
-    },
-    {
-      "week": "2026-W11",
-      "label": "Mar 10-16 — Conversion Week",
-      "theme": "Products + Value Ladder",
-      "days": [
-        {
-          "date": "2026-03-10",
-          "platform": "linkedin",
-          "pillar": "ai-architecture",
-          "source": "oracle-genai-agents-vs-langgraph-crewai-2026",
-          "type": "post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-11",
-          "platform": "x",
-          "pillar": "creator-tools",
-          "source": "acos-v10-autonomous-intelligence",
-          "type": "thread",
-          "status": "queued",
-          "note": "Already in social-queue.json"
-        },
-        {
-          "date": "2026-03-12",
-          "platform": "linkedin",
-          "pillar": "ai-business",
-          "source": "eu-inc-28th-regime-european-startups",
-          "type": "post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-13",
-          "platform": "x",
-          "pillar": "meta-content",
-          "source": "frankx-intelligence-ecosystem-complete-guide",
-          "type": "thread",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-14",
-          "platform": "all",
-          "pillar": "creative-systems",
-          "source": "music-as-consciousness-technology",
-          "type": "thread+post",
-          "status": "planned"
-        },
-        {
-          "date": "2026-03-15",
-          "platform": "newsletter",
-          "pillar": "all",
-          "source": "monthly-digest",
-          "type": "email",
-          "status": "planned",
-          "note": "Monthly recap: Feb stats + March preview"
-        },
-        {
-          "date": "2026-03-16",
-          "platform": "youtube",
-          "pillar": "creative-systems",
-          "source": "screen-recording",
-          "type": "short",
-          "status": "planned",
-          "note": "Build ACOS skill in 60s screen recording"
-        }
-      ]
+      "id": "madrid-workshop-2026-05-27",
+      "date": "2026-05-27",
+      "label": "Madrid workshop",
+      "type": "live-event",
+      "tMinusFromToday": 23,
+      "owner": "frank",
+      "deliverables": ["briefs", "run-of-show", "demo", "follow-up content kit"]
     }
   ],
-  "toolWorkflows": {
-    "infogenius": "/infogenius → style per pillar settings in content-strategy.json → save to public/images/social/",
-    "opusPro": "opus.pro → upload YouTube URL from video-library.json → select top clips → download → add watermark in Canva → upload to Shorts",
-    "canva": "Canva Pro templates → brand kit (navy bg, Inter font, brand colors) → export 1:1 for X, 16:9 for LinkedIn, 9:16 for Shorts",
-    "generateSocial": "/generate-social {slug} → auto-saves to social-queue.json → sends full review to Slack #content"
+  "weeks": [
+    {
+      "week": "2026-W19",
+      "label": "May 4-10 — Inhabit, don't extend",
+      "theme": "Foundation hygiene + NLDigital readiness + Cowork bridge experiment",
+      "tone": "calm execution, no new operating systems, no design redesigns",
+      "sprintDoc": "docs/planning/2026-W19-sprint.md",
+      "days": [
+        {
+          "date": "2026-05-04",
+          "weekday": "Mon",
+          "actions": [
+            { "type": "infra", "what": "arcanea.ai git init + first commit", "owner": "queen", "status": "done" },
+            { "type": "infra", "what": "Sibling repo nul-file cleanup (4 files)", "owner": "queen", "status": "done" },
+            { "type": "content-calendar", "what": "Refresh data/content-calendar.json", "owner": "queen", "status": "done" },
+            { "type": "infra", "what": "Sprint plan doc 2026-W19", "owner": "queen", "status": "done" },
+            { "type": "architecture", "what": "/os ↔ /acos/agents reconciliation", "owner": "queen", "status": "pending" },
+            { "type": "workshop-prep", "what": "NLDigital readiness check", "owner": "frank", "status": "pending" }
+          ]
+        },
+        {
+          "date": "2026-05-05",
+          "weekday": "Tue",
+          "actions": [
+            { "type": "git", "what": "Push FrankX 9+ commits to origin/main", "owner": "frank-ratifies", "status": "pending" },
+            { "type": "git", "what": "Arcanea feature/i18n-foundation merge decision", "owner": "frank-ratifies", "status": "pending" },
+            { "type": "social", "what": "Manual LinkedIn post #1 from 26-file backlog", "owner": "frank", "status": "pending", "candidates": ["acos-v10", "golden-age", "frankx-intelligence-ecosystem"] }
+          ]
+        },
+        {
+          "date": "2026-05-06",
+          "weekday": "Wed",
+          "actions": [
+            { "type": "workshop-prep", "what": "NLDigital final dress rehearsal", "owner": "frank", "status": "pending" },
+            { "type": "social", "what": "Manual LinkedIn post #2", "owner": "frank", "status": "pending" }
+          ]
+        },
+        {
+          "date": "2026-05-07",
+          "weekday": "Thu",
+          "actions": [
+            { "type": "autonomous", "what": "AoI second-wave routine fires 09:00 Amsterdam", "owner": "scheduled-agent", "ref": "trig_01BYn4ComPZTJ15KLyFho6qg", "status": "armed" },
+            { "type": "review", "what": "Ratify or roll back routine output", "owner": "frank", "status": "pending" }
+          ]
+        },
+        {
+          "date": "2026-05-08",
+          "weekday": "Fri",
+          "actions": [
+            { "type": "experiment", "what": "Cowork→repo bridge POC: export → .intake/cowork/ → /aco classify", "owner": "frank", "status": "pending" },
+            { "type": "social", "what": "Manual LinkedIn post #3 — Cowork bridge writeup", "owner": "frank", "status": "pending" }
+          ]
+        },
+        {
+          "date": "2026-05-09",
+          "weekday": "Sat",
+          "actions": [{ "type": "rest", "what": "Rest day or Chronicle walk", "owner": "frank", "status": "open" }]
+        },
+        {
+          "date": "2026-05-10",
+          "weekday": "Sun",
+          "actions": [
+            { "type": "ritual", "what": "/palace — W19 → W20 Sunday Palace Review", "owner": "frank", "status": "scheduled" },
+            { "type": "content-calendar", "what": "Regenerate this file for W20", "owner": "queen", "status": "scheduled" }
+          ]
+        }
+      ]
+    },
+    {
+      "week": "2026-W20",
+      "label": "May 11-17 — NLDigital prep crescendo",
+      "theme": "Workshop delivery readiness; held content on Madrid critical path",
+      "deferred": ["Build First funnel promotion (post-Madrid)", "Email newsletter cadence", "Social scheduler decision", "Watch OS shorts pipeline", "Agent harness instrumentation"]
+    },
+    {
+      "week": "2026-W21",
+      "label": "May 18-24 — NLDigital delivers",
+      "milestone": "2026-05-19 NLDigital workshop"
+    },
+    {
+      "week": "2026-W22",
+      "label": "May 25-31 — Madrid delivers",
+      "milestone": "2026-05-27 Madrid workshop"
+    }
+  ],
+  "deferredQueue": {
+    "rationale": "Sunday Palace Review 2026-05-03 explicitly defers these for ≥7 days. No guilt. Reopen post-Madrid week of 2026-06-02.",
+    "items": [
+      { "id": "build-first-funnel", "ref": "funnel/build-first-ai-agent-v1 branch", "decision": "post-Madrid" },
+      { "id": "frankx-crlf-renormalize", "files": 24, "ref": "git add --renormalize . on FrankX", "decision": "schedule when no parallel sessions active" },
+      { "id": "prod-stale-branches", "count": 11, "ref": "PROD-REPO-STATE-2026-05-04.md questions", "decision": "frank-decides" },
+      { "id": "arcanea-flow-1524-deletions", "decision": "commit OR force-freeze" },
+      { "id": "frankx-ship-gai-3.3GB", "decision": "frank-deletes-by-hand" },
+      { "id": "arcanea-realm-v3-favicons", "decision": "frank-confirms-intent" },
+      { "id": "arcanea-opencode-3188-divergence", "decision": "deliberate-session-needed" },
+      { "id": "oh-my-arcanea-1492-divergence", "decision": "deliberate-session-needed" },
+      { "id": "ops-deployed-dashboard", "ref": "/ops on frankx.ai", "decision": "spec-Friday-build-W23" },
+      { "id": "agent-harness-instrumentation", "ref": "registry sync, version pinning, canonical-CI", "decision": "Q3" }
+    ]
+  },
+  "readyToShipBacklog": {
+    "rationale": "Drafted, polished, and ready. Awaiting decision-not-do.",
+    "items": [
+      {
+        "id": "social-2026-launch-pack",
+        "path": "content/2-ready-to-publish/social/",
+        "count": 26,
+        "campaigns": ["acos-v10", "golden-age-book", "imagination", "love-poetry", "manifestation", "self-development", "spartan-mindset", "frankx-intelligence-ecosystem"],
+        "blocker": "no scheduler — manual posting only this sprint"
+      },
+      {
+        "id": "aoi-second-wave",
+        "path": "content/blog/ + content/guides/ + app/research/series/",
+        "count": 13,
+        "blocker": "scheduled routine 2026-05-07 09:00Z owns this"
+      }
+    ]
   }
 }

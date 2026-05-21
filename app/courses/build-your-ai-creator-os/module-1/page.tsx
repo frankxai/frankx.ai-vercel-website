@@ -264,7 +264,7 @@ export default function Module1Page() {
                       The Personal AI Center of Excellence
                     </h3>
                     <p className="text-sm text-white/50 leading-relaxed mb-4">
-                      Fortune 500 companies spend millions building AI Centers of Excellence --
+                      Large enterprises invest heavily in AI Centers of Excellence --
                       dedicated teams with strategy, governance, technology, and ethics frameworks.
                       The same 6-pillar architecture that powers enterprise AI adoption can be
                       applied to individual creators at roughly 1/5000th of the cost.

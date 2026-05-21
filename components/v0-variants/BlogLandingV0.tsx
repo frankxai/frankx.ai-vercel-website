@@ -48,7 +48,7 @@ const articles = [
     category: 'mcp-agents',
     date: '2026-02-05',
     readTime: '12 min',
-    preview: 'Deep dive into implementing MCP for creating robust, context-aware AI agents that scale. Learn patterns for state management, error handling, and multi-model orchestration.',
+    preview: 'Technical guide to implementing MCP for creating robust, context-aware AI agents that scale. Learn patterns for state management, error handling, and multi-model orchestration.',
     featured: true,
   },
   {

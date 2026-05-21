@@ -101,7 +101,7 @@ const STUDY_SCORES = [
   { title: 'The Planets', composer: 'Holst', why: 'Each movement explores a different orchestral palette — from the brutal "Mars" to the mystical "Neptune." Essential for understanding orchestral color.', difficulty: 2 },
   { title: 'Pictures at an Exhibition', composer: 'Mussorgsky/Ravel', why: 'Originally for solo piano, then orchestrated by Ravel. Comparing both versions teaches you what orchestration ADDS to music.', difficulty: 2 },
   { title: 'Symphony No. 9', composer: 'Beethoven', why: 'The first symphony to include voices. Shows how to build from chamber textures to massive choral+orchestral climaxes.', difficulty: 3 },
-  { title: 'The Rite of Spring', composer: 'Stravinsky', why: 'Revolutionary use of rhythm, dissonance, and extreme registers. Changed what the orchestra could express.', difficulty: 4 },
+  { title: 'The Rite of Spring', composer: 'Stravinsky', why: 'Radical use of rhythm, dissonance, and extreme registers. Changed what the orchestra could express.', difficulty: 4 },
   { title: 'Star Wars Suite', composer: 'John Williams', why: 'Modern orchestration at its finest. Shows how orchestral techniques translate directly to film scoring.', difficulty: 2 },
 ]
 

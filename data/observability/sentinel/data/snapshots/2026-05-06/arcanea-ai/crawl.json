@@ -1,0 +1,104 @@
+{
+  "fetchedAt": "2026-05-06T22:34:12.809Z",
+  "host": "arcanea.ai",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://www.arcanea.ai/",
+      "redirected": true,
+      "ttfbMs": 741,
+      "contentLength": 98896,
+      "title": "Arcanea™ — Creative Intelligence Platform",
+      "description": "A creative multiverse: chat with AI, build fantasy worlds, share what you make, and turn imagination into products. 190K+ words of creative philosophy. Free to start.",
+      "canonical": "https://arcanea.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "WebApplication",
+        "WebSite",
+        "Organization"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea — Creative Intelligence Platform",
+        "description": "Creative AI partners, a philosophy library, and creation studio in one platform.",
+        "image": "https://arcanea.ai/opengraph-image?f418b139b3751c53",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/manifesto",
+      "status": 404,
+      "finalUrl": "https://www.arcanea.ai/manifesto",
+      "redirected": true,
+      "ttfbMs": 151,
+      "contentLength": 68970,
+      "title": "Page Not Found | Arcanea",
+      "description": "This page does not exist. Find your way back to Arcanea.",
+      "canonical": "https://arcanea.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "WebApplication"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea — Creative Intelligence Platform",
+        "description": "Creative AI partners, a philosophy library, and creation studio in one platform.",
+        "image": "https://arcanea.ai/opengraph-image?f418b139b3751c53",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/realms",
+      "status": 404,
+      "finalUrl": "https://www.arcanea.ai/realms",
+      "redirected": true,
+      "ttfbMs": 265,
+      "contentLength": 68970,
+      "title": "Page Not Found | Arcanea",
+      "description": "This page does not exist. Find your way back to Arcanea.",
+      "canonical": "https://arcanea.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "WebApplication"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea — Creative Intelligence Platform",
+        "description": "Creative AI partners, a philosophy library, and creation studio in one platform.",
+        "image": "https://arcanea.ai/opengraph-image?f418b139b3751c53",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/seekers",
+      "status": 404,
+      "finalUrl": "https://www.arcanea.ai/seekers",
+      "redirected": true,
+      "ttfbMs": 250,
+      "contentLength": 68970,
+      "title": "Page Not Found | Arcanea",
+      "description": "This page does not exist. Find your way back to Arcanea.",
+      "canonical": "https://arcanea.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "WebApplication"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Arcanea — Creative Intelligence Platform",
+        "description": "Creative AI partners, a philosophy library, and creation studio in one platform.",
+        "image": "https://arcanea.ai/opengraph-image?f418b139b3751c53",
+        "type": "website"
+      }
+    }
+  ]
+}

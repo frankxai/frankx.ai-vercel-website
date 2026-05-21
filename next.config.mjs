@@ -8,13 +8,13 @@ const __dirname = dirname(__filename)
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   typescript: {
-    // TODO(audit-2026-05-07): Flip to false after clearing TS debt.
-    //   Discovered errors hidden by this flag (logged in PR #59 attempts):
-    //   - app/familie/interview-kit/page.tsx:433 (FIXED in this PR)
-    //   - app/frankx/page.tsx:493 — AuroraGradient.intensity union mismatch
-    //   - more cascade likely
-    //   Cleanup tracker: docs/ops/TS-DEBT-CLEANUP.md (private repo)
-    ignoreBuildErrors: true,
+    // Type-check on every Vercel build. `npm run merge:gate` enforces tsc locally
+    // and in CI; this guarantees the same gate fires at deploy time. Flipped to
+    // false on 2026-05-07 after the overnight excellence audit cleared the TS
+    // baseline (was silently shipping ~17 errors per AUDIT_STRATEGY.md).
+    // To temporarily bypass in an emergency: set ignoreBuildErrors: true and
+    // file an issue documenting the regression that justifies the bypass.
+    ignoreBuildErrors: false,
   },
   images: {
     // Enable modern image formats for better compression
@@ -51,28 +51,6 @@ const nextConfig = {
         destination: 'https://arcanea.ai/:path*',
         permanent: true,
       },
-      // Realm → Inner Circle rename
-      {
-        source: '/realm',
-        destination: '/inner-circle',
-        permanent: true,
-      },
-      // Family Hub → Familie (German-first)
-      {
-        source: '/family',
-        destination: '/familie',
-        permanent: true,
-      },
-      {
-        source: '/family/tree',
-        destination: '/familie/stammbaum',
-        permanent: true,
-      },
-      {
-        source: '/family/:path*',
-        destination: '/familie/:path*',
-        permanent: true,
-      },
       // Creator Lab signup → product page
       {
         source: '/creator-lab',
@@ -103,32 +81,6 @@ const nextConfig = {
       {
         source: '/research/visual-intelligence',
         destination: '/tools/visual-intelligence',
-        permanent: true,
-      },
-      {
-        source: '/research/personal-ai-coe',
-        destination: '/ai-coe',
-        permanent: true,
-      },
-      // Legacy hub aliases
-      {
-        source: '/enterprise',
-        destination: '/work-with-me',
-        permanent: true,
-      },
-      {
-        source: '/build',
-        destination: '/products',
-        permanent: true,
-      },
-      {
-        source: '/founders-circle',
-        destination: '/inner-circle',
-        permanent: true,
-      },
-      {
-        source: '/workshops/personal-ai-coe',
-        destination: '/ai-coe',
         permanent: true,
       },
       // Blog post legacy redirects
@@ -265,16 +217,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/ai-architect/ai-coe-hub',
-        destination: '/ai-coe',
-        permanent: true,
-      },
-      {
-        source: '/ai-architecture/ai-coe-hub',
-        destination: '/ai-coe',
-        permanent: true,
-      },
-      {
         source: '/ai-architect/:path*',
         destination: '/ai-architecture/:path*',
         permanent: true,
@@ -331,7 +273,16 @@ const nextConfig = {
       'public/videos/**',
     ],
   },
-    async headers() {
+  // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
+  // Listed here so Next.js requires them at runtime from node_modules instead.
+  serverExternalPackages: [
+    'resend',
+    '@react-email/render',
+    '@react-email/components',
+    'htmlparser2',
+    'entities',
+  ],
+  async headers() {
     return [
       {
         source: '/(.*)',

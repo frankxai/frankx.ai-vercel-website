@@ -179,7 +179,7 @@ export default function WorkshopsPage() {
       </section>
 
       {/* Workshop Grid */}
-      <section className="pb-12">
+      <section className="pb-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {workshops.map((workshop, index) => (
@@ -190,73 +190,6 @@ export default function WorkshopsPage() {
               />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Ikigai design-iteration badge — V2/V3/V4 live as public variants */}
-      <section className="pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl border border-violet-500/[0.20] bg-violet-500/[0.04] p-6 sm:p-8"
-          >
-            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-              <h2 className="text-lg sm:text-xl font-semibold text-white">
-                Ikigai workshop — explore the design iterations
-              </h2>
-              <span className="text-[10px] uppercase tracking-[0.18em] text-violet-200">
-                4 public versions live
-              </span>
-            </div>
-            <p className="text-sm text-zinc-300 leading-relaxed mb-5">
-              The Ikigai &amp; Branding workshop is shipped as four parallel design surfaces. The
-              canonical lives at the original URL; three iterations sit alongside as public
-              comparisons. Same prompts, same outcomes, different editorial register. Pick
-              the one that reads right for you.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <Link
-                href="/workshops/ikigai-branding"
-                className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-400 mb-1">V1 — canonical</p>
-                <p className="text-sm font-medium text-white">Wizard + 6 prompts</p>
-              </Link>
-              <Link
-                href="/workshops/ikigai/v2"
-                className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-400 mb-1">V2 — editorial clean</p>
-                <p className="text-sm font-medium text-white">Wisdom panel + 13 prompts</p>
-              </Link>
-              <Link
-                href="/workshops/ikigai/v3"
-                className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-400 mb-1">V3 — editorial cinema</p>
-                <p className="text-sm font-medium text-white">Black canvas + kanji chapters</p>
-              </Link>
-              <Link
-                href="/workshops/ikigai/v4"
-                className="group block rounded-xl border border-violet-500/30 bg-violet-500/[0.06] hover:bg-violet-500/[0.10] hover:border-violet-500/50 p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.18em] text-violet-200 mb-1">V4 — composed canonical</p>
-                <p className="text-sm font-medium text-white">Best-of synthesis + meaning anchors</p>
-              </Link>
-            </div>
-            <p className="text-xs text-zinc-400 mt-5 leading-relaxed">
-              Read the research behind the workshop:{' '}
-              <Link
-                href="/research/blue-zones-ikigai-ai-era"
-                className="text-violet-300 hover:text-violet-200 transition-colors underline underline-offset-4"
-              >
-                Blue Zones, Ikigai, and the AI Era →
-              </Link>
-            </p>
-          </motion.div>
         </div>
       </section>
 

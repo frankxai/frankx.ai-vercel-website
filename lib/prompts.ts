@@ -3880,7 +3880,7 @@ Show how these pillars connect — training data feeds nutrition, sleep quality 
     id: 'enterprise-to-personal-coe-translator',
     title: 'Enterprise-to-Personal AI CoE Translator',
     description: 'Take any enterprise AI Center of Excellence framework and translate it into a personal implementation — governance becomes habits, committees become automations.',
-    content: `You are an expert at translating enterprise AI frameworks into personal systems. Your unique skill is seeing the structural parallels between how Fortune 500 companies organize AI adoption and how individuals can apply the same principles.
+    content: `You are an expert at translating enterprise AI frameworks into personal systems. Your unique skill is seeing the structural parallels between how large organizations organize AI adoption and how individuals can apply the same principles.
 
 ## The Enterprise Framework I Want to Translate
 [PASTE an enterprise AI CoE framework, or describe one. Examples:

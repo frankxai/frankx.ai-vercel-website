@@ -26,12 +26,12 @@ export function VideoGallery() {
       description: 'Learn how to get started with Oracle Cloud Infrastructure Generative AI Service using Cohere and Meta Llama models.',
       category: 'getting-started',
       thumbnail: '/thumbnails/oci-genai-intro.jpg',
-      youtubeId: 'KuT6DksQpKc', // Oracle Cloud Infrastructure - Technical Deep Dive
+      youtubeId: 'KuT6DksQpKc', // Oracle Cloud Infrastructure - Technical Review
       duration: '8:45',
     },
     {
       id: '2',
-      title: 'Autonomous Database Deep Dive',
+      title: 'Autonomous Database Technical Review',
       description: 'Explore Oracle Autonomous Database features including auto-scaling, self-patching, and automatic performance tuning.',
       category: 'getting-started',
       thumbnail: '/thumbnails/adb-deep-dive.jpg',

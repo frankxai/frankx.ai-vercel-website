@@ -1,0 +1,9 @@
+{
+  "GoldenAge-Modernized/": { "llm": "OpenAI Assistant (Codex CLI)", "date": "2025-09-12" }
+  /*
+  Add entries like:
+  "Age of Intelligence - Articles, Notes and Books/": "Unknown (Human-authored)",
+  "Age of Intelligence - Articles, Notes and Books/Article_01_": { "llm": "Anthropic Claude", "date": "2025-09-02" }
+  */
+}
+

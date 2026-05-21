@@ -195,6 +195,6 @@ git check-ignore -v .frankx/private/partnerships/<slug>-brief.md
 
 - Don't paste named individuals into a public partner file.
 - Don't paste numeric pricing into a public partner file.
-- Don't add "X times faster" or "trusted by" or "Fortune 500" claims — they break `claims:audit:strict`.
+- Don't add unverifiable speed, trust, or enterprise-name claims -- they break `claims:audit:strict`.
 - Don't import affiliate components from `components/affiliates/` — that lives on the `/partners` transparency hub, not here.
 - Don't break the two-tier order by sliding proposal language into Tier 1.

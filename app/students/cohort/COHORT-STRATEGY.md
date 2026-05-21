@@ -205,7 +205,7 @@ This must be genuinely excellent. If students feel used for content, the cohort 
 
 | Value                           | Details                                                                                      |
 | ------------------------------- | -------------------------------------------------------------------------------------------- |
-| **Enterprise AI mentorship**    | Direct access to an AI Architect who builds systems for Fortune 500 companies                |
+| **Enterprise AI mentorship**    | Direct access to an AI Architect who builds production enterprise systems                    |
 | **A shipped project**           | Not a tutorial clone -- something they defined, built, and launched                          |
 | **Architecture feedback**       | Frank reviews their technical decisions with the same rigor he applies to enterprise clients |
 | **Portfolio upgrade**           | A project that stands out because it was mentored, not self-taught                           |
@@ -267,7 +267,7 @@ Each student must produce **at least ONE** of the following by Demo Day:
 - "I'm building [X] in 4 weeks with mentorship from an enterprise AI Architect. Here's Day 1."
 - "Week 2 of the AI Creator Accelerator. Here's what I've learned about [tool/pattern]."
 - "I just shipped my first AI product. Here's the 4-week journey."
-- "What I learned about AI architecture from someone who builds it for Fortune 500s."
+- "What I learned about AI architecture from someone who builds it in enterprise environments."
 
 **Content amplification strategy:**
 

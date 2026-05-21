@@ -3,7 +3,6 @@ import { verifyWebhookSignature, type LemonSqueezyWebhookEvent } from '@/lib/lem
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
 import { getClientOrDefault } from '@/lib/clients'
-import { notifyAdmin } from '@/lib/notify-admin'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -86,18 +85,6 @@ export async function POST(request: Request) {
       if (RESEND_API_KEY) {
         await addToResendAudience(user_email, user_name || 'Customer', ['product-updates'])
       }
-
-      // Notify admin (non-blocking)
-      notifyAdmin({
-        formType: 'purchase',
-        email: user_email,
-        name: user_name || undefined,
-        details: {
-          Product: productName,
-          Amount: event.data.attributes.total_formatted || 'N/A',
-          'Order ID': event.data.id,
-        },
-      }).catch(console.error)
 
       console.log('[Lemon Squeezy] Order fulfilled:', {
         orderId: event.data.id,

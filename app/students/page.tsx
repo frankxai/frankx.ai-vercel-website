@@ -795,7 +795,7 @@ export default function StudentsPage() {
                 {
                   icon: BookOpen,
                   title: 'Explore Guides',
-                  description: 'Deep dives on AI tools and techniques.',
+                  description: 'Field notes on AI tools and techniques.',
                   href: '/guides',
                   color: 'emerald',
                 },

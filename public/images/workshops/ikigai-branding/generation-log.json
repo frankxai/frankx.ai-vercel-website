@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-04-15T19:22:35.778Z",
+  "results": [
+    {
+      "model": "gemini-2.5-flash-image",
+      "tag": "nb1",
+      "slug": "ikigai-venn",
+      "status": "fulfilled",
+      "path": "C:\\Users\\frank\\frankx\\public\\images\\workshops\\ikigai-branding\\ikigai-venn.nb1.png",
+      "bytes": 822053
+    },
+    {
+      "model": "gemini-2.5-flash-image",
+      "tag": "nb1",
+      "slug": "purpose-to-brand-flow",
+      "status": "fulfilled",
+      "path": "C:\\Users\\frank\\frankx\\public\\images\\workshops\\ikigai-branding\\purpose-to-brand-flow.nb1.png",
+      "bytes": 709718
+    },
+    {
+      "model": "gemini-2.5-flash-image",
+      "tag": "nb1",
+      "slug": "three-cs-triad",
+      "status": "fulfilled",
+      "path": "C:\\Users\\frank\\frankx\\public\\images\\workshops\\ikigai-branding\\three-cs-triad.nb1.png",
+      "bytes": 720593
+    },
+    {
+      "model": "gemini-3-pro-image-preview",
+      "tag": "nb2",
+      "slug": "ikigai-venn",
+      "status": "fulfilled",
+      "path": "C:\\Users\\frank\\frankx\\public\\images\\workshops\\ikigai-branding\\ikigai-venn.nb2.jpg",
+      "bytes": 483202
+    },
+    {
+      "model": "gemini-3-pro-image-preview",
+      "tag": "nb2",
+      "slug": "purpose-to-brand-flow",
+      "status": "fulfilled",
+      "path": "C:\\Users\\frank\\frankx\\public\\images\\workshops\\ikigai-branding\\purpose-to-brand-flow.nb2.jpg",
+      "bytes": 487416
+    },
+    {
+      "model": "gemini-3-pro-image-preview",
+      "tag": "nb2",
+      "slug": "three-cs-triad",
+      "status": "fulfilled",
+      "path": "C:\\Users\\frank\\frankx\\public\\images\\workshops\\ikigai-branding\\three-cs-triad.nb2.jpg",
+      "bytes": 447281
+    }
+  ]
+}

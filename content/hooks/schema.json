@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HookLearnedPatterns",
+  "description": "Analytics-derived hook patterns that bias hook generation toward winners.",
+  "type": "object",
+  "required": ["version", "updated_at", "source", "patterns"],
+  "properties": {
+    "version": { "type": "integer" },
+    "updated_at": { "type": "string", "format": "date" },
+    "source": {
+      "type": "string",
+      "description": "Which producer wrote this snapshot.",
+      "enum": ["seed", "mcp-youtube-analytics", "mcp-tiktok-insights", "mcp-linkedin-analytics", "csv-manual"]
+    },
+    "note": { "type": "string" },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "pattern", "platform", "score", "sample_size"],
+        "properties": {
+          "id": { "type": "string", "description": "Stable slug — kebab-case, descriptive." },
+          "pattern": { "type": "string", "description": "The hook pattern itself — a sentence template or structural rule." },
+          "example": { "type": "string", "description": "A representative hook that matches the pattern." },
+          "platform": {
+            "type": "string",
+            "enum": ["youtube-short", "youtube-long", "tiktok", "instagram-reel", "linkedin", "x", "threads", "cross"]
+          },
+          "score": {
+            "type": "number",
+            "description": "0–1 confidence — higher = stronger outperformance vs baseline.",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "lift": {
+            "type": "object",
+            "description": "Performance delta vs baseline.",
+            "properties": {
+              "ctr": { "type": "number", "description": "Click-through rate lift, 0–1 relative." },
+              "watch_time_s": { "type": "number" },
+              "retention_pct": { "type": "number" }
+            }
+          },
+          "sample_size": { "type": "integer", "minimum": 1 },
+          "first_observed": { "type": "string", "format": "date" },
+          "last_observed": { "type": "string", "format": "date" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "do_not_use_if": {
+            "type": "array",
+            "description": "Anti-patterns — contexts where this hook underperformed.",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

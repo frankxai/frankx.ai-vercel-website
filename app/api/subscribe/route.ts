@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { musicPromptsEmail, newsletterWelcomeEmail } from '@/lib/email-templates'
+import { musicPromptsEmail } from '@/lib/email-templates'
+import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
-import { notifyAdmin } from '@/lib/notify-admin'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -61,7 +61,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
       recipientName: name || 'Creator',
     })
   } else {
-    template = newsletterWelcomeEmail({
+    template = welcomeEmail1({
       recipientName: name || 'Creator',
     })
   }
@@ -140,30 +140,11 @@ export async function POST(request: NextRequest) {
       console.error('Welcome email error:', err)
     )
 
-    // Enqueue for welcome sequence (Day 2 + Day 5 follow-ups)
-    // Dynamic import — KV may not be configured in all environments
-    import('@vercel/kv').then(({ kv }) =>
-      kv.set(`welcome:${email}`, {
-        email,
-        name: name || '',
-        subscribedAt: new Date().toISOString(),
-        step1SentAt: new Date().toISOString(),
-      })
-    ).catch((err) => console.error('Welcome queue error:', err))
-
-    // Notify admin (non-blocking)
-    notifyAdmin({
-      formType: 'newsletter',
-      email,
-      name,
-      details: { 'List Type': listType, ...(source ? { Source: source } : {}) },
-    }).catch(console.error)
-
     return NextResponse.json({
       success: true,
       message: listType === 'music-lab'
-        ? "You're on the music-lab waitlist. We'll let you know when prompts are ready."
-        : "You're on the waitlist. We'll be in touch when there's something honest to share.",
+        ? 'Check your email for your free prompts!'
+        : 'Successfully subscribed!',
       subscriber: data.id,
     })
   } catch (error) {

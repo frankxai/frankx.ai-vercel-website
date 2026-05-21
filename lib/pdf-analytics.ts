@@ -1,3 +1,6 @@
+// PDF Analytics & Lead Tracking System
+import { promises as fs } from 'fs'
+import path from 'path'
 import type {
   PDFView,
   PDFDownload,
@@ -7,99 +10,128 @@ import type {
   WeeklyStats
 } from './types/pdf-analytics'
 
-// Lazy KV import — fails gracefully if env vars not set
-async function getKV() {
-  const { kv } = await import('@vercel/kv')
-  return kv
+const DATA_DIR = path.join(process.cwd(), 'data')
+const VIEWS_FILE = path.join(DATA_DIR, 'pdf-views.json')
+const DOWNLOADS_FILE = path.join(DATA_DIR, 'pdf-downloads.json')
+const LEADS_FILE = path.join(DATA_DIR, 'pdf-leads.json')
+const EMAILS_FILE = path.join(DATA_DIR, 'pdf-emails.json')
+
+// Ensure data directory exists
+async function ensureDataDir() {
+  try {
+    await fs.access(DATA_DIR)
+  } catch {
+    await fs.mkdir(DATA_DIR, { recursive: true })
+  }
 }
 
+// Generate unique ID
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 }
 
-async function getList<T>(key: string): Promise<T[]> {
-  const kv = await getKV()
-  return await kv.get<T[]>(key) || []
+// Read JSON file with fallback
+async function readJsonFile<T>(filePath: string): Promise<T[]> {
+  try {
+    const content = await fs.readFile(filePath, 'utf-8')
+    return JSON.parse(content)
+  } catch {
+    return []
+  }
 }
 
-async function appendToList<T>(key: string, item: T): Promise<void> {
-  const kv = await getKV()
-  const existing = await getList<T>(key)
-  existing.push(item)
-  await kv.set(key, existing)
+// Write JSON file
+async function writeJsonFile<T>(filePath: string, data: T[]): Promise<void> {
+  await ensureDataDir()
+  await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8')
 }
 
+// Track PDF view
 export async function trackPDFView(data: Omit<PDFView, 'id' | 'timestamp'>): Promise<PDFView> {
+  const views = await readJsonFile<PDFView>(VIEWS_FILE)
   const view: PDFView = {
     id: generateId(),
     timestamp: new Date().toISOString(),
     ...data
   }
-  await appendToList('pdf_views', view)
+  views.push(view)
+  await writeJsonFile(VIEWS_FILE, views)
   return view
 }
 
+// Track PDF download
 export async function trackPDFDownload(data: Omit<PDFDownload, 'id' | 'timestamp'>): Promise<PDFDownload> {
+  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
   const download: PDFDownload = {
     id: generateId(),
     timestamp: new Date().toISOString(),
     ...data
   }
-  await appendToList('pdf_downloads', download)
+  downloads.push(download)
+  await writeJsonFile(DOWNLOADS_FILE, downloads)
   return download
 }
 
+// Create PDF lead
 export async function createPDFLead(data: Omit<PDFLead, 'id' | 'timestamp'>): Promise<PDFLead> {
+  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
   const lead: PDFLead = {
     id: generateId(),
     timestamp: new Date().toISOString(),
     ...data
   }
-  await appendToList('pdf_leads', lead)
+  leads.push(lead)
+  await writeJsonFile(LEADS_FILE, leads)
   return lead
 }
 
+// Track email request
 export async function trackEmailRequest(data: Omit<PDFEmailRequest, 'id' | 'timestamp'>): Promise<PDFEmailRequest> {
+  const emails = await readJsonFile<PDFEmailRequest>(EMAILS_FILE)
   const email: PDFEmailRequest = {
     id: generateId(),
     timestamp: new Date().toISOString(),
     ...data
   }
-  await appendToList('pdf_emails', email)
+  emails.push(email)
+  await writeJsonFile(EMAILS_FILE, emails)
   return email
 }
 
+// Update email request status
 export async function updateEmailStatus(
   id: string,
   status: PDFEmailRequest['status'],
   emailId?: string,
   error?: string
 ): Promise<void> {
-  const emails = await getList<PDFEmailRequest>('pdf_emails')
+  const emails = await readJsonFile<PDFEmailRequest>(EMAILS_FILE)
   const emailIndex = emails.findIndex(e => e.id === id)
   if (emailIndex !== -1) {
     emails[emailIndex].status = status
     if (emailId) emails[emailIndex].emailId = emailId
     if (error) emails[emailIndex].error = error
-    const kv = await getKV()
-    await kv.set('pdf_emails', emails)
+    await writeJsonFile(EMAILS_FILE, emails)
   }
 }
 
+// Get analytics summary
 export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsSummary> {
-  const views = await getList<PDFView>('pdf_views')
-  const downloads = await getList<PDFDownload>('pdf_downloads')
-  const leads = await getList<PDFLead>('pdf_leads')
-  const emails = await getList<PDFEmailRequest>('pdf_emails')
+  const views = await readJsonFile<PDFView>(VIEWS_FILE)
+  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
+  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
+  const emails = await readJsonFile<PDFEmailRequest>(EMAILS_FILE)
 
   const cutoffDate = new Date()
   cutoffDate.setDate(cutoffDate.getDate() - days)
 
+  // Filter by date range
   const recentViews = views.filter(v => new Date(v.timestamp) > cutoffDate)
   const recentDownloads = downloads.filter(d => new Date(d.timestamp) > cutoffDate)
   const recentLeads = leads.filter(l => new Date(l.timestamp) > cutoffDate)
   const recentEmails = emails.filter(e => new Date(e.timestamp) > cutoffDate)
 
+  // Calculate average completion and time
   const avgCompletion = recentViews.length > 0
     ? recentViews.reduce((sum, v) => sum + v.completionRate, 0) / recentViews.length
     : 0
@@ -107,6 +139,7 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
     ? recentViews.reduce((sum, v) => sum + v.timeSpent, 0) / recentViews.length
     : 0
 
+  // Calculate top guides
   const guideStats = new Map<string, {
     title: string
     views: number
@@ -147,6 +180,7 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
     .sort((a, b) => b.views - a.views)
     .slice(0, 10)
 
+  // Recent activity
   const recentActivity = [
     ...recentViews.map(v => ({
       type: 'view' as const,
@@ -170,6 +204,7 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
     .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
     .slice(0, 20)
 
+  // Group leads by interest and source
   const leadsByInterest: Record<string, number> = {}
   const leadsBySource: Record<string, number> = {}
 
@@ -196,13 +231,15 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
   }
 }
 
+// Get weekly stats for charting
 export async function getWeeklyStats(weeks: number = 12): Promise<WeeklyStats[]> {
-  const views = await getList<PDFView>('pdf_views')
-  const downloads = await getList<PDFDownload>('pdf_downloads')
-  const leads = await getList<PDFLead>('pdf_leads')
+  const views = await readJsonFile<PDFView>(VIEWS_FILE)
+  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
+  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
 
   const weekStats: Map<string, WeeklyStats> = new Map()
 
+  // Helper to get week start date
   const getWeekStart = (date: Date): string => {
     const d = new Date(date)
     const day = d.getDay()
@@ -211,6 +248,7 @@ export async function getWeeklyStats(weeks: number = 12): Promise<WeeklyStats[]>
     return d.toISOString().split('T')[0]
   }
 
+  // Initialize weeks
   for (let i = 0; i < weeks; i++) {
     const date = new Date()
     date.setDate(date.getDate() - (i * 7))
@@ -223,6 +261,7 @@ export async function getWeeklyStats(weeks: number = 12): Promise<WeeklyStats[]>
     })
   }
 
+  // Aggregate data
   views.forEach(v => {
     const weekStart = getWeekStart(new Date(v.timestamp))
     const stats = weekStats.get(weekStart)
@@ -244,17 +283,20 @@ export async function getWeeklyStats(weeks: number = 12): Promise<WeeklyStats[]>
   return Array.from(weekStats.values()).reverse()
 }
 
+// Get all leads
 export async function getAllLeads(): Promise<PDFLead[]> {
-  return getList<PDFLead>('pdf_leads')
+  return readJsonFile<PDFLead>(LEADS_FILE)
 }
 
+// Get leads by guide
 export async function getLeadsByGuide(guideSlug: string): Promise<PDFLead[]> {
-  const leads = await getList<PDFLead>('pdf_leads')
+  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
   return leads.filter(l => l.guideSlug === guideSlug)
 }
 
+// Get download count for a guide (last 7 days)
 export async function getRecentDownloadCount(guideSlug: string): Promise<number> {
-  const downloads = await getList<PDFDownload>('pdf_downloads')
+  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
   const cutoffDate = new Date()
   cutoffDate.setDate(cutoffDate.getDate() - 7)
 

@@ -297,7 +297,7 @@ export const booksRegistry: BookConfig[] = [
         title: 'The Personal Center of Excellence',
         number: 9,
         readingTime: '17 min',
-        description: 'Six pillars — Strategy, Governance, Talent, Technology, Data, Ethics — translated from Fortune 500 architecture to one human life at 1/5,000th the cost.',
+        description: 'Six pillars — Strategy, Governance, Talent, Technology, Data, Ethics — translated from enterprise AI architecture to one human life.',
         published: true,
         type: 'prose',
         epigraph: {

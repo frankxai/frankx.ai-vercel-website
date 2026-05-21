@@ -270,7 +270,7 @@ const recommendations: Record<Category, { title: string; description: string; hr
   ],
   skills: [
     { title: 'Prompt Engineering Mastery', description: 'From basic prompts to production-grade prompt systems', href: '/blog' },
-    { title: 'Agent Architecture Deep Dive', description: 'Design multi-agent systems that actually work', href: '/research' },
+    { title: 'Agent Architecture Review', description: 'Design multi-agent systems that actually work', href: '/research' },
     { title: 'AI Skills Development Path', description: 'A structured roadmap for building AI proficiency', href: '/coaching' },
   ],
   implementation: [

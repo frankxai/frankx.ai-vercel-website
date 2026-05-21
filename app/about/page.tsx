@@ -156,7 +156,7 @@ export default function AboutPage() {
               >
                 <div className="relative w-64 h-64 xl:w-72 xl:h-72">
                   <Image
-                    src="/images/portraits/frank-presenting-oracle-2025.jpg"
+                    src="/images/portraits/frankx-magical-forest.png"
                     alt="Frank Riemer"
                     fill
                     className="object-cover rounded-2xl"

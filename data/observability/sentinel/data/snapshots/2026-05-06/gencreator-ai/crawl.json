@@ -1,0 +1,108 @@
+{
+  "fetchedAt": "2026-05-06T22:34:15.327Z",
+  "host": "gencreator.ai",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://gencreator.ai/",
+      "redirected": false,
+      "ttfbMs": 669,
+      "contentLength": 96730,
+      "title": "GenCreator — The Operating System for AI-Native Creators",
+      "description": "Enterprise-grade AI, ported for creators. Build your own Personal AI Center of Excellence. Stop reacting to tools — start compounding your creative output.",
+      "canonical": "https://gencreator.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "GenCreator — The Operating System for AI-Native Creators",
+        "description": "Same 6-pillar CoE framework Fortune 500s pay $2M to design — ported for you at 1/5000th the cost.",
+        "image": "https://gencreator.ai/og",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/manifesto",
+      "status": 404,
+      "finalUrl": "https://gencreator.ai/manifesto",
+      "redirected": false,
+      "ttfbMs": 171,
+      "contentLength": 40134,
+      "title": "GenCreator — The Operating System for AI-Native Creators",
+      "description": "Enterprise-grade AI, ported for creators. Build your own Personal AI Center of Excellence. Stop reacting to tools — start compounding your creative output.",
+      "canonical": "https://gencreator.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "GenCreator — The Operating System for AI-Native Creators",
+        "description": "Same 6-pillar CoE framework Fortune 500s pay $2M to design — ported for you at 1/5000th the cost.",
+        "image": "https://gencreator.ai/og",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/playbook",
+      "status": 404,
+      "finalUrl": "https://gencreator.ai/playbook",
+      "redirected": false,
+      "ttfbMs": 114,
+      "contentLength": 40134,
+      "title": "GenCreator — The Operating System for AI-Native Creators",
+      "description": "Enterprise-grade AI, ported for creators. Build your own Personal AI Center of Excellence. Stop reacting to tools — start compounding your creative output.",
+      "canonical": "https://gencreator.ai",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "GenCreator — The Operating System for AI-Native Creators",
+        "description": "Same 6-pillar CoE framework Fortune 500s pay $2M to design — ported for you at 1/5000th the cost.",
+        "image": "https://gencreator.ai/og",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/start",
+      "status": 200,
+      "finalUrl": "https://gencreator.ai/start",
+      "redirected": false,
+      "ttfbMs": 294,
+      "contentLength": 58646,
+      "title": "Personal AI CoE Starter — Free · GenCreator",
+      "description": "The six-pillar architecture for Personal AI Centers of Excellence. Thirty pages. The audit template, ten starter prompts, a 30-day rollout. Free download.",
+      "canonical": "https://gencreator.ai/start",
+      "hreflang": [],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Personal AI CoE Starter — Free",
+        "description": "The six-pillar architecture, ported from enterprise CoEs to one person. Free PDF.",
+        "image": "https://gencreator.ai/og?t=Personal%20AI%20CoE%20Starter",
+        "type": null
+      }
+    }
+  ]
+}

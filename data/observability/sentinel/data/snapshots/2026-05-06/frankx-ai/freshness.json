@@ -1,0 +1,126 @@
+{
+  "fetchedAt": "2026-05-06T22:32:36.244Z",
+  "siteId": "frankx-ai",
+  "routes": [
+    {
+      "route": "/",
+      "file": "app//page.tsx",
+      "lastCommit": "2026-04-25T18:40:57+02:00",
+      "ageDays": 11,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/os",
+      "file": "app/os/page.tsx",
+      "lastCommit": "2026-05-03T17:12:54+02:00",
+      "ageDays": 3,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/library",
+      "file": "app/library/page.tsx",
+      "lastCommit": "2026-04-25T18:40:57+02:00",
+      "ageDays": 11,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/workshops",
+      "file": "app/workshops/page.tsx",
+      "lastCommit": "2026-03-21T00:21:34+01:00",
+      "ageDays": 46,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/research",
+      "file": "app/research/page.tsx",
+      "lastCommit": "2026-02-13T18:44:12+01:00",
+      "ageDays": 82,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "yellow"
+    },
+    {
+      "route": "/papa",
+      "file": "app/papa/page.tsx",
+      "lastCommit": "2026-05-05T11:28:57+02:00",
+      "ageDays": 1,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/design",
+      "file": "app/design/page.tsx",
+      "lastCommit": "2026-04-25T20:33:08+02:00",
+      "ageDays": 11,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/network",
+      "file": "app/network/page.tsx",
+      "lastCommit": "2026-04-28T14:36:11+02:00",
+      "ageDays": 8,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/start-here",
+      "file": "app/start-here/page.tsx",
+      "lastCommit": "2026-04-25T03:27:58+02:00",
+      "ageDays": 11,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    },
+    {
+      "route": "/build",
+      "file": "app/build/page.tsx",
+      "lastCommit": "2026-04-25T03:27:58+02:00",
+      "ageDays": 11,
+      "rule": {
+        "pattern": "/",
+        "maxAgeDays": 60,
+        "reason": "Default freshness"
+      },
+      "verdict": "green"
+    }
+  ]
+}

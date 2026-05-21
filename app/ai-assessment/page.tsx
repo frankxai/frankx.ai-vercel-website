@@ -74,7 +74,7 @@ const questions: AssessmentQuestion[] = [
       { value: 2, label: 'Moderate', description: 'Noticeable productivity improvements' },
       { value: 3, label: 'Significant', description: 'Measurable business outcomes' },
       { value: 4, label: 'Transformational', description: 'Major process changes' },
-      { value: 5, label: 'Revolutionary', description: 'Complete business model transformation' }
+      { value: 5, label: 'Transformative', description: 'Complete business model transformation' }
     ]
   },
   {

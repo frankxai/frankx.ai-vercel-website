@@ -172,12 +172,9 @@
 
 ### Animation Respect
 ```tsx
-// TODO: Add prefers-reduced-motion support
-@media (prefers-reduced-motion: reduce) {
-  .animate-pulse {
-    animation: none;
-  }
-}
+- [x] Add prefers-reduced-motion support
+  - Implemented using Framer Motion's `useReducedMotion` hook.
+  - Animations are simplified or disabled when reduction is requested.
 ```
 
 **ACTION ITEM**: Add `prefers-reduced-motion` media query support

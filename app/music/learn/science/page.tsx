@@ -109,7 +109,7 @@ const NEURO_STATES = [
 const PRACTICE_SCIENCE = [
   {
     title: 'Myelin & Muscle Memory',
-    desc: 'Deep practice wraps neural pathways in myelin — a fatty insulation that makes electrical signals travel up to 100x faster. Every correct repetition thickens the sheath. This is why slow, accurate practice physically rewires your brain faster than fast, sloppy repetition.',
+    desc: 'Deep practice supports myelination around neural pathways, improving timing and signal reliability. Every correct repetition reinforces the circuit. This is why slow, accurate practice rewires your brain more effectively than fast, sloppy repetition.',
     icon: '🔬',
   },
   {

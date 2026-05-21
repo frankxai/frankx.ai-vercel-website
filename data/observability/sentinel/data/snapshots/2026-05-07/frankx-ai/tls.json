@@ -1,0 +1,14 @@
+{
+  "fetchedAt": "2026-05-07T07:25:27.807Z",
+  "host": "frankx.ai",
+  "protocol": "TLSv1.3",
+  "issuer": "R13",
+  "subject": "frankx.ai",
+  "sans": [
+    "frankx.ai"
+  ],
+  "validFrom": "2026-05-06T09:19:43.000Z",
+  "validTo": "2026-08-04T09:19:42.000Z",
+  "daysUntilExpiry": 89,
+  "verdict": "green"
+}

@@ -403,7 +403,7 @@ export default function YouTubePage() {
                 Oracle AI Architect &middot; 12,000+ AI songs &middot; Building in public
               </p>
               <p className="mx-auto mb-8 max-w-lg text-slate-400">
-                Get weekly tutorials, production deep dives, and behind-the-scenes of building
+                Get weekly tutorials, production field notes, and behind-the-scenes of building
                 an AI-powered creator studio.
               </p>
               <div className="mb-8 flex justify-center">

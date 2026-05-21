@@ -126,7 +126,7 @@ export const brandLogos: BrandLogo[] = [
       anchor: 'case-stability-ai',
       title: 'Image variation workflows',
       summary: 'How we iterate visual systems across brand, product, and campaign assets.',
-      href: '/blog/enterprise-agent-roadmap',
+      href: '/blog/visual-intelligence-system-ai-image-management',
       cta: 'View the system',
     },
   },

@@ -6,14 +6,6 @@
  *   withViewTransition(() => router.push('/watch/shorts/' + id))
  */
 
-declare global {
-  interface Document {
-    startViewTransition?: (
-      callback: () => void | Promise<void>
-    ) => { finished: Promise<void> }
-  }
-}
-
 export function withViewTransition(callback: () => void | Promise<void>) {
   if (typeof document === 'undefined') {
     return callback()

@@ -440,7 +440,7 @@ export default function CreatorsPage() {
               className="text-center mb-12"
             >
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-pink-400/70 mb-2">
-                Deep Dives
+                Field Guides
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white">
                 Essential reading for AI creators

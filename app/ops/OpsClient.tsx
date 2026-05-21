@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import {
   Activity,
   AlertCircle,
+  CalendarDays,
   CheckCircle2,
   Clock,
   ExternalLink,
@@ -158,6 +159,27 @@ export function OpsClient({ prs, issues, deploys }: OpsClientProps) {
       </section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-8">
+        {/* Workshop calendar tile */}
+        <section>
+          <Link
+            href="/ops/calendar"
+            className="group flex items-center gap-4 rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/[0.06] to-transparent hover:from-cyan-500/[0.10] hover:border-cyan-500/30 p-5 transition-colors"
+          >
+            <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center">
+              <CalendarDays className="w-5 h-5 text-cyan-300" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-white">
+                Workshop Calendar
+              </p>
+              <p className="text-xs text-zinc-400 mt-0.5">
+                Travel windows, confirmed deliveries, open booking slots. Source: docs/workshops/CALENDAR.md
+              </p>
+            </div>
+            <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-cyan-300 transition-colors" />
+          </Link>
+        </section>
+
         {/* Production deploy status */}
         <section>
           <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">

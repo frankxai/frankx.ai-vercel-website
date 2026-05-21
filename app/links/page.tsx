@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Download, Music, Sparkles, BookOpen, Zap, BarChart3, Mail, ExternalLink, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { PRIMARY_SOCIAL_LINKS } from '@/lib/social-links'
@@ -44,6 +44,7 @@ export default function LinksPage() {
   const [email, setEmail] = useState('')
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const shouldReduceMotion = useReducedMotion()
 
   // Animation variants
   const containerVariants = {
@@ -51,17 +52,17 @@ export default function LinksPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: shouldReduceMotion ? 0 : 0.1
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
+      transition: { duration: shouldReduceMotion ? 0.05 : 0.5 }
     }
   }
 
@@ -162,8 +163,13 @@ export default function LinksPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Aurora background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-conscious-purple/20 rounded-full blur-[128px] animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-tech-cyan/20 rounded-full blur-[128px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div 
+          className={`absolute top-0 right-0 w-[600px] h-[600px] bg-conscious-purple/20 rounded-full blur-[128px] ${shouldReduceMotion ? '' : 'animate-pulse'}`} 
+        />
+        <div 
+          className={`absolute bottom-0 left-0 w-[600px] h-[600px] bg-tech-cyan/20 rounded-full blur-[128px] ${shouldReduceMotion ? '' : 'animate-pulse'}`} 
+          style={shouldReduceMotion ? {} : { animationDelay: '1s' }} 
+        />
       </div>
 
       {/* Main content */}
@@ -177,7 +183,7 @@ export default function LinksPage() {
         <motion.div variants={itemVariants} className="text-center mb-8">
           {/* Avatar with purple glow */}
           <div className="relative w-24 h-24 mx-auto mb-4">
-            <div className="absolute inset-0 bg-gradient-to-br from-conscious-purple to-tech-cyan rounded-full blur-xl opacity-60 animate-pulse" />
+            <div className={`absolute inset-0 bg-gradient-to-br from-conscious-purple to-tech-cyan rounded-full blur-xl opacity-60 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />
             <div className="relative w-full h-full rounded-full border-2 border-white/20 overflow-hidden bg-slate-800">
               {/* TODO: Add profile photo
                 * Path: /public/images/profile/frank-x-riemer.jpg (or .webp)
@@ -322,7 +328,7 @@ export default function LinksPage() {
                       <p className="text-xs text-slate-400">{link.subtitle}</p>
                     </div>
 
-                    <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-tech-cyan group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-tech-cyan transition-all" />
                   </div>
                 </Link>
               )

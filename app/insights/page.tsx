@@ -92,7 +92,7 @@ export default function InsightsPage() {
             </h1>
 
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Deep dives from CORTEX, CIPHER, and the analysis crew.
+              Field notes from CORTEX, CIPHER, and the analysis crew.
               Patterns, learnings, and strategic observations.
             </p>
           </motion.div>

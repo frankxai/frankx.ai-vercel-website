@@ -490,7 +490,7 @@ export default function FrankXPage() {
         <div className="max-w-3xl mx-auto">
           <AuroraGradient
             variant="default"
-            intensity="medium"
+            intensity="normal"
             className="rounded-3xl border border-blue-500/15 p-14 text-center relative overflow-hidden"
           >
             {/* Ghost character background */}

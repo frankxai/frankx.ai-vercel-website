@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://frankx.ai/os' },
 }
 
-const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart }
+const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart, Layers }
 
 const COLOR_TOKENS: Record<ModuleColor, { ring: string; text: string; bg: string; glow: string }> = {
   cyan: {
@@ -389,71 +389,6 @@ export default function OSPage() {
         </div>
       </section>
 
-      {/* Research Hub — the thinking under the modules */}
-      <section className="py-12 border-t border-white/[0.04]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-violet-500/[0.16] bg-violet-500/[0.03] p-6 sm:p-8">
-            <div className="flex items-start gap-4 mb-5">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/15">
-                <BookOpen className="h-5 w-5 text-violet-300" aria-hidden="true" />
-              </div>
-              <div className="flex-1">
-                <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h2 className="text-xl font-semibold text-zinc-50">Research Hub</h2>
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-violet-200">flagship articles</span>
-                </div>
-                <p className="text-sm text-zinc-400 leading-relaxed max-w-3xl mt-1">
-                  The deep editorial thinking under the modules. Where the prompts come from,
-                  why the architecture is built the way it is, what the longevity research
-                  actually says about meaning.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <Link
-                href="/research/blue-zones-ikigai-ai-era"
-                className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-violet-500/30 p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
-                  Meaning &middot; longevity &middot; AI era
-                </p>
-                <h3 className="text-base font-semibold text-zinc-50 mb-2">
-                  Blue Zones, Ikigai, and the AI Era
-                </h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">
-                  What 110-year-olds in Okinawa understand about meaning that AI is now
-                  forcing the rest of us to learn. 12-min read.
-                </p>
-              </Link>
-              <Link
-                href="/research/conscious-ai-operating-systems"
-                className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-violet-500/30 p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
-                  Sovereign AI &middot; architecture
-                </p>
-                <h3 className="text-base font-semibold text-zinc-50 mb-2">
-                  Conscious AI Operating Systems
-                </h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">
-                  The architectural answer to the meaning question. Sovereign AI as the
-                  instrument, not the replacement.
-                </p>
-              </Link>
-            </div>
-            <div className="mt-5">
-              <Link
-                href="/research"
-                className="inline-flex items-center gap-1.5 text-sm text-violet-300 hover:text-violet-200 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] px-1 py-0.5"
-              >
-                Browse the full Research Hub
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Connection matrix */}
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -529,7 +464,7 @@ export default function OSPage() {
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
             <Link
-              href="/ai-coe"
+              href="/ai-architect/ai-coe-hub"
               className="inline-flex items-center gap-1.5 hover:text-zinc-400 transition-colors"
             >
               AI CoE Hub

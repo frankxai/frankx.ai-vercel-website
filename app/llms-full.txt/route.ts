@@ -73,7 +73,7 @@ ${d.subtitle}
 
 This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
 
-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks for Fortune 500 companies at Oracle and translates the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) into free personal-scale tooling for creators.
+The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks in enterprise environments at Oracle and translates the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) into free personal-scale tooling for creators.
 
 ## Brand Voice & Editorial Stance
 - **North star:** Elite Creator. AI Architect. Humble Excellence.
@@ -85,8 +85,8 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
 - [About Frank](${SITE_URL}/about): Story, identity, work patterns
 - [Start Here](${SITE_URL}/start): Guided entry point for new visitors
-- [Build with Me](${SITE_URL}/products): 5-tier product ladder (€0 Primer / €7 Pack / €197 Toolkit / €497 Mastery / €997 Architect / €2,997 Founder's Circle)
-- [Founder's Circle](${SITE_URL}/inner-circle): Application-only quarterly cohort, 10 seats
+- [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer / €7 Pack / €197 Toolkit / €497 Mastery / €997 Architect / €2,997 Founder's Circle)
+- [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort, 10 seats
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production
 - [Inner Circle](${SITE_URL}/inner-circle): Membership community
 - [Newsletter](${SITE_URL}/newsletter): Weekly Creation Chronicles dispatch

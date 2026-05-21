@@ -1,0 +1,20 @@
+[
+  {
+    "id": "v_healthcare_intel",
+    "slug": "healthcare-intelligence",
+    "title": "Healthcare Intelligence Systems",
+    "description": "Research vault on AI/ML + data architecture for modern healthcare — foundations, regulatory landscape, architecture patterns, deployment, and the Oracle lens.",
+    "owner": "Frank Riemer",
+    "status": "v0.1",
+    "created": "2026-04-23",
+    "last_updated": "2026-04-23",
+    "path": "docs/vaults/_active/healthcare-intelligence/",
+    "chapter_count": 11,
+    "source_count": 82,
+    "tags": ["healthcare", "enterprise", "oracle", "ai-ml", "regulatory", "clinical"],
+    "cross_site_targets": [
+      { "site": "frankx.ai", "route": "/blueprints/healthcare-intelligence", "status": "planned" },
+      { "site": "starlightintelligence.org", "route": "/vaults/healthcare-intelligence", "status": "planned" }
+    ]
+  }
+]

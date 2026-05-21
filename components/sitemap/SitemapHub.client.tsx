@@ -186,7 +186,7 @@ export default function SitemapHub({ graph }: { graph: SitemapGraph }) {
           {view === '3d' && <ComingSoonView label="3D Swarm" detail="Three.js galaxy view — Phase 2." />}
           {view === 'sunburst' && (
             <Suspense fallback={<GraphLoadingState />}>
-              <SunburstView graph={filtered} />
+              <SunburstView graph={{ ...filtered, stats: graph.stats, categories: graph.categories }} />
             </Suspense>
           )}
         </main>

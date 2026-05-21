@@ -1,0 +1,43 @@
+{
+  "fetchedAt": "2026-05-06T22:34:19.268Z",
+  "host": "vibeclubs.ai",
+  "routes": [
+    {
+      "route": "/",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "SoftwareApplication",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/clubs",
+      "scriptCount": 0,
+      "blocks": [],
+      "allValid": true
+    },
+    {
+      "route": "/sessions",
+      "scriptCount": 0,
+      "blocks": [],
+      "allValid": true
+    }
+  ]
+}

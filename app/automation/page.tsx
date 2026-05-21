@@ -207,7 +207,7 @@ export default function AutomationPage() {
               href="/blog"
               className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-5 transition-all hover:border-cyan-500/30"
             >
-              <h3 className="font-semibold text-cyan-300">Technical Deep Dives</h3>
+              <h3 className="font-semibold text-cyan-300">Technical Field Guides</h3>
               <p className="mt-1 text-sm text-slate-400">
                 Tutorials on building your own automation systems.
               </p>

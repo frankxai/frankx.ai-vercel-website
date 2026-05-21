@@ -91,7 +91,7 @@ const tiers = [
 const coverageAreas = [
   {
     icon: Brain,
-    title: 'AI Systems Architecture',
+    title: 'AI Architecture',
     description: 'Agent orchestration, MCP integration, Claude Code workflows, and production-ready AI systems.',
     color: '#AB47C7'
   },
@@ -119,7 +119,7 @@ const processSteps = [
   {
     number: '01',
     title: 'Discovery',
-    description: 'Deep dive into your current systems, goals, and challenges to create a custom roadmap.',
+    description: 'Map your current systems, goals, and constraints to create a custom roadmap.',
     icon: Target
   },
   {

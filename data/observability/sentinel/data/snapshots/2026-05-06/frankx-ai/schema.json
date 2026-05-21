@@ -1,0 +1,214 @@
+{
+  "fetchedAt": "2026-05-06T22:34:07.109Z",
+  "host": "frankx.ai",
+  "routes": [
+    {
+      "route": "/",
+      "scriptCount": 5,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebSite",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "Person",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "FAQPage",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/os",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/library",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "BreadcrumbList",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "CollectionPage",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "ItemList",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/workshops",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "CollectionPage",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/research",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "WebPage",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/papa",
+      "scriptCount": 3,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "Person",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "BreadcrumbList",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/design",
+      "scriptCount": 2,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "BreadcrumbList",
+          "known": true,
+          "missing": []
+        },
+        {
+          "valid": true,
+          "type": "CreativeWork",
+          "known": false,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/network",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/start-here",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    },
+    {
+      "route": "/build",
+      "scriptCount": 1,
+      "blocks": [
+        {
+          "valid": true,
+          "type": "Organization",
+          "known": true,
+          "missing": []
+        }
+      ],
+      "allValid": true
+    }
+  ]
+}

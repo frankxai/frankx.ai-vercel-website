@@ -1,4 +1,9 @@
 {
   "artworks": [],
-  "heroFeature": null
+  "heroFeature": {
+    "src": "/images/placeholder.png",
+    "title": "Placeholder",
+    "score": 0,
+    "curatorNote": "Placeholder"
+  }
 }

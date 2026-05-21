@@ -377,7 +377,7 @@ export default function InfoGeniusPage() {
         <div className="max-w-3xl mx-auto">
           <AuroraGradient
             variant="purple"
-            intensity="medium"
+            intensity="normal"
             className="rounded-3xl border border-violet-500/20 p-12 text-center"
           >
             <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-violet-500/40 mx-auto mb-6">

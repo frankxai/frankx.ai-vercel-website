@@ -98,7 +98,12 @@ async function generateOne(concept) {
     contents: concept.prompt,
     config: {
       responseModalities: ['IMAGE', 'TEXT'],
-      imageConfig: { aspectRatio: concept.aspect },
+      imageConfig: {
+        aspectRatio: concept.aspect,
+        // NB Pro is 4K-capable. Ask for it explicitly — without this hint the
+        // model returns ~720p which looks soft on retina hero placements.
+        imageSize: '2K',
+      },
     },
   })
 
@@ -108,11 +113,17 @@ async function generateOne(concept) {
   for (const part of parts) {
     if (part.inlineData) {
       const buffer = Buffer.from(part.inlineData.data, 'base64')
-      const outPath = path.join(OUTPUT_DIR, `${concept.slug}.png`)
+      // Trust the MIME, not the slug. Past bug: we always wrote .png even when
+      // the model returned image/jpeg, producing files whose bytes lied about
+      // their format. Browsers content-sniff and rendered fine, but the
+      // source-of-truth was wrong and CDN headers were misleading.
+      const mime = part.inlineData.mimeType || 'image/png'
+      const ext = mime === 'image/jpeg' ? 'jpg' : mime === 'image/webp' ? 'webp' : 'png'
+      const outPath = path.join(OUTPUT_DIR, `${concept.slug}.${ext}`)
       fs.writeFileSync(outPath, buffer)
       const elapsed = ((Date.now() - start) / 1000).toFixed(1)
-      console.log(`  ✓ wrote ${outPath} (${(buffer.length / 1024).toFixed(0)} KB, ${elapsed}s)`)
-      return outPath
+      console.log(`  ✓ wrote ${outPath} (${mime}, ${(buffer.length / 1024).toFixed(0)} KB, ${elapsed}s)`)
+      return { path: outPath, mime, bytes: buffer.length }
     }
     if (part.text) {
       console.log(`  [model commentary] ${part.text.slice(0, 200)}...`)
@@ -130,7 +141,7 @@ async function main() {
   for (const concept of concepts) {
     try {
       const out = await generateOne(concept)
-      results.push({ slug: concept.slug, path: out, ok: true })
+      results.push({ slug: concept.slug, ...out, ok: true })
     } catch (e) {
       console.error(`  ✗ ${concept.slug} FAILED: ${e.message}`)
       results.push({ slug: concept.slug, ok: false, error: e.message })
@@ -139,8 +150,22 @@ async function main() {
 
   console.log(`\n--- Summary ---`)
   for (const r of results) {
-    console.log(r.ok ? `✓ ${r.slug}` : `✗ ${r.slug} — ${r.error}`)
+    if (!r.ok) {
+      console.log(`✗ ${r.slug} — ${r.error}`)
+      continue
+    }
+    console.log(`✓ ${r.slug} → ${path.basename(r.path)} (${r.mime}, ${(r.bytes / 1024).toFixed(0)} KB)`)
   }
+
+  // Quality gate: anything under 200KB or wrong MIME for hero usage warrants attention.
+  const warnings = results
+    .filter((r) => r.ok)
+    .filter((r) => r.bytes < 200 * 1024)
+  if (warnings.length) {
+    console.log(`\n⚠ Quality warnings (suspiciously small files — may be low-res):`)
+    for (const w of warnings) console.log(`  - ${w.slug}: ${(w.bytes / 1024).toFixed(0)} KB`)
+  }
+
   const failures = results.filter((r) => !r.ok).length
   process.exit(failures > 0 ? 1 : 0)
 }

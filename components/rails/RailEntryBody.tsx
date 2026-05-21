@@ -12,7 +12,6 @@ export function RailEntryBody({ html }: Props) {
   return (
     <div
       className="rails-prose"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

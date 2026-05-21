@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { notifyAdmin } from '@/lib/notify-admin'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -196,14 +195,6 @@ export async function POST(request: NextRequest) {
         html: confirmationHtml,
       }),
     }).catch((err) => console.error('Confirmation email error:', err))
-
-    // Notify admin via unified inbox (non-blocking)
-    notifyAdmin({
-      formType: 'cohort',
-      email: email.trim(),
-      name: name.trim(),
-      details: { Track: trackLabel, 'Project Idea': projectIdea.trim().slice(0, 200) },
-    }).catch(console.error)
 
     return NextResponse.json({
       success: true,

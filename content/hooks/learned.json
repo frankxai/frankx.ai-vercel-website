@@ -1,0 +1,8 @@
+{
+  "$schema": "./schema.json",
+  "version": 1,
+  "updated_at": "2026-04-23",
+  "source": "seed",
+  "note": "Populated by scripts/hooks/reduce-weekly.mjs. Accepts YouTube/TikTok/LinkedIn analytics via MCP or CSV import. Patterns here bias the /hook command toward proven winners.",
+  "patterns": []
+}

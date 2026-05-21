@@ -106,7 +106,7 @@ const TESTIMONIALS = [
     name: 'Marcus Kim',
     role: 'Solo Builder',
     quote:
-      'The Alliance tier paid for itself in the first month. Direct access to Frank and revenue share opportunities are game-changing.',
+      'The Alliance tier paid for itself in the first month. Direct access to Frank and revenue share opportunities changed our operating rhythm.',
     gradient: 'from-gold-500 to-emerald-500',
   },
   {

@@ -19,9 +19,6 @@ import {
   Network,
   Code2,
 } from 'lucide-react'
-import PhaseJourney from '@/components/sis/PhaseJourney'
-import LayerStack from '@/components/sis/LayerStack'
-import SIPBadge from '@/components/sis/SIPBadge'
 
 const REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
 // Direct zipball — GitHub auto-generates this for any tag, always works, downloads as a real .zip.
@@ -289,7 +286,7 @@ export default function StarlightIntelligenceSystemPage() {
 
           {/* Visual journey overview */}
           <div className="mb-10 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-4 sm:p-6 overflow-x-auto">
-            <PhaseJourney className="min-w-[640px] w-full h-auto" />
+            {/* PhaseJourney removed */}
           </div>
 
           <ol className="space-y-4">
@@ -478,22 +475,10 @@ export default function StarlightIntelligenceSystemPage() {
             You don&apos;t need all nine to start. You need one — Genius — working. The rest compounds when the time is right.
           </p>
 
-          {/* Atmospheric anchor — the substrate as architecture */}
-          <div className="mb-10 relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/5">
-            <Image
-              src="/images/priority-2026-04-25/04-sis-substrate-hero.jpg"
-              alt="Looking down at nine translucent stacked planes of dark glass, each plane edge-lit with cyan light. The planes are slightly offset so all nine layers are visible, each carrying subtle engraved text at the edge. The topmost plane catches a single warm gold accent. A museum display of an intelligence system's strata."
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1024px"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/40 via-transparent to-transparent pointer-events-none" />
-          </div>
-
           {/* Visual layer stack */}
           <div className="mb-8 grid lg:grid-cols-[1fr_auto] gap-8 items-start">
             <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-4 sm:p-6">
-              <LayerStack className="w-full h-auto max-w-[720px] mx-auto" />
+              {/* LayerStack removed */}
             </div>
             <div className="lg:sticky lg:top-24 max-w-sm">
               <div className="text-[11px] uppercase tracking-wider text-emerald-300 font-semibold mb-3">
@@ -698,7 +683,7 @@ export default function StarlightIntelligenceSystemPage() {
 
           {/* Attestation footer with badge */}
           <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-center gap-6 flex-wrap">
-            <SIPBadge size={72} className="shrink-0" />
+            {/* SIPBadge removed */}
             <div className="text-[11px] text-slate-500 font-mono leading-relaxed text-left">
               <div className="text-emerald-300">Built on SIP — Starlight Intelligence Protocol</div>
               <div>Substrate: starlightintelligence.org/protocol v1.1.0</div>

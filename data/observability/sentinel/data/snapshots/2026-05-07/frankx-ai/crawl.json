@@ -1,0 +1,357 @@
+{
+  "fetchedAt": "2026-05-07T07:25:27.296Z",
+  "host": "frankx.ai",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/",
+      "redirected": true,
+      "ttfbMs": 3758,
+      "contentLength": 175466,
+      "title": "FrankX — AI Architect &amp; Creator",
+      "description": "AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.",
+      "canonical": "https://frankx.ai",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 5,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite",
+        "Person",
+        "Organization",
+        "FAQPage"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "FrankX — AI Architect &amp; Creator",
+        "description": "AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.",
+        "image": "https://frankx.ai/hero-homepage.png",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/os",
+      "status": 404,
+      "finalUrl": "https://www.frankx.ai/os",
+      "redirected": true,
+      "ttfbMs": 162,
+      "contentLength": 55205,
+      "title": "FrankX Intelligence Hub",
+      "description": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+      "canonical": "https://frankx.ai",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "FrankX Intelligence Hub",
+        "description": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+        "image": "https://frankx.ai/hero-homepage.png",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/library",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/library",
+      "redirected": true,
+      "ttfbMs": 302,
+      "contentLength": 301393,
+      "title": "Library | Book Reviews &amp; Key Insights | FrankX | FrankX",
+      "description": "Curated book reviews with key insights from the best books on self-development, mindset, creativity, wealth, and the architecture of reality. Read the ideas that shaped our own books.",
+      "canonical": "https://frankx.ai/library",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "The Library | FrankX",
+        "description": "Key insights from the books that matter most.",
+        "image": null,
+        "type": "website"
+      }
+    },
+    {
+      "route": "/workshops",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/workshops",
+      "redirected": true,
+      "ttfbMs": 179,
+      "contentLength": 73445,
+      "title": "AI Workshops | FrankX | FrankX",
+      "description": "Pre-built AI workshop templates for university professors, corporate trainers, and bootcamp instructors. Structured agendas, instructor notes, and resource packs included.",
+      "canonical": "https://frankx.ai/workshops",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "Organization",
+        "CollectionPage"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "AI Workshops | FrankX",
+        "description": "Pre-built AI workshop templates for university professors, corporate trainers, and bootcamp instructors. Structured agendas, instructor notes, and resource packs included.",
+        "image": "https://frankx.ai/hero-homepage.png",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/research",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/research",
+      "redirected": true,
+      "ttfbMs": 365,
+      "contentLength": 151181,
+      "title": "Research Intelligence Hub | FrankX.AI | FrankX",
+      "description": "Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 135+ cross-referenced findings, 31 active research domains, 249+ verified sources.",
+      "canonical": "https://frankx.ai/research",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "Organization",
+        "WebPage"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Research Intelligence Hub | FrankX.AI",
+        "description": "Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology.",
+        "image": "https://frankx.ai/images/brand/og-template.png",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/papa",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/papa",
+      "redirected": true,
+      "ttfbMs": 190,
+      "contentLength": 76664,
+      "title": "Papa — Witali Riemer (1969–2018) | FrankX",
+      "description": "Ein Sohn-Archiv für Witali Riemer. Wolgadeutsche Wurzeln, Pavlovka bis Seesen, und das Erbe, das er weitergegeben hat — auf Deutsch, Englisch, und Russisch.",
+      "canonical": "https://frankx.ai/papa",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "de",
+          "href": "https://frankx.ai/papa"
+        },
+        {
+          "lang": "en",
+          "href": "https://frankx.ai/papa/en"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 3,
+      "jsonLdTypes": [
+        "Organization",
+        "Person",
+        "BreadcrumbList"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "Papa — Witali Riemer (1969–2018)",
+        "description": "Ein Sohn-Archiv für Witali Riemer und das Erbe, das er weitergegeben hat.",
+        "image": null,
+        "type": "profile"
+      }
+    },
+    {
+      "route": "/design",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/design",
+      "redirected": true,
+      "ttfbMs": 448,
+      "contentLength": 147806,
+      "title": "The FrankX Design System | Tokens · Taste · Source | FrankX",
+      "description": "A dual-spectrum dark-first design system. Tokens machine-readable per Google Labs DESIGN.md spec; taste captured in a companion taste.md. Open source, version-controlled, recursive proof.",
+      "canonical": "https://frankx.ai/design",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 2,
+      "jsonLdTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "CreativeWork"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "The FrankX Design System",
+        "description": "Tokens, taste, and source — open and version-controlled. Built on Google Labs DESIGN.md.",
+        "image": null,
+        "type": "article"
+      }
+    },
+    {
+      "route": "/network",
+      "status": 200,
+      "finalUrl": "https://www.frankx.ai/network",
+      "redirected": true,
+      "ttfbMs": 155,
+      "contentLength": 545744,
+      "title": "Network — Every Page, Every Image · FrankX | FrankX",
+      "description": "Every page, every image, every system on FrankX — connected. Browse 268 routes and 463 images as a list, graph, or 3D swarm.",
+      "canonical": "https://frankx.ai/network",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "FrankX Network — Sitemap as a Graph",
+        "description": "Browse every page and image on frankx.ai as an interactive network graph.",
+        "image": null,
+        "type": "website"
+      }
+    },
+    {
+      "route": "/start-here",
+      "status": 404,
+      "finalUrl": "https://www.frankx.ai/start-here",
+      "redirected": true,
+      "ttfbMs": 153,
+      "contentLength": 55205,
+      "title": "FrankX Intelligence Hub",
+      "description": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+      "canonical": "https://frankx.ai",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "FrankX Intelligence Hub",
+        "description": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+        "image": "https://frankx.ai/hero-homepage.png",
+        "type": "website"
+      }
+    },
+    {
+      "route": "/build",
+      "status": 404,
+      "finalUrl": "https://www.frankx.ai/build",
+      "redirected": true,
+      "ttfbMs": 164,
+      "contentLength": 55205,
+      "title": "FrankX Intelligence Hub",
+      "description": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+      "canonical": "https://frankx.ai",
+      "hreflang": [
+        {
+          "lang": "en",
+          "href": "https://frankx.ai"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://frankx.ai"
+        }
+      ],
+      "hasJsonLd": true,
+      "jsonLdScriptCount": 1,
+      "jsonLdTypes": [
+        "Organization"
+      ],
+      "jsonLdValid": true,
+      "og": {
+        "title": "FrankX Intelligence Hub",
+        "description": "AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.",
+        "image": "https://frankx.ai/hero-homepage.png",
+        "type": "website"
+      }
+    }
+  ]
+}

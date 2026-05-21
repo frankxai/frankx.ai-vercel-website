@@ -1,0 +1,242 @@
+{
+  "fetchedAt": "2026-05-07T07:25:27.801Z",
+  "host": "frankx.ai",
+  "url": "https://frankx.ai/robots.txt",
+  "length": 230,
+  "groupCount": 1,
+  "sitemapDeclarations": [
+    "https://frankx.ai/sitemap.xml"
+  ],
+  "aiBots": {
+    "GPTBot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "ChatGPT-User": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "OAI-SearchBot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "ClaudeBot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "Claude-Web": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "anthropic-ai": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "PerplexityBot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "Perplexity-User": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "Google-Extended": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "CCBot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "cohere-ai": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "Applebot-Extended": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "Bytespider": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "Diffbot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "FacebookBot": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    },
+    "meta-externalagent": {
+      "state": "partial",
+      "disallows": [
+        "/api/",
+        "/admin/",
+        "/auth/",
+        "/dashboard/",
+        "/(preview)/",
+        "/prototype/",
+        "/onboarding/",
+        "/command-center/"
+      ],
+      "via": "wildcard"
+    }
+  },
+  "summary": {
+    "blocked": 0,
+    "partial": 16,
+    "allowed": 0,
+    "noRule": 0
+  }
+}

@@ -152,7 +152,7 @@ const intelligenceGates = [
     colors: ['#FFFFFF', '#C0C0C0', '#FFD700'],
     image: '/images/ai-world/source-gate-meta.png',
     research: [
-      'Claude Code Deep Dive',
+      'Claude Code Field Guide',
       'MCP Ecosystem Analysis',
       'Anthropic Claude 2026',
     ],

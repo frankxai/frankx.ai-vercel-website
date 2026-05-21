@@ -1,0 +1,159 @@
+---
+title: "Inner HR — Building an AI System for Inner and Outer Team Alignment"
+description: "The leadership layer most agentic stacks skip. A guide to building (or using today) an Inner HR agent that helps people lead their internal team before leading the external one."
+date: "2026-05-03"
+author: "Frank"
+category: "AI Architecture"
+tags: ["IFS", "Inner HR", "Leadership", "AI Agents", "Self-Leadership"]
+image: "/images/guides/inner-hr-ai-hero.jpg"
+---
+
+# Inner HR — Building an AI System for Inner and Outer Team Alignment
+
+_The leadership layer most agentic stacks skip._
+
+The leadership stack is reorganizing under AI pressure. Calendar, email, meeting notes, performance management — all getting agentic layers. Most of those layers manage tasks. Almost none manage the leader's internal state, which is the source of every consequential decision they make.
+
+That gap is **Inner HR**.
+
+This guide covers (1) how to use the Inner HR pattern today with any capable LLM, and (2) how to build the dedicated product when ready. For the why, read [Inner HR: The AI Agent for Your Internal Team](/blog/inner-hr-ai-agent). For the architectural foundation, see [No Bad Parts: Sovereign AI](/blog/no-bad-parts-sovereign-ai).
+
+## 1. Core promise
+
+Inner HR helps people lead their inner system so they can lead outer teams with clarity.
+
+Most leadership failures are not strategy failures. They are part-capture failures — moments when an internal protector wins the system without the leader noticing it leading. A founder's anxious part becomes the company culture. A manager's shame part becomes micromanagement. The leader projects unresolved parts into the organization, then mistakes the projection for the situation.
+
+Inner HR is the surface where the projection gets named before it walks into the meeting.
+
+## 2. Use cases
+
+The product fits a small number of high-value use cases. Resist the urge to add more.
+
+| Use case | What the leader uses it for |
+|---|---|
+| **Pre-conversation prep** | Before a hard 1:1, board meeting, or negotiation, surface which part is about to lead. |
+| **Decision hygiene** | Before a hire, fire, raise, ship, kill — which part wants this? Is the urgency real? |
+| **Conflict reflection** | Map a recent or upcoming conflict in protector-to-protector terms instead of personality terms. |
+| **Burnout prevention** | Detect manager overfunctioning + firefighter compensation loops before they break things. |
+| **Post-incident debrief** | Convert a moment that went wrong into governance instead of more burden. |
+| **Weekly synthesis** | What parts have been loud this month? What signals have been exiled? |
+
+What it does not do:
+
+- Therapy. Trauma work belongs with a trained practitioner.
+- Personality typing. Inner HR works on present-moment role recognition, not labeling people.
+- Team management. The first product is single-leader. Team rollups come only after the single-leader case proves out.
+
+## 3. The signature prompt — use today
+
+This prompt works directly with Claude, GPT, Gemini, or any capable LLM. Save it as a snippet, run it whenever a leadership reflection is needed.
+
+```text
+Act as my Inner HR reflection partner.
+
+Help me map the internal parts active around this situation:
+[describe the situation in 3-5 sentences]
+
+Identify:
+1. The manager parts trying to control the outcome
+2. The protector parts trying to keep me safe
+3. The firefighter parts seeking relief
+4. The exiled fear or need underneath
+5. The Self-led leadership position
+6. The clean next action
+
+Use plain language. No diagnosis. No labeling me as a person — just naming
+which parts are loud right now. Be specific to the situation, not generic.
+End with one action I can take in the next 24 hours.
+```
+
+Three usage notes:
+
+- Be honest in the situation description. Vague input produces generic output.
+- Read the part-naming with curiosity, not as fact. The agent's mapping is a draft. You correct it.
+- Take the one action. Reflection without action becomes another manager pattern.
+
+## 4. The product to build
+
+When the daily-prompt usage gets sticky, build the dedicated surface. Recommended MVP scope:
+
+### Surface
+- Single-prompt reflection interface. Web + mobile. No social features.
+- Three modes: pre-conversation prep, decision hygiene, post-incident debrief.
+- Optional: weekly synthesis.
+
+### Memory
+- User's stated values
+- Recurring themes (parts that show up often)
+- Decision log (linked to outcomes when known)
+- Repair events (commitments made, kept, broken)
+- Suppressed signals (the exile layer — what the system has been steered away from)
+
+### Privacy
+- Private by default. End-to-end encryption recommended.
+- No training on user data without explicit consent.
+- The product only works if the leader trusts it. Treat trust as the load-bearing feature.
+
+### Integrations (later, only if needed)
+- Calendar (so prep mode auto-suggests before tagged meetings)
+- Notes (so debrief mode pulls in context from a meeting)
+- Slack / email (read-only, for surfacing patterns)
+
+### What not to build (yet)
+- Team rollups. Different product, much more sensitive privacy surface.
+- Manager dashboards. See above.
+- Organizational alignment maps. Different again.
+- Mood tracking. Reductive and gamifies the wrong thing.
+- Voice cloning of the leader. Not the use case.
+
+## 5. The architecture
+
+Build on top of the [Self-Led AI Architecture](/research/self-led-ai-architecture) pattern. Inner HR is itself a Self-led agent:
+
+```text
+User Input (situation description)
+↓
+Part Activation Detection
+  └── Which roles are likely active here?
+↓
+Reflection Generation
+  ├── Manager parts named
+  ├── Protector parts named
+  ├── Firefighter parts named
+  ├── Exiled feelings or needs surfaced
+  └── Self-led position drafted
+↓
+Integrity Check (Orchestrator)
+  ├── No diagnosis of the user as a person
+  ├── No medical or therapeutic claims
+  ├── Specific to the situation, not generic
+  └── Ends with one concrete action
+↓
+Output
+↓
+Memory Update
+  ├── Theme tracking (which parts recur)
+  ├── Decision log (link to outcome if known)
+  └── Exile layer (signals the user steered away from)
+```
+
+The orchestrator's main job here is the integrity check. The reflection-generation layer wants to be helpful — sometimes too helpful, drifting into diagnosis or generic life advice. The orchestrator's discipline is what keeps the product an inner governance interface instead of a wellness chatbot.
+
+## 6. Why this matters strategically
+
+Most consumer AI assistants compete on capabilities. Inner HR competes on a different axis: **trust under pressure**. The leader is bringing the system the parts of their decision-making they would not bring to their team, their board, or their partner. The product earns its right to exist by being a place where that surfaces honestly and produces cleaner action.
+
+The total addressable market is small (founders, executives, senior leaders, high-stakes decision-makers) and the product surface is narrow. Both are features, not bugs. The pattern scales horizontally later — coaches, therapists, team formats — once the single-leader case is proven.
+
+Build the smallest version that earns trust. Resist the urge to add more.
+
+---
+
+## Continue
+
+- **Architecture:** [No Bad Parts: Sovereign AI](/blog/no-bad-parts-sovereign-ai)
+- **Implementation pattern:** [IFS as an AI Architecture Pattern](/guides/ifs-ai-agent-architecture)
+- **Product framing:** [Inner HR: The AI Agent for Your Internal Team](/blog/inner-hr-ai-agent)
+- **Daily practice:** [Internal Family Systems for Personal Development](/guides/internal-family-systems-personal-development)
+- **Research:** [Self-Led AI Architecture](/research/self-led-ai-architecture)

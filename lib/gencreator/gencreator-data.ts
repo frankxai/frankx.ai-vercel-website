@@ -120,7 +120,7 @@ export const principles: Principle[] = [
     description:
       'The GenCreator goes deep in one vertical — AI architecture, music production, content systems — while maintaining working knowledge of adjacent domains. T-shaped expertise creates unique combinations. The intersection of deep and broad is where original work lives.',
     example:
-      'Frank\'s depth: AI systems architecture. Frank\'s breadth: music production, content strategy, product design, SEO. The intersection: ACOS, a system that no pure architect or pure creator would build.',
+      'Frank\'s depth: AI architecture. Frank\'s breadth: music production, content strategy, product design, SEO. The intersection: ACOS, a system that no pure architect or pure creator would build.',
     icon: Target,
   },
   {

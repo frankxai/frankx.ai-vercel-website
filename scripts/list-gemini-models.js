@@ -1,23 +1,19 @@
-const { GoogleGenAI } = require("@google/genai");
+#!/usr/bin/env node
+/**
+ * Debug helper — lists Gemini image-gen models available to the configured key.
+ * Uses the central library so it picks up keys the same way every other script does.
+ *
+ * Usage: node scripts/list-gemini-models.js
+ *
+ * SECURITY NOTE: A previous version of this file had a hardcoded API key in
+ * source. That key has been removed. If it was ever pushed to a public repo,
+ * rotate it in Google AI Studio.
+ */
 
-const API_KEY = "AIzaSyClPlfKNsasEZ56dTSr-7zwJimthqus-UI";
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+import { listImageModels } from './lib/nb-image.mjs';
 
-async function listModels() {
-  try {
-    const models = await ai.models.list();
-    console.log("Available models:\n");
-    for await (const model of models) {
-      if (model.name.includes("imagen") || model.name.includes("image") || model.supportedActions?.includes("generateImages")) {
-        console.log(`Name: ${model.name}`);
-        console.log(`Display: ${model.displayName || "N/A"}`);
-        console.log(`Actions: ${JSON.stringify(model.supportedActions || [])}`);
-        console.log("---");
-      }
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
+const models = await listImageModels();
+console.log('Image-capable models available to current key:\n');
+for (const m of models) {
+  console.log(`  ${m.name.padEnd(40)} → ${m.display}`);
 }
-
-listModels();

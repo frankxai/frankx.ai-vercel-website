@@ -183,7 +183,7 @@ export default function OpaUndOmaPage() {
 
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/familie/stammbaum"
+              href="/family/tree"
               className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 transition-all hover:bg-white/10 hover:text-white"
             >
               <TreePine className="h-4 w-4" />
@@ -386,21 +386,14 @@ export default function OpaUndOmaPage() {
           </p>
           <div className="mt-4 flex items-center justify-center gap-4">
             <Link
-              href="/papa"
+              href="/family"
               className="text-xs text-white/20 transition-colors hover:text-white/40"
             >
-              Papa
+              Family Hub
             </Link>
             <span className="text-white/10">&middot;</span>
             <Link
-              href="/familie"
-              className="text-xs text-white/20 transition-colors hover:text-white/40"
-            >
-              Familie Hub
-            </Link>
-            <span className="text-white/10">&middot;</span>
-            <Link
-              href="/familie/stammbaum"
+              href="/family/tree"
               className="text-xs text-white/20 transition-colors hover:text-white/40"
             >
               Stammbaum

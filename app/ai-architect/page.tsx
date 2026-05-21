@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'AI architecture',
     'enterprise AI',
     'cloud architecture',
-    'ai systems architect',
+    'ai architect',
     'multi-cloud AI',
     'RAG patterns',
     'LLMOps',

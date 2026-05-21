@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { bookReviews } from '@/data/book-reviews';
 
 const SITE_URL = 'https://frankx.ai';
@@ -323,19 +322,6 @@ export default function LibraryApproachPage() {
             >
               See it live →
             </Link>
-          </div>
-
-          {/* Hero image — Da Vinci notebook manifesto */}
-          <div className="mt-14 relative aspect-[16/9] rounded-2xl overflow-hidden border border-amber-500/15 shadow-2xl shadow-amber-500/5">
-            <Image
-              src="/images/priority-2026-04-25/05-library-approach-manifesto.jpg"
-              alt="An open Leonardo da Vinci notebook on a wooden desk in warm directional light. The visible spread shows hand-drawn brown-ink architectural sketches: bookshelves rendered as columns supporting a small cathedral-like structure of ideas. Marginalia in period ink, with a single thin cyan-ink element bridging the era. The notebook IS the argument."
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/50 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Stats strip */}
@@ -795,6 +781,15 @@ export default function LibraryApproachPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors"
               >
                 Browse the live library
+              </Link>
+              <Link
+                href="/library/build"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-200 text-sm font-semibold hover:bg-emerald-500/25 transition-colors"
+              >
+                See paid tiers &amp; done-for-you
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </Link>
             </div>
             <p className="mt-10 text-[12px] text-white/30">

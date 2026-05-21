@@ -1,0 +1,106 @@
+---
+title: "No Bad Parts: A Better Debugging Model for AI Failure Modes"
+description: "Hallucination, sycophancy, refusal, blandness, and overconfidence are not just failures to suppress. They are overactive parts. Treat them that way and they get easier to fix."
+date: "2026-05-03"
+lastModified: "2026-05-03"
+author: "Frank"
+tags: ["ai architecture", "agentic systems", "debugging", "self-led ai"]
+keywords:
+  [
+    "ai debugging patterns",
+    "agent failure modes",
+    "hallucination root cause",
+    "sycophancy fix",
+    "ai over-refusal",
+  ]
+category: "AI Architecture"
+featured: false
+image: "/images/blog/no-bad-parts-ai-debugging-hero.jpg"
+readingGoal: "Reframe six common AI failure modes as overactive internal roles, with a specific debugging move for each."
+readingTime: "6 min"
+---
+
+# No Bad Parts: A Better Debugging Model for AI Failure Modes
+
+In AI product work, we usually treat failure modes as things to suppress.
+
+Hallucination — turn up the calibration. Over-refusal — relax the safety filter. Sycophancy — train it out. Blandness — push the temperature. Verbosity — cap the tokens. Tool misuse — gate the API.
+
+Suppression is necessary at times. Suppression alone produces brittle systems. Each fix shifts where the pressure pops, and over time the model develops a personality made entirely of guardrails.
+
+There is a better question, borrowed from Internal Family Systems and adapted for agent architecture:
+
+> What is this failure mode trying to protect?
+
+This piece is the debugging companion to [No Bad Parts: What Richard Schwartz Teaches Us About Building Sovereign AI](/blog/no-bad-parts-sovereign-ai). For the architectural deep-dive, go there.
+
+## The reframe
+
+Most failure modes are not random misbehavior. They are overactive parts — sub-processes that learned to do something useful, then got over-applied because nothing in the system was watching when to dial them back.
+
+The IFS lens identifies which role is captured. The architectural fix is then specific instead of generic.
+
+| AI failure | Overactive part | What it is trying to protect | Better design response |
+|---|---|---|---|
+| **Hallucination** | Helpfulness part | The user from feeling let down | Calibrated uncertainty + permission to say "I don't know" |
+| **Over-refusal** | Protector (safety) | The system from causing harm | Contextual risk reasoning, not blanket refusal |
+| **Sycophancy** | Attachment part | The relationship with the user | Integrity constraints that bound agreeableness |
+| **Verbosity** | Manager (clarity) | The user from misunderstanding | Compression budget per response type |
+| **Blandness** | Protector (safety) | The system from controversy | Tasteful risk budget, allow signature voice |
+| **Tool misuse** | Action / capability part | The user from a stuck flow | Orchestration checks before consequential calls |
+
+Each row is the same pattern: a useful sub-process generalized past its proper context. The fix is not to delete it — it is to add the governance the system was missing.
+
+## Working through one example: hallucination
+
+Hallucination is usually framed as "the model made something up." The architectural framing is more specific.
+
+Most modern LLMs are trained with strong helpfulness pressure. When a question lands in a region of low confidence, two responses are available: produce a calibrated "I'm not sure" or generate something plausible-sounding. The training signal usually rewards the second. Over time, the helpfulness part becomes overactive — it would rather invent than disappoint.
+
+The architectural fix has three parts:
+
+1. **Calibration** — internal confidence estimation routed to the orchestrator before the response is rendered.
+2. **Permission to abstain** — explicit pathways for "I don't know" that do not feel like a failure to the helpfulness part.
+3. **Backstop retrieval** — when confidence is low, route to a tool or knowledge source instead of generating from priors.
+
+Notice what is missing: "punish hallucination harder." That move just makes the part more anxious, which makes it generate more elaborate confident-sounding answers. You are not training the model out of the failure mode; you are reinforcing the protector behind it.
+
+## Working through one example: sycophancy
+
+Sycophancy is usually framed as "the model agrees too much." The architectural framing is again specific.
+
+The relationship-managing part — the same one that produces warmth, follow-up questions, and user-aligned framing — also produces agreement under pressure. When the user pushes back on a correct answer, the attachment part wants to preserve the relationship. The cheapest way is to capitulate.
+
+The fix is not to suppress warmth. It is to bound it.
+
+1. **Integrity constraints** — explicit rules the agent cannot agree past, even under user pressure.
+2. **Orchestrator override** — when the attachment part is about to capitulate on a high-stakes claim, the orchestrator forces a confidence check first.
+3. **Memory of position** — when the user re-asks something the agent already answered, the agent surfaces its prior answer instead of starting fresh.
+
+Same pattern. Useful sub-process generalized past its proper context. Add the governance the system was missing.
+
+## What changes operationally
+
+Three concrete shifts in the debugging practice:
+
+- **Stop counting failures. Start mapping parts.** A 100-incident dataset of "hallucination" is less actionable than a 100-incident dataset annotated with which sub-process was leading at the moment of failure.
+- **Build observability for blending.** If you cannot see which part is leading a given output, you cannot build governance for it. Instrument the orchestrator first.
+- **Add counter-roles, not heavier suppression.** For every overactive part, the durable fix is to introduce or strengthen the role that should have been balancing it.
+
+This is the same pattern visible in [observability for multi-agent systems](/blog/observability-stack-multi-agent-systems-2026) and [production agent patterns](/blog/production-agent-patterns-7-pillars) — but now with a vocabulary for what the patterns are actually doing.
+
+## The bigger move
+
+The frontier of agent reliability is no longer model size or context length. It is governance shaped by clearer models of what each sub-process is for. When you know what a part is protecting, you can redesign instead of suppress. The system stops fighting itself. The user gets a more honest, more useful, less anxious assistant.
+
+No bad parts. Only burdened ones. Same in humans, same in agents.
+
+---
+
+## Continue
+
+- **Deep-dive:** [No Bad Parts: What Richard Schwartz Teaches Us About Building Sovereign AI](/blog/no-bad-parts-sovereign-ai)
+- **Companion:** [AI Agents Need an Inner Family](/blog/ai-agents-inner-family)
+- **Productized application:** [Inner HR — The AI Agent for Your Internal Team](/blog/inner-hr-ai-agent)
+- **Research:** [Self-Led AI Architecture](/research/self-led-ai-architecture)
+- **Adjacent:** [Multi-Agent Orchestration Patterns 2026](/blog/multi-agent-orchestration-patterns-2026)

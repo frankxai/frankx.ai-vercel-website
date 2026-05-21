@@ -1,0 +1,50 @@
+{
+  "_comment": "Maps local CRM field names to Notion property names. Edit the 'notion' values to match whatever column names Frank has in each Notion database. The 'local' values are the actual JSON field names in data/crm/*.json — do not change those.",
+  "_ext_id_property": "FrankX ID",
+  "people": {
+    "id":           { "notion": "FrankX ID",   "type": "rich_text" },
+    "name":         { "notion": "Name",         "type": "title" },
+    "email":        { "notion": "Email",        "type": "email" },
+    "role":         { "notion": "Role",         "type": "rich_text" },
+    "linkedin":     { "notion": "LinkedIn",     "type": "url" },
+    "twitter_handle": { "notion": "Twitter",   "type": "rich_text" },
+    "tags":         { "notion": "Tags",         "type": "multi_select" },
+    "org_ids":      { "notion": "Org IDs",      "type": "rich_text" },
+    "status":       { "notion": "Status",       "type": "select" },
+    "created_at":   { "notion": "Created",      "type": "date" }
+  },
+  "orgs": {
+    "id":           { "notion": "FrankX ID",   "type": "rich_text" },
+    "name":         { "notion": "Name",         "type": "title" },
+    "domain":       { "notion": "Domain",       "type": "url" },
+    "linkedin":     { "notion": "LinkedIn",     "type": "url" },
+    "category":     { "notion": "Category",     "type": "select" },
+    "city":         { "notion": "City",         "type": "rich_text" },
+    "country":      { "notion": "Country",      "type": "rich_text" },
+    "notes":        { "notion": "Notes",        "type": "rich_text" },
+    "created_at":   { "notion": "Created",      "type": "date" }
+  },
+  "workshops": {
+    "id":           { "notion": "FrankX ID",   "type": "rich_text" },
+    "title":        { "notion": "Title",        "type": "title" },
+    "date":         { "notion": "Date",         "type": "date" },
+    "status":       { "notion": "Status",       "type": "select" },
+    "format":       { "notion": "Format",       "type": "select" },
+    "host_org_id":  { "notion": "Host Org ID",  "type": "rich_text" },
+    "city":         { "notion": "City",         "type": "rich_text" },
+    "country":      { "notion": "Country",      "type": "rich_text" },
+    "mode":         { "notion": "Mode",         "type": "select" },
+    "duration":     { "notion": "Duration",     "type": "rich_text" },
+    "fee":          { "notion": "Fee",          "type": "rich_text" },
+    "facilitator":  { "notion": "Facilitator",  "type": "rich_text" },
+    "created_at":   { "notion": "Created",      "type": "date" }
+  },
+  "engagements": {
+    "id":           { "notion": "FrankX ID",    "type": "rich_text" },
+    "person_id":    { "notion": "Person ID",    "type": "rich_text" },
+    "workshop_id":  { "notion": "Workshop ID",  "type": "rich_text" },
+    "type":         { "notion": "Type",         "type": "select" },
+    "date":         { "notion": "Date",         "type": "date" },
+    "created_at":   { "notion": "Created",      "type": "date" }
+  }
+}

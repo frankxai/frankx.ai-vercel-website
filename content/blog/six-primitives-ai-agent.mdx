@@ -1,0 +1,276 @@
+---
+title: "The six primitives of an AI agent"
+description: "Every AI agent is made of six primitives — model, tool, memory, loop, spec, and deploy. Learn them once and every new framework becomes a 30-minute exercise, not a month-long investment."
+date: "2026-04-24"
+author: "Frank"
+category: "AI Architecture"
+tags:
+  - AI Agents
+  - Vercel AI SDK
+  - Agent Card
+  - A2A Protocol
+  - Open Agent Specification
+keywords:
+  - ai agent architecture
+  - what is an ai agent
+  - agent primitives
+  - agent card
+  - vercel ai sdk
+  - how to build ai agent 2026
+image: '/images/blog/six-primitives-ai-agent-hero.png'
+readingGoal: "Read once, bookmark as a reference. Use the six primitives to triage any new agent framework you run into this year."
+featured: true
+---
+
+# A framework that survives every framework
+
+I've built agents on Vercel AI SDK, Claude Agent SDK, OpenAI Agents SDK, Google ADK, Oracle ADK, n8n, Notion AI, Dify, LangGraph, and three internal enterprise stacks at Oracle. The frameworks look different. They are not different.
+
+Every production agent I've shipped is made of six primitives:
+
+1. A **model** that reasons.
+2. A **tool** that acts.
+3. A **memory** that persists.
+4. A **loop** that orchestrates.
+5. A **spec** that describes.
+6. A **deploy** target that exposes.
+
+Learn these six, and the next framework you pick up is a 30-minute exercise — not a month-long investment. The syntax changes; the primitives don't. That's the whole argument of this post, and it's the curriculum spine of the [Build Your First AI Agent workshop](/workshops/build-first-ai-agent).
+
+<Callout type="tip">
+**The workshop version.** If you want to ship all six primitives in a working agent with a public URL by the end of the afternoon, the workshop is the fastest path. This post is the written reference you can come back to afterwards.
+</Callout>
+
+## Primitive 1: The model
+
+The model is the reasoning substrate. Claude Sonnet 4.6, GPT-5, Gemini 2.5 Pro, an open-weight Llama, a local Ollama — they are all candidates. What matters for your agent is **how well the model follows tool-use protocols** and **how cleanly it produces structured output**.
+
+The naive view: "a model is where the AI lives." The architectural view: **a model is a pluggable component behind an interface.** In the [Vercel AI SDK starter repo](https://github.com/frankxai/first-agent-vercel-aisdk), that interface is five lines:
+
+```ts
+import { anthropic } from '@ai-sdk/anthropic'
+import { openai } from '@ai-sdk/openai'
+import { google } from '@ai-sdk/google'
+
+export function getModel() {
+  const name = process.env.AGENT_PROVIDER ?? 'anthropic'
+  if (name === 'anthropic') return anthropic('claude-sonnet-4-6')
+  if (name === 'openai') return openai('gpt-5')
+  return google('gemini-2.5-pro')
+}
+```
+
+That's the whole model primitive. One function. Swap providers with an env var. The rest of the agent doesn't know, doesn't care, doesn't need to.
+
+**The test:** can you replace your model with a different provider in under 60 seconds without touching any other part of the agent? If yes, your model primitive is clean. If no, you have a leaky abstraction and your next framework migration will hurt.
+
+## Primitive 2: The tool
+
+A tool is a typed function the agent can call. That's it. The tool has:
+
+- A **name** (`web_search`, `calculate`, `fetch_user_profile`)
+- A **description** the model reads to decide when to call
+- A **parameter schema** (typically zod in TS, Pydantic in Python)
+- An **execute function** that runs when called
+
+Here's a tool in Vercel AI SDK:
+
+```ts
+import { tool } from 'ai'
+import { z } from 'zod'
+
+export const webSearch = tool({
+  description: 'Search the web for up-to-date information.',
+  parameters: z.object({
+    query: z.string().min(3),
+    maxResults: z.number().int().min(1).max(5).default(3),
+  }),
+  execute: async ({ query, maxResults }) => {
+    const results = await searchApi(query, maxResults)
+    return { results }
+  },
+})
+```
+
+Same tool in Claude Agent SDK, OpenAI Agents, or Google ADK has different ceremony but the same four parts. The **parameter schema is the contract** — if you define your tools with zod or JSON Schema, you can port them across frameworks with a 5-line adapter.
+
+**The test:** can you describe your tool in four fields — name, description, params, execute — without referencing the framework that hosts it? If yes, clean. If no, your tool has bled into the loop primitive and you'll have trouble reusing it.
+
+## Primitive 3: Memory
+
+"Memory" is three different things wearing the same word.
+
+- **Session memory.** Messages within a single conversation. Lives in-process or in Vercel KV / Redis for the workshop.
+- **Long-term memory.** Facts the agent should remember across sessions. Lives in a vector DB or a typed key-value store.
+- **Working memory.** State the agent accumulates mid-task. Lives inside a single `runAgent` invocation.
+
+Beginners conflate them and end up with a chat history so long every token is burned on remembering what the user had for breakfast. Production agents have clear boundaries: session memory for context, long-term memory for facts the user has explicitly asked to persist, working memory for mid-task state.
+
+In the workshop starter:
+
+```ts
+// Session memory — in-process Map, swap for Vercel KV in production
+const conversations = new Map<string, CoreMessage[]>()
+
+export function getHistory(sessionId: string): CoreMessage[] {
+  return conversations.get(sessionId) ?? []
+}
+```
+
+That's session memory, done. Working memory is the stack inside `runAgent`. Long-term memory doesn't exist in the starter because a 90-minute workshop agent doesn't need it — but when you add it, it gets its own primitive with its own interface. Don't overload session memory with long-term facts.
+
+**The test:** can you pin down, for any given piece of state, which of the three memory types it lives in? If yes, your memory primitive is architected. If no, you have a bug waiting to happen.
+
+## Primitive 4: The loop
+
+The loop is the orchestrator. Its job is one sentence: **keep the model and the tools talking until the agent has an answer or gives up.**
+
+In the crudest form, a loop is a `while` that runs until the model stops calling tools:
+
+```ts
+let messages = [{ role: 'user', content: question }]
+while (true) {
+  const response = await model.generate(messages, tools)
+  messages.push({ role: 'assistant', content: response })
+  if (response.finishReason === 'stop') return response
+  if (response.toolCalls) {
+    for (const call of response.toolCalls) {
+      const result = await tools[call.name].execute(call.args)
+      messages.push({ role: 'tool', content: result })
+    }
+  }
+  if (messages.length > 50) throw new Error('loop overrun')
+}
+```
+
+Most agent frameworks wrap this loop so you don't write the `while` yourself. But **most agent bugs are loop bugs** — loops that never terminate, loops that swallow errors, loops that re-call the same tool ten times in a row. Understanding the loop is how you debug agents.
+
+In Vercel AI SDK, `generateObject` gives you a structured-output loop in one function:
+
+```ts
+const result = await generateObject({
+  model,
+  system: SYSTEM_PROMPT,
+  messages,
+  schema: ResearchSchema,
+  tools: { web_search: webSearch },
+  maxSteps: 5,  // ← loop termination guard
+})
+```
+
+`maxSteps: 5` is the guard. Without it, a misbehaving model + a misbehaving tool could loop forever and burn your API budget before you notice.
+
+**The test:** can you state, in one sentence, what makes your loop stop? ("Either the model returns a final answer, or we hit 5 steps, or a tool returns an unrecoverable error.") If yes, you own your loop. If no, you will debug a runaway loop in production.
+
+## Primitive 5: The spec
+
+The spec is the contract. Who is this agent? What can it do? How do other agents or clients talk to it?
+
+Two specs worth knowing:
+
+### The Google A2A Agent Card
+
+The [Google Agent-to-Agent (A2A) protocol](https://a2a-protocol.org/) defines an "Agent Card" — a JSON document describing identity, capabilities, and skills. It's served at `/.well-known/agent.json` on your agent's domain. Any A2A-compatible client can discover your agent and know what to do with it.
+
+Here's the Agent Card from the workshop starter:
+
+```json
+{
+  "name": "First Agent — Research Assistant",
+  "description": "A minimal research-assistant agent...",
+  "url": "https://first-agent-vercel-aisdk.vercel.app",
+  "provider": { "name": "Frank Riemer", "url": "https://frankx.ai" },
+  "version": "0.1.0",
+  "capabilities": { "streaming": false },
+  "skills": [
+    {
+      "id": "research-with-sources",
+      "name": "Research with sources",
+      "description": "Given a question, searches the web, synthesizes an answer...",
+      "tags": ["research", "search", "summarization"],
+      "examples": ["What changed in the Vercel AI SDK v5 release?"]
+    }
+  ]
+}
+```
+
+BCG's enterprise agent playbook references this spec as the discovery contract between agents in a multi-agent mesh. It is the industry-standard way to describe an agent to other systems.
+
+### The Oracle Open Agent Specification
+
+The [Oracle Open Agent Specification (OAS)](https://docs.oracle.com/) goes further: a portable YAML definition that describes the whole agent — not just its external interface but its tools, memory, and workflows. A single OAS file can generate stacks for Oracle ADK, LangGraph, or roll-your-own — the way an OpenAPI spec generates client libraries across languages.
+
+In the workshop, OAS gets a 90-second mention. In the [enterprise branch of the workshop](/workshops/build-first-ai-agent#branches), it earns a full module — because once you're shipping agents into a regulated environment, defining the agent in a portable spec that other stacks can consume is the difference between "one more codebase to maintain" and "a single definition that compiles to multiple targets."
+
+**The test:** can another system discover your agent and know how to talk to it, without reading your source code? If yes, you have a spec. If no, your agent is a private tool, not a component in a larger system.
+
+## Primitive 6: Deploy
+
+An agent running on your laptop is not an agent. It's a demo. The deploy primitive is what turns a demo into a system.
+
+Deploy means four things:
+
+1. **A public URL** other systems can reach.
+2. **Auth** — not every endpoint should be open to the world.
+3. **Rate limits** so your API bill doesn't surprise you.
+4. **Observability** — logs, traces, cost tracking you can actually read.
+
+In the workshop starter, deploy is literally `vercel --prod`. That gets you the URL. The other three are exercises for the reader — and they're the exercises that matter in production.
+
+The naive instinct is to deploy and then add observability later. The architectural instinct is to **wire observability into the loop before you deploy**. One log line per tool call, one trace per `runAgent`, one cost counter per session. In Vercel AI SDK, the `onStepFinish` callback gives you a hook for all of this:
+
+```ts
+await generateObject({
+  model,
+  system: SYSTEM_PROMPT,
+  messages,
+  schema: ResearchSchema,
+  tools: { web_search: webSearch },
+  maxSteps: 5,
+  onStepFinish: ({ toolCalls, usage }) => {
+    log.info({ toolCalls, usage })  // ← observability
+  },
+})
+```
+
+Adding this before deploy means the first minute your agent is live, you already know what it's doing.
+
+**The test:** if your agent misbehaved right now, could you tell what it did from the logs? If yes, you deployed. If no, you published.
+
+## Why these six, and why not seven
+
+I've seen longer lists. "Planner," "reflector," "evaluator," "router." They're all specializations of the loop. A planner is a loop that decomposes before executing. A reflector is a loop that reviews its own output. A router is a loop that picks from multiple agents. If you collapse them into "the loop is where orchestration logic lives," you keep the mental model simple.
+
+I've also seen shorter lists. "Prompt, tool, memory" skips the spec and the deploy, which is fine for a demo and insufficient for a product.
+
+Six is the minimum that covers **building** and **shipping**. Anything less and you'll ship a demo and call it an agent. Anything more and you're cataloging, not architecting.
+
+## What this gets you
+
+You can evaluate any new agent framework — LangGraph, AgentKit, Haystack, Voyage, whatever ships next quarter — by asking: **how does it spell each of the six?**
+
+- Does `langgraph`'s `StateGraph` map to my loop? Yes.
+- Does `langchain.tools.Tool` map to my tool primitive? Yes, with adapter.
+- Does the framework enforce an Agent Card or am I on my own? Check the docs.
+- Does it deploy to Vercel / Cloud Run / Fly with a standard target? Check.
+
+Twenty minutes of this and you know whether to invest a month in the framework. That's the payoff.
+
+## Go build
+
+- **Ship your first agent in 90 minutes** — [Build Your First AI Agent workshop](/workshops/build-first-ai-agent)
+- **Read the written guide** — [/guides/first-agent-primer](/guides/first-agent-primer)
+- **See the Agent Card spec** — [/guides/agent-card-a2a-spec](/guides/agent-card-a2a-spec)
+- **Clone the starter** — [github.com/frankxai/first-agent-vercel-aisdk](https://github.com/frankxai/first-agent-vercel-aisdk)
+
+The six primitives are the map. The workshop is the trip. The starter repo is the receipt.
+
+---
+
+**Want this as an 8-page handout + 10-day email primer course?** [Get the free Six Primitives Primer](/start-here) — no card, no fluff. We follow up with one short, opinionated email per day for ten days, each teaching one primitive with code samples. Unsubscribe in one click whenever.
+
+---
+
+<Callout type="insight">
+**Related reading.** The AI CoE framework I use at Oracle has six pillars (strategy, governance, talent, technology, data, ethics). Not an accident that an enterprise AI program and a personal AI agent are both six-primitive systems — good architectures rhyme. See [/acos](/acos) for the personal CoE, [/ai-architecture](/ai-architecture) for the enterprise lens.
+</Callout>

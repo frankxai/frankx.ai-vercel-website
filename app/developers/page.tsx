@@ -106,7 +106,7 @@ const learningPaths = [
 const agenticFeatures = [
   {
     icon: Brain,
-    title: 'Claude Code Deep Dive',
+    title: 'Claude Code Field Guide',
     description: 'Complete mastery of Claude Code patterns, from CLAUDE.md to custom slash commands.',
   },
   {

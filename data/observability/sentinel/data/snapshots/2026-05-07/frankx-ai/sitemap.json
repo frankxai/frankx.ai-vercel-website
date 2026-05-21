@@ -1,0 +1,94 @@
+{
+  "fetchedAt": "2026-05-07T07:25:27.778Z",
+  "host": "frankx.ai",
+  "sitemapsFound": [
+    "/sitemap.xml"
+  ],
+  "foundPath": "/sitemap.xml",
+  "isIndex": false,
+  "urlCount": 323,
+  "coverage": [
+    {
+      "route": "/",
+      "inSitemap": true
+    },
+    {
+      "route": "/os",
+      "inSitemap": false
+    },
+    {
+      "route": "/library",
+      "inSitemap": false
+    },
+    {
+      "route": "/workshops",
+      "inSitemap": true
+    },
+    {
+      "route": "/research",
+      "inSitemap": true
+    },
+    {
+      "route": "/papa",
+      "inSitemap": true
+    },
+    {
+      "route": "/design",
+      "inSitemap": false
+    },
+    {
+      "route": "/network",
+      "inSitemap": false
+    },
+    {
+      "route": "/start-here",
+      "inSitemap": false
+    },
+    {
+      "route": "/build",
+      "inSitemap": false
+    }
+  ],
+  "missingFromSitemap": [
+    "/os",
+    "/library",
+    "/design",
+    "/network",
+    "/start-here",
+    "/build"
+  ],
+  "sample": [
+    "https://frankx.ai",
+    "https://frankx.ai/about",
+    "https://frankx.ai/blog",
+    "https://frankx.ai/products",
+    "https://frankx.ai/prompt-library",
+    "https://frankx.ai/resources",
+    "https://frankx.ai/guides",
+    "https://frankx.ai/creators",
+    "https://frankx.ai/students",
+    "https://frankx.ai/music-lab"
+  ],
+  "lastmodSample": [
+    {
+      "url": "https://frankx.ai",
+      "lastmod": "2026-05-05T10:00:08.222Z"
+    },
+    {
+      "url": "https://frankx.ai/about",
+      "lastmod": "2026-05-05T10:00:08.222Z"
+    },
+    {
+      "url": "https://frankx.ai/blog",
+      "lastmod": "2026-05-05T10:00:08.222Z"
+    },
+    {
+      "url": "https://frankx.ai/products",
+      "lastmod": "2026-05-05T10:00:08.222Z"
+    },
+    {
+      "url": "https://frankx.ai/prompt-library",
+      "lastmod": "2026-05-05T10:00:08.222Z"
+    }
+  ]
+}

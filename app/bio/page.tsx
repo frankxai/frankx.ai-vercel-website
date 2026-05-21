@@ -22,9 +22,9 @@ import CopyableBio from './CopyableBio';
 const ONE_LINE =
   'Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence and the creator of 12,000+ AI songs.';
 
-const SHORT_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs enterprise AI systems for Fortune 500 companies. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He builds the same enterprise-grade AI frameworks for individual creators at frankx.ai — at one one-thousandth the cost. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs enterprise AI systems. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
 
-const LONG_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs Center-of-Excellence frameworks and agentic systems for Fortune 500 enterprises across Europe. The same six-pillar architecture he deploys for those companies — Strategy, Governance, Talent, Technology, Data, Ethics — he scales down for individuals at frankx.ai, the personal AI Center of Excellence, freely available at one one-thousandth of the enterprise price.
+const LONG_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs Center-of-Excellence frameworks and agentic systems for enterprise teams across Europe. The same six-pillar architecture he works with in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he scales down for individuals at frankx.ai, the personal AI Center of Excellence.
 
 By night, he is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a visionary manifesto on the convergence of human and artificial intelligence.
 
@@ -38,7 +38,7 @@ const SPEAKER_TOPICS = [
   {
     title: 'The Personal AI Center of Excellence',
     summary:
-      'How the same six-pillar architecture I build for Fortune 500s — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life at one one-thousandth the cost.',
+      'How the same six-pillar architecture I use in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
   },
   {
     title: 'Enterprise Agentic Systems in 2026',
@@ -450,7 +450,7 @@ export default function BioPage() {
                 I come from a Volga German family — three generations displaced, each one rebuilding from nothing. My father built houses; my brother builds solar businesses. My medium is different — AI systems and music — but the instinct is the same.
               </p>
               <p>
-                I spend my days at Oracle, designing AI Center-of-Excellence frameworks for some of the largest companies in Europe. I spend my evenings at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level — at one one-thousandth the cost.
+                I spend my days at Oracle, designing AI Center-of-Excellence frameworks for large companies in Europe. I spend my evenings at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level.
               </p>
               <p>
                 The bridge is the work. The full version of how I got here lives in <Link href="/about" className="text-emerald-400 hover:text-emerald-300 transition-colors">/about</Link> — including the family story, the music, the books that shaped the books I now write.

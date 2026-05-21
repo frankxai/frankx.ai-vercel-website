@@ -14,8 +14,6 @@ import { CrossLinkTour } from '@/components/partnerships/CrossLinkTour'
 import { AntiPositioning } from '@/components/partnerships/AntiPositioning'
 import { PartnerCTA } from '@/components/partnerships/PartnerCTA'
 import { PlaceholderState } from '@/components/partnerships/PlaceholderState'
-import { AlreadySharedSection } from '@/components/partnerships/AlreadySharedSection'
-import { FormalizeBand } from '@/components/partnerships/FormalizeBand'
 
 const SITE_URL = 'https://frankx.ai'
 
@@ -52,9 +50,7 @@ export default async function PartnershipPage({
   const partner = getPartner(slug)
   if (!partner) notFound()
 
-  const isProposalTier =
-    partner.status === 'active' || partner.status === 'strategic-alignment'
-  const isActiveConversation = partner.status === 'active'
+  const isProposalTier = partner.status === 'active'
   const url = `${SITE_URL}/partnerships/${partner.slug}`
 
   const graph: Record<string, unknown>[] = [
@@ -153,9 +149,7 @@ export default async function PartnershipPage({
       {/* Tier 2 — labeled proposal (only for active partners) */}
       {isProposalTier ? (
         <>
-          <ProposalDivider
-            variant={isActiveConversation ? 'active' : 'strategic-alignment'}
-          />
+          <ProposalDivider />
 
           {partner.visualSummaryUrl ? (
             <section
@@ -185,10 +179,6 @@ export default async function PartnershipPage({
             </section>
           ) : null}
 
-          {partner.alreadyShared && partner.alreadyShared.length > 0 ? (
-            <AlreadySharedSection items={partner.alreadyShared} />
-          ) : null}
-
           {partner.asymmetricValue.length > 0 ? (
             <AsymmetricValueGrid blocks={partner.asymmetricValue} />
           ) : null}
@@ -207,10 +197,6 @@ export default async function PartnershipPage({
 
           {partner.whatThisIsNot.length > 0 ? (
             <AntiPositioning items={partner.whatThisIsNot} />
-          ) : null}
-
-          {partner.formalizationAsk ? (
-            <FormalizeBand text={partner.formalizationAsk} />
           ) : null}
 
           <PartnerCTA partner={partner} />

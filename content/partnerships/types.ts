@@ -9,11 +9,7 @@
  * for content rules, tone-correction patches, and the public/private split.
  */
 
-export type PartnerStatus =
-  | 'active'
-  | 'strategic-alignment'
-  | 'in-conversation'
-  | 'placeholder'
+export type PartnerStatus = 'active' | 'in-conversation' | 'placeholder'
 
 export type PartnerTier =
   | 'distribution'
@@ -98,33 +94,6 @@ export type Partner = {
   crossLinks: CrossLink[]
   whatThisIsNot: string[]
   cta: { label: string; href: string }
-
-  /**
-   * Optional program-pursuit status (for strategic-alignment tier).
-   * Examples: 'Vercel Partner Program — application in flight',
-   * 'NVIDIA Inception nominee pathway', 'Anthropic Claude for Work — pursuing'.
-   * Rendered as a quiet status badge on the hub card.
-   */
-  programStatus?: string
-
-  /**
-   * Optional one-line dispatch from where this partner page is authored.
-   * Used by SovereignNodeBand on the hub when set on the operator profile.
-   */
-  operatesFrom?: string
-
-  /**
-   * For strategic-alignment tier — explicit list of touchpoints already
-   * shared with the partner today. Renders as "What we already share today"
-   * section between hero and working-reality, biased toward conversion via
-   * factual already-true reciprocal alignment.
-   */
-  alreadyShared?: string[]
-  /**
-   * For strategic-alignment tier — closing band before CTA. Articulates that
-   * the work is in motion and only the formal program lane remains.
-   */
-  formalizationAsk?: string
 
   // Visual
   partnerLogoUrl?: string

@@ -68,26 +68,55 @@ export default function ACOSAgentsPage() {
 
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: '99 Agents — The Complete Creator OS',
-    description: 'Full catalog of ACOS agents, skills, and commands organized into 11 pillars.',
-    url: 'https://frankx.ai/acos/agents',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'FrankX',
-      url: 'https://frankx.ai',
-    },
-    about: {
-      '@type': 'SoftwareApplication',
-      name: 'Agentic Creator OS',
-      url: 'https://frankx.ai/acos',
-    },
-    hasPart: PILLARS.map((p) => ({
-      '@type': 'Collection',
-      name: p.title,
-      description: p.tagline,
-      url: `https://frankx.ai/acos/agents#${p.id}`,
-    })),
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': 'https://frankx.ai/acos/agents#page',
+        name: '99 Agents — The Complete Creator OS',
+        description: 'Full catalog of ACOS agents, skills, and commands organized into 11 pillars.',
+        url: 'https://frankx.ai/acos/agents',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'FrankX',
+          url: 'https://frankx.ai',
+        },
+        about: {
+          '@type': 'SoftwareApplication',
+          name: 'Agentic Creator OS',
+          url: 'https://frankx.ai/acos',
+        },
+        hasPart: PILLARS.map((p) => ({
+          '@type': 'Collection',
+          name: p.title,
+          description: p.tagline,
+          url: `https://frankx.ai/acos/agents#${p.id}`,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://frankx.ai/acos/agents#breadcrumb',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'FrankX OS',
+            item: 'https://frankx.ai/os',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'ACOS',
+            item: 'https://frankx.ai/os/acos',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: '99-agent catalog',
+            item: 'https://frankx.ai/acos/agents',
+          },
+        ],
+      },
+    ],
   }
 
   return (
@@ -103,6 +132,26 @@ export default function ACOSAgentsPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-[#02030b] to-cyan-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(161,72,221,0.15),transparent_55%)]" />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-4 flex justify-center text-xs text-slate-400"
+          >
+            <ol className="flex flex-wrap items-center justify-center gap-1.5">
+              <li>
+                <Link href="/os" className="transition hover:text-slate-200">
+                  FrankX OS
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-slate-600">/</li>
+              <li>
+                <Link href="/os/acos" className="transition hover:text-slate-200">
+                  ACOS
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-slate-600">/</li>
+              <li className="text-slate-300" aria-current="page">99-agent catalog</li>
+            </ol>
+          </nav>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-purple-200">
             99 Agents · Open Source
           </div>

@@ -33,7 +33,7 @@ const labFormats = [
   },
   {
     icon: Brain,
-    title: 'Agent Deep Dives',
+    title: 'Agent Field Labs',
     description: 'Master Claude, Codex, and Gemini workflows with hands-on exploration',
     color: 'from-[#F59E0B] to-[#D97706]',
     borderColor: 'border-[#F59E0B]/30',
@@ -88,8 +88,8 @@ const upcomingLabs = [
   },
   {
     id: 3,
-    type: 'Agent Deep Dive',
-    title: 'Gemini API Deep Dive',
+    type: 'Agent Field Lab',
+    title: 'Gemini API Technical Lab',
     date: 'Feb 28, 2026',
     time: '1:00 PM PST',
     duration: '2.5 hours',
@@ -240,7 +240,7 @@ export default function LabsPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-400 mb-8 text-balance leading-relaxed">
-              {'Live build sessions, ritual labs, and agent deep dives for AI builders who ship.'}
+              {'Live build sessions, ritual labs, and agent field labs for AI builders who ship.'}
             </p>
 
             {/* Stats */}

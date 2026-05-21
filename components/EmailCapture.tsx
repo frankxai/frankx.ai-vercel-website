@@ -61,7 +61,7 @@ export default function EmailCapture({
           <Check className="h-6 w-6 flex-shrink-0" />
           <div>
             <p className="font-semibold">{message}</p>
-            <p className="text-sm text-green-300/70 mt-1">You&apos;re on the waitlist. We&apos;ll be in touch when there&apos;s something honest to share.</p>
+            <p className="text-sm text-green-300/70 mt-1">Check your email for next steps.</p>
           </div>
         </div>
       </motion.div>

@@ -1,8 +1,6 @@
 /**
  * Welcome email for the Ikigai & Branding Workshop list.
- * Sent immediately after subscribe. Delivers the Coach GPT link + workshop link
- * + a real Day-7 check-in promise (sent manually by Frank from his own inbox —
- * not an automation, so the copy says "I will email you").
+ * Sent immediately after subscribe. Delivers the Coach GPT link + Resource Pack promise.
  */
 
 interface EmailTemplate {
@@ -18,13 +16,13 @@ export function ikigaiBrandingEmail({
   const firstName = recipientName?.split(' ')[0] || 'Creator'
 
   return {
-    subject: 'Your Ikigai & Branding Coach is open',
+    subject: 'Your Ikigai & Branding Resource Pack — plus your free Coach',
     html: `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Ikigai & Branding Coach is open</title>
+<title>Your Ikigai & Branding Resource Pack</title>
 </head>
 <body style="margin:0;padding:0;background:#0a0a0b;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0b;">
@@ -35,7 +33,7 @@ export function ikigaiBrandingEmail({
           Welcome, ${firstName}.
         </h1>
         <p style="margin:0;font-size:16px;line-height:1.6;color:#94a3b8;">
-          You just joined the Ikigai &amp; Branding Workshop list. Two things below — the Coach GPT (your forever thinking partner for this work) and the workshop page itself. Open whichever feels right tonight.
+          You just joined the Ikigai &amp; Branding Workshop list. Here is everything you need to go from "I think I know my purpose" to "here is my brand, publicly."
         </p>
       </td></tr>
 
@@ -59,7 +57,7 @@ export function ikigaiBrandingEmail({
             Step 2 — Run the workshop
           </p>
           <p style="margin:0 0 14px 0;font-size:15px;line-height:1.6;color:#e2e8f0;">
-            Seven modules with copy-paste prompts. The Coach holds the conversation; each module sharpens one of the artefacts you walk out with — purpose sentence, brand, 30-day plan, the artefact you publish today.
+            The 4-step wizard, synthesis panel, and Brand Bridge live here. Your progress saves in your browser — nothing leaves until you export.
           </p>
           <a href="https://frankx.ai/workshops/ikigai-branding" style="display:inline-block;padding:12px 20px;background:transparent;color:#fbbf24;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;border:1px solid #fbbf24;">
             Start the workshop →

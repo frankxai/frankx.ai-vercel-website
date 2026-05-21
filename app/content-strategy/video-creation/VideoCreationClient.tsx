@@ -129,7 +129,7 @@ const statusConfig: Record<string, { label: string; color: string }> = {
 const templates = [
   {
     id: 'tutorial',
-    title: 'Tutorial / Deep Dive',
+    title: 'Tutorial / Technical Walkthrough',
     duration: '~15 min',
     wordCount: '~2,000 words',
     icon: BookOpen,

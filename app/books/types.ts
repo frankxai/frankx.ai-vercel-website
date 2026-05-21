@@ -39,12 +39,12 @@ export interface BookConfig {
   coverImage: string;
   theme: BookTheme;
   status: 'draft' | 'in-progress' | 'published';
-  categories: string[];
-  chapters: BookChapter[];
-  contentDir: string; // relative path to chapter markdown files
   language?: 'de' | 'en';
   variantGroup?: string;
   alternateSlug?: string;
+  categories: string[];
+  chapters: BookChapter[];
+  contentDir: string; // relative path to chapter markdown files
 }
 
 export interface TOCItem {

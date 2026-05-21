@@ -14,6 +14,7 @@ import {
   Zap,
   ChevronRight,
 } from 'lucide-react'
+import { ProductLadder } from '@/components/ui/ProductLadder'
 
 // Premium background matching the site aesthetic
 function StartBackground() {
@@ -94,7 +95,7 @@ const journeyPaths = [
 const quickWins = [
   {
     title: 'Browse the blog',
-    description: 'Deep dives on AI workflows and creative systems',
+    description: 'Field notes on AI workflows and creative systems',
     href: '/blog',
     icon: Lightbulb,
   },
@@ -248,6 +249,9 @@ export default function StartPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* Product Ladder Section */}
+        <ProductLadder />
 
         {/* Quick Links Section */}
         <section className="py-16">

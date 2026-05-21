@@ -15,12 +15,9 @@ export default function robots(): MetadataRoute.Robots {
           '/prototype/',
           '/onboarding/',
           '/command-center/',
-          '/partnerships/proposal/',
-          '/work/proposal/',
         ],
       },
     ],
     sitemap: 'https://frankx.ai/sitemap.xml',
   }
 }
-// Vercel deploy trigger: 2026-05-16T17:24:15Z
