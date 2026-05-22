@@ -34,6 +34,16 @@ export const INNER_CIRCLE_FAQS: InnerCircleFAQ[] = [
       "Three confirmed dates: Monday June 22, 19:00 CET — Agent Orchestration with Frank · Monday July 20, 19:00 CET — Prompt Engineering at Scale · Monday August 10, 19:00 CET — Shipping AI Products. All recorded + indexed in the vault. Live attendance is encouraged but not required; replay drops within 24h.",
   },
   {
+    question: 'Can I see what\'s inside before I commit?',
+    answer:
+      "Yes. The vault preview at frankx.ai/inner-circle/vault-preview shows five items you'll have within the first 30 days: the Oracle-style use-case intake form, the agent template collection, the Creator Mode prompt pack (47 prompts), the first masterclass details, and the first lab recording. Updated every week after launch.",
+  },
+  {
+    question: 'What\'s the cancellation policy?',
+    answer:
+      "One-click cancel anytime, no lock-in, no fees to exit. Your data exports anytime. If you cancel within 30 days of joining and weren't satisfied, hit reply on the launch email and Frank will refund the first payment directly — no questions, no friction.",
+  },
+  {
     question: "What's included in the free Signal tier?",
     answer:
       'Signal members receive the weekly Creation Chronicles dispatch, access to public blog posts and research, and early product announcements. It\'s the best way to stay connected with FrankX intelligence.',

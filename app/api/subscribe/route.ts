@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { musicPromptsEmail } from '@/lib/email-templates'
 import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
+import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -50,6 +51,36 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
 async function sendWelcomeEmail(email: string, name: string, listType: string) {
   if (!RESEND_API_KEY) return
 
+  // Inner Circle waitlist gets a plain-text confirmation that matches the
+  // Lenny/Ben-Thompson aesthetic — no HTML wrapper, no marketing chrome.
+  // The template at lib/email-templates-inner-circle.ts owns the format.
+  if (listType === 'inner-circle') {
+    const innerCircle = innerCircleWaitlistEmail({
+      email,
+      name,
+      joinedAt: new Date().toISOString(),
+      // waitlistPosition wired by a counter in a follow-up commit; safe to omit for v1
+    })
+
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Frank <frank@mail.frankx.ai>',
+        to: email,
+        subject: innerCircle.subject,
+        // Resend accepts `text` for plain-text only emails — exactly what the
+        // founders-tier waitlist confirmation should be.
+        text: innerCircle.plainText,
+      }),
+    })
+    return
+  }
+
+  // All other list types still use the styled HTML templates.
   let template
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
