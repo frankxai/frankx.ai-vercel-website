@@ -175,6 +175,29 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      {/* Top band — strategic-partner cross-link */}
+      <section className="pb-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-gradient-to-br from-emerald-500/[0.06] via-white/[0.02] to-transparent border border-emerald-500/20 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/70 font-medium mb-1.5">
+                Looking for strategic partnerships?
+              </p>
+              <p className="text-sm text-zinc-300 leading-relaxed">
+                This page covers tool affiliates and workshop transparency. Distributor, model-provider, cloud, and silicon conversations live on a separate hub.
+              </p>
+            </div>
+            <Link
+              href="/partnerships"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-medium text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-[#0a0a0b] flex-shrink-0"
+            >
+              See partnerships hub
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Policy — the principles */}
       <section className="pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -284,6 +307,49 @@ export default function PartnersPage() {
                 </div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner programs in flight */}
+      <section className="pb-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.03] p-6 sm:p-8">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/70 font-medium mb-3">
+              In motion
+            </p>
+            <h2 className="text-xl font-semibold text-white mb-4">
+              Partner programs in flight
+            </h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+              Formal programs Frank is applying to or actively pursuing — each
+              one anchors a strategic-alignment page on the partnerships hub.
+            </p>
+            <ul className="space-y-3 text-sm text-zinc-300">
+              <li className="flex flex-col sm:flex-row sm:items-start sm:gap-3">
+                <span className="font-medium text-white sm:w-44 flex-shrink-0">Vercel Partner Program</span>
+                <span className="text-zinc-400 leading-relaxed">Application in flight. Every frankx.ai surface ships on Vercel; Build First AI Agent workshop centres the Vercel AI SDK.</span>
+              </li>
+              <li className="flex flex-col sm:flex-row sm:items-start sm:gap-3">
+                <span className="font-medium text-white sm:w-44 flex-shrink-0">Anthropic Claude for Work</span>
+                <span className="text-zinc-400 leading-relaxed">Pursuing partner pathway. Claude Code is the daily build harness across the entire open-source body of work.</span>
+              </li>
+              <li className="flex flex-col sm:flex-row sm:items-start sm:gap-3">
+                <span className="font-medium text-white sm:w-44 flex-shrink-0">Google Cloud Partner Advantage</span>
+                <span className="text-zinc-400 leading-relaxed">Pursuit underway. Gemini in daily delivery; Google ADK + A2A protocol in the workshop enterprise lane.</span>
+              </li>
+              <li className="flex flex-col sm:flex-row sm:items-start sm:gap-3">
+                <span className="font-medium text-white sm:w-44 flex-shrink-0">NVIDIA Inception</span>
+                <span className="text-zinc-400 leading-relaxed">Nominee pathway. Munich EBC contacts and Oracle &times; NVIDIA partner event 2025 co-architect history anchor the conversation.</span>
+              </li>
+            </ul>
+            <p className="text-xs text-zinc-500 leading-relaxed mt-5">
+              See the per-partner conversation shape at{' '}
+              <Link href="/partnerships" className="text-emerald-300 hover:text-emerald-200 underline">
+                /partnerships
+              </Link>
+              . Pursuit status is updated within 48 hours of any change.
+            </p>
           </div>
         </div>
       </section>

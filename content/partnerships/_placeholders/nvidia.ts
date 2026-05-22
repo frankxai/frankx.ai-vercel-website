@@ -1,68 +1,281 @@
 import type { Partner } from '../types'
+import { crossLink } from '@/lib/cross-links'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 
 /**
- * NVIDIA — silicon partner. Placeholder until the proposal page is published.
+ * NVIDIA — silicon-tier strategic alignment.
  *
- * Working reality on the public surface is verifiable today (Munich EBC,
- * NIM exposure, Oracle x NVIDIA partner event 2025 co-architecture). The
- * deeper proposal lands when both sides are ready.
+ * Working reality is verifiable today: co-architecture of the Oracle x NVIDIA
+ * partner event 2025, Munich EBC contacts, NIM hands-on from the Oracle EMEA
+ * AI CoE practice, and active participation in the Oracle x NVIDIA AI
+ * accelerator pack wave moving through EMEA channel.
+ *
+ * Proposal tier is a peer-architect shape — not a claim of formal NVIDIA
+ * partnership and not a claim of NVIDIA Inception membership. Inception is
+ * the nominee pathway, stated as such.
+ *
+ * Named NVIDIA contacts and the Munich EBC briefing trail live in
+ * `.frankx/private/partnerships/nvidia-brief.md` (gitignored). Never put
+ * named individuals in this file.
  */
 export const nvidia: Partner = {
   slug: 'nvidia',
   name: 'NVIDIA',
   shortName: 'NVIDIA',
   tier: 'silicon',
-  status: 'placeholder',
+  status: 'strategic-alignment',
 
-  title: 'AI Architect — silicon-aware methodology partner',
+  title: 'AI Architect — NVIDIA-aligned EMEA AI CoE practice',
   tagline:
-    'Where the coding-agent AI CoE meets accelerated compute.',
+    'Silicon-aware AI CoE methodology for the EMEA accelerator wave.',
   subTagline:
-    'A conversation in motion around joint visibility on EMEA-channel AI accelerator work.',
+    'Co-architect of the Oracle × NVIDIA partner event 2025. Munich EBC bridge already warm. The conversation is the formal Inception + EMEA event lane.',
 
-  contextWindow: `NVIDIA sits at the centre of the EMEA-channel AI infrastructure narrative. NIM, NeMo, and the AI Enterprise stack are quietly becoming default ingredients in every multi-cloud reference architecture an AI Architect ships. The conversation I'm interested in is methodology-shaped — how coding-agent-native CoE practices map cleanly onto NVIDIA-anchored reference architectures.
+  contextWindow: `GPU and accelerator infrastructure is the silicon layer of the AI CoE practice I run inside Oracle EMEA. NIM, NeMo, and the NVIDIA AI Enterprise stack are quietly becoming default ingredients in every multi-cloud reference architecture an AI Architect ships in this region. The Oracle x NVIDIA AI accelerator pack wave is moving through EMEA channel right now, and the bridge from GPU infrastructure to agent workloads is where the methodology earns its keep.
 
-The bridge is already warm: Munich EBC contacts, NIM hands-on from the Oracle CoE work, and co-architecture of the Oracle x NVIDIA partner event 2025.`,
+The proof is already on the record. Co-architect of the Oracle x NVIDIA partner event 2025. Munich EBC contacts active from that work. NIM hands-on exposure threaded through the CoE practice. A 7,000-strong EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks who already saw the joint go-to-market shape we practiced last year.
+
+The strategic alignment is about the EMEA agent plus accelerator distribution wave — and about being a referenceable, NVIDIA-aligned independent voice in it.`,
 
   workingReality: [
     {
-      label: 'Munich EBC bridge',
+      label: 'Oracle x NVIDIA partner event 2025 — co-architect',
       detail:
-        'Munich Executive Briefing Center contacts active from the Oracle EMEA AI CoE work. The relationship is real, not aspirational.',
+        'Co-architected the Oracle x NVIDIA partner event 2025 from the Oracle EMEA AI CoE side. The shape of joint EMEA go-to-market is something we practiced together on the record.',
+      evidence: {
+        label: 'Event reference (URL pending)',
+        href: '#nvidia-event-todo',
+      },
     },
     {
-      label: 'NIM and NVIDIA AI Enterprise hands-on',
+      label: 'Munich EBC contacts + NIM hands-on',
       detail:
-        'Hands-on exposure to NIM microservices and the NVIDIA AI Enterprise stack inside Oracle EMEA CoE reference architectures.',
+        'Munich Executive Briefing Center contacts active from the partner-event work. NIM microservices threaded through Oracle EMEA AI CoE reference architectures. The relationship is real, not aspirational.',
     },
     {
-      label: 'Oracle x NVIDIA partner event 2025',
+      label: 'AI CoE methodology — GPU infrastructure to agent workloads',
       detail:
-        'Co-architect of the Oracle x NVIDIA partner event — the shape of joint go-to-market we already practiced together.',
+        'The CoE methodology bridges accelerated compute and agent workloads cleanly. GPU-aware reference architectures, NIM-pattern deployment shapes, agent harnesses that respect the silicon. The bridge is the practice.',
+    },
+    {
+      label: 'Oracle x NVIDIA AI accelerator pack wave — EMEA enablement',
+      detail:
+        'Active participation in the Oracle x NVIDIA AI accelerator pack wave moving through EMEA channel. Enablement content, reference architectures, and partner-facing material that lands the pack inside real deployments.',
     },
   ],
 
-  proofPoints: [],
+  proofPoints: [
+    {
+      label: 'Oracle x NVIDIA partner event 2025',
+      href: '#nvidia-event-todo',
+      metric: 'Reference URL — Frank fills',
+    },
+    {
+      label: 'ACOS — open agentic creator OS',
+      href: 'https://github.com/frankxai/agentic-creator-os',
+    },
+    {
+      label: 'SIS — Starlight Intelligence System (substrate + 31-tool MCP)',
+      href: 'https://github.com/frankxai/starlight-intelligence-system',
+    },
+    {
+      label: 'AI Architect Academy — multi-cloud curriculum',
+      href: 'https://github.com/frankxai/ai-architect-academy',
+    },
+    {
+      label: 'AI Architecture — GPU-aware reference architectures',
+      href: '/ai-architecture',
+    },
+    {
+      label: 'Workshops calendar — EMEA delivery cadence',
+      href: '/workshops',
+    },
+  ],
 
-  proposalIntro: '',
-  asymmetricValue: [],
-  programs: [],
-  compoundingModel: [],
-  crossLinks: [],
-  whatThisIsNot: [],
+  proposalIntro:
+    'What follows is a proposal — a specific peer-architect shape this strategic alignment could take if NVIDIA sees it. Not a deck, not a vendor pitch. The five collaboration shapes below stack; alignments rarely pick just one.',
+
+  asymmetricValue: [
+    {
+      title: 'Oracle x NVIDIA 2025 co-architect history',
+      body: 'Already co-architected joint EMEA go-to-market with NVIDIA inside the Oracle partnership. The collaboration muscle is built, the shape is known, and the second event is a lower-friction conversation than the first.',
+      metric: 'On the record',
+    },
+    {
+      title: 'Munich EBC bridge — warm contacts, not stranger outreach',
+      body: 'Munich Executive Briefing Center relationships active from the 2025 event. A briefing scheduled here is a continuation, not a cold start.',
+      metric: 'EBC access',
+    },
+    {
+      title: 'GPU-to-agent CoE methodology',
+      body: 'The AI CoE practice bridges accelerated compute and agent workloads as one discipline. NIM-pattern reference architectures, GPU-aware agent harnesses, and the curriculum that teaches the bridge.',
+      metric: 'Practice',
+    },
+    {
+      title: 'EMEA AI audience funnel',
+      body: 'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. Posts about AI CoE patterns regularly clear 100-plus engagements among the exact EMEA audience NVIDIA enables through partners.',
+      metric: '7,000+ followers',
+    },
+    {
+      title: 'Open-source body of work running on accelerated infrastructure',
+      body: 'ACOS, SIS, and the AI Architect Academy curriculum are public, reviewable, and designed to run on accelerated infrastructure. The body of work is itself a reference deployment.',
+      metric: '85+ repos',
+    },
+  ],
+
+  programs: [
+    {
+      number: 1,
+      name: 'NVIDIA Inception — Nominee Pathway Pursuit',
+      cadence: 'Application in flight, milestone-tracked',
+      whatItIs:
+        'Active pursuit of the NVIDIA Inception nominee pathway as the operating-tier alignment vehicle. This is not a membership claim — it is the pathway, named honestly.',
+      whatItProduces: [
+        'Inception application package — company profile, technical narrative, accelerated-infrastructure usage',
+        'Nominator conversation tracked through Munich EBC bridge',
+        'Public status update once nominee status confirmed',
+      ],
+      pricingPosture: 'Pathway, not pricing. Status reported transparently.',
+    },
+    {
+      number: 2,
+      name: 'Joint EMEA Events',
+      cadence: 'Two to four per year',
+      whatItIs:
+        'Co-delivered keynotes, workshops, and partner-facing sessions at DOAG, CloudFest, Oracle CloudWorld Tour, and NVIDIA partner-summit moments across EMEA.',
+      whatItProduces: [
+        'Day-of delivery — keynote, workshop, or partner session',
+        'Supporting content stream (blog + LinkedIn + short video)',
+        'Post-event partner enablement asset reusable by NVIDIA channel partners',
+      ],
+      pricingPosture: 'Per-event scope. Day rate plus travel. Co-marketing where appropriate.',
+    },
+    {
+      number: 3,
+      name: 'Oracle x NVIDIA AI Accelerator Pack — Content Stream',
+      cadence: 'Quarterly publications on /research',
+      whatItIs:
+        'A standing content stream on the FrankX Research Hub focused on the Oracle x NVIDIA AI accelerator pack and adjacent NIM-pattern deployments — the kind of partner-facing material EMEA resellers actually use.',
+      whatItProduces: [
+        'One deep research piece per quarter, NVIDIA-aware',
+        'Reference architecture annotations specific to the accelerator pack',
+        'Partner-enablement summary suitable for channel reuse',
+      ],
+      pricingPosture: 'Annual sponsorship posture, or per-publication scope.',
+    },
+    {
+      number: 4,
+      name: 'AI Architect Academy — GPU-Aware Curriculum Module',
+      cadence: 'Curriculum addition, evergreen',
+      whatItIs:
+        'A dedicated GPU-aware module inside the AI Architect Academy curriculum — NIM patterns, accelerated agent workloads, multi-cloud GPU reference architectures — distributable through NVIDIA-adjacent channels.',
+      whatItProduces: [
+        'Module materials — slides, exercises, evaluation rubric',
+        'Facilitator brief for partner delivery',
+        'Distribution-ready package for NVIDIA partner ecosystem',
+      ],
+      pricingPosture: 'License plus per-delivery support, or co-developed under sponsorship.',
+    },
+    {
+      number: 5,
+      name: 'NIM-Pattern Reference Architectures — Deploy-to-OCI-with-GPU CTAs',
+      cadence: 'Continuous, reviewed quarterly',
+      whatItIs:
+        'A library of NIM-pattern reference architectures on /ai-architecture with Deploy-to-OCI-with-GPU CTAs alongside other deployment surfaces. Tracked attribution to accelerated-infrastructure consumption.',
+      whatItProduces: [
+        'Reference architectures with NIM at the centre, OCI GPU deploy paths surfaced',
+        'Quarterly attribution and engagement report',
+        'Living library that compounds across partners',
+      ],
+      pricingPosture: 'Co-marketing posture, with revenue share or flat quarterly scope where appropriate.',
+    },
+  ],
+
+  compoundingModel: [
+    {
+      month: 0,
+      title: 'Foundations',
+      body: 'NVIDIA Inception nominee pathway application in flight. First joint EMEA event scoped on the calendar. Munich EBC briefing on the books.',
+    },
+    {
+      month: 3,
+      title: 'NIM reference architecture published',
+      body: 'First NIM-pattern reference architecture published on /ai-architecture with Deploy-to-OCI-with-GPU CTAs. Munich EBC briefing delivered. Inception nominee status tracked publicly.',
+    },
+    {
+      month: 6,
+      title: 'Second event + content stream live',
+      body: 'Second joint EMEA event delivered. Oracle x NVIDIA accelerator pack content stream live on /research with first two quarterly publications shipped. GPU-aware Academy module in pilot.',
+    },
+    {
+      month: 12,
+      title: 'Referenceable EMEA practice',
+      body: 'NVIDIA-aligned EMEA AI CoE practice operating as a referenceable independent voice. Inception status earned or its successor stage in motion. Renewal conversation scoped at expanded EMEA reach.',
+    },
+  ],
+
+  crossLinks: [
+    crossLink(
+      'ai-coe',
+      'The AI CoE blueprint where the GPU-to-agent methodology lives in public — the substrate every NVIDIA-aligned conversation builds on.',
+      'The methodology, in public'
+    ),
+    crossLink(
+      'ai-architecture',
+      'Where NIM-pattern reference architectures land with Deploy-to-OCI-with-GPU CTAs surfaced alongside other deployment paths.',
+      'GPU-aware reference architectures'
+    ),
+    crossLink(
+      'research',
+      'Active research surface for the Oracle x NVIDIA AI accelerator pack content stream and adjacent NIM-pattern deep-dives.',
+      'Research Hub — accelerator pack stream'
+    ),
+    crossLink(
+      'workshops',
+      'EMEA workshop calendar where joint NVIDIA-aligned sessions appear once scheduled.',
+      'Workshops and joint events'
+    ),
+    crossLink(
+      'ai-architect-academy',
+      'Curriculum substrate for the GPU-aware module distributable through the NVIDIA partner ecosystem.',
+      'Academy curriculum'
+    ),
+  ],
+
+  whatThisIsNot: [
+    'Not an NVIDIA-employee relationship or a claim of formal NVIDIA partnership',
+    'Not a hardware reseller pitch or a GPU-resale play',
+    'Not deep CUDA, kernel-engineering, or low-level GPU-systems specialist work',
+    'Not exclusive of AMD, Intel, or other accelerators where the workload calls for it',
+    'Not a Munich-resident relationship — operating from Amsterdam, travelling for EBC and EMEA events',
+  ],
 
   cta: {
     label: 'Open the conversation',
     href: MEET_AND_GROW_URL,
   },
 
+  programStatus: 'NVIDIA Inception — nominee pathway',
+
+  alreadyShared: [
+    'Co-architect of the Oracle × NVIDIA partner event 2025 from the Oracle EMEA AI CoE side.',
+    'Munich EBC contacts active from the CoE work — the bridge is warm, not cold outreach.',
+    'NIM hands-on practice threaded through Oracle EMEA AI CoE reference architectures.',
+    'GPU-to-agent CoE methodology productized inside the AI Architect Academy curriculum.',
+    'Oracle × NVIDIA AI accelerator pack content stream ready to publish on /research.',
+    '7,000+ EMEA AI architect audience overlapping the NVIDIA developer community across Oracle, NVIDIA, Anthropic, and founder networks.',
+  ],
+
+  formalizationAsk:
+    "What's left to formalize. Munich EBC bridge is already warm from 2025. The CoE methodology is productized. The audience is engaged. The conversation is Inception membership, recurring EBC briefings, joint EMEA event slots, and accelerator-pack content sponsorship.",
+
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/nvidia.svg',
+  // ogImagePath: '/images/partnerships/nvidia-og.png', // TODO: generate, falls back to site default
 
   seo: {
-    title: 'FrankX × NVIDIA — Silicon-Aware AI CoE Partnership | FrankX',
+    title: 'FrankX × NVIDIA — NVIDIA-Aligned EMEA AI CoE Practice | FrankX',
     description:
-      'A methodology-shaped conversation with NVIDIA — coding-agent AI CoE practice meets NVIDIA-anchored reference architectures across EMEA.',
+      'Co-architect of the Oracle × NVIDIA 2025 partner event. Munich EBC bridge, NIM hands-on practice, GPU-to-agent CoE methodology for the EMEA accelerator channel.',
   },
 }

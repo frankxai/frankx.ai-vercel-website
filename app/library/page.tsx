@@ -210,26 +210,6 @@ export default function LibraryPage() {
                 />
               </svg>
             </Link>
-            <Link
-              href="/library/build"
-              className="inline-flex items-center gap-2 text-sm text-emerald-300/90 hover:text-emerald-200 transition-colors border border-emerald-500/30 rounded-full px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/15"
-            >
-              Build your own Library
-              <svg
-                className="w-3.5 h-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                aria-hidden
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
           </div>
         </div>
       </section>
@@ -332,6 +312,66 @@ export default function LibraryPage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* Research articles grounded in this collection */}
+      <section className="max-w-4xl mx-auto px-6 pb-16">
+        <div className="rounded-2xl border border-violet-500/[0.16] bg-violet-500/[0.03] p-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-3">
+            <h2 className="text-xl font-semibold text-white">Research grounded in this collection</h2>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-violet-200">flagship article</span>
+          </div>
+          <p className="text-sm text-white/60 leading-relaxed mb-5">
+            Some of the books in this library are not just reading recommendations &mdash; they
+            are sources for deep research articles. Where four library books cluster around
+            one idea, you can read the meta-article that synthesises them.
+          </p>
+          <Link
+            href="/research/blue-zones-ikigai-ai-era"
+            className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+          >
+            <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-2">
+              Blue Zones &middot; Ikigai &middot; AI Era
+            </p>
+            <h3 className="text-base font-semibold text-white mb-2">
+              The four library books behind one Japanese word
+            </h3>
+            <p className="text-sm text-white/60 leading-relaxed">
+              Kamiya (1966), Buettner (2005), Garc&iacute;a &amp; Miralles (2016), Mogi (2017) &mdash; the
+              lineage of ikigai from psychiatric foundation to global bestseller, with an
+              honest reckoning of the 2014 Western Venn. 12-minute read.
+            </p>
+          </Link>
+
+          <div className="mt-4 grid sm:grid-cols-2 gap-3">
+            <Link
+              href="/workshops/ikigai-branding"
+              prefetch={false}
+              className="group block rounded-xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-1.5">
+                Walk the practice
+              </p>
+              <p className="text-sm font-semibold text-white">Ikigai &amp; Branding workshop</p>
+              <p className="text-xs text-white/55 mt-1 leading-relaxed">
+                10 chapters, 13 prompts. Free. 75-minute self-guided walk.
+              </p>
+            </Link>
+            <Link
+              href="/research/conscious-ai-operating-systems"
+              prefetch={false}
+              className="group block rounded-xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-1.5">
+                Adjacent research
+              </p>
+              <p className="text-sm font-semibold text-white">Conscious AI Operating Systems</p>
+              <p className="text-xs text-white/55 mt-1 leading-relaxed">
+                The architectural answer to the meaning question.
+              </p>
+            </Link>
+          </div>
         </div>
       </section>
 
