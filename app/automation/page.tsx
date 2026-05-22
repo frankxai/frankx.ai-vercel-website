@@ -195,7 +195,7 @@ export default function AutomationPage() {
               </p>
             </Link>
             <Link
-              href="/orchestration"
+              href="/blog/multi-agent-orchestration-patterns-2026"
               className="rounded-xl border border-violet-500/20 bg-violet-500/5 p-5 transition-all hover:border-violet-500/30"
             >
               <h3 className="font-semibold text-violet-300">Orchestration Philosophy</h3>

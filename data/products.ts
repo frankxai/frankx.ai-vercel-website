@@ -340,7 +340,7 @@ export const products: Product[] = [
     hook: 'The day-job framework that Frank ships at Oracle EMEA — yours to use.',
     pricing: { eur: 997, usd: 1080, cadence: 'lifetime' },
     positioning:
-      'Your problem isn\'t "how do I build an agent." Your problem is "how do I roll agents into a 500-person engineering org with governance, compliance, and a clear executive narrative." The Architect tier is Frank\'s actual day-job framework: a 6-pillar AI Center of Excellence (Strategy, Governance, Talent, Technology, Data, Ethics) that translates from Fortune 500 enterprise pilots to your team. The same framework. 1/5000th the consultancy price.',
+      'Your problem isn\'t "how do I build an agent." Your problem is "how do I roll agents into a 500-person engineering org with governance, compliance, and a clear executive narrative." The Architect tier is Frank\'s actual day-job framework: a 6-pillar AI Center of Excellence (Strategy, Governance, Talent, Technology, Data, Ethics) that translates from large-enterprise AI pilots to your team. The same framework. 1/5000th the consultancy price.',
     notFor: [
       'Solo builders without organizational scope — Mastery is the right tier',
       'Founders looking for 1:1 strategic AI advisory — Founder\'s Circle',

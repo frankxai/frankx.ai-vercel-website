@@ -305,7 +305,7 @@ export default function DocsIndexPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/products/agentic-creator-os/docs/getting-started"
+            href="/products/agentic-creator-os/docs"
             className="px-6 py-3 rounded-xl bg-tech-primary hover:bg-tech-light text-void font-semibold transition-colors"
           >
             Get Started
