@@ -89,7 +89,10 @@ export function SynthesisPanel({
         <p className="text-xs font-medium uppercase tracking-wider text-amber-400 mb-2">
           Synthesis
         </p>
-        <h3 className="text-2xl font-semibold text-white tracking-tight">
+        <h3
+          id="synthesis-statement-label"
+          className="text-2xl font-semibold text-white tracking-tight"
+        >
           Your Ikigai Statement
         </h3>
         <p className="text-sm text-zinc-400 mt-1">
@@ -114,10 +117,11 @@ export function SynthesisPanel({
       )}
 
       <textarea
+        aria-labelledby="synthesis-statement-label"
         value={value.statement}
         onChange={(e) => onStatementChange(e.target.value)}
         placeholder="I help [who] achieve [outcome] by [how], using [skills] in [domain]."
-        className="w-full h-32 px-4 py-3 bg-[#0a0a0b] border border-white/[0.08] rounded-xl text-base text-white placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/40 focus:ring-2 focus:ring-amber-500/20 resize-none leading-relaxed"
+        className="w-full h-32 px-4 py-3 bg-[#0a0a0b] border border-white/[0.08] rounded-xl text-base text-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:border-amber-400/80 focus-visible:ring-2 focus-visible:ring-amber-400/60 resize-none leading-relaxed"
       />
 
       {/* Actions */}
