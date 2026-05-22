@@ -12,17 +12,11 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/sitemap",
-      "destination": "/network",
-      "permanent": false
-    }
-  ],
   "crons": [
     {
-      "path": "/api/cron/welcome-sequence",
-      "schedule": "0 */6 * * *"
+      "path": "/api/404/agent",
+      "schedule": "0 4 * * *"
     }
   ]
 }
+
