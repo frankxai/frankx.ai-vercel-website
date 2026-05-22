@@ -1,0 +1,19 @@
+{
+  "$schema": {
+    "purpose": "Curated 301 alias map for paths that 404 today. Loaded by next.config.mjs (async redirects) and middleware. Operator additions via /admin/404-radar (Phase 2). Agent proposals via /api/404/agent (Phase 3) require operator approval before landing here.",
+    "format": "All keys under `aliases` are <from-path>: <to-path> string pairs. Keep alphabetically sorted for stable diffs.",
+    "safetyRule": "Never add an alias for a path that has a real page — it will make that page unreachable. Verify with `pnpm build` + a fresh dev start before committing.",
+    "lastReviewed": "2026-05-21"
+  },
+  "aliases": {
+    "/aco": "/agents",
+    "/build-first-ai-agent": "/workshops/build-first-ai-agent",
+    "/ikigai": "/workshops/ikigai-branding",
+    "/ikigai-branding": "/workshops/ikigai-branding",
+    "/ikigai-content-studio": "/workshops/ikigai-content-studio",
+    "/personal-ai-coe": "/workshops/personal-ai-coe",
+    "/soul-frequency-assessment": "/soul-frequency-quiz",
+    "/sovereign-leadership": "/workshops/sovereign-leadership",
+    "/workshops/ikigai": "/workshops/ikigai-branding"
+  }
+}

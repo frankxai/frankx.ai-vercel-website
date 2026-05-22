@@ -21,7 +21,17 @@ export const INNER_CIRCLE_FAQS: InnerCircleFAQ[] = [
   {
     question: 'When does the Inner Circle launch?',
     answer:
-      "We're currently in waitlist mode. Join now to be first in line for launch pricing, onboarding bonuses, and early access to the vault.",
+      "Inner Circle opens Monday June 1, 2026 at 09:00 CET. Pricing publishes Wednesday May 27 to everyone on the waitlist. Between now and then: no marketing emails — just three: a pricing reveal (May 27), a 30-day preview (May 30), and the launch email (June 1 09:00 CET).",
+  },
+  {
+    question: "What's the founding-member bonus?",
+    answer:
+      "The first 100 to join during launch week (June 1-7) lock the founding rate for life, get a founders-only Slack channel that closes after June 7, and an exclusive July masterclass not available to later joiners. After 100, standard renewal pricing applies.",
+  },
+  {
+    question: 'When are the first masterclasses?',
+    answer:
+      "Three confirmed dates: Monday June 22, 19:00 CET — Agent Orchestration with Frank · Monday July 20, 19:00 CET — Prompt Engineering at Scale · Monday August 10, 19:00 CET — Shipping AI Products. All recorded + indexed in the vault. Live attendance is encouraged but not required; replay drops within 24h.",
   },
   {
     question: "What's included in the free Signal tier?",

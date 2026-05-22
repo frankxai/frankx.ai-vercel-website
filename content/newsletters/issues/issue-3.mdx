@@ -1,0 +1,87 @@
+---
+issue: 3
+slug: issue-3-what-i-built-in-madrid
+subject: "Issue 3: What I built in Madrid"
+preview: "Field dispatch — the workshop, the question I couldn't answer, the prompt that landed hardest"
+date: 2026-06-05
+sendAt: "2026-06-05T11:00:00+02:00"
+theme: "Field dispatch from inside the workshop"
+spotlight: "What participants' real AI hesitation was, the slide that landed hardest, the question that stumped me"
+connectsTo:
+  - issue-1-the-six-layer-operating-loop
+  - issue-2-the-fourth-hub-failed
+  - inner-circle-june-1-launch
+  - madrid-workshop-2026-05-27
+status: draft
+crossPost: false
+gateStatus: pending
+author: Frank Riemer
+---
+
+# What I built in Madrid
+
+Last Wednesday I flew to Madrid for two workshops + a community dinner. I came back with a notebook full of moments I didn't expect, including one question I couldn't answer in real time.
+
+This is a field dispatch. The cleaner version goes into a blog post next week. This is what's still raw.
+
+## The hesitation I kept hearing
+
+I expected the room to be split between "I don't know where to start with AI" and "I already tried it and it didn't work."
+
+It wasn't split. It was layered.
+
+Almost everyone had tried ChatGPT. Most had tried Claude. About a third had tried building something with an API. But the layer underneath all of that — what each person actually wanted — was the same: **"Show me how YOU use it on a real workday. Not the demo. The actual workday."**
+
+That's the gap workshops keep failing to close. The slides show capabilities. The demos show happy paths. Neither shows the rhythm.
+
+So mid-workshop, I closed the deck and screen-shared my actual terminal for 20 minutes. Three Claude Code sessions in tabs. Inbox of audio captures from the morning. A draft from the multimodal-orchestrator waiting for review. Nothing curated. Nothing rehearsed.
+
+The room got quiet in a different way than during the slides. That's when the questions started landing.
+
+## The slide that worked
+
+Of all 47 slides I'd prepared, exactly one drew a "wait, can you go back?" — the **6-pillar AI CoE diagram**. The same one Oracle pays me to draw for Fortune 500 companies. The same one I built into ACOS.
+
+Six pillars: Strategy, Governance, Talent, Technology, Data, Ethics.
+
+What clicked for the room wasn't the diagram. It was when I traced one path through it — a single AI-generated song from prompt to release — and showed which pillar caught which failure mode along the way. Governance caught the licensing question. Ethics caught the "what about the artists whose voices trained this" question. Talent caught the "who's accountable when the agent ships something embarrassing" question.
+
+The diagram is just architecture. The walk-through is the product.
+
+I wrote up the walk-through in a blog post that goes live tomorrow: [/blog/personal-ai-coe-walkthrough](https://frankx.ai/blog/personal-ai-coe-walkthrough).
+
+## The question I couldn't answer
+
+A founder of a Spanish design agency asked, after I'd shown the agent stack: **"What happens when one of your agents makes a quiet mistake? Not a bug — a wrong answer in the right format. How do you catch that?"**
+
+I gave a partial answer in the room — `@integrity-guard` runs gates, I review the diffs, the worst slop never ships. But she pushed: "But it's already in your draft. You're already biased to keep it. How do you stay surprised by your own output?"
+
+I didn't have a clean answer.
+
+I have a draft of one now, after thinking about it on the flight home. The honest answer is: I can't stay surprised by my own output. The system has to. That's why the gates can't be reviewed by the same agent that wrote the draft. That's why `@integrity-guard` is a separate agent, not a function call. That's why the 5 sub-gates run *in parallel*, not in sequence — sequential gates can be trained-against.
+
+But I want to think about this longer before I write it as architecture. If you have a working answer, hit reply.
+
+## What I shipped on the train home
+
+The amplification loop I described in Issue 1 ran again. 6 workshop attendees posted to LinkedIn within 48 hours. The loop drafted 6 reposts, logged 6 CRM touchpoints, and queued 1 follow-up intro request to a head of AI at a Madrid bank.
+
+I approved 4 of the 6 reposts. The other 2 needed voice rewrites — the loop is good, not perfect.
+
+## The toolkit (this week)
+
+The single piece of the stack that earned its keep in Madrid:
+
+**`@amplification-liaison`** — the agent that watches LinkedIn for attendee posts in the 14 days after a workshop, drafts reposts in my voice, logs CRM touchpoints. Spec lives at [.claude/agents/amplification-liaison.md](https://github.com/frankxai/agentic-creator-os) in the open-source ACOS repo. Free to fork.
+
+The math on this: Madrid had ~30 attendees. 6 posted within 48h. If I had to write all 6 reposts manually, that's ~90 minutes of post-workshop work I never would have done well at 23:00 on the train. The loop did it in 4 minutes for me to review. The conversion of "attendee" → "amplifier" is what makes workshops compound. The loop is what makes that conversion automatic.
+
+## What's next on the site
+
+- **June 1 (4 days):** [Inner Circle](https://frankx.ai/inner-circle) opens. Founding cohort capped at 100. The pricing email lands today if you're on the waitlist.
+- **Friday after next:** Issue 4 — written from inside the Inner Circle launch week. What the first 7 days looked like from the operator side.
+- **Behind the loop:** Madrid attendee artifacts going to vault next week — the workshop's actual exercises + prompts + the slide deck (only `/labs` members will see it).
+
+—Frank
+
+P.S. I keep finding that the question "who reviews your AI's output" is the question that separates serious operators from curious ones. If you have a system for that — any system, even a janky one — I'd rather read your reply than write Issue 4's opener.

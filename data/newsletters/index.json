@@ -35,6 +35,36 @@
       "gateStatus": "pending",
       "resendMessageId": null,
       "recipientCount": null
+    },
+    {
+      "issue": 3,
+      "slug": "issue-3-what-i-built-in-madrid",
+      "subject": "Issue 3: What I built in Madrid",
+      "preview": "Field dispatch — the workshop, the question I couldn't answer, the prompt that landed hardest",
+      "date": "2026-06-05",
+      "sendAt": "2026-06-05T11:00:00+02:00",
+      "sentAt": null,
+      "theme": "Field dispatch from inside the workshop",
+      "status": "draft",
+      "crossPost": false,
+      "gateStatus": "pending",
+      "resendMessageId": null,
+      "recipientCount": null
+    },
+    {
+      "issue": 4,
+      "slug": "issue-4-the-inner-circle-brief",
+      "subject": "Issue 4: The Inner Circle Brief",
+      "preview": "First issue going to founding members + main list. The thesis behind the room I just opened.",
+      "date": "2026-06-12",
+      "sendAt": "2026-06-12T11:00:00+02:00",
+      "sentAt": null,
+      "theme": "Why the same CoE that costs €200k at enterprise scale costs zero when you're the only employee",
+      "status": "draft",
+      "crossPost": false,
+      "gateStatus": "pending",
+      "resendMessageId": null,
+      "recipientCount": null
     }
   ]
 }

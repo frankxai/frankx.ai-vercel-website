@@ -51,8 +51,8 @@ const MEMBERSHIP_TIERS = [
   },
   {
     name: 'Inner Circle',
-    price: 'Waitlist',
-    description: 'Full access to vault, labs, and direct agent support.',
+    price: 'Pricing announces May 27',
+    description: 'Full access to vault, labs, and direct agent support. Founding-member cohort capped at 100.',
     popular: true,
     features: [
       { text: 'Weekly Creation Chronicles dispatch', included: true },
@@ -72,8 +72,8 @@ const MEMBERSHIP_TIERS = [
   },
   {
     name: 'Alliance',
-    price: 'Custom',
-    description: 'Enterprise partnership with bespoke strategy and agent builds.',
+    price: 'Starting $2,000/mo',
+    description: 'Enterprise partnership with bespoke strategy, dedicated agent builds, and executive briefings.',
     popular: false,
     features: [
       { text: 'Weekly Creation Chronicles dispatch', included: true },

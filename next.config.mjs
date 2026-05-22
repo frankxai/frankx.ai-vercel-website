@@ -1,8 +1,34 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { readFileSync, existsSync } from 'fs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+
+/**
+ * Load curated path aliases for 301 redirects.
+ * Source: data/redirect-aliases.json (operator-curated; agent proposals require approval).
+ * Format: { aliases: { from: to, ... } } — see file for schema doc.
+ * Failing safely to {} means a bad file never breaks the build.
+ */
+function loadRedirectAliases() {
+  try {
+    const aliasPath = join(__dirname, 'data', 'redirect-aliases.json')
+    if (!existsSync(aliasPath)) return []
+    const raw = JSON.parse(readFileSync(aliasPath, 'utf8'))
+    const aliases = raw.aliases && typeof raw.aliases === 'object' ? raw.aliases : {}
+    return Object.entries(aliases).map(([source, destination]) => ({
+      source,
+      destination,
+      permanent: true,
+    }))
+  } catch (err) {
+    console.warn('[next.config] failed to load redirect-aliases.json:', err.message)
+    return []
+  }
+}
+
+const REDIRECT_ALIASES = loadRedirectAliases()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -40,6 +66,10 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Curated path aliases — loaded from data/redirect-aliases.json.
+      // Includes /ikigai → /workshops/ikigai-branding and the rest of the
+      // legacy URL recovery set. Operator + agent additions land here on approval.
+      ...REDIRECT_ALIASES,
       // Arcanea domain canonicalization
       {
         source: '/arcanea',
