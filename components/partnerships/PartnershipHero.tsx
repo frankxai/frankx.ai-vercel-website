@@ -10,6 +10,7 @@ type PartnershipHeroProps = {
 const STATUS_LABEL: Record<Partner['status'], string> = {
   active: 'Working partnership',
   'in-conversation': 'In conversation',
+  'strategic-alignment': 'Strategic alignment',
   placeholder: 'Conversation open',
 }
 
