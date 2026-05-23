@@ -16,7 +16,6 @@ const OUTPUT_DIRS = [
 ];
 const EXCLUDE_DIRS = new Set([
   '.git', 'node_modules', '.next', 'reading-site',
-  path.join('public','reading'),
   // Large content folders that cause memory issues
   'content-universe', '.archive', '.obsidian', 'backups',
   'docs', 'affine-workspace', '_repo_remote_frankx_website',
@@ -24,6 +23,9 @@ const EXCLUDE_DIRS = new Set([
   'keystatic-frankx', 'sanity-frankx', 'tina-frankx',
   'Student Workshops - University Visits',
   '.claude-skills', 'Claude-Code-AI-Architect-Skills'
+]);
+const EXCLUDE_REL_PATHS = new Set([
+  'public/reading',
 ]);
 const TEXT_EXTS = new Set(['.md', '.markdown', '.txt', '.html']);
 
@@ -202,6 +204,12 @@ function relativeOutputPath(file) {
   return path.relative(ROOT, file).replace(/\\/g, '/');
 }
 
+function shouldSkipDirectory(fullPath, dirname) {
+  if (EXCLUDE_DIRS.has(dirname)) return true;
+  const rel = path.relative(ROOT, fullPath).replace(/\\/g, '/');
+  return EXCLUDE_REL_PATHS.has(rel);
+}
+
 function outPathFor(file) {
   const rel = relativeOutputPath(file);
   const ext = path.extname(file).toLowerCase();
@@ -217,7 +225,7 @@ function walk(dir, list = []) {
       if (ent.name.startsWith('.DS_Store')) continue;
       const full = path.join(dir, ent.name);
       if (ent.isDirectory()) {
-        if (EXCLUDE_DIRS.has(ent.name)) {
+        if (shouldSkipDirectory(full, ent.name)) {
              // console.log(`Skipping ${full}`);
              continue;
         }

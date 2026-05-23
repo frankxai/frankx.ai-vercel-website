@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 534,
-    "aliases": 9,
+    "total": 559,
+    "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 272,
+      "section": 297,
       "community": 12,
       "tool": 10,
       "static": 14,
@@ -141,6 +141,45 @@
       "type": "section"
     },
     {
+      "href": "/ai-architecture/claude-agent-sdk-vercel",
+      "title": "Claude Agent SDK on Vercel Sandbox",
+      "description": "Production agent deployment on Vercel Edge with secure code execution",
+      "tags": [
+        "claude",
+        "agent",
+        "sdk",
+        "vercel"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/claude-code-multi-agent-team-railway",
+      "title": "Claude Code Multi-Agent Team on Railway",
+      "description": "Coordinate multiple Claude Code agents working in parallel on a shared codebase",
+      "tags": [
+        "claude",
+        "code",
+        "multi",
+        "agent",
+        "team",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/conscious-ai-multi-agent-platform",
+      "title": "Conscious AI Multi-Agent Platform",
+      "description": "Multi-tenant agent platform with guardian ethics, persistent memory, and biometric integration",
+      "tags": [
+        "conscious",
+        "ai",
+        "multi",
+        "agent",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-architecture/enterprise-rag-platform",
       "title": "Enterprise RAG Platform",
       "description": "Production-grade document Q&A system for enterprises",
@@ -159,6 +198,17 @@
         "frankx",
         "ai",
         "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/mcp-agent-marketplace",
+      "title": "MCP Agent & Skill Marketplace",
+      "description": "Community-driven marketplace for AI agents, MCP servers, skills, and workflow automations",
+      "tags": [
+        "mcp",
+        "agent",
+        "marketplace"
       ],
       "type": "section"
     },
@@ -191,12 +241,45 @@
       "type": "section"
     },
     {
+      "href": "/ai-architecture/ollama-openwebui-railway",
+      "title": "Ollama + OpenWebUI on Railway",
+      "description": "Self-hosted ChatGPT alternative in 10 minutes",
+      "tags": [
+        "ollama",
+        "openwebui",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-architecture/prototypes",
       "title": "Prototypes",
       "tags": [
         "ai",
         "architecture",
         "prototypes"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/sovereign-knowledge-vault",
+      "title": "Sovereign Knowledge Vault",
+      "description": "Multi-generational family and business intelligence system with shared and private vaults",
+      "tags": [
+        "sovereign",
+        "knowledge",
+        "vault"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/starlight-intelligence-system",
+      "title": "Starlight Intelligence System (SIS)",
+      "description": "Strategic AI orchestration layer with multi-model routing, agent coordination, and purpose-driven decision intelligence",
+      "tags": [
+        "starlight",
+        "intelligence",
+        "system"
       ],
       "type": "section"
     },
@@ -217,6 +300,18 @@
         "ai",
         "architecture",
         "tools"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/vital-intelligence-health-system",
+      "title": "Vital Intelligence Health System",
+      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "tags": [
+        "vital",
+        "intelligence",
+        "health",
+        "system"
       ],
       "type": "section"
     },
@@ -2105,6 +2200,45 @@
       "type": "section"
     },
     {
+      "href": "/blueprint/claude-agent-sdk-vercel",
+      "title": "Claude Agent SDK on Vercel Sandbox",
+      "description": "Production agent deployment on Vercel Edge with secure code execution",
+      "tags": [
+        "claude",
+        "agent",
+        "sdk",
+        "vercel"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/claude-code-multi-agent-team-railway",
+      "title": "Claude Code Multi-Agent Team on Railway",
+      "description": "Coordinate multiple Claude Code agents working in parallel on a shared codebase",
+      "tags": [
+        "claude",
+        "code",
+        "multi",
+        "agent",
+        "team",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/conscious-ai-multi-agent-platform",
+      "title": "Conscious AI Multi-Agent Platform",
+      "description": "Multi-tenant agent platform with guardian ethics, persistent memory, and biometric integration",
+      "tags": [
+        "conscious",
+        "ai",
+        "multi",
+        "agent",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/blueprint/enterprise-rag-platform",
       "title": "Enterprise RAG Platform",
       "description": "Production-grade document Q&A system for enterprises",
@@ -2123,6 +2257,17 @@
         "frankx",
         "ai",
         "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/mcp-agent-marketplace",
+      "title": "MCP Agent & Skill Marketplace",
+      "description": "Community-driven marketplace for AI agents, MCP servers, skills, and workflow automations",
+      "tags": [
+        "mcp",
+        "agent",
+        "marketplace"
       ],
       "type": "section"
     },
@@ -2146,6 +2291,51 @@
         "agent",
         "code",
         "assistant"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/ollama-openwebui-railway",
+      "title": "Ollama + OpenWebUI on Railway",
+      "description": "Self-hosted ChatGPT alternative in 10 minutes",
+      "tags": [
+        "ollama",
+        "openwebui",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/sovereign-knowledge-vault",
+      "title": "Sovereign Knowledge Vault",
+      "description": "Multi-generational family and business intelligence system with shared and private vaults",
+      "tags": [
+        "sovereign",
+        "knowledge",
+        "vault"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/starlight-intelligence-system",
+      "title": "Starlight Intelligence System (SIS)",
+      "description": "Strategic AI orchestration layer with multi-model routing, agent coordination, and purpose-driven decision intelligence",
+      "tags": [
+        "starlight",
+        "intelligence",
+        "system"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/blueprint/vital-intelligence-health-system",
+      "title": "Vital Intelligence Health System",
+      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "tags": [
+        "vital",
+        "intelligence",
+        "health",
+        "system"
       ],
       "type": "section"
     },
@@ -3257,6 +3447,17 @@
       "type": "community"
     },
     {
+      "href": "/inner-circle/vault-preview",
+      "title": "Vault Preview",
+      "tags": [
+        "inner",
+        "circle",
+        "vault",
+        "preview"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/insights",
       "title": "Insights",
       "type": "section"
@@ -4148,6 +4349,45 @@
       "type": "section"
     },
     {
+      "href": "/prototype/claude-agent-sdk-vercel",
+      "title": "Claude Agent SDK on Vercel Sandbox",
+      "description": "Production agent deployment on Vercel Edge with secure code execution",
+      "tags": [
+        "claude",
+        "agent",
+        "sdk",
+        "vercel"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/claude-code-multi-agent-team-railway",
+      "title": "Claude Code Multi-Agent Team on Railway",
+      "description": "Coordinate multiple Claude Code agents working in parallel on a shared codebase",
+      "tags": [
+        "claude",
+        "code",
+        "multi",
+        "agent",
+        "team",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/conscious-ai-multi-agent-platform",
+      "title": "Conscious AI Multi-Agent Platform",
+      "description": "Multi-tenant agent platform with guardian ethics, persistent memory, and biometric integration",
+      "tags": [
+        "conscious",
+        "ai",
+        "multi",
+        "agent",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/prototype/enterprise-rag-platform",
       "title": "Enterprise RAG Platform",
       "description": "Production-grade document Q&A system for enterprises",
@@ -4166,6 +4406,17 @@
         "frankx",
         "ai",
         "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/mcp-agent-marketplace",
+      "title": "MCP Agent & Skill Marketplace",
+      "description": "Community-driven marketplace for AI agents, MCP servers, skills, and workflow automations",
+      "tags": [
+        "mcp",
+        "agent",
+        "marketplace"
       ],
       "type": "section"
     },
@@ -4189,6 +4440,51 @@
         "agent",
         "code",
         "assistant"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/ollama-openwebui-railway",
+      "title": "Ollama + OpenWebUI on Railway",
+      "description": "Self-hosted ChatGPT alternative in 10 minutes",
+      "tags": [
+        "ollama",
+        "openwebui",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/sovereign-knowledge-vault",
+      "title": "Sovereign Knowledge Vault",
+      "description": "Multi-generational family and business intelligence system with shared and private vaults",
+      "tags": [
+        "sovereign",
+        "knowledge",
+        "vault"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/starlight-intelligence-system",
+      "title": "Starlight Intelligence System (SIS)",
+      "description": "Strategic AI orchestration layer with multi-model routing, agent coordination, and purpose-driven decision intelligence",
+      "tags": [
+        "starlight",
+        "intelligence",
+        "system"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/prototype/vital-intelligence-health-system",
+      "title": "Vital Intelligence Health System",
+      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "tags": [
+        "vital",
+        "intelligence",
+        "health",
+        "system"
       ],
       "type": "section"
     },
@@ -5005,6 +5301,7 @@
   ],
   "aliases": {
     "/aco": "/agents",
+    "/ai-coe": "/acos",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
@@ -5012,6 +5309,10 @@
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
-    "/workshops/ikigai": "/workshops/ikigai-branding"
+    "/workshops/ikigai": "/workshops/ikigai-branding",
+    "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
+    "/workshops/ikigai/v2": "/workshops/ikigai-branding",
+    "/workshops/ikigai/v3": "/workshops/ikigai-branding",
+    "/workshops/ikigai/v4": "/workshops/ikigai-branding"
   }
 }

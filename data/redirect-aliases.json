@@ -7,6 +7,7 @@
   },
   "aliases": {
     "/aco": "/agents",
+    "/ai-coe": "/acos",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
@@ -14,6 +15,10 @@
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
-    "/workshops/ikigai": "/workshops/ikigai-branding"
+    "/workshops/ikigai": "/workshops/ikigai-branding",
+    "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
+    "/workshops/ikigai/v2": "/workshops/ikigai-branding",
+    "/workshops/ikigai/v3": "/workshops/ikigai-branding",
+    "/workshops/ikigai/v4": "/workshops/ikigai-branding"
   }
 }

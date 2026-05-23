@@ -48,7 +48,7 @@
     "diagrams:guard": "node scripts/diagrams/guard.mjs",
     "diagrams:baseline": "node scripts/diagrams/guard.mjs --update-baseline",
     "ci:check": "npm run merge:gate && npm run lint && npm run content:validate && npm run diagrams:guard",
-    "merge:gate": "npm run type-check && npm run claims:audit:strict && npm run ai-slop:audit && npm run links:check:ci",
+    "merge:gate": "npm run type-check && npm run claims:audit:strict && npm run ai-slop:audit && npm run links:check:static && npm run links:check:ci",
     "links:check": "node scripts/check-links.mjs",
     "links:check:ci": "bash scripts/run-links-check-with-dev.sh",
     "links:check:static": "node scripts/check-internal-links.mjs",

@@ -85,6 +85,7 @@ const ALLOW_PATH_PATTERNS = [
   /^app\/design-lab\//,             // design-lab includes negative examples
   /^app\/llms\.txt\//,              // llms.txt route handler — concise AEO surface
   /^app\/llms-full\.txt\//,         // llms-full.txt route handler — lists refusal-list as voice signal
+  /^lib\/voice\/frankx-voice\.ts$/, // canonical voice contract quotes banned phrases by design
   /^content\/2-ready-to-publish\//, // staged drafts (not yet shipped)
   /^v1-enterprise-backup\//,        // legacy backups
   /^_archive\//,                    // archived content

@@ -63,6 +63,7 @@ RELEVANT_PATHS=(
   vercel.json
   tailwind.config.js
   tsconfig.json
+  proxy.ts
   middleware.ts
   middleware.js
   .vercelignore

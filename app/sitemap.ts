@@ -4,6 +4,8 @@ import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
+// lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
+import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -656,6 +658,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     })
   })
+
+  // Auto-discovery safety net — pull every route from lib/route-enumeration.mjs
+  // (the single source of truth shared with data/route-index.json + the link
+  // checker) and add any that the hand-curated arrays above missed. The
+  // existing entry wins on collision, so manual priority/changeFrequency
+  // settings are preserved.
+  const seenUrls = new Set(entries.map((e) => e.url))
+  try {
+    const discovered = enumerateRoutes() as Array<{ href: string; type: string }>
+    // Heuristic priority + frequency by route type — only used for routes that
+    // weren't already in the hand-curated arrays above.
+    const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
+      core: { priority: 0.8, changeFrequency: 'weekly' },
+      blog: { priority: 0.7, changeFrequency: 'monthly' },
+      workshop: { priority: 0.8, changeFrequency: 'monthly' },
+      product: { priority: 0.8, changeFrequency: 'weekly' },
+      guide: { priority: 0.7, changeFrequency: 'monthly' },
+      library: { priority: 0.7, changeFrequency: 'monthly' },
+      os: { priority: 0.7, changeFrequency: 'monthly' },
+      research: { priority: 0.7, changeFrequency: 'weekly' },
+      newsletter: { priority: 0.75, changeFrequency: 'monthly' },
+      partnership: { priority: 0.6, changeFrequency: 'monthly' },
+      tool: { priority: 0.6, changeFrequency: 'monthly' },
+      community: { priority: 0.6, changeFrequency: 'monthly' },
+      section: { priority: 0.5, changeFrequency: 'monthly' },
+      video: { priority: 0.7, changeFrequency: 'weekly' },
+      static: { priority: 0.4, changeFrequency: 'yearly' },
+      legacy: { priority: 0.3, changeFrequency: 'yearly' },
+    }
+    for (const route of discovered) {
+      const url = `${BASE_URL}${route.href}`
+      if (seenUrls.has(url)) continue
+      seenUrls.add(url)
+      const def = defaults[route.type] ?? defaults.section
+      entries.push({
+        url,
+        lastModified: currentDate,
+        changeFrequency: def.changeFrequency,
+        priority: def.priority,
+      })
+    }
+  } catch (err) {
+    // Don't fail sitemap generation if the enumerator can't load —
+    // the hand-curated arrays above still produce a valid sitemap.
+    console.warn('[sitemap] route-enumeration auto-discovery failed:', (err as Error).message)
+  }
 
   return entries
 }

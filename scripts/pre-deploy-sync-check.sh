@@ -59,8 +59,12 @@ SYNC_DIRS=(
 SYNC_FILES=(
   "package.json"
   "package-lock.json"
+  "pnpm-lock.yaml"
   "tsconfig.json"
   "next.config.mjs"
+  "vercel.json"
+  "proxy.ts"
+  "middleware.ts"
   "postcss.config.js"
   "tailwind.config.js"
 )

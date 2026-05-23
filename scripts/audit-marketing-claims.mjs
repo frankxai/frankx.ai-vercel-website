@@ -2,21 +2,16 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
-import { globSync } from 'glob'
 
 const root = process.cwd()
 const strict = process.argv.includes('--strict')
 
-const include = [
-  'app/**/*.{ts,tsx,md,mdx,json}',
-  'components/**/*.{ts,tsx,md,mdx,json}',
-  'lib/**/*.{ts,tsx,md,mdx,json}',
-  'data/**/*.{json,md,mdx}',
-]
+const includeDirs = ['app', 'components', 'lib', 'data']
+const includeExts = new Set(['.ts', '.tsx', '.md', '.mdx', '.json'])
 
 const ignore = [
-  '**/node_modules/**',
-  '**/.next/**',
+  'node_modules',
+  '.next',
   'lib/research/**',
   'components/v0-variants/**',
   'app/design-lab/**',
@@ -26,6 +21,20 @@ const ignore = [
   'data/vault-manifest.json',
   'data/templates.json',
 ]
+
+function normalize(relPath) {
+  return relPath.replace(/\\/g, '/')
+}
+
+function isIgnored(relPath) {
+  const normalized = normalize(relPath)
+  return ignore.some((pattern) => {
+    if (pattern.endsWith('/**')) {
+      return normalized.startsWith(pattern.slice(0, -3))
+    }
+    return normalized === pattern
+  })
+}
 
 const checks = [
   {
@@ -62,13 +71,26 @@ const checks = [
   },
 ]
 
-const files = include.flatMap((pattern) =>
-  globSync(pattern, {
-    cwd: root,
-    nodir: true,
-    ignore,
-  })
-)
+function walk(dir, files = []) {
+  const entries = fs.readdirSync(path.join(root, dir), { withFileTypes: true })
+  for (const entry of entries) {
+    const relPath = normalize(path.join(dir, entry.name))
+    if (isIgnored(relPath)) continue
+    if (entry.isDirectory()) {
+      walk(relPath, files)
+      continue
+    }
+    if (includeExts.has(path.extname(entry.name))) {
+      files.push(relPath)
+    }
+  }
+  return files
+}
+
+const files = includeDirs.flatMap((dir) => {
+  if (!fs.existsSync(path.join(root, dir))) return []
+  return walk(dir)
+})
 
 const findings = []
 
