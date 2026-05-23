@@ -1,0 +1,131 @@
+---
+title: "Google AI Pro's New Usage Model: Compute Limits, AI Credits, and What Builders Need to Know"
+description: "Google rewrote the Gemini, Flow, and Antigravity usage rules on May 20, 2026 — compute-based limits, AI credits as currency, and the 1,000-credit bundle is gone. Here's what changed and what it means."
+date: "2026-05-21"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags:
+  [
+    "Google Gemini",
+    "AI Pricing",
+    "AI Credits",
+    "Flow",
+    "Antigravity",
+    "AI Strategy",
+  ]
+image: "/images/blog/agentic-ai-roadmap-2026-hero.png"
+keywords:
+  [
+    "google ai pro changes",
+    "gemini usage limits 2026",
+    "google ai credits",
+    "flow antigravity pricing",
+    "compute-based ai limits",
+  ]
+readingGoal: "You will understand exactly what changed in Google AI Pro on May 20, 2026, how compute-based limits and AI credits work, and how to adjust your Gemini, Flow, and Antigravity workflows."
+tldr: "Google AI Pro now uses compute-based usage limits in Gemini (refreshing every five hours, capped weekly) and rolled out AI credits as purchasable currency across Flow and Antigravity. The bundled 1,000 monthly credits are removed. Model access, features, and 5 TB storage stay the same."
+schema: ["Article", "FAQPage"]
+featured: false
+lastModified: "2026-05-21"
+---
+
+## TL;DR
+
+Google AI Pro shifted to a compute-based usage model on May 20, 2026. The Gemini app now meters by prompt complexity, feature mix, and chat length — refreshing every five hours up to a weekly cap, with AI Pro subscribers getting 4x the non-subscriber limit. AI credits become the unit of account in Flow and Antigravity, and the 1,000 free monthly credits that came with the base plan are gone. Model access (Gemini Flash, Pro, Thinking), features (Deep Research, video generation), and 5 TB of shared storage do not change.
+
+---
+
+## What Changed on May 20, 2026
+
+Google sent a mandatory service announcement to AI Pro subscribers describing two structural changes and one removal:
+
+- **Compute-based usage limits in the Gemini app.** The new limit factors in the complexity of your prompt, the features you use, and the length of your chat. Your allowance refreshes every five hours until you hit a weekly cap. AI Pro subscribers get a usage limit four times higher than non-subscribers.
+- **AI credits expand to Flow and Antigravity.** The product-based usage limit model that Google has been testing is rolling out beyond Gemini. Flow (video generation) and Antigravity (Google's agent / coding platform) are first. You can buy AI credits to extend your limits when you need more headroom.
+- **The 1,000 monthly AI credits bundle is removed.** Those 1,000 credits used to be included with the AI Pro base plan each month. They no longer are. Google's framing: the new compute-based limits should let most subscribers maintain "the same experience."
+
+That last point is the one to read carefully. A bundled benefit being removed while the headline price stays the same is a price increase — at least for users who were riding the 1,000-credit allowance.
+
+---
+
+## What Did Not Change
+
+The announcement is explicit about what stays the same:
+
+- **Model access.** Gemini Flash and Gemini Pro, plus Thinking capabilities for both, remain part of AI Pro.
+- **Features.** Deep Research, video generation, and the rest of the Gemini app feature set continue without restriction beyond the new usage limits.
+- **Storage.** 5 TB of shareable storage across Google Photos, Drive, and Gmail is unchanged.
+
+If you subscribed to AI Pro for model quality, research capability, or storage, the value proposition is intact. What changed is the metering layer underneath it.
+
+---
+
+## Why This Is the Bigger Shift
+
+Compute-based limits and credits-as-currency are not a Google-specific decision. They are the consumer surface of a pricing pattern that has been spreading across AI products for two years.
+
+The Anthropic API exposes tiered caching costs that reward prompt reuse. OpenAI metering separates input, output, and cached tokens. Cursor moved to request-based pricing. The pattern is the same: as inference costs vary by orders of magnitude depending on context length, tool use, and reasoning depth, flat subscriptions stop making economic sense for the provider — and stop making sense for power users either, since they subsidize light users.
+
+Google moving consumer AI Pro from flat allowances to compute-aware metering is the consumer-grade version of that shift. Expect everyone else to follow, with different names for the same idea.
+
+---
+
+## What It Means If You're Building With Gemini
+
+A few practical changes to how you should treat the app:
+
+- **Treat Deep Research and video generation as expensive.** Those are exactly the feature categories that consume more compute per call. If your work pattern is "Deep Research five topics back to back," you will hit limits faster than you used to.
+- **Batch heavy work inside the five-hour window.** The refresh interval is a budget you can plan around. Front-load expensive prompts after a refresh rather than spreading them across a week of small sessions and discovering you've exhausted your weekly cap.
+- **Watch chat length.** Long chats with growing context cost more per turn. Start fresh threads for unrelated work rather than letting one chat balloon to 200 turns of mixed topics.
+- **Treat AI credits as a project budget line.** If you bill clients for work that uses AI tools, AI credits move from "platform overhead" to "per-project cost of goods sold." Track them the way you'd track API costs.
+
+None of this is hard. It just requires noticing.
+
+---
+
+## What It Means for Flow and Antigravity Users
+
+Flow and Antigravity are the more interesting case. Both are compute-heavy by nature — Flow because video generation is expensive, Antigravity because agent runs can chain many model calls.
+
+The implication: **provision credits ahead of large generation runs and longer agent sessions.** If you're shipping a 60-second video out of Flow or running a multi-hour Antigravity agent, you do not want to discover mid-run that you're out of credits. Check your balance before starting, and add credits as a deliberate purchase rather than a panic top-up.
+
+For teams, this also means budgeting. AI credits become a line item that needs an owner. Someone has to decide how many credits a project gets and what happens when it runs out. That conversation is healthier than the alternative — pretending compute is free until your subscription hits a wall.
+
+---
+
+## The Honest Read
+
+Two things are simultaneously true about this announcement:
+
+**Compute-based metering is fairer than flat seats.** It charges heavy users for heavy usage and lets light users stay light. The five-hour refresh window is generous compared to per-call metering. And the 4x multiplier for AI Pro subscribers is a real differentiator if you actually use the product hard.
+
+**Removing the 1,000-credit bundle is a price increase for light users.** Anyone who was using those credits in Flow or Antigravity each month is now paying the same subscription for less included usage. Google's "should allow you to maintain the same experience" hedge is the corporate version of "trust us."
+
+Both can be true. Decide based on your usage, not the framing.
+
+---
+
+## FAQ
+
+### When does this take effect?
+
+The changes are live as of May 20, 2026, the day Google sent the mandatory service announcement to existing AI Pro subscribers.
+
+### Do I lose access to Gemini Pro?
+
+No. Model access is explicitly unchanged. AI Pro subscribers continue to have access to the latest Gemini Flash and Pro models, including Thinking capabilities for both. What changed is how usage of those models is metered.
+
+### What happens to my 1,000 monthly AI credits?
+
+The 1,000 AI credits that used to be included with the AI Pro base plan each month are no longer included. Google's stated position is that the new compute-based usage limits should give most subscribers a similar experience without needing the bundled credits. If you need more usage than the new limits allow, you can purchase AI credits.
+
+### How do AI credits work in Flow and Antigravity?
+
+Flow and Antigravity are now on the product-based usage limit model — the same pattern that has been rolling out across Google's AI products. You can extend your usage by purchasing AI credits. Treat them as a consumable budget you provision before large generation runs or longer agent sessions, not as something you discover you need mid-run.
+
+### Should I downgrade or stay on AI Pro?
+
+Look at your actual usage. If you use Deep Research weekly, generate video in Flow, or run agents in Antigravity, the 4x multiplier and the unchanged feature set are likely worth the subscription even without the bundled credits. If you signed up mostly for storage and rarely hit usage limits, you were probably overpaying before too — reassess against your real workload.
+
+---
+
+Google's Help Centre has the full details on how AI credits work in practice and how to manage or cancel a subscription. The metering shift is the headline. The bigger story is that compute-aware pricing is becoming the default for consumer AI, and the products that adapt their workflows to it will spend less and ship more than the ones that don't.
