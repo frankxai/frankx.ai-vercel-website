@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 
 /**
@@ -161,12 +162,12 @@ export function IkigaiVenn({
         <figcaption className="mt-6 text-center text-xs text-zinc-500 [font-family:var(--font-serif-editorial)] italic max-w-md mx-auto leading-relaxed">
           The Western scaffolding &mdash; drawn in 2014, useful as orientation. The original
           Japanese concept is{' '}
-          <a
+          <Link
             href="/research/blue-zones-ikigai-ai-era"
             className="text-violet-300 hover:text-violet-200 transition-colors underline underline-offset-4 not-italic"
           >
             quieter
-          </a>
+          </Link>
           .
         </figcaption>
       )}

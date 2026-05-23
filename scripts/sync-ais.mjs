@@ -7,12 +7,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
 const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
 const isVercel = Boolean(process.env.VERCEL);
+const isCI = Boolean(process.env.CI);
 
 if (!existsSync(AIS_ROOT)) {
-  if (isVercel) {
+  if (isVercel || isCI) {
+    const where = isVercel ? 'Vercel' : 'CI';
     console.warn(
       `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}; ` +
-      `skipping optional AIS emission during Vercel build.`
+      `skipping optional AIS emission during ${where} build.`
     );
     process.exit(0);
   }

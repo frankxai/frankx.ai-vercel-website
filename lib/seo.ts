@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { socialHandles } from './social-links'
+import { SOCIAL_META } from './social-links'
 
 const siteUrl = 'https://frankx.ai'
 
@@ -10,7 +10,7 @@ export const siteConfig = {
   description:
     'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
   url: siteUrl,
-  twitter: socialHandles.twitter,
+  twitter: SOCIAL_META.handle,
   // Static fallback. /api/og dynamic route has empty-body issues in Next 16
   // + next/og — using a real file ensures social shares always have an image.
   ogImage: '/hero-homepage.png',

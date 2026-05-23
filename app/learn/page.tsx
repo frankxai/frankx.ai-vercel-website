@@ -10,6 +10,7 @@ import {
   Music2,
   Zap,
   ImageIcon,
+  Sparkles,
   Clock,
   BookOpen,
   Play,
@@ -24,6 +25,7 @@ const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   music: Music2,
   zap: Zap,
   image: ImageIcon,
+  sparkles: Sparkles,
 }
 
 const colorMap: Record<string, string> = {
@@ -31,6 +33,7 @@ const colorMap: Record<string, string> = {
   cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
   amber: 'from-amber-500/20 to-amber-500/5 border-amber-500/20 text-amber-400',
   violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
+  sky: 'from-sky-500/20 to-blue-500/5 border-sky-500/20 text-sky-400',
 }
 
 const playButtonBgMap: Record<string, string> = {
@@ -38,7 +41,15 @@ const playButtonBgMap: Record<string, string> = {
   cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
   amber: 'bg-amber-500/80 group-hover:bg-amber-500',
   violet: 'bg-violet-500/80 group-hover:bg-violet-500',
+  sky: 'bg-sky-500/80 group-hover:bg-sky-500',
 }
+
+const upcomingPortals: string[] = [
+  'Suno AI Music',
+  'Midjourney Visual Art',
+  'ChatGPT for Productivity',
+  'NotebookLM Deep Work',
+]
 
 function PathCard({ path }: { path: LearningPath }) {
   const Icon = iconMap[path.icon] || BookOpen
@@ -195,15 +206,16 @@ export default function LearnPage() {
             </h1>
 
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Free resources from the best creators on the internet.
-              Curated paths that actually get you results.
+              Curated learning portals for the AI ecosystems that matter. Each one bundles
+              official launches, the sharpest expert walkthroughs, and the structure to move
+              from first prompt to production.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Learning Paths Grid */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
+      <section className="max-w-6xl mx-auto px-6 pb-12">
         <div className="grid md:grid-cols-2 gap-6">
           {learningPaths.map((path, i) => (
             <motion.div
@@ -215,6 +227,30 @@ export default function LearnPage() {
               <PathCard path={path} />
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Coming Soon */}
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <p className="text-sm font-semibold text-white mb-1">More portals in build</p>
+              <p className="text-sm text-white/50">
+                Same depth, same curation. Subscribe to the newsletter to be notified when each lands.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {upcomingPortals.map((portal) => (
+                <span
+                  key={portal}
+                  className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 text-white/60 border border-white/5"
+                >
+                  {portal}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
