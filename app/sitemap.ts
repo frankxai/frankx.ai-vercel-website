@@ -263,6 +263,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/learn/claude-mastery', priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: '/learn/gemini-mastery', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
