@@ -4,8 +4,13 @@ import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
-// lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
-import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
+// Pre-baked at build time by scripts/build-route-index.mjs (which uses
+// lib/route-enumeration.mjs). Importing the JSON keeps the sitemap lambda
+// small — calling enumerateRoutes() at request time forces Turbopack to
+// bundle every file under content/, data/, lib/research/ etc. into the
+// function (42k+ files → blows past Vercel's 250MB lambda limit and the
+// deploy ERRORs after build).
+import routeIndex from '@/data/route-index.json'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -661,14 +666,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Auto-discovery safety net — pull every route from lib/route-enumeration.mjs
-  // (the single source of truth shared with data/route-index.json + the link
-  // checker) and add any that the hand-curated arrays above missed. The
-  // existing entry wins on collision, so manual priority/changeFrequency
-  // settings are preserved.
+  // Auto-discovery safety net — pull every route from the pre-baked
+  // data/route-index.json (built from lib/route-enumeration.mjs at prebuild)
+  // and add any that the hand-curated arrays above missed. The existing
+  // entry wins on collision, so manual priority/changeFrequency settings
+  // are preserved.
   const seenUrls = new Set(entries.map((e) => e.url))
   try {
-    const discovered = enumerateRoutes() as Array<{ href: string; type: string }>
+    const discovered = (routeIndex as { routes: Array<{ href: string; type: string }> }).routes
     // Heuristic priority + frequency by route type — only used for routes that
     // weren't already in the hand-curated arrays above.
     const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
@@ -702,9 +707,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })
     }
   } catch (err) {
-    // Don't fail sitemap generation if the enumerator can't load —
-    // the hand-curated arrays above still produce a valid sitemap.
-    console.warn('[sitemap] route-enumeration auto-discovery failed:', (err as Error).message)
+    // Don't fail sitemap generation if the pre-baked index is missing or
+    // malformed — the hand-curated arrays above still produce a valid sitemap.
+    console.warn('[sitemap] route-index auto-discovery failed:', (err as Error).message)
   }
 
   return entries
