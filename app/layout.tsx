@@ -18,6 +18,7 @@ import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 import { HideOnLandingRoutes } from '@/components/layout/HideOnLandingRoutes'
+import StudioChatLauncher from '@/components/ai/StudioChatLauncher'
 
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
@@ -201,6 +202,9 @@ export default function RootLayout({
           </div>
           <HideOnLandingRoutes>
             <Footer />
+          </HideOnLandingRoutes>
+          <HideOnLandingRoutes>
+            <StudioChatLauncher />
           </HideOnLandingRoutes>
           <Analytics />
           <SpeedInsights />
