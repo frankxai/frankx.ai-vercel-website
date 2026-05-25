@@ -65,6 +65,8 @@ export type CrossLinkSurface =
   | 'workshops'
   | 'blog'
   | 'os'
+  | 'agentic-builder-lab'
+  | 'build'
 
 export type CrossLink = {
   surface: CrossLinkSurface

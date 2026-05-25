@@ -1,0 +1,41 @@
+---
+title: Arcanea — creator tool prototype
+slug: arcanea-creator-tool
+status: wip
+day_number: 8
+stack: [Gemini API, Antigravity 2.0, Firebase, Next.js 16]
+outcome_metric: null
+outcome_headline: World-building tool that generates lore, characters, and scenes on demand.
+demo_url: https://frankx.ai/arcanea
+repo_url: null
+started_at: 2026-05-30
+last_updated: 2026-05-25
+sort_order: 4
+summary: Prototyping the Arcanea creator tool — a world-building engine that takes a setting prompt and produces lore, characters, scenes, and visual references using Gemini for grounding and Antigravity for the UI scaffold.
+---
+
+## What we built
+
+A prototype that takes a world-prompt and produces a complete kit: lore document, five named characters with art references, three scenes, and a glossary. Output saved to Firebase so creators can iterate without losing state.
+
+## The stack and why
+
+- **Gemini API** — grounded research for lore consistency.
+- **Antigravity 2.0** — built the UI from a single design brief in roughly 40 minutes; browser validation caught two style regressions before review.
+- **Firebase** — session storage and auth.
+
+## What worked
+
+- Antigravity's artifact verification surfaced an accessibility issue (color contrast on the lore tab) before manual QA.
+
+## What broke
+
+- Character art generation occasionally returned off-brief images; needs a verification agent in the loop.
+
+## One reusable artifact
+
+Coming with v0.1.
+
+## Next
+
+Add the verification agent and run a 10-prompt benchmark against the manual-art baseline.

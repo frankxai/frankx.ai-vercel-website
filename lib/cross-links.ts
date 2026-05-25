@@ -16,6 +16,8 @@ export const SURFACE_HREFS: Record<CrossLinkSurface, string> = {
   workshops: '/workshops',
   blog: '/blog',
   os: '/os',
+  'agentic-builder-lab': '/agentic-builder-lab',
+  build: '/build',
 }
 
 export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
@@ -26,6 +28,8 @@ export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
   workshops: 'Workshops calendar',
   blog: 'Field notes',
   os: 'FrankX OS overview',
+  'agentic-builder-lab': 'Agentic Builder Lab',
+  build: 'Build with Frank',
 }
 
 /**
