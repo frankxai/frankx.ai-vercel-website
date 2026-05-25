@@ -23,7 +23,7 @@ const brandAccents = [
 const foundations = [
   { name: 'Void', hex: '#0a0a0b', desc: 'Page background', tw: 'bg-[#0a0a0b]' },
   { name: 'Space', hex: '#111113', desc: 'Section background', tw: 'bg-[#111113]' },
-  { name: 'Navy', hex: '#0F172A', desc: 'Brand primary dark', tw: 'bg-[#0F172A]' },
+  { name: 'Navy', hex: '#0F172A', desc: 'Brand primary dark', tw: 'bg-[#0a0a0b]' },
   { name: 'Elevated', hex: '#1a1a1f', desc: 'Card backgrounds', tw: 'bg-[#1a1a1f]' },
   { name: 'Subtle', hex: '#252530', desc: 'Hover states', tw: 'bg-[#252530]' },
   { name: 'Muted', hex: '#3a3a4a', desc: 'Disabled states', tw: 'bg-[#3a3a4a]' },

@@ -162,8 +162,8 @@ export default function LinksPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Aurora background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-conscious-purple/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-tech-cyan/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-conscious-purple/20 rounded-full blur-[128px] animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-tech-cyan/20 rounded-full blur-[128px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Main content */}

@@ -82,7 +82,7 @@ export default function MobileBottomNav() {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
           {/* Main nav container */}
-          <div className="bg-[#030712]/95 backdrop-blur-xl border-t border-white/10">
+          <div className="bg-[#0a0a0b]/95 backdrop-blur-xl border-t border-white/10">
             <div className="safe-area-bottom px-4 pb-2 pt-1">
               <div className="flex items-center justify-around">
                 {bottomNavItems.map((item) => {

@@ -15,6 +15,8 @@ type JsonLdType =
   | 'HowTo'
   | 'Course'
   | 'ItemList'
+  | 'VideoObject'
+  | 'CollectionPage'
 
 type JsonLdProps = {
   type: JsonLdType

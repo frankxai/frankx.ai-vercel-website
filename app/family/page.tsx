@@ -51,7 +51,7 @@ const familyLinks = [
 
 export default function FamilyHubPage() {
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -112,7 +112,7 @@ export default function FamilyHubPage() {
       </section>
 
       {/* Family Values */}
-      <section className="border-t border-white/5 bg-white/[0.02]">
+      <section className="border-t border-white/[0.08] bg-white/[0.03]">
         <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="mb-12 text-center">
             <h2 className="mb-3 text-2xl font-bold text-white">Why This Exists</h2>
@@ -157,7 +157,7 @@ export default function FamilyHubPage() {
 
       {/* Stories placeholder */}
       <section id="stories" className="mx-auto max-w-4xl px-6 py-20">
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-center">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 text-center">
           <MessageCircle className="mx-auto mb-4 h-10 w-10 text-white/20" />
           <h2 className="mb-2 text-xl font-semibold text-white">Family Stories</h2>
           <p className="mb-6 text-white/40">

@@ -36,7 +36,7 @@ const starField = Array.from({ length: 50 }, (_, index) => {
 function MagicBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       {/* Cosmic gradient orbs */}
       <motion.div
@@ -235,7 +235,7 @@ export default function MagicPage() {
               className="flex flex-wrap justify-center gap-4"
             >
               <a
-                href="https://arcanea.app"
+                href="https://arcanea.ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-semibold rounded-full transition-all hover:scale-105 hover:shadow-lg hover:shadow-violet-500/25"
@@ -362,7 +362,7 @@ export default function MagicPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.04] transition-all"
+                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 hover:bg-white/[0.04] transition-all"
                 >
                   <div className={`h-2 w-20 rounded-full bg-gradient-to-r ${luminor.color} mb-6`} />
                   <h3 className="text-2xl font-bold text-white mb-1">{luminor.name}</h3>
@@ -409,7 +409,7 @@ export default function MagicPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex gap-5 p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
+                    className="flex gap-5 p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-pink-500/20 text-violet-400 flex-shrink-0">
                       <Icon className="h-6 w-6" />
@@ -440,7 +440,7 @@ export default function MagicPage() {
               <div className="prose prose-lg prose-invert mx-auto text-slate-300">
                 <p>
                   As a musician who discovered the transformative power of AI creation—producing
-                  over 500 songs with Suno—I realized that the future of creativity isn't about
+                  over 12,000 songs with Suno—I realized that the future of creativity isn't about
                   tools. It's about <em>partnership</em>.
                 </p>
                 <p>
@@ -456,7 +456,7 @@ export default function MagicPage() {
               </div>
               <div className="mt-10">
                 <a
-                  href="https://arcanea.app"
+                  href="https://arcanea.ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 text-lg text-violet-400 hover:text-violet-300 transition-colors"
@@ -492,7 +492,7 @@ export default function MagicPage() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <a
-                    href="https://arcanea.app"
+                    href="https://arcanea.ai"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full transition-all hover:scale-105"

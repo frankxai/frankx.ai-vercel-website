@@ -42,15 +42,42 @@ export function trackEvent(name: string, params: Record<string, any> = {}) {
     } else {
       const posthog = (window as any).posthog
       const segment = (window as any).analytics
+      const plausible = (window as any).plausible
 
-      if (posthog?.capture) posthog.capture(name, params)
-      if (segment?.track) segment.track(name, params)
+      try {
+        if (posthog?.capture) posthog.capture(name, params)
+        if (segment?.track) segment.track(name, params)
+        if (plausible) plausible(name, { props: params })
+      } catch {
+        /* analytics must never break the page */
+      }
     }
   } else {
     console.log('Analytics Event:', payload)
   }
 
   emitUpdate()
+}
+
+/** Shorts engagement tracker — standardizes event names + props. */
+export function trackShortEvent(
+  action:
+    | 'play'
+    | 'view'
+    | 'complete'
+    | 'share'
+    | 'next'
+    | 'prev'
+    | 'open_detail'
+    | 'open_player'
+    | 'close_player',
+  short: { id: string; category?: string; author?: string }
+) {
+  trackEvent(`short_${action}`, {
+    short_id: short.id,
+    category: short.category,
+    author: short.author,
+  })
 }
 
 export function identifyUser(userId: string, traits: Record<string, any> = {}) {

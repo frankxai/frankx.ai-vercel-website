@@ -33,9 +33,31 @@ export interface VisionarySource {
   note: string
 }
 
+export interface VisionarySocials {
+  twitter?: string
+  youtube?: string
+  linkedin?: string
+  github?: string
+  website: string
+}
+
+export interface VisionaryStartHere {
+  bestTalk?: { title: string; url: string; platform: string }
+  bestArticle?: { title: string; url: string }
+  bestBook?: { title: string; url: string }
+}
+
+export interface VisionaryProduct {
+  title: string
+  url: string
+  type: 'book' | 'course' | 'tool' | 'newsletter'
+  price?: string
+}
+
 export interface VisionaryPerson {
   id: string
   name: string
+  slug?: string
   category: VisionaryCategoryId
   role: string
   builds: string
@@ -44,6 +66,14 @@ export interface VisionaryPerson {
   url: string
   youtubeId?: string
   top10Rank?: number
+  // Enrichment fields (populated for Top 10+, optional for others)
+  socials?: VisionarySocials
+  startHere?: VisionaryStartHere
+  products?: VisionaryProduct[]
+  frankTake?: string
+  whyDeep?: string           // Extended paragraph explaining why to study this person
+  keyLessons?: string[]      // 3-5 specific, actionable lessons to take from this person
+  featuredVideoId?: string   // YouTube video ID for the profile page embed (overrides youtubeId)
 }
 
 export const visionaryUpdatedAt = '2026-02-17'
@@ -155,6 +185,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'andrej-karpathy',
     name: 'Andrej Karpathy',
+    slug: 'andrej-karpathy',
     category: 'frontier-ai',
     role: 'AI educator and research engineer',
     builds: 'Neural network learning systems and practical AI education loops',
@@ -163,10 +194,29 @@ export const visionaries: VisionaryPerson[] = [
     url: 'https://karpathy.ai',
     youtubeId: 'VMj-3S1tku0',
     top10Rank: 1,
+    socials: { twitter: 'https://x.com/karpathy', youtube: 'https://www.youtube.com/@AndrejKarpathy', github: 'https://github.com/karpathy', website: 'https://karpathy.ai' },
+    startHere: {
+      bestTalk: { title: "Let's build GPT: from scratch, in code, spelled out", url: 'https://www.youtube.com/watch?v=kCc8FmEb1nY', platform: 'YouTube' },
+      bestArticle: { title: 'A Recipe for Training Neural Networks', url: 'https://karpathy.github.io/2019/04/25/recipe/' },
+    },
+    products: [
+      { title: 'Neural Networks: Zero to Hero', url: 'https://karpathy.ai/zero-to-hero.html', type: 'course', price: 'Free' },
+    ],
+    frankTake: 'Study his teaching method: he builds from first principles in code, never hand-waves. The Zero to Hero series is the gold standard for learning by building.',
+    whyDeep: 'Karpathy is rare: a researcher who can explain transformers to beginners while also having built Tesla Autopilot. After leaving OpenAI and Tesla, he launched a free education series that has become the gold standard for learning deep learning by building. His approach — write every line from scratch, explain every gradient — is the opposite of framework-first tutorials. For builders, the lesson is not just the neural network content but the teaching method itself: radical transparency, first principles, no abstraction until the concrete is mastered.',
+    keyLessons: [
+      'Build from scratch before using frameworks — understanding beats convenience',
+      'Teach by building in public: his entire YouTube catalog is live coding with explanations',
+      'Simplify complex systems by decomposing them into atomic operations',
+      'Ship educational content as a product — Zero to Hero has more impact than most startups',
+      'Bridge research and practice: he reads papers and writes code in the same session',
+    ],
+    featuredVideoId: 'kCc8FmEb1nY',
   },
   {
     id: 'fei-fei-li',
     name: 'Fei-Fei Li',
+    slug: 'fei-fei-li',
     category: 'frontier-ai',
     role: 'Professor and AI institute builder',
     builds: 'Human-centered AI institutions and foundational vision datasets',
@@ -175,10 +225,28 @@ export const visionaries: VisionaryPerson[] = [
     url: 'https://profiles.stanford.edu/fei-fei-li',
     youtubeId: 'ad79nYk2keg',
     top10Rank: 3,
+    socials: { twitter: 'https://x.com/drfeifei', linkedin: 'https://www.linkedin.com/in/fei-fei-li-4541247/', website: 'https://profiles.stanford.edu/fei-fei-li' },
+    startHere: {
+      bestTalk: { title: 'How we teach computers to understand pictures', url: 'https://www.youtube.com/watch?v=40riCqvRoMs', platform: 'TED' },
+      bestBook: { title: 'The Worlds I See: Curiosity, Exploration, and Discovery at the Dawn of AI', url: 'https://www.amazon.com/Worlds-See-Curiosity-Exploration-Discovery/dp/1250897939' },
+    },
+    products: [
+      { title: 'The Worlds I See', url: 'https://www.amazon.com/Worlds-See-Curiosity-Exploration-Discovery/dp/1250897939', type: 'book', price: '~$18' },
+    ],
+    frankTake: 'Read her memoir for the long arc of building a research institution from nothing. ImageNet changed the field because she invested in data infrastructure before it was fashionable.',
+    whyDeep: 'Fei-Fei Li created ImageNet — the dataset that sparked the deep learning revolution — when the field thought vision was a solved problem. She built the Stanford Human-Centered AI Institute (HAI) to ensure AI development stays aligned with human values. Her memoir "The Worlds I See" reveals the 15-year arc from immigrant graduate student to one of the most influential voices in AI policy. For builders, the lesson is infrastructure investment: she spent years building a dataset everyone else thought was pointless, and it changed the entire field.',
+    keyLessons: [
+      'Invest in data infrastructure before it is fashionable — ImageNet was years ahead of its use',
+      'Build institutions, not just projects — HAI outlasts any individual paper',
+      'Bridge technical depth with policy influence — she advises governments on AI governance',
+      'The long game wins: 15 years from ImageNet inception to Nobel-adjacent impact',
+    ],
+    featuredVideoId: '40riCqvRoMs',
   },
   {
     id: 'demis-hassabis',
     name: 'Demis Hassabis',
+    slug: 'demis-hassabis',
     category: 'frontier-ai',
     role: 'CEO, Google DeepMind',
     builds: 'Research organizations that convert deep science into world-scale products',
@@ -186,10 +254,28 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Long-Horizon Vision', 'Systems Thinking', 'Operational Excellence'],
     url: 'https://deepmind.google/about/people/demis-hassabis/',
     top10Rank: 4,
+    socials: { twitter: 'https://x.com/demishassabis', linkedin: 'https://www.linkedin.com/in/demishassabis/', website: 'https://deepmind.google/' },
+    startHere: {
+      bestTalk: { title: 'The Thinking Game — Full Documentary', url: 'https://www.youtube.com/watch?v=gNzNbCBr2Ak', platform: 'YouTube' },
+      bestBook: { title: 'Infinity Machine (by Sebastian Mallaby)', url: 'https://www.amazon.com/dp/0593831845' },
+    },
+    products: [
+      { title: 'AlphaFold Protein Structure Database', url: 'https://alphafold.ebi.ac.uk/', type: 'tool', price: 'Free' },
+    ],
+    frankTake: 'Study how he runs a 20-year research agenda inside a corporate structure. AlphaFold is the benchmark for turning pure science into a public good.',
+    whyDeep: 'Hassabis is the architect of the longest-running AGI research program in the world. He co-founded DeepMind in 2010 with the explicit mission of "solving intelligence" — a 20+ year bet that has produced AlphaGo, AlphaFold (which predicted the structure of virtually every known protein), and a Nobel Prize in Chemistry. Inside Google, he has maintained research independence while shipping products that matter. For builders, the lesson is how to run a multi-decade research program inside a corporate structure without losing the mission.',
+    keyLessons: [
+      'Set a 20-year mission and protect it through acquisitions and corporate politics',
+      'Turn pure research into public goods — AlphaFold database is free and used by 2M+ researchers',
+      'Combine game-playing intuition with scientific rigor (chess prodigy → neuroscience PhD → AI lab)',
+      'Build a team of researchers who stay for decades, not quarters',
+    ],
+    featuredVideoId: 'gNzNbCBr2Ak',
   },
   {
     id: 'andrew-ng',
     name: 'Andrew Ng',
+    slug: 'andrew-ng',
     category: 'frontier-ai',
     role: 'AI educator and founder',
     builds: 'Applied AI education systems and enterprise adoption playbooks',
@@ -197,26 +283,65 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Public Teaching', 'Systems Thinking', 'Human-Centered Leadership'],
     url: 'https://www.andrewng.org',
     top10Rank: 5,
+    socials: { twitter: 'https://x.com/AndrewYNg', linkedin: 'https://www.linkedin.com/in/andrewyng/', website: 'https://www.andrewng.org' },
+    startHere: {
+      bestTalk: { title: 'Stanford CS229: Machine Learning (Full Course)', url: 'https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU', platform: 'YouTube' },
+    },
+    products: [
+      { title: 'Machine Learning Specialization', url: 'https://www.coursera.org/specializations/machine-learning-introduction', type: 'course', price: '~$49/mo' },
+      { title: 'Deep Learning Specialization', url: 'https://www.coursera.org/specializations/deep-learning', type: 'course', price: '~$49/mo' },
+      { title: 'The Batch — weekly AI newsletter', url: 'https://www.deeplearning.ai/the-batch/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'The most effective AI educator alive. His courses are the fastest path from zero to building. Subscribe to The Batch for a weekly signal-dense summary of what matters in AI.',
+    whyDeep: 'Andrew Ng is the bridge between AI research and the working professional. He co-founded Coursera to democratize education, built Google Brain, led AI at Baidu, and then created DeepLearning.AI to make AI skills accessible to millions. His courses have trained more people in machine learning than any university program in history. For builders, the lesson is how to create a teaching empire that scales: structured curriculum, progressive complexity, and a newsletter (The Batch) that keeps 500K+ subscribers current on AI developments.',
+    keyLessons: [
+      'Structure education for progressive mastery — his courses build from linear algebra to production systems',
+      'Build multiple vehicles for the same mission: Coursera (scale), Landing AI (enterprise), The Batch (signal)',
+      'Make advanced concepts accessible without dumbing them down',
+      'The teacher who reaches millions has more impact than the researcher who publishes dozens of papers',
+    ],
   },
   {
     id: 'dario-amodei',
     name: 'Dario Amodei',
+    slug: 'dario-amodei',
     category: 'frontier-ai',
     role: 'CEO, Anthropic',
     builds: 'Frontier model organizations with safety as a core architectural concern',
     why: 'He pushes capability and alignment together instead of treating them as trade-offs.',
     qualities: ['Long-Horizon Vision', 'Resilience', 'Operational Excellence'],
     url: 'https://www.anthropic.com/team/dario-amodei',
+    socials: { twitter: 'https://x.com/DarioAmodei', linkedin: 'https://www.linkedin.com/in/dario-amodei-3934934/', website: 'https://www.darioamodei.com/' },
+    products: [{ title: 'Anthropic (Claude)', url: 'https://www.anthropic.com/', type: 'tool', price: 'Freemium' }],
+    frankTake: 'Dario left OpenAI not to compete but to build something he believed was missing: an AI lab where safety is the product, not a checkbox. Constitutional AI is the real engineering feat underneath Claude. He writes long-form essays on civilizational risk that read like technical specs for the future.',
   },
   {
     id: 'ilya-sutskever',
     name: 'Ilya Sutskever',
+    slug: 'ilya-sutskever',
     category: 'frontier-ai',
     role: 'AI researcher and lab founder',
     builds: 'High-performance learning systems and new research labs',
     why: 'He represents uncompromising research quality and conviction under uncertainty.',
     qualities: ['First-Principles', 'Long-Horizon Vision', 'Resilience'],
     url: 'https://en.wikipedia.org/wiki/Ilya_Sutskever',
+    socials: { twitter: 'https://x.com/ilyasut', website: 'https://ssi.inc/' },
+    products: [{ title: 'Safe Superintelligence Inc.', url: 'https://ssi.inc/', type: 'tool', price: 'N/A' }],
+    frankTake: 'The man who saw deep learning working before anyone else. Co-authored AlexNet, co-founded OpenAI, then walked away to build SSI with one obsession: safe superintelligence, no products, no distractions. When the architect of GPT says the next problem is alignment, builders should listen.',
+  },
+  {
+    id: 'sam-altman',
+    name: 'Sam Altman',
+    slug: 'sam-altman',
+    category: 'frontier-ai',
+    role: 'CEO, OpenAI',
+    builds: 'The fastest-growing consumer AI product and the organization behind frontier models',
+    why: 'He turned a research nonprofit into the fastest-growing consumer product in history.',
+    qualities: ['Operational Excellence', 'Distribution Mastery', 'Long-Horizon Vision'],
+    url: 'https://openai.com',
+    socials: { twitter: 'https://x.com/sama', linkedin: 'https://www.linkedin.com/in/samaltman/', website: 'https://blog.samaltman.com/' },
+    products: [{ title: 'OpenAI (ChatGPT)', url: 'https://openai.com/', type: 'tool', price: 'Freemium' }],
+    frankTake: 'ChatGPT did not invent LLMs but it made them matter to everyone. Before OpenAI, he ran Y Combinator and funded hundreds of startups. Whether you agree with his approach to AI governance or not, the velocity of execution at OpenAI is a masterclass in shipping at scale.',
   },
   {
     id: 'yann-lecun',
@@ -362,18 +487,38 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'simon-willison',
     name: 'Simon Willison',
+    slug: 'simon-willison',
     category: 'ai-toolsmiths',
     role: 'Open source engineer and independent researcher',
     builds: 'Practical LLM tooling, knowledge pipelines, and daily research synthesis',
     why: 'He is the clearest model of shipping plus writing as one integrated system.',
     qualities: ['Open Source', 'Public Teaching', 'Craft Discipline'],
     url: 'https://simonwillison.net',
-    youtubeId: 'pOLR5jE5Vjw',
+    youtubeId: 'eTTMUWP5B0s',
     top10Rank: 2,
+    socials: { twitter: 'https://x.com/simonw', linkedin: 'https://www.linkedin.com/in/simonwillison/', github: 'https://github.com/simonw', website: 'https://simonwillison.net' },
+    startHere: {
+      bestArticle: { title: 'What I learned from looking at 900 most popular open source AI tools', url: 'https://simonwillison.net/2024/Mar/22/ai-open-source/' },
+    },
+    products: [
+      { title: 'LLM — CLI tool for language models', url: 'https://llm.datasette.io/', type: 'tool', price: 'Free / Open Source' },
+      { title: 'Datasette — explore and publish data', url: 'https://datasette.io/', type: 'tool', price: 'Free / Open Source' },
+      { title: "Simon Willison's Weblog", url: 'https://simonwillison.net/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'The best builder-blogger in AI tooling. Watch how he ships small, composable tools fast and documents everything. His LLM CLI is how a craftsman integrates AI into real workflows.',
+    whyDeep: 'Simon Willison is the best example of shipping and writing as a single integrated system. He builds small, composable tools (LLM CLI, Datasette, shot-scraper), writes extensively about every decision, and maintains a daily blog that has become required reading for AI practitioners. His approach to open source — small tools with clear boundaries, documented decisions, and welcoming contributor culture — is a masterclass in sustainable solo development. He proves that one person with craft discipline can create more lasting impact than many teams.',
+    keyLessons: [
+      'Ship small, composable tools — LLM CLI does one thing excellently and composes with everything',
+      'Write about everything you build: the blog is the documentation, the marketing, and the thinking tool',
+      'Name things well and make excellent developer experiences — Datasette and LLM are instantly understandable',
+      'Maintain a daily practice of public learning — his TIL (Today I Learned) repository is legendary',
+      'Open source as a craft: clear README, welcoming issues, responsive to contributors',
+    ],
   },
   {
     id: 'guillermo-rauch',
     name: 'Guillermo Rauch',
+    slug: 'guillermo-rauch',
     category: 'ai-toolsmiths',
     role: 'CEO, Vercel',
     builds: 'Developer platforms and AI-native web product infrastructure',
@@ -381,10 +526,28 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Product Taste', 'Operational Excellence', 'Long-Horizon Vision'],
     url: 'https://vercel.com/about',
     top10Rank: 8,
+    socials: { twitter: 'https://x.com/rauchg', linkedin: 'https://www.linkedin.com/in/rauchg/', github: 'https://github.com/rauchg', website: 'https://rauchg.com/' },
+    startHere: {
+      bestArticle: { title: '7 Principles of Rich Web Applications', url: 'https://rauchg.com/2014/7-principles-of-rich-web-applications' },
+    },
+    products: [
+      { title: 'Vercel — frontend cloud platform', url: 'https://vercel.com/', type: 'tool', price: 'Free tier / Pro $20/mo' },
+      { title: 'v0 — AI web development', url: 'https://v0.dev/', type: 'tool', price: 'Free tier / Premium $20/mo' },
+      { title: 'Next.js — React framework', url: 'https://nextjs.org/', type: 'tool', price: 'Free / Open Source' },
+    ],
+    frankTake: 'The best example of turning developer taste into a platform company. His "7 Principles" essay from 2014 is still the clearest articulation of what the modern web should be — and then he built it.',
+    whyDeep: 'Guillermo Rauch wrote "7 Principles of Rich Web Applications" in 2014 — then spent the next decade building the infrastructure to make them real. Socket.io, Next.js, Vercel, and v0 each represent a step in a coherent product vision: real-time → server-rendered → deployed → AI-generated. He demonstrates that product taste — knowing which abstractions developers need before they ask — is the ultimate competitive advantage. Vercel is not the biggest cloud company, but it has the strongest developer brand because of relentless focus on experience.',
+    keyLessons: [
+      'Write the essay first, build the product second — his 2014 post is still the vision Vercel executes',
+      'Product taste compounds: each product (Socket.io → Next.js → Vercel → v0) builds on the last',
+      'Developer experience is a moat — Vercel wins on DX, not on price or features',
+      'Ship fast and in public — Vercel Ship events are product launches that build community',
+    ],
   },
   {
     id: 'chip-huyen',
     name: 'Chip Huyen',
+    slug: 'chip-huyen',
     category: 'ai-toolsmiths',
     role: 'AI systems educator and advisor',
     builds: 'Production ML and LLM systems playbooks',
@@ -392,16 +555,41 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Systems Thinking', 'Public Teaching', 'Operational Excellence'],
     url: 'https://huyenchip.com',
     top10Rank: 9,
+    socials: { twitter: 'https://x.com/chipro', linkedin: 'https://www.linkedin.com/in/chiphuyen/', github: 'https://github.com/chiphuyen', website: 'https://huyenchip.com/' },
+    startHere: {
+      bestArticle: { title: 'What I learned from looking at 900 most popular open source AI tools', url: 'https://huyenchip.com/2024/03/14/ai-oss.html' },
+      bestBook: { title: 'AI Engineering: Building Applications with Foundation Models', url: 'https://www.amazon.com/AI-Engineering-Building-Applications-Foundation/dp/1098166302' },
+    },
+    products: [
+      { title: 'AI Engineering (2025)', url: 'https://www.amazon.com/AI-Engineering-Building-Applications-Foundation/dp/1098166302', type: 'book', price: '~$50' },
+      { title: 'Designing Machine Learning Systems (2022)', url: 'https://www.amazon.com/Designing-Machine-Learning-Systems-Production-Ready/dp/1098107969', type: 'book', price: '~$45' },
+    ],
+    frankTake: 'The clearest writer on ML systems in production. Her AI Engineering book is the practical bridge between "I can prompt an LLM" and "I can ship an AI product." Required reading.',
+    whyDeep: 'Chip Huyen bridges the gap between ML research and production engineering better than anyone writing today. Her first book "Designing Machine Learning Systems" became the standard reference for ML engineers. Her second, "AI Engineering," arrived at exactly the right moment — when the industry shifted from training models to building applications on top of them. She teaches at Stanford, advises startups, and maintains a blog that consistently ranks among the most-shared AI content. For builders, the lesson is clarity: she takes concepts that feel overwhelming and makes them architectural.',
+    keyLessons: [
+      'Write the book the industry needs right now — timing + clarity = category-defining impact',
+      'Make architecture decisions visible: her system design frameworks are immediately usable',
+      'Maintain a blog that industry leaders read — her "900 open source AI tools" post was shared 10K+ times',
+      'Bridge academia and industry: teach at Stanford while advising production teams',
+    ],
   },
   {
     id: 'harrison-chase',
     name: 'Harrison Chase',
+    slug: 'harrison-chase',
     category: 'ai-toolsmiths',
     role: 'CEO, LangChain',
     builds: 'Developer frameworks for LLM applications and agent orchestration',
     why: 'He shipped one of the fastest-evolving ecosystems in the AI tooling era.',
     qualities: ['Open Source', 'Operational Excellence', 'Resilience'],
     url: 'https://www.langchain.com',
+    socials: { twitter: 'https://x.com/hwchase17', github: 'https://github.com/hwchase17', linkedin: 'https://www.linkedin.com/in/harrison-chase-961287118/', website: 'https://www.langchain.com/' },
+    products: [
+      { title: 'LangChain', url: 'https://www.langchain.com/', type: 'tool', price: 'Free / Open Source' },
+      { title: 'LangSmith', url: 'https://smith.langchain.com/', type: 'tool', price: 'Freemium' },
+      { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph/', type: 'tool', price: 'Free / Open Source' },
+    ],
+    frankTake: 'Harrison saw that everyone building LLM apps was writing the same glue code and turned that observation into the dominant orchestration framework. LangSmith solved observability, LangGraph brought durable agentic workflows. He ships at open-source speed with enterprise ambitions.',
   },
   {
     id: 'swyx',
@@ -567,6 +755,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'ali-abdaal',
     name: 'Ali Abdaal',
+    slug: 'ali-abdaal',
     category: 'creator-systems',
     role: 'Creator and educator',
     builds: 'Education products and creator business systems',
@@ -574,16 +763,41 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Distribution Mastery', 'Operational Excellence', 'Public Teaching'],
     url: 'https://aliabdaal.com',
     top10Rank: 10,
+    socials: { twitter: 'https://x.com/AliAbdaal', youtube: 'https://www.youtube.com/@aliabdaal', linkedin: 'https://www.linkedin.com/in/ali-abdaal/', website: 'https://aliabdaal.com/' },
+    startHere: {
+      bestBook: { title: 'Feel-Good Productivity: How to Do More of What Matters to You', url: 'https://www.amazon.com/Feel-Good-Productivity-More-What-Matters/dp/1250865034' },
+    },
+    products: [
+      { title: 'Feel-Good Productivity', url: 'https://www.amazon.com/Feel-Good-Productivity-More-What-Matters/dp/1250865034', type: 'book', price: '~$18' },
+      { title: 'Part-Time YouTuber Academy', url: 'https://academy.aliabdaal.com/', type: 'course', price: '$2,000–$5,000' },
+      { title: 'Ali Abdaal Newsletter', url: 'https://aliabdaal.com/newsletter/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'Study his business model, not just his content. He turned a YouTube channel into a $4M+/year education business with clear product tiers. The system design behind his creator business is the real lesson.',
+    whyDeep: 'Ali Abdaal is the most legible case study in turning a personal brand into a multi-million dollar education business. Doctor-turned-YouTuber with 6M+ subscribers, he documents his creator journey with full revenue transparency. The Part-Time YouTuber Academy ($2K-5K), Feel-Good Productivity book, and newsletter form a clear product ladder. For builders, the lesson is not the individual tactics but the system: consistent publishing schedule, clear product tiers, team scaling at each revenue milestone, and data-driven content optimization.',
+    keyLessons: [
+      'Build a product ladder: free YouTube → newsletter → book → premium course → cohort program',
+      'Revenue transparency builds trust and creates a case study that attracts students',
+      'Systematize content production: templates, batching, team delegation at each revenue tier',
+      'Choose a niche intersection (productivity + medicine + YouTube) then expand from a position of authority',
+    ],
   },
   {
     id: 'dan-koe',
     name: 'Dan Koe',
+    slug: 'dan-koe',
     category: 'creator-systems',
     role: 'Digital writer and systems thinker',
     builds: 'One-person education business frameworks',
     why: 'He frames personal leverage as a system design problem.',
     qualities: ['Systems Thinking', 'Distribution Mastery', 'Long-Horizon Vision'],
     url: 'https://thedankoe.com',
+    socials: { twitter: 'https://x.com/thedankoe', youtube: 'https://www.youtube.com/@DanKoe', linkedin: 'https://www.linkedin.com/in/thedankoe/', website: 'https://thedankoe.com/' },
+    products: [
+      { title: 'Modern Mastery HQ', url: 'https://www.modernmastery.co/', type: 'course', price: '$150 + $27/mo' },
+      { title: 'The 2 Hour Writer', url: 'https://2hourwriter.com/', type: 'course', price: '$150' },
+      { title: 'The Koe Letter', url: 'https://thedankoe.com/letters/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'Dan built a 2.6M-person audience and a seven-figure one-person business by treating content creation as a craft. His framework turns personal interests into products through what he calls the one-person business model. The 2 Hour Writer course generated $6.9M because he practiced what he teaches.',
   },
   {
     id: 'justin-welsh',
@@ -608,12 +822,19 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'sahil-lavingia',
     name: 'Sahil Lavingia',
+    slug: 'sahil-lavingia',
     category: 'creator-systems',
     role: 'Founder, Gumroad',
     builds: 'Creator monetization rails and open startup learning content',
     why: 'He is a model for shipping, reflecting, and iterating in public.',
     qualities: ['Resilience', 'Distribution Mastery', 'Public Teaching'],
     url: 'https://sahillavingia.com',
+    socials: { twitter: 'https://x.com/shl', github: 'https://github.com/slavingia', linkedin: 'https://www.linkedin.com/in/sahillavingia/', website: 'https://sahillavingia.com/' },
+    products: [
+      { title: 'Gumroad', url: 'https://gumroad.com/', type: 'tool', price: 'Free + transaction fees' },
+      { title: 'The Minimalist Entrepreneur', url: 'https://www.amazon.com/Minimalist-Entrepreneur-Great-Founders-More/dp/0593192397', type: 'book', price: '~$18' },
+    ],
+    frankTake: 'Sahil built Gumroad to $10M ARR, watched it nearly die, rebuilt it as a minimalist operation, then wrote the book on doing more with less. The Minimalist Entrepreneur is a post-mortem and playbook from someone who lived the highs, the lows, and the rebuild.',
   },
   {
     id: 'david-perell',
@@ -644,16 +865,63 @@ export const visionaries: VisionaryPerson[] = [
     why: 'He systematically extracts elite operating principles across domains.',
     qualities: ['Systems Thinking', 'Public Teaching', 'Long-Horizon Vision'],
     url: 'https://tim.blog',
+    socials: { twitter: 'https://x.com/tferriss', youtube: 'https://www.youtube.com/timferriss', linkedin: 'https://www.linkedin.com/in/timferriss/', website: 'https://tim.blog/' },
+    products: [
+      { title: 'The 4-Hour Workweek', url: 'https://tim.blog/tim-ferriss-books/', type: 'book', price: '~$16' },
+      { title: 'Tools of Titans', url: 'https://tim.blog/tim-ferriss-books/', type: 'book', price: '~$18' },
+      { title: 'The Tim Ferriss Show (Podcast)', url: 'https://tim.blog/podcast/', type: 'tool', price: 'Free' },
+      { title: '5-Bullet Friday Newsletter', url: 'https://tim.blog/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'Tim reverse-engineered productivity, investing, and media in public. The 4-Hour Workweek was about designing systems so your time is yours. He turned 200+ podcast interviews into Tools of Titans — content repurposing before the term existed. Early investor in Uber, Shopify, and Duolingo.',
   },
   {
     id: 'naval-ravikant',
     name: 'Naval Ravikant',
+    slug: 'naval-ravikant',
     category: 'creator-systems',
     role: 'Investor and thinker',
     builds: 'Mental models for leverage, ownership, and judgment',
     why: 'He provides a useful decision lens for creator-scale wealth building.',
     qualities: ['First-Principles', 'Long-Horizon Vision', 'Systems Thinking'],
     url: 'https://nav.al',
+    socials: { twitter: 'https://x.com/naval', website: 'https://nav.al/' },
+    products: [
+      { title: 'AngelList', url: 'https://www.angellist.com/', type: 'tool', price: 'Free' },
+      { title: 'The Almanack of Naval Ravikant', url: 'https://www.navalmanack.com/', type: 'book', price: 'Free' },
+    ],
+    frankTake: 'Naval built AngelList and transformed how startups raise money, but his real product is a philosophy of leverage. His tweetstorms on wealth creation became the most screenshot-shared threads in Twitter history, then a free book that reads like source code for a well-lived life.',
+  },
+  {
+    id: 'pieter-levels',
+    name: 'Pieter Levels',
+    slug: 'pieter-levels',
+    category: 'creator-systems',
+    role: 'Indie hacker and solo founder',
+    builds: 'Profitable solo SaaS products at scale without employees or investors',
+    why: 'He proves the 12-startups-in-12-months model and solo-founder viability at $3M ARR.',
+    qualities: ['Operational Excellence', 'First-Principles', 'Resilience'],
+    url: 'https://levels.io',
+    socials: { twitter: 'https://x.com/levelsio', github: 'https://github.com/levelsio', website: 'https://levels.io/' },
+    products: [
+      { title: 'Nomad List', url: 'https://nomadlist.com/', type: 'tool', price: 'Freemium' },
+      { title: 'Remote OK', url: 'https://remoteok.com/', type: 'tool', price: 'Free' },
+      { title: 'Photo AI', url: 'https://photoai.com/', type: 'tool', price: 'Paid' },
+    ],
+    frankTake: 'Self-taught, no employees, no VC, 40+ shipped products, ~$3M/year revenue. His stack is vanilla PHP and SQLite, which is either insane or genius depending on how much you value shipping over architecture. The results speak.',
+  },
+  {
+    id: 'pat-walls',
+    name: 'Pat Walls',
+    slug: 'pat-walls',
+    category: 'creator-systems',
+    role: 'Founder, Starter Story',
+    builds: 'The largest open playbook for starting a business through founder interviews',
+    why: 'He proves that relentless consistency with simple tools can build a $1M+ content business.',
+    qualities: ['Public Teaching', 'Distribution Mastery', 'Resilience'],
+    url: 'https://patwalls.com',
+    socials: { twitter: 'https://x.com/thepatwalls', linkedin: 'https://www.linkedin.com/in/patrickwalls/', website: 'https://patwalls.com/' },
+    products: [{ title: 'Starter Story', url: 'https://www.starterstory.com/', type: 'tool', price: 'Freemium' }],
+    frankTake: 'Pat built Starter Story into $1M+/year by doing the simplest thing: interviewing founders and publishing their stories. No fancy tech, no VC. The site now has 1.6M monthly visitors and thousands of case studies. Content businesses scale when you treat every interview as a product.',
   },
   {
     id: 'alex-hormozi',
@@ -719,6 +987,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'brian-eno',
     name: 'Brian Eno',
+    slug: 'brian-eno',
     category: 'music-direction',
     role: 'Producer and composer',
     builds: 'Generative music systems and ambient production frameworks',
@@ -726,10 +995,29 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Creative Risk', 'Systems Thinking', 'Long-Horizon Vision'],
     url: 'https://en.wikipedia.org/wiki/Brian_Eno',
     top10Rank: 6,
+    socials: { twitter: 'https://x.com/brianeno', website: 'https://enoshop.co.uk/' },
+    startHere: {
+      bestArticle: { title: 'Generative Music (1996 talk transcript)', url: 'https://www.inmotionmagazine.com/eno1.html' },
+      bestBook: { title: "A Year with Swollen Appendices: Brian Eno's Diary", url: 'https://www.amazon.com/Year-Swollen-Appendices-Brian-Enos/dp/0571364616' },
+    },
+    products: [
+      { title: 'A Year with Swollen Appendices', url: 'https://www.amazon.com/Year-Swollen-Appendices-Brian-Enos/dp/0571364616', type: 'book', price: '~$17' },
+      { title: 'Oblique Strategies — creative thinking cards', url: 'https://enoshop.co.uk/products/oblique-strategies', type: 'tool', price: '~$55' },
+    ],
+    frankTake: 'The original systems thinker in music. His generative music concept in 1996 predicted AI-assisted creation decades early. Oblique Strategies is still the best creative unblocking tool ever made.',
+    whyDeep: 'Brian Eno invented ambient music, coined the term, and then spent 50 years proving that the most important creative skill is designing systems that generate beauty without constant intervention. His 1996 generative music talk predicted AI-assisted creation decades before Suno or DALL-E existed. Oblique Strategies — a deck of cards with lateral thinking prompts — remains the most effective creative unblocking tool ever made. For builders, the lesson is that constraints and systems produce better art than raw inspiration. He produces by subtracting, not adding.',
+    keyLessons: [
+      'Design systems that generate output, not just individual pieces — generative music is a paradigm',
+      'Constraints produce creativity: his "Oblique Strategies" are structured randomness applied to art',
+      'Subtract to improve: his production philosophy is removing elements until only the essential remains',
+      'Think in decades, not quarters: ambient music was dismissed for 20 years before becoming a genre',
+      'Cross-pollinate: visual art, music, software, and philosophy are one practice for Eno',
+    ],
   },
   {
     id: 'rick-rubin',
     name: 'Rick Rubin',
+    slug: 'rick-rubin',
     category: 'music-direction',
     role: 'Producer and creative director',
     builds: 'Creative decision frameworks for artists across genres',
@@ -737,16 +1025,36 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Product Taste', 'Human-Centered Leadership', 'Craft Discipline'],
     url: 'https://en.wikipedia.org/wiki/Rick_Rubin',
     top10Rank: 7,
+    socials: { twitter: 'https://x.com/RickRubin', website: 'https://www.tetragrammaton.com/' },
+    startHere: {
+      bestBook: { title: 'The Creative Act: A Way of Being', url: 'https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886' },
+    },
+    products: [
+      { title: 'The Creative Act: A Way of Being', url: 'https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886', type: 'book', price: '~$20' },
+      { title: 'Tetragrammaton Podcast', url: 'https://www.tetragrammaton.com/podcasts', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'Read The Creative Act for the meta-skill behind all creative work: taste as a practice, not a gift. His production method — stripping everything to its essence — applies directly to product design and code.',
+    whyDeep: 'Rick Rubin has produced genre-defining albums for Johnny Cash, Beastie Boys, Jay-Z, Red Hot Chili Peppers, Adele, and dozens more — across hip-hop, rock, country, and metal. His book "The Creative Act: A Way of Being" distills 40 years of production wisdom into a philosophy applicable far beyond music. His method: create the safest possible space for the artist, then strip everything non-essential until only the core remains. For builders, this is the product design philosophy most people miss — taste is not adding the right things, it is removing the wrong things.',
+    keyLessons: [
+      'Taste is subtraction: the producer\'s job is removing everything that does not serve the work',
+      'Create psychological safety first — the best work comes when people feel free to experiment',
+      'Genre is irrelevant: principles of quality apply identically across domains',
+      'The audience is not the customer — serve the work itself, and the audience follows',
+    ],
   },
   {
     id: 'jacob-collier',
     name: 'Jacob Collier',
+    slug: 'jacob-collier',
     category: 'music-direction',
     role: 'Composer and multi-instrumentalist',
     builds: 'Complex harmonic and arrangement systems with broad audience reach',
     why: 'He demonstrates high-technical complexity with emotional accessibility.',
     qualities: ['Craft Discipline', 'Creative Risk', 'Public Teaching'],
     url: 'https://www.jacobcollier.com',
+    socials: { twitter: 'https://x.com/jacobcollier', youtube: 'https://www.youtube.com/@jacobcollier', website: 'https://www.jacobcollier.com/' },
+    products: [{ title: 'Djesse (4-Volume Album Series)', url: 'https://www.jacobcollier.com/', type: 'tool', price: 'Streaming' }],
+    frankTake: 'Jacob won a Grammy for each of his first four albums by treating music theory as a playground. He started uploading split-screen videos from his bedroom, playing every instrument himself. The Djesse project spans four volumes and hundreds of collaborators, proving that technical mastery and creative joy are not opposites.',
   },
   {
     id: 'imogen-heap',
@@ -757,6 +1065,20 @@ export const visionaries: VisionaryPerson[] = [
     why: 'She bridges artistry, invention, and emerging technology cleanly.',
     qualities: ['Creative Risk', 'Systems Thinking', 'Human-Centered Leadership'],
     url: 'https://imogenheap.com',
+  },
+  {
+    id: 'kendrick-lamar',
+    name: 'Kendrick Lamar',
+    slug: 'kendrick-lamar',
+    category: 'music-direction',
+    role: 'Rapper, songwriter, and cultural architect',
+    builds: 'Conceptual albums as architectural projects with cultural impact planned before a bar is recorded',
+    why: 'He treats every album like an engineering project: concept, structure, emotional arc, and cultural impact.',
+    qualities: ['Creative Risk', 'Craft Discipline', 'Long-Horizon Vision'],
+    url: 'https://oklama.com',
+    socials: { twitter: 'https://x.com/kendricklamar', website: 'https://oklama.com/' },
+    products: [{ title: 'pgLang (Creative Company)', url: 'https://pg-lang.com/', type: 'tool', price: 'N/A' }],
+    frankTake: 'Kendrick co-founded pgLang as a multilingual creative company spanning music, film, and design. He barely uses social media, drops announcements on a Windows 95-styled website, and still dominates every conversation when he releases. The Pulitzer Prize was the industry catching up to the engineering precision he brings to art.',
   },
   {
     id: 'hans-zimmer',
@@ -872,22 +1194,32 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'jony-ive',
     name: 'Jony Ive',
+    slug: 'jony-ive',
     category: 'design-craft',
     role: 'Industrial designer',
     builds: 'Iconic hardware and interaction systems',
     why: 'He demonstrates how design taste can shape entire product categories.',
     qualities: ['Product Taste', 'Craft Discipline', 'Long-Horizon Vision'],
     url: 'https://en.wikipedia.org/wiki/Jony_Ive',
+    socials: { website: 'https://www.lovefrom.com/' },
+    products: [{ title: 'LoveFrom (Creative Collective)', url: 'https://www.lovefrom.com/', type: 'tool', price: 'N/A' }],
+    frankTake: 'Jony designed the iMac, iPod, iPhone, and iPad — the physical objects more humans touch daily than arguably any other living designer created. After Apple, he co-founded LoveFrom and stays deliberately quiet while designing Ferrari interiors and OpenAI hardware. The confidence of someone whose portfolio is the modern world.',
   },
   {
     id: 'dieter-rams',
     name: 'Dieter Rams',
+    slug: 'dieter-rams',
     category: 'design-craft',
     role: 'Industrial design legend',
     builds: 'Principle-driven design systems focused on clarity and utility',
     why: 'He is a benchmark for principled minimalism that lasts decades.',
     qualities: ['First-Principles', 'Product Taste', 'Craft Discipline'],
     url: 'https://en.wikipedia.org/wiki/Dieter_Rams',
+    socials: { website: 'https://www.vitsoe.com/us/about/dieter-rams' },
+    products: [
+      { title: '606 Universal Shelving System', url: 'https://www.vitsoe.com/us/606', type: 'tool', price: 'Custom' },
+    ],
+    frankTake: 'Dieter Rams defined what good design means. His ten principles from the 1970s still govern how the best products are made. The 606 shelving system has been in continuous production since 1960. Apple, Muji, and every minimalist product company trace their DNA to his work at Braun.',
   },
   {
     id: 'don-norman',
@@ -1063,12 +1395,20 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'james-clear',
     name: 'James Clear',
+    slug: 'james-clear',
     category: 'long-game-thinking',
     role: 'Behavior and habit author',
     builds: 'Habit systems for repeatable long-term performance',
     why: 'He turns motivation into architecture and measurable behavior.',
     qualities: ['Systems Thinking', 'Public Teaching', 'Craft Discipline'],
     url: 'https://jamesclear.com',
+    socials: { twitter: 'https://x.com/JamesClear', linkedin: 'https://www.linkedin.com/in/jamesclear/', website: 'https://jamesclear.com/' },
+    products: [
+      { title: 'Atomic Habits', url: 'https://jamesclear.com/atomic-habits', type: 'book', price: '~$16' },
+      { title: 'Atoms (Habit Tracking App)', url: 'https://atoms.jamesclear.com/', type: 'tool', price: 'Paid' },
+      { title: '3-2-1 Newsletter', url: 'https://jamesclear.com/3-2-1', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'James turned one insight — that systems beat goals — into a 25-million-copy book and a 3-million-person newsletter. Atomic Habits works because it is engineered like software: small composable units that compound over time. The 3-2-1 format is the most imitated newsletter structure on the internet because it respects the reader.',
   },
   {
     id: 'cal-newport',
@@ -1175,6 +1515,20 @@ export const visionaries: VisionaryPerson[] = [
 export const topVisionaries = [...visionaries]
   .filter((person) => person.top10Rank)
   .sort((a, b) => (a.top10Rank ?? 999) - (b.top10Rank ?? 999))
+
+export function getVisionaryBySlug(slug: string): VisionaryPerson | undefined {
+  return visionaries.find(v => v.slug === slug)
+}
+
+export function getRelatedVisionaries(person: VisionaryPerson): VisionaryPerson[] {
+  return visionaries
+    .filter(v => v.id !== person.id && v.category === person.category)
+    .slice(0, 4)
+}
+
+export function getEnrichedVisionaries(): VisionaryPerson[] {
+  return visionaries.filter(v => v.slug)
+}
 
 export const qualityLegend: VisionaryQualityTag[] = [
   'Systems Thinking',

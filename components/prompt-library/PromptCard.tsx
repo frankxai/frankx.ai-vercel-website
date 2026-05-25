@@ -83,7 +83,7 @@ export default function PromptCard({
     >
       <div
         className={cn(
-          'relative h-full rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all duration-300',
+          'relative h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm transition-all duration-300',
           cardPadding[variant],
           isHovered && 'border-white/20 bg-white/[0.04] shadow-[0_20px_60px_rgba(67,191,227,0.1)]'
         )}

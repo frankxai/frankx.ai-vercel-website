@@ -58,7 +58,7 @@ const agents = [
     tagline: 'AI worldbuilding platform',
     description:
       'Deploy mythology-infused creative universes. 10 Gates progression. AI-assisted lore, characters, and locations.',
-    href: '/magic',
+    href: 'https://arcanea.ai',
     color: '#F59E0B',
     colorName: 'amber',
     glowVar: 'rgba(245,158,11,0.20)',
@@ -98,7 +98,7 @@ const stack = [
     icon: Layers,
     title: 'Arcanea Framework',
     desc: '10 Gates progression · Gate 1 = Awakening = Vibe OS foundation',
-    href: '/magic',
+    href: 'https://arcanea.ai',
     color: '#F59E0B',
   },
 ]
@@ -644,15 +644,15 @@ export default function VibeOSContent() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/products/vibe-os"
-                className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium transition-all duration-300"
+                href="/blog/vibe-os-platform-introduction"
+                className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium"
                 style={{
                   border: '1px solid rgba(255,255,255,0.1)',
                   color: 'rgba(255,255,255,0.55)',
                 }}
               >
-                See Full Product Details
-                <ArrowRight className="h-3.5 w-3.5 opacity-60" />
+                Read full story
+                <ExternalLink className="h-3.5 w-3.5 opacity-60" />
               </Link>
             </div>
           </div>

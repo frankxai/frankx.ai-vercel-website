@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LegalPage() {
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <div className="max-w-3xl mx-auto px-6 py-24">
         <Link
           href="/"
@@ -23,26 +23,43 @@ export default function LegalPage() {
           {/* Quick Links */}
           <section className="grid gap-4 sm:grid-cols-2">
             <Link
-              href="/privacy"
-              className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+              href="/legal/imprint"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
             >
-              <h3 className="text-lg font-semibold mb-2">Privacy Policy</h3>
-              <p className="text-white/60 text-sm">How we collect, use, and protect your data.</p>
+              <h3 className="text-lg font-semibold mb-2">Imprint</h3>
+              <p className="text-white/60 text-sm">Company registration and contact details.</p>
             </Link>
             <Link
-              href="/terms"
-              className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+              href="/legal/privacy"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+            >
+              <h3 className="text-lg font-semibold mb-2">Privacy Policy</h3>
+              <p className="text-white/60 text-sm">How we collect, use, and protect your data under GDPR.</p>
+            </Link>
+            <Link
+              href="/legal/terms"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
             >
               <h3 className="text-lg font-semibold mb-2">Terms of Service</h3>
-              <p className="text-white/60 text-sm">Rules and guidelines for using our services.</p>
+              <p className="text-white/60 text-sm">Terms and conditions for products and services.</p>
+            </Link>
+            <Link
+              href="/legal/refund"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+            >
+              <h3 className="text-lg font-semibold mb-2">Refund Policy</h3>
+              <p className="text-white/60 text-sm">Refund and cancellation policy for EU consumers.</p>
             </Link>
           </section>
 
           {/* Business Information */}
-          <section className="p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+          <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Business Information</h2>
             <div className="space-y-3 text-white/70">
-              <p><strong className="text-white">Business Name:</strong> FrankX.AI</p>
+              <p><strong className="text-white">Legal Entity:</strong> Arcanea Labs BV</p>
+              <p><strong className="text-white">Trading as:</strong> FrankX / frankx.ai</p>
+              <p><strong className="text-white">Location:</strong> Amsterdam, Netherlands</p>
+              <p><strong className="text-white">KvK:</strong> <span className="text-amber-400/70 italic">Registration pending</span></p>
               <p><strong className="text-white">Contact:</strong>{' '}
                 <a href="mailto:hello@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
                   hello@frankx.ai
@@ -57,7 +74,7 @@ export default function LegalPage() {
           </section>
 
           {/* Disclaimers */}
-          <section className="p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+          <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Disclaimers</h2>
             <div className="space-y-4 text-white/70">
               <div>
@@ -85,10 +102,10 @@ export default function LegalPage() {
           </section>
 
           {/* Copyright */}
-          <section className="p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+          <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Copyright</h2>
             <p className="text-white/70 text-sm leading-relaxed">
-              &copy; {new Date().getFullYear()} FrankX.AI. All rights reserved.
+              &copy; {new Date().getFullYear()} Arcanea Labs BV, trading as FrankX. All rights reserved.
               Unauthorized reproduction, distribution, or modification of any content
               on this website is strictly prohibited without written consent.
             </p>

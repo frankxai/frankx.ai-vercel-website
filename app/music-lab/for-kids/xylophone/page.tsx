@@ -272,7 +272,7 @@ export default function XylophonePage() {
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute w-[500px] h-[500px] bg-purple-500/[0.03] rounded-full blur-[200px] top-0 left-1/4" />
         <div className="absolute w-[400px] h-[400px] bg-pink-500/[0.025] rounded-full blur-[150px] bottom-0 right-1/4" />
-        <div className="absolute w-[300px] h-[300px] bg-cyan-500/[0.02] rounded-full blur-[120px] top-1/2 right-1/3" />
+        <div className="absolute w-[300px] h-[300px] bg-cyan-500/[0.02] rounded-full blur-[128px] top-1/2 right-1/3" />
       </div>
 
       {/* Header */}

@@ -232,14 +232,14 @@ export default function VaultPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#030712] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0b] flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero Section */}
       <section className="relative py-12 px-4 overflow-hidden">
         {/* Background Image */}
@@ -252,7 +252,7 @@ export default function VaultPage() {
             priority
             quality={80}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/40 via-[#030712]/70 to-[#030712]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/40 via-[#0a0a0b]/70 to-[#0a0a0b]" />
         </div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
 

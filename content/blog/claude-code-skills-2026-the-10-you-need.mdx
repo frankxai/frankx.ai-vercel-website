@@ -1,0 +1,155 @@
+---
+title: "Claude Code Skills 2026: The 10 You Actually Need"
+description: "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples."
+date: '2026-03-19'
+author: "FrankX"
+category: "Creator Systems"
+tags: ["Claude Code", "Skills", "ACOS", "AI Development", "Productivity"]
+image: "/images/blog/building-custom-skills-hero-v3-pro.png"
+featured: false
+keywords:
+  [
+    "claude code skills",
+    "best claude code skills 2026",
+    "acos skills",
+    "agent skills claude",
+    "npx skills add",
+  ]
+readingGoal: "You will know which 10 Claude Code skills deliver real value and how to install, configure, and build your own."
+tldr: "There are 500+ Claude Code skills available. Most are noise. After 6 months across 170+ pages of production code, these 10 changed my output: vercel-react-best-practices, next-best-practices, shadcn-ui, seo-content-writer, seo-fundamentals, tailwind-css-patterns, web-design-guidelines, architecture-patterns, clean-code, and fixing-accessibility. Install globally, configure once, ship better."
+schema: ["Article", "FAQPage"]
+---
+
+**TL;DR:** 500+ skills exist. Most add noise. These 10 earned permanent global install after 6 months of daily use: `vercel-react-best-practices`, `next-best-practices`, `shadcn-ui`, `seo-content-writer`, `seo-fundamentals`, `tailwind-css-patterns`, `web-design-guidelines`, `architecture-patterns`, `clean-code`, and `fixing-accessibility`. Plus how to build your own in 20 minutes.
+
+---
+
+## What Skills Are
+
+Skills are folders with a `SKILL.md` file that Claude loads as context rules. Not plugins. Not extensions. Context.
+
+The `vercel-react-best-practices` skill contains 40+ rules about React inside Vercel — avoiding unnecessary `useEffect`, preferring Server Components, structuring data fetching. Claude reads those rules and applies them as constraints.
+
+## Skills vs Commands vs Agents
+
+| Primitive   | What It Is               | When It Activates                | Best For                    |
+| ----------- | ------------------------ | -------------------------------- | --------------------------- |
+| **Skill**   | Context rules            | Auto (keyword match) or globally | Standards, domain knowledge |
+| **Command** | Slash workflow           | On demand (`/command`)           | Repeatable tasks            |
+| **Agent**   | Persona + skills + tools | Configured profile               | Multi-step work             |
+
+Skills are the foundation. Commands invoke skills. Agents are built on both.
+
+## The 10 Essential Skills
+
+### 1. vercel-react-best-practices
+
+40+ rules for React in Vercel apps. Every component starts Server-first. Shifts to Client only when interaction requires it. Saves bundle weight across 170+ pages.
+
+### 2. next-best-practices
+
+App Router fundamentals. Layout nesting, route groups, parallel routes, metadata API. Correct route structure on the first try.
+
+### 3. shadcn-ui
+
+shadcn/ui integration patterns. Extends through `cn()` and variant props. Keeps the design system coherent instead of fighting internal styles.
+
+### 4. seo-content-writer
+
+Content optimization for long-form writing. TL;DR-first structure, question-based H2s, FAQ inclusion, internal linking rules.
+
+### 5. seo-fundamentals
+
+Core SEO — crawlability, title tags, meta descriptions, canonicals, structured data. Caught 3 missing canonicals and 2 duplicate titles before I ran a crawl.
+
+### 6. tailwind-css-patterns
+
+Utility-first CSS conventions. Class grouping: layout → spacing → typography → color → state. Every component readable at a glance.
+
+### 7. web-design-guidelines
+
+Visual design for web. Spacing systems, typographic hierarchy, color contrast, visual weight. Shifts Claude from "technically correct" to "visually intentional."
+
+### 8. architecture-patterns
+
+System design for production apps. Separation of concerns, data flow, service boundaries. Kept the [ACOS](/acos) architecture clean as it grew.
+
+### 9. clean-code
+
+Code quality rules. Naming conventions, function length, abstraction levels. Every function name becomes a description of what it does. Code reviews are faster.
+
+### 10. fixing-accessibility
+
+WCAG 2.2 compliance. Semantic HTML, ARIA labels, keyboard navigation, focus management, color contrast. Passed WCAG 2.2 AA on first audit for the [prompt library](/prompt-library).
+
+## How to Install
+
+```bash
+# Install globally
+npx skills add vercel-labs/agent-skills -y -g
+npx skills add vercel-labs/next-skills -y -g
+npx skills add sickn33/antigravity-awesome-skills -y -g
+npx skills add ibelick/ui-skills -y -g
+npx skills add giuseppe-trisciuoglio/developer-kit -y -g
+
+# List installed
+npx skills list -g
+```
+
+## Building Your Own (20 minutes)
+
+Create `~/.agents/skills/my-skill/SKILL.md`:
+
+```markdown
+---
+name: my-brand-voice
+description: Brand voice rules for content
+triggers:
+  - blog post
+  - landing page
+  - copy
+---
+
+# Brand Voice
+
+## Rules
+
+- Lead with outcomes, explain mechanisms second.
+- Specific numbers over vague claims.
+- Short sentences for impact. Longer for explanation.
+
+## Patterns to Avoid
+
+- Filler phrases: "it is worth noting", "in today's world"
+- Passive constructions when active is available.
+```
+
+Full skill-building guide: [Building Custom Skills for ACOS](/blog/building-custom-skills-acos).
+
+## The ACOS Layer
+
+The 10 skills above are the general foundation. [ACOS](/acos) adds 75+ domain-specific skills: agent profiles, command libraries, hook systems, and memory architecture. The difference between giving Claude a style guide and giving Claude a complete operating context. Full setup: [ACOS + Claude Code + MCP guide](/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp).
+
+---
+
+## FAQ
+
+### How many skills globally?
+
+Start with 5-10. More adds context overhead. I run 12 globally, load more per project.
+
+### Do skills work on Claude.ai?
+
+Skills as filesystem files are Claude Code-specific. Claude.ai uses system prompts — same principles, different mechanism.
+
+### Can skills conflict?
+
+Yes. Two skills with opposing rules for the same situation create inconsistent behavior. Review for overlap before combining.
+
+### How do I verify a skill loaded?
+
+Ask Claude: "What skills are active?" It lists loaded context rules.
+
+### Global vs project-level?
+
+Global (`-g`): universal standards. Project-level: domain-specific rules. Use both.

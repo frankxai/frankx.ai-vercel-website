@@ -35,16 +35,37 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Vibe OS shortcut → product page
+      // Arcanea domain canonicalization
       {
-        source: '/vibe-os',
-        destination: '/products/vibe-os',
+        source: '/arcanea',
+        destination: 'https://arcanea.ai',
+        permanent: true,
+      },
+      {
+        source: '/arcanea/:path*',
+        destination: 'https://arcanea.ai/:path*',
         permanent: true,
       },
       // Realm → Inner Circle rename
       {
         source: '/realm',
         destination: '/inner-circle',
+        permanent: true,
+      },
+      // Family Hub → Familie (German-first)
+      {
+        source: '/family',
+        destination: '/familie',
+        permanent: true,
+      },
+      {
+        source: '/family/tree',
+        destination: '/familie/stammbaum',
+        permanent: true,
+      },
+      {
+        source: '/family/:path*',
+        destination: '/familie/:path*',
         permanent: true,
       },
       // Creator Lab signup → product page
@@ -57,6 +78,27 @@ const nextConfig = {
         source: '/creator-lab-starter',
         destination: '/products/agentic-creator-os',
         permanent: false,
+      },
+      // Research Hub content relocation redirects
+      {
+        source: '/research/visionaries',
+        destination: '/visionaries',
+        permanent: true,
+      },
+      {
+        source: '/research/visionariers',
+        destination: '/visionaries',
+        permanent: true,
+      },
+      {
+        source: '/research/ai-evolution',
+        destination: '/ai-evolution',
+        permanent: true,
+      },
+      {
+        source: '/research/visual-intelligence',
+        destination: '/tools/visual-intelligence',
+        permanent: true,
       },
       // Blog post legacy redirects
       {
@@ -243,7 +285,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https: http:",
               "media-src 'self' https:",
-              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com",
+              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
               "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://plausible.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
             ].join('; '),
           },

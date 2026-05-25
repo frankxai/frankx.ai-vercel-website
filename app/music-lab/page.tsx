@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Play,
   ExternalLink,
@@ -20,6 +21,7 @@ import {
   Download,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // ============================================================================
 // BACKGROUND
@@ -28,7 +30,7 @@ import { EmailSignup } from '@/components/email-signup'
 function MusicLabBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       <motion.div
         className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
@@ -68,9 +70,19 @@ function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 mb-8">
-              <Music2 className="w-4 h-4 text-pink-400" />
-              <span className="text-sm font-medium text-pink-300">AI Music Creation</span>
+            <div className="flex items-center gap-4 mb-8">
+              <Image
+                src="/images/team/echo-leopard.png"
+                alt="Echo — Sound Weaver"
+                width={64}
+                height={64}
+                className="rounded-2xl"
+                style={{ boxShadow: '0 0 30px -6px rgba(236,72,153,0.4)' }}
+              />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20">
+                <Music2 className="w-4 h-4 text-pink-400" />
+                <span className="text-sm font-medium text-pink-300">AI Music Creation</span>
+              </div>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
@@ -91,7 +103,7 @@ function HeroSection() {
                 className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
               >
                 <Sparkles className="w-5 h-5" />
-                Explore Vibe OS
+                Start Creating
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
@@ -297,13 +309,14 @@ function WhatIsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
             >
-              <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4">
-                <item.icon className="w-6 h-6 text-pink-400" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-              <p className="text-white/50">{item.description}</p>
+              <GlowCard color="rose" className="p-6 h-full">
+                <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-pink-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-white/50">{item.description}</p>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -367,36 +380,39 @@ function GetStartedSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/10"
             >
-              <div className="flex-shrink-0">
-                <span className="text-3xl font-bold text-pink-400/30">{step.number}</span>
-              </div>
-              <div className="flex-grow">
-                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-white/50 mb-4">{step.description}</p>
-                {step.action && (
-                  step.action.external ? (
-                    <a
-                      href={step.action.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
-                    >
-                      {step.action.label}
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  ) : (
-                    <Link
-                      href={step.action.href}
-                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
-                    >
-                      {step.action.label}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )
-                )}
-              </div>
+              <GlowCard color="violet" className="p-6 h-full">
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0">
+                    <span className="text-3xl font-bold text-pink-400/30">{step.number}</span>
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                    <p className="text-white/50 mb-4">{step.description}</p>
+                    {step.action && (
+                      step.action.external ? (
+                        <a
+                          href={step.action.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+                        >
+                          {step.action.label}
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={step.action.href}
+                          className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+                        >
+                          {step.action.label}
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      )
+                    )}
+                  </div>
+                </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -453,21 +469,22 @@ function PromptExamplesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-lg font-semibold text-white">{example.genre}</span>
-                <span className="text-xs text-white/40">{example.useCase}</span>
-              </div>
-              <p className="text-sm text-white/60 font-mono bg-white/5 rounded-lg p-3 mb-4">
-                {example.prompt}
-              </p>
-              <button
-                onClick={() => navigator.clipboard.writeText(example.prompt)}
-                className="w-full py-2 rounded-lg border border-white/10 text-sm text-white/60 hover:bg-white/5 hover:text-white transition-all"
-              >
-                Copy Prompt
-              </button>
+              <GlowCard color="rose" className="p-6 h-full flex flex-col">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-lg font-semibold text-white">{example.genre}</span>
+                  <span className="text-xs text-white/40">{example.useCase}</span>
+                </div>
+                <p className="text-sm text-white/60 font-mono bg-white/5 rounded-lg p-3 mb-4 flex-1">
+                  {example.prompt}
+                </p>
+                <button
+                  onClick={() => navigator.clipboard.writeText(example.prompt)}
+                  className="w-full py-2 rounded-full border border-white/10 text-sm text-white/60 hover:bg-white/5 hover:text-white transition-all"
+                >
+                  Copy Prompt
+                </button>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -575,7 +592,7 @@ function CTASection() {
           </h2>
           <p className="text-xl text-white/50 mb-8 max-w-2xl mx-auto">
             Vibe OS is a complete system for creating transformative music with AI.
-            Prompt templates, workflows, and techniques refined over 500+ songs.
+            Prompt templates, workflows, and techniques refined over 12,000+ songs.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -600,8 +617,8 @@ function CTASection() {
           </div>
 
           <p className="text-sm text-white/30 mt-8">
-            Frank has created 500+ songs using Suno AI, exploring ambient,
-            electronic, cinematic, and healing frequencies.
+            Frank has created 12,000+ songs using Suno AI, exploring ambient,
+            electronic, cinematic, and experimental genres.
           </p>
         </motion.div>
       </div>

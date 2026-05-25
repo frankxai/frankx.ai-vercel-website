@@ -273,7 +273,7 @@ export default function IntelligenceAtlasPage() {
   const activeGateData = intelligenceGates.find((g) => g.id === activeGate)!
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
       {/* Cosmic background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),transparent)]" />
@@ -334,7 +334,7 @@ export default function IntelligenceAtlasPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
           </motion.div>
 
           {/* Scroll indicator */}

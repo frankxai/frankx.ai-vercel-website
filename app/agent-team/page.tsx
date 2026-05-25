@@ -143,7 +143,7 @@ export default function AgentTeamPage() {
       schemaPrice: '0',
       availability: 'https://schema.org/InStock',
       features: [
-        { label: 'Soul Frequency Assessment debrief tailored to your team.', href: '/soul-frequency-assessment' },
+        { label: 'Personalized AI readiness assessment for your team.', href: '/assessment' },
         { label: 'Clarity on which Claude agent to activate first.' },
         { label: 'Access to the Start Here orientation experience.', href: '/start' },
       ],

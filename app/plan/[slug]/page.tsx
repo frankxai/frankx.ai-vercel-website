@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       planTrackConfig[initiative.track].label.toLowerCase(),
       'build in public',
       'AI roadmap',
-      'frank van den bergh',
+      'Frank Riemer',
     ],
     openGraph: {
       title: `${initiative.title} | The Plan`,
@@ -64,7 +64,7 @@ export default async function Page({ params }: PageProps) {
     url: `https://frankx.ai/plan/${initiative.slug}`,
     author: {
       '@type': 'Person',
-      name: 'Frank van den Bergh',
+      name: 'Frank Riemer',
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
     },

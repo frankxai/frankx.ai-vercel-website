@@ -308,7 +308,7 @@ export default function SevenPillarsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
         {/* Background Image */}
@@ -321,7 +321,7 @@ export default function SevenPillarsPage() {
             priority
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/70 to-[#030712]/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-[#0a0a0b]/30" />
         </div>
         {/* Background Effects */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />

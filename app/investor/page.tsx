@@ -20,6 +20,7 @@ import {
   Shield,
 } from 'lucide-react'
 
+import Image from 'next/image'
 import { getFeaturedProducts, INVESTOR_CATEGORIES, type InvestorCategory } from '@/lib/investor'
 import InvestorProductCard from '@/components/investor/InvestorProductCard'
 
@@ -117,7 +118,7 @@ const staggerContainer = {
 function HubBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
@@ -131,17 +132,19 @@ function HubBackground() {
       <motion.div
         className="absolute -right-60 top-20 h-[600px] w-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
-        animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.35, 0.5] }}
+        animate={{ scale: [1, 1.08, 1], opacity: [1, 0.7, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
-        animate={{ scale: [1.08, 1, 1.08], opacity: [0.35, 0.5, 0.35] }}
+        animate={{ scale: [1.08, 1, 1.08], opacity: [1, 0.7, 1] }}
         transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
@@ -252,8 +255,9 @@ export default function InvestorHubPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
+              className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
             >
+              <Image src="/images/mascot/mascot-v14-dimensional-rift.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(6,182,212,0.3)' }} />
               <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-amber-500/30 to-cyan-500/30">
                 <TrendingUp className="h-3.5 w-3.5 text-white" />
               </div>

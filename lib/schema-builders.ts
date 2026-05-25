@@ -182,6 +182,64 @@ export function buildCourseSchema(data: {
   }
 }
 
+// Build VideoObject schema — required for Google video rich results & AEO citations
+// Spec: https://developers.google.com/search/docs/appearance/structured-data/video
+export function buildVideoObjectSchema(data: {
+  name: string
+  description: string
+  thumbnailUrl: string | string[]
+  uploadDate: string // ISO-8601
+  duration?: string // ISO-8601 duration (e.g. "PT45S")
+  contentUrl?: string
+  embedUrl: string
+  author?: string
+  transcript?: string
+  keywords?: string[]
+}) {
+  return {
+    '@type': 'VideoObject',
+    name: data.name,
+    description: data.description,
+    thumbnailUrl: Array.isArray(data.thumbnailUrl) ? data.thumbnailUrl : [data.thumbnailUrl],
+    uploadDate: data.uploadDate,
+    ...(data.duration && { duration: data.duration }),
+    ...(data.contentUrl && { contentUrl: data.contentUrl }),
+    embedUrl: data.embedUrl,
+    ...(data.author && {
+      author: { '@type': 'Person', name: data.author },
+    }),
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_CONFIG.organization.name,
+      logo: { '@type': 'ImageObject', url: SITE_CONFIG.organization.logo },
+    },
+    ...(data.transcript && { transcript: data.transcript }),
+    ...(data.keywords && { keywords: data.keywords.join(', ') }),
+    potentialAction: {
+      '@type': 'SeekToAction',
+      target: `${data.embedUrl}?t={seek_to_second_number}`,
+      'startOffset-input': 'required name=seek_to_second_number',
+    },
+  }
+}
+
+/** Convert "0:45" or "1:23:45" duration string → ISO-8601 (e.g., "PT45S"). */
+export function durationToIso8601(duration: string): string {
+  if (!duration || duration === 'LIVE') return 'PT0S'
+  const parts = duration.split(':').map(Number)
+  let h = 0
+  let m = 0
+  let s = 0
+  if (parts.length === 3) [h, m, s] = parts
+  else if (parts.length === 2) [m, s] = parts
+  else if (parts.length === 1) [s] = parts
+  let out = 'PT'
+  if (h) out += `${h}H`
+  if (m) out += `${m}M`
+  if (s || (!h && !m)) out += `${s}S`
+  return out
+}
+
 // Build ItemList for collection pages (topic clusters)
 export function buildItemListSchema(data: {
   name: string

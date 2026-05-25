@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   Code2,
@@ -43,7 +44,7 @@ const architectureAreas = [
   {
     icon: Terminal,
     title: 'ACOS for Developers',
-    description: '630+ skills, 40+ agents in an open-source operating system for Claude Code. Built for shipping.',
+    description: '75+ skills, 38 agents in an open-source operating system for Claude Code. Built for shipping.',
     href: '/acos',
     stat: 'Open source',
     color: 'purple',
@@ -143,7 +144,7 @@ export default function ArchitectsLandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -right-40 top-20 h-[500px] w-[500px] rounded-full opacity-15" style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)' }} />
@@ -152,6 +153,10 @@ export default function ArchitectsLandingPage() {
 
       {/* Hero */}
       <section className="relative pt-28 pb-16">
+        {/* Codex — AI Architect character accent */}
+        <div className="pointer-events-none absolute right-6 top-20 hidden w-48 opacity-[0.12] lg:block xl:w-56">
+          <Image src="/images/team/codex-falcon.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
+        </div>
         <div className="mx-auto max-w-5xl px-6">
           <motion.div initial="hidden" animate="visible" variants={containerVariants}>
             <motion.div variants={itemVariants} className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
@@ -193,13 +198,13 @@ export default function ArchitectsLandingPage() {
       </section>
 
       {/* Credentials bar */}
-      <section className="relative border-y border-white/5 bg-white/[0.02] py-10">
+      <section className="relative border-y border-white/[0.08] bg-white/[0.03] py-10">
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: '4+', label: 'Years Enterprise AI' },
-              { value: '630+', label: 'AI Skills Built' },
-              { value: '40+', label: 'Agent Templates' },
+              { value: '75+', label: 'AI Skills Built' },
+              { value: '38', label: 'Agent Templates' },
               { value: '70+', label: 'Technical Articles' },
             ].map((stat, i) => (
               <motion.div
@@ -293,7 +298,7 @@ export default function ArchitectsLandingPage() {
               >
                 <Link
                   href={post.href}
-                  className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-white/10 hover:bg-white/[0.04]"
+                  className="group flex items-center justify-between rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/10 hover:bg-white/[0.04]"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 uppercase tracking-wider">

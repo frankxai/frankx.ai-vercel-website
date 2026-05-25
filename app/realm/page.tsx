@@ -6,7 +6,7 @@ import { Sparkles, Crown, ArrowRight, Mail } from 'lucide-react'
 
 export default function RealmPage() {
   return (
-    <main className="min-h-screen bg-[#02030b] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Background */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-[#02030b] to-violet-950/20" />

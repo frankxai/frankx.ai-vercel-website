@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   ArrowRight,
   BookOpen,
@@ -16,6 +17,7 @@ import {
 } from 'lucide-react'
 import JsonLd from '@/components/seo/JsonLd'
 import { plannedCourses } from '@/lib/courses/roadmap'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 
 type CourseCategory = 'foundations' | 'technical' | 'business'
 
@@ -91,24 +93,20 @@ const categories = [
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
-      <motion.div
-        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
+      <div
+        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%] rounded-full"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
-          filter: 'blur(100px)',
+          filter: 'blur(128px)',
         }}
-        animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
+      <div
+        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] rounded-full"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
-          filter: 'blur(100px)',
+          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.04) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
-        animate={{ x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
       <div
         className="absolute inset-0 opacity-[0.015]"
@@ -130,53 +128,46 @@ function CourseCard({ course, index }: { course: CourseCardData; index: number }
       viewport={{ once: true }}
       transition={{ delay: index * 0.08 }}
     >
-      <Link
-        href={course.href}
-        className="group block relative p-6 rounded-2xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-1 h-full"
-      >
-        <div className={`absolute inset-0 bg-gradient-to-br ${course.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-        <div className="relative">
-          <div className="flex items-start justify-between mb-4">
-            <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-              <Icon className={`w-5 h-5 ${course.color}`} />
-            </div>
-            <span className="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded-full">
-              Planned
-            </span>
+      <GlowCard href={course.href} color={({ 'text-cyan-400': 'cyan', 'text-violet-400': 'violet', 'text-emerald-400': 'emerald' } as Record<string, GlowColor>)[course.color] ?? 'cyan'} className="p-6 h-full">
+        <div className="flex items-start justify-between mb-4">
+          <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+            <Icon className={`w-5 h-5 ${course.color}`} />
           </div>
+          <span className="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded-full">
+            Planned
+          </span>
+        </div>
 
-          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors">
-            {course.title}
-          </h3>
-          <p className="text-sm text-white/60 leading-relaxed mb-5 group-hover:text-white/70 transition-colors">
-            {course.description}
-          </p>
+        <h3 className="text-xl font-semibold text-white mb-2">
+          {course.title}
+        </h3>
+        <p className="text-sm text-white/60 leading-relaxed mb-5">
+          {course.description}
+        </p>
 
-          <div className="space-y-2 text-xs text-white/45 mb-6">
-            <div className="flex items-center gap-2">
-              <CalendarClock className="w-3.5 h-3.5" />
-              {course.launchWindow}
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5" />
-              {course.commitment}
-            </div>
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-3.5 h-3.5" />
-              {course.modules} draft modules
-            </div>
+        <div className="space-y-2 text-xs text-white/45 mb-6">
+          <div className="flex items-center gap-2">
+            <CalendarClock className="w-3.5 h-3.5" />
+            {course.launchWindow}
           </div>
-
-          <div className="flex items-center justify-between pt-4 border-t border-white/5">
-            <span className="text-sm font-semibold text-amber-300">Waitlist Open</span>
-            <span className="flex items-center gap-1 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
-              View roadmap
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </span>
+          <div className="flex items-center gap-2">
+            <Clock className="w-3.5 h-3.5" />
+            {course.commitment}
+          </div>
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-3.5 h-3.5" />
+            {course.modules} draft modules
           </div>
         </div>
-      </Link>
+
+        <div className="flex items-center justify-between pt-4 border-t border-white/5">
+          <span className="text-sm font-semibold text-amber-300">Waitlist Open</span>
+          <span className="flex items-center gap-1 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+            View roadmap
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </span>
+        </div>
+      </GlowCard>
     </motion.div>
   )
 }
@@ -230,7 +221,8 @@ export default function CoursesPage() {
               transition={{ duration: 0.6 }}
               className="max-w-4xl"
             >
-              <div className="mb-8">
+              <div className="mb-8 flex items-center gap-4">
+                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
                   AI Architect Academy
                 </span>
@@ -354,7 +346,7 @@ export default function CoursesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group flex items-center justify-between p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all"
+                  className="group flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300"
                 >
                   <div>
                     <div className="text-xs uppercase tracking-[0.15em] text-white/30 mb-1">
@@ -387,16 +379,16 @@ export default function CoursesPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/courses/conscious-ai-foundations#waitlist"
-                  className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                  className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
-                  Join Waitlist
+                  Get Early Access
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/students"
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 transition-all"
                 >
-                  View Free Resources
+                  Free Resources
                 </Link>
               </div>
             </motion.div>

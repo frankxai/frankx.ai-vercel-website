@@ -43,6 +43,8 @@ import {
   Map,
   Flame,
   Briefcase,
+  Play,
+  Zap,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -98,6 +100,8 @@ const navigation = {
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your level' },
       { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Learn through play' },
+      { name: 'Watch', href: '/watch', icon: Play, description: 'Curated video library' },
+      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'NEW · 60-second high-signal insights' },
     ],
   },
   build: {

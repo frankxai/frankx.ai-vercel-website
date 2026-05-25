@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import {
   Activity,
+  AlertTriangle,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
@@ -123,6 +124,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
   const tocItems = [
     ...domain.sections.map((s, i) => ({ id: `section-${i}`, label: s.title })),
     { id: 'findings', label: 'Key Findings' },
+    ...((domain.limitations?.length || domain.whatWeDontKnow?.length) ? [{ id: 'transparency', label: 'Transparency' }] : []),
     ...(hasFaq ? [{ id: 'faq', label: 'FAQ' }] : []),
     ...(sources.length > 0 ? [{ id: 'sources', label: `Sources (${sources.length})` }] : []),
     ...(relatedDomains.length > 0 ? [{ id: 'related', label: 'Related Research' }] : []),
@@ -352,6 +354,69 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   ))}
                 </div>
               </motion.div>
+
+              {/* Research Transparency */}
+              {(domain.limitations?.length || domain.whatWeDontKnow?.length) && (
+                <motion.div
+                  id="transparency"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.37 }}
+                  className="mb-12"
+                >
+                  <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 text-amber-400" />
+                    Research Transparency
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {domain.limitations && domain.limitations.length > 0 && (
+                      <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.03] p-5">
+                        <h3 className="text-sm font-semibold text-amber-400 mb-3">Limitations</h3>
+                        <ul className="space-y-2">
+                          {domain.limitations.map((l, i) => (
+                            <li key={i} className="text-xs text-white/45 leading-relaxed flex gap-2">
+                              <span className="text-amber-400/50 mt-0.5 flex-shrink-0">&bull;</span>
+                              {l}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {domain.whatWeDontKnow && domain.whatWeDontKnow.length > 0 && (
+                      <div className="rounded-xl border border-blue-500/20 bg-blue-500/[0.03] p-5">
+                        <h3 className="text-sm font-semibold text-blue-400 mb-3">What We Don&apos;t Know</h3>
+                        <ul className="space-y-2">
+                          {domain.whatWeDontKnow.map((w, i) => (
+                            <li key={i} className="text-xs text-white/45 leading-relaxed flex gap-2">
+                              <span className="text-blue-400/50 mt-0.5 flex-shrink-0">?</span>
+                              {w}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                  {domain.evidenceGrade && (
+                    <div className="mt-3 flex items-center gap-2">
+                      <span className="text-[10px] text-white/25">Evidence Grade:</span>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                        domain.evidenceGrade === 'A' ? 'bg-emerald-500/10 text-emerald-400' :
+                        domain.evidenceGrade === 'B' ? 'bg-blue-500/10 text-blue-400' :
+                        domain.evidenceGrade === 'C' ? 'bg-amber-500/10 text-amber-400' :
+                        'bg-rose-500/10 text-rose-400'
+                      }`}>
+                        Grade {domain.evidenceGrade}
+                      </span>
+                      <span className="text-[10px] text-white/20">
+                        {domain.evidenceGrade === 'A' ? '(Peer-reviewed / meta-analyses)' :
+                         domain.evidenceGrade === 'B' ? '(Industry reports from credible firms)' :
+                         domain.evidenceGrade === 'C' ? '(Mixed sources — industry + editorial)' :
+                         '(Mostly editorial / opinion-based)'}
+                      </span>
+                    </div>
+                  )}
+                </motion.div>
+              )}
 
               {/* FAQ Section */}
               {hasFaq && (

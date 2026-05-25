@@ -7,5 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #2206 | 4:45 AM | ✅ | Hero images deployed to production worktree | ~245 |
+| #2177 | 3:12 AM | ✅ | Task a917510 completed: Bulk rename Luminor Oracle to Visionary in 16 documentation files | ~438 |
 </claude-mem-context>

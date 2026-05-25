@@ -1,0 +1,173 @@
+---
+title: "How I Built a Visual Intelligence System After Losing Track of 408 Images"
+description: "I discovered 82% of my site's images were orphaned, flagship posts used placeholder SVGs, and 3 blog posts showed the same hero twice. Here's the system I built to fix it — and how you can use it too."
+date: '2026-03-17'
+category: "Creator Systems"
+image: "/images/blog/visual-intelligence-system-ai-image-management-hero.webp"
+readingTime: "8 min read"
+tags:
+  [
+    "visual-intelligence",
+    "acos",
+    "creator-tools",
+    "image-management",
+    "ai-images",
+  ]
+categories:
+  - "Creator Tools"
+  - "ACOS"
+  - "AI"
+---
+
+# How I Built a Visual Intelligence System After Losing Track of 408 Images
+
+**TL;DR** — After discovering that 82% of images on frankx.ai were orphaned, flagship posts relied on placeholder SVGs, and three blog articles shared an identical hero image, I built a 6-layer Visual Intelligence System (VIS) to bring order to the chaos. The site's visual health score climbed from 1/100 to 76/100 in a single session. VIS is now available as an [ACOS](/acos) plugin you can install in minutes.
+
+---
+
+## Why did a 408-image library spiral out of control?
+
+It started with a small request. I asked Claude to fix two homepage images that had broken during a component refactor. The fix landed — but a follow-up scan revealed an entire `/music/infogenius/` directory that the fix never touched. That single miss triggered a broader question: **how many other images on the site were wrong, missing, or forgotten?**
+
+The full audit uncovered a landscape far worse than expected:
+
+| Finding                                      | Count     |
+| -------------------------------------------- | --------- |
+| Total images in `/public/images/`            | 408       |
+| Orphaned images (referenced nowhere in code) | 333 (82%) |
+| Placeholder SVGs on flagship posts           | 2         |
+| Duplicate hero images across blog posts      | 3         |
+| Oversized images (7-9 MB each)               | 12        |
+
+Every one of those 333 orphans burned disk and deploy time. The placeholder SVGs sat on two of the highest-traffic articles — [GenCreator](/gencreator) and [Personal AI CoE](/tools/visual-intelligence). The duplicate heroes made three distinct posts look interchangeable in social previews.
+
+The root cause was straightforward: images accumulated across months of shipping — AI-generated art, diagrams, screenshots, mascot variants — with zero tracking layer between the filesystem and the pages that consumed them.
+
+## What does a Visual Intelligence System actually do?
+
+VIS is a 6-layer architecture that treats images as first-class data, the same way a CMS treats text content.
+
+### Layer 1: Registry
+
+A scan of `/public/images/` generates a structured registry of every image — file path, dimensions, file size, format, and auto-generated tags based on directory structure and filename conventions. The initial scan indexed all 408 images in under 4 seconds.
+
+### Layer 2: Auditor
+
+Four detection passes run against the registry:
+
+- **Placeholder detection** — identifies generic SVGs and 1x1 pixel stubs used as temporary heroes
+- **Duplicate detection** — perceptual hash comparison flags images reused across unrelated pages
+- **Orphan detection** — cross-references every registry entry against `app/`, `components/`, `content/`, and `data/` to find images no code path ever loads
+- **Size detection** — flags any image above a configurable threshold (default: 500 KB)
+
+### Layer 3: Brand DNA
+
+A declarative spec defines the canonical visual standards — color palettes, aspect ratios, minimum resolution per context (hero, card, thumbnail, avatar), and naming conventions. The auditor checks every image against Brand DNA rules and surfaces deviations.
+
+### Layer 4: Sitemap Map
+
+VIS maps every route on the site (268 pages on frankx.ai at time of writing) to its image coverage status: fully covered, partially covered, or missing. This makes it immediately clear which pages need visual attention.
+
+### Layer 5: Quality Council
+
+A 3-perspective review layer evaluates flagged images through three lenses:
+
+1. **Technical** — resolution, format efficiency, compression ratio
+2. **Brand** — alignment with Brand DNA, consistency with surrounding content
+3. **Editorial** — relevance to the page topic, information density, accessibility (alt text)
+
+### Layer 6: CLI
+
+Three commands make the system operational inside any terminal workflow:
+
+- `/vis-scan` — rebuild the full registry from the filesystem
+- `/vis-audit` — run all detection passes and generate a scored report
+- `/vis-report` — output a summary with health score, top issues, and recommended actions
+
+## What did the before-and-after look like?
+
+Here are four specific fixes that moved the needle:
+
+**Music Lab page** — The original infographic explaining the Suno production workflow was a low-contrast, text-heavy PNG that became unreadable on mobile. VIS flagged it as undersized for its context. The replacement is a branded workflow diagram at proper resolution with the frankx.ai visual language.
+
+**[GenCreator](/gencreator) framework page** — The hero was a generic SVG placeholder that shipped during an early sprint and never got replaced. VIS caught it as a placeholder on a high-priority page. It now displays a custom emerald command-center illustration that matches the GenCreator brand palette.
+
+**Personal AI CoE blog post** — Same pattern: placeholder SVG on a post that ranks well in search. Replaced with an enterprise-to-personal split-screen visual that reinforces the article's core argument.
+
+**3 duplicate blog heroes** — Three articles in different categories displayed an identical hero image. VIS's duplicate detection flagged all three in the first audit pass. Each now has a unique visual tied to its specific topic.
+
+**Aggregate result:**
+
+| Metric                              | Before | After                 |
+| ----------------------------------- | ------ | --------------------- |
+| Visual health score                 | 1/100  | 76/100                |
+| Orphaned images                     | 333    | 214 (cleanup ongoing) |
+| Placeholder SVGs on published pages | 2      | 0                     |
+| Duplicate heroes                    | 3      | 0                     |
+| Oversized images addressed          | 0/12   | 8/12                  |
+
+The remaining 24 points on the health score come from orphan cleanup (still in progress) and the 4 oversized images that require manual re-export from source files.
+
+## How do you install VIS in your own project?
+
+VIS ships as an [ACOS](/acos) plugin. If you already run ACOS, installation takes three steps:
+
+```bash
+# 1. Copy the VIS skill into your ACOS skills directory
+cp -r vis-skill/ .claude/skills/visual-intelligence/
+
+# 2. Add the scan and audit scripts
+cp scripts/vis-scan.mjs scripts/
+cp scripts/vis-audit.mjs scripts/
+
+# 3. Run your first scan
+/vis-scan
+```
+
+The scan generates `data/vis-registry.json`. From there, `/vis-audit` produces a scored report with actionable recommendations.
+
+For projects that use a different image directory or framework, edit the `config.paths` section in the skill definition to point at your asset root.
+
+## What comes next for Visual Intelligence?
+
+Three capabilities are in active development:
+
+**AI-powered auto-tagging** — Integration with node-vibrant for dominant color extraction and Gemini Vision for semantic tagging. Every image gets machine-generated labels like "diagram", "screenshot", "portrait", "dark-mode", or "contains-text" without manual input.
+
+**Weekly automated audits via n8n** — A scheduled workflow runs `/vis-audit` every Monday, compares the health score to the previous week, and posts a summary to Slack with any regressions flagged.
+
+**Multi-site sync** — For creators managing multiple properties (frankx.ai, arcanea.ai, client sites), VIS will support a federated registry that tracks image usage across all connected sites from a single dashboard.
+
+The goal is to make visual debt as visible and manageable as technical debt. Every shipped page deserves an image that earns its place.
+
+---
+
+## Frequently Asked Questions
+
+### What exactly is the Visual Intelligence System?
+
+VIS is a 6-layer framework for managing images as structured data. It scans your image directory, builds a registry, audits for issues (orphans, duplicates, placeholders, oversized files), checks brand compliance, maps image coverage to every page on your site, and provides CLI commands to run the whole process from your terminal. It integrates with [ACOS](/acos) as a plugin.
+
+### How does VIS compare to Brandfolder, Cloudinary, or other DAM platforms?
+
+Traditional DAM platforms are centralized cloud storage with tagging and approval workflows — designed for marketing teams managing thousands of brand assets. VIS solves a different problem: it lives inside your codebase and audits the relationship between your images and the pages that use them. It catches orphans, duplicates, and missing coverage that a DAM would never flag because DAMs have no awareness of your routing layer. The two are complementary. You could store assets in Cloudinary and still use VIS to audit your deployed site.
+
+### Does VIS work without ACOS?
+
+Yes. The scan and audit scripts are standalone Node.js modules that read your filesystem and output JSON. ACOS provides the skill wrapper, CLI commands, and integration with the broader [GenCreator](/gencreator) ecosystem — but the core functionality runs independently.
+
+### How much does VIS cost?
+
+VIS is free and open-source, distributed as part of the ACOS plugin ecosystem. The only dependency is Node.js 18+ and a filesystem to scan.
+
+### Can I use VIS with non-Next.js sites?
+
+The registry and auditor layers are framework-agnostic — they scan image directories and cross-reference source files. The sitemap mapping layer currently parses Next.js App Router conventions (`app/` directory structure) to build the page list. For other frameworks (Astro, Remix, SvelteKit), you would provide a custom page resolver function. A generic adapter is planned for the multi-site sync release.
+
+### What image formats does VIS support?
+
+VIS indexes PNG, JPG/JPEG, WebP, AVIF, SVG, and GIF. The size and quality auditors apply format-specific thresholds — for example, SVGs are checked for placeholder patterns rather than file size, while raster formats are evaluated on resolution and compression efficiency.
+
+### How long does a full audit take on a large site?
+
+On frankx.ai (408 images, 268 pages), a full `/vis-scan` + `/vis-audit` cycle completes in under 12 seconds. The bottleneck is the cross-reference pass between the registry and source files. Sites with 1,000+ images can expect 30-45 seconds depending on disk I/O.

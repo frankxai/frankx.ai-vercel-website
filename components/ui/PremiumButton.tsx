@@ -29,10 +29,10 @@ interface PremiumButtonAsAnchor extends BasePremiumButtonProps, Omit<AnchorHTMLA
 type PremiumButtonProps = PremiumButtonAsButton | PremiumButtonAsAnchor
 
 const variantStyles = {
-  primary: 'bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white shadow-lg shadow-purple-500/25',
+  primary: 'bg-gradient-to-r from-[#AB47C7] via-blue-600 to-[#43BFE3] text-white shadow-lg shadow-[#AB47C7]/25',
   secondary: 'bg-gradient-to-r from-slate-700 to-slate-800 text-slate-100 border border-slate-600/50',
   ghost: 'bg-slate-900/20 backdrop-blur-md border border-slate-700/30 text-slate-200 hover:bg-slate-800/30',
-  luxury: 'bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 text-white shadow-xl shadow-purple-500/40'
+  luxury: 'bg-gradient-to-r from-[#AB47C7] via-violet-600 to-indigo-600 text-white shadow-xl shadow-[#AB47C7]/40'
 }
 
 const sizeStyles = {
@@ -43,10 +43,10 @@ const sizeStyles = {
 }
 
 const glowStyles = {
-  primary: 'shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/60',
+  primary: 'shadow-2xl shadow-[#AB47C7]/50 hover:shadow-[#AB47C7]/60',
   secondary: 'shadow-lg shadow-slate-500/20 hover:shadow-slate-500/30',
   ghost: 'hover:shadow-lg hover:shadow-slate-500/20',
-  luxury: 'shadow-2xl shadow-purple-500/60 hover:shadow-purple-500/80'
+  luxury: 'shadow-2xl shadow-[#AB47C7]/60 hover:shadow-[#AB47C7]/80'
 }
 
 export default function PremiumButton({
@@ -67,8 +67,8 @@ export default function PremiumButton({
     'hover:scale-105 hover:-translate-y-0.5 active:scale-95',
     'md:hover:scale-105 md:hover:-translate-y-0.5', // Only apply hover transforms on medium screens and up
     'touch:hover:scale-100 touch:hover:translate-y-0', // Reset transforms on touch devices
-    'focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 focus:ring-offset-slate-900',
-    'focus-visible:ring-2 focus-visible:ring-purple-500/70', // Enhanced focus visibility
+    'focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/50 focus:ring-offset-2 focus:ring-offset-slate-900',
+    'focus-visible:ring-2 focus-visible:ring-[#AB47C7]/70',
     variantStyles[variant],
     sizeStyles[size],
     glow && glowStyles[variant],

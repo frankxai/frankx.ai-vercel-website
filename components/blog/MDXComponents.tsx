@@ -4,10 +4,11 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import Diagram from '@/components/blog/Diagram'
+import { buildInlineVideoSchema } from '@/lib/video-schema'
 
 // Embed components for immersive media
 import {
-  YouTubeEmbed,
+  YouTubeEmbed as BaseYouTubeEmbed,
   TikTokEmbed,
   InstagramEmbed,
   TwitterEmbed,
@@ -17,6 +18,22 @@ import {
   CodePenEmbed,
   LoomEmbed,
 } from '@/components/embeds'
+
+// Enhanced YouTubeEmbed with inline VideoObject schema for SEO
+function YouTubeEmbed(props: { id: string; title?: string; [key: string]: unknown }) {
+  const schema = buildInlineVideoSchema(props.id, props.title)
+  return (
+    <>
+      <BaseYouTubeEmbed {...props} />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+      >
+        {JSON.stringify(schema)}
+      </script>
+    </>
+  )
+}
 
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 

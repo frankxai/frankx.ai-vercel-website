@@ -16,7 +16,7 @@ export default function CaseStudyGrid({ productId, caseStudies, title = 'Field N
   }
 
   return (
-    <section className="bg-[#02030b] py-16">
+    <section className="bg-[#0a0a0b] py-16">
       <div className="mx-auto max-w-5xl px-6">
         <h2 className="text-center text-3xl font-semibold text-white">{title}</h2>
         {description ? (

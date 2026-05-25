@@ -305,16 +305,16 @@ export default function SoulbookPage() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
 
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen overflow-hidden">
         {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-[#0F172A] to-cyan-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-[#0a0a0b] to-cyan-900/20" />
         <AnimatedParticles />
 
         {/* Liquid Gradient */}
         <motion.div
-          className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-500/30 to-cyan-500/30 blur-[120px]"
+          className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-500/30 to-cyan-500/30 blur-[128px]"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 90, 0],
@@ -338,7 +338,7 @@ export default function SoulbookPage() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl">
               <Sparkles className="h-4 w-4 text-purple-400" />
               <span className="text-sm font-medium text-white/90">
-                By Frank van den Bergh
+                By Frank Riemer
               </span>
             </div>
 
@@ -499,7 +499,7 @@ export default function SoulbookPage() {
       <section className="relative overflow-hidden py-32">
         {/* Ambient Animation */}
         <motion.div
-          className="absolute left-1/4 top-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 blur-[100px]"
+          className="absolute left-1/4 top-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 blur-[128px]"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
@@ -530,7 +530,7 @@ export default function SoulbookPage() {
                 <div className="flex items-center gap-4">
                   <div className="h-16 w-16 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500" />
                   <div>
-                    <div className="font-semibold text-white">Frank van den Bergh</div>
+                    <div className="font-semibold text-white">Frank Riemer</div>
                     <div className="text-sm text-white/60">Creator of FrankX & The Soulbook</div>
                   </div>
                 </div>
@@ -672,7 +672,7 @@ export default function SoulbookPage() {
       {/* CTA Section */}
       <section className="relative overflow-hidden py-32">
         <motion.div
-          className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-500/30 to-cyan-500/30 blur-[100px]"
+          className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-500/30 to-cyan-500/30 blur-[128px]"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 0],

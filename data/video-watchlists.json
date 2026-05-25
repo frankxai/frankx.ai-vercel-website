@@ -88,5 +88,13 @@
     "icon": "graduation-cap",
     "color": "#10B981",
     "videoIds": ["aircAruvnKk", "zdkGXDq1jqM", "kCc8FmEb1nY", "3E7hkPZ-HTk"]
+  },
+  {
+    "id": "top-shorts",
+    "title": "Frank's Top Shorts",
+    "description": "60-second high-signal Shorts curated by an AI Architect — pairs with /watch/shorts. Each Short earns its place by compressing a real insight into under a minute.",
+    "icon": "zap",
+    "color": "#F43F5E",
+    "videoIds": ["1Edv43k15cY"]
   }
 ]

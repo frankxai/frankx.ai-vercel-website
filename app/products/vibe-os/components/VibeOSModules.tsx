@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Sparkles, Mail, Music2, CheckCircle, Palette, Share2, Bot, ArrowRight } from 'lucide-react'
+import { Sparkles, Mail, Library, Workflow, Heart, Sliders, ArrowRight } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductModule, ProductOffer } from '@/types/products'
@@ -15,7 +15,7 @@ interface VibeOSModulesProps {
   offer: ProductOffer
 }
 
-const moduleIcons = [Music2, CheckCircle, Palette, Share2, Bot]
+const moduleIcons = [Library, Workflow, Heart, Sliders]
 
 export default function VibeOSModules({ productId, modules, offer }: VibeOSModulesProps) {
   const handleCTAClick = () => {

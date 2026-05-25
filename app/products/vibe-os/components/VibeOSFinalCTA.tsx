@@ -107,7 +107,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
         >
           {COMING_SOON_MODE
             ? 'Join the waitlist for early access, exclusive launch pricing, and behind-the-scenes updates as we build the ultimate Suno workflow system.'
-            : 'Start with 10 free prompts daily. No credit card. Engineered Suno prompts, quality validation, album art workflows, and a full distribution pipeline — all powered by multi-LLM intelligence.'
+            : 'Join hundreds of creators who are shipping music consistently with Vibe OS. From emotional vision to finished track in one session.'
           }
         </motion.p>
 
@@ -180,7 +180,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
           <div className="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
           <div className="text-left">
             <div className="text-sm font-semibold text-white">Created by Frank</div>
-            <div className="text-xs text-white/50">500+ AI songs produced</div>
+            <div className="text-xs text-white/50">12,000+ AI songs produced</div>
           </div>
         </motion.div>
       </div>

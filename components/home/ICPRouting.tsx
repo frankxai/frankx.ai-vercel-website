@@ -67,7 +67,7 @@ export function ICPRouting() {
             >
               <Link
                 href={audience.href}
-                className="group flex items-start gap-4 p-5 sm:p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
+                className="group flex items-start gap-4 p-5 sm:p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
               >
                 <div className={`shrink-0 p-2.5 rounded-xl ${audience.accentClass.split(' ')[0]}`}>
                   <audience.icon className={`w-5 h-5 ${audience.accentClass.split(' ')[1]}`} />

@@ -1,76 +1,346 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useMemo, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowRight, Sparkles, Image as ImageIcon } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowRight,
+  Download,
+  Sparkles,
+  Image as ImageIcon,
+  Star,
+  Filter,
+  SortDesc,
+} from 'lucide-react'
 
-// ── Gallery Collections ─────────────────────────────────────────────────────
+import curationData from '@/data/gallery-curation.json'
+
+// ── Types ────────────────────────────────────────────────────────────────────
+
+interface GalleryArtwork {
+  id: string
+  src: string
+  title: string
+  prompt: string
+  model: string
+  style: string
+  category: string
+  tags: string[]
+  featured: boolean
+  score: number
+  createdAt: string
+}
+
+// ── Collections ──────────────────────────────────────────────────────────────
+
 const collections = [
   {
     id: 'instruments',
     title: 'Bio-Tech Instruments',
-    description: 'Where engineering precision meets living intelligence. Grand pianos with neural networks, violins with mycelium acoustics, synthesis controllers grown from coral.',
+    description:
+      'Engineering precision meets living intelligence. Grand pianos with neural networks, violins with mycelium acoustics.',
     image: '/images/gallery/instruments/biotech-grand-piano.png',
     count: 6,
     href: '/gallery/instruments',
     accent: 'from-cyan-500/20 to-emerald-500/20',
     borderAccent: 'border-cyan-500/30',
-    badge: 'New',
-  },
-  {
-    id: 'characters',
-    title: 'Character Design',
-    description: 'ACOS mascot concepts — three-tailed beast guardians, holographic entities, chrome mech-spirits, and data constellations.',
-    image: '/images/mascot/mascot-v05-techno-beast-standing.png',
-    count: 10,
-    href: '/gallery#characters',
-    accent: 'from-purple-500/20 to-pink-500/20',
-    borderAccent: 'border-purple-500/30',
-  },
-  {
-    id: 'nature-tech',
-    title: 'Nature Tech',
-    description: 'Organic intelligence meets dark technology — bioluminescent forests, crystal gardens, neural root systems, code vines.',
-    image: '/images/design-lab/nature-01-digital-garden-hero.png',
-    count: 6,
-    href: '/gallery#nature-tech',
-    accent: 'from-emerald-500/20 to-teal-500/20',
-    borderAccent: 'border-emerald-500/30',
-  },
-  {
-    id: 'system-design',
-    title: 'System Architecture',
-    description: 'Premium infographics visualizing the FrankX ecosystem — ACOS orchestration, Vibe OS integration, Arcanea gates, agent grids.',
-    image: '/images/ecosystem/01-frankx-ecosystem-overview.png',
-    count: 7,
-    href: '/gallery#system-design',
-    accent: 'from-amber-500/20 to-orange-500/20',
-    borderAccent: 'border-amber-500/30',
   },
   {
     id: 'editorial',
-    title: 'Editorial Art',
-    description: 'Blog hero images and editorial illustrations — swarm intelligence, personal AI, production patterns, creator studios.',
-    image: '/images/blog/golden-age-of-intelligence-hero.png',
-    count: 12,
-    href: '/gallery#editorial',
+    title: 'Blog Hero Laboratory',
+    description:
+      'Regenerated blog heroes with prompts, scores, before/after comparisons.',
+    image: '/images/blog/building-custom-skills-hero-v3-pro.png',
+    count: 68,
+    href: '/gallery/heroes',
     accent: 'from-amber-500/20 to-yellow-500/20',
     borderAccent: 'border-amber-500/30',
-  },
-  {
-    id: 'abstract',
-    title: 'Abstract & Cosmic',
-    description: 'Neural synthesis, cosmic blueprints, data auroras, frequency spectrums — pure visual exploration at the edge of imagination.',
-    image: '/images/ai-art/neural-network-brain.png',
-    count: 20,
-    href: '/gallery#abstract',
-    accent: 'from-indigo-500/20 to-violet-500/20',
-    borderAccent: 'border-indigo-500/30',
+    badge: 'New',
   },
 ]
 
-// ── Collection Card ─────────────────────────────────────────────────────────
+// ── Score Badge ──────────────────────────────────────────────────────────────
+
+function ScoreBadge({ score, showAlways = false }: { score: number; showAlways?: boolean }) {
+  if (!showAlways && score < 8.0) return null
+
+  const color =
+    score >= 9
+      ? 'text-amber-400 bg-amber-500/15 border-amber-500/30'
+      : score >= 8
+        ? 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30'
+        : score >= 7
+          ? 'text-cyan-400 bg-cyan-500/15 border-cyan-500/30'
+          : 'text-white/50 bg-white/5 border-white/10'
+
+  return (
+    <div
+      aria-label={`Quality score ${score.toFixed(1)} out of 10`}
+      className={`absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[11px] font-bold border backdrop-blur-md flex items-center gap-1 tabular-nums ${color}`}
+    >
+      {score >= 9 ? <Sparkles className="w-2.5 h-2.5" aria-hidden="true" /> : <Star className="w-2.5 h-2.5" aria-hidden="true" />}
+      {score.toFixed(1)}
+    </div>
+  )
+}
+
+function getCardGlow(score: number): string {
+  if (score >= 9) return 'hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] hover:border-amber-500/30'
+  if (score >= 8.5) return 'hover:shadow-[0_0_30px_rgba(171,71,199,0.12)] hover:border-purple-500/30'
+  if (score >= 8) return 'hover:shadow-[0_0_25px_rgba(67,191,227,0.1)] hover:border-cyan-500/30'
+  return 'hover:border-white/20'
+}
+
+function getAspectRatio(score: number): string {
+  if (score >= 9) return 'aspect-[3/4]'
+  if (score >= 8) return 'aspect-[4/5]'
+  return 'aspect-square'
+}
+
+// ── Artwork Card ─────────────────────────────────────────────────────────────
+
+function ArtworkCard({
+  artwork,
+  onClick,
+  variant = 'standard',
+}: {
+  artwork: GalleryArtwork
+  onClick: () => void
+  variant?: 'standard' | 'editorial'
+}) {
+  const aspect = variant === 'editorial' ? 'aspect-[16/9]' : getAspectRatio(artwork.score)
+
+  return (
+    <motion.button
+      type="button"
+      layout
+      aria-label={`View ${artwork.title}${artwork.score >= 8 ? `, score ${artwork.score}` : ''}`}
+      initial={{ opacity: 0, scale: 0.97 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      className={`group relative cursor-pointer overflow-hidden rounded-2xl bg-[#111113] border border-white/[0.08] ring-1 ring-inset ring-white/5 hover:ring-white/10 transition-all duration-500 break-inside-avoid mb-3 w-full text-left hover:-translate-y-0.5 ${getCardGlow(artwork.score)}`}
+      onClick={onClick}
+    >
+      <div className={`relative ${aspect} overflow-hidden`}>
+        <Image
+          src={artwork.src}
+          alt={artwork.title}
+          fill
+          className="object-cover transition-all duration-700 group-hover:scale-[1.06] group-hover:brightness-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Lit edge */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        <ScoreBadge score={artwork.score} />
+
+        {artwork.featured && (
+          <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30 backdrop-blur-md">
+            Featured
+          </div>
+        )}
+
+        <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+          <h3 className="text-white font-semibold text-sm line-clamp-1">
+            {artwork.title}
+          </h3>
+          <p className="text-white/50 text-xs mt-0.5">{artwork.category}</p>
+        </div>
+      </div>
+    </motion.button>
+  )
+}
+
+// ── Lightbox ─────────────────────────────────────────────────────────────────
+
+function GalleryLightbox({
+  artwork,
+  artworks,
+  currentIndex,
+  onClose,
+  onNavigate,
+}: {
+  artwork: GalleryArtwork
+  artworks: GalleryArtwork[]
+  currentIndex: number
+  onClose: () => void
+  onNavigate: (idx: number) => void
+}) {
+  const [copied, setCopied] = useState(false)
+  const hasPrev = currentIndex > 0
+  const hasNext = currentIndex < artworks.length - 1
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft' && hasPrev) onNavigate(currentIndex - 1)
+      if (e.key === 'ArrowRight' && hasNext) onNavigate(currentIndex + 1)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, onNavigate, currentIndex, hasPrev, hasNext])
+
+  const copyPrompt = async () => {
+    await navigator.clipboard.writeText(artwork.prompt)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Viewing ${artwork.title}`}
+    >
+      {/* Position counter */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white/10 text-white/60 text-sm font-medium tabular-nums backdrop-blur-md z-10">
+        {currentIndex + 1} / {artworks.length}
+      </div>
+
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+        aria-label="Close lightbox"
+      >
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative max-w-5xl w-full mx-4 flex flex-col lg:flex-row gap-6 max-h-[90vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Image panel with inline nav arrows */}
+        <div className="relative flex-1 min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] rounded-xl overflow-hidden bg-[#111113] group/img">
+          <Image
+            src={artwork.src}
+            alt={artwork.title}
+            fill
+            className="object-contain"
+            sizes="(max-width: 1024px) 100vw, 60vw"
+            priority
+          />
+          {hasPrev && (
+            <button
+              onClick={() => onNavigate(currentIndex - 1)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/40 text-white/70 hover:bg-black/60 hover:text-white transition-all opacity-0 group-hover/img:opacity-100"
+              aria-label="Previous artwork"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+          )}
+          {hasNext && (
+            <button
+              onClick={() => onNavigate(currentIndex + 1)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/40 text-white/70 hover:bg-black/60 hover:text-white transition-all opacity-0 group-hover/img:opacity-100"
+              aria-label="Next artwork"
+            >
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+
+        {/* Info sidebar */}
+        <div className="lg:w-80 bg-[#111113] rounded-xl p-6 border border-white/10 overflow-y-auto max-h-[40vh] lg:max-h-full">
+          <div className="flex items-center gap-2 flex-wrap mb-4">
+            <div className="px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <Sparkles className="w-3 h-3 inline mr-1" />
+              {artwork.model}
+            </div>
+            <div className="px-2 py-1 rounded-md text-xs font-medium bg-purple-500/15 text-purple-400 border border-purple-500/30">
+              {artwork.style}
+            </div>
+            <div className="px-2 py-1 rounded-md text-xs font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+              <Star className="w-3 h-3" />
+              {artwork.score.toFixed(1)}
+            </div>
+          </div>
+
+          <h2 className="text-xl font-bold text-white mb-2">{artwork.title}</h2>
+          <div className="flex items-center gap-3 text-sm text-white/40 mb-4">
+            <span>{artwork.category}</span>
+            <span className="text-white/20">·</span>
+            <span>{artwork.createdAt}</span>
+          </div>
+
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-white/50 uppercase tracking-wider">
+                Prompt
+              </span>
+              <button
+                onClick={copyPrompt}
+                className="text-xs text-white/50 hover:text-white transition-colors"
+              >
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+            <div className="p-3 rounded-lg bg-black/50 border border-white/10">
+              <p className="text-sm text-white/80 font-mono leading-relaxed">
+                {artwork.prompt}
+              </p>
+            </div>
+          </div>
+
+          {artwork.tags.length > 0 && (
+            <div className="mb-6">
+              <span className="text-sm font-medium text-white/50 uppercase tracking-wider block mb-2">
+                Tags
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {artwork.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 text-sm rounded-full bg-white/10 text-white/70"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <a
+            href={artwork.src}
+            download
+            className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg border border-white/20 text-white/70 font-medium hover:bg-white/10 hover:text-white transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Download className="w-4 h-4" />
+            Download
+          </a>
+
+          {/* Keyboard hint */}
+          <p className="text-white/20 text-[10px] text-center mt-3 hidden lg:block">
+            ← → navigate &middot; Esc close
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+// ── Collection Card ──────────────────────────────────────────────────────────
+
 function CollectionCard({
   collection,
   index,
@@ -78,8 +348,6 @@ function CollectionCard({
   collection: (typeof collections)[0]
   index: number
 }) {
-  const isFullLink = collection.href.startsWith('/gallery/')
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -91,41 +359,31 @@ function CollectionCard({
         href={collection.href}
         className={`group relative block overflow-hidden rounded-2xl border ${collection.borderAccent} bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] transition-all duration-500`}
       >
-        {/* Image */}
         <div className="relative aspect-[16/10] overflow-hidden">
           <Image
             src={collection.image}
             alt={collection.title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-          {/* Overlay gradient */}
-          <div className={`absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent`} />
-
-          {/* Badge */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent" />
           {collection.badge && (
             <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-xs font-medium backdrop-blur-sm">
               {collection.badge}
             </div>
           )}
-
-          {/* Count */}
           <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white/70 text-sm">
             <ImageIcon className="w-4 h-4" />
             <span>{collection.count} artworks</span>
           </div>
         </div>
-
-        {/* Content */}
         <div className="p-6">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
               {collection.title}
             </h3>
-            {isFullLink && (
-              <ArrowRight className="w-5 h-5 text-white/40 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
-            )}
+            <ArrowRight className="w-5 h-5 text-white/40 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
           </div>
           <p className="text-white/50 text-sm leading-relaxed line-clamp-2">
             {collection.description}
@@ -136,18 +394,65 @@ function CollectionCard({
   )
 }
 
-// ── Main Page ───────────────────────────────────────────────────────────────
+// ── Main Page ────────────────────────────────────────────────────────────────
+
 export default function GalleryPage() {
-  const totalArtworks = collections.reduce((sum, c) => sum + c.count, 0)
+  const artworks = (curationData.artworks || []) as GalleryArtwork[]
+  const hero = curationData.heroFeature as GalleryArtwork | null
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [activeCategory, setActiveCategory] = useState<string>('all')
+  const [sortBy, setSortBy] = useState<'score' | 'latest' | 'category'>('latest')
+  const [activeTag, setActiveTag] = useState<string | null>(null)
+
+  const categories = useMemo(() => {
+    const cats = new Set(artworks.map((a) => a.category))
+    return ['all', ...Array.from(cats).sort()]
+  }, [artworks])
+
+  const topTags = useMemo(() => {
+    const tagCounts = new Map<string, number>()
+    artworks.forEach((a) =>
+      a.tags.forEach((t) => tagCounts.set(t, (tagCounts.get(t) || 0) + 1))
+    )
+    return Array.from(tagCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 15)
+      .map(([tag]) => tag)
+  }, [artworks])
+
+  const filteredArtworks = useMemo(() => {
+    let result = artworks.filter((a) => {
+      if (activeCategory !== 'all' && a.category !== activeCategory) return false
+      if (activeTag && !a.tags.includes(activeTag)) return false
+      return true
+    })
+    if (sortBy === 'score') {
+      result = [...result].sort((a, b) => b.score - a.score)
+    } else if (sortBy === 'latest') {
+      result = [...result].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+    }
+    return result
+  }, [artworks, activeCategory, activeTag, sortBy])
+
+  const featuredArtworks = useMemo(
+    () =>
+      artworks
+        .filter((a) => a.featured)
+        .sort((a, b) => b.score - a.score),
+    [artworks]
+  )
+
+  const totalArtworks = artworks.length
+  const avgScore = (artworks.reduce((s, a) => s + a.score, 0) / totalArtworks).toFixed(1)
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero */}
+      {/* Hero Featured Piece */}
       <section className="relative overflow-hidden pt-24 pb-16">
-        {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5" />
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[128px]" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           <Link
@@ -162,178 +467,309 @@ export default function GalleryPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-6"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-8">
-              <Sparkles className="w-4 h-4" />
-              Visual Gallery
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-              The{' '}
-              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-                Gallery
-              </span>
-            </h1>
-
-            <p className="text-xl text-white/50 max-w-2xl mx-auto mb-10">
-              AI-generated visual art across character design, system architecture,
-              nature-tech environments, bio-tech instruments, and abstract exploration.
-            </p>
-
-            {/* Stats bar */}
-            <div className="flex items-center justify-center gap-8 text-white/40 text-sm">
-              <div className="flex items-center gap-2">
-                <ImageIcon className="w-4 h-4" />
-                <span>{totalArtworks}+ Artworks</span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Hero Image */}
+              {hero && (
+              <div className="relative aspect-square max-w-lg mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-white/10 group">
+                <Image
+                  src={hero.src}
+                  alt={hero.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="px-2 py-1 rounded-md text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+                      <Star className="w-3 h-3" />
+                      {hero.score}
+                    </div>
+                    <span className="text-white/40 text-xs">Gold Standard</span>
+                  </div>
+                  <h2 className="text-xl font-bold text-white">{hero.title}</h2>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span>{collections.length} Collections</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>Gemini + Nano Banana</span>
+              )}
+
+              {/* Hero Text */}
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-6">
+                  <Sparkles className="w-4 h-4" />
+                  AI Visual Gallery
+                </div>
+
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                  The{' '}
+                  <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
+                    Gallery
+                  </span>
+                </h1>
+
+                <p className="text-lg text-white/50 mb-8 leading-relaxed">
+                  {hero?.curatorNote || 'Curated collection of AI-generated visual art'}
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[
+                    { value: totalArtworks, label: 'Artworks' },
+                    { value: avgScore, label: 'Avg Score' },
+                    { value: categories.length - 1, label: 'Categories' },
+                    { value: featuredArtworks.length, label: 'Top Rated' },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06]"
+                    >
+                      <div className="text-xl font-bold text-white tabular-nums">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs text-white/40 mt-0.5">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Collections Grid */}
-      <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {collections.map((collection, index) => (
-            <CollectionCard key={collection.id} collection={collection} index={index} />
-          ))}
+      {/* Featured Strip */}
+      <section className="max-w-7xl mx-auto px-6 mb-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-white">Top Rated</h2>
+          <span className="text-xs text-white/30 uppercase tracking-wider">
+            Score 8.5+
+          </span>
+        </div>
+        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+          {featuredArtworks.map((artwork) => {
+            const idx = filteredArtworks.findIndex((a) => a.id === artwork.id)
+            return (
+              <button
+                key={artwork.id}
+                type="button"
+                className="flex-none w-48 text-left group"
+                aria-label={`View ${artwork.title}, score ${artwork.score}`}
+                onClick={() => {
+                  if (idx >= 0) {
+                    setSelectedIndex(idx)
+                  } else {
+                    // Artwork filtered out — reset filters and select it
+                    setActiveCategory('all')
+                    setActiveTag(null)
+                    const fullIdx = artworks.findIndex((a) => a.id === artwork.id)
+                    if (fullIdx >= 0) setSelectedIndex(fullIdx)
+                  }
+                }}
+              >
+                <div className="relative aspect-square rounded-xl overflow-hidden border border-white/10 group-hover:border-white/20 transition-all">
+                  <Image
+                    src={artwork.src}
+                    alt={artwork.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="192px"
+                  />
+                  <ScoreBadge score={artwork.score} showAlways />
+                </div>
+                <p className="text-white/60 text-xs mt-2 line-clamp-1 group-hover:text-white/80 transition-colors">
+                  {artwork.title}
+                </p>
+              </button>
+            )
+          })}
         </div>
       </section>
 
-      {/* Full Gallery Preview — all artworks in masonry */}
-      <section id="characters" className="max-w-7xl mx-auto px-6 pb-8">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="border-t border-white/10 pt-16"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Full Collection</h2>
-            <p className="text-white/50 max-w-xl mx-auto">
-              Browse all artworks across every collection. Use filters to explore by category or AI model.
-            </p>
+      {/* Sub-Collections */}
+      {collections.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 mb-16">
+          <h2 className="text-2xl font-bold text-white mb-6">Collections</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {collections.map((collection, index) => (
+              <CollectionCard
+                key={collection.id}
+                collection={collection}
+                index={index}
+              />
+            ))}
           </div>
-        </motion.div>
+        </section>
+      )}
+
+      {/* Full Gallery with Filters */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        <div className="border-t border-white/10 pt-16 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-bold text-white">All Artworks</h2>
+            <span className="text-white/30 text-sm">
+              {filteredArtworks.length} results
+            </span>
+          </div>
+
+          {/* Filters */}
+          <div className="space-y-4 mb-8">
+            {/* Active filter badges */}
+            {(activeCategory !== 'all' || activeTag) && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs text-white/30 flex-none">Active:</span>
+                {activeCategory !== 'all' && (
+                  <button
+                    onClick={() => setActiveCategory('all')}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-colors"
+                  >
+                    {activeCategory}
+                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                  </button>
+                )}
+                {activeTag && (
+                  <button
+                    onClick={() => setActiveTag(null)}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 hover:bg-cyan-500/25 transition-colors"
+                  >
+                    {activeTag}
+                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                  </button>
+                )}
+                <button
+                  onClick={() => { setActiveCategory('all'); setActiveTag(null) }}
+                  className="text-xs text-white/40 hover:text-white transition-colors"
+                >
+                  Clear all
+                </button>
+              </div>
+            )}
+
+            {/* Category pills */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <Filter className="w-4 h-4 text-white/40 flex-none" />
+              {categories.map((cat) => {
+                const count = cat === 'all'
+                  ? artworks.length
+                  : artworks.filter((a) => a.category === cat).length
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    aria-pressed={activeCategory === cat}
+                    className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                      activeCategory === cat
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        : 'bg-white/5 text-white/50 hover:text-white border border-transparent hover:border-white/10'
+                    }`}
+                  >
+                    {cat === 'all' ? 'All' : cat}
+                    <span className="ml-1.5 text-[10px] opacity-60">{count}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Tag chips */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs text-white/30 flex-none">Tags:</span>
+              {topTags.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                  aria-pressed={activeTag === tag}
+                  className={`px-2 py-1 text-xs rounded-full transition-colors ${
+                    activeTag === tag
+                      ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+                      : 'bg-white/5 text-white/40 hover:text-white/60 border border-transparent'
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort */}
+            <div className="flex items-center gap-3">
+              <SortDesc className="w-4 h-4 text-white/40" />
+              {(['latest', 'score', 'category'] as const).map((opt) => (
+                <button
+                  key={opt}
+                  onClick={() => setSortBy(opt)}
+                  aria-pressed={sortBy === opt}
+                  className={`text-sm transition-colors ${
+                    sortBy === opt
+                      ? 'text-white font-medium'
+                      : 'text-white/40 hover:text-white/60'
+                  }`}
+                >
+                  {opt === 'latest' ? 'Latest' : opt === 'score' ? 'Top Rated' : 'Category'}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Masonry Grid */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+          <AnimatePresence mode="popLayout">
+            {filteredArtworks.map((artwork, index) => (
+              <ArtworkCard
+                key={artwork.id}
+                artwork={artwork}
+                onClick={() => setSelectedIndex(index)}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {filteredArtworks.length === 0 && (
+          <div className="text-center py-16">
+            <Sparkles className="w-12 h-12 text-white/20 mx-auto mb-4" />
+            <p className="text-white/50">No artworks match your filters</p>
+            <button
+              onClick={() => {
+                setActiveCategory('all')
+                setActiveTag(null)
+              }}
+              className="mt-4 text-emerald-400 hover:underline text-sm"
+            >
+              Clear filters
+            </button>
+          </div>
+        )}
       </section>
-
-      <section id="nature-tech" />
-      <section id="system-design" />
-      <section id="editorial" />
-      <section id="abstract" />
-
-      {/* Embedded full gallery */}
-      <FullGallerySection />
 
       {/* Cross-link to Vault */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center">
-          <p className="text-white/50 mb-4">
-            Want to explore the full visual asset library? All 484 assets across 30 collections.
-          </p>
-          <Link
-            href="/vault"
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
-          >
-            Open ArcaneaVault
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className="relative rounded-2xl p-px bg-gradient-to-r from-cyan-500/30 via-purple-500/20 to-amber-500/30">
+          <div className="rounded-2xl bg-[#0a0a0b] p-8 text-center">
+            <p className="text-white/50 mb-4">
+              Explore the full visual asset library — 484 assets across
+              30 collections.
+            </p>
+            <Link
+              href="/vault"
+              className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+            >
+              Open ArcaneaVault
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {selectedIndex !== null && filteredArtworks[selectedIndex] && (
+          <GalleryLightbox
+            artwork={filteredArtworks[selectedIndex]}
+            artworks={filteredArtworks}
+            currentIndex={selectedIndex}
+            onClose={() => setSelectedIndex(null)}
+            onNavigate={setSelectedIndex}
+          />
+        )}
+      </AnimatePresence>
     </div>
-  )
-}
-
-// ── Full Gallery (lazy import of all artworks) ──────────────────────────────
-function FullGallerySection() {
-  // Import the full artwork data inline to keep this page self-contained
-  // while still showing all artworks from the original /ai-art page
-  const { MidjourneyGallery } = require('@/components/embeds')
-
-  const allArtworks = [
-    // Character Design
-    { id: 'char-01', src: '/images/mascot/mascot-v05-techno-beast-standing.png', title: 'Techno-Beast', prompt: 'Three-tailed wolf-fox hybrid with hexagonal armor plating, glowing cyan eyes, purple-cyan-gold energy tails', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'wolf', 'tech'], featured: true },
-    { id: 'char-02', src: '/images/mascot/mascot-v11-chrome-guardian.png', title: 'Chrome Guardian', prompt: 'Half-organic wolf with chrome mechanical body armor, purple energy core, segmented chrome tail with cyan LEDs', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'chrome', 'mech'], featured: true },
-    { id: 'char-03', src: '/images/mascot/mascot-v15-kitsune-mask.png', title: 'Kitsune Protocol', prompt: 'Sleek chrome kitsune mask with cyan eyes, purple neon circuit lines, three energy trails', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'kitsune', 'mask'], featured: true },
-    { id: 'char-04', src: '/images/mascot/mascot-v19-hero-command-center.png', title: 'ACOS Command Center', prompt: 'Three-tailed wolf mascot surrounded by floating UI panels showing skill trees', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'acos', 'command-center'] },
-    { id: 'char-05', src: '/images/mascot/mascot-v20-evolution-stages.png', title: 'Evolution Stages', prompt: 'Three stages of mascot evolution from skills to agents to full system', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'evolution'] },
-    { id: 'char-06', src: '/images/mascot/mascot-v08-holographic-entity.png', title: 'Holographic Entity', prompt: 'Digital holographic wolf projection, translucent blue-green form, particle effects', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'holographic'] },
-    { id: 'char-07', src: '/images/mascot/mascot-v10-data-constellation.png', title: 'Data Constellation', prompt: 'Wolf-fox form made entirely of star-like data points connected by thin light lines', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'constellation'] },
-    { id: 'char-08', src: '/images/mascot/mascot-v16-organic-digital-split.png', title: 'Organic-Digital Split', prompt: 'Wolf mascot split: one half organic fur, other half chrome circuits and glass', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'split', 'duality'] },
-    { id: 'char-09', src: '/images/mascot/mascot-v25-crystal-familiar.png', title: 'Crystal Familiar', prompt: 'Low-poly crystalline fox with three luminous tails in purple-cyan-gold', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'crystal'] },
-    { id: 'char-10', src: '/images/mascot/mascot-v06-prowling-action.png', title: 'Prowling Action', prompt: 'Dynamic wolf-fox hybrid in prowling stance, energy crackling through hexagonal armor', model: 'nano-banana' as const, category: 'Character Design', tags: ['mascot', 'action'] },
-    // Nature Tech
-    { id: 'nature-01', src: '/images/design-lab/nature-01-digital-garden-hero.png', title: 'Digital Garden', prompt: 'Glass tree with circuit-board copper roots, bioluminescent nodes at branch junctions', model: 'nano-banana' as const, category: 'Nature Tech', tags: ['tree', 'digital', 'circuits'], featured: true },
-    { id: 'nature-02', src: '/images/design-lab/nature-03-code-vines.png', title: 'Code Vines', prompt: 'Organic vines growing from code, programming syntax transforming into living plant tendrils', model: 'nano-banana' as const, category: 'Nature Tech', tags: ['code', 'vines'] },
-    { id: 'nature-03', src: '/images/design-lab/nature-05-forest-architecture.png', title: 'Neural Forest Cathedral', prompt: 'Vast forest cathedral where ancient trees form neural network arches', model: 'nano-banana' as const, category: 'Nature Tech', tags: ['forest', 'cathedral'], featured: true },
-    { id: 'nature-04', src: '/images/design-lab/nature-09-crystal-garden.png', title: 'Crystal Garden', prompt: 'Underground cavern with massive purple amethyst crystals etched with golden circuit traces', model: 'nano-banana' as const, category: 'Nature Tech', tags: ['crystal', 'cavern'] },
-    { id: 'nature-05', src: '/images/design-lab/nature-10-constellation-garden.png', title: 'Constellation Garden', prompt: 'Garden where plants are made of starlight and constellations, cosmic botany', model: 'nano-banana' as const, category: 'Nature Tech', tags: ['constellation', 'garden'] },
-    { id: 'nature-06', src: '/images/design-lab/nature-02-neural-roots.png', title: 'Neural Roots', prompt: 'Tree roots transforming into neural networks underground, synaptic connections glowing', model: 'nano-banana' as const, category: 'Nature Tech', tags: ['roots', 'neural'] },
-    // System Design
-    { id: 'sys-01', src: '/images/ecosystem/01-frankx-ecosystem-overview.png', title: 'Creator Ecosystem Overview', prompt: 'Three-pillar architecture: Vibe OS, ACOS, GenCreator OS with Starlight meta-intelligence layer', model: 'nano-banana' as const, category: 'System Design', tags: ['ecosystem', 'architecture'], featured: true },
-    { id: 'sys-02', src: '/images/ecosystem/03-vibe-os-integration.png', title: 'Vibe OS Integration', prompt: 'Circular integration diagram showing Vibe OS connected to Claude, Grok, Suno, ChatGPT', model: 'nano-banana' as const, category: 'System Design', tags: ['vibe-os', 'integration'] },
-    { id: 'sys-03', src: '/images/ecosystem/07-arcanea-10-gates.png', title: 'Arcanea 10 Gates', prompt: 'Progression system visualization showing 10 gates of creative development', model: 'nano-banana' as const, category: 'System Design', tags: ['arcanea', 'gates'] },
-    { id: 'sys-04', src: '/images/ecosystem/09-agent-specialist-grid.png', title: 'Agent Specialist Grid', prompt: 'Grid visualization of 40+ specialized AI agents with role cards', model: 'nano-banana' as const, category: 'System Design', tags: ['agents', 'grid'] },
-    { id: 'sys-05', src: '/images/ecosystem/15-acos-claude-code.png', title: 'ACOS x Claude Code', prompt: 'ACOS integration with Claude Code, command routing, skill trees', model: 'nano-banana' as const, category: 'System Design', tags: ['acos', 'claude-code'] },
-    { id: 'infra-01', src: '/images/infographics/v7-01-pillars-premium.png', title: 'Seven Pillars Architecture', prompt: 'ACOS v7 seven pillars with glass/chrome 3D, dark navy, neon highlights', model: 'nano-banana' as const, category: 'System Design', tags: ['acos', 'pillars'] },
-    { id: 'infra-02', src: '/images/infographics/v7-09-architecture-premium.png', title: 'Full System Architecture', prompt: 'Complete ACOS v7 system architecture, glass/chrome premium style', model: 'nano-banana' as const, category: 'System Design', tags: ['acos', 'full-system'] },
-    // Intelligence
-    { id: 'intel-01', src: '/images/ai-world/intelligence-atlas-hero.png', title: 'Intelligence Atlas', prompt: 'Neural constellation map showing six intelligence domains', model: 'nano-banana' as const, category: 'Intelligence', tags: ['atlas', 'constellation'], featured: true },
-    { id: 'intel-02', src: '/images/ai-world/fire-gate-orchestration.png', title: 'Fire Gate Orchestration', prompt: 'Agent orchestration with fire energy motif, workflow pipelines', model: 'nano-banana' as const, category: 'Intelligence', tags: ['orchestration', 'fire-gate'] },
-    { id: 'intel-03', src: '/images/ai-world/source-gate-meta.png', title: 'Source Gate: Meta', prompt: 'Meta-intelligence, self-improving AI systems, recursive patterns', model: 'nano-banana' as const, category: 'Intelligence', tags: ['meta', 'source-gate'] },
-    // Editorial
-    { id: 'edit-01', src: '/images/blog/swarm-intelligence-orchestration-hero.png', title: 'Swarm Intelligence Patterns', prompt: 'Four multi-agent orchestration patterns: pipeline, parallel, weighted, iterative', model: 'nano-banana' as const, category: 'Editorial', tags: ['swarm', 'orchestration'], featured: true },
-    { id: 'edit-02', src: '/images/blog/build-your-own-jarvis-hero.png', title: 'Personal AI Command Center', prompt: 'Futuristic circular holographic command interface, dark navy cockpit', model: 'nano-banana' as const, category: 'Editorial', tags: ['jarvis', 'command-center'], featured: true },
-    { id: 'edit-03', src: '/images/blog/mcp-doctor-hero.png', title: 'MCP Doctor Health Audit', prompt: 'Terminal-style health audit with color-coded status indicators', model: 'nano-banana' as const, category: 'Editorial', tags: ['mcp', 'terminal'] },
-    { id: 'edit-04', src: '/images/blog/golden-age-of-intelligence-hero.png', title: 'Golden Age of Intelligence', prompt: 'Radiant golden brain with orbiting agent nodes, cosmic gold space', model: 'nano-banana' as const, category: 'Editorial', tags: ['golden-age', 'brain'], featured: true },
-    { id: 'edit-05', src: '/images/blog/agentic-creator-os-complete-guide-hero.png', title: 'ACOS Orchestrator Map', prompt: 'Central orchestrator with seven satellite modules, purple glass 3D', model: 'nano-banana' as const, category: 'Editorial', tags: ['acos', 'orchestrator'] },
-    { id: 'edit-06', src: '/images/blog/nvidia-physical-ai-hero.png', title: 'Physical AI Revolution', prompt: 'Chrome robotic hand holding NVIDIA H200 chip, green energy rays', model: 'nano-banana' as const, category: 'Editorial', tags: ['nvidia', 'robotics'], featured: true },
-    { id: 'edit-07', src: '/images/blog/agentic-ai-roadmap-2026-hero.png', title: 'Agentic AI Horizon', prompt: 'Golden circuit highways converging toward sunrise, constellation network', model: 'nano-banana' as const, category: 'Editorial', tags: ['roadmap', 'horizon'] },
-    { id: 'edit-08', src: '/images/blog/production-agent-patterns-7-pillars-hero.png', title: 'Seven Pillars of Production AI', prompt: 'Classical temple with seven pillars, gold icons, MCP Protocol foundation', model: 'nano-banana' as const, category: 'Editorial', tags: ['pillars', 'production'] },
-    { id: 'edit-09', src: '/images/blog/enterprise-agent-roadmap-hero.png', title: 'Agent Network Grid', prompt: 'Isometric 3D grid of interconnected agent nodes, electric blue energy', model: 'nano-banana' as const, category: 'Editorial', tags: ['enterprise', 'grid'] },
-    { id: 'edit-10', src: '/images/blog/creator-intelligence-systems-2026-hero.png', title: 'Creator Intelligence Studio', prompt: 'Creator at desk with triple holographic screens, amber and cyan lighting', model: 'nano-banana' as const, category: 'Editorial', tags: ['creator', 'studio'], featured: true },
-    { id: 'edit-11', src: '/images/blog/suno-prompt-engineering-complete-guide-hero.png', title: 'Suno Prompt Engineering Blueprint', prompt: 'Dense music production infographic, audio waveforms, genre badges', model: 'nano-banana' as const, category: 'Editorial', tags: ['suno', 'music'] },
-    { id: 'edit-12', src: '/images/blog/what-is-agentic-ai-hero.png', title: 'What Is Agentic AI', prompt: 'Autonomous AI agents concept, intelligence and agency visualization', model: 'nano-banana' as const, category: 'Editorial', tags: ['agentic-ai', 'concept'] },
-    // Abstract & Cosmic
-    { id: '1', src: '/images/ai-art/neural-network-brain.png', title: 'Neural Synthesis I', prompt: 'Abstract neural network visualization, cosmic energy flows, deep space aesthetics', model: 'nano-banana' as const, category: 'Abstract', tags: ['neural', 'cosmic'] },
-    { id: '2', src: '/images/ai-art/chakra-energy-pillars.png', title: 'Energy Pillars', prompt: 'Glowing energy columns, multiple frequency bands as vertical light pillars', model: 'nano-banana' as const, category: 'Abstract', tags: ['energy', 'pillars'] },
-    { id: '3', src: '/images/ai-art/digital-data-stream.png', title: 'Digital Aurora', prompt: 'Aurora borealis meets digital art, flowing data streams in the sky', model: 'nano-banana' as const, category: 'Abstract', tags: ['aurora', 'digital'] },
-    { id: '4', src: '/images/ai-art/ai-hologram-boardroom.png', title: 'Holographic Architecture', prompt: 'Futuristic architect with holographic blueprints, impossible structures', model: 'nano-banana' as const, category: 'Abstract', tags: ['architect', 'holographic'] },
-    { id: '5', src: '/images/ai-art/life-symphony-conductor.png', title: 'Frequency Spectrum', prompt: 'Sound waves visualized as light, frequency spectrum in 3D space', model: 'nano-banana' as const, category: 'Abstract', tags: ['sound', 'frequency'] },
-    { id: '6', src: '/images/ai-art/tree-of-life-decorative.png', title: 'Bioluminescent Garden', prompt: 'Bioluminescent garden with quantum particles, plants made of light', model: 'nano-banana' as const, category: 'Abstract', tags: ['quantum', 'garden'] },
-    { id: '8', src: '/images/ai-art/data-explosion-abstract.png', title: 'Starlight Cascade', prompt: 'Waterfall of starlight flowing into cosmic ocean, celestial bodies', model: 'nano-banana' as const, category: 'Abstract', tags: ['starlight', 'waterfall'] },
-    { id: '9', src: '/images/ai-art/isometric-tech-platform.png', title: 'Creation Engine', prompt: 'Massive engine of creation, gears made of light and thought', model: 'nano-banana' as const, category: 'Abstract', tags: ['creation', 'engine'] },
-    { id: '10', src: '/images/ai-art/grand-wisdom-temple.png', title: 'Grand Architecture', prompt: 'Vast temple of knowledge, streams of data forming architectural visions', model: 'nano-banana' as const, category: 'Abstract', tags: ['temple', 'architecture'] },
-    { id: '11', src: '/images/ai-art/knowledge-domains-wave.png', title: 'Harmonic Convergence', prompt: 'Multiple dimensions converging, harmonic frequencies creating geometric patterns', model: 'nano-banana' as const, category: 'Abstract', tags: ['dimensions', 'harmony'] },
-    { id: '12', src: '/images/ai-art/pyramid-hierarchy-layers.png', title: 'Frequency Alchemist', prompt: 'Sound frequencies transforming into golden light structures', model: 'nano-banana' as const, category: 'Abstract', tags: ['alchemist', 'frequency'] },
-    { id: '14', src: '/images/ai-art/balance-trust-ethics.png', title: 'Neural Symphony', prompt: 'Brain neurons conducting symphony, thoughts as musical notes', model: 'nano-banana' as const, category: 'Abstract', tags: ['neural', 'symphony'] },
-    { id: '15', src: '/images/ai-art/security-dashboard-shield.png', title: 'Cosmic Blueprint', prompt: 'Universal blueprint unfolding, sacred geometry of reality', model: 'nano-banana' as const, category: 'Abstract', tags: ['blueprint', 'geometry'] },
-    { id: '16', src: '/images/ai-art/future-eco-city.png', title: 'Future City', prompt: 'Futuristic ecological city, green technology and glass structures', model: 'nano-banana' as const, category: 'Abstract', tags: ['city', 'future'] },
-    { id: '17', src: '/images/ai-art/golden-path-journey.png', title: 'Golden Path', prompt: 'Path made of golden light leading through cosmic landscape', model: 'nano-banana' as const, category: 'Abstract', tags: ['path', 'golden'] },
-    { id: '18', src: '/images/ai-art/isometric-growth-chart.png', title: 'Data Cosmos', prompt: 'Universe made entirely of data, galaxies as databases, stars as information', model: 'nano-banana' as const, category: 'Abstract', tags: ['data', 'cosmos'] },
-    { id: '19', src: '/images/ai-art/managed-vs-custom-code.png', title: 'Emerald Protocol', prompt: 'Technology with soul, emerald energy flowing through circuits', model: 'nano-banana' as const, category: 'Abstract', tags: ['emerald', 'protocol'] },
-    { id: '20', src: '/images/ai-art/modern-coworking-space.png', title: 'First Light', prompt: 'The first moment of creation, light emerging from void', model: 'nano-banana' as const, category: 'Abstract', tags: ['creation', 'light'] },
-    { id: '25', src: '/images/golden-age/hero-golden-age.png', title: 'Golden Age Dawn', prompt: 'Dawning of a new era of intelligence, golden light breaking through', model: 'nano-banana' as const, category: 'Abstract', tags: ['golden-age', 'dawn'] },
-    { id: '27', src: '/images/general/friendly-ai-robot.png', title: 'Friendly Intelligence', prompt: 'Approachable AI robot with warm expression, technology with heart', model: 'nano-banana' as const, category: 'Abstract', tags: ['robot', 'friendly'] },
-  ]
-
-  return (
-    <section className="max-w-7xl mx-auto px-6 pb-24">
-      <MidjourneyGallery
-        artworks={allArtworks}
-        layout="masonry"
-        columns={3}
-        showPrompts={true}
-        showFilters={true}
-        theme="tech"
-      />
-    </section>
   )
 }

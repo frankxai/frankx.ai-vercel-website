@@ -85,7 +85,7 @@ export default function VibeOSPreviewPage() {
               <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
                 <span className="text-red-400">🔥</span>
               </div>
-              <span>500+ Songs Created</span>
+              <span>12K+ Songs Created</span>
             </div>
           </div>
 

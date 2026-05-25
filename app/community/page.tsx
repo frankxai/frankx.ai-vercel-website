@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { containerVariants, itemVariants } from '@/lib/motion'
 import {
   Users,
   MessageCircle,
@@ -17,6 +18,7 @@ import {
   Check,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // ── Data ──
 
@@ -33,11 +35,11 @@ const communitySpaces = [
   {
     icon: MessageCircle,
     title: 'Discussion Spaces',
-    description: 'Connect with creators using AI tools. Share prompts, workflows, and discoveries.',
+    description: 'Prompts, workflows, and AI discoveries shared between builders. Newsletter subscribers get early access when the space opens.',
     color: '#43BFE3',
     gradient: 'from-[#43BFE3] to-[#3B82F6]',
-    badge: 'Coming Soon',
-    href: null,
+    badge: 'Building',
+    href: '/newsletter',
   },
   {
     icon: Radio,
@@ -107,41 +109,26 @@ const currentConnections = [
   },
 ]
 
-// ── Animation Variants ──
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-}
-
 // ── Page ──
 
 export default function CommunityPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0F172A] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
       {/* Background Orbs */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/15 blur-[120px]"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.3, 0.15] }}
+          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
+          animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/15 blur-[100px]"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.25, 0.1] }}
+          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute left-1/2 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#F59E0B]/10 blur-[100px]"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          className="absolute left-1/2 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#F59E0B]/[0.03] blur-[128px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
@@ -227,7 +214,10 @@ export default function CommunityPage() {
 
               return (
                 <motion.div key={space.title} variants={itemVariants}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard
+                    color={space.color === '#AB47C7' ? 'violet' : space.color === '#43BFE3' ? 'cyan' : space.color === '#F59E0B' ? 'amber' : 'emerald'}
+                    className="p-8 h-full"
+                  >
                     <div className="mb-4 flex items-start justify-between">
                       <div
                         className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${space.gradient} transition-transform duration-500 group-hover:scale-110`}
@@ -258,7 +248,7 @@ export default function CommunityPage() {
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     )}
-                  </div>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -285,7 +275,10 @@ export default function CommunityPage() {
               const Icon = feature.icon
               return (
                 <motion.div key={feature.title} variants={itemVariants}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard
+                    color={feature.color === '#43BFE3' ? 'cyan' : feature.color === '#AB47C7' ? 'violet' : feature.color === '#F59E0B' ? 'amber' : 'emerald'}
+                    className="p-8 h-full"
+                  >
                     <div
                       className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl"
                       style={{ backgroundColor: `${feature.color}20` }}
@@ -294,7 +287,7 @@ export default function CommunityPage() {
                     </div>
                     <h3 className="mb-3 text-xl font-bold">{feature.title}</h3>
                     <p className="leading-relaxed text-slate-400">{feature.description}</p>
-                  </div>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -331,7 +324,7 @@ export default function CommunityPage() {
                           href={connection.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0F172A]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
+                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0a0a0b]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
                         >
                           <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#10B981]" />
                           <div>
@@ -344,7 +337,7 @@ export default function CommunityPage() {
                       ) : (
                         <Link
                           href={connection.href}
-                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0F172A]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
+                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0a0a0b]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
                         >
                           <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#10B981]" />
                           <div>
@@ -372,7 +365,7 @@ export default function CommunityPage() {
           variants={containerVariants}
         >
           <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-12 text-center backdrop-blur-md">
+            <GlowCard color="violet" className="relative overflow-hidden p-12 text-center">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-[#AB47C7]/10 via-[#43BFE3]/10 to-[#F59E0B]/10"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -401,7 +394,7 @@ export default function CommunityPage() {
                   No spam. Unsubscribe anytime. Weekly insights for serious builders.
                 </p>
               </div>
-            </div>
+            </GlowCard>
           </motion.div>
         </motion.section>
       </div>

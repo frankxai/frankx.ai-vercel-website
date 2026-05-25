@@ -156,11 +156,11 @@ export default function LabsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
       {/* Animated Background Orbs */}
       <div className="fixed inset-0 pointer-events-none">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#AB47C7]/20 rounded-full blur-[100px]"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#AB47C7]/20 rounded-full blur-[128px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -172,7 +172,7 @@ export default function LabsPage() {
           }}
         />
         <motion.div
-          className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#43BFE3]/20 rounded-full blur-[100px]"
+          className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#43BFE3]/20 rounded-full blur-[128px]"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -184,7 +184,7 @@ export default function LabsPage() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-[#F59E0B]/10 rounded-full blur-[100px]"
+          className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-[#F59E0B]/10 rounded-full blur-[128px]"
           animate={{
             scale: [1, 1.4, 1],
             opacity: [0.2, 0.3, 0.2],

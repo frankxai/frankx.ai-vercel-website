@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -576,8 +577,14 @@ export default function CohortClient() {
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                   {/* Avatar */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center">
-                      <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-violet-400">FR</span>
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden border border-white/10 relative">
+                      <Image
+                        src="/images/portraits/frank-presenting-oracle-2025.jpg"
+                        alt="Frank Riemer"
+                        fill
+                        className="object-cover"
+                        sizes="96px"
+                      />
                     </div>
                   </div>
 

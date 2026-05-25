@@ -19,20 +19,9 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import EcosystemVisionBoard from '@/components/vision/EcosystemVisionBoard'
 
-/* ─── Animation Presets ─── */
-const fadeUp = {
-  initial: { opacity: 0, y: 32 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-}
-
-const stagger = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-}
+import { fadeUpHero as fadeUp, stagger } from '@/lib/motion'
 
 /* ─── Data ─── */
 const visionPillars = [
@@ -44,7 +33,7 @@ const visionPillars = [
     color: 'from-emerald-400 to-cyan-400',
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
-    metrics: ['22 ACOS Skills', '8 Specialist Agents', 'Production Systems'],
+    metrics: ['75+ Skills', '38 Agents', 'Production Systems'],
   },
   {
     icon: Music,
@@ -54,7 +43,7 @@ const visionPillars = [
     color: 'from-violet-400 to-pink-400',
     borderColor: 'border-violet-500/20',
     bgColor: 'bg-violet-500/5',
-    metrics: ['500+ AI Songs', '7 Books Written', 'Visual Art System'],
+    metrics: ['12,000+ AI Songs', '7 Books Written', 'Visual Art System'],
   },
   {
     icon: Zap,
@@ -105,7 +94,7 @@ const timeline = [
     items: [
       'frankx.ai launched and live',
       'First 80+ blog articles published',
-      'AI music catalog started (500+ tracks)',
+      'AI music catalog started (12,000+ tracks)',
       'ACOS v1 — first autonomous coding system',
       'Arcanea mythology and creative universe born',
     ],
@@ -166,7 +155,7 @@ const ecosystemNodes = [
   { label: 'Vibe OS', href: '/vibe', group: 'systems' },
   { label: 'Courses', href: '/courses', group: 'content' },
   { label: 'Soulbook', href: '/soulbook', group: 'creative' },
-  { label: 'Arcanea', href: '/arcanea', group: 'creative' },
+  { label: 'Arcanea', href: 'https://arcanea.ai', group: 'creative' },
   { label: 'Research', href: '/research', group: 'systems' },
   { label: 'Design Lab', href: '/design-lab', group: 'creative' },
   { label: 'Investor Intel', href: '/investor', group: 'products' },
@@ -188,17 +177,18 @@ function VisionBackground() {
   const shouldReduceMotion = useReducedMotion()
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
       <motion.div
-        className="absolute -left-80 top-0 h-[800px] w-[800px] rounded-full opacity-20"
+        className="absolute -left-80 top-0 h-[800px] w-[800px] rounded-full"
         style={{
           background:
-            'radial-gradient(circle, rgba(16,185,129,0.3) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
         animate={
           shouldReduceMotion
             ? undefined
-            : { scale: [1, 1.08, 1], opacity: [0.2, 0.28, 0.2] }
+            : { scale: [1, 1.08, 1], opacity: [1, 0.8, 1] }
         }
         transition={
           shouldReduceMotion
@@ -207,15 +197,16 @@ function VisionBackground() {
         }
       />
       <motion.div
-        className="absolute -right-60 top-1/4 h-[600px] w-[600px] rounded-full opacity-15"
+        className="absolute -right-60 top-1/4 h-[600px] w-[600px] rounded-full"
         style={{
           background:
-            'radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
         animate={
           shouldReduceMotion
             ? undefined
-            : { scale: [1.05, 1, 1.05], opacity: [0.15, 0.22, 0.15] }
+            : { scale: [1.05, 1, 1.05], opacity: [1, 0.7, 1] }
         }
         transition={
           shouldReduceMotion
@@ -224,15 +215,16 @@ function VisionBackground() {
         }
       />
       <motion.div
-        className="absolute bottom-1/4 left-1/3 h-[500px] w-[500px] rounded-full opacity-12"
+        className="absolute bottom-1/4 left-1/3 h-[500px] w-[500px] rounded-full"
         style={{
           background:
-            'radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(245,158,11,0.03) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
         animate={
           shouldReduceMotion
             ? undefined
-            : { scale: [1, 1.12, 1], opacity: [0.12, 0.18, 0.12] }
+            : { scale: [1, 1.12, 1], opacity: [1, 0.75, 1] }
         }
         transition={
           shouldReduceMotion
@@ -254,6 +246,10 @@ export default function VisionContent() {
           HERO — The North Star
           ═══════════════════════════════════════════════ */}
       <section className="relative overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32">
+        {/* Axi — mascot hero accent */}
+        <div className="pointer-events-none absolute right-6 top-28 hidden w-48 opacity-12 lg:block xl:w-56">
+          <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="" width={224} height={224} className="object-contain" sizes="224px" aria-hidden="true" />
+        </div>
         {/* Grid background */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -297,7 +293,7 @@ export default function VisionContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            One person. Enterprise-grade AI architecture. 500+ songs. 7 books.
+            One person. Enterprise-grade AI architecture. 12,000+ songs. 7 books.
             Production systems. An entire creative ecosystem — built not to be
             impressive, but to prove what&apos;s now possible for anyone willing
             to build.
@@ -311,7 +307,7 @@ export default function VisionContent() {
           >
             <Link
               href="/start"
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100 hover:shadow-lg hover:shadow-white/10"
+              className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition-all shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
             >
               Start Here
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -331,7 +327,7 @@ export default function VisionContent() {
         className="relative mx-auto max-w-6xl px-6"
         {...fadeUp}
       >
-        <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+        <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <Image
             src="/images/vision/hero-builder-empire.png"
             alt="A builder standing on a glass platform overlooking an interconnected digital cityscape — one person, infinite leverage"
@@ -358,7 +354,7 @@ export default function VisionContent() {
           </motion.div>
 
           <motion.div
-            className="mt-12 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm md:p-12"
+            className="mt-12 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-sm md:p-12"
             {...fadeUp}
           >
             <blockquote className="text-lg leading-relaxed text-white/75 md:text-xl md:leading-relaxed">
@@ -387,10 +383,8 @@ export default function VisionContent() {
               </p>
             </blockquote>
 
-            <div className="mt-10 flex items-center gap-4 border-t border-white/[0.06] pt-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500">
-                <span className="text-lg font-bold text-white">F</span>
-              </div>
+            <div className="mt-10 flex items-center gap-4 border-t border-white/[0.08] pt-8">
+              <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-full" style={{ boxShadow: '0 0 20px -6px rgba(16,185,129,0.4)' }} />
               <div>
                 <p className="font-semibold text-white">Frank Riemer</p>
                 <p className="text-sm text-white/50">
@@ -447,7 +441,7 @@ export default function VisionContent() {
             ].map((card, i) => (
               <motion.div
                 key={card.title}
-                className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm transition-colors hover:border-white/[0.1] hover:bg-white/[0.035]"
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-sm transition-colors hover:border-white/[0.1] hover:bg-white/[0.035]"
                 {...stagger}
                 transition={{ duration: 0.6, delay: i * 0.12 }}
               >
@@ -482,7 +476,7 @@ export default function VisionContent() {
         className="relative mx-auto max-w-6xl px-6 py-4"
         {...fadeUp}
       >
-        <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+        <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <Image
             src="/images/vision/community-builders.png"
             alt="Holographic builders connected by light streams on a glass platform — a collaborative network of creators"
@@ -511,7 +505,7 @@ export default function VisionContent() {
           </motion.div>
 
           <motion.div
-            className="mt-12 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm md:p-12"
+            className="mt-12 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-sm md:p-12"
             {...fadeUp}
           >
             <p className="text-lg leading-relaxed text-white/70 md:text-xl md:leading-relaxed">
@@ -543,7 +537,7 @@ export default function VisionContent() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center"
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-center"
                 >
                   <p className="text-xs uppercase tracking-widest text-white/40">
                     {item.label}
@@ -563,7 +557,7 @@ export default function VisionContent() {
         className="relative mx-auto max-w-6xl px-6 py-4"
         {...fadeUp}
       >
-        <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+        <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <Image
             src="/images/vision/golden-age-horizon.png"
             alt="Crystal towers growing from the earth toward a golden horizon — technology and nature merging in the Golden Age"
@@ -637,14 +631,16 @@ export default function VisionContent() {
             {visionPillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
-                className={`group rounded-2xl border ${pillar.borderColor} ${pillar.bgColor} p-7 backdrop-blur-sm transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]`}
+                className="group rounded-3xl border border-white/[0.08] bg-white/[0.03] p-7 backdrop-blur-sm transition-all duration-300 hover:border-white/[0.15] hover:bg-white/[0.05]"
                 {...stagger}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <div
-                  className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${pillar.color} text-white`}
-                >
-                  <pillar.icon className="h-5 w-5" />
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${pillar.color} text-white`}
+                  >
+                    <pillar.icon className="h-5 w-5" />
+                  </div>
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-white">
                   {pillar.title}
@@ -673,7 +669,7 @@ export default function VisionContent() {
         className="relative mx-auto max-w-6xl px-6 py-4"
         {...fadeUp}
       >
-        <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+        <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <Image
             src="/images/vision/ecosystem-constellation.png"
             alt="A constellation of interconnected glowing nodes in deep space — emerald, violet, amber, cyan representing the FrankX ecosystem"
@@ -748,6 +744,11 @@ export default function VisionContent() {
       </section>
 
       {/* ═══════════════════════════════════════════════
+          ECOSYSTEM VISION BOARD — The Ecosystem in Pictures
+          ═══════════════════════════════════════════════ */}
+      <EcosystemVisionBoard />
+
+      {/* ═══════════════════════════════════════════════
           TIMELINE — The Path Forward
           ═══════════════════════════════════════════════ */}
       <section className="relative py-24 md:py-32">
@@ -775,10 +776,10 @@ export default function VisionContent() {
                 >
                   {/* Status dot */}
                   <div
-                    className={`absolute left-2.5 top-1.5 h-4 w-4 rounded-full border-2 border-[#030712] ${statusColors[phase.status]} md:left-3`}
+                    className={`absolute left-2.5 top-1.5 h-4 w-4 rounded-full border-2 border-[#0a0a0b] ${statusColors[phase.status]} md:left-3`}
                   />
 
-                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-sm md:p-8">
+                  <div className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-sm md:p-8">
                     <div className="flex items-baseline gap-3">
                       <span className="text-lg font-bold text-white md:text-xl">
                         {phase.period}

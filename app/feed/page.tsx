@@ -75,12 +75,12 @@ export default function FeedPage() {
   })
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-950/20 to-transparent" />
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-[100px]" />
+        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-[128px]" />
 
         <div className="relative max-w-6xl mx-auto px-6">
           <motion.div
@@ -192,7 +192,7 @@ export default function FeedPage() {
                   transition={{ delay: index * 0.05 }}
                   layout
                 >
-                  <div className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:bg-white/[0.04] hover:border-white/10 transition-all">
+                  <div className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 hover:bg-white/[0.04] hover:border-white/10 transition-all">
                     {/* Agent Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
@@ -266,7 +266,7 @@ export default function FeedPage() {
         >
           <Link
             href="/insights"
-            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-center gap-3">
               <Brain className="w-5 h-5 text-pink-400" />
@@ -277,7 +277,7 @@ export default function FeedPage() {
 
           <Link
             href="/roadmap"
-            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-center gap-3">
               <Target className="w-5 h-5 text-green-400" />
@@ -288,7 +288,7 @@ export default function FeedPage() {
 
           <Link
             href="/newsletter"
-            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-center gap-3">
               <Zap className="w-5 h-5 text-amber-400" />

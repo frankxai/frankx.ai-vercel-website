@@ -106,7 +106,7 @@ export default function InstrumentsGalleryPage() {
       <section className="relative overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5" />
         <div className="absolute top-1/3 left-1/3 w-[600px] h-[400px] bg-cyan-500/8 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-[128px]" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}

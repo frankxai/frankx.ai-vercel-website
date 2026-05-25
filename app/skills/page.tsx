@@ -25,7 +25,7 @@ const workflowSteps = [
 
 export default function SkillsPage() {
   return (
-    <main className="min-h-screen bg-[#030712] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-violet-500/10" />
         <div className="relative max-w-6xl mx-auto px-6 py-20">

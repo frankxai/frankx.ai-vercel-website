@@ -1,0 +1,6 @@
+.section-divider-dawn {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.2), transparent);
+  margin: 0 auto;
+  max-width: 600px;
+}

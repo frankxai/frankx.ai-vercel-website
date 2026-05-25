@@ -26,21 +26,21 @@ const templateCategories = [
       {
         title: 'Conscious AI Governance Playbook',
         description: 'Complete framework for implementing soul-aligned AI systems in enterprise environments',
-        downloadUrl: '/templates/conscious-ai-governance-playbook.pdf',
+        downloadUrl: '/templates/governance-overview.html',
         type: 'PDF Guide',
         pages: 24
       },
       {
         title: 'Agent Architecture Assessment',
         description: 'Evaluate and design human-centered AI agent systems',
-        downloadUrl: '/templates/agent-architecture-assessment.xlsx',
+        downloadUrl: '/templates/evaluation-rubric.html',
         type: 'Excel Template',
         pages: 12
       },
       {
         title: 'AI Strategy Canvas',
         description: 'Visual planning tool for aligning AI initiatives with consciousness evolution',
-        downloadUrl: '/templates/ai-strategy-canvas.pdf',
+        downloadUrl: '/tools/strategy-canvas',
         type: 'PDF Canvas',
         pages: 1
       }
@@ -55,21 +55,21 @@ const templateCategories = [
       {
         title: 'Daily Intelligence Operations Ritual',
         description: 'Complete workflow for maintaining conscious AI systems',
-        downloadUrl: '/templates/daily-intelligence-ritual.md',
+        downloadUrl: '/templates/coe-checklist.html',
         type: 'Markdown Guide',
         pages: 8
       },
       {
         title: 'Soul Frequency Calibration Worksheet',
         description: 'Align your AI interactions with authentic self-expression',
-        downloadUrl: '/templates/soul-frequency-worksheet.pdf',
+        downloadUrl: '/pdf-templates/soulbook-guide.html',
         type: 'PDF Worksheet',
         pages: 4
       },
       {
         title: 'Creative Intelligence Activation',
         description: 'Step-by-step process for amplifying creativity with AI',
-        downloadUrl: '/templates/creative-intelligence-activation.docx',
+        downloadUrl: '/pdf-templates/vibe-os-guide.html',
         type: 'Word Document',
         pages: 6
       }
@@ -84,21 +84,21 @@ const templateCategories = [
       {
         title: 'AI Workshop Facilitation Kit',
         description: 'Everything needed to run transformative AI education sessions',
-        downloadUrl: '/templates/ai-workshop-kit.zip',
+        downloadUrl: '/templates/agent-blueprint.json',
         type: 'Resource Bundle',
         pages: 45
       },
       {
         title: 'Family AI Safety Checklist',
         description: 'Practical guide for introducing AI safely in family contexts',
-        downloadUrl: '/templates/family-ai-safety.pdf',
+        downloadUrl: '/templates/risk-register.html',
         type: 'PDF Checklist',
         pages: 6
       },
       {
         title: 'Community AI Ritual Template',
         description: 'Framework for group consciousness evolution practices',
-        downloadUrl: '/templates/community-ai-ritual.md',
+        downloadUrl: '/pdf-templates/5-suno-prompts.html',
         type: 'Markdown Template',
         pages: 5
       }

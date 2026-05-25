@@ -60,6 +60,16 @@ function guessLevel(duration: string): EnhancedVideo['level'] {
 
 // --- Merge logic ---
 
+function inferFormat(vault: VaultVideo): 'long' | 'short' | 'live' {
+  if (vault.format) return vault.format
+  if (vault.duration === 'LIVE') return 'live'
+  // YouTube Shorts are ≤60s — duration strings like "0:45" or "1:00"
+  const parts = vault.duration.split(':').map(Number)
+  if (parts.length === 2 && parts[0] === 0) return 'short'
+  if (parts.length === 2 && parts[0] === 1 && parts[1] === 0) return 'short'
+  return 'long'
+}
+
 function mergeVideo(vault: VaultVideo): EnhancedVideo {
   const lib = libraryMap.get(vault.id)
   const stg = stagingMap.get(vault.id)
@@ -78,6 +88,9 @@ function mergeVideo(vault: VaultVideo): EnhancedVideo {
     embeddable: vault.embeddable !== false,
     status: stg?.status || 'published',
     level: lib?.level || guessLevel(vault.duration),
+    format: inferFormat(vault),
+    uploadDate: vault.uploadDate,
+    commentary: vault.commentary,
   }
 }
 
@@ -118,6 +131,16 @@ export function getVideosByPersona(persona: string): EnhancedVideo[] {
 
 export function getFeaturedVideos(): EnhancedVideo[] {
   return getAllVideos().filter((v) => v.featured)
+}
+
+/** Return videos in 9:16 short-form format (YouTube Shorts, TikTok, Reels). */
+export function getShorts(): EnhancedVideo[] {
+  return getAllVideos().filter((v) => v.format === 'short')
+}
+
+/** Return long-form videos only (excludes shorts & live streams). */
+export function getLongForm(): EnhancedVideo[] {
+  return getAllVideos().filter((v) => v.format === 'long')
 }
 
 export function getTrendingVideos(limit = 8): EnhancedVideo[] {

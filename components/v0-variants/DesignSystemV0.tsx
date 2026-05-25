@@ -117,8 +117,8 @@ export default function DesignSystemPage() {
     <div className="min-h-screen bg-frankx-navy text-white">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -right-1/2 w-[1000px] h-[1000px] bg-frankx-purple/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute -bottom-1/2 -left-1/2 w-[1000px] h-[1000px] bg-frankx-cyan/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute -top-1/2 -right-1/2 w-[1000px] h-[1000px] bg-frankx-purple/10 rounded-full blur-[128px] animate-pulse" />
+        <div className="absolute -bottom-1/2 -left-1/2 w-[1000px] h-[1000px] bg-frankx-cyan/10 rounded-full blur-[128px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="relative">

@@ -14,7 +14,7 @@ interface SparkBorderProps {
 const colorMap: Record<string, string> = {
   emerald: '#10b981',
   cyan: '#06b6d4',
-  purple: '#a855f7',
+  purple: '#AB47C7',
   amber: '#f59e0b',
 }
 
@@ -30,7 +30,7 @@ export default function SparkBorder({
 
   const gradient =
     color === 'gradient'
-      ? 'conic-gradient(from 0deg, transparent 55%, #10b981 68%, #06b6d4 76%, #a855f7 84%, transparent 92%)'
+      ? 'conic-gradient(from 0deg, transparent 55%, #10b981 68%, #06b6d4 76%, #AB47C7 84%, transparent 92%)'
       : `conic-gradient(from 0deg, transparent 55%, ${colorMap[color]}40 68%, ${colorMap[color]} 78%, ${colorMap[color]}40 88%, transparent 92%)`
 
   const visibilityClass = hoverOnly

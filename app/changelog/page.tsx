@@ -15,7 +15,7 @@ const impactDots: Record<string, string> = {
 
 export default function ChangelogPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="border-b border-white/5">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-12">

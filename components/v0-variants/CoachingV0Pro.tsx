@@ -207,8 +207,8 @@ export default function CoachingPage() {
       <section className="relative overflow-hidden px-4 py-20 md:py-32">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-primary/10 blur-[100px]" />
-          <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-secondary/10 blur-[120px]" />
+          <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-primary/10 blur-[128px]" />
+          <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-secondary/10 blur-[128px]" />
         </div>
         
         <div className="container relative mx-auto max-w-7xl">
@@ -640,8 +640,8 @@ export default function CoachingPage() {
           >
             <Card className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 border-border/50 backdrop-blur-xl">
               <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 h-64 w-64 rounded-full bg-primary/20 blur-[100px]" />
-                <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-secondary/20 blur-[100px]" />
+                <div className="absolute top-0 left-0 h-64 w-64 rounded-full bg-primary/20 blur-[128px]" />
+                <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-secondary/20 blur-[128px]" />
               </div>
               
               <div className="relative p-12 text-center">

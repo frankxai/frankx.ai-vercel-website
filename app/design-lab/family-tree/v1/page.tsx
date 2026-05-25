@@ -91,13 +91,13 @@ export default function FamilyTreeV1() {
   const current = familyNodes.filter(n => n.generation === 2)
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Background */}
       <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#030712]" />
-        <div className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-amber-500/5 blur-[100px]" />
-        <div className="absolute right-1/4 top-1/3 h-[400px] w-[400px] rounded-full bg-cyan-500/5 blur-[100px]" />
-        <div className="absolute bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-violet-500/5 blur-[100px]" />
+        <div className="absolute inset-0 bg-[#0a0a0b]" />
+        <div className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-amber-500/5 blur-[128px]" />
+        <div className="absolute right-1/4 top-1/3 h-[400px] w-[400px] rounded-full bg-cyan-500/5 blur-[128px]" />
+        <div className="absolute bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-violet-500/5 blur-[128px]" />
       </div>
 
       {/* Header */}

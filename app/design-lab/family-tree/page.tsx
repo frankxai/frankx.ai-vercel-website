@@ -243,7 +243,7 @@ function VariantCard({ v }: { v: (typeof variants)[number] }) {
 
 export default function FamilyTreeLabPage() {
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-violet-900/15 via-transparent to-transparent" />
@@ -318,7 +318,7 @@ export default function FamilyTreeLabPage() {
           ))}
         </div>
 
-        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 text-center">
+        <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 text-center">
           <p className="text-sm text-white/30">
             All 15 variants read from the same data source:{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-white/50">

@@ -484,8 +484,8 @@ export default function PianoPage() {
       {/* Ambient */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute w-[500px] h-[500px] bg-rose-500/[0.025] rounded-full blur-[180px] top-1/4 left-1/3" />
-        <div className="absolute w-80 h-80 bg-violet-500/[0.02] rounded-full blur-[120px] bottom-1/3 right-1/4" />
-        <div className="absolute w-60 h-60 bg-amber-500/[0.015] rounded-full blur-[100px] top-1/2 left-1/4" />
+        <div className="absolute w-80 h-80 bg-violet-500/[0.02] rounded-full blur-[128px] bottom-1/3 right-1/4" />
+        <div className="absolute w-60 h-60 bg-amber-500/[0.015] rounded-full blur-[128px] top-1/2 left-1/4" />
       </div>
 
       {/* Header */}

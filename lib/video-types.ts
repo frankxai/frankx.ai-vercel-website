@@ -16,6 +16,12 @@ export interface VaultVideo {
   category?: string
   embeddable?: boolean
   tags: string[]
+  /** Format of the video — shorts use 9:16 vertical layout */
+  format?: 'long' | 'short' | 'live'
+  /** Optional upload date (YYYY-MM-DD) — used for VideoObject schema */
+  uploadDate?: string
+  /** Frank's editorial commentary — why this matters to the audience */
+  commentary?: string
 }
 
 export interface LibraryVideo {
@@ -56,6 +62,9 @@ export interface EnhancedVideo {
   embeddable: boolean
   status: StagingVideo['status']
   level: 'intro' | 'intermediate' | 'advanced'
+  format: 'long' | 'short' | 'live'
+  uploadDate?: string
+  commentary?: string
 }
 
 // --- Watchlist Types ---

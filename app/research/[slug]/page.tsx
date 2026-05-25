@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       domain.title.toLowerCase(),
       ...domain.highlights.map(h => h.label.toLowerCase()),
       'AI research',
-      'frank van den bergh',
+      'Frank Riemer',
     ],
     openGraph: {
       title: `${domain.title} | FrankX Research`,
@@ -86,7 +86,7 @@ export default async function Page({ params }: PageProps) {
     description: domain.tldr,
     author: {
       '@type': 'Person',
-      name: 'Frank van den Bergh',
+      name: 'Frank Riemer',
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
     },
