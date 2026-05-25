@@ -43,7 +43,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-// import MobileNavOverlay from '@/components/MobileNavOverlay'
+import MobileNavOverlay from '@/components/MobileNavOverlay'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
@@ -512,7 +512,7 @@ export default function NavigationMega() {
         </nav>
       </header>
 
-      {/* Mobile nav overlay removed */}
+      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   )
 }
