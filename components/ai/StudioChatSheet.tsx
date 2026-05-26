@@ -74,14 +74,25 @@ export default function StudioChatSheet({ isOpen, onClose }: StudioChatSheetProp
     [personaId]
   )
 
+  // Passing `id={personaId}` is what makes useChat rebuild its internal Chat
+  // instance when the persona changes — without it, the hook would keep the
+  // original transport closure (with the original personaId baked in) and the
+  // server would keep responding as the previous persona even after a switch.
   const { messages, sendMessage, status, error, stop, setMessages } = useChat({
+    id: personaId,
     transport,
   })
 
-  // Reset conversation when switching personas (clean handoff)
+  // Reset conversation when switching personas. Abort any in-flight stream
+  // FIRST so we don't keep paying tokens (and burning the daily quota) for
+  // a conversation that the user can no longer see.
   useEffect(() => {
+    if (status === 'streaming' || status === 'submitted') {
+      stop()
+    }
     setMessages([])
-  }, [personaId, setMessages])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [personaId])
 
   // Auto-scroll on new messages
   useEffect(() => {

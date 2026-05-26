@@ -47,6 +47,21 @@ export async function POST(req: Request) {
     )
   }
 
+  // Fail fast if BYOK is disabled on this deployment — do NOT round-trip the
+  // visitor's key to Google when we have no way to store it. Sending it to
+  // any external service before confirming we can act on it is an
+  // unnecessary disclosure.
+  if (!process.env.BYOK_SECRET) {
+    return NextResponse.json(
+      {
+        error: 'byok_disabled',
+        message:
+          'BYOK is not configured on this deployment (missing BYOK_SECRET). Use the free tier or upgrade to Studio Pro.',
+      },
+      { status: 503 }
+    )
+  }
+
   const ok = await validateGeminiKey(apiKey)
   if (!ok) {
     return NextResponse.json(
@@ -59,24 +74,13 @@ export async function POST(req: Request) {
     )
   }
 
-  if (!process.env.BYOK_SECRET) {
-    return NextResponse.json(
-      {
-        error: 'byok_disabled',
-        message:
-          'BYOK is not configured on this deployment (missing BYOK_SECRET). Use the free tier or upgrade to Studio Pro.',
-      },
-      { status: 503 }
-    )
-  }
-
   const { userId, identifier } = await getCallerKeys(req)
   try {
     await saveByokKey(apiKey, userId, identifier)
   } catch (e) {
     return NextResponse.json(
       { error: 'storage_failed', message: e instanceof Error ? e.message : 'Could not store key.' },
-      { status: 500 }
+      { status: 400 }
     )
   }
 

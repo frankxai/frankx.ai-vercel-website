@@ -12,6 +12,24 @@ const KEY_PREFIX_IP = 'byok:ip:'
 const TTL_SECONDS = 60 * 60 * 24 * 30 // 30 days
 const KV_AVAILABLE = !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)
 
+/**
+ * BYOK is only safe to store when we can scope the ciphertext to a real
+ * identity. Without it, all anonymous visitors share `byok:ip:anonymous`
+ * (the literal fallback string from getClientIdentifier) — meaning one
+ * visitor's key would be readable and overwritable by every other visitor.
+ *
+ * Returns true if we have either:
+ *  - a signed-in userId (most reliable)
+ *  - a real IP-derived identifier (anything other than the 'anonymous'
+ *    fallback string)
+ */
+export function canStoreByok(userId: string | null, identifier: string): boolean {
+  if (userId) return true
+  if (!identifier) return false
+  if (identifier === 'anonymous') return false
+  return true
+}
+
 function getSecretKey(): Buffer {
   const secret = process.env.BYOK_SECRET
   if (!secret) {
@@ -69,6 +87,11 @@ export async function saveByokKey(
   if (!KV_AVAILABLE) {
     throw new Error('KV is not configured on this deployment — BYOK storage unavailable.')
   }
+  if (!canStoreByok(userId, identifier)) {
+    throw new Error(
+      'Cannot scope BYOK key to a stable identity. Sign in first, or visit from a deployment where your IP is forwarded.'
+    )
+  }
   const ciphertext = encryptKey(plaintextApiKey)
   await kv.set(storageKey(userId, identifier), ciphertext, { ex: TTL_SECONDS })
 }
@@ -78,6 +101,10 @@ export async function loadByokKey(
   identifier: string
 ): Promise<string | null> {
   if (!KV_AVAILABLE) return null
+  // Refuse to read from a shared bucket (e.g. `byok:ip:anonymous`) — that
+  // would let one visitor's key be served to another. This must match
+  // saveByokKey's guard so reads and writes use the same identity surface.
+  if (!canStoreByok(userId, identifier)) return null
   try {
     const ciphertext = await kv.get<string>(storageKey(userId, identifier))
     if (!ciphertext) return null
@@ -89,6 +116,7 @@ export async function loadByokKey(
 
 export async function clearByokKey(userId: string | null, identifier: string): Promise<void> {
   if (!KV_AVAILABLE) return
+  if (!canStoreByok(userId, identifier)) return
   try {
     await kv.del(storageKey(userId, identifier))
   } catch {
@@ -99,13 +127,17 @@ export async function clearByokKey(userId: string | null, identifier: string): P
 /**
  * Validate a Gemini API key by hitting the public models endpoint.
  * Returns true if the key is accepted by Google.
+ *
+ * Uses the `x-goog-api-key` header (not the `?key=` query string) so the
+ * key never appears in HTTP access logs, Vercel runtime traces, or fetch
+ * error stacks that surface URLs.
  */
 export async function validateGeminiKey(apiKey: string): Promise<boolean> {
   try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(apiKey)}`,
-      { method: 'GET' }
-    )
+    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models', {
+      method: 'GET',
+      headers: { 'x-goog-api-key': apiKey },
+    })
     return res.ok
   } catch {
     return false

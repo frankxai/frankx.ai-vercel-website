@@ -11,6 +11,7 @@
 import { kv } from '@vercel/kv'
 import { getClientIdentifier } from '@/lib/ratelimit'
 import { auth as authFn } from '@/lib/auth'
+import { loadByokKey } from '@/lib/ai/byok'
 
 // KV is wired by Vercel in production. Locally KV_REST_API_URL is unset and
 // every kv.* call throws — we detect that once and skip the metering instead
@@ -34,6 +35,8 @@ export interface TierContext {
   identifier: string
   userId: string | null
   email: string | null
+  /** Decrypted BYOK key when tier === 'byok'; null for all other tiers. */
+  byokKey: string | null
 }
 
 export interface UsageStatus {
@@ -63,22 +66,13 @@ async function isPro(userId: string | null): Promise<boolean> {
   }
 }
 
-async function getStoredByokKey(userId: string | null, identifier: string): Promise<string | null> {
-  // Encrypted-key retrieval is handled by byok.ts; this helper just answers
-  // "does a key exist for this caller right now?" We treat presence of the
-  // ciphertext as enough to drop the visitor into the BYOK tier.
-  if (!KV_AVAILABLE) return null
-  try {
-    const key = userId ? `byok:user:${userId}` : `byok:ip:${identifier}`
-    const v = await kv.get<string>(key)
-    return v || null
-  } catch {
-    return null
-  }
-}
-
 /**
- * Resolve the caller's tier from request + session + KV state.
+ * Resolve the caller's tier from request + session + KV state, AND decrypt the
+ * BYOK key when present. The decrypted key (or null) is returned in the
+ * context so the chat route never has to re-fetch it — eliminating the
+ * window where `tier === 'byok'` but the key is unusable (which previously
+ * caused a silent fallback to the owner's GOOGLE_GENERATIVE_AI_API_KEY).
+ *
  * Does not consume any quota.
  */
 export async function resolveTier(req: Request): Promise<TierContext> {
@@ -92,16 +86,21 @@ export async function resolveTier(req: Request): Promise<TierContext> {
   const userId = session?.user?.id || session?.user?.email || null
   const email = session?.user?.email || null
 
-  const byok = await getStoredByokKey(userId, identifier)
-  if (byok) return { tier: 'byok', identifier, userId, email }
-
-  if (userId && (await isPro(userId))) {
-    return { tier: 'pro', identifier, userId, email }
+  // BYOK promotion ONLY when we can actually decrypt the stored key.
+  // loadByokKey itself refuses to read when the caller is unidentifiable
+  // (no userId AND no real IP — see byok.ts:canStoreByok).
+  const byokKey = await loadByokKey(userId, identifier)
+  if (byokKey) {
+    return { tier: 'byok', identifier, userId, email, byokKey }
   }
 
-  if (userId) return { tier: 'signedIn', identifier, userId, email }
+  if (userId && (await isPro(userId))) {
+    return { tier: 'pro', identifier, userId, email, byokKey: null }
+  }
 
-  return { tier: 'anon', identifier, userId: null, email: null }
+  if (userId) return { tier: 'signedIn', identifier, userId, email, byokKey: null }
+
+  return { tier: 'anon', identifier, userId: null, email: null, byokKey: null }
 }
 
 function counterKey(ctx: TierContext): string {
@@ -167,9 +166,11 @@ export async function consumeMessage(ctx: TierContext): Promise<{
   let used = 0
   try {
     used = await kv.incr(key)
-    if (used === 1) {
-      await kv.expire(key, ONE_DAY_SECONDS)
-    }
+    // Always (re)apply the TTL — `expire` is idempotent and cheap. The previous
+    // `if (used === 1) expire(...)` gate would orphan a counter without TTL if
+    // the very first request's expire call failed transiently, permanently
+    // locking the visitor out of the daily reset.
+    await kv.expire(key, ONE_DAY_SECONDS)
   } catch {
     // KV outage — fail open so a broken cache never silences the studio.
     return {
