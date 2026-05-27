@@ -323,6 +323,11 @@ const nextConfig = {
     'isomorphic-dompurify',
     'dompurify',
     'marked',
+    // jsdom is the transitive load that actually fails — isomorphic-dompurify
+    // does `require("jsdom")` on the server path. Without it externalized,
+    // Turbopack tries to bundle jsdom (which has native deps) and fails at
+    // runtime with "Failed to load external [module]".
+    'jsdom',
   ],
   async headers() {
     return [
