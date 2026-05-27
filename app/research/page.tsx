@@ -469,7 +469,7 @@ function MethodologySection() {
     {
       number: '02',
       title: 'Deep Analysis',
-      description: 'Multi-agent deep dives into promising signals with cross-referencing across primary and secondary sources',
+      description: 'Multi-agent investigation of promising signals with cross-referencing across primary and secondary sources',
       icon: Brain,
     },
     {

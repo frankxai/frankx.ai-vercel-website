@@ -27,7 +27,23 @@ export const metadata: Metadata = {
     title: 'FrankX OS — Personal AI Operating System',
     description:
       'Seven interlocking modules. One CRM. One amplification loop. The operating system behind frankx.ai.',
+    url: 'https://frankx.ai/os',
+    siteName: 'FrankX',
     type: 'website',
+    images: [
+      {
+        url: '/hero-homepage.png',
+        width: 1200,
+        height: 630,
+        alt: 'FrankX OS — the operating system behind frankx.ai',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FrankX OS — Personal AI Operating System',
+    description: 'Seven interlocking modules. One CRM. One amplification loop.',
+    images: ['/hero-homepage.png'],
   },
   alternates: { canonical: 'https://frankx.ai/os' },
 }
@@ -139,7 +155,7 @@ function ModuleCard({ module }: { module: OSModule }) {
     <Link
       href={`/os/${module.slug}`}
       className={`group relative block overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 ring-1 ${tokens.ring} transition-all hover:bg-white/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black`}
-      aria-label={`Open ${module.name} deep-dive`}
+      aria-label={`Open ${module.name} module overview`}
     >
       <div
         className={`absolute -top-24 -right-24 h-48 w-48 rounded-full bg-gradient-to-br ${tokens.glow} to-transparent blur-2xl opacity-60 group-hover:opacity-100 transition-opacity`}
@@ -346,7 +362,7 @@ export default function OSPage() {
             <div>
               <h2 className="text-2xl font-bold text-zinc-50 mb-1">The seven modules</h2>
               <p className="text-sm text-zinc-500">
-                Click any module for the deep-dive, or jump to the module itself.
+                Click any module for the full overview, or jump straight to the surface.
               </p>
             </div>
           </div>
@@ -523,9 +539,9 @@ export default function OSPage() {
       <section className="py-16 border-t border-white/[0.04]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-zinc-500 leading-relaxed">
-            Frank Riemer is an Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence.
-            The enterprise 6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics)
-            shipped to 40+ Fortune 500s now scales down to one person. This is what that looks like in practice.
+            Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence. The enterprise
+            6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) used at
+            Fortune 500s scales down to one person. This is what that looks like in practice.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
             <Link

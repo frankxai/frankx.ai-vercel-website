@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { Music4, Workflow, BookOpen, ArrowUpRight, type LucideIcon } from 'lucide-react'
+import { Music4, Workflow, BookOpen, Sparkles, ArrowUpRight, type LucideIcon } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 interface FeaturedWork {
-  id: 'music-lab' | 'acos' | 'blog'
+  id: 'music-lab' | 'acos' | 'blog' | 'gemini-mastery'
   title: string
   subtitle: string
   href: string
@@ -14,6 +14,14 @@ interface FeaturedWork {
 }
 
 const FEATURED: FeaturedWork[] = [
+  {
+    id: 'gemini-mastery',
+    title: 'Gemini & Google AI',
+    subtitle: 'Curated portal — 8 videos, ecosystem grid, I/O 2026 timeline, FAQ.',
+    href: '/learn/gemini-mastery',
+    icon: Sparkles,
+    badge: 'Live Madrid',
+  },
   {
     id: 'music-lab',
     title: 'Music Lab',
@@ -42,7 +50,7 @@ const FEATURED: FeaturedWork[] = [
 
 export function FeaturedWorkGrid() {
   return (
-    <div className="grid w-full gap-3 sm:grid-cols-3">
+    <div className="grid w-full gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {FEATURED.map((item) => {
         const Icon = item.icon
         return (

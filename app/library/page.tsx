@@ -28,11 +28,20 @@ export const metadata: Metadata = {
     type: 'website',
     url: LIBRARY_URL,
     siteName: 'FrankX',
+    images: [
+      {
+        url: '/hero-homepage.png',
+        width: 1200,
+        height: 630,
+        alt: 'FrankX Library — book reviews and key insights',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'The Library | FrankX',
     description: 'Key insights from the books that matter most.',
+    images: ['/hero-homepage.png'],
   },
 };
 

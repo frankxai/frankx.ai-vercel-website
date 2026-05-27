@@ -145,6 +145,8 @@ export const learningPaths: LearningPath[] = [
       'Optimize cost vs. quality across the full Google AI stack',
     ],
     relatedGuides: [
+      '/partnerships/google',
+      '/connect',
       '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
       '/blog/ai-video-generation-2026-sora-runway-kling-veo',
       '/blog/best-ai-tools-for-creators-2026',
