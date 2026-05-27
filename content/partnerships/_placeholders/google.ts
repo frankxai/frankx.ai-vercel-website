@@ -25,9 +25,9 @@ export const google: Partner = {
   tagline:
     'Gemini and the Agent Development Kit, taught in the workshop and used in real delivery.',
   subTagline:
-    'Gemini already in daily multimodal delivery. Google ADK + A2A protocol already in the workshop enterprise lane. The conversation is Cloud Partner Advantage entry + workshop credits.',
+    'Gemini already in daily multimodal delivery. Google ADK + A2A protocol taught hands-on in the Build First AI Agent workshop alongside Vercel AI SDK and Claude. The conversation is Cloud Partner Advantage entry + workshop credits.',
 
-  contextWindow: `Gemini is part of my daily multimodal delivery — text, image (Nano Banana / Imagen), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. The Google Agent Development Kit and the A2A protocol are not a slide — they are the enterprise lane of the Build First AI Agent workshop and the explicit enterprise lane of the Starlight Agent Lab three-lane portfolio (Vercel AI SDK / Claude Agent SDK / Google ADK).
+  contextWindow: `Gemini is part of my daily multimodal delivery — text, image (Nano Banana / Imagen), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. The Google Agent Development Kit and the A2A protocol are not a slide — they're taught hands-on as one of the enterprise branches of the Build First AI Agent workshop alongside Vercel AI SDK and Claude SDK. The Starlight Agent Lab three-lane portfolio positions ADK as a first-class enterprise option (alongside Vercel AI SDK for web and Claude Agent SDK for reasoning).
 
 The strategic alignment here is about a Google-native AI CoE practice with workshop and curriculum distribution. Pursuing Google Cloud Partner Advantage status. The currency that matters more than commission is attendee credits for the workshop cohort and reference-architecture surfaces with Deploy-to-GCP CTAs. EMEA AI Architect audience already funnels into the topic.`,
 
@@ -56,9 +56,9 @@ The strategic alignment here is about a Google-native AI CoE practice with works
       },
     },
     {
-      label: 'Starlight Agent Lab enterprise lane = ADK',
+      label: 'Starlight Agent Lab — ADK as a first-class enterprise option',
       detail:
-        'The three-lane portfolio explicitly positions Google ADK as the enterprise lane alongside Vercel AI SDK (web) and Claude Agent SDK (reasoning). Multi-cloud by design, ADK by enterprise default.',
+        'The three-lane portfolio positions Google ADK as a first-class enterprise option alongside Vercel AI SDK (web) and Claude Agent SDK (reasoning). Multi-cloud by design, ADK as the branch I personally take in CoE delivery.',
     },
     {
       label: 'Google Cloud Partner Advantage — pursuit underway',
@@ -100,9 +100,9 @@ The strategic alignment here is about a Google-native AI CoE practice with works
       metric: 'Native operator',
     },
     {
-      title: 'Workshop enterprise lane biased Google ADK',
-      body: 'The Build First AI Agent workshop teaches three enterprise frameworks. ADK is the one I personally architect with in CoE delivery, which makes it the lane the cohort gets pulled toward.',
-      metric: 'Enterprise lane',
+      title: 'ADK is the lane I personally architect with',
+      body: 'The Build First AI Agent workshop teaches Vercel AI SDK as the central path, with branch modules into Claude SDK, OpenAI Agents, Google ADK, no-code, and AI-builds-AI. ADK is the branch I personally take in enterprise CoE delivery.',
+      metric: 'Enterprise branch',
     },
     {
       title: 'Public A2A protocol documentation',
@@ -111,7 +111,7 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     },
     {
       title: 'EMEA AI Architect audience funnel',
-      body: 'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. EMEA-weighted, architect-weighted. The Google Cloud Partner Advantage credit channel meets a real audience.',
+      body: 'Around 7,000 followers across the EMEA enterprise-AI architect community. Audience overlaps the GCP developer mid-market. The Google Cloud Partner Advantage credit channel meets a real audience.',
       metric: '7,000+ followers',
     },
     {
@@ -153,11 +153,11 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     {
       number: 3,
       name: 'A2A Protocol Content Stream',
-      cadence: 'Continuous, quarterly deep-dive',
+      cadence: 'Continuous, quarterly teardown',
       whatItIs:
         'Expansion of /guides/agent-card-a2a-spec into a full content stream — protocol guide deep-dives, interop with Anthropic MCP and OpenAI tool use, and one quarterly /research piece on multi-cloud agent harnesses.',
       whatItProduces: [
-        'Quarterly A2A protocol deep-dive on /guides',
+        'Quarterly A2A protocol teardown on /guides',
         'One /research piece per quarter on multi-cloud agent harness patterns',
         'Co-branded LinkedIn distribution into the EMEA architect funnel',
       ],
@@ -247,7 +247,7 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     'Not a Google-employee relationship',
     'Not a Google-Cloud-only practice — the work is explicitly multi-cloud, with GCP as a first-class lane alongside OCI, AWS, and Azure',
     'Not deep BigQuery or Vertex specialist consulting work',
-    'Not exclusive of OpenAI, Anthropic, or Oracle — the multi-cloud stance is the point',
+    'Not exclusive of OpenAI, Anthropic, or any single foundation-model vendor — the multi-cloud stance is the point',
     'Not a deck-building consulting role — the deliverables are workshops, reference architectures, and published guides',
   ],
 
@@ -260,11 +260,11 @@ The strategic alignment here is about a Google-native AI CoE practice with works
 
   alreadyShared: [
     'Gemini in daily multimodal delivery — Veo, Nano Banana 2, and Imagen evaluations sit inside the working set.',
-    'Google ADK + A2A protocol in the Build First AI Agent workshop enterprise lane, taught hands-on.',
+    'Google ADK + A2A protocol taught hands-on as one of the enterprise branches of the Build First AI Agent workshop.',
     'Public /guides/agent-card-a2a-spec documentation written from operator-grade use of the protocol.',
     'Starlight Agent Lab three-lane portfolio explicitly positions ADK as the enterprise lane alongside Vercel AI SDK and Claude Agent SDK.',
     'Multi-cloud AI CoE methodology with Google as a first-class enterprise lane across reference architectures.',
-    '7,000+ EMEA AI architect audience overlapping the GCP developer community across Oracle, NVIDIA, Anthropic, and founder networks.',
+    '7,000+ EMEA AI architect audience overlapping the GCP developer community.',
   ],
 
   formalizationAsk:
