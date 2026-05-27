@@ -473,7 +473,7 @@ export default function ACOSPage() {
           </div>
           <p className="mt-8 text-center text-sm text-white/30">
             Need enterprise-level customization?{' '}
-            <a href="mailto:hello@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
+            <a href="mailto:frank@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
               Contact for custom pricing
             </a>
           </p>

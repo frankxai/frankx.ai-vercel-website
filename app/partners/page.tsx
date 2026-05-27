@@ -370,10 +370,10 @@ export default function PartnersPage() {
               If you have a question about any partnership — or you want to discuss a
               new one —{' '}
               <a
-                href="mailto:hello@frankx.ai?subject=Partnership%20inquiry"
+                href="mailto:frank@frankx.ai?subject=Partnership%20inquiry"
                 className="text-cyan-400 hover:text-cyan-300 underline"
               >
-                hello@frankx.ai
+                frank@frankx.ai
               </a>
               .
             </p>

@@ -68,7 +68,7 @@ export default function SoulFrequencyAssessmentPage() {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
-                href="mailto:hello@frankx.ai?subject=Soul%20Frequency%20Assessment%20Question"
+                href="mailto:frank@frankx.ai?subject=Soul%20Frequency%20Assessment%20Question"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-50 transition-colors font-semibold"
               >
                 Talk with Frank
