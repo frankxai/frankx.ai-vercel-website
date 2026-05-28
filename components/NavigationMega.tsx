@@ -342,12 +342,18 @@ export default function NavigationMega() {
   const [isVisible, setIsVisible] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeLeft, setActiveLeft] = useState<number | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<NavKey | null>(null)
   const pathname = usePathname()
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setIsOpen(false)
+    setMobileExpanded(null)
   }, [pathname])
+
+  const toggleMobileSection = useCallback((section: NavKey) => {
+    setMobileExpanded((prev) => (prev === section ? null : section))
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
@@ -512,7 +518,139 @@ export default function NavigationMega() {
         </nav>
       </header>
 
-      {/* Mobile nav overlay removed */}
+      {/* ---------- Mobile menu (lg:hidden) ---------- */}
+      {/* Backdrop */}
+      <div
+        className={cn(
+          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden',
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        )}
+        onClick={() => setIsOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Panel: anchored below the header, fills the rest of the screen, scrolls internally */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          'fixed inset-x-0 bottom-0 top-14 z-40 flex flex-col border-t border-white/10 bg-[#030712] transition-transform duration-300 ease-out sm:top-16 lg:hidden',
+          isOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+      >
+        <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4">
+          <nav className="space-y-1">
+            {desktopSections.map((section) => {
+              const data = navigation[section]
+              const expanded = mobileExpanded === section
+              return (
+                <div key={section}>
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileSection(section)}
+                    aria-expanded={expanded}
+                    aria-controls={`mobile-section-${section}`}
+                    className="flex min-h-[52px] w-full items-center justify-between rounded-xl px-4 py-3 text-base font-semibold text-slate-200 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+                  >
+                    <span>{data.label}</span>
+                    <ChevronDown
+                      className={cn(
+                        'h-5 w-5 text-slate-500 transition-transform duration-200',
+                        expanded && 'rotate-180'
+                      )}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  {/* Items render only when expanded — no max-height clamp, so nothing ever clips */}
+                  {expanded && (
+                    <ul
+                      id={`mobile-section-${section}`}
+                      className="mb-1 ml-4 space-y-0.5 border-l-2 border-emerald-500/20 pl-3"
+                    >
+                      <li>
+                        <Link
+                          href={data.href}
+                          onClick={() => setIsOpen(false)}
+                          className="flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm font-medium text-emerald-300/90 transition-colors hover:bg-white/5 hover:text-emerald-200"
+                        >
+                          {data.featured.title}
+                        </Link>
+                      </li>
+                      {data.items.map((item) => {
+                        const Icon = item.icon
+                        const isExternal = 'external' in item && item.external
+                        const cls =
+                          'flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-white/5 hover:text-white'
+                        return (
+                          <li key={item.name}>
+                            {isExternal ? (
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setIsOpen(false)}
+                                className={cls}
+                              >
+                                <Icon className="h-4 w-4 shrink-0 text-slate-500" aria-hidden="true" />
+                                <span className="flex items-center gap-1.5">
+                                  {item.name}
+                                  <ExternalLink className="h-3 w-3 text-slate-600" />
+                                </span>
+                              </a>
+                            ) : (
+                              <Link href={item.href} onClick={() => setIsOpen(false)} className={cls}>
+                                <Icon className="h-4 w-4 shrink-0 text-slate-500" aria-hidden="true" />
+                                {item.name}
+                              </Link>
+                            )}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                </div>
+              )
+            })}
+
+            {/* Blog — direct link, no accordion */}
+            <Link
+              href="/blog"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                'flex min-h-[52px] items-center rounded-xl px-4 py-3 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
+                isActive('/blog') ? 'bg-white/10 text-white' : 'text-slate-200 hover:bg-white/5 hover:text-white'
+              )}
+            >
+              Blog
+            </Link>
+          </nav>
+
+          {/* Actions */}
+          <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false)
+                openCommandPalette()
+              }}
+              className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <Search className="h-4 w-4" />
+              Search
+            </button>
+            <Link
+              href="/start"
+              onClick={() => setIsOpen(false)}
+              className="block w-full rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-4 text-center text-base font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 active:scale-[0.98]"
+            >
+              Start Here
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
