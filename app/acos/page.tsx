@@ -28,10 +28,10 @@ const CHECKOUT = {
 }
 
 const stats = [
-  { label: 'Skills', value: '75+', icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
-  { label: 'Agents', value: '38', icon: Users, color: 'from-purple-500 to-violet-500' },
-  { label: 'Commands', value: '35+', icon: Command, color: 'from-amber-500 to-orange-500' },
-  { label: 'Workflows', value: '8', icon: Layers, color: 'from-emerald-500 to-teal-500' },
+  { label: 'Skills', value: '35+', icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
+  { label: 'Agents', value: '99', icon: Users, color: 'from-purple-500 to-violet-500' },
+  { label: 'Commands', value: '117+', icon: Command, color: 'from-amber-500 to-orange-500' },
+  { label: 'Pillars', value: '11', icon: Layers, color: 'from-emerald-500 to-teal-500' },
 ]
 
 
@@ -173,8 +173,16 @@ export default function ACOSPage() {
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
             The operating system for generative creators.
             <br className="hidden sm:block" />
-            75+ skills. 38 agents. 35+ commands. One entry point.
+            99 agents. 35+ skills. 117+ commands. 11 pillars. One entry point.
           </p>
+
+          <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-200">
+            <span className="font-semibold uppercase tracking-widest">New</span>
+            <span>Install individual pillar packs at</span>
+            <Link href="/agents" className="font-mono font-semibold underline decoration-dotted underline-offset-2 hover:text-emerald-100">
+              /agents
+            </Link>
+          </div>
 
           {/* Terminal demo */}
           <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-white/10 bg-[#0d1117] p-6 text-left font-mono text-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
@@ -473,7 +481,7 @@ export default function ACOSPage() {
           </div>
           <p className="mt-8 text-center text-sm text-white/30">
             Need enterprise-level customization?{' '}
-            <a href="mailto:frank@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
+            <a href="mailto:hello@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
               Contact for custom pricing
             </a>
           </p>

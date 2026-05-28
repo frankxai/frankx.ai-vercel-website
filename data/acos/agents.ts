@@ -203,7 +203,7 @@ export const PILLARS: Pillar[] = [
       { name: 'Product Retro', kind: 'command', ref: '/product-retro', status: 'in-progress', one_liner: 'Team retrospective with action items.' },
       { name: 'Template Monetization', kind: 'skill', ref: 'template-monetization', status: 'in-progress', one_liner: 'Blueprint-to-template monetization workflows.' },
       { name: 'Product Management Expert', kind: 'skill', ref: 'product-management-expert', status: 'in-progress', one_liner: 'PM craft applied to creator products.' },
-      { name: 'Template Catalog', kind: 'skill', ref: 'template-catalog', status: 'gap', one_liner: 'Unified catalog of templates across repos.' },
+      { name: 'Product Engine Orchestrator', kind: 'agent', ref: 'product-engine-orchestrator', status: 'shipped', one_liner: '5-flow-type Opus composer (flow-launch / flow-sprint / flow-qa / flow-deploy / flow-retro) dispatching the 6 product-team specialists (product-architect / frontend-engineer / backend-engineer / content-strategist / quality-assurance / deployment-lead) with abort-on-QA-gate-failure + parallel frontend/backend after PRD + durable flow record at data/products/flows/. P7 top-level composer. Pass 1 exemplar (2026-05-28).' },
     ],
   },
   {
@@ -222,7 +222,7 @@ export const PILLARS: Pillar[] = [
       { name: 'Oracle AI Architect', kind: 'skill', ref: 'oracle-ai-architect', status: 'in-progress', one_liner: 'Enterprise AI CoE frameworks and reference architectures.' },
       { name: 'OCI Services Expert', kind: 'skill', ref: 'oci-services-expert', status: 'in-progress', one_liner: 'Oracle Cloud architecture, cost optimization.' },
       { name: 'Oracle Diagram Generator', kind: 'skill', ref: 'oracle-diagram-generator', status: 'in-progress', one_liner: 'Reference architecture diagrams for presentations.' },
-      { name: 'Compliance Guardian', kind: 'skill', ref: 'compliance-guardian', status: 'gap', one_liner: 'GDPR, DSA, AI Act compliance scanning across the site.' },
+      { name: 'Business Ops Orchestrator', kind: 'agent', ref: 'business-ops-orchestrator', status: 'shipped', one_liner: '3-flow-type Opus composer (flow-bv / flow-wealth / flow-oracle) routing across the BV legal/tax substrate (/bv-ops + business-ops skill), wealth substrate (/wealth-ops + wealth-ops skill), and Oracle day-job substrate (oracle-work + oracle-ai-architect skills) with confidentiality envelope (Tier 1/2 redaction) + sanitized memory + private-path persistence. P8 top-level composer. Pass 1 exemplar (2026-05-28).' },
     ],
   },
   {
@@ -374,6 +374,7 @@ export const TIER_BY_REF: Record<string, AgentTier> = {
   'research-orchestrator': 'opus',
   // Pillar 7 — Product Engine
   'product-engine': 'sonnet',
+  'product-engine-orchestrator': 'opus',
   '/product-team-launch': 'opus',
   '/product-sprint': 'sonnet',
   '/product-qa': 'sonnet',
@@ -383,6 +384,7 @@ export const TIER_BY_REF: Record<string, AgentTier> = {
   'product-management-expert': 'sonnet',
   'template-catalog': 'haiku',
   // Pillar 8 — Business Ops
+  'business-ops-orchestrator': 'opus',
   '/bv-ops': 'sonnet',
   'business-ops': 'sonnet',
   '/wealth-ops': 'sonnet',
@@ -500,6 +502,14 @@ export const GATES_BY_REF: Record<string, AgentGates> = {
   'research-search-first': { dispatchable: true, tested: true, composed: true, brand_gated: false },
   'research-deep-thinking': { dispatchable: true, tested: true, composed: true, brand_gated: false },
   'research-orchestrator': { dispatchable: true, tested: true, composed: false, brand_gated: true },
+  // P7 Product Engine — orchestrator first shipped 2026-05-28 (top-level composer for product builds)
+  // composed=false because it IS the top-level composer (nothing composes it); brand_gated=true via @integrity-guard on content-strategist output
+  // tested=true via tests/fixtures/product-engine-orchestrator/smoke.mjs (3 scenarios + memory contract)
+  'product-engine-orchestrator': { dispatchable: true, tested: true, composed: false, brand_gated: true },
+  // P8 Business Ops — orchestrator first shipped 2026-05-28 (3-domain composer: BV/wealth/oracle)
+  // tested=true via tests/fixtures/business-ops-orchestrator/smoke.mjs (3 scenarios + memory + confidentiality gate)
+  // brand_gated=false because outputs land in operator-private paths only (Tier 1/2 data, not public-facing)
+  'business-ops-orchestrator': { dispatchable: true, tested: true, composed: false, brand_gated: false },
   // P10 — only Social Content Generator shipped
   'social-content-generator': { dispatchable: true, tested: false, composed: false, brand_gated: true },
   // P11 — Meta-Infrastructure (all 9 shipped 2026-05-15, second pillar to L99)
