@@ -21,6 +21,7 @@ export type PartnerTier =
   | 'model-provider'
   | 'tooling'
   | 'silicon'
+  | 'services'
 
 export type PartnerAccent = 'tech' | 'soul' | 'bridge'
 
