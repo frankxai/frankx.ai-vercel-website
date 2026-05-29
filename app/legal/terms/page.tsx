@@ -39,7 +39,7 @@ export default function TermsPage() {
       <Section title="5. Right of Withdrawal (EU Consumers)">
         <p>Under the EU Consumer Rights Directive (2011/83/EU), you have a 14-day right of withdrawal for online purchases.</p>
         <p><strong className="text-zinc-300">Exception for digital content:</strong> By purchasing digital products with immediate delivery, you explicitly consent to the immediate provision of digital content and acknowledge that you thereby waive your 14-day right of withdrawal. This consent is requested during the checkout process.</p>
-        <p>For products where the withdrawal right applies, you may exercise it by contacting us at <a href="mailto:hello@frankx.ai" className="text-violet-400">hello@frankx.ai</a> within 14 days of purchase.</p>
+        <p>For products where the withdrawal right applies, you may exercise it by contacting us at <a href="mailto:frank@frankx.ai" className="text-violet-400">frank@frankx.ai</a> within 14 days of purchase.</p>
       </Section>
 
       <Section title="6. License Grant">
@@ -100,7 +100,7 @@ export default function TermsPage() {
 
       <Section title="12. Contact">
         <p>For questions about these Terms, contact us at{' '}
-          <a href="mailto:hello@frankx.ai" className="text-violet-400">hello@frankx.ai</a>
+          <a href="mailto:frank@frankx.ai" className="text-violet-400">frank@frankx.ai</a>
         </p>
       </Section>
 

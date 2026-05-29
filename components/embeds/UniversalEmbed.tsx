@@ -65,7 +65,7 @@ const embedConfigs: Record<
       return `https://www.youtube.com/embed/${id}?${params.toString()}`
     },
     getDirectUrl: (id) => `https://www.youtube.com/watch?v=${id}`,
-    getThumbnailUrl: (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
+    getThumbnailUrl: (id) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
   },
   tiktok: {
     name: 'TikTok',

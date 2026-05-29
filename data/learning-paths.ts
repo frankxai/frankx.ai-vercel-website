@@ -145,6 +145,8 @@ export const learningPaths: LearningPath[] = [
       'Optimize cost vs. quality across the full Google AI stack',
     ],
     relatedGuides: [
+      '/partnerships/google',
+      '/connect',
       '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
       '/blog/ai-video-generation-2026-sora-runway-kling-veo',
       '/blog/best-ai-tools-for-creators-2026',
@@ -175,18 +177,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'Logan Kilpatrick walks through Gemini Omni — the new "anything from any input" model unveiled at I/O 2026.',
         tags: ['gemini-omni', 'multimodal', 'video'],
-      },
-      {
-        id: 'gemini-3-pros-tutorial',
-        youtubeId: 'vEzbJ6gIqeA',
-        title: 'How Pros Use Gemini 3.0 with Google DeepMind\'s Logan Kilpatrick',
-        creator: youtubeChannels.theNeuron.name,
-        creatorChannel: youtubeChannels.theNeuron.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Deep-dive on practical Gemini 3 Pro workflows — vibe coding in AI Studio, agentic patterns, and where 3.1 Pro shines.',
-        tags: ['gemini-3-pro', 'workflow', 'ai-studio'],
       },
       {
         id: 'gemini-deep-think',

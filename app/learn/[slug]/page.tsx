@@ -104,7 +104,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
         ) : (
           <>
             <Image
-              src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+              src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
               alt={video.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -212,7 +212,7 @@ export default function LearningPathPage() {
         '@type': 'VideoObject',
         name: video.title,
         description: video.description,
-        thumbnailUrl: `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`,
+        thumbnailUrl: `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`,
         contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
         embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
         uploadDate: '2026-01-01',

@@ -457,7 +457,7 @@ export default function LinksPage() {
           <div className="mt-2 flex justify-center gap-4 text-xs text-slate-600">
             <Link href="/privacy" className="hover:text-tech-cyan transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-tech-cyan transition-colors">Terms</Link>
-            <a href="mailto:hello@frankx.ai" className="hover:text-tech-cyan transition-colors">Contact</a>
+            <a href="mailto:frank@frankx.ai" className="hover:text-tech-cyan transition-colors">Contact</a>
           </div>
         </motion.div>
       </motion.div>
