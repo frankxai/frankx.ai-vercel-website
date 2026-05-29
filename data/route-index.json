@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 559,
+    "total": 570,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 297,
+      "section": 308,
       "community": 12,
       "tool": 10,
       "static": 14,
@@ -83,6 +83,116 @@
     {
       "href": "/agents",
       "title": "Agents",
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/books",
+      "title": "Books Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "books"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/business",
+      "title": "Business Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "business"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/community",
+      "title": "Community Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "community"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/content",
+      "title": "Content Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "content"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/meta",
+      "title": "Meta Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "meta"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/music",
+      "title": "Music Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "music"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/personal",
+      "title": "Personal Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "personal"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/products",
+      "title": "Products Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "products"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/research",
+      "title": "Research Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "research"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/visuals",
+      "title": "Visuals Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "visuals"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agents/packs/workshops",
+      "title": "Workshops Pack",
+      "tags": [
+        "agents",
+        "pack",
+        "workshops"
+      ],
       "type": "section"
     },
     {
@@ -547,6 +657,7 @@
     {
       "href": "/blog/08-golden-age-of-intelligence",
       "title": "The Golden Age of Intelligence: Flagship Atlas for Agentic Marketing Teams",
+      "description": "A 15,000-word masterwork that fuses SEO strategy, agentic operations, and automation to anchor FrankX.ai as the definitive intelligence partner for high-velocity creators and enterprises.",
       "tags": [
         "ai strategy",
         "agentic operations",
@@ -728,6 +839,7 @@
     {
       "href": "/blog/agentic-seo-publishing-masterplan",
       "title": "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19",
+      "description": "Build a 15,000-word intelligence system that fuses Google's latest search dynamics with agentic AI production pipelines. This masterplan orchestrates the next twelve days of publishing, from flagship essays to automated supporting posts, distribution rituals, and crawl amplification.",
       "tags": [
         "seo",
         "agentic ai",
@@ -812,6 +924,7 @@
     {
       "href": "/blog/ai-coe-launch",
       "title": "Launching the AI Center of Excellence: A New Era for FrankX",
+      "description": "We are deploying the AI CoE Hub, a production-grade LLM/Agent blog series, and massive UX enhancements. See how we are transforming from tech-overwhelmed to AI-empowered.",
       "tags": [
         "AI Architecture",
         "AI CoE",
