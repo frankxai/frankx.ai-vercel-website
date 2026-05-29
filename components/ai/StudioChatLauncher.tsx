@@ -27,10 +27,25 @@ export default function StudioChatLauncher() {
   const pathname = usePathname() ?? ''
   const [isOpen, setIsOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [initialPrompt, setInitialPrompt] = useState<string | undefined>(undefined)
   const prefersReduced = useReducedMotion()
 
   useEffect(() => {
     setMounted(true)
+    // Deep-link from /ask pages: `?ask=<question>` auto-opens the chat and
+    // prefills the question, closing the loop from indexed Q&A into live chat.
+    // Read from the URL directly (not useSearchParams) to avoid a Suspense
+    // boundary requirement on every page that renders the launcher.
+    try {
+      const params = new URLSearchParams(window.location.search)
+      const ask = params.get('ask')
+      if (ask !== null) {
+        setIsOpen(true)
+        if (ask && ask !== 'open' && ask !== '1') setInitialPrompt(ask)
+      }
+    } catch {
+      /* no-op */
+    }
   }, [])
 
   if (!mounted) return null
@@ -65,7 +80,11 @@ export default function StudioChatLauncher() {
         <span className="sr-only">Open studio chat</span>
       </motion.button>
 
-      <StudioChatSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <StudioChatSheet
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        initialPrompt={initialPrompt}
+      />
     </>
   )
 }

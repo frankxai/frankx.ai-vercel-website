@@ -1,4 +1,7 @@
 import { MetadataRoute } from 'next'
+// Static typed array (~12 items) — safe to import directly; does NOT walk the
+// filesystem, so it can't reintroduce the 42k-file lambda bloat (see #91).
+import { askQuestions } from '@/data/ask-questions'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -398,6 +401,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
+    })
+  })
+
+  // Ask hub + Q&A pages (the AEO/SEO acquisition surface)
+  entries.push({
+    url: `${BASE_URL}/ask`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  })
+  askQuestions.forEach((q) => {
+    entries.push({
+      url: `${BASE_URL}/ask/${q.slug}`,
+      lastModified: q.date ? new Date(q.date).toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: q.featured ? 0.8 : 0.7,
     })
   })
 

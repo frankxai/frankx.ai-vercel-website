@@ -11,6 +11,7 @@ type JsonLdType =
   | 'Review'
   | 'BreadcrumbList'
   | 'FAQPage'
+  | 'QAPage'
   | 'HowTo'
   | 'Course'
   | 'ItemList'

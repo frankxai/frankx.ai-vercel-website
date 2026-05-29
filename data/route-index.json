@@ -1,20 +1,20 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 585,
+    "total": 590,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 320,
+      "section": 323,
       "community": 12,
       "tool": 10,
       "static": 14,
-      "blog": 132,
+      "blog": 133,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
       "os": 9,
-      "partnership": 3,
+      "partnership": 4,
       "product": 26,
       "research": 3,
       "video": 3,
@@ -471,6 +471,14 @@
         "ana",
         "intelligence",
         "system"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ask",
+      "title": "Ask",
+      "tags": [
+        "ask"
       ],
       "type": "section"
     },
@@ -1381,6 +1389,20 @@
         "Content Strategy",
         "Automation",
         "Growth Systems"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/google-ai-pro-compute-limits-ai-credits-may-2026",
+      "title": "Compute-Aware AI: Inside Google AI Pro's 2026 Upgrade",
+      "description": "Google AI Pro got smarter on May 20, 2026 — compute-aware usage in Gemini, AI credits across Flow and Antigravity, and a cleaner base plan. Here's how to build with the new model.",
+      "tags": [
+        "Google Gemini",
+        "AI Pricing",
+        "AI Credits",
+        "Flow",
+        "Antigravity",
+        "AI Strategy"
       ],
       "type": "blog"
     },
@@ -2505,6 +2527,23 @@
       "type": "community"
     },
     {
+      "href": "/connect",
+      "title": "Connect",
+      "tags": [
+        "connect"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/connect/qr",
+      "title": "QR",
+      "tags": [
+        "connect",
+        "qr"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/consulting",
       "title": "Consulting",
       "tags": [
@@ -3323,7 +3362,7 @@
         "A2A",
         "Agent Card",
         "Interoperability",
-        "Oracle OAS"
+        "Internal Agent Spec"
       ],
       "type": "guide"
     },
@@ -3342,7 +3381,7 @@
     {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
-      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
+      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while compounding output",
       "tags": [
         "Writing",
         "AI",
@@ -4207,6 +4246,15 @@
       "tags": [
         "partnership",
         "arrow"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/kyndryl",
+      "title": "Kyndryl",
+      "tags": [
+        "partnership",
+        "kyndryl"
       ],
       "type": "partnership"
     },

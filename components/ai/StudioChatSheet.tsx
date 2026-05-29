@@ -20,10 +20,13 @@ import { DEFAULT_PERSONA, PERSONA_LIST, type PersonaId, getPersona } from '@/lib
 import BYOKSetup, { BYOK_STORAGE_KEY } from './BYOKSetup'
 import ToolCallCard from './ToolCallCard'
 import UsageMeter from './UsageMeter'
+import Markdown from './Markdown'
 
 interface StudioChatSheetProps {
   isOpen: boolean
   onClose: () => void
+  /** Prefill the composer when opened via an /ask deep-link. */
+  initialPrompt?: string
 }
 
 const ACCENT_CLASSES: Record<string, { ring: string; chip: string; glow: string }> = {
@@ -54,11 +57,20 @@ const ACCENT_CLASSES: Record<string, { ring: string; chip: string; glow: string 
   },
 }
 
-export default function StudioChatSheet({ isOpen, onClose }: StudioChatSheetProps) {
+export default function StudioChatSheet({ isOpen, onClose, initialPrompt }: StudioChatSheetProps) {
   const [personaId, setPersonaId] = useState<PersonaId>(DEFAULT_PERSONA)
   const [showByok, setShowByok] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const seededPrompt = useRef(false)
+
+  // Prefill the composer once when opened via an /ask deep-link.
+  useEffect(() => {
+    if (isOpen && initialPrompt && !seededPrompt.current) {
+      seededPrompt.current = true
+      setInputValue(initialPrompt)
+    }
+  }, [isOpen, initialPrompt])
 
   const persona = useMemo(() => getPersona(personaId), [personaId])
   const accent = ACCENT_CLASSES[persona.accent] || ACCENT_CLASSES.cyan
@@ -406,10 +418,15 @@ function MessageBubble({
       >
         {message.parts?.map((part, i) => {
           if (part.type === 'text') {
-            return (
+            const text = (part as { text: string }).text
+            // User messages render verbatim; assistant answers render markdown
+            // (links, lists, code) so the studio's replies look polished, not raw.
+            return isUser ? (
               <div key={i} className="whitespace-pre-wrap break-words">
-                {(part as { text: string }).text}
+                {text}
               </div>
+            ) : (
+              <Markdown key={i} content={text} variant="chat" />
             )
           }
           if (typeof part.type === 'string' && part.type.startsWith('tool-')) {

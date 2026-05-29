@@ -1,6 +1,7 @@
 import { getAllBlogPosts } from '@/lib/blog'
 import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
+import { askQuestions } from '@/data/ask-questions'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 
@@ -30,6 +31,10 @@ export async function GET() {
 
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  const askLinks = askQuestions
+    .map((q) => `- [${q.question}](${SITE_URL}/ask/${q.slug}): ${q.tldr}`)
     .join('\n')
 
   const content = `# FrankX
@@ -77,6 +82,11 @@ ${researchLinks}
 - [Papa](${SITE_URL}/papa): Witali Riemer (1969-2018) — Frank's father, Wolgadeutsche, family witness page
 - [Familie](${SITE_URL}/familie): Family hub (German + English)
 - [Chronicle](${SITE_URL}/chronicle): The reflective layer — weekly Palace, monthly Survey, quarterly Census, annual Audit
+
+## Ask FrankX (Q&A)
+Direct answers to common questions, each with a live follow-up path into the Studio Crew chat.
+- [Ask Index](${SITE_URL}/ask): All questions, grouped by topic
+${askLinks}
 
 ## Recent Writing
 ${blogLinks}
