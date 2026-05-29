@@ -305,12 +305,29 @@ const nextConfig = {
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
   // Listed here so Next.js requires them at runtime from node_modules instead.
+  //
+  // History:
+  // - resend / @react-email/* / htmlparser2 / entities → 2026-05 (initial)
+  // - isomorphic-dompurify / dompurify / marked → 2026-05-27
+  //   Root cause: /workshops/ikigai-branding (PromptCard) and /books/*/chapter-*
+  //   (BookReader) both render runtime markdown via marked → DOMPurify in
+  //   client components. Turbopack tried to bundle these into the server
+  //   bundle anyway and failed at runtime with "Failed to load external".
+  //   Sister bug to the @react-email/htmlparser2/entities fix. Same pattern.
   serverExternalPackages: [
     'resend',
     '@react-email/render',
     '@react-email/components',
     'htmlparser2',
     'entities',
+    'isomorphic-dompurify',
+    'dompurify',
+    'marked',
+    // jsdom is the transitive load that actually fails — isomorphic-dompurify
+    // does `require("jsdom")` on the server path. Without it externalized,
+    // Turbopack tries to bundle jsdom (which has native deps) and fails at
+    // runtime with "Failed to load external [module]".
+    'jsdom',
   ],
   async headers() {
     return [

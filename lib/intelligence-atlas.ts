@@ -158,7 +158,7 @@ export const atlasActions: AtlasAction[] = [
   {
     title: 'Contribute field research',
     description: 'Share telemetry, case studies, and governance practices to inform future atlas updates.',
-    href: 'mailto:hello@frankx.ai?subject=FrankX%20Intelligence%20Atlas%20Contribution',
+    href: 'mailto:frank@frankx.ai?subject=FrankX%20Intelligence%20Atlas%20Contribution',
     label: 'Partner with FrankX',
   },
 ]

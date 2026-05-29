@@ -27,7 +27,7 @@ export const google: Partner = {
   subTagline:
     'Gemini already in daily multimodal delivery. Google ADK + A2A protocol already in the workshop enterprise lane. The conversation is Cloud Partner Advantage entry + workshop credits.',
 
-  contextWindow: `Gemini is part of my daily multimodal delivery — text, image (Nano Banana / Imagen), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. The Google Agent Development Kit and the A2A protocol are not a slide — they are the enterprise lane of the Build First AI Agent workshop and the explicit enterprise lane of the Starlight Agent Lab three-lane portfolio (Vercel AI SDK / Claude Agent SDK / Google ADK).
+  contextWindow: `Gemini is part of my daily multimodal delivery — text (Gemini 3 Pro for long-context grounding), image (Nano Banana 2 / Imagen via Higgsfield MCP), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. Antigravity is the multi-model agentic dev surface where Gemini 3 Pro and Claude Sonnet refactor side-by-side — multi-model parallel comparison as daily practice, not benchmark theater. The Google Agent Development Kit and the A2A protocol are not a slide — they are the enterprise lane of the Build First AI Agent workshop and the explicit enterprise lane of the Starlight Agent Lab three-lane portfolio (Vercel AI SDK / Claude Agent SDK / Google ADK).
 
 The strategic alignment here is about a Google-native AI CoE practice with workshop and curriculum distribution. Pursuing Google Cloud Partner Advantage status. The currency that matters more than commission is attendee credits for the workshop cohort and reference-architecture surfaces with Deploy-to-GCP CTAs. EMEA AI Architect audience already funnels into the topic.`,
 
@@ -35,7 +35,12 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     {
       label: 'Gemini in daily multimodal delivery',
       detail:
-        'Gemini 3, Nano Banana 2, Veo, and Imagen sit inside the working set used for daily multimodal output — research, image, video, and code. Not a benchmark exercise. The daily-use stack.',
+        'Gemini 3 Pro, Nano Banana 2, Veo, and Imagen sit inside the working set used for daily multimodal output — research, image (via Higgsfield MCP), video, and long-context code. Not a benchmark exercise. The daily-use stack.',
+    },
+    {
+      label: 'Antigravity for multi-model agentic dev',
+      detail:
+        'Antigravity is where I run multi-model parallel refactors — Gemini 3 Pro and Claude Sonnet side-by-side on the same task, pick the best, merge or compose. Multi-model comparison as daily practice. Native browser pane and Vercel deploy integration round it out.',
     },
     {
       label: 'ADK + A2A in the Build First AI Agent workshop',
@@ -69,6 +74,10 @@ The strategic alignment here is about a Google-native AI CoE practice with works
 
   proofPoints: [
     {
+      label: 'Gemini & Google AI Mastery — curated learning portal',
+      href: '/learn/gemini-mastery',
+    },
+    {
       label: 'Agent Card / A2A protocol — public spec',
       href: '/guides/agent-card-a2a-spec',
     },
@@ -95,8 +104,8 @@ The strategic alignment here is about a Google-native AI CoE practice with works
 
   asymmetricValue: [
     {
-      title: 'Gemini + ADK + A2A native operator',
-      body: 'Gemini in daily multimodal delivery, ADK + A2A in the workshop enterprise lane, and a public A2A protocol guide on /guides. Not a tourist — an operator with the stack in hand.',
+      title: 'Gemini + Antigravity + ADK + A2A native operator',
+      body: 'Gemini 3 Pro in daily multimodal delivery, Antigravity as the daily multi-model agentic dev surface, ADK + A2A in the workshop enterprise lane, and a public A2A protocol guide on /guides. Not a tourist — an operator with the full Google AI stack in hand.',
       metric: 'Native operator',
     },
     {
@@ -217,6 +226,16 @@ The strategic alignment here is about a Google-native AI CoE practice with works
 
   crossLinks: [
     crossLink(
+      'learn-gemini',
+      'Curated portal — 8 videos, 8-tool ecosystem grid (Gemini 3 Pro, Antigravity 2.0, Nano Banana, Veo, Imagen, NotebookLM, AI Studio), Google I/O 2026 timeline, 10-Q FAQ. The public-facing front door to the Gemini stack on frankx.ai.',
+      'Gemini & Google AI Mastery portal'
+    ),
+    crossLink(
+      'connect',
+      'In-person + QR landing surface. Live event ribbon shows Google AI Live Madrid 2026-05-28 → 30 and South Summit Madrid 2026-06-02 → 06 — the calendar the partnership conversation overlaps.',
+      'Connect — Google AI Live Madrid presence'
+    ),
+    crossLink(
       'ai-architect-academy',
       'Curriculum where the Google branch (ADK + A2A) is taught. The substrate for the workshop attendee-credit channel.',
       'Where Gemini + ADK is taught'
@@ -259,7 +278,8 @@ The strategic alignment here is about a Google-native AI CoE practice with works
   programStatus: 'Google Cloud Partner Advantage — pursuit underway',
 
   alreadyShared: [
-    'Gemini in daily multimodal delivery — Veo, Nano Banana 2, and Imagen evaluations sit inside the working set.',
+    'Gemini 3 Pro in daily multimodal delivery — Veo, Nano Banana 2, and Imagen evaluations sit inside the working set.',
+    'Antigravity in daily use — multi-model parallel agentic dev (Gemini 3 Pro and Claude Sonnet side-by-side) as a working pattern, not a one-off experiment.',
     'Google ADK + A2A protocol in the Build First AI Agent workshop enterprise lane, taught hands-on.',
     'Public /guides/agent-card-a2a-spec documentation written from operator-grade use of the protocol.',
     'Starlight Agent Lab three-lane portfolio explicitly positions ADK as the enterprise lane alongside Vercel AI SDK and Claude Agent SDK.',
@@ -268,7 +288,7 @@ The strategic alignment here is about a Google-native AI CoE practice with works
   ],
 
   formalizationAsk:
-    "What's left to formalize. Gemini is daily delivery. ADK is the enterprise lane in the workshop. A2A protocol is publicly documented. The conversation is closing Cloud Partner Advantage, workshop attendee credits for Build First AI Agent (Google branch), DevRel touchpoint with the ADK team, and a joint slot at Google Cloud Next EMEA.",
+    "What's left to formalize. Gemini is daily delivery. Antigravity is the daily multi-model agentic dev surface. ADK is the enterprise lane in the workshop. A2A protocol is publicly documented. The conversation is closing Cloud Partner Advantage, workshop attendee credits for Build First AI Agent (Google branch), DevRel touchpoint with the ADK and Antigravity teams, and a joint slot at Google Cloud Next EMEA.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/google.svg',

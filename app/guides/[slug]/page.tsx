@@ -12,9 +12,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const guide = getGuide(slug)
   if (!guide) return { title: 'Guide Not Found' }
-  const ogImage = guide.image
-    ? guide.image
-    : `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
+  // Static fallback while /api/og dynamic generation is debugged.
+  // Live-verified 2026-05-26: /api/og returns 200 + 0 bytes on Next 16.
+  // Per-guide custom image (guide.image) preferred; falls back to site hero.
+  const ogImage = guide.image ? guide.image : '/hero-homepage.png'
   return {
     title: guide.title,
     description: guide.description,

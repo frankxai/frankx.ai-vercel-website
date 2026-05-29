@@ -32,6 +32,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import {
   ArrowLeft,
   ArrowRight,
@@ -44,8 +45,20 @@ import {
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
 import { ModuleOutlineRail } from '@/components/workshops/ikigai/ModuleOutlineRail'
-import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
-import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
+// PromptCard + PromptStack import marked + isomorphic-dompurify (→ jsdom).
+// Even with all three in serverExternalPackages, Turbopack's SSR pre-render
+// still trips at runtime with "Failed to load external [module]". Bypass
+// SSR entirely for these two — they're client-only by purpose
+// (markdown render + copy-to-clipboard + read-state). The server returns
+// a fast placeholder; hydration swaps in the real card.
+const PromptCard = dynamic(
+  () => import('@/components/workshops/ikigai/PromptCard').then((m) => m.PromptCard),
+  { ssr: false, loading: () => <div className="h-32 rounded-2xl border border-white/10 bg-white/5" aria-hidden="true" /> }
+)
+const PromptStack = dynamic(
+  () => import('@/components/workshops/ikigai/PromptStack').then((m) => m.PromptStack),
+  { ssr: false, loading: () => <div className="h-32 rounded-2xl border border-white/10 bg-white/5" aria-hidden="true" /> }
+)
 import { WorkshopPath } from '@/components/workshops/ikigai/WorkshopPath'
 import { WORKSHOP_PROMPTS_V9 as WORKSHOP_PROMPTS } from '@/lib/workshop-prompts-v9'
 import { getWorkshopBySlug } from '@/data/workshops'

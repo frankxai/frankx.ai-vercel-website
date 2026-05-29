@@ -17,6 +17,7 @@ import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
+import { HideOnLandingRoutes } from '@/components/layout/HideOnLandingRoutes'
 
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
@@ -192,11 +193,15 @@ export default function RootLayout({
             <div className="absolute top-1/3 -right-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/[0.025] blur-[140px]" />
             <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
           </div>
-          <NavigationMega />
+          <HideOnLandingRoutes>
+            <NavigationMega />
+          </HideOnLandingRoutes>
           <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>
-          <Footer />
+          <HideOnLandingRoutes>
+            <Footer />
+          </HideOnLandingRoutes>
           <Analytics />
           <SpeedInsights />
           {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (

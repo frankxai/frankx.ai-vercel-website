@@ -18,6 +18,9 @@ export const SURFACE_HREFS: Record<CrossLinkSurface, string> = {
   os: '/os',
   'agentic-builder-lab': '/agentic-builder-lab',
   build: '/build',
+  'learn-gemini': '/learn/gemini-mastery',
+  'learn-claude': '/learn/claude-mastery',
+  connect: '/connect',
 }
 
 export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
@@ -30,6 +33,9 @@ export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
   os: 'FrankX OS overview',
   'agentic-builder-lab': 'Agentic Builder Lab',
   build: 'Build with Frank',
+  'learn-gemini': 'Gemini & Google AI mastery portal',
+  'learn-claude': 'Claude mastery portal',
+  connect: 'Connect — in-person + QR landing',
 }
 
 /**

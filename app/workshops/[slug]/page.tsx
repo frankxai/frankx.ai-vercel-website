@@ -42,7 +42,11 @@ export async function generateMetadata(
       type: 'article',
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(workshop.title)}&subtitle=${encodeURIComponent(workshop.subtitle)}`,
+          // Static fallback while /api/og dynamic generation is debugged.
+          // Live-verified 2026-05-26: /api/og returns 200 + 0 bytes on Next 16
+          // even on Fluid Compute. Static hero ensures social-share unfurls
+          // render rather than blanking.
+          url: `${SITE_URL}/hero-homepage.png`,
           width: 1200,
           height: 630,
           alt: workshop.title,
