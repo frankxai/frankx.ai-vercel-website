@@ -3,6 +3,9 @@ import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
+import { getEditorial } from '@/lib/llm-hub/editorial'
 
 const SITE_URL = siteConfig.url
 
@@ -30,6 +33,14 @@ export async function GET() {
 
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  const modelLinks = getAllModels()
+    .map((m) => `- [${m.name}](${SITE_URL}/llm-hub/${m.id}): ${getEditorial(m.id)?.tagline || `${m.name} specs, benchmarks, pricing`}`)
+    .join('\n')
+
+  const comparisonLinks = COMPARISONS
+    .map((c) => `- [${c.title}](${SITE_URL}/llm-hub/compare/${c.slug}): ${c.verdict}`)
     .join('\n')
 
   const content = `# FrankX
@@ -60,6 +71,15 @@ ${libraryLinks}
 - [Research Sources](${SITE_URL}/research/sources): How research is sourced
 - [Research Methodology](${SITE_URL}/research/methodology): Validation rigor
 ${researchLinks}
+
+## LLM Provider Hub (the decision layer over the frontier model landscape)
+- [LLM Hub](${SITE_URL}/llm-hub): Every frontier provider, model, and agentic platform — categorized, priced, with verdicts
+- [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable registry + verdicts + decision matrix for agents
+- [Frontier Models Arena](${SITE_URL}/ai-ops/models-2026): Head-to-head benchmark visualization
+${modelLinks}
+
+### Model Comparisons (head-to-head)
+${comparisonLinks}
 
 ## Workshops (live, application or open)
 - [Build First AI Agent](${SITE_URL}/workshops/build-first-ai-agent): Multi-path workshop with Vercel AI SDK + 6 branches

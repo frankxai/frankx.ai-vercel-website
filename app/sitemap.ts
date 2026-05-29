@@ -4,6 +4,8 @@ import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -634,6 +636,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
+  })
+
+  // LLM Hub — per-model pages (programmatic, from registry)
+  getAllModels().forEach((m) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/${m.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    })
+  })
+
+  // LLM Hub — head-to-head comparison pages (high-intent SEO)
+  COMPARISONS.forEach((c) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/compare/${c.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    })
+  })
+
+  // LLM Hub — agent-readable JSON surface
+  entries.push({
+    url: `${BASE_URL}/llm-hub.json`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.5,
   })
 
   // Partners — affiliate transparency hub (workshop tools + pursued programs)

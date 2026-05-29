@@ -1,54 +1,66 @@
 import Link from 'next/link'
-import { ArrowRight, Compass, Zap } from 'lucide-react'
+import { ArrowRight, Compass, Zap, Code2, FileJson } from 'lucide-react'
 import { CapabilityCategoryGrid } from '@/components/llm-hub/CapabilityCategoryGrid'
 import { ProviderCard } from '@/components/llm-hub/ProviderCard'
 import { AgenticPlatformPill } from '@/components/llm-hub/AgenticPlatformPill'
-import {
-  getAllPlatforms,
-  getProviders,
-} from '@/lib/llm-hub/registry'
+import { ModelExplorer } from '@/components/llm-hub/ModelExplorer'
+import { DecisionMatrix } from '@/components/llm-hub/DecisionMatrix'
+import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
+import { getAllPlatforms, getProviders } from '@/lib/llm-hub/registry'
+import { buildModelRows } from '@/lib/llm-hub/rows'
+import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
+import { CREATOR_STACKS } from '@/lib/llm-hub/creator-stacks'
+
+export const revalidate = 3600
+
+const SOURCES = [
+  { name: 'OpenRouter', role: 'Live per-token pricing & availability (300+ models)', url: 'https://openrouter.ai/models' },
+  { name: 'Artificial Analysis', role: 'Independent Intelligence Index, speed, latency', url: 'https://artificialanalysis.ai/leaderboards/models' },
+  { name: 'LMArena', role: 'Crowdsourced human-preference Elo', url: 'https://lmarena.ai/' },
+  { name: 'ARC Prize Foundation', role: 'ARC-AGI abstract reasoning benchmark', url: 'https://arcprize.org/' },
+  { name: 'SWE-bench', role: 'Real-world software engineering tasks', url: 'https://www.swebench.com/' },
+  { name: 'Vendor model cards', role: 'Self-reported benchmarks (labelled as such)', url: 'https://frankx.ai/ai-ops/models-2026' },
+]
 
 const FAQ = [
   {
     q: 'What is the best LLM in 2026?',
-    a: 'There is no single winner. Claude Opus 4.6 leads reasoning (68.8% ARC-AGI-2) and agentic coding. GPT-5.2 Pro dominates broad multimodal + voice. Gemini 3.5 Flash (announced at Google I/O ’26) sets a new cost/intelligence frontier at less than half the cost of comparable flagships. Gemini 3.5 Pro is shipping next month for the highest-tier reasoning. Pick by task, not brand.',
+    a: 'There is no single winner. Claude Opus 4.6 leads reasoning (68.8% ARC-AGI-2) and agentic coding. GPT-5.2 Pro dominates broad multimodal + voice. Gemini 3.5 Flash (Google I/O ’26) sets a new cost/intelligence frontier at less than half the cost of comparable flagships. Gemini 3.5 Pro ships next month for the highest-tier reasoning. Pick by task — use the decision matrix above.',
+  },
+  {
+    q: 'How is this different from OpenRouter or Artificial Analysis?',
+    a: 'Those are the raw-data sources — OpenRouter for live pricing and routing, Artificial Analysis for independent benchmarks, LMArena for human preference. We cite all three. The FrankX LLM Hub adds the decision layer they don’t: task-first navigation, the agentic-platform comparison (Claude Code vs Antigravity vs Cursor vs Codex), curated verdicts, and a creator-stack lens — for humans and agents.',
   },
   {
     q: 'Which is the cheapest frontier reasoning model?',
-    a: 'DeepSeek V3.2 leads on pure cost at $0.27 input / $1.10 output per million tokens with MIT licensing. Gemini 3.5 Flash is the cheapest closed-frontier option at $0.30 / $2.50. Both deliver frontier-class reasoning for production agentic workloads.',
-  },
-  {
-    q: 'What is Antigravity 2.0?',
-    a: 'Google’s enterprise agent-building platform announced at I/O ’26. Includes a standalone desktop app, a lightweight CLI, and integration into the Gemini Enterprise Agent Platform — agent runs stay inside your Google Cloud trust boundary by default. Direct competitor to Claude Code, Cursor, and OpenAI Codex.',
+    a: 'DeepSeek V3.2 leads on pure cost ($0.27 / $1.10 per 1M tokens, MIT license). Gemini 3.5 Flash is the cheapest closed-frontier option at $0.30 / $2.50. Both deliver frontier-class reasoning for production agentic workloads.',
   },
   {
     q: 'What is the best agentic LLM in 2026?',
-    a: 'Three contenders by category. Coding agents: Claude Opus 4.6 (65.4% Terminal-Bench 2.0) and Gemini 3.5 Flash (76.2% Terminal-Bench 2.1). Long-horizon enterprise agents: Gemini Spark (24/7 background) and Claude Agent Teams (parallel). Computer-use: GPT-5.2 Pro Operator and Claude Opus 4.6 (72.7% OSWorld).',
+    a: 'By category: coding agents — Gemini 3.5 Flash (76.2% Terminal-Bench 2.1) and Claude Opus 4.6; long-horizon enterprise — Gemini Spark and Claude Agent Teams; computer-use — GPT-5.2 Operator and Claude Opus 4.6 (72.7% OSWorld).',
   },
   {
-    q: 'How does Gemini 3.5 Flash compare to Claude Opus 4.6?',
-    a: 'Different tiers, different jobs. Gemini 3.5 Flash beats Opus 4.6 on Terminal-Bench 2.1 (76.2 vs 65.4) at a fraction of the cost, optimised for long-horizon agentic tasks. Opus 4.6 leads on ARC-AGI-2 (68.8 vs ~45) and BigLaw Bench (90.2), with a 1M context window in beta. Flash = cost-effective agent runtime. Opus = high-stakes reasoning + 1M-context synthesis.',
+    q: 'Is the pricing live?',
+    a: 'Where a model maps to OpenRouter, pricing is fetched live (hourly) and marked with a ⚡ icon and "via OpenRouter." Otherwise it comes from our curated registry. Always verify against the provider before relying on it for billing.',
   },
   {
-    q: 'Which providers offer EU data sovereignty?',
-    a: 'Mistral AI (Paris-based, full EU residency), Cohere (EU residency on Command A), and selected Anthropic Opus 4.6 deployments via AWS Bedrock EU. Google Cloud and Azure offer EU regions but data may transit globally depending on configuration.',
-  },
-  {
-    q: 'How often is this hub updated?',
-    a: 'Continuously. The model registry (data/model-registry.json) is the source of truth and is updated within 48 hours of every frontier release. Last refreshed May 20, 2026 (Google I/O ’26).',
+    q: 'Can AI agents consume this hub?',
+    a: 'Yes. The full curated dataset — models, pricing, verdicts, decision matrix, comparisons — is available as clean JSON at /llm-hub.json, plus JSON-LD structured data on every page and deep links in /llms.txt.',
   },
 ]
 
-export default function LlmHubPage() {
+export default async function LlmHubPage() {
   const providers = getProviders()
   const platforms = getAllPlatforms()
+  const live = await fetchLivePricing()
+  const rows = buildModelRows(live)
+  const liveCount = rows.filter((r) => r.live).length
 
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'LLM Provider Hub 2026',
-    description:
-      'Categorized directory of every major LLM provider — frontier models, agentic platforms, pricing, capabilities.',
+    description: 'Categorized directory of every major LLM provider — frontier models, agentic platforms, pricing, capabilities.',
     itemListElement: providers.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -63,20 +75,15 @@ export default function LlmHubPage() {
       },
     })),
   }
-
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({
       '@type': 'Question',
       name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
-      },
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   }
-
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -88,18 +95,9 @@ export default function LlmHubPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[#0a0a0b]" />
@@ -113,11 +111,7 @@ export default function LlmHubPage() {
         />
         <div
           className="absolute left-0 top-0 h-[40%] w-[60%]"
-          style={{
-            background:
-              'radial-gradient(ellipse at top left, rgba(16,185,129,0.07) 0%, transparent 70%)',
-            filter: 'blur(80px)',
-          }}
+          style={{ background: 'radial-gradient(ellipse at top left, rgba(16,185,129,0.07) 0%, transparent 70%)', filter: 'blur(80px)' }}
         />
       </div>
 
@@ -131,39 +125,54 @@ export default function LlmHubPage() {
             <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
               LLM Provider Hub <span className="text-white/40">2026</span>
             </h1>
-            <p className="mb-8 max-w-3xl text-lg text-white/60">
-              Every frontier LLM provider, every flagship model, every agentic platform — categorized by capability and refreshed continuously. Built from the same model registry that powers our Intelligence Pipeline.
+            <p className="mb-4 max-w-3xl text-lg text-white/60">
+              The decision layer on top of the raw data. Every frontier provider, model, and agentic platform — categorized
+              by capability, priced live, and paired with a verdict. Built for humans and agents.
+            </p>
+            <p className="mb-8 max-w-3xl text-sm text-white/40">
+              We cite OpenRouter, Artificial Analysis, and LMArena as sources, and add what they don’t: task-first navigation,
+              the agentic-platform comparison, curated verdicts, and a creator-stack lens.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/blog/google-io-26-cloud-innovations-gemini-3-5-omni-antigravity"
+                href="#explorer"
                 className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300 transition-colors hover:border-emerald-500/50"
               >
-                <Zap className="h-4 w-4" /> New: Decoding Google I/O ’26
+                <Compass className="h-4 w-4" /> Explore all models
               </Link>
               <Link
-                href="/ai-ops/models-2026"
+                href="/blog/google-io-26-cloud-innovations-gemini-3-5-omni-antigravity"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >
-                <Compass className="h-4 w-4" /> Benchmark arena
+                <Zap className="h-4 w-4" /> Google I/O ’26 decoded
               </Link>
-              <Link
-                href="/research/frontier-llm-landscape-2026"
+              <a
+                href="/llm-hub.json"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >
-                Research domain <ArrowRight className="h-4 w-4" />
-              </Link>
+                <FileJson className="h-4 w-4" /> Agent JSON
+              </a>
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
               <Stat label="Providers tracked" value={providers.length.toString()} />
-              <Stat
-                label="Frontier models"
-                value={providers.reduce((acc, p) => acc + p.models.length, 0).toString()}
-              />
+              <Stat label="Frontier models" value={rows.length.toString()} />
               <Stat label="Agentic platforms" value={platforms.length.toString()} />
-              <Stat label="Capability categories" value="7" />
+              <Stat label="Live-priced" value={liveCount > 0 ? `${liveCount}` : 'registry'} />
             </div>
+          </div>
+        </section>
+
+        {/* Decision matrix — start here */}
+        <section className="border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 flex flex-col gap-1">
+              <h2 className="text-2xl font-bold">Start here: pick your constraint</h2>
+              <p className="text-sm text-white/40">
+                The fastest path from “which model?” to an answer. One dominant constraint → a recommendation.
+              </p>
+            </div>
+            <DecisionMatrix />
           </div>
         </section>
 
@@ -172,11 +181,41 @@ export default function LlmHubPage() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex flex-col gap-1">
               <h2 className="text-2xl font-bold">Browse by capability</h2>
-              <p className="text-sm text-white/40">
-                Pick the job, jump to the providers that lead. Tap a provider chip to scroll to the full card.
-              </p>
+              <p className="text-sm text-white/40">Pick the job, jump to the providers that lead.</p>
             </div>
             <CapabilityCategoryGrid />
+          </div>
+        </section>
+
+        {/* Model explorer */}
+        <section id="explorer" className="scroll-mt-20 border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 flex flex-col gap-1">
+              <h2 className="text-2xl font-bold">Model explorer</h2>
+              <p className="text-sm text-white/40">
+                Sort and filter every tracked model. {liveCount > 0 ? 'Live pricing via OpenRouter where available.' : 'Pricing from the curated registry.'} Click a model for the full breakdown.
+              </p>
+            </div>
+            <ModelExplorer rows={rows} />
+          </div>
+        </section>
+
+        {/* Creator stacks */}
+        <section className="border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 flex flex-col gap-1">
+              <h2 className="flex items-center gap-2 text-2xl font-bold">
+                <Code2 className="h-5 w-5 text-amber-400" /> Creator stacks
+              </h2>
+              <p className="text-sm text-white/40">
+                Creators don’t pick a model — they assemble a stack. Here’s what to use across each modality, and the workflow.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {CREATOR_STACKS.map((s) => (
+                <CreatorStackCard key={s.slug} stack={s} />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -185,9 +224,7 @@ export default function LlmHubPage() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex flex-col gap-1">
               <h2 className="text-2xl font-bold">Provider directory</h2>
-              <p className="text-sm text-white/40">
-                Flagship model, capability focus, agentic platforms, and notable tech for every tracked provider.
-              </p>
+              <p className="text-sm text-white/40">Flagship model, capability focus, agentic platforms, and notable tech for every tracked provider.</p>
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {providers.map((provider) => (
@@ -197,22 +234,46 @@ export default function LlmHubPage() {
           </div>
         </section>
 
-        {/* Agentic platforms strip */}
+        {/* Agentic platforms */}
         <section className="border-t border-white/5 px-6 py-14" id="agentic-platforms">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex flex-col gap-1">
               <h2 className="text-2xl font-bold">Agentic platforms</h2>
-              <p className="text-sm text-white/40">
-                Where the models actually do work — IDEs, CLIs, desktops, agent platforms, and managed runtimes.
-              </p>
+              <p className="text-sm text-white/40">Where the models actually do work — IDEs, CLIs, desktops, agent platforms, managed runtimes. The layer the data sites skip.</p>
             </div>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {platforms.map((p) => {
                 const accent =
-                  providers.find((pr) => pr.org.slug === p.org || pr.org.slug.includes(p.org))?.org
-                    .accent_color || '#a855f7'
+                  providers.find((pr) => pr.org.slug === p.org || pr.org.slug.includes(p.org))?.org.accent_color || '#a855f7'
                 return <AgenticPlatformPill key={p.id} platform={p} accent={accent} />
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Sources & methodology */}
+        <section className="border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 flex flex-col gap-1">
+              <h2 className="text-2xl font-bold">Sources & methodology</h2>
+              <p className="text-sm text-white/40">
+                We synthesize; we don’t fabricate. Live pricing is attributed; benchmarks are sourced; vendor-reported figures are
+                labelled as such and flagged pending independent reproduction.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {SOURCES.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-white/25"
+                >
+                  <p className="text-sm font-medium text-white">{s.name}</p>
+                  <p className="mt-1 text-xs text-white/45">{s.role}</p>
+                </a>
+              ))}
             </div>
           </div>
         </section>
@@ -229,9 +290,7 @@ export default function LlmHubPage() {
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-white">
                     {f.q}
-                    <span className="text-white/30 transition-transform group-open:rotate-45">
-                      +
-                    </span>
+                    <span className="text-white/30 transition-transform group-open:rotate-45">+</span>
                   </summary>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">{f.a}</p>
                 </details>
@@ -256,7 +315,7 @@ export default function LlmHubPage() {
                 href="/ai-ops/models-2026"
                 label="Arena"
                 title="Frontier Model Benchmark Arena"
-                description="Head-to-head benchmark, pricing, and ACOS routing"
+                description="Head-to-head benchmark radar, pricing, and ACOS routing"
                 accent="#10b981"
               />
               <RelatedLink
@@ -272,12 +331,9 @@ export default function LlmHubPage() {
 
         <footer className="border-t border-white/5 px-6 py-12">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm text-white/30">
-              FrankX Intelligence Pipeline · Last refreshed May 20, 2026
-            </p>
+            <p className="text-sm text-white/30">FrankX Intelligence Pipeline · Last refreshed May 20, 2026</p>
             <p className="mt-2 text-xs text-white/15">
-              Source of truth: <code>data/model-registry.json</code> · Add a model via{' '}
-              <code>/new-model</code>
+              Source of truth: <code>data/model-registry.json</code> · Agent surface: <a href="/llm-hub.json" className="underline">/llm-hub.json</a> · Add a model via <code>/new-model</code>
             </p>
           </div>
         </footer>
@@ -295,33 +351,13 @@ function Stat({ label, value }: { label: string; value: string }) {
   )
 }
 
-function RelatedLink({
-  href,
-  label,
-  title,
-  description,
-  accent,
-}: {
-  href: string
-  label: string
-  title: string
-  description: string
-  accent: string
-}) {
+function RelatedLink({ href, label, title, description, accent }: { href: string; label: string; title: string; description: string; accent: string }) {
   return (
-    <Link
-      href={href}
-      className="group block rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:border-white/25"
-    >
-      <p
-        className="mb-2 font-mono text-xs uppercase tracking-wider"
-        style={{ color: accent }}
-      >
+    <Link href={href} className="group block rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:border-white/25">
+      <p className="mb-2 font-mono text-xs uppercase tracking-wider" style={{ color: accent }}>
         {label}
       </p>
-      <h3 className="mb-1 text-sm font-semibold text-white transition-colors group-hover:text-white">
-        {title}
-      </h3>
+      <h3 className="mb-1 text-sm font-semibold text-white">{title}</h3>
       <p className="text-xs text-white/45">{description}</p>
     </Link>
   )
