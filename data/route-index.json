@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 559,
+    "total": 585,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 297,
+      "section": 320,
       "community": 12,
       "tool": 10,
       "static": 14,
-      "blog": 129,
+      "blog": 132,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -73,6 +73,16 @@
     {
       "href": "/agentic-ai-center",
       "title": "Agentic AI Center",
+      "type": "section"
+    },
+    {
+      "href": "/agentic-builder-lab",
+      "title": "Agentic Builder Lab",
+      "tags": [
+        "agentic",
+        "builder",
+        "lab"
+      ],
       "type": "section"
     },
     {
@@ -337,6 +347,15 @@
       "href": "/ai-assessment",
       "title": "AI Assessment",
       "type": "tool"
+    },
+    {
+      "href": "/ai-coe",
+      "title": "AI Coe",
+      "tags": [
+        "ai",
+        "coe"
+      ],
+      "type": "section"
     },
     {
       "href": "/ai-evolution",
@@ -625,6 +644,20 @@
         "autonomous intelligence",
         "ai operations",
         "creator systems"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/acos-v11-visual-intelligence-site-integrity",
+      "title": "ACOS v11: Visual Intelligence and Site Integrity — What Changed and Why",
+      "description": "How 8 broken AI-generated images led to a 5-layer quality enforcement system, a 302-page site integrity audit, and a better way to create at scale.",
+      "tags": [
+        "acos",
+        "v11",
+        "visual",
+        "intelligence",
+        "site",
+        "integrity"
       ],
       "type": "blog"
     },
@@ -980,6 +1013,14 @@
         "claude code",
         "mcp",
         "productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/CLAUDE",
+      "title": "CLAUDE",
+      "tags": [
+        "CLAUDE"
       ],
       "type": "blog"
     },
@@ -2049,6 +2090,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/trinity-ai-conscious-operating-system",
+      "title": "Trinity AI — The Conscious Operating System for Human Potential",
+      "description": "Trinity AI is a 5-layer conscious operating system that remembers you, reads your body, and compounds intelligence daily. Built on Claude Agent SDK, Vercel, and sovereign data principles.",
+      "tags": [
+        "trinity ai",
+        "conscious os",
+        "agentic ai",
+        "personal ai",
+        "sovereign ai",
+        "ai architecture",
+        "mcp servers"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp",
       "title": "How I Configured Claude Code with ACOS and 21 MCP Servers",
       "description": "Step-by-step guide to building a production-grade AI coding environment with ACOS, Claude Code, MCP servers, and custom agent workflows. From zero to shipping.",
@@ -2350,6 +2406,16 @@
     {
       "href": "/build",
       "title": "Build",
+      "type": "section"
+    },
+    {
+      "href": "/build/template-pack",
+      "title": "Template Pack",
+      "tags": [
+        "build",
+        "template",
+        "pack"
+      ],
       "type": "section"
     },
     {
@@ -2963,6 +3029,72 @@
       "type": "section"
     },
     {
+      "href": "/familie",
+      "title": "Familie",
+      "tags": [
+        "familie"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/forsche-selbst",
+      "title": "Forsche Selbst",
+      "tags": [
+        "familie",
+        "forsche",
+        "selbst"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte",
+      "title": "Geschichte",
+      "tags": [
+        "familie",
+        "geschichte"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte/offene-fragen",
+      "title": "Offene Fragen",
+      "tags": [
+        "familie",
+        "geschichte",
+        "offene",
+        "fragen"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/interview-kit",
+      "title": "Interview Kit",
+      "tags": [
+        "familie",
+        "interview",
+        "kit"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/mitmachen",
+      "title": "Mitmachen",
+      "tags": [
+        "familie",
+        "mitmachen"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/stammbaum",
+      "title": "Stammbaum",
+      "tags": [
+        "familie",
+        "stammbaum"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/family",
       "title": "Family",
       "tags": [
@@ -3138,6 +3270,17 @@
     {
       "href": "/globe",
       "title": "Atlas Globe (EN)",
+      "type": "section"
+    },
+    {
+      "href": "/go/qr/ikigai-branding",
+      "title": "Ikigai Branding",
+      "tags": [
+        "go",
+        "qr",
+        "ikigai",
+        "branding"
+      ],
       "type": "section"
     },
     {
@@ -3853,6 +3996,15 @@
       "type": "newsletter"
     },
     {
+      "href": "/newsletter/preferences",
+      "title": "Preferences",
+      "tags": [
+        "newsletter",
+        "preferences"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/newsletter/thank-you",
       "title": "Thank You",
       "tags": [
@@ -3913,6 +4065,15 @@
         "opa",
         "und",
         "oma"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/open-source",
+      "title": "Open Source",
+      "tags": [
+        "open",
+        "source"
       ],
       "type": "section"
     },
@@ -4266,6 +4427,16 @@
       "type": "section"
     },
     {
+      "href": "/products/trinity-ai",
+      "title": "Trinity AI",
+      "tags": [
+        "products",
+        "trinity",
+        "ai"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/products/vibe-os",
       "title": "Vibe OS",
       "tags": [
@@ -4505,6 +4676,31 @@
       "href": "/research",
       "title": "Research",
       "type": "research"
+    },
+    {
+      "href": "/research/blue-zones-ikigai-ai-era",
+      "title": "Blue Zones Ikigai AI Era",
+      "tags": [
+        "research",
+        "blue",
+        "zones",
+        "ikigai",
+        "ai",
+        "era"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/research/conscious-ai-operating-systems",
+      "title": "Conscious AI Operating Systems",
+      "tags": [
+        "research",
+        "conscious",
+        "ai",
+        "operating",
+        "systems"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/methodology",
@@ -4774,6 +4970,16 @@
       "type": "community"
     },
     {
+      "href": "/soul-frequency-assessment",
+      "title": "Soul Frequency Assessment",
+      "tags": [
+        "soul",
+        "frequency",
+        "assessment"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/soul-frequency-quiz",
       "title": "Soul Frequency Quiz",
       "type": "tool"
@@ -4822,6 +5028,14 @@
       "title": "Sprint",
       "tags": [
         "sprint"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/stack",
+      "title": "Stack",
+      "tags": [
+        "stack"
       ],
       "type": "section"
     },
@@ -5141,6 +5355,14 @@
       "type": "section"
     },
     {
+      "href": "/waitlist",
+      "title": "Waitlist",
+      "tags": [
+        "waitlist"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/watch",
       "title": "Watch",
       "type": "video"
@@ -5165,12 +5387,30 @@
       "type": "video"
     },
     {
+      "href": "/work",
+      "title": "Work",
+      "tags": [
+        "work"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/work-with-me",
       "title": "Work With ME",
       "tags": [
         "work",
         "with",
         "me"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/work/trinity-ai",
+      "title": "Trinity AI",
+      "tags": [
+        "work",
+        "trinity",
+        "ai"
       ],
       "type": "section"
     },
@@ -5228,6 +5468,18 @@
       "type": "section"
     },
     {
+      "href": "/workshops/ikigai-branding/present/speaker",
+      "title": "Speaker",
+      "tags": [
+        "workshops",
+        "ikigai",
+        "branding",
+        "present",
+        "speaker"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/workshops/ikigai-content-studio",
       "title": "Ikigai Content Studio",
       "tags": [
@@ -5237,6 +5489,16 @@
         "workshop"
       ],
       "type": "workshop"
+    },
+    {
+      "href": "/workshops/ikigai/v1",
+      "title": "V1",
+      "tags": [
+        "workshops",
+        "ikigai",
+        "v1"
+      ],
+      "type": "section"
     },
     {
       "href": "/workshops/personal-ai-coe",

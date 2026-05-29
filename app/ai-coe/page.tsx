@@ -132,6 +132,18 @@ const resourceLinks = [
     href: '/prompt-library',
     icon: Sparkles,
   },
+  {
+    title: 'See the lab in action',
+    description: 'Eight builds shipped on the agentic dev stack — Antigravity, Claude Code, Codex, Gemini.',
+    href: '/agentic-builder-lab',
+    icon: Sparkles,
+  },
+  {
+    title: 'Hire Frank for a sprint',
+    description: 'One-day workshop or 5–10 day implementation sprint for your CoE team.',
+    href: '/build',
+    icon: ArrowRight,
+  },
 ]
 
 const operatingLoop = [

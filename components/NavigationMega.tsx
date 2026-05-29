@@ -110,12 +110,15 @@ const navigation = {
     label: 'Build',
     href: '/ai-architecture',
     featured: {
-      title: 'AI Architecture Hub',
-      description: 'Blueprints, prototypes, templates, and investor intelligence. From idea to deployment.',
-      href: '/ai-architecture',
-      badge: 'Hub',
+      title: 'Agentic Builder Lab',
+      description: 'Building real companies in public with Antigravity, Claude Code, Codex, and Gemini. Eight builds. One stack thesis.',
+      href: '/agentic-builder-lab',
+      badge: 'NEW',
     },
     items: [
+      { name: 'Agentic Builder Lab', href: '/agentic-builder-lab', icon: Sparkles, description: 'Build-in-public lab · 8 builds' },
+      { name: 'Build with Frank', href: '/build', icon: Briefcase, description: 'Workshops · sprints · templates' },
+      { name: 'Template Pack', href: '/build/template-pack', icon: Layers, description: 'AGENTS.md · prompt packs · eval' },
       { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI builders' },
       { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
       { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
@@ -128,16 +131,16 @@ const navigation = {
     ],
     groups: [
       {
+        label: 'Build-in-Public',
+        items: ['Agentic Builder Lab', 'Build with Frank', 'Template Pack'],
+      },
+      {
         label: 'Architecture',
         items: ['Architecture Hub', 'Blueprints', 'Prototypes', 'Templates'],
       },
       {
         label: 'Deep Dives',
-        items: ['AI World', 'Developer Hub', 'AI Studio'],
-      },
-      {
-        label: 'Invest',
-        items: ['Intelligence Hub', 'Agent Packs'],
+        items: ['AI World', 'Developer Hub', 'AI Studio', 'Intelligence Hub', 'Agent Packs'],
       },
     ],
   },

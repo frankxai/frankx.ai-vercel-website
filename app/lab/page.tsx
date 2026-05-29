@@ -122,6 +122,22 @@ export default function LabPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
 
+      {/* ── Disambiguation banner: distinguish from /agentic-builder-lab ── */}
+      <section className="border-b border-white/10 bg-cyan-500/[0.04] px-6 py-3">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+          <p className="text-xs text-slate-400">
+            <span className="font-semibold text-cyan-300">This page = FRANK-Ω BYOK tools.</span>{' '}
+            Looking for the build-in-public lab?
+          </p>
+          <Link
+            href="/agentic-builder-lab"
+            className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-[11px] font-semibold text-cyan-200 transition hover:border-cyan-400/50 hover:text-cyan-100"
+          >
+            Go to /agentic-builder-lab →
+          </Link>
+        </div>
+      </section>
+
       {/* ── Hero ── */}
       <section className="relative py-28 px-6 overflow-hidden">
         {/* Background: FRANK-Ω thinking ghost + ambient glow */}

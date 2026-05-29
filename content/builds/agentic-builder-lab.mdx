@@ -1,0 +1,45 @@
+---
+title: Agentic Builder Lab — frankx.ai/agentic-builder-lab
+slug: agentic-builder-lab
+status: shipping
+day_number: 1
+stack: [Next.js 16, Claude Code, Antigravity 2.0, Vercel, GitHub]
+outcome_metric: 8 builds queued, 1 flagship page shipped
+outcome_headline: Built the public lab and the commercial hub in one session.
+demo_url: https://frankx.ai/agentic-builder-lab
+repo_url: https://github.com/frankxai/frankx.ai-vercel-website
+started_at: 2026-05-25
+last_updated: 2026-05-25
+sort_order: 1
+summary: Shipped the flagship build-in-public lab and commercial hub on frankx.ai in a single Claude Code session, with cross-page interlinking and a reusable ACOS content-pipeline skill.
+---
+
+## What we built
+
+Two new flagship pages on frankx.ai: `/agentic-builder-lab` (the public build log and stack thesis) and `/build` (the commercial hub for workshops, sprints, and the template pack). Plus a new ACOS skill, `agentic-builder-lab`, that converts each future build session into an MDX entry, a LinkedIn draft, a demo brief, an architecture diagram, and a reusable prompt.
+
+## The stack and why
+
+- **Claude Code** — drove the entire implementation: planning, file generation, multi-file edits, cross-page interlinks. The Plan agent validated the IA before any code was written.
+- **Next.js 16 App Router** — every new page is a server component for SEO; client islands handle motion.
+- **MDX + gray-matter** — build entries render from `content/builds/[slug].mdx` so cards update without redeploying.
+- **Antigravity 2.0** — queued for the next demo build (AI Studio → Antigravity → Firebase chain).
+
+## What worked
+
+- One Plan agent + targeted file reads beat a long exploration loop.
+- Reusing existing primitives (`GlowCard`, `EmailSignup`, `createMetadata`) kept the diff tight.
+- Voice override loaded after `frankx-brand` in the new skill — no studio metaphors leaked into the output.
+
+## What broke
+
+- Initial nav plan referenced `MobileFullMenu`; the active file is `MobileNavOverlay` and it's currently commented out. Mobile nav lives entirely in `NavigationMega`.
+- The frankx-brand SKILL.md voice contradicts the website's CLAUDE.md voice. Resolved by suppressing frankx-brand for this scope and documenting the override in the skill.
+
+## One reusable artifact
+
+[AGENTS.md template for agentic dev repos](https://github.com/frankxai/agentic-creator-os) — the starter file Claude Code reads when it joins a new repo.
+
+## Next
+
+Ship build #2 — the SIS agent registry — and run the new `/build-log` skill end-to-end to confirm the flywheel produces all five artifacts cleanly.
