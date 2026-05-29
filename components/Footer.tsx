@@ -112,6 +112,7 @@ export default function Footer() {
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
               <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
               <li><Link href="/acos" className="hover:text-white transition-colors">ACOS</Link></li>
+              <li><Link href="/ecosystem" className="hover:text-white transition-colors">Ecosystem Map</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
             </ul>
           </nav>
