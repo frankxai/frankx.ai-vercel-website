@@ -118,8 +118,12 @@ export function getPostsByTag(tag: string): BlogPost[] {
  * Only looks within ## FAQ or ## Frequently Asked Questions sections.
  */
 export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
-  // Find the FAQ section
-  const faqMatch = content.match(/^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/m)
+  // Find the FAQ section.
+  // NOTE: no `m` flag on purpose — with `m`, `$` matches at every end-of-line,
+  // so the lazy capture stops at the first newline and the section comes back
+  // empty (zero FAQ pairs for every post). Anchor the heading with `(?:^|\n)`
+  // instead so `$` here means end-of-string.
+  const faqMatch = content.match(/(?:^|\n)## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/)
   if (!faqMatch) return []
 
   const faqSection = faqMatch[1]
