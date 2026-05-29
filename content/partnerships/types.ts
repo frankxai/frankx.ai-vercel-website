@@ -21,6 +21,7 @@ export type PartnerTier =
   | 'model-provider'
   | 'tooling'
   | 'silicon'
+  | 'services'
 
 export type PartnerAccent = 'tech' | 'soul' | 'bridge'
 
@@ -65,6 +66,9 @@ export type CrossLinkSurface =
   | 'workshops'
   | 'blog'
   | 'os'
+  | 'learn-gemini'
+  | 'learn-claude'
+  | 'connect'
 
 export type CrossLink = {
   surface: CrossLinkSurface

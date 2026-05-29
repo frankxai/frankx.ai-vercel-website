@@ -38,7 +38,7 @@ const PATHS: RolePath[] = [
     id: 'partner',
     label: 'Partner · Tech-co',
     title: 'Active integrations & new collabs',
-    subtitle: 'Anthropic, Vercel, NVIDIA, Google, Oracle. Apply or explore where your stack fits.',
+    subtitle: 'Live Madrid week: Google partnership — Gemini + ADK + Antigravity. Plus Anthropic, Vercel, NVIDIA, Oracle. Where your stack fits.',
     href: '/partnerships',
     icon: Handshake,
     accent: 'emerald',

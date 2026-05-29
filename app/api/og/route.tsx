@@ -1,16 +1,11 @@
 import { ImageResponse } from 'next/og'
 
-// Runtime: Edge intentionally retained. next/og's ImageResponse historically
-// required edge runtime — nodejs runtime threw 500 in production (silent
-// server-side error, no logs surfaced). Edge runtime ships built-in font
-// fallback so Inter/system fonts work.
-//
-// TODO: validate Fluid Compute compatibility in Next 16+. Vercel's
-// vercel:knowledge-update (2026-02-27) recommends migrating off Edge to
-// Fluid Compute everywhere, but this route is a documented exception
-// until verified. Migration test: remove this export, deploy preview,
-// curl /api/og?title=test, verify 200 + valid PNG output.
-export const runtime = 'edge'
+// Runtime: Default (Fluid Compute / Node.js). Edge runtime was returning
+// 0-byte responses in Next 16 production (verified live 2026-05-26 — see
+// lib/seo.ts comment). Per Vercel knowledge-update 2026-02-27, Fluid
+// Compute is the recommended default and supports next/og's ImageResponse.
+// The original Edge requirement was a Next 13/14-era constraint that no
+// longer applies.
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)

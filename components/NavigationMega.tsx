@@ -40,10 +40,12 @@ import {
   Play,
   Zap,
   Search,
+  Lock,
 } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 import { cn } from '@/lib/utils'
-import MobileNavOverlay from '@/components/MobileNavOverlay'
+// import MobileNavOverlay from '@/components/MobileNavOverlay'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
@@ -149,6 +151,8 @@ const navigation = {
       badge: 'Ecosystem',
     },
     items: [
+      { name: 'Ecosystem Map', href: '/ecosystem', icon: Network, description: 'Every system, one map' },
+      { name: 'Universe Map', href: '/map', icon: Map, description: '50+ repos · 6 clusters' },
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
@@ -164,12 +168,12 @@ const navigation = {
     ],
     groups: [
       {
-        label: 'Research & Knowledge',
-        items: ['Research Hub', 'Intelligence Atlas', 'Downloads'],
+        label: 'Explore Everything',
+        items: ['Ecosystem Map', 'Universe Map', 'Resource Hub'],
       },
       {
-        label: 'Products & Systems',
-        items: ['Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
+        label: 'Research & Systems',
+        items: ['Research Hub', 'Intelligence Atlas', 'Downloads', 'Starlight IS', 'ACOS', 'Design System', 'ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
@@ -180,6 +184,17 @@ const navigation = {
 }
 
 type NavKey = keyof typeof navigation
+
+// Owner-only links — rendered only when an authenticated (admin) session exists.
+// Single admin credential means any signed-in session is the owner. These routes
+// are also auth-gated in middleware.ts, so the nav cluster just surfaces them.
+const ownerLinks = [
+  { name: 'Command Center', href: '/command-center', icon: Terminal, description: 'Mission control' },
+  { name: 'Ops', href: '/ops', icon: Workflow, description: 'Agent mission control' },
+  { name: 'Admin', href: '/admin', icon: Briefcase, description: 'Site administration' },
+  { name: 'Dashboard', href: '/dashboard', icon: TrendingUp, description: 'Leads & analytics' },
+  { name: 'Investment', href: '/frankx-investment-dashboard', icon: Bot, description: 'Revenue & portfolio' },
+] as const
 
 function Logo() {
   return (
@@ -342,12 +357,20 @@ export default function NavigationMega() {
   const [isVisible, setIsVisible] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeLeft, setActiveLeft] = useState<number | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const pathname = usePathname()
   const rootRef = useRef<HTMLDivElement>(null)
+  const { status } = useSession()
+  const isOwner = status === 'authenticated'
 
   useEffect(() => {
     setIsOpen(false)
+    setMobileExpanded(null)
   }, [pathname])
+
+  const toggleMobileSection = useCallback((section: string) => {
+    setMobileExpanded((prev) => (prev === section ? null : section))
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
@@ -465,6 +488,47 @@ export default function NavigationMega() {
                 </Link>
               </NavigationMenu.Item>
 
+              {isOwner && (
+                <NavigationMenu.Item>
+                  <NavTrigger href="/command-center">
+                    <span className="flex items-center gap-1.5 text-amber-300/90">
+                      <Lock className="h-3 w-3" aria-hidden="true" />
+                      Owner
+                    </span>
+                  </NavTrigger>
+                  <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                    <div className="w-[300px] p-3">
+                      <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-amber-400/60">
+                        Private · only visible to you
+                      </p>
+                      <ul className="space-y-0.5">
+                        {ownerLinks.map((item) => {
+                          const Icon = item.icon
+                          return (
+                            <li key={item.name}>
+                              <NavigationMenu.Link asChild>
+                                <Link
+                                  href={item.href}
+                                  className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/70"
+                                >
+                                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-amber-300 transition-colors group-hover:bg-amber-500/20">
+                                    <Icon className="h-3.5 w-3.5" />
+                                  </div>
+                                  <div className="min-w-0 flex-1">
+                                    <span className="block text-[13px] font-medium text-white">{item.name}</span>
+                                    <p className="text-[11px] leading-tight text-slate-500">{item.description}</p>
+                                  </div>
+                                </Link>
+                              </NavigationMenu.Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  </NavigationMenu.Content>
+                </NavigationMenu.Item>
+              )}
+
               <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
                 <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
               </NavigationMenu.Indicator>
@@ -512,7 +576,183 @@ export default function NavigationMega() {
         </nav>
       </header>
 
-      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {/* ---------- Mobile menu (lg:hidden) ---------- */}
+      {/* Backdrop */}
+      <div
+        className={cn(
+          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden',
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        )}
+        onClick={() => setIsOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Panel: anchored below the header, fills the rest of the screen, scrolls internally */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          'fixed inset-x-0 bottom-0 top-14 z-40 flex flex-col border-t border-white/10 bg-[#030712] transition-transform duration-300 ease-out sm:top-16 lg:hidden',
+          isOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+      >
+        <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4">
+          <nav className="space-y-1">
+            {desktopSections.map((section) => {
+              const data = navigation[section]
+              const expanded = mobileExpanded === section
+              return (
+                <div key={section}>
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileSection(section)}
+                    aria-expanded={expanded}
+                    aria-controls={`mobile-section-${section}`}
+                    className="flex min-h-[52px] w-full items-center justify-between rounded-xl px-4 py-3 text-base font-semibold text-slate-200 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+                  >
+                    <span>{data.label}</span>
+                    <ChevronDown
+                      className={cn(
+                        'h-5 w-5 text-slate-500 transition-transform duration-200',
+                        expanded && 'rotate-180'
+                      )}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  {/* Items render only when expanded — no max-height clamp, so nothing ever clips */}
+                  {expanded && (
+                    <ul
+                      id={`mobile-section-${section}`}
+                      className="mb-1 ml-4 space-y-0.5 border-l-2 border-emerald-500/20 pl-3"
+                    >
+                      <li>
+                        <Link
+                          href={data.href}
+                          onClick={() => setIsOpen(false)}
+                          className="flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm font-medium text-emerald-300/90 transition-colors hover:bg-white/5 hover:text-emerald-200"
+                        >
+                          {data.featured.title}
+                        </Link>
+                      </li>
+                      {data.items.map((item) => {
+                        const Icon = item.icon
+                        const isExternal = 'external' in item && item.external
+                        const cls =
+                          'flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-white/5 hover:text-white'
+                        return (
+                          <li key={item.name}>
+                            {isExternal ? (
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setIsOpen(false)}
+                                className={cls}
+                              >
+                                <Icon className="h-4 w-4 shrink-0 text-slate-500" aria-hidden="true" />
+                                <span className="flex items-center gap-1.5">
+                                  {item.name}
+                                  <ExternalLink className="h-3 w-3 text-slate-600" />
+                                </span>
+                              </a>
+                            ) : (
+                              <Link href={item.href} onClick={() => setIsOpen(false)} className={cls}>
+                                <Icon className="h-4 w-4 shrink-0 text-slate-500" aria-hidden="true" />
+                                {item.name}
+                              </Link>
+                            )}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                </div>
+              )
+            })}
+
+            {/* Blog — direct link, no accordion */}
+            <Link
+              href="/blog"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                'flex min-h-[52px] items-center rounded-xl px-4 py-3 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
+                isActive('/blog') ? 'bg-white/10 text-white' : 'text-slate-200 hover:bg-white/5 hover:text-white'
+              )}
+            >
+              Blog
+            </Link>
+
+            {/* Owner-only section — appears only when signed in as you */}
+            {isOwner && (
+              <div className="mt-2 border-t border-amber-500/15 pt-2">
+                <button
+                  type="button"
+                  onClick={() => toggleMobileSection('owner')}
+                  aria-expanded={mobileExpanded === 'owner'}
+                  aria-controls="mobile-section-owner"
+                  className="flex min-h-[52px] w-full items-center justify-between rounded-xl px-4 py-3 text-base font-semibold text-amber-300/90 transition-colors hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50"
+                >
+                  <span className="flex items-center gap-2">
+                    <Lock className="h-4 w-4" aria-hidden="true" />
+                    Owner
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      'h-5 w-5 text-amber-400/50 transition-transform duration-200',
+                      mobileExpanded === 'owner' && 'rotate-180'
+                    )}
+                    aria-hidden="true"
+                  />
+                </button>
+                {mobileExpanded === 'owner' && (
+                  <ul id="mobile-section-owner" className="mb-1 ml-4 space-y-0.5 border-l-2 border-amber-500/20 pl-3">
+                    {ownerLinks.map((item) => {
+                      const Icon = item.icon
+                      return (
+                        <li key={item.name}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setIsOpen(false)}
+                            className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                          >
+                            <Icon className="h-4 w-4 shrink-0 text-amber-300/80" aria-hidden="true" />
+                            {item.name}
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
+              </div>
+            )}
+          </nav>
+
+          {/* Actions */}
+          <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false)
+                openCommandPalette()
+              }}
+              className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <Search className="h-4 w-4" />
+              Search
+            </button>
+            <Link
+              href="/start"
+              onClick={() => setIsOpen(false)}
+              className="block w-full rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-4 text-center text-base font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 active:scale-[0.98]"
+            >
+              Start Here
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

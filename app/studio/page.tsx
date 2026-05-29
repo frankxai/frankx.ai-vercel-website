@@ -31,11 +31,20 @@ export const metadata: Metadata = {
     url: 'https://frankx.ai/studio',
     siteName: 'FrankX',
     type: 'website',
+    images: [
+      {
+        url: '/hero-homepage.png',
+        width: 1200,
+        height: 630,
+        alt: 'FrankX Studio — eight producer specialists, one inbox',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Studio — The Content Operations System',
     description: 'Eight producer specialists. Fourteen platform personas. One inbox.',
+    images: ['/hero-homepage.png'],
   },
 }
 
@@ -396,10 +405,11 @@ L7  LEARN        hook-learn (live) · post-time-learn · thumbnail-learn (W22)`}
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
-              href="/os"
+              href="/inner-circle"
               className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"
             >
-              FrankX OS
+              Inner Circle — June 1
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
         </div>
