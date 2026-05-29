@@ -134,6 +134,13 @@ const buildPath = [
     href: '/products/agentic-creator-os/docs',
     label: 'ACOS docs',
   },
+  {
+    title: 'See it built live',
+    description:
+      'Watch the playbook run in public — eight builds shipped on the agentic dev stack, with stack notes, outcomes, and what broke.',
+    href: '/agentic-builder-lab',
+    label: 'Agentic Builder Lab',
+  },
 ]
 
 const resourceTracks = [
@@ -204,6 +211,11 @@ const faqs = [
     question: 'What is the safest way to start?',
     answer:
       'Start with a bounded workflow, limited permissions, visible logs, human review, and a clear definition of done. Expand autonomy only after the system is observable and reliable.',
+  },
+  {
+    question: 'Where do I see real builds?',
+    answer:
+      'The Agentic Builder Lab is the public build log — eight production surfaces shipped on Antigravity, Claude Code, Codex, Gemini API, and the Google agentic stack, with the full stack, what worked, and what broke.',
   },
 ]
 

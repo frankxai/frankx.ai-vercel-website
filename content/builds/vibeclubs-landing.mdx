@@ -1,0 +1,41 @@
+---
+title: VibeClubs — landing and offer engine
+slug: vibeclubs-landing
+status: wip
+day_number: 5
+stack: [Next.js 16, Stripe, Resend, Claude Code]
+outcome_metric: null
+outcome_headline: Membership engine for music-first creator clubs.
+demo_url: null
+repo_url: null
+started_at: 2026-05-27
+last_updated: 2026-05-25
+sort_order: 3
+summary: Building VibeClubs — the membership and offer engine for music-first creator clubs, with Stripe checkout, Resend onboarding, and a member dashboard powered by the Starlight substrate.
+---
+
+## What we built
+
+The first VibeClubs surface: a landing page that explains the membership thesis, captures interest, and routes to Stripe for the founding-member tier. Behind it, a minimal member dashboard that reads from the Starlight registry.
+
+## The stack and why
+
+- **Next.js 16** — landing and dashboard share the same App Router tree.
+- **Stripe** — checkout for the founding tier; subscription billing for monthly.
+- **Resend** — onboarding sequence; routes through the same `/api/subscribe` endpoint as the rest of frankx.ai.
+
+## What worked
+
+- Reusing the `EmailSignup` component with a new `listType` was a one-line change.
+
+## What broke
+
+- Pricing posture took 3 iterations to land. Founding tier ended up below the workshop price, sprint price, and template pack — a clear ladder.
+
+## One reusable artifact
+
+Coming with v0.1.
+
+## Next
+
+Ship the landing; iterate copy from real waitlist replies.

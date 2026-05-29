@@ -1,0 +1,41 @@
+---
+title: Starlight Intelligence Systems — Agent Registry
+slug: sis-agent-registry
+status: wip
+day_number: 3
+stack: [Claude Agent SDK, Postgres, MCP, Next.js 16]
+outcome_metric: null
+outcome_headline: A sovereignty substrate for agents that remembers across sessions.
+demo_url: https://frankx.ai/starlight-intelligence-system
+repo_url: null
+started_at: 2026-05-26
+last_updated: 2026-05-25
+sort_order: 2
+summary: Building the SIS agent registry — the substrate that gives every Frank-operated agent persistent memory, capability scoping, and audit trails across Claude Code, Codex, and Antigravity sessions.
+---
+
+## What we built
+
+The first cut of a registry that catalogs every agent operating across Frank's stack — what it can touch, what context it holds, and what it has shipped. Acts as the memory and IAM layer that Claude Code, Codex, and Antigravity all read from when they start a session.
+
+## The stack and why
+
+- **Claude Agent SDK** — primary runtime for orchestrator agents.
+- **Postgres + MCP** — registry storage exposed via an MCP server so any tool can read it.
+- **Next.js 16** — the public surface at `/starlight-intelligence-system`.
+
+## What worked
+
+- Modeling the registry as a flat capability list (not a hierarchy) made the IAM scoping trivial.
+
+## What broke
+
+- Cross-tool session resumption is still manual — Antigravity does not yet read the registry on start.
+
+## One reusable artifact
+
+Coming with the v0.1 ship.
+
+## Next
+
+Wire the registry into a single Claude Code session and confirm the orchestrator can hand off to a sub-agent without losing context.

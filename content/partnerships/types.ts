@@ -66,6 +66,8 @@ export type CrossLinkSurface =
   | 'workshops'
   | 'blog'
   | 'os'
+  | 'agentic-builder-lab'
+  | 'build'
   | 'learn-gemini'
   | 'learn-claude'
   | 'connect'
