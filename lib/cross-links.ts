@@ -16,6 +16,9 @@ export const SURFACE_HREFS: Record<CrossLinkSurface, string> = {
   workshops: '/workshops',
   blog: '/blog',
   os: '/os',
+  'learn-gemini': '/learn/gemini-mastery',
+  'learn-claude': '/learn/claude-mastery',
+  connect: '/connect',
 }
 
 export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
@@ -26,6 +29,9 @@ export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
   workshops: 'Workshops calendar',
   blog: 'Field notes',
   os: 'FrankX OS overview',
+  'learn-gemini': 'Gemini & Google AI mastery portal',
+  'learn-claude': 'Claude mastery portal',
+  connect: 'Connect — in-person + QR landing',
 }
 
 /**

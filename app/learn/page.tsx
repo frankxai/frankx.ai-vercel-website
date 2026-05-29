@@ -111,7 +111,7 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
         ) : (
           <>
             <Image
-              src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+              src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
               alt={video.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

@@ -9,7 +9,7 @@ import { bookReviews } from '@/data/book-reviews'
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
   description:
-    'AI Architect at Oracle EMEA AI Center of Excellence. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
+    'Ex-Oracle AI Architect. Helped build the EMEA AI Center of Excellence — 40+ AI CoEs for Fortune 500 enterprises. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -76,7 +76,7 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle EMEA and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence, and the creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',

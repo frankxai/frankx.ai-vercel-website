@@ -88,7 +88,7 @@ const MEMBERSHIP_TIERS = [
       { text: 'Strategy intensives', included: true },
     ],
     cta: 'Request Strategy Session',
-    ctaHref: 'mailto:hello@frankx.ai?subject=FrankX%20Alliance%20Inquiry',
+    ctaHref: 'mailto:frank@frankx.ai?subject=FrankX%20Alliance%20Inquiry',
     gradient: 'from-[#F59E0B] to-[#10B981]',
   },
 ]
