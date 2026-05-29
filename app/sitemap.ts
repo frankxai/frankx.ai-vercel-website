@@ -6,6 +6,7 @@ import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
 import { getAllModels } from '@/lib/llm-hub/registry'
 import { COMPARISONS } from '@/lib/llm-hub/comparisons'
+import { getAllGenModels, getCategories } from '@/lib/models-hub/registry'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -664,6 +665,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: currentDate,
     changeFrequency: 'weekly',
     priority: 0.5,
+  })
+
+  // Generative Model Hub — umbrella + agent JSON
+  entries.push({ url: `${BASE_URL}/models`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 })
+  entries.push({ url: `${BASE_URL}/models.json`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.5 })
+
+  // Generative Model Hub — per-category hubs
+  getCategories().forEach((c) => {
+    entries.push({ url: `${BASE_URL}/models/${c.id}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.85 })
+  })
+
+  // Generative Model Hub — per-model pages (programmatic)
+  getAllGenModels().forEach((m) => {
+    entries.push({ url: `${BASE_URL}/models/${m.category}/${m.id}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.75 })
   })
 
   // Partners — affiliate transparency hub (workshop tools + pursued programs)

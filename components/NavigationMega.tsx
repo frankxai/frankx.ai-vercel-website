@@ -123,11 +123,18 @@ const navigation = {
       { name: 'AI Studio', href: '/consulting', icon: Briefcase, description: 'Architecture consulting' },
       { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing' },
       { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis agents' },
+      { name: 'LLM Hub', href: '/llm-hub', icon: Sparkles, description: 'Every frontier LLM — pricing, benchmarks, verdicts' },
+      { name: 'Model Hub', href: '/models', icon: Layers, description: 'Image · video · music · voice · embeddings · world' },
+      { name: 'Models Arena', href: '/ai-ops/models-2026', icon: TrendingUp, description: 'Head-to-head benchmark radar' },
     ],
     groups: [
       {
         label: 'Architecture',
         items: ['Architecture Hub', 'Blueprints', 'Prototypes', 'Templates'],
+      },
+      {
+        label: 'Model Intelligence',
+        items: ['LLM Hub', 'Model Hub', 'Models Arena'],
       },
       {
         label: 'Deep Dives',

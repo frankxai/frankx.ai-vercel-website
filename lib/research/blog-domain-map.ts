@@ -15,7 +15,7 @@ export const blogDomainMap: Record<string, string[]> = {
   'production-llm-agents-oci-part-2-agent-patterns': ['multi-agent-systems', 'production-patterns'],
   'production-llm-agents-oci-part-3-operating-model': ['enterprise-ai', 'production-patterns'],
   'claude-code-2-1-mcp-revolution': ['mcp-ecosystem', 'coding-assistants'],
-  'claude-opus-4-6-analysis-2026': ['generative-ai', 'coding-assistants'],
+  'claude-opus-4-6-analysis-2026': ['frontier-llm-landscape-2026', 'coding-assistants', 'generative-ai'],
   'multi-agent-orchestration-patterns-2026': ['multi-agent-systems', 'production-patterns'],
   'observability-stack-multi-agent-systems-2026': ['multi-agent-systems', 'production-patterns'],
   'oracle-genai-agents-vs-langgraph-crewai-2026': ['enterprise-ai', 'multi-agent-systems'],
@@ -46,7 +46,6 @@ export const blogDomainMap: Record<string, string[]> = {
   'agent-feed-privacy-first-ai-transparency': ['enterprise-ai', 'ai-security'],
   'google-io-26-cloud-innovations-gemini-3-5-omni-antigravity': ['frontier-llm-landscape-2026', 'agent-benchmarks', 'enterprise-ai'],
   'frontier-model-landscape-2026-claude-gpt-gemini-deepseek': ['frontier-llm-landscape-2026', 'agent-benchmarks'],
-  'claude-opus-4-6-analysis-2026': ['frontier-llm-landscape-2026', 'coding-assistants', 'generative-ai'],
 }
 
 export function getRelatedDomainsForBlog(slug: string): string[] {

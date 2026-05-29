@@ -6,6 +6,7 @@ import { siteConfig } from '@/lib/seo'
 import { getAllModels } from '@/lib/llm-hub/registry'
 import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { getEditorial } from '@/lib/llm-hub/editorial'
+import { getCategories as getGenCategories, getGenModelsByCategory } from '@/lib/models-hub/registry'
 
 const SITE_URL = siteConfig.url
 
@@ -41,6 +42,15 @@ export async function GET() {
 
   const comparisonLinks = COMPARISONS
     .map((c) => `- [${c.title}](${SITE_URL}/llm-hub/compare/${c.slug}): ${c.verdict}`)
+    .join('\n')
+
+  const genCategoryBlocks = getGenCategories()
+    .map((c) => {
+      const models = getGenModelsByCategory(c.id)
+        .map((m) => `  - [${m.name}](${SITE_URL}/models/${m.category}/${m.id}): ${m.tagline || m.highlight || ''}`)
+        .join('\n')
+      return `- [${c.label}](${SITE_URL}/models/${c.id}): ${c.blurb}\n${models}`
+    })
     .join('\n')
 
   const content = `# FrankX
@@ -80,6 +90,11 @@ ${modelLinks}
 
 ### Model Comparisons (head-to-head)
 ${comparisonLinks}
+
+## Generative Model Hub (multimodal — image, video, music, voice, embeddings, world)
+- [Generative Model Hub](${SITE_URL}/models): Every frontier multimodal model, categorized, with verdicts
+- [Generative Model Hub JSON](${SITE_URL}/models.json): Machine-readable multimodal registry for agents
+${genCategoryBlocks}
 
 ## Workshops (live, application or open)
 - [Build First AI Agent](${SITE_URL}/workshops/build-first-ai-agent): Multi-path workshop with Vercel AI SDK + 6 branches
