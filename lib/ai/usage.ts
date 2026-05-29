@@ -2,7 +2,9 @@
  * Freemium tier resolution + KV-backed daily usage counter for the Studio Crew chat.
  *
  * Tiers (best → worst):
- *   byok      — visitor pasted their own Gemini key.        Unlimited.
+ *   byok      — visitor brought their own Gemini key (client localStorage →
+ *               x-studio-byok-key header). Unlimited. Resolved by the chat
+ *               route from the header, NOT here — see withByok().
  *   pro       — signed-in + studio_pro flag set in KV.      Unlimited.
  *   signedIn  — signed in via NextAuth.                     STUDIO_SIGNEDIN_LIMIT/24h.
  *   anon      — anonymous IP.                                STUDIO_FREE_LIMIT/24h.
@@ -11,7 +13,6 @@
 import { kv } from '@vercel/kv'
 import { getClientIdentifier } from '@/lib/ratelimit'
 import { auth as authFn } from '@/lib/auth'
-import { loadByokKey } from '@/lib/ai/byok'
 
 // KV is wired by Vercel in production. Locally KV_REST_API_URL is unset and
 // every kv.* call throws — we detect that once and skip the metering instead
@@ -35,8 +36,6 @@ export interface TierContext {
   identifier: string
   userId: string | null
   email: string | null
-  /** Decrypted BYOK key when tier === 'byok'; null for all other tiers. */
-  byokKey: string | null
 }
 
 export interface UsageStatus {
@@ -67,13 +66,9 @@ async function isPro(userId: string | null): Promise<boolean> {
 }
 
 /**
- * Resolve the caller's tier from request + session + KV state, AND decrypt the
- * BYOK key when present. The decrypted key (or null) is returned in the
- * context so the chat route never has to re-fetch it — eliminating the
- * window where `tier === 'byok'` but the key is unusable (which previously
- * caused a silent fallback to the owner's GOOGLE_GENERATIVE_AI_API_KEY).
- *
- * Does not consume any quota.
+ * Resolve the caller's tier from request + session + KV state.
+ * Does not consume any quota. BYOK is layered on top by the chat route
+ * (withByok) once it reads the x-studio-byok-key header.
  */
 export async function resolveTier(req: Request): Promise<TierContext> {
   const identifier = getClientIdentifier(req)
@@ -86,21 +81,22 @@ export async function resolveTier(req: Request): Promise<TierContext> {
   const userId = session?.user?.id || session?.user?.email || null
   const email = session?.user?.email || null
 
-  // BYOK promotion ONLY when we can actually decrypt the stored key.
-  // loadByokKey itself refuses to read when the caller is unidentifiable
-  // (no userId AND no real IP — see byok.ts:canStoreByok).
-  const byokKey = await loadByokKey(userId, identifier)
-  if (byokKey) {
-    return { tier: 'byok', identifier, userId, email, byokKey }
-  }
-
   if (userId && (await isPro(userId))) {
-    return { tier: 'pro', identifier, userId, email, byokKey: null }
+    return { tier: 'pro', identifier, userId, email }
   }
 
-  if (userId) return { tier: 'signedIn', identifier, userId, email, byokKey: null }
+  if (userId) return { tier: 'signedIn', identifier, userId, email }
 
-  return { tier: 'anon', identifier, userId: null, email: null, byokKey: null }
+  return { tier: 'anon', identifier, userId: null, email: null }
+}
+
+/**
+ * Upgrade a resolved context to the unlimited BYOK tier when the visitor
+ * supplied their own key. The key never touches the server's storage — it
+ * arrives per-request in a header and is used transiently for the model call.
+ */
+export function withByok(ctx: TierContext, hasByokKey: boolean): TierContext {
+  return hasByokKey ? { ...ctx, tier: 'byok' } : ctx
 }
 
 function counterKey(ctx: TierContext): string {

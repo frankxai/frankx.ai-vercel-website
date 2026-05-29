@@ -2,20 +2,22 @@
  * Studio Crew streaming chat endpoint.
  *
  * Flow:
- *  1. Resolve tier (byok > pro > signedIn > anon) from session + KV.
- *  2. Atomically consume one message from the daily quota.
- *  3. Pick the right Gemini model for the tier; load BYOK key if applicable.
- *  4. streamText() with the persona system prompt + studio tools.
- *  5. Return a UI-message stream the @ai-sdk/react useChat hook can consume.
+ *  1. Read optional BYOK key from the x-studio-byok-key header (never stored).
+ *  2. Resolve tier (pro > signedIn > anon) from session + KV; BYOK header
+ *     upgrades to the unlimited tier.
+ *  3. Preflight: Gateway configured OR a BYOK key present, else 503.
+ *  4. Consume one message from the daily quota (skipped for unlimited tiers).
+ *  5. streamText() with the persona system prompt + studio tools.
+ *  6. Return a UI-message stream the @ai-sdk/react useChat hook can consume.
  */
 
 import { convertToModelMessages, streamText, stepCountIs, type UIMessage } from 'ai'
 import { NextResponse } from 'next/server'
 
-import { getLanguageModel, selectModelForTier } from '@/lib/ai/gemini'
+import { getLanguageModel, isGatewayAvailable, selectModelForTier } from '@/lib/ai/model'
 import { getPersona, type PersonaId } from '@/lib/ai/personas'
 import { studioTools } from '@/lib/ai/tools'
-import { consumeMessage, resolveTier } from '@/lib/ai/usage'
+import { consumeMessage, resolveTier, withByok } from '@/lib/ai/usage'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -38,19 +40,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'messages[] is required' }, { status: 400 })
   }
 
-  const ctx = await resolveTier(req)
+  // BYOK key arrives per-request in a header (sourced from client localStorage).
+  // It is used transiently for this one request and never written to storage.
+  const rawByok = req.headers.get('x-studio-byok-key')?.trim() || ''
+  const byokKey = rawByok.length >= 20 ? rawByok : null
+
+  const baseCtx = await resolveTier(req)
+  const ctx = withByok(baseCtx, !!byokKey)
   const persona = getPersona(body.persona)
-  const byokKey = ctx.byokKey
 
   // Preflight model availability BEFORE touching the quota counter. If we
   // can't actually serve the request, consuming a message from the visitor's
   // daily cap would lock them out for a server-config error they can't fix.
-  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY && !byokKey) {
+  if (!isGatewayAvailable() && !byokKey) {
     return NextResponse.json(
       {
         error: 'no_api_key',
         message:
-          'The studio is offline — no Gemini API key is configured. Add GOOGLE_GENERATIVE_AI_API_KEY to the server or paste your own key under "Bring your key".',
+          'The studio is offline — the AI Gateway is not configured. Set AI_GATEWAY_API_KEY on the server, or bring your own Gemini key under "Bring your key".',
       },
       { status: 503 }
     )

@@ -9,6 +9,7 @@
 import { tool } from 'ai'
 import { z } from 'zod'
 import { searchKnowledge, listEntriesByType, type EntryType } from '@/lib/ai/knowledge'
+import { semanticSearch } from '@/lib/ai/rag'
 import { getContentBySlug } from '@/lib/content-hub'
 import { MEET_AND_GROW_URL, PARTNERSHIP_EMAIL } from '@/lib/cta-links'
 
@@ -17,6 +18,35 @@ const SITE_BASE = 'https://frankx.ai'
 function absoluteUrl(href: string): string {
   if (/^https?:/i.test(href)) return href
   return `${SITE_BASE}${href.startsWith('/') ? href : `/${href}`}`
+}
+
+/**
+ * Hybrid retrieval: semantic search over full content bodies (Upstash Vector)
+ * when available, falling back to the Lunr lexical index over titles/tags.
+ * Returns a normalized result list either way.
+ */
+async function retrieve(
+  query: string,
+  limit: number,
+  types?: EntryType[]
+): Promise<{ title: string; url: string; description?: string; type: string; snippet?: string }[]> {
+  const semantic = await semanticSearch(query, { topK: limit, types: types as string[] | undefined })
+  if (semantic && semantic.length > 0) {
+    return semantic.map((h) => ({
+      title: h.title,
+      url: absoluteUrl(h.href),
+      description: h.snippet,
+      type: h.type,
+      snippet: h.snippet,
+    }))
+  }
+  // Fallback: lexical search over the catalog (titles, tags, descriptions).
+  return searchKnowledge(query, { limit, types }).map((r) => ({
+    title: r.title,
+    url: absoluteUrl(r.href),
+    description: r.description,
+    type: r.type,
+  }))
 }
 
 export const studioTools = {
@@ -48,10 +78,7 @@ export const studioTools = {
       limit: z.number().int().min(1).max(5).optional().default(5),
     }),
     execute: async ({ query, types, limit }) => {
-      const results = searchKnowledge(query, {
-        limit: limit ?? 5,
-        types: types as EntryType[] | undefined,
-      })
+      const results = await retrieve(query, limit ?? 5, types as EntryType[] | undefined)
       if (results.length === 0) {
         return {
           query,
@@ -63,13 +90,7 @@ export const studioTools = {
       return {
         query,
         count: results.length,
-        results: results.map((r) => ({
-          title: r.title,
-          url: absoluteUrl(r.href),
-          description: r.description,
-          type: r.type,
-          tags: r.tags,
-        })),
+        results,
       }
     },
   }),

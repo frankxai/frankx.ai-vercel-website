@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Infinity as InfinityIcon, KeyRound, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Persona } from '@/lib/ai/personas'
+import { BYOK_STORAGE_KEY } from './BYOKSetup'
 
 interface UsageResponse {
   tier: 'anon' | 'signedIn' | 'pro' | 'byok'
@@ -31,6 +32,26 @@ export default function UsageMeter({
   triggerKey: number
 }) {
   const [data, setData] = useState<UsageResponse | null>(null)
+  const [hasByok, setHasByok] = useState(false)
+
+  // Track the client-side BYOK key so the meter flips to "unlimited · your key"
+  // the moment a key is saved/cleared (same tab or cross-tab).
+  useEffect(() => {
+    const read = () => {
+      try {
+        setHasByok(!!localStorage.getItem(BYOK_STORAGE_KEY))
+      } catch {
+        setHasByok(false)
+      }
+    }
+    read()
+    window.addEventListener('studio-byok-changed', read)
+    window.addEventListener('storage', read)
+    return () => {
+      window.removeEventListener('studio-byok-changed', read)
+      window.removeEventListener('storage', read)
+    }
+  }, [isOpen, triggerKey])
 
   useEffect(() => {
     if (!isOpen) return
@@ -45,6 +66,22 @@ export default function UsageMeter({
       cancelled = true
     }
   }, [isOpen, triggerKey])
+
+  // A BYOK key in the browser means unlimited regardless of server tier.
+  if (hasByok) {
+    return (
+      <div className="flex items-center justify-between text-[10.5px] uppercase tracking-[0.16em] text-white/40">
+        <span className="flex items-center gap-1.5">
+          <KeyRound className="h-3 w-3" />
+          Your key
+        </span>
+        <span className="flex items-center gap-1 text-emerald-300/80">
+          <InfinityIcon className="h-3 w-3" />
+          unlimited
+        </span>
+      </div>
+    )
+  }
 
   if (!data) {
     return (

@@ -17,7 +17,7 @@ import {
 import { cn } from '@/lib/utils'
 import { DEFAULT_PERSONA, PERSONA_LIST, type PersonaId, getPersona } from '@/lib/ai/personas'
 
-import BYOKSetup from './BYOKSetup'
+import BYOKSetup, { BYOK_STORAGE_KEY } from './BYOKSetup'
 import ToolCallCard from './ToolCallCard'
 import UsageMeter from './UsageMeter'
 
@@ -67,9 +67,20 @@ export default function StudioChatSheet({ isOpen, onClose }: StudioChatSheetProp
     () =>
       new DefaultChatTransport({
         api: '/api/ai/chat',
-        prepareSendMessagesRequest: ({ messages, body }) => ({
-          body: { ...(body || {}), messages, persona: personaId },
-        }),
+        prepareSendMessagesRequest: ({ messages, body }) => {
+          // BYOK key (if any) rides along per-request as a header, sourced from
+          // localStorage. It's used transiently server-side, never stored.
+          let byok: string | null = null
+          try {
+            byok = typeof window !== 'undefined' ? localStorage.getItem(BYOK_STORAGE_KEY) : null
+          } catch {
+            byok = null
+          }
+          return {
+            body: { ...(body || {}), messages, persona: personaId },
+            headers: byok ? { 'x-studio-byok-key': byok } : undefined,
+          }
+        },
       }),
     [personaId]
   )
