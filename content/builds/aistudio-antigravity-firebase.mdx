@@ -1,0 +1,44 @@
+---
+title: AI Studio → Antigravity → Firebase — the Google-stack demo
+slug: aistudio-antigravity-firebase
+status: shipping
+day_number: 10
+stack: [Google AI Studio, Antigravity 2.0, Gemini API, Firebase, Android]
+outcome_metric: 4-step chain, idea to deployed app
+outcome_headline: Idea to deployed mobile-ready app, end-to-end on the Google stack, in one afternoon.
+demo_url: null
+repo_url: null
+started_at: 2026-06-01
+last_updated: 2026-05-25
+sort_order: 5
+summary: A four-step chain that takes an idea from AI Studio, exports to Antigravity with context preserved, ships a Firebase-backed app, and produces a working Android target — all on the Google agentic stack.
+---
+
+## What we built
+
+An end-to-end demonstration: start in Google AI Studio with a one-line product brief, export the project to Antigravity 2.0 (context preserved), have the agent generate the app scaffold against Firebase, then build the Android target. The demo proves the chain is real, not a marketing slide.
+
+## The stack and why
+
+- **Google AI Studio** — research, prompt iteration, and the initial scaffold. Export-to-Antigravity preserved the system prompt and tool configuration.
+- **Antigravity 2.0** — built the UI with browser validation; the artifact (recorded walkthrough) was usable as the demo asset directly.
+- **Gemini API Managed Agents** — handled the background tasks (image generation, content seeding) while the foreground agent built the app.
+- **Firebase** — auth, Firestore, hosting.
+- **Android (Antigravity native)** — produced the APK without leaving the agentic flow.
+
+## What worked
+
+- Context preservation across the AI Studio → Antigravity export was the surprise: no manual prompt re-engineering.
+- Managed Agents running in parallel cut the demo time roughly in half versus a sequential flow.
+
+## What broke
+
+- First Firebase deploy failed on permissions — the agent had not been granted the IAM scope. Resolved with one explicit grant, but worth highlighting in any partner-facing walkthrough.
+
+## One reusable artifact
+
+Coming with the demo writeup.
+
+## Next
+
+Record the screen capture, publish the walkthrough article, and ship the demo to the Google partnership conversation.

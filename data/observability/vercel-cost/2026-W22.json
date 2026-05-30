@@ -1,0 +1,41 @@
+{
+  "week": "2026-W22",
+  "generatedAt": "2026-05-25T07:14:10Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-05-18T07:14:10Z",
+  "windowEnd": "2026-05-25T07:14:10Z",
+  "metrics": {
+    "count_total": 83,
+    "count_production": 43,
+    "count_preview": 40,
+    "count_skipped": 0,
+    "count_error": 23,
+    "count_ready": 60,
+    "duration_p50_seconds": 347,
+    "duration_p95_seconds": 367,
+    "duration_max_seconds": 409,
+    "total_build_minutes": 346.2,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 20,
+    "ready_deploys_total": 60,
+    "duration_note": "20/60 READY deploys sampled; total_build_minutes extrapolated as avg(346.2s) × 60 = 346.2 min"
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "baseline",
+    "count_total": "baseline",
+    "total_build_minutes": "baseline",
+    "note": "2026-W21.json not found in tree (PR #73 branch observability/vercel-cost-2026-W21 was not merged into main). Reconstructed W21 context from PR#73 commit: count_total=48, p50=337s, total_build_minutes≈256. Effective deltas: count_total +35 (+73%), p50 +10s (+3%), total_build_minutes +90 (+35%)."
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=23 (threshold: ≥2 → RED): Massive error spike — 23 failures vs W21 reconstructed=3. Three failure clusters: (1) 13 errors in the final 3 days of the window driven by sitemap-lambda bundling regression (commit 7bf992b6 wired enumerateRoutes() into sitemap.ts causing 42k-file bundle via Turbopack; 5 production + 6 preview errors before PR#91 fix landed); (2) 6 errors from the newsletter multi-agent system branch (PR#anKSZ Claude agent iteration); (3) 4 errors from the PR#92 (QR landing) and PR#93 (Studio Crew AI) Claude agent PRs which failed to build and are still open/unmerged as of snapshot time.",
+    "2026-W21.json not in tree (PR #73 not merged into main) — all deltas set to 'baseline'. Recommend merging PR #73 to restore delta continuity for W23.",
+    "count_total=83 vs W21 reconstructed=48: +73% (+35 deploys) — exceeds +30% threshold, secondary RED trigger. Driven by intensive ikigai workshop V5-V9 iteration (19 deploys in first 2 days of window), newsletter system build, smart-404 follow-ups, and inner circle launch hardening.",
+    "total_build_minutes=346.2 vs W21 reconstructed=256: +35% — exceeds +30% threshold, tertiary RED trigger. Count-driven (83 vs 48 deploys), not slower individual builds — p50 only +10s vs W21.",
+    "PRODUCTION SITE STATUS: frankx.ai is pinned at commit 969ff907 (2026-05-22 ikigai V9 revert). All 6 production deploys attempted since that commit have errored (sitemap lambda regression). PR #91 (sitemap-lambda-fix, READY preview) appears to fix the root cause but has not been merged. /learn/gemini-mastery and other W22 content are built but not live.",
+    "p95=367s (up from W21 reconstructed=444s): tail latency IMPROVED significantly, likely because the W22 sprint had fewer fat squash-merges than W21's PR#63 outlier.",
+    "duration_p50=347s (YELLOW range 271–360s): build times are stable and within the post-audit target band. No regression vs W20 baseline (329s) or W21 (337s).",
+    "2 open Claude agent PRs still ERROR state: PR#92 (QR landing at /connect) and PR#93 (Studio Crew freemium multi-agent chat) both have single failed builds each — likely fixable CI issues on new branches."
+  ]
+}

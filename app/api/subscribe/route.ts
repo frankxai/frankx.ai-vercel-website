@@ -43,6 +43,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'ikigai-branding': {
     topics: [TOPICS.newsletter],
   },
+  'agentic-builder-lab': {
+    topics: [TOPICS.newsletter, TOPICS['product-updates']],
+  },
   all: {
     topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']],
   },

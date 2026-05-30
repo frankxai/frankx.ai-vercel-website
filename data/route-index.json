@@ -1,20 +1,20 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 570,
+    "total": 601,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 308,
+      "section": 333,
       "community": 12,
       "tool": 10,
       "static": 14,
-      "blog": 129,
+      "blog": 134,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
       "os": 9,
-      "partnership": 3,
+      "partnership": 4,
       "product": 26,
       "research": 3,
       "video": 3,
@@ -73,6 +73,16 @@
     {
       "href": "/agentic-ai-center",
       "title": "Agentic AI Center",
+      "type": "section"
+    },
+    {
+      "href": "/agentic-builder-lab",
+      "title": "Agentic Builder Lab",
+      "tags": [
+        "agentic",
+        "builder",
+        "lab"
+      ],
       "type": "section"
     },
     {
@@ -449,6 +459,15 @@
       "type": "tool"
     },
     {
+      "href": "/ai-coe",
+      "title": "AI Coe",
+      "tags": [
+        "ai",
+        "coe"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-evolution",
       "title": "AI Evolution",
       "type": "section"
@@ -736,6 +755,20 @@
         "autonomous intelligence",
         "ai operations",
         "creator systems"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/acos-v11-visual-intelligence-site-integrity",
+      "title": "ACOS v11: Visual Intelligence and Site Integrity — What Changed and Why",
+      "description": "How 8 broken AI-generated images led to a 5-layer quality enforcement system, a 302-page site integrity audit, and a better way to create at scale.",
+      "tags": [
+        "acos",
+        "v11",
+        "visual",
+        "intelligence",
+        "site",
+        "integrity"
       ],
       "type": "blog"
     },
@@ -1093,6 +1126,14 @@
         "claude code",
         "mcp",
         "productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/CLAUDE",
+      "title": "CLAUDE",
+      "tags": [
+        "CLAUDE"
       ],
       "type": "blog"
     },
@@ -1457,6 +1498,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/google-ai-pro-compute-limits-ai-credits-may-2026",
+      "title": "Compute-Aware AI: Inside Google AI Pro's 2026 Upgrade",
+      "description": "Google AI Pro got smarter on May 20, 2026 — compute-aware usage in Gemini, AI credits across Flow and Antigravity, and a cleaner base plan. Here's how to build with the new model.",
+      "tags": [
+        "Google Gemini",
+        "AI Pricing",
+        "AI Credits",
+        "Flow",
+        "Antigravity",
+        "AI Strategy"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/how-to-build-your-soul-md",
       "title": "How to Build Your soul.md — A Creator's Operating File",
       "description": "soul.md is your personal configuration file as a creator. Learn how to build one across 7 dimensions and use it as your creative compass.",
@@ -1529,6 +1584,20 @@
         "deep learning",
         "Andrej Karpathy",
         "video analysis"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/magnifica-humanitas-benevolent-future-arcanea",
+      "title": "Magnifica Humanitas: The Pope, Anthropic, and the Architecture of a Benevolent Future",
+      "description": "Pope Leo XIV's Magnifica Humanitas and Anthropic co-founder Chris Olah's Vatican remarks make one argument: a benevolent AI future has to be designed, not hoped for. Here's why I'm building Arcanea and Starlight.",
+      "tags": [
+        "AI Safety",
+        "Anthropic",
+        "Benevolent AI",
+        "Arcanea",
+        "Starlight Intelligence",
+        "Sovereignty"
       ],
       "type": "blog"
     },
@@ -2162,6 +2231,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/trinity-ai-conscious-operating-system",
+      "title": "Trinity AI — The Conscious Operating System for Human Potential",
+      "description": "Trinity AI is a 5-layer conscious operating system that remembers you, reads your body, and compounds intelligence daily. Built on Claude Agent SDK, Vercel, and sovereign data principles.",
+      "tags": [
+        "trinity ai",
+        "conscious os",
+        "agentic ai",
+        "personal ai",
+        "sovereign ai",
+        "ai architecture",
+        "mcp servers"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp",
       "title": "How I Configured Claude Code with ACOS and 21 MCP Servers",
       "description": "Step-by-step guide to building a production-grade AI coding environment with ACOS, Claude Code, MCP servers, and custom agent workflows. From zero to shipping.",
@@ -2466,6 +2550,16 @@
       "type": "section"
     },
     {
+      "href": "/build/template-pack",
+      "title": "Template Pack",
+      "tags": [
+        "build",
+        "template",
+        "pack"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/business-plan",
       "title": "Business Plan",
       "tags": [
@@ -2550,6 +2644,23 @@
       "href": "/community",
       "title": "Community",
       "type": "community"
+    },
+    {
+      "href": "/connect",
+      "title": "Connect",
+      "tags": [
+        "connect"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/connect/qr",
+      "title": "QR",
+      "tags": [
+        "connect",
+        "qr"
+      ],
+      "type": "section"
     },
     {
       "href": "/consulting",
@@ -3076,6 +3187,72 @@
       "type": "section"
     },
     {
+      "href": "/familie",
+      "title": "Familie",
+      "tags": [
+        "familie"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/forsche-selbst",
+      "title": "Forsche Selbst",
+      "tags": [
+        "familie",
+        "forsche",
+        "selbst"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte",
+      "title": "Geschichte",
+      "tags": [
+        "familie",
+        "geschichte"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte/offene-fragen",
+      "title": "Offene Fragen",
+      "tags": [
+        "familie",
+        "geschichte",
+        "offene",
+        "fragen"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/interview-kit",
+      "title": "Interview Kit",
+      "tags": [
+        "familie",
+        "interview",
+        "kit"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/mitmachen",
+      "title": "Mitmachen",
+      "tags": [
+        "familie",
+        "mitmachen"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/stammbaum",
+      "title": "Stammbaum",
+      "tags": [
+        "familie",
+        "stammbaum"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/family",
       "title": "Family",
       "tags": [
@@ -3254,6 +3431,17 @@
       "type": "section"
     },
     {
+      "href": "/go/qr/ikigai-branding",
+      "title": "Ikigai Branding",
+      "tags": [
+        "go",
+        "qr",
+        "ikigai",
+        "branding"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/goals",
       "title": "Goals",
       "tags": [
@@ -3293,7 +3481,7 @@
         "A2A",
         "Agent Card",
         "Interoperability",
-        "Oracle OAS"
+        "Internal Agent Spec"
       ],
       "type": "guide"
     },
@@ -3312,7 +3500,7 @@
     {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
-      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
+      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while compounding output",
       "tags": [
         "Writing",
         "AI",
@@ -3966,6 +4154,15 @@
       "type": "newsletter"
     },
     {
+      "href": "/newsletter/preferences",
+      "title": "Preferences",
+      "tags": [
+        "newsletter",
+        "preferences"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/newsletter/thank-you",
       "title": "Thank You",
       "tags": [
@@ -4026,6 +4223,15 @@
         "opa",
         "und",
         "oma"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/open-source",
+      "title": "Open Source",
+      "tags": [
+        "open",
+        "source"
       ],
       "type": "section"
     },
@@ -4159,6 +4365,15 @@
       "tags": [
         "partnership",
         "arrow"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/kyndryl",
+      "title": "Kyndryl",
+      "tags": [
+        "partnership",
+        "kyndryl"
       ],
       "type": "partnership"
     },
@@ -4375,6 +4590,16 @@
         "suno",
         "prompt",
         "library"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/products/trinity-ai",
+      "title": "Trinity AI",
+      "tags": [
+        "products",
+        "trinity",
+        "ai"
       ],
       "type": "section"
     },
@@ -4618,6 +4843,31 @@
       "href": "/research",
       "title": "Research",
       "type": "research"
+    },
+    {
+      "href": "/research/blue-zones-ikigai-ai-era",
+      "title": "Blue Zones Ikigai AI Era",
+      "tags": [
+        "research",
+        "blue",
+        "zones",
+        "ikigai",
+        "ai",
+        "era"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/research/conscious-ai-operating-systems",
+      "title": "Conscious AI Operating Systems",
+      "tags": [
+        "research",
+        "conscious",
+        "ai",
+        "operating",
+        "systems"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/methodology",
@@ -4887,6 +5137,16 @@
       "type": "community"
     },
     {
+      "href": "/soul-frequency-assessment",
+      "title": "Soul Frequency Assessment",
+      "tags": [
+        "soul",
+        "frequency",
+        "assessment"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/soul-frequency-quiz",
       "title": "Soul Frequency Quiz",
       "type": "tool"
@@ -4935,6 +5195,14 @@
       "title": "Sprint",
       "tags": [
         "sprint"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/stack",
+      "title": "Stack",
+      "tags": [
+        "stack"
       ],
       "type": "section"
     },
@@ -5254,6 +5522,14 @@
       "type": "section"
     },
     {
+      "href": "/waitlist",
+      "title": "Waitlist",
+      "tags": [
+        "waitlist"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/watch",
       "title": "Watch",
       "type": "video"
@@ -5278,12 +5554,30 @@
       "type": "video"
     },
     {
+      "href": "/work",
+      "title": "Work",
+      "tags": [
+        "work"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/work-with-me",
       "title": "Work With ME",
       "tags": [
         "work",
         "with",
         "me"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/work/trinity-ai",
+      "title": "Trinity AI",
+      "tags": [
+        "work",
+        "trinity",
+        "ai"
       ],
       "type": "section"
     },
@@ -5341,6 +5635,18 @@
       "type": "section"
     },
     {
+      "href": "/workshops/ikigai-branding/present/speaker",
+      "title": "Speaker",
+      "tags": [
+        "workshops",
+        "ikigai",
+        "branding",
+        "present",
+        "speaker"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/workshops/ikigai-content-studio",
       "title": "Ikigai Content Studio",
       "tags": [
@@ -5350,6 +5656,16 @@
         "workshop"
       ],
       "type": "workshop"
+    },
+    {
+      "href": "/workshops/ikigai/v1",
+      "title": "V1",
+      "tags": [
+        "workshops",
+        "ikigai",
+        "v1"
+      ],
+      "type": "section"
     },
     {
       "href": "/workshops/personal-ai-coe",

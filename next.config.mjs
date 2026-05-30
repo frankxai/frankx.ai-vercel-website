@@ -70,6 +70,13 @@ const nextConfig = {
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
       ...REDIRECT_ALIASES,
+      // Music School → the music learning curriculum hub (nav/command-palette
+      // linked /music-school but no page existed; /music/learn is the curriculum).
+      {
+        source: '/music-school',
+        destination: '/music/learn',
+        permanent: true,
+      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',

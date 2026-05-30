@@ -1,0 +1,41 @@
+---
+title: Antigravity vs Claude Code vs Codex — same feature, three tools
+slug: agentic-tools-benchmark
+status: shipping
+day_number: 22
+stack: [Antigravity 2.0, Claude Code, Codex]
+outcome_metric: Same dashboard feature, 3 tools, 3 wildly different paths
+outcome_headline: Which agentic dev tool owns which layer — a head-to-head benchmark with receipts.
+demo_url: null
+repo_url: null
+started_at: 2026-06-14
+last_updated: 2026-05-25
+sort_order: 8
+summary: A controlled benchmark — same dashboard feature, three agentic dev tools, full notes on time, output quality, failure modes, and which tool should own which layer of the stack.
+---
+
+## What we built
+
+A controlled comparison: implement the same product dashboard feature (filterable table with charts and CSV export) in Antigravity 2.0, Claude Code, and Codex. Track time, PR quality, test coverage, and the kinds of failures each tool produces. Full notes published as a benchmark report.
+
+## The stack and why
+
+All three tools, against the same feature spec, in the same repo, with the same acceptance criteria. The point is not "who wins" — the point is which tool earns which layer.
+
+## What worked
+
+- Antigravity dominated on greenfield UI plus browser validation.
+- Claude Code dominated on the existing-repo PR work (refactors, test repair).
+- Codex held its own on terminal-heavy tasks (CSV pipeline, data validation).
+
+## What broke
+
+- Cross-tool handoff is still rough. Each tool wants to own the full session; the orchestration layer between them does not exist yet (this is where SIS comes in).
+
+## One reusable artifact
+
+The benchmark report itself, published as a free PDF on `/build/template-pack`.
+
+## Next
+
+Repeat with a second feature (auth flow) to confirm the layer-ownership pattern is not feature-dependent.

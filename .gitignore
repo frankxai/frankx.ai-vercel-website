@@ -150,6 +150,18 @@ data/acos/agentdb/cache/
 # Anything under .frankx/private/ is operator-only and never reaches the site.
 .frankx/private/
 
+# Operator-only substrates — NEVER commit to this PUBLIC repo.
+# These live in the private FrankX dev repo. Tracking them here would
+# leak machine inventory, family biographical files, and credential paths.
+# Background: agy attempted to sync them on 2026-05-30; caught pre-push.
+.hearth/
+.umwelt/
+.frankx/machine/
+
+# Orphan drag-drops that don't belong at repo root — assets go under public/
+/connect-live.png
+/connect-qr.png
+
 # 404 telemetry + agentic backfill queue (route-recovery system, Phases 2+3).
 # Operator surface at /admin/404-radar reads these; committing them would leak
 # request URLs and personal browsing patterns. The directory is created lazily

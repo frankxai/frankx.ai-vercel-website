@@ -42,7 +42,17 @@ export async function middleware(request: NextRequest) {
   }
 
   // ─── 3. Auth protection (existing) ────────────────────────
-  const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads']
+  // Owner-only operational tooling. Mirrored by the session-gated "Owner"
+  // cluster in NavigationMega — these never appear in nav for signed-out users.
+  const protectedPaths = [
+    '/dashboard',
+    '/admin',
+    '/ops',
+    '/command-center',
+    '/frankx-investment-dashboard',
+    '/api/dashboard',
+    '/api/leads',
+  ]
   const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path))
 
   if (isProtectedRoute) {

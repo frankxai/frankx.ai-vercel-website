@@ -31,6 +31,7 @@ const TIER_LABEL: Record<Partner['tier'], string> = {
   'model-provider': 'Model + infra',
   silicon: 'Silicon',
   tooling: 'Tooling',
+  services: 'Services',
 }
 
 export default function PartnershipsHubPage() {

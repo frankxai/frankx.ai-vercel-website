@@ -1,0 +1,41 @@
+---
+title: Workspace agent pipeline — Gmail, Docs, Sheets via Managed Agents
+slug: workspace-agent-pipeline
+status: wip
+day_number: 18
+stack: [Gemini API Managed Agents, Google Workspace, Claude Code]
+outcome_metric: null
+outcome_headline: A content pipeline that runs inside Workspace, not next to it.
+demo_url: null
+repo_url: null
+started_at: 2026-06-10
+last_updated: 2026-05-25
+sort_order: 7
+summary: A content pipeline built on Gemini API Managed Agents that operates inside Gmail, Docs, and Sheets — researching, drafting, scheduling, and reporting without leaving Workspace.
+---
+
+## What we built
+
+A pipeline that takes a content brief in a Google Doc, researches via grounded Gemini calls, drafts the article in the same Doc, schedules outreach in Gmail, and logs results to a Sheet. Runs as Managed Agents in persistent isolated environments, so jobs continue across browser sessions.
+
+## The stack and why
+
+- **Gemini API Managed Agents** — persistent isolated environments; jobs survive browser restarts.
+- **Google Workspace** — the surface where the work lives; no extra UI to learn.
+- **Claude Code** — built the Apps Script bridge.
+
+## What worked
+
+- The "do the work where the user already is" thesis held — zero context switching during the demo.
+
+## What broke
+
+- OAuth scope sprawl: the agent needed five separate scopes; consolidation pass pending.
+
+## One reusable artifact
+
+Coming.
+
+## Next
+
+Run the pipeline against a real two-week content backlog and measure time saved.
