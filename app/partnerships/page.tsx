@@ -65,7 +65,7 @@ export default function PartnershipsHubPage() {
     description:
       'How Frank Riemer collaborates with strategic partners — active proposals, strategic alignments, and the infrastructure behind the practice.',
     url: `${SITE_URL}/partnerships`,
-    hasPart: all.map((p) => ({
+    hasPart: all.map((p: Partner) => ({
       '@type': 'WebPage',
       name: p.name,
       url: `${SITE_URL}/partnerships/${p.slug}`,
