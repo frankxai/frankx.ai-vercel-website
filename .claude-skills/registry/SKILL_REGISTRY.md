@@ -201,6 +201,7 @@ Products:
 - health-nutrition-expert
 
 ### Project Skills (3)
+
 - arcanea-lore
 - frankx-daily-execution
 - agentic-builder-lab — mirrored from `agentic-creator-os`. One build session → MDX log + LinkedIn draft + demo brief + Mermaid diagram + reusable prompt. Triggers: `/build-log`, "log a build", "agentic-builder-lab". Voice override: technical-authority register (overrides `frankx-brand` studio voice for this scope only).

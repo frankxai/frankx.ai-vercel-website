@@ -33,7 +33,7 @@
  */
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, statSync, existsSync } from 'node:fs'
-import { dirname, join, relative } from 'node:path'
+import { dirname, join, relative, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -97,8 +97,10 @@ if (!category) {
 
 const src = join(acosSkills, category, skillName)
 const dst = join(REPO_ROOT, '.claude-skills', category, skillName)
-const srcRel = `skills/${category}/${skillName}/`
-const dstRel = `.claude-skills/${category}/${skillName}/`
+// No trailing slash so adaptPaths matches both `skills/foo/bar/` and
+// bare `skills/foo/bar` (the latter shows up in markdown links).
+const srcRel = `skills/${category}/${skillName}`
+const dstRel = `.claude-skills/${category}/${skillName}`
 
 console.log(`Porting ${srcRel} → ${dstRel}`)
 console.log(`  source: ${src}`)
@@ -199,15 +201,22 @@ function compareTrees(src, dst, ctx) {
       differ++
       continue
     }
-    const ext = sp.slice(sp.lastIndexOf('.'))
+    const ext = extname(entry.name)
     if (!TEXT_EXTS.has(ext)) continue
     const adaptedSrc = adaptPaths(
       readFileSync(sp, 'utf8'),
-      `skills/${ctx.catName}/${ctx.skillName}/`,
-      `.claude-skills/${ctx.catName}/${ctx.skillName}/`
+      `skills/${ctx.catName}/${ctx.skillName}`,
+      `.claude-skills/${ctx.catName}/${ctx.skillName}`
     )
     const dstText = readFileSync(dp, 'utf8')
     if (adaptedSrc !== dstText) differ++
+  }
+  // Orphans: files in the mirror that no longer exist in ACOS.
+  // The drift policy says the user must delete these manually, but we flag
+  // them so --diff surfaces the staleness instead of staying silent.
+  for (const entry of readdirSync(dst, { withFileTypes: true })) {
+    const sp = join(src, entry.name)
+    if (!existsSync(sp)) differ++
   }
   return differ
 }
@@ -221,7 +230,7 @@ function copyTree(src, dst, ctx) {
       copyTree(sp, dp, ctx)
       continue
     }
-    const ext = sp.slice(sp.lastIndexOf('.'))
+    const ext = extname(entry.name)
     const raw = readFileSync(sp)
     let out = raw
     let didRewrite = false

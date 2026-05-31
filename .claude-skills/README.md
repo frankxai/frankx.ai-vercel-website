@@ -11,7 +11,7 @@
 - [Business Skills](#business-skills) (2 skills) - Oracle Cloud, product management
 - [Creative Skills](#creative-skills) (7 skills) - Brand, content, music, social media, book writing
 - [Personal Skills](#personal-skills) (4 skills) - Philosophy, fitness, nutrition
-- [Project Skills](#project-skills) (2 skills) - Arcanea, daily execution
+- [Project Skills](#project-skills) (5 skills) - Arcanea, daily execution, content ops, publishing ops, agentic builder lab
 
 ---
 
