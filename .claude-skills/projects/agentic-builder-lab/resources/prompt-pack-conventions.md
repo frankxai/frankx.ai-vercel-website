@@ -5,7 +5,7 @@ Every build produces one reusable artifact that lives in the prompt pack. The pa
 ## Location
 
 ```
-skills/projects/agentic-builder-lab/resources/prompt-pack/
+.claude-skills/projects/agentic-builder-lab/resources/prompt-pack/
 ```
 
 One file per artifact. Filename matches the build slug: `<slug>.md`.

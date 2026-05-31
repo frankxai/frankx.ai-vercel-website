@@ -56,7 +56,7 @@ summary: <one sentence, technical, no banned words>
 We pulled one reusable piece out of this build and added it to the prompt pack:
 
 - **Artifact:** <name>
-- **Where it lives:** `skills/projects/agentic-builder-lab/resources/prompt-pack/<slug>.md`
+- **Where it lives:** `.claude-skills/projects/agentic-builder-lab/resources/prompt-pack/<slug>.md`
 - **What it does:** <one line>
 - **How to use it:** <one line>
 
@@ -138,7 +138,7 @@ Deploys preview URLs on every PR so verifiers can hit a live endpoint before vot
 ## One reusable artifact
 
 - **Artifact:** Two-agent verification prompt pair
-- **Where it lives:** `skills/projects/agentic-builder-lab/resources/prompt-pack/antigravity-codex-bridge.md`
+- **Where it lives:** `.claude-skills/projects/agentic-builder-lab/resources/prompt-pack/antigravity-codex-bridge.md`
 - **What it does:** Runs Codex and Claude on the same diff and returns structured pass/fail verdicts.
 - **How to use it:** Drop into any CI step that has both CLIs installed.
 

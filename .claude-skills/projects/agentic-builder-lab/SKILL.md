@@ -15,7 +15,7 @@ outputs:
   - drafts/linkedin/[slug].md
   - drafts/demos/[slug]-brief.md
   - drafts/diagrams/[slug].mmd
-  - skills/projects/agentic-builder-lab/resources/prompt-pack/[slug].md
+  - .claude-skills/projects/agentic-builder-lab/resources/prompt-pack/[slug].md
 dependencies: [frankx-brand]
 voice_override: resources/voice-spec.md
 ---
@@ -91,7 +91,7 @@ Load each template from `resources/` and fill it in:
 | LinkedIn draft | `resources/linkedin-template.md` | `drafts/linkedin/[slug].md` |
 | Demo brief | `resources/demo-brief-template.md` | `drafts/demos/[slug]-brief.md` |
 | Mermaid diagram | `resources/diagram-prompt.md` | `drafts/diagrams/[slug].mmd` |
-| Prompt pack entry | `resources/prompt-pack-conventions.md` | `skills/projects/agentic-builder-lab/resources/prompt-pack/[slug].md` |
+| Prompt pack entry | `resources/prompt-pack-conventions.md` | `.claude-skills/projects/agentic-builder-lab/resources/prompt-pack/[slug].md` |
 
 The MDX file is the canonical artifact. The other four reference it.
 
@@ -136,7 +136,7 @@ content/builds/antigravity-codex-bridge.mdx
 drafts/linkedin/antigravity-codex-bridge.md
 drafts/demos/antigravity-codex-bridge-brief.md
 drafts/diagrams/antigravity-codex-bridge.mmd
-skills/projects/agentic-builder-lab/resources/prompt-pack/antigravity-codex-bridge.md
+.claude-skills/projects/agentic-builder-lab/resources/prompt-pack/antigravity-codex-bridge.md
 ```
 
 ## Files in this skill
