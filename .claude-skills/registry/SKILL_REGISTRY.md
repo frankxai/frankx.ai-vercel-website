@@ -169,7 +169,7 @@ Products:
 | circle | ✓ | ✓ | ✓ |
 | legacy | ✓ | ✓ | ✓ |
 
-### Technical Skills (10)
+### Technical Skills (19)
 - mcp-architecture
 - claude-sdk
 - langgraph-patterns
@@ -180,12 +180,21 @@ Products:
 - nextjs-react-expert
 - framer-expert
 - ui-ux-design-expert
+- api-design — REST/GraphQL/RPC patterns, schema design, versioning
+- async-python — asyncio patterns, concurrency, performance (mirrored from ACOS)
+- ci-cd-pipeline — GitHub Actions, deploy gates, release automation
+- creator-intelligence — creator economy intelligence and patterns
+- database-migrations — schema evolution, zero-downtime migration patterns
+- docker-containers — image design, multi-stage builds, runtime ops
+- documentation-generation — automated docs from code (TypeDoc, Sphinx, etc.)
+- monitoring-observability — metrics, logs, traces, SLOs
+- security-hardening — auth, secrets, OWASP, runtime defense
 
 ### Business Skills (2)
 - oci-services-expert
 - product-management-expert
 
-### Creative Skills (7)
+### Creative Skills (8)
 - frankx-brand
 - frankx-content
 - golden-age-book-writing
@@ -193,6 +202,7 @@ Products:
 - suno-prompt-architect
 - social-media-strategy
 - video-production-workflow
+- content-strategy — strategy, calendar, voice consistency (mirrored from ACOS)
 
 ### Personal Skills (4)
 - greek-philosopher

@@ -127,14 +127,27 @@ if (!flags.dryRun) {
 
 // ---------------------------------------------------------------------------
 
+function isSkillDir(catPath, name) {
+  // A directory is a "skill" only if it contains SKILL.md at its root.
+  // Without this filter, --list and --diff over-report by including
+  // arbitrary subdirs (e.g. `skills/technical/mcp-architecture/<subdir>`
+  // where mcp-architecture itself is the skill, not a category).
+  try {
+    return existsSync(join(catPath, name, 'SKILL.md'))
+  } catch {
+    return false
+  }
+}
+
 function listSkills() {
   const cats = readdirSync(acosSkills, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .sort()
   for (const cat of cats) {
-    const skills = readdirSync(join(acosSkills, cat), { withFileTypes: true })
-      .filter((d) => d.isDirectory())
+    const catPath = join(acosSkills, cat)
+    const skills = readdirSync(catPath, { withFileTypes: true })
+      .filter((d) => d.isDirectory() && isSkillDir(catPath, d.name))
       .map((d) => d.name)
       .sort()
     if (skills.length) {
@@ -156,16 +169,17 @@ function findCategory(name) {
 }
 
 function reportDiff() {
-  // For each ACOS skill, check whether it exists in this repo's .claude-skills
-  // and report differing content. Crude but useful as a sanity check.
+  // For each ACOS skill (directory with a SKILL.md), check whether it
+  // exists in this repo's .claude-skills and report differing content.
   let stale = 0
   let missing = 0
   const cats = readdirSync(acosSkills, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
   for (const cat of cats) {
-    const skills = readdirSync(join(acosSkills, cat), { withFileTypes: true })
-      .filter((d) => d.isDirectory())
+    const catPath = join(acosSkills, cat)
+    const skills = readdirSync(catPath, { withFileTypes: true })
+      .filter((d) => d.isDirectory() && isSkillDir(catPath, d.name))
       .map((d) => d.name)
     for (const s of skills) {
       const here = join(REPO_ROOT, '.claude-skills', cat, s)
