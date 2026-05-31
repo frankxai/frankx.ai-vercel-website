@@ -26,10 +26,13 @@ interface BlogPost {
   readingTime: string
   content: string
   featured?: boolean
+  flagship?: boolean
+  flagshipOrder?: number
 }
 
 interface BlogPageClientProps {
   posts: BlogPost[]
+  flagshipPosts?: BlogPost[]
   categories: string[]
   tags: string[]
 }
@@ -38,25 +41,27 @@ interface BlogPageClientProps {
 // MAIN COMPONENT
 // ============================================================================
 
-export default function BlogPageClient({ posts, categories }: BlogPageClientProps) {
+export default function BlogPageClient({ posts, flagshipPosts = [], categories }: BlogPageClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const getCategoryCount = (category: string) => {
     return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase()).length
   }
 
-  // Latest ORIGINAL post shown as hero (curated/recap content excluded)
-  const latestPost = !selectedCategory
-    ? posts.find(p => p.category?.toLowerCase() !== 'curated') ?? null
-    : null
-  const remainingPosts = posts.filter(p => p !== latestPost)
+  // Flagship showcase only appears on the unfiltered view.
+  const showFlagship = !selectedCategory && flagshipPosts.length > 0
+  const leadFlagship = showFlagship ? flagshipPosts[0] : null
+  const secondaryFlagships = showFlagship ? flagshipPosts.slice(1, 5) : []
+  const flagshipSlugs = new Set(flagshipPosts.map((p) => p.slug))
 
+  // Everything else, newest first (curated/recap content excluded from the grid).
   const filteredPosts = selectedCategory
-    ? remainingPosts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
-    : remainingPosts.filter((post) => post.category?.toLowerCase() !== 'curated')
+    ? posts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
+    : posts.filter(
+        (post) => post.category?.toLowerCase() !== 'curated' && !flagshipSlugs.has(post.slug)
+      )
 
-  const featuredPosts = filteredPosts.filter((post) => post.featured).slice(0, 2)
-  const regularPosts = filteredPosts.filter((post) => !post.featured)
+  const regularPosts = filteredPosts
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -107,66 +112,111 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             </div>
           </motion.div>
 
-          {/* Latest Post Hero */}
-          {latestPost && (
+          {/* Flagship Lead — the single most important read, full cinematic hero */}
+          {leadFlagship && (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.6 }}
             >
-              <Link href={`/blog/${latestPost.slug}`} className="group block">
-                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
-                  {latestPost.image ? (
-                    <div className="grid md:grid-cols-2 gap-0">
-                      <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden">
+              <div className="mb-5 flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-amber-400" />
+                <span className="text-xs font-medium uppercase tracking-[0.25em] text-amber-300/80">Flagship</span>
+                <span className="text-xs text-white/30">— the essential reads</span>
+              </div>
+              <Link href={`/blog/${leadFlagship.slug}`} className="group block">
+                <div className="relative overflow-hidden rounded-3xl border border-amber-500/15 bg-white/[0.03] backdrop-blur-sm transition-all duration-300 hover:border-amber-400/40 hover:bg-white/[0.05]">
+                  <div className="grid gap-0 md:grid-cols-2">
+                    <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[340px]">
+                      {leadFlagship.image ? (
                         <Image
-                          src={latestPost.image}
-                          alt={latestPost.title}
+                          src={leadFlagship.image}
+                          alt={leadFlagship.title}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          priority
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                         />
-                      </div>
-                      <div className="p-6 md:p-8 flex flex-col justify-center">
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
-                          <span className="text-xs text-white/30">{latestPost.readingTime}</span>
-                        </div>
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight leading-tight">
-                          {latestPost.title}
-                        </h2>
-                        <p className="text-sm text-white/50 leading-relaxed line-clamp-3">
-                          {latestPost.description}
-                        </p>
-                        <div className="mt-6 flex items-center gap-2 text-emerald-400 text-sm font-medium">
-                          Read article
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </div>
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-purple-500/10 to-emerald-500/10" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent md:bg-gradient-to-r" />
+                      <div className="absolute left-4 top-4">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/30 bg-amber-400/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-amber-200 backdrop-blur-sm">
+                          <Sparkles className="h-3 w-3" /> Flagship
+                        </span>
                       </div>
                     </div>
-                  ) : (
-                    <div className="p-6 md:p-10">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
-                        <span className="text-xs text-white/30">{latestPost.readingTime}</span>
+                    <div className="flex flex-col justify-center p-6 md:p-9">
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-400">{leadFlagship.category}</span>
+                        <span className="text-xs text-white/30">{leadFlagship.readingTime}</span>
                       </div>
-                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight leading-tight">
-                        {latestPost.title}
+                      <h2 className="mb-3 text-2xl font-bold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+                        {leadFlagship.title}
                       </h2>
-                      <p className="text-base text-white/50 max-w-2xl leading-relaxed">
-                        {latestPost.description}
+                      <p className="text-sm leading-relaxed text-white/55 line-clamp-3 md:text-base">
+                        {leadFlagship.description}
                       </p>
-                      <div className="mt-6 flex items-center gap-2 text-emerald-400 text-sm font-medium">
-                        Read article
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <div className="mt-6 flex items-center gap-2 text-sm font-medium text-amber-300">
+                        Read the flagship
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </Link>
             </motion.div>
           )}
         </div>
       </section>
+
+      {/* Flagship Collection — the rest of the curated best, with full visuals */}
+      {secondaryFlagships.length > 0 && (
+        <section className="px-6 pb-4 pt-2">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+              {secondaryFlagships.map((post, i) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
+                >
+                  <Link href={`/blog/${post.slug}`} className="group block h-full">
+                    <div className="relative flex h-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30">
+                      <div className="relative w-2/5 min-w-[40%] overflow-hidden">
+                        {post.image ? (
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            sizes="(max-width: 768px) 40vw, 240px"
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-purple-500/10" />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0a0a0b]/80" />
+                      </div>
+                      <div className="flex flex-1 flex-col justify-center p-5">
+                        <span className="mb-2 inline-flex w-fit items-center gap-1 rounded-full bg-amber-400/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-amber-300/80">
+                          Flagship
+                        </span>
+                        <h3 className="mb-1.5 text-base font-semibold leading-snug text-white transition-colors group-hover:text-amber-50 md:text-lg line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-xs leading-relaxed text-white/45 line-clamp-2">{post.description}</p>
+                        <span className="mt-3 text-xs text-white/30">{post.readingTime}</span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Category Dropdown & Filter Section */}
       <section className="pb-8 px-6 sticky top-20 z-40 bg-[#0a0a0b]/80 backdrop-blur-xl border-b border-white/5">
@@ -210,32 +260,6 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           </div>
         </div>
       </section>
-
-      {/* Featured Posts */}
-      {!selectedCategory && featuredPosts.length > 0 && (
-        <section className="py-12 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center gap-2 mb-8">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-                Featured Articles
-              </h2>
-            </div>
-            <div className="grid gap-6 lg:grid-cols-2">
-              {featuredPosts.map((post, i) => (
-                <motion.div
-                  key={post.slug}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
-                >
-                  <BlogCard post={post} featured />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* All Posts Grid */}
       <section className="py-12 px-6 pb-24">
