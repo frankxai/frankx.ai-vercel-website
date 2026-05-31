@@ -214,6 +214,7 @@ Skills use their directory name as identifier:
 | `frankx-daily-execution` | Daily workflow using FRANKX system and productivity methods | Daily planning and execution |
 | `daily-content-ops` | Research trending topics, polish drafts, generate social content | Daily content workflow |
 | `daily-publishing-ops` | Full publishing operations cadence with agent handoffs | Publishing and distribution |
+| `agentic-builder-lab` | One build session → MDX log + LinkedIn draft + demo brief + Mermaid diagram + reusable prompt. Voice override: technical authority. Mirrored from ACOS. | Logging a public build for `/agentic-builder-lab` |
 
 **Most Used**: `frankx-daily-execution`, `daily-content-ops`
 
