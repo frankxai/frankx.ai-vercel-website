@@ -224,6 +224,11 @@ if (isDirect) {
   }
 
   const slug = argv.find((a) => !a.startsWith('--') && argv[argv.indexOf(a) - 1] !== '--theme' && argv[argv.indexOf(a) - 1] !== '--out')
+  if (!slug) {
+    console.error('Error: <slug> is required.')
+    console.log('Usage: generate-hero-art.mjs <slug> [--theme tech|soul|arcanea|intelligence|flagship] [--out path]')
+    process.exit(1)
+  }
   const theme = getFlag('--theme', 'tech')
   const out = getFlag('--out', join(ROOT, 'public', 'images', 'blog', `${slug}-hero.png`))
   const svg = buildSvg(slug, theme)

@@ -64,7 +64,6 @@ export default function BlogPage() {
   const allPosts = getAllBlogPosts()
   const flagshipPosts = getFlagshipPosts()
   const categories = Array.from(new Set(allPosts.map((post) => post.category))).sort()
-  const tags = Array.from(new Set(allPosts.flatMap((post) => (post.tags || []).map((tag) => tag.trim())))).sort()
 
   return (
     <>
@@ -74,7 +73,6 @@ export default function BlogPage() {
           posts={allPosts}
           flagshipPosts={flagshipPosts}
           categories={categories}
-          tags={tags}
         />
       </Suspense>
     </>

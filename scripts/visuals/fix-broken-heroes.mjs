@@ -5,7 +5,7 @@
  * (textless, on-brand) for most; repoints the Starlight posts at the real
  * existing .webp asset. Rewrites the `image:` line where the path changes.
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
@@ -51,6 +51,7 @@ function readImage(src) {
 
 async function render(slug, theme, outAbs) {
   const svg = buildSvg(slug, theme)
+  mkdirSync(dirname(outAbs), { recursive: true })
   await sharp(Buffer.from(svg), { density: 144 }).png({ quality: 92, compressionLevel: 9 }).toFile(outAbs)
 }
 

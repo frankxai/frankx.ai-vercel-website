@@ -34,7 +34,6 @@ interface BlogPageClientProps {
   posts: BlogPost[]
   flagshipPosts?: BlogPost[]
   categories: string[]
-  tags: string[]
 }
 
 // ============================================================================
