@@ -183,7 +183,7 @@ export const SHARE_URLS = {
  */
 export const CONTACT_INFO = {
   email: {
-    primary: 'frank@frankx.ai',
+    primary: 'hello@frankx.ai',
     label: 'Email FrankX',
     subject: 'Creative AI Collaboration'
   },
@@ -206,6 +206,14 @@ export const SOCIAL_META = {
   site: '@frankxeth',
   creator: '@frankxeth',
   handle: '@frankxeth'
+} as const
+
+/**
+ * Twitter/Instagram handles for metadata consumers
+ */
+export const socialHandles = {
+  twitter: SOCIAL_PROFILES.x.handle || '@frankxeth',
+  instagram: SOCIAL_PROFILES.instagram.handle || '@frank_riemer',
 } as const
 
 /**

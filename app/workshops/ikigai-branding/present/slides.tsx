@@ -20,7 +20,6 @@ import {
   Award,
   AlertTriangle,
   ExternalLink,
-  ArrowRight,
 } from 'lucide-react'
 import {
   FRANK_CREDENTIALS,
