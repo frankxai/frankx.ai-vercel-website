@@ -286,7 +286,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                AI Architect at Oracle. 12,000+ songs with Suno.
+                Ex-Oracle AI Architect. 12,000+ songs with Suno.
                 630+ AI skills shipped. Everything documented.
               </p>
 
@@ -374,7 +374,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
+  'Ex-Oracle AI Architect',
   '12,000+ AI Songs Created',
   '630+ AI Skills Shipped',
   'Everything Documented',

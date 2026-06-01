@@ -90,7 +90,7 @@ export default function BuildYourAICreatorOSPage() {
               </p>
 
               <p className="text-sm text-white/40 mb-10">
-                By Frank Riemer, AI Architect at Oracle
+                By Frank Riemer, ex-Oracle AI Architect
               </p>
 
               <div className="flex flex-wrap gap-8 mb-12">

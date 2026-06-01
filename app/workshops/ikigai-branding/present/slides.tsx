@@ -111,7 +111,7 @@ export const SLIDES: SlideDef[] = [
     speakerNotes: [
       'ENERGY · Direct, warm. Make eye contact with three different people.',
       'OPEN · "You did not come here for inspiration. You came for output."',
-      'CREDENTIAL · Read receipts aloud: "I build CoE frameworks for F500 at Oracle. Same patterns, open-sourced. Everything you see on the right ships on the same operating system."',
+      'CREDENTIAL · Read receipts aloud: "I built CoE frameworks for F500 at Oracle. Same patterns, open-sourced. Everything you see on the right ships on the same operating system."',
       'PULSE · "Raise a hand if you have read about ikigai before but never written your statement down." Pause. Expect 70% of hands.',
       'BRIDGE · "Good. Then you already know what is missing. Let us name the doubts in this room before we ignore them."',
     ],

@@ -99,6 +99,18 @@ export default async function BlogPostPage({
       name: post.author,
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
+      description:
+        "Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Independent builder of agentic AI systems and creator of 500+ AI-assisted songs.",
+      alumniOf: {
+        '@type': 'Organization',
+        name: 'Oracle',
+      },
+      sameAs: [
+        'https://x.com/frankxeth',
+        'https://www.linkedin.com/in/frank-x-riemer/',
+        'https://github.com/frankxai',
+        'https://www.youtube.com/@frankxai',
+      ],
     },
     publisher: {
       '@type': 'Organization',
@@ -196,6 +208,7 @@ export default async function BlogPostPage({
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-sm text-white/50">AI Architect & Creator</div>
+                    <div className="text-xs text-white/35">Former Oracle AI architect · helped build Oracle&apos;s AI CoE</div>
                   </div>
                 </div>
 

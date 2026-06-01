@@ -17,7 +17,7 @@ Each case study follows the same structure: the problem, the architecture, the i
 
 ### The Problem
 
-A solo creator (the author of this book) needed to produce 2 articles per week, 3 book chapters per week, and daily music tracks — while working full-time as an AI Architect at Oracle. The total weekly creative output target: approximately 15,000 words of written content plus musical compositions.
+A solo creator (the author of this book) needed to produce 2 articles per week, 3 book chapters per week, and daily music tracks — while holding a full-time AI Architect role at Oracle. The total weekly creative output target: approximately 15,000 words of written content plus musical compositions.
 
 Without AI assistance, this output would require approximately 60 hours per week of focused creative work — impossible alongside a full-time role, family responsibilities, and basic human needs like sleep.
 

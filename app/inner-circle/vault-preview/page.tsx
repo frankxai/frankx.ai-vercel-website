@@ -38,7 +38,7 @@ const VAULT_PREVIEW_ITEMS: VaultItem[] = [
     type: 'framework',
     icon: FileText,
     preview:
-      'The exact 1-page brief I write at Oracle before any AI engagement starts — sanitized of client specifics, adapted for solo operators. Fill it out for any agent you\'re about to build and you\'ll catch the governance and ethics gaps before you start coding.',
+      'The exact 1-page brief I wrote at Oracle before any AI engagement starts — sanitized of client specifics, adapted for solo operators. Fill it out for any agent you\'re about to build and you\'ll catch the governance and ethics gaps before you start coding.',
     willInclude: [
       'The 9 questions every CoE intake answers',
       'My personal fill-in template (3 examples)',

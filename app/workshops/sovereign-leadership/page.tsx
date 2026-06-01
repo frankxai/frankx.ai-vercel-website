@@ -129,7 +129,7 @@ export default function SovereignLeadershipPage() {
               The 6-Pillar AI CoE
             </h2>
             <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              The same enterprise AI architecture Frank works with at Oracle, adapted
+              The same enterprise AI architecture Frank worked with at Oracle, adapted
               to the attendee&rsquo;s real context during the session.
             </p>
           </div>

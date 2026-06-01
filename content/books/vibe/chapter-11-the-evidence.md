@@ -63,7 +63,7 @@ Before the architecture, I consumed more than I created. I planned more than I e
 
 After eighteen months of systematic practice:
 
-**Identity shift.** I no longer think of myself as "someone who works at Oracle and also creates." I think of myself as "a builder who creates systems, teaches through books, produces music, and also architects enterprise AI at Oracle." The Oracle role did not diminish — it recontextualized. It became one expression of the builder identity, not the entirety of it.
+**Identity shift.** I no longer think of myself as "someone who worked at Oracle and also creates." I think of myself as "a builder who creates systems, teaches through books, produces music, and also architected enterprise AI at Oracle." The Oracle role did not diminish — it recontextualized. It became one expression of the builder identity, not the entirety of it.
 
 **Attention control.** The notification purge and environment architecture produced a measurable change in focus capacity. Deep work sessions increased from 45 minutes (average at the start) to 90 minutes (current average). This is not willpower — it is infrastructure.
 
