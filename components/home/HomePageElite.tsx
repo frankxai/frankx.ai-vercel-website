@@ -285,7 +285,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 that compounds.
               </h1>
 
-              <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
+              <p className="text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
                 Former AI Architect, Oracle. 12,000+ songs with Suno.
                 90+ open-source AI skills. Everything documented.
               </p>
@@ -464,7 +464,7 @@ function ProductsTools() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Built for builders
           </h2>
-          <p className="text-base text-white/40 max-w-2xl mx-auto">
+          <p className="text-base text-white/60 max-w-2xl mx-auto">
             Open-source tools, premium resources, and creative systems — built for builders who ship.
           </p>
         </motion.div>
@@ -483,7 +483,7 @@ function ProductsTools() {
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                   {product.title}
                 </h3>
-                <p className="text-sm text-white/50 leading-relaxed">
+                <p className="text-sm text-white/60 leading-relaxed">
                   {product.description}
                 </p>
                 <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
@@ -561,7 +561,7 @@ function HubShowcase({
       <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
         {title}
       </h2>
-      <p className="text-base text-white/50 leading-relaxed mb-6">
+      <p className="text-base text-white/60 leading-relaxed mb-6">
         {description}
       </p>
 
@@ -644,7 +644,7 @@ function CreativeWorlds() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Creative Systems Lab
             </h2>
-            <p className="text-sm sm:text-base text-white/50 max-w-lg mb-6">
+            <p className="text-sm sm:text-base text-white/60 max-w-lg mb-6">
               Experiments in AI-native storytelling, design systems, media pipelines, and autonomous creative infrastructure.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -692,7 +692,7 @@ function DesignLab() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Design Lab
           </h2>
-          <p className="text-base text-white/50 max-w-xl">
+          <p className="text-base text-white/60 max-w-xl">
             Generative art experiments. Nature-tech fusion aesthetics.
             Digital gardens where code meets organic form.
           </p>
@@ -755,7 +755,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Books &amp; Writing
             </h2>
-            <p className="text-base text-white/50 max-w-lg">
+            <p className="text-base text-white/60 max-w-lg">
               Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
             </p>
           </div>
@@ -960,7 +960,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-white/50 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-white/60 line-clamp-2 leading-relaxed">
                     {post.description}
                   </p>
                 </div>
@@ -1024,7 +1024,7 @@ function LearningHub() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Learn & Explore
           </h2>
-          <p className="text-base text-white/50 max-w-lg">
+          <p className="text-base text-white/60 max-w-lg">
             Guides, courses, video tutorials, and tools — everything you need to level up.
           </p>
         </motion.div>
@@ -1053,7 +1053,7 @@ function LearningHub() {
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
+                  <p className="text-sm text-white/60 leading-relaxed">{card.description}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -1105,7 +1105,7 @@ function EmailCTA() {
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
-            <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
+            <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1181,7 +1181,7 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
+                      <p className="mt-3 text-sm text-white/60 leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -1239,7 +1239,7 @@ function DigitalTwin() {
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
               Meet FRANK-Ω
             </h2>
-            <p className="text-base text-white/50 leading-relaxed mb-6">
+            <p className="text-base text-white/60 leading-relaxed mb-6">
               Two forms. One mind. FRANK-Ω is the completed intelligence — the version that has
               absorbed everything and just executes. Research-grounded visuals in 60 seconds.
               Creator scoring in real-time. Direct answers, no fluff.
@@ -1309,7 +1309,7 @@ function FinalCTA() {
             <p className="font-serif italic text-lg text-white/30 mb-2">
               The best way to predict the future is to create it.
             </p>
-            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
+            <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
               Pick your path — architecture, music, or products.
             </p>
 

@@ -176,7 +176,7 @@ export default function ACOSPresencePage() {
             <GitBranch className="w-5 h-5 text-white/30" />
             <h2 className="text-2xl font-semibold text-white/80">Three Integration Points</h2>
           </div>
-          <p className="text-white/30 ml-8">How FPA runs inside every ACOS work block.</p>
+          <p className="text-white/60 ml-8">How FPA runs inside every ACOS work block.</p>
         </motion.div>
 
         <div className="space-y-6">
@@ -204,7 +204,7 @@ export default function ACOSPresencePage() {
                   <Clock className="w-3 h-3" />
                   {point.timing}
                 </div>
-                <p className="text-white/50 leading-relaxed mb-3">{point.description}</p>
+                <p className="text-white/60 leading-relaxed mb-3">{point.description}</p>
                 <span
                   className="inline-block text-xs px-2.5 py-1 rounded-full border font-mono"
                   style={{ borderColor: `rgba(${point.rgb}, 0.25)`, color: `rgba(${point.rgb}, 0.8)` }}
@@ -249,7 +249,7 @@ export default function ACOSPresencePage() {
             <Layers className="w-5 h-5 text-white/30" />
             <h2 className="text-2xl font-semibold text-white/80">Depth Level Routing</h2>
           </div>
-          <p className="text-white/30 ml-8">ACOS selects the level based on session context. Override manually with the command.</p>
+          <p className="text-white/60 ml-8">ACOS selects the level based on session context. Override manually with the command.</p>
         </motion.div>
 
         {/* Routing table */}
@@ -315,7 +315,7 @@ export default function ACOSPresencePage() {
             <Eye className="w-5 h-5 text-white/30" />
             <h2 className="text-2xl font-semibold text-white/80">The Eight Gates</h2>
           </div>
-          <p className="text-white/30 ml-8">
+          <p className="text-white/60 ml-8">
             Based on the Buddhist six sense-bases (āyatana) + Eckhart Tolle's Now + Tantric somatic awakening.
           </p>
         </motion.div>
@@ -388,7 +388,7 @@ export default function ACOSPresencePage() {
               <h3 className="font-semibold text-white/70 mb-2 group-hover:text-white transition-colors">
                 Open the Practice
               </h3>
-              <p className="text-white/30 text-sm mb-4">
+              <p className="text-white/60 text-sm mb-4">
                 The full /presence experience — all 8 gates with instructions, silence guides, and five depth levels.
               </p>
               <div className="flex items-center gap-1 text-violet-400/50 text-sm group-hover:text-violet-400 transition-colors">
@@ -407,7 +407,7 @@ export default function ACOSPresencePage() {
               <h3 className="font-semibold text-white/70 mb-2 group-hover:text-white transition-colors">
                 Daily Rituals
               </h3>
-              <p className="text-white/30 text-sm mb-4">
+              <p className="text-white/60 text-sm mb-4">
                 How FPA fits into Morning Prime, Deep Build, Studio Session, and Evening Review.
               </p>
               <div className="flex items-center gap-1 text-amber-400/50 text-sm group-hover:text-amber-400 transition-colors">
@@ -426,7 +426,7 @@ export default function ACOSPresencePage() {
               <h3 className="font-semibold text-white/70 mb-2 group-hover:text-white transition-colors">
                 Back to ACOS
               </h3>
-              <p className="text-white/30 text-sm mb-4">
+              <p className="text-white/60 text-sm mb-4">
                 75+ skills, 38 agents, 35+ commands. FPA is one module in the full operating system.
               </p>
               <div className="flex items-center gap-1 text-emerald-400/50 text-sm group-hover:text-emerald-400 transition-colors">

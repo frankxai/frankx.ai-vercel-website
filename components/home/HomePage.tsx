@@ -135,7 +135,7 @@ export default function HomePage() {
                   </div>
                 </StaggerItem>
                 <StaggerItem>
-                  <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 pt-8 text-sm text-white/50">
+                  <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 pt-8 text-sm text-white/60">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
                       <span>AI Architect · Oracle Cloud</span>

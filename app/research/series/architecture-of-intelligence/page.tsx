@@ -217,7 +217,7 @@ export default function SeriesPage() {
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                   The Spine
                 </h2>
-                <p className="text-white/50 max-w-2xl">
+                <p className="text-white/60 max-w-2xl">
                   Read in order for the full argument. Each brief stands alone, but the sequence is intentional —
                   foundation, translation, mechanism, integration, grounding.
                 </p>
@@ -250,7 +250,7 @@ export default function SeriesPage() {
                           <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
                             {domain.title}
                           </h3>
-                          <p className="text-sm text-white/50 mb-3">
+                          <p className="text-sm text-white/60 mb-3">
                             {domain.subtitle}
                           </p>
                           <p className="text-sm text-white/60 leading-relaxed line-clamp-3">
@@ -288,7 +288,7 @@ export default function SeriesPage() {
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                   Companion content
                 </h2>
-                <p className="text-white/50 max-w-2xl">
+                <p className="text-white/60 max-w-2xl">
                   Long-form essays, daily-practice guides, and implementation patterns derived from the spine.
                 </p>
               </div>

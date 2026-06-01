@@ -111,7 +111,7 @@ export default function VibeOSFAQ({ faq }: VibeOSFAQProps) {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <p className="text-white/50">
+          <p className="text-white/60">
             Still have questions?{' '}
             <a
               href="mailto:frank@frankx.ai?subject=Vibe%20OS%20Question"

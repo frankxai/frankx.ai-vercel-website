@@ -552,7 +552,7 @@ export default function ProductsPage() {
                       <item.icon className="w-6 h-6" />
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+                    <p className="text-sm text-white/60 leading-relaxed">{item.description}</p>
                   </motion.div>
                 )
               })}
@@ -602,7 +602,7 @@ export default function ProductsPage() {
                   className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm"
                 >
                   <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
+                  <p className="text-sm text-white/60 leading-relaxed">{faq.a}</p>
                 </motion.div>
               ))}
             </div>

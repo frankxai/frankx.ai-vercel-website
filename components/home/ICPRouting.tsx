@@ -51,7 +51,7 @@ export function ICPRouting() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Built for builders.
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-white/40">
+          <p className="mt-3 text-base sm:text-lg text-white/60">
             Find your path.
           </p>
         </motion.div>
@@ -76,7 +76,7 @@ export function ICPRouting() {
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">
                     {audience.title}
                   </h3>
-                  <p className="text-sm text-white/40 leading-relaxed">
+                  <p className="text-sm text-white/60 leading-relaxed">
                     {audience.description}
                   </p>
                 </div>

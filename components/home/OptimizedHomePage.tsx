@@ -179,7 +179,7 @@ export default function OptimizedHomePage() {
                   <ArrowUpRight className="w-5 h-5 text-white/20 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{action.title}</h3>
-                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">
                   {action.description}
                 </p>
               </Link>
