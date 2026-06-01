@@ -7,6 +7,7 @@ import { getAllModels } from '@/lib/llm-hub/registry'
 import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { getEditorial } from '@/lib/llm-hub/editorial'
 import { getCategories as getGenCategories, getGenModelsByCategory } from '@/lib/models-hub/registry'
+import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
 
 const SITE_URL = siteConfig.url
 
@@ -53,6 +54,10 @@ export async function GET() {
     })
     .join('\n')
 
+  const genComparisonLinks = GEN_COMPARISONS
+    .map((c) => `- [${c.title}](${SITE_URL}/models/compare/${c.slug}): ${c.verdict}`)
+    .join('\n')
+
   const content = `# FrankX
 
 > Personal hub of Frank X. Riemer — AI Architect at Oracle EMEA AI Center of Excellence, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
@@ -95,6 +100,9 @@ ${comparisonLinks}
 - [Generative Model Hub](${SITE_URL}/models): Every frontier multimodal model, categorized, with verdicts
 - [Generative Model Hub JSON](${SITE_URL}/models.json): Machine-readable multimodal registry for agents
 ${genCategoryBlocks}
+
+### Multimodal Comparisons (head-to-head)
+${genComparisonLinks}
 
 ## Workshops (live, application or open)
 - [Build First AI Agent](${SITE_URL}/workshops/build-first-ai-agent): Multi-path workshop with Vercel AI SDK + 6 branches

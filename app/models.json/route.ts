@@ -1,4 +1,5 @@
 import { getAllGenModels, getCategories, getOrg } from '@/lib/models-hub/registry'
+import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
 
 export const revalidate = 3600
 
@@ -49,6 +50,13 @@ export async function GET() {
       access: m.access ?? [],
       url: `${SITE}/models/${m.category}/${m.id}`,
       sources: m.sources ?? [],
+    })),
+    comparisons: GEN_COMPARISONS.map((c) => ({
+      slug: c.slug,
+      title: c.title,
+      verdict: c.verdict,
+      models: c.models,
+      url: `${SITE}/models/compare/${c.slug}`,
     })),
   }
 

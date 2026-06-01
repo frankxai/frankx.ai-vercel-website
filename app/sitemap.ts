@@ -7,6 +7,7 @@ import { listPartners } from '@/content/partnerships'
 import { getAllModels } from '@/lib/llm-hub/registry'
 import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { getAllGenModels, getCategories } from '@/lib/models-hub/registry'
+import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -679,6 +680,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Generative Model Hub — per-model pages (programmatic)
   getAllGenModels().forEach((m) => {
     entries.push({ url: `${BASE_URL}/models/${m.category}/${m.id}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.75 })
+  })
+
+  // Generative Model Hub — head-to-head comparison pages (high-intent SEO)
+  GEN_COMPARISONS.forEach((c) => {
+    entries.push({ url: `${BASE_URL}/models/compare/${c.slug}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.8 })
   })
 
   // Partners — affiliate transparency hub (workshop tools + pursued programs)

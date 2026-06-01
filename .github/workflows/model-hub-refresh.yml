@@ -1,0 +1,34 @@
+name: Model Hub Daily Refresh
+
+# Daily: hit the deployed /api/cron/model-hub-refresh endpoint. The endpoint
+# itself does the OpenRouter pricing probe and (optionally) triggers a
+# redeploy. This workflow is a belt-and-braces backup in case Vercel cron
+# is disabled, and it surfaces large pricing drifts as a workflow summary.
+
+on:
+  schedule:
+    - cron: '15 7 * * *' # 07:15 UTC daily (15 min after the Vercel cron)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    name: Probe live pricing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit refresh endpoint
+        env:
+          REFRESH_URL: ${{ vars.MODEL_HUB_REFRESH_URL || 'https://frankx.ai/api/cron/model-hub-refresh' }}
+          AUDIT_TOKEN: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -euo pipefail
+          report=$(curl -sS --fail \
+            ${AUDIT_TOKEN:+-H "Authorization: Bearer ${AUDIT_TOKEN}"} \
+            "$REFRESH_URL")
+          echo "$report" > refresh.json
+          echo "## Model Hub daily refresh" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          echo "$report" | head -c 4000 >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
