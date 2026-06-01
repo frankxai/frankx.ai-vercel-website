@@ -361,7 +361,7 @@ export const SLIDES: SlideDef[] = [
     minutes: 10,
     color: 'amber',
     speakerNotes: [
-      'ENERGY · Quick. Three cards. No deep dive — they have Coach GPT for that.',
+      'ENERGY · Quick. Three cards. Skip the long-form analysis — they have Coach GPT for that.',
       'KEY LINE · "Three exercises. Each anchored to the Module 2 statement. Audience-of-One is the hardest."',
       'AUDIENCE-OF-ONE · "Force a single real-feeling person. Name. Job. The problem they had this Tuesday."',
       'PILLAR TEST · "Each pillar must survive 12 months of weekly posts without repeating. If you cannot name 5 example posts off the top of your head, sharpen the pillar."',
