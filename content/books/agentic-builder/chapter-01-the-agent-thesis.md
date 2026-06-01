@@ -260,7 +260,7 @@ The book progresses from foundations to production:
 - **Chapters 7-9** address advanced architectures: computer use, voice agents, and autonomous infrastructure.
 - **Chapters 10-12** tackle deployment: security, observability, cost management, and the organizational patterns that make agentic systems succeed in enterprise environments.
 
-I write from two perspectives. As an AI Architect at Oracle's EMEA AI Center of Excellence, I design agentic systems for enterprise clients -- systems that must be reliable, auditable, and cost-effective at scale. As the builder of ACOS (the Agentic Cognitive Operating System), I operate 38 agents with 75+ skills in my personal infrastructure -- a system I use daily for content creation, research, code generation, and business operations.
+I write from two perspectives. As a former AI Architect at Oracle's EMEA AI Center of Excellence, I designed agentic systems for enterprise clients -- systems that must be reliable, auditable, and cost-effective at scale. As the builder of ACOS (the Agentic Cognitive Operating System), I operate 38 agents with 75+ skills in my personal infrastructure -- a system I use daily for content creation, research, code generation, and business operations.
 
 Enterprise and personal agent systems face the same fundamental challenges. The enterprise system has more constraints (compliance, procurement, multi-tenancy). The personal system has more freedom (experimentation, rapid iteration, tolerance for failure). Both need the same architectural foundations: reliable tool use, effective memory, principled orchestration, and rigorous evaluation.
 

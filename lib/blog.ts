@@ -26,6 +26,9 @@ export interface BlogPost {
   readingGoal?: string
   content: string
   featured?: boolean
+  flagship?: boolean
+  flagshipOrder?: number
+  canonical?: string // Override canonical URL (point a duplicate at its primary)
 
   // AI-First Content Fields
   tldr?: string // 50-word summary for AI extraction
@@ -96,6 +99,17 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
 
 export function getFeaturedPosts(): BlogPost[] {
   return getAllBlogPosts().filter(post => post.featured).slice(0, 3)
+}
+
+/**
+ * Curated flagship articles — the editorial best-of, shown first on the blog
+ * index with large visuals. Driven by `flagship: true` frontmatter and ordered
+ * by `flagshipOrder` (ascending). Distinct from the broad `featured` flag.
+ */
+export function getFlagshipPosts(): BlogPost[] {
+  return getAllBlogPosts()
+    .filter((post) => post.flagship)
+    .sort((a, b) => (a.flagshipOrder ?? 99) - (b.flagshipOrder ?? 99))
 }
 
 export function getPostsByCategory(category: string): BlogPost[] {
