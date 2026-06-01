@@ -12,8 +12,8 @@ If a branch is marked `SAFE_DELETE`, every meaningful change it contains is alre
 |---|---|
 | `SAFE_DELETE` (work in main or superseded) | 3 |
 | `KEEP_UNMERGED` (substantive unmerged ideas — preserve as draft PRs) | 3 |
-| `KEEP` (backs an open PR) | 4 |
-| `KEEP_WIP` (massive 600-950 commit branches — leave for you to triage) | 5 |
+| `KEEP` (backs an open PR) | 5 |
+| `KEEP_WIP` (massive 600-950 commit branches — leave for you to triage) | 6 |
 | `KEEP_BACKUP` (recovery / staging / observability snapshots) | 6 |
 
 ## Safe to delete (work in main or cleanly superseded)
