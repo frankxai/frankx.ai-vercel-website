@@ -101,6 +101,12 @@ const ALLOW_BLOG_SLUGS = new Set([
   'ai-engineering-without-hype-willison',
   'how-to-write-claude-md-that-works',
   'ultimate-ai-coding-agent-setup-acos-claude-code-mcp',
+  'acos-hooks-system-quality-gates', // teaches AI-slop detection — must quote the phrases
+  'karpathys-ai-vision-deep-dive', // article title concept reference
+  'building-deal-flow-pipelines-ai', // "Deep Dive" is a named pipeline stage
+  'building-research-intelligence-system', // "Mode 2: Deep Dive" is a named workflow mode
+  'prompt-engineering-2026-what-still-works', // teaches banned-word detection — must quote phrases in code examples
+  'production-agent-patterns-aws-bedrock', // canonical "AWS Bedrock AgentCore Deep Dive" series-part title (SEO-locked)
 ])
 
 const SCAN_DIRS = ['app', 'components', 'content', 'lib']

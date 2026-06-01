@@ -587,7 +587,7 @@ WALLPAPER — SQUARE / SOCIAL (1:1)
 - Image-model-friendly: comma-separated descriptors, specific nouns over abstract adjectives
 - Specify medium ("ink on aged washi paper", "matte digital painting", "high-contrast photography")
 - Specify mood with concrete language, not "feeling of awakening" — say "morning light through one window, no other light source"
-- No banned brand words ("revolutionary", "transformative", etc. — even in the image prompt)
+- No banned brand words ("groundbreaking", "transformative", etc. — even in the image prompt)
 - End each string with: \`--ar 9:16 --no text --style raw\` (or aspect-ratio equivalent for the model)
 
 ---

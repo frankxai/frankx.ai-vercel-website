@@ -10,7 +10,7 @@ import type { Engagement } from '../types'
  *
  * Voice rules (from CLAUDE.md):
  *   - peer-architect tone, never vendor-pitch
- *   - no AI-tone phrases (delve, dive into, transform, revolutionize, certainly)
+ *   - no AI-tone phrases (delve, dive into, transform, revolutionize, certainly) // ai-slop-allow
  *   - claims about substrate are provable (open-source under frankxai/*)
  */
 export const sampleSubstrateEngagement: Engagement = {
