@@ -1,0 +1,38 @@
+{
+  "week": "2026-W23",
+  "generatedAt": "2026-06-01T07:04:25Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-05-25T07:04:25Z",
+  "windowEnd": "2026-06-01T07:04:25Z",
+  "metrics": {
+    "count_total": 62,
+    "count_production": 24,
+    "count_preview": 38,
+    "count_skipped": 3,
+    "count_error": 14,
+    "count_ready": 45,
+    "duration_p50_seconds": 337,
+    "duration_p95_seconds": 373,
+    "duration_max_seconds": 432,
+    "total_build_minutes": 256.5,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 15,
+    "ready_deploys_total": 45,
+    "duration_note": "15/45 READY deploys sampled via get_deployment; total_build_minutes extrapolated as avg(342s) × 45 = 256.5 min"
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "-10",
+    "count_total": "-21",
+    "total_build_minutes": "-90",
+    "prior_week": "2026-W22"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=14 (threshold ≥2 → RED): 14 build failures across 5 clusters — PR#93 (Studio Crew freemium chat, 6 errors: ongoing merge-conflict + RAG/gateway rewrite churn; branch still open as of snapshot); feat/acos-pillar-9-10-agents (2 errors: Turbopack MDX path alias fix, resolved + merged as PR#103); PR#96 agentic-builder-lab (2 errors: route-index + initial build, fixed + merged); staging/madrid-2026-05-25 (1 error: intentional WIP safety-net per commit note); obs/vercel-cost-2026-W22 branch (1 error: W22 snapshot PR preview before sitemap fix); 2 production errors (main /connect QR before sitemap-lambda fix + /agents cold-cache 45-min timeout). Error count improved from W22=23.",
+    "PRODUCTION SITE HEALTHY: Sitemap-lambda regression (held production pinned at 969ff907 since 2026-05-22) was fixed by PR#91 merged at the very start of W23 on 2026-05-25. Production saw 22 successful deploys after that fix. Week ends on commit cb863be9 (PR#103, Pillar 9+10 agents + blog excellence). No production errors in the second half of the window.",
+    "duration_max=432s (dpl_B5vKSxd6, email site-wide replace across 33 files, 2026-05-27): 29% above p95=373s. Isolated to one large commit touching 216 occurrences; not a build-system regression.",
+    "count_total=62 (−25% vs W22=83): Reduced deploy velocity consistent with FrankX Madrid trip (2026-05-25 → 2026-06-08). No +30% threshold triggered in any direction.",
+    "p50=337s in YELLOW band (271–360s): −10s vs W22 (347s). Build times stable and within post-audit target. No RED risk from build duration."
+  ]
+}
