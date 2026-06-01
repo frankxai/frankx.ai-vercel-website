@@ -15,6 +15,20 @@ export const metadata: Metadata = {
     url: 'https://frankx.ai/agents',
     siteName: 'FrankX',
     type: 'website',
+    images: [
+      {
+        url: '/hero-homepage.png',
+        width: 1200,
+        height: 630,
+        alt: 'FrankX 99 Agents — the complete Creator OS, installable',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '99 Agents · The complete Creator OS, installable',
+    description: '11 pillars × 9 specialists, packaged as installable artifacts for Claude Code / Cursor / Antigravity.',
+    images: ['/hero-homepage.png'],
   },
 }
 

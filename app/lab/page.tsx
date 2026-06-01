@@ -4,16 +4,38 @@ import Link from 'next/link'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 import { GlowCard } from '@/components/ui/glow-card'
 import FrankOmega, { FrankOmegaGhost } from '@/components/FrankOmega'
+import { createMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: 'FrankX Lab — AI Tools & Experiments',
   description:
-    'FRANK-Ω\'s workshop. Research-grounded infographics, creator intelligence, world-building AI, and more. Built by Frank, powered by frontier models.',
-  openGraph: {
-    title: 'FrankX Lab — AI Tools & Experiments',
-    description:
-      'The full stack of AI tools Frank has built. InfoGenius, ACOS, Arcanea, Music Lab — bring your own key or subscribe.',
-    images: [{ url: '/images/mascot/frank-omega-thinking-v1.png' }],
+    'FRANK-Ω\'s workshop. Research-grounded infographics, creator intelligence, world-building AI, and more. Built by Frank, powered by frontier models. Bring your own key or subscribe.',
+  path: '/lab',
+  keywords: [
+    'AI tools',
+    'AI experiments',
+    'InfoGenius',
+    'ACOS',
+    'Arcanea',
+    'BYOK AI tools',
+    'creator AI tools',
+    'FrankX lab',
+  ],
+})
+
+const labCollectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'FrankX Lab — AI Tools & Experiments',
+  description:
+    'FRANK-Ω\'s workshop. The full stack of AI tools Frank has built — InfoGenius, ACOS, Arcanea, Music Lab. Research-grounded, frontier-model-powered, BYOK-friendly.',
+  url: 'https://frankx.ai/lab',
+  isPartOf: { '@type': 'WebSite', name: 'FrankX', url: 'https://frankx.ai' },
+  author: {
+    '@type': 'Person',
+    name: 'Frank Riemer',
+    url: 'https://frankx.ai',
+    jobTitle: 'AI Architect',
   },
 }
 
@@ -121,6 +143,10 @@ const byokSteps = [
 export default function LabPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(labCollectionSchema) }}
+      />
 
       {/* ── Disambiguation banner: distinguish from /agentic-builder-lab ── */}
       <section className="border-b border-white/10 bg-cyan-500/[0.04] px-6 py-3">
