@@ -308,7 +308,7 @@ export default function ForEducatorsPage() {
                   Contact Frank Riemer
                 </a>
                 <p className="text-xs text-zinc-600 mt-3">
-                  Ex-Oracle AI Architect
+                  Former AI Architect, Oracle
                 </p>
               </div>
             </GlowCard>

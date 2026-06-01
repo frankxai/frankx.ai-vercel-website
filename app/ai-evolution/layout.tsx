@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'The AI Evolution: From GenAI to AGI | FrankX Research',
   description:
-    'A living research map of the complete AI landscape — from foundation models through agentic AI to the AGI horizon. Model taxonomy, automation stack, and builder resources from an ex-Oracle AI Architect.',
+    'A living research map of the complete AI landscape — from foundation models through agentic AI to the AGI horizon. Model taxonomy, automation stack, and builder resources from a Former AI Architect, Oracle.',
   keywords: [
     'AI evolution',
     'generative AI',

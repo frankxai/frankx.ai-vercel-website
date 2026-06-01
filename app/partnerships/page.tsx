@@ -19,7 +19,7 @@ import type { Partner } from '@/content/partnerships/types'
 export const metadata = createMetadata({
   title: 'Partnerships — Sovereign-node AI Architect collaborations | FrankX',
   description:
-    'Active strategic conversations and operating alignments with Anthropic, Vercel, NVIDIA, Google, Arrow, and the infrastructure behind the practice. Peer-architect collaboration from Amsterdam, EMEA reach.',
+    'Active strategic conversations and operating alignments with Anthropic, Vercel, NVIDIA, Google, Arrow, and the infrastructure behind the practice. Peer-architect collaboration from Amsterdam.',
   path: '/partnerships',
 })
 
@@ -66,7 +66,7 @@ export default function PartnershipsHubPage() {
     description:
       'How Frank Riemer collaborates with strategic partners — active proposals, strategic alignments, and the infrastructure behind the practice.',
     url: `${SITE_URL}/partnerships`,
-    hasPart: all.map((p) => ({
+    hasPart: all.map((p: Partner) => ({
       '@type': 'WebPage',
       name: p.name,
       url: `${SITE_URL}/partnerships/${p.slug}`,
@@ -249,8 +249,8 @@ export default function PartnershipsHubPage() {
             </h2>
             <p className="text-base text-zinc-300 leading-[1.7]">
               The daily build stack. The models in delivery. The clouds and
-              silicon the practice ships on — today and across the Oracle EMEA
-              AI CoE work that anchors it.
+              silicon the practice ships on — today and across the years of
+              enterprise AI architecture that anchor it.
             </p>
           </MotionItem>
 
@@ -281,7 +281,7 @@ export default function PartnershipsHubPage() {
                 <li>Claude (Anthropic) &mdash; primary reasoning + agent work</li>
                 <li>Gemini (Google) &mdash; multi-modal + ADK</li>
                 <li>Codex / GPT (OpenAI) &mdash; comparison + workshop track</li>
-                <li>Llama (Meta), Cohere, Grok (xAI), Mistral &mdash; from CoE work</li>
+                <li>Llama (Meta), Cohere, Grok (xAI), Mistral &mdash; enterprise-tested</li>
               </ul>
             </MotionItem>
 
@@ -293,7 +293,7 @@ export default function PartnershipsHubPage() {
                 Where the workloads land.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>Oracle Cloud Infrastructure &mdash; EMEA AI CoE delivery</li>
+                <li>Oracle Cloud Infrastructure &mdash; enterprise deployment target</li>
                 <li>OCI Generative AI &mdash; production patterns</li>
                 <li>Oracle Database 23ai &mdash; vector + agent integration</li>
                 <li>Vercel &mdash; every public surface</li>
@@ -308,9 +308,9 @@ export default function PartnershipsHubPage() {
                 Where the GPU + accelerator narrative anchors.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>NVIDIA &mdash; Munich EBC contacts, NIM hands-on</li>
-                <li>Co-architect of the Oracle &times; NVIDIA partner event 2025</li>
-                <li>Oracle &times; NVIDIA AI accelerator pack EMEA delivery</li>
+                <li>NVIDIA &mdash; NIM hands-on, accelerator stack</li>
+                <li>GPU + accelerator architecture &mdash; battle-tested at enterprise scale</li>
+                <li>Multi-cloud AI deployment patterns</li>
               </ul>
             </MotionItem>
           </div>

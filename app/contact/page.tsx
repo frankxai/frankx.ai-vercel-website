@@ -8,8 +8,8 @@ const contactMethods = [
     icon: Mail,
     title: 'Email Us',
     description: 'Get a response within 24 hours',
-    contact: 'frank@frankx.ai',
-    href: 'mailto:frank@frankx.ai?subject=FrankX.AI%20Inquiry',
+    contact: 'hello@frankx.ai',
+    href: 'mailto:hello@frankx.ai?subject=FrankX.AI%20Inquiry',
     preferred: true
   },
   {
@@ -17,7 +17,7 @@ const contactMethods = [
     title: 'Schedule a Call',
     description: 'Book a strategic consultation',
     contact: 'Strategy Session',
-    href: 'mailto:frank@frankx.ai?subject=Strategy%20Session%20Request',
+    href: 'mailto:hello@frankx.ai?subject=Strategy%20Session%20Request',
     preferred: false
   },
   {
@@ -25,7 +25,7 @@ const contactMethods = [
     title: 'Project Discussion',
     description: 'Discuss your AI transformation needs',
     contact: 'Project Consultation',
-    href: 'mailto:frank@frankx.ai?subject=Project%20Consultation',
+    href: 'mailto:hello@frankx.ai?subject=Project%20Consultation',
     preferred: false
   }
 ]
@@ -230,7 +230,7 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="mailto:frank@frankx.ai?subject=AI%20Strategy%20Consultation"
+                href="mailto:hello@frankx.ai?subject=AI%20Strategy%20Consultation"
                 className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
               >
                 Start the Conversation

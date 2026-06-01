@@ -164,6 +164,24 @@ FrankX (Private)                 Production (Public)
 - `/frankx-ai-deploy` - Deploy to production
 - `/frankx-ai-blog` - Create blog posts
 - `/frankx-ai-content-pipeline` - Full content workflow
+- `/build-log` - Convert a build session into MDX log + LinkedIn draft + demo brief + Mermaid diagram + prompt-pack entry (agentic-builder-lab skill — mirrored from ACOS)
+
+**Sync from ACOS:**
+
+ACOS (`frankxai/agentic-creator-os`) is the canonical source for skills. To pull a skill into this repo's `.claude-skills/` mirror, run:
+
+```bash
+# List ACOS skills
+node scripts/port-acos-skill.mjs --list
+
+# See which skills are missing or out of date in the mirror
+node scripts/port-acos-skill.mjs --diff
+
+# Port one skill (self-referential paths are rewritten automatically)
+node scripts/port-acos-skill.mjs <skill-name>
+```
+
+Defaults `ACOS_REPO_PATH` to `/home/user/agentic-creator-os`. See `.claude-skills/SYNC.md` for details.
 
 ---
 

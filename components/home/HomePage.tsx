@@ -100,7 +100,7 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-xl text-slate-200 max-w-4xl mx-auto leading-relaxed">
-                    Ex-Oracle AI Architect, now building independently. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
+                    Former Oracle AI Architect, independent creator. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
                   </p>
                 </StaggerItem>
                 <StaggerItem>

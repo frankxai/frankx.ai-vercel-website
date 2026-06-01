@@ -33,12 +33,13 @@ export function listActivePartners(): Partner[] {
   return listPartners().filter((p) => p.status === 'active')
 }
 
+export function listStrategicAlignment(): Partner[] {
+  return listPartners().filter((p) => p.status === 'strategic-alignment')
+}
+
 export function listOpenConversations(): Partner[] {
   return listPartners().filter(
     (p) => p.status === 'placeholder' || p.status === 'in-conversation'
   )
 }
 
-export function listStrategicAlignment(): Partner[] {
-  return listPartners().filter((p) => p.status === 'strategic-alignment')
-}
