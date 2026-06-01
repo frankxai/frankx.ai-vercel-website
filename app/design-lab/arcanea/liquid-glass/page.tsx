@@ -303,19 +303,19 @@ export default function LiquidGlassShowcase() {
             Explore the full design system specifications, implementation guides, and customization options.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/docs/design/LIQUID_GLASS_SYSTEM.md" target="_blank">
+            <Link href="https://github.com/frankxai/frankx.ai-vercel-website/blob/main/docs/design/LIQUID_GLASS_SYSTEM.md" target="_blank" rel="noopener noreferrer">
               <LiquidButton element="default" size="md">
                 <Code className="w-4 h-4" />
                 Design System Spec
               </LiquidButton>
             </Link>
-            <Link href="/docs/design/ARCANEA_VISUAL_LANGUAGE.md" target="_blank">
+            <Link href="https://github.com/frankxai/frankx.ai-vercel-website/blob/main/docs/design/ARCANEA_VISUAL_LANGUAGE.md" target="_blank" rel="noopener noreferrer">
               <LiquidButton element="arcane" size="md">
                 <Sparkles className="w-4 h-4" />
                 Arcanea Visual Language
               </LiquidButton>
             </Link>
-            <Link href="/components/liquid-glass/README.md" target="_blank">
+            <Link href="https://github.com/frankxai/frankx.ai-vercel-website/blob/main/components/liquid-glass/README.md" target="_blank" rel="noopener noreferrer">
               <LiquidButton element={selectedElement} size="md">
                 <Code className="w-4 h-4" />
                 Component README
