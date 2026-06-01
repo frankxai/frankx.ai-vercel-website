@@ -215,7 +215,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
           src={`https://suno.com/embed/${track.sunoId}`}
           className="w-full h-[380px]"
           style={{ border: 'none' }}
-          allow="autoplay; clipboard-write"
+          allow="clipboard-write"
           loading="lazy"
           title={track.title}
         />
@@ -339,7 +339,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                     src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
                     className="w-full h-[380px]"
                     style={{ border: 'none' }}
-                    allow="autoplay; clipboard-write"
+                    allow="clipboard-write"
                     loading="lazy"
                     title="Vibe OS — Featured Track"
                   />
