@@ -91,7 +91,7 @@ If a branch is marked `SAFE_DELETE`, every meaningful change it contains is alre
 
 ## Keep WIP — massive branches you should triage personally
 
-These 5 branches each carry 600–950 unique commits and share an identical "missing" file set (`app/(preview)/{music-lab,products}-v{1,2,3}/page.tsx` and related preview routes). They appear to be a family of dev-workspace snapshots from W18–W20 that branched from a common ancestor with abandoned preview routes. **Do not bulk-delete without your call.** Possible interpretations: (a) parallel exploration that overlaps heavily, (b) Frank's working snapshots, (c) genuinely abandoned WIP. Recommend a triage session — pick one to keep as the canonical, archive the rest.
+These 6 branches each carry 600–950 unique commits and share an identical "missing" file set (`app/(preview)/{music-lab,products}-v{1,2,3}/page.tsx` and related preview routes). They appear to be a family of dev-workspace snapshots from W18–W20 that branched from a common ancestor with abandoned preview routes. **Do not bulk-delete without your call.** Possible interpretations: (a) parallel exploration that overlaps heavily, (b) Frank's working snapshots, (c) genuinely abandoned WIP. Recommend a triage session — pick one to keep as the canonical, archive the rest.
 
 | Branch | Unique commits | Shared missing pattern |
 |---|---|---|
