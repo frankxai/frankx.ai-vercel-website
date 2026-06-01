@@ -28,6 +28,7 @@ export interface BlogPost {
   featured?: boolean
   flagship?: boolean
   flagshipOrder?: number
+  canonical?: string // Override canonical URL (point a duplicate at its primary)
 
   // AI-First Content Fields
   tldr?: string // 50-word summary for AI extraction

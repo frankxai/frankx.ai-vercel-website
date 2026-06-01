@@ -37,6 +37,11 @@ type CreateMetadataOptions = {
   updatedTime?: string
   authors?: string[]
   /**
+   * Override the canonical URL. Use to point a duplicate/secondary page at its
+   * primary version for SEO (consolidates link equity without deleting URLs).
+   */
+  canonical?: string
+  /**
    * When true, emits robots: { index: false, follow: false }
    * — used for draft pages, unlisted proposals, internal-only surfaces.
    */
@@ -53,16 +58,20 @@ export function createMetadata({
   publishedTime,
   updatedTime,
   authors,
+  canonical,
   noindex = false,
 }: CreateMetadataOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString()
+  const canonicalUrl = canonical
+    ? new URL(canonical, siteConfig.url).toString()
+    : url
 
   return {
     title,
     description,
     keywords,
     alternates: {
-      canonical: url,
+      canonical: canonicalUrl,
     },
     ...(noindex
       ? {

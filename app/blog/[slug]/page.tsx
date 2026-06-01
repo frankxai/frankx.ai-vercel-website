@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
+import ReadingProgress from '@/components/blog/ReadingProgress'
+import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
@@ -43,8 +45,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       post.image ||
       `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
     publishedTime: post.date,
+    updatedTime: post.lastUpdated || undefined,
     authors: [post.author],
     keywords: post.keywords || undefined,
+    canonical: post.canonical || undefined,
   })
 }
 
@@ -137,6 +141,7 @@ export default async function BlogPostPage({
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
+      <ReadingProgress />
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -266,6 +271,7 @@ export default async function BlogPostPage({
 
         <div className="px-6 pt-12">
           <div className="mx-auto max-w-[680px]">
+            <TableOfContents />
             <div className="article-prose">
               <MDXContent source={post.content} />
             </div>
