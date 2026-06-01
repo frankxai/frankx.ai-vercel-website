@@ -43,7 +43,7 @@ AI-generated text has detectable patterns. Readers are learning to recognize the
 
 **Patterns to eliminate:**
 
-"Delve into" — The single most reliable marker of AI-generated text. Replace with specific verbs: examine, analyze, explore, investigate. Or better: eliminate the filler entirely and start with the substance.
+"Delve into" — The single most reliable marker of AI-generated text. Replace with specific verbs: examine, analyze, explore, investigate. Or better: eliminate the filler entirely and start with the substance. <!-- ai-slop-allow -->
 
 "It's important to note that" — A throat-clearing phrase that adds no information. Delete it. Start with the note itself.
 

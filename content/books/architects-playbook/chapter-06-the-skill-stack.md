@@ -104,7 +104,7 @@ My `frankx-blog-shipping` skill defines: research → outline → draft → SEO 
 
 These define *what counts as good enough*. Code review standards. Content quality gates. Accessibility requirements. Design system rules.
 
-My `brand-rules` skill defines quality in specific, measurable terms: "Every claim must be verifiable. Author name must be 'Frank Riemer.' No negative framing. No AI-sounding phrases ('delve into,' 'it's important to note'). Every page must have Schema.org markup."
+My `brand-rules` skill defines quality in specific, measurable terms: "Every claim must be verifiable. Author name must be 'Frank Riemer.' No negative framing. No AI-sounding phrases ('delve into,' 'it's important to note'). Every page must have Schema.org markup." <!-- ai-slop-allow -->
 
 Quality skills prevent the most expensive kind of failure — shipping work that meets no standard because no standard was defined.
 

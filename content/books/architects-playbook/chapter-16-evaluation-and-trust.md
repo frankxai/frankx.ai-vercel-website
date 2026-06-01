@@ -160,12 +160,12 @@ The AI does not perform this check. The AI generates the claims. I verify them. 
 
 **Gate 2: Brand voice consistency.**
 
-My brand voice has specific rules: no filler words, no AI-sounding phrases ("delve into," "it's important to note," "in today's rapidly evolving landscape"), no spiritual language, no grandiose claims. These rules are encoded in the skill files that Claude loads, and Claude generally follows them. But "generally" is not "always."
+My brand voice has specific rules: no filler words, no AI-sounding phrases ("delve into," "it's important to note," "in today's rapidly evolving landscape"), no spiritual language, no grandiose claims. These rules are encoded in the skill files that Claude loads, and Claude generally follows them. But "generally" is not "always." <!-- ai-slop-allow -->
 
 The check is a scan of the generated text for voice violations. I have a mental checklist:
 
 - Any sentence starting with "In today's..."? Remove it.
-- Any use of "delve," "landscape," "journey," "unleash," "harness"? Replace with precise language.
+- Any use of "delve," "landscape," "journey," "unleash," "harness"? Replace with precise language. <!-- ai-slop-allow -->
 - Any sentence that could be removed without losing information? Remove it.
 - Does every paragraph advance the argument? If not, cut it.
 

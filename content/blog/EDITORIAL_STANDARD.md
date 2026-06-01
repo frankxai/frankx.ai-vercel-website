@@ -42,7 +42,7 @@ Reject a draft if it has any of these:
 - [ ] Repetition / restating the same point in three paragraphs
 - [ ] Symmetrical "On one hand… on the other hand…" filler with no verdict
 - [ ] Invented stats or unverifiable claims — if you can't source it, don't assert it
-- [ ] "As an AI", "delve", "tapestry", "in the realm of", "it's worth noting that"
+- [ ] "As an AI", "delve", "tapestry", "in the realm of", "it's worth noting that" <!-- ai-slop-allow -->
 - [ ] No first-hand signal — at least one thing only the author could have written (a number, a failure, a specific config)
 
 ---

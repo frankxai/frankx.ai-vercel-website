@@ -90,7 +90,7 @@ Voice consistency is solved at the skill file level, not the editing level.
 
 A brand voice skill file captures the specific elements that make your writing yours:
 
-**Vocabulary preferences.** Words you use. Words you avoid. My voice skill specifies: use "operating system," "architecture," "framework," "pipeline." Avoid: "game-changing," "revolutionary," "unleash," "supercharge." Use "produce" instead of "create" when describing output. Use "compound" instead of "grow" when describing accumulation.
+**Vocabulary preferences.** Words you use. Words you avoid. My voice skill specifies: use "operating system," "architecture," "framework," "pipeline." Avoid: "game-changing," "revolutionary," "unleash," "supercharge." Use "produce" instead of "create" when describing output. Use "compound" instead of "grow" when describing accumulation. <!-- ai-slop-allow -->
 
 **Sentence patterns.** Short sentences for emphasis. Medium sentences for explanation. Long sentences sparingly and only when the idea requires subordinate clauses. My writing tends toward direct declaration: "This works." "The system handles it." "That is the difference." If you read enough of my work, you develop an ear for the rhythm. The skill file makes that rhythm explicit.
 
