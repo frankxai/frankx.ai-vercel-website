@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 613,
+    "total": 614,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 332,
+      "section": 333,
       "community": 17,
       "tool": 10,
       "static": 15,
@@ -5504,6 +5504,14 @@
       "href": "/tools/visual-intelligence",
       "title": "Visual Intelligence",
       "type": "tool"
+    },
+    {
+      "href": "/tribe",
+      "title": "Tribe",
+      "tags": [
+        "tribe"
+      ],
+      "type": "section"
     },
     {
       "href": "/unsubscribe",
