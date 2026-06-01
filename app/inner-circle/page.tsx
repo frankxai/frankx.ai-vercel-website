@@ -374,7 +374,7 @@ export default function InnerCirclePage() {
             transition={{ duration: 0.5 }}
             className="mb-4 flex justify-center"
           >
-            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
+            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi, the FrankX Inner Circle mascot — half organic, half digital" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -422,7 +422,7 @@ export default function InnerCirclePage() {
               Join the Waitlist — June 1 2026
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <span className="text-xs text-white/40">
+            <span className="text-xs text-white/60">
               Free to join · Single-click unsubscribe · No spam
             </span>
           </motion.div>
@@ -461,7 +461,7 @@ export default function InnerCirclePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/40"
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60"
           >
             <Link href="/acos" className="hover:text-white/70 transition-colors">
               Agentic Creator OS
