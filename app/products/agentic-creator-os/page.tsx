@@ -33,9 +33,16 @@ const structuredData = {
   '@type': 'Product',
   name: product.name,
   description: product.promise,
+  image: 'https://frankx.ai/images/acos/acos-hero-omega.png',
+  category: product.category ?? 'Creator Systems',
   brand: {
     '@type': 'Brand',
-    name: 'FrankX.ai',
+    name: 'FrankX',
+    url: 'https://frankx.ai',
+  },
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'Creators, AI architects, and operators building agent systems',
   },
   offers: {
     '@type': 'Offer',
@@ -43,6 +50,12 @@ const structuredData = {
     priceCurrency: product.offer.currency || 'USD',
     availability: 'https://schema.org/InStock',
     priceValidUntil: '2026-12-31',
+    url: `https://frankx.ai/products/${product.slug}`,
+    seller: {
+      '@type': 'Person',
+      name: 'Frank Riemer',
+      url: 'https://frankx.ai',
+    },
   },
 }
 
@@ -80,7 +93,7 @@ export default function AgenticCreatorOSPage() {
                 <summary className="cursor-pointer text-lg font-semibold text-white">
                   {item.question}
                 </summary>
-                <p className="mt-3 text-sm text-white/70">{item.answer}</p>
+                <p className="mt-3 text-sm text-white/80">{item.answer}</p>
               </details>
             ))}
           </div>
