@@ -245,7 +245,7 @@ function RuntimeChip({ label, value }: { label: string; value: string }) {
 export function makeProducerMetadata(producerId: ProducerMeta['id']): Metadata {
   const producer = getProducer(producerId)
   if (!producer) {
-    return { title: 'FrankX Studio' }
+    return { title: 'FrankX Studio', robots: { index: false, follow: false } }
   }
   const title = `${producer.label} Producer — FrankX Studio`
   return {
@@ -264,5 +264,6 @@ export function makeProducerMetadata(producerId: ProducerMeta['id']): Metadata {
       title,
       description: producer.description,
     },
+    robots: { index: false, follow: false },
   }
 }
