@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 601,
+    "total": 602,
     "aliases": 14,
     "byType": {
       "core": 22,
@@ -9,7 +9,7 @@
       "community": 12,
       "tool": 10,
       "static": 14,
-      "blog": 134,
+      "blog": 135,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -763,12 +763,11 @@
       "title": "ACOS v11: Visual Intelligence and Site Integrity — What Changed and Why",
       "description": "How 8 broken AI-generated images led to a 5-layer quality enforcement system, a 302-page site integrity audit, and a better way to create at scale.",
       "tags": [
-        "acos",
-        "v11",
-        "visual",
-        "intelligence",
-        "site",
-        "integrity"
+        "ACOS",
+        "Visual Intelligence",
+        "Quality Gates",
+        "Site Integrity",
+        "AI"
       ],
       "type": "blog"
     },
@@ -790,10 +789,11 @@
       "title": "The 2026 AEO Knowledge Graph: From SEO to Entity-First Authority",
       "description": "Discover why Answer Engine Optimization (AEO) and Knowledge Graphs have replaced traditional SEO in 2026, and how to build topical authority clusters.",
       "tags": [
-        "aeo",
-        "knowledge",
-        "graph",
-        "2026"
+        "AEO",
+        "Knowledge Graph",
+        "SEO",
+        "Topical Authority",
+        "AI Citations"
       ],
       "type": "blog"
     },
@@ -957,7 +957,7 @@
     {
       "href": "/blog/ai-coe-launch",
       "title": "Launching the AI Center of Excellence: A New Era for FrankX",
-      "description": "We are deploying the AI CoE Hub, a production-grade LLM/Agent blog series, and massive UX enhancements. See how we are transforming from tech-overwhelmed to AI-empowered.",
+      "description": "Announcing the AI Center of Excellence Hub on FrankX — the six-pillar enterprise CoE framework (strategy, governance, talent, technology, data, ethics) translated for creators and individuals, with a production LLM/agent blog series to back it.",
       "tags": [
         "AI Architecture",
         "AI CoE",
@@ -1315,6 +1315,14 @@
       "type": "blog"
     },
     {
+      "href": "/blog/EDITORIAL_STANDARD",
+      "title": "EDITORIAL_STANDARD",
+      "tags": [
+        "EDITORIAL_STANDARD"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/embodied-creator-os",
       "title": "Your Body Is Part of Your AI Stack",
       "description": "The disembodied AI ceiling and the embodied creator OS. Why training, sleep, breath, and environment are cognitive infrastructure — for humans and for the agents we build.",
@@ -1358,7 +1366,7 @@
     {
       "href": "/blog/frankx-business-plan-canvas",
       "title": "FrankX Business Plan Canvas",
-      "description": "The concise business model behind the Agentic Creator OS and the FrankX product ladder.",
+      "description": "The full business model behind the Agentic Creator OS — problem, segments, value proposition, channels, revenue, costs, and the one unfair advantage that ties it together.",
       "tags": [
         "Business Model",
         "Product Strategy",
@@ -1399,7 +1407,7 @@
     {
       "href": "/blog/frankx-vision-mission-values",
       "title": "FrankX Vision, Mission, and Values",
-      "description": "The core narrative that anchors every FrankX system, launch, and creator experience.",
+      "description": "The mission, vision, and six values that decide what FrankX builds, ships, and refuses — written so you can hold the work accountable to them.",
       "tags": [
         "Vision",
         "Mission",
@@ -1462,7 +1470,7 @@
     {
       "href": "/blog/golden-age-field-guide",
       "title": "Golden Age Field Guide: Principles and Rituals",
-      "description": "A concise field guide to navigate the Golden Age of Intelligence with clarity, momentum, and soul.",
+      "description": "A concise field guide to working in the Golden Age of Intelligence — six principles, four creator-stack layers, and a 90-day ritual map you can start this week.",
       "tags": [
         "Golden Age",
         "AI",
