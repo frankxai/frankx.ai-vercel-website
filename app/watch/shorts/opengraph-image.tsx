@@ -141,7 +141,7 @@ export default async function OgImage() {
           <div style={{ display: 'flex', gap: 12 }}>
             <span>Curated by an AI Architect</span>
             <span>·</span>
-            <span>Oracle EMEA AI CoE</span>
+            <span>Ex-Oracle AI Architect</span>
           </div>
           <div
             style={{

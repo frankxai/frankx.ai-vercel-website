@@ -9,7 +9,7 @@ import { bookReviews } from '@/data/book-reviews'
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
   description:
-    'Ex-Oracle AI Architect. Helped build the EMEA AI Center of Excellence — 40+ AI CoEs for Fortune 500 enterprises. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
+    'Ex-Oracle AI Architect. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows for creators who ship.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -91,7 +91,7 @@ const homepageFAQs = [
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
+      'ACOS is an open-source operating system for Claude Code with 90+ skills, 60+ specialized agents, and 80+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',

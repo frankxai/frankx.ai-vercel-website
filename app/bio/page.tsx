@@ -20,11 +20,11 @@ import CopyableBio from './CopyableBio';
 // or copy the length that fits.
 
 const ONE_LINE =
-  'Frank Riemer is an Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence, and the creator of 12,000+ AI songs.';
+  'Frank Riemer is a former Oracle AI Architect who helped build the EMEA AI Center of Excellence, and the creator of 12,000+ AI songs.';
 
-const SHORT_BIO = `Frank Riemer is an Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence and shipped 40+ AI CoEs for Fortune 500 enterprises across Europe. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He now adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is a former Oracle AI Architect who helped build the EMEA AI Center of Excellence. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He now adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
 
-const LONG_BIO = `Frank Riemer is an Ex-Oracle AI Architect. At Oracle's EMEA AI Center of Excellence — which he helped build — he designed Center-of-Excellence frameworks and agentic systems for 40+ Fortune 500 enterprise teams across Europe. The same six-pillar architecture he refined in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he now scales down for individuals at frankx.ai, the personal AI Center of Excellence.
+const LONG_BIO = `Frank Riemer is a former Oracle AI Architect who helped build the EMEA AI Center of Excellence. He designed Center-of-Excellence frameworks and agentic systems, battle-tested at enterprise scale. The same six-pillar architecture he refined in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he now scales down for individuals at frankx.ai, the personal AI Center of Excellence.
 
 By night, he is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a visionary manifesto on the convergence of human and artificial intelligence.
 
@@ -123,7 +123,7 @@ const QUICK_FACTS = [
 export const metadata: Metadata = {
   title: 'Bio · Frank Riemer | FrankX',
   description:
-    'Press bio, speaker topics, and media kit for Frank Riemer — Ex-Oracle AI Architect (helped build the EMEA AI Center of Excellence), creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+    'Press bio, speaker topics, and media kit for Frank Riemer — Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
 };
 
 export default function BioPage() {
@@ -141,7 +141,7 @@ export default function BioPage() {
           },
           alumniOf: {
             '@type': 'Organization',
-            name: 'Oracle EMEA AI Center of Excellence',
+            name: 'Oracle',
           },
           description: ONE_LINE,
           url: 'https://frankx.ai/bio',
@@ -454,7 +454,7 @@ export default function BioPage() {
                 I come from a Volga German family — three generations displaced, each one rebuilding from nothing. My father built houses; my brother builds solar businesses. My medium is different — AI systems and music — but the instinct is the same.
               </p>
               <p>
-                I spent years at Oracle's EMEA AI Center of Excellence — which I helped build — designing frameworks for 40+ Fortune 500 companies across Europe. I'm now independent, full-time at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level.
+                I spent years as an enterprise AI architect, designing Center-of-Excellence frameworks distilled from years of enterprise production work. I'm now independent, full-time at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level.
               </p>
               <p>
                 The bridge is the work. The full version of how I got here lives in <Link href="/about" className="text-emerald-400 hover:text-emerald-300 transition-colors">/about</Link> — including the family story, the music, the books that shaped the books I now write.
