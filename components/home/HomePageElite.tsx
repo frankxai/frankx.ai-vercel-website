@@ -286,8 +286,8 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                AI Architect at Oracle. 12,000+ songs with Suno.
-                630+ AI skills shipped. Everything documented.
+                Former AI Architect, Oracle. 12,000+ songs with Suno.
+                90+ open-source AI skills. Everything documented.
               </p>
 
               <div className="flex items-center gap-3">
@@ -374,9 +374,9 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
+  'Ex-Oracle · Enterprise AI',
   '12,000+ AI Songs Created',
-  '630+ AI Skills Shipped',
+  '90+ Open-Source AI Skills',
   'Everything Documented',
 ]
 
@@ -412,7 +412,7 @@ function AuthorityBar() {
 const products = [
   {
     title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 24+ specialized agents, 70+ skills, 15+ commands.',
+    description: 'Open-source operating system for Claude Code. 90+ skills, 60+ agents, 80+ commands.',
     href: '/acos',
     color: 'emerald' as const,
   },
@@ -430,7 +430,7 @@ const products = [
   },
   {
     title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    description: 'Enterprise AI patterns, agent orchestration, system design. Battle-tested at enterprise scale.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
@@ -1368,7 +1368,7 @@ export default function HomePageElite({
         <HubShowcase
           eyebrow="Enterprise AI"
           title="AI Architecture"
-          description="Enterprise AI systems built at Oracle. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          description="Enterprise AI systems distilled from years of production work. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[

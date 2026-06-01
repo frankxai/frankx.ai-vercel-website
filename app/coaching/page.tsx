@@ -423,7 +423,7 @@ export default function CoachingPage() {
               className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500"
               variants={itemVariants}
             >
-              <span>Oracle AI Architect</span>
+              <span>Ex-Oracle AI Architect</span>
               <span className="text-white/20">|</span>
               <span>40+ AI Agents Built</span>
               <span className="text-white/20">|</span>

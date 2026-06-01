@@ -127,7 +127,7 @@ export default function AboutPage() {
 
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                At Oracle, I architect enterprise AI systems that handle production workloads at scale.
+                At Oracle, I architected enterprise AI systems that handled production workloads at scale.
                 The kind of systems where reliability isn't optional and every decision matters. I've
                 learned that great AI isn't about flashy demos — it's about building something people can
                 depend on every single day.
@@ -174,7 +174,7 @@ export default function AboutPage() {
               { value: 500, suffix: '+', label: 'AI Songs' },
               { value: 40, suffix: '+', label: 'AI Agents' },
               { value: 70, suffix: '+', label: 'Articles' },
-              { value: 630, suffix: '+', label: 'Skills Built' },
+              { value: 90, suffix: '+', label: 'Skills Built' },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}

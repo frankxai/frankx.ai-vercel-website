@@ -101,7 +101,7 @@ export default function ApplyPage() {
                 5. Any Oracle relationship on your side.
               </p>
               <p className="text-sm text-zinc-400 leading-relaxed">
-                Frank's day job is at Oracle EMEA. If your company is an Oracle customer or
+                Frank previously worked at Oracle EMEA. If your company is an Oracle customer or
                 competitor, we screen for conflict early — usually it's fine, sometimes it
                 isn't, and either way it's better surfaced now.
               </p>
