@@ -317,7 +317,7 @@ export default function AIOpsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-[1.1]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               AI <span className="text-[#C74634]">Operations</span>
@@ -330,7 +330,7 @@ export default function AIOpsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-white/50 max-w-2xl mb-12 leading-relaxed"
+              className="text-[17px] md:text-xl leading-relaxed text-white/80 max-w-2xl mb-12"
             >
               The operating layer for human-AI collaboration. Production-ready infrastructure,
               OCI AI Accelerator Packs, memory systems, and the path to AGI.
@@ -345,7 +345,7 @@ export default function AIOpsPage() {
             >
               <Link
                 href="#accelerator-packs"
-                className="group px-6 py-3 bg-[#C74634] text-white rounded-xl font-medium flex items-center gap-2 hover:bg-[#A33B2C] transition-colors"
+                className="group px-6 py-3 bg-[#C74634] text-white rounded-full font-medium flex items-center gap-2 hover:bg-[#A33B2C] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C74634] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Rocket className="w-5 h-5" />
                 AI Accelerator Packs
@@ -353,7 +353,7 @@ export default function AIOpsPage() {
               </Link>
               <Link
                 href="#knowledge-base"
-                className="px-6 py-3 bg-white/5 text-white rounded-xl font-medium flex items-center gap-2 hover:bg-white/10 transition-colors border border-white/10"
+                className="px-6 py-3 bg-white/5 text-white rounded-full font-medium flex items-center gap-2 hover:bg-white/10 transition-colors border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <BookOpen className="w-5 h-5" />
                 Knowledge Base
@@ -362,7 +362,7 @@ export default function AIOpsPage() {
                 href="https://github.com/oracle-quickstart/oci-ai-blueprints"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 text-white/60 rounded-xl font-medium flex items-center gap-2 hover:text-white transition-colors"
+                className="px-6 py-3 text-white/60 rounded-full font-medium flex items-center gap-2 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <GitBranch className="w-5 h-5" />
                 GitHub
@@ -403,7 +403,7 @@ export default function AIOpsPage() {
                   OCI Official
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">OCI AI Accelerator Packs</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">OCI AI Accelerator Packs</h2>
               <p className="text-white/50 max-w-2xl">
                 Production-ready GenAI stacks with NVIDIA enterprise software.
                 Deploy in minutes, not weeks. Full observability included.
@@ -475,7 +475,7 @@ export default function AIOpsPage() {
                   <Layers className="w-5 h-5 text-[#10b981]" />
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">The 5-Layer AI Ops Stack</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">The 5-Layer AI Ops Stack</h2>
               <p className="text-white/50 max-w-2xl">
                 The complete architecture for production AI operations.
               </p>
@@ -527,7 +527,7 @@ export default function AIOpsPage() {
                   <BookOpen className="w-5 h-5 text-[#a855f7]" />
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Knowledge Base</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">Knowledge Base</h2>
               <p className="text-white/50 max-w-2xl">
                 Mastery-level documentation for AI architects. 400K+ tokens of structured knowledge.
               </p>
@@ -596,7 +596,7 @@ export default function AIOpsPage() {
                   <Sparkles className="w-5 h-5 text-[#f59e0b]" />
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">2026 Frontier Models</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">2026 Frontier Models</h2>
             </motion.div>
 
             <div className="overflow-x-auto">
@@ -638,8 +638,8 @@ export default function AIOpsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Get Started</h2>
-              <p className="text-white/50 max-w-xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">Get Started</h2>
+              <p className="text-[17px] leading-relaxed text-white/80 max-w-xl mx-auto">
                 Deploy production AI infrastructure in minutes with OCI AI Blueprints.
               </p>
             </motion.div>
@@ -649,7 +649,7 @@ export default function AIOpsPage() {
                 href="https://github.com/oracle-quickstart/oci-ai-blueprints/blob/main/GETTING_STARTED_README.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-6 py-3 bg-[#C74634] text-white rounded-xl font-medium flex items-center gap-2 hover:bg-[#A33B2C] transition-colors"
+                className="group px-6 py-3 bg-[#C74634] text-white rounded-full font-medium flex items-center gap-2 hover:bg-[#A33B2C] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C74634] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Rocket className="w-5 h-5" />
                 Install AI Blueprints
@@ -659,7 +659,7 @@ export default function AIOpsPage() {
                 href="https://github.com/oracle-quickstart/oci-ai-blueprints"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-white/5 text-white rounded-xl font-medium flex items-center gap-2 hover:bg-white/10 transition-colors border border-white/10"
+                className="px-6 py-3 bg-white/5 text-white rounded-full font-medium flex items-center gap-2 hover:bg-white/10 transition-colors border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <GitBranch className="w-5 h-5" />
                 View Repository

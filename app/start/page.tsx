@@ -139,7 +139,7 @@ export default function StartPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-6 max-w-4xl font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-white"
             >
               Welcome to the hub.
               <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
@@ -151,7 +151,7 @@ export default function StartPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl text-lg leading-relaxed text-white/40 sm:text-xl"
+              className="max-w-2xl text-[17px] sm:text-xl leading-relaxed text-white/80"
             >
               AI architect by day. Music creator by night.
               Everything I learn and build—shared openly.
@@ -254,7 +254,7 @@ export default function StartPage() {
         <ProductLadder />
 
         {/* Quick Links Section */}
-        <section className="py-16">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -263,8 +263,8 @@ export default function StartPage() {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <h2 className="text-2xl font-bold text-white">Quick links</h2>
-              <p className="mt-2 text-white/40">More ways to explore</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Quick links</h2>
+              <p className="mt-2 text-[17px] leading-relaxed text-white/80">More ways to explore</p>
             </motion.div>
 
             <motion.div
@@ -307,7 +307,7 @@ export default function StartPage() {
         </section>
 
         {/* About CTA */}
-        <section className="py-16 pb-24">
+        <section className="py-20 lg:py-28 pb-24">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -321,17 +321,17 @@ export default function StartPage() {
 
               <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
                 <div className="max-w-xl">
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                     Want the full story?
                   </h2>
-                  <p className="mt-3 text-white/40">
+                  <p className="mt-3 text-[17px] leading-relaxed text-white/80">
                     Learn about my journey from enterprise architecture to AI music creation,
                     and why I built this hub to share everything openly.
                   </p>
                 </div>
                 <Link
                   href="/about"
-                  className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
+                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   About me
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

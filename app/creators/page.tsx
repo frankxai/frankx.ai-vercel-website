@@ -172,7 +172,7 @@ export default function CreatorsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-6 max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white"
             >
               Create with AI.
               <span className="mt-2 block bg-gradient-to-r from-pink-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
@@ -184,7 +184,7 @@ export default function CreatorsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+              className="mb-8 max-w-2xl text-[17px] sm:text-xl leading-relaxed text-white/80"
             >
               Master AI tools that amplify your creative voice—never replace it.
               From 12,000+ AI songs to visual storytelling, discover the creator's path to AI mastery.
@@ -272,10 +272,10 @@ export default function CreatorsPage() {
               <span className="mb-4 inline-block rounded-full border border-pink-500/20 bg-pink-500/10 px-4 py-1.5 text-sm font-medium text-pink-400">
                 Creative Paths
               </span>
-              <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Choose Your Creative Domain
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-slate-400">
+              <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
                 Structured paths to master AI-assisted creation. Start with prompts, develop your unique style.
               </p>
             </motion.div>
@@ -339,10 +339,10 @@ export default function CreatorsPage() {
                 <span className="mb-4 inline-block rounded-full border border-amber-500/20 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
                   Premium Product
                 </span>
-                <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">
+                <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                   GenCreator OS
                 </h2>
-                <p className="mb-8 text-lg text-slate-400">
+                <p className="mb-8 text-[17px] leading-relaxed text-white/80">
                   The complete creative operating system for AI-powered creators.
                   Templates, workflows, and frameworks that preserve your authentic voice.
                 </p>
@@ -442,7 +442,7 @@ export default function CreatorsPage() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-pink-400/70 mb-2">
                 Field Guides
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Essential reading for AI creators
               </h2>
             </motion.div>
@@ -513,10 +513,10 @@ export default function CreatorsPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 Your creative transformation
               </h2>
-              <p className="text-white/50">From tech-overwhelmed to AI-empowered creator</p>
+              <p className="text-[17px] leading-relaxed text-white/80">From tech-overwhelmed to AI-empowered creator</p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -569,31 +569,31 @@ export default function CreatorsPage() {
               className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-900/40 p-10 text-center backdrop-blur-xl"
             >
               <BookOpen className="mx-auto mb-6 h-12 w-12 text-pink-400" />
-              <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Start Creating Today
               </h2>
-              <p className="mx-auto mb-8 max-w-lg text-slate-400">
+              <p className="mx-auto mb-8 max-w-lg text-[17px] leading-relaxed text-white/80">
                 Explore free prompts and see what's possible with AI-powered creation.
                 No signup required—just start making.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/prompt-library"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <Music className="h-5 w-5" />
                   Music Prompts
                 </Link>
                 <Link
                   href="/prompt-library"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <PenLine className="h-5 w-5" />
                   Writing Prompts
                 </Link>
                 <Link
                   href="/prompt-library"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <ImageIcon className="h-5 w-5" />
                   Image Prompts

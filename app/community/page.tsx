@@ -158,28 +158,28 @@ export default function CommunityPage() {
               </div>
             </motion.div>
 
-            <h1 className="mb-6 text-5xl font-bold text-balance md:text-7xl">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance">
               Create Together.{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#F59E0B] bg-clip-text text-transparent">
                 Grow Together.
               </span>
             </h1>
 
-            <p className="mb-8 text-xl leading-relaxed text-slate-400 text-balance md:text-2xl">
+            <p className="mb-8 text-[17px] sm:text-xl leading-relaxed text-white/80 text-balance">
               A community for creators, developers, and builders who use AI as a creative partner.
             </p>
 
             <motion.div className="flex flex-wrap justify-center gap-4" variants={itemVariants}>
               <Link
                 href="/inner-circle"
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5"
+                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AB47C7] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Crown className="h-4 w-4" />
                 Join Inner Circle
               </Link>
               <Link
                 href="/blog"
-                className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-8 py-4 font-semibold text-white/80 transition-all hover:bg-white/10"
+                className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 font-semibold text-white/80 transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Explore Content
                 <ArrowRight className="h-4 w-4" />
@@ -190,20 +190,20 @@ export default function CommunityPage() {
 
         {/* Community Spaces */}
         <motion.section
-          className="mx-auto max-w-6xl px-6 py-16"
+          className="mx-auto max-w-6xl px-6 py-20 lg:py-28"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               Choose Your{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] bg-clip-text text-transparent">
                 Space
               </span>
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-400">
+            <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
               Multiple ways to connect, learn, and build with the FrankX community.
             </p>
           </motion.div>
@@ -258,15 +258,15 @@ export default function CommunityPage() {
 
         {/* What We're Building */}
         <motion.section
-          className="mx-auto max-w-6xl px-6 py-16"
+          className="mx-auto max-w-6xl px-6 py-20 lg:py-28"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">What We&apos;re Building</h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-400">
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">What We&apos;re Building</h2>
+            <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
               A space for creators who want to master AI tools without losing their authentic voice.
             </p>
           </motion.div>
@@ -297,7 +297,7 @@ export default function CommunityPage() {
 
         {/* Connect Now */}
         <motion.section
-          className="mx-auto max-w-5xl px-6 py-16"
+          className="mx-auto max-w-5xl px-6 py-20 lg:py-28"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -311,8 +311,8 @@ export default function CommunityPage() {
                     <Sparkles className="h-5 w-5 text-[#F59E0B]" />
                     <span className="text-sm font-semibold text-[#F59E0B]">Available Now</span>
                   </div>
-                  <h2 className="mb-4 text-3xl font-bold md:text-4xl">Connect Today</h2>
-                  <p className="text-lg leading-relaxed text-slate-400">
+                  <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Connect Today</h2>
+                  <p className="text-[17px] leading-relaxed text-white/80">
                     While we build the full community, here&apos;s where you can connect right now.
                   </p>
                 </div>
@@ -375,8 +375,8 @@ export default function CommunityPage() {
 
               <div className="relative z-10">
                 <Users className="mx-auto mb-6 h-12 w-12 text-[#AB47C7]" />
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">Be First to Know</h2>
-                <p className="mb-8 text-lg leading-relaxed text-slate-400">
+                <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Be First to Know</h2>
+                <p className="mb-8 text-[17px] leading-relaxed text-white/80">
                   Join the newsletter to get notified when the community launches. Plus weekly AI
                   insights and creator resources.
                 </p>

@@ -398,14 +398,14 @@ export default function CoachingPage() {
               </div>
             </div>
 
-            <h1 className="mb-6 text-5xl font-bold leading-tight text-balance md:text-7xl">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance">
               AI Coaching{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#F59E0B] bg-clip-text text-transparent">
                 That Fits Your Reality
               </span>
             </h1>
 
-            <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
+            <p className="mb-8 max-w-2xl text-[17px] md:text-xl leading-relaxed text-white/80 text-balance">
               Skip the generic AI advice. Work directly with someone who&apos;s built 40+ AI agents,
               shipped production systems, and created 12,000+ AI songs.
             </p>
@@ -443,8 +443,8 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">What Coaching Covers</h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-400">
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">What Coaching Covers</h2>
+            <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
               Comprehensive guidance across AI systems, creator strategy, and technical excellence.
             </p>
           </motion.div>
@@ -479,7 +479,7 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mb-16 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">The Process</h2>
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">The Process</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-400">
               A proven framework that takes you from strategy to shipped product.
             </p>
@@ -523,7 +523,7 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Choose Your Path</h2>
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Choose Your Path</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-400">
               Three engagement formats designed for different needs and goals.
             </p>
@@ -607,10 +607,10 @@ export default function CoachingPage() {
                     <Heart className="h-5 w-5 text-[#AB47C7]" />
                     <span className="text-sm font-semibold text-[#AB47C7]">Who This Is For</span>
                   </div>
-                  <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+                  <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
                     Built for Builders
                   </h2>
-                  <p className="text-lg leading-relaxed text-slate-400">
+                  <p className="text-[17px] leading-relaxed text-white/80">
                     Whether you&apos;re a creator, founder, or developer — this coaching is designed for
                     people who want practical, hands-on guidance that leads to real results.
                   </p>
@@ -645,7 +645,7 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Frequently Asked Questions</h2>
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Frequently Asked Questions</h2>
             <p className="text-lg text-slate-400">
               Everything you need to know about coaching with Frank.
             </p>
@@ -694,8 +694,8 @@ export default function CoachingPage() {
                     </div>
                   </motion.div>
 
-                  <h2 className="mb-4 text-3xl font-bold md:text-4xl">Apply for Coaching</h2>
-                  <p className="mb-2 text-lg leading-relaxed text-slate-400">
+                  <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Apply for Coaching</h2>
+                  <p className="mb-2 text-[17px] leading-relaxed text-white/80">
                     Serious about building AI systems that compound? Submit your application and Frank reviews it personally.
                   </p>
                   <p className="text-sm text-slate-500">
