@@ -134,6 +134,7 @@ export default function FrankXPage() {
             src="/images/mascot/frank-omega-hero-v1.png"
             alt=""
             fill
+            sizes="100vw"
             className="object-cover object-center opacity-15"
             priority
           />
@@ -359,6 +360,7 @@ export default function FrankXPage() {
                 src={variants[0].thumb}
                 alt={`FRANK-Ω ${variants[0].label}`}
                 fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
@@ -378,6 +380,7 @@ export default function FrankXPage() {
                 src={variants[1].thumb}
                 alt={`FRANK-Ω ${variants[1].label}`}
                 fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
@@ -398,6 +401,7 @@ export default function FrankXPage() {
                   src={v.thumb}
                   alt={`FRANK-Ω ${v.label}`}
                   fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
                   className="object-cover object-top group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />

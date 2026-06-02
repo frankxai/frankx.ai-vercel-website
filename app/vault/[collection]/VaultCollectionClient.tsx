@@ -24,6 +24,7 @@ export function VaultCollectionClient({
             src={collection.coverImage}
             alt=""
             fill
+            sizes="100vw"
             className="object-cover blur-3xl"
           />
         </div>

@@ -259,7 +259,7 @@ function MusicBackground() {
 function HeroSection() {
   const heroTrack = topTracks[0]
   return (
-    <section className="relative pt-32 pb-16 px-6">
+    <section className="relative pt-32 pb-20 lg:pb-28 px-6">
       {/* Echo — Sound Weaver character accent */}
       <div className="pointer-events-none absolute right-6 top-20 hidden w-48 opacity-15 lg:block xl:w-56">
         <Image src="/images/team/echo-leopard.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
@@ -276,7 +276,7 @@ function HeroSection() {
               <span className="text-sm font-medium text-emerald-300">AI Music Architecture</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
               <span className="text-white">Architecting Music</span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
@@ -284,11 +284,11 @@ function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-xl text-white/80 mb-3 max-w-xl leading-relaxed">
+            <p className="text-[17px] leading-relaxed text-white/80 mb-3 max-w-xl">
               Architecting the future of AI, creation, and digital worlds through music.
             </p>
 
-            <p className="text-lg text-white/50 mb-8 max-w-lg leading-relaxed">
+            <p className="text-[17px] leading-relaxed text-white/60 mb-8 max-w-lg">
               {musicStats.totalTracks}+ published tracks on Suno AI. From healing frequencies and orchestral epics
               to tech house and hip hop. This page now runs as a visual operating system: narrative assets,
               swarm-owned media pipelines, and platform-ready sales paths.
@@ -299,7 +299,7 @@ function HeroSection() {
                 href={musicStats.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Play className="w-5 h-5" />
                 Full Catalog on Suno
@@ -307,14 +307,14 @@ function HeroSection() {
               </a>
               <Link
                 href="/music/brainstorm"
-                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5"
+                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Sparkles className="w-4 h-4" />
                 Brainstorm Ideas
               </Link>
               <Link
                 href="/infogenius"
-                className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-7 py-4 rounded-full font-semibold transition-all hover:bg-violet-500/10"
+                className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-7 py-4 rounded-full font-semibold transition-all hover:bg-violet-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Radar className="w-4 h-4" />
                 Generate Visuals with InfoGenius
@@ -356,7 +356,7 @@ function HeroSection() {
 
 function VisualStoryframesSection() {
   return (
-    <section className="py-20 border-y border-white/5">
+    <section className="py-20 lg:py-28 border-y border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -365,8 +365,8 @@ function VisualStoryframesSection() {
           className="mb-12"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-cyan-300/80 mb-4">Visual Narrative System</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Make the Music Universe Visible</h2>
-          <p className="text-lg text-white/50 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Make the Music Universe Visible</h2>
+          <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
             Every major narrative gets a visual anchor. These assets are designed for homepage storytelling,
             educational trust, and cross-platform repurposing.
           </p>
@@ -382,13 +382,14 @@ function VisualStoryframesSection() {
               transition={{ delay: i * 0.08 }}
               className="group"
             >
-              <Link href={frame.href} className="block h-full">
-                <article className="h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/25 transition-all">
+              <Link href={frame.href} className="block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]">
+                <article className="h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl hover:border-white/25 transition-all">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={frame.image}
                       alt={frame.title}
                       fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
@@ -444,7 +445,7 @@ function StatsSection() {
 
 function FeaturedTracksSection() {
   return (
-    <section className="py-20">
+    <section className="py-20 lg:py-28">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -452,8 +453,8 @@ function FeaturedTracksSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Top Tracks</h2>
-          <p className="text-lg text-white/50">Most played tracks from the catalog</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Top Tracks</h2>
+          <p className="text-[17px] leading-relaxed text-white/60">Most played tracks from the catalog</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -466,7 +467,7 @@ function FeaturedTracksSection() {
               transition={{ delay: i * 0.1 }}
               className="group"
             >
-              <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-4 hover:border-white/20 transition-all">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-4 hover:border-white/20 transition-all">
                 <div className="flex items-center justify-between mb-3 px-2">
                   <div>
                     <h3 className="font-semibold text-white">{track.title}</h3>
@@ -511,7 +512,7 @@ function FeaturedTracksSection() {
 
 function SwarmOperatingModelSection() {
   return (
-    <section className="py-20 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -520,8 +521,8 @@ function SwarmOperatingModelSection() {
           className="mb-12"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-violet-300/80 mb-4">Agentically Steered</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Sub-Agent Swarms and Asset Ownership</h2>
-          <p className="text-lg text-white/50 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Sub-Agent Swarms and Asset Ownership</h2>
+          <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
             Each swarm owns a clear output lane so visual content, distribution, and monetization run as one
             coordinated operating system.
           </p>
@@ -537,7 +538,7 @@ function SwarmOperatingModelSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-4"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-4"
               >
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5 text-cyan-300" />
@@ -565,7 +566,7 @@ function SwarmOperatingModelSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-2xl border border-white/10 bg-black/30 p-5"
+              className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5"
             >
               <h3 className="text-white font-semibold text-lg mb-2">{row.channel}</h3>
               <p className="text-sm text-white/55 mb-4 leading-relaxed">{row.objective}</p>
@@ -589,7 +590,7 @@ function SwarmOperatingModelSection() {
 
 function InfoGeniusQueueSection() {
   return (
-    <section className="py-20 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -598,8 +599,8 @@ function InfoGeniusQueueSection() {
           className="mb-10"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-300/80 mb-4">InfoGenius Prompt Queue</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready-to-Generate Visual Assets</h2>
-          <p className="text-lg text-white/50 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Ready-to-Generate Visual Assets</h2>
+          <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
             Production-ready prompts for the InfoGenius pipeline. These assets power website visuals,
             marketplace packaging, and public-platform media.
           </p>
@@ -620,6 +621,7 @@ function InfoGeniusQueueSection() {
                   src={item.previewImage}
                   alt={item.asset}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -656,7 +658,7 @@ function InfoGeniusQueueSection() {
 
 function RevenuePathsSection() {
   return (
-    <section className="py-20 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -665,8 +667,8 @@ function RevenuePathsSection() {
           className="mb-12"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80 mb-4">Music Sales Possibilities</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Monetization Lanes, Steered by Agents</h2>
-          <p className="text-lg text-white/50 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Monetization Lanes, Steered by Agents</h2>
+          <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
             Keep revenue diversified: streaming, direct products, licensing, and membership. Each lane gets a
             dedicated asset system and feedback loop.
           </p>
@@ -725,7 +727,7 @@ const albumIconMap: Record<string, typeof Disc3> = {
 
 function AlbumsSection() {
   return (
-    <section className="py-20 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -733,8 +735,8 @@ function AlbumsSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Albums</h2>
-          <p className="text-lg text-white/50">Curated collections organized by genre and mood</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Albums</h2>
+          <p className="text-[17px] leading-relaxed text-white/60">Curated collections organized by genre and mood</p>
         </motion.div>
 
         <div className="space-y-12">
@@ -847,17 +849,17 @@ function AlbumsSection() {
 
 function CTASection() {
   return (
-    <section className="py-24 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Build the next wave of AI music media.
           </h2>
-          <p className="text-xl text-white/50 mb-8 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/60 mb-8 max-w-2xl mx-auto">
             Use the same system here: generate visuals with InfoGenius, orchestrate swarms by channel,
             and turn tracks into a durable catalog business.
           </p>
@@ -865,7 +867,7 @@ function CTASection() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/music/brainstorm"
-              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Sparkles className="w-5 h-5" />
               Brainstorm New Ideas
@@ -873,14 +875,14 @@ function CTASection() {
             </Link>
             <Link
               href="/music-lab"
-              className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5"
+              className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <BookOpen className="w-4 h-4" />
               Learn AI Music Creation
             </Link>
             <Link
               href="/infogenius"
-              className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-violet-500/10"
+              className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-violet-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Radar className="w-4 h-4" />
               Open InfoGenius

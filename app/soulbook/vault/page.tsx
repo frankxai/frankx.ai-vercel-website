@@ -248,6 +248,7 @@ export default function VaultPage() {
             src="/images/soulbook/hero-vault.png"
             alt="Soulbook vault background"
             fill
+            sizes="100vw"
             className="object-cover opacity-20"
             priority
             quality={80}

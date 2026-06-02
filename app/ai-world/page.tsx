@@ -331,6 +331,7 @@ export default function IntelligenceAtlasPage() {
               src="/images/ai-world/intelligence-atlas-hero.png"
               alt="The Intelligence Atlas - Neural Constellation Map"
               fill
+              sizes="(max-width: 896px) 100vw, 896px"
               className="object-cover"
               priority
             />
@@ -406,6 +407,7 @@ export default function IntelligenceAtlasPage() {
                       src={activeGateData.image}
                       alt={activeGateData.title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 66vw"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />

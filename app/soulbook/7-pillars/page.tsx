@@ -317,6 +317,7 @@ export default function SevenPillarsPage() {
             src="/images/soulbook/seven-pillars.png"
             alt="The 7 Pillars of Conscious Living"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
             quality={90}

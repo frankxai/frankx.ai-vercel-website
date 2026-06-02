@@ -53,7 +53,7 @@ export default function BlueprintsPage() {
       {/* Hero Image */}
       <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-5xl mt-6 px-6">
         <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
-          <Image src="/images/blog/agentic-creator-os-complete-guide-hero.png" alt="GenCreator Blueprints — actionable creator frameworks" fill className="object-cover" />
+          <Image src="/images/blog/agentic-creator-os-complete-guide-hero.png" alt="GenCreator Blueprints — actionable creator frameworks" fill sizes="(max-width: 1024px) 100vw, 1024px" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         </div>
         <div className="absolute bottom-0 left-0 p-6">

@@ -66,6 +66,7 @@ export default function NewsletterHero({
           src="/images/design-lab/nature-10-constellation-garden.png"
           alt=""
           fill
+          sizes="100vw"
           className="object-cover opacity-[0.03]"
           priority={false}
         />
