@@ -6,6 +6,94 @@ export const metadata = createMetadata({
   path: '/ai-architect-academy',
 })
 
+const academyLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'EducationalOrganization',
+      '@id': 'https://frankx.ai/ai-architect-academy#org',
+      name: 'AI Architect Academy',
+      url: 'https://frankx.ai/ai-architect-academy',
+      description:
+        'Open-source training for enterprise AI architecture — 80+ Claude Code skills, 20+ battle-tested patterns, and 13 structured learning paths.',
+      parentOrganization: {
+        '@type': 'Organization',
+        name: 'FrankX',
+        url: 'https://frankx.ai',
+      },
+      sameAs: ['https://github.com/frankxai/ai-architect-academy'],
+      hasCourse: [
+        {
+          '@type': 'Course',
+          name: 'AI Architecture Foundations',
+          description: 'Beginner curriculum covering core enterprise AI architecture concepts.',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: 'AI Architect Academy',
+            sameAs: 'https://github.com/frankxai/ai-architect-academy',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: 'RAG Mastery',
+          description: 'Intermediate path for production retrieval-augmented generation systems.',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: 'AI Architect Academy',
+            sameAs: 'https://github.com/frankxai/ai-architect-academy',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: 'Multi-Agent Systems',
+          description: 'Advanced curriculum on orchestrating specialized agents for complex workflows.',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: 'AI Architect Academy',
+            sameAs: 'https://github.com/frankxai/ai-architect-academy',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: 'Claude Code Mastery',
+          description: 'Intermediate path for building production agents with Claude Code skills and MCP servers.',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: 'AI Architect Academy',
+            sameAs: 'https://github.com/frankxai/ai-architect-academy',
+          },
+        },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://frankx.ai',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'AI Architect Academy',
+          item: 'https://frankx.ai/ai-architect-academy',
+        },
+      ],
+    },
+  ],
+})
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // Static JSON-LD structured data — no user input, safe for inline rendering
+        dangerouslySetInnerHTML={{ __html: academyLd }}
+      />
+      {children}
+    </>
+  )
 }
