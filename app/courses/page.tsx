@@ -228,12 +228,12 @@ export default function CoursesPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
                 Course roadmap, truth-first.
                 <span className="block mt-2 text-white/60">Only planned tracks and live waitlists.</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl mb-10 leading-relaxed">
+              <p className="text-[17px] md:text-xl leading-relaxed text-white/80 max-w-2xl mb-10">
                 These are planned courses. No paid enrollment or video lesson library is live yet.
                 Each page shows what is currently true and collects waitlist interest.
               </p>
@@ -281,7 +281,7 @@ export default function CoursesPage() {
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-20 lg:py-28">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredCourses.map((course, i) => (
@@ -291,7 +291,7 @@ export default function CoursesPage() {
           </div>
         </section>
 
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -302,10 +302,10 @@ export default function CoursesPage() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
                 Curated Learning
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 Free courses I recommend
               </h2>
-              <p className="text-white/50 max-w-2xl">
+              <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
                 External resources from Oracle, Google, and MIT while the FrankX courses are still in development.
               </p>
             </motion.div>
@@ -363,30 +363,30 @@ export default function CoursesPage() {
           </div>
         </section>
 
-        <section className="py-20 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-6">
                 Want launch updates first?
               </h2>
-              <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
+              <p className="text-[17px] leading-relaxed text-white/80 mb-10 max-w-2xl mx-auto">
                 Join the course waitlist from any roadmap page and get beta invites and release notifications.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/courses/conscious-ai-foundations#waitlist"
-                  className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Get Early Access
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/students"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 transition-all"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Free Resources
                 </Link>

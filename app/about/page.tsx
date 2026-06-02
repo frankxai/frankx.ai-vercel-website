@@ -124,7 +124,7 @@ export default function AboutPage() {
                 <motion.h1
                   {...fadeIn}
                   transition={{ ...transition, delay: 0.1 }}
-                  className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+                  className="mb-8 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
                 >
                   The Architect.{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
@@ -136,9 +136,9 @@ export default function AboutPage() {
                 <motion.div
                   {...fadeIn}
                   transition={{ ...transition, delay: 0.2 }}
-                  className="max-w-3xl space-y-5 text-lg leading-relaxed text-white/50"
+                  className="max-w-3xl space-y-5 text-[17px] leading-relaxed text-white/80"
                 >
-                  <p className="text-white/70 text-xl">
+                  <p className="text-white text-xl md:text-2xl leading-relaxed">
                     Enterprise AI architect. Creator of 12,000+ AI songs. Builder of
                     the Agentic Creator OS. Based in Amsterdam, on the water.
                   </p>
@@ -179,7 +179,7 @@ export default function AboutPage() {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Linkedin className="h-4 w-4" /> LinkedIn
               </a>
@@ -187,7 +187,7 @@ export default function AboutPage() {
                 href="https://github.com/frankxai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Github className="h-4 w-4" /> GitHub
               </a>
@@ -195,13 +195,13 @@ export default function AboutPage() {
                 href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Music className="h-4 w-4" /> Suno
               </a>
               <a
                 href="mailto:frank@frankx.ai"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Mail className="h-4 w-4" /> Email
               </a>
@@ -210,20 +210,20 @@ export default function AboutPage() {
         </section>
 
         {/* ── The Origin ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
                 The origin
               </h2>
-              <p className="text-white/30 mb-8">Where the building started</p>
+              <p className="text-white/40 mb-10 text-[15px]">Where the building started</p>
             </motion.div>
 
             <div className="grid gap-8 lg:grid-cols-2">
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.1 }}
-                className="space-y-5 text-base leading-relaxed text-white/50"
+                className="space-y-5 text-[17px] leading-relaxed text-white/80"
               >
                 <p>
                   My family are Volga Germans — descendants of German settlers
@@ -240,7 +240,7 @@ export default function AboutPage() {
                   cancer in 2019 — but not before teaching me and my brother Alex
                   what it means to build something from nothing.
                 </p>
-                <p className="text-white/60">
+                <p className="text-white/90">
                   Alex built a seven-figure solar business. Same DNA: take nothing
                   and turn it into infrastructure. My medium is different — AI
                   systems and music — but the instinct is the same.
@@ -252,12 +252,12 @@ export default function AboutPage() {
                 transition={{ ...transition, delay: 0.2 }}
               >
                 <GlowCard color="violet" className="p-8">
-                  <p className="text-lg text-white/70 leading-relaxed italic font-serif">
+                  <p className="text-xl text-white/90 leading-relaxed italic font-serif">
                     &ldquo;My family has been building in foreign lands for
                     generations. We&apos;ve never stopped. We&apos;ve just upgraded
                     the medium.&rdquo;
                   </p>
-                  <p className="mt-4 text-sm text-white/30">
+                  <p className="mt-4 text-sm text-white/50">
                     — From Germany to Russia to Kazakhstan to Amsterdam. Explorer
                     blood, not tourist behavior.
                   </p>
@@ -268,13 +268,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── The Explorer ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
                 The explorer
               </h2>
-              <p className="text-white/30 mb-8">
+              <p className="text-white/40 mb-10 text-[15px]">
                 Where the worldview came from
               </p>
             </motion.div>
@@ -308,11 +308,11 @@ export default function AboutPage() {
                   transition={{ ...transition, delay: i * 0.08 }}
                 >
                   <GlowCard color="cyan" className="p-6 h-full">
-                    <item.icon className="w-5 h-5 text-cyan-400/60 mb-3" />
-                    <h3 className="text-base font-semibold text-white mb-1">
+                    <item.icon className="w-5 h-5 text-cyan-400/70 mb-3" />
+                    <h3 className="text-lg font-semibold text-white mb-2">
                       {item.place}
                     </h3>
-                    <p className="text-sm text-white/40 leading-relaxed">
+                    <p className="text-[15px] text-white/70 leading-relaxed">
                       {item.detail}
                     </p>
                   </GlowCard>
@@ -323,13 +323,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── The Work ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
                 The work
               </h2>
-              <p className="text-white/30 mb-8">Enterprise mind. Creator soul.</p>
+              <p className="text-white/40 mb-10 text-[15px]">Enterprise mind. Creator soul.</p>
             </motion.div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -341,10 +341,10 @@ export default function AboutPage() {
                   <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5">
                     <Code className="w-6 h-6 text-emerald-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
+                  <h3 className="text-2xl font-bold text-white mb-3">
                     By day — Enterprise AI
                   </h3>
-                  <p className="text-white/50 leading-relaxed">
+                  <p className="text-[17px] text-white/80 leading-relaxed">
                     4+ years architecting production AI systems for global
                     organizations. 500+ customer implementations. Multi-cloud
                     infrastructure, RAG architectures, agentic workflows, multi-agent
@@ -361,10 +361,10 @@ export default function AboutPage() {
                   <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5">
                     <Music className="w-6 h-6 text-cyan-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
+                  <h3 className="text-2xl font-bold text-white mb-3">
                     By night — Music & creation
                   </h3>
-                  <p className="text-white/50 leading-relaxed">
+                  <p className="text-[17px] text-white/80 leading-relaxed">
                     12,000+ AI-generated songs with Suno. Not casual experiments — a
                     deliberate practice of exploring what happens when humans and AI
                     create together. Ambient, electronic, cinematic, healing. Creation
@@ -380,10 +380,10 @@ export default function AboutPage() {
               className="mt-6"
             >
               <GlowCard color="violet" className="p-8">
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-2xl font-bold text-white mb-3">
                   The bridge between both worlds
                 </h3>
-                <p className="text-white/50 leading-relaxed max-w-3xl">
+                <p className="text-[17px] text-white/80 leading-relaxed max-w-3xl">
                   The Agentic Creator OS. 75+ skills, 38 specialist agents,
                   35+ commands — enterprise patterns made accessible to every creator.
                   The same rigor I use to build production AI systems, applied to
@@ -395,13 +395,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── The AI Team ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
                 The AI team
               </h2>
-              <p className="text-white/30 mb-8">
+              <p className="text-white/60 mb-10 text-[17px] leading-relaxed max-w-2xl">
                 These aren&apos;t just mascots. They&apos;re the AI team behind FrankX — each one a specialist in a different creative domain.
               </p>
             </motion.div>
@@ -455,13 +455,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── The Digital Twin ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
                 The digital twin
               </h2>
-              <p className="text-white/30 mb-8">
+              <p className="text-white/40 mb-10 text-[15px]">
                 Two forms. One mind.
               </p>
             </motion.div>
@@ -489,7 +489,7 @@ export default function AboutPage() {
                 transition={{ ...transition, delay: 0.2 }}
                 className="lg:col-span-3 space-y-5"
               >
-                <p className="text-base leading-relaxed text-white/50">
+                <p className="text-[17px] leading-relaxed text-white/80">
                   FRANK-Ω is the final form — the intelligence that has absorbed everything Frank builds
                   and just executes. Where Frank is the human who explores, creates, and iterates,
                   FRANK-Ω is the completed version that delivers results without hesitation.
@@ -538,10 +538,10 @@ export default function AboutPage() {
         </section>
 
         {/* ── What I Believe ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-8">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-10">
                 What I believe
               </h2>
             </motion.div>
@@ -559,10 +559,10 @@ export default function AboutPage() {
                   transition={{ ...transition, delay: i * 0.08 }}
                 >
                   <GlowCard color="emerald" className="flex gap-4 p-6 h-full">
-                    <span className="shrink-0 mt-0.5 text-sm font-bold text-emerald-400/60">
+                    <span className="shrink-0 mt-0.5 text-sm font-bold text-emerald-400/80">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <p className="text-base text-white/50 leading-relaxed">
+                    <p className="text-[17px] text-white/80 leading-relaxed">
                       {belief}
                     </p>
                   </GlowCard>
@@ -573,14 +573,14 @@ export default function AboutPage() {
         </section>
 
         {/* ── Daily Practice ── */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div
               {...fadeIn}
               transition={transition}
-              className="max-w-3xl space-y-5 text-base text-white/50 leading-relaxed"
+              className="max-w-3xl space-y-5 text-[17px] text-white/80 leading-relaxed"
             >
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-6">
                 The daily practice
               </h2>
               <p>
@@ -599,13 +599,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── Newsletter + CTAs ── */}
-        <section className="py-16 pb-24 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition} className="text-center">
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 Stay in the loop
               </h2>
-              <p className="text-white/40 mb-8 max-w-lg mx-auto">
+              <p className="text-[17px] text-white/70 mb-10 max-w-lg mx-auto leading-relaxed">
                 Weekly insights on AI systems, music creation, and building in
                 public. No spam, no guru energy — just the work.
               </p>
@@ -623,21 +623,21 @@ export default function AboutPage() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/start"
-                  className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Start Here
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/music-lab"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Music Lab
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/blog"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Read the Blog
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

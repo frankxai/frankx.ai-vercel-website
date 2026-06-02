@@ -34,13 +34,13 @@ export default function GoldenPathPage() {
               <span>Accelerated Breakthrough</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold font-serif">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] font-serif">
               <span className="bg-gradient-to-r from-purple-300 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
                 Golden Path
               </span>
             </h1>
 
-            <p className="text-xl text-white/70 max-w-2xl leading-relaxed">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
               Your accelerated 4-week breakthrough through the 3 most transformative pillars:
               Consciousness, Emotional Mastery, and Purpose.
             </p>
@@ -64,19 +64,19 @@ export default function GoldenPathPage() {
       </section>
 
       {/* Coming Soon Content */}
-      <section className="py-20 px-6">
+      <section className="py-20 lg:py-28 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-center space-y-8 p-12 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10"
+            className="text-center space-y-8 p-12 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl"
           >
             <div className="text-6xl">🛤️</div>
-            <h2 className="text-3xl font-bold font-serif text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight font-serif text-white">
               Coming Soon
             </h2>
-            <p className="text-xl text-white/60 max-w-xl mx-auto">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-xl mx-auto">
               The Golden Path is designed for rapid transformation. Focused, intensive,
               and results-driven. Join the waitlist to secure your spot.
             </p>

@@ -164,14 +164,14 @@ export default function ArchitectsLandingPage() {
               For Architects & Engineers
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
               <span className="text-white">Enterprise AI architecture </span>
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
                 that ships
               </span>
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg text-white/60 leading-relaxed">
+            <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80">
               Production patterns for multi-agent systems, RAG architectures, and agentic workflows.
               Built from enterprise experience, documented for everyone.
             </motion.p>
@@ -179,7 +179,7 @@ export default function ArchitectsLandingPage() {
             <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/ai-architecture"
-                className="group inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Layers className="h-4 w-4" />
                 Architecture Hub
@@ -187,7 +187,7 @@ export default function ArchitectsLandingPage() {
               </Link>
               <Link
                 href="/research"
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <BookOpen className="h-4 w-4" />
                 Research Hub
@@ -231,8 +231,8 @@ export default function ArchitectsLandingPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">Architecture patterns</h2>
-            <p className="mt-3 text-lg text-white/50">Production-tested, enterprise-grade, documented.</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Architecture patterns</h2>
+            <p className="mt-3 text-[17px] leading-relaxed text-white/80">Production-tested, enterprise-grade, documented.</p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-6">
@@ -279,8 +279,8 @@ export default function ArchitectsLandingPage() {
             className="flex items-end justify-between mb-8"
           >
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">Technical deep dives</h2>
-              <p className="mt-2 text-white/50">Architecture patterns and production guides.</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Technical deep dives</h2>
+              <p className="mt-2 text-[17px] leading-relaxed text-white/80">Architecture patterns and production guides.</p>
             </div>
             <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
               All articles <ArrowRight className="h-4 w-4" />
@@ -326,10 +326,10 @@ export default function ArchitectsLandingPage() {
             className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-10 text-center backdrop-blur-sm"
           >
             <GitBranch className="mx-auto h-8 w-8 text-cyan-400 mb-4" />
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-3">
               Architecture insights weekly
             </h2>
-            <p className="text-sm text-white/50 mb-6 max-w-md mx-auto">
+            <p className="text-[17px] leading-relaxed text-white/80 mb-6 max-w-md mx-auto">
               Production AI patterns, agent architectures, and enterprise deployment strategies.
             </p>
             <div className="max-w-sm mx-auto">
@@ -351,7 +351,7 @@ export default function ArchitectsLandingPage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-bold text-white text-center mb-10"
+            className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-center mb-10"
           >
             Questions architects ask
           </motion.h2>
@@ -380,31 +380,31 @@ export default function ArchitectsLandingPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-20 pb-24">
+      <section className="relative py-20 lg:py-28 pb-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Build something that matters.
           </h2>
-          <p className="text-lg text-white/50 mb-8">
+          <p className="text-[17px] leading-relaxed text-white/80 mb-8">
             Architecture patterns, agent templates, and production guides. All open.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/ai-architecture"
-              className="group inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+              className="group inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Architecture Hub
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link
               href="/acos"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/70 border border-white/10 hover:border-white/20 hover:text-white transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/70 border border-white/10 hover:border-white/20 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               ACOS
             </Link>
             <Link
               href="/research"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/70 border border-white/10 hover:border-white/20 hover:text-white transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/70 border border-white/10 hover:border-white/20 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Research Hub
             </Link>
