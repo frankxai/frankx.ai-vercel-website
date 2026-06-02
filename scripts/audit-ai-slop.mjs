@@ -14,6 +14,7 @@
  *     AGENTS.md, design-lab brand demos, audit docs, the content scripts)
  *     are excluded — see ALLOW_FILES below.
  *   - Lines ending with "// ai-slop-allow" or matching `<!-- ai-slop-allow -->`
+ *     or `{/* ai-slop-allow */}` (MDX-compatible JSX comment)
  *     are allowed (for legitimate quotation in editorial context).
  *
  * Refs: taste.md § "What we refuse" + § "The sound of the brand"
@@ -125,7 +126,7 @@ function isAllowed(relPath) {
 }
 
 function lineAllowed(line) {
-  return /\/\/\s*ai-slop-allow|<!--\s*ai-slop-allow\s*-->/.test(line)
+  return /\/\/\s*ai-slop-allow|<!--\s*ai-slop-allow\s*-->|\{\/\*\s*ai-slop-allow\s*\*\/\}/.test(line)
 }
 
 async function* walk(dir) {
