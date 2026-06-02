@@ -165,12 +165,12 @@ export default function ACOSPage() {
               Open Source
             </div>
           </div>
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
             <span className="bg-gradient-to-r from-white via-purple-100 to-cyan-100 bg-clip-text text-transparent">
               Agentic Creator OS
             </span>
           </h1>
-          <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
+          <p className="mt-6 text-[17px] text-white/70 sm:text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto">
             The operating system for generative creators.
             <br className="hidden sm:block" />
             99 agents. 35+ skills. 117+ commands. 11 pillars. One entry point.
@@ -266,7 +266,7 @@ export default function ACOSPage() {
             {/* Right: Text explanation */}
             <div>
               <span className="text-xs font-mono uppercase tracking-[0.3em] text-purple-400/70">Architecture</span>
-              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Four layers.<br />All auto-activating.
               </h2>
               <p className="mt-4 text-white/60 leading-relaxed">
@@ -300,7 +300,7 @@ export default function ACOSPage() {
             {/* Left: Text */}
             <div className="order-2 lg:order-1">
               <span className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400/70">Smart Router</span>
-              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 One command.<br />Infinite routes.
               </h2>
               <p className="mt-4 text-white/60 leading-relaxed">
@@ -339,7 +339,7 @@ export default function ACOSPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center">
             <span className="text-xs font-mono uppercase tracking-[0.3em] text-emerald-400/70">Intelligence</span>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
               Gets smarter every session.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-white/60">
@@ -380,7 +380,7 @@ export default function ACOSPage() {
       {/* ─── Commands Preview ─── */}
       <section className="border-y border-white/[0.08] bg-white/[0.02] py-20">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             35+ Commands Across Every Domain
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/60">
@@ -413,7 +413,7 @@ export default function ACOSPage() {
       {/* ─── Pricing ─── */}
       <section id="pricing" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             Choose Your Path
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/60">
@@ -511,7 +511,7 @@ export default function ACOSPage() {
       {/* ─── Final CTA ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             Start Building with the Agentic Creator OS
           </h2>
           <p className="mt-4 text-lg text-white/60">
