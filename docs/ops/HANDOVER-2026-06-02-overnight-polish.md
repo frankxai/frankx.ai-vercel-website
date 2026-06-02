@@ -4,15 +4,15 @@
 **Branch:** `feat/overnight-polish-2026-06-02-W23`
 **PR:** https://github.com/frankxai/frankx.ai-vercel-website/pull/111
 **Lead:** Claude Code (Opus 4.7), per `plans/splendid-wishing-sunset.md`
-**Duration:** 4 waves of parallel sub-agents
+**Duration:** 7 waves of parallel sub-agents
 
 ---
 
 ## 60-second read (for the phone)
 
-**21 commits landed.** I closed two stale PRs (#61, #93), merged PR #106 (blog excellence), cherry-picked the birthday tribe feature from closed PR #61, ran a site-wide WCAG contrast sweep (68 fixes), drove ai-slop hits from 94 → 0 across 1,597 files, fixed all 10 pre-existing broken internal links, added metadata + JSON-LD to every Tier-1 + Tier-2 page that had gaps, polished CTA copy + schemas on 10 commercial pages, and shipped a new `/unsubscribe` page.
+**29 commits landed.** I closed two stale PRs (#61, #93), merged PR #106 (blog excellence), cherry-picked the birthday tribe feature from closed PR #61, ran a site-wide WCAG contrast sweep (68 fixes), drove ai-slop hits from 94 → 0 across 1,601 files, fixed all 26 pre-existing broken internal links (10 cross-page + 16 book cross-chapter), added metadata + JSON-LD to every Tier-1 + Tier-2 page that had gaps, polished CTA copy + schemas on 10 commercial pages, **removed fabricated `aggregateRating` from 3 Product schemas** (would have triggered Google manual action), migrated JSON-LD from `next/script` to crawler-visible plain `<script>` tags on flagship product pages, replaced a Google-invalid Event schema with Course on workshops, fixed sequential TOC numbering bug on Library detail pages, shipped a new `/unsubscribe` page, and added 9 missing book/family/product dynamic routes to enumeration.
 
-**PR #111 is open and ready to merge** — full `merge:gate` exited green locally. CI runs the same gates plus Vercel deploy.
+**PR #111 is open and ready to merge** — full `merge:gate` exited green locally on the final commit. CI runs the same gates plus Vercel deploy.
 
 **Next action:** Watch CI on PR #111. If green: `gh pr merge 111 --repo frankxai/frankx.ai-vercel-website --squash --delete-branch`. The branch deletes after merge; production deploys via Vercel within ~3 min.
 
@@ -140,7 +140,41 @@ a9a6b959  polish(os): add primary above-fold CTA to gravity surface
 7c31064f  polish(research): swap OG image to thematic hero asset
 0642e3b7  polish(hubs): metadata + JSON-LD gap fills across Tier-2
 499a4cfd  polish(a11y): WCAG contrast sweep across Tier-1 + Tier-2 surfaces
+2513ca38  docs(handover): expand morning report with all 4 waves of overnight work
+01d865f2  polish(blog): tighten intros + CTAs on 3 flagship posts (Wave 5)
+45ed6f68  polish(a11y): image alt + aria-label sweep across Tier-1 + Tier-2 (Wave 5)
+b601a66a  polish(library): sequential TOC numbering for books with sparse sections (Wave 6)
+7f74782f  polish(books): fix 17 broken internal links in arcanea-creator-principles (Wave 6)
+464d4e81  polish(schema): remove fabricated aggregateRating from 3 Product schemas (Wave 6) ★
+cd0eef8c  polish(schema): workshop Course schema + crawler-visible JSON-LD (Wave 7)
+9486a5e3  fix(routes): enumerate arcanea-creator-principles book chapters (final fix)
 ```
+
+★ = critical SEO win — fabricated aggregateRating violates Google's Product structured-data policy and can trigger manual action.
+
+### Wave 5 (commits `01d865f2`, `45ed6f68`)
+
+- **3 flagship blog posts** got tightened intros + CTAs: `agentic-seo-publishing-masterplan`, `golden-age-of-intelligence`, `getting-started-agentic-creator-os`. Removed "Welcome to...", "This guide walks you through..." filler; replaced rhetorical conclusions with concrete next-step instructions + real internal links. `claude-code-skills-2026-the-10-you-need` and `multi-agent-orchestration-patterns-2026` reviewed but already strong — no change.
+- **Image alt + aria sweep**: 4 files touched. Modal close button got `aria-label="Close modal"`. FAQ disclosure buttons got `aria-expanded` + emerald focus-visible outlines. Inline `/workshops`, `/lab`, `/agentic-builder-lab` links got `focus-visible:outline-cyan-400`. Decorative mascot images confirmed correct (empty alt + `aria-hidden`).
+
+### Wave 6 (commits `b601a66a`, `7f74782f`, `464d4e81`)
+
+- **Library [slug] TOC fix**: `/library/<slug>` pages were rendering section numbers `01, 04, 05, 07` (gaps) when optional sections (quotes, chapters, FAQ, etc.) were absent. Refactored to compute `tocItems` array of actually-rendered sections, then number sequentially. 27 books now show clean continuous numbering regardless of how dense their data is.
+- **17 broken book navigation links** in `content/books/arcanea-creator-principles/` chapters fixed. Links pointed to non-existent paths like `chapters/02-complementary-strengths.md`; rewrote to canonical site routes (`/books/arcanea-creator-principles/chapter-XX-<slug>`) matching the registry.
+- **Fabricated aggregateRating removed** from 3 Product schemas:
+  - `app/products/[slug]/page.tsx` — was `4.9 / 150` with code comment "Placeholder or real data if available"
+  - `app/products/vibe-os/page.tsx` — was `4.8 / 23`
+  - `app/products/bv-kit/page.tsx` — was `4.9 / 12`
+  - **Why it matters**: Google's Product structured-data policy explicitly forbids placeholder review data. Real exposure: manual action / rich-result suppression. No data source for real reviews exists in `data/`.
+
+### Wave 7 (commits `cd0eef8c`, `9486a5e3`)
+
+- **Workshop schema fix**: `app/workshops/[slug]/page.tsx` was emitting an `EducationEvent` schema without `startDate`. Google considers `startDate` required for Event-class schemas. Workshops here are evergreen/on-demand. Removed the EventJsonLd component; kept the existing `Course` schema (clean, valid, complete).
+- **Crawler-visible JSON-LD migration**: 2 pages used `next/script` for JSON-LD which renders client-side and is invisible to non-JS crawlers (Google, Bing, but especially AI agents that read raw HTML). Migrated:
+  - `app/products/agentic-creator-os/page.tsx` → canonical `<JsonLd type="Product" data={...} />` component
+  - `app/agents/page.tsx` → plain `<script type="application/ld+json">` with `@graph` (CollectionPage + BreadcrumbList)
+  Both now ship the schema in initial HTML, eligible for rich results AND discoverable by AI crawlers.
+- **Book chapter enumeration**: 16 cross-chapter links in `arcanea-creator-principles` book were flagged as broken — chapters resolved at runtime via dynamic `[chapterSlug]` route but weren't enumerated in `data/route-index.json`. Added the 8 chapter URLs + the book hub URL to `lib/route-enumeration.mjs`. Link check now reports "all internal hrefs resolve ✓" across 1,589 files.
 
 ---
 
