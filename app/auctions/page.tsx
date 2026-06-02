@@ -34,8 +34,8 @@ export default function AuctionsPage() {
             className="text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-8">
-              <Gavel className="w-4 h-4" />
-              Live Auctions
+              <Gavel aria-hidden className="w-4 h-4" />
+              Limited drops
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
@@ -45,14 +45,25 @@ export default function AuctionsPage() {
               </span>
             </h1>
 
-            <p className="text-xl text-white/50 max-w-2xl mx-auto mb-10">
+            <p className="text-xl text-white/50 max-w-2xl mx-auto mb-6">
               Exclusive experiences, limited edition prints, and one-of-a-kind builds.
-              Each auction is a chance to own something that won&apos;t be offered again.
+              Each drop is a chance to own something that won&apos;t be offered again.
+            </p>
+
+            <p className="text-sm text-white/40 max-w-xl mx-auto mb-10">
+              Pre-launch. Reserve your invite below. Questions:{' '}
+              <a
+                href="mailto:frank@frankx.ai"
+                className="text-cyan-400 underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded"
+              >
+                frank@frankx.ai
+              </a>
+              .
             </p>
 
             <div className="flex items-center justify-center gap-6 text-white/40 text-sm">
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
+                <Clock aria-hidden className="w-4 h-4" />
                 <span>Time-limited</span>
               </div>
               <div className="flex items-center gap-2">
@@ -114,12 +125,12 @@ export default function AuctionsPage() {
           viewport={{ once: true }}
           className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8"
         >
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">How Auctions Work</h2>
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">How drops work</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { step: '01', title: 'Browse', description: 'Find exclusive items — limited edition prints, coaching sessions, custom builds.' },
-              { step: '02', title: 'Buy Now or Bid', description: 'Skip the wait with Buy Now, or place a bid and compete for the best price.' },
-              { step: '03', title: 'Win & Receive', description: 'Winners get instant delivery for digital items, or booking links for experiences.' },
+              { step: '02', title: 'Reserve or bid', description: 'Reserve your spot at the listed price, or place a bid when live bidding opens.' },
+              { step: '03', title: 'Receive', description: 'Confirmed reservations get instant delivery for digital items, or booking links for experiences.' },
             ].map(item => (
               <div key={item.step} className="text-center">
                 <div className="text-3xl font-bold text-amber-400/30 mb-2">{item.step}</div>
