@@ -193,14 +193,14 @@ export default function BuildPage() {
             </span>
           </span>
 
-          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl">
             Build agentic systems with the architect{' '}
             <span className="bg-gradient-to-r from-violet-300 to-cyan-300 bg-clip-text text-transparent">
               shipping them in public.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400">
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-slate-300">
             For teams hiring Frank for hands-on agentic work. For self-serve courses see{' '}
             <Link href="/workshops" className="rounded text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2">
               /workshops
@@ -217,21 +217,21 @@ export default function BuildPage() {
               href={MEET_AND_GROW_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-violet-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-violet-300"
+              className="inline-flex items-center gap-2 rounded-full bg-violet-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-violet-500/20 transition-all hover:bg-violet-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Book a 20-min intro
               <Calendar className="h-4 w-4" />
             </a>
             <Link
               href="/build/template-pack"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Get the template pack
               <Package className="h-4 w-4" />
             </Link>
             <Link
               href="/agentic-builder-lab"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 transition hover:border-white/25 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-slate-300 transition-all hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               See the live builds
             </Link>
@@ -260,7 +260,7 @@ export default function BuildPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
               Three ways to work together
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               From a focused day to a shipped prototype.
             </h2>
           </div>
@@ -314,7 +314,7 @@ export default function BuildPage() {
                         href={o.cta.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-all hover:bg-slate-100 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
                       >
                         {o.cta.label}
                         <ArrowRight className="h-4 w-4" />
@@ -322,7 +322,7 @@ export default function BuildPage() {
                     ) : (
                       <Link
                         href={o.cta.href}
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-all hover:bg-slate-100 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
                       >
                         {o.cta.label}
                         <ArrowRight className="h-4 w-4" />
@@ -361,7 +361,7 @@ export default function BuildPage() {
                 href={MEET_AND_GROW_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:bg-cyan-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
               >
                 Book intro call
                 <Calendar className="h-4 w-4" />
@@ -379,10 +379,10 @@ export default function BuildPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300/80">
                 Receipts
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
                 Recent builds with outcomes.
               </h2>
-              <p className="mt-4 text-base leading-7 text-slate-400">
+              <p className="mt-4 text-[17px] leading-relaxed text-slate-300">
                 A re-frame of the public build log — same builds, outcome-led. Full chronological
                 series and learnings on the Agentic Builder Lab page.
               </p>
@@ -460,7 +460,7 @@ export default function BuildPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/80">
               Common questions
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               The questions teams ask before booking.
             </h2>
             <div className="mt-6 flex items-center gap-3 text-sm text-slate-400">
@@ -484,10 +484,10 @@ export default function BuildPage() {
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <Sparkles className="mx-auto h-6 w-6 text-cyan-300" />
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
             Build the next one with the architect doing it in public.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-slate-400">
+          <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-slate-300">
             One call. We figure out whether it is a workshop, a sprint, or just the template pack.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -495,14 +495,14 @@ export default function BuildPage() {
               href={MEET_AND_GROW_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:bg-cyan-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-cyan-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Book intro call
               <Calendar className="h-4 w-4" />
             </a>
             <Link
               href="/agentic-builder-lab"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               See the lab
             </Link>
