@@ -338,7 +338,7 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-6">
                 What do you want
                 <span className="block mt-2 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                   to create?
@@ -346,7 +346,7 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
               </h1>
 
               {/* Subtext */}
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-8">
+              <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mb-8">
                 Outcome-focused guides for elite creators and founders.
                 Not tool tutorials—real systems that ship.
               </p>
@@ -411,23 +411,23 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 Ready to build?
               </h2>
-              <p className="text-white/50 mb-8">
+              <p className="text-[17px] leading-relaxed text-white/80 mb-8">
                 Get the tools and templates to accelerate your creator journey.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
                   View Products
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/resources"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 font-medium transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
                   Free Resources
                 </Link>

@@ -258,11 +258,11 @@ export default function LearningPathPage() {
                 {path.difficulty} path
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4">
                 {path.title}
               </h1>
 
-              <p className="text-xl text-white/60 mb-8">
+              <p className="text-[17px] leading-relaxed text-white/80 mb-8">
                 {path.description}
               </p>
 
@@ -313,7 +313,7 @@ export default function LearningPathPage() {
 
       {/* Videos */}
       <section id="videos" className="max-w-6xl mx-auto px-6 pb-16">
-        <h2 className="text-2xl font-bold text-white mb-8">Course Videos</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-8">Course Videos</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {path.videos.map((video, i) => (
@@ -516,24 +516,24 @@ export default function LearningPathPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-3xl border ${colors.border} p-8 md:p-12 text-center`}>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-2xl border ${colors.border} backdrop-blur-xl p-8 md:p-12 text-center`}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             {path.ctaTitle || 'Ready for Hands-On Practice?'}
           </h2>
-          <p className="text-white/60 mb-8 max-w-xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 mb-8 max-w-xl mx-auto">
             {path.ctaBody || 'These free videos give you the foundation. Our guides take you deeper with practical exercises.'}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/guides"
-              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-xl hover:opacity-90 transition-opacity`}
+              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-full hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
             >
               Explore Guides
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-xl hover:bg-white/5 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-full hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               More Learning Paths
             </Link>
