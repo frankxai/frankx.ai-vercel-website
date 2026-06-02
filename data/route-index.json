@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 623,
+    "total": 624,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 342,
+      "section": 343,
       "community": 17,
       "tool": 10,
       "static": 15,
@@ -4007,6 +4007,15 @@
       "href": "/linktree",
       "title": "Links",
       "type": "static"
+    },
+    {
+      "href": "/llm-hub",
+      "title": "Llm Hub",
+      "tags": [
+        "llm",
+        "hub"
+      ],
+      "type": "section"
     },
     {
       "href": "/magic",

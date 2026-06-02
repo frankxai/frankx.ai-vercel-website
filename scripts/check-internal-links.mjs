@@ -55,7 +55,7 @@ const SKIP_PREFIXES = [
   '/og/',      // OpenGraph generated images
 ]
 // Static-asset file extensions — also public/* assets, not routes
-const ASSET_EXT_RE = /\.(png|jpg|jpeg|gif|svg|webp|avif|ico|pdf|zip|mp4|mp3|wav|xml|txt|html|css|js|woff|woff2|ttf|otf)$/i
+const ASSET_EXT_RE = /\.(png|jpg|jpeg|gif|svg|webp|avif|ico|pdf|zip|mp4|mp3|wav|xml|txt|json|html|css|js|woff|woff2|ttf|otf)$/i
 // Hrefs that are template placeholders, not real paths
 const TEMPLATE_RE = /\$\{|\{\{|\$\(|<%/
 
