@@ -616,7 +616,7 @@ export default function IkigaiV4Page() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      <div className="min-h-screen bg-void text-white overflow-x-hidden">
         <VerticalKanjiRail active={activeChapter} />
 
         {/* ─── Hero ────────────────────────────────────────────────── */}

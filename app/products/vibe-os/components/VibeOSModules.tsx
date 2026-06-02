@@ -99,10 +99,10 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
               className="relative w-full max-w-md"
             >
               {/* Card Glow */}
-              <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-b from-cyan-500/20 via-transparent to-violet-500/20 blur-sm" />
+              <div className="absolute -inset-px rounded-4xl bg-gradient-to-b from-cyan-500/20 via-transparent to-violet-500/20 blur-sm" />
 
               {/* Main Card */}
-              <div className="relative rounded-[2rem] border border-white/10 bg-space/80 p-8 backdrop-blur-xl">
+              <div className="relative rounded-4xl border border-white/10 bg-space/80 p-8 backdrop-blur-xl">
                 {COMING_SOON_MODE ? (
                   <>
                     {/* Coming Soon Mode */}
