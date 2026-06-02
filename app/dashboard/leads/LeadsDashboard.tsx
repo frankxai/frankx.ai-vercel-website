@@ -124,11 +124,11 @@ export default function LeadsDashboard() {
 
   if (error) {
     return (
-      <div className="text-center py-20">
-        <p className="text-red-400 mb-4">{error}</p>
+      <div className="text-center py-20" role="alert">
+        <p className="text-red-300 mb-4">{error}</p>
         <button
           onClick={() => fetchLeads()}
-          className="px-6 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white font-medium transition-all"
+          className="px-6 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
         >
           Retry
         </button>
@@ -140,13 +140,13 @@ export default function LeadsDashboard() {
     <div className="space-y-6">
       {/* Stats summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 p-6">
-          <div className="text-3xl font-bold text-white mb-1">{leads.length}</div>
-          <div className="text-sm text-gray-400">Total Leads</div>
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6">
+          <div className="text-3xl font-bold text-white mb-1 tabular-nums">{leads.length}</div>
+          <div className="text-sm text-gray-400">Total leads</div>
         </div>
 
-        <div className="rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 p-6">
-          <div className="text-3xl font-bold text-white mb-1">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6">
+          <div className="text-3xl font-bold text-white mb-1 tabular-nums">
             {leads.filter(l => {
               const date = new Date(l.timestamp)
               const weekAgo = new Date()
@@ -154,116 +154,130 @@ export default function LeadsDashboard() {
               return date > weekAgo
             }).length}
           </div>
-          <div className="text-sm text-gray-400">This Week</div>
+          <div className="text-sm text-gray-400">This week</div>
         </div>
 
-        <div className="rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 p-6">
-          <div className="text-3xl font-bold text-white mb-1">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6">
+          <div className="text-3xl font-bold text-white mb-1 tabular-nums">
             {Math.round((leads.filter(l => l.company).length / leads.length) * 100) || 0}%
           </div>
-          <div className="text-sm text-gray-400">With Company Info</div>
+          <div className="text-sm text-gray-400">With company info</div>
         </div>
       </div>
 
       {/* Filters and search */}
-      <div className="rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 p-6">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Search */}
           <div className="relative md:col-span-2">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+            <label htmlFor="leads-search" className="sr-only">Search leads</label>
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" aria-hidden="true" />
             <input
-              type="text"
-              placeholder="Search by name, email, or company..."
+              id="leads-search"
+              type="search"
+              placeholder="Search by name, email, or company…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+              className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-900/60 border border-white/10 text-white placeholder:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] focus-visible:border-cyan-400/40 transition-all"
             />
           </div>
 
           {/* Guide filter */}
-          <select
-            value={filterGuide}
-            onChange={(e) => setFilterGuide(e.target.value)}
-            className="px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
-          >
-            <option value="all">All Guides</option>
-            {uniqueGuides.map(slug => (
-              <option key={slug} value={slug}>
-                {leads.find(l => l.guideSlug === slug)?.guideTitle || slug}
-              </option>
-            ))}
-          </select>
+          <div>
+            <label htmlFor="leads-guide-filter" className="sr-only">Filter by guide</label>
+            <select
+              id="leads-guide-filter"
+              value={filterGuide}
+              onChange={(e) => setFilterGuide(e.target.value)}
+              className="w-full px-4 py-2 rounded-lg bg-gray-900/60 border border-white/10 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] focus-visible:border-cyan-400/40 transition-all"
+            >
+              <option value="all">All guides</option>
+              {uniqueGuides.map(slug => (
+                <option key={slug} value={slug}>
+                  {leads.find(l => l.guideSlug === slug)?.guideTitle || slug}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* Interest filter */}
-          <select
-            value={filterInterest}
-            onChange={(e) => setFilterInterest(e.target.value)}
-            className="px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
-          >
-            <option value="all">All Interests</option>
-            {uniqueInterests.map(interest => (
-              <option key={interest} value={interest}>
-                {interest?.replace('-', ' ')}
-              </option>
-            ))}
-          </select>
+          <div>
+            <label htmlFor="leads-interest-filter" className="sr-only">Filter by interest</label>
+            <select
+              id="leads-interest-filter"
+              value={filterInterest}
+              onChange={(e) => setFilterInterest(e.target.value)}
+              className="w-full px-4 py-2 rounded-lg bg-gray-900/60 border border-white/10 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] focus-visible:border-cyan-400/40 transition-all"
+            >
+              <option value="all">All interests</option>
+              {uniqueInterests.map(interest => (
+                <option key={interest} value={interest}>
+                  {interest?.replace('-', ' ')}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 flex items-center justify-between" aria-live="polite">
           <div className="text-sm text-gray-400">
-            Showing {filteredLeads.length} of {leads.length} leads
+            Showing <span className="tabular-nums text-gray-200">{filteredLeads.length}</span> of <span className="tabular-nums text-gray-200">{leads.length}</span> leads
           </div>
 
           <button
             onClick={exportToCSV}
             disabled={filteredLeads.length === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
-            <Download size={16} />
+            <Download size={16} aria-hidden="true" />
             <span>Export CSV</span>
           </button>
         </div>
       </div>
 
       {/* Leads table */}
-      <div className="rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 overflow-hidden">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-800">
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+          <table className="w-full" aria-label="Leads">
+            <caption className="sr-only">Leads captured from PDF guide downloads</caption>
+            <thead className="bg-white/[0.02]">
+              <tr className="border-b border-white/10">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Contact
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                  Company & Role
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                  Company &amp; role
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Guide
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Interest
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Source
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Date
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-800">
+            <tbody className="divide-y divide-white/5">
               {filteredLeads.map((lead) => (
-                <tr key={lead.id} className="hover:bg-gray-800/30 transition-colors">
+                <tr key={lead.id} className="hover:bg-white/[0.03] transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center text-white font-semibold flex-shrink-0">
+                      <div
+                        className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center text-white font-semibold flex-shrink-0"
+                        aria-hidden="true"
+                      >
                         {lead.name.charAt(0).toUpperCase()}
                       </div>
                       <div className="min-w-0">
                         <div className="font-medium text-white truncate">{lead.name}</div>
                         <a
                           href={`mailto:${lead.email}`}
-                          className="text-sm text-cyan-400 hover:text-cyan-300 truncate block"
+                          className="text-sm text-cyan-400 hover:text-cyan-300 truncate block rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                         >
                           {lead.email}
                         </a>
@@ -313,9 +327,11 @@ export default function LeadsDashboard() {
                     )}
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-1 text-sm text-gray-400">
-                      <Calendar size={14} />
-                      <span>{new Date(lead.timestamp).toLocaleDateString()}</span>
+                    <div className="flex items-center gap-1.5 text-sm text-gray-400">
+                      <Calendar size={14} aria-hidden="true" />
+                      <time dateTime={new Date(lead.timestamp).toISOString()} className="tabular-nums">
+                        {new Date(lead.timestamp).toLocaleDateString()}
+                      </time>
                     </div>
                   </td>
                 </tr>
@@ -324,10 +340,10 @@ export default function LeadsDashboard() {
           </table>
 
           {filteredLeads.length === 0 && (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-12 text-gray-500" role="status">
               {searchQuery || filterGuide !== 'all' || filterInterest !== 'all'
                 ? 'No leads match your filters'
-                : 'No leads yet. Start sharing your guides!'}
+                : 'No leads yet. Start sharing your guides.'}
             </div>
           )}
         </div>

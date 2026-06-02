@@ -270,7 +270,7 @@ export default function DashboardPage() {
             <div className="mb-12">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
+                  <h1 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
                     Welcome back, Explorer
                   </h1>
                   <p className="text-slate-400">Continue your conscious AI journey</p>
@@ -368,8 +368,11 @@ export default function DashboardPage() {
                       <Target className="w-6 h-6 mr-3 text-purple-400" />
                       Current Goals
                     </h2>
-                    <Link href="/goals" className="text-purple-400 hover:text-purple-300 text-sm flex items-center">
-                      View All <ChevronRight className="w-4 h-4 ml-1" />
+                    <Link
+                      href="/goals"
+                      className="rounded-md px-2 py-1 text-purple-400 hover:text-purple-300 text-sm flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                    >
+                      View all <ChevronRight className="w-4 h-4 ml-1" aria-hidden="true" />
                     </Link>
                   </div>
                   <div className="space-y-4">
