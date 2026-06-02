@@ -9,6 +9,9 @@ import { cn } from '@/lib/utils'
 // Per design.md + taste.md + premium-visual ACOS skill: information-dense glass, dual-spectrum, void foundation, restraint excellence.
 // Replaces slate with void/space/elevated ladder. Adds optional 3D tilt + specular for world-class premium feel.
 
+/** Legacy variant names accepted for backward compat across callers (premium/luxury/etc.). Mapped to spectrum+depth at render time. */
+type LegacyVariant = 'default' | 'premium' | 'luxury' | 'subtle' | 'strong' | 'crystal' | 'tech' | 'soul' | 'bridge' | string
+
 interface GlassmorphicCardProps extends HTMLMotionProps<'div'> {
   children: ReactNode
   className?: string
@@ -25,6 +28,49 @@ interface GlassmorphicCardProps extends HTMLMotionProps<'div'> {
   hover?: boolean
   /** Semantic border/glow per design tokens */
   accent?: 'default' | 'tech' | 'soul' | 'bridge'
+  /** Backward-compat variant prop accepted by older callers (e.g. variant="premium"|"luxury"). Maps to the spectrum+intensity system. Prefer spectrum/depth/intensity directly. */
+  variant?: LegacyVariant
+  /** Backward-compat border prop — accepts Tailwind class OR legacy keyword ("glow", "subtle"). */
+  border?: string
+  /** Backward-compat gradient prop — accepts legacy keyword ("aurora", "nebula", "void"). Maps to spectrum accent. */
+  gradient?: 'aurora' | 'nebula' | 'void' | string
+  /** Backward-compat color/tone prop (unused — kept for type-acceptance). */
+  color?: string
+  tone?: string
+}
+
+function mapLegacyBorder(border: string | undefined): string {
+  if (!border) return ''
+  // Keyword → Tailwind class mapping
+  if (border === 'glow') return 'border-bridge-purple/30 shadow-[0_0_24px_rgba(171,71,199,0.18)]'
+  if (border === 'subtle') return 'border-white/[0.06]'
+  return border // assume Tailwind class
+}
+
+function mapLegacyGradient(gradient: string | undefined): { extraClass: string; accent?: GlassmorphicCardProps['accent'] } {
+  if (!gradient) return { extraClass: '' }
+  if (gradient === 'aurora') return { extraClass: 'bg-gradient-to-br from-violet-500/10 via-fuchsia-500/5 to-cyan-500/10', accent: 'bridge' }
+  if (gradient === 'nebula') return { extraClass: 'bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-rose-500/10', accent: 'bridge' }
+  if (gradient === 'void') return { extraClass: 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950', accent: 'default' }
+  return { extraClass: gradient } // assume Tailwind class
+}
+
+function mapLegacyVariant(variant: LegacyVariant | undefined): {
+  spectrum?: GlassmorphicCardProps['spectrum']
+  intensity?: GlassmorphicCardProps['intensity']
+  accent?: GlassmorphicCardProps['accent']
+} {
+  switch (variant) {
+    case 'premium': return { intensity: 'strong', accent: 'default' }
+    case 'luxury':  return { intensity: 'ultra', accent: 'bridge' }
+    case 'crystal': return { intensity: 'ultra', accent: 'default' }
+    case 'tech':    return { spectrum: 'tech', accent: 'tech' }
+    case 'soul':    return { spectrum: 'soul', accent: 'soul' }
+    case 'bridge':  return { spectrum: 'bridge', accent: 'bridge' }
+    case 'subtle':  return { intensity: 'subtle' }
+    case 'strong':  return { intensity: 'strong' }
+    default:        return {}
+  }
 }
 
 const depthClass = {
@@ -60,15 +106,27 @@ const noiseTexture = "data:image/svg+xml,%3Csvg width='60' height='60' viewBox='
 export default function GlassmorphicCard({
   children,
   className,
-  spectrum = 'neutral',
+  spectrum,
   depth = 'surface',
-  intensity = 'medium',
+  intensity,
   tilt3d = false,
   specular = false,
   hover = false,
-  accent = 'default',
+  accent,
+  variant,
+  border,
+  gradient,
+  color: _color,
+  tone: _tone,
   ...props
 }: GlassmorphicCardProps) {
+  // Apply legacy variant → modern token mapping; explicit props win
+  const legacy = mapLegacyVariant(variant)
+  const gradientMap = mapLegacyGradient(gradient)
+  const borderClass = mapLegacyBorder(border)
+  const effSpectrum: NonNullable<GlassmorphicCardProps['spectrum']> = spectrum ?? legacy.spectrum ?? 'neutral'
+  const effIntensity: NonNullable<GlassmorphicCardProps['intensity']> = intensity ?? legacy.intensity ?? 'medium'
+  const effAccent: NonNullable<GlassmorphicCardProps['accent']> = accent ?? legacy.accent ?? gradientMap.accent ?? 'default'
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const shouldReduce = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
@@ -81,7 +139,7 @@ export default function GlassmorphicCard({
   }
   const handleMouseLeave = () => setTilt({ x: 0, y: 0 })
 
-  const spectrumAccent = spectrum === 'tech' ? 'tech' : spectrum === 'soul' ? 'soul' : spectrum === 'bridge' ? 'bridge' : accent
+  const spectrumAccent = effSpectrum === 'tech' ? 'tech' : effSpectrum === 'soul' ? 'soul' : effSpectrum === 'bridge' ? 'bridge' : effAccent
 
   return (
     <motion.div
@@ -90,10 +148,12 @@ export default function GlassmorphicCard({
       className={cn(
         'group relative overflow-hidden rounded-2xl border text-ink',
         depthClass[depth],
-        intensityClass[intensity],
+        intensityClass[effIntensity],
         accentBorder[spectrumAccent as keyof typeof accentBorder],
         accentGlow[spectrumAccent as keyof typeof accentGlow],
         'transition-[box-shadow,transform] duration-500 ease-out will-change-transform',
+        gradientMap.extraClass, // legacy gradient overlay
+        borderClass, // legacy border keyword OR Tailwind class
         className
       )}
       style={
