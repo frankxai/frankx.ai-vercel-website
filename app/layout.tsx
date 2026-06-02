@@ -180,8 +180,8 @@ export default function RootLayout({
             />
           )}
           <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100] focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2"
           >
             Skip to content
           </a>
@@ -196,7 +196,7 @@ export default function RootLayout({
           <HideOnLandingRoutes>
             <NavigationMega />
           </HideOnLandingRoutes>
-          <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
+          <div id="main-content" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>
           <HideOnLandingRoutes>

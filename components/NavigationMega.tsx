@@ -469,7 +469,7 @@ export default function NavigationMega() {
             : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
         )}
       >
-        <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <nav aria-label="Primary" className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Logo />
 
           <NavigationMenu.Root
@@ -490,6 +490,7 @@ export default function NavigationMega() {
               <NavigationMenu.Item>
                 <Link
                   href="/blog"
+                  aria-current={isActive('/blog') ? 'page' : undefined}
                   className={cn(
                     'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
                     isActive('/blog')
@@ -612,7 +613,7 @@ export default function NavigationMega() {
         aria-label="Site navigation"
       >
         <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4">
-          <nav className="space-y-1">
+          <nav aria-label="Mobile primary" className="space-y-1">
             {desktopSections.map((section) => {
               const data = navigation[section]
               const expanded = mobileExpanded === section
@@ -690,6 +691,7 @@ export default function NavigationMega() {
             <Link
               href="/blog"
               onClick={() => setIsOpen(false)}
+              aria-current={isActive('/blog') ? 'page' : undefined}
               className={cn(
                 'flex min-h-[52px] items-center rounded-xl px-4 py-3 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
                 isActive('/blog') ? 'bg-white/10 text-white' : 'text-slate-200 hover:bg-white/5 hover:text-white'

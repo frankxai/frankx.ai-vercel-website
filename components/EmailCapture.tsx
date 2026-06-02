@@ -68,39 +68,52 @@ export default function EmailCapture({
     )
   }
 
+  const errorId = `email-capture-error-${product}`
+
   return (
-    <form onSubmit={handleSubmit} className={`space-y-3 ${className}`}>
+    <form onSubmit={handleSubmit} className={`space-y-3 ${className}`} aria-busy={status === 'loading'}>
       <div className="flex flex-col sm:flex-row gap-3">
+        <label htmlFor={`name-${product}`} className="sr-only">Your name (optional)</label>
         <input
+          id={`name-${product}`}
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Your name (optional)"
+          autoComplete="given-name"
+          aria-label="Your name (optional)"
           className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
           disabled={status === 'loading'}
         />
+        <label htmlFor={`email-${product}`} className="sr-only">Email address</label>
         <input
+          id={`email-${product}`}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={placeholder}
           required
+          autoComplete="email"
+          aria-label="Email address"
+          aria-invalid={status === 'error'}
+          aria-describedby={status === 'error' ? errorId : undefined}
           className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
           disabled={status === 'loading'}
         />
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-all hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+          aria-busy={status === 'loading'}
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-all hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
         >
           {status === 'loading' ? (
             <>
-              <Loader2 className="h-5 w-5 animate-spin" />
+              <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
               Subscribing...
             </>
           ) : (
             <>
-              <Mail className="h-5 w-5" />
+              <Mail className="h-5 w-5" aria-hidden="true" />
               {buttonText}
             </>
           )}
@@ -109,11 +122,14 @@ export default function EmailCapture({
 
       {status === 'error' && (
         <motion.div
+          id={errorId}
+          role="alert"
+          aria-live="polite"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-2 text-sm text-red-400"
         >
-          <AlertCircle className="h-4 w-4" />
+          <AlertCircle className="h-4 w-4" aria-hidden="true" />
           {message}
         </motion.div>
       )}

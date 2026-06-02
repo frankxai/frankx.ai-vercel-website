@@ -79,7 +79,7 @@ export function EmailSignup({
 
   if (compact) {
     return (
-      <form onSubmit={handleSubmit} className={cn('relative', className)} noValidate>
+      <form onSubmit={handleSubmit} className={cn('relative', className)} aria-busy={status === 'loading'} noValidate>
         <div className="flex gap-2">
           <label htmlFor="email-compact" className="sr-only">Email address</label>
           <input
@@ -88,6 +88,7 @@ export function EmailSignup({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
+            autoComplete="email"
             aria-label="Email address"
             aria-invalid={status === 'error'}
             aria-describedby={status === 'error' ? 'email-compact-error' : status === 'success' ? 'email-compact-success' : undefined}
@@ -98,6 +99,7 @@ export function EmailSignup({
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
+            aria-busy={status === 'loading'}
             className="px-6 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-cyan-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
@@ -138,7 +140,7 @@ export function EmailSignup({
 
   return (
     <div className={cn('w-full max-w-md', className)}>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4" aria-busy={status === 'loading'} noValidate>
         {showName && (
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
@@ -150,6 +152,7 @@ export function EmailSignup({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your first name"
+              autoComplete="given-name"
               disabled={status === 'loading' || status === 'success'}
               className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 transition-all"
             />
@@ -166,8 +169,11 @@ export function EmailSignup({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
+            autoComplete="email"
             disabled={status === 'loading' || status === 'success'}
             required
+            aria-invalid={status === 'error'}
+            aria-describedby={status === 'error' ? 'email-error' : status === 'success' ? 'email-success' : undefined}
             className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 transition-all"
           />
         </div>
@@ -175,11 +181,12 @@ export function EmailSignup({
         <button
           type="submit"
           disabled={status === 'loading' || status === 'success'}
+          aria-busy={status === 'loading'}
           className={cn(
-            "w-full px-6 py-3 font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed",
+            "w-full px-6 py-3 font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]",
             status === 'success'
-              ? "bg-emerald-600 text-white"
-              : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500"
+              ? "bg-emerald-600 text-white focus-visible:ring-emerald-400/70"
+              : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 focus-visible:ring-purple-400/70"
           )}
         >
           {status === 'loading' && 'Subscribing...'}
@@ -191,6 +198,7 @@ export function EmailSignup({
         <AnimatePresence>
           {status === 'error' && errorMessage && (
             <motion.div
+              id="email-error"
               role="alert"
               aria-live="polite"
               initial={{ opacity: 0, y: -10 }}
@@ -203,6 +211,7 @@ export function EmailSignup({
           )}
           {status === 'success' && (
             <motion.div
+              id="email-success"
               role="status"
               aria-live="polite"
               initial={{ opacity: 0, y: -10 }}

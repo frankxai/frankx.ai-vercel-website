@@ -140,7 +140,7 @@ export default async function BlogPostPage({
   const extractedFaqs = extractFAQFromContent(post.content)
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       <ReadingProgress />
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
@@ -343,7 +343,7 @@ export default async function BlogPostPage({
           </div>
         </div>
       </article>
-    </div>
+    </main>
   )
 }
 
