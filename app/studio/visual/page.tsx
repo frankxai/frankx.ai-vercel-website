@@ -121,17 +121,17 @@ export default function StudioVisualPage() {
       />
 
       {/* HERO ----------------------------------------------------------- */}
-      <section className="relative px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <section className="relative px-6 pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-6xl">
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-6">
             Visual Intelligence System · v{VIS_VERSION} · {VIS_SHIPPED}
           </p>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6 max-w-4xl">
             Drop images.
             <br />
             <span className="text-emerald-400">Get a per-platform strategy.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-2xl mb-10">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mb-10">
             The substrate that connects your image catalog to your content calendar. Three asset
             tiers, nine platform personas, one workflow. Built on the systems already shipped at
             <Link href="/watch/shorts" className="text-emerald-400 hover:text-emerald-300 transition-colors"> /watch</Link>,
@@ -142,14 +142,14 @@ export default function StudioVisualPage() {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               href="#runtime"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Open the runtime
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
               href="#stack"
-              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               See the stack
             </Link>
@@ -158,15 +158,15 @@ export default function StudioVisualPage() {
       </section>
 
       {/* THE PROBLEM ---------------------------------------------------- */}
-      <section className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl">
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             The problem this solves
           </p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-6">
             Generation without strategy is noise.
           </h2>
-          <div className="space-y-5 text-white/65 text-lg leading-relaxed">
+          <div className="space-y-5 text-[17px] leading-relaxed text-white/80">
             <p>
               Every creator with NB2 access can generate a beautiful image. Few can answer the
               next question: <em>which platform, which post, which hook, which variant</em>. The
@@ -183,16 +183,16 @@ export default function StudioVisualPage() {
       </section>
 
       {/* THE STACK ------------------------------------------------------ */}
-      <section id="stack" className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section id="stack" className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
               The three-layer stack
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
               What gets made. How it gets assembled. What stops bad work from shipping.
             </h2>
-            <p className="text-base text-white/60 max-w-2xl">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
               Each layer has a single job. The boundaries are deliberate — without them, the
               system collapses into one tool fighting another.
             </p>
@@ -205,7 +205,7 @@ export default function StudioVisualPage() {
               return (
                 <article
                   key={layer.kind}
-                  className={`rounded-xl bg-[#111113] border border-white/5 p-6 hover:border-white/10 transition-colors`}
+                  className={`rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-white/20 transition-colors`}
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-2 rounded-md bg-white/5 ring-1 ${colors.ring}`}>
@@ -233,16 +233,16 @@ export default function StudioVisualPage() {
       </section>
 
       {/* PLATFORM PERSONAS --------------------------------------------- */}
-      <section id="platforms" className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section id="platforms" className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
               The nine platform personas
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
               One persona per platform. A profile that tries to be everything is read as nothing.
             </h2>
-            <p className="text-base text-white/60 max-w-2xl">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
               These are not aspirations — they are the operational rule used by{' '}
               <code className="font-mono text-emerald-400/80 text-sm">content-social-distributor</code>,
               the visual-intelligence skill, and the /visual-strategy command. Edit the
@@ -254,7 +254,7 @@ export default function StudioVisualPage() {
             {platformPersonas.map((p) => (
               <article
                 key={p.platform}
-                className="rounded-xl bg-[#111113] border border-white/5 p-6 hover:border-white/10 transition-colors flex flex-col"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-white/20 transition-colors flex flex-col"
               >
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="font-display text-lg font-semibold text-white">{p.label}</h3>
@@ -309,16 +309,16 @@ export default function StudioVisualPage() {
       </section>
 
       {/* THE WORKFLOW --------------------------------------------------- */}
-      <section className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
               The drop-images workflow
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
               Five steps from raw image to ship-ready strategy.
             </h2>
-            <p className="text-base text-white/60 max-w-2xl">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
               Run via{' '}
               <code className="font-mono text-emerald-400/80">/visual-strategy</code>, or
               dispatched automatically by the visual-intelligence-orchestrator agent on multi-image
@@ -332,7 +332,7 @@ export default function StudioVisualPage() {
               return (
                 <li
                   key={step.n}
-                  className="rounded-lg bg-[#111113] border border-white/5 p-6 flex gap-6 items-start"
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 flex gap-6 items-start"
                 >
                   <div className="font-mono text-2xl text-emerald-400/40 shrink-0 w-12 tabular-nums">
                     {step.n}
@@ -352,16 +352,16 @@ export default function StudioVisualPage() {
       </section>
 
       {/* THE RUNTIME ---------------------------------------------------- */}
-      <section id="runtime" className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section id="runtime" className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
               The runtime
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
               One command. One skill. One agent.
             </h2>
-            <p className="text-base text-white/60 max-w-2xl">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
               VIS is operated through the existing FrankX surfaces — Claude Code today, any
               MCP-aware client tomorrow. Nothing custom; everything composable.
             </p>
@@ -388,7 +388,7 @@ export default function StudioVisualPage() {
             />
           </div>
 
-          <div className="rounded-xl bg-[#111113] border border-white/5 p-6 lg:p-8">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 lg:p-8">
             <p className="text-[11px] tracking-[0.25em] uppercase text-white/40 font-medium mb-4">
               Example invocation
             </p>
@@ -408,16 +408,16 @@ and Spotify (Friday album drop). Use Higgsfield for variants needed."
       </section>
 
       {/* INTEGRATIONS --------------------------------------------------- */}
-      <section className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
               How it composes
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
               VIS is not a new system — it is the connective tissue.
             </h2>
-            <p className="text-base text-white/60 max-w-2xl">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
               The asset, composition, and gate layers are already shipped. VIS adds the typed
               substrate, the persona matrix, and the workflow that ties them together.
             </p>
@@ -459,19 +459,19 @@ and Spotify (Friday album drop). Use Higgsfield for variants needed."
       </section>
 
       {/* CTA ------------------------------------------------------------ */}
-      <section className="border-t border-white/5 px-6 py-24 lg:py-32">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-4">
             Ready to drop images?
           </h2>
-          <p className="text-lg text-white/60 leading-relaxed mb-10">
+          <p className="text-[17px] leading-relaxed text-white/80 mb-10">
             Open Claude Code, run <code className="font-mono text-emerald-400/80">/visual-strategy</code>,
             and pass a batch of images. Or paste them straight into the conversation.
           </p>
           <div className="inline-flex items-center gap-3">
             <Link
               href="/os"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               See VIS in the FrankX OS
               <ArrowRight className="h-4 w-4" aria-hidden />
@@ -500,7 +500,7 @@ function RuntimeCard({
   body: string
 }) {
   return (
-    <article className="rounded-xl bg-[#111113] border border-white/5 p-6 hover:border-white/10 transition-colors">
+    <article className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-white/20 transition-colors">
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-md bg-emerald-500/10 ring-1 ring-emerald-400/30">
           <Icon className="h-4 w-4 text-emerald-400" aria-hidden />
@@ -525,7 +525,7 @@ function IntegrationCard({
   return (
     <Link
       href={href}
-      className="group rounded-xl bg-[#111113] border border-white/5 p-6 hover:border-white/10 hover:bg-[#1a1a1f] transition-colors flex items-start gap-4"
+      className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-white/20 hover:bg-white/[0.06] transition-colors flex items-start gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
     >
       <div className="p-2 rounded-md bg-white/5 ring-1 ring-white/10">
         <FileCode2 className="h-4 w-4 text-emerald-400" aria-hidden />

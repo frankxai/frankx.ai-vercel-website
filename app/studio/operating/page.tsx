@@ -138,11 +138,11 @@ export default function StudioOperatingPage() {
   return (
     <main id="main" className="min-h-screen bg-[#0a0a0b] text-white">
       {/* HERO */}
-      <section className="px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <section className="px-6 pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-6xl">
           <Link
             href="/studio"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 mb-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full"
           >
             <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
             Studio
@@ -150,12 +150,12 @@ export default function StudioOperatingPage() {
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-6">
             How the Studio operates · 4 concrete flows
           </p>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6 max-w-4xl">
             Phone capture
             <br />
             <span className="text-emerald-400">to publish.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-2xl mb-10">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mb-10">
             Four real flows. From the moment Frank taps "Drop to FrankX" on the Android share menu
             to the moment a published post lives on a platform. No fiction; this is what the system
             actually does.
@@ -164,14 +164,14 @@ export default function StudioOperatingPage() {
       </section>
 
       {/* THE 4 FLOWS */}
-      <section className="border-t border-white/5 px-6 py-24">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl space-y-12">
           {flows.map((flow) => {
             const Icon = flow.icon
             return (
               <article
                 key={flow.id}
-                className="rounded-xl bg-[#111113] border border-white/5 p-8 lg:p-10"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8 lg:p-10"
               >
                 <header className="mb-8">
                   <div className="flex items-center gap-3 mb-4">
@@ -183,7 +183,7 @@ export default function StudioOperatingPage() {
                       {flow.elapsed}
                     </span>
                   </div>
-                  <h2 className="font-display text-2xl md:text-3xl font-semibold text-white tracking-tight">
+                  <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">
                     {flow.title}
                   </h2>
                 </header>
@@ -235,15 +235,15 @@ export default function StudioOperatingPage() {
       </section>
 
       {/* RHYTHM */}
-      <section className="border-t border-white/5 px-6 py-24">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl">
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             The cadence this enables
           </p>
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-white tracking-tight mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-6">
             Operator-time stays under 2 hours per day.
           </h2>
-          <div className="space-y-5 text-white/65 text-base leading-relaxed">
+          <div className="space-y-5 text-[17px] leading-relaxed text-white/80">
             <p>
               Most creator-content operators spend 4-6 hours per day on production: capture +
               editing + writing + posting + analytics. The Studio compresses that to ~90 minutes by
@@ -265,26 +265,26 @@ export default function StudioOperatingPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 px-6 py-24">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-4">
             See the producers.
           </h2>
-          <p className="text-base text-white/60 leading-relaxed mb-10">
+          <p className="text-[17px] leading-relaxed text-white/80 mb-10">
             Each flow above is a composition of L4 producer specialists. Each producer has its own
             deep-dive at <code className="font-mono text-emerald-400/80">/studio/&lt;producer&gt;</code>.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/studio"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Producer index
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
               href="/studio/calendar"
-              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Forcing functions calendar
             </Link>
