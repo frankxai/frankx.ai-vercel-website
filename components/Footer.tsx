@@ -17,8 +17,8 @@ export default function Footer() {
         <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
-              <Image src="/images/mascot/axi-v3-icon.png" alt="Axi" width={36} height={36} className="rounded-lg" />
+            <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group" aria-label="FrankX.AI — Home">
+              <Image src="/images/mascot/axi-v3-icon.png" alt="" width={36} height={36} className="rounded-lg" />
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
                 <span className="block text-[10px] sm:text-xs text-white/55">AI Systems & Music</span>
@@ -33,19 +33,21 @@ export default function Footer() {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
+                aria-label="Frank Riemer on LinkedIn (opens in new tab)"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 rounded"
               >
                 LinkedIn
-                <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" aria-hidden="true" />
               </a>
               <span className="text-white/20" aria-hidden>·</span>
               <a
                 href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
+                aria-label="frankxai on GitHub (opens in new tab)"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 rounded"
               >
-                <Github className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <Github className="w-2.5 h-2.5 sm:w-3 sm:h-3" aria-hidden="true" />
                 GitHub
               </a>
               <span className="text-white/20" aria-hidden>·</span>
@@ -53,17 +55,19 @@ export default function Footer() {
                 href={socialLinks.suno}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
+                aria-label="Frank on Suno (opens in new tab)"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 rounded"
               >
                 Suno
-                <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" aria-hidden="true" />
               </a>
               <span className="text-white/20" aria-hidden>·</span>
               <a
                 href={socialLinks.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors"
+                aria-label="@frankxeth on X (opens in new tab)"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 rounded"
               >
                 X
               </a>
@@ -72,7 +76,8 @@ export default function Footer() {
                 href={socialLinks.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors"
+                aria-label="FrankX on YouTube (opens in new tab)"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 rounded"
               >
                 YouTube
               </a>
@@ -100,7 +105,6 @@ export default function Footer() {
               <li><Link href="/library" className="hover:text-white transition-colors">Library</Link></li>
               <li><Link href="/students" className="hover:text-white transition-colors">Student Hub</Link></li>
               <li><Link href="/watch" className="hover:text-white transition-colors">Watch</Link></li>
-              <li><Link href="/study" className="hover:text-white transition-colors">Study</Link></li>
             </ul>
           </nav>
 
@@ -147,7 +151,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/50">
-          <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Frank Riemer. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <span className="text-white/30">·</span>
