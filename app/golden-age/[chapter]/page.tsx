@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { notFound } from 'next/navigation';
-import ChapterReader from '../components/ChapterReader';
+import ChapterReader from '../components/ChapterReaderNoSSR';
 import { chapters, bookMetadata } from '../metadata';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
