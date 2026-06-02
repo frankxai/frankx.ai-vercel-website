@@ -139,7 +139,7 @@ export default function FounderPlaybook() {
       <PlaybookBackground />
       <main className="relative min-h-screen">
         {/* Hero */}
-        <section className="pt-32 pb-16">
+        <section className="py-20 lg:py-28 pt-32">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -159,7 +159,7 @@ export default function FounderPlaybook() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl"
+              className="mb-6 max-w-3xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white"
             >
               Ship AI Value
               <span className="block text-emerald-400">Without the Hype</span>
@@ -169,7 +169,7 @@ export default function FounderPlaybook() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400"
+              className="mb-8 max-w-2xl text-[17px] leading-relaxed text-white/80"
             >
               A practical 90-day framework for founders who want to implement AI
               that actually moves the needle. No buzzwords. No FOMO. Just results.
@@ -183,14 +183,14 @@ export default function FounderPlaybook() {
             >
               <Link
                 href="/guides/modern-guide"
-                className="group flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:bg-emerald-500"
+                className="group flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Read Full Guide
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/templates"
-                className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Get Templates
               </Link>
@@ -199,7 +199,7 @@ export default function FounderPlaybook() {
         </section>
 
         {/* Framework Equation */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -207,10 +207,10 @@ export default function FounderPlaybook() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-2xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 The Advantage Equation
               </h2>
-              <p className="text-slate-400 max-w-xl mx-auto">
+              <p className="text-[17px] leading-relaxed text-white/80 max-w-xl mx-auto">
                 Your AI advantage isn't just about tools—it's the unique combination
                 of what you bring to the table.
               </p>
@@ -226,7 +226,7 @@ export default function FounderPlaybook() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className={`p-6 rounded-2xl border ${colors.border} ${colors.bg}`}
+                    className={`p-6 rounded-2xl border ${colors.border} ${colors.bg} backdrop-blur-xl`}
                   >
                     <h3 className={`text-xl font-bold ${colors.text} mb-2`}>
                       {component.title}
@@ -264,7 +264,7 @@ export default function FounderPlaybook() {
         </section>
 
         {/* 90-Day Framework */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-5xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -276,10 +276,10 @@ export default function FounderPlaybook() {
                 <Clock className="h-4 w-4" />
                 90-Day Framework
               </span>
-              <h2 className="text-2xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 From Zero to Shipping AI Value
               </h2>
-              <p className="text-slate-400 max-w-xl mx-auto">
+              <p className="text-[17px] leading-relaxed text-white/80 max-w-xl mx-auto">
                 A structured approach to implementing your first revenue-linked AI workflow.
               </p>
             </motion.div>
@@ -296,7 +296,7 @@ export default function FounderPlaybook() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className={`p-8 rounded-2xl border ${colors.border} ${colors.bg}`}
+                    className={`p-8 rounded-2xl border ${colors.border} ${colors.bg} backdrop-blur-xl`}
                   >
                     <div className="flex flex-col md:flex-row md:items-start gap-6">
                       <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl ${colors.icon}`}>
@@ -338,26 +338,26 @@ export default function FounderPlaybook() {
         </section>
 
         {/* CTA */}
-        <section className="py-16">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-3xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-900/40 p-10 text-center backdrop-blur-xl"
+              className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-10 text-center"
             >
               <TrendingUp className="mx-auto mb-6 h-12 w-12 text-emerald-400" />
-              <h2 className="mb-4 text-2xl font-bold text-white">
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Ready to Start?
               </h2>
-              <p className="mx-auto mb-8 max-w-lg text-slate-400">
+              <p className="mx-auto mb-8 max-w-lg text-[17px] leading-relaxed text-white/80">
                 Get the complete guide with templates, worksheets, and frameworks
                 to implement your 90-day AI plan.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/guides/modern-guide"
-                  className="group flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:bg-emerald-500"
+                  className="group flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
                   <Sparkles className="h-5 w-5" />
                   Read the Guide
@@ -365,7 +365,7 @@ export default function FounderPlaybook() {
                 </Link>
                 <Link
                   href="/templates"
-                  className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
                   Get Templates
                 </Link>

@@ -98,17 +98,17 @@ export default function FamilieHubPage() {
           <div className="absolute top-40 right-1/4 h-[300px] w-[300px] rounded-full bg-amber-500/8 blur-3xl" />
         </div>
 
-        <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-32 text-center">
+        <div className="relative mx-auto max-w-4xl px-6 py-20 lg:py-28 pt-32 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/60">
             <Home className="h-3.5 w-3.5" />
             <span>Riemer &middot; Gorte</span>
           </div>
 
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
             Familie Hub
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/60">
+          <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
             Ein lebendiger digitaler Raum für die Familie Riemer-Gorte. Generationen
             verbinden durch Geschichten, Erinnerungen und gemeinsame Inspiration.
             Gebaut mit Liebe von Frank.
@@ -117,13 +117,13 @@ export default function FamilieHubPage() {
       </section>
 
       {/* Familie Links */}
-      <section className="mx-auto max-w-5xl px-6 pb-20">
+      <section className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {familieLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`group relative flex flex-col rounded-2xl border ${link.borderColor} bg-gradient-to-br ${link.color} p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/20`}
+              className={`group relative flex flex-col rounded-2xl border ${link.borderColor} bg-gradient-to-br ${link.color} backdrop-blur-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
             >
               {link.badge && (
                 <span className="absolute right-4 top-4 rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/70">
@@ -152,10 +152,10 @@ export default function FamilieHubPage() {
 
       {/* Werte */}
       <section className="border-t border-white/[0.08] bg-white/[0.03]">
-        <div className="mx-auto max-w-4xl px-6 py-20">
+        <div className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
           <div className="mb-12 text-center">
-            <h2 className="mb-3 text-2xl font-bold text-white">Warum es das gibt</h2>
-            <p className="text-white/50">
+            <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Warum es das gibt</h2>
+            <p className="text-[17px] leading-relaxed text-white/80">
               Dieser Hub ist kein soziales Netzwerk. Er ist ein Familienarchiv.
             </p>
           </div>
@@ -195,15 +195,15 @@ export default function FamilieHubPage() {
       </section>
 
       {/* Aktueller Forschungsstand */}
-      <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="rounded-2xl border border-slate-500/15 bg-gradient-to-br from-slate-900/40 via-transparent to-transparent p-8">
+      <section className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8">
           <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-slate-400/70">
             Aktueller Forschungsstand
           </p>
-          <h2 className="mb-3 text-xl font-semibold text-white">
+          <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             Ein Kandidat aus 1729 — und 116 Jahre Lücke
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-white/50">
+          <p className="mb-4 text-[17px] leading-relaxed text-white/80">
             Ein KI-Forschungsteam hat Johann Konrad Reimer gefunden — getauft 1729 in
             Freudental, Gründungssiedler der Kolonie Reinwald (1766). Ob er unser
             direkter Vorfahre ist, ist nicht bewiesen. Zwischen ihm und unserem
@@ -213,14 +213,14 @@ export default function FamilieHubPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/familie/geschichte/riemer-linie"
-              className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full text-sm font-medium text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
             >
               Die Riemer-Linie ansehen
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
               href="/familie/geschichte/offene-fragen"
-              className="inline-flex items-center gap-2 text-sm font-medium text-amber-400 hover:text-amber-300"
+              className="inline-flex items-center gap-2 rounded-full text-sm font-medium text-amber-400 hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             >
               Alle offenen Fragen
               <ArrowRight className="h-3.5 w-3.5" />
@@ -230,25 +230,25 @@ export default function FamilieHubPage() {
       </section>
 
       {/* CTA: Mitmachen */}
-      <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 text-center">
+      <section className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8 text-center">
           <MessageCircle className="mx-auto mb-4 h-10 w-10 text-white/20" />
-          <h2 className="mb-2 text-xl font-semibold text-white">Diese Geschichte gehört uns allen</h2>
-          <p className="mb-6 text-white/40">
+          <h2 className="mb-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Diese Geschichte gehört uns allen</h2>
+          <p className="mb-6 text-[17px] leading-relaxed text-white/80">
             Jede Erinnerung, jedes Foto, jede Korrektur macht unsere
             Familiengeschichte vollständiger. Du musst kein Experte sein.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/familie/mitmachen"
-              className="inline-flex items-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 px-5 py-2.5 text-sm font-medium text-rose-200 transition-all hover:bg-rose-500/20"
+              className="inline-flex items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/10 px-5 py-2.5 text-sm font-medium text-rose-200 transition-all hover:bg-rose-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Heart className="h-4 w-4" />
               Mitmachen
             </Link>
             <Link
               href="/opa-und-oma"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/50 transition-all hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Opa & Oma Seite
             </Link>
