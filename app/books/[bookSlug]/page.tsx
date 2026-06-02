@@ -146,6 +146,7 @@ export default async function BookLandingPage({ params }: PageProps) {
                         src={book.coverImage}
                         alt={book.title}
                         fill
+                        sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
                         className="object-cover"
                         priority
                       />

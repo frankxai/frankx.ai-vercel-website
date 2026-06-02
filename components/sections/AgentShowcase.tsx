@@ -104,6 +104,7 @@ export default function AgentShowcase() {
                       src={agent.imagePath}
                       alt={agent.name}
                       fill
+                      sizes="56px"
                       className="object-cover"
                     />
                   </div>
@@ -132,6 +133,7 @@ export default function AgentShowcase() {
                         src={activeAgent.imagePath}
                         alt={activeAgent.name}
                         fill
+                        sizes="(max-width: 768px) 128px, 160px"
                         className="object-cover"
                         priority
                       />

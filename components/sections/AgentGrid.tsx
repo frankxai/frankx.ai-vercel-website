@@ -83,6 +83,7 @@ export default function AgentGrid({ showTitle = true, className }: AgentGridProp
                 src={agent.imagePath}
                 alt={agent.name}
                 fill
+                sizes="(max-width: 768px) 64px, 80px"
                 className="object-cover"
               />
             </div>

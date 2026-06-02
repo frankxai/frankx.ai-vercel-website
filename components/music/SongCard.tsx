@@ -33,6 +33,7 @@ export default function SongCard({ song }: SongCardProps) {
           src={song.coverImage}
           alt={song.title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />

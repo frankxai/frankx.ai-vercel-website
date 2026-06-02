@@ -31,6 +31,7 @@ export default function SoulbookHero() {
           src="/images/soulbook/hero-soulbook.png"
           alt="Soulbook hero background"
           fill
+          sizes="100vw"
           className="object-cover opacity-40"
           priority
           quality={90}

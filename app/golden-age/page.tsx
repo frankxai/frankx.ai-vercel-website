@@ -18,6 +18,7 @@ export default function GoldenAgePage() {
             src="/images/golden-age/hero-golden-age.png"
             alt="The Golden Age of Creators - A creator conducting an orchestra of creative energy"
             fill
+            sizes="100vw"
             className="object-cover object-center"
             priority
             quality={90}
@@ -350,6 +351,7 @@ export default function GoldenAgePage() {
             src="/images/golden-age/hero-golden-age.png"
             alt="Golden Age of Intelligence hero background"
             fill
+            sizes="100vw"
             className="object-cover object-top opacity-30 dark:opacity-20"
             aria-hidden="true"
           />

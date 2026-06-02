@@ -86,6 +86,7 @@ function HeroSection() {
           src="/images/games/games-lab-hero.png"
           alt=""
           fill
+          sizes="100vw"
           className="object-cover opacity-15"
           priority
         />

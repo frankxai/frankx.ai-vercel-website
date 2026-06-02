@@ -298,7 +298,7 @@ export default function TemplatesPage() {
       {/* Hero */}
       <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
         <div className="relative aspect-[21/9]">
-          <Image src="/images/architectures/llmops.png" alt="LLMOps architecture diagram" fill className="object-cover" />
+          <Image src="/images/architectures/llmops.png" alt="LLMOps architecture diagram" fill sizes="(max-width: 1152px) 100vw, 1152px" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         </div>
         <div className="absolute bottom-0 left-0 p-6">

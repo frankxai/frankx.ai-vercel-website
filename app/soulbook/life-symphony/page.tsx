@@ -15,6 +15,7 @@ export default function LifeSymphonyPage() {
             src="/images/soulbook/life-symphony.png"
             alt="Life Symphony - Complete 7-Pillar Transformation"
             fill
+            sizes="100vw"
             className="object-cover opacity-50"
             priority
             quality={90}

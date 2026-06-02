@@ -15,6 +15,7 @@ export default function GoldenPathPage() {
             src="/images/soulbook/golden-path.png"
             alt="Golden Path - Accelerated 4-Week Breakthrough"
             fill
+            sizes="100vw"
             className="object-cover opacity-50"
             priority
             quality={90}

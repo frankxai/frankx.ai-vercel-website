@@ -124,6 +124,7 @@ export default function ChapterReader({
               src={chapter.image}
               alt={`Chapter ${chapter.number}: ${chapter.title}`}
               fill
+              sizes="100vw"
               className="object-cover"
               priority
               quality={90}
