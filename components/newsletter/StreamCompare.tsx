@@ -28,7 +28,7 @@ export default function StreamCompare({
   streams: NewsletterStream[]
 }) {
   return (
-    <section className="border-t border-white/5 py-16">
+    <section className="border-t border-white/5 py-20 lg:py-28">
       <div className="mx-auto max-w-5xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,10 +36,10 @@ export default function StreamCompare({
           viewport={{ once: true }}
           className="mb-10 text-center"
         >
-          <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
+          <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             Compare streams at a glance
           </h2>
-          <p className="text-slate-400">
+          <p className="text-[17px] leading-relaxed text-white/80">
             Each stream is independent — subscribe to what matters.
           </p>
         </motion.div>

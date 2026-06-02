@@ -244,10 +244,10 @@ export default async function ReviewPage({
             </div>
           )}
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-2">
               {review.title}
             </h1>
-            <p className="text-lg text-white/50 mb-3">by {review.author}</p>
+            <p className="text-[17px] leading-relaxed text-white/70 mb-3">by {review.author}</p>
             <StarRating rating={review.rating} />
             <div className="flex flex-wrap gap-2 mt-4">
               {review.categories.map((cat) => (
@@ -288,7 +288,7 @@ export default async function ReviewPage({
           </div>
           <Link
             href="/newsletter"
-            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap"
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             Subscribe free
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -687,7 +687,7 @@ export default async function ReviewPage({
             href={review.amazonUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />

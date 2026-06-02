@@ -349,7 +349,7 @@ function FAQItem({ faq, index }: { faq: (typeof FAQS)[0]; index: number }) {
 
 export default function InnerCirclePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero Section */}
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
         {/* Axi constellation — premium/mystery */}
@@ -661,6 +661,6 @@ export default function InnerCirclePage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   )
 }

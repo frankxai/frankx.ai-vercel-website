@@ -114,21 +114,21 @@ export default function AgentsPage() {
       />
 
       {/* Hero — honest framing */}
-      <section className="relative overflow-hidden pt-28 pb-16">
+      <section className="relative overflow-hidden pt-28 pb-20 lg:pb-28">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-[#02030b] to-cyan-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(161,72,221,0.18),transparent_55%)]" />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200">
             ACOS · Catalog L{l99.level} · {counts.shipped}/{counts.total} shipped
           </div>
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
               99 agents I run on my machine.
             </span>
             <br />
             <span className="text-white/70">Install any pack into yours in 60 seconds.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-3xl text-[17px] leading-relaxed text-white/80 sm:text-lg">
             This isn&rsquo;t a SaaS. There&rsquo;s no &ldquo;Orchestrator&rdquo; routing your requests to a hosted runtime.
             It&rsquo;s the same <strong>99-agent operating system</strong> Frank runs to ship music, books, products,
             and frankx.ai &mdash; packaged so you can install it into <strong>your</strong> Claude Code, Cursor, or
@@ -157,19 +157,19 @@ npx @frankx/acos list`}
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/agents/packs/meta"
-              className="inline-flex items-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/20"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/20 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Download className="h-4 w-4" /> Install the free Meta pack
             </Link>
             <Link
               href="/acos/agents"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               See every agent <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href="https://github.com/frankxai/agentic-creator-os"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -180,10 +180,10 @@ npx @frankx/acos list`}
       </section>
 
       {/* What you actually get */}
-      <section className="border-t border-white/5 bg-[#06060a] py-20">
+      <section className="border-t border-white/5 bg-[#06060a] py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-3 text-center text-3xl font-bold text-white sm:text-4xl">What&rsquo;s inside a pack</h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-slate-400">
+          <h2 className="mb-3 text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">What&rsquo;s inside a pack</h2>
+          <p className="mx-auto mb-12 max-w-2xl text-center text-[17px] leading-relaxed text-white/80">
             Every pack is plain text artifacts your CLI already knows how to use. No vendor lock, no managed runtime.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
@@ -214,11 +214,11 @@ npx @frankx/acos list`}
       </section>
 
       {/* The packs — 11 pillars */}
-      <section className="border-t border-white/5 py-20">
+      <section className="border-t border-white/5 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">The 11 packs</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-400">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">The 11 packs</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-[17px] leading-relaxed text-white/80">
               One per pillar. Each ships 9 specialists. Buy individual packs, or grab the full bundle (coming).
             </p>
           </div>
@@ -289,9 +289,9 @@ npx @frankx/acos list`}
       </section>
 
       {/* The honest disclaimer */}
-      <section className="border-t border-white/5 bg-[#06060a] py-20">
+      <section className="border-t border-white/5 bg-[#06060a] py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-center text-2xl font-bold text-white sm:text-3xl">What this is — and what it isn&rsquo;t</h2>
+          <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">What this is — and what it isn&rsquo;t</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-emerald-400/20 bg-emerald-500/[0.04] p-6">
               <div className="text-xs font-semibold uppercase tracking-widest text-emerald-300">What it is</div>
@@ -318,23 +318,23 @@ npx @frankx/acos list`}
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 py-20">
+      <section className="border-t border-white/5 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Start with the free Meta pack</h2>
-          <p className="mx-auto mt-3 max-w-xl text-slate-400">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Start with the free Meta pack</h2>
+          <p className="mx-auto mt-3 max-w-xl text-[17px] leading-relaxed text-white/80">
             9 infrastructure agents (router, memory guardian, safety guard, verification loop, EOD capture, handover, sync,
             ACOS score, agentic-jujutsu). No card. Works out of the box if you already have Claude Code or Antigravity installed.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="/agents/packs/meta"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Download className="h-4 w-4" /> Get the Meta pack
             </Link>
             <Link
               href="/newsletter?ref=agents-pack"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Notify me when paid packs launch
             </Link>
