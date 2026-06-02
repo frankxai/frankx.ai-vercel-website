@@ -1,20 +1,21 @@
 import JsonLd from '@/components/seo/JsonLd'
-import CoursesShell, { courseCardsForSchema } from '@/components/courses/CoursesShell'
+import CoursesShell from '@/components/courses/CoursesShell'
+import { plannedCourses } from '@/lib/courses/roadmap'
 
 export default function CoursesPage() {
   const courseListSchema = {
     name: 'FrankX Course Roadmap',
     description:
       'Planned course roadmap for AI foundations, agent architecture systems, and creator business systems.',
-    numberOfItems: courseCardsForSchema.length,
-    itemListElement: courseCardsForSchema.map((course, index) => ({
+    numberOfItems: plannedCourses.length,
+    itemListElement: plannedCourses.map((course, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@type': 'Course',
         name: course.title,
-        description: course.description,
-        url: `https://frankx.ai${course.href}`,
+        description: course.shortDescription,
+        url: `https://frankx.ai/courses/${course.slug}`,
         provider: { '@type': 'Organization', name: 'FrankX.AI' },
       },
     })),
