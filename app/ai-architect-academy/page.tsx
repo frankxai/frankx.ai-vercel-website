@@ -223,7 +223,7 @@ export default function AIArchitectAcademyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-6 max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
               Become an
               <span className="mt-2 block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
@@ -287,7 +287,7 @@ export default function AIArchitectAcademyPage() {
                 href="https://github.com/frankxai/ai-architect-academy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
+                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 <GitBranch className="h-5 w-5" />
                 Explore on GitHub
@@ -295,7 +295,7 @@ export default function AIArchitectAcademyPage() {
               </a>
               <Link
                 href="/prototypes"
-                className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
+                className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 <Layers className="h-5 w-5" />
                 View Prototypes
@@ -344,7 +344,7 @@ export default function AIArchitectAcademyPage() {
               <span className="mb-4 inline-block rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5 text-sm font-medium text-violet-400">
                 Pattern Library
               </span>
-              <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 Battle-Tested Patterns
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-slate-400">
@@ -395,7 +395,7 @@ export default function AIArchitectAcademyPage() {
                 href="https://github.com/frankxai/ai-architect-academy/tree/main/01-design-patterns"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-violet-400 hover:text-violet-300"
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-violet-400 transition hover:text-violet-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 View all 20+ patterns on GitHub
                 <ExternalLink className="h-4 w-4" />
@@ -416,7 +416,7 @@ export default function AIArchitectAcademyPage() {
               <span className="mb-4 inline-block rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-1.5 text-sm font-medium text-cyan-400">
                 Learning Paths
               </span>
-              <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 Structured Learning
               </h2>
               <p className="max-w-2xl text-lg text-slate-400">
@@ -459,7 +459,7 @@ export default function AIArchitectAcademyPage() {
                 href="https://github.com/frankxai/ai-architect-academy/tree/main/02-learning-paths"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-cyan-400 transition hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Explore all 13 learning paths
                 <ExternalLink className="h-4 w-4" />
@@ -508,7 +508,7 @@ export default function AIArchitectAcademyPage() {
                   href="https://github.com/frankxai/ai-architect-academy/tree/main/claude-ai-architect"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:bg-emerald-500"
+                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:bg-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   Browse Skills Library
                   <ExternalLink className="h-4 w-4" />
@@ -569,7 +569,7 @@ export default function AIArchitectAcademyPage() {
               className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-900/40 p-10 text-center backdrop-blur-xl"
             >
               <Building className="mx-auto mb-6 h-12 w-12 text-violet-400" />
-              <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="mb-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 Start Building Today
               </h2>
               <p className="mx-auto mb-8 max-w-lg text-slate-400">
@@ -581,7 +581,7 @@ export default function AIArchitectAcademyPage() {
                   href="https://github.com/frankxai/ai-architect-academy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                  className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   <GitBranch className="h-5 w-5" />
                   Clone Repository
@@ -589,14 +589,14 @@ export default function AIArchitectAcademyPage() {
                 </a>
                 <Link
                   href="/developers"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   <Code2 className="h-5 w-5" />
                   Developer Hub
                 </Link>
                 <Link
                   href="/ai-architecture/multi-cloud-comparison"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   <Workflow className="h-5 w-5" />
                   Multi-Cloud Research

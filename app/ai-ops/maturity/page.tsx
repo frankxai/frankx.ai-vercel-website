@@ -37,12 +37,12 @@ export default function MaturityPage() {
           </Link>
         </nav>
 
-        <section className="pt-8 pb-16 px-6">
+        <section className="pt-16 pb-16 md:pt-24 md:pb-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-[#a855f7] font-mono text-sm mb-4 tracking-wider uppercase">Maturity Model</p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">The 6-Level AI Ops Journey</h1>
-              <p className="text-white/50 text-lg max-w-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">The 6-Level AI Ops Journey</h1>
+              <p className="text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed">
                 Assess your current AI operations maturity and chart a path to autonomous intelligence.
               </p>
             </motion.div>

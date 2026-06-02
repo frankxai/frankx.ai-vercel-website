@@ -476,7 +476,7 @@ export default function IntelligenceMapPage() {
       <IntelligenceMapBackground />
 
       {/* ── Hero ── */}
-      <section className="relative px-4 pt-28 pb-16 sm:px-6 lg:px-8">
+      <section className="relative px-4 pt-28 pb-20 sm:px-6 sm:pt-36 lg:px-8 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-5xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -486,10 +486,10 @@ export default function IntelligenceMapPage() {
             <p className="mb-4 text-sm font-medium tracking-widest text-violet-400 uppercase">
               System Architecture
             </p>
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
               FrankX Intelligence Map
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-400">
+            <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80 sm:text-lg">
               The complete architecture of an AI-powered creator ecosystem.
               Every workflow, every connection, every layer — mapped.
             </p>
@@ -513,7 +513,7 @@ export default function IntelligenceMapPage() {
       </section>
 
       {/* ── System Map: 4 Concentric Rings ── */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="space-y-16">
             {rings.map((ring, ringIndex) => (
@@ -575,20 +575,20 @@ export default function IntelligenceMapPage() {
       </section>
 
       {/* ── Workflow Pipelines ── */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-10 text-center"
+            className="mb-12 text-center"
           >
             <p className="mb-3 text-sm font-medium tracking-widest text-cyan-400 uppercase">
               How It Flows
             </p>
-            <h2 className="text-3xl font-bold text-white">Workflow Pipelines</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-slate-400">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Workflow Pipelines</h2>
+            <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-white/80">
               Three core pipelines power the entire ecosystem. Each one runs end-to-end
               with minimal manual intervention.
             </p>
@@ -611,20 +611,20 @@ export default function IntelligenceMapPage() {
       </section>
 
       {/* ── Technology Stack ── */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-10 text-center"
+            className="mb-12 text-center"
           >
             <p className="mb-3 text-sm font-medium tracking-widest text-emerald-400 uppercase">
               Built With
             </p>
-            <h2 className="text-3xl font-bold text-white">Technology Stack</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-slate-400">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Technology Stack</h2>
+            <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-white/80">
               Eight core technologies power the ecosystem. Each one chosen for composability,
               developer experience, and production reliability.
             </p>
@@ -658,7 +658,7 @@ export default function IntelligenceMapPage() {
       </section>
 
       {/* ── For Creators CTA ── */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
+      <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -670,10 +670,10 @@ export default function IntelligenceMapPage() {
               <p className="mb-3 text-sm font-medium tracking-widest text-violet-400 uppercase">
                 For Creators
               </p>
-              <h2 className="text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Build Your Own AI Creator OS
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-slate-400">
+              <p className="mx-auto mt-4 max-w-lg text-[17px] leading-relaxed text-white/80">
                 This entire system is documented and replicable. The same 6-pillar AI Center of
                 Excellence framework used in enterprise environments, translated for individual
                 creators at a fraction of the cost.

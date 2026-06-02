@@ -176,12 +176,12 @@ export default function Models2026Page() {
         </nav>
 
         {/* Hero */}
-        <section className="pt-8 pb-16 px-6">
+        <section className="pt-16 pb-16 md:pt-24 md:pb-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-[#a855f7] font-mono text-sm mb-4 tracking-wider uppercase">Updated February 2026</p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Frontier AI Models Intelligence Hub</h1>
-              <p className="text-white/50 text-lg max-w-3xl mb-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">Frontier AI Models Intelligence Hub</h1>
+              <p className="text-white/60 text-lg md:text-xl max-w-3xl mb-8 leading-relaxed">
                 Benchmarks, pricing, context windows, and capabilities for every frontier model worth tracking.
                 Data validated against official sources and independent benchmarks.
               </p>

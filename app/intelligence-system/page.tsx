@@ -225,29 +225,29 @@ export default function IntelligenceSystemPage() {
 
       {/* Hero */}
       <section aria-labelledby="iis-hero-heading" className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-6 pt-24 pb-20 sm:pt-32 sm:pb-28">
+        <div className="mx-auto max-w-5xl px-6 pt-28 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-800/40 bg-emerald-900/10 px-3 py-1 text-xs font-medium text-emerald-300">
             <Shield className="h-3 w-3" aria-hidden="true" />
             <span>MIT — Open Source — Substrate, not service</span>
           </div>
-          <h1 id="iis-hero-heading" className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+          <h1 id="iis-hero-heading" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
             <span className="bg-gradient-to-br from-emerald-300 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
               The kata for personal
             </span>
             <br />
             <span className="text-zinc-100">capital stewardship.</span>
           </h1>
-          <p className="mt-6 max-w-3xl text-lg text-zinc-400 sm:text-xl">
+          <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/80 sm:text-xl">
             A markdown-first, MIT-licensed substrate that turns any AI assistant or code agent — <strong className="text-zinc-300">Claude Cowork, ChatGPT, Claude Code, Gemini CLI, OpenCode</strong> — into a sophisticated decision-support engine for personal wealth management.
           </p>
-          <p className="mt-4 max-w-3xl text-base text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             Not a trading bot. Not a robo-advisor. Not alpha. The discipline-imposing scaffolding that turns intuition + checklists into outperforming intuition alone — borrowed from medicine (Gawande), aviation (cockpit cross-checks), and software engineering (RFC + post-mortem).
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="#quickstart"
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               Quickstart
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -255,7 +255,7 @@ export default function IntelligenceSystemPage() {
             {IIS_REPO_PUBLIC ? (
               <a
                 href={IIS_REPO}
-                className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/40 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-600 hover:bg-zinc-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-medium text-zinc-200 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -264,7 +264,7 @@ export default function IntelligenceSystemPage() {
               </a>
             ) : (
               <span
-                className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/20 px-5 py-3 text-sm font-medium text-zinc-500"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-5 py-3 text-sm font-medium text-zinc-500 backdrop-blur-xl"
                 aria-label="GitHub repository pending OSS extraction"
               >
                 <Github className="h-4 w-4" aria-hidden="true" />
@@ -273,7 +273,7 @@ export default function IntelligenceSystemPage() {
             )}
             <Link
               href="#honest-limits"
-              className="inline-flex items-center gap-2 rounded-lg border border-amber-900/40 bg-amber-950/20 px-5 py-3 text-sm font-medium text-amber-200 transition hover:border-amber-800/60"
+              className="inline-flex items-center gap-2 rounded-full border border-amber-900/40 bg-amber-950/20 px-5 py-3 text-sm font-medium text-amber-200 transition hover:border-amber-800/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               <AlertTriangle className="h-4 w-4" aria-hidden="true" />
               Read honest limits first
@@ -289,16 +289,16 @@ export default function IntelligenceSystemPage() {
         aria-labelledby="iis-honest-limits-heading"
         className="border-b border-zinc-800/60 bg-zinc-950/60 outline-none"
       >
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-honest-limits-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-honest-limits-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             What this <span className="text-emerald-400">is</span> — and isn&apos;t.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             Most retail &quot;AI trading systems&quot; lose money to brokers, slippage, bias, and overconfidence. The compounding edge for a part-time investor is <strong className="text-zinc-200">not making catastrophic decisions</strong>, more than alpha generation. This substrate is built for that, and only that.
           </p>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6">
+            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6 backdrop-blur-xl">
               <div className="mb-4 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                 <h3 className="text-lg font-semibold text-emerald-300">What this is</h3>
@@ -313,7 +313,7 @@ export default function IntelligenceSystemPage() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-rose-900/40 bg-rose-950/10 p-6">
+            <div className="rounded-2xl border border-rose-900/40 bg-rose-950/10 p-6 backdrop-blur-xl">
               <div className="mb-4 flex items-center gap-2">
                 <XCircle className="h-5 w-5 text-rose-400" />
                 <h3 className="text-lg font-semibold text-rose-300">What this is NOT</h3>
@@ -329,7 +329,7 @@ export default function IntelligenceSystemPage() {
             </div>
           </div>
 
-          <div className="mt-10 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+          <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold text-zinc-200">The four plausible outcomes (no guarantees)</h3>
             <p className="mt-2 text-sm text-zinc-400">
               After 12+ weeks of consistent use, the substrate <em>plausibly</em> delivers:
@@ -348,11 +348,11 @@ export default function IntelligenceSystemPage() {
 
       {/* The atomic unit */}
       <section aria-labelledby="iis-atomic-unit-heading" className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-atomic-unit-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-atomic-unit-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             The atomic unit: the <span className="text-emerald-400">Strategy Session</span>.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             A closed, dated, JSON-schema-validated artifact that captures everything needed to make and remember a wealth decision. Every command, every loop, every agent ultimately produces or consumes one.
           </p>
 
@@ -363,7 +363,7 @@ export default function IntelligenceSystemPage() {
               { icon: Workflow, label: 'Proposed actions', body: 'With conditions, deadlines, human-gate' },
               { icon: FileText, label: 'Outcome (90d later)', body: 'Retrospective scoring + lessons' },
             ].map((card) => (
-              <div key={card.label} className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+              <div key={card.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
                 <card.icon aria-hidden="true" className="mb-3 h-5 w-5 text-emerald-400" />
                 <div className="text-sm font-semibold text-zinc-200">{card.label}</div>
                 <div className="mt-1 text-sm text-zinc-400">{card.body}</div>
@@ -384,17 +384,17 @@ export default function IntelligenceSystemPage() {
         aria-labelledby="iis-agents-heading"
         className="border-b border-zinc-800/60 bg-zinc-950/60 outline-none"
       >
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-agents-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-agents-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             The <span className="text-emerald-400">11-agent</span> strategy team.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             Three layers (Analysis → Risk → Synthesis) plus a cross-cutting Researcher. Each agent is a structured prompt + tool budget + output schema, not a separately-trained model. Swap the underlying LLM per agent based on cost vs capability.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {layers.map((layer) => (
-              <div key={layer.name} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+              <div key={layer.name} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
                 <div className="mb-4 flex items-baseline justify-between">
                   <h3 className="text-lg font-semibold text-zinc-100">{layer.name} layer</h3>
                   <span className="text-xs text-zinc-400">{layer.count} agent{layer.count > 1 ? 's' : ''}</span>
@@ -411,7 +411,7 @@ export default function IntelligenceSystemPage() {
             ))}
           </div>
 
-          <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 text-sm text-zinc-400">
+          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-sm text-zinc-400 backdrop-blur-xl">
             <strong className="text-zinc-200">The handoff protocol:</strong> Analysis agents run in parallel (independent reads, no groupthink). Risk agents sequentially review. Synthesis renders the session. The Researcher is available cross-cutting — but every claim it returns must cite primary sources.
           </div>
         </div>
@@ -419,17 +419,17 @@ export default function IntelligenceSystemPage() {
 
       {/* Three tiers */}
       <section aria-labelledby="iis-tiers-heading" className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-tiers-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-tiers-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Three tiers. Start at <span className="text-emerald-400">Tier 0</span>.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             Tier 0 is bootable in 10 minutes with any agent CLI — no Python, no Docker, no API keys. Tier 2 is engineering effort. Most operators live at Tier 1.
           </p>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {tiers.map((tier) => (
-              <div key={tier.n} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+              <div key={tier.n} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
                 <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-900/20 px-3 py-1 text-xs font-medium text-emerald-300">
                   Tier {tier.n}
                 </div>
@@ -460,16 +460,16 @@ export default function IntelligenceSystemPage() {
 
       {/* Two adoption paths */}
       <section aria-labelledby="iis-paths-heading" className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-paths-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-paths-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Two paths. <span className="text-emerald-400">Same substrate.</span>
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             The substrate is &quot;markdown + JSON + agent prompts&quot; — that means it works <strong className="text-zinc-200">anywhere an AI can read text</strong>. Two well-documented adoption paths cover most operators.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6">
+            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6 backdrop-blur-xl">
               <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-900/20 px-3 py-1 text-xs font-medium text-emerald-300">
                 Path A · AI assistant (browser/desktop)
               </div>
@@ -485,7 +485,7 @@ export default function IntelligenceSystemPage() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-teal-900/40 bg-teal-950/10 p-6">
+            <div className="rounded-2xl border border-teal-900/40 bg-teal-950/10 p-6 backdrop-blur-xl">
               <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-teal-900/20 px-3 py-1 text-xs font-medium text-teal-300">
                 Path B · Code agent (CLI)
               </div>
@@ -510,17 +510,17 @@ export default function IntelligenceSystemPage() {
 
       {/* Five loops */}
       <section aria-labelledby="iis-loops-heading" className="border-b border-zinc-800/60 bg-zinc-950/60">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-loops-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-loops-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Five operating <span className="text-emerald-400">loops</span>.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             Each loop runs at a fixed cadence with a defined output. Most operators run only Loop 2 (Weekly Review) at first; Loops 3-5 add value as the substrate matures.
           </p>
 
           <div className="mt-10 space-y-3">
             {loops.map((loop) => (
-              <div key={loop.num} className="flex gap-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+              <div key={loop.num} className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
                 <div
                   aria-hidden="true"
                   className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-900/30 text-sm font-semibold text-emerald-300"
@@ -554,11 +554,11 @@ export default function IntelligenceSystemPage() {
         aria-labelledby="iis-quickstart-heading"
         className="border-b border-zinc-800/60 outline-none"
       >
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-quickstart-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-quickstart-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Quickstart — <span className="text-emerald-400">10 minutes</span>.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             Tier 0 setup is markdown + agent CLI. No infrastructure.
           </p>
 
@@ -579,7 +579,7 @@ export default function IntelligenceSystemPage() {
             ))}
           </ol>
 
-          <div className="mt-10 rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+          <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
             <p className="text-sm text-zinc-300">
               <strong className="text-zinc-100">Sunday cadence (after first session):</strong> Run <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-emerald-300">/weekly-strategy</code>. Read the draft. Mark verdict. Schedule retrospective for any thesis-driven action (90 days). 15 minutes per week.
             </p>
@@ -589,11 +589,11 @@ export default function IntelligenceSystemPage() {
 
       {/* Why this exists / sibling systems */}
       <section aria-labelledby="iis-why-heading" className="border-b border-zinc-800/60 bg-zinc-950/60">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 id="iis-why-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+          <h2 id="iis-why-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Why this exists.
           </h2>
-          <p className="mt-4 max-w-3xl text-zinc-400">
+          <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-white/80">
             A 28-year-old AI Architect in Amsterdam, building a living legacy for godchildren and nieces, found that the wealth-decision scaffolding he&apos;d battle-tested privately was generalizable. The architecture (not the positions) is now extracted, sanitized, and published under MIT so other creators with similar profiles can boot the same discipline.
           </p>
 
@@ -605,7 +605,7 @@ export default function IntelligenceSystemPage() {
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <a
                 href={SIS_REPO}
-                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-700"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -615,7 +615,7 @@ export default function IntelligenceSystemPage() {
               </a>
               <a
                 href={LIBRARY_OS_REPO}
-                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-700"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -625,7 +625,7 @@ export default function IntelligenceSystemPage() {
               </a>
               <Link
                 href="/os"
-                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-700"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
               >
                 <Layers aria-hidden="true" className="mb-3 h-5 w-5 text-emerald-400" />
                 <div className="text-sm font-semibold text-zinc-200">FrankX OS</div>
@@ -638,22 +638,22 @@ export default function IntelligenceSystemPage() {
 
       {/* Final CTA */}
       <section aria-labelledby="iis-cta-heading" className="bg-zinc-950">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center">
-          <h2 id="iis-cta-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:py-28 text-center">
+          <h2 id="iis-cta-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             <span className="text-zinc-100">Discipline beats intuition.</span>
             <br />
             <span className="text-emerald-400">Process beats prediction.</span>
             <br />
             <span className="text-zinc-100">Audit beats optimism.</span>
           </h2>
-          <p className="mt-6 mx-auto max-w-2xl text-zinc-400">
+          <p className="mt-6 mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
             Internalize that, and the substrate gives you what it can give you. Reject it, and look elsewhere — there are better tools for whatever else you want.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             {IIS_REPO_PUBLIC ? (
               <a
                 href={IIS_REPO}
-                className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -663,7 +663,7 @@ export default function IntelligenceSystemPage() {
             ) : (
               <Link
                 href="#quickstart"
-                className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
               >
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 Start with the quickstart
@@ -671,7 +671,7 @@ export default function IntelligenceSystemPage() {
             )}
             <Link
               href="/os"
-              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/40 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-600 hover:bg-zinc-900"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-medium text-zinc-200 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
             >
               <Calendar className="h-4 w-4" aria-hidden="true" />
               See all FrankX systems
