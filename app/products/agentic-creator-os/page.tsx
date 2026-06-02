@@ -1,11 +1,10 @@
-import Script from 'next/script'
-
 import products from '@/data/products.json'
 import FinalCTA from '@/components/products/FinalCTA'
 import OfferStack from '@/components/products/OfferStack'
 import ProductHero from '@/components/products/ProductHero'
 import ProofRail from '@/components/products/ProofRail'
 import TransformationList from '@/components/products/TransformationList'
+import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
@@ -29,8 +28,6 @@ export const metadata = createMetadata({
 })
 
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
   name: product.name,
   description: product.promise,
   image: 'https://frankx.ai/images/acos/acos-hero-omega.png',
@@ -109,9 +106,7 @@ export default function AgenticCreatorOSPage() {
         primaryTracking={product.offer.ctaPrimaryTracking}
       />
 
-      <Script id="product-structured-data" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <JsonLd type="Product" data={structuredData} id="product-structured-data" />
     </div>
   )
 }
