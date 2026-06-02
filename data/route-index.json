@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 614,
+    "total": 623,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 333,
+      "section": 342,
       "community": 17,
       "tool": 10,
       "static": 15,
@@ -2550,6 +2550,51 @@
       "tags": [
         "books"
       ],
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles",
+      "title": "The Arcanean Creator Principles",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-01-the-seven-principles",
+      "title": "Ch 1 — The Seven Principles",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-02-the-partnership-principle",
+      "title": "Ch 2 — The Partnership Principle",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-03-complementary-strengths",
+      "title": "Ch 3 — Complementary Strengths",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-04-collaboration-modes",
+      "title": "Ch 4 — Collaboration Modes",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-05-trust-calibration",
+      "title": "Ch 5 — Trust Calibration",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-06-the-generator-editor-dance",
+      "title": "Ch 6 — The Generator-Editor Dance",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-07-advanced-partnership",
+      "title": "Ch 7 — Advanced Partnership",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-08-the-living-practice",
+      "title": "Ch 8 — The Living Practice",
       "type": "section"
     },
     {
