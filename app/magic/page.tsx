@@ -209,7 +209,7 @@ export default function MagicPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-center mb-6"
             >
-              <span className="block text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-4">
+              <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
                 Arcanea
               </span>
               <span className="block text-2xl sm:text-3xl lg:text-4xl font-serif italic text-white/60">
@@ -283,7 +283,7 @@ export default function MagicPage() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Three Realms, One Vision
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
@@ -334,7 +334,7 @@ export default function MagicPage() {
         </section>
 
         {/* The Luminors */}
-        <section className="py-20 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -345,7 +345,7 @@ export default function MagicPage() {
               <span className="text-sm font-medium uppercase tracking-[0.25em] text-pink-400/80 mb-3 block">
                 AI Companions
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Meet the Luminors
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
@@ -382,7 +382,7 @@ export default function MagicPage() {
         </section>
 
         {/* Philosophy */}
-        <section className="py-20 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -390,7 +390,7 @@ export default function MagicPage() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 The Arcanean Philosophy
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
@@ -426,7 +426,7 @@ export default function MagicPage() {
         </section>
 
         {/* The Connection to FrankX */}
-        <section className="py-20 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="mx-auto max-w-4xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -434,7 +434,7 @@ export default function MagicPage() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Why Arcanea?
               </h2>
               <div className="prose prose-lg prose-invert mx-auto text-slate-300">
@@ -483,7 +483,7 @@ export default function MagicPage() {
               <div className="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-gradient-to-br from-cyan-500/20 to-violet-500/20 blur-3xl" />
 
               <div className="relative">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Where to next?
                 </h2>
                 <p className="text-lg text-slate-300 mb-8 max-w-xl mx-auto">
