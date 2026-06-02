@@ -160,14 +160,14 @@ export default function TemplatePackPage() {
             Build with Frank
           </Link>
 
-          <h1 className="mt-6 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
             The artifacts behind{' '}
             <span className="bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">
               every build in the lab.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400">
+          <p className="mt-6 max-w-2xl text-[17px] md:text-lg leading-relaxed text-slate-300/90">
             AGENTS.md. Repo conventions. Prompt packs. PR review checklists. Eval harness. Content
             flywheel. Forkable, documented, voice-spec clean. One year of updates. Commercial
             license.
@@ -176,14 +176,14 @@ export default function TemplatePackPage() {
           <div className="mt-9 flex flex-wrap gap-3">
             <a
               href={TEMPLATE_PACK_CHECKOUT_URL}
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-200"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Request early access
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
               href="/agentic-builder-lab"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               See it in use
             </Link>
@@ -202,7 +202,7 @@ export default function TemplatePackPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
               Inside the pack
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               Five core artifacts. Each one tested in production.
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-400">
@@ -236,7 +236,7 @@ export default function TemplatePackPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300/80">
                 What you actually get
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
                 A real repo, not a PDF.
               </h2>
               <p className="mt-4 text-base leading-7 text-slate-400">
@@ -273,7 +273,7 @@ export default function TemplatePackPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/80">
             Preview
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             A peek at AGENTS.md.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
@@ -319,7 +319,7 @@ with current state and a question for the human.
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
               FAQ
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               What buyers ask before clicking.
             </h2>
           </div>
@@ -339,24 +339,24 @@ with current state and a question for the human.
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <Code2 className="mx-auto h-6 w-6 text-emerald-300" />
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Stop scaffolding. Start shipping.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-slate-400">
+          <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-slate-300/90">
             The pack saves the week you would spend writing AGENTS.md, building an eval harness,
             and refining prompts. Skip that week.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href={TEMPLATE_PACK_CHECKOUT_URL}
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-200"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Request early access
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
               href="/build"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Workshop or sprint instead
             </Link>

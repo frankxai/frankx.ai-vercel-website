@@ -311,7 +311,7 @@ export default function ProductsPage() {
       <ProductsBackground />
       <main id="main" className="relative min-h-screen">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-16">
+        <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-24">
           {/* Axi — mascot accent */}
           <div className="pointer-events-none absolute right-0 top-16 hidden w-56 opacity-15 lg:block xl:w-72">
             <Image
@@ -344,7 +344,7 @@ export default function ProductsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-6 max-w-4xl font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white"
             >
               Systems I use.
               <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400">
@@ -356,7 +356,7 @@ export default function ProductsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+              className="max-w-2xl text-[17px] sm:text-xl leading-relaxed text-slate-300/90"
             >
               The exact frameworks, prompts, and workflows I use in my own creative practice
               and enterprise work. No theory — just what actually works.
@@ -509,7 +509,7 @@ export default function ProductsPage() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
                 What You Get
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Real systems, not theory
               </h2>
             </motion.div>
@@ -571,7 +571,7 @@ export default function ProductsPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
                 Common questions
               </h2>
             </motion.div>
@@ -630,10 +630,10 @@ export default function ProductsPage() {
                     <CheckCircle2 className="w-4 h-4" />
                     Ready to Create
                   </span>
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl mb-4">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                     Start building with our systems today
                   </h2>
-                  <p className="text-slate-400">
+                  <p className="text-[17px] text-slate-300/90 leading-relaxed">
                     Vibe OS, The Creator's Soulbook, and Suno Prompt Bundles are available now.
                     Join early access for upcoming launches with exclusive pricing.
                   </p>
@@ -644,7 +644,7 @@ export default function ProductsPage() {
                     onClick={() =>
                       trackEvent('cta_click', { location: 'products-page', target: 'vibe-os' })
                     }
-                    className="group flex-1 flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30"
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                   >
                     Explore Vibe OS
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -654,7 +654,7 @@ export default function ProductsPage() {
                     onClick={() =>
                       trackEvent('cta_click', { location: 'products-page', target: 'inner-circle' })
                     }
-                    className="group flex-1 flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/[0.04] px-6 py-3 font-medium text-cyan-200 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all"
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/[0.04] px-6 py-3 font-medium text-cyan-200 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                   >
                     Reserve invite
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
