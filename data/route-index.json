@@ -2,7 +2,7 @@
   "version": "1.0",
   "stats": {
     "total": 624,
-    "aliases": 14,
+    "aliases": 18,
     "byType": {
       "core": 22,
       "section": 343,
@@ -5849,7 +5849,11 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/blog/rss": "/rss.xml",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
+    "/contact-frank": "/contact",
+    "/contact-me": "/contact",
+    "/get-in-touch": "/contact",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",

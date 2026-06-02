@@ -88,6 +88,38 @@ const nextConfig = {
         destination: 'https://arcanea.ai/:path*',
         permanent: true,
       },
+      // Social shortcuts — canonical URLs come from lib/social-links.ts.
+      // /youtube and /music remain real internal hubs (not external aliases).
+      {
+        source: '/github',
+        destination: 'https://github.com/frankxai',
+        permanent: true,
+      },
+      {
+        source: '/linkedin',
+        destination: 'https://www.linkedin.com/in/frank-x-riemer/',
+        permanent: true,
+      },
+      {
+        source: '/twitter',
+        destination: 'https://x.com/frankxeth',
+        permanent: true,
+      },
+      {
+        source: '/x',
+        destination: 'https://x.com/frankxeth',
+        permanent: true,
+      },
+      {
+        source: '/instagram',
+        destination: 'https://www.instagram.com/frank_riemer/',
+        permanent: true,
+      },
+      {
+        source: '/suno',
+        destination: 'https://suno.com/@frankx',
+        permanent: true,
+      },
       // Creator Lab signup → product page
       {
         source: '/creator-lab',
