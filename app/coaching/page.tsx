@@ -1,5 +1,6 @@
 import { createMetadata } from '@/lib/seo'
-import CoachingShell, { coachingFaqs } from '@/components/coaching/CoachingShell'
+import CoachingShell from '@/components/coaching/CoachingShell'
+import { coachingFaqs } from '@/app/coaching/faqs'
 
 export const metadata = createMetadata({
   title: 'AI Coaching That Fits Your Reality | FrankX',

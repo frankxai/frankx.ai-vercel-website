@@ -143,30 +143,10 @@ const idealFor = [
   'Musicians exploring AI-assisted production',
 ]
 
-const faqs = [
-  {
-    question: 'Who is this coaching for?',
-    answer:
-      'Technical creators, developers, and founders who want to build production-ready AI systems, grow their creator business, or transform their technical expertise into results. You should have basic programming knowledge and be ready to implement.',
-  },
-  {
-    question: 'What makes this coaching different?',
-    answer:
-      'I combine deep technical expertise in AI systems (38 agents, 75+ skills in ACOS) with practical creator experience (12,000+ AI songs, 70+ articles). You get hands-on architecture guidance plus strategies that actually work in production.',
-  },
-  {
-    question: 'What tech stack do you work with?',
-    answer:
-      'I specialize in modern AI stacks: Claude Code, Next.js, TypeScript, Vercel, MCP servers, and agentic frameworks. I help you choose the right tools for your specific goals and constraints.',
-  },
-  {
-    question: 'How do I get started?',
-    answer:
-      'Submit an application using the form below. Frank reviews every application personally and responds within a few business days. If it looks like a good fit, you will receive a scheduling link to book your first session.',
-  },
-]
-
-export const coachingFaqs = faqs
+// FAQ data is imported from a shared (non-client) module so both the server
+// page (for JSON-LD) and this client shell can use it without the 'use client'
+// boundary causing serialization edge cases at build time.
+import { coachingFaqs as faqs } from '@/app/coaching/faqs'
 
 // ── Components ──
 
