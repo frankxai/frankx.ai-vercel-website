@@ -5,15 +5,39 @@ export const metadata: Metadata = {
   description: 'Refund and cancellation policy for FrankX digital products and services.',
 }
 
+const REFUND_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Refund Policy',
+  description: 'Refund and cancellation policy for FrankX digital products and services.',
+  url: 'https://frankx.ai/legal/refund',
+  inLanguage: 'en',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'FrankX',
+    url: 'https://frankx.ai',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Arcanea Labs BV',
+    url: 'https://frankx.ai',
+  },
+  dateModified: '2026-06-02',
+}
+
 export default function RefundPage() {
   return (
-    <article className="prose prose-invert prose-zinc max-w-none">
-      <h1 className="text-3xl font-bold text-white mb-2">Refund Policy</h1>
-      <p className="text-zinc-500 text-sm mb-8">Effective: [DATE] &bull; Last updated: March 2026</p>
+    <article className="max-w-none">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(REFUND_JSONLD) }}
+      />
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] text-white mb-3">Refund Policy</h1>
+      <p className="text-zinc-500 text-sm mb-12">Effective: [DATE] &bull; Last updated: June 2026</p>
 
       <Section title="Digital Products (Downloads)">
         <p>Under the EU Consumer Rights Directive, you have a 14-day right of withdrawal for online purchases. However, for digital products with immediate delivery, this right is waived when you:</p>
-        <ol>
+        <ol className="list-decimal pl-5 space-y-1.5">
           <li>Give explicit consent to begin the download/access immediately</li>
           <li>Acknowledge that you lose your right of withdrawal</li>
         </ol>
@@ -35,10 +59,10 @@ export default function RefundPage() {
       </Section>
 
       <Section title="How to Request a Refund">
-        <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-5 mt-3">
-          <p className="text-zinc-300 font-medium mb-2">Contact us at:</p>
-          <p><a href="mailto:frank@frankx.ai" className="text-violet-400">frank@frankx.ai</a></p>
-          <p className="mt-3 text-zinc-500 text-xs">Please include your order number, the product purchased, and the reason for your refund request. We aim to respond within 2 business days.</p>
+        <div className="bg-white/[0.03] border border-white/10 rounded-xl p-6 mt-4">
+          <p className="text-white font-semibold mb-2">Contact us at:</p>
+          <p><a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 underline-offset-4 transition-colors">frank@frankx.ai</a></p>
+          <p className="mt-4 text-white/55 text-[14px] leading-relaxed">Please include your order number, the product purchased, and the reason for your refund request. We aim to respond within 2 business days.</p>
         </div>
       </Section>
 
@@ -52,26 +76,26 @@ export default function RefundPage() {
 
       <Section title="Your Consumer Rights">
         <p>This refund policy does not affect your statutory consumer rights under Dutch and EU law. If you believe your consumer rights have been violated, you may contact the{' '}
-          <a href="https://www.consuwijzer.nl" target="_blank" rel="noopener noreferrer" className="text-violet-400">
+          <a href="https://www.consuwijzer.nl" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 underline-offset-4 transition-colors">
             ConsuWijzer
           </a>{' '}
           (Dutch consumer information portal) or use the{' '}
-          <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-violet-400">
+          <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 underline-offset-4 transition-colors">
             EU Online Dispute Resolution platform
           </a>.
         </p>
       </Section>
 
-      <p className="text-zinc-600 text-xs mt-12">Last updated: March 2026</p>
+      <p className="text-white/50 text-sm mt-16 pt-8 border-t border-white/10">Last updated: June 2026</p>
     </article>
   )
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-10">
-      <h2 className="text-xl font-semibold text-zinc-200 mb-3">{title}</h2>
-      <div className="text-zinc-400 text-sm leading-relaxed space-y-3">{children}</div>
+    <section className="mt-14">
+      <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight mb-4">{title}</h2>
+      <div className="text-[16px] md:text-[17px] leading-[1.7] text-white/75 space-y-4">{children}</div>
     </section>
   )
 }

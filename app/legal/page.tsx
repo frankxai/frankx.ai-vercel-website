@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 export default function LegalPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      <div className="max-w-3xl mx-auto px-6 py-24">
+      <div className="max-w-3xl mx-auto px-6 py-20 lg:py-28">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 text-sm"
+          className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-10 text-sm"
         >
           &larr; Back to Home
         </Link>
 
-        <h1 className="text-4xl font-bold mb-8">Legal Information</h1>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-12">Legal Information</h1>
 
         <div className="space-y-8">
           {/* Quick Links */}
