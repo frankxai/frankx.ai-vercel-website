@@ -9,7 +9,7 @@ export default function NewsletterCTA() {
   return (
     <>
       {/* How it works — Aurora accented */}
-      <section className="relative border-t border-white/5 py-16 overflow-hidden">
+      <section className="relative border-t border-white/5 py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute top-0 right-0 h-56 w-72 rounded-full bg-cyan-500/[0.05] blur-[120px]" />
           <div className="absolute bottom-0 left-0 h-48 w-60 rounded-full bg-violet-500/[0.04] blur-[100px]" />
@@ -21,10 +21,10 @@ export default function NewsletterCTA() {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
               How it works
             </h2>
-            <p className="text-slate-400">
+            <p className="text-[17px] leading-relaxed text-white/80">
               Each stream is independent. Subscribe to what matters.
             </p>
           </motion.div>
@@ -53,7 +53,7 @@ export default function NewsletterCTA() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6"
               >
                 <div className="mb-3 text-2xl font-bold text-white/10">
                   {item.step}
@@ -67,7 +67,7 @@ export default function NewsletterCTA() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,10 +82,10 @@ export default function NewsletterCTA() {
             <div className="relative mx-auto mb-6">
               <FrankOmega variant="pixar-blue" size="sm" glow rounded />
             </div>
-            <h2 className="relative mb-3 text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="relative mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
               Not sure which stream?
             </h2>
-            <p className="relative mx-auto mb-4 max-w-md text-slate-400">
+            <p className="relative mx-auto mb-4 max-w-md text-[17px] leading-relaxed text-white/80">
               Start with Creation Chronicles — it covers everything and
               you&apos;ll see what resonates.
             </p>
@@ -95,7 +95,7 @@ export default function NewsletterCTA() {
             <div className="relative flex flex-wrap justify-center gap-4">
               <a
                 href="#creation-chronicles"
-                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5"
+                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Mail className="h-4 w-4" />
                 Start with the main stream
@@ -103,7 +103,7 @@ export default function NewsletterCTA() {
               </a>
               <Link
                 href="/blog"
-                className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/5"
+                className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Read the blog first
               </Link>
