@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'FrankX',
     images: [
       {
-        url: '/hero-homepage.png',
+        url: '/images/library/library-collection-hero.jpg',
         width: 1200,
         height: 630,
         alt: 'FrankX Library — book reviews and key insights',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'The Library | FrankX',
     description: 'Key insights from the books that matter most.',
-    images: ['/hero-homepage.png'],
+    images: ['/images/library/library-collection-hero.jpg'],
   },
 };
 

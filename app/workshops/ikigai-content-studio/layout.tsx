@@ -7,7 +7,7 @@ export const metadata: Metadata = createMetadata({
   description:
     'Facilitator-led workshop that picks up where the self-serve Ikigai wizard stops. Map purpose, distill positioning, ship your first AI-augmented brand asset in one session.',
   path: '/workshops/ikigai-content-studio',
-  image: '/hero-homepage.png',
+  image: '/images/workshops/workshop-os-hero.jpg',
 })
 
 export default function Layout({ children }: { children: ReactNode }) {
