@@ -183,8 +183,8 @@ export const SHARE_URLS = {
  */
 export const CONTACT_INFO = {
   email: {
-    primary: 'hello@frankx.ai',
-    label: 'Email FrankX',
+    primary: 'frank@frankx.ai',
+    label: 'Email Frank',
     subject: 'Creative AI Collaboration'
   },
   website: {

@@ -500,7 +500,7 @@ export default function Models2026Page() {
 
         <footer className="py-12 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto text-center">
-            <p className="text-sm text-white/30">Research compiled by FrankX Intelligence Pipeline &bull; Last updated February 6, 2026</p>
+            <p className="text-sm text-white/30">Research compiled by FrankX Intelligence Pipeline &bull; Last updated June 2, 2026</p>
             <p className="text-xs text-white/15 mt-2">Data sourced from official vendor documentation, ARC Prize Foundation, Scale AI SEAL, LMArena, and Artificial Analysis</p>
           </div>
         </footer>

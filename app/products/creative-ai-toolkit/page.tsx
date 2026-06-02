@@ -52,7 +52,7 @@ export default function CreativeAIToolkitPage() {
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <div className="relative mb-8 overflow-hidden rounded-2xl">
         <div className="relative aspect-[21/9]">
-          <Image src="/images/blog/agentic-creator-os-hero.png" alt="Creative AI Toolkit" fill className="object-cover" />
+          <Image src="/images/blog/agentic-creator-os-hero.png" alt="Creative AI Toolkit" fill priority sizes="(max-width: 768px) 100vw, 1024px" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         </div>
         <div className="absolute bottom-0 left-0 p-6">

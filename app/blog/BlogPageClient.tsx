@@ -98,10 +98,10 @@ export default function BlogPageClient({ posts, flagshipPosts = [], categories }
                   <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
                 </div>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]">
                 Inside the build.
               </h1>
-              <p className="mt-2 text-base text-white/40">
+              <p className="mt-3 text-[17px] md:text-lg text-white/55 leading-relaxed">
                 AI systems, creative workflows, and what&apos;s actually shipping.
               </p>
             </div>
@@ -326,21 +326,21 @@ export default function BlogPageClient({ posts, flagshipPosts = [], categories }
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16 px-6 border-t border-white/5">
+      <section className="py-20 lg:py-28 px-6 border-t border-white/5">
         <div className="max-w-xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
             <Sparkles className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400">Weekly Insights</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Join Creation Chronicles
           </h2>
-          <p className="text-white/50 mb-8">
+          <p className="text-[17px] text-white/60 mb-8 leading-relaxed">
             Get weekly insights on AI, creativity, and building in public.
           </p>
           <Link
             href="/newsletter"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             Start Here
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

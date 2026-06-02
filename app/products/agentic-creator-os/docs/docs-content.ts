@@ -54,7 +54,7 @@ export const docsContent: Record<string, DocContent> = {
       { id: 'first-steps', title: 'First Steps' }
     ],
     steps: [
-      { title: 'Install Prerequisites', description: 'Ensure Claude Code and Node.js 18+ are installed' },
+      { title: 'Install Prerequisites', description: 'Ensure Claude Code and Node.js 20+ are installed' },
       { title: 'Run Installer', description: 'Use npm or clone the repository' },
       { title: 'Test a Skill', description: 'Verify installation by activating a skill' }
     ],
@@ -62,7 +62,7 @@ export const docsContent: Record<string, DocContent> = {
       { type: 'heading', level: 2, text: 'Prerequisites', id: 'prerequisites' },
       { type: 'list', items: [
         'Claude Code installed and configured',
-        'Node.js 18+ (for MCP servers)',
+        'Node.js 20+ (for MCP servers)',
         'Git (for cloning and updates)'
       ]},
       { type: 'heading', level: 2, text: 'Installation', id: 'installation' },

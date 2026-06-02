@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import {
   Check,
   Mail,
@@ -487,22 +488,20 @@ export default function BVKitPage() {
               <div className="mb-6 flex flex-col items-center gap-4">
                 <div className="flex items-baseline gap-3">
                   <span className="text-5xl font-bold text-white">€97</span>
-                  <span className="text-slate-500">one-time</span>
+                  <span className="text-slate-500">one-time, when the kit ships</span>
                 </div>
-                <a
-                  href="https://frankxai.gumroad.com/l/bv-kit"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/inner-circle"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#AB47C7] via-violet-600 to-[#43BFE3] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#AB47C7]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#AB47C7]/40"
                 >
                   <Euro className="h-6 w-6" />
-                  Buy Now — Instant Download
+                  Reserve your copy
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
 
               <p className="text-sm text-slate-500">
-                Instant PDF + Excel delivery · 14-day money-back guarantee · EU consumer rights protected
+                Inner Circle wait list · founder pricing on launch · 14-day money-back guarantee · EU consumer rights protected
               </p>
             </div>
           </div>

@@ -246,10 +246,10 @@ function PricingCard({ tier, index }: { tier: (typeof MEMBERSHIP_TIERS)[0]; inde
           ) : (
             <Link
               href={tier.ctaHref}
-              className={`mb-8 flex w-full items-center justify-center gap-2 rounded-xl py-3 font-semibold transition-all ${
+              className={`mb-8 flex w-full items-center justify-center gap-2 rounded-full py-3 font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                 tier.gradient === 'from-[#F59E0B] to-[#10B981]'
-                  ? 'bg-gradient-to-r from-[#F59E0B] to-[#10B981] text-white shadow-lg shadow-[#F59E0B]/30'
-                  : 'border border-white/20 bg-white/10 text-white hover:bg-white/20'
+                  ? 'bg-gradient-to-r from-[#F59E0B] to-[#10B981] text-white shadow-lg shadow-[#F59E0B]/30 focus-visible:ring-[#F59E0B]/50'
+                  : 'border border-white/15 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 focus-visible:ring-white/30'
               }`}
             >
               {tier.cta}
@@ -376,7 +376,7 @@ export default function InnerCirclePage() {
             transition={{ duration: 0.5 }}
             className="mb-4 flex justify-center"
           >
-            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi, the FrankX Inner Circle mascot — half organic, half digital" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
+            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi, the FrankX Inner Circle mascot — half organic, half digital" width={72} height={72} className="rounded-2xl" sizes="72px" priority style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -392,7 +392,7 @@ export default function InnerCirclePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-6 text-5xl font-bold text-balance md:text-7xl"
+            className="mb-6 text-5xl font-bold tracking-tight text-balance md:text-6xl lg:text-7xl"
           >
             Join the{' '}
             <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#F59E0B] bg-clip-text text-transparent">
@@ -404,7 +404,7 @@ export default function InnerCirclePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mb-8 max-w-3xl text-xl text-slate-400 text-balance md:text-2xl"
+            className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-slate-300 text-balance md:text-xl lg:text-2xl"
           >
             The exclusive community for builders and creators serious about mastering AI and shipping products that
             matter.
@@ -419,7 +419,7 @@ export default function InnerCirclePage() {
           >
             <Link
               href="#signup"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#AB47C7]/40 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#AB47C7]/40 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AB47C7]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Join the Waitlist — June 1 2026
               <ArrowRight className="h-4 w-4" />
@@ -445,14 +445,14 @@ export default function InnerCirclePage() {
           >
             <Link
               href="#signup"
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/50 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60"
+              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/50 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AB47C7]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Join the Waitlist — June 1 2026
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href="/newsletter"
-              className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20"
+              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 font-medium text-white backdrop-blur-xl transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Read the Newsletter
             </Link>
@@ -524,8 +524,8 @@ export default function InnerCirclePage() {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold text-white text-balance md:text-5xl">What You Get</h2>
-            <p className="mx-auto max-w-2xl text-xl text-slate-400 text-balance">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white text-balance md:text-4xl lg:text-5xl">What You Get</h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-300 text-balance md:text-lg">
               Everything you need to build, ship, and scale AI products faster than ever.
             </p>
           </motion.div>
@@ -547,8 +547,8 @@ export default function InnerCirclePage() {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">Cadence & Rhythm</h2>
-            <p className="mx-auto max-w-2xl text-xl text-slate-400">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">Cadence & Rhythm</h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
               A rhythm that balances momentum with reflection. Every touchpoint drives action.
             </p>
           </motion.div>
@@ -585,8 +585,8 @@ export default function InnerCirclePage() {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold text-white text-balance md:text-5xl">Membership Pathway</h2>
-            <p className="mx-auto max-w-2xl text-xl text-slate-400 text-balance">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white text-balance md:text-4xl lg:text-5xl">Membership Pathway</h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-300 text-balance md:text-lg">
               From free updates to elite partnership. Pick the tier that matches your ambition.
             </p>
           </motion.div>
@@ -608,8 +608,8 @@ export default function InnerCirclePage() {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">Frequently Asked Questions</h2>
-            <p className="text-xl text-slate-400">Everything you need to know about the Inner Circle.</p>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">Frequently Asked Questions</h2>
+            <p className="text-base text-slate-300 md:text-lg">Everything you need to know about the Inner Circle.</p>
           </motion.div>
 
           <GlowCard color="violet" className="p-8">
@@ -631,8 +631,8 @@ export default function InnerCirclePage() {
           >
             <GlowCard color="amber" className="p-12">
             <Award className="mx-auto mb-6 h-16 w-16 text-[#F59E0B]" />
-            <h2 className="mb-6 text-4xl font-bold text-white text-balance md:text-5xl">Reserve Your Spot</h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-400 text-balance">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white text-balance md:text-4xl lg:text-5xl">Reserve Your Spot</h2>
+            <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-300 text-balance md:text-lg">
               Be first to receive Inner Circle pricing, launch bonuses, and the onboarding guide.
             </p>
 

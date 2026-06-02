@@ -69,7 +69,7 @@ const tiers: Tier[] = [
     tagline: 'The foundation',
     description: 'Clone the repo, run the commands, publish your library. MIT-licensed. No strings.',
     features: [
-      'Next.js 14 starter (App Router, RSC)',
+      'Next.js 16 starter (App Router, RSC)',
       'BookReview schema + JSON-LD generators',
       '3 slash commands (/library-add, deepen, research)',
       'Cross-AI portable prompts (Claude, ChatGPT, Codex, Gemini)',

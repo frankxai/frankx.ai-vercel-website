@@ -7,7 +7,7 @@ export const metadata: Metadata = createMetadata({
   description:
     'The enterprise 6-pillar CoE framework Frank ships to Oracle clients, scaled to one person. 90 minutes. Leave with your AI operating system running.',
   path: '/workshops/personal-ai-coe',
-  image: '/hero-homepage.png',
+  image: '/hero-enterprise.png',
 })
 
 export default function Layout({ children }: { children: ReactNode }) {

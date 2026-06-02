@@ -7,7 +7,7 @@ export const metadata: Metadata = createMetadata({
   description:
     'Professional AI workshop templates for university classrooms, corporate training rooms, and bootcamps. Structured agendas, instructor notes, resource packs.',
   path: '/workshops/for-educators',
-  image: '/hero-homepage.png',
+  image: '/images/workshops/workshop-os-hero.jpg',
 })
 
 export default function Layout({ children }: { children: ReactNode }) {

@@ -307,6 +307,16 @@ export default function ForEducatorsPage() {
                   <Mail className="w-4 h-4" />
                   Contact Frank Riemer
                 </a>
+                <p className="text-xs text-zinc-500 mt-4">
+                  Or{' '}
+                  <Link
+                    href="/inner-circle"
+                    className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+                  >
+                    reserve a seat in the Inner Circle
+                  </Link>{' '}
+                  for first access to educator cohorts and founder pricing.
+                </p>
                 <p className="text-xs text-zinc-600 mt-3">
                   Former AI Architect, Oracle
                 </p>

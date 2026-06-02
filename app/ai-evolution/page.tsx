@@ -651,7 +651,7 @@ export default function AIEvolutionPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-center text-sm text-slate-500">
             This research map is maintained by Frank Riemer and updated as the landscape evolves.
-            Last updated: March 2026.
+            Last updated: June 2026.
           </p>
         </div>
       </section>

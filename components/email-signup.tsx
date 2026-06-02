@@ -79,20 +79,26 @@ export function EmailSignup({
 
   if (compact) {
     return (
-      <form onSubmit={handleSubmit} className={cn('relative', className)}>
+      <form onSubmit={handleSubmit} className={cn('relative', className)} noValidate>
         <div className="flex gap-2">
+          <label htmlFor="email-compact" className="sr-only">Email address</label>
           <input
+            id="email-compact"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
+            aria-label="Email address"
+            aria-invalid={status === 'error'}
+            aria-describedby={status === 'error' ? 'email-compact-error' : status === 'success' ? 'email-compact-success' : undefined}
+            required
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+            className="flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500/50 disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-cyan-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
           </button>
@@ -101,6 +107,9 @@ export function EmailSignup({
         <AnimatePresence>
           {status === 'error' && errorMessage && (
             <motion.div
+              id="email-compact-error"
+              role="alert"
+              aria-live="polite"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -111,12 +120,15 @@ export function EmailSignup({
           )}
           {status === 'success' && (
             <motion.div
+              id="email-compact-success"
+              role="status"
+              aria-live="polite"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               className="text-emerald-400 text-sm mt-2"
             >
-              Successfully subscribed! Check your email.
+              You're in. Check your inbox to confirm.
             </motion.div>
           )}
         </AnimatePresence>
@@ -179,6 +191,8 @@ export function EmailSignup({
         <AnimatePresence>
           {status === 'error' && errorMessage && (
             <motion.div
+              role="alert"
+              aria-live="polite"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -189,12 +203,14 @@ export function EmailSignup({
           )}
           {status === 'success' && (
             <motion.div
+              role="status"
+              aria-live="polite"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm"
             >
-              Successfully subscribed! Check your email for confirmation.
+              You're in. Check your inbox to confirm.
               {redirectTo && <span className="block mt-1">Redirecting...</span>}
             </motion.div>
           )}

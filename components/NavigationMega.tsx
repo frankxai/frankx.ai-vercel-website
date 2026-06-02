@@ -386,6 +386,16 @@ export default function NavigationMega() {
     }
   }, [isOpen])
 
+  // Escape closes the mobile menu (WCAG keyboard nav)
+  useEffect(() => {
+    if (!isOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [isOpen])
+
   useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
@@ -560,10 +570,10 @@ export default function NavigationMega() {
               </kbd>
             </button>
             <Link
-              href="/start"
+              href="/inner-circle"
               className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
-              Start Here
+              Join Inner Circle
             </Link>
           </div>
 
@@ -747,11 +757,11 @@ export default function NavigationMega() {
               Search
             </button>
             <Link
-              href="/start"
+              href="/inner-circle"
               onClick={() => setIsOpen(false)}
               className="block w-full rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-4 text-center text-base font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 active:scale-[0.98]"
             >
-              Start Here
+              Join Inner Circle
             </Link>
           </div>
         </div>

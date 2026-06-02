@@ -1,7 +1,14 @@
+import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { matchRoute } from '@/lib/fuzzy-route-match'
 import NotFoundClient from './_components/NotFoundClient'
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  description: 'This path does not exist on frankx.ai. Suggested closest matches below.',
+  robots: { index: false, follow: false },
+}
 
 /**
  * Soft-404 with semantic route recovery.

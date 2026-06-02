@@ -7,7 +7,7 @@ export const metadata: Metadata = createMetadata({
   description:
     'Boardroom workshop adapting the 6-pillar AI CoE framework to your real context. AI leadership as sovereignty practice, not a technology decision. 2 hours.',
   path: '/workshops/sovereign-leadership',
-  image: '/hero-homepage.png',
+  image: '/hero-enterprise.png',
 })
 
 export default function Layout({ children }: { children: ReactNode }) {
