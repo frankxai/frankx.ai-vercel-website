@@ -294,7 +294,7 @@ export default function AgenticAiCenterPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
               Agentic AI Center
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-7xl">
               Understand agents. Design systems. Ship real workflows.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
@@ -305,27 +305,27 @@ export default function AgenticAiCenterPage() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/blog/what-is-agentic-ai"
-                className="inline-flex items-center gap-2 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+                className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-200 hover:shadow-lg hover:shadow-cyan-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Start with the field guide
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/ai-architecture"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Go to architecture
               </Link>
             </div>
           </div>
 
-          <div className="border border-white/10 bg-slate-950/70 p-5 shadow-2xl shadow-black/30 backdrop-blur rounded-lg">
+          <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-2xl shadow-black/30 backdrop-blur">
             <div className="grid gap-3">
               {foundations.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className="flex gap-4 border border-white/10 bg-white/[0.03] p-4 rounded-lg">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-cyan-300/10 text-cyan-200">
+                  <div key={item.title} className="flex gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
@@ -357,7 +357,7 @@ export default function AgenticAiCenterPage() {
 
           <div className="mt-10 grid gap-4 lg:grid-cols-5">
             {maturityLevels.map((item) => (
-              <article key={item.level} className="border border-white/10 bg-white/[0.03] p-5 rounded-lg">
+              <article key={item.level} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-white/[0.05]">
                 <div className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/70">
                   {item.level}
                 </div>
@@ -386,7 +386,7 @@ export default function AgenticAiCenterPage() {
 
           <div className="grid gap-4">
             {buildPath.map((step, index) => (
-              <article key={step.title} className="grid gap-4 border border-white/10 bg-slate-950/70 p-5 rounded-lg sm:grid-cols-[72px_1fr_auto] sm:items-center">
+              <article key={step.title} className="grid gap-4 rounded-2xl border border-white/10 bg-slate-950/70 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/30 sm:grid-cols-[72px_1fr_auto] sm:items-center">
                 <div className="text-3xl font-semibold text-white/20">{String(index + 1).padStart(2, '0')}</div>
                 <div>
                   <h3 className="text-lg font-semibold text-white">{step.title}</h3>
@@ -394,7 +394,7 @@ export default function AgenticAiCenterPage() {
                 </div>
                 <Link
                   href={step.href}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   {step.label}
                   <ArrowRight className="h-4 w-4" />
@@ -418,7 +418,7 @@ export default function AgenticAiCenterPage() {
             </div>
             <Link
               href="/resources"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
+              className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Browse all resources
               <ArrowRight className="h-4 w-4" />
@@ -432,9 +432,9 @@ export default function AgenticAiCenterPage() {
                 <Link
                   key={track.title}
                   href={track.href}
-                  className="group border border-white/10 bg-white/[0.03] p-5 transition hover:border-cyan-300/40 hover:bg-white/[0.055] rounded-lg"
+                  className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-white/[0.055] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-cyan-200">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-cyan-200">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-semibold text-white">{track.title}</h3>
@@ -468,7 +468,7 @@ export default function AgenticAiCenterPage() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             {guardrails.map((item) => (
-              <div key={item} className="flex gap-3 border border-white/10 bg-slate-950/70 p-4 rounded-lg">
+              <div key={item} className="flex gap-3 rounded-2xl border border-white/10 bg-slate-950/70 p-5">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" />
                 <p className="text-sm leading-6 text-slate-300">{item}</p>
               </div>
@@ -490,7 +490,7 @@ export default function AgenticAiCenterPage() {
 
           <div className="grid gap-4">
             {faqs.map((faq) => (
-              <article key={faq.question} className="border border-white/10 bg-white/[0.03] p-5 rounded-lg">
+              <article key={faq.question} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
                 <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-400">{faq.answer}</p>
               </article>
