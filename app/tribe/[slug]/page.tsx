@@ -75,13 +75,13 @@ export default function TribePersonPage({ params }: { params: { slug: string } }
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
-        <article className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 shadow-2xl shadow-black/25 md:p-10">
+        <article className="rounded-4xl border border-white/10 bg-white/[0.045] p-8 shadow-2xl shadow-black/25 md:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.26em] text-sky-300">What I see</p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">The dedication</h2>
           <p className="mt-6 text-lg leading-9 text-slate-300">{person.dedication}</p>
         </article>
 
-        <aside className="rounded-[2rem] border border-white/10 bg-slate-900/60 p-8 md:p-10">
+        <aside className="rounded-4xl border border-white/10 bg-slate-900/60 p-8 md:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.26em] text-purple-300">The vow</p>
           <blockquote className="mt-5 text-2xl font-semibold leading-tight text-white md:text-3xl">{person.vow}</blockquote>
         </aside>
@@ -89,7 +89,7 @@ export default function TribePersonPage({ params }: { params: { slug: string } }
 
       <section className="border-y border-white/10 bg-white/[0.03]">
         <div className="mx-auto grid max-w-6xl gap-6 px-6 py-16 md:grid-cols-2 md:px-10 md:py-24">
-          <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8">
+          <div className="rounded-4xl border border-white/10 bg-slate-950/70 p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.26em] text-sky-300">What you unlocked</p>
             <ul className="mt-6 space-y-4 text-slate-300">
               {person.unlocked.map((item) => (
@@ -99,7 +99,7 @@ export default function TribePersonPage({ params }: { params: { slug: string } }
               ))}
             </ul>
           </div>
-          <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8">
+          <div className="rounded-4xl border border-white/10 bg-slate-950/70 p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.26em] text-purple-300">What I offer back</p>
             <ul className="mt-6 space-y-4 text-slate-300">
               {person.offered.map((item) => (

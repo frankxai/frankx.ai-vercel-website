@@ -236,7 +236,7 @@ function FooterSection() {
 
 export default function SoulbookPage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-void">
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Product" data={productSchema} />
 

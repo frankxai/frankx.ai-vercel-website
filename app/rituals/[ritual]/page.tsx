@@ -624,7 +624,7 @@ export default function RitualDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-void text-white">
       {/* Celebration Overlay */}
       <AnimatePresence>
         {showCelebration && (
@@ -660,7 +660,7 @@ export default function RitualDetailPage() {
           ════════════════════════════════════════════════════════════════════════ */}
       <section className="relative py-12 lg:py-20 overflow-hidden">
         {/* Background effects */}
-        <div className="absolute inset-0 bg-black" />
+        <div className="absolute inset-0 bg-void" />
         <div className="absolute inset-0 opacity-60">
           <div className={`absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br ${ritual.accentClass} opacity-[0.07] rounded-full blur-[150px]`} />
         </div>

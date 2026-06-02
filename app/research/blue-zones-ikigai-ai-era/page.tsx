@@ -247,7 +247,7 @@ function ResearchSchema() {
 
 export default function BlueZonesIkigaiResearchPage() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-void text-white overflow-x-hidden">
       <ResearchSchema />
 
       {/* ─── Hero ─────────────────────────────────────────────────── */}

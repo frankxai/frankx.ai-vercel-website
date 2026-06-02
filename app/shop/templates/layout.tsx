@@ -47,7 +47,7 @@ const faqItems = [
   },
   {
     q: 'Is there a refund policy?',
-    a: 'Due to the digital nature of the product (immediate source code access), we cannot offer refunds. Review the features carefully before purchasing.',
+    a: 'Templates are digital downloads with immediate access on launch. If something is materially broken or misrepresented, write to frank@frankx.ai within 14 days and we will make it right.',
   },
 ]
 

@@ -71,9 +71,9 @@ export default function ShopPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors mb-10"
+            className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors mb-10 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft aria-hidden className="w-4 h-4" />
             Home
           </Link>
 
@@ -105,9 +105,19 @@ export default function ShopPage() {
               </span>
             </h1>
 
-            <p className="text-xl text-white/50 max-w-2xl mx-auto mb-10">
+            <p className="text-xl text-white/50 max-w-2xl mx-auto mb-6">
               Templates, blueprints, and tools built by an AI architect who ships in production.
               No theory. Just working code, tested workflows, and real results.
+            </p>
+
+            <p className="text-sm text-white/40 max-w-xl mx-auto">
+              Pre-launch — reserve your invite at each section. Questions:{' '}
+              <a
+                href="mailto:frank@frankx.ai"
+                className="text-cyan-400 underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded"
+              >
+                frank@frankx.ai
+              </a>
             </p>
           </motion.div>
         </div>
