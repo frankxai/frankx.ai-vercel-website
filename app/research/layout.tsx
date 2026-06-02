@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: 'https://frankx.ai/research',
     images: [
       {
-        url: '/images/brand/og-template.png',
+        url: '/hero-intelligence-atlas.png',
         width: 1200,
         height: 630,
         alt: 'FrankX Research Intelligence Hub',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Research Intelligence Hub | FrankX.AI',
     description: `${domainCount} research domains. 135+ validated findings. ${sourceCount}+ verified sources.`,
-    images: ['/images/brand/og-template.png'],
+    images: ['/hero-intelligence-atlas.png'],
   },
   alternates: {
     canonical: 'https://frankx.ai/research',

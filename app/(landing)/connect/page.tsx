@@ -6,6 +6,7 @@ import { Mail, ArrowLeft, QrCode } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import { CONTACT_INFO } from '@/lib/social-links'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
+import { CONNECT_EVENTS } from '@/lib/connect/events'
 
 import { ConnectHero } from '@/components/connect/ConnectHero'
 import { EventRibbon } from '@/components/connect/EventRibbon'
@@ -15,9 +16,62 @@ import { ConnectSocialsRow } from '@/components/connect/ConnectSocialsRow'
 import { ConnectNewsletterForm } from '@/components/connect/ConnectNewsletterForm'
 import { ConnectLandedTracker } from '@/components/connect/ConnectLandedTracker'
 
-// Revalidate daily so the date-aware event ribbon picks up window transitions
-// without requiring redeploys during the events themselves.
+const SITE_URL = 'https://frankx.ai'
+const CONNECT_URL = `${SITE_URL}/connect`
+
+// Revalidate hourly so the date-aware event ribbon picks up window
+// transitions without redeploys during events. The Event schema below is
+// rebuilt from CONNECT_EVENTS on each ISR regeneration, so newly-added
+// events surface in structured data within the cache window.
 export const revalidate = 3600
+
+function ConnectJsonLd() {
+  const data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Connect', item: CONNECT_URL },
+        ],
+      },
+      {
+        '@type': 'WebPage',
+        name: 'Connect with Frank Riemer',
+        description:
+          'Met Frank at an event? Save his contact, ask his agent, or pick the path that fits — investor, partner, client, or community.',
+        url: CONNECT_URL,
+        isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
+      },
+      ...CONNECT_EVENTS.map((event) => ({
+        '@type': 'Event',
+        name: event.label,
+        startDate: event.start,
+        endDate: event.end,
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        ...(event.location && {
+          location: {
+            '@type': 'Place',
+            name: event.location,
+            address: event.location,
+          },
+        }),
+        url: CONNECT_URL,
+        organizer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
+        performer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
+      })),
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  )
+}
 
 export const metadata: Metadata = createMetadata({
   title: 'Connect with Frank Riemer — AI Architect & Creator',
@@ -38,6 +92,7 @@ export const metadata: Metadata = createMetadata({
 export default function ConnectPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#0a0a0b] px-4 pb-16 pt-10 text-white sm:pt-14">
+      <ConnectJsonLd />
       <Suspense fallback={null}>
         <ConnectLandedTracker />
       </Suspense>
@@ -65,14 +120,14 @@ export default function ConnectPage() {
         <ConnectHero />
 
         <section className="mt-10">
-          <p className="mb-3 px-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+          <p className="mb-3 px-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/60">
             Choose your path
           </p>
           <RolePathCards />
         </section>
 
         <section className="mt-8">
-          <p className="mb-3 px-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+          <p className="mb-3 px-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/60">
             Featured work
           </p>
           <FeaturedWorkGrid />
@@ -83,7 +138,7 @@ export default function ConnectPage() {
         </section>
 
         <section className="mt-8 flex flex-col items-center gap-4">
-          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/60">
             Find me everywhere
           </p>
           <ConnectSocialsRow />
@@ -115,7 +170,7 @@ export default function ConnectPage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/connect/qr"
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider text-white/45 backdrop-blur transition-colors hover:border-white/20 hover:text-white/70"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider text-white/60 backdrop-blur transition-colors hover:border-white/20 hover:text-white"
           >
             <QrCode className="h-3 w-3" aria-hidden />
             Get the QR

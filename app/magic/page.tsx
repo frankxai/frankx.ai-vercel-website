@@ -484,11 +484,11 @@ export default function MagicPage() {
 
               <div className="relative">
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                  Ready to Begin?
+                  Where to next?
                 </h2>
                 <p className="text-lg text-slate-300 mb-8 max-w-xl mx-auto">
-                  Start your journey in the Music Lab, explore the Prompt Library,
-                  or enter Arcanea directly.
+                  Explore the Music Lab, browse the Prompt Library, or step into Arcanea
+                  when you're ready.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <a

@@ -89,7 +89,7 @@ function FAQItem({ question, answer, colors, defaultOpen }: {
             transition={{ duration: 0.2 }}
           >
             <div className="px-4 pb-4 pl-11">
-              <p className="text-sm text-white/50 leading-relaxed">{answer}</p>
+              <p className="text-sm text-white/60 leading-relaxed">{answer}</p>
             </div>
           </motion.div>
         )}
@@ -211,7 +211,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                     <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                       {domain.title}
                     </h1>
-                    <p className="text-white/40 mt-1">{domain.subtitle}</p>
+                    <p className="text-white/60 mt-1">{domain.subtitle}</p>
                   </div>
                 </div>
 
@@ -316,7 +316,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       </span>
                       <h2 className="text-xl font-bold text-white">{section.title}</h2>
                     </div>
-                    <p className="text-white/50 leading-relaxed mb-4">{section.content}</p>
+                    <p className="text-white/60 leading-relaxed mb-4">{section.content}</p>
 
                     {section.items && (
                       <div className={`grid gap-3 ${section.items.length <= 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>

@@ -38,7 +38,7 @@ const SPEAKER_TOPICS = [
   {
     title: 'The Personal AI Center of Excellence',
     summary:
-      'How the same six-pillar architecture I use in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
+      'How the same six-pillar architecture I refined in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
   },
   {
     title: 'Enterprise Agentic Systems in 2026',
@@ -193,7 +193,7 @@ export default function BioPage() {
               Frank Riemer
             </h1>
             <p className="text-xl sm:text-2xl text-white/70 leading-relaxed max-w-2xl mb-10">
-              AI Architect by day. Creator by night. Author of{' '}
+              AI Architect. Creator. Author of{' '}
               <Link
                 href="/books/golden-age-of-intelligence"
                 className="text-emerald-400 hover:text-emerald-300 transition-colors"

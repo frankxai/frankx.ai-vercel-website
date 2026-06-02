@@ -158,7 +158,7 @@ export default function VibeOSDocsPage() {
 
         {/* Support */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-white/60">
             Need help or have questions?{' '}
             <a
               href="mailto:frank@frankx.ai?subject=Vibe%20OS%20Question"

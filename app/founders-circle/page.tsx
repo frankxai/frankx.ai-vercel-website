@@ -179,10 +179,8 @@ export default function FoundersCirclePage() {
             cost. On frankx.ai he makes the same enterprise-grade frameworks available openly.
           </p>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-            Founder's Circle is a separate offering from Frank's Oracle role. It does not
-            involve Oracle proprietary materials. Where the work overlaps with what an
-            employer relationship requires, the work is referred upstream rather than serviced
-            in the Circle.
+            Founder's Circle does not involve Oracle proprietary materials. Frank's prior
+            Oracle work shaped the frameworks but is not part of what is delivered here.
           </p>
           <p className="text-sm text-zinc-400 leading-relaxed">
             All work in the Circle is done under FrankX (Frank's separate Dutch BV).

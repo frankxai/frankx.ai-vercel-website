@@ -103,11 +103,11 @@ export const MODULE_6_CITATIONS: Citation[] = [
  */
 export const FRANK_CREDENTIALS = {
   role: 'AI Architect',
-  org: 'Oracle EMEA AI Center of Excellence',
+  org: 'Built Oracle EMEA AI Center of Excellence frameworks',
   catalog: '12,000+ AI-produced tracks',
   site: 'frankx.ai',
   proofPoints: [
-    'Designs enterprise AI Center of Excellence frameworks',
+    'Built enterprise AI Center of Excellence frameworks at Fortune 500 scale',
     'Same patterns open-sourced for individual creators',
     'Multi-pillar operating system: SIS · ACOS · IIS · Workshop OS · Library OS',
   ],

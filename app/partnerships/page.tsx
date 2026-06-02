@@ -5,6 +5,7 @@ import {
   listActivePartners,
   listStrategicAlignment,
   listOpenConversations,
+  listPartners,
 } from '@/content/partnerships'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { SovereignNodeBand } from '@/components/partnerships/SovereignNodeBand'
@@ -14,6 +15,7 @@ import {
   MotionHero,
   MotionHeroItem,
 } from '@/components/partnerships/MotionLayer'
+import JsonLd from '@/components/seo/JsonLd'
 import type { Partner } from '@/content/partnerships/types'
 
 export const metadata = createMetadata({
@@ -40,9 +42,7 @@ export default function PartnershipsHubPage() {
   const conversations = listOpenConversations()
   const all = [...active, ...strategicAlignment, ...conversations]
 
-  const breadcrumbLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+  const breadcrumbData = {
     itemListElement: [
       {
         '@type': 'ListItem',
@@ -59,9 +59,7 @@ export default function PartnershipsHubPage() {
     ],
   }
 
-  const collectionLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  const collectionData = {
     name: 'FrankX partnerships',
     description:
       'How Frank Riemer collaborates with strategic partners — active proposals, strategic alignments, and the infrastructure behind the practice.',
@@ -73,16 +71,12 @@ export default function PartnershipsHubPage() {
     })),
   }
 
+  const partnersWithLogos = listPartners().filter((p) => p.partnerLogoUrl)
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
-      />
+      <JsonLd type="BreadcrumbList" data={breadcrumbData} />
+      <JsonLd type="CollectionPage" data={collectionData} />
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
@@ -120,6 +114,34 @@ export default function PartnershipsHubPage() {
                 coding-agent-native AI CoE practice from Amsterdam.
               </p>
             </MotionHeroItem>
+            {partnersWithLogos.length > 0 ? (
+              <MotionHeroItem delay={0.3}>
+                <div className="mt-12 pt-8 border-t border-white/[0.06]">
+                  <p className="text-[10px] tracking-[0.25em] uppercase text-white/30 font-medium mb-5">
+                    Operating with
+                  </p>
+                  <ul className="flex flex-wrap items-center gap-x-8 gap-y-5">
+                    {partnersWithLogos.map((p) => (
+                      <li key={p.slug}>
+                        <Link
+                          href={`/partnerships/${p.slug}`}
+                          className="group inline-flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 rounded"
+                          aria-label={`${p.name} partnership`}
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={p.partnerLogoUrl}
+                            alt={`${p.name} logo`}
+                            className="h-5 w-auto"
+                            loading="eager"
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </MotionHeroItem>
+            ) : null}
           </MotionHero>
         </div>
       </section>

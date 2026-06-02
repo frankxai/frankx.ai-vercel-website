@@ -391,11 +391,11 @@ export default function SevenPillarsPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Transform Your Life?
+                Where to begin
               </h2>
               <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
-                Start your journey today by taking our comprehensive assessment and
-                discovering which pillars need your immediate attention.
+                Take the assessment when you're ready — it shows which pillars need
+                attention first.
               </p>
               <PremiumButton variant="primary" size="lg">
                 Begin Your Assessment

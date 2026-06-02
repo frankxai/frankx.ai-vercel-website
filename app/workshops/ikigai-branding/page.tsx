@@ -65,6 +65,58 @@ import { getWorkshopBySlug } from '@/data/workshops'
 
 const HERO_VARIANT: 1 | 2 | 3 | 4 = 1
 
+// EducationalEvent JSON-LD — emitted inside the client tree (script tag works
+// fine in a client component). Metadata export lives in the sibling layout
+// (client components cannot export `metadata`). Values are static literals,
+// safe to inline-stringify.
+const EVENT_LD = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'EducationEvent',
+  name: 'Ikigai & Branding Workshop',
+  alternateName: '生き甲斐 & Branding Workshop',
+  description:
+    'A 90-minute coach-guided workshop. Map your ikigai, translate it into brand positioning, ship a 30-day content plan — with the Ikigai & Branding Coach GPT.',
+  url: 'https://frankx.ai/workshops/ikigai-branding',
+  inLanguage: 'en',
+  eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  location: {
+    '@type': 'VirtualLocation',
+    url: 'https://frankx.ai/workshops/ikigai-branding',
+  },
+  organizer: {
+    '@type': 'Person',
+    name: 'Frank Riemer',
+    url: 'https://frankx.ai',
+    jobTitle: 'AI Architect',
+  },
+  performer: {
+    '@type': 'Person',
+    name: 'Frank Riemer',
+    url: 'https://frankx.ai',
+  },
+  audience: {
+    '@type': 'EducationalAudience',
+    audienceType: 'Creators, operators, AI-curious professionals',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://frankx.ai/workshops/ikigai-branding',
+    category: 'Free',
+  },
+  teaches: [
+    'Map an audience problem from weak signals',
+    'Sharpen a content angle into one sentence',
+    'Build a 30-hook bank across 15 formats',
+    'Plan a 30-day publishing rhythm',
+    'Generate a premium image prompt and annotated portrait',
+    'Turn AI into a proactive content partner',
+  ],
+})
+
 // V8 Coach prompt (id 'coach', module 0) — the spine of the workshop.
 const COACH_PROMPT = WORKSHOP_PROMPTS.find((p) => p.id === 'coach')!
 
@@ -109,9 +161,14 @@ function KanjiAnchor() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
       className="select-none"
-      aria-hidden="true"
+      role="img"
+      aria-label="Ikigai — written in Japanese as 生き甲斐"
     >
-      <div className="flex flex-row lg:flex-col items-start gap-3 lg:gap-0 leading-none font-light tracking-[-0.04em]">
+      <div
+        lang="ja"
+        className="flex flex-row lg:flex-col items-start gap-3 lg:gap-0 leading-none font-light tracking-[-0.04em]"
+        aria-hidden="true"
+      >
         <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">生</span>
         <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">き</span>
         <span className="text-[40px] sm:text-[52px] lg:text-[96px] text-white/90">甲</span>
@@ -135,6 +192,10 @@ export default function IkigaiBrandingWorkshopPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: EVENT_LD }}
+      />
       <ModuleOutlineRail />
 
       {/* ─── Hero — kanji left, content right ────────────────────── */}
@@ -518,6 +579,7 @@ export default function IkigaiBrandingWorkshopPage() {
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <span
+                    lang="ja"
                     className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
                     style={{ fontWeight: 200 }}
                     aria-hidden="true"

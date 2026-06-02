@@ -269,7 +269,7 @@ export default function ACOSPage() {
               <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
                 Four layers.<br />All auto-activating.
               </h2>
-              <p className="mt-4 text-white/50 leading-relaxed">
+              <p className="mt-4 text-white/60 leading-relaxed">
                 The Agentic Creator OS is structured in four layers. Each activates automatically based on what you&apos;re building — no manual loading.
               </p>
               <div className="mt-8 space-y-4">
@@ -303,7 +303,7 @@ export default function ACOSPage() {
               <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
                 One command.<br />Infinite routes.
               </h2>
-              <p className="mt-4 text-white/50 leading-relaxed">
+              <p className="mt-4 text-white/60 leading-relaxed">
                 Type <code className="rounded bg-white/10 px-2 py-0.5 font-mono text-purple-300">/acos</code> and describe what you need. The router parses intent, selects the best agent, loads skills, and chains commands.
               </p>
               {/* Inline terminal example */}
@@ -342,7 +342,7 @@ export default function ACOSPage() {
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
               Gets smarter every session.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-white/50">
+            <p className="mx-auto mt-4 max-w-2xl text-white/60">
               The Agentic Creator OS tracks what works and applies it next time. No external API — pure local intelligence built from your own usage patterns.
             </p>
           </div>
@@ -383,7 +383,7 @@ export default function ACOSPage() {
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
             35+ Commands Across Every Domain
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/60">
             Each command is a reusable workflow. One trigger, full pipeline.
           </p>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
@@ -416,7 +416,7 @@ export default function ACOSPage() {
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
             Choose Your Path
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/60">
             The code is free. Premium adds guides, templates, support, and direct access.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -514,7 +514,7 @@ export default function ACOSPage() {
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Start Building with the Agentic Creator OS
           </h2>
-          <p className="mt-4 text-lg text-white/50">
+          <p className="mt-4 text-lg text-white/60">
             Clone the repo. Type /acos. Create something.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

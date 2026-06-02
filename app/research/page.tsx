@@ -155,7 +155,7 @@ function FeaturedSpotlight() {
               Recently Updated
             </h2>
           </div>
-          <p className="text-white/50 max-w-2xl">
+          <p className="text-white/60 max-w-2xl">
             Our most recently refreshed research domains with the latest data and analysis.
           </p>
         </motion.div>
@@ -202,7 +202,7 @@ function FeaturedSpotlight() {
                     <h3 className="text-lg font-bold text-white mb-1.5">
                       {domain.title}
                     </h3>
-                    <p className="text-sm text-white/40 mb-4">
+                    <p className="text-sm text-white/60 mb-4">
                       {domain.subtitle}
                     </p>
 
@@ -274,7 +274,7 @@ function DomainsGrid() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             All Research Domains
           </h2>
-          <p className="text-white/50 max-w-2xl">
+          <p className="text-white/60 max-w-2xl">
             {researchDomains.length} research areas organized by topic. Each domain synthesizes
             validated findings from multiple sources into actionable intelligence.
           </p>
@@ -385,7 +385,7 @@ function DomainsGrid() {
                     <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-white transition-colors">
                       {domain.title}
                     </h3>
-                    <p className="text-sm text-white/40 mb-4 line-clamp-2">
+                    <p className="text-sm text-white/60 mb-4 line-clamp-2">
                       {domain.subtitle}
                     </p>
 
@@ -422,7 +422,7 @@ function ResearchTeamSection() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Research Operations Team
           </h2>
-          <p className="text-white/50 max-w-2xl">
+          <p className="text-white/60 max-w-2xl">
             Five specialized AI research agents that continuously scan, validate,
             synthesize, and publish intelligence across all domains.
           </p>
@@ -493,7 +493,7 @@ function MethodologySection() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Research Methodology
           </h2>
-          <p className="text-white/50 max-w-2xl">
+          <p className="text-white/60 max-w-2xl">
             Every claim is validated against primary sources. High-confidence ratings
             require 2+ independent cross-references.
           </p>
@@ -559,7 +559,7 @@ function CTASection() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Stay Current
             </h2>
-            <p className="text-white/50 mb-8 max-w-xl mx-auto">
+            <p className="text-white/60 mb-8 max-w-xl mx-auto">
               Get weekly intelligence briefs synthesizing the most important
               developments across AI architecture, production patterns, and emerging technology.
             </p>
@@ -621,7 +621,7 @@ function FlagshipArticles() {
             <FileText className="w-5 h-5 text-violet-400" />
             <h2 className="text-2xl md:text-3xl font-bold text-white">Flagship Articles</h2>
           </div>
-          <p className="text-white/50 max-w-2xl">
+          <p className="text-white/60 max-w-2xl">
             Deep editorial pieces &mdash; sourced, FAQ&rsquo;d, schema-marked, designed to be cited.
             The longform thinking beneath the domain navigation.
           </p>

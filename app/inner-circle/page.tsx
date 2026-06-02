@@ -323,14 +323,16 @@ function FAQItem({ faq, index }: { faq: (typeof FAQS)[0]; index: number }) {
       className="border-b border-white/10 last:border-0"
     >
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex w-full items-center justify-between py-6 text-left"
+        aria-expanded={isOpen}
+        className="group flex w-full items-center justify-between py-6 text-left rounded-md focus-visible:outline-2 focus-visible:outline-[#AB47C7] focus-visible:outline-offset-2"
       >
         <span className="pr-4 text-lg font-semibold text-white transition-colors group-hover:text-[#AB47C7]">
           {faq.question}
         </span>
         <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }} className="flex-shrink-0">
-          <ChevronDown className="h-5 w-5 text-slate-400" />
+          <ChevronDown aria-hidden="true" className="h-5 w-5 text-slate-400" />
         </motion.div>
       </button>
       <motion.div
@@ -374,7 +376,7 @@ export default function InnerCirclePage() {
             transition={{ duration: 0.5 }}
             className="mb-4 flex justify-center"
           >
-            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
+            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi, the FrankX Inner Circle mascot — half organic, half digital" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -422,7 +424,7 @@ export default function InnerCirclePage() {
               Join the Waitlist — June 1 2026
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <span className="text-xs text-white/40">
+            <span className="text-xs text-white/60">
               Free to join · Single-click unsubscribe · No spam
             </span>
           </motion.div>
@@ -461,25 +463,25 @@ export default function InnerCirclePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/40"
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60"
           >
-            <Link href="/acos" className="hover:text-white/70 transition-colors">
+            <Link href="/acos" className="rounded hover:text-white/70 transition-colors focus-visible:outline-2 focus-visible:outline-[#AB47C7] focus-visible:outline-offset-2">
               Agentic Creator OS
             </Link>
             <span aria-hidden="true">·</span>
-            <Link href="/library" className="hover:text-white/70 transition-colors">
+            <Link href="/library" className="rounded hover:text-white/70 transition-colors focus-visible:outline-2 focus-visible:outline-[#AB47C7] focus-visible:outline-offset-2">
               Book Library
             </Link>
             <span aria-hidden="true">·</span>
-            <Link href="/prompt-library" className="hover:text-white/70 transition-colors">
+            <Link href="/prompt-library" className="rounded hover:text-white/70 transition-colors focus-visible:outline-2 focus-visible:outline-[#AB47C7] focus-visible:outline-offset-2">
               Prompt Library
             </Link>
             <span aria-hidden="true">·</span>
-            <Link href="/research" className="hover:text-white/70 transition-colors">
+            <Link href="/research" className="rounded hover:text-white/70 transition-colors focus-visible:outline-2 focus-visible:outline-[#AB47C7] focus-visible:outline-offset-2">
               Research
             </Link>
             <span aria-hidden="true">·</span>
-            <Link href="/blog" className="hover:text-white/70 transition-colors">
+            <Link href="/blog" className="rounded hover:text-white/70 transition-colors focus-visible:outline-2 focus-visible:outline-[#AB47C7] focus-visible:outline-offset-2">
               Blog
             </Link>
           </motion.div>

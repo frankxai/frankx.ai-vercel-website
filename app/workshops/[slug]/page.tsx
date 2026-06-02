@@ -122,46 +122,6 @@ function CourseJsonLd({ workshop }: { workshop: Workshop }) {
   )
 }
 
-function EventJsonLd({ workshop }: { workshop: Workshop }) {
-  // Generic Event schema — for workshops without a specific scheduled date,
-  // we describe the format rather than a concrete instance.
-  const eventLd = {
-    '@context': 'https://schema.org',
-    '@type': 'EducationEvent',
-    name: workshop.title,
-    description: workshop.subtitle,
-    url: `${SITE_URL}/workshops/${workshop.slug}`,
-    eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
-    location: {
-      '@type': 'VirtualLocation',
-      url: `${SITE_URL}/workshops/${workshop.slug}`,
-    },
-    organizer: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: SITE_URL,
-    },
-    performer: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-    },
-    audience: {
-      '@type': 'EducationalAudience',
-      audienceType: workshop.audience,
-    },
-    teaches: workshop.objectives,
-    inLanguage: 'en',
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(eventLd) }}
-    />
-  )
-}
-
 function BreadcrumbJsonLd({ workshop }: { workshop: Workshop }) {
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -193,7 +153,6 @@ export default async function WorkshopDetailPage(
   return (
     <>
       <CourseJsonLd workshop={workshop} />
-      <EventJsonLd workshop={workshop} />
       <BreadcrumbJsonLd workshop={workshop} />
       <WorkshopClient workshop={workshop} />
     </>

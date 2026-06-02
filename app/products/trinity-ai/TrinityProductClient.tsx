@@ -106,7 +106,7 @@ export default function TrinityProductClient() {
             <h1 className="font-serif text-5xl font-bold tracking-tight text-white sm:text-7xl">
               Trinity AI
             </h1>
-            <p className="mt-6 text-xl leading-relaxed text-white/50 sm:text-2xl">
+            <p className="mt-6 text-xl leading-relaxed text-white/60 sm:text-2xl">
               The conscious operating system for human potential.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/35">
@@ -130,7 +130,7 @@ export default function TrinityProductClient() {
             <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
               Five System Layers
             </h2>
-            <p className="mt-4 text-white/40">
+            <p className="mt-4 text-white/60">
               Each layer operates independently. Together, they form a unified intelligence.
             </p>
           </motion.div>
@@ -182,7 +182,7 @@ export default function TrinityProductClient() {
                   {step.number}
                 </span>
                 <h3 className="mb-2 text-lg font-semibold text-white">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-white/40">{step.description}</p>
+                <p className="text-sm leading-relaxed text-white/60">{step.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -194,7 +194,7 @@ export default function TrinityProductClient() {
             <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
               Three Tiers in Design
             </h2>
-            <p className="mt-4 text-white/40">
+            <p className="mt-4 text-white/60">
               Pricing and terms are not set. Waitlist members hear first.
             </p>
           </motion.div>
@@ -229,7 +229,7 @@ export default function TrinityProductClient() {
                 </div>
                 <ul className="mt-6 space-y-3">
                   {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-white/50">
+                    <li key={f} className="flex items-start gap-2 text-sm text-white/60">
                       <span className="mt-1.5 block h-1 w-1 shrink-0 rounded-full bg-[#D4AF37]/50" />
                       {f}
                     </li>

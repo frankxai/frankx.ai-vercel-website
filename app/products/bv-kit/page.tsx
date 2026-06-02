@@ -56,11 +56,6 @@ export const metadata: Metadata = {
           name: 'Frank Riemer',
         },
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '12',
-      },
     }),
   },
 }

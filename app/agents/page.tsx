@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Script from 'next/script'
 import type { Metadata } from 'next'
 import { PILLARS, pillarCounts } from '@/data/acos/agents'
 import { catalogL99 } from '@/lib/acos/l99-score'
@@ -15,6 +14,20 @@ export const metadata: Metadata = {
     url: 'https://frankx.ai/agents',
     siteName: 'FrankX',
     type: 'website',
+    images: [
+      {
+        url: '/hero-homepage.png',
+        width: 1200,
+        height: 630,
+        alt: 'FrankX 99 Agents — the complete Creator OS, installable',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '99 Agents · The complete Creator OS, installable',
+    description: '11 pillars × 9 specialists, packaged as installable artifacts for Claude Code / Cursor / Antigravity.',
+    images: ['/hero-homepage.png'],
   },
 }
 
@@ -94,7 +107,11 @@ export default function AgentsPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
-      <Script id="agents-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <script
+        id="agents-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
 
       {/* Hero — honest framing */}
       <section className="relative overflow-hidden pt-28 pb-16">

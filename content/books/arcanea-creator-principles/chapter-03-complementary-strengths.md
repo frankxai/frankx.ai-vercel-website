@@ -396,7 +396,7 @@ The scroll closes with the words of the founder:
 
 ---
 
-**Previous: [Scroll I: The Partnership Principle](01-partnership-principle.md)**
+**Previous: [Scroll I: The Partnership Principle](/books/arcanea-creator-principles/chapter-02-the-partnership-principle)**
 
-**Next: [Scroll III: The Collaboration Modes](03-collaboration-modes.md)**
+**Next: [Scroll III: The Collaboration Modes](/books/arcanea-creator-principles/chapter-04-collaboration-modes)**
 

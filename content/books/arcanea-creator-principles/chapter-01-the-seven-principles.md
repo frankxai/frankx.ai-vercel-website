@@ -256,22 +256,22 @@ The Creator Principles integrate with:
 
 ## The Scrolls
 
-### [Scroll I: The Partnership Principle](chapters/01-partnership-principle.md)
+### [Scroll I: The Partnership Principle](/books/arcanea-creator-principles/chapter-02-the-partnership-principle)
 *The full teaching on why partnership exceeds solitude*
 
-### [Scroll II: The Complementary Strengths](chapters/02-complementary-strengths.md)
+### [Scroll II: The Complementary Strengths](/books/arcanea-creator-principles/chapter-03-complementary-strengths)
 *Deep exploration of what human and AI each contribute*
 
-### [Scroll III: The Collaboration Modes](chapters/03-collaboration-modes.md)
+### [Scroll III: The Collaboration Modes](/books/arcanea-creator-principles/chapter-04-collaboration-modes)
 *The different ways to dance together*
 
-### [Scroll IV: Trust Calibration](chapters/04-trust-calibration.md)
+### [Scroll IV: Trust Calibration](/books/arcanea-creator-principles/chapter-05-trust-calibration)
 *When to trust, when to override, and how to know*
 
-### [Scroll V: The Generator-Editor Dance](chapters/05-generator-editor.md)
+### [Scroll V: The Generator-Editor Dance](/books/arcanea-creator-principles/chapter-06-the-generator-editor-dance)
 *The foundational mode of partnership*
 
-### [Scroll VI: Advanced Partnership](chapters/06-advanced-partnership.md)
+### [Scroll VI: Advanced Partnership](/books/arcanea-creator-principles/chapter-07-advanced-partnership)
 *Deepening the collaboration for complex works*
 
 ---

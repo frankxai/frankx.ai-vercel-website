@@ -452,7 +452,7 @@ function ComponentPlayground() {
   const codeSnippet = `import { GlowCard } from '@/components/ui/glow-card'
 
 {/* As a link */}
-<GlowCard color="${activeColor}" href="/page">
+<GlowCard color="${activeColor}" href="/blog">
   <div className="p-6">
     <h3>Card Title</h3>
     <p>Card content here</p>

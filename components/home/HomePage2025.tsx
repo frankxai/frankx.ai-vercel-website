@@ -212,7 +212,7 @@ function WhatsHere() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             What's here
           </h2>
-          <p className="text-xl text-white/50 max-w-xl">
+          <p className="text-xl text-white/60 max-w-xl">
             Systems I've built, resources I've curated. Everything open.
           </p>
         </motion.div>
@@ -273,7 +273,7 @@ function Spotlights() {
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                   {spotlight.title}
                 </h3>
-                <p className="text-white/50 mb-6 text-lg">
+                <p className="text-white/60 mb-6 text-lg">
                   {spotlight.description}
                 </p>
                 <span className="inline-flex items-center gap-2 text-white/70 group-hover:text-white font-medium transition-colors">
@@ -310,7 +310,7 @@ function CuratedResources() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Resources I recommend
           </h2>
-          <p className="text-xl text-white/50 max-w-xl">
+          <p className="text-xl text-white/60 max-w-xl">
             Free courses from places that know what they're doing.
           </p>
         </motion.div>
@@ -405,7 +405,7 @@ function FinalSection() {
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Start exploring
           </h2>
-          <p className="text-xl text-white/50 mb-10 max-w-lg mx-auto">
+          <p className="text-xl text-white/60 mb-10 max-w-lg mx-auto">
             Pick what interests you. Everything is documented, everything is open.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
