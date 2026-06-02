@@ -170,14 +170,14 @@ export default function FreePlaybookPage() {
               <span className="text-sm font-medium text-emerald-400">Free Resources</span>
             </div>
 
-            <h1 className="mb-6 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
               Get the complete
               <span className="block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
                 AI Creator Toolkit
               </span>
             </h1>
 
-            <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-8">
+            <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80 mb-8">
               Three battle-tested playbooks from 12,000+ AI songs and years of Claude Code mastery.
               Normally <span className="text-white font-semibold line-through">$111</span> total value.
               <span className="text-emerald-400 font-semibold"> Free today.</span>
@@ -197,13 +197,13 @@ export default function FreePlaybookPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus:border-emerald-500/50 focus:bg-white/10"
+                    className="flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus-visible:border-emerald-500/50 focus-visible:bg-white/10 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                     disabled={status === 'loading'}
                   />
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 disabled:opacity-50"
+                    className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                   >
                     {status === 'loading' ? '...' : 'Unlock All'}
                   </button>
@@ -240,7 +240,7 @@ export default function FreePlaybookPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i }}
-                  className={`relative rounded-2xl border ${colors.border} ${colors.bg} p-6 backdrop-blur-sm transition-all`}
+                  className={`relative rounded-2xl border ${colors.border} ${colors.bg} p-6 backdrop-blur-xl transition-all`}
                 >
                   {/* Value badge */}
                   <div className="absolute -top-3 right-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 text-xs font-bold text-white">
@@ -273,13 +273,13 @@ export default function FreePlaybookPage() {
                   {unlockedResources ? (
                     <Link
                       href={playbook.downloadUrl}
-                      className={`flex w-full items-center justify-center gap-2 rounded-xl ${colors.button} px-4 py-3 font-semibold text-white transition-all`}
+                      className={`flex w-full items-center justify-center gap-2 rounded-full ${colors.button} px-4 py-3 font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
                     >
                       <ArrowRight className="h-4 w-4" />
                       Read Now
                     </Link>
                   ) : (
-                    <div className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-700/50 px-4 py-3 font-semibold text-slate-400 cursor-not-allowed">
+                    <div className="flex w-full items-center justify-center gap-2 rounded-full bg-slate-700/50 px-4 py-3 font-semibold text-slate-400 cursor-not-allowed">
                       <Sparkles className="h-4 w-4" />
                       Enter email to unlock
                     </div>
@@ -325,7 +325,7 @@ export default function FreePlaybookPage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/5"
+                className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <p className="font-semibold text-white group-hover:text-emerald-400 transition-colors">{link.label}</p>
                 <p className="text-sm text-slate-400 mt-1">{link.desc}</p>
@@ -346,7 +346,7 @@ export default function FreePlaybookPage() {
               </p>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Get All 3 Playbooks Free
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

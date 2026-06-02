@@ -85,13 +85,13 @@ function HeroSection() {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
               <span className="text-white">Create music with</span>
               <br />
               <span className="font-serif-italic text-white/80">artificial intelligence</span>
             </h1>
 
-            <p className="text-xl text-white/50 mb-8 max-w-lg leading-relaxed">
+            <p className="text-[17px] md:text-xl leading-relaxed text-white/80 mb-8 max-w-lg">
               From idea to finished song in minutes. Learn how to use Suno AI
               to create professional-quality music—no instruments or production
               experience required.
@@ -100,7 +100,7 @@ function HeroSection() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/products/vibe-os"
-                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Sparkles className="w-5 h-5" />
                 Start Creating
@@ -110,7 +110,7 @@ function HeroSection() {
                 href="https://suno.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5"
+                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Try Suno Free
                 <ExternalLink className="w-4 h-4" />
@@ -206,7 +206,7 @@ const instruments = [
 
 function InstrumentsSection() {
   return (
-    <section className="py-20 border-b border-white/5">
+    <section className="py-20 lg:py-28 border-b border-white/5">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -218,10 +218,10 @@ function InstrumentsSection() {
             <Play className="w-4 h-4 text-cyan-400" />
             <span className="text-sm font-medium text-cyan-300">Play Now</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Browser instruments
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
             Play real instruments in your browser. No downloads, no accounts.
             Touch-optimized for iPad and iPhone.
           </p>
@@ -267,7 +267,7 @@ function InstrumentsSection() {
 
 function WhatIsSection() {
   return (
-    <section className="py-24 border-y border-white/5">
+    <section className="py-20 lg:py-28 border-y border-white/5">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -275,10 +275,10 @@ function WhatIsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             What is AI music creation?
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
             Tools like Suno use artificial intelligence to generate complete songs
             from text descriptions. You describe what you want, and AI creates
             the music, vocals, and production.
@@ -356,7 +356,7 @@ function GetStartedSection() {
   ]
 
   return (
-    <section className="py-24">
+    <section className="py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -364,10 +364,10 @@ function GetStartedSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             How to get started
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
             Create your first AI-generated song in under 5 minutes.
           </p>
         </motion.div>
@@ -445,7 +445,7 @@ function PromptExamplesSection() {
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+    <section className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -453,10 +453,10 @@ function PromptExamplesSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Prompt examples
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
             Copy these prompts into Suno to create different styles of music.
           </p>
         </motion.div>
@@ -510,7 +510,7 @@ function PromptExamplesSection() {
 
 function FreePromptsSection() {
   return (
-    <section className="py-24 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-4xl mx-auto px-6">
         <div className="relative">
           <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-violet-500/10 blur-3xl opacity-50" />
@@ -575,7 +575,7 @@ function FreePromptsSection() {
 
 function CTASection() {
   return (
-    <section className="py-24 border-t border-white/5">
+    <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -587,10 +587,10 @@ function CTASection() {
             <span className="text-sm font-medium text-violet-300">Go Deeper</span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Ready to master AI music creation?
           </h2>
-          <p className="text-xl text-white/50 mb-8 max-w-2xl mx-auto">
+          <p className="text-[17px] md:text-xl leading-relaxed text-white/80 mb-8 max-w-2xl mx-auto">
             Vibe OS is a complete system for creating transformative music with AI.
             Prompt templates, workflows, and techniques refined over 12,000+ songs.
           </p>
@@ -598,7 +598,7 @@ function CTASection() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/products/vibe-os"
-              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Sparkles className="w-5 h-5" />
               Explore Vibe OS
@@ -608,7 +608,7 @@ function CTASection() {
               href="https://suno.com/@frankx"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5"
+              className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Music className="w-5 h-5" />
               Hear Frank's Music
