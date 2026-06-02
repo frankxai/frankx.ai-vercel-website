@@ -298,61 +298,52 @@ export default async function ReviewPage({
         </div>
       </section>
 
-      {/* Table of Contents */}
-      <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
-        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-            In this deep-dive
-          </p>
-          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
-            <li>
-              <a href="#insights" className="hover:text-amber-300 transition-colors">
-                01 &nbsp;·&nbsp; Key Insights
-              </a>
-            </li>
-            {review.quotes && review.quotes.length > 0 && (
-              <li>
-                <a href="#quotes" className="hover:text-amber-300 transition-colors">
-                  02 &nbsp;·&nbsp; Quotes ({review.quotes.length})
-                </a>
-              </li>
-            )}
-            {review.chapters && review.chapters.length > 0 && (
-              <li>
-                <a href="#chapters" className="hover:text-amber-300 transition-colors">
-                  03 &nbsp;·&nbsp; Chapter-by-Chapter ({review.chapters.length})
-                </a>
-              </li>
-            )}
-            <li>
-              <a href="#audience" className="hover:text-amber-300 transition-colors">
-                04 &nbsp;·&nbsp; Best For
-              </a>
-            </li>
-            {review.faq && review.faq.length > 0 && (
-              <li>
-                <a href="#faq" className="hover:text-amber-300 transition-colors">
-                  05 &nbsp;·&nbsp; FAQ
-                </a>
-              </li>
-            )}
-            {review.continueReading && review.continueReading.length > 0 && (
-              <li>
-                <a href="#continue-reading" className="hover:text-amber-300 transition-colors">
-                  06 &nbsp;·&nbsp; Continue Reading
-                </a>
-              </li>
-            )}
-            {review.videos && review.videos.length > 0 && (
-              <li>
-                <a href="#videos" className="hover:text-amber-300 transition-colors">
-                  07 &nbsp;·&nbsp; Go Deeper — Videos
-                </a>
-              </li>
-            )}
-          </ol>
-        </div>
-      </nav>
+      {/* Table of Contents — sequentially numbered based on rendered sections */}
+      {(() => {
+        const tocItems: Array<{ href: string; label: string }> = [
+          { href: '#insights', label: 'Key Insights' },
+        ];
+        if (review.quotes && review.quotes.length > 0) {
+          tocItems.push({ href: '#quotes', label: `Quotes (${review.quotes.length})` });
+        }
+        if (review.chapters && review.chapters.length > 0) {
+          tocItems.push({
+            href: '#chapters',
+            label: `Chapter-by-Chapter (${review.chapters.length})`,
+          });
+        }
+        tocItems.push({ href: '#audience', label: 'Best For' });
+        if (review.faq && review.faq.length > 0) {
+          tocItems.push({ href: '#faq', label: 'FAQ' });
+        }
+        if (review.continueReading && review.continueReading.length > 0) {
+          tocItems.push({ href: '#continue-reading', label: 'Continue Reading' });
+        }
+        if (review.videos && review.videos.length > 0) {
+          tocItems.push({ href: '#videos', label: 'Go Deeper — Videos' });
+        }
+        return (
+          <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+                In this deep-dive
+              </p>
+              <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
+                {tocItems.map((item, idx) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      className="hover:text-amber-300 transition-colors"
+                    >
+                      {String(idx + 1).padStart(2, '0')} &nbsp;·&nbsp; {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </nav>
+        );
+      })()}
 
       {/* Key Insights */}
       <section id="insights" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
