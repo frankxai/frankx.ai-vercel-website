@@ -198,14 +198,14 @@ export default function LearnPage() {
               Curated Learning Paths
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-6">
               Learn AI the{' '}
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                 Right Way
               </span>
             </h1>
 
-            <p className="text-xl text-white/60 max-w-2xl mx-auto">
+            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
               Curated learning portals for the AI ecosystems that matter. Each one bundles
               official launches, the sharpest expert walkthroughs, and the structure to move
               from first prompt to production.
@@ -280,17 +280,17 @@ export default function LearnPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className="bg-gradient-to-br from-emerald-500/10 to-violet-500/10 rounded-3xl border border-white/10 p-8 md:p-12 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl bg-gradient-to-br from-emerald-500/10 to-violet-500/10 p-8 md:p-12 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Want Structured Guidance?
           </h2>
-          <p className="text-white/60 mb-8 max-w-xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 mb-8 max-w-xl mx-auto">
             Free resources are great for exploration.
             For a structured path with hands-on projects, check out our guides.
           </p>
           <Link
             href="/guides"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-xl hover:bg-white/90 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             Explore Guides
             <ArrowRight className="w-4 h-4" />

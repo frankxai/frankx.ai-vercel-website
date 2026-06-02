@@ -82,21 +82,21 @@ export default function SkillBuilderPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
       <section className="border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-emerald-200/80">
                 <Sparkles className="h-4 w-4" />
                 Skill Builder
               </div>
-              <h1 className="mt-4 text-4xl font-bold">Craft a skill file in minutes</h1>
-              <p className="mt-3 text-white/60">
+              <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">Craft a skill file in minutes</h1>
+              <p className="mt-3 text-[17px] leading-relaxed text-white/80">
                 Fill the fields, copy the generated SKILL.md, and drop it into your agent repo. Designed for Claude, Codex, Gemini, and custom agents.
               </p>
             </div>
             <Link
               href="/skills"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm font-semibold text-white/80"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm font-semibold text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Back to Skills
               <ArrowRight className="h-4 w-4" />
@@ -105,7 +105,7 @@ export default function SkillBuilderPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-16 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <section className="max-w-6xl mx-auto px-6 py-20 lg:py-28 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             <label className="flex flex-col gap-2 text-sm">
@@ -205,7 +205,7 @@ export default function SkillBuilderPage() {
           </label>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-6 h-fit sticky top-24">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 h-fit sticky top-24">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold">Generated SKILL.md</p>
             <span className="text-xs text-white/50">{slug}</span>
@@ -216,7 +216,7 @@ export default function SkillBuilderPage() {
           <div className="mt-4 flex flex-wrap gap-3">
             <button
               onClick={handleCopy}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-violet-500 px-4 py-2 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-violet-500 px-4 py-2 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               type="button"
             >
               <Copy className="h-4 w-4" />
@@ -224,7 +224,7 @@ export default function SkillBuilderPage() {
             </button>
             <button
               onClick={handleDownload}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               type="button"
             >
               <Download className="h-4 w-4" />

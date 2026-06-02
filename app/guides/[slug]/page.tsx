@@ -38,7 +38,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   if (!guide) return notFound()
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <main className="pt-28 pb-20 px-6">
+      <main className="pt-28 pb-20 lg:py-28 px-6">
         <div className="max-w-4xl mx-auto">
           <Breadcrumbs
             items={[
@@ -46,7 +46,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               { label: guide.title, href: `/guides/${guide.slug}` },
             ]}
           />
-          <h1 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-4">{guide.title}</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mt-6 mb-4">{guide.title}</h1>
           <div className="text-sm text-slate-400 mb-8 flex items-center gap-3">
             <span>{guide.readingTime}</span>
             <span className="text-slate-600">•</span>
@@ -61,7 +61,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             alt={guide.title}
             className="mb-10"
           />
-          <div className="space-y-6 text-base leading-relaxed text-white/75">
+          <div className="space-y-6 text-[17px] leading-relaxed text-white/80">
             <MDXContent source={guide.content} />
           </div>
         </div>
