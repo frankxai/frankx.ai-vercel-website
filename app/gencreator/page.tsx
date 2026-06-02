@@ -95,7 +95,7 @@ export default function GenCreatorHubPage() {
       <GenCreatorNav />
 
       {/* ─── Hero ─── */}
-      <section className="relative overflow-hidden pt-24 pb-20">
+      <section className="relative overflow-hidden pt-24 pb-20 lg:pb-28">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/40 via-[#02030b] to-teal-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.12),transparent_55%)]" />
 
@@ -120,12 +120,12 @@ export default function GenCreatorHubPage() {
             </div>
           </div>
 
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent">
               The GenCreator Framework
             </span>
           </h1>
-          <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
+          <p className="mt-6 text-[17px] leading-relaxed text-white/80 sm:text-xl md:text-2xl">
             The complete operating system for generative creators.
             <br className="hidden sm:block" />
             Principles. Handbook. Blueprints. Soul. Manifesto.
@@ -190,12 +190,12 @@ export default function GenCreatorHubPage() {
       </section>
 
       {/* ─── Sections ─── */}
-      <section className="py-20">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             Explore the Framework
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-[17px] leading-relaxed text-white/80">
             Five interconnected systems that together form a complete creator operating framework.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -219,12 +219,12 @@ export default function GenCreatorHubPage() {
       </section>
 
       {/* ─── Philosophy Teaser ─── */}
-      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
+      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             What is a GenCreator?
           </h2>
-          <div className="mx-auto mt-8 max-w-3xl space-y-6 text-lg leading-relaxed text-white/60">
+          <div className="mx-auto mt-8 max-w-3xl space-y-6 text-[17px] leading-relaxed text-white/80">
             <p>
               A GenCreator is the new breed of creator — someone who wields AI as a creative force multiplier,
               not a replacement. They build systems that compound, ship daily, own their infrastructure,
@@ -246,12 +246,12 @@ export default function GenCreatorHubPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="py-20">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
             Start Your GenCreator Journey
           </h2>
-          <p className="mt-4 text-lg text-white/50">
+          <p className="mt-4 text-[17px] leading-relaxed text-white/80">
             Begin with the principles. Read the handbook. Execute the blueprints. Build your soul.md.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

@@ -30,17 +30,17 @@ const productSchema = {
 
 function PhilosophySection() {
   return (
-    <section className="py-24 px-6 relative">
+    <section className="py-20 lg:py-28 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-midnight-950 to-black" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">
             <span className="bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
               Our Philosophy
             </span>
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
             The principles that guide the Soulbook framework and your transformation journey.
           </p>
         </div>
@@ -74,18 +74,18 @@ function PhilosophySection() {
 
 function PricingSection() {
   return (
-    <section className="py-24 px-6 relative">
+    <section className="py-20 lg:py-28 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-midnight-950 to-black" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">
             <span className="bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
               Investment Options
             </span>
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
             Choose the level of transformation that resonates with your journey.
           </p>
         </div>
@@ -163,7 +163,7 @@ function PricingSection() {
 
 function AssessmentCTA() {
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
+    <section className="py-20 lg:py-28 px-6 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-midnight-950 to-purple-900/20" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -172,12 +172,12 @@ function AssessmentCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
             <span className="bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
               Not Sure Where to Start?
             </span>
           </h2>
-          <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-relaxed text-white/80 mb-8 max-w-2xl mx-auto">
             Take our free assessment to discover which Life Book aligns with your current needs and transformation goals.
           </p>
 

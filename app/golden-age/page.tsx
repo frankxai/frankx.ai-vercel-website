@@ -53,7 +53,7 @@ export default function GoldenAgePage() {
             </motion.div>
 
             {/* Title */}
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-amber-200 to-white bg-clip-text text-transparent leading-tight drop-shadow-2xl">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] bg-gradient-to-r from-white via-amber-200 to-white bg-clip-text text-transparent drop-shadow-2xl">
               {bookMetadata.title}
             </h1>
 
@@ -68,7 +68,7 @@ export default function GoldenAgePage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
                 <span className="text-2xl font-serif text-amber-400">2 AM.</span> Studio lights glow. An idea hits — that electric moment when you <em className="font-semibold not-italic text-white">know</em> something wants to be created through you.
                 <br /><br />
                 <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent font-semibold">This book is for creators ready to answer that call</span> — with AI as your amplifier, not your replacement.
@@ -107,7 +107,7 @@ export default function GoldenAgePage() {
             >
               <Link
                 href="/golden-age/chapter-01-when-creation-calls"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl font-semibold hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 focus:outline-none focus:ring-4 focus:ring-amber-500/50 cursor-pointer"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 cursor-pointer"
               >
                 <Zap className="w-5 h-5" />
                 <span>Start Chapter 1</span>
@@ -116,7 +116,7 @@ export default function GoldenAgePage() {
 
               <Link
                 href="#chapters"
-                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-2xl font-medium hover:border-white/60 hover:bg-white/5 focus:outline-none focus:ring-4 focus:ring-white/30 transition-all backdrop-blur-sm cursor-pointer"
+                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-full font-medium hover:border-white/60 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-all backdrop-blur-sm cursor-pointer"
               >
                 <Book className="w-5 h-5" />
                 <span>Browse All Chapters</span>
@@ -130,13 +130,13 @@ export default function GoldenAgePage() {
       </section>
 
       {/* Book Chapters Section - Now with chapter art */}
-      <section id="chapters" className="py-20 scroll-mt-20">
+      <section id="chapters" className="py-20 lg:py-28 scroll-mt-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="space-y-4 mb-12">
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
               The Journey
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-[17px] leading-relaxed text-gray-700 dark:text-white/80">
               Each chapter is a session. Read in order, or drop in where you need it most. The path unfolds as you walk it.
             </p>
           </div>
@@ -259,13 +259,13 @@ export default function GoldenAgePage() {
       </div>
 
       {/* Related Essays Section */}
-      <section id="essays" className="py-20 bg-gray-50 dark:bg-slate-900/50 scroll-mt-20">
+      <section id="essays" className="py-20 lg:py-28 bg-gray-50 dark:bg-slate-900/50 scroll-mt-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="space-y-4 mb-12">
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Studio Notes
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-[17px] leading-relaxed text-gray-700 dark:text-white/80">
               Companion essays from the creative trenches. Strategy, implementation, and real-world intelligence.
             </p>
           </div>
@@ -318,17 +318,17 @@ export default function GoldenAgePage() {
       </section>
 
       {/* Chapter Notifications Signup */}
-      <section className="py-20 bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-amber-950/20 dark:via-slate-950 dark:to-orange-950/20 border-t border-amber-200 dark:border-amber-900/30">
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-amber-950/20 dark:via-slate-950 dark:to-orange-950/20 border-t border-amber-200 dark:border-amber-900/30">
         <div className="max-w-2xl mx-auto px-6">
           <div className="text-center space-y-6 mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-900 dark:text-amber-200 text-sm font-medium border border-amber-200 dark:border-amber-800">
               <Stars className="w-4 h-4" />
               <span>New Chapters Weekly</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Get Notified When New Chapters Drop
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-[17px] leading-relaxed text-gray-700 dark:text-white/80">
               Join 5,000+ creators receiving weekly chapters, music drops, and studio intelligence. No spam, just creation fuel.
             </p>
           </div>
@@ -344,7 +344,7 @@ export default function GoldenAgePage() {
       </section>
 
       {/* Call to Action - with hero image background */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/golden-age/hero-golden-age.png"
@@ -356,15 +356,15 @@ export default function GoldenAgePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/90 to-white/80 dark:from-slate-950 dark:via-slate-950/90 dark:to-slate-950/80" />
         </div>
         <div className="relative z-10 max-w-2xl mx-auto px-6 text-center space-y-6">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
             Your Next Session Awaits
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-[17px] leading-relaxed text-gray-700 dark:text-white/80">
             That voice inside you? The one that knows you&apos;re meant to create something? It&apos;s time to listen. Chapter 1 starts here.
           </p>
           <Link
             href="/golden-age/chapter-01-when-creation-calls"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl font-semibold text-lg hover:from-amber-600 hover:to-orange-600 focus:outline-none focus:ring-4 focus:ring-amber-500/50 transition-all shadow-lg shadow-amber-500/25 hover:shadow-xl cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold text-lg hover:from-amber-600 hover:to-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950 transition-all shadow-lg shadow-amber-500/25 hover:shadow-xl cursor-pointer"
           >
             <Zap className="w-5 h-5" />
             <span>Begin Chapter 1</span>
