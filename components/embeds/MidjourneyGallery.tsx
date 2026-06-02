@@ -137,7 +137,7 @@ function ArtworkCard({
             border: `1px solid ${model.color}30`
           }}
         >
-          <ModelIcon className="w-3 h-3" />
+          <ModelIcon className="w-3 h-3" aria-hidden="true" />
           <span>{model.name}</span>
         </div>
 
@@ -224,33 +224,39 @@ function ArtworkLightbox({
       {/* Navigation buttons */}
       {hasPrev && (
         <button
+          type="button"
           onClick={(e) => {
             e.stopPropagation()
             onNavigate('prev')
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+          aria-label="Previous artwork"
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-6 h-6" aria-hidden="true" />
         </button>
       )}
       {hasNext && (
         <button
+          type="button"
           onClick={(e) => {
             e.stopPropagation()
             onNavigate('next')
           }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+          aria-label="Next artwork"
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-6 h-6" aria-hidden="true" />
         </button>
       )}
 
       {/* Close button */}
       <button
+        type="button"
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+        aria-label="Close artwork lightbox"
+        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
       >
-        <X className="w-6 h-6" />
+        <X className="w-6 h-6" aria-hidden="true" />
       </button>
 
       {/* Main content */}
@@ -283,7 +289,7 @@ function ArtworkLightbox({
               color: model.color
             }}
           >
-            <ModelIcon className="w-4 h-4" />
+            <ModelIcon className="w-4 h-4" aria-hidden="true" />
             {model.name}
           </div>
 
@@ -297,8 +303,10 @@ function ArtworkLightbox({
                 Prompt
               </span>
               <button
+                type="button"
                 onClick={copyPrompt}
-                className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-xs transition-colors ${
+                aria-label={copied ? 'Prompt copied to clipboard' : 'Copy prompt to clipboard'}
+                className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-xs transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
                   copied
                     ? `bg-${accentColor}-500/20 text-${accentColor}-400`
                     : 'bg-white/10 text-white/70 hover:text-white'
@@ -306,12 +314,12 @@ function ArtworkLightbox({
               >
                 {copied ? (
                   <>
-                    <Check className="w-3 h-3" />
+                    <Check className="w-3 h-3" aria-hidden="true" />
                     Copied!
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3 h-3" />
+                    <Copy className="w-3 h-3" aria-hidden="true" />
                     Copy
                   </>
                 )}
@@ -363,17 +371,19 @@ function ArtworkLightbox({
             <a
               href={artwork.src}
               download
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-${accentColor}-500 text-white font-medium hover:bg-${accentColor}-600 transition-colors`}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-${accentColor}-500 text-white font-medium hover:bg-${accentColor}-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60`}
               onClick={(e) => e.stopPropagation()}
             >
-              <Download className="w-4 h-4" />
+              <Download className="w-4 h-4" aria-hidden="true" />
               Download
             </a>
             <button
+              type="button"
               onClick={copyPrompt}
-              className="px-4 py-3 rounded-lg bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-colors"
+              aria-label="Copy prompt to clipboard"
+              className="px-4 py-3 rounded-lg bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             >
-              <Copy className="w-4 h-4" />
+              <Copy className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -444,13 +454,15 @@ export function MidjourneyGallery({
           {/* Category filter */}
           {categories.length > 2 && (
             <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-white/50" />
+              <Filter className="w-4 h-4 text-white/50" aria-hidden="true" />
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
                   <button
                     key={cat}
+                    type="button"
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                    aria-pressed={activeCategory === cat}
+                    className={`px-3 py-1.5 text-sm rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
                       activeCategory === cat
                         ? theme === 'tech'
                           ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
@@ -468,15 +480,17 @@ export function MidjourneyGallery({
           {/* Model filter */}
           {models.length > 2 && (
             <div className="flex items-center gap-2">
-              <Wand2 className="w-4 h-4 text-white/50" />
+              <Wand2 className="w-4 h-4 text-white/50" aria-hidden="true" />
               <div className="flex flex-wrap gap-2">
                 {models.map((mod) => {
                   const config = mod !== 'all' ? modelConfig[mod as keyof typeof modelConfig] : null
                   return (
                     <button
                       key={mod}
+                      type="button"
                       onClick={() => setActiveModel(mod)}
-                      className={`px-3 py-1.5 text-sm rounded-lg transition-colors flex items-center gap-1.5 ${
+                      aria-pressed={activeModel === mod}
+                      className={`px-3 py-1.5 text-sm rounded-lg transition-colors flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
                         activeModel === mod
                           ? config
                             ? `bg-opacity-20 border`
@@ -495,7 +509,7 @@ export function MidjourneyGallery({
                           : undefined
                       }
                     >
-                      {config && <config.icon className="w-3 h-3" />}
+                      {config && <config.icon className="w-3 h-3" aria-hidden="true" />}
                       {mod === 'all' ? 'All Models' : config?.name || mod}
                     </button>
                   )
@@ -594,7 +608,7 @@ export function MidjourneyGallery({
       {/* Empty state */}
       {filteredArtworks.length === 0 && (
         <div className="text-center py-16">
-          <Sparkles className="w-12 h-12 text-white/20 mx-auto mb-4" />
+          <Sparkles className="w-12 h-12 text-white/20 mx-auto mb-4" aria-hidden="true" />
           <p className="text-white/50">No artworks match your filters</p>
         </div>
       )}

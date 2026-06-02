@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ExternalLink, Play, Maximize2, Volume2, VolumeX } from 'lucide-react'
+import { ExternalLink, Play } from 'lucide-react'
 
 // ============================================================================
 // TYPES
@@ -212,6 +212,7 @@ export function UniversalEmbed({
             style={{ color: config.color }}
           >
             <span
+              aria-hidden="true"
               className="w-2 h-2 rounded-full"
               style={{ backgroundColor: config.color }}
             />
@@ -227,10 +228,11 @@ export function UniversalEmbed({
               href={directUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-md text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+              className="p-1.5 rounded-md text-white/50 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               title={`Open in ${config.name}`}
+              aria-label={`Open in ${config.name} (opens in new tab)`}
             >
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -244,7 +246,8 @@ export function UniversalEmbed({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setShowEmbed(true)}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#18181b] to-[#0a0a0b] group cursor-pointer w-full h-full"
+            aria-label={`Load ${config.name} content${title ? `: ${title}` : ''}`}
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#18181b] to-[#0a0a0b] group cursor-pointer w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/40"
           >
             {/* Thumbnail Image */}
             {thumbnailUrl && (
@@ -264,7 +267,7 @@ export function UniversalEmbed({
               className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10"
               style={{ backgroundColor: `${config.color}30` }}
             >
-              <Play className="w-10 h-10 ml-1 fill-current" style={{ color: config.color }} />
+              <Play className="w-10 h-10 ml-1 fill-current" style={{ color: config.color }} aria-hidden="true" />
             </motion.div>
             <span className="relative z-10 text-white/90 font-medium group-hover:text-white transition-colors bg-black/50 px-3 py-1 rounded-full text-sm backdrop-blur-md">
               Click to load {config.name}
