@@ -223,18 +223,18 @@ export default async function BlogPostPage({
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                   >
-                    <Twitter className="h-4 w-4" />
+                    <Twitter className="h-4 w-4" aria-hidden="true" />
                     <span className="hidden sm:inline">Share</span>
                   </a>
                   <a
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                   >
-                    <Linkedin className="h-4 w-4" />
+                    <Linkedin className="h-4 w-4" aria-hidden="true" />
                     <span className="hidden sm:inline">Share</span>
                   </a>
                 </div>
@@ -255,12 +255,17 @@ export default async function BlogPostPage({
               {post.readingGoal && (
                 <div className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20">
-                      <span className="text-lg">🎯</span>
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
+                      {/* Target / aim SVG — avoids emoji rendering inconsistency */}
+                      <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="2" />
+                      </svg>
                     </div>
                     <div className="flex-1">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Reading Goal</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.readingGoal}</p>
+                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-400">Reading Goal</span>
+                      <p className="mt-2 text-sm leading-relaxed text-white/65">{post.readingGoal}</p>
                     </div>
                   </div>
                 </div>
@@ -270,7 +275,7 @@ export default async function BlogPostPage({
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-[680px]">
+          <div className="mx-auto max-w-3xl">
             <TableOfContents />
             <div className="article-prose">
               <MDXContent source={post.content} />
@@ -292,7 +297,7 @@ export default async function BlogPostPage({
                     <Link
                       key={tag}
                       href={`/blog?tag=${encodeURIComponent(tag.toLowerCase())}`}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 hover:bg-white/10"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-all duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
                     >
                       #{tag}
                     </Link>
