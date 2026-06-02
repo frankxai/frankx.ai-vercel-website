@@ -270,6 +270,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/learn/claude-mastery', priority: 0.75, changeFrequency: 'weekly' as const },
     { url: '/learn/gemini-mastery', priority: 0.85, changeFrequency: 'weekly' as const },
+    // LLM Hub — the model intelligence surface (high-priority SEO)
+    { url: '/llm-hub', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/llm-hub/compare', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
@@ -666,12 +669,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Routes that must NEVER appear in the sitemap because they're noindex'd
+  // at the page level (robots: index: false) or are private surfaces.
+  // Keep in sync with app/robots.ts disallow list + per-page robots metadata.
+  const noindexRoutes = new Set<string>([
+    '/tribe',
+    '/unsubscribe',
+    '/onboarding',
+    '/dashboard',
+    '/command-center',
+    '/papa/erinnerungen',
+    '/papa/mitmachen',
+  ])
+  const noindexPrefixes = ['/tribe/', '/preview/', '/prototype/', '/admin/', '/api/', '/auth/']
+
+  function isNoindex(pathname: string): boolean {
+    if (noindexRoutes.has(pathname)) return true
+    return noindexPrefixes.some((prefix) => pathname.startsWith(prefix))
+  }
+
   // Auto-discovery safety net — pull every route from the pre-baked
   // data/route-index.json (built from lib/route-enumeration.mjs at prebuild)
   // and add any that the hand-curated arrays above missed. The existing
   // entry wins on collision, so manual priority/changeFrequency settings
   // are preserved.
   const seenUrls = new Set(entries.map((e) => e.url))
+  // Prune any noindex'd routes that the hand-curated arrays accidentally
+  // included (defensive — newer waves may add /tribe etc. to the legacy
+  // arrays without realizing they're noindex'd).
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const pathname = entries[i].url.replace(BASE_URL, '')
+    if (isNoindex(pathname)) {
+      seenUrls.delete(entries[i].url)
+      entries.splice(i, 1)
+    }
+  }
   try {
     const discovered = (routeIndex as { routes: Array<{ href: string; type: string }> }).routes
     // Heuristic priority + frequency by route type — only used for routes that
@@ -695,6 +727,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       legacy: { priority: 0.3, changeFrequency: 'yearly' },
     }
     for (const route of discovered) {
+      if (isNoindex(route.href)) continue
       const url = `${BASE_URL}${route.href}`
       if (seenUrls.has(url)) continue
       seenUrls.add(url)
