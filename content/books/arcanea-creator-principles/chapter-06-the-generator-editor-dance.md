@@ -397,7 +397,7 @@ The scroll closes with the words of the creator who pioneered this mode:
 
 ---
 
-**Previous: [Scroll IV: Trust Calibration](04-trust-calibration.md)**
+**Previous: [Scroll IV: Trust Calibration](/books/arcanea-creator-principles/chapter-05-trust-calibration)**
 
-**Next: [Scroll VI: Advanced Partnership](06-advanced-partnership.md)**
+**Next: [Scroll VI: Advanced Partnership](/books/arcanea-creator-principles/chapter-07-advanced-partnership)**
 

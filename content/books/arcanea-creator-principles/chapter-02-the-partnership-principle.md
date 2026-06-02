@@ -306,5 +306,5 @@ The scroll closes with the words of the scholar who first formalized the teachin
 
 ---
 
-**Next: [Scroll II: The Complementary Strengths](02-complementary-strengths.md)**
+**Next: [Scroll II: The Complementary Strengths](/books/arcanea-creator-principles/chapter-03-complementary-strengths)**
 

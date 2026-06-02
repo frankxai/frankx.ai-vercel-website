@@ -435,9 +435,9 @@ The scroll closes with the words of the creator who first achieved full integrat
 
 ---
 
-**Previous: [Scroll V: The Generator-Editor Dance](05-generator-editor.md)**
+**Previous: [Scroll V: The Generator-Editor Dance](/books/arcanea-creator-principles/chapter-06-the-generator-editor-dance)**
 
-**Return to: [The Arcanean Creator Principles](../README.md)**
+**Return to: [The Arcanean Creator Principles](/books/arcanea-creator-principles)**
 
 ---
 

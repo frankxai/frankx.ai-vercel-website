@@ -377,7 +377,7 @@ The scroll closes with the words of the creator whose failure taught us all:
 
 ---
 
-**Previous: [Scroll III: The Collaboration Modes](03-collaboration-modes.md)**
+**Previous: [Scroll III: The Collaboration Modes](/books/arcanea-creator-principles/chapter-04-collaboration-modes)**
 
-**Next: [Scroll V: The Generator-Editor Dance](05-generator-editor.md)**
+**Next: [Scroll V: The Generator-Editor Dance](/books/arcanea-creator-principles/chapter-06-the-generator-editor-dance)**
 
