@@ -54,11 +54,18 @@ Command Center, Ops, Admin, Dashboard, Investment.
 ---
 
 ## Known duplicates / cleanup candidates (audit before launch)
+
+**Route-level (user-facing):**
 - `/ai-architecture` vs `/ai-architectures` — confirm canonical, redirect the other.
 - `/links` vs `/linktree` — pick one.
 - `/family` vs `/familie` — pick one.
 - `/assessment` vs `/ai-assessment` vs `/assess` — consolidate funnel.
 - `/products/agentic-creator-os` vs `/acos` — confirm canonical ACOS page.
-- Dead code (not routed): `components/home/HomePage.tsx`, `components/home/V3HomePage.tsx`, `components/v0-variants/*`.
+
+**`lib/route-enumeration.mjs` sync (sitemap + link-check integrity):**
+- Duplicate route definitions: `/inner-circle` (×3), `/community` (×2), `/founders-circle` (×2) — dedupe.
+- Missing active hubs in `STATIC_ROUTES`: `/work-with-me`, `/consulting`, `/gencreator` — add so sitemap + link validation stay in sync.
+
+**Dead code (not routed):** `components/home/HomePage.tsx`, `components/home/V3HomePage.tsx`, `components/v0-variants/*`.
 
 > ⚠ Per CLAUDE.md: never delete/rename live URLs without checking traffic + adding redirects. Hide from nav, keep the page. Flag, don't nuke.

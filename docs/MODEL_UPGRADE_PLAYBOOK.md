@@ -14,7 +14,7 @@
 1. **Pick the batch** — sort the registry by `priority` then oldest `reviewed_date`. P0/P1 first.
 2. **Read the live page** — via the authenticated Vercel fetch (`web_fetch_vercel_url` on `https://www.frankx.ai/<route>`) so you audit what visitors actually see.
 3. **Audit against four axes:**
-   - **Voice** — true brand voice (direct, technical, warm; results over claims; no guru language). Run `bash scripts/voice-audit.sh <path>`.
+   - **Voice** — true brand voice (direct, technical, warm; results over claims; no guru language). Run `bash scripts/voice-audit.sh <local-path>` (a filesystem path like `app/about`, NOT a URL route like `/about`).
    - **Freshness** — dates, model names, stats, "coming soon" that already shipped, dead links.
    - **Accuracy** — every claim verifiable (counts, credentials). No inflation (cf. 630→90 skills).
    - **Visual** — layout, hierarchy, spacing, responsive, a11y (`/ui-ux-pro-max`, `/web-design-expert`, `/ui-ux-design-expert`). Screenshot QA via `/gstack` against local `next dev` or the Vercel preview.
