@@ -376,7 +376,7 @@ export default function InnerCirclePage() {
             transition={{ duration: 0.5 }}
             className="mb-4 flex justify-center"
           >
-            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi, the FrankX Inner Circle mascot — half organic, half digital" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
+            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi, the FrankX Inner Circle mascot — half organic, half digital" width={72} height={72} className="rounded-2xl" sizes="72px" priority style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
