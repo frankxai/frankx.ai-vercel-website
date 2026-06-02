@@ -1159,14 +1159,17 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               transition={{ delay: i * 0.05 }}
             >
               <button
+                type="button"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
+                aria-expanded={openIndex === i}
+                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2 [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
                     {faq.question}
                   </h3>
                   <ChevronDown
+                    aria-hidden="true"
                     className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}

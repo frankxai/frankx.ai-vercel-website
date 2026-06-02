@@ -258,10 +258,12 @@ function EarlyAccessModal({
       >
         {/* Close button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg bg-white/5 p-2 hover:bg-white/10 transition-colors"
+          aria-label="Close modal"
+          className="absolute right-4 top-4 rounded-lg bg-white/5 p-2 hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-violet-400 focus-visible:outline-offset-2"
         >
-          <X className="h-5 w-5 text-slate-400" />
+          <X aria-hidden="true" className="h-5 w-5 text-slate-400" />
         </button>
 
         {/* Header */}

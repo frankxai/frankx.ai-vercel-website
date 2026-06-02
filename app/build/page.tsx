@@ -202,11 +202,11 @@ export default function BuildPage() {
 
           <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400">
             For teams hiring Frank for hands-on agentic work. For self-serve courses see{' '}
-            <Link href="/workshops" className="text-cyan-300 underline-offset-4 hover:underline">
+            <Link href="/workshops" className="rounded text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2">
               /workshops
             </Link>
             . For the live BYOK tools see{' '}
-            <Link href="/lab" className="text-cyan-300 underline-offset-4 hover:underline">
+            <Link href="/lab" className="rounded text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2">
               /lab
             </Link>
             .
@@ -351,7 +351,7 @@ export default function BuildPage() {
                 </h3>
                 <p className="mt-2 text-sm text-slate-400">
                   Or email{' '}
-                  <a href={PARTNERSHIP_EMAIL} className="text-cyan-300 underline-offset-4 hover:underline">
+                  <a href={PARTNERSHIP_EMAIL} className="rounded text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2">
                     hello@frankx.ai
                   </a>{' '}
                   with what you are building.
@@ -400,7 +400,7 @@ export default function BuildPage() {
             {galleryBuilds.length === 0 ? (
               <div className="col-span-full rounded-xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-400">
                 Builds are loading. See the full log on the{' '}
-                <Link href="/agentic-builder-lab" className="text-cyan-300 underline-offset-4 hover:underline">
+                <Link href="/agentic-builder-lab" className="rounded text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2">
                   Agentic Builder Lab
                 </Link>
                 .
