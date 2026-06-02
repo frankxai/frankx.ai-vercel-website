@@ -169,10 +169,10 @@ export default function AIBuilderPage() {
                 <Bot className="h-5 w-5" />
                 Interactive AI Builder
               </div>
-              <h1 className="text-5xl font-bold text-white md:text-6xl leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]">
                 AI System Builder
               </h1>
-              <p className="text-xl text-white/70 max-w-3xl leading-relaxed">
+              <p className="text-[17px] md:text-xl text-white/80 max-w-3xl leading-relaxed">
                 Design and architect your AI system with guided templates, best practices, and interactive planning tools.
                 From requirements to deployment in a structured approach.
               </p>
@@ -217,8 +217,8 @@ export default function AIBuilderPage() {
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center mx-auto">
                 <StepIcon className="w-8 h-8 text-cyan-400" />
               </div>
-              <h2 className="text-4xl font-bold text-white">{currentStepData.title}</h2>
-              <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">{currentStepData.title}</h2>
+              <p className="text-[17px] md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
                 {currentStepData.description}
               </p>
             </div>
@@ -226,62 +226,71 @@ export default function AIBuilderPage() {
             <div className="max-w-4xl mx-auto">
               <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
                 <div className="grid gap-6 md:grid-cols-2">
-                  {currentStepData.fields.map((field, index) => (
-                    <div key={index} className="space-y-2">
-                      <label className="block text-sm font-semibold text-white">{field.label}</label>
-                      {field.type === 'textarea' ? (
-                        <textarea
-                          className="w-full p-4 rounded-xl border border-white/20 bg-white/5 text-white placeholder-white/40 focus:border-cyan-400/50 focus:outline-none resize-none"
-                          rows={4}
-                          placeholder={field.placeholder}
-                          value={formData[currentStepData.id]?.[field.label] || ''}
-                          onChange={(e) => handleInputChange(currentStepData.id, field.label, e.target.value)}
-                        />
-                      ) : field.type === 'select' ? (
-                        <select
-                          className="w-full p-4 rounded-xl border border-white/20 bg-white/5 text-white focus:border-cyan-400/50 focus:outline-none"
-                          value={formData[currentStepData.id]?.[field.label] || ''}
-                          onChange={(e) => handleInputChange(currentStepData.id, field.label, e.target.value)}
-                        >
-                          <option value="">Select an option...</option>
-                          {field.options?.map((option) => (
-                            <option key={option} value={option} className="bg-slate-900">
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <input
-                          type="text"
-                          className="w-full p-4 rounded-xl border border-white/20 bg-white/5 text-white placeholder-white/40 focus:border-cyan-400/50 focus:outline-none"
-                          placeholder={field.placeholder}
-                          value={formData[currentStepData.id]?.[field.label] || ''}
-                          onChange={(e) => handleInputChange(currentStepData.id, field.label, e.target.value)}
-                        />
-                      )}
-                    </div>
-                  ))}
+                  {currentStepData.fields.map((field, index) => {
+                    const fieldId = `${currentStepData.id}-${index}`
+                    const inputClass = 'w-full p-4 rounded-xl border border-white/20 bg-white/5 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors'
+                    return (
+                      <div key={index} className="space-y-2">
+                        <label htmlFor={fieldId} className="block text-sm font-semibold text-white">{field.label}</label>
+                        {field.type === 'textarea' ? (
+                          <textarea
+                            id={fieldId}
+                            className={`${inputClass} resize-none`}
+                            rows={4}
+                            placeholder={field.placeholder}
+                            value={formData[currentStepData.id]?.[field.label] || ''}
+                            onChange={(e) => handleInputChange(currentStepData.id, field.label, e.target.value)}
+                          />
+                        ) : field.type === 'select' ? (
+                          <select
+                            id={fieldId}
+                            className={inputClass}
+                            value={formData[currentStepData.id]?.[field.label] || ''}
+                            onChange={(e) => handleInputChange(currentStepData.id, field.label, e.target.value)}
+                          >
+                            <option value="">Select an option...</option>
+                            {field.options?.map((option) => (
+                              <option key={option} value={option} className="bg-slate-900">
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            id={fieldId}
+                            type="text"
+                            className={inputClass}
+                            placeholder={field.placeholder}
+                            value={formData[currentStepData.id]?.[field.label] || ''}
+                            onChange={(e) => handleInputChange(currentStepData.id, field.label, e.target.value)}
+                          />
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
 
                 {/* Navigation Buttons */}
                 <div className="flex items-center justify-between mt-8 pt-8 border-t border-white/10">
                   <button
+                    type="button"
                     onClick={prevStep}
                     disabled={currentStep === 0}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 bg-white/5 text-white/90 font-semibold transition-all duration-300 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-white/90 font-semibold transition-all duration-300 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     Previous
                   </button>
 
-                  <span className="text-white/60 text-sm">
+                  <span className="text-white/60 text-sm" aria-live="polite">
                     Step {currentStep + 1} of {builderSteps.length}
                   </span>
 
                   <button
+                    type="button"
                     onClick={nextStep}
                     disabled={currentStep === builderSteps.length - 1}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                   >
                     {currentStep === builderSteps.length - 1 ? 'Complete' : 'Next'}
                     <ArrowRight className="w-4 h-4" />
@@ -294,8 +303,8 @@ export default function AIBuilderPage() {
           {/* AI System Templates */}
           <section className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">Pre-Built System Templates</h2>
-              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Pre-Built System Templates</h2>
+              <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
                 Jump-start your project with proven AI system architectures. Each template includes
                 detailed specifications and implementation guides.
               </p>
@@ -358,8 +367,8 @@ export default function AIBuilderPage() {
           {/* Component Library */}
           <section className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">AI Component Library</h2>
-              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">AI Component Library</h2>
+              <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
                 Browse our library of AI components and integrations to build custom solutions.
               </p>
             </div>
@@ -388,21 +397,21 @@ export default function AIBuilderPage() {
 
           {/* CTA Section */}
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
-            <h2 className="text-4xl font-bold text-white">Need Expert Help Building Your AI System?</h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Need Expert Help Building Your AI System?</h2>
+            <p className="text-[17px] md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
               Our team of AI architects can help you design, build, and deploy production-ready AI systems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
+                className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Get Expert Consultation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="/ai-architect"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
+                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Learn About Our Services
               </Link>
