@@ -187,7 +187,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     shipped: 'pre-existing',
     summary: 'The 6-pillar enterprise framework, made personal.',
     description:
-      "Frank's Oracle EMEA AI Center of Excellence methodology, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS's personal-ai-coe format.",
+      "The Oracle EMEA AI Center of Excellence methodology Frank refined for Fortune 500 clients, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS's personal-ai-coe format.",
     relatedSystems: ['workshop-os', 'sis'],
     commands: ['/starlight-architect', '/ai-architecture'],
     color: 'slate',
