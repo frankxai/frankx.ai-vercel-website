@@ -230,7 +230,7 @@ export default function AgenticBuilderLabPage() {
       />
 
       {/* ── HERO ───────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-b border-white/10 pt-28 pb-20 sm:pt-32 sm:pb-24">
+      <section className="relative overflow-hidden border-b border-white/10 pt-28 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(67,191,227,0.22),transparent_38%),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.16),transparent_36%)]" />
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
@@ -246,43 +246,43 @@ export default function AgenticBuilderLabPage() {
             </span>
             <Link
               href="/agentic-ai-center"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-slate-300 transition-colors hover:border-white/25 hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-slate-300 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               New to agentic AI? Read the field guide
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
 
-          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
             The developer role is splitting:{' '}
             <span className="bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent">
               architect, agent commander, verification officer.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80 sm:text-lg">
             This is the public lab where Frank builds real companies on the new agentic dev stack —
             Antigravity 2.0, Claude Code, Codex, Gemini API, Firebase, Android. Eight builds. One
             stack thesis. Receipts, not hype.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href="#builds"
-              className="inline-flex items-center gap-2 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               See the 8 builds
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="#field-notes"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Get the Field Notes
             </Link>
             <Link
               href="/build"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 transition hover:border-white/25 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-5 py-3 text-sm font-semibold text-slate-300 backdrop-blur-xl transition hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
             >
               Hire Frank
             </Link>
@@ -305,16 +305,16 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── THESIS ─────────────────────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-16">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300/80">
             Why this matters now
           </p>
-          <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Agentic dev is not "AI writes your code." It is a different unit of work: from file, to
+          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
+            Agentic dev is not &quot;AI writes your code.&quot; It is a different unit of work: from file, to
             task, to agent, to verified artifact, to shipped product.
           </h2>
-          <p className="mt-5 text-base leading-7 text-slate-400">
+          <p className="mt-5 text-[17px] leading-relaxed text-white/80">
             The question is no longer which AI coding tool is best. The question is which builder
             knows how to command them — when to plan, when to dispatch, when to verify, when to
             ship. This lab is the receipts.
@@ -323,17 +323,17 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── 30-DAY BUILD LOG ───────────────────────────────────────────── */}
-      <section id="builds" className="border-b border-white/10 py-20">
+      <section id="builds" className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
                 The 30-Day Build Log
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
                 Eight builds. One stack. Public from day one.
               </h2>
-              <p className="mt-4 text-base leading-7 text-slate-400">
+              <p className="mt-4 text-[17px] leading-relaxed text-white/80">
                 Each build is a real company surface or working demo — not a sandbox. Status is
                 honest: live, shipping, work in progress.
               </p>
@@ -347,7 +347,7 @@ export default function AgenticBuilderLabPage() {
                 <article
                   key={b.slug}
                   id={b.slug}
-                  className="group flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-cyan-300/30 hover:bg-white/[0.055]"
+                  className="group flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition hover:border-cyan-300/30 hover:bg-white/[0.06]"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span
@@ -408,16 +408,16 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── THE STACK ──────────────────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-20">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300/80">
               The Stack
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               Five tools, five jobs. Each owns a layer.
             </h2>
-            <p className="mt-4 text-base leading-7 text-slate-400">
+            <p className="mt-4 text-[17px] leading-relaxed text-white/80">
               Picking one tool is the wrong frame. Each one earns a specific layer of the work. The
               architect routes the task to the right one.
             </p>
@@ -446,24 +446,24 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── TOOL COMPARISON MATRIX ─────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-20">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/80">
               Tool Matrix
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               Which tool owns which layer.
             </h2>
-            <p className="mt-4 text-base leading-7 text-slate-400">
-              A working architect's view — what each tool is best at, what it is acceptable at, and
+            <p className="mt-4 text-[17px] leading-relaxed text-white/80">
+              A working architect&apos;s view — what each tool is best at, what it is acceptable at, and
               what still needs a human.
             </p>
           </div>
 
           {/* Desktop: table */}
           <div className="mt-10 hidden lg:block">
-            <div className="overflow-hidden rounded-xl border border-white/10">
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl">
               <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="bg-white/[0.04]">
@@ -501,7 +501,7 @@ export default function AgenticBuilderLabPage() {
           {/* Mobile: vertical cards */}
           <div className="mt-10 grid gap-4 lg:hidden">
             {toolMatrix.tools.map((t) => (
-              <div key={t.name} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <div key={t.name} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
                 <div className="text-base font-semibold text-white">{t.name}</div>
                 <dl className="mt-3 grid grid-cols-1 gap-2 text-sm">
                   {toolMatrix.layers.map((l, i) => (
@@ -518,16 +518,16 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── BUILD METHODOLOGY ──────────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-20">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300/80">
               Methodology
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               The five steps that survive every build.
             </h2>
-            <p className="mt-4 text-base leading-7 text-slate-400">
+            <p className="mt-4 text-[17px] leading-relaxed text-white/80">
               Same loop every time. Specify, architect, build with agents, verify artifacts, ship
               with content. The ACOS skill handles step five.
             </p>
@@ -535,7 +535,7 @@ export default function AgenticBuilderLabPage() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {methodology.map((m) => (
-              <article key={m.n} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <article key={m.n} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-300/70">
                   {m.n}
                 </div>
@@ -548,24 +548,24 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── TEMPLATES & FIELD NOTES ────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-20">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
                 Templates
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
                 The reusable artifacts the lab produces.
               </h2>
-              <p className="mt-4 text-base leading-7 text-slate-400">
+              <p className="mt-4 text-[17px] leading-relaxed text-white/80">
                 Every build adds one prompt or template to the pack. Forkable, documented, voice-spec
                 clean.
               </p>
             </div>
             <Link
               href="/build/template-pack"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f] rounded-full"
             >
               See the full template pack
               <ArrowRight className="h-4 w-4" />
@@ -577,7 +577,7 @@ export default function AgenticBuilderLabPage() {
               <Link
                 key={t.title}
                 href={t.href}
-                className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-cyan-300/30 hover:bg-white/[0.055]"
+                className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition hover:border-cyan-300/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-cyan-200">
                   <Wrench className="h-5 w-5" />
@@ -595,13 +595,13 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── BRIDGE TO /build ───────────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-20">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300/80">
               Want this for your team?
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               Three ways to work with Frank.
             </h2>
           </div>
@@ -611,7 +611,7 @@ export default function AgenticBuilderLabPage() {
               <Link
                 key={o.title}
                 href={o.href}
-                className="group rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6 transition hover:border-violet-300/30"
+                className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 backdrop-blur-xl transition hover:border-violet-300/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
               >
                 <h3 className="text-lg font-semibold text-white">{o.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-400">{o.body}</p>
@@ -626,7 +626,7 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── CROSS-LINKS ────────────────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-16">
+      <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
             Connected surfaces
@@ -643,7 +643,7 @@ export default function AgenticBuilderLabPage() {
                 <Link
                   key={c.href}
                   href={c.href}
-                  className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-white/25 hover:bg-white/[0.06]"
+                  className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
                 >
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-slate-300">
@@ -660,18 +660,18 @@ export default function AgenticBuilderLabPage() {
       </section>
 
       {/* ── NEWSLETTER ─────────────────────────────────────────────────── */}
-      <section id="field-notes" className="py-20">
+      <section id="field-notes" className="py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-6">
-          <div className="rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/5 via-white/[0.02] to-emerald-500/5 p-8 sm:p-10">
+          <div className="rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/5 via-white/[0.02] to-emerald-500/5 p-8 sm:p-10 backdrop-blur-xl">
             <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
                   Field Notes
                 </p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
                   One build, one architecture note, one reusable prompt — every week.
                 </h2>
-                <p className="mt-4 text-sm leading-6 text-slate-400">
+                <p className="mt-4 text-[17px] leading-relaxed text-white/80">
                   Honest write-ups from inside the lab. What shipped, what broke, which tool earned
                   which layer. No threads, no thought-leader content.
                 </p>
