@@ -261,7 +261,7 @@ export default function WorkshopsPage() {
       </section>
 
       {/* For Educators CTA */}
-      <section className="pb-32">
+      <section className="pb-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -289,6 +289,37 @@ export default function WorkshopsPage() {
                 </Link>
               </div>
             </GlowCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Inner Circle — primary wait-list CTA */}
+      <section className="pb-32">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-cyan-500/[0.20] bg-cyan-500/[0.04] p-8 sm:p-10 text-center"
+          >
+            <p className="text-[10px] uppercase tracking-[0.25em] text-cyan-300/80 mb-3">
+              Inner Circle
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+              Reserve a seat before the cohort fills.
+            </h2>
+            <p className="text-sm text-zinc-300 mb-6 max-w-lg mx-auto leading-relaxed">
+              Workshops run small. Inner Circle members get first access to dates,
+              founder pricing, and the prompt packs we use to run each session.
+            </p>
+            <Link
+              href="/inner-circle"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-medium hover:from-cyan-400 hover:to-violet-400 transition-all"
+            >
+              Reserve your invite
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>

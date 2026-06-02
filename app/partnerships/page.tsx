@@ -390,6 +390,16 @@ export default function PartnershipsHubPage() {
               Book Meet &amp; Grow
               <ArrowUpRight className="w-4 h-4" aria-hidden />
             </Link>
+            <p className="mt-6 text-[11px] text-zinc-500">
+              Not a strategic-partner conversation?{' '}
+              <Link
+                href="/inner-circle"
+                className="text-emerald-300 hover:text-emerald-200 underline underline-offset-4"
+              >
+                Reserve a seat in the Inner Circle
+              </Link>{' '}
+              for the operator-tier wait list.
+            </p>
           </MotionItem>
         </div>
       </MotionSection>

@@ -507,6 +507,16 @@ export default function BuildPage() {
               See the lab
             </Link>
           </div>
+          <p className="mt-6 text-[11px] text-slate-500">
+            Not ready for a call?{' '}
+            <Link
+              href="/inner-circle"
+              className="text-cyan-300 underline-offset-4 hover:underline"
+            >
+              Reserve a seat in the Inner Circle
+            </Link>{' '}
+            for first access to sprints, workshops, and founder pricing.
+          </p>
         </div>
       </section>
 

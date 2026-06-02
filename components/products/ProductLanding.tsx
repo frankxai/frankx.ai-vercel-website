@@ -252,7 +252,7 @@ export default function ProductLanding({ product }: Props) {
           {/* Bonuses */}
           <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-2xl p-8 border border-cyan-500/20">
             <h3 className="text-3xl font-bold text-center mb-8 text-cyan-200">
-              Exclusive Bonuses (Limited Time)
+              Founder-tier bonuses
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               {product.features.bonuses.map((bonus, index) => (

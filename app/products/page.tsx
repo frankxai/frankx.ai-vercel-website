@@ -650,16 +650,29 @@ export default function ProductsPage() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link
+                    href="/inner-circle"
+                    onClick={() =>
+                      trackEvent('cta_click', { location: 'products-page', target: 'inner-circle' })
+                    }
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/[0.04] px-6 py-3 font-medium text-cyan-200 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all"
+                  >
+                    Reserve invite
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Or{' '}
+                  <Link
                     href="/newsletter"
                     onClick={() =>
                       trackEvent('cta_click', { location: 'products-page', target: 'newsletter' })
                     }
-                    className="group flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-3 font-medium text-white hover:border-white/40 hover:bg-white/5 transition-all"
+                    className="text-slate-300 underline-offset-4 hover:underline"
                   >
-                    Newsletter
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
+                    subscribe to the dispatch
+                  </Link>{' '}
+                  for build notes and launch dates.
+                </p>
               </div>
             </motion.div>
           </div>

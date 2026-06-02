@@ -373,6 +373,16 @@ with current state and a question for the human.
             </a>{' '}
             and we figure out whether the pack alone is enough.
           </p>
+          <p className="mt-3 text-[11px] text-slate-500">
+            Not ready yet?{' '}
+            <Link
+              href="/inner-circle"
+              className="text-cyan-300 underline-offset-4 hover:underline"
+            >
+              Reserve a seat in the Inner Circle
+            </Link>{' '}
+            for first access when the pack ships.
+          </p>
         </div>
       </section>
     </main>

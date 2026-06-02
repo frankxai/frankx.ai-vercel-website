@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import {
   Check,
   ArrowRight,
@@ -390,22 +391,20 @@ export default function PromptVaultPage() {
               <div className="mb-6 flex flex-col items-center gap-4">
                 <div className="flex items-baseline gap-3">
                   <span className="text-5xl font-bold text-white">€19</span>
-                  <span className="text-slate-500">one-time</span>
+                  <span className="text-slate-500">one-time, when the vault ships</span>
                 </div>
-                <a
-                  href="https://frankxai.gumroad.com/l/prompt-vault"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/inner-circle"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
                 >
                   <Euro className="h-6 w-6" />
-                  Buy Now — Instant Download
+                  Reserve your copy
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
 
               <p className="text-sm text-slate-500">
-                PDF + Markdown files · Commercial license included · All future updates free
+                Inner Circle wait list · founder pricing on launch · PDF + Markdown · Commercial license included
               </p>
             </div>
           </div>

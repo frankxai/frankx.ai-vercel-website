@@ -766,6 +766,16 @@ export default function IkigaiBrandingWorkshopPage() {
                   compact
                 />
               </div>
+              <p className="text-xs text-zinc-500 mt-5">
+                Or{' '}
+                <Link
+                  href="/inner-circle"
+                  className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+                >
+                  reserve a seat in the Inner Circle
+                </Link>{' '}
+                for first access to live cohorts and founder pricing.
+              </p>
             </div>
           </GlowCard>
 
