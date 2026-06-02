@@ -134,17 +134,19 @@ function SocialPostCard({
               whileHover={{ scale: 1.1 }}
               className={`w-16 h-16 rounded-full bg-${accentColor}-500/90 flex items-center justify-center`}
             >
-              <Play className="w-8 h-8 text-white ml-1" />
+              <Play className="w-8 h-8 text-white ml-1" aria-hidden="true" />
             </motion.div>
           </div>
         )}
 
         {/* Expand button */}
         <button
+          type="button"
           onClick={onOpenLightbox}
-          className="absolute top-3 right-3 p-2 rounded-lg bg-black/60 text-white/80 hover:text-white opacity-0 group-hover:opacity-100 transition-all"
+          aria-label={`Expand ${post.title || 'post'} in lightbox`}
+          className="absolute top-3 right-3 p-2 rounded-lg bg-black/60 text-white/80 hover:text-white opacity-0 group-hover:opacity-100 transition-all focus:outline-none focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/40"
         >
-          <Maximize2 className="w-4 h-4" />
+          <Maximize2 className="w-4 h-4" aria-hidden="true" />
         </button>
 
         {/* Platform badge */}
@@ -185,20 +187,20 @@ function SocialPostCard({
         {showStats && (
           <div className="flex items-center gap-4 text-xs text-white/50">
             {post.likes !== undefined && (
-              <span className="flex items-center gap-1">
-                <Heart className="w-3.5 h-3.5" />
+              <span className="flex items-center gap-1" aria-label={`${formatNumber(post.likes)} likes`}>
+                <Heart className="w-3.5 h-3.5" aria-hidden="true" />
                 {formatNumber(post.likes)}
               </span>
             )}
             {post.comments !== undefined && (
-              <span className="flex items-center gap-1">
-                <MessageCircle className="w-3.5 h-3.5" />
+              <span className="flex items-center gap-1" aria-label={`${formatNumber(post.comments)} comments`}>
+                <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                 {formatNumber(post.comments)}
               </span>
             )}
             {post.views !== undefined && (
-              <span className="flex items-center gap-1">
-                <Play className="w-3.5 h-3.5" />
+              <span className="flex items-center gap-1" aria-label={`${formatNumber(post.views)} views`}>
+                <Play className="w-3.5 h-3.5" aria-hidden="true" />
                 {formatNumber(post.views)}
               </span>
             )}
@@ -257,10 +259,12 @@ function EmbedLightbox({
       >
         {/* Close button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white/80 hover:text-white transition-colors"
+          aria-label="Close lightbox"
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white/80 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" aria-hidden="true" />
         </button>
 
         {/* Embed iframe */}
@@ -284,10 +288,10 @@ function EmbedLightbox({
               href={post.embedUrl || `${config.embedBase}${post.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-white/50 hover:text-white transition-colors"
+              className="flex items-center gap-1 text-sm text-white/50 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
             >
               Open in {config.name}
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
         </div>
