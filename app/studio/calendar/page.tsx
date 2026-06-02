@@ -47,11 +47,11 @@ export default function StudioCalendarPage() {
 
   return (
     <main id="main" className="min-h-screen bg-[#0a0a0b] text-white">
-      <section className="px-6 pt-32 pb-16 lg:pt-40">
+      <section className="px-6 pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-6xl">
           <Link
             href="/studio"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 mb-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full"
           >
             <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
             Studio
@@ -59,12 +59,12 @@ export default function StudioCalendarPage() {
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-6">
             Forcing Functions Calendar · {functions.length} active
           </p>
-          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.05] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6 max-w-4xl">
             The deadlines the system
             <br />
             <span className="text-emerald-400">optimizes against.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-2xl mb-4">
+          <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mb-4">
             Workshops, launches, weekly releases. Each biases producer dispatch decisions during
             the classifier cross-reference phase. When a drop arrives within the window of an
             active function, the matching platform's persona gets prioritized.
@@ -75,7 +75,7 @@ export default function StudioCalendarPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/5 px-6 py-16">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <ol className="space-y-3">
             {upcoming.map((f) => {
@@ -93,7 +93,7 @@ export default function StudioCalendarPage() {
               return (
                 <li
                   key={f.id}
-                  className={`rounded-xl bg-[#111113] border ${urgent ? 'border-emerald-500/25' : passed ? 'border-white/[0.03]' : 'border-white/5'} p-6 flex items-start gap-6`}
+                  className={`rounded-2xl backdrop-blur-xl border ${urgent ? 'border-emerald-500/30 bg-emerald-500/[0.04]' : passed ? 'border-white/[0.06] bg-white/[0.02]' : 'border-white/10 bg-white/[0.04]'} p-6 flex items-start gap-6`}
                 >
                   <div className="shrink-0 w-32 text-right">
                     <p className="font-mono text-sm text-emerald-400/80 mb-1">{f.date}</p>
@@ -157,15 +157,15 @@ export default function StudioCalendarPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/5 px-6 py-24">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl">
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             How the calendar feeds production
           </p>
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-white tracking-tight mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-6">
             Calendar is not a to-do list. It's a bias function.
           </h2>
-          <div className="space-y-5 text-white/65 text-base leading-relaxed">
+          <div className="space-y-5 text-[17px] leading-relaxed text-white/80">
             <p>
               When `content-intake-classifier` reads a new capture, it walks 5 cross-reference
               signals in order. The forcing-functions calendar is the first signal — the highest-leverage
@@ -187,11 +187,11 @@ export default function StudioCalendarPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/5 px-6 py-24">
+      <section className="border-t border-white/5 px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <Link
             href="/studio"
-            className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             <Calendar className="h-4 w-4" aria-hidden />
             Back to Studio
