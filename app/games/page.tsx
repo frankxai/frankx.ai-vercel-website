@@ -105,7 +105,7 @@ function HeroSection() {
               <span className="text-sm font-medium text-violet-300">Games Lab</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
               <span className="text-white">Browser games</span>
               <br />
               <span className="font-serif-italic text-white/80">built with AI</span>
@@ -207,7 +207,7 @@ function PlayNowSection() {
   }
 
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -215,7 +215,7 @@ function PlayNowSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             Play now
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -341,7 +341,7 @@ const tierColors: Record<string, { border: string; text: string; bg: string; bad
 
 function WhatWeCanBuildSection() {
   return (
-    <section className="relative py-24 px-6">
+    <section className="relative py-20 lg:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -349,7 +349,7 @@ function WhatWeCanBuildSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             What we can actually build
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -461,7 +461,7 @@ function TechStackSection() {
   ]
 
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -469,7 +469,7 @@ function TechStackSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             Tech stack assessment
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -534,7 +534,7 @@ function VercelCompatSection() {
   ]
 
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -542,7 +542,7 @@ function VercelCompatSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             What works on Vercel
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -631,7 +631,7 @@ function AgenticPipelineSection() {
   }
 
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -639,7 +639,7 @@ function AgenticPipelineSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             Agentic game development pipeline
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -707,7 +707,7 @@ function MonetizationSection() {
   ]
 
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -715,7 +715,7 @@ function MonetizationSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             Monetization strategy
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -767,7 +767,7 @@ function AIToolsSection() {
   ]
 
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -775,7 +775,7 @@ function AIToolsSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             AI tools for game development
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
@@ -816,14 +816,14 @@ function AIToolsSection() {
 
 function CTASection() {
   return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
+    <section className="relative py-20 lg:py-28 px-6 border-t border-white/[0.04]">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
             The research behind the games
           </h2>
           <p className="text-white/50 text-lg mb-8 max-w-xl mx-auto">

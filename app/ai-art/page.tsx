@@ -582,7 +582,7 @@ export default function AIArtGalleryPage() {
               AI-Generated Art Gallery
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               AI Visual{' '}
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                 Lab
@@ -629,7 +629,7 @@ export default function AIArtGalleryPage() {
           viewport={{ once: true }}
           className="bg-gradient-to-br from-emerald-500/10 to-amber-500/10 rounded-3xl border border-white/10 p-12"
         >
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Create Your Own AI Art
           </h2>
           <p className="text-white/60 mb-8 max-w-xl mx-auto">

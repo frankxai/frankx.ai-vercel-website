@@ -498,7 +498,7 @@ export default function GalleryPage() {
                   AI Visual Gallery
                 </div>
 
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
                   The{' '}
                   <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
                     Gallery
@@ -538,7 +538,7 @@ export default function GalleryPage() {
       {/* Featured Strip */}
       <section className="max-w-7xl mx-auto px-6 mb-16">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-white">Top Rated</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">Top Rated</h2>
           <span className="text-xs text-white/30 uppercase tracking-wider">
             Score 8.5+
           </span>
@@ -586,7 +586,7 @@ export default function GalleryPage() {
       {/* Sub-Collections */}
       {collections.length > 0 && (
         <section className="max-w-7xl mx-auto px-6 mb-16">
-          <h2 className="text-2xl font-bold text-white mb-6">Collections</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Collections</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {collections.map((collection, index) => (
               <CollectionCard
@@ -603,7 +603,7 @@ export default function GalleryPage() {
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <div className="border-t border-white/10 pt-16 mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold text-white">All Artworks</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">All Artworks</h2>
             <span className="text-white/30 text-sm">
               {filteredArtworks.length} results
             </span>

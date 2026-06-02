@@ -155,7 +155,7 @@ function HeroSection() {
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             The
             <span className="block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
               Plan
@@ -225,7 +225,7 @@ function FeaturedSpotlight() {
         >
           <div className="flex items-center gap-3 mb-3">
             <Target className="w-5 h-5 text-violet-400" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
               Top Priority
             </h2>
           </div>
@@ -349,10 +349,10 @@ function InitiativesGrid() {
   }, [activeTrack, activeStatus])
 
   return (
-    <section id="initiatives" className="py-16 md:py-24">
+    <section id="initiatives" className="py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
             All Initiatives
           </h2>
           <p className="text-white/50 max-w-2xl">
@@ -547,12 +547,12 @@ function AgentActivitySection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="activity" className="py-16 md:py-24">
+    <section id="activity" className="py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
             <Sparkles className="w-5 h-5 text-cyan-400" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
               Agent Activity
             </h2>
           </div>
@@ -610,13 +610,13 @@ function AgentActivitySection() {
 
 function CTASection() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-20 lg:py-28">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative bg-white/[0.02] border border-white/[0.06] rounded-3xl p-8 md:p-12 text-center">
           <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.03] via-transparent to-cyan-500/[0.03] rounded-3xl" />
 
           <div className="relative">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Follow the Journey
             </h2>
             <p className="text-white/50 mb-8 max-w-xl mx-auto">

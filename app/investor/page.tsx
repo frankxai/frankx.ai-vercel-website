@@ -270,7 +270,7 @@ export default function InvestorHubPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08 }}
-              className="mb-6 max-w-4xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-6 max-w-4xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
             >
               Your AI{' '}
               <span className="bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
@@ -341,7 +341,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* Platforms I Use */}
-        <section id="platforms" className="py-12">
+        <section id="platforms" className="py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -352,7 +352,7 @@ export default function InvestorHubPage() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">
                 What I Use Daily
               </p>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                 Investment Platforms
               </h2>
               <p className="mt-2 max-w-lg text-slate-400">
@@ -384,7 +384,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* AI Research Stack */}
-        <section id="ai-tools" className="border-y border-white/[0.04] py-12">
+        <section id="ai-tools" className="border-y border-white/[0.04] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -395,7 +395,7 @@ export default function InvestorHubPage() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
                 AI-Powered Research
               </p>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                 Your Research Stack
               </h2>
               <p className="mt-2 max-w-lg text-slate-400">
@@ -427,7 +427,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* Hub Navigation Cards */}
-        <section className="py-12">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               variants={staggerContainer}
@@ -443,7 +443,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* Value Ladder */}
-        <section className="border-y border-white/[0.04] py-12">
+        <section className="border-y border-white/[0.04] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -454,7 +454,7 @@ export default function InvestorHubPage() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-amber-400">
                 Investment in Your Edge
               </p>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                 Choose Your Level
               </h2>
             </motion.div>
@@ -490,7 +490,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* Featured Products */}
-        <section className="py-16">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-10 flex items-end justify-between">
               <div>
@@ -506,7 +506,7 @@ export default function InvestorHubPage() {
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="text-2xl font-bold text-white sm:text-3xl"
+                  className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl"
                 >
                   Featured Products
                 </motion.h2>
@@ -548,7 +548,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* Built For Section */}
-        <section className="border-t border-white/[0.04] py-16">
+        <section className="border-t border-white/[0.04] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -590,7 +590,7 @@ export default function InvestorHubPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-white/[0.04] py-16">
+        <section className="border-t border-white/[0.04] py-20 lg:py-28">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

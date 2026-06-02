@@ -314,7 +314,7 @@ export default function StudentsPage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
                 Learn AI the right way.
                 <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-violet-400">
                   Free, world-class courses.
@@ -357,7 +357,7 @@ export default function StudentsPage() {
         </section>
 
         {/* Why Learn AI Section */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -368,7 +368,7 @@ export default function StudentsPage() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
                 Why Now
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                 AI is transforming every industry
               </h2>
             </motion.div>
@@ -555,7 +555,7 @@ export default function StudentsPage() {
         </section>
 
         {/* Learning Paths Grid */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -567,7 +567,7 @@ export default function StudentsPage() {
                 <p className="text-xs font-medium uppercase tracking-[0.25em] text-cyan-400/70 mb-2">
                   Curated Courses
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">World-class learning, zero cost</h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">World-class learning, zero cost</h2>
               </div>
               <span className="hidden md:block text-xs uppercase tracking-[0.2em] text-white/40">
                 {learningPaths.length} courses
@@ -656,7 +656,7 @@ export default function StudentsPage() {
         </section>
 
         {/* Learning Journey Timeline */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -667,7 +667,7 @@ export default function StudentsPage() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-violet-400/70 mb-2">
                 Your Journey
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">From beginner to builder</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">From beginner to builder</h2>
             </motion.div>
 
             <div className="relative">
@@ -697,7 +697,7 @@ export default function StudentsPage() {
         </section>
 
         {/* Essential Readings */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -708,7 +708,7 @@ export default function StudentsPage() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
                 Essential Reading
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">Understand the landscape</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">Understand the landscape</h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -743,7 +743,7 @@ export default function StudentsPage() {
         </section>
 
         {/* Editorial Quote */}
-        <section className="py-16 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-4xl mx-auto px-6">
             <motion.blockquote
               initial={{ opacity: 0 }}
@@ -760,7 +760,7 @@ export default function StudentsPage() {
         </section>
 
         {/* Bottom CTA — Next Steps */}
-        <section className="py-20 border-t border-white/5">
+        <section className="py-20 lg:py-28 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -768,7 +768,7 @@ export default function StudentsPage() {
               viewport={{ once: true }}
               className="mb-10 text-center"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Your next steps
               </h2>
               <p className="text-white/50 max-w-xl mx-auto">

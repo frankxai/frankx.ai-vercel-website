@@ -305,7 +305,7 @@ export default function IntelligenceAtlasPage() {
           {/* Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
           >
             <span className="text-white">The </span>
             <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-amber-400 bg-clip-text text-transparent">
@@ -351,7 +351,7 @@ export default function IntelligenceAtlasPage() {
       </motion.header>
 
       {/* Interactive Constellation Section */}
-      <section className="relative py-24 px-6">
+      <section className="relative py-20 lg:py-28 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -360,7 +360,7 @@ export default function IntelligenceAtlasPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Map the Constellations
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
@@ -483,7 +483,7 @@ export default function IntelligenceAtlasPage() {
       </section>
 
       {/* Interactive Graph Section */}
-      <section className="relative py-24 px-6 border-t border-white/5">
+      <section className="relative py-20 lg:py-28 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -492,7 +492,7 @@ export default function IntelligenceAtlasPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Explore the Neural Network
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
@@ -506,7 +506,7 @@ export default function IntelligenceAtlasPage() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="relative py-24 px-6 border-t border-white/5">
+      <section className="relative py-20 lg:py-28 px-6 border-t border-white/5">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -515,7 +515,7 @@ export default function IntelligenceAtlasPage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
               The Luminor Philosophy
             </h2>
             <p className="text-lg text-slate-300 leading-relaxed mb-8">
