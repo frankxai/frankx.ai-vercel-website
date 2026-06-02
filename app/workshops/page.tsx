@@ -128,7 +128,7 @@ export default function WorkshopsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.04] via-violet-500/[0.03] to-transparent" />
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/[0.06] rounded-full blur-[120px]" />
@@ -147,14 +147,14 @@ export default function WorkshopsPage() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
               Run AI Workshops{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
                 with FrankX
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-zinc-400 max-w-3xl mx-auto mb-10">
+            <p className="text-[17px] sm:text-xl text-zinc-300/90 max-w-3xl mx-auto mb-10 leading-relaxed">
               Pre-built workshop templates for university professors, corporate
               trainers, and bootcamp instructors. Structured agendas, instructor
               notes, and resource packs included.
@@ -272,17 +272,17 @@ export default function WorkshopsPage() {
             <GlowCard color="violet">
               <div className="p-8 sm:p-10 text-center">
                 <GraduationCap className="w-10 h-10 text-violet-400 mx-auto mb-4" />
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
                   For Educators
                 </h2>
-                <p className="text-zinc-400 mb-6 max-w-lg mx-auto">
+                <p className="text-[17px] text-zinc-300/90 mb-8 max-w-lg mx-auto leading-relaxed">
                   Learn how to use these templates in your classroom or training
                   program. Save weeks of curriculum prep with professional,
                   ready-to-run materials.
                 </p>
                 <Link
                   href="/workshops/for-educators"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-violet-500 text-white font-medium hover:from-violet-500 hover:to-violet-400 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 text-white font-medium hover:from-violet-500 hover:to-violet-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
                   Educator Guide
                   <ArrowRight className="w-4 h-4" />
@@ -306,16 +306,16 @@ export default function WorkshopsPage() {
             <p className="text-[10px] uppercase tracking-[0.25em] text-cyan-300/80 mb-3">
               Inner Circle
             </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
               Reserve a seat before the cohort fills.
             </h2>
-            <p className="text-sm text-zinc-300 mb-6 max-w-lg mx-auto leading-relaxed">
+            <p className="text-[17px] text-zinc-300/90 mb-8 max-w-lg mx-auto leading-relaxed">
               Workshops run small. Inner Circle members get first access to dates,
               founder pricing, and the prompt packs we use to run each session.
             </p>
             <Link
               href="/inner-circle"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-medium hover:from-cyan-400 hover:to-violet-400 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-medium hover:from-cyan-400 hover:to-violet-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               Reserve your invite
               <ArrowRight className="w-4 h-4" />

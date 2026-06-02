@@ -29,7 +29,7 @@ export default function PersonalAICoEPage() {
       <CourseSchema workshop={workshop} />
 
       {/* Hero */}
-      <section className="relative pt-28 pb-14 overflow-hidden">
+      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-amber-500/[0.05] to-transparent" />
         <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/[0.06] rounded-full blur-[140px]" />
 
@@ -65,28 +65,28 @@ export default function PersonalAICoEPage() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight leading-[1.1]">
               {workshop.title}
             </h1>
-            <p className="text-lg text-zinc-400 mb-6 max-w-2xl">
+            <p className="text-[17px] md:text-xl text-zinc-300/90 mb-6 max-w-2xl leading-relaxed">
               {workshop.subtitle}
             </p>
 
-            <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
+            <p className="text-[15px] text-zinc-400 leading-relaxed max-w-3xl mb-8">
               {workshop.overview}
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#intake"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Send className="w-4 h-4" />
                 Request a conversation
               </a>
               <Link
                 href="/acos"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-300 hover:text-amber-200 transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-300 hover:text-amber-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full px-2 py-1"
               >
                 Explore ACOS
                 <ArrowRight className="w-4 h-4" />
