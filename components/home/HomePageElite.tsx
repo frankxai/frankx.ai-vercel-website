@@ -193,7 +193,7 @@ function RotatingWord() {
           exit={{ y: -20, opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
-          style={{ lineHeight: 1.3 }}
+          style={{ lineHeight: 1.1, paddingBottom: '0.05em' }}
         >
           {heroWords[currentIndex]}
         </motion.span>
@@ -279,20 +279,20 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 <span className="text-sm text-white/60">AI Architect & Creator</span>
               </div>
 
-              <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
                 <RotatingWord /> intelligence
                 <br />
                 that compounds.
               </h1>
 
-              <p className="text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
+              <p className="text-[17px] md:text-xl text-white/70 max-w-xl leading-relaxed">
                 Former AI Architect, Oracle. 12,000+ songs with Suno.
                 90+ open-source AI skills. Everything documented.
               </p>
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="font-serif italic text-lg text-white/30 max-w-lg">
+                <p className="font-serif italic text-base md:text-lg text-white/50 max-w-lg">
                   &ldquo;I create to understand. I share to teach.&rdquo;
                 </p>
               </div>
@@ -308,7 +308,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Start learning
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -317,7 +317,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/inner-circle"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Get the playbook
               </Link>
@@ -1102,10 +1102,10 @@ function EmailCTA() {
               <span className="text-sm text-emerald-400">Weekly Insights</span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-3">
               Stay in the Signal Loop
             </h2>
-            <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
+            <p className="text-[15px] md:text-base text-white/70 mb-8 max-w-sm mx-auto leading-relaxed">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1309,24 +1309,24 @@ function FinalCTA() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
               Start building.
             </h2>
-            <p className="font-serif italic text-lg text-white/30 mb-2">
+            <p className="font-serif italic text-base md:text-lg text-white/50 mb-2">
               The best way to predict the future is to create it.
             </p>
-            <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
+            <p className="text-[17px] text-white/70 mb-8 md:mb-12 max-w-md mx-auto leading-relaxed">
               Pick your path — architecture, music, or products.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Start Here
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 py-4 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 Get the Newsletter
               </Link>
