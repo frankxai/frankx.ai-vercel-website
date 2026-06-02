@@ -153,7 +153,7 @@ const upsellOffers = [
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#0a0a0b]" />
+      <div className="absolute inset-0 bg-void" />
       <motion.div
         className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
         style={{
@@ -208,7 +208,7 @@ function TemplateCard({
         href={template.href}
         target={external ? '_blank' : undefined}
         rel={external ? 'noopener noreferrer' : undefined}
-        className="group block relative p-6 rounded-2xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-1"
+        className="group block relative p-6 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl overflow-hidden hover:border-white/20 transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${template.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
@@ -265,13 +265,13 @@ export default function TemplatesPage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
                 Templates & Frameworks
                 <span className="block mt-2 text-white/60">Copy, adapt, ship.</span>
               </h1>
 
               {/* Subtext */}
-              <p className="text-lg text-white/50 max-w-2xl leading-relaxed">
+              <p className="text-[17px] md:text-xl text-white/80 max-w-2xl leading-relaxed">
                 A clear monetization ladder: free templates to start, premium systems to ship,
                 and implementation offers when you want acceleration.
               </p>
@@ -284,7 +284,7 @@ export default function TemplatesPage() {
           <div className="max-w-5xl mx-auto px-6">
             <div className="mb-8 flex items-center gap-3">
               <Gift className="w-5 h-5 text-emerald-300" />
-              <h2 className="text-2xl font-semibold text-white">Free Templates</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Free Templates</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {freeTemplates.map((template, i) => (
@@ -299,7 +299,7 @@ export default function TemplatesPage() {
           <div className="max-w-5xl mx-auto px-6">
             <div className="mb-8 flex items-center gap-3">
               <Crown className="w-5 h-5 text-amber-300" />
-              <h2 className="text-2xl font-semibold text-white">Premium Templates</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Premium Templates</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               {premiumTemplates.map((template, i) => (
@@ -314,7 +314,7 @@ export default function TemplatesPage() {
           <div className="max-w-5xl mx-auto px-6">
             <div className="mb-8 flex items-center gap-3">
               <Rocket className="w-5 h-5 text-cyan-300" />
-              <h2 className="text-2xl font-semibold text-white">Upsell: Done With You / For You</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Upsell: Done With You / For You</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {upsellOffers.map((template, i) => (
@@ -332,23 +332,23 @@ export default function TemplatesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                 Need a full template roadmap?
               </h2>
-              <p className="text-white/50 mb-8">
+              <p className="text-[17px] leading-relaxed text-white/80 mb-8">
                 Start free, graduate to premium, then use coaching/workshops for implementation speed.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/shop/templates"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
                 >
                   Browse Premium Templates
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/coaching"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 font-medium transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
                 >
                   Book Coaching
                 </Link>

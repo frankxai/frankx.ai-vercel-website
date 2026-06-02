@@ -48,13 +48,13 @@ export default async function BlueprintPage({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0b]">
+    <main className="min-h-screen bg-void">
       {/* Header */}
       <section className="pt-32 pb-12 border-b border-white/5">
         <div className="mx-auto max-w-4xl px-6">
           <Link
             href="/ai-architecture/blueprints"
-            className="mb-6 inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white"
+            className="mb-6 inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void rounded"
           >
             <ChevronLeft className="h-4 w-4" />
             All Blueprints
@@ -69,8 +69,8 @@ export default async function BlueprintPage({ params }: Props) {
             </span>
           </div>
 
-          <h1 className="mb-4 text-4xl font-bold text-white">{blueprint.title}</h1>
-          <p className="mb-6 text-lg text-slate-400">{blueprint.subtitle}</p>
+          <h1 className="mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">{blueprint.title}</h1>
+          <p className="mb-6 text-[17px] md:text-xl leading-relaxed text-white/80">{blueprint.subtitle}</p>
 
           {/* Meta info */}
           <div className="flex flex-wrap gap-4 text-sm">
@@ -134,14 +134,14 @@ export default async function BlueprintPage({ params }: Props) {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/ai-architecture/prototypes"
-              className="flex items-center gap-2 rounded-full bg-violet-500 px-5 py-2.5 font-semibold text-white transition-all hover:-translate-y-0.5"
+              className="flex items-center gap-2 rounded-full bg-violet-500 px-5 py-2.5 font-semibold text-white transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               <Play className="h-4 w-4" />
               Try Prototype (BYOK)
             </Link>
             <Link
               href="/ai-architecture/templates"
-              className="flex items-center gap-2 rounded-full border border-emerald-500/30 px-5 py-2.5 font-semibold text-emerald-400 transition-all hover:bg-emerald-500/10"
+              className="flex items-center gap-2 rounded-full border border-emerald-500/30 px-5 py-2.5 font-semibold text-emerald-400 transition-all hover:bg-emerald-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               <Package className="h-4 w-4" />
               Get Template
@@ -167,14 +167,14 @@ export default async function BlueprintPage({ params }: Props) {
 
           {/* Overview */}
           <div className="mb-12">
-            <h2 className="mb-4 text-2xl font-bold text-white">Overview</h2>
-            <p className="text-slate-400 leading-relaxed">{blueprint.overview}</p>
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Overview</h2>
+            <p className="text-[17px] leading-relaxed text-white/80">{blueprint.overview}</p>
           </div>
 
           {/* Interactive Architecture Diagram */}
           {blueprint.architecture.components.length > 0 && (
             <div className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Architecture</h2>
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Architecture</h2>
               <BlueprintDiagramWrapper
                 components={blueprint.architecture.components}
                 flows={blueprint.architecture.flows}
@@ -186,7 +186,7 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Components */}
           {blueprint.architecture.components.length > 0 && (
             <div className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Components</h2>
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Components</h2>
               <div className="space-y-4">
                 {blueprint.architecture.components.map((component) => (
                   <div
@@ -214,7 +214,7 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Implementation Steps */}
           {blueprint.implementationSteps.length > 0 && (
             <div className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Implementation Steps</h2>
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Implementation Steps</h2>
               <div className="space-y-6">
                 {blueprint.implementationSteps.map((step) => (
                   <div key={step.phase} className="rounded-xl border border-white/10 bg-white/5 p-6">
@@ -260,7 +260,7 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Code Examples */}
           {blueprint.codeExamples.length > 0 && (
             <div className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Code Examples</h2>
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Code Examples</h2>
               <div className="space-y-6">
                 {blueprint.codeExamples.map((example) => (
                   <div key={example.id} className="rounded-xl border border-white/10 bg-white/5 p-6">
@@ -280,7 +280,7 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Cost Breakdown */}
           {blueprint.estimatedCost && (
             <div className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Cost Estimate</h2>
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Cost Estimate</h2>
               <div className="rounded-xl border border-white/10 bg-white/5 p-6">
                 <div className="mb-6 flex items-center gap-4">
                   <div>
@@ -329,7 +329,7 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Use Cases */}
           {blueprint.useCases.length > 0 && (
             <div className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Use Cases</h2>
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Use Cases</h2>
               <div className="flex flex-wrap gap-2">
                 {blueprint.useCases.map((useCase, i) => (
                   <span
@@ -345,7 +345,7 @@ export default async function BlueprintPage({ params }: Props) {
 
           {/* Technologies */}
           <div className="mb-12">
-            <h2 className="mb-4 text-2xl font-bold text-white">Technologies</h2>
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Technologies</h2>
             <div className="flex flex-wrap gap-2">
               {blueprint.technologies.map((tech) => (
                 <span
@@ -361,10 +361,10 @@ export default async function BlueprintPage({ params }: Props) {
       </section>
 
       {/* CTA */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-20 lg:py-28 border-t border-white/5">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-4 text-2xl font-bold text-white">Ready to Build?</h2>
-          <p className="mb-6 text-slate-400">
+          <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Ready to Build?</h2>
+          <p className="mb-6 text-[17px] leading-relaxed text-white/80">
             Deploy this architecture in minutes, or get the production-ready template with full source code.
           </p>
 
@@ -389,14 +389,14 @@ export default async function BlueprintPage({ params }: Props) {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/ai-architecture/prototypes"
-              className="flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5"
+              className="flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               <Play className="h-5 w-5" />
               Try Prototype
             </Link>
             <Link
               href="/ai-architecture/templates"
-              className="flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5"
+              className="flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               <Package className="h-5 w-5" />
               Get Template
