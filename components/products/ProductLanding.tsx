@@ -90,7 +90,7 @@ export default function ProductLanding({ product }: Props) {
                 animate={{ opacity: 1, y: 0 }}
                 className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm font-medium mb-8"
               >
-                <Shield className="w-4 h-4 mr-2" />
+                <Shield className="w-4 h-4 mr-2" aria-hidden="true" />
                 {product.badge}
               </motion.div>
             )}
@@ -121,7 +121,7 @@ export default function ProductLanding({ product }: Props) {
             >
               {product.hero.benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center justify-center text-lg text-slate-200">
-                  <Check className="w-6 h-6 text-green-400 mr-3 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-green-400 mr-3 flex-shrink-0" aria-hidden="true" />
                   <span>{benefit}</span>
                 </div>
               ))}
@@ -150,13 +150,16 @@ export default function ProductLanding({ product }: Props) {
                   {product.urgency && (
                     <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-6">
                       <div className="flex items-center justify-center text-red-300 text-sm font-medium">
-                        <Clock className="w-4 h-4 mr-2" />
+                        <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
                         {product.urgency.message}
                       </div>
                     </div>
                   )}
 
-                  <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
+                  <button
+                    type="button"
+                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  >
                     {product.cta.primary}
                   </button>
 
@@ -199,9 +202,9 @@ export default function ProductLanding({ product }: Props) {
                 transition={{ delay: index * 0.1 }}
                 className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-xl p-6"
               >
-                <div className="flex mb-4">
+                <div className="flex mb-4" aria-label="5 out of 5 stars">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" aria-hidden="true" />
                   ))}
                 </div>
                 <p className="text-slate-200 mb-4 italic">"{testimonial.text}"</p>
@@ -289,7 +292,7 @@ export default function ProductLanding({ product }: Props) {
                 <ul className="space-y-4">
                   {section.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start">
-                      <Check className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-slate-200">{item}</span>
                     </li>
                   ))}
@@ -330,7 +333,7 @@ export default function ProductLanding({ product }: Props) {
       <section className="py-16 bg-gradient-to-r from-green-900/20 to-emerald-900/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-slate-800/50 backdrop-blur-sm border border-green-500/30 rounded-2xl p-8">
-            <Shield className="w-16 h-16 text-green-400 mx-auto mb-6" />
+            <Shield className="w-16 h-16 text-green-400 mx-auto mb-6" aria-hidden="true" />
             <h3 className="text-2xl font-bold mb-4 text-green-300">{product.guarantee.badge}</h3>
             <p className="text-lg text-slate-200 mb-6">{product.guarantee.promise}</p>
             <div className="text-3xl font-bold text-green-400">{product.guarantee.period} Guarantee</div>
@@ -348,26 +351,34 @@ export default function ProductLanding({ product }: Props) {
           </div>
 
           <div className="space-y-4">
-            {product.faq.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-xl overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full text-left p-6 font-semibold text-slate-100 hover:bg-slate-700/20 transition-colors"
+            {product.faq.map((item, index) => {
+              const panelId = `product-faq-panel-${index}`
+              const buttonId = `product-faq-button-${index}`
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-xl overflow-hidden"
                 >
-                  {item.question}
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-6 text-slate-200">
-                    {item.answer}
-                  </div>
-                )}
-              </motion.div>
-            ))}
+                  <button
+                    id={buttonId}
+                    type="button"
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    aria-expanded={openFaq === index}
+                    aria-controls={panelId}
+                    className="w-full text-left p-6 font-semibold text-slate-100 hover:bg-slate-700/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-inset"
+                  >
+                    {item.question}
+                  </button>
+                  {openFaq === index && (
+                    <div id={panelId} role="region" aria-labelledby={buttonId} className="px-6 pb-6 text-slate-200">
+                      {item.answer}
+                    </div>
+                  )}
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -395,14 +406,17 @@ export default function ProductLanding({ product }: Props) {
                 </span>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
+              <button
+                type="button"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
                 {product.cta.primary}
               </button>
 
               <p className="text-slate-400 text-sm mb-4">{product.cta.secondary}</p>
 
               <div className="flex items-center justify-center text-sm text-slate-500">
-                <ArrowRight className="w-4 h-4 mr-2" />
+                <ArrowRight className="w-4 h-4 mr-2" aria-hidden="true" />
                 {product.cta.afterPurchase}
               </div>
             </div>

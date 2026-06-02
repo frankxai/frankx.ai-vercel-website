@@ -110,7 +110,7 @@ export function RolePathCards() {
               onClick={() =>
                 trackEvent('connect_path_clicked', { path: path.id, destination: path.href })
               }
-              className={`group relative flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all hover:bg-white/[0.06] ${ACCENT_RING[path.accent]}`}
+              className={`group relative flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${ACCENT_RING[path.accent]}`}
             >
               <div className="flex items-center justify-between">
                 <span className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${ACCENT_ICON_BG[path.accent]}`}>

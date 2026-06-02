@@ -43,12 +43,12 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
       <div className="relative mx-auto max-w-5xl px-6 pb-16 pt-24 text-center text-slate-100">
         {COMING_SOON_MODE ? (
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-amber-100">
-            <Sparkles className="h-4 w-4" />
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
             Coming Soon
           </div>
         ) : badge ? (
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-cyan-100">
-            <Shield className="h-4 w-4" />
+            <Shield className="h-4 w-4" aria-hidden="true" />
             {badge}
           </div>
         ) : null}
@@ -66,9 +66,9 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
             <Link
               href="/newsletter"
               onClick={() => handleClick('primary')}
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_50px_rgba(45,212,191,0.35)] transition hover:-translate-y-1"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_50px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="h-4 w-4" aria-hidden="true" />
               Join Waitlist
             </Link>
           ) : (
