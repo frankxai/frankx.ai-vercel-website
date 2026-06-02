@@ -347,7 +347,7 @@ export default function Module1Page() {
               <div className="pt-2">
                 <h3 className="text-lg font-semibold text-white mb-4">Installation</h3>
                 <p className="mb-4">
-                  You need Node.js 18+ installed. Then run a single command:
+                  You need Node.js 20+ installed (Node 22 LTS recommended). Then run a single command:
                 </p>
                 <CodeBlock code="npm install -g @anthropic-ai/claude-code" />
               </div>

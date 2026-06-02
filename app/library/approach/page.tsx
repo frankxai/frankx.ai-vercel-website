@@ -68,7 +68,7 @@ function ArticleJsonLd() {
         name: 'Library OS',
         codeRepository: REPO_URL,
         programmingLanguage: 'TypeScript',
-        runtimePlatform: 'Next.js 14+',
+        runtimePlatform: 'Next.js 16+',
         license: 'MIT',
         author: { '@type': 'Person', name: 'Frank', url: SITE_URL },
       },

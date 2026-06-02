@@ -4,7 +4,7 @@
 **Branch (default):** `main` · **Active feature:** `feature/prompt-hub`
 **Live site:** https://frankx.ai (deploys from a *different* repo — see "Deploy" below)
 **Stack:** Next.js 16 App Router · React 18.3 · TypeScript 5.7 · Tailwind 3.4 · Vercel · pnpm/npm
-**Last touched:** 2026-05-20
+**Last touched:** 2026-06-02
 
 ## Current sprint (W21, 2026-05-18 → 24)
 

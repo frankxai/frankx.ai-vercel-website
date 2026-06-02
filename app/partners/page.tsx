@@ -415,7 +415,7 @@ export default function PartnersPage() {
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-zinc-400 leading-relaxed">
               Partnership status evolves. If a partnership ends or changes kind, this
-              page is updated within 48 hours. Last updated: 2026-05-08.
+              page is updated within 48 hours. Last updated: 2026-06-02.
             </p>
           </div>
         </div>

@@ -33,7 +33,7 @@ reviews:
   path_instructions:
     - path: "app/**"
       instructions: |
-        Next.js 14+ App Router. Prefer Server Components by default.
+        Next.js 16 App Router. Prefer Server Components by default.
         Client components only when interactivity requires it — flag unnecessary 'use client'.
         Respect FrankX Prime Directive from CLAUDE.md: never suggest renaming or deleting existing routes without explicit reason. "AI Architect" stays "AI Architect".
     - path: "components/**"
