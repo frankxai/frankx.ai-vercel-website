@@ -2,6 +2,3 @@
 # Add branch names below (one per line) and commit to main.
 # The Branch Cleanup workflow will delete them and clear this file.
 # See BRANCH_AUDIT.md for the canonical safe-delete list.
-chore/normalize-line-endings-2026-05
-feat/smart-404-routing
-hotfix/mobile-nav-restore
