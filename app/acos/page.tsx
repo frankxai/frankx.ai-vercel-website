@@ -508,6 +508,47 @@ export default function ACOSPage() {
         </div>
       </section>
 
+      {/* ─── Runs across every major AI tool ─── */}
+      <section className="border-t border-white/5 bg-[#06060a] py-16">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mb-8 text-center">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70">
+              Portable by design
+            </div>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              One system. Every major AI tool.
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-white/70">
+              ACOS isn&apos;t locked to a single assistant. The same agents, commands, and
+              skills run natively across the five harnesses creators actually use &mdash; so
+              your system moves with you, whatever you build in.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-5">
+            {[
+              { n: 'Claude Code', t: 'Reference', d: 'The canonical implementation. Full native integration.' },
+              { n: 'Codex', t: 'OpenAI', d: 'Coding agent for review and second-opinion passes.' },
+              { n: 'Gemini', t: 'Google', d: 'The same commands and catalog inside Google’s CLI.' },
+              { n: 'Antigravity', t: 'Agentic IDE', d: 'Build and creative work with full parity.' },
+              { n: 'Grok', t: 'xAI', d: 'Real-time TUI with subagents, image, and video.' },
+            ].map((h) => (
+              <div key={h.n} className="rounded-xl border border-white/10 bg-white/[0.015] p-4 text-sm">
+                <div className="font-semibold text-white">
+                  {h.n} <span className="text-[10px] text-white/50">&middot; {h.t}</span>
+                </div>
+                <div className="mt-1 text-xs leading-tight text-white/60">{h.d}</div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-white/45">
+            Build once, run anywhere. Your agents and workflows port across tools instead of
+            locking you to one vendor.
+          </p>
+        </div>
+      </section>
+
       {/* ─── Final CTA ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
