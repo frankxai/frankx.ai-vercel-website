@@ -1,0 +1,82 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#05070F" />
+      <stop offset="0.5" stop-color="#0B1530" />
+      <stop offset="1" stop-color="#070B18" />
+    </linearGradient>
+    <linearGradient id="glimmer" x1="320" y1="120" x2="1320" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0078D4" stop-opacity="0.30" />
+      <stop offset="0.5" stop-color="#50E6FF" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0.22" />
+    </linearGradient>
+    <radialGradient id="pulse" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 430) rotate(90) scale(640 540)">
+      <stop offset="0" stop-color="#0078D4" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#0078D4" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16233F" />
+      <stop offset="1" stop-color="#0C1428" />
+    </linearGradient>
+    <linearGradient id="accentA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#50E6FF" /><stop offset="1" stop-color="#0078D4" />
+    </linearGradient>
+    <linearGradient id="accentB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A78BFA" /><stop offset="1" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="accentC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDBA74" /><stop offset="1" stop-color="#F97316" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect width="1600" height="900" fill="url(#pulse)" />
+  <rect x="120" y="90" width="1360" height="720" rx="56" fill="#0A1224" fill-opacity="0.72" stroke="#1E2C4C" stroke-opacity="0.55" />
+  <rect x="120" y="90" width="1360" height="720" rx="56" fill="url(#glimmer)" fill-opacity="0.5" />
+
+  <!-- Title block -->
+  <rect x="190" y="160" width="150" height="34" rx="17" fill="#0078D4" fill-opacity="0.18" stroke="#0078D4" stroke-opacity="0.5" />
+  <text x="265" y="183" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="2" fill="#7FD3FF" text-anchor="middle">MICROSOFT AI</text>
+  <text x="190" y="270" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="74" font-weight="800" fill="#FFFFFF">7 New MAI Models</text>
+  <text x="190" y="328" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="30" font-weight="400" fill="#9FB3D1">Microsoft&#8217;s first fully in-house frontier family &#8212; on MAIA silicon</text>
+
+  <!-- Model tiles: row 1 -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <!-- Thinking-1 (hero tile) -->
+    <rect x="190" y="400" width="300" height="160" rx="22" fill="url(#tile)" stroke="#2A6FB0" stroke-opacity="0.7" />
+    <circle cx="232" cy="442" r="14" fill="url(#accentB)" />
+    <text x="262" y="448" font-size="22" font-weight="700" fill="#FFFFFF">MAI-Thinking-1</text>
+    <text x="214" y="492" font-size="16" fill="#8FA6C4">35B-active MoE &#183; 256K ctx</text>
+    <text x="214" y="522" font-size="15" fill="#6F86A6">Text reasoning foundation</text>
+
+    <rect x="510" y="400" width="300" height="160" rx="22" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <circle cx="552" cy="442" r="14" fill="url(#accentA)" />
+    <text x="582" y="448" font-size="22" font-weight="700" fill="#FFFFFF">MAI-Image-2.5</text>
+    <text x="534" y="492" font-size="16" fill="#8FA6C4">+ Flash variant</text>
+    <text x="534" y="522" font-size="15" fill="#6F86A6">Image gen &amp; editing</text>
+
+    <rect x="830" y="400" width="300" height="160" rx="22" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <circle cx="872" cy="442" r="14" fill="url(#accentC)" />
+    <text x="902" y="448" font-size="22" font-weight="700" fill="#FFFFFF">MAI-Code-1-Flash</text>
+    <text x="854" y="492" font-size="16" fill="#8FA6C4">5B params &#183; VS Code</text>
+    <text x="854" y="522" font-size="15" fill="#6F86A6">Inference-efficient coding</text>
+
+    <rect x="1150" y="400" width="240" height="160" rx="22" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <circle cx="1192" cy="442" r="14" fill="url(#accentA)" />
+    <text x="1222" y="448" font-size="22" font-weight="700" fill="#FFFFFF">MAI-Voice-2</text>
+    <text x="1174" y="492" font-size="16" fill="#8FA6C4">+ Flash variant</text>
+    <text x="1174" y="522" font-size="15" fill="#6F86A6">Speech</text>
+
+    <!-- Row 2 -->
+    <rect x="190" y="592" width="460" height="118" rx="22" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <circle cx="232" cy="634" r="14" fill="url(#accentB)" />
+    <text x="262" y="640" font-size="22" font-weight="700" fill="#FFFFFF">MAI-Transcribe-1.5</text>
+    <text x="214" y="682" font-size="15" fill="#6F86A6">Speech-to-text transcription</text>
+
+    <rect x="670" y="592" width="720" height="118" rx="22" fill="#0A1326" stroke="#2A6FB0" stroke-opacity="0.45" />
+    <text x="700" y="636" font-size="19" font-weight="600" fill="#7FD3FF">Microsoft Frontier Tuning</text>
+    <text x="700" y="676" font-size="16" fill="#8FA6C4">Custom, company-specific agents &#183; Mayo Clinic &#183; MAIA 200</text>
+  </g>
+
+  <text x="190" y="772" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#5C6F8E">FrankX &#183; Intelligence Dispatch &#183; Metrics vendor-claimed, pending independent reproduction</text>
+</svg>

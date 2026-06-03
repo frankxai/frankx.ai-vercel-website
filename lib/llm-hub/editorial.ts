@@ -52,6 +52,28 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     bestFor: ['High-throughput video gen', 'Cost-sensitive creative pipelines'],
     creatorUse: 'Bulk short-form video generation where speed and cost beat cinematic fidelity.',
   },
+  'mai-thinking-1': {
+    tagline: 'Microsoft’s in-house reasoning flagship — frontier ambitions on MAIA silicon.',
+    bestFor: [
+      'Watching Microsoft’s full-stack frontier play (chip + model + tuning)',
+      'Math/reasoning workloads (vendor-claimed 97% AIME 2025)',
+      'Frontier Tuning into custom company-specific agents',
+    ],
+    watchOut: 'Vendor-claimed at launch — human-rater preference over Sonnet 4.6 and SWE-Bench Pro figures are unreproduced. Await LMArena/ARC/Artificial Analysis before trusting in production.',
+    creatorUse: 'One to track, not yet to standardize on. Re-evaluate once independent benchmarks land.',
+  },
+  'mai-image-2-5': {
+    tagline: 'Microsoft’s image model — claimed #2 leaderboard, ahead of Nano Banana 2 on editing.',
+    bestFor: ['Image generation and editing pipelines', 'High-volume creative work via the Flash variant'],
+    watchOut: 'Leaderboard claim is vendor-stated; the LMArena image arena will confirm or debunk it fast.',
+    creatorUse: 'The Flash variant is the interesting one for bulk image-editing loops once it’s live.',
+  },
+  'mai-code-1-flash': {
+    tagline: 'Tiny (5B), IDE-native coding model — the per-keystroke lane, not the architect.',
+    bestFor: ['In-editor completion in VS Code / GitHub Copilot CLI', 'High-frequency, low-latency coding assists'],
+    watchOut: 'Vendor-claimed 51% SWE-Bench Pro. Benchmark size ≠ how it feels on your repo — pilot before adopting.',
+    creatorUse: 'Cheap, fast in-editor help; route real architecture work to a frontier model.',
+  },
   'claude-opus-4-6': {
     tagline: 'The reasoning + long-context flagship. THE model for high-stakes synthesis.',
     bestFor: [
