@@ -7,11 +7,11 @@ const ALLOW = '#8C9A5B'
 const DENY = '#C2624F'
 
 export function IamMatrix({ catalog }: { catalog: Catalog }) {
-  const profiles = Object.entries(catalog.iam)
+  const profiles = Object.entries(catalog.iam || {})
   // Universe of tools across all profiles
   const tools = [
     ...new Set(
-      profiles.flatMap(([, p]) => [...(p.allowedTools || []), ...(p.deniedTools || [])]),
+      profiles.flatMap(([, p]) => [...(p?.allowedTools || []), ...(p?.deniedTools || [])]),
     ),
   ].sort()
 

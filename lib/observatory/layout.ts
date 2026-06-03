@@ -52,10 +52,10 @@ export function computeLayout(
 
   const matches = (n: CatalogNode) =>
     !q ||
-    n.name.toLowerCase().includes(q) ||
-    n.description.toLowerCase().includes(q) ||
-    n.group.toLowerCase().includes(q) ||
-    (n.keywords || []).some((k) => k.toLowerCase().includes(q))
+    (n.name ?? '').toLowerCase().includes(q) ||
+    (n.description ?? '').toLowerCase().includes(q) ||
+    (n.group ?? '').toLowerCase().includes(q) ||
+    (n.keywords || []).some((k) => (k ?? '').toLowerCase().includes(q))
 
   // Group into bands
   const bandMap = new Map<string, CatalogNode[]>()

@@ -26,7 +26,9 @@ export function ObservatoryShell({ catalog }: { catalog: Catalog }) {
 
   const tierCounts = useMemo(() => {
     const c: Record<string, number> = { haiku: 0, sonnet: 0, opus: 0 }
-    for (const n of catalog.nodes) if (n.kind === 'agent' && n.tier) c[n.tier]++
+    for (const n of catalog?.nodes || []) {
+      if (n.kind === 'agent' && n.tier && n.tier in c) c[n.tier]++
+    }
     return c
   }, [catalog])
 
@@ -51,9 +53,9 @@ export function ObservatoryShell({ catalog }: { catalog: Catalog }) {
             </h1>
             <p className="mt-0.5 text-sm" style={{ color: palette.creamDim }}>
               The Agentic Creator OS fleet —{' '}
-              <span style={{ color: palette.clayBright }}>{catalog.counts.agent} agents</span>,{' '}
-              {catalog.counts.skill} skills, {catalog.counts.command} commands,{' '}
-              {catalog.counts.workflow} workflows.
+              <span style={{ color: palette.clayBright }}>{catalog.counts?.agent ?? 0} agents</span>,{' '}
+              {catalog.counts?.skill ?? 0} skills, {catalog.counts?.command ?? 0} commands,{' '}
+              {catalog.counts?.workflow ?? 0} workflows.
             </p>
           </div>
           <div className="flex items-center gap-3 text-xs" style={{ color: palette.creamFaint }}>

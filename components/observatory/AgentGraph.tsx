@@ -47,22 +47,19 @@ export function AgentGraph({
   const [nodes, setNodes, onNodesChange] = useNodesState(layout.rfNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(layout.rfEdges)
 
-  // Re-layout when inputs change
+  // Sync nodes/edges whenever layout, live-active ids, or selection changes.
+  // Unified so a layout change (view/filter/search) never drops the active or
+  // selected highlight — both are re-derived here every time.
   useEffect(() => {
-    setNodes(layout.rfNodes)
-    setEdges(layout.rfEdges)
-  }, [layout, setNodes, setEdges])
-
-  // Apply live-active flags without recomputing layout
-  useEffect(() => {
-    if (!activeIds) return
-    setNodes((ns) =>
-      ns.map((n) => ({
+    setNodes(
+      layout.rfNodes.map((n) => ({
         ...n,
-        data: { ...n.data, active: activeIds.has(n.id) },
+        selected: n.id === selectedId,
+        data: { ...n.data, active: activeIds?.has(n.id) ?? false },
       })),
     )
-  }, [activeIds, setNodes])
+    setEdges(layout.rfEdges)
+  }, [layout, activeIds, selectedId, setNodes, setEdges])
 
   return (
     <div className="relative h-full w-full" style={{ background: palette.kraft }}>
