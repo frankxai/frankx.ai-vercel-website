@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-PAT='soul-aligned|soul purpose|transformation ritual|awakening|consciousness|unlock the power|unleash|supercharge|elevate your|harness the power|synergy|seamless|cutting-edge|game-chang|revolutioniz|revolutionary|next level|in today.?s (fast|world|digital)|fast-paced|ever-evolving|deep dive|delve|embark on|tapestry|testament to|look no further|in the realm of|realm of|skyrocket|effortless|paradigm shift|world-class|level up|dive into'
+PAT='soul-aligned|soul purpose|transformation ritual|awakening|consciousness|unlock the power|unleash|supercharge|elevate your|harness the power|synergy|seamless|cutting-edge|game-chang|revolutioniz|revolutionary|next level|in today'\''?s (fast|world|digital)|fast-paced|ever-evolving|deep dive|delve|embark on|tapestry|testament to|look no further|in the realm of|realm of|skyrocket|effortless|paradigm shift|world-class|level up|dive into'
 
 TARGET="${1:-}"
 INCLUDES=(--include=*.tsx --include=*.ts --include=*.mdx --include=*.md)
@@ -20,7 +20,10 @@ if [ -n "$TARGET" ]; then
   exit 0
 fi
 
-echo "Top files by slop-term density (app/ + components/, excluding api routes & prompt templates):"
+# Excludes app/api/ — that's where AI prompt-generation files live (their prompt
+# templates legitimately contain words like "leverage/seamless"). User-facing
+# copy under app/resources/templates etc. IS audited.
+echo "Top files by slop-term density (app/ + components/, excluding app/api/ prompt-gen routes):"
 grep -rEil "$PAT" app components "${INCLUDES[@]}" 2>/dev/null \
   | grep -vE '^app/api/' \
   | while read -r f; do
