@@ -265,7 +265,7 @@ export default function Models2026Page() {
                     <div className="p-2 rounded-lg bg-white/[0.03]">
                       <p className="text-[10px] text-white/30 uppercase tracking-wider mb-0.5">Price In/Out</p>
                       <p className="text-sm font-mono font-medium text-white/80">
-                        {m.pricing.input === 0 ? (m.tags.includes('preview') ? 'Preview' : 'Open') : `$${m.pricing.input}/$${m.pricing.output}`}
+                        {m.pricing.input === 0 ? (m.tags?.includes('preview') ? 'Preview' : 'Open') : `$${m.pricing.input}/$${m.pricing.output}`}
                       </p>
                     </div>
                   </div>
