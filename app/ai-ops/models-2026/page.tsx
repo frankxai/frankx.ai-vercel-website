@@ -126,6 +126,23 @@ const frontierModels = [
     },
     notes: 'Most cost-effective reasoning model. Open-source under MIT license.',
   },
+  {
+    name: 'MAI-Thinking-1',
+    org: 'Microsoft AI',
+    released: 'Jun 2026',
+    context: '256K',
+    output: '—',
+    pricing: { input: 0, output: 0 },
+    achievement: 'Vendor-claimed: 97% AIME 2025, 53% SWE-Bench Pro, human-pref over Sonnet 4.6',
+    benchmarks: { aime2025: 97, sweBenchPro: 53 },
+    tags: ['reasoning', 'preview', 'in-house', 'MoE'],
+    color: '#0078d4',
+    highlight: false,
+    links: {
+      docs: 'https://microsoft.ai',
+    },
+    notes: 'Microsoft’s first in-house frontier family (7 MAI models inc. Image-2.5, Code-1-Flash) on MAIA 200 silicon. 35B-active MoE. Numbers vendor-claimed at launch — pending independent reproduction.',
+  },
 ]
 
 const benchmarkComparison = [
@@ -179,15 +196,18 @@ export default function Models2026Page() {
         <section className="pt-16 pb-16 md:pt-24 md:pb-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="text-[#a855f7] font-mono text-sm mb-4 tracking-wider uppercase">Updated February 2026</p>
+              <p className="text-[#a855f7] font-mono text-sm mb-4 tracking-wider uppercase">Updated June 2026</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">Frontier AI Models Intelligence Hub</h1>
               <p className="text-white/60 text-lg md:text-xl max-w-3xl mb-8 leading-relaxed">
                 Benchmarks, pricing, context windows, and capabilities for every frontier model worth tracking.
                 Data validated against official sources and independent benchmarks.
               </p>
               <div className="flex flex-wrap gap-3">
+                <Link href="/blog/microsoft-mai-frontier-models-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0078d4]/10 border border-[#0078d4]/20 hover:border-[#0078d4]/40 text-[#4cc2ff] text-sm transition-colors">
+                  <Zap className="w-4 h-4" /> New: Microsoft&apos;s 7 MAI Models
+                </Link>
                 <Link href="/blog/claude-opus-4-6-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#a855f7]/10 border border-[#a855f7]/20 hover:border-[#a855f7]/40 text-[#a855f7] text-sm transition-colors">
-                  <Crown className="w-4 h-4" /> New: Claude Opus 4.6 Deep Analysis
+                  <Crown className="w-4 h-4" /> Claude Opus 4.6 Deep Analysis
                 </Link>
                 <Link href="/research/agent-benchmarks" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 text-white/60 text-sm transition-colors">
                   <TrendingUp className="w-4 h-4" /> Benchmark Methodology
@@ -200,7 +220,7 @@ export default function Models2026Page() {
         {/* Frontier Models - Enhanced Cards */}
         <section className="py-16 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-2">Frontier Models (February 2026)</h2>
+            <h2 className="text-2xl font-bold mb-2">Frontier Models (June 2026)</h2>
             <p className="text-white/40 text-sm mb-8">Sorted by reasoning capability. Pricing per 1M tokens.</p>
             <div className="grid md:grid-cols-2 gap-4">
               {frontierModels.map((m, i) => (
@@ -245,7 +265,7 @@ export default function Models2026Page() {
                     <div className="p-2 rounded-lg bg-white/[0.03]">
                       <p className="text-[10px] text-white/30 uppercase tracking-wider mb-0.5">Price In/Out</p>
                       <p className="text-sm font-mono font-medium text-white/80">
-                        {m.pricing.input === 0 ? 'Open' : `$${m.pricing.input}/$${m.pricing.output}`}
+                        {m.pricing.input === 0 ? (m.tags?.includes('preview') ? 'Preview' : 'Open') : `$${m.pricing.input}/$${m.pricing.output}`}
                       </p>
                     </div>
                   </div>

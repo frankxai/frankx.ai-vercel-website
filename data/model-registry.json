@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-02-06",
+  "_updated": "2026-06-03",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
 
   "models": {
@@ -198,6 +198,72 @@
       "context_window": 1000000,
       "modalities": ["text", "vision"],
       "sources": []
+    },
+    "mai-thinking-1": {
+      "name": "MAI-Thinking-1",
+      "id": "mai-thinking-1",
+      "organization": "microsoft",
+      "family": "mai",
+      "released": "2026-06-02",
+      "status": "preview",
+      "architecture": "moe",
+      "parameters": "35B active",
+      "context_window": 256000,
+      "modalities": ["text", "code"],
+      "benchmarks": {
+        "aime_2025": 97,
+        "swe_bench_pro": 53,
+        "human_pref_vs_sonnet_4_6": "preferred (blind, Surge raters)"
+      },
+      "key_capabilities": [
+        "Text reasoning foundation model",
+        "35B-active mixture-of-experts",
+        "256K context window",
+        "Co-designed for Microsoft MAIA 200 silicon",
+        "Microsoft Frontier Tuning (custom company-specific agents)"
+      ],
+      "frankx_notes": "Vendor-claimed at launch (June 2, 2026) and not yet independently reproduced. Microsoft claims human-rater preference over Claude Sonnet 4.6 and SWE-Bench Pro alongside Opus 4.6. Treat benchmarks as marketing until LMArena/ARC/Artificial Analysis confirm.",
+      "sources": ["https://www.linkedin.com/in/mustafa-suleyman"]
+    },
+    "mai-image-2-5": {
+      "name": "MAI-Image-2.5",
+      "id": "mai-image-2-5",
+      "organization": "microsoft",
+      "family": "mai",
+      "released": "2026-06-02",
+      "status": "preview",
+      "modalities": ["image"],
+      "benchmarks": {
+        "image_leaderboard_rank": 2,
+        "image_editing": "claimed > Nano Banana 2"
+      },
+      "key_capabilities": [
+        "Image generation and editing",
+        "Flash variant for low-latency / lower-cost generation",
+        "Claimed #2 on image leaderboards at launch"
+      ],
+      "frankx_notes": "Vendor-claimed. The leaderboard claim is the fastest to verify via the LMArena image arena. Ships with a Flash variant for high-volume creative pipelines.",
+      "sources": ["https://www.linkedin.com/in/mustafa-suleyman"]
+    },
+    "mai-code-1-flash": {
+      "name": "MAI-Code-1-Flash",
+      "id": "mai-code-1-flash",
+      "organization": "microsoft",
+      "family": "mai",
+      "released": "2026-06-02",
+      "status": "preview",
+      "parameters": "5B",
+      "modalities": ["text", "code"],
+      "benchmarks": {
+        "swe_bench_pro": 51
+      },
+      "key_capabilities": [
+        "Inference-efficient coding model (~5B params, Haiku-class size)",
+        "Tuned for VS Code and GitHub Copilot CLI",
+        "In-editor, high-frequency / low-latency use"
+      ],
+      "frankx_notes": "Vendor-claimed 51% SWE-Bench Pro at 5B params. The efficiency/IDE-native lane, not a frontier reasoning model. Pilot it on your own repo once available.",
+      "sources": ["https://www.linkedin.com/in/mustafa-suleyman"]
     }
   },
 
@@ -226,6 +292,11 @@
       "name": "Meta AI",
       "url": "https://ai.meta.com",
       "models": ["llama-4-maverick"]
+    },
+    "microsoft": {
+      "name": "Microsoft AI",
+      "url": "https://microsoft.ai",
+      "models": ["mai-thinking-1", "mai-image-2-5", "mai-code-1-flash"]
     }
   },
 
@@ -236,5 +307,5 @@
     "haiku": "claude-haiku-4-5"
   },
 
-  "last_updated": "2026-02-06"
+  "last_updated": "2026-06-03"
 }
