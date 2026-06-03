@@ -1,0 +1,42 @@
+hub,route,tier,register,voice,fresh,reviewed_model,reviewed_date,priority,notes
+Home,/,1,mainstream,clean,current,Opus 4.8,2026-06-02,P0,Oracle scrub + honest counts + autoplay fix (#107/#110)
+ACOS,/acos,1,product,unaudited,unaudited,legacy,,P0,Verify 90+/60+/80+ counts vs repo
+AI Architecture Hub,/ai-architecture,1,enterprise,unaudited,unaudited,legacy,,P0,Central builder hub
+Music,/music,1,product,review,unaudited,legacy,,P1,MusicShell voice flagged
+Courses,/courses,1,mainstream,unaudited,current,Opus 4.8,2026-06-02,P1,Build-blocker fixed (#140)
+About,/about,1,mainstream,unaudited,unaudited,legacy,,P1,Story & mission
+Bio,/bio,1,enterprise,clean,current,Opus 4.8,2026-06-02,P1,Softened EMEA credential
+Build / Agentic Builder Lab,/build,1,enterprise,unaudited,unaudited,legacy,,P1,Build-in-public
+Start Here,/start,1,mainstream,unaudited,unaudited,legacy,,P1,First-touch funnel
+GenCreators,/gencreator,2,mainstream,unaudited,unaudited,legacy,,P2,Framework hub
+Learn Hub,/learn,2,mainstream,unaudited,unaudited,legacy,,P2,
+Explore / Resources,/resources,2,mainstream,review,unaudited,legacy,,P2,templates page has guru-slop
+Prompt Library,/prompt-library,2,mainstream,unaudited,unaudited,legacy,,P2,Verify 200+ count
+Research Hub,/research,2,enterprise,unaudited,unaudited,legacy,,P2,
+Intelligence Atlas,/intelligence-atlas,2,enterprise,unaudited,unaudited,legacy,,P2,
+Library,/library,2,mainstream,unaudited,unaudited,legacy,,P2,Verify 23 books/411K words
+Watch,/watch,2,mainstream,clean,current,Opus 4.8,2026-06-02,P2,Oracle scrub
+Developers,/developers,2,enterprise,unaudited,unaudited,legacy,,P2,
+AI World,/ai-world,2,enterprise,unaudited,unaudited,legacy,,P2,
+Work With Me,/work-with-me,2,enterprise,unaudited,unaudited,legacy,,P1,
+Consulting,/consulting,2,enterprise,unaudited,unaudited,legacy,,P1,Oracle scrub (#107)
+Coaching,/coaching,2,mainstream,unaudited,unaudited,legacy,,P2,Oracle scrub (#107)
+Workshops,/workshops,2,enterprise,unaudited,unaudited,legacy,,P2,
+Studio,/studio,2,mainstream,clean,current,Opus 4.8,2026-06-02,P2,enterprise-to-creator bridge copy
+Enterprise,/enterprise,2,enterprise,unaudited,unaudited,legacy,,P1,
+AI CoE,/ai-coe,2,enterprise,unaudited,unaudited,legacy,,P2,Build-your-own CoE
+Partnerships,/partnerships,2,enterprise,unaudited,unaudited,legacy,,P2,Oracle scrub (#107)
+Founders Circle,/founders-circle,2,mainstream,clean,current,Opus 4.8,2026-06-02,P2,Past-tense Oracle
+Content Studio,/content-studio,2,mainstream,rewrite,unaudited,legacy,,P2,aligned with soul purpose guru-slop
+AI Assessment,/ai-assessment,2,mainstream,review,unaudited,legacy,,P2,AI transformation OK; check rest
+Books,/books,2,mainstream,review,unaudited,legacy,,P2,books-registry flagged; verify count
+Golden Age,/golden-age,2,mainstream,unaudited,unaudited,legacy,,P2,Flagship book
+Blog,/blog,2,mainstream,review,stale,legacy,,P2,Per-post audit
+Rails / Canon,/canon,3,contemplative,clean,unaudited,legacy,,P3,Serif register by design — do not flatten
+Soulbook,/soulbook,3,contemplative,clean,unaudited,legacy,,P3,Product name; reflective intentional
+German family,/familie,3,personal-de,na,unaudited,legacy,,P3,Personal register
+Command Center,/command-center,3,na,na,na,legacy,,P3,Owner-only
+Ops,/ops,3,na,na,na,legacy,,P3,Owner-only
+Admin,/admin,3,na,na,na,legacy,,P3,Owner-only
+Dashboard,/dashboard,3,na,na,na,legacy,,P3,Owner-only
+Investment,/frankx-investment-dashboard,3,na,na,na,legacy,,P3,Owner-only
