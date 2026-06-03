@@ -117,6 +117,11 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   category: 'Technology',
+  // Google Search Console verification. Set GOOGLE_SITE_VERIFICATION in Vercel
+  // env to the token from Search Console → renders the meta tag automatically.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
   robots: {
     index: true,
     follow: true,
