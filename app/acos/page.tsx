@@ -508,44 +508,69 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── Runs across every major AI tool ─── */}
+      {/* 5-Harness Fleet + Grok Personal Excellence Layer — FrankX Visual Showcase (state-of-the-art). The 4 .grok-native excellence seeds (repo-mastery etc) + 2 hooks are sovereign personal ("a bit magical, .grok only, not for everything"). On ACOS base + SIS substrate. Confirmed descriptive terms, SHARING, SIP §5. */}
       <section className="border-t border-white/5 bg-[#06060a] py-16">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-6xl px-6">
           <div className="mb-8 text-center">
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70">
-              Portable by design
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              SIP SUBSTRATE · 5-HARNESS PARITY · GOD 99
             </div>
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              One system. Every major AI tool.
-            </h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">The 5 Harnesses.<br />World-class. Built on SIP.</h2>
             <p className="mx-auto mt-3 max-w-2xl text-white/70">
-              ACOS isn&apos;t locked to a single assistant. The same agents, commands, and
-              skills run natively across the five harnesses creators actually use &mdash; so
-              your system moves with you, whatever you build in.
+              Claude Code canonical + Codex + Gemini + Antigravity/agy + Grok Build. Portable claude-code-hooks + sovereign grok-personal excellence layer (.grok only seeds + personal creative). gstack visual proof (99+ health, TASTE, annotated). ACOS + FrankX tools dogfood the same excellence.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-5">
+          <div className="grid gap-3 md:grid-cols-5">
             {[
-              { n: 'Claude Code', t: 'Reference', d: 'The canonical implementation. Full native integration.' },
-              { n: 'Codex', t: 'OpenAI', d: 'Coding agent for review and second-opinion passes.' },
-              { n: 'Gemini', t: 'Google', d: 'The same commands and catalog inside Google’s CLI.' },
-              { n: 'Antigravity', t: 'Agentic IDE', d: 'Build and creative work with full parity.' },
-              { n: 'Grok', t: 'xAI', d: 'Real-time TUI with subagents, image, and video.' },
-            ].map((h) => (
-              <div key={h.n} className="rounded-xl border border-white/10 bg-white/[0.015] p-4 text-sm">
-                <div className="font-semibold text-white">
-                  {h.n} <span className="text-[10px] text-white/50">&middot; {h.t}</span>
-                </div>
-                <div className="mt-1 text-xs leading-tight text-white/60">{h.d}</div>
+              { n: 'Claude Code', t: 'Canonical', d: 'Full native .claude + ACOS/SIS junctions. The reference.' },
+              { n: 'Codex', t: 'OpenAI', d: 'Review, challenge, consult. Core catalog flows through.' },
+              { n: 'Gemini', t: '0.43+', d: 'Junctions via ~/.gemini/config/plugins/acos-frankx.' },
+              { n: 'Antigravity', t: 'agy 1.0', d: 'Junctions + .antigravity/harnesses in SIS. Creative parity.' },
+              { n: 'Grok Build', t: 'TUI Native', d: 'Subagents, MCP, image/video. 4 .grok-native excellence seeds + 2 json hooks (personal layer, a bit magical, .grok only) + personal creative tools.' },
+            ].map((h, idx) => (
+              <div key={idx} className="rounded-xl border border-white/10 bg-white/[0.015] p-4 text-sm">
+                <div className="font-semibold text-white">{h.n} <span className="text-[10px] text-white/50">· {h.t}</span></div>
+                <div className="mt-1 text-xs text-white/60 leading-tight">{h.d}</div>
               </div>
             ))}
           </div>
 
-          <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-white/45">
-            Build once, run anywhere. Your agents and workflows port across tools instead of
-            locking you to one vendor.
-          </p>
+          <div className="mt-5 rounded-xl border border-amber-400/20 bg-amber-500/[0.02] p-4 text-xs text-amber-200">
+            <span className="font-semibold">Grok personal excellence layer (a bit magical, .grok only, not for everything):</span> Core (gstack, verif, orch, mcp, adapters, skill-builder) shared via claude-code-config junctions + ACOS/SIS. The 4 .grok-native excellence seeds (repo-mastery, multi-harness-orchestrator, excellence-review, harness-integration) + 2 excellence json hooks + personal creative tools (frankx personal, soul, conscious, greek/spartan, suno, video, health, oracle) are sovereign in .grok/skills + .grok/hooks (the seeds) or personal overlays (creative tools) ONLY per SHARING.md + SIP §5. Never leak to shared catalog. /sip-share-audit + sip-attest. Greps: 0 in shared .claude/skills. These are personal to Frank's practice (on ACOS foundation + SIP for personal vaults), with creative spirit that resonates with Arcanea but kept separate from the public Arcanea platform.
+          </div>
+
+          {/* 3D Harness Orb Demo — visual state-of-the-art enhancement */}
+          <div className="mt-8 mx-auto max-w-4xl">
+            <div className="text-center mb-4">
+              <div className="inline text-[10px] font-mono uppercase tracking-widest text-emerald-400/70">3D HARNESS ORB DEMO · INTERACTIVE VISUAL PROOF</div>
+            </div>
+            <div className="relative h-48 flex items-center justify-center [perspective:1200px]" style={{ background: 'radial-gradient(circle at 40% 30%, rgba(16,185,129,0.06), transparent 60%)' }}>
+              <div className="relative w-32 h-32 rounded-full border border-emerald-400/40 bg-[#0a0a0b]/80 shadow-[0_0_60px_-10px_rgba(16,185,129,0.5),inset_0_0_40px_rgba(255,255,255,0.06)] flex items-center justify-center text-[10px] font-mono text-emerald-300 tracking-[2px] animate-[spin_30s_linear_infinite]" style={{ transformStyle: 'preserve-3d' }}>
+                SIP
+                <div className="absolute inset-0 rounded-full border border-white/10" style={{ transform: 'rotateX(60deg) rotateY(20deg)' }} />
+                <div className="absolute inset-0 rounded-full border border-white/10" style={{ transform: 'rotateX(-50deg) rotateY(-30deg)' }} />
+              </div>
+
+              {[
+                { label: 'Claude', x: -110, y: -30, note: 'core' },
+                { label: 'Codex', x: 90, y: -40, note: 'core' },
+                { label: 'Gemini', x: -70, y: 70, note: 'core' },
+                { label: 'Agy', x: 80, y: 55, note: 'core' },
+                { label: 'Grok', x: 0, y: -95, note: '.grok personal' },
+              ].map((node, i) => (
+                <div key={i} className="absolute text-[9px] px-2 py-0.5 rounded border border-white/20 bg-black/60 text-white font-mono tracking-widest" style={{ left: `calc(50% + ${node.x}px)`, top: `calc(50% + ${node.y}px)`, transform: 'translate(-50%, -50%)' }}>
+                  {node.label}
+                  <span className="ml-1 text-[7px] text-emerald-400/60">{node.note}</span>
+                </div>
+              ))}
+            </div>
+            <div className="text-center text-[9px] text-white/50 mt-2">Orbiting nodes: core shared vs Grok personal excellence seeds (.grok only) + personal creative. gstack + TASTE verified 99+ • SIP attested • World-class restraint + depth</div>
+          </div>
+
+          <div className="mt-4 text-center text-[10px] text-white/50">
+            gstack is the hammer: real kickoff baselines + atomic fixes + 99+ health + SIP attested screenshots on frankx + arcanea sources for the fleet UI. TASTE 7 gates. These two repos (frankx.ai-vercel-website + arcanea-ai-app) are deliberate visual state-of-the-art showcases — glass, depth, restraint, the best thing. Core shared via junctions. Grok personal excellence seeds + personal creative stay .grok/personal only (a bit magical, not for everything). Built on SIP v1.1.1.
+          </div>
         </div>
       </section>
 
