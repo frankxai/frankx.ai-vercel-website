@@ -77,6 +77,13 @@ const nextConfig = {
         destination: '/music/learn',
         permanent: true,
       },
+      // QR shortlink — bare /qr is handed out on slides/cards but had no route
+      // (404). Point it at the canonical QR asset page under /connect.
+      {
+        source: '/qr',
+        destination: '/connect/qr',
+        permanent: false,
+      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',
