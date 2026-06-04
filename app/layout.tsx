@@ -156,10 +156,13 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="en" href="https://frankx.ai" />
         <link rel="alternate" hrefLang="x-default" href="https://frankx.ai" />
         {aisSchemaGraph && (
-          <Script
+          // Plain <script>, NOT next/script: next/script client-re-injects
+          // inline content (throwing "appendChild: Invalid or unexpected token"
+          // on every page) and JSON-LD must be in the static SSR HTML for
+          // crawlers/AI agents anyway. Matches components/seo/JsonLd.tsx.
+          <script
             id="ais-schema-graph"
             type="application/ld+json"
-            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(aisSchemaGraph) }}
           />
         )}
