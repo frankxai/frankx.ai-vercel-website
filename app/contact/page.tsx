@@ -60,7 +60,7 @@ const services = [
 const faqs = [
   {
     question: 'What types of AI projects do you work on?',
-    answer: 'We specialize in conscious AI implementations including enterprise automation, creative AI systems like Vibe OS, strategic AI consulting, and comprehensive AI transformation programs for organizations of all sizes.'
+    answer: 'We build production AI systems: enterprise automation, agentic orchestration, creative AI tools like Vibe OS, and strategic AI consulting and transformation programs for organizations of all sizes.'
   },
   {
     question: 'How long does a typical engagement last?',
@@ -78,7 +78,7 @@ const faqs = [
 
 export const metadata = createMetadata({
   title: 'Contact FrankX.AI - AI Strategy & Consulting',
-  description: 'Get in touch for AI strategy consulting, enterprise implementations, and conscious AI solutions. Expert guidance for your AI transformation journey.',
+  description: 'Get in touch for AI strategy consulting, enterprise implementations, and production AI systems. Expert guidance for your AI transformation.',
   keywords: ['contact frankx ai', 'ai consulting contact', 'ai strategy consultation', 'enterprise ai help'],
   path: '/contact',
 })
@@ -104,8 +104,8 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              From strategic AI planning to full-scale implementations, we're here to guide your journey
-              into the intelligence age. Let's discuss how conscious AI can transform your organization.
+              From strategic AI planning to full-scale implementations, we help you ship systems that
+              work. Let's discuss how AI can move your organization forward.
             </p>
           </header>
 
@@ -226,7 +226,7 @@ export default function ContactPage() {
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
             <h2 className="text-4xl font-bold text-white">Start Your AI Transformation Today</h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Join forward-thinking organizations that are already building their intelligent future with conscious AI.
+              Join forward-thinking organizations that are already shipping real AI systems that deliver results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
