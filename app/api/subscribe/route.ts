@@ -46,6 +46,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'agentic-builder-lab': {
     topics: [TOPICS.newsletter, TOPICS['product-updates']],
   },
+  'premium-packs': {
+    topics: [TOPICS.newsletter, TOPICS['product-updates']],
+  },
   all: {
     topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']],
   },
