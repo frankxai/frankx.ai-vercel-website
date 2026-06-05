@@ -373,7 +373,7 @@ export default function Models2026Page() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} />
+                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} aria-hidden="true" />
                       <h3 className="font-bold text-lg">{m.name}</h3>
                       {m.highlight && <span className="px-2 py-0.5 text-[10px] rounded-full bg-[#a855f7]/20 text-[#a855f7] font-medium uppercase tracking-wider">New</span>}
                     </div>
@@ -439,7 +439,7 @@ export default function Models2026Page() {
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} aria-hidden="true" />
                     <h3 className="font-bold">{m.name}</h3>
                   </div>
                   <p className="text-sm text-white/40 mb-1">{m.org}</p>
@@ -451,8 +451,8 @@ export default function Models2026Page() {
                     <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">License</dt><dd className="font-mono text-white/70 text-right">{m.license}</dd></div>
                     <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">Run via</dt><dd className="font-mono text-white/50 text-right">{m.runners}</dd></div>
                   </dl>
-                  <Link href={`/blog/${m.slug}`} className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors">
-                    Deep dive <ArrowUpRight className="w-3.5 h-3.5" />
+                  <Link href={`/blog/${m.slug}`} className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors" aria-label={`Deep dive into ${m.name}`}>
+                    Deep dive <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </Link>
                 </motion.div>
               ))}

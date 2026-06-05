@@ -97,7 +97,7 @@ This is where the honesty has to sharpen, because the open-weight field moved ha
 | DeepSeek V4 | MIT | 671B-class MoE | Top overall open score | Multi-GPU server |
 | Qwen 3.5 | Apache 2.0 | 397B / 17B | Vision, 201 languages, 1M context | Multi-GPU server |
 | GLM-5 | MIT | Large MoE | 77.8% SWE-Bench Verified (coding) | Multi-GPU server |
-| Gemma 4 | Gemma terms | Dense + MoE | Google ecosystem, on-device | Varies |
+| Gemma 4 | Apache 2.0 | Dense + MoE | Google ecosystem, on-device | Varies |
 
 The verdict that holds up: **gpt-oss is no longer the highest-scoring open model, and that's fine, because it was never competing on raw score.** [DeepSeek V4](/blog/deepseek-v4-analysis-2026), Qwen 3.5, and GLM-5 top the aggregate leaderboards — but they're 400B-to-671B-class models that need a multi-GPU server to self-host. gpt-oss competes on a different axis: **capability per gigabyte of VRAM**. If your constraint is "one H100" or "my laptop," the comparison isn't 120b vs DeepSeek V4 — it's 120b vs whatever else fits on your hardware, and there gpt-oss is still one of the best reasoning-per-VRAM options with a clean Apache 2.0 license.
 
