@@ -1,0 +1,176 @@
+---
+title: "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU"
+description: "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4. Self-host specifics, verified benchmarks, license analysis, and which size for which job."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - google
+  - gemma
+  - open-weight-models
+  - local-llms
+  - ai-2026
+  - benchmarks
+keywords:
+  - gemma 4
+  - gemma 4 benchmarks
+  - gemma 4 vram requirements
+  - gemma 4 31b local
+  - gemma 4 vs gemma 3
+  - gemma 4 apache 2.0 license
+  - run gemma 4 ollama
+  - gemma 4 12b multimodal
+  - best open weight model 2026
+  - gemma 4 model sizes
+image: "/images/blog/gemma-3-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU
+
+**TL;DR**: Google's current run-it-yourself model is **Gemma 4**, released April 2, 2026 — not Gemma 3 anymore. The headline change is the license: Gemma 4 drops Google's custom "Gemma Terms" for plain **Apache 2.0**, which removes the biggest friction enterprises had with the prior generations. The lineup ships in five tiers — E2B, E4B, the new **12B** (added June 3, 2026), a **26B A4B** mixture-of-experts, and a **31B dense** flagship. The 31B hits a **1452 LMArena Elo** (vendor-reported #3 among open models) and runs in roughly **18GB of VRAM at Q4** — one consumer GPU. Context is up to 256K, with native vision and (on E2B/E4B/12B) audio. Here's what's verifiable, what's vendor-claimed, and which tier to actually run.
+
+---
+
+## Wait — Gemma 3 or Gemma 4?
+
+Quick housekeeping, because the URL says `gemma-3` and the model says Gemma 4. If you came here looking for Gemma 3, the short version is: it was superseded. **Gemma 3** (March 2025) shipped 1B/4B/12B/27B tiers under the Gemma Terms of Use, with a 128K context and text+vision. It was an excellent open model for its moment — the 27B posted a ~1338 Chatbot Arena Elo on a single H100, which was genuinely impressive for a dense model that size.
+
+As of June 2026, the current open-weight flagship is **Gemma 4**, and it's a real generational jump, not a point release. If you're standing up a self-hosted model today, Gemma 4 is the one to evaluate. Gemma 3 still works and the weights aren't going anywhere, but every number below is Gemma 4 unless I say otherwise.
+
+A note on sourcing, because precision matters with open models. Figures here are cross-referenced against Google's official [Gemma 4 announcement](https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/), the [Gemma 4 model card](https://ai.google.dev/gemma/docs/core/model_card_4) and [release notes](https://ai.google.dev/gemma/docs/releases), the [HuggingFace launch post](https://huggingface.co/blog/gemma4), independent coverage from [VentureBeat](https://venturebeat.com/technology/google-releases-gemma-4-under-apache-2-0-and-that-license-change-may-matter), and community self-host guides ([Unsloth](https://unsloth.ai/docs/models/gemma-4), Ollama). Where a benchmark is Google's own and not yet independently reproduced, I mark it **vendor-claimed**.
+
+---
+
+## What Are the Gemma 4 Size Tiers — and What Hardware Do They Need?
+
+This is the part that actually decides whether you can run it. Gemma 4 launched April 2, 2026 with four sizes; Google added a 12B dense multimodal model on June 3, 2026. The "E" in E2B/E4B stands for **effective** parameters — these models use Per-Layer Embeddings to hit a quality target with a smaller active footprint on-device.
+
+| Tier | Type | Params | Min VRAM (Q4) | Where it runs | Best for |
+|------|------|--------|---------------|---------------|----------|
+| **E2B** | Dense (PLE) | ~2.3B effective | ~2GB | Phone, Raspberry Pi, any laptop | On-device, edge, drafts |
+| **E4B** | Dense (PLE) | ~4.5B effective | ~4-6GB (8GB comfortable) | 8GB laptop GPU, M-series Mac | Edge chat, classification |
+| **12B** | Dense, unified multimodal | 12B | ~16GB | 16GB laptop / Mac unified memory | Local multimodal, audio+video |
+| **26B A4B** | MoE (4B active) | 26B total / ~3.8B active | ~15.6GB (24GB comfortable) | Single mid-range GPU | High throughput, agentic |
+| **31B** | Dense | ~30.7B | ~18GB (20GB safe) | One RTX 4090 / 5090, A100 | Max quality on one GPU |
+
+A few things worth pulling out of that table:
+
+**The 31B fits on one consumer GPU.** At Q4_K_M — the quantization the community has converged on — the 31B dense flagship needs roughly 18GB of VRAM, which a single 24GB card (4090, 5090) handles with headroom. Full BF16 precision wants ~64GB; 8-bit lands around 34GB. The Q4 sweet spot trades 3-5% benchmark quality for ~75% less memory — the trade nearly everyone running locally should take.
+
+**The 26B A4B is the throughput play.** Gemma's first mixture-of-experts model: 26B parameters loaded, but only ~3.8-4B active per token. You pay the full 26B in memory (~15.6GB at int4) but get tokens-per-second closer to a 4B model. The efficient pick when latency compounds across many calls.
+
+**The 12B is the news.** Released June 3, 2026 — two days before this post — it's a *unified, encoder-free* multimodal model: vision and audio flow directly into the LLM backbone with no separate encoder. It's the first mid-sized Gemma with **native audio input**, and it runs entirely locally on a typical 16GB enterprise laptop. A real capability shift for offline multimodal work, not a spec bump.
+
+**E2B runs basically anywhere** — two gigabytes at Q4, phone-class. The quality ceiling is what you'd expect from a ~2B effective model, but for on-device classification, extraction, and drafts it's a legitimate tool.
+
+To run any of these: `ollama run gemma4:31b` (needs Ollama v0.20+), `gemma4:26b`, `gemma4:12b`, `gemma4:4b`, or `gemma4:2b`. Ollama auto-selects a quantization that fits your memory, or pin it with `gemma4:31b-q4_K_M`. For more control there's **llama.cpp** with GGUF weights (the [Unsloth GGUF repos](https://unsloth.ai/docs/models/gemma-4) at `unsloth/gemma-4-31B-it-GGUF` are popular), **LM Studio** for a GUI, **HF Transformers** for fine-tuning (`google/gemma-4-31B-it`), and **vLLM** when you're serving the model to multiple users in production.
+
+---
+
+## What Are the Verified Benchmarks?
+
+Gemma 4's pitch is "byte for byte, the most capable open models" — and the benchmark story is built around the 31B dense flagship punching above its parameter class. Here's where the numbers actually land. Treat the LMArena Elo and the cross-checked academic benchmarks as well-corroborated; treat single-source academic jumps as vendor-claimed until third parties reproduce them.
+
+| Benchmark | Gemma 3 27B | Gemma 4 31B | What it measures |
+|-----------|-------------|-------------|------------------|
+| LMArena Elo (text) | ~1338 | **1452** | Human preference, head-to-head |
+| MMLU-Pro | 67.5 | **85.2%** | Hard multitask knowledge |
+| GPQA Diamond | ~42.4 | **84.3%** | Graduate-level science |
+| AIME 2026 | ~20.8 | **89.2%** | Competition math |
+| LiveCodeBench | ~29.x | **80.0%** | Real coding problems |
+| MMMU (multimodal) | 67.6 | **85.2%** | Multimodal reasoning |
+| MMMU-Pro | 49.7 | **76.9%** | Harder multimodal |
+
+The standouts:
+
+**LMArena Elo of 1452** puts the 31B at a vendor-reported **#3 among open models**, with the 26B A4B MoE close behind at ~1441 (#6). A 31B dense model sitting in human-preference territory occupied by models 20x its size is the genuine headline — and it's the number I'd anchor on, because LMArena is human preference at scale and the hardest to game.
+
+**The AIME 2026 jump from ~20.8% to 89.2%** and **GPQA from ~42.4% to 84.3%** are the eye-catchers, and the ones to read carefully. Enormous single-generation deltas on reasoning-heavy benchmarks that lean on Google's own evals — plausible given how hard the industry moved on reasoning this year, but **vendor-claimed** until independent reproduction lands. The direction is real; the exact decimals deserve skepticism.
+
+**80.0% LiveCodeBench from a 31B dense model** matters most for builders. Coding is where small open models usually fall apart, and 80% is exceptional for this weight class — the difference between "toy" and "I can route real work here."
+
+How it stacks against the rest of the open field (June 2026):
+
+| Model | Params | MMLU-Pro | GPQA Diamond | License | Note |
+|-------|--------|----------|--------------|---------|------|
+| **Gemma 4 31B** | ~31B dense | 85.2% | 84.3% | Apache 2.0 | Runs on one GPU |
+| Qwen 3.5 ~27B | ~27B | 86.1% | 85.5% | Apache 2.0 | Edges Gemma on reasoning |
+| DeepSeek V4 | ~1T MoE | 92.8% | — | Open | Frontier, needs a cluster |
+| Llama 4 Maverick | MoE | 80.5% | — | Llama license | 10M context on Scout |
+
+The honest read: **Qwen 3.5 narrowly out-scores Gemma 4 on pure reasoning** (MMLU-Pro and GPQA), and [DeepSeek V4](/blog/deepseek-v4-analysis-2026) dominates the frontier — but DeepSeek is a trillion-parameter MoE that needs serious hardware. Gemma 4's argument isn't "highest score." It's "highest score *that fits on hardware you already own*, under a license your legal team won't fight you on." For a fuller cross-model breakdown including the closed frontier, see the [FrankX models tracker](/ai-ops/models-2026) and the [best open local LLMs guide](/blog/best-open-local-llms-2026).
+
+---
+
+## Why Does the Apache 2.0 License Matter More Than the Benchmarks?
+
+VentureBeat called this bigger than the benchmarks, and I agree. Gemma 1 through 3 shipped under Google's custom **"Gemma Terms of Use"** — more permissive than many, but not standard, with use restrictions (carve-outs around harm, critical infrastructure) that were reasonable in spirit but legally ambiguous in practice. For an enterprise, "legally ambiguous" means a compliance review, weeks of procurement delay, and a model that quietly never gets adopted.
+
+Gemma 4 replaces all of it with **plain Apache 2.0** — OSI-approved, no custom clauses, no industry restrictions, no competitive-use prohibitions, no obligation to disclose training data or share your fine-tuned weights. Fine-tune on proprietary data, ship the result as a commercial product, no agreement with Google and no fee.
+
+For self-host economics, this is the whole game. Open weights already mean the model is **$0** — no per-token cost, no rate limits, no data leaving your infrastructure. Apache 2.0 removes the last asterisk on "free." The cost of running Gemma 4 is now purely hardware and electricity, and the legal cost is zero. That's why this release lands differently than a benchmark bump would.
+
+---
+
+## Self-Host vs API: Which Size for Which Job?
+
+Open weights flip the question. With a closed API the decision is "is the quality worth the per-token price." With Gemma 4 the price is fixed (your GPU) and the question becomes "which tier gives me the quality and throughput I need." How I'd route it:
+
+- **E2B / E4B — edge and on-device.** Phone apps, browser extensions, offline classification, PII-sensitive extraction that can't leave the device. Don't expect frontier reasoning; expect fast, private, good-enough.
+- **12B — local multimodal.** The new pick for anything involving images, audio, or video that you want running on a laptop without a cloud round-trip. Native audio input on a 16GB machine is the differentiator. This is the model for a privacy-respecting meeting summarizer or an offline document-and-screenshot agent.
+- **26B A4B — high-throughput agentic.** When you're running loops — many tool calls, many short turns — the MoE's ~4B active params give you speed without dropping to a tiny model's quality. Serve it with vLLM, batch aggressively.
+- **31B — max quality on one box.** The default for "I want the best open model I can run on a single GPU." Coding, analysis, RAG over your own corpus, anything where the answer quality is load-bearing and you want it on-prem.
+
+When do you *not* self-host? When volume is low and spiky, a closed API beats amortizing a GPU. And when you need the absolute frontier — the reasoning [Claude Opus 4.8](/blog/claude-opus-4-8-analysis-2026) or DeepSeek V4 deliver — Gemma 4 isn't competing there, and you shouldn't make it. Self-hosting Gemma 4 wins on one axis: **predictable cost, full data control, and no per-call latency to a third party.** Match the tier to the cost-of-error, not the leaderboard.
+
+---
+
+## What Does It Mean for Builders?
+
+### For local-first and privacy-sensitive products
+
+The clearest win. A 31B model at 80% LiveCodeBench and 85% MMLU-Pro, running entirely on your own hardware under Apache 2.0, means a genuinely capable assistant that never sends a token to anyone. Healthcare, legal, finance, on-prem enterprise — categories that couldn't touch a cloud API now have a real option, and the 12B's native audio and vision extend it to multimodal without the infrastructure tax.
+
+### For cost-conscious agentic systems
+
+The 26B A4B is the quiet star for agent loops at volume. MoE throughput plus zero per-token cost plus vLLM batching is a fundamentally different cost curve than paying an API per call. If your agentic API bill is climbing, a self-hosted 26B on rented or owned GPUs is worth a serious back-of-envelope.
+
+### For fine-tuners and open-model evaluators
+
+Apache 2.0 plus base and instruction-tuned checkpoints (`google/gemma-4-*-it`) plus Unsloth-grade tooling means you fine-tune on proprietary data, deploy commercially, and keep the weights private — no disclosure, no fee. And when you evaluate, don't pick on headline Elo alone: Qwen 3.5 narrowly out-reasons Gemma 4, DeepSeek V4 out-everythings it at the frontier with a cluster. Gemma 4's edge is the *whole package* — quality that fits one GPU, native multimodal, a clean license, and day-zero support across Ollama, llama.cpp, LM Studio, vLLM, and the major clouds. Run all three on your own eval set. The right open model wins *your* benchmark, on *your* hardware, under a license *your* lawyers sign off on.
+
+---
+
+## FAQ
+
+### Is Gemma 4 better than Gemma 3?
+
+Yes, substantially. Gemma 4 is a generational jump, not a point release. The 31B flagship reports a 1452 LMArena Elo (vs ~1338 for Gemma 3 27B), MMLU-Pro of 85.2% (vs 67.5%), and large gains on math and coding. It also adds a mixture-of-experts tier (26B A4B), a unified encoder-free multimodal 12B with native audio, a 256K context (up from 128K), and — most importantly for commercial users — an Apache 2.0 license replacing the custom Gemma Terms.
+
+### What hardware do I need to run Gemma 4 31B?
+
+At Q4_K_M quantization, the 31B dense model needs roughly 18GB of VRAM, so a single 24GB consumer GPU (RTX 4090/5090) or an Apple Silicon Mac with sufficient unified memory runs it comfortably. Full BF16 precision wants ~64GB; 8-bit lands near 34GB. For smaller footprints, the 12B runs on 16GB, the 26B A4B MoE on ~15.6GB at int4, E4B on ~8GB, and E2B in about 2GB.
+
+### How much does Gemma 4 cost?
+
+The weights are free — $0. Gemma 4 is an open-weight model under Apache 2.0, so there's no per-token API charge, no licensing fee, and no agreement with Google required. Your only costs are the hardware and electricity to run it (or rented GPU time). You can also access it through cloud APIs if you'd rather not self-host, where you'd pay that provider's compute rates.
+
+### Which Gemma 4 size should I use?
+
+Use E2B/E4B for on-device and edge work, the 12B for local multimodal (images, audio, video) on a laptop, the 26B A4B MoE for high-throughput agentic loops, and the 31B dense for maximum quality on a single GPU. Match the tier to your throughput and quality needs, not to the largest number.
+
+### Where can I run Gemma 4?
+
+Ollama (`ollama run gemma4:31b`, needs v0.20+), llama.cpp with GGUF weights, LM Studio for a GUI, HuggingFace Transformers for fine-tuning (`google/gemma-4-31B-it`), and vLLM for production serving. It also has day-zero support on Google Cloud and AMD hardware. The community-standard quantization is Q4_K_M.
+
+### Which Gemma 4 benchmarks are verified vs vendor-claimed?
+
+The 1452 LMArena Elo is human-preference data and the most trustworthy single number. The academic benchmarks (MMLU-Pro 85.2%, GPQA 84.3%, AIME 89.2%, LiveCodeBench 80.0%) come largely from Google's own evals and should be treated as vendor-claimed until independently reproduced — the direction is corroborated by the LMArena ranking and cross-model comparisons, but the exact decimals deserve skepticism. Independent comparisons show Qwen 3.5 narrowly ahead on pure reasoning, so Gemma 4 leads on package, not on every score.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026 with specs and benchmarks validated against Google DeepMind's official announcement and model card, the HuggingFace launch post, LMArena, and independent self-host guides. Vendor-claimed figures are marked as such.*

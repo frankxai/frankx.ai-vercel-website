@@ -1,0 +1,195 @@
+---
+title: "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack"
+description: "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 — Behemoth never shipped. Verified benchmarks, real VRAM and self-host requirements, how it stacks up against DeepSeek V4, Qwen 3.5, and Kimi K2.6, and what it means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - meta
+  - llama
+  - open-weights
+  - local-llms
+  - ai-2026
+  - benchmarks
+keywords:
+  - llama 4 maverick
+  - llama 4 maverick benchmarks
+  - llama 4 maverick vram
+  - llama 4 behemoth release
+  - llama 4 self host
+  - llama 4 vs deepseek v4
+  - best open weight model 2026
+  - llama 4 community license
+  - llama 4 scout 10m context
+  - meta open source ai 2026
+image: "/images/blog/llama-4-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack
+
+**TL;DR**: As of June 2026, Meta's flagship open-weight model is still **Llama 4 Maverick** (`meta-llama/Llama-4-Maverick-17B-128E-Instruct`) — a 400B-total / 17B-active mixture-of-experts model with a 1M-token context window, native text-and-image input, and a 16K max output, released April 5, 2025 under the Llama 4 Community License. There is no Llama 4.5 and no Llama 5. **Llama 4 Behemoth** (~2T parameters, 288B active) never shipped public weights and was paused in May 2026. The weights are free, but the verified benchmarks — MMLU-Pro 80.5, GPQA Diamond 69.8, LiveCodeBench 43.4 — now sit behind the open frontier set by DeepSeek V4, Qwen 3.5, Kimi K2.6, and even Gemma 4. Maverick is still a legitimate, permissively licensed, multimodal workhorse. It is no longer the model that wins the leaderboard. Here's the honest picture for builders deciding whether to self-host it.
+
+---
+
+## What Is the Current Llama Flagship in June 2026?
+
+It is the same one that shipped fourteen months ago: **Llama 4 Maverick**.
+
+When Meta launched the Llama 4 "herd" on April 5, 2025, the plan read like a three-model ladder — **Scout** (the efficient one), **Maverick** (the flagship), and **Behemoth** (the ~2T-parameter teacher model that would eventually anchor the top). Behemoth was previewed as "still in training." It stayed that way. Independent reporting through 2026 indicates Behemoth's public release was paused in May 2026 amid internal capability concerns, and no public weights have shipped. So the ladder Meta actually ships in mid-2026 has two rungs, and Maverick is the top one.
+
+This matters because the repo and a lot of secondary coverage still treat "the next Llama" as imminent. It isn't here yet. If you're choosing an open Meta model today, you're choosing between Scout and Maverick — full stop. No 4.x point release, no Behemoth GA, no Llama 5.
+
+Three things define where Maverick stands now:
+
+1. **It's an early-fusion, natively multimodal MoE.** 128 experts, 17B parameters active per token out of 400B total, text and image in, text out. That architecture was genuinely ahead of the pack in April 2025.
+
+2. **The license is the real product.** The Llama 4 Community License permits commercial use for any organization under 700M monthly active users. For almost everyone reading this, that's "free, including commercially." That hasn't changed and it's still the strongest reason to reach for it.
+
+3. **The benchmarks have aged.** The open-weight frontier moved hard in late 2025 and early 2026. Maverick didn't move with it. It's competent, not leading.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A note on sourcing first. The numbers below are drawn from Meta's own Llama 4 materials, the Hugging Face release notes, OpenRouter's model card, and aggregators including Artificial Analysis and independent benchmark roundups. Where a figure is Meta-reported and not independently reproduced, I mark it **vendor-claimed**. And there's a specific trap with Maverick that every honest write-up has to flag: the LMArena number Meta led with at launch was *not* the public weights. More on that below.
+
+| Benchmark | Llama 4 Maverick | What it measures |
+|-----------|------------------|------------------|
+| MMLU-Pro | **80.5** | Graduate-level multi-domain knowledge |
+| GPQA Diamond | **69.8** | Hard graduate science Q&A |
+| LiveCodeBench | **43.4** | Contamination-resistant coding |
+| Context window | **1M tokens** | Long-document / multi-file reasoning |
+| Max output | **16K tokens** | Single-pass generation ceiling |
+| LMArena ELO (public weights) | **~32nd place** | Human-preference voting |
+| LMArena ELO (experimental variant) | **1417** (vendor-claimed) | Human-preference voting, tuned variant |
+
+Two of these rows need the asterisk spelled out.
+
+**The LMArena story.** At launch, Meta promoted an ELO of **1417**, which put Maverick ahead of GPT-4o and just behind Gemini 2.5 Pro. But the model submitted to the arena was `Llama-4-Maverick-03-26-Experimental` — a chat-tuned variant optimized for conversationality (longer, friendlier, emoji-studded answers that human raters reward). The *publicly downloadable weights* produced plainer output and ranked roughly 32nd on the same leaderboard once tested. LMArena updated its policies on April 7-8, 2025 in response, stating that Meta's interpretation of the submission rules "did not match what we expect from model providers." When you read "Maverick beats GPT-4o on LMArena," that's the experimental variant, not the weights you can download. Treat the 1417 as vendor-claimed and effectively unreproducible with the open weights.
+
+**The coding gap.** LiveCodeBench 43.4 was respectable at launch — above GPT-4o-era models — but it's the axis where the Chinese open labs pulled decisively ahead. The verified picture in 2026: Maverick is a solid generalist that is no longer a strong coder relative to its open peers.
+
+---
+
+## How Does It Compare to the Open Frontier?
+
+This is the uncomfortable part, and pretending otherwise would be dishonest. Here is where Maverick sits against the open-weight models that actually lead in mid-2026.
+
+| Model | Open weights | MMLU-Pro | GPQA Diamond | Position |
+|-------|--------------|----------|--------------|----------|
+| **Llama 4 Maverick** | Yes (Community License) | 80.5 | 69.8 | Solid generalist, trailing |
+| Gemma 4 (~31B) | Yes (Apache 2.0) | 85.2 | 84.3 | Smaller, stronger on knowledge |
+| Qwen 3.5 | Yes (Apache 2.0) | — | 88.4 | Strongest open science reasoner |
+| DeepSeek V4 Pro | Yes (MIT-style) | — | — | Top open Intelligence Index (~52) |
+| Kimi K2.6 | Yes | — | — | Highest open Intelligence Index (~54) |
+
+On the Artificial Analysis Intelligence Index v4.0 — which aggregates ten evals including GPQA Diamond, Humanity's Last Exam, Terminal-Bench Hard, and SciCode — the leading *open-weight* models in 2026 are **Kimi K2.6 (~54)** and **DeepSeek V4 Pro (~52)**, both within striking distance of Gemini 3.1 Pro's ~57 at the closed frontier. Maverick is not in that conversation. Even **Gemma 4**, a model an order of magnitude smaller in active footprint, posts higher MMLU-Pro and dramatically higher GPQA Diamond.
+
+The honest one-line summary: **Maverick is the most permissively licensed, easiest-to-source multimodal MoE in its weight class — but it is no longer the smartest open model you can run.** If raw capability per dollar is your only axis, DeepSeek V4 or Qwen 3.5 win. If license clarity, multimodality, and the Meta/Hugging Face ecosystem matter more, Maverick still earns a slot. For the broader open-vs-closed map, see the [FrankX models tracker](/ai-ops/models-2026) and the [best open and local LLMs guide](/blog/best-open-local-llms-2026).
+
+---
+
+## What Does It Actually Take to Self-Host?
+
+This is where Llama 4 gets misunderstood. "17B active parameters" sounds like a model you can run on a gaming GPU. You cannot. In an MoE, **all the experts have to live in memory even though only a fraction fire per token.** Maverick's 400B total parameters set the VRAM floor, not its 17B active count.
+
+| Variant | Total / Active | Experts | Context | Realistic VRAM | Where to run |
+|---------|----------------|---------|---------|----------------|--------------|
+| **Llama 4 Scout** | 109B / 17B | 16 | 10M | ~55 GB at Q4 (fits 1× H100 80GB) | vLLM, Ollama, HF, single-GPU cloud |
+| **Llama 4 Maverick** | 400B / 17B | 128 | 1M | FP8 ≈ 75 GB/GPU on 8× H100 node (~600 GB); 200 GB+ at Q4 | vLLM (tensor-parallel 8), 8× H100/H200 cloud |
+| Llama 4 Behemoth | ~2T / 288B | 16 | — | Not released | — (paused, no public weights) |
+
+The practical takeaways:
+
+- **Scout is the self-hostable one.** With 4-bit quantization (AWQ/GPTQ), Scout fits on a single H100 80GB at roughly 55 GB, leaving headroom for KV cache at moderate context lengths. That's a real single-GPU deployment. Its 10M-token context is the genuinely differentiated feature here — nothing else open touches it. Note FP16 Scout needs ~218 GB; quantization is mandatory for single-GPU.
+- **Maverick is a data-center model.** Meta ships official FP8 weights specifically so it fits on a single 8× H100 node (~75 GB per GPU). At BF16/FP16 you're looking at ~800 GB and needing 8× H200. At Q4 it's still 200 GB+ — effectively out of reach for anything but multi-GPU server hardware. A typical Maverick FP8 8× H100 deployment runs roughly $17,500-23,000/month in rented compute. This is not a laptop model and no amount of quantization makes it one.
+- **The 10M / 1M context numbers are theoretical ceilings, not free.** Every token in context consumes KV-cache VRAM. Don't set `--max-model-len` to 10M because Scout *can*; size it to your actual workload (e.g. 32K) and spend the saved memory on batching. `--kv-cache-dtype fp8` can roughly double usable context with little accuracy loss.
+
+**Where to run it:**
+
+- **vLLM** is the production path. For Maverick: `vllm serve meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8 --tensor-parallel-size 8 --max-model-len 430000`. Note A100s don't support FP8 natively — you need H100/H200.
+- **Ollama** works for Scout-class single-GPU/single-user setups; Maverick is impractical there.
+- **Hugging Face** hosts the official weights (`meta-llama/Llama-4-Maverick-17B-128E-Instruct` and the `-FP8` variant) behind the license gate.
+- **Managed APIs** if you don't want to run it: OpenRouter, Together, Fireworks, Groq, AWS Bedrock, and Oracle/IBM all serve Maverick. OpenRouter pricing is around **$0.15 / $0.60 per 1M** input/output — the weights are $0, you pay for hosting either way.
+
+---
+
+## Which Variant Should You Pick?
+
+A short decision tree, because the two shipped variants serve genuinely different jobs:
+
+- **Pick Scout if** you want to actually self-host on accessible hardware (single H100), you need the 10M-token context for whole-codebase or whole-corpus reasoning, and your quality bar is "good enough generalist." Scout is the only Llama 4 model a small team can realistically run on one GPU.
+- **Pick Maverick if** you need the stronger generalist quality and multimodality and you either have an 8× H100/H200 node or you're fine consuming it via API. Its edge over Scout is real but you're paying for it in hardware.
+- **Pick neither if** capability-per-dollar is the deciding factor and the license terms work for you. In mid-2026, DeepSeek V4 and Qwen 3.5 are stronger open models, and Qwen ships under Apache 2.0 — a cleaner license than Llama's MAU-gated Community License. See the [DeepSeek V4 analysis](/blog/deepseek-v4-analysis-2026) for that side of the comparison.
+
+---
+
+## What Does It Mean for Builders?
+
+### For teams who self-host
+
+Maverick's FP8 weights are well-engineered for the 8× H100 node — Meta clearly optimized the release for that deployment target, and vLLM support is mature. If you already run that class of hardware and you want a permissively licensed multimodal MoE inside your own VPC, Maverick is a defensible choice. The data-residency and no-per-token-cost story is the whole pitch. Just don't choose it expecting frontier benchmarks; choose it for control and license clarity.
+
+### For long-context work
+
+Scout's 10M-token window remains the standout open-weight feature in 2026 — nothing else you can download comes close. If your problem is "reason over an enormous corpus on one GPU," Scout is uniquely positioned even though its raw reasoning trails newer models. The capability/context tradeoff is the actual decision.
+
+### For multimodal builders
+
+Native image input is real and useful, and it's permissively licensed. If you need open-weight vision-plus-text and want to avoid API lock-in, Maverick covers it. The vision quality is solid rather than class-leading, but "open, multimodal, self-hostable, commercially licensed" is a narrow field and Maverick is in it.
+
+### For cost-conscious routing
+
+If you're consuming via API rather than self-hosting, Maverick at ~$0.15/$0.60 is cheap — but so are its stronger open competitors, and the closed budget tier (Gemini Flash-class models) often beats it on quality-per-dollar. The case for Maverick-via-API is weak; the case for Maverick-self-hosted-for-control is the real one. Match the model to the constraint that actually binds you: license, hardware, residency, or raw capability. They rarely point at the same model.
+
+---
+
+## What Changed Since Launch?
+
+Mechanically, almost nothing — and that's the story. The weights you download in June 2026 are the same April 2025 release. What changed is the *context* around them:
+
+| Dimension | At launch (Apr 2025) | Now (Jun 2026) |
+|-----------|----------------------|----------------|
+| Position vs open peers | Near the top | Trailing DeepSeek V4, Qwen 3.5, Kimi K2.6, Gemma 4 |
+| Behemoth | "In training" | Paused May 2026, no public weights |
+| LMArena framing | 1417 ELO headline | Revealed as experimental variant; public weights ~32nd |
+| Ecosystem support | Day-one vLLM, Bedrock | Mature across all major inference providers |
+| Best use case | "Best open multimodal MoE" | "Permissively licensed multimodal MoE for self-hosting" |
+
+The model didn't get worse. The field got better, faster, and the flagship Meta promised to put on top — Behemoth — never arrived.
+
+---
+
+## FAQ
+
+### Is Llama 4 Maverick still Meta's flagship open model in 2026?
+
+Yes. As of June 2026, Llama 4 Maverick (400B total / 17B active, 128 experts, 1M context) remains Meta's top publicly available open-weight model. There is no Llama 4.5 or Llama 5, and Llama 4 Behemoth — the ~2T-parameter model meant to sit above Maverick — never shipped public weights and was paused in May 2026.
+
+### What VRAM do I need to run Llama 4 Maverick?
+
+Maverick is a data-center model. Meta's official FP8 weights are sized to fit a single 8× H100 80GB node (~75 GB per GPU, ~600 GB total). At Q4 it's still 200 GB+; at BF16 roughly 800 GB. It does not run on consumer hardware. If you want single-GPU self-hosting, use **Llama 4 Scout** instead — it fits on one H100 80GB at ~55 GB with 4-bit quantization.
+
+### How does Llama 4 Maverick compare to DeepSeek V4 and Qwen 3.5?
+
+On verified 2026 benchmarks, Maverick trails. DeepSeek V4 Pro and Kimi K2.6 lead the open-weight Artificial Analysis Intelligence Index (~52 and ~54), and Qwen 3.5 posts a markedly higher GPQA Diamond (88.4 vs Maverick's 69.8). Maverick's advantages are its native multimodality, its 1M context, and the Meta/Hugging Face ecosystem — not raw capability.
+
+### Is Llama 4 free? What's the license?
+
+The weights are free to download and use under the **Llama 4 Community License**, which allows commercial use for any organization with fewer than 700 million monthly active users. That covers essentially every team likely to read this. You pay only for hardware (self-hosting) or per-token hosting (via APIs like OpenRouter at ~$0.15/$0.60 per 1M). Note this is more restrictive than Apache 2.0, which Qwen 3.5 ships under.
+
+### What was the LMArena controversy about?
+
+At launch Meta promoted a 1417 ELO that put Maverick ahead of GPT-4o. But the submitted model was `Llama-4-Maverick-03-26-Experimental`, a chat-tuned variant optimized for human-preference voting — not the public weights, which ranked around 32nd on the same leaderboard. LMArena updated its policies on April 7-8, 2025, noting Meta's submission "did not match what we expect from model providers." Treat the 1417 as vendor-claimed and not reproducible with the open weights.
+
+### Should I wait for Llama 4 Behemoth or Llama 5?
+
+Don't build a plan around either. Behemoth was paused in May 2026 with no public weights and no committed release date, and there's no announced Llama 5. If you need an open model today, choose between Scout (self-hostable, 10M context) and Maverick (stronger, needs an 8× H100 node), or look at the stronger non-Meta open models like DeepSeek V4 and Qwen 3.5.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026. Specs and benchmarks validated against Meta's Llama 4 materials, Hugging Face, OpenRouter, Artificial Analysis, and independent coverage including The Register's reporting on the LMArena variant. Vendor-claimed figures — including the 1417 LMArena ELO and the ~2T Behemoth specs — are marked as such. Behemoth had not shipped public weights as of this writing.*

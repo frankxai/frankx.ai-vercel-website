@@ -1,0 +1,187 @@
+---
+title: "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On"
+description: "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop. The full self-host breakdown: VRAM, MXFP4 quantization, where to run, verified benchmarks, and how they stack up against Qwen, DeepSeek, and GLM in June 2026."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - openai
+  - gpt-oss
+  - open-weight-models
+  - local-llms
+  - ai-2026
+  - benchmarks
+keywords:
+  - gpt-oss
+  - gpt-oss-120b
+  - gpt-oss-20b
+  - gpt-oss benchmarks
+  - gpt-oss self-host
+  - gpt-oss vram requirements
+  - openai open weight model
+  - gpt-oss vs qwen deepseek
+  - run gpt-oss locally ollama
+  - best open source llm 2026
+image: "/images/blog/gpt-oss-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On
+
+**TL;DR**: gpt-oss-120b and gpt-oss-20b are OpenAI's open-weight models — Apache 2.0, free to download, no API key required. The 120b (116.8B total, 5.1B active, MoE) runs on a single 80GB GPU; the 20b (21B total, 3.6B active) runs in ~16GB of memory, including laptops. Both ship MXFP4-quantized with a 131,072-token (128K) context and low/medium/high reasoning effort levels. On OpenAI's own evals the 120b scores 80.1% GPQA Diamond and 97.9% AIME 2025 (with tools); the 20b posts 98.7% AIME 2025. They run on Ollama, vLLM, LM Studio, llama.cpp, and Hugging Face Transformers. As of June 2026 there's no "gpt-oss-2" — but the family has been busy: a safeguard variant shipped in October 2025, and gpt-oss-120b became an official MLPerf Inference v6.0 benchmark in March 2026. Here's the honest builder's take on what to run and when.
+
+---
+
+## What Is gpt-oss?
+
+gpt-oss is OpenAI's open-weight model family, released August 5, 2025 — their first open-weight language models since GPT-2 in 2019. Two variants: **gpt-oss-120b** and **gpt-oss-20b**, both under the [Apache 2.0 license](https://github.com/openai/gpt-oss). That license is the whole story. Apache 2.0 is permissive, commercial-friendly, and carries no copyleft and no monthly-active-user ceiling — the kind of trap that has bitten teams building on more restrictive "open" licenses. You download the weights, you run them wherever you want, you ship products on top, and you owe OpenAI nothing.
+
+Both are **Mixture-of-Experts (MoE)** transformers, which is the trick that makes them deployable. The 120b carries 116.8B total parameters but activates only **5.1B per token**; the 20b is 21B total with **3.6B active**. You pay the memory cost of holding all the experts, but the compute cost of running just a few — so a 120-billion-parameter model thinks at roughly the speed of a 5-billion-parameter one.
+
+Three things define this family in mid-2026:
+
+1. **It's a self-host play, not an API product.** The economics aren't "cheaper per token" — they're "your hardware, your weights, your data never leaves the building." For regulated or privacy-sensitive workloads, that's the entire pitch.
+2. **The reasoning is real and adjustable.** Both models are reasoning models with a built-in chain of thought and three effort levels — low, medium, high — that you set in the system prompt to trade latency for accuracy.
+3. **It became infrastructure.** When MLCommons added gpt-oss-120b as a standard [MLPerf Inference v6.0 benchmark](https://mlcommons.org/2026/03/mlperf-inference-gpt-oss/) in March 2026, that was the tell: the hardware industry now treats this model as a reference workload, not a curiosity.
+
+---
+
+## What Are the Variants and Hardware Requirements?
+
+This is the table that actually matters when you're deciding what to run. The headline trick is **MXFP4 quantization** — OpenAI post-trained the MoE weights in a 4-bit format, which is what collapses the memory footprint enough to make the 120b fit on one card and the 20b fit on a laptop.
+
+| Variant | Total / Active params | Architecture | Min VRAM | Context | Where to run |
+|---------|----------------------|--------------|----------|---------|--------------|
+| **gpt-oss-120b** | 116.8B / 5.1B | MoE, 36 layers, MXFP4 | **~80GB** (single H100 / MI300X) | 131,072 | vLLM, Ollama, LM Studio, Transformers, llama.cpp |
+| **gpt-oss-20b** | 21B / 3.6B | MoE, MXFP4 | **~16GB** | 131,072 | Ollama, LM Studio, llama.cpp, Transformers |
+
+A few honest notes on those VRAM figures. The "~80GB single GPU" and "~16GB" numbers are [OpenAI's own claims](https://openai.com/index/introducing-gpt-oss/), and they hold up — but they describe the *minimum* to load the model with the native MXFP4 weights, not a comfortable production buffer. In practice you want headroom for the KV cache, and a full 131K-token context will push memory well past the floor. The 20b genuinely runs on a 16GB consumer GPU or an Apple Silicon laptop with unified memory; it's the one most people will actually self-host. The 120b is a single-server-card model, not a home-lab one, unless you're comfortable with aggressive offload and slow tokens.
+
+Both models require OpenAI's **harmony response format**. This is the one footgun worth flagging up front: feed gpt-oss raw chat messages without the harmony structure and, per OpenAI's own repo, "they will not work correctly." If you're going through Ollama, vLLM, or LM Studio, the runner handles harmony for you. If you're calling the weights directly, you have to build it yourself — budget an afternoon.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A sourcing note, because the distinction matters. The numbers below come from OpenAI's [gpt-oss model card](https://arxiv.org/abs/2508.10925) (arXiv 2508.10925) and the [launch post](https://openai.com/index/introducing-gpt-oss/). These are **vendor-reported** evals run by OpenAI at the high reasoning level. They've held up reasonably well in independent testing, but treat them as the model's strongest foot forward, not a neutral referee's scorecard.
+
+| Benchmark | gpt-oss-120b | gpt-oss-20b | What it measures |
+|-----------|--------------|-------------|------------------|
+| AIME 2025 (with tools) | **97.9%** | **98.7%** | Competition mathematics |
+| AIME 2024 (with tools) | 96.6% | — | Competition mathematics |
+| GPQA Diamond (no tools) | **80.1%** | 71.5% | Graduate-level science Q&A |
+| MMLU-Pro | ~90.0% | — | Broad knowledge / reasoning |
+| Humanity's Last Exam | ~19% | ~9.8% | Frontier multidisciplinary reasoning |
+| SWE-Bench Verified | ~62.4% | — | Real GitHub issue resolution |
+
+A couple of these deserve a second look.
+
+**The 20b out-scoring the 120b on AIME 2025 (98.7% vs 97.9%)** is not a typo, and it's a useful reminder of how narrow saturated math benchmarks are. Both models, given a Python tool, are essentially solving every problem — the gap is noise, not a signal that the small model reasons better. Don't read AIME as a general-capability ranking.
+
+**GPQA Diamond at 80.1%** is the more honest capability signal. OpenAI positioned the 120b as reaching near-parity with their own o4-mini on core reasoning, and 80.1% on graduate-level science is genuinely strong for a model you can run on one GPU. The 20b's 71.5% is the number that tells you what fits on a laptop now.
+
+**HealthBench** is the one OpenAI leans on hardest: they claim the 120b nearly matches o3 on HealthBench and HealthBench Hard, beating GPT-4o, o1, o3-mini, and o4-mini. I'm marking that **vendor-claimed** and leaving the exact figure out — it's a single-source claim on a benchmark OpenAI co-authored, and I couldn't independently corroborate the number.
+
+---
+
+## How Does gpt-oss Compare to Other Open Models?
+
+This is where the honesty has to sharpen, because the open-weight field moved hard in the year after gpt-oss shipped. In August 2025, gpt-oss-120b was a genuine frontier open model. By June 2026, the [open-source leaderboard](/blog/best-open-local-llms-2026) is crowded with bigger, newer Chinese-lab models that post higher raw scores.
+
+| Model | License | Params (total/active) | Notable strength | Self-host reality |
+|-------|---------|----------------------|------------------|-------------------|
+| **gpt-oss-120b** | Apache 2.0 | 116.8B / 5.1B | Reasoning per VRAM, single-GPU | **One 80GB card** |
+| **gpt-oss-20b** | Apache 2.0 | 21B / 3.6B | Runs on a laptop | **16GB** |
+| DeepSeek V4 | MIT | 671B-class MoE | Top overall open score | Multi-GPU server |
+| Qwen 3.5 | Apache 2.0 | 397B / 17B | Vision, 201 languages, 1M context | Multi-GPU server |
+| GLM-5 | MIT | Large MoE | 77.8% SWE-Bench Verified (coding) | Multi-GPU server |
+| Gemma 4 | Apache 2.0 | Dense + MoE | Google ecosystem, on-device | Varies |
+
+The verdict that holds up: **gpt-oss is no longer the highest-scoring open model, and that's fine, because it was never competing on raw score.** [DeepSeek V4](/blog/deepseek-v4-analysis-2026), Qwen 3.5, and GLM-5 top the aggregate leaderboards — but they're 400B-to-671B-class models that need a multi-GPU server to self-host. gpt-oss competes on a different axis: **capability per gigabyte of VRAM**. If your constraint is "one H100" or "my laptop," the comparison isn't 120b vs DeepSeek V4 — it's 120b vs whatever else fits on your hardware, and there gpt-oss is still one of the best reasoning-per-VRAM options with a clean Apache 2.0 license.
+
+One more honest caveat: I'm citing the competitor scores from June 2026 leaderboard aggregates, and the open-model rankings churn monthly. Treat the relative ordering as a snapshot, not a law. For the live cross-model view, the [FrankX models tracker](/ai-ops/models-2026) stays more current than any single article can.
+
+---
+
+## What's the Self-Host Economics Story?
+
+Here's the part most "free model" write-ups get lazy about. **Open weights don't mean free inference — they mean you choose where the cost lands.** There are three real options, and the right one depends on volume.
+
+**Option 1 — Hosted API (someone else's GPU).** Plenty of providers serve gpt-oss-120b on a per-token basis, and because it's open and competitively served, the price floor is brutal. As of June 2026, [DeepInfra lists it around $0.04 per 1M input / $0.19 per 1M output](https://computeprices.com/models/gpt-oss-120b); Together.ai is around $0.15 / $0.60. Prices vary up to ~7x across providers. If you just want the model's intelligence and don't care whose hardware it runs on, this is cheaper than self-hosting until you hit serious volume — and you skip the ops entirely.
+
+**Option 2 — Self-host the 20b.** A 16GB GPU or an Apple Silicon laptop runs gpt-oss-20b for the cost of electricity, fully offline. This is the configuration that makes the open-weight pitch real: your prompts and outputs never touch a third party, there's no per-token meter, and it works on a plane. For privacy-sensitive prototyping, local agent loops, and anything you can't legally send to an API, the 20b is the answer.
+
+**Option 3 — Self-host the 120b on your own 80GB card.** This only pencils out at high, steady volume or under a hard data-residency requirement. An H100 isn't cheap to rent or own, and at low utilization the hosted API will beat your amortized cost every time. The math flips when you're running the GPU near-continuously, or when "the data cannot leave our VPC" is a non-negotiable rather than a preference.
+
+The clean way to think about it: **the API price is the make-or-buy benchmark.** If your projected monthly token spend on a hosted gpt-oss endpoint is less than the cost of the GPU plus the engineer-hours to run it, don't self-host the big one. The open weights are still worth it — for the 20b on local hardware, for the audit-grade control, and for the day a provider changes terms and you need an exit.
+
+---
+
+## Which Variant Should You Run?
+
+A short decision tree, because "it depends" isn't an answer.
+
+- **You want to ship a product on a privacy-sensitive workload, on a budget, today** → gpt-oss-20b, local, via Ollama or LM Studio. 16GB, offline, Apache 2.0, done.
+- **You need maximum reasoning quality and have (or can rent) an 80GB GPU** → gpt-oss-120b. It's near-o4-mini-class on reasoning and fits on one card.
+- **You want gpt-oss intelligence but don't want to run GPUs** → a hosted provider (DeepInfra, Together, Groq, Fireworks). Cheapest path to the capability, zero ops.
+- **You're building content-moderation or policy-classification** → gpt-oss-safeguard (more below), the fine-tuned variant built for exactly that.
+- **You need the highest possible open score and have a multi-GPU server** → honestly, look at DeepSeek V4 or Qwen 3.5 instead. gpt-oss wins on VRAM efficiency, not on topping the leaderboard.
+
+---
+
+## What Is gpt-oss-safeguard?
+
+A development worth knowing about: on October 29, 2025, OpenAI [released gpt-oss-safeguard](https://www.helpnetsecurity.com/2025/10/29/openai-gpt-oss-safeguard-safety-models/) in two sizes — **gpt-oss-safeguard-120b** and **gpt-oss-safeguard-20b** — as a research preview, also under Apache 2.0 and downloadable from Hugging Face.
+
+These are fine-tuned versions of the base gpt-oss models built for one job: **policy-based classification at inference time.** Instead of training a fixed safety classifier, you hand the model your *own* written policy as a prompt, and it reasons over user messages, completions, or whole conversations to classify them against your rules — and produces a transparent chain of thought showing how it decided. For trust-and-safety teams, that's a meaningfully different shape than a black-box classifier: you can change the policy by editing text, and you can audit every decision. It's the most genuinely novel thing the family has shipped since launch.
+
+---
+
+## What Does It Mean for Builders?
+
+### For local-first and privacy-sensitive products
+
+gpt-oss-20b is the most useful model in this family for the most people. It's the one that makes "the data never leaves the device" a real architecture instead of a slide. Run it through Ollama for a one-line setup, or vLLM if you need throughput. The 131K context means you can hold a substantial document set in a single offline session. The constraint to design around is the harmony format and the reasoning-effort knob — set `low` for snappy interactive use, `high` when correctness matters more than latency.
+
+### For agentic systems
+
+Both models have native function calling, web browsing, Python execution, and structured outputs baked in. That's the table-stakes set for tool-using agents, and having it in an Apache 2.0 model you can run yourself is the appeal: you can build a local agent loop with no per-call API cost and no rate limit but your own GPU. The catch is the same as every open reasoning model — the 120b is near-o4-mini-class, not near-frontier, so for the hardest agentic coding tasks the [proprietary frontier](/ai-ops/models-2026) still pulls ahead. Match the model to the cost-of-error: route the cheap, high-volume, error-tolerant steps to local gpt-oss and reserve the expensive frontier calls for the steps where a silent mistake is costly.
+
+### For cost-conscious teams
+
+The discipline here is make-or-buy, run the numbers honestly, and don't self-host the 120b for ego. The 20b on local hardware is close to free. The 120b on a hosted endpoint is pennies per million tokens. The 120b on your own H100 only wins at scale or under a data-residency mandate. Pick deliberately.
+
+---
+
+## FAQ
+
+### Is gpt-oss free to use?
+
+The weights are free to download under the Apache 2.0 license — no API key, no royalties, no usage caps. But running them isn't free: you either pay for your own GPU (electricity plus hardware) or pay a hosted provider per token. The 20b runs on a 16GB consumer GPU for the cost of electricity; the 120b needs an 80GB card. Apache 2.0 means you can use them commercially and ship products on top with zero licensing cost.
+
+### What hardware do I need to run gpt-oss?
+
+gpt-oss-20b runs in about 16GB of memory — a single consumer GPU or an Apple Silicon laptop with unified memory. gpt-oss-120b runs on a single 80GB GPU like an NVIDIA H100 or AMD MI300X. Both ship MXFP4-quantized, which is what makes those footprints possible. Note that those are minimums to load the model; a full 131K-token context needs extra headroom for the KV cache.
+
+### Where can I run gpt-oss locally?
+
+Ollama and LM Studio are the easiest one-line setups for the 20b. vLLM is the production choice for throughput. llama.cpp and Hugging Face Transformers also support both models. All of these handle OpenAI's required harmony response format for you — you only have to deal with harmony directly if you call the raw weights.
+
+### Is gpt-oss better than Qwen, DeepSeek, or GLM?
+
+Not on raw benchmark scores. As of June 2026, DeepSeek V4, Qwen 3.5, and GLM-5 top the open-model leaderboards — but they're 400B-to-671B-class models that need a multi-GPU server. gpt-oss wins on a different axis: capability per gigabyte of VRAM. If your constraint is one GPU or a laptop, gpt-oss is one of the best reasoning options that actually fits, with a clean Apache 2.0 license.
+
+### Is there a gpt-oss-2 or newer version?
+
+As of June 2026, no. The base family is still gpt-oss-120b and gpt-oss-20b from August 2025. What's new since launch: gpt-oss-safeguard (a policy-classification fine-tune) shipped in October 2025, and gpt-oss-120b became an official MLPerf Inference v6.0 benchmark in March 2026. There's been no successor base model announced.
+
+### Which benchmark numbers are verified vs vendor-claimed?
+
+All the headline figures (AIME, GPQA Diamond, MMLU, HLE, SWE-Bench) come from OpenAI's own model card and launch evals — treat them as vendor-reported. They've held up reasonably in independent testing, but the GPQA Diamond 80.1% is the most trustworthy general-capability signal; the saturated AIME scores tell you less than they appear to. The HealthBench claims are single-source on a benchmark OpenAI co-authored, so I marked them vendor-claimed and left the exact figure out.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026. Benchmarks are OpenAI's own model-card and launch-post figures (arXiv 2508.10925), cross-referenced against the gpt-oss GitHub repo, MLCommons, and independent pricing trackers. Vendor-reported numbers are marked as such; figures I couldn't independently corroborate were omitted rather than guessed.*

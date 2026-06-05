@@ -1,0 +1,55 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#05070F" />
+      <stop offset="0.5" stop-color="#0B1530" />
+      <stop offset="1" stop-color="#070B18" />
+    </linearGradient>
+    <linearGradient id="glimmer" x1="320" y1="120" x2="1320" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB" stop-opacity="0.28" />
+      <stop offset="0.5" stop-color="#93C5FD" stop-opacity="0.14" />
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0.20" />
+    </linearGradient>
+    <radialGradient id="pulse" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 430) rotate(90) scale(640 540)">
+      <stop offset="0" stop-color="#3B82F6" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16233F" />
+      <stop offset="1" stop-color="#0C1428" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#93C5FD" /><stop offset="1" stop-color="#2563EB" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect width="1600" height="900" fill="url(#pulse)" />
+  <rect x="120" y="90" width="1360" height="720" rx="56" fill="#0A1224" fill-opacity="0.72" stroke="#1E2C4C" stroke-opacity="0.55" />
+  <rect x="120" y="90" width="1360" height="720" rx="56" fill="url(#glimmer)" fill-opacity="0.5" />
+
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <rect x="190" y="160" width="228" height="36" rx="18" fill="#2563EB" fill-opacity="0.18" stroke="#2563EB" stroke-opacity="0.5" />
+    <text x="304" y="184" font-size="17" font-weight="600" letter-spacing="2" fill="#93C5FD" text-anchor="middle">GOOGLE DEEPMIND</text>
+    <text x="190" y="300" font-size="92" font-weight="800" fill="#FFFFFF">Gemma 4</text>
+    <text x="190" y="362" font-size="29" font-weight="400" fill="#9FB3D1">Open-weight, Apache 2.0 — a 31B dense model that runs on one GPU and tops the open arena</text>
+
+    <rect x="190" y="470" width="287" height="250" rx="24" fill="url(#tile)" stroke="#2563EB" stroke-opacity="0.7" />
+    <rect x="218" y="500" width="46" height="6" rx="3" fill="url(#accent)" />
+    <text x="218" y="608" font-size="52" font-weight="800" fill="#FFFFFF">1452</text>
+    <text x="218" y="658" font-size="19" font-weight="500" fill="#8FA6C4">LMArena Elo (31B)</text>
+    <rect x="501" y="470" width="287" height="250" rx="24" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <rect x="529" y="500" width="46" height="6" rx="3" fill="url(#accent)" />
+    <text x="529" y="608" font-size="52" font-weight="800" fill="#FFFFFF">~18GB</text>
+    <text x="529" y="658" font-size="19" font-weight="500" fill="#8FA6C4">VRAM (31B Q4)</text>
+    <rect x="812" y="470" width="287" height="250" rx="24" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <rect x="840" y="500" width="46" height="6" rx="3" fill="url(#accent)" />
+    <text x="840" y="608" font-size="52" font-weight="800" fill="#FFFFFF">256K</text>
+    <text x="840" y="658" font-size="19" font-weight="500" fill="#8FA6C4">Context window</text>
+    <rect x="1123" y="470" width="287" height="250" rx="24" fill="url(#tile)" stroke="#1E2E51" stroke-opacity="0.6" />
+    <rect x="1151" y="500" width="46" height="6" rx="3" fill="url(#accent)" />
+    <text x="1151" y="608" font-size="52" font-weight="800" fill="#FFFFFF">$0</text>
+    <text x="1151" y="658" font-size="19" font-weight="500" fill="#8FA6C4">Open weights</text>
+    <text x="190" y="772" font-size="16" fill="#5C6F8E">FrankX · Intelligence Dispatch · Verified via Google DeepMind, HuggingFace, LMArena</text>
+  </g>
+</svg>

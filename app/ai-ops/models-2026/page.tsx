@@ -225,6 +225,76 @@ const externalResources = [
   { name: 'SEAL Leaderboards', url: 'https://scale.com/leaderboard', description: 'Scale AI expert evaluations across enterprise tasks' },
 ]
 
+// Run-it-yourself models — the open & local lane. Pricing is $0 (open weights);
+// the real costs are hardware + license terms, so this grid leads with VRAM and license.
+const openLocalModels = [
+  {
+    name: 'Gemma 4',
+    org: 'Google',
+    params: '31B dense (+ 26B MoE, 12B, edge tiers)',
+    minVram: '~18GB Q4 (31B) · ~2GB (E2B)',
+    context: '256K',
+    license: 'Apache 2.0',
+    runners: 'Ollama · LM Studio · vLLM · HF',
+    achievement: 'Frontier-tier quality on one consumer GPU; native multimodal',
+    color: '#22c55e',
+    slug: 'gemma-3-analysis-2026',
+    highlight: true,
+  },
+  {
+    name: 'gpt-oss (120b / 20b)',
+    org: 'OpenAI',
+    params: '120B/5.1B · 20B/3.6B (MoE)',
+    minVram: '~80GB (120b) · ~16GB (20b)',
+    context: '131K',
+    license: 'Apache 2.0',
+    runners: 'Ollama · vLLM · LM Studio',
+    achievement: 'Best reasoning-per-VRAM open option; MLPerf v6.0 benchmark',
+    color: '#10b981',
+    slug: 'gpt-oss-analysis-2026',
+    highlight: false,
+  },
+  {
+    name: 'Mistral Large 3',
+    org: 'Mistral AI',
+    params: '675B/41B (MoE)',
+    minVram: '8×H200 (FP8) · or $0.50/1M API',
+    context: '256K',
+    license: 'Apache 2.0',
+    runners: 'vLLM · SGLang · Red Hat AI',
+    achievement: 'EU-sovereign open frontier; #2 OSS on LMArena (~1418)',
+    color: '#fb7185',
+    slug: 'mistral-large-3-analysis-2026',
+    highlight: false,
+  },
+  {
+    name: 'Llama 4 Maverick',
+    org: 'Meta',
+    params: '400B/17B (MoE) · Scout 109B/17B',
+    minVram: '8×H100 (Maverick) · 1×H100 (Scout)',
+    context: '1M · 10M (Scout)',
+    license: 'Llama Community',
+    runners: 'vLLM · Ollama (Scout) · HF',
+    achievement: 'Native multimodal MoE; permissive license, 10M-ctx Scout',
+    color: '#f59e0b',
+    slug: 'llama-4-analysis-2026',
+    highlight: false,
+  },
+  {
+    name: 'Microsoft Phi-4',
+    org: 'Microsoft',
+    params: '3.8B – 15B tiers',
+    minVram: '~3-4GB (mini) · ~8-10GB (14B Q4)',
+    context: '16K – 128K',
+    license: 'MIT',
+    runners: 'Ollama · ONNX · LM Studio · llama.cpp',
+    achievement: 'Laptop-class STEM specialist; 14B beats GPT-4o on GPQA/MATH',
+    color: '#0078d4',
+    slug: 'phi-analysis-2026',
+    highlight: false,
+  },
+]
+
 const ociModels = [
   { name: 'Cohere Command A Reasoning', provider: 'Cohere', context: '256K', useCase: 'Complex reasoning', eu: true },
   { name: 'Cohere Command A Vision', provider: 'Cohere', context: '256K', useCase: 'Multimodal', eu: true },
@@ -303,7 +373,7 @@ export default function Models2026Page() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} />
+                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} aria-hidden="true" />
                       <h3 className="font-bold text-lg">{m.name}</h3>
                       {m.highlight && <span className="px-2 py-0.5 text-[10px] rounded-full bg-[#a855f7]/20 text-[#a855f7] font-medium uppercase tracking-wider">New</span>}
                     </div>
@@ -345,6 +415,51 @@ export default function Models2026Page() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Open & Local Models */}
+        <section className="py-16 px-6 border-t border-white/5">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold mb-2">Open &amp; Local Models</h2>
+            <p className="text-white/40 text-sm mb-8">
+              Run-it-yourself, open-weight models. Pricing is $0 per token — the real costs are hardware and license terms, so these lead with VRAM and license.
+              DeepSeek V4 and Kimi K2.6 (in the frontier grid above) are also open-weight and self-hostable.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {openLocalModels.map((m, i) => (
+                <motion.div
+                  key={m.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.04 }}
+                  className={`p-5 rounded-xl border transition-colors ${
+                    m.highlight ? 'bg-[#22c55e]/[0.04] border-[#22c55e]/20 hover:border-[#22c55e]/40' : 'bg-white/[0.02] border-white/5 hover:border-white/10'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: m.color }} aria-hidden="true" />
+                    <h3 className="font-bold">{m.name}</h3>
+                  </div>
+                  <p className="text-sm text-white/40 mb-1">{m.org}</p>
+                  <p className="text-sm text-white/60 mb-4">{m.achievement}</p>
+                  <dl className="space-y-1.5 text-xs">
+                    <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">Params</dt><dd className="font-mono text-white/70 text-right">{m.params}</dd></div>
+                    <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">Min VRAM</dt><dd className="font-mono text-white/70 text-right">{m.minVram}</dd></div>
+                    <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">Context</dt><dd className="font-mono text-white/70 text-right">{m.context}</dd></div>
+                    <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">License</dt><dd className="font-mono text-white/70 text-right">{m.license}</dd></div>
+                    <div className="flex justify-between gap-3"><dt className="text-white/30 uppercase tracking-wider">Run via</dt><dd className="font-mono text-white/50 text-right">{m.runners}</dd></div>
+                  </dl>
+                  <Link href={`/blog/${m.slug}`} className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors" aria-label={`Deep dive into ${m.name}`}>
+                    Deep dive <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+            <p className="mt-6 text-sm text-white/40">
+              New to self-hosting? Start with the <Link href="/blog/best-open-local-llms-2026" className="text-[#22c55e] hover:underline">open &amp; local LLM field guide</Link> — which model for which hardware, and when self-host beats an API.
+            </p>
           </div>
         </section>
 

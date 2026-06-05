@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 631,
+    "total": 637,
     "aliases": 19,
     "byType": {
       "core": 22,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 10,
       "static": 15,
-      "blog": 143,
+      "blog": 149,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -1070,6 +1070,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/best-open-local-llms-2026",
+      "title": "The Best Open & Local LLMs in 2026: A Self-Host Field Guide",
+      "description": "Which open-weight model for which hardware — Gemma 4, gpt-oss, Phi-4, Mistral Large 3, Llama 4, DeepSeek V4, and Kimi K2.6 compared by VRAM, license, and use case. When self-hosting beats an API, with verified benchmarks.",
+      "tags": [
+        "open-source",
+        "local-llm",
+        "self-hosting",
+        "frontier-models",
+        "ai-2026"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/brand-evolution-from-consciousness-to-systems",
       "title": "Brand Evolution: From Consciousness to Systems",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
@@ -1472,6 +1485,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/gemma-3-analysis-2026",
+      "title": "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU",
+      "description": "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4. Self-host specifics, verified benchmarks, license analysis, and which size for which job.",
+      "tags": [
+        "google",
+        "gemma",
+        "open-weight-models",
+        "local-llms",
+        "ai-2026",
+        "benchmarks"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/gencreator-3-tier-shipping-system",
       "title": "The 3-Tier Shipping System: How GenCreators Build Creative Momentum",
       "description": "Full Ship, Quick Ship, Micro Ship — energy-aware daily output. The system that turns sporadic creation into unstoppable momentum.",
@@ -1572,6 +1599,20 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-oss-analysis-2026",
+      "title": "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On",
+      "description": "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop. The full self-host breakdown: VRAM, MXFP4 quantization, where to run, verified benchmarks, and how they stack up against Qwen, DeepSeek, and GLM in June 2026.",
+      "tags": [
+        "openai",
+        "gpt-oss",
+        "open-weight-models",
+        "local-llms",
+        "ai-2026",
+        "benchmarks"
       ],
       "type": "blog"
     },
@@ -1677,6 +1718,20 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/llama-4-analysis-2026",
+      "title": "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack",
+      "description": "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 — Behemoth never shipped. Verified benchmarks, real VRAM and self-host requirements, how it stacks up against DeepSeek V4, Qwen 3.5, and Kimi K2.6, and what it means for builders.",
+      "tags": [
+        "meta",
+        "llama",
+        "open-weights",
+        "local-llms",
+        "ai-2026",
+        "benchmarks"
       ],
       "type": "blog"
     },
@@ -1796,6 +1851,20 @@
         "realitydiffusion",
         "trust-and-safety",
         "multi-agent-systems"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/mistral-large-3-analysis-2026",
+      "title": "Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For",
+      "description": "Mistral Large 3 (mistral-large-2512) is a 675B/41B-active MoE released under Apache 2.0, December 2025. 256K context, $0.50/$1.50 API pricing, runs on one 8xH200 node. Verified benchmarks, EU sovereignty angle, self-host specifics, and what it means for builders.",
+      "tags": [
+        "mistral",
+        "open-weight",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "eu-sovereign-ai"
       ],
       "type": "blog"
     },
@@ -1973,6 +2042,20 @@
         "CLAUDE.md",
         "MCP Servers",
         "Workshops"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/phi-analysis-2026",
+      "title": "Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop",
+      "description": "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.6B), Phi-4-reasoning, and the March 2026 Phi-4-reasoning-vision-15B — are MIT-licensed, $0 to download, and run on consumer GPUs. Verified benchmarks, VRAM tables, and what the small-model angle means for builders.",
+      "tags": [
+        "microsoft",
+        "phi",
+        "open-weight",
+        "small-language-models",
+        "local-ai",
+        "benchmarks"
       ],
       "type": "blog"
     },
