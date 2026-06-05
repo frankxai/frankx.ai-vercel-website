@@ -163,10 +163,33 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     bestFor: ['Workloads not yet migrated to Gemini 3.5', '2M-context multimodal tasks'],
     openrouterId: 'google/gemini-3-pro',
   },
+  'gpt-oss': {
+    tagline: 'OpenAI’s open-weight family — Apache 2.0 reasoning that fits on one GPU or a laptop.',
+    bestFor: [
+      'Local-first, privacy-sensitive products (gpt-oss-20b offline on 16GB)',
+      'Single-GPU reasoning workloads (gpt-oss-120b on one 80GB card)',
+      'Cost-controlled agentic loops with no per-token meter or vendor lock-in',
+    ],
+    watchOut: 'Open weights are not free inference — self-hosting the 120b only pencils out at high steady volume or under data-residency rules; otherwise a hosted endpoint at ~$0.04-$0.15/1M is cheaper. Requires OpenAI’s harmony response format. No longer tops open-model leaderboards.',
+    creatorUse: 'Run gpt-oss-20b locally via Ollama/LM Studio for offline drafting, agent prototyping, and any workflow where prompts/outputs can’t leave the machine.',
+    openrouterId: 'openai/gpt-oss-120b',
+  },
+  'gemma-4': {
+    tagline: 'Google’s open-weight flagship: a 31B frontier-tier model on one GPU, now Apache 2.0.',
+    bestFor: [
+      'Local-first / privacy-sensitive products (on-prem, healthcare, legal, finance)',
+      'Cost-conscious agentic systems (26B A4B MoE + vLLM)',
+      'Commercial fine-tuning under a clean license',
+    ],
+    watchOut: 'Academic benchmark jumps (AIME 89.2%, GPQA 84.3%) are largely Google’s own evals — vendor-claimed until reproduced. Qwen3.7-Max narrowly out-scores it on pure reasoning.',
+    creatorUse: 'Run the 12B locally for offline multimodal work (image/audio on a 16GB laptop); 31B for on-prem RAG and coding where data can’t leave your box.',
+    openrouterId: 'google/gemma-4-31b',
+  },
   'llama-4-maverick': {
-    tagline: 'Open-weight MoE leadership — 400B total, 17B active, runs on one H100.',
-    bestFor: ['Self-hosted / sovereign deployments', 'Fine-tuning ecosystems', 'Cost-controlled inference at scale'],
-    creatorUse: 'The base for creators who want to own and fine-tune their model.',
+    tagline: 'Meta’s open flagship by default — permissively licensed and multimodal, but no longer leading the open pack.',
+    bestFor: ['Permissively-licensed self-hosting in your own VPC', 'Native open-weight multimodal (text+image) work', 'Long-context reasoning via the 10M-token Scout sibling'],
+    watchOut: 'A data-center model (8x H100 for Maverick FP8), not a consumer-GPU one, and its benchmarks now trail DeepSeek V4, Qwen3.7-Max and Kimi K2.6. The headline 1417 LMArena Elo was an experimental variant, not the public weights.',
+    creatorUse: 'Self-host Scout on a single H100 for whole-corpus (10M context) multimodal drafting where you need data control and zero per-token cost.',
     openrouterId: 'meta-llama/llama-4-maverick',
   },
   'deepseek-v4': {
@@ -204,9 +227,22 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'qwen/qwen3.7-max',
   },
   'mistral-large-3': {
-    tagline: 'European data sovereignty with a strong open/commercial split.',
-    bestFor: ['EU data-residency requirements', 'Multilingual frontier tasks', 'Apache-licensed small-model pairing'],
-    openrouterId: 'mistralai/mistral-large-3',
+    tagline: 'Europe’s 675B open-weight frontier: Apache 2.0, runs on one node, sovereign by design.',
+    bestFor: ['EU data-residency / GDPR-bound workloads', 'Multilingual knowledge work and RAG', 'Self-hosted frontier inference (FP8 on 8x H200)'],
+    watchOut: 'Trails dedicated reasoners on hard reasoning (GPQA Diamond ~44%); reasoning variant promised but not yet shipped as of June 2026.',
+    creatorUse: 'Run a sovereign, frontier-class assistant on your own hardware at $0 per-token, or call the API at $0.50/$1.50.',
+    openrouterId: 'mistralai/mistral-large-2512',
+  },
+  'phi-4': {
+    tagline: 'MIT-licensed small models that punch above their weight — and run on your laptop for $0 per token.',
+    bestFor: [
+      'On-device and edge inference (3.8B mini in ~3-4GB VRAM)',
+      'Privacy-sensitive / regulated workloads with fully local hosting',
+      'High-volume, well-scoped STEM, extraction, and function-calling tasks',
+    ],
+    watchOut: 'Base Phi-4 has only a 16K context window, and the vision model is a math/diagram specialist, not a general multimodal model. Most reasoning/vision benchmarks are vendor-claimed.',
+    creatorUse: 'Local document AI, on-device assistants, STEM tutoring, screen/UI automation, and offline drafting — no API cost, full data control.',
+    openrouterId: 'microsoft/phi-4',
   },
   'qwen3-coder-next': {
     tagline: 'The efficiency breakthrough — 70.6% SWE-bench at 3B active params, Apache 2.0.',

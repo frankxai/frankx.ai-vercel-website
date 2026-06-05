@@ -1,0 +1,228 @@
+---
+title: "Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop"
+description: "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.6B), Phi-4-reasoning, and the March 2026 Phi-4-reasoning-vision-15B — are MIT-licensed, $0 to download, and run on consumer GPUs. Verified benchmarks, VRAM tables, and what the small-model angle means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - microsoft
+  - phi
+  - open-weight
+  - small-language-models
+  - local-ai
+  - benchmarks
+keywords:
+  - microsoft phi-4
+  - phi-4 benchmarks
+  - phi-4 vram requirements
+  - phi-4 reasoning vision 15b
+  - phi-4 mini 3.8b
+  - run phi-4 locally ollama
+  - best small language model 2026
+  - phi-4 mmlu gpqa
+  - open weight small model
+  - phi-4 vs gemma 3
+image: "/images/blog/phi-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop
+
+**TL;DR**: Microsoft's Phi-4 family is the small-language-model line that keeps embarrassing models several times its size — and it's MIT-licensed and free to download. The lineup spans Phi-4-mini (3.8B), Phi-4-multimodal (5.6B, text+vision+speech), the flagship Phi-4 (14B), the reasoning pair Phi-4-reasoning / Phi-4-reasoning-plus (14B), and the newest member, **Phi-4-reasoning-vision-15B**, shipped March 4, 2026, which decides on its own when to "think" and when to answer instantly. Base Phi-4 posts MMLU 84.8, GPQA 56.1, MATH 80.4, and HumanEval 82.6 — outscoring its own teacher (GPT-4o) on GPQA and MATH. The practical headline: a Q4 quant of the 14B runs in roughly 8-10GB of VRAM, so this is frontier-adjacent reasoning on a gaming laptop for $0 in API spend. There is no GA "Phi-5" as of June 2026. Here's the honest state of the family and what it means for builders.
+
+---
+
+## What Is the Phi Family in June 2026?
+
+Phi is Microsoft Research's bet that **data quality beats parameter count**. The whole program is built on "textbook-quality" curated and synthetic training data rather than scraping more of the internet, and the result is a family of small models that punch well above their weight class.
+
+As of June 2026, the current generation is the **Phi-4 family** — there is no generally available Phi-5. (You'll find "Phi-5" deployment guides floating around; treat those as speculative or pre-release until Microsoft ships an official model card. I'm not going to feature a model that doesn't have one.) The family is open-weight under the **MIT license**, which is about as permissive as it gets: use it commercially, fine-tune it, redistribute it, no royalty.
+
+Five things define where the family sits right now:
+
+1. **It's a *small* family on purpose.** The largest member is 15B parameters. Nothing here competes with a frontier model on raw breadth — the entire pitch is capability-per-parameter and the ability to run on hardware you already own.
+
+2. **The newest model is multimodal and adaptive.** Phi-4-reasoning-vision-15B (March 2026) is trained to default to fast, direct inference on perception tasks and only spend tokens on long chain-of-thought when the problem — math, science, diagrams — actually needs it.
+
+3. **Reasoning came to the small tier.** Phi-4-reasoning and Phi-4-reasoning-plus (April 2025, 14B, MIT) brought o1-mini-class math performance to a model you can run locally.
+
+4. **The economics are inverted versus the API world.** Open weights mean the per-token price is $0. Your cost is hardware and electricity. For high-volume, privacy-sensitive, or offline workloads, that changes the math entirely.
+
+5. **It runs everywhere small models run.** Ollama, LM Studio, llama.cpp, ONNX Runtime, Azure AI Foundry, Foundry Local, and Hugging Face all carry official builds.
+
+---
+
+## What Are the Current Variants?
+
+Here's the full Phi-4 lineup with the specifics that matter for self-hosting. VRAM figures are for the commonly used Q4_K_M GGUF quant on the 14B/15B models and are corroborated across community runner guides; treat them as practical estimates, not guarantees.
+
+| Variant | Params | Context | Modalities | Min VRAM (Q4) | Where to run |
+|---------|--------|---------|------------|---------------|--------------|
+| **Phi-4** | 14B | 16K | Text | ~8-10GB | Ollama, LM Studio, llama.cpp, HF, Foundry |
+| **Phi-4-mini** | 3.8B | 128K | Text | ~3-4GB | Ollama, LM Studio, ONNX, NVIDIA NIM, HF |
+| **Phi-4-multimodal** | 5.6B | 128K | Text + vision + speech | ~5-6GB | Azure AI Foundry, ONNX, HF |
+| **Phi-4-reasoning** | 14B | 32K | Text | ~8-10GB | Ollama, LM Studio, HF |
+| **Phi-4-reasoning-plus** | 14B | 32K | Text | ~8-10GB | Ollama, LM Studio, HF |
+| **Phi-4-reasoning-vision-15B** | 15B | — | Text + vision | ~10GB+ | HF, Azure AI Foundry |
+
+A few notes the table can't hold. Phi-4-mini carries a **200K-token vocabulary** for stronger multilingual coverage, grouped-query attention for efficient long-context generation, and built-in function calling — it's the one to reach for when you want a tiny, fast, tool-using model. Phi-4-multimodal was the family's first model to fuse text, vision, **and** speech in one set of weights, and specializes in speech recognition, translation, and audio Q&A. The base Phi-4's 16K context is its most notable limitation versus the 128K minis — if you need long-context, the mini or multimodal variants are the better fit despite being smaller.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A sourcing note first, because it matters. The base Phi-4 numbers come from Microsoft's [Phi-4 Technical Report](https://arxiv.org/pdf/2412.08905) run through OpenAI's `simple-evals` framework and are cross-referenced against [llm-stats](https://llm-stats.com/models/phi-4-mini) and the [Hugging Face model card](https://huggingface.co/microsoft/phi-4). Where a figure is from Microsoft's own evals and not yet broadly third-party reproduced, I mark it **vendor-claimed**. Reasoning and vision scores in particular lean on Microsoft's reporting — treat them accordingly.
+
+### Base Phi-4 (14B) — the small model punching up
+
+| Benchmark | Phi-4 (14B) | What it measures |
+|-----------|-------------|------------------|
+| MMLU | **84.8** | Broad knowledge across 57 subjects |
+| GPQA | **56.1** | Graduate-level science Q&A |
+| MATH | **80.4** | Competition mathematics |
+| HumanEval | **82.6** | Python code generation |
+
+The standout context: on **GPQA and MATH, Phi-4 outscores GPT-4o** — the very model that generated much of its synthetic training data. A 14B model beating its multi-hundred-billion-parameter teacher on graduate science and competition math is the entire Phi thesis in two numbers. On HumanEval it posted the strongest coding score of any open-weight model in its size class at release.
+
+### Phi-4-reasoning / reasoning-plus (14B) — local o1-mini-class math
+
+| Benchmark | Phi-4-reasoning | Phi-4-reasoning-plus | Reference |
+|-----------|-----------------|----------------------|-----------|
+| AIME 2024 | **75.3%** | — | beats DeepSeek-R1-Distill-70B (69.3%) |
+| AIME 2025 | ~78% | **81.3%** (plus) | beats o1-mini and 70B distills |
+| GPQA Diamond | **65.8%** | **68.9%** | graduate science |
+
+These are **vendor-claimed** from Microsoft's [reasoning technical report](https://www.microsoft.com/en-us/research/wp-content/uploads/2025/04/phi_4_reasoning.pdf), but the comparison is striking: a 14B model trading blows with — and on AIME, beating — 70B-parameter distillations and o1-mini. The reasoning variant was fine-tuned on ~8.3B tokens of synthetic chain-of-thought traces generated by o3-mini; the "plus" variant added a short GRPO reinforcement-learning phase. Both are MIT-licensed and run locally on a single consumer GPU.
+
+### Phi-4-reasoning-vision-15B — adaptive multimodal (March 2026)
+
+| Benchmark | Score | What it measures |
+|-----------|-------|------------------|
+| MathVista | **75.2** | Visual math reasoning |
+| AI2D | **84.8** | Science diagrams |
+| ScreenSpot v2 | **88.2** | UI element grounding |
+| ChartQA | **83.3** | Chart understanding |
+| OCRBench | **76** | Text-in-image extraction |
+| MMMU | **54.3** | College-level multimodal understanding |
+
+All **vendor-claimed** from the [Phi-4-reasoning-vision tech report](https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/). The honest read: this model is strong on **math, science diagrams, and UI/chart grounding** and noticeably weaker on general multimodal understanding (MMMU 54.3 trails larger vision models like Qwen 3.5-class systems, which clear 80+). It was trained on just **200B multimodal tokens** — versus the 1T+ that Qwen 2.5/3 VL, Kimi-VL, and Gemma 3 used — and Microsoft's framing is that it matches "much slower models that require ten times or more compute-time" on its strong domains. Believe the targeted strengths; don't expect it to be a general-purpose vision model.
+
+---
+
+## How Does It Compare to Other Small / Open Models?
+
+Where the Phi-4 base model sits against the small/open field. Numbers are best-effort from each model's reporting; cross-model benchmark comparisons always carry methodology caveats, so read the *shape*, not the third decimal.
+
+| Model | Params | License | MMLU | GPQA | Math | Angle |
+|-------|--------|---------|------|------|------|-------|
+| **Phi-4** | 14B | MIT | **84.8** | **56.1** | 80.4 (MATH) | STEM-dense, tiny footprint |
+| Gemma 3 (12B-class) | ~12B | Gemma terms | strong | mid | strong | Multimodal, 128K, broad |
+| Qwen 2.5 (14B) | 14B | Apache 2.0 | strong | strong | strong | Multilingual, long-context |
+| Llama 3.x (8B) | 8B | Llama license | lower | lower | lower | Ubiquitous, huge ecosystem |
+| DeepSeek-R1-Distill (70B) | 70B | MIT | — | — | AIME 69.3% | Bigger; Phi-4-reasoning beats it on AIME |
+
+Two honest caveats. First, **Phi-4's base 16K context is short** next to Gemma 3 and Qwen's 128K — if long-context is your bottleneck, Phi-4-mini (128K) or a different family wins. Second, on **general multimodal breadth**, Gemma 3 and the Qwen VL line are stronger than Phi-4-reasoning-vision; Phi's vision model is a specialist, not a generalist. Where Phi wins decisively is **STEM reasoning density per parameter and per gigabyte of VRAM** — and the MIT license, which is more permissive than Gemma's or Llama's. For the broader open-local landscape, see [the best open local LLMs guide](/blog/best-open-local-llms-2026) and the [Gemma 3 deep-dive](/blog/gemma-3-analysis-2026).
+
+---
+
+## What's the Self-Host Story? (VRAM, Quantization, Runners)
+
+This is the part that actually matters for a small open model, and it's where Phi-4 shines. You are not paying per token. You are paying for a GPU you probably already have.
+
+**VRAM by quant (Phi-4 14B):**
+
+| Quant | Size on disk | Fits in | Quality |
+|-------|--------------|---------|---------|
+| Q3_K_M | ~6.5GB | 8GB VRAM (with headroom) | Aggressive, usable |
+| **Q4_K_M** | ~8.3GB | 10-12GB VRAM | **Best balance — start here** |
+| Q5_K_M | ~9.8GB | 12GB+ VRAM | Higher-fidelity math/code |
+
+Community testing puts **Q4_K_M at ~95% of full-precision quality** on reasoning tasks, which is why it's the default recommendation. The 3.8B Phi-4-mini drops to roughly 3-4GB at Q4 — it runs comfortably on an 8GB laptop GPU, an integrated GPU with enough shared memory, or even CPU-only at reduced speed.
+
+**Where to run it:**
+
+- **Ollama** — `ollama run phi4`. Official GGUFs ship in current releases; the same file works in llama.cpp, KoboldCPP, and friends.
+- **LM Studio** — official `phi4` GGUFs, GUI, one-click download. Best for non-terminal users.
+- **ONNX Runtime / Foundry Local** — Microsoft's own path for optimized on-device inference, including Windows CPU/GPU/NPU.
+- **Azure AI Foundry** — managed endpoints if you'd rather not self-host but still want the model.
+- **NVIDIA NIM** — Phi-4-mini is packaged as a NIM microservice for production deployment.
+- **Hugging Face** — raw weights for fine-tuning and custom pipelines.
+
+The same GGUF artifact is portable across the whole local ecosystem, so you're not locked into one runner. For a privacy-first local setup walkthrough, the [Ollama local AI guide](/blog/ollama-local-ai-models-privacy-guide) covers the mechanics.
+
+---
+
+## What Does On-Device / Edge Economics Actually Look Like?
+
+The open-weight angle isn't a footnote — it's the whole value proposition for a small model. Here's the calculus.
+
+**Cost.** Per-token price is **$0**. A workload that would cost real money against a hosted API — say, classifying or summarizing millions of documents — costs you electricity and the amortized price of a GPU. Once the hardware is bought, the marginal cost of inference is effectively zero. For high-volume, repetitive tasks, that flips the build-vs-buy decision hard toward self-hosting.
+
+**Privacy.** Nothing leaves the machine. For regulated data — health, legal, financial, internal source code — a model that runs entirely on-prem or on-device sidesteps an entire category of data-governance problems. No API logs, no third-party data processing agreements, no exfiltration surface.
+
+**Latency and offline.** No network round-trip. A 3.8B Phi-4-mini on a laptop NPU responds locally, works on a plane, and degrades gracefully without connectivity. For embedded and edge deployments — kiosks, IoT, field devices — this is the difference between feasible and not.
+
+**The honest tradeoff.** You give up frontier breadth. Phi-4 will not match Claude Opus or Gemini on the hardest, broadest tasks, and it never claimed to. The discipline is **matching the model to the task's difficulty and cost-of-error**: route the genuinely hard, high-stakes work to a frontier API, and run the high-volume, well-scoped, privacy-sensitive work on Phi-4 locally. That's the same routing logic the [FrankX models tracker](/ai-ops/models-2026) applies across the whole field.
+
+---
+
+## What Does It Mean for Builders?
+
+### For developers and edge deployments
+
+If you have a task that's well-scoped — structured extraction, classification, function-calling agents, code completion, on-device assistants — **start with Phi-4-mini (3.8B)** and only size up if quality demands it. It's tiny, fast, supports 128K context and function calling, and costs nothing to run. Reach for the full Phi-4 (14B) when you need stronger STEM reasoning, and Phi-4-reasoning when the task is genuinely math/logic-heavy.
+
+```bash
+# Smallest viable: 3.8B, ~3-4GB VRAM, function calling, 128K context
+ollama run phi4-mini
+
+# STEM-dense flagship: 14B, ~8-10GB at Q4
+ollama run phi4
+```
+
+### For privacy-sensitive and regulated workloads
+
+This is Phi-4's sweet spot. MIT license plus fully local inference means you can deploy it inside an air-gapped environment, fine-tune it on proprietary data without that data ever leaving your control, and ship it in a product without per-seat API costs. For document processing, internal copilots, and compliance-bound automation, the open-weight model is often the *only* viable option — and Phi-4 is among the most capable in its size class.
+
+### For multimodal and reasoning work on a budget
+
+Phi-4-reasoning-plus gives you local AIME-2025-81% math reasoning on a single consumer GPU. Phi-4-reasoning-vision-15B handles diagrams, charts, and UI grounding well — useful for document AI, screen automation, and STEM-tutoring use cases — as long as you accept it's a specialist and not a general vision model. For broad multimodal understanding, Gemma 3 or a Qwen VL model is the better pick.
+
+### The routing discipline
+
+The mental model: **Phi-4 is the local-first default for well-scoped, high-volume, or sensitive work; a frontier API is the escalation path for the genuinely hard.** Don't run a 14B model on problems that need a frontier model, and don't pay frontier API prices for work a 3.8B model nails. Match the model to the cost-of-error, not to the leaderboard.
+
+---
+
+## FAQ
+
+### Is there a Phi-5 yet?
+
+No. As of June 2026 there is no generally available Phi-5 with an official Microsoft model card. The current generation is the Phi-4 family, with the newest member being Phi-4-reasoning-vision-15B (March 4, 2026). Any "Phi-5" guides you find are speculative or based on pre-release rumor — verify against an official model card before trusting specs.
+
+### How much VRAM do I need to run Phi-4?
+
+For the 14B model at Q4_K_M (the recommended quant), roughly 8-10GB of VRAM — it fits comfortably on a 10-12GB GPU. A Q3 quant squeezes into 8GB with headroom. The 3.8B Phi-4-mini needs only ~3-4GB and runs on most laptop GPUs, integrated graphics with enough shared memory, or CPU-only at reduced speed. Q4_K_M retains roughly 95% of full-precision quality on reasoning tasks.
+
+### What's the license, and can I use it commercially?
+
+The Phi-4 family is open-weight under the **MIT license** — one of the most permissive available. You can use it commercially, fine-tune it, redistribute it, and ship it in products with no royalty. This is more permissive than Gemma's custom terms or the Llama license.
+
+### How does Phi-4 beat models larger than itself?
+
+Microsoft trains Phi on "textbook-quality" curated and synthetic data rather than maximizing scraped tokens — the thesis is that data quality beats parameter count. The result: base Phi-4 (14B) outscores GPT-4o (its synthetic-data teacher) on GPQA and MATH, and Phi-4-reasoning (14B) beats 70B distillations and o1-mini on AIME. The tradeoff is breadth — Phi models are STEM-dense specialists, not generalists with frontier-level coverage of everything.
+
+### Where can I run Phi-4 models?
+
+Ollama (`ollama run phi4`), LM Studio, llama.cpp, ONNX Runtime, Microsoft Foundry Local, Azure AI Foundry (managed endpoints), NVIDIA NIM (for Phi-4-mini), and raw weights on Hugging Face for fine-tuning. The same GGUF file is portable across the local-inference ecosystem.
+
+### Which benchmark numbers are verified vs vendor-claimed?
+
+Base Phi-4's MMLU 84.8 / GPQA 56.1 / MATH 80.4 / HumanEval 82.6 come from Microsoft's technical report via OpenAI's `simple-evals` and are corroborated on llm-stats and the HF card — well-supported. The reasoning scores (AIME, GPQA Diamond) and all the vision scores (MathVista, MMMU, etc.) are from Microsoft's own technical reports and should be treated as vendor-claimed until broadly reproduced by third parties.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026 with specs validated against Microsoft's Phi-4 and Phi-4-reasoning technical reports, the Hugging Face model cards, llm-stats, and community self-hosting guides. Vendor-claimed figures are marked as such, and no number here was invented.*

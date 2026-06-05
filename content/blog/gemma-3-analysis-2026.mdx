@@ -107,24 +107,24 @@ The honest read: **Qwen 3.5 narrowly out-scores Gemma 4 on pure reasoning** (MML
 
 ## Why Does the Apache 2.0 License Matter More Than the Benchmarks?
 
-This is the part that VentureBeat called bigger than the benchmarks, and I agree. Gemma 1 through 3 shipped under Google's custom **"Gemma Terms of Use."** More permissive than many, but not standard — it carried use restrictions (carve-outs around harm, critical infrastructure, and so on) that were reasonable in spirit but legally ambiguous in practice. For an enterprise, "legally ambiguous" means a compliance review, which means weeks of procurement delay, which means the model quietly doesn't get adopted.
+VentureBeat called this bigger than the benchmarks, and I agree. Gemma 1 through 3 shipped under Google's custom **"Gemma Terms of Use"** — more permissive than many, but not standard, with use restrictions (carve-outs around harm, critical infrastructure) that were reasonable in spirit but legally ambiguous in practice. For an enterprise, "legally ambiguous" means a compliance review, weeks of procurement delay, and a model that quietly never gets adopted.
 
-Gemma 4 replaces all of it with **plain Apache 2.0** — OSI-approved, no custom clauses, no industry restrictions, no competitive-use prohibitions, no obligation to disclose training data or share your fine-tuned weights. You can fine-tune Gemma 4 on proprietary data and ship the result as a commercial product you sell, with no agreement with Google and no licensing fee.
+Gemma 4 replaces all of it with **plain Apache 2.0** — OSI-approved, no custom clauses, no industry restrictions, no competitive-use prohibitions, no obligation to disclose training data or share your fine-tuned weights. Fine-tune on proprietary data, ship the result as a commercial product, no agreement with Google and no fee.
 
-For self-host economics, this is the whole game. Open weights already mean the model itself is **$0** — no per-token API cost, no rate limits, no data leaving your infrastructure. Apache 2.0 removes the last thing that made "free" come with an asterisk. The cost of running Gemma 4 is now purely your hardware and electricity, and the legal cost is zero. That combination is why this release lands differently than a benchmark bump would.
+For self-host economics, this is the whole game. Open weights already mean the model is **$0** — no per-token cost, no rate limits, no data leaving your infrastructure. Apache 2.0 removes the last asterisk on "free." The cost of running Gemma 4 is now purely hardware and electricity, and the legal cost is zero. That's why this release lands differently than a benchmark bump would.
 
 ---
 
 ## Self-Host vs API: Which Size for Which Job?
 
-Open weights change the question. With a closed API model the decision is "is the quality worth the per-token price." With Gemma 4 the price is fixed (your GPU) and the question becomes "which tier gives me the quality I need at the throughput I need." Here's how I'd route it:
+Open weights flip the question. With a closed API the decision is "is the quality worth the per-token price." With Gemma 4 the price is fixed (your GPU) and the question becomes "which tier gives me the quality and throughput I need." How I'd route it:
 
 - **E2B / E4B — edge and on-device.** Phone apps, browser extensions, offline classification, PII-sensitive extraction that can't leave the device. Don't expect frontier reasoning; expect fast, private, good-enough.
 - **12B — local multimodal.** The new pick for anything involving images, audio, or video that you want running on a laptop without a cloud round-trip. Native audio input on a 16GB machine is the differentiator. This is the model for a privacy-respecting meeting summarizer or an offline document-and-screenshot agent.
 - **26B A4B — high-throughput agentic.** When you're running loops — many tool calls, many short turns — the MoE's ~4B active params give you speed without dropping to a tiny model's quality. Serve it with vLLM, batch aggressively.
 - **31B — max quality on one box.** The default for "I want the best open model I can run on a single GPU." Coding, analysis, RAG over your own corpus, anything where the answer quality is load-bearing and you want it on-prem.
 
-When do you *not* self-host? When your volume is low and spiky, a closed API is cheaper than amortizing a GPU. When you need the absolute frontier — the kind of reasoning [Claude Opus 4.8](/blog/claude-opus-4-8-analysis-2026) or DeepSeek V4 deliver — Gemma 4 isn't trying to compete there, and you shouldn't make it. Self-hosting Gemma 4 wins on a specific axis: **predictable cost, full data control, and no per-call latency to a third party.** Match the tier to the cost-of-error, not the leaderboard.
+When do you *not* self-host? When volume is low and spiky, a closed API beats amortizing a GPU. And when you need the absolute frontier — the reasoning [Claude Opus 4.8](/blog/claude-opus-4-8-analysis-2026) or DeepSeek V4 deliver — Gemma 4 isn't competing there, and you shouldn't make it. Self-hosting Gemma 4 wins on one axis: **predictable cost, full data control, and no per-call latency to a third party.** Match the tier to the cost-of-error, not the leaderboard.
 
 ---
 
@@ -132,19 +132,15 @@ When do you *not* self-host? When your volume is low and spiky, a closed API is 
 
 ### For local-first and privacy-sensitive products
 
-This is the clearest win. A 31B model at 80% LiveCodeBench and 85% MMLU-Pro, running entirely on your own hardware under Apache 2.0, means you can build a genuinely capable assistant that never sends a token to anyone. Healthcare, legal, finance, on-prem enterprise — the categories that couldn't touch a cloud API now have a real option. The 12B's native audio and vision extend that to multimodal without the infrastructure tax.
+The clearest win. A 31B model at 80% LiveCodeBench and 85% MMLU-Pro, running entirely on your own hardware under Apache 2.0, means a genuinely capable assistant that never sends a token to anyone. Healthcare, legal, finance, on-prem enterprise — categories that couldn't touch a cloud API now have a real option, and the 12B's native audio and vision extend it to multimodal without the infrastructure tax.
 
 ### For cost-conscious agentic systems
 
-The 26B A4B is the quiet star for anyone running agent loops at volume. MoE throughput plus zero per-token cost plus vLLM batching is a fundamentally different cost curve than paying an API per call. If you've been watching your agentic API bill climb, a self-hosted 26B on rented or owned GPUs is worth a serious back-of-envelope.
+The 26B A4B is the quiet star for agent loops at volume. MoE throughput plus zero per-token cost plus vLLM batching is a fundamentally different cost curve than paying an API per call. If your agentic API bill is climbing, a self-hosted 26B on rented or owned GPUs is worth a serious back-of-envelope.
 
-### For fine-tuners
+### For fine-tuners and open-model evaluators
 
-Apache 2.0 plus full availability of base and instruction-tuned checkpoints (`google/gemma-4-*-it` on HuggingFace) plus Unsloth-grade tooling means you can fine-tune on proprietary data, deploy commercially, and keep the weights private — no disclosure, no fee. For a vertical product built on a fine-tuned small model, this is close to ideal.
-
-### For everyone evaluating open models
-
-Don't pick on the headline Elo alone. Qwen 3.5 narrowly out-reasons Gemma 4; DeepSeek V4 out-everythings it at the frontier with a cluster. Gemma 4's edge is the *whole package* — quality that fits one GPU, native multimodal, a clean license, and day-zero support across Ollama, llama.cpp, LM Studio, vLLM, and the major cloud platforms. Run all three on your own eval set before committing. The right open model is the one that wins *your* benchmark, on *your* hardware, under a license *your* lawyers sign off on.
+Apache 2.0 plus base and instruction-tuned checkpoints (`google/gemma-4-*-it`) plus Unsloth-grade tooling means you fine-tune on proprietary data, deploy commercially, and keep the weights private — no disclosure, no fee. And when you evaluate, don't pick on headline Elo alone: Qwen 3.5 narrowly out-reasons Gemma 4, DeepSeek V4 out-everythings it at the frontier with a cluster. Gemma 4's edge is the *whole package* — quality that fits one GPU, native multimodal, a clean license, and day-zero support across Ollama, llama.cpp, LM Studio, vLLM, and the major clouds. Run all three on your own eval set. The right open model wins *your* benchmark, on *your* hardware, under a license *your* lawyers sign off on.
 
 ---
 

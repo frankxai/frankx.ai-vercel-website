@@ -114,6 +114,9 @@ const PALETTE = {
   moonshot: { accentFrom: '#A5B4FC', accentTo: '#4F46E5', glowHex: '#6366F1' },
   meta: { accentFrom: '#93C5FD', accentTo: '#1D4ED8', glowHex: '#3B82F6' },
   mistral: { accentFrom: '#FDA4AF', accentTo: '#E11D48', glowHex: '#F43F5E' },
+  mistralai: { accentFrom: '#FDA4AF', accentTo: '#E11D48', glowHex: '#F43F5E' },
+  microsoft: { accentFrom: '#7FD3FF', accentTo: '#0078D4', glowHex: '#0078D4' },
+  roundup: { accentFrom: '#5EEAD4', accentTo: '#0D9488', glowHex: '#14B8A6' },
 }
 
 // ---- CONFIGS: filled with VERIFIED values from research ------------------
@@ -122,7 +125,7 @@ const PALETTE = {
 // Complete source of truth for model-hero regeneration. Output is deterministic,
 // so re-running reproduces every committed hero byte-for-byte.
 const CONFIGS = [
-  // Open-weight flagship:
+  // Phase 3 — open & local models:
   {
     slug: 'gemma-3-analysis-2026',
     orgKey: 'google',
@@ -136,6 +139,76 @@ const CONFIGS = [
       { value: '$0', label: 'Open weights' },
     ],
     footer: 'FrankX · Intelligence Dispatch · Verified via Google DeepMind, HuggingFace, LMArena',
+  },
+  {
+    slug: 'gpt-oss-analysis-2026',
+    orgKey: 'openai',
+    org: 'OpenAI',
+    name: 'gpt-oss',
+    subtitle: 'Open-weight, Apache 2.0 — 120b runs on one 80GB GPU, 20b runs on a 16GB laptop',
+    tiles: [
+      { value: '80.1%', label: 'GPQA Diamond (120b)' },
+      { value: '~16GB', label: 'VRAM (20b)' },
+      { value: '128K', label: 'Context window' },
+      { value: '$0', label: 'Open weights' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via OpenAI model card, GitHub, MLCommons',
+  },
+  {
+    slug: 'llama-4-analysis-2026',
+    orgKey: 'meta',
+    org: 'Meta',
+    name: 'Llama 4 Maverick',
+    subtitle: 'Open multimodal MoE — still Meta’s flagship, but a data-center model (Scout self-hosts)',
+    tiles: [
+      { value: '400B/17B', label: 'MoE params' },
+      { value: '8×H100', label: 'VRAM (Maverick FP8)' },
+      { value: '1M', label: 'Context (10M Scout)' },
+      { value: '$0', label: 'Open weights' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Meta AI, HuggingFace, vLLM',
+  },
+  {
+    slug: 'mistral-large-3-analysis-2026',
+    orgKey: 'mistralai',
+    org: 'Mistral AI',
+    name: 'Mistral Large 3',
+    subtitle: 'Europe’s 675B open-weight frontier — Apache 2.0, EU-sovereign, one node',
+    tiles: [
+      { value: '1418', label: 'LMArena Elo' },
+      { value: '675B/41B', label: 'MoE params' },
+      { value: '256K', label: 'Context window' },
+      { value: '$0 / $0.50', label: 'Self-host / API in' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Mistral, HuggingFace, vLLM',
+  },
+  {
+    slug: 'phi-analysis-2026',
+    orgKey: 'microsoft',
+    org: 'Microsoft',
+    name: 'Microsoft Phi-4',
+    subtitle: 'MIT-licensed small models that run on a laptop and beat their weight class',
+    tiles: [
+      { value: '3.8–15B', label: 'Param tiers' },
+      { value: '~8GB', label: 'VRAM (14B Q4)' },
+      { value: 'MIT', label: 'License' },
+      { value: '$0', label: 'Open weights' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Microsoft Research, HuggingFace, arXiv',
+  },
+  {
+    slug: 'best-open-local-llms-2026',
+    orgKey: 'roundup',
+    org: 'FrankX Intelligence',
+    name: 'Open & Local LLMs',
+    subtitle: 'June 2026 field guide — Gemma 4, gpt-oss, Phi-4, Mistral, Llama, DeepSeek, Kimi',
+    tiles: [
+      { value: '7+', label: 'Models compared' },
+      { value: 'Apache/MIT', label: 'Open licenses' },
+      { value: '2GB–640GB', label: 'VRAM range' },
+      { value: '$0', label: 'Per-token cost' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Self-host field guide · all figures cited',
   },
   // Phase 1 — Western flagships:
   {

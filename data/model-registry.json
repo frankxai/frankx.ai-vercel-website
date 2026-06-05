@@ -513,18 +513,188 @@
         "https://venturebeat.com/technology/alibabas-proprietary-qwen3-7-max-can-run-for-35-hours-autonomously-and-supports-external-harnesses-like-anthropics-claude-code"
       ]
     },
+    "gpt-oss": {
+      "name": "gpt-oss (120b / 20b)",
+      "id": "gpt-oss",
+      "organization": "openai",
+      "family": "gpt-oss",
+      "released": "2025-08-05",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "116.8B total / 5.1B active (120b); 21B total / 3.6B active (20b)",
+      "context_window": 131072,
+      "modalities": ["text", "code"],
+      "pricing": {
+        "input_per_1m": 0,
+        "output_per_1m": 0
+      },
+      "benchmarks": {
+        "gpqa_diamond": 80.1,
+        "mmlu_pro": 90.0,
+        "aime_2025_tools": 97.9,
+        "swe_bench_verified": 62.4,
+        "humanitys_last_exam": 19.0
+      },
+      "key_capabilities": [
+        "Apache 2.0 open weights (free, commercial-friendly, no copyleft)",
+        "MXFP4-quantized: 120b on a single 80GB GPU (H100/MI300X), 20b in ~16GB",
+        "Run via Ollama / vLLM / LM Studio / llama.cpp / HF Transformers",
+        "131K-token context, low/medium/high reasoning-effort levels",
+        "Native function calling, browsing, Python, structured outputs (harmony format)"
+      ],
+      "frankx_notes": "Not the top-scoring open model anymore (DeepSeek V4, Qwen3.7-Max, Kimi K2.6 outscore it), but it wins on reasoning-per-VRAM: the 20b on a 16GB laptop and the 120b on one 80GB card are still among the best things that fit on constrained hardware, with a clean Apache 2.0 license. Self-host the 20b for privacy; rent the 120b unless you have high steady volume or a data-residency mandate. No gpt-oss-2 as of June 2026; gpt-oss-120b became an MLPerf Inference v6.0 benchmark Mar 2026.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-oss/",
+        "https://github.com/openai/gpt-oss",
+        "https://huggingface.co/openai/gpt-oss-120b"
+      ]
+    },
+    "gemma-4": {
+      "name": "Gemma 4",
+      "id": "gemma-4",
+      "organization": "google",
+      "family": "gemma",
+      "released": "2026-04-02",
+      "status": "ga",
+      "architecture": "mixed (dense + MoE tiers)",
+      "parameters": "E2B / E4B / 12B / 26B-A4B MoE / 31B dense",
+      "context_window": 256000,
+      "modalities": ["text", "vision", "audio"],
+      "pricing": {
+        "input_per_1m": 0,
+        "output_per_1m": 0
+      },
+      "benchmarks": {
+        "lmarena_elo": 1452,
+        "mmlu_pro": 85.2,
+        "gpqa_diamond": 84.3,
+        "livecodebench": 80.0,
+        "aime_2026": 89.2
+      },
+      "key_capabilities": [
+        "Apache 2.0 license (replaces the custom Gemma Terms used through Gemma 3)",
+        "31B dense flagship runs in ~18GB VRAM at Q4 on a single 24GB consumer GPU",
+        "26B A4B — Gemma's first MoE (~3.8B active, ~15.6GB int4) for agentic throughput",
+        "Encoder-free 12B multimodal (native audio) runs on a 16GB laptop",
+        "E2B (~2GB) to E4B (~8GB) tiers for edge / on-device",
+        "Up to 256K context; runs via Ollama / llama.cpp / LM Studio / vLLM / HF"
+      ],
+      "frankx_notes": "Gemma 4 doesn't win on raw score — Qwen3.7-Max narrowly out-reasons it and DeepSeek V4 dominates the open frontier. Its edge is the whole package: top-tier quality that fits one consumer GPU, native multimodal, a clean Apache 2.0 license, and broad day-zero tooling. The 1452 LMArena Elo (human preference) is the trustworthy number; the academic jumps (AIME 89.2%, GPQA 84.3%) are largely Google's own evals — vendor-claimed until reproduced. Best for local-first / privacy-sensitive and cost-conscious agentic builds.",
+      "sources": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
+        "https://ai.google.dev/gemma/docs/core/model_card_4",
+        "https://huggingface.co/blog/gemma4"
+      ]
+    },
     "llama-4-maverick": {
       "name": "Llama 4 Maverick",
       "id": "llama-4-maverick",
       "organization": "meta",
       "family": "llama",
-      "released": "2025-12-01",
+      "released": "2025-04-05",
       "status": "ga",
       "architecture": "moe",
-      "parameters": "400B total, 17B active",
-      "context_window": 1000000,
-      "modalities": ["text", "vision"],
-      "sources": []
+      "parameters": "400B total / 17B active, 128 experts (early-fusion multimodal MoE)",
+      "context_window": 1048576,
+      "max_output_tokens": 16384,
+      "modalities": ["text", "image"],
+      "pricing": {
+        "input_per_1m": 0,
+        "output_per_1m": 0
+      },
+      "benchmarks": {
+        "mmlu_pro": 80.5,
+        "gpqa_diamond": 69.8,
+        "livecodebench": 43.4
+      },
+      "key_capabilities": [
+        "Native text+image multimodal input via early fusion",
+        "1M-token context (Maverick); Scout sibling offers 10M",
+        "Llama 4 Community License — free commercial use under 700M MAU",
+        "Self-host: FP8 weights need an 8x H100 80GB node (~600GB); Scout (109B/17B) self-hosts on one H100 at ~55GB Q4",
+        "Run via vLLM / Ollama (Scout) / HF, or hosted APIs (~$0.15/$0.60 per 1M)"
+      ],
+      "frankx_notes": "Still Meta's open flagship in June 2026 only because nothing newer shipped — Behemoth (~2T) was paused May 2026 with no public weights, and there's no Llama 4.5 or Llama 5. Weights are free and the license is permissive, but verified benchmarks now trail DeepSeek V4, Qwen3.7-Max, Kimi K2.6 and even the much smaller Gemma 4. Maverick is a data-center model, not a laptop one — Scout is the realistically self-hostable sibling. The widely-cited 1417 LMArena Elo was an experimental chat-tuned variant, not the public weights (which ranked ~32nd).",
+      "sources": [
+        "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+        "https://www.llama.com/models/llama-4/",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+      ]
+    },
+    "phi-4": {
+      "name": "Microsoft Phi-4 (open-weight family)",
+      "id": "phi-4",
+      "organization": "microsoft",
+      "family": "phi",
+      "released": "2024-12-12",
+      "status": "ga",
+      "architecture": "dense",
+      "parameters": "3.8B (mini) / 5.6B (multimodal) / 14B (Phi-4, reasoning) / 15B (reasoning-vision)",
+      "context_window": 16000,
+      "modalities": ["text", "vision", "audio"],
+      "pricing": {
+        "input_per_1m": 0,
+        "output_per_1m": 0
+      },
+      "benchmarks": {
+        "mmlu": 84.8,
+        "gpqa": 56.1,
+        "math": 80.4,
+        "humaneval": 82.6,
+        "aime_2025_reasoning_plus": 81.3
+      },
+      "key_capabilities": [
+        "MIT license — fully open weights, commercial use, fine-tune and redistribute",
+        "Runs on consumer hardware: 14B at Q4 needs ~8-10GB VRAM; 3.8B mini ~3-4GB",
+        "STEM-dense: base 14B beats teacher GPT-4o on GPQA and MATH",
+        "Phi-4-mini: 128K context, built-in function calling",
+        "Phi-4-multimodal: text+vision+speech in 5.6B, 128K context",
+        "Phi-4-reasoning-vision-15B (Mar 2026): adaptive think/no-think",
+        "Runs on Ollama / LM Studio / llama.cpp / ONNX / Foundry Local / HF"
+      ],
+      "frankx_notes": "The honest small-model pick. $0 per token, MIT license, runs on a gaming laptop — ideal for high-volume, privacy-sensitive, or offline work. STEM-dense specialist, not a generalist: short 16K base context and weaker general multimodal breadth than Gemma 4. Route hard, broad tasks to a frontier API; run well-scoped local work on Phi. No GA Phi-5 exists as of June 2026; reasoning/vision numbers are largely vendor-claimed.",
+      "sources": [
+        "https://arxiv.org/pdf/2412.08905",
+        "https://huggingface.co/microsoft/phi-4",
+        "https://huggingface.co/microsoft/Phi-4-reasoning"
+      ]
+    },
+    "mistral-large-3": {
+      "name": "Mistral Large 3",
+      "id": "mistral-large-2512",
+      "organization": "mistralai",
+      "family": "mistral",
+      "released": "2025-12-02",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "675B total / 41B active (sparse MoE)",
+      "context_window": 256000,
+      "modalities": ["text", "image"],
+      "pricing": {
+        "input_per_1m": 0.50,
+        "output_per_1m": 1.50
+      },
+      "benchmarks": {
+        "lmarena_elo": 1418,
+        "mmlu_pro": 73.11,
+        "math_500": 93.6,
+        "humaneval": 92.0,
+        "gpqa_diamond": 43.9
+      },
+      "key_capabilities": [
+        "Apache 2.0 open weights (base + instruct)",
+        "EU data-residency / GDPR-compliant hosted endpoints",
+        "Self-hostable FP8 on one 8x H200 node (vLLM TP=8)",
+        "Native function calling and JSON structured output",
+        "Strong multilingual + fast code generation",
+        "256K context window"
+      ],
+      "frankx_notes": "Best open-weight pick for EU sovereignty and knowledge/chat/code work, and #2 on LMArena among open non-reasoners proves the 'pleasant to use' axis. Honest weakness: hard reasoning (GPQA ~44%, roughly half the dedicated reasoners). The promised reasoning variant had not shipped as of June 2026. The Apache 2.0 license + single-node FP8 self-host is the moat the closed frontier can't match. Either $0 self-hosted or $0.50/$1.50 via la Plateforme.",
+      "sources": [
+        "https://mistral.ai/news/mistral-3/",
+        "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
+        "https://docs.vllm.ai/projects/recipes/en/latest/Mistral/Mistral-Large-3.html"
+      ]
     },
     "mai-thinking-1": {
       "name": "MAI-Thinking-1",
@@ -603,12 +773,12 @@
     "openai": {
       "name": "OpenAI",
       "url": "https://openai.com",
-      "models": ["gpt-5-5", "gpt-5-2-pro"]
+      "models": ["gpt-5-5", "gpt-5-2-pro", "gpt-oss"]
     },
     "google": {
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
-      "models": ["gemini-3-5-pro", "gemini-3-5-flash", "gemini-3-pro"]
+      "models": ["gemini-3-5-pro", "gemini-3-5-flash", "gemini-3-pro", "gemma-4"]
     },
     "xai": {
       "name": "xAI",
@@ -623,7 +793,7 @@
     "microsoft": {
       "name": "Microsoft AI",
       "url": "https://microsoft.ai",
-      "models": ["mai-thinking-1", "mai-image-2-5", "mai-code-1-flash"]
+      "models": ["mai-thinking-1", "mai-image-2-5", "mai-code-1-flash", "phi-4"]
     },
     "deepseek": {
       "name": "DeepSeek",
@@ -639,6 +809,11 @@
       "name": "Moonshot AI",
       "url": "https://moonshot.ai",
       "models": ["kimi-k2-6"]
+    },
+    "mistralai": {
+      "name": "Mistral AI",
+      "url": "https://mistral.ai",
+      "models": ["mistral-large-3"]
     }
   },
 
