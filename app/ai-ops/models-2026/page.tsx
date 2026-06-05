@@ -328,7 +328,14 @@ export default function Models2026Page() {
         <section className="pt-16 pb-16 md:pt-24 md:pb-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="text-[#a855f7] font-mono text-sm mb-4 tracking-wider uppercase">Updated June 2026</p>
+              <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25" role="status" aria-label="Data last verified June 5, 2026">
+                <span className="relative flex h-2 w-2" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                <span className="text-emerald-300 font-mono text-xs tracking-wider uppercase">Last verified · June 5, 2026</span>
+                <span className="text-white/30 font-mono text-xs hidden sm:inline">· verified snapshot, not a live feed</span>
+              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">Frontier AI Models Intelligence Hub</h1>
               <p className="text-white/60 text-lg md:text-xl max-w-3xl mb-8 leading-relaxed">
                 Benchmarks, pricing, context windows, and capabilities for every frontier model worth tracking.
