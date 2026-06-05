@@ -36,9 +36,14 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'google/gemini-3.5-flash',
   },
   'gemini-3-5-pro': {
-    tagline: 'Google’s top reasoning tier — the Flash counterpart for the heaviest work.',
-    bestFor: ['Complex reasoning across the widest modality set', 'Tasks where Flash hits its ceiling'],
-    watchOut: 'In testing as of I/O ’26 — full benchmarks land at GA (mid-June 2026).',
+    tagline: 'Google’s top reasoning tier — announced, not yet shipped. Verdict pending GA.',
+    bestFor: [
+      'Hard reasoning where Flash hits its ceiling (once GA)',
+      'Workloads needing 2M context across the widest modality set (targeted)',
+      'Heavy video/audio multimodal reasoning',
+    ],
+    watchOut: 'Still in limited Vertex preview as of June 5, 2026 — no model card, no benchmarks, no pricing. GA targeted for June. Build on Gemini 3.5 Flash in the meantime.',
+    creatorUse: 'The one to watch for agentic video/multimodal pipelines once GA confirms Deep Think numbers. For now, route creator agent work to Gemini 3.5 Flash.',
     openrouterId: 'google/gemini-3.5-pro',
   },
   'gemini-omni': {
@@ -74,8 +79,26 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Vendor-claimed 51% SWE-Bench Pro. Benchmark size ≠ how it feels on your repo — pilot before adopting.',
     creatorUse: 'Cheap, fast in-editor help; route real architecture work to a frontier model.',
   },
+  'claude-opus-4-8': {
+    tagline: 'Modest version bump, real frontier gains — tops the intelligence index at the same price as 4.7.',
+    bestFor: [
+      'Hard agentic coding and codebase-scale migrations',
+      'Long-horizon autonomous work with a clear up-front spec',
+      'Economically valuable knowledge work (leads GDPval-AA at 1890)',
+    ],
+    watchOut: 'Loses Terminal-Bench 2.1 to GPT-5.5; narrates more and asks more by default than 4.7, so prompts may need re-tuning. GPQA/USAMO numbers are vendor-claimed.',
+    creatorUse: 'Single-pass long-form drafts (128K output) and full-archive synthesis (1M context). Re-baseline any style prompts written against 4.7’s clipped voice — 4.8 is warmer by default.',
+    openrouterId: 'anthropic/claude-opus-4.8',
+  },
+  'claude-sonnet-4-6': {
+    tagline: 'The mid-tier that started eating the flagship’s lunch — most of Opus 4.6 at $3/$15.',
+    bestFor: ['Production coding and integrations', 'Content generation at scale', '1M-context work without flagship pricing'],
+    watchOut: 'For the hardest reasoning and agentic-coding tasks, Opus 4.8 still pulls ahead.',
+    creatorUse: 'The reliable default for content-engine workflows — route to Opus 4.8 only when the task earns it.',
+    openrouterId: 'anthropic/claude-sonnet-4.6',
+  },
   'claude-opus-4-6': {
-    tagline: 'The reasoning + long-context flagship. THE model for high-stakes synthesis.',
+    tagline: 'Previous reasoning + long-context flagship — superseded by Opus 4.8.',
     bestFor: [
       'Abstract reasoning (#1 ARC-AGI-2, 68.8%)',
       'Computer-use agents (#1 OSWorld, 72.7%)',
@@ -102,20 +125,42 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     bestFor: ['Routing and classification', 'Real-time chat', 'High-volume metadata tagging'],
     openrouterId: 'anthropic/claude-haiku-4.5',
   },
+  'grok-4-3': {
+    tagline: 'Fourth-best frontier intelligence at roughly the cheapest frontier price, with the fastest output in its tier.',
+    bestFor: [
+      'High-volume cost-sensitive inference (classification, extraction, summarization)',
+      'Latency-sensitive agentic tool loops',
+      'Native video-input and voice-cloning workflows',
+    ],
+    watchOut: 'Context window dropped 2M → 1M; per-token price doubles past 200K tokens in a single request; reasoning is always-on so trivial calls cost slightly more.',
+    creatorUse: 'Native video input removes a transcription step for footage analysis; Custom Voices enables narration and conversational agents at a flat per-minute rate.',
+    openrouterId: 'x-ai/grok-4.3',
+  },
   'grok-4-1': {
-    tagline: 'Top human-preference Elo with 2M context and aggressive pricing.',
-    bestFor: ['Long-context reasoning', 'Real-time / X-grounded tasks', 'Cost-conscious 2M-context workloads'],
+    tagline: 'Previous Grok flagship — 2M context, superseded by Grok 4.3.',
+    bestFor: ['Workloads not yet migrated to 4.3', '2M-context tasks (4.3 dropped to 1M)'],
     openrouterId: 'x-ai/grok-4.1',
   },
+  'gpt-5-5': {
+    tagline: 'OpenAI’s agentic flagship: best-in-class computer-use and knowledge-work scores, at double the price.',
+    bestFor: [
+      'Terminal-agent and Codex-style autonomous loops',
+      'Computer-use / OSWorld automation',
+      'Long-context reasoning over large codebases and corpora',
+    ],
+    watchOut: 'Output is $30/1M and the published 1M context can shrink in practice (~258K reported in Codex). The 2x price only pays off if your workload is output-heavy enough to capture the ~40% token-efficiency savings. Trails Opus 4.8 on GDPval-AA and SWE-Bench Pro.',
+    creatorUse: 'Strong for multi-step agentic pipelines and long-document synthesis; for real-time voice use the separate gpt-realtime-2 family, not GPT-5.5 directly.',
+    openrouterId: 'openai/gpt-5.5',
+  },
   'gpt-5-2-pro': {
-    tagline: 'Broadest multimodal + native voice — the general-purpose default.',
-    bestFor: ['Native voice applications', 'Broad multimodal reasoning', 'Widest enterprise integration footprint'],
-    watchOut: 'Reasoning benchmarks trail Opus 4.6 on ARC-AGI-2.',
+    tagline: 'Previous OpenAI flagship — superseded by GPT-5.5.',
+    bestFor: ['Workloads not yet migrated to GPT-5.5', 'Broad multimodal reasoning'],
+    watchOut: 'Reasoning benchmarks trail current-generation flagships.',
     openrouterId: 'openai/gpt-5.2-pro',
   },
   'gemini-3-pro': {
-    tagline: 'Widest modality support with 2M native context.',
-    bestFor: ['Multimodal understanding (81% MMMU-Pro)', 'Video + audio + vision reasoning', '2M-context tasks'],
+    tagline: 'Prior Gemini Pro tier — superseded by the Gemini 3.5 line (Flash GA, Pro in preview).',
+    bestFor: ['Workloads not yet migrated to Gemini 3.5', '2M-context multimodal tasks'],
     openrouterId: 'google/gemini-3-pro',
   },
   'llama-4-maverick': {

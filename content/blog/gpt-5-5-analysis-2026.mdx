@@ -1,0 +1,185 @@
+---
+title: "GPT-5.5 (\"Spud\"): What Actually Changed and Why It Matters"
+description: "OpenAI's GPT-5.5 leads GDPval at 84.9%, OSWorld at 78.7%, and Tau2 Telecom at 98% — at double the price of GPT-5.4. Technical breakdown with verified benchmarks, pricing, and what it means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - openai
+  - gpt-5-5
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - agentic-ai
+keywords:
+  - gpt-5.5
+  - gpt-5.5 review
+  - gpt-5.5 benchmarks
+  - gpt-5.5 pricing
+  - gpt-5.5 vs claude opus 4.8
+  - gpt-5.5 context window
+  - gpt-5.5 gdpval
+  - gpt-5.5 osworld
+  - openai spud model
+  - best ai model 2026
+image: "/images/blog/gpt-5-5-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# GPT-5.5 ("Spud"): What Actually Changed and Why It Matters
+
+**TL;DR**: OpenAI released GPT-5.5 (internal codename "Spud") on April 23, 2026 as its new flagship. The headline numbers are agentic: 84.9% on GDPval (knowledge work across 44 occupations), 78.7% on OSWorld-Verified (autonomous computer use), and 98.0% on Tau2 Telecom (customer-service workflows) without prompt tuning. Long-context reasoning at 512K–1M tokens jumped from 36.6% on GPT-5.4 to 74.0%. The catch: pricing doubled to $5/$30 per million tokens, and it's a drop-in API replacement for GPT-5.4. Here's what actually matters for builders.
+
+---
+
+## What is GPT-5.5?
+
+GPT-5.5 is OpenAI's new flagship, replacing GPT-5.4 at the top of the line. The model id string is `gpt-5.5`, and OpenAI positions it squarely as an agentic model — built for long-horizon tasks where the model plans, calls tools, makes decisions, and keeps going for minutes or hours without hand-holding.
+
+Three things make this release worth a builder's attention:
+
+1. **It set the agentic benchmark pace.** GDPval at 84.9%, OSWorld-Verified at 78.7%, and Tau2-bench Telecom at 98.0% are the strongest knowledge-work and computer-use numbers OpenAI has published. These are the benchmarks that map to real automation, not trivia recall.
+
+2. **Long context finally works.** Long-context reasoning at 512K–1M tokens went from 36.6% on GPT-5.4 to 74.0% on GPT-5.5. That's the single largest jump in the GPT-5 series, and it's the difference between "accepts a big prompt" and "uses it."
+
+3. **It costs more, not less.** GPT-5.5 lists at exactly 2x GPT-5.4 on both sides of the meter — $5 input, $30 output per million tokens. OpenAI's argument is that better token efficiency offsets the higher rate. That argument is testable, and I get into it below.
+
+---
+
+## How does GPT-5.5 actually perform on benchmarks?
+
+Numbers below are from OpenAI's announcement cross-referenced against independent coverage (Vellum, The Decoder, Interesting Engineering) and benchmark aggregators. Where sources disagree or the figure is vendor-reported, I flag it explicitly. Treat anything labeled vendor-claimed as a marketing-conditions number, not an independently reproduced one.
+
+| Benchmark | What it measures | GPT-5.5 | GPT-5.4 |
+|-----------|------------------|---------|---------|
+| GDPval | Knowledge work across 44 occupations | **84.9%** | — |
+| OSWorld-Verified | Autonomous real-computer operation | **78.7%** | — |
+| Tau2-bench Telecom | Complex customer-service workflows | **98.0%** | — |
+| Terminal-Bench 2.0 | Command-line agentic workflows | **82.7%** | 75.1% |
+| Long context (512K–1M) | Retrieval + reasoning over long inputs | **74.0%** | 36.6% |
+| AIME 2025 | Competition math | **93.6%** | — |
+| SWE-bench Verified | Real GitHub issue resolution | **~82.6–88.7%** (vendor-claimed, varies by source) | — |
+| ARC-AGI-2 | Abstract reasoning | **~85%** (vendor-claimed, read skeptically) | — |
+
+Two honest caveats. First, **SWE-bench Verified scores at this tier should be read with heavy skepticism** — every frontier lab has plausibly trained on or adjacent to this data, and reported figures for GPT-5.5 range from roughly 82.6% to 88.7% depending on the source and test conditions. On the harder **SWE-bench Pro**, GPT-5.5 lands at 58.6%, which is the more useful signal. Second, the ARC-AGI-2 figure floating around (~85%) is unusually high for an abstract-reasoning benchmark and I could not pin it to a single authoritative methodology; I'd wait for an independent run before quoting it as fact.
+
+The cleaner competitive read comes from **GDPval-AA**, the Artificial Analysis arena version of GDPval. There, GPT-5.5 scores **1769 Elo** — strong, and ahead of Gemini 3.1 Pro's 1314, but behind Claude Opus 4.8's 1890 (released roughly five weeks later, on May 28). GPT-5.5's most durable lead is on **terminal-agent benchmarks**, where it keeps a narrow edge even against Opus 4.8.
+
+---
+
+## How does GPT-5.5 compare to Claude Opus 4.8 and Gemini 3.1 Pro?
+
+This is the comparison most builders actually care about. The frontier in mid-2026 is a three-way race, and the answer is genuinely "it depends on the task."
+
+| Capability | GPT-5.5 | Claude Opus 4.8 | Gemini 3.1 Pro |
+|------------|---------|------------------|----------------|
+| GDPval-AA (Elo) | 1769 | **1890** | 1314 |
+| OSWorld (computer use) | 78.7% | **83.4%** | — |
+| SWE-bench Pro | 58.6% | **69.2%** | 54.2% |
+| Terminal-agent tasks | **narrow lead** | strong | — |
+| GPQA Diamond | — | 93.6% | — |
+| Released | Apr 23, 2026 | May 28, 2026 | earlier 2026 |
+
+A few takeaways that hold up across sources:
+
+- **Opus 4.8 leads on raw knowledge-work value and SWE-bench Pro.** Anthropic shipped roughly five weeks after OpenAI, and the GDPval-AA gap (1890 vs 1769) and SWE-bench Pro gap (69.2% vs 58.6%) are real.
+- **GPT-5.5 holds the terminal-agent edge.** For command-line-heavy autonomous loops — the Codex-style workflows OpenAI optimized for — GPT-5.5 stays competitive or ahead.
+- **Gemini 3.1 Pro trails on agentic value** but remains relevant for its native long-context and multimodal breadth. (For the full landscape, see the [2026 models reference](/ai-ops/models-2026).)
+
+If you're choosing today, the honest framing is: Opus 4.8 for deep coding and knowledge synthesis, GPT-5.5 for terminal-agent and computer-use automation, and route by task rather than picking one winner. I broke down the Opus side of this in the [Claude Opus 4.8 analysis](/blog/claude-opus-4-8-analysis-2026).
+
+---
+
+## What does GPT-5.5 cost?
+
+GPT-5.5 doubled the per-token price of GPT-5.4. This is the most contested part of the release.
+
+| Model | Input / 1M | Cached input / 1M | Output / 1M |
+|-------|------------|-------------------|-------------|
+| **GPT-5.5** | **$5.00** | **$0.50** | **$30.00** |
+| GPT-5.5 Pro | $30.00 | — | $180.00 |
+| GPT-5.4 (prior) | $2.50 | — | $15.00 |
+| Claude Opus 4.8 (reference) | varies | varies | varies |
+
+The output price is the one to watch: **$30 per million output tokens** is steep for a default agentic model, and GPT-5.5 Pro at $180 output is firmly in "reserve for the hardest research-grade problems" territory.
+
+OpenAI's counter-argument is token efficiency. The company says GPT-5.5 uses significantly fewer tokens to complete the same Codex tasks than GPT-5.4, and Artificial Analysis reported roughly **40% fewer output tokens** in its own framework. If that holds for your workload, the effective cost gap narrows — a 2x rate against 40% fewer tokens is roughly a 1.2x effective increase on output-heavy agentic runs, not 2x. But "roughly 40% fewer on Codex tasks" is not a universal guarantee, and on output-light, input-heavy workloads (long-context retrieval, document analysis) you pay the full 2x with less efficiency offset. Measure your own token mix before assuming the efficiency narrative covers you.
+
+---
+
+## What changed versus GPT-5.2?
+
+The prior flagship most readers will be migrating from is GPT-5.2 (released December 11, 2025). Here's the delta that matters.
+
+| Dimension | GPT-5.2 / 5.2 Pro | GPT-5.5 |
+|-----------|-------------------|---------|
+| Positioning | "Most capable work model" | Agentic, long-horizon autonomy |
+| Context window | 400K (272K input + 128K output) | Up to 1M via API; 400K class in Codex |
+| Modalities | Text + image (no native audio) | Text, image, audio, video in one unified architecture (vendor framing) |
+| Long-context reasoning | weaker | 74.0% at 512K–1M (vs 36.6% on 5.4) |
+| Output price / 1M | $14 (Pro tier) | $30 (base), $180 (Pro) |
+| Knowledge cutoff | late 2025 | December 2025 |
+
+Two things to correct from the common framing. **GPT-5.2 did not ship native audio** — it was a text-and-image model, and the modality story is genuinely new at the 5.5 line. And on context: the published 1M window comes with real-world caveats. There are open reports of GPT-5.5 surfacing a ~258K effective window in Codex despite the 400K/1M published figures, and of catalog mismatches that can bypass auto-compaction. If you're building on the long-context promise, validate the effective window in your actual harness rather than trusting the spec sheet.
+
+On the API surface, GPT-5.5 is a **drop-in replacement for GPT-5.4** — it supports the same prompt caching, hosted tools, tool search, and compaction features. There's no painful migration. The work is in re-tuning cost expectations and validating context behavior, not rewriting integrations.
+
+Native real-time voice is a related but separate story: OpenAI shipped the **gpt-realtime-2** family on May 7 with GPT-5-class reasoning, a 128K context (up from 32K), and parallel mid-conversation tool calls. If voice agents are your use case, that's the model line to evaluate, priced at $32/$64 per million audio input/output tokens — not GPT-5.5 itself.
+
+---
+
+## What does GPT-5.5 mean for builders?
+
+### For developers building agents
+
+GPT-5.5 is the first OpenAI flagship genuinely tuned for long-horizon autonomy, and the OSWorld (78.7%) and Terminal-Bench 2.0 (82.7%) numbers back that up. If you're running Codex-style loops or computer-use automation, this is the model to benchmark against your current stack. OpenAI also reports a roughly 60% drop in hallucination rate versus GPT-5.4, which matters more for autonomous loops than for single-turn chat — an agent that hallucinates a file path or API parameter mid-task wastes the whole run.
+
+The token-efficiency claim is the lever to pull. Agentic loops that converge sooner and "dig themselves in less when they're wrong" are worth real money at $30/1M output. Instrument your runs: measure tokens-to-completion on GPT-5.5 versus your incumbent, not just per-token price.
+
+### For teams on long-context workloads
+
+The 36.6% → 74.0% jump on long-context reasoning is the most practically useful improvement in the release. Loading an entire codebase, a full research corpus, or a long document set into one prompt now produces answers that actually reflect the whole input. But validate the *effective* window in your harness — the Codex reports of a shrunken real window are a caution, not a footnote.
+
+### For cost-conscious shops
+
+Do the math before you switch your default. At 2x the rate, GPT-5.5 only pays off if your workload is output-heavy enough to capture the token-efficiency savings. For high-volume, output-light tasks, GPT-5.4 or a Sonnet-class model may still be the better economic choice. Route by task. The right architecture in mid-2026 is a router that sends terminal-agent and computer-use work to GPT-5.5, deep coding to Opus 4.8, and high-throughput simple tasks to a cheaper tier — not a single-model bet. I've written about how the broader frontier is fragmenting in the [Microsoft MAI frontier models breakdown](/blog/microsoft-mai-frontier-models-2026).
+
+---
+
+## The bottom line
+
+GPT-5.5 is a real step forward on the metrics that matter for automation: knowledge work, computer use, terminal agents, and long context. It is not a clean sweep of the frontier — Claude Opus 4.8 leads on GDPval-AA and SWE-bench Pro, and the price doubled. The token-efficiency argument is plausible but conditional on your workload. Treat the SWE-bench Verified and ARC-AGI-2 headline numbers with skepticism, lean on GDPval-AA and OSWorld as the cleaner signals, and benchmark tokens-to-completion before you migrate. For agentic and computer-use builders, it earns its place in the routing table. For everyone else, it's a "measure, then decide" release.
+
+---
+
+## FAQ
+
+### Is GPT-5.5 better than Claude Opus 4.8?
+
+It depends on the task. Opus 4.8 leads on GDPval-AA (1890 vs 1769 Elo), OSWorld computer use (83.4% vs 78.7%), and SWE-bench Pro (69.2% vs 58.6%). GPT-5.5 keeps a narrow edge on terminal-agent benchmarks. For deep coding and knowledge synthesis, Opus 4.8 is stronger; for terminal-style autonomous loops, GPT-5.5 is competitive or ahead. Note that Opus 4.8 shipped about five weeks later, so the comparison is OpenAI's April flagship against Anthropic's late-May one.
+
+### How much does GPT-5.5 cost?
+
+$5 per million input tokens, $30 per million output tokens, with cached input at $0.50. That's exactly 2x GPT-5.4's $2.50/$15. The GPT-5.5 Pro tier is $30 input / $180 output. OpenAI argues the higher rate is offset by roughly 40% better output-token efficiency on Codex-style tasks (per Artificial Analysis), but that offset depends on your workload being output-heavy.
+
+### What's GPT-5.5's context window?
+
+OpenAI publishes up to a 1M-token context window via the API, with a 400K-class configuration in Codex (272K input + 128K output in the standard setup). There are open reports of the effective window appearing smaller (~258K) in Codex despite the published figures, and of catalog mismatches that can bypass auto-compaction — so validate the effective window in your own harness before relying on it.
+
+### Does GPT-5.5 support voice and audio?
+
+GPT-5.5 itself processes text, image, audio, and video in a unified architecture (OpenAI's framing). For production real-time voice agents, the relevant model line is the separately released gpt-realtime-2 family (shipped May 7) with GPT-5-class reasoning, a 128K context, and parallel mid-conversation tool calls, priced at $32/$64 per million audio input/output tokens.
+
+### Is migrating from GPT-5.4 to GPT-5.5 hard?
+
+No. GPT-5.5 is a drop-in API replacement for GPT-5.4 and supports the same features — prompt caching, hosted tools, tool search, and compaction. The real work is re-tuning cost expectations (2x rate) and validating long-context behavior, not rewriting integrations.
+
+### Should I trust GPT-5.5's SWE-bench and ARC-AGI numbers?
+
+Be cautious. Reported SWE-bench Verified figures for GPT-5.5 range from about 82.6% to 88.7% depending on the source, and frontier labs may have trained on or adjacent to this data. The harder SWE-bench Pro (58.6%) is a more honest signal. The ~85% ARC-AGI-2 figure is unusually high and I couldn't tie it to a single authoritative methodology — wait for an independent run before quoting it.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI. Published June 5, 2026 with benchmarks cross-referenced against OpenAI's announcement and independent coverage; vendor-claimed figures flagged where they could not be independently verified.*

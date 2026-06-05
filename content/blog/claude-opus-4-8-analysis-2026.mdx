@@ -1,0 +1,220 @@
+---
+title: "Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard"
+description: "Anthropic's Opus 4.8 lands 41 days after 4.7 with the same $5/$25 pricing, SWE-Bench Pro 69.2%, GDPval-AA 1890, dynamic workflows, and cheaper fast mode. Technical breakdown with verified benchmarks, what changed, and what it means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - anthropic
+  - claude
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - agentic-ai
+keywords:
+  - claude opus 4.8
+  - claude opus 4.8 review
+  - claude opus 4.8 benchmarks
+  - anthropic opus 4.8 pricing
+  - claude opus 4.8 vs gpt 5.5
+  - claude opus 4.8 dynamic workflows
+  - claude opus 4.8 context window
+  - swe-bench pro opus 4.8
+  - gdpval-aa 1890
+  - best ai model 2026
+image: "/images/blog/claude-opus-4-8-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard
+
+**TL;DR**: Anthropic released Claude Opus 4.8 (`claude-opus-4-8`) on May 28, 2026 — just 41 days after Opus 4.7. Pricing is unchanged at $5/$25 per million tokens, context stays at 1M (128K output). The benchmark gains are real but incremental: SWE-Bench Pro 69.2% (from 64.3%), GDPval-AA 1890 Elo (from 1753), USAMO 2026 up 27 points to 96.7%. The headline features are product-side — Claude Code "dynamic workflows" that orchestrate up to 1,000 subagents, an effort control on claude.ai, and a fast mode that's now 3x cheaper. Simon Willison called it "a modest but tangible improvement." That's accurate. Here's what actually matters for builders.
+
+---
+
+## What Is Opus 4.8?
+
+Opus 4.8 is Anthropic's new flagship, replacing Opus 4.7 at the top of the Claude lineup. The model ID is `claude-opus-4-8`. The cadence is the story before the benchmarks are: 4.7 shipped in mid-April, 4.8 arrived May 28. Forty-one days. Anthropic is now iterating on the frontier roughly monthly, and the version number is doing less and less work — this is a point release that happens to lead several leaderboards.
+
+Three things define this release:
+
+1. **It's a re-tune, not a re-architecture.** Anthropic's own framing is "sharper judgment, more honesty about its progress, and the ability to work independently for longer." The API surface is identical to 4.7 — same adaptive thinking, same effort levels, same removed sampling parameters. If your code runs on 4.7, it runs on 4.8 with a string swap.
+
+2. **The gains concentrate in agentic and knowledge work.** Coding, long-horizon autonomy, and the GDPval-AA economic-value benchmark move the most. Pure context-length and modality coverage are unchanged.
+
+3. **The product features are the real news.** Dynamic workflows and a cheaper, faster fast mode change what you can ship more than the benchmark deltas do.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A note on sourcing, because it matters here. The numbers below come from Anthropic's official announcement, cross-referenced against [Artificial Analysis](https://artificialanalysis.ai/articles/claude-opus-4-8-analysis-and-benchmarks), [llm-stats](https://llm-stats.com/models/claude-opus-4-8), and independent coverage from [Vellum](https://www.vellum.ai/blog/claude-opus-4-8-benchmarks-explained) and [The New Stack](https://thenewstack.io/claude-opus-48-release/). Where a figure is vendor-reported and not yet independently reproduced, I mark it **vendor-claimed**. Treat the coding and knowledge-work numbers as well-corroborated; treat single-source claims with appropriate skepticism.
+
+| Benchmark | Opus 4.7 | Opus 4.8 | Change | What it measures |
+|-----------|----------|----------|--------|------------------|
+| SWE-Bench Verified | 87.6% | **88.6%** | +1.0 | Real GitHub issue resolution |
+| SWE-Bench Pro | 64.3% | **69.2%** | +4.9 | Harder, contamination-resistant coding |
+| Terminal-Bench 2.1 | 66.1% | **74.6%** | +8.5 | Agentic terminal/CLI workflows |
+| GDPval-AA | 1753 | **1890** | +137 | Economically valuable knowledge work (Elo) |
+| USAMO 2026 | 69.3% | **96.7%** | +27.4 | Olympiad-level mathematical reasoning |
+| GPQA Diamond | — | **93.6%** | — | Graduate-level science Q&A |
+| Humanity's Last Exam (tools) | 54.7% | **57.9%** | +3.2 | Frontier multidisciplinary reasoning |
+| OSWorld | 82.8% | **83.4%** | +0.6 | Computer use / GUI agents |
+
+Two of these deserve more than a row in a table.
+
+**GDPval-AA at 1890** is the standout. It measures real, economically valuable knowledge work across professional domains, scored as an Elo. Opus 4.8 doesn't just lead — independent coverage puts its margin at roughly 576 points over Gemini 3.1 Pro on this benchmark. That's the widest spread on the board, and it aligns with the agentic-execution story Anthropic is telling. The +137 jump over 4.7 is the largest single-version GDPval-AA improvement Anthropic has reported.
+
+**USAMO 2026 going from 69.3% to 96.7%** is a 27-point leap on rigorous, proof-style mathematics. This is the kind of number that's easy to over-read — olympiad benchmarks are narrow — but a near-saturation score on USAMO is a genuine signal about multi-step reasoning rigor, not a rounding artifact.
+
+The one Opus 4.8 loses: **Terminal-Bench 2.1**, where GPT-5.5 still edges it (78.2% vs 74.6%). On terminal-heavy CLI automation, OpenAI keeps the crown — though Opus 4.8's +8.5 jump over 4.7 narrows the gap considerably.
+
+---
+
+## How Does It Compare to GPT-5.5, Gemini 3.5, and the Field?
+
+Where Opus 4.8 sits against the June 2026 frontier:
+
+| Capability | Opus 4.8 | GPT-5.5 | Gemini 3.5 Flash | Notes |
+|------------|----------|---------|------------------|-------|
+| Hardest coding (SWE-Bench Pro) | **69.2%** | ~58.6% | — | Opus leads |
+| SWE-Bench Verified | **88.6%** | ~82% | 80.6% (3.1 Pro) | Opus leads |
+| Terminal-Bench 2.1 | 74.6% | **78.2%** | 76.2% | GPT-5.5 leads; Gemini Flash a surprise 2nd |
+| Knowledge work (GDPval-AA) | **1890** | — | — | Opus leads by a wide margin |
+| Intelligence Index (Artificial Analysis) | **61.4** | — | 55.3 | Opus tops the aggregate index |
+| Input / output price (per 1M) | $5 / $25 | ~$5 / ~$30 | ~$1.50 / ~$9 | Gemini Flash is the budget pick |
+
+A few honest caveats. The Grok 4.3 comparison that gets asked for isn't well-covered in the launch-window sources I could verify, so I'm leaving it out rather than inventing rows. Gemini 3.5 Flash is the genuine surprise here — it posts a 76.2% on Terminal-Bench 2.1, *ahead of Opus 4.8 on that single benchmark*, at roughly a quarter of the cost and several times the speed. If your workload is high-volume agentic execution where the marginal task is cheap and you can tolerate the occasional miss, Flash is a serious option. Opus 4.8 wins when silent errors are expensive and the work is genuinely hard.
+
+The positioning that holds up across sources: **Opus 4.8 is the intelligence leader, GPT-5.5 is the terminal/computer-use workhorse, and Gemini 3.5 Flash is the budget-and-speed champion.** For a fuller cross-model breakdown, see the [FrankX models tracker](/ai-ops/models-2026).
+
+---
+
+## What's the Pricing?
+
+| Model | Input / 1M | Output / 1M | Notes |
+|-------|------------|-------------|-------|
+| **Opus 4.8 (standard)** | **$5.00** | **$25.00** | Unchanged from 4.7 and 4.6 |
+| Opus 4.8 (fast mode) | $10.00 | $50.00 | ~2.5x speed; 3x cheaper than prior fast modes |
+| Opus 4.7 | $5.00 | $25.00 | Previous flagship |
+| Sonnet 4.6 | $3.00 | $15.00 | Speed/intelligence balance |
+| Haiku 4.5 | $1.00 | $5.00 | Cheapest, fastest |
+
+Pricing is the easy part: it didn't move. Standard Opus 4.8 is $5 input / $25 output per million tokens — same as Opus 4.7 and 4.6. The 1M context window carries no long-context premium. You get a better model at the same price, which is the quiet through-line of every Opus release since the 67% cut at [4.6](/blog/claude-opus-4-6-analysis-2026).
+
+The new wrinkle is **fast mode**. Opus 4.8 fast mode runs at roughly 2.5x the speed of standard for $10/$50 per million — double the per-token cost, but Anthropic notes it's three times cheaper than fast mode was on previous Claude models. For latency-sensitive interactive products (coding assistants, live chat), that's a meaningfully better speed-per-dollar curve than fast mode used to offer. For batch and background work, standard mode remains the right call.
+
+---
+
+## What Changed vs Opus 4.6 and 4.7?
+
+If you're coming from **Opus 4.7**, almost nothing changes in your code. There are no new breaking changes — the request surface is identical. The deltas are behavioral and product-side:
+
+| Area | Opus 4.7 | Opus 4.8 |
+|------|----------|----------|
+| API surface | Adaptive thinking, effort levels, no sampling params | **Identical** — string swap only |
+| Effort default | `high` (Claude Code: `xhigh`) | Same; `high` is now an even better baseline |
+| Narration | More clipped, direct | More user-facing narration by default |
+| Tool/subagent triggering | Conservative | More conservative — needs explicit "when to use" prompts |
+| Writing voice | Direct, less hedged | Warmer, clearer, fewer AI tics |
+| Claude Code orchestration | Parallel subagents | **Dynamic workflows** — script-driven, up to 1,000 subagents |
+| Fast mode | Not available on 4.7 | **Available**, 2.5x speed, 3x cheaper |
+| effort control on claude.ai | API-only | **User-facing slider** on claude.ai |
+
+If you're jumping from **Opus 4.6**, you inherit the 4.7 breaking changes first: `budget_tokens` returns a 400 (use `thinking: {type: "adaptive"}`), the sampling parameters `temperature` / `top_p` / `top_k` are removed (steer with prompting), and last-assistant-turn prefills 400 (use `output_config.format`). Thinking content is also omitted by default — set `thinking: {type: "adaptive", display: "summarized"}` if you surface reasoning to users.
+
+The behavioral re-tune is worth a prompt review. Opus 4.8 narrates *more* than 4.7 by default and is *more* deliberate — on minor decisions it tends to pause and ask rather than just proceeding. If you want 4.7-style terseness and autonomy back, add an explicit silence-default and a "for minor choices, pick and note rather than ask" instruction. It's also more conservative about reaching for search, subagents, and file-based memory, so move the "when to use this" guidance into each tool's own description, not just the system prompt.
+
+---
+
+## What Are Dynamic Workflows?
+
+This is the feature that earns the release. In Claude Code, a **dynamic workflow** is a JavaScript script — which Claude writes for you from a task description — that orchestrates subagents at scale. A runtime executes it in the background while your session stays responsive. The limits, per Anthropic and [MarkTechPost's coverage](https://www.marktechpost.com/2026/05/28/anthropic-ships-claude-opus-4-8-alongside-dynamic-workflows-and-cheaper-fast-mode-with-workflows-capped-at-1000-subagents/): up to **16 concurrent agents** and **1,000 agents total per run**.
+
+The concrete claim: Claude Code on Opus 4.8 can carry out codebase-scale migrations across hundreds of thousands of lines — from kickoff to merge — using the existing test suite as its bar. Plan, fan out across files, run the migration in parallel, verify against tests, open the PR.
+
+Underneath it sits a real API change: the Messages API now supports **real-time updates to the messages array while an agent is active**. You can change instructions, adjust permissions, modify token limits, or update context mid-task without disrupting prompt caching or forcing a new user turn. Concretely, you place a `{"role": "system", ...}` entry partway through the `messages` array (beta header `mid-conversation-system-2026-04-07`) to inject operator instructions without invalidating the cached prefix ahead of the whole conversation. That's the primitive that makes long-running, steerable agents practical — and it's available from Opus 4.7 onward, not 4.8-exclusive.
+
+The honest framing: dynamic workflows are a Claude Code orchestration layer, not a new model capability. But "the model can now reliably drive 1,000 subagents through a 200K-line migration" is a more useful sentence than any single benchmark on the board.
+
+---
+
+## What Does It Mean for Builders?
+
+### For developers
+
+The migration is trivial and the upside is free. Swap `claude-opus-4-7` for `claude-opus-4-8`, run your evals, ship. No breaking changes, same price, better coding and reasoning. The only thing to actually *do* is re-tune prompts for the behavioral shifts — narration and ask-rate — and that's optional polish, not a blocker.
+
+```json
+{
+  "model": "claude-opus-4-8",
+  "thinking": { "type": "adaptive" },
+  "output_config": { "effort": "high" }
+}
+```
+
+One nuance on effort: on 4.8, don't reflexively reach for `xhigh` or `max`. The intelligence ceiling is higher, so start at `high` and sweep `medium`/`high`/`xhigh` on your own eval set. Higher effort up front often *reduces* total turn count and cost on agentic work — but the relationship isn't monotonic, and for some routes `medium` lands equally good results faster.
+
+### For agentic and long-horizon work
+
+This is where 4.8 earns its keep. Give it the **full task specification in one well-specified first turn** and run at `high` or `xhigh`. The long-horizon coherence comes partly from reasoning more at each step, so a clear up-front goal plus generous effort produces more efficient *and* more accurate output than feeding the task piecemeal across turns. If you're on Claude's Managed Agents, state "done" as a gradeable rubric via an Outcome and let the harness iterate.
+
+### For content and knowledge work
+
+The GDPval-AA and knowledge-work gains are the practical headline for creators. Opus 4.8's prose is warmer and less hedged than 4.7's by default — which means the style prompts you wrote to *counter* 4.7's clipped directness may now overcorrect. Re-baseline them. The 128K output ceiling (unchanged) still means complete long-form drafts in a single generation pass, and the 1M context still holds an entire content archive in one session.
+
+### For cost-conscious routing
+
+The arrival of fast mode changes the routing math for interactive products. For a coding assistant or live agent where latency is user-visible, Opus 4.8 fast mode at $10/$50 and 2.5x speed may now beat dropping down to Sonnet — you keep Opus-tier intelligence and pay for speed only where it's felt. For everything background, standard Opus 4.8 at $5/$25 remains the default. And for genuinely high-volume, error-tolerant fan-out, Gemini 3.5 Flash is the honest budget alternative. This is the same routing discipline the broader [Microsoft MAI frontier models](/blog/microsoft-mai-frontier-models-2026) coverage points at: match the model to the task's cost-of-error, not to the leaderboard.
+
+---
+
+## Are There Breaking Changes?
+
+For Opus 4.7 users: **no.** The request surface is identical. This is the cleanest Opus migration in recent memory — a model-string swap.
+
+For Opus 4.6 (or older) users, you inherit the 4.7 breaking changes:
+
+| Change | Impact | Fix |
+|--------|--------|-----|
+| `budget_tokens` removed | 400 error | Use `thinking: {type: "adaptive"}` + `effort` |
+| `temperature` / `top_p` / `top_k` removed | 400 error | Steer with prompting instead |
+| Assistant-turn prefills | 400 error | Use `output_config.format` (structured outputs) |
+| Thinking omitted by default | Empty reasoning text | Set `thinking: {display: "summarized"}` if surfaced |
+
+None of these are new to 4.8 — they all landed with 4.7. If you already made the 4.7 jump, you're done.
+
+---
+
+## FAQ
+
+### Is Opus 4.8 better than GPT-5.5?
+
+On most benchmarks, yes — Opus 4.8 leads SWE-Bench Verified (88.6% vs ~82%), SWE-Bench Pro (69.2% vs ~58.6%), and the GDPval-AA knowledge-work benchmark by a wide margin. GPT-5.5 keeps the lead on Terminal-Bench 2.1 (78.2% vs 74.6%), so for terminal-heavy CLI automation and computer-use workflows, GPT-5.5 still edges it. For coding, analysis, and knowledge work, Opus 4.8 is the stronger model at a comparable price.
+
+### How much does Opus 4.8 cost?
+
+$5 per million input tokens, $25 per million output tokens — unchanged from Opus 4.7 and 4.6. The 1M context window carries no long-context premium. Fast mode runs at $10/$50 per million for roughly 2.5x the speed, which Anthropic says is three times cheaper than fast mode on previous Claude models.
+
+### What's the context window and max output?
+
+1M input tokens and 128K output tokens — identical to Opus 4.7 and 4.6. Modalities are text, vision, and code. No change on this axis in 4.8.
+
+### Should I upgrade from Opus 4.7?
+
+Yes, and it's low-risk. There are no breaking changes — swap `claude-opus-4-7` for `claude-opus-4-8`, run your evals, and you get better coding and reasoning at the same price. Budget an hour to re-tune prompts for the behavioral shifts (more narration, higher ask-rate, more conservative tool use), but that's polish, not a requirement.
+
+### What are dynamic workflows and what's the subagent limit?
+
+Dynamic workflows are a Claude Code feature where Claude writes a JavaScript orchestration script from your task description, then runs it in the background to coordinate subagents at scale — up to 16 concurrent and 1,000 total per run. The flagship use case is codebase-scale migrations across hundreds of thousands of lines, verified against the existing test suite, from kickoff to merge.
+
+### Which benchmark numbers are verified vs vendor-claimed?
+
+The coding (SWE-Bench Verified/Pro, Terminal-Bench) and knowledge-work (GDPval-AA) figures are well-corroborated across Anthropic's announcement, Artificial Analysis, llm-stats, and independent outlets. GPQA Diamond (93.6%) and the USAMO 2026 jump (96.7%) are reported but lean more on Anthropic's own evals — treat them as vendor-claimed until third parties reproduce them. I omitted any Grok 4.3 comparison because I couldn't verify it from launch-window sources rather than guess.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026 with benchmarks validated against Anthropic's official documentation, Artificial Analysis, llm-stats, and independent coverage. Vendor-claimed figures are marked as such.*

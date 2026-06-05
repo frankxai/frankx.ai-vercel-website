@@ -1,0 +1,214 @@
+---
+title: "Gemini 3.5 Pro: What We Actually Know Before GA"
+description: "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 — no model card, no benchmarks, no pricing. Here's the verifiable picture: what Flash already proved, what Google has committed to, and what to wait for at GA."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - google
+  - gemini
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - multimodal
+keywords:
+  - gemini 3.5 pro
+  - gemini 3.5 pro release date
+  - gemini 3.5 pro benchmarks
+  - gemini 3.5 pro pricing
+  - gemini 3.5 pro vs flash
+  - gemini 3.5 pro context window
+  - gemini 3.5 pro deep think
+  - gemini 3.5 pro ga june 2026
+  - google deepmind gemini 3.5
+  - best ai model 2026
+image: "/images/blog/gemini-3-5-pro-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Gemini 3.5 Pro: What We Actually Know Before GA
+
+**TL;DR**: As of June 5, 2026, Gemini 3.5 Pro is **not generally available**. Google announced it at I/O on May 19, 2026, but it remains in limited Vertex AI preview for select enterprise customers — no model card, no published benchmarks, no pricing tier. The model ID is `gemini-3.5-pro`. Google has positioned it as its strongest agentic and coding model, targeting a 2M-token context window and "Deep Think" reasoning. Sundar Pichai told the I/O audience to "give us until next month." So this is an honest pre-GA brief: what Gemini 3.5 Flash already proved, what Google has actually committed to, and what numbers to wait for. Where a figure isn't confirmed, I say so.
+
+---
+
+## Is Gemini 3.5 Pro Released Yet?
+
+No. Not at GA. This is the single most important thing to get right, because half the "Gemini 3.5 Pro benchmarks" content circulating right now is projecting Flash's numbers onto a model whose model card does not yet exist.
+
+Here's the verifiable timeline:
+
+- **May 19, 2026** — Google I/O. Google announces the Gemini 3.5 generation. **Gemini 3.5 Flash ships to GA** the same day: in the Gemini app, AI Studio, Antigravity, the Gemini API, and AI Mode in Search.
+- **Gemini 3.5 Pro is announced but held back** — limited Vertex AI preview for select enterprise accounts only. No public API model name available for general use, no pricing, no model card.
+- **GA targeted for June 2026** — Pichai's framing on stage was "give us until next month." No committed date was given.
+
+As of this writing (June 5), nothing has changed that status. There is no spec sheet, no benchmark card, no pricing tier, and no general API access for Gemini 3.5 Pro. If you see a "94% on benchmark X" claim for 3.5 Pro right now, it is either extrapolated from Gemini 3.1 Pro / 3.5 Flash or invented. Treat it as such.
+
+So the useful question isn't "how good is 3.5 Pro" — nobody outside Google can answer that yet. It's "what's the evidence base, and what should I watch for at GA."
+
+---
+
+## What Did Gemini 3.5 Flash Already Prove?
+
+Flash is the reason 3.5 Pro is interesting. The whole point of a "Pro" tier is that it sits above Flash — so Flash's GA numbers set the floor for what Pro has to clear.
+
+Gemini 3.5 Flash shipped May 19, 2026 (`gemini-3.5-flash`), and the headline was genuinely unusual: a **Flash-tier model leading the previous Pro tier on agentic benchmarks**. Verified specs from Google's model card and independent coverage:
+
+| Spec / Benchmark | Gemini 3.5 Flash | Source basis |
+|------------------|------------------|--------------|
+| Context window | 1M tokens | Google model card |
+| Max output | 64K tokens | Google model card |
+| Modalities | Text, image, audio, video, PDF in | Google model card |
+| Terminal-Bench 2.1 | 76.2% | Google / independent |
+| MCP Atlas | 83.6% | Google / independent |
+| GDPval-AA | 1656 Elo | Google |
+| CharXiv Reasoning | 84.2% | Google |
+| Pricing (in / out) | $1.50 / $9.00 per 1M | Google API pricing |
+| Cached input | $0.15 per 1M (90% off) | Google API pricing |
+
+The thing to internalize: Flash already beats **Gemini 3.1 Pro** (Google's February 2026 flagship) on Terminal-Bench 2.1, MCP Atlas, and GDPval-AA. That's the bar 3.5 Pro is built to exceed. If Pro merely matched Flash on agentic coding, the tier wouldn't justify itself — so Google is effectively committing to a model that pushes past 76% Terminal-Bench and 83% MCP Atlas, with Deep Think reasoning layered on top.
+
+Where Flash still trails: pure abstract reasoning. Flash sits around 72.1% on ARC-AGI-2 versus Gemini 3.1 Pro's verified 77.1%. That reasoning gap is exactly the territory a Deep Think-equipped Pro model is designed to reclaim.
+
+---
+
+## What Has Google Actually Committed To for Pro?
+
+Stripping out the speculation, here's what Google itself has stated about Gemini 3.5 Pro — framed as *targets and positioning*, not measured results:
+
+- **Model ID**: `gemini-3.5-pro` (visible in Vertex preview).
+- **Context window**: targeting **2M tokens** — the spec that has historically defined the Pro/Ultra tier, and double Flash's 1M.
+- **Deep Think reasoning**: an explicit reasoning mode. For reference, Gemini 3 Deep Think hit **84.6% on ARC-AGI-2** (verified by the ARC Prize Foundation) — that lineage is why Deep Think on a 3.5-generation Pro is the number worth waiting for.
+- **Frontier multimodal**: the widest input modality set — text, image, audio, video, PDF — carried up from Flash.
+- **Positioning**: Google describes Pro as its "strongest agentic and coding model," expected to clear Flash on Terminal-Bench 2.1, MCP Atlas, and GDPval-AA.
+
+Every one of those is a *vendor-stated target*. None is an independently reproduced benchmark, because the model card doesn't exist yet. I'm flagging that explicitly because the whole value of this piece is not pretending otherwise.
+
+For a sense of the lineage these targets sit on, Gemini 3.1 Pro (the current shipped Pro, GA February 2026) is the honest baseline:
+
+| Gemini 3.1 Pro (verified, shipped) | Value |
+|------------------------------------|-------|
+| Context window | 1M tokens |
+| ARC-AGI-2 | 77.1% |
+| GPQA Diamond | 94.3% |
+| SWE-bench Verified | 80.6% |
+| MMMU-Pro | 80.5% |
+| Pricing (in / out) | $2 / $12 per 1M (tiered: $4 / $18 above 200K) |
+
+3.5 Pro is the model that's supposed to beat *that* line while adding Deep Think and (targeted) 2M context. Until GA, that's the most defensible way to think about it.
+
+---
+
+## How Does It Slot Into the June 2026 Frontier?
+
+This is the table everyone wants, so here it is with a hard rule: **Gemini 3.5 Pro's column is marked "preview — TBD at GA," not filled with guesses.** The other models' numbers are verified from their GA releases and independent trackers.
+
+| Benchmark | Gemini 3.5 Pro | Gemini 3.5 Flash | Claude Opus 4.8 | GPT-5.5 | Grok 4.3 |
+|-----------|----------------|------------------|-----------------|---------|----------|
+| ARC-AGI-2 | TBD at GA | 72.1% | 75.8% | **85.0%** | not published |
+| SWE-bench Pro | TBD at GA | — | **69.2%** | 58.6% | — |
+| Terminal-Bench 2.1 | TBD at GA | 76.2% | 74.6% | **78.2%** | — |
+| MCP Atlas | TBD at GA | 83.6% | — | — | — |
+| GPQA Diamond | TBD at GA | — | 93.6% | 93.5% | — |
+| GDPval-AA (Elo) | TBD at GA | 1656 | **1890** | ~1769 | — |
+| Context window | 2M (target) | 1M | 1M | 922K | 1M |
+
+Reading this honestly:
+
+- **GPT-5.5 owns abstract reasoning** right now (ARC-AGI-2 85.0%) and edges Terminal-Bench (78.2%).
+- **Claude Opus 4.8 leads aggregate intelligence** — it took the #1 spot on the Artificial Analysis Intelligence Index on May 28 (61.4) and dominates SWE-bench Pro (69.2% vs GPT-5.5's 58.6%) and GDPval-AA (1890 Elo).
+- **Grok 4.3** competes on price ($1.25 / $2.50 per 1M) and a strong aggregate index score, but xAI hasn't published comparable SWE-bench / Terminal-Bench numbers.
+- **Gemini's play is multimodal breadth + context + price**, not topping the reasoning leaderboard. Even 3.1 Pro's $2/$12 undercuts Opus 4.8's $5/$25 substantially.
+
+The interesting strategic question at GA: does 3.5 Pro chase GPT-5.5's ARC-AGI-2 crown via Deep Think, or does Google double down on the agentic-coding + multimodal + 2M-context lane where it's already differentiated? My read is the latter — Flash's numbers tell you where this generation's engineering went.
+
+For the live, continuously-updated cross-model view, see the [2026 model landscape on AI Ops](/ai-ops/models-2026). For the two models currently setting the bar Pro has to clear, see the [Claude Opus 4.8 breakdown](/blog/claude-opus-4-8-analysis-2026).
+
+---
+
+## What Will Pricing Likely Be?
+
+Unconfirmed. No pricing tier has been published for 3.5 Pro. The only honest statement: it will be announced at GA.
+
+That said, Google's Pro-tier pricing has been remarkably stable, so the *shape* is predictable even if the number isn't:
+
+| Model | Input / 1M | Output / 1M | Notes |
+|-------|-----------|-------------|-------|
+| Gemini 3.5 Flash | $1.50 | $9.00 | Cached $0.15; verified |
+| Gemini 3.1 Pro | $2.00 | $12.00 | Tiered to $4/$18 above 200K; verified |
+| **Gemini 3.5 Pro** | **TBD** | **TBD** | Announced at GA; expect tiered, context-length-dependent |
+
+If history holds, expect context-length-dependent tiered pricing (a higher rate above a long-context threshold, the way 3.1 Pro jumps at 200K) and a likely premium over 3.1 Pro for the 2M window and Deep Think. But I'm not going to put a fake dollar figure in a table. Wait for the model card.
+
+---
+
+## Pro vs Flash: Which Should You Use?
+
+For most teams, today, the answer is **Flash — because it's the only one of the two you can actually deploy.** But the routing logic at GA is straightforward:
+
+**Use Gemini 3.5 Flash when:**
+- You're running high-volume agentic or MCP-heavy workloads where cost compounds (83.6% MCP Atlas at $1.50/$9 is hard to beat on price/quality).
+- You need 1M context cheaply for long-horizon coding agents.
+- Throughput matters — Flash is reported at roughly 4x the output tokens/sec of other frontier models.
+- The task lives in Flash's competence band, which after this release is *most* agentic coding.
+
+**Wait for Gemini 3.5 Pro when:**
+- Your workload hits Flash's ceiling on hard reasoning — the multi-step, Deep-Think-shaped problems where Flash's ARC-AGI-2 gap to the Pro line shows.
+- You genuinely need the 2M context window (target) rather than 1M.
+- You're doing heavy video/audio multimodal reasoning where the extra headroom justifies the tier.
+
+The honest framing: Flash already absorbed most of what used to require Pro. Pro 3.5 has to earn its slot on the *hardest* reasoning and the *longest* context — not on general agentic coding, where Flash already leads the prior Pro tier. That's a higher bar than a normal Pro release, and it's why the GA benchmarks matter more than usual.
+
+---
+
+## What It Means for Builders
+
+A few practical takeaways while we wait:
+
+1. **Don't architect on a model you can't call.** If you're building agent pipelines now, build on Gemini 3.5 Flash (GA, priced, documented) or a confirmed competitor — not on 3.5 Pro promises. Swap Pro in at GA *if* its measured numbers justify the cost delta over Flash. Many workloads won't need it.
+
+2. **Plan for context-length pricing tiers.** Gemini Pro pricing jumps above a threshold (200K on 3.1 Pro). If your prompts straddle that boundary, your cost model needs the tiered rate, not the headline rate. Budget for the worst-case tier.
+
+3. **Watch ARC-AGI-2 and SWE-bench Pro at GA specifically.** Those are where Gemini has historically trailed Opus and GPT-5.5. If 3.5 Pro with Deep Think closes the ARC-AGI-2 gap to GPT-5.5's 85.0%, that's a real shift. If it lands near 3.1 Pro's 77.1%, the story stays "multimodal + context + price," not "reasoning crown."
+
+4. **Multimodal is the durable edge.** Across the frontier, Gemini's consistent differentiator is native text/image/audio/video/PDF in one model. If your product is video- or audio-heavy, the Gemini line is worth tracking regardless of where the reasoning benchmarks land.
+
+5. **Route, don't standardize.** The June 2026 frontier has no single winner — Opus 4.8 leads aggregate intelligence and coding, GPT-5.5 leads abstract reasoning, Grok 4.3 leads on price, Gemini leads on multimodal + context. A routing layer that sends each task to the right tier beats betting the whole stack on one model. This is exactly the case for treating models as interchangeable infrastructure rather than a religion. For how Microsoft is entering this same fight with its own full-stack play, see the [Microsoft MAI frontier models breakdown](/blog/microsoft-mai-frontier-models-2026).
+
+---
+
+## FAQ
+
+### Is Gemini 3.5 Pro available yet?
+
+Not at GA. As of June 5, 2026, it is in limited Vertex AI preview for select enterprise customers only. There is no public model card, no published benchmarks, and no general API pricing. Google announced it at I/O on May 19, 2026, with GA targeted for sometime in June 2026 — Sundar Pichai's phrasing was "give us until next month," with no committed date.
+
+### What is the model ID for Gemini 3.5 Pro?
+
+`gemini-3.5-pro`, visible in the Vertex AI preview. The general-availability API name should match at GA.
+
+### What's the context window for Gemini 3.5 Pro?
+
+Google is targeting 2M tokens — double Gemini 3.5 Flash's 1M. This is a stated target, not a confirmed spec, until the GA model card lands. For comparison, the currently shipped Gemini 3.1 Pro has a verified 1M-token window.
+
+### How much will Gemini 3.5 Pro cost?
+
+Unconfirmed. Pricing will be announced at GA. Google's Pro tier has historically used context-length-dependent tiered pricing — Gemini 3.1 Pro runs $2/$12 per 1M, rising to $4/$18 above 200K tokens. Expect a similar tiered structure, likely with a premium for the larger context window and Deep Think. Any specific dollar figure circulating now is speculation.
+
+### Is Gemini 3.5 Pro better than Claude Opus 4.8 or GPT-5.5?
+
+Unknown — it hasn't been benchmarked publicly. What's verified: as of late May 2026, Claude Opus 4.8 leads aggregate intelligence (Artificial Analysis Index 61.4) and SWE-bench Pro (69.2%), while GPT-5.5 leads ARC-AGI-2 (85.0%). Gemini 3.5 Flash already beats the prior Gemini Pro tier on agentic coding (Terminal-Bench 2.1 76.2%, MCP Atlas 83.6%). Where 3.5 Pro lands against Opus and GPT-5.5 is precisely the open question at GA.
+
+### Should I use Gemini 3.5 Flash or wait for Pro?
+
+If you need to ship now, use Flash — it's GA, priced, and documented, and it already leads the previous Pro tier on agentic coding at $1.50/$9 per 1M. Wait for Pro only if your workload hits Flash's ceiling on hard reasoning, needs the 2M context window, or involves heavy video/audio multimodal reasoning. For most agentic-coding workloads, Flash is the pragmatic pick today.
+
+### What benchmarks should I watch when Gemini 3.5 Pro reaches GA?
+
+ARC-AGI-2 and SWE-bench Pro — the two areas where Gemini has historically trailed Opus and GPT-5.5. Also watch whether Deep Think reasoning numbers are reported separately, and whether independent trackers (Artificial Analysis, llm-stats, LMArena) reproduce Google's claimed figures before you trust them in production.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI. Written June 5, 2026, while Gemini 3.5 Pro is still in preview. Verified figures are sourced to Google's GA releases, model cards, and independent trackers; everything about 3.5 Pro itself is marked as preview-stage and will be updated when the GA model card lands.*
