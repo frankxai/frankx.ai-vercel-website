@@ -169,10 +169,39 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'The base for creators who want to own and fine-tune their model.',
     openrouterId: 'meta-llama/llama-4-maverick',
   },
+  'deepseek-v4': {
+    tagline: 'Open-weight frontier-class coding at one-sixth the price — MIT-licensed, 1M context, self-hostable.',
+    bestFor: ['Budget coding agents at scale', 'Open-weight self-hosting and fine-tuning', 'Cost-anchor for routing decisions'],
+    watchOut: 'Trails the closed frontier (Opus 4.8, GPT-5.5) on agentic SWE, security, and hardest reasoning; CAISI puts it ~8 months behind. Many spec-sheet numbers are vendor-claimed, and the compressed 1M context can degrade exact long-context retrieval.',
+    creatorUse: 'Run a capable coding agent on your own hardware (Flash, 284B) without per-token API costs, or use the cheap Pro API for reasoning work.',
+    openrouterId: 'deepseek/deepseek-v4-pro',
+  },
   'deepseek-v3-2': {
-    tagline: 'Frontier-class reasoning at fraction-of-a-cent economics under MIT license.',
-    bestFor: ['Budget reasoning at scale', 'Open-weight self-hosting', 'Cost-anchor for routing decisions'],
+    tagline: 'Prior DeepSeek line — superseded by V4 (open-weight, MIT).',
+    bestFor: ['Workloads not yet migrated to V4'],
     openrouterId: 'deepseek/deepseek-v3.2',
+  },
+  'kimi-k2-6': {
+    tagline: 'The open-weight model that ties GPT-5.5-class coding at one-eighth the price.',
+    bestFor: [
+      'Long-horizon agentic coding and Agent Swarm workloads',
+      'Self-hosting near-frontier coding quality under a permissive license',
+      'Cost-sensitive, high-volume agentic pipelines',
+    ],
+    watchOut: 'Most coding/reasoning benchmarks are Moonshot’s own evals (vendor-claimed); it trails Opus 4.8 and GPT-5.5 on the neutral intelligence index and on SWE-Bench Verified. Running a 1T MoE well is a real infra project.',
+    creatorUse: 'Cheap, self-hostable engine for code generation, UI/UX scaffolding, and multi-agent research swarms where you want frontier-ish quality without frontier pricing or data leaving your environment.',
+    openrouterId: 'moonshotai/kimi-k2.6',
+  },
+  'qwen3-7-max': {
+    tagline: 'Alibaba’s closed-weight agent flagship: top-5 intelligence, 1M context, and 35-hour autonomy at half the Western-frontier price.',
+    bestFor: [
+      'High-volume, verifiable long-horizon agentic workloads',
+      'Teams on the Anthropic Messages protocol wanting a cheaper drop-in to trial',
+      'Context-heavy agents that benefit from the 90% cached-input discount',
+    ],
+    watchOut: 'Closed-weight / API-only (no self-host), undisclosed architecture, and a verbose reasoner whose effective cost-per-task exceeds the per-token rate; trails Opus 4.8 on aggregate and hardest coding.',
+    creatorUse: 'Drive long autonomous coding/optimization runs and batch refactors via Claude Code or Qwen Code; route expensive-failure work to Opus.',
+    openrouterId: 'qwen/qwen3.7-max',
   },
   'mistral-large-3': {
     tagline: 'European data sovereignty with a strong open/commercial split.',

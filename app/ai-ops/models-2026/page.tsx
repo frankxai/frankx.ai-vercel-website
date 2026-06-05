@@ -79,6 +79,60 @@ const frontierModels = [
     notes: 'Fourth-best frontier intelligence at roughly the cheapest frontier price, with the fastest output in its tier. Context dropped 2M → 1M; reasoning is always-on.',
   },
   {
+    name: 'DeepSeek V4',
+    org: 'DeepSeek',
+    released: 'Apr 24, 2026',
+    context: '1M',
+    output: '384K',
+    pricing: { input: 1.74, output: 3.48 },
+    achievement: 'Open-weight frontier-class coding — 80.6% SWE-bench Verified, AA Index 52, MIT-licensed',
+    benchmarks: { sweBenchVerified: 80.6, aaIntelligence: 52 },
+    tags: ['open-source', 'reasoning', 'budget', 'MoE'],
+    color: '#06b6d4',
+    highlight: false,
+    links: {
+      announcement: 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro',
+      docs: 'https://api-docs.deepseek.com/',
+    },
+    notes: 'Dual release: V4-Pro (1.6T/49B active) and V4-Flash (284B/13B). NIST/CAISI places it ~8 months behind GPT-5.5 on agentic/security tasks. MIT-licensed, self-hostable. Most spec-sheet rows beyond SWE-bench + AA Index are vendor-claimed.',
+  },
+  {
+    name: 'Kimi K2.6',
+    org: 'Moonshot AI',
+    released: 'Apr 20, 2026',
+    context: '256K',
+    output: '256K',
+    pricing: { input: 0.6, output: 2.5 },
+    achievement: 'Top open-weights intelligence (AA Index 54); Agent Swarm to 300 sub-agents',
+    benchmarks: { aaIntelligence: 54, sweBenchVerified: 80.2 },
+    tags: ['open-source', 'agentic', 'coding', 'MoE'],
+    color: '#6366f1',
+    highlight: false,
+    links: {
+      announcement: 'https://huggingface.co/moonshotai/Kimi-K2.6',
+      docs: 'https://platform.moonshot.ai/',
+    },
+    notes: 'Open-weight 1T MoE (Modified MIT), ~32B active, native INT4. Best open-weights value at ~1/8 the price of Opus — but trails Opus 4.8/GPT-5.5 on neutral index. Coding evals are Moonshot’s own (vendor-claimed).',
+  },
+  {
+    name: 'Qwen3.7-Max',
+    org: 'Alibaba',
+    released: 'May 19, 2026',
+    context: '1M',
+    output: '64K',
+    pricing: { input: 2.5, output: 7.5 },
+    achievement: 'Top-5 AA Intelligence (56.6) — highest-ranked Chinese model; 35-hour autonomous run',
+    benchmarks: { aaIntelligence: 56.6, sweBenchPro: 60.6 },
+    tags: ['reasoning', 'agentic', 'coding'],
+    color: '#a16207',
+    highlight: false,
+    links: {
+      announcement: 'https://qwen.ai/blog?id=qwen3.7',
+      docs: 'https://www.alibabacloud.com/help/en/model-studio/',
+    },
+    notes: 'Closed-weight, API-only — breaks the open-weight Qwen association. Leads its peer group on hard agentic coding (SWE-Bench Pro 60.6%) but trails Opus 4.8 on aggregate. Verbose reasoner; 90% cached-input discount. Architecture undisclosed.',
+  },
+  {
     name: 'Claude Sonnet 4.6',
     org: 'Anthropic',
     released: 'Feb 17, 2026',
@@ -220,6 +274,9 @@ export default function Models2026Page() {
                 <Link href="/blog/grok-4-3-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ef4444]/10 border border-[#ef4444]/20 hover:border-[#ef4444]/40 text-[#ef4444] text-sm transition-colors">
                   <TrendingUp className="w-4 h-4" /> Grok 4.3
                 </Link>
+                <Link href="/blog/deepseek-v4-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#06b6d4]/10 border border-[#06b6d4]/20 hover:border-[#06b6d4]/40 text-[#06b6d4] text-sm transition-colors">
+                  <Cpu className="w-4 h-4" /> Open-frontier: DeepSeek V4
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -327,7 +384,7 @@ export default function Models2026Page() {
               </table>
             </div>
             <p className="mt-4 text-xs text-white/20">
-              GDPval-AA and AA Intelligence Index are Elo/index scores (no %); other rows are percentages. Blank cells mean no independently published score for that pairing — not a zero. Sources: Anthropic, OpenAI, Google, Artificial Analysis, llm-stats. Last validated June 5, 2026.
+              GDPval-AA and AA Intelligence Index are Elo/index scores (no %); other rows are percentages. Blank cells mean no independently published score for that pairing — not a zero. For cross-lab context, the AA Intelligence Index also rates the open-frontier models below: Qwen3.7-Max 56.6, Kimi K2.6 54, DeepSeek V4 52 (vs Opus 4.8 61.4). Sources: Anthropic, OpenAI, Google, Artificial Analysis, llm-stats. Last validated June 5, 2026.
             </p>
           </div>
         </section>

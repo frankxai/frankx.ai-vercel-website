@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 628,
+    "total": 631,
     "aliases": 19,
     "byType": {
       "core": 22,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 10,
       "static": 15,
-      "blog": 140,
+      "blog": 143,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -1315,6 +1315,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/deepseek-v4-analysis-2026",
+      "title": "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price",
+      "description": "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.6%, AA Intelligence Index 52, V4-Pro API at $1.74/$3.48 per 1M. Technical breakdown with verified benchmarks, what changed vs V3.2, and the self-host vs API math.",
+      "tags": [
+        "deepseek",
+        "open-weights",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "moe"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/design-sprint-week-10-visual-identity-competition",
       "title": "Design Sprint: Three AI Teams Compete to Define frankx.ai's Visual Identity",
       "description": "How I used three competing AI design teams to build a visual identity strategy for frankx.ai — with WebGL shaders, glassmorphism hierarchies, and canvas physics. Real components, real code, real competition.",
@@ -1648,6 +1662,21 @@
         "deep learning",
         "Andrej Karpathy",
         "video analysis"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/kimi-k2-analysis-2026",
+      "title": "Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price",
+      "description": "Moonshot AI's Kimi K2.6 is a 1T-parameter MoE (32B active) you can self-host. SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, Agent Swarm to 300 sub-agents, $0.60/$2.50 per million. Technical breakdown with verified benchmarks, the open-weight angle, and what it means for builders.",
+      "tags": [
+        "moonshot",
+        "kimi",
+        "open-weights",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai"
       ],
       "type": "blog"
     },
@@ -2070,6 +2099,20 @@
       "title": "Props to the Builders of This Era",
       "description": "A grounded thank-you to the ecosystems, teams, tools, and creators helping us build a more human AI future.",
       "tags": [],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/qwen3-max-analysis-2026",
+      "title": "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours",
+      "description": "Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run. Technical breakdown with sourced benchmarks, what changed vs Qwen3.6, and what it means for builders.",
+      "tags": [
+        "alibaba",
+        "qwen",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai"
+      ],
       "type": "blog"
     },
     {
