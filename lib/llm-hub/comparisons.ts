@@ -36,7 +36,7 @@ export const COMPARISONS: Comparison[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     slug: 'claude-opus-4-8-vs-gpt-5-5',
-    models: ['claude-opus-4-8', 'gpt-5.5'],
+    models: ['claude-opus-4-8', 'gpt-5-5'],
     title: 'Claude Opus 4.8 vs GPT-5.5',
     description:
       'Claude Opus 4.8 vs GPT-5.5: benchmarks, pricing, and which frontier model to use for reasoning, agentic coding, and computer use in 2026.',
@@ -96,7 +96,7 @@ export const COMPARISONS: Comparison[] = [
   },
   {
     slug: 'grok-4-3-vs-gpt-5-5',
-    models: ['grok-4.3', 'gpt-5.5'],
+    models: ['grok-4-3', 'gpt-5-5'],
     title: 'Grok 4.3 vs GPT-5.5',
     description:
       'Grok 4.3 vs GPT-5.5: the budget-frontier vs premium-flagship tradeoff. Intelligence, price, and speed compared for 2026 builders.',
@@ -126,7 +126,7 @@ export const COMPARISONS: Comparison[] = [
   },
   {
     slug: 'qwen3-7-max-vs-deepseek-v4',
-    models: ['qwen3.7-max', 'deepseek-v4'],
+    models: ['qwen3-7-max', 'deepseek-v4'],
     title: 'Qwen3.7-Max vs DeepSeek V4',
     description:
       'Qwen3.7-Max vs DeepSeek V4: the open-frontier showdown — closed top-5 intelligence vs MIT open weights. Cost, capability, and control for 2026.',
@@ -156,7 +156,7 @@ export const COMPARISONS: Comparison[] = [
   },
   {
     slug: 'kimi-k2-6-vs-deepseek-v4',
-    models: ['kimi-k2.6', 'deepseek-v4'],
+    models: ['kimi-k2-6', 'deepseek-v4'],
     title: 'Kimi K2.6 vs DeepSeek V4',
     description:
       'Kimi K2.6 vs DeepSeek V4: the top open-weights matchup of 2026. Intelligence index, coding, license, and self-host compared.',
@@ -249,7 +249,7 @@ export const COMPARISONS: Comparison[] = [
   },
   {
     slug: 'claude-opus-4-6-vs-gpt-5-2-pro',
-    models: ['claude-opus-4-6', 'gpt-5.2-pro'],
+    models: ['claude-opus-4-6', 'gpt-5-2-pro'],
     title: 'Claude Opus 4.6 vs GPT-5.2 Pro',
     description:
       'Claude Opus 4.6 vs GPT-5.2 Pro: reasoning, multimodal, voice, and pricing compared. Both are now superseded — see the current flagship matchup.',
@@ -279,7 +279,7 @@ export const COMPARISONS: Comparison[] = [
   },
   {
     slug: 'gemini-3-5-flash-vs-gpt-5-2-pro',
-    models: ['gemini-3-5-flash', 'gpt-5.2-pro'],
+    models: ['gemini-3-5-flash', 'gpt-5-2-pro'],
     title: 'Gemini 3.5 Flash vs GPT-5.2 Pro',
     description:
       'Gemini 3.5 Flash vs GPT-5.2 Pro: cost, agentic coding, multimodal, and voice compared for 2026 builders.',
@@ -309,7 +309,7 @@ export const COMPARISONS: Comparison[] = [
   },
   {
     slug: 'claude-sonnet-4-5-vs-gemini-3-5-flash',
-    models: ['claude-sonnet-4-5-20250929', 'gemini-3-5-flash'],
+    models: ['claude-sonnet-4-5', 'gemini-3-5-flash'],
     title: 'Claude Sonnet 4.5 vs Gemini 3.5 Flash',
     description:
       'Claude Sonnet 4.5 vs Gemini 3.5 Flash: the mid-tier workhorse comparison for production coding and content agents.',
