@@ -6,7 +6,7 @@ import { PenTool, Sparkles, Download, Send, BarChart3, Settings, Wand2, FileText
 
 const agents = [
   {
-    id: 'technical-translator',
+    id: 'starlight-architect',
     name: 'Technical Translator',
     description: 'Makes Oracle-level AI expertise accessible to creators',
     specialties: ['AI Tool Integration', 'Creator Education', 'Technical Tutorials'],
@@ -30,7 +30,7 @@ const agents = [
     icon: '⚡'
   },
   {
-    id: 'soul-strategist',
+    id: 'visionary',
     name: 'Soul Strategist',
     description: 'Creative strategy and brand positioning for creators',
     specialties: ['Creative Strategy', 'Brand Voice', 'Artistic Development'],
@@ -97,7 +97,7 @@ export default function ContentStudioPage() {
   const [selectedAgent, setSelectedAgent] = useState('')
   const [selectedType, setSelectedType] = useState('')
   const [selectedAudience, setSelectedAudience] = useState('')
-  const [selectedLevel, setSelectedLevel] = useState('')
+  const [selectedLevel, setSelectedLevel] = useState('understanding')
   const [topic, setTopic] = useState('')
   const [length, setLength] = useState('medium')
   const [includeKeywords, setIncludeKeywords] = useState(true)
