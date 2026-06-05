@@ -127,10 +127,10 @@ export default async function PackPage({ params }: PageProps) {
         category: 'Software / AI Agents',
         offers: {
           '@type': 'Offer',
-          // Premium packs are pre-launch — omit price so no euro amount leaks into
-          // schema while the offer is waitlist-only.
-          ...(pricing.tier === 'free' ? { price: '0' } : {}),
-          priceCurrency: 'EUR',
+          // Premium packs are pre-launch — omit price AND priceCurrency entirely so
+          // the Offer stays valid (priceCurrency without price is a schema.org error)
+          // while the offer is waitlist-only.
+          ...(pricing.tier === 'free' ? { price: '0', priceCurrency: 'EUR' } : {}),
           availability: pricing.tier === 'free' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
         },
       },
@@ -206,7 +206,7 @@ export default async function PackPage({ params }: PageProps) {
               {pricing.note && <div className="mt-2 text-xs text-slate-400">{pricing.note}</div>}
               <Link
                 href={pricing.cta}
-                className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                   pricing.tier === 'free'
                     ? 'bg-emerald-500 text-emerald-950 hover:bg-emerald-400'
                     : 'bg-white text-slate-900 hover:bg-slate-100'
@@ -348,13 +348,13 @@ rm -rf tmp-acos`}
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
                 href="/agents/packs/meta"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Download className="h-4 w-4" /> Get the Foundation pack
               </Link>
               <a
                 href="https://github.com/frankxai/agentic-creator-os"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -372,7 +372,7 @@ rm -rf tmp-acos`}
               />
               <a
                 href="https://github.com/frankxai/agentic-creator-os"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition hover:text-white"
+                className="inline-flex items-center gap-2 rounded text-sm font-semibold text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 target="_blank"
                 rel="noopener noreferrer"
               >
