@@ -32,7 +32,7 @@ AI Assessment,/ai-assessment,2,mainstream,review,unaudited,legacy,,P2,AI transfo
 Books,/books,2,mainstream,review,unaudited,legacy,,P2,books-registry flagged; site counts treated as source-of-truth per Frank
 Golden Age,/golden-age,2,mainstream,unaudited,unaudited,legacy,,P2,Flagship book
 Blog,/blog,2,mainstream,review,stale,legacy,,P2,Per-post audit
-AI Architecture multi-cloud,/ai-architecture/multi-cloud-comparison,2,enterprise,review,unaudited,legacy,,P2,minor: seamless/cutting-edge staged locally (pending push)
+AI Architecture Multi-Cloud,/ai-architecture/multi-cloud-comparison,2,enterprise,review,unaudited,legacy,,P2,TODO minor copy fix (seamless->native; cutting-edge->frontier) not yet shipped
 Rails / Canon,/canon,3,contemplative,clean,unaudited,legacy,,P3,Serif register by design — do not flatten
 Soulbook,/soulbook,3,contemplative,clean,unaudited,legacy,,P3,Product name; reflective intentional
 German family,/familie,3,personal-de,na,unaudited,legacy,,P3,Personal register
