@@ -19,7 +19,9 @@ readingGoal: "You will know which AI video tool fits your workflow and budget �
 schema: ["Article", "FAQPage"]
 ---
 
-**TL;DR** — AI video generation matured in 2026. Sora (OpenAI) leads on cinematic quality but remains expensive and access-limited. Runway Gen-3 Alpha is the production workhorse — fast, consistent, integrated with editing tools. Kling (Kuaishou) offers the best value for short-form social content. Google Veo 2 brings the strongest text-to-video coherence. For creators, the practical stack is Runway for editing workflows and Kling for volume. Sora for hero content when budget allows.
+_Updated 2026-06-05. The video model landscape turned over hard this spring — Sora's standalone product was discontinued, Veo and Runway shipped new generations, and Kling moved from value pick to top tier. This guide reflects the current state, not the spring-2026 one._
+
+**TL;DR** — By mid-2026 the market split into three clear lanes. **Google Veo 3.1** is the safest all-rounder — best prompt adherence, native audio, 4K. **Kling 3.0** (Kuaishou) is the strongest value-to-quality pick and now competes at the top, not the budget end — multi-shot storyboard mode at roughly $0.10/second. **Runway Gen-4.5** stays the pro favorite when you need granular control — camera moves, motion brush, reference-driven character consistency. **Sora 2** is no longer a starting point: OpenAI discontinued the standalone Sora web/app on 2026-04-26 (it survives only inside ChatGPT, with the API sunsetting in September). The model everyone is testing right now is **Seedance 2.0**. For most creators the practical stack is Veo 3.1 for hero/narrative, Kling 3.0 for volume.
 
 ---
 
@@ -37,65 +39,65 @@ This guide covers every major tool, what each one actually does well, and how I 
 
 ## The Six Tools Worth Knowing
 
-### Sora (OpenAI)
+### Sora 2 (OpenAI) — discontinued as a standalone product
 
-Sora set the benchmark when OpenAI released it to broader access in early 2026. The outputs are cinematic in a way that other tools are not yet matching — natural lighting transitions, consistent character motion across frames, and physics that behave like physics.
+Sora set the cinematic benchmark when OpenAI broadened access in early 2026. It no longer makes sense as a starting point. **OpenAI discontinued the standalone Sora web and app on 2026-04-26**, and the Sora API is scheduled to sunset on 2026-09-24. The model itself wasn't bad — it was reportedly burning roughly $15M/day against negligible revenue, and OpenAI folded it back into ChatGPT rather than running it as a separate product.
 
-**What it gets right:** Long-form coherence up to 60 seconds. Camera movements that feel intentional rather than procedural. Prompt fidelity on complex scenes. If you describe a specific visual scenario with precision, Sora renders it accurately.
+**Where it survives:** Sora 2 generation is still available *inside* ChatGPT for Plus ($20/month) and Pro ($200/month) subscribers. If you already pay for ChatGPT, you can still generate — you just can't build a standalone Sora workflow or rely on the API long-term.
 
-**What limits it:** Cost is steep. At the Pro tier, you burn through credits fast on longer clips. Access is still metered. Turnaround time for high-quality outputs runs 3-8 minutes per clip, which breaks fast-iteration workflows. There is no direct integration with external editing tools — you export and cut manually.
+**What it still gets right (inside ChatGPT):** Long-form coherence, intentional camera movement, strong prompt fidelity on complex scenes.
 
-**Best for:** Hero sequences for campaigns, cinematic intros, content where visual quality justifies the per-clip investment.
+**Best for:** Existing ChatGPT Pro users generating the occasional hero clip. **Not** a tool to architect a new pipeline around — pick Veo 3.1 or Runway for that.
 
-**Pricing (March 2026):** ChatGPT Plus ($20/month) includes limited Sora access. Pro ($200/month) gives priority queue and higher resolution outputs. API access is in limited beta.
-
----
-
-### Runway Gen-3 Alpha
-
-Runway is the production tool. Not the most cinematic, but the most reliable — which matters more when you are generating 20+ clips per week.
-
-What makes Gen-3 Alpha different from the earlier versions is the consistency. Run the same prompt twice and you get visually similar results. That repeatability is the entire foundation of a video production workflow. You cannot build templates around tools that produce random variation at every generation.
-
-**What it gets right:** Speed — under 90 seconds for a 10-second clip at standard quality. Image-to-video is strong: feed it a reference image and it animates with natural motion. The editing suite integration is real — you can stay inside Runway for rough assembly. Camera control has improved significantly: pan, zoom, and dolly moves actually work.
-
-**What limits it:** Character consistency across clips is still imperfect. Prompting for human faces produces results that occasionally require regeneration. Complex multi-subject scenes lose detail at the edges.
-
-**Best for:** Social content at volume, YouTube channel intros, product demos with motion, B-roll replacement.
-
-**Pricing:** Standard plan $15/month (625 credits). Pro $35/month (2,250 credits). A 10-second clip costs roughly 10-25 credits depending on quality settings.
+**Migration note:** If you built anything on the Sora API, plan your move to Veo 3.1 or Runway Gen-4.5 before the September API shutdown.
 
 ---
 
-### Kling (Kuaishou)
+### Runway Gen-4.5
 
-Kling is the value leader — and the gap between Kling and premium tools has narrowed to a level that most social platforms cannot detect.
+Runway is the pro-control tool. Gen-4 landed early in 2026 and the current Gen-4.5 (with a 4.5.5 point release) is the favorite whenever you need granular creative control rather than one-shot quality — camera moves, motion brush, and reference-driven character consistency.
 
-Kuaishou built Kling for the short-form social market, and that heritage shows. The motion aesthetics are optimized for engagement — dynamic camera movement, fast cuts, style variety. For TikTok, Instagram Reels, and YouTube Shorts, Kling produces outputs that perform.
+What makes the Gen-4 line matter is the combination of consistency and control. Run the same prompt twice and you get visually similar results, and you can steer the result with a motion brush and reference images instead of re-rolling the dice. That repeatability plus directability is the foundation of a real video production workflow.
 
-**What it gets right:** Best credits-per-quality ratio in the market. Portrait orientation support is native — most tools still treat 9:16 as an afterthought. Generation speed is fast. The style system lets you pre-define visual aesthetic and apply it consistently across batches.
+**What it gets right:** Granular control — camera moves, motion brush, reference-driven character consistency are best-in-class. Image-to-video is strong. The editing suite integration is real — you can stay inside Runway for rough assembly.
 
-**What limits it:** Quality drops on long-form content. Cinematic lighting is not at Sora or Runway level. Detailed scene prompts sometimes produce simplified interpretations.
+**What limits it:** Raw quality now trails Veo 3.1 and Kling 3.0 on cinematic lighting and native audio (Runway's strength is control, not the top of the quality leaderboard). Complex multi-subject scenes can still lose detail at the edges.
 
-**Best for:** Short-form social at volume, creators running 5-10 posts per week, situations where cost matters more than maximum quality.
+**Best for:** Production workflows where directability matters more than maximum fidelity — YouTube intros, product demos with specific motion, reference-driven character work, B-roll replacement.
 
-**Pricing:** Free tier available with watermarks. Standard plan approximately $8/month. High volume creator plans available.
+**Pricing:** Standard plan around $15/month; Pro around $35/month, on a per-second/credit model. Check Runway's current pricing page before committing — the Gen-4 line changed the credit math.
 
 ---
 
-### Google Veo 2
+### Kling 3.0 (Kuaishou)
 
-Veo 2 is Google's entry into production AI video, and it arrived with the strongest text-to-video semantic understanding of any tool currently available. Give it a complex descriptive prompt — setting, mood, camera angle, subject behavior — and Veo 2 interprets it more accurately than competitors.
+Kling is no longer "the cheap one." Kling 3.0 closed the gap and now competes at the top of the quality leaderboard while staying the cheapest premium model — roughly $0.10/second. It matches Veo on cinematic lighting and complex motion (hair, liquids, fabric) and adds a **multi-shot storyboard mode with native audio sync across cuts**, which is genuinely ahead of where most competitors are.
 
-**What it gets right:** Prompt adherence. If the prompt says "medium shot, subject walks left to right, golden hour lighting," Veo 2 delivers all three. The semantic layer is visibly more capable. Integration with Google's broader ecosystem (Workspace, YouTube Studio) is beginning to take shape.
+Kuaishou built Kling for the short-form social market and that heritage still shows in the motion aesthetics, but the 3.0 line makes it a serious pick for cinematic multi-shot sequences with subject consistency, not just social volume.
 
-**What limits it:** Access is still limited to Google One AI Premium subscribers and selected partners. Export options are more restricted than Runway. The visual style leans clinical — beautiful, but without the filmic quality of Sora.
+**What it gets right:** Best quality-per-dollar at the top tier. Multi-shot storyboard with audio sync across cuts. Strong subject consistency. Native portrait (9:16) support. Fast generation.
 
-**Best for:** Creators already deep in the Google ecosystem, situations demanding high prompt fidelity, institutional and educational video production.
+**What limits it:** Fine-grained creative control still trails Runway's motion-brush/reference tooling. Some detailed scene prompts get simplified interpretations.
 
-**Pricing:** Available within Google One AI Premium at $19.99/month. Standalone API pricing in beta.
+**Best for:** Creators who want top-tier cinematic output at volume without Veo/Runway pricing — short-form social, multi-shot sequences, anyone optimizing cost-per-quality.
 
-> **Update:** Veo 3.1 is now the current production model — 4K output, up to 60 seconds, native synced audio. There's also Veo 3.1 Lite at under 50% the cost. Walk through the full workflow (VideoFX, Vertex AI, Gemini API) in our [Gemini & Google AI Mastery portal](/learn/gemini-mastery#videos).
+**Pricing:** Free tier with watermarks; premium generation around $0.10/second. The cheapest way to reach near-top-tier quality in 2026.
+
+---
+
+### Google Veo 3.1
+
+Veo is now the safest all-rounder in the market. Veo 3.1 leads on prompt adherence, ships **native audio**, and outputs **4K (3840×2160) in both landscape and portrait** — making it the strongest single pick for narrative scenes, establishing shots, and anything where you describe a complex scenario and need it rendered accurately.
+
+Give it a complex descriptive prompt — setting, mood, camera angle, subject behavior, and now sound — and Veo 3.1 interprets it more faithfully than competitors. The native-audio generation in particular removes a whole post step.
+
+**What it gets right:** Best-in-class prompt adherence. Native audio generation. 4K landscape and portrait. Deepening integration with Google's ecosystem (Workspace, YouTube). The all-around default when you're not sure which tool to reach for.
+
+**What limits it:** Premium pricing relative to Kling. Less granular shot-level control than Runway's motion brush. Access runs through Google's AI subscriptions.
+
+**Best for:** Narrative and establishing shots, hero content, anyone who wants the highest-fidelity single tool, creators already in the Google ecosystem.
+
+**Pricing:** Available through Google's AI subscription tiers (Google One AI / Gemini plans). Confirm the current tier and per-generation limits on Google's pricing page — Veo 3.1 4K outputs consume more quota than 1080p.
 
 ---
 
@@ -127,16 +129,33 @@ Luma entered the market with strong physics simulation — fluid motion, materia
 
 ---
 
+### Seedance 2.0 (ByteDance) — the one to watch
+
+Seedance is the model that keeps surfacing in blind creator tests through mid-2026, especially for image-to-video workflows. ByteDance built it with the same short-form DNA as Kling's lineage, and in head-to-head comparisons creators keep picking it without knowing which model produced the clip — the strongest signal there is.
+
+**What it gets right:** Image-to-video fidelity. Motion quality that holds up in blind tests against the premium tier. Aggressive iteration pace.
+
+**What limits it:** Newer ecosystem — tooling, API maturity, and pricing transparency lag the established players. Worth piloting, not yet worth rebuilding your whole pipeline around.
+
+**Best for:** Image-to-video work, creators who want to stay on the frontier, anyone running their own blind A/B on output quality.
+
+**Pricing:** Evolving — check ByteDance's current Seedance tiers before committing volume.
+
+---
+
 ## Tool Comparison Table
 
-| Tool         | Quality Ceiling | Generation Speed | Best Use Case             | Starting Price   |
-| ------------ | --------------- | ---------------- | ------------------------- | ---------------- |
-| Sora         | ★★★★★           | 3-8 min          | Hero content, campaigns   | $20/mo (limited) |
-| Runway Gen-3 | ★★★★☆           | 60-90 sec        | Production workflow       | $15/mo           |
-| Kling        | ★★★☆☆           | 45-75 sec        | Short-form social volume  | $8/mo            |
-| Veo 2        | ★★★★☆           | 90-180 sec       | Prompt-precise production | $19.99/mo        |
-| Pika 2.0     | ★★★☆☆           | 30-60 sec        | Creative / stylized       | $8/mo            |
-| Luma         | ★★★★☆           | 60-120 sec       | Product demos             | Free/$29.99      |
+_Current as of 2026-06-05._
+
+| Tool             | Quality Tier | Native Audio | Best Use Case                        | Pricing Note            |
+| ---------------- | ------------ | ------------ | ------------------------------------ | ----------------------- |
+| Veo 3.1          | ★★★★★        | Yes (4K)     | Safest all-rounder, narrative, hero  | Google AI subscription  |
+| Kling 3.0        | ★★★★★        | Yes (multi-shot) | Top quality-per-dollar, multi-shot | ~$0.10/sec              |
+| Runway Gen-4.5   | ★★★★☆        | No           | Granular control, reference-driven   | ~$15–35/mo, per-credit  |
+| Seedance 2.0     | ★★★★☆        | —            | Image-to-video, frontier pick        | Evolving                |
+| Sora 2           | ★★★★☆        | Yes          | ChatGPT users only (discontinued)    | Inside ChatGPT Plus/Pro |
+| Pika 2.x         | ★★★☆☆        | —            | Creative / stylized effects          | ~$8–55/mo               |
+| Luma             | ★★★★☆        | —            | Product demos, physics               | Free/$29.99             |
 
 ---
 
@@ -152,9 +171,9 @@ Workflow: write 10 concepts, batch-generate in Kling, cut in CapCut or Descript,
 
 ### YouTube Channel (5-15 min videos)
 
-**Primary:** Runway Gen-3 for B-roll and intros. **Secondary:** Sora for quarterly hero content.
+**Primary:** Runway Gen-4.5 for B-roll and intros (directability). **Secondary:** Veo 3.1 for quarterly hero content (fidelity + native audio).
 
-The YouTube channel problem is B-roll. Every talking head video needs visual context. AI video solves this — instead of paying for stock footage subscriptions, generate specific B-roll that matches your script exactly. A 12-minute video needs 15-20 B-roll clips. At Runway Standard, that runs under $5 in credits.
+The YouTube channel problem is B-roll. Every talking head video needs visual context. AI video solves this — instead of paying for stock footage subscriptions, generate specific B-roll that matches your script exactly. A 12-minute video needs 15-20 B-roll clips, well within a single Runway plan's monthly credits.
 
 ### Product Demo / Brand Content
 
@@ -204,7 +223,7 @@ What is not being replaced: editorial judgment, pacing instinct, narrative struc
 
 Three developments worth tracking:
 
-**Consistent characters across clips.** Every tool struggles with this. Sora is closest — it can maintain visual consistency across 3-4 clips if you use the same seed and style prompt. True cross-clip character consistency at production scale will unlock narrative video formats that are currently impractical.
+**Consistent characters across clips.** Every tool struggles with this. Runway Gen-4.5's reference-driven character system and Kling 3.0's multi-shot storyboard (with subject consistency across cuts) are the current front-runners. True cross-clip character consistency at production scale will unlock narrative video formats that are currently impractical.
 
 **Real-time generation.** Runway already has a faster "draft" mode. The trajectory points toward generation speeds under 30 seconds for 10-second clips within the year. That changes the workflow completely — you can generate, review, and iterate in the same creative session without batch-and-wait cycles.
 
@@ -216,9 +235,9 @@ If you are building a creator system that includes video, the [GenCreator framew
 
 ## FAQ
 
-**Is Sora worth the cost for independent creators?**
+**Is Sora still worth it for independent creators?**
 
-At the Pro tier ($200/month), Sora makes sense if video is central to your revenue model and quality differentiates your work. For creators producing social content at volume, Kling and Runway deliver better ROI. Sora is the right choice for quarterly campaign content or hero pieces where the quality premium is visible to your audience.
+Not as a primary tool. OpenAI discontinued the standalone Sora product in April 2026 — it now lives only inside ChatGPT (Plus/Pro), and the API sunsets in September. If you already pay for ChatGPT Pro, you can still generate the occasional hero clip. But don't architect a workflow around it. For a new pipeline, Veo 3.1 (fidelity + native audio) or Kling 3.0 (quality-per-dollar) are the right anchors.
 
 **Can AI video match professional cinematography?**
 
@@ -230,7 +249,7 @@ Use style reference images and locked prompt templates. Runway's image-to-video 
 
 **What is the best tool for someone just starting with AI video?**
 
-Runway Gen-3 for most people. The free trial gives you enough credits to evaluate the tool seriously. The UI is the most production-ready. The speed is acceptable for learning. And the API access, when you are ready to automate, is the most mature in the market.
+Veo 3.1 for most people in 2026 — it's the safest all-rounder, handles audio natively, and you describe what you want in plain language. If budget is the priority, start on Kling 3.0's free tier (near-top-tier quality at the lowest cost). Reach for Runway Gen-4.5 once you specifically need shot-level control (camera moves, motion brush, reference characters).
 
 **Will AI video improve enough to replace all stock footage within two years?**
 
