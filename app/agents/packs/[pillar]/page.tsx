@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { PILLARS } from '@/data/acos/agents'
 import { catalogL99 } from '@/lib/acos/l99-score'
+import { EmailSignup } from '@/components/email-signup'
 import { ArrowLeft, Terminal, Download, CheckCircle2, Hammer, CircleDashed, Github, Sparkles } from 'lucide-react'
 
 interface PageProps {
@@ -38,18 +39,21 @@ const ACCENT_RINGS: Record<string, string> = {
   orange: 'ring-orange-400/20',
 }
 
-const PACK_PRICING: Record<string, { price: string; tier: 'free' | 'pro'; cta: string; note?: string }> = {
-  content: { price: '€99', tier: 'pro', cta: '/products?pack=content' },
-  music: { price: '€149', tier: 'pro', cta: '/products?pack=music' },
-  visuals: { price: '€99', tier: 'pro', cta: '/products?pack=visuals' },
-  books: { price: '€129', tier: 'pro', cta: '/products?pack=books' },
-  workshops: { price: '€99', tier: 'pro', cta: '/products?pack=workshops' },
-  research: { price: '€99', tier: 'pro', cta: '/products?pack=research' },
-  products: { price: '€199', tier: 'pro', cta: '/products?pack=products' },
-  business: { price: '€199', tier: 'pro', cta: '/products?pack=business', note: 'Substrate-only — financial data stays on your machine, never published' },
-  personal: { price: '€49', tier: 'pro', cta: '/products?pack=personal' },
-  community: { price: '€49', tier: 'pro', cta: '/products?pack=community' },
-  meta: { price: 'Free', tier: 'free', cta: '/agents/packs/meta', note: 'Required by every other pack — start here' },
+// Pricing is intentionally withheld while premium packs are pre-launch — paid
+// packs collect a waitlist (#waitlist) instead of showing a euro amount or a
+// dead "Buy" path. The free Foundation pack keeps its install flow.
+const PACK_PRICING: Record<string, { tier: 'free' | 'premium'; cta: string; note?: string }> = {
+  content: { tier: 'premium', cta: '#waitlist' },
+  music: { tier: 'premium', cta: '#waitlist' },
+  visuals: { tier: 'premium', cta: '#waitlist' },
+  books: { tier: 'premium', cta: '#waitlist' },
+  workshops: { tier: 'premium', cta: '#waitlist' },
+  research: { tier: 'premium', cta: '#waitlist' },
+  products: { tier: 'premium', cta: '#waitlist' },
+  business: { tier: 'premium', cta: '#waitlist', note: 'Substrate-only — financial data stays on your machine, never published' },
+  personal: { tier: 'premium', cta: '#waitlist' },
+  community: { tier: 'premium', cta: '#waitlist' },
+  meta: { tier: 'free', cta: '/agents/packs/meta', note: 'Required by every other pack — start here' },
 }
 
 export async function generateStaticParams() {
@@ -123,7 +127,9 @@ export default async function PackPage({ params }: PageProps) {
         category: 'Software / AI Agents',
         offers: {
           '@type': 'Offer',
-          price: pricing.tier === 'free' ? '0' : pricing.price.replace(/[^0-9]/g, ''),
+          // Premium packs are pre-launch — omit price so no euro amount leaks into
+          // schema while the offer is waitlist-only.
+          ...(pricing.tier === 'free' ? { price: '0' } : {}),
           priceCurrency: 'EUR',
           availability: pricing.tier === 'free' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
         },
@@ -188,24 +194,37 @@ export default async function PackPage({ params }: PageProps) {
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:w-72">
-              <div className="text-xs font-semibold uppercase tracking-widest text-slate-400">Price</div>
-              <div className="mt-1 text-3xl font-bold text-white">{pricing.price}</div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                {pricing.tier === 'free' ? 'Price' : 'Access'}
+              </div>
+              <div className="mt-1 text-3xl font-bold text-white">
+                {pricing.tier === 'free' ? 'Free' : 'Premium'}
+              </div>
+              {pricing.tier === 'premium' && (
+                <div className="mt-2 text-xs text-slate-400">Pre-launch — join the waitlist for first install access.</div>
+              )}
               {pricing.note && <div className="mt-2 text-xs text-slate-400">{pricing.note}</div>}
               <Link
                 href={pricing.cta}
                 className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${
                   pricing.tier === 'free'
                     ? 'bg-emerald-500 text-emerald-950 hover:bg-emerald-400'
-                    : 'border border-white/10 bg-white/5 text-white hover:bg-white/10'
+                    : 'bg-white text-slate-900 hover:bg-slate-100'
                 }`}
               >
-                {pricing.tier === 'free' ? <><Download className="h-4 w-4" /> Install free</> : 'Buy pack'}
+                {pricing.tier === 'free' ? <><Download className="h-4 w-4" /> Install free</> : 'Join the waitlist'}
               </Link>
             </div>
           </div>
 
           {/* Install snippet */}
-          <div className="mt-10 rounded-2xl border border-white/10 bg-black/40 shadow-2xl">
+          {pricing.tier === 'premium' && (
+            <div className="mt-10 rounded-xl border border-amber-400/20 bg-amber-500/[0.06] px-4 py-3 text-xs text-amber-100">
+              This pack is in active development. The command below is how you&rsquo;ll install it —
+              <Link href="#waitlist" className="ml-1 font-semibold underline underline-offset-2 hover:text-white">join the waitlist</Link> to get access the day it ships.
+            </div>
+          )}
+          <div className={`${pricing.tier === 'premium' ? 'mt-4' : 'mt-10'} rounded-2xl border border-white/10 bg-black/40 shadow-2xl`}>
             <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2 text-xs text-slate-400">
               <Terminal className="h-3.5 w-3.5" />
               <span className="font-mono">~/your-project</span>
@@ -313,34 +332,54 @@ rm -rf tmp-acos`}
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="border-t border-white/5 py-16">
+      {/* Bottom CTA / waitlist */}
+      <section id="waitlist" className="scroll-mt-24 border-t border-white/5 py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            {pricing.tier === 'free' ? 'Install in 60 seconds' : 'Pre-order the pack'}
+            {pricing.tier === 'free' ? 'Install in 60 seconds' : `Join the ${p.title} waitlist`}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
             {pricing.tier === 'free'
-              ? 'No card, no waitlist. The Meta pack is free because every other pack composes it.'
-              : `Paid packs launch with Stripe checkout in the next sprint. Join the waitlist and pay only when the pack ships at L${pillarLevel >= 50 ? pillarLevel : '50+'}.`}
+              ? 'No card, no waitlist. The Foundation pack is free because every other pack composes it.'
+              : `The ${p.title} pack is in active development — ${shipped} of 9 specialists already shipped. Join the waitlist and you'll be first to install it the day it lands, with the build notes along the way.`}
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link
-              href={pricing.tier === 'free' ? '/agents/packs/meta' : '/newsletter?ref=pack-' + p.id}
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
-            >
-              <Download className="h-4 w-4" />
-              {pricing.tier === 'free' ? 'Get the Meta pack' : 'Join the waitlist'}
-            </Link>
-            <a
-              href="https://github.com/frankxai/agentic-creator-os"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="h-4 w-4" /> View on GitHub
-            </a>
-          </div>
+
+          {pricing.tier === 'free' ? (
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/agents/packs/meta"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
+              >
+                <Download className="h-4 w-4" /> Get the Foundation pack
+              </Link>
+              <a
+                href="https://github.com/frankxai/agentic-creator-os"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" /> View on GitHub
+              </a>
+            </div>
+          ) : (
+            <div className="mt-8 flex flex-col items-center gap-5">
+              <EmailSignup
+                listType="premium-packs"
+                showName
+                placeholder="you@example.com"
+                buttonText={`Join the ${p.title} waitlist`}
+                className="mx-auto"
+              />
+              <a
+                href="https://github.com/frankxai/agentic-creator-os"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" /> Preview the spec on GitHub
+              </a>
+            </div>
+          )}
         </div>
       </section>
     </div>
