@@ -23,6 +23,7 @@ import {
   Plug,
   Radar,
   Rocket,
+  Scale,
   Search,
   Shield,
   ShieldCheck,
@@ -37,7 +38,7 @@ import type { DomainCategory } from '@/lib/research/domains'
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
   GraduationCap, Heart, Layers, Network, Palette, Plug, Radar, Rocket,
-  Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
+  Scale, Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
 }
 
 // Color utility
@@ -242,7 +243,7 @@ function FeaturedSpotlight() {
   )
 }
 
-const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science']
+const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science', 'policy-systems']
 
 function DomainsGrid() {
   const shouldReduceMotion = useReducedMotion()

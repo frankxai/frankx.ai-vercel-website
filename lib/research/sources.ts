@@ -360,6 +360,26 @@ export const domainSources: Record<string, ResearchSource[]> = {
     // Regulation / context
     { name: 'EU AI Act', title: 'Artificial Intelligence Act — Voice Cloning + Provenance Provisions', url: 'https://artificialintelligenceact.eu/', type: 'official' },
   ],
+
+  'law-ai': [
+    { name: 'European Commission', title: 'AI Act — Regulatory Framework for Artificial Intelligence', url: 'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai', date: '2025', type: 'official' },
+    { name: 'Future of Life Institute', title: 'EU AI Act Implementation Timeline', url: 'https://artificialintelligenceact.eu/implementation-timeline/', date: '2025', type: 'official' },
+    { name: 'NIST', title: 'AI Risk Management Framework (AI RMF 1.0) + Generative AI Profile (NIST-AI-600-1)', url: 'https://www.nist.gov/itl/ai-risk-management-framework', date: '2024-07-26', type: 'official' },
+    { name: 'Colorado General Assembly', title: 'SB24-205 — Consumer Protections for Artificial Intelligence', url: 'https://leg.colorado.gov/bills/sb24-205', date: '2024', type: 'official' },
+    { name: 'Norton Rose Fulbright', title: 'The Texas Responsible AI Governance Act (TRAIGA)', url: 'https://www.nortonrosefulbright.com/en/knowledge/publications/c6c60e0c/the-texas-responsible-ai-governance-act', date: '2025', type: 'blog' },
+    { name: 'U.S. Court of Appeals, D.C. Circuit', title: 'Thaler v. Perlmutter, No. 23-5233 — Opinion (human authorship)', url: 'https://media.cadc.uscourts.gov/opinions/docs/2025/03/23-5233.pdf', date: '2025-03-18', type: 'official' },
+    { name: 'Mayer Brown', title: 'Supreme Court Denies Review in AI Authorship Case (Thaler)', url: 'https://www.mayerbrown.com/en/insights/publications/2026/03/supreme-court-denies-review-in-ai-authorship-case', date: '2026-03', type: 'blog' },
+    { name: 'U.S. District Court, D. Delaware', title: 'Thomson Reuters v. Ross Intelligence — Summary Judgment Opinion', url: 'https://www.ded.uscourts.gov/sites/ded/files/opinions/20-613_5.pdf', date: '2025-02', type: 'official' },
+    { name: 'Copyright Alliance', title: 'Bartz v. Anthropic — Order on Fair Use', url: 'https://copyrightalliance.org/wp-content/uploads/2025/06/Bartz-v.-Anthropic-Order.pdf', date: '2025-06', type: 'official' },
+    { name: 'Authors Guild', title: 'What Authors Need to Know About the Anthropic Settlement ($1.5B)', url: 'https://authorsguild.org/advocacy/artificial-intelligence/what-authors-need-to-know-about-the-anthropic-settlement/', date: '2025-09', type: 'official' },
+    { name: 'Latham & Watkins', title: 'Getty Images v. Stability AI — English High Court Rejects Secondary Copyright Claim', url: 'https://www.lw.com/en/insights/getty-images-v-stability-ai-english-high-court-rejects-secondary-copyright-claim', date: '2025-11', type: 'blog' },
+    { name: 'NPR', title: 'Judge Allows New York Times Copyright Case Against OpenAI to Go Forward', url: 'https://www.npr.org/2025/03/26/nx-s1-5288157/new-york-times-openai-copyright-case-goes-forward', date: '2025-03-26', type: 'news' },
+    { name: 'American Bar Association', title: 'The Legal Industry Report 2025 — AI Adoption Survey', url: 'https://www.americanbar.org/groups/law_practice/resources/law-technology-today/2025/the-legal-industry-report-2025/', date: '2025', type: 'industry-report' },
+    { name: 'Bloomberg Law', title: 'AI-Faked Cases Become Core Issue Irritating Overworked Judges (Charlotin database)', url: 'https://news.bloomberglaw.com/legal-ops-and-tech/ai-faked-cases-become-core-issue-irritating-overworked-judges', date: '2025-12', type: 'news' },
+    { name: 'IAPP', title: 'European Commission Withdraws AI Liability Directive From Consideration', url: 'https://iapp.org/news/a/european-commission-withdraws-ai-liability-directive-from-consideration', date: '2025-02', type: 'news' },
+    { name: 'Wisconsin Supreme Court', title: 'State v. Loomis, 2016 WI 68 — Opinion (COMPAS risk scoring)', url: 'https://www.wicourts.gov/sc/opinion/DisplayDocument.pdf?content=pdf&seqNo=171690', date: '2016-07', type: 'official' },
+    { name: 'ProPublica', title: 'Machine Bias — Risk Assessments in Criminal Sentencing (COMPAS)', url: 'https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing', date: '2016-05-23', type: 'journal' },
+  ],
 }
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {
