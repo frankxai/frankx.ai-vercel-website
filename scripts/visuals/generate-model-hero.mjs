@@ -119,8 +119,66 @@ const PALETTE = {
 // ---- CONFIGS: filled with VERIFIED values from research ------------------
 // Stat tile values are populated after the per-model research returns so the
 // hero matches the article's cited numbers.
+// Complete source of truth for model-hero regeneration. Output is deterministic,
+// so re-running reproduces every committed hero byte-for-byte.
 const CONFIGS = [
-  // Phase 1 heroes already generated/committed (Opus 4.8, GPT-5.5, Gemini 3.5 Pro, Grok 4.3).
+  // Phase 1 — Western flagships:
+  {
+    slug: 'claude-opus-4-8-analysis-2026',
+    orgKey: 'anthropic',
+    org: 'Anthropic',
+    name: 'Claude Opus 4.8',
+    subtitle: 'Flagship reasoning + coding — tops the intelligence index at unchanged $5/$25',
+    tiles: [
+      { value: '69.2%', label: 'SWE-Bench Pro' },
+      { value: '1890', label: 'GDPval-AA Elo' },
+      { value: '1M', label: 'Context window' },
+      { value: '$5/$25', label: 'per 1M tokens' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Anthropic, Artificial Analysis, llm-stats',
+  },
+  {
+    slug: 'gpt-5-5-analysis-2026',
+    orgKey: 'openai',
+    org: 'OpenAI',
+    name: 'GPT-5.5',
+    subtitle: 'Agentic flagship "Spud" — best published computer-use scores, at double the price',
+    tiles: [
+      { value: '84.9%', label: 'GDPval' },
+      { value: '78.7%', label: 'OSWorld' },
+      { value: '98%', label: 'Tau2 Telecom' },
+      { value: '$5/$30', label: 'per 1M tokens' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via OpenAI, Artificial Analysis, Vellum',
+  },
+  {
+    slug: 'gemini-3-5-pro-analysis-2026',
+    orgKey: 'google',
+    org: 'Google DeepMind',
+    name: 'Gemini 3.5 Pro',
+    subtitle: 'Google’s top reasoning tier — announced at I/O, GA targeted June 2026',
+    tiles: [
+      { value: 'Preview', label: 'Vertex limited' },
+      { value: '2M', label: 'Context (target)' },
+      { value: 'Deep Think', label: 'Reasoning mode' },
+      { value: 'TBD', label: 'Benchmarks at GA' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Pre-GA brief — no measured benchmarks yet',
+  },
+  {
+    slug: 'grok-4-3-analysis-2026',
+    orgKey: 'xai',
+    org: 'xAI',
+    name: 'Grok 4.3',
+    subtitle: 'Budget frontier — fourth-best intelligence at the cheapest frontier price',
+    tiles: [
+      { value: '53', label: 'AA Intelligence' },
+      { value: '1500', label: 'GDPval-AA Elo' },
+      { value: '181 t/s', label: 'Output speed' },
+      { value: '$1.25/$2.50', label: 'per 1M tokens' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Artificial Analysis, xAI docs',
+  },
   // Phase 2 — open-frontier labs:
   {
     slug: 'deepseek-v4-analysis-2026',
