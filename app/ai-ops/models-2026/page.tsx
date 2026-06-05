@@ -7,90 +7,112 @@ import { ArrowLeft, Globe, ExternalLink, TrendingUp, DollarSign, Cpu, Zap, Crown
 
 const frontierModels = [
   {
-    name: 'Claude Opus 4.6',
+    name: 'Claude Opus 4.8',
     org: 'Anthropic',
-    released: 'Feb 5, 2026',
-    context: '1M (beta)',
+    released: 'May 28, 2026',
+    context: '1M',
     output: '128K',
     pricing: { input: 5.0, output: 25.0 },
-    achievement: '#1 ARC-AGI-2 (68.8%), #1 Terminal-Bench (65.4%)',
-    benchmarks: { arcAgi2: 68.8, termBench: 65.4, osworld: 72.7 },
-    tags: ['reasoning', 'coding', 'agentic', 'adaptive-thinking'],
+    achievement: 'Tops the intelligence index — SWE-Bench Pro 69.2%, GDPval-AA 1890',
+    benchmarks: { sweBenchPro: 69.2, gdpvalAA: 1890, osworld: 83.4 },
+    tags: ['reasoning', 'coding', 'agentic'],
     color: '#a855f7',
     highlight: true,
     links: {
-      announcement: 'https://www.anthropic.com/news/claude-opus-4-6',
-      docs: 'https://docs.anthropic.com/en/docs/about-claude/models',
+      announcement: 'https://www.anthropic.com/news/claude-opus-4-8',
+      docs: 'https://platform.claude.com/docs/en/about-claude/models',
     },
-    notes: 'New flagship. Adaptive thinking replaces budget_tokens. 67% price cut from Opus 4.5.',
+    notes: 'Same $5/$25 pricing as 4.7, no breaking changes — a model-string-swap upgrade. Real news: Claude Code dynamic workflows (up to 1,000 subagents) and a 3x-cheaper fast mode.',
   },
   {
-    name: 'GPT-5.2 Pro',
+    name: 'GPT-5.5',
     org: 'OpenAI',
-    released: 'Jan 2026',
-    context: '196K',
-    output: '64K',
-    pricing: { input: 10.0, output: 30.0 },
-    achievement: 'First 90% ARC-AGI-1, multimodal w/ audio',
-    benchmarks: { arcAgi2: 54.2 },
-    tags: ['reasoning', 'multimodal', 'audio'],
+    released: 'Apr 23, 2026',
+    context: '1M*',
+    output: '128K',
+    pricing: { input: 5.0, output: 30.0 },
+    achievement: '84.9% GDPval, 78.7% OSWorld, 98% Tau2 Telecom',
+    benchmarks: { gdpval: 84.9, osworld: 78.7, gdpvalAA: 1769 },
+    tags: ['reasoning', 'multimodal', 'agentic'],
     color: '#10b981',
     highlight: false,
     links: {
-      docs: 'https://platform.openai.com/docs/models',
+      announcement: 'https://openai.com/index/introducing-gpt-5-5/',
+      docs: 'https://developers.openai.com/api/docs/models/gpt-5.5',
     },
-    notes: 'Native audio modality. Strong general-purpose performance.',
+    notes: 'Codename “Spud”. Drop-in replacement for GPT-5.4. Leads terminal-agent tasks; trails Opus 4.8 on GDPval-AA and SWE-Bench Pro. Price doubled vs 5.4. *1M published, ~258K effective reported in Codex.',
   },
   {
-    name: 'Gemini 3 Pro',
+    name: 'Gemini 3.5 Flash',
     org: 'Google DeepMind',
-    released: 'Dec 2025',
-    context: '2M',
+    released: 'May 19, 2026',
+    context: '1M',
     output: '64K',
-    pricing: { input: 7.0, output: 21.0 },
-    achievement: 'Best multimodal (81% MMMU-Pro), 2M context',
-    benchmarks: { arcAgi2: 45.1, mmmuPro: 81.0 },
-    tags: ['multimodal', 'reasoning', 'vision', 'video', 'audio'],
+    pricing: { input: 1.5, output: 9.0 },
+    achievement: 'Frontier agentic coding at Flash economics — Terminal-Bench 2.1 76.2%, MCP Atlas 83.6%',
+    benchmarks: { terminalBench: 76.2, mcpAtlas: 83.6, gdpvalAA: 1656 },
+    tags: ['agentic', 'coding', 'multimodal', 'budget'],
     color: '#3b82f6',
     highlight: false,
     links: {
-      docs: 'https://ai.google.dev/gemini-api/docs',
+      announcement: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/',
+      docs: 'https://deepmind.google/models/model-cards/gemini-3-5-flash/',
     },
-    notes: 'Widest modality support: text, vision, audio, video. 2M native context.',
+    notes: 'The model Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding — the new default agent runtime.',
   },
   {
-    name: 'Grok 4.1',
+    name: 'Grok 4.3',
     org: 'xAI',
-    released: 'Nov 2025',
-    context: '2M',
-    output: '64K',
-    pricing: { input: 3.0, output: 15.0 },
-    achievement: '#1 LMArena (1483 Elo), 2M context',
-    benchmarks: { lmarenaElo: 1483 },
-    tags: ['reasoning', 'agentic', 'long-context'],
+    released: 'Apr 30, 2026',
+    context: '1M',
+    output: 'No fixed cap',
+    pricing: { input: 1.25, output: 2.5 },
+    achievement: 'Budget frontier — AA Intelligence 53, GDPval-AA 1500, ~181 tok/s output',
+    benchmarks: { aaIntelligence: 53, gdpvalAA: 1500 },
+    tags: ['reasoning', 'agentic', 'long-context', 'budget'],
     color: '#ef4444',
     highlight: false,
     links: {
-      docs: 'https://docs.x.ai/',
+      announcement: 'https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing',
+      docs: 'https://docs.x.ai/developers/models/grok-4.3',
     },
-    notes: 'Top LMArena Elo. Competitive pricing with long context.',
+    notes: 'Fourth-best frontier intelligence at roughly the cheapest frontier price, with the fastest output in its tier. Context dropped 2M → 1M; reasoning is always-on.',
   },
   {
-    name: 'Claude Opus 4.5',
+    name: 'Claude Sonnet 4.6',
     org: 'Anthropic',
-    released: 'Nov 2025',
-    context: '200K',
+    released: 'Feb 17, 2026',
+    context: '1M (beta)',
     output: '64K',
-    pricing: { input: 5.0, output: 25.0 },
-    achievement: 'Best coding at launch (80.9% SWE-bench)',
-    benchmarks: { arcAgi2: 37.6, termBench: 59.8, osworld: 66.3 },
-    tags: ['coding', 'reasoning', 'agentic'],
-    color: '#a855f7',
+    pricing: { input: 3.0, output: 15.0 },
+    achievement: 'Approaches Opus 4.6 capability at ~40% lower cost',
+    benchmarks: {},
+    tags: ['coding', 'content', 'workhorse'],
+    color: '#8b5cf6',
     highlight: false,
     links: {
-      docs: 'https://docs.anthropic.com/en/docs/about-claude/models',
+      announcement: 'https://www.anthropic.com/news/claude-sonnet-4-6',
+      docs: 'https://platform.claude.com/docs/en/about-claude/models',
     },
-    notes: 'Previous flagship. Still available, superseded by Opus 4.6.',
+    notes: 'The mid-tier that started eating the flagship’s lunch. The right default for production coding and content — route to Opus 4.8 only when the task earns it.',
+  },
+  {
+    name: 'Gemini 3.5 Pro',
+    org: 'Google DeepMind',
+    released: 'Preview',
+    context: '2M*',
+    output: '—',
+    pricing: { input: 0, output: 0 },
+    achievement: 'Announced at I/O as Google’s strongest agentic + coding model — benchmarks pending GA',
+    benchmarks: {},
+    tags: ['preview', 'multimodal', 'reasoning'],
+    color: '#3b82f6',
+    highlight: false,
+    links: {
+      announcement: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/',
+      docs: 'https://deepmind.google/models/gemini/',
+    },
+    notes: 'Not GA as of June 5, 2026 — limited Vertex preview, no published benchmarks or pricing. GA targeted for June. *2M context is a vendor target. Don’t architect on it until GA.',
   },
   {
     name: 'Llama 4 Maverick',
@@ -99,7 +121,7 @@ const frontierModels = [
     context: '1M',
     output: '32K',
     pricing: { input: 0, output: 0 },
-    achievement: 'Open-weight MoE (400B/17B active)',
+    achievement: 'Open-weight MoE (400B total / 17B active)',
     benchmarks: {},
     tags: ['open-source', 'agentic', 'MoE'],
     color: '#f59e0b',
@@ -107,24 +129,7 @@ const frontierModels = [
     links: {
       docs: 'https://llama.meta.com/',
     },
-    notes: 'Open-weight. 400B total, 17B active per token. Runs on single H100.',
-  },
-  {
-    name: 'DeepSeek R1',
-    org: 'DeepSeek',
-    released: 'Jan 2025',
-    context: '128K',
-    output: '32K',
-    pricing: { input: 0.55, output: 2.19 },
-    achievement: 'Open-source reasoning champion, MIT license',
-    benchmarks: {},
-    tags: ['reasoning', 'open-source', 'budget'],
-    color: '#06b6d4',
-    highlight: false,
-    links: {
-      docs: 'https://platform.deepseek.com/docs',
-    },
-    notes: 'Most cost-effective reasoning model. Open-source under MIT license.',
+    notes: 'Open-weight. 400B total, 17B active per token. Runs on a single H100. Self-host / fine-tune base.',
   },
   {
     name: 'MAI-Thinking-1',
@@ -145,13 +150,16 @@ const frontierModels = [
   },
 ]
 
+// Cross-model scores where independent data is published. Elo metrics carry no
+// "%"; cells are left blank rather than mixing benchmark versions or recycling
+// older-model numbers. unit '' renders the raw value.
 const benchmarkComparison = [
-  { benchmark: 'ARC-AGI-2', description: 'Abstract reasoning', models: { 'Opus 4.6': 68.8, 'GPT-5.2 Pro': 54.2, 'Gemini 3 Pro': 45.1, 'Opus 4.5': 37.6 } },
-  { benchmark: 'Terminal-Bench 2.0', description: 'Agentic coding', models: { 'Opus 4.6': 65.4, 'Opus 4.5': 59.8 } },
-  { benchmark: 'OSWorld', description: 'Computer use', models: { 'Opus 4.6': 72.7, 'Opus 4.5': 66.3 } },
-  { benchmark: 'MMMU-Pro', description: 'Multimodal understanding', models: { 'Gemini 3 Pro': 81.0 } },
-  { benchmark: 'BigLaw Bench', description: 'Legal reasoning', models: { 'Opus 4.6': 90.2 } },
-  { benchmark: 'MRCR v2 (1M)', description: 'Long-context retrieval', models: { 'Opus 4.6': 76.0 } },
+  { benchmark: 'GDPval-AA', description: 'Economically valuable knowledge work (Elo)', unit: '', models: { 'Opus 4.8': 1890, 'GPT-5.5': 1769, 'Gemini 3.5 Flash': 1656, 'Grok 4.3': 1500 } },
+  { benchmark: 'SWE-Bench Pro', description: 'Hard, contamination-resistant coding', unit: '%', models: { 'Opus 4.8': 69.2, 'GPT-5.5': 58.6 } },
+  { benchmark: 'OSWorld', description: 'Computer use / GUI agents', unit: '%', models: { 'Opus 4.8': 83.4, 'GPT-5.5': 78.7 } },
+  { benchmark: 'Terminal-Bench 2.1', description: 'Agentic terminal / CLI workflows', unit: '%', models: { 'Opus 4.8': 74.6, 'Gemini 3.5 Flash': 76.2 } },
+  { benchmark: 'Tau2 Telecom', description: 'Complex customer-service workflows', unit: '%', models: { 'GPT-5.5': 98.0 } },
+  { benchmark: 'AA Intelligence Index', description: 'Composite of 10 evaluations', unit: '', models: { 'Opus 4.8': 61.4, 'Grok 4.3': 53 } },
 ]
 
 const externalResources = [
@@ -203,14 +211,14 @@ export default function Models2026Page() {
                 Data validated against official sources and independent benchmarks.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/blog/microsoft-mai-frontier-models-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0078d4]/10 border border-[#0078d4]/20 hover:border-[#0078d4]/40 text-[#4cc2ff] text-sm transition-colors">
-                  <Zap className="w-4 h-4" /> New: Microsoft&apos;s 7 MAI Models
+                <Link href="/blog/claude-opus-4-8-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#a855f7]/10 border border-[#a855f7]/20 hover:border-[#a855f7]/40 text-[#a855f7] text-sm transition-colors">
+                  <Crown className="w-4 h-4" /> New: Claude Opus 4.8 Deep Analysis
                 </Link>
-                <Link href="/blog/claude-opus-4-6-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#a855f7]/10 border border-[#a855f7]/20 hover:border-[#a855f7]/40 text-[#a855f7] text-sm transition-colors">
-                  <Crown className="w-4 h-4" /> Claude Opus 4.6 Deep Analysis
+                <Link href="/blog/gpt-5-5-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#10b981]/10 border border-[#10b981]/20 hover:border-[#10b981]/40 text-[#10b981] text-sm transition-colors">
+                  <Zap className="w-4 h-4" /> GPT-5.5 (&ldquo;Spud&rdquo;)
                 </Link>
-                <Link href="/research/agent-benchmarks" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 text-white/60 text-sm transition-colors">
-                  <TrendingUp className="w-4 h-4" /> Benchmark Methodology
+                <Link href="/blog/grok-4-3-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ef4444]/10 border border-[#ef4444]/20 hover:border-[#ef4444]/40 text-[#ef4444] text-sm transition-colors">
+                  <TrendingUp className="w-4 h-4" /> Grok 4.3
                 </Link>
               </div>
             </motion.div>
@@ -294,28 +302,32 @@ export default function Models2026Page() {
                   <tr className="border-b border-white/10">
                     <th className="pb-4 pr-6 text-sm font-medium text-white/50">Benchmark</th>
                     <th className="pb-4 pr-6 text-sm font-medium text-white/50">What It Tests</th>
-                    <th className="pb-4 pr-4 text-sm font-medium text-[#a855f7]">Opus 4.6</th>
-                    <th className="pb-4 pr-4 text-sm font-medium text-white/50">GPT-5.2</th>
-                    <th className="pb-4 pr-4 text-sm font-medium text-white/50">Gemini 3</th>
-                    <th className="pb-4 text-sm font-medium text-white/50">Opus 4.5</th>
+                    <th className="pb-4 pr-4 text-sm font-medium text-[#a855f7]">Opus 4.8</th>
+                    <th className="pb-4 pr-4 text-sm font-medium text-white/50">GPT-5.5</th>
+                    <th className="pb-4 pr-4 text-sm font-medium text-white/50">Gemini 3.5 Flash</th>
+                    <th className="pb-4 text-sm font-medium text-white/50">Grok 4.3</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
-                  {benchmarkComparison.map(b => (
-                    <tr key={b.benchmark} className="border-b border-white/5">
-                      <td className="py-3 pr-6 font-medium text-white">{b.benchmark}</td>
-                      <td className="py-3 pr-6 text-white/40">{b.description}</td>
-                      <td className="py-3 pr-4 font-mono text-[#a855f7] font-medium">{b.models['Opus 4.6'] ? `${b.models['Opus 4.6']}%` : '—'}</td>
-                      <td className="py-3 pr-4 font-mono text-white/40">{b.models['GPT-5.2 Pro'] ? `${b.models['GPT-5.2 Pro']}%` : '—'}</td>
-                      <td className="py-3 pr-4 font-mono text-white/40">{b.models['Gemini 3 Pro'] ? `${b.models['Gemini 3 Pro']}%` : '—'}</td>
-                      <td className="py-3 font-mono text-white/40">{b.models['Opus 4.5'] ? `${b.models['Opus 4.5']}%` : '—'}</td>
-                    </tr>
-                  ))}
+                  {benchmarkComparison.map(b => {
+                    const cell = (v?: number) => (v != null ? `${v}${b.unit}` : '—')
+                    const models = b.models as Record<string, number | undefined>
+                    return (
+                      <tr key={b.benchmark} className="border-b border-white/5">
+                        <td className="py-3 pr-6 font-medium text-white">{b.benchmark}</td>
+                        <td className="py-3 pr-6 text-white/40">{b.description}</td>
+                        <td className="py-3 pr-4 font-mono text-[#a855f7] font-medium">{cell(models['Opus 4.8'])}</td>
+                        <td className="py-3 pr-4 font-mono text-white/40">{cell(models['GPT-5.5'])}</td>
+                        <td className="py-3 pr-4 font-mono text-white/40">{cell(models['Gemini 3.5 Flash'])}</td>
+                        <td className="py-3 font-mono text-white/40">{cell(models['Grok 4.3'])}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
             <p className="mt-4 text-xs text-white/20">
-              Sources: Official vendor announcements, ARC Prize Foundation, SWE-bench project. Last validated February 6, 2026.
+              GDPval-AA and AA Intelligence Index are Elo/index scores (no %); other rows are percentages. Blank cells mean no independently published score for that pairing — not a zero. Sources: Anthropic, OpenAI, Google, Artificial Analysis, llm-stats. Last validated June 5, 2026.
             </p>
           </div>
         </section>
@@ -347,13 +359,6 @@ export default function Models2026Page() {
                     </tr>
                   ))}
                   <tr className="border-b border-white/5">
-                    <td className="py-3 pr-6 font-medium text-white">Claude Sonnet 4.5</td>
-                    <td className="py-3 pr-6 font-mono text-white/60">$3.00</td>
-                    <td className="py-3 pr-6 font-mono text-white/60">$15.00</td>
-                    <td className="py-3 pr-6 font-mono text-white/40">200K</td>
-                    <td className="py-3 font-mono text-white/40">$0.09</td>
-                  </tr>
-                  <tr className="border-b border-white/5">
                     <td className="py-3 pr-6 font-medium text-white">Claude Haiku 4.5</td>
                     <td className="py-3 pr-6 font-mono text-white/60">$0.80</td>
                     <td className="py-3 pr-6 font-mono text-white/60">$4.00</td>
@@ -377,7 +382,7 @@ export default function Models2026Page() {
                   <Crown className="w-5 h-5 text-[#a855f7]" />
                   <h3 className="font-bold">Opus Tier</h3>
                 </div>
-                <p className="text-sm font-mono text-[#a855f7] mb-2">claude-opus-4-6</p>
+                <p className="text-sm font-mono text-[#a855f7] mb-2">claude-opus-4-8</p>
                 <p className="text-sm text-white/50 mb-3">Architecture reviews, research synthesis, complex debugging, multi-file code generation, long-context analysis</p>
                 <p className="text-xs text-white/30">$5.00 / $25.00 per 1M tokens</p>
               </div>
@@ -386,7 +391,7 @@ export default function Models2026Page() {
                   <Zap className="w-5 h-5 text-[#3b82f6]" />
                   <h3 className="font-bold">Sonnet Tier</h3>
                 </div>
-                <p className="text-sm font-mono text-[#3b82f6] mb-2">claude-sonnet-4-5</p>
+                <p className="text-sm font-mono text-[#3b82f6] mb-2">claude-sonnet-4-6</p>
                 <p className="text-sm text-white/50 mb-3">Standard coding, content generation, API integrations, moderate-complexity tasks, production workflows</p>
                 <p className="text-xs text-white/30">$3.00 / $15.00 per 1M tokens</p>
               </div>
@@ -499,10 +504,10 @@ export default function Models2026Page() {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl font-bold mb-6">Related Research & Analysis</h2>
             <div className="grid md:grid-cols-3 gap-4">
-              <Link href="/blog/claude-opus-4-6-analysis-2026" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#a855f7]/30 transition-colors">
+              <Link href="/blog/claude-opus-4-8-analysis-2026" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#a855f7]/30 transition-colors">
                 <p className="text-xs text-[#a855f7] font-mono mb-2">Analysis</p>
-                <h3 className="font-medium text-sm mb-1 group-hover:text-[#a855f7] transition-colors">Claude Opus 4.6: What Actually Changed</h3>
-                <p className="text-xs text-white/40">Deep technical breakdown with migration guide</p>
+                <h3 className="font-medium text-sm mb-1 group-hover:text-[#a855f7] transition-colors">Claude Opus 4.8: Quietly Tops the Leaderboard</h3>
+                <p className="text-xs text-white/40">Verified benchmarks, what changed vs 4.7, builder impact</p>
               </Link>
               <Link href="/research/enterprise-ai" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#10b981]/30 transition-colors">
                 <p className="text-xs text-[#10b981] font-mono mb-2">Research</p>
@@ -520,7 +525,7 @@ export default function Models2026Page() {
 
         <footer className="py-12 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto text-center">
-            <p className="text-sm text-white/30">Research compiled by FrankX Intelligence Pipeline &bull; Last updated June 2, 2026</p>
+            <p className="text-sm text-white/30">Research compiled by FrankX Intelligence Pipeline &bull; Last updated June 5, 2026</p>
             <p className="text-xs text-white/15 mt-2">Data sourced from official vendor documentation, ARC Prize Foundation, Scale AI SEAL, LMArena, and Artificial Analysis</p>
           </div>
         </footer>

@@ -1,0 +1,198 @@
+---
+title: "Grok 4.3: xAI Trades the Crown for the Price Tag"
+description: "xAI's Grok 4.3 scores 53 on the Artificial Analysis Intelligence Index, lifts GDPval-AA to 1500 Elo, ships a 1M context window with always-on reasoning, and cuts price ~40% to $1.25/$2.50. Technical breakdown with verified benchmarks and what it means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - xai
+  - grok
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - agentic-ai
+keywords:
+  - grok 4.3
+  - grok 4.3 review
+  - grok 4.3 benchmarks
+  - grok 4.3 pricing
+  - grok 4.3 vs claude opus 4.8
+  - grok 4.3 context window
+  - grok 4.3 intelligence index
+  - xai grok 4.3 api
+  - grok 4.3 voice cloning
+  - best ai model 2026
+image: "/images/blog/grok-4-3-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Grok 4.3: xAI Trades the Crown for the Price Tag
+
+**TL;DR**: xAI shipped Grok 4.3 to the public API on April 30, 2026 (model id `grok-4.3`). It scores **53 on the Artificial Analysis Intelligence Index**, which puts it below the frontier leaders — Claude Opus 4.8 (61.4), GPT-5.5 (60.2), and Gemini 3.1 Pro (~57) — but it lands at **$1.25 input / $2.50 output per million tokens**, roughly a 40% input cut and 60% output cut versus the prior Grok generation. Its biggest jump is on GDPval-AA, where it climbs to **1500 Elo** (+321). It keeps the 1M-token context window, turns reasoning on by default, and adds native video input and a voice-cloning suite. The story here isn't peak intelligence. It's intelligence-per-dollar.
+
+---
+
+## What Is Grok 4.3?
+
+Grok 4.3 is xAI's flagship model as of spring 2026, replacing the Grok 4.20 line. The API model id is `grok-4.3`. It entered beta on grok.com and the SuperGrok apps on April 17, opened to the public API on April 30, and reached general availability the week of May 4.
+
+Three things define this release:
+
+1. **The price dropped, not the spec.** Input falls about 40% and output about 60% versus the previous Grok generation, landing at $1.25/$2.50 per million tokens. The 1M-token context window stays. That combination — frontier-class context at a budget price — is the entire pitch.
+
+2. **Reasoning is now always-on.** Grok 4.3 "thinks" before answering every request by default. There's no separate reasoning toggle to forget; reasoning tokens are billed at the standard output rate. This is the same direction Anthropic and OpenAI have moved — the model decides how hard to think instead of asking you to configure it.
+
+3. **It got more senses.** Grok 4.3 is the first xAI API model to natively accept video input, processing frames through a vision encoder rather than relying on transcription. Alongside it, xAI shipped Custom Voices — a voice-cloning API and creation suite — plus a separate real-time voice agent endpoint.
+
+What it is *not* is a benchmark leader. xAI didn't try to top the Intelligence Index this round, and it shows in the numbers below. That's a deliberate trade, and it's worth taking seriously rather than dismissing.
+
+---
+
+## How Does Grok 4.3 Score on Benchmarks?
+
+The headline number comes from Artificial Analysis, whose Intelligence Index v4.0 is a composite of ten evaluations: GDPval-AA, τ²-Bench Telecom, Terminal-Bench Hard, SciCode, AA-LCR, AA-Omniscience, IFBench, Humanity's Last Exam, GPQA Diamond, and CritPt.
+
+Grok 4.3 (high) scores **53** on that index. For a model in its price tier — where the median sits around 36 — that's strong. Against the absolute frontier, it trails.
+
+| Benchmark | Grok 4.3 | Claude Opus 4.8 | GPT-5.5 | Gemini 3.1 Pro |
+|-----------|----------|-----------------|---------|----------------|
+| AA Intelligence Index v4.0 | **53** | 61.4 | 60.2 | ~57 |
+| GDPval-AA (Elo) | **1500** | 1890 | — | — |
+| SWE-bench Verified | — | 88.6% | 58.6% | 54.2% |
+| Output speed (tok/s) | **181.3** | — | — | — |
+
+A few honest caveats on this table. The Intelligence Index figures for all four models trace to Artificial Analysis. The GDPval-AA Elo of 1500 for Grok 4.3 is xAI's largest single-benchmark gain — up 321 points from Grok 4.20's 1179 — and Opus 4.8's 1890 comes from Anthropic's own release; those two numbers are on the same GDPval-AA scale but were measured in different runs, so read the gap as directional, not a head-to-head. The SWE-bench Verified figures are Anthropic-reported for the Opus 4.8 launch; **I could not find an independently published SWE-bench Verified or ARC-AGI-2 score specifically for Grok 4.3**, so I've left those cells blank rather than fill them with a guess. If you see a Grok 4.3 ARC-AGI-2 number floating around, check whether it's actually a Grok 4 or 4.20 figure being recycled.
+
+The one place Grok 4.3 clearly wins is throughput. At **181.3 tokens per second** on xAI's API, it generates roughly 2.5x faster than the ~68 tok/s median for reasoning models in its tier. For agentic loops that make dozens of model calls per task, that speed compounds.
+
+---
+
+## What Are the Specs — Context, Output, Modalities?
+
+| Spec | Grok 4.20 (prior) | Grok 4.3 | What It Enables |
+|------|-------------------|----------|-----------------|
+| Context Window | 2M | **1M** | Long documents, full repos, multi-step agent state |
+| Max Output | — | **No fixed output cap** | Long reports, full code modules in one pass |
+| Reasoning | Optional | **Always-on (default)** | No toggle to forget; model self-calibrates depth |
+| Input modalities | Text, image | **Text, image, video** | Native video frames, no transcription step |
+
+One wrinkle worth flagging: Grok 4.3's context window is listed at 1M tokens, which is actually *smaller* than the 2M that the Grok 4.x line previously advertised. xAI appears to have traded raw window size for a cheaper, faster, reasoning-by-default model. For most real workloads 1M is plenty — it's roughly 750K words — but if you were genuinely using 2M-token prompts, that's a regression to plan around.
+
+There's also tiered pricing inside that window: past 200K tokens in a single request, the per-token cost doubles. So the 1M window is there when you need it, but the economics nudge you to keep typical requests under 200K.
+
+---
+
+## What Does Grok 4.3 Cost?
+
+This is the part that actually matters.
+
+| Model | Input / 1M | Output / 1M | Cached input / 1M | AA Index |
+|-------|-----------|-------------|-------------------|----------|
+| **Grok 4.3** | **$1.25** | **$2.50** | **$0.20** | 53 |
+| Claude Opus 4.8 | $5.00 | $25.00 | — | 61.4 |
+| Gemini 3.1 Pro | (higher tier) | (higher tier) | — | ~57 |
+| GPT-5.5 | (higher tier) | (higher tier) | — | 60.2 |
+
+Look at the output column. Grok 4.3 charges **$2.50 per million output tokens** against Opus 4.8's $25 — a 10x difference. On input it's $1.25 versus $5, a 4x difference. Cached input drops to $0.20, an 84% discount off the standard input rate.
+
+Artificial Analysis put a concrete number on this: it costs roughly **$395 to run the full Intelligence Index suite on Grok 4.3**, about 20% cheaper than the prior Grok generation despite the new model using more output tokens (reasoning is always on now). That's the price/intelligence story in one figure — you pay less to get a model that thinks harder.
+
+The trade is explicit. You're buying a model that sits ~8 points below the leader on the composite index, and paying a fraction of the price for it. For a large class of production workloads — high-volume classification, summarization, agentic tool loops, draft generation — that 8-point gap is invisible and the 10x output savings is not.
+
+---
+
+## What Changed vs Grok 4.20?
+
+If you're coming from the previous Grok generation, here's the delta:
+
+| Dimension | Grok 4.20 | Grok 4.3 | Direction |
+|-----------|-----------|----------|-----------|
+| AA Intelligence Index | lower | **53** | Up |
+| GDPval-AA Elo | 1179 | **1500** | +321 |
+| Input price | ~$2 (est.) | **$1.25** | ~40% cut |
+| Output price | higher | **$2.50** | ~60% cut |
+| Context window | 2M | **1M** | Down |
+| Reasoning | Optional | **Always-on** | Default-on |
+| Video input | No | **Yes** | New |
+| Voice cloning | No | **Custom Voices suite** | New |
+
+The pattern is consistent: cheaper, faster, smarter on the composite — but with a smaller context window and reasoning you can no longer turn off. The GDPval-AA jump is the standout. GDPval-AA measures economically valuable, real-world task performance, and a 321-point Elo gain there is more meaningful for actual work than a fractional move on an academic benchmark.
+
+The new modalities round it out. Native video input is a genuine first for the Grok API, and the Custom Voices suite — which can clone a voice from a reference clip as short as a couple of minutes, with a separate real-time voice agent endpoint billed around $0.05 per minute of speech-to-speech — opens a product surface that the text-only frontier models don't directly compete on.
+
+---
+
+## What Does It Mean for Builders?
+
+### For Developers
+
+The always-on reasoning change is the one to internalize. You no longer choose whether Grok reasons — it always does, and you're billed for those tokens at the output rate. That simplifies code (no reasoning flag to manage) but it means short, cheap calls are slightly more expensive than they used to be, because every call now carries some reasoning overhead. If you were routing trivial requests to Grok to save money, re-measure; the floor moved up a little.
+
+The 181 tok/s throughput is the developer-facing win. In an agent loop that makes 20–30 model calls to complete a task, latency per call dominates wall-clock time. A model that's 2.5x faster than the tier median turns a 90-second agent run into something closer to 40 seconds. For interactive agents and IDE assistants, that's the difference between usable and annoying.
+
+Watch the 200K-token pricing cliff. Architect your context assembly to stay under it for routine requests, and only spill into the 1M window — at double the per-token rate — when a task genuinely needs it.
+
+### For Content and Multimodal Creators
+
+Native video input is the new capability worth exploring. You can feed Grok 4.3 actual video frames — for summarizing footage, extracting structured data from screen recordings, or analyzing visual sequences — without a separate transcription or frame-extraction pipeline. That's a real workflow simplification if video is part of your input stack.
+
+The Custom Voices suite is the other lever. Cloning a voice from a short reference clip and driving real-time speech-to-speech opens narration, character voice, and conversational-agent use cases at a flat per-minute rate. It's a product surface the text-only labs don't sell directly.
+
+### For Cost-Conscious Production
+
+This is Grok 4.3's natural home. If you run high-volume inference — millions of tokens a day across classification, extraction, summarization, or agentic tool use — the 10x output savings versus Opus-tier models is the headline. The honest framing: route the 80% of traffic that doesn't need frontier reasoning to Grok 4.3, and reserve a premium model for the 20% that does. That split is exactly how a sane model-routing layer should work, and Grok 4.3 makes the cheap tier substantially more capable than it used to be.
+
+---
+
+## Where Does Grok 4.3 Sit in the June 2026 Landscape?
+
+| Capability | Best Model | Where Grok 4.3 Lands |
+|------------|-----------|----------------------|
+| Composite intelligence | Claude Opus 4.8 (61.4) | 4th tier, 53 |
+| Real-world task value (GDPval-AA) | Claude Opus 4.8 (1890) | Strong gain to 1500 |
+| Coding (SWE-bench Verified) | Claude Opus 4.8 (88.6%) | Not independently published |
+| Output throughput | **Grok 4.3 (181 tok/s)** | Leader in its tier |
+| Price/intelligence | **Grok 4.3 ($1.25/$2.50)** | Leader |
+| Native video input | Grok 4.3 / Gemini | First for xAI API |
+
+The clean read: Grok 4.3 is not trying to be the smartest model in the room. Claude Opus 4.8 holds the Intelligence Index crown at 61.4, GPT-5.5 sits just behind at 60.2, and Gemini 3.1 Pro rounds out the top three. Grok 4.3's play is to deliver the *fourth-best* composite intelligence at *roughly the cheapest* frontier price, with the fastest output in its tier. For builders who treat models as a portfolio rather than a single bet, that's a useful slot to fill — and it's exactly the kind of routing decision I track in the [2026 models reference](/ai-ops/models-2026).
+
+For the model it's measured against, see the [Claude Opus 4.8 analysis](/blog/claude-opus-4-8-analysis-2026). For the other budget-frontier challenger that landed the same season, the [Microsoft MAI frontier models breakdown](/blog/microsoft-mai-frontier-models-2026) is the companion piece — both are bets that "good enough, much cheaper" beats "best, expensive" for most production work.
+
+---
+
+## FAQ
+
+### Is Grok 4.3 better than Claude Opus 4.8?
+
+No, not on raw intelligence. Opus 4.8 leads the Artificial Analysis Intelligence Index at 61.4 against Grok 4.3's 53, and Anthropic reports SWE-bench Verified at 88.6% for Opus 4.8. Where Grok 4.3 wins is price and speed: $1.25/$2.50 per million tokens versus Opus 4.8's $5/$25, and 181 tokens per second of output. For workloads where the 8-point intelligence gap doesn't change the outcome, Grok 4.3 is the better economic choice.
+
+### How much does Grok 4.3 cost?
+
+$1.25 per million input tokens and $2.50 per million output tokens, with cached input at $0.20 per million (an 84% discount). That's roughly a 40% input cut and 60% output cut versus the prior Grok generation. Note that requests over 200K tokens are billed at double the per-token rate.
+
+### What is Grok 4.3's context window?
+
+1 million tokens. That's actually smaller than the 2M the previous Grok 4.x line advertised — xAI traded window size for a cheaper, faster, reasoning-by-default model. There's no fixed output token cap, but the per-token price doubles past 200K tokens in a single request.
+
+### What's new in Grok 4.3 versus Grok 4.20?
+
+Always-on reasoning (the model thinks by default on every request), native video input (a first for the xAI API), the Custom Voices voice-cloning suite, a ~40–60% price cut, and a GDPval-AA Elo jump from 1179 to 1500. The main regression is the context window shrinking from 2M to 1M.
+
+### What is Grok 4.3 best for?
+
+High-volume, cost-sensitive production work: classification, extraction, summarization, and agentic tool loops where the 10x output-price savings versus premium models matters and an ~8-point intelligence gap doesn't. Its 181 tok/s throughput also makes it well-suited to latency-sensitive agents that make many model calls per task.
+
+### Does Grok 4.3 support video and voice?
+
+Yes. It's the first xAI API model to natively accept video input, processing frames through a vision encoder rather than transcription. Separately, xAI shipped Custom Voices — a voice-cloning API and creation suite — plus a real-time speech-to-speech voice agent endpoint billed at a flat per-minute rate.
+
+### Can I trust the benchmark numbers in this article?
+
+The Intelligence Index scores, GDPval-AA Elo, pricing, and throughput figures trace to Artificial Analysis and the vendor launch materials. I deliberately left SWE-bench Verified and ARC-AGI-2 cells blank for Grok 4.3 because I could not find independently published values specific to this model — older Grok 4 / 4.20 scores are sometimes recycled as if they were 4.3's, so treat any such number with suspicion unless it's clearly labeled.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently. Published June 5, 2026 with benchmarks from Artificial Analysis and xAI launch materials; vendor-claimed figures are labeled as such, and numbers I could not verify were left out.*

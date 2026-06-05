@@ -1,17 +1,63 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-06-03",
+  "_updated": "2026-06-05",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
 
   "models": {
+    "claude-opus-4-8": {
+      "name": "Claude Opus 4.8",
+      "id": "claude-opus-4-8",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-05-28",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "context_window_beta": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 5.0,
+        "output_per_1m": 25.0,
+        "fast_mode_input_per_1m": 10.0,
+        "fast_mode_output_per_1m": 50.0
+      },
+      "benchmarks": {
+        "swe_bench_verified": 88.6,
+        "swe_bench_pro": 69.2,
+        "terminal_bench_2_1": 74.6,
+        "gdpval_aa": 1890,
+        "osworld": 83.4,
+        "humanitys_last_exam_tools": 57.9,
+        "gpqa_diamond": 93.6,
+        "usamo_2026": 96.7
+      },
+      "key_capabilities": [
+        "Dynamic workflows in Claude Code (up to 1,000 subagents, 16 concurrent)",
+        "Effort control on claude.ai (defaults to high)",
+        "Fast mode at ~2.5x speed, 3x cheaper than prior fast modes",
+        "Mid-conversation system messages / real-time messages-array updates",
+        "Adaptive thinking with low/medium/high/xhigh/max effort levels",
+        "1M context at standard pricing (no long-context premium), 128K output"
+      ],
+      "acos_tier": "opus",
+      "frankx_notes": "A point release after 4.7 with no new breaking changes and unchanged $5/$25 pricing. Coding and knowledge-work numbers (SWE-Bench Pro 69.2%, GDPval-AA 1890) are well-corroborated; GPQA Diamond and the USAMO jump lean on Anthropic's own evals and should be treated as vendor-claimed until reproduced. The real upgrade is dynamic workflows plus a cheaper fast mode, not the benchmark deltas.",
+      "sources": [
+        "https://www.anthropic.com/news/claude-opus-4-8",
+        "https://artificialanalysis.ai/articles/claude-opus-4-8-analysis-and-benchmarks",
+        "https://llm-stats.com/models/claude-opus-4-8",
+        "https://thenewstack.io/claude-opus-48-release/",
+        "https://simonwillison.net/2026/May/28/claude-opus-4-8/"
+      ]
+    },
     "claude-opus-4-6": {
       "name": "Claude Opus 4.6",
       "id": "claude-opus-4-6",
       "organization": "anthropic",
       "family": "claude",
       "released": "2026-02-05",
-      "status": "ga",
+      "status": "superseded",
       "architecture": "dense",
       "context_window": 200000,
       "context_window_beta": 1000000,
@@ -102,6 +148,36 @@
       "acos_tier": "opus",
       "sources": ["https://www.anthropic.com/news/claude-opus-4-5"]
     },
+    "claude-sonnet-4-6": {
+      "name": "Claude Sonnet 4.6",
+      "id": "claude-sonnet-4-6",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-02-17",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 200000,
+      "context_window_beta": 1000000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 3.0,
+        "output_per_1m": 15.0
+      },
+      "key_capabilities": [
+        "Approaches Opus 4.6 capability at ~40% lower run cost",
+        "1M token context window (beta)",
+        "Full-skill upgrade: coding, computer use, agent planning, design",
+        "Default model on claude.ai free and Pro tiers"
+      ],
+      "acos_tier": "sonnet",
+      "frankx_notes": "The mid-tier that started eating the flagship's lunch — matches much of Opus 4.6 at $3/$15. The right default for production coding and content; route to Opus 4.8 only when the task genuinely needs it.",
+      "sources": [
+        "https://www.anthropic.com/news/claude-sonnet-4-6",
+        "https://techcrunch.com/2026/02/17/anthropic-releases-sonnet-4-6/",
+        "https://simonwillison.net/2026/Feb/17/claude-sonnet-46/"
+      ]
+    },
     "claude-sonnet-4-5": {
       "name": "Claude Sonnet 4.5",
       "id": "claude-sonnet-4-5-20250929",
@@ -138,13 +214,48 @@
       "acos_tier": "haiku",
       "sources": []
     },
+    "grok-4-3": {
+      "name": "Grok 4.3",
+      "id": "grok-4.3",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2026-04-30",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "modalities": ["text", "vision", "video"],
+      "pricing": {
+        "input_per_1m": 1.25,
+        "output_per_1m": 2.50,
+        "cached_input_per_1m": 0.20
+      },
+      "benchmarks": {
+        "aa_intelligence_index": 53,
+        "gdpval_aa": 1500,
+        "output_tokens_per_sec": 181.3
+      },
+      "key_capabilities": [
+        "Always-on reasoning by default",
+        "1M-token context window",
+        "Native video input (first for xAI API)",
+        "Custom Voices voice-cloning suite",
+        "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)",
+        "Highest output throughput in its price tier (~181 tok/s)"
+      ],
+      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
+      "sources": [
+        "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
+        "https://docs.x.ai/developers/models/grok-4.3",
+        "https://venturebeat.com/technology/xai-launches-grok-4-3-at-an-aggressively-low-price-and-a-new-fast-powerful-voice-cloning-suite"
+      ]
+    },
     "grok-4-1": {
       "name": "Grok 4.1",
       "id": "grok-4.1",
       "organization": "xai",
       "family": "grok",
       "released": "2025-11-01",
-      "status": "ga",
+      "status": "superseded",
       "architecture": "dense",
       "context_window": 2000000,
       "modalities": ["text", "vision"],
@@ -154,13 +265,54 @@
       },
       "sources": ["https://x.ai/news/grok-4-1"]
     },
+    "gpt-5-5": {
+      "name": "GPT-5.5",
+      "id": "gpt-5.5",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-04-23",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": ["text", "vision", "audio", "video"],
+      "pricing": {
+        "input_per_1m": 5.0,
+        "output_per_1m": 30.0,
+        "cached_input_per_1m": 0.5
+      },
+      "benchmarks": {
+        "gdpval": 84.9,
+        "osworld": 78.7,
+        "tau2_telecom": 98.0,
+        "terminal_bench_2": 82.7,
+        "long_context_512k_1m": 74.0,
+        "aime_2025": 93.6,
+        "swe_bench_pro": 58.6,
+        "gdpval_aa": 1769
+      },
+      "key_capabilities": [
+        "Long-horizon agentic autonomy (plan, tool-use, multi-step execution)",
+        "Strongest published computer-use scores (OSWorld 78.7%, Tau2 Telecom 98%)",
+        "Large long-context reasoning gain (512K-1M retrieval to 74%)",
+        "~40% better output-token efficiency vs GPT-5.4 (Artificial Analysis)",
+        "Drop-in API replacement for GPT-5.4 (same caching, tools, compaction)"
+      ],
+      "frankx_notes": "Codename 'Spud'. A real step forward on agentic and long-context metrics, and it holds a narrow terminal-agent edge, but not a clean frontier sweep — Claude Opus 4.8 leads GDPval-AA (1890 vs 1769) and SWE-Bench Pro (69.2 vs 58.6). Price doubled to $5/$30; the token-efficiency offset only pays off on output-heavy workloads. SWE-Bench Verified and ARC-AGI-2 headline figures vary by source and are omitted pending corroboration.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-5-5/",
+        "https://developers.openai.com/api/docs/models/gpt-5.5",
+        "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+        "https://the-decoder.com/openai-unveils-gpt-5-5-claims-a-new-class-of-intelligence-at-double-the-api-price/"
+      ]
+    },
     "gpt-5-2-pro": {
       "name": "GPT-5.2 Pro",
       "id": "gpt-5.2-pro",
       "organization": "openai",
       "family": "gpt",
       "released": "2026-01-01",
-      "status": "ga",
+      "status": "superseded",
       "architecture": "dense",
       "context_window": 196000,
       "modalities": ["text", "vision", "audio"],
@@ -170,13 +322,66 @@
       },
       "sources": []
     },
+    "gemini-3-5-flash": {
+      "name": "Gemini 3.5 Flash",
+      "id": "gemini-3-5-flash",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-05-19",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "audio", "video"],
+      "pricing": {
+        "input_per_1m": 1.50,
+        "output_per_1m": 9.0
+      },
+      "benchmarks": {
+        "terminal_bench_2_1": 76.2,
+        "mcp_atlas": 83.6,
+        "gdpval_aa": 1656
+      },
+      "key_capabilities": [
+        "Frontier agentic coding at sub-flagship economics",
+        "1M token context window",
+        "MCP-native tool use (83.6% MCP Atlas)",
+        "Full multimodal: text, vision, audio, video"
+      ],
+      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing — the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
+      "sources": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+        "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
+        "https://llm-stats.com/blog/research/gemini-3.5-flash-launch"
+      ]
+    },
+    "gemini-3-5-pro": {
+      "name": "Gemini 3.5 Pro",
+      "id": "gemini-3-5-pro",
+      "organization": "google",
+      "family": "gemini",
+      "status": "preview",
+      "architecture": "dense",
+      "modalities": ["text", "vision", "audio", "video"],
+      "key_capabilities": [
+        "Deep Think reasoning (vendor-stated)",
+        "Targeted 2M-token context window (vendor-stated)",
+        "Frontier multimodal: text/image/audio/video/PDF",
+        "Positioned as Google's strongest agentic + coding model (vendor-stated)"
+      ],
+      "frankx_notes": "Not GA as of June 5, 2026 — limited Vertex preview only, no model card, no benchmarks, no pricing. Announced at I/O May 19, 2026; GA targeted for June. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
+      "sources": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+        "https://deepmind.google/models/gemini/"
+      ]
+    },
     "gemini-3-pro": {
       "name": "Gemini 3 Pro",
       "id": "gemini-3-pro",
       "organization": "google",
       "family": "gemini",
       "released": "2025-12-01",
-      "status": "ga",
+      "status": "superseded",
       "architecture": "dense",
       "context_window": 2000000,
       "modalities": ["text", "vision", "audio", "video"],
@@ -271,22 +476,22 @@
     "anthropic": {
       "name": "Anthropic",
       "url": "https://anthropic.com",
-      "models": ["claude-opus-4-6", "claude-opus-4-5", "claude-sonnet-4-5", "claude-haiku-4-5"]
+      "models": ["claude-opus-4-8", "claude-opus-4-6", "claude-opus-4-5", "claude-sonnet-4-6", "claude-sonnet-4-5", "claude-haiku-4-5"]
     },
     "openai": {
       "name": "OpenAI",
       "url": "https://openai.com",
-      "models": ["gpt-5-2-pro"]
+      "models": ["gpt-5-5", "gpt-5-2-pro"]
     },
     "google": {
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
-      "models": ["gemini-3-pro"]
+      "models": ["gemini-3-5-pro", "gemini-3-5-flash", "gemini-3-pro"]
     },
     "xai": {
       "name": "xAI",
       "url": "https://x.ai",
-      "models": ["grok-4-1"]
+      "models": ["grok-4-3", "grok-4-1"]
     },
     "meta": {
       "name": "Meta AI",
@@ -302,10 +507,10 @@
 
   "acos_routing": {
     "note": "Maps registry models to ACOS routing tiers",
-    "opus": "claude-opus-4-6",
-    "sonnet": "claude-sonnet-4-5",
+    "opus": "claude-opus-4-8",
+    "sonnet": "claude-sonnet-4-6",
     "haiku": "claude-haiku-4-5"
   },
 
-  "last_updated": "2026-06-03"
+  "last_updated": "2026-06-05"
 }

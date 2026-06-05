@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 624,
-    "aliases": 18,
+    "total": 628,
+    "aliases": 19,
     "byType": {
       "core": 22,
-      "section": 343,
+      "section": 342,
       "community": 17,
       "tool": 10,
       "static": 15,
-      "blog": 135,
+      "blog": 140,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -1190,6 +1190,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/claude-opus-4-8-analysis-2026",
+      "title": "Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard",
+      "description": "Anthropic's Opus 4.8 lands 41 days after 4.7 with the same $5/$25 pricing, SWE-Bench Pro 69.2%, GDPval-AA 1890, dynamic workflows, and cheaper fast mode. Technical breakdown with verified benchmarks, what changed, and what it means for builders.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/conscious-ai-for-entrepreneurs",
       "title": "The Thoughtful Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity",
       "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
@@ -1430,6 +1444,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/gemini-3-5-pro-analysis-2026",
+      "title": "Gemini 3.5 Pro: What We Actually Know Before GA",
+      "description": "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 — no model card, no benchmarks, no pricing. Here's the verifiable picture: what Flash already proved, what Google has committed to, and what to wait for at GA.",
+      "tags": [
+        "google",
+        "gemini",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "multimodal"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/gencreator-3-tier-shipping-system",
       "title": "The 3-Tier Shipping System: How GenCreators Build Creative Momentum",
       "description": "Full Ship, Quick Ship, Micro Ship — energy-aware daily output. The system that turns sporadic creation into unstoppable momentum.",
@@ -1516,6 +1544,34 @@
         "Flow",
         "Antigravity",
         "AI Strategy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-5-5-analysis-2026",
+      "title": "GPT-5.5 (\"Spud\"): What Actually Changed and Why It Matters",
+      "description": "OpenAI's GPT-5.5 leads GDPval at 84.9%, OSWorld at 78.7%, and Tau2 Telecom at 98% — at double the price of GPT-5.4. Technical breakdown with verified benchmarks, pricing, and what it means for builders.",
+      "tags": [
+        "openai",
+        "gpt-5-5",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/grok-4-3-analysis-2026",
+      "title": "Grok 4.3: xAI Trades the Crown for the Price Tag",
+      "description": "xAI's Grok 4.3 scores 53 on the Artificial Analysis Intelligence Index, lifts GDPval-AA to 1500 Elo, ships a 1M context window with always-on reasoning, and cuts price ~40% to $1.25/$2.50. Technical breakdown with verified benchmarks and what it means for builders.",
+      "tags": [
+        "xai",
+        "grok",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai"
       ],
       "type": "blog"
     },
@@ -1685,6 +1741,19 @@
         "ifs",
         "self-led ai",
         "agent architecture"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/microsoft-mai-frontier-models-2026",
+      "title": "Microsoft's 7 MAI Models: The In-House Frontier Bet",
+      "description": "Microsoft AI launched 7 self-built MAI models — Thinking-1, Image-2.5, Code-1-Flash and more — on its own MAIA silicon. What the vendor claims, what's verifiable, and what it means for builders.",
+      "tags": [
+        "microsoft",
+        "mai",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks"
       ],
       "type": "blog"
     },
@@ -5776,16 +5845,6 @@
       "type": "workshop"
     },
     {
-      "href": "/workshops/ikigai/v1",
-      "title": "V1",
-      "tags": [
-        "workshops",
-        "ikigai",
-        "v1"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/workshops/personal-ai-coe",
       "title": "Personal AI Center of Excellence",
       "tags": [
@@ -5862,6 +5921,7 @@
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",
     "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
+    "/workshops/ikigai/v1": "/workshops/ikigai-branding",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",
     "/workshops/ikigai/v3": "/workshops/ikigai-branding",
     "/workshops/ikigai/v4": "/workshops/ikigai-branding"
