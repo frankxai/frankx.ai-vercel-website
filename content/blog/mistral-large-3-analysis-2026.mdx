@@ -1,0 +1,185 @@
+---
+title: "Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For"
+description: "Mistral Large 3 (mistral-large-2512) is a 675B/41B-active MoE released under Apache 2.0, December 2025. 256K context, $0.50/$1.50 API pricing, runs on one 8xH200 node. Verified benchmarks, EU sovereignty angle, self-host specifics, and what it means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - mistral
+  - open-weight
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - eu-sovereign-ai
+keywords:
+  - mistral large 3
+  - mistral large 3 review
+  - mistral large 3 benchmarks
+  - mistral large 3 pricing
+  - mistral large 3 apache 2.0
+  - mistral large 3 self host
+  - mistral large 3 vram
+  - mistral large 3 vs deepseek
+  - mistral 3 open weight
+  - best open weight model 2026
+image: "/images/blog/mistral-large-3-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For
+
+**TL;DR**: On December 2, 2025, Mistral shipped Mistral Large 3 (`mistral-large-2512`) — a sparse Mixture-of-Experts model with 675B total / 41B active parameters, **released under Apache 2.0**. Base and instruct weights are on Hugging Face; there is no commercial-license catch on this one. It has a 256K context window, accepts text and images, and the FP8 checkpoint fits on a single 8xH200 node. API access on Mistral's la Plateforme runs $0.50 input / $1.50 output per million tokens — a 75% cut from Mistral Large 2. The benchmarks tell an honest story: it is one of the strongest *non-reasoning* open-weight models in the world (LMArena Elo ~1418, #2 among open-source non-reasoning models, ~73% MMLU-Pro, ~92% HumanEval), but it trails the dedicated reasoners — DeepSeek, Kimi K2-Thinking, GLM — on hard reasoning (GPQA Diamond ~44%). A reasoning variant is "coming soon." Here is what actually matters.
+
+---
+
+## What Is Mistral Large 3?
+
+Mistral Large 3 is the flagship of the Mistral 3 family, a 10-model release that landed on December 2, 2025. The family pairs one large frontier model with nine smaller, fully offline-capable dense models — the Ministral 3 line at 14B, 8B, and 3B, each shipping in Base, Instruct, and Reasoning variants. Large 3 is the headline act, and its model id is `mistral-large-2512` (the `2512` encodes December 2025, Mistral's standard versioning).
+
+Three things define this release:
+
+1. **It is genuinely open.** Both the base and instruction-tuned checkpoints ship under the **Apache 2.0** license — the permissive one. No "research-only" clause, no monthly-active-user threshold, no separate commercial agreement to fine-tune and redistribute. For a model at this scale, that is the rare combination. Mistral's earlier flagships (Large 2) carried the more restrictive Mistral Research License; Large 3 is a deliberate return to the permissive lane that made Mistral's name.
+
+2. **It is a sparse MoE, not a dense behemoth.** 675B total parameters, but only **41B active** per forward pass. Mistral calls it a "granular Mixture of Experts." That ratio is the whole pitch: frontier-class knowledge capacity at the inference cost of a mid-size dense model. It was trained from scratch on 3,000 NVIDIA H200 GPUs.
+
+3. **It optimizes for throughput, not deep reasoning.** This is the honest framing the independent reviews converge on — Large 3 is strong at fast recall, knowledge, multilingual coverage, and code generation, and comparatively weak on the multi-step reasoning benchmarks where the dedicated "thinking" models live. The promised reasoning variant is meant to close that gap; it had not shipped as of this writing.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A note on sourcing. The figures below come from Mistral's official [Mistral 3 announcement](https://mistral.ai/news/mistral-3/) and the [Hugging Face model card](https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512), cross-referenced against independent analysis from [Artificial Analysis](https://artificialanalysis.ai/models/mistral-large-3), [llm-stats](https://llm-stats.com/models/mistral-large-3-2509), and [DataCamp](https://www.datacamp.com/blog/mistral-3). Where a number is single-sourced or disputed across reports, I flag it. One caveat up front: the MMLU-Pro figure varies by source — some independent evals report ~73%, others put it in the low 80s. I quote the more conservative, more frequently cited number and mark the spread.
+
+| Benchmark | Mistral Large 3 | What it measures |
+|-----------|-----------------|------------------|
+| LMArena Elo | **~1418** (#2 OSS non-reasoning) | Crowd-sourced human preference |
+| MMLU-Pro | **~73%** (some sources higher) | Harder, distractor-rich knowledge |
+| MMLU (8-language) | **~85.5%** | Multilingual general knowledge |
+| MATH-500 | **93.6%** | Competition-style math |
+| HumanEval | **~92%** pass@1 | Code generation |
+| LiveCodeBench v6 | second-tier (below ~80% specialists) | Contamination-resistant coding |
+| GPQA Diamond | **~44%** | Graduate-level science reasoning |
+
+Two rows deserve more than a table cell.
+
+**The LMArena #2-among-open-non-reasoners result** is the cleanest signal of what Large 3 is good at. Human raters, blind, prefer its responses to almost every other open-weight model that does not do explicit chain-of-thought. That is the "feels good to use" axis — fast, fluent, knowledgeable, well-calibrated multilingual output. For chat, drafting, retrieval-augmented answering, and code completion, that ranking is the one that translates to production satisfaction.
+
+**GPQA Diamond at ~44%** is the number that keeps Large 3 honest. The dedicated reasoning models — DeepSeek-v3.2, Kimi K2-Thinking, GLM-4.6 — land in the high-70s to mid-80s on the same test, roughly double Large 3's score. On the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mistral-large-3), which blends MMLU-Pro, GPQA, Humanity's Last Exam, LiveCodeBench, AIME, and more, Large 3 sits below those reasoners but comfortably above OLMo 3 and Llama 4 Maverick. The pattern is consistent: System-1 strength, System-2 gap. If your workload is hard math, multi-hop logic, or agentic problem decomposition, Large 3 is not yet the open model to reach for — wait for the reasoning variant or pair it with one.
+
+---
+
+## How Does It Compare to DeepSeek, Llama, and the Open Field?
+
+Where Large 3 sits against the June 2026 open-weight frontier:
+
+| Model | License | Active / Total params | Context | GPQA Diamond | Best at |
+|-------|---------|----------------------|---------|--------------|---------|
+| **Mistral Large 3** | **Apache 2.0** | 41B / 675B | 256K | ~44% | Multilingual, chat, fast code, EU residency |
+| DeepSeek-V4 | open (MIT-style) | (sparse MoE) | long | high-70s+ | Hard reasoning, coding, value |
+| Kimi K2-Thinking | open | reasoner | long | mid-80s | Deep reasoning |
+| GLM-4.6 | open | MoE | long | high-70s | Reasoning, agents |
+| Llama 4 Maverick | Llama license | MoE | long | below Large 3 | General-purpose, ecosystem |
+
+The honest read: **Large 3 wins on the "open and pleasant" axis and on European sovereignty; the reasoning-specialist open models win on hard cognition.** If you are choosing an open-weight model today and your tasks are knowledge work, multilingual content, RAG, or code completion, Large 3's LMArena standing and permissive license make it a top pick. If your tasks are competition math, scientific reasoning, or long-horizon agentic planning, the [DeepSeek-V4](/blog/deepseek-v4-analysis-2026)-class reasoners are the stronger fit until Mistral's reasoning variant ships. For a fuller cross-model breakdown including the closed frontier, see the [FrankX models tracker](/ai-ops/models-2026) and the [best open and local LLMs guide](/blog/best-open-local-llms-2026).
+
+One thing that does not get said enough: the Apache 2.0 license is itself a benchmark. A model that scores 5 points lower but that you can legally fine-tune, redistribute, and run inside your own walls without a commercial negotiation is, for many teams, the more valuable artifact. License terms are a capability.
+
+---
+
+## Can You Self-Host It? Hardware and Cost
+
+Yes — and this is where Large 3 earns its keep. The weights are public, so the only question is whether you can run them.
+
+| Deployment | Spec | Notes |
+|------------|------|-------|
+| **API (la Plateforme)** | $0.50 / $1.50 per 1M tokens | 256K context, EU-resident endpoints |
+| **Self-host (FP8)** | 1x 8xH200 node | `--tensor-parallel-size 8`, vLLM, Mistral tokenizer |
+| **Self-host (NVFP4)** | smaller footprint | Near-FP8 accuracy; FP8 still advised above 64K context |
+| **Open weights** | $0 license cost | Apache 2.0, base + instruct on Hugging Face |
+
+The practical headline from the [vLLM recipe](https://docs.vllm.ai/projects/recipes/en/latest/Mistral/Mistral-Large-3.html) and [Red Hat's day-zero guide](https://developers.redhat.com/articles/2025/12/02/run-mistral-large-3-ministral-3-vllm-red-hat-ai): the **FP8 checkpoint runs on a single 8xH200 node** at full 256K context, served with vLLM at tensor-parallel-size 8. Mistral also published optimized FP8 and NVFP4 variants built with `llm-compressor`. NVFP4 gives you a smaller, faster checkpoint with accuracy close to FP8 — with one caveat the maintainers call out: above ~64K context, NVFP4 showed a quality drop, so FP8 weights are recommended for long-context work.
+
+What this means in plain terms: an organization with one 8xH200 server (or equivalent Blackwell hardware) can run a frontier-class model entirely on its own infrastructure, no tokens leaving the building, at zero per-token cost. That is the proposition that the closed frontier — Opus, GPT, Gemini — structurally cannot match. For a regulated European enterprise, "one node, FP8, in our data center" is not a footnote; it is the entire reason to choose this model.
+
+The 41B-active MoE design is what makes the on-prem economics work. You are paying for 41B-parameter inference latency, not 675B, while keeping the knowledge capacity of the full model.
+
+---
+
+## Why the EU Sovereignty Angle Actually Matters
+
+Most "European AI" framing is marketing. Mistral's is closer to substance, and Large 3 is the clearest expression of it.
+
+Three concrete facts. First, **Mistral's hosted endpoints stay within EU jurisdictions** — relevant for GDPR-sensitive workloads where data-residency is a hard legal requirement, not a preference. Second, in late 2025 Mistral partnered with SAP and the French and German governments to build a sovereign AI stack for public administrations, explicitly so that government data is processed on technology compliant with EU law. Third, in March 2026 Mistral raised $830M to build datacenters near Paris and in Sweden, with a Paris facility housing 13,800 NVIDIA GB300 GPUs and coming online in Q2 2026 — physical European compute, not rebadged US cloud.
+
+Stack the Apache 2.0 license on top and you get the combination that no US frontier lab offers: **a model you can either call from EU-resident endpoints or download and run entirely inside your own EU infrastructure**, with full legal freedom to fine-tune it on your proprietary data. For a German insurer, a French ministry, or any organization where "where does the inference physically happen" is a board-level question, that is decisive in a way no benchmark row captures.
+
+The contrast with the open-vs-commercial split elsewhere in Mistral's lineup is worth noting. Mistral runs a genuine two-track strategy — some models open (the Mistral 3 / Ministral 3 weights), some commercial (the Medium tier, API-only). Large 3 lands firmly on the open track, which is precisely what makes it interesting. You are not choosing between sovereignty and capability; with Large 3 you get both.
+
+---
+
+## What's the Pricing?
+
+| Model | Input / 1M | Output / 1M | Notes |
+|-------|------------|-------------|-------|
+| **Mistral Large 3** | **$0.50** | **$1.50** | la Plateforme; 256K context; or $0 self-hosted |
+| Mistral Large 2 (prior) | $2.00 | $6.00 | The model Large 3 replaces |
+| Self-hosted Large 3 | $0 license | $0 license | Apache 2.0; you pay only compute |
+
+The API pricing is the quiet story. At $0.50 input / $1.50 output per million tokens, Large 3 is **75% cheaper than Mistral Large 2** was, and it undercuts most of the closed frontier by a wide margin while being more capable than its predecessor. For comparison, the closed leaders sit at multiples of this — and none of them can be self-hosted at all.
+
+If you self-host, the per-token cost goes to zero and your only spend is the 8xH200 (or Blackwell) compute you already own or rent. That flips the build-vs-buy math for any team with steady, high-volume inference: at sufficient scale, the amortized cost of owning the node beats per-token API billing, and you get data residency for free.
+
+---
+
+## What Does It Mean for Builders?
+
+### For European and regulated teams
+
+This is the clearest win. If data residency or GDPR compliance is a hard constraint, Large 3 is now the most capable model you can run entirely under your own control. Pull the FP8 weights, stand up vLLM on an 8xH200 node, and you have a frontier-class assistant with zero data egress and no licensing negotiation. Pair it with the Apache-licensed Ministral 3 small models (14B/8B/3B) for cheaper routing tiers — same license, same ecosystem.
+
+### For cost-conscious production
+
+At $0.50/$1.50 the API is cheap enough to be a default for high-volume chat, drafting, summarization, RAG answering, and code completion. Where Large 3 shines — fast, fluent, multilingual, knowledgeable output — maps directly to the bulk of production LLM traffic. Route the hard-reasoning minority (competition math, multi-hop logic, agentic planning) to a reasoning specialist; let Large 3 carry the volume.
+
+### For coding workflows
+
+~92% HumanEval and strong code-generation are real, but the LiveCodeBench second-tier placement is the honest caveat: on contamination-resistant, harder coding evals, Large 3 trails the dedicated coding models that cluster above 80%. Use it for completion, boilerplate, and well-specified generation; reach for a coding specialist on gnarly, multi-file, reasoning-heavy tasks.
+
+### For everyone watching the reasoning variant
+
+The most important Large 3 number may not exist yet. Mistral has promised a reasoning version, and the GPQA gap is exactly the gap such a variant is built to close. If it lands and pulls GPQA Diamond into the 70s while keeping the Apache license, Large 3's calculus changes from "great for knowledge work, weak on reasoning" to "open frontier across the board." Watch for it.
+
+---
+
+## FAQ
+
+### Is Mistral Large 3 actually open source?
+
+The weights are open under the **Apache 2.0 license** — both the base and instruction-tuned checkpoints, on Hugging Face. That is the permissive license: you can fine-tune, redistribute, and run it commercially without a separate agreement or usage threshold. It is more accurate to call it "open-weight" than "open-source" (the training data and full pipeline are not released), but on the license that governs use, it is as permissive as it gets at this scale.
+
+### How much does Mistral Large 3 cost?
+
+On Mistral's la Plateforme API, $0.50 per million input tokens and $1.50 per million output tokens — a 75% cut from Mistral Large 2's $2.00/$6.00. If you self-host the open weights, the license cost is $0 and you pay only for compute (one 8xH200 node runs the FP8 checkpoint at full context).
+
+### What hardware do I need to self-host it?
+
+The FP8 checkpoint runs on a single **8xH200 node** with vLLM at `--tensor-parallel-size 8`, supporting the full 256K context. An NVFP4 variant uses less memory with near-FP8 accuracy, though FP8 is recommended above ~64K context. FP8 is native on Hopper and Blackwell GPUs (H100, H200, B200).
+
+### What's the context window and what modalities does it support?
+
+256K tokens of context (some sources cite 262K). It accepts text and images as input and produces text output, with native function calling and structured/JSON output. It is multimodal on the input side, not an image generator.
+
+### How does it compare to DeepSeek and the reasoning models?
+
+Large 3 leads on human-preference (LMArena #2 among open non-reasoners), multilingual knowledge, and fast code generation, and it is the strongest pick for EU data residency. It trails the dedicated reasoners — DeepSeek-V4, Kimi K2-Thinking, GLM-4.6 — on hard reasoning, where its ~44% GPQA Diamond is roughly half their scores. Choose Large 3 for knowledge work and sovereignty; choose a reasoner for hard math and multi-step logic. A Mistral reasoning variant is promised but had not shipped as of June 2026.
+
+### Which numbers here are verified vs vendor-claimed?
+
+The architecture (675B/41B MoE), Apache 2.0 license, 256K context, December 2, 2025 release, $0.50/$1.50 pricing, and 8xH200 FP8 self-host requirement are all well-corroborated across Mistral's announcement, the Hugging Face card, and the vLLM/Red Hat guides. The benchmark figures (LMArena ~1418, ~73% MMLU-Pro, ~92% HumanEval, ~44% GPQA, 93.6% MATH-500) come from a mix of Mistral's evals and independent analysis; the MMLU-Pro figure in particular varies by source (~73% to low-80s), which I have flagged rather than picked the flattering number.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026 with specs and benchmarks validated against Mistral's official announcement, the Hugging Face model card, the vLLM and Red Hat deployment guides, Artificial Analysis, and llm-stats. Disputed or single-sourced figures are flagged as such.*

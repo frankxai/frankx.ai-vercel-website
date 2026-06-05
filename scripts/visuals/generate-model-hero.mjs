@@ -122,6 +122,21 @@ const PALETTE = {
 // Complete source of truth for model-hero regeneration. Output is deterministic,
 // so re-running reproduces every committed hero byte-for-byte.
 const CONFIGS = [
+  // Open-weight flagship:
+  {
+    slug: 'gemma-3-analysis-2026',
+    orgKey: 'google',
+    org: 'Google DeepMind',
+    name: 'Gemma 4',
+    subtitle: 'Open-weight, Apache 2.0 — a 31B dense model that runs on one GPU and tops the open arena',
+    tiles: [
+      { value: '1452', label: 'LMArena Elo (31B)' },
+      { value: '~18GB', label: 'VRAM (31B Q4)' },
+      { value: '256K', label: 'Context window' },
+      { value: '$0', label: 'Open weights' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Google DeepMind, HuggingFace, LMArena',
+  },
   // Phase 1 — Western flagships:
   {
     slug: 'claude-opus-4-8-analysis-2026',
