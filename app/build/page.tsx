@@ -352,7 +352,7 @@ export default function BuildPage() {
                 <p className="mt-2 text-sm text-slate-400">
                   Or email{' '}
                   <a href={PARTNERSHIP_EMAIL} className="rounded text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2">
-                    hello@frankx.ai
+                    frank@frankx.ai
                   </a>{' '}
                   with what you are building.
                 </p>

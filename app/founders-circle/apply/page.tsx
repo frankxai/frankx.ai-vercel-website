@@ -39,19 +39,19 @@ export default function ApplyPage() {
               The full form will live here once Q2 2026 applications open. For now, the
               fastest path is a direct email to{' '}
               <a
-                href="mailto:circle@frankx.ai?subject=Founder%27s%20Circle%20application"
+                href="mailto:frank@frankx.ai?subject=Founder%27s%20Circle%20application"
                 className="text-rose-300 hover:text-rose-200 underline"
               >
-                circle@frankx.ai
+                frank@frankx.ai
               </a>{' '}
               with the answers below — 4-8 sentences each is plenty.
             </p>
             <a
-              href="mailto:circle@frankx.ai?subject=Founder%27s%20Circle%20application&body=1.%20Who%20you%20are%20and%20what%20you%20build%3A%0A%0A2.%20What%20decision%20you%27re%20facing%20this%20quarter%3A%0A%0A3.%20What%20you%27ve%20already%20tried%3A%0A%0A4.%20What%20you%27d%20use%20Frank%27s%20time%20for%20in%20call%201%3A%0A%0A5.%20Conflict%20check%20%E2%80%94%20any%20Oracle%20relationship%20on%20your%20side%3F"
+              href="mailto:frank@frankx.ai?subject=Founder%27s%20Circle%20application&body=1.%20Who%20you%20are%20and%20what%20you%20build%3A%0A%0A2.%20What%20decision%20you%27re%20facing%20this%20quarter%3A%0A%0A3.%20What%20you%27ve%20already%20tried%3A%0A%0A4.%20What%20you%27d%20use%20Frank%27s%20time%20for%20in%20call%201%3A%0A%0A5.%20Conflict%20check%20%E2%80%94%20any%20Oracle%20relationship%20on%20your%20side%3F"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 transition-colors"
             >
               <Mail className="w-4 h-4" />
-              Email circle@frankx.ai with these answers
+              Email frank@frankx.ai with these answers
             </a>
           </div>
 

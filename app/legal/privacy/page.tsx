@@ -41,7 +41,7 @@ export default function PrivacyPage() {
           ['Company', 'Arcanea Labs BV'],
           ['Address', 'Amsterdam, Netherlands'],
           ['KvK', '[PENDING]'],
-          ['Email', 'privacy@frankx.ai'],
+          ['Email', 'frank@frankx.ai'],
           ['DPO', 'Frank Riemer'],
         ]} />
       </Section>
@@ -108,7 +108,7 @@ export default function PrivacyPage() {
           <li><strong className="text-white font-semibold">Object</strong> — Object to processing based on legitimate interests</li>
           <li><strong className="text-white font-semibold">Withdraw consent</strong> — Withdraw consent at any time (e.g., unsubscribe from newsletter)</li>
         </ul>
-        <p className="mt-4">To exercise any of these rights, email <a href="mailto:privacy@frankx.ai" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 underline-offset-4 transition-colors">privacy@frankx.ai</a>. We will respond within 30 days.</p>
+        <p className="mt-4">To exercise any of these rights, email <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 underline-offset-4 transition-colors">frank@frankx.ai</a>. We will respond within 30 days.</p>
       </Section>
 
       <Section title="7. Cookies">

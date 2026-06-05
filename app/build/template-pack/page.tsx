@@ -22,7 +22,7 @@ const CANONICAL_PATH = '/build/template-pack'
 
 // Gumroad / Stripe link — wired in v1 follow-up. The CTA gracefully falls
 // back to the booking link until the checkout is live.
-const TEMPLATE_PACK_CHECKOUT_URL = 'mailto:hello@frankx.ai?subject=Template%20Pack%20—%20early%20access'
+const TEMPLATE_PACK_CHECKOUT_URL = 'mailto:frank@frankx.ai?subject=Template%20Pack%20—%20early%20access'
 
 export const metadata = createMetadata({
   title: 'Agentic Template Pack — AGENTS.md, prompt packs, eval harness',
@@ -103,7 +103,7 @@ const faqs = [
   },
   {
     q: 'Refund policy?',
-    a: '14-day no-questions refund. Email hello@frankx.ai.',
+    a: '14-day no-questions refund. Email frank@frankx.ai.',
   },
 ]
 

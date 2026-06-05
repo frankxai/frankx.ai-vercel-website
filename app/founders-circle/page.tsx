@@ -47,10 +47,10 @@ export default function FoundersCirclePage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href="mailto:circle@frankx.ai?subject=Founder%27s%20Circle%20inquiry"
+              href="mailto:frank@frankx.ai?subject=Founder%27s%20Circle%20inquiry"
               className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
             >
-              Or email circle@frankx.ai
+              Or email frank@frankx.ai
             </a>
           </div>
 
@@ -229,8 +229,8 @@ export default function FoundersCirclePage() {
             </Link>
             <p className="text-xs text-zinc-500 mt-5">
               Or email{' '}
-              <a href="mailto:circle@frankx.ai" className="hover:text-zinc-300 underline">
-                circle@frankx.ai
+              <a href="mailto:frank@frankx.ai" className="hover:text-zinc-300 underline">
+                frank@frankx.ai
               </a>{' '}
               — Frank reads this directly.
             </p>
