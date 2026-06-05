@@ -1,0 +1,200 @@
+---
+title: "Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price"
+description: "Moonshot AI's Kimi K2.6 is a 1T-parameter MoE (32B active) you can self-host. SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, Agent Swarm to 300 sub-agents, $0.60/$2.50 per million. Technical breakdown with verified benchmarks, the open-weight angle, and what it means for builders."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - moonshot
+  - kimi
+  - open-weights
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - agentic-ai
+keywords:
+  - kimi k2.6
+  - kimi k2.6 review
+  - kimi k2.6 benchmarks
+  - kimi k2.6 pricing
+  - kimi k2.6 vs claude opus
+  - kimi k2.6 vs deepseek v4
+  - kimi agent swarm
+  - moonshot ai kimi open weights
+  - kimi k2.6 swe-bench
+  - best open source ai model 2026
+image: "/images/blog/kimi-k2-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price
+
+**TL;DR**: Moonshot AI's current flagship is **Kimi K2.6** (`kimi-k2.6`), released April 20, 2026 under a Modified MIT license with open weights on Hugging Face. It's a 1-trillion-parameter Mixture-of-Experts model that activates only 32B parameters per token, ships with a 256K (262,144-token) context, and runs natively in INT4. The benchmarks are genuinely competitive: SWE-Bench Pro 58.6% (a tie with GPT-5.5-class coding), Humanity's Last Exam with tools 54.0%, SWE-Bench Verified 80.2%, and an Artificial Analysis Intelligence Index of 54 — the top open-weights score, alongside MiMo-V2.5-Pro and ahead of DeepSeek V4 Pro. API pricing is $0.60 / $2.50 per million tokens, roughly one-eighth of Claude Opus. Here's what holds up and what to watch.
+
+---
+
+## What Is Kimi K2.6?
+
+Kimi K2.6 is Moonshot AI's flagship as of June 2026, and it replaced the entire earlier K2 line — Moonshot officially discontinued the `kimi-k2` series on May 25, 2026, pointing all traffic at K2.6. The model ID is `kimi-k2.6` (OpenRouter slug `moonshotai/kimi-k2.6`).
+
+It is the kind of release that matters more for the open-weights ecosystem than for the absolute frontier. Three things define it:
+
+1. **It's open weights you can actually run.** The full checkpoint is on Hugging Face under a Modified MIT license — free for commercial use, with the only real string being a visible "Kimi K2.6" credit requirement for products above 100M monthly active users or $20M/month revenue. For everyone smaller, it's effectively MIT.
+
+2. **It's a 1T-parameter MoE built for efficiency.** One trillion total parameters, but only ~32B activated per token, and it's distributed in native INT4 quantization. That's what makes a trillion-parameter model deployable on hardware budgets that aren't measured in racks.
+
+3. **The headline feature is Agent Swarm.** K2.6 can fan a task out across up to 300 coordinated sub-agents over roughly 4,000 steps, and Moonshot demos it sustaining 12+ hours of continuous autonomous coding. This is the capability the version bump is really selling.
+
+The lineage is worth a sentence: the open-weight K2 family started with **Kimi K2 Thinking** (late 2025), then **K2.5** in January 2026 added native multimodality and the first Agent Swarm, and K2.6 in April 2026 is the post-training refinement that scaled the swarm and sharpened coding.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A note on sourcing, because it matters more for an open-weights model than for a closed one. Moonshot publishes its own evals, and several are marked in its own tables as re-run under K2.6 conditions rather than cited from third parties. The numbers below come from Moonshot's tech blog cross-referenced against [Artificial Analysis](https://artificialanalysis.ai/models/kimi-k2-6), [llm-stats](https://llm-stats.com/models/kimi-k2.6), and independent coverage from [DeepLearning.AI's The Batch](https://www.deeplearning.ai/the-batch/kimi-k2-6-matches-open-qwen3-6-max-anddeepseek-v4-falls-just-behind-top-closed-models) and [VentureBeat](https://venturebeat.com/ai/moonshots-kimi-k2-thinking-emerges-as-leading-open-source-ai-outperforming). Where a figure leans on Moonshot's own harness, I mark it **vendor-claimed**.
+
+| Benchmark | Kimi K2.6 | What it measures | Confidence |
+|-----------|-----------|------------------|------------|
+| AA Intelligence Index v4 | **54** | Composite (reasoning/knowledge/math/code) | Independent (Artificial Analysis) |
+| SWE-Bench Verified | **80.2%** | Real GitHub issue resolution | Vendor-claimed |
+| SWE-Bench Pro | **58.6%** | Harder, contamination-resistant coding | Vendor-claimed, widely cited |
+| Terminal-Bench 2.0 | **66.7%** | Agentic terminal/CLI workflows | Vendor-claimed (up from 50.8 on K2.5) |
+| LiveCodeBench v6 | **89.6%** | Competitive programming | Vendor-claimed |
+| HLE (with tools) | **54.0%** | Frontier multidisciplinary reasoning | Vendor-claimed |
+| BrowseComp (Agent Swarm) | **86.3%** | Agentic web research | Vendor-claimed (78.4 on K2.5) |
+| GPQA Diamond | **90.5%** | Graduate-level science Q&A | Vendor-claimed |
+| AIME 2026 | **96.4%** | Olympiad-level math | Vendor-claimed |
+| HMMT 2026 | **92.7%** | Olympiad-level math | Vendor-claimed |
+
+Two rows deserve more than a line.
+
+**The AA Intelligence Index of 54 is the one number I'd trust most**, because it's Artificial Analysis's neutral harness, not Moonshot's. It puts K2.6 at the top of the open-weights field — tied with MiMo-V2.5-Pro at 54, ahead of DeepSeek V4 Pro at 52 and GLM-5.1 at 51. That's the honest ceiling: best open weights, not best overall. For context, the same index has Claude Opus 4.8 at 61 and GPT-5.5 at 59-60.
+
+**SWE-Bench Pro at 58.6% is the load-bearing claim** for the "ties GPT-5.5 on coding" framing, and it's the one most worth scrutiny. It's vendor-reported but widely repeated across independent coverage, and it lands right at the GPT-5.5/Opus-4.6-class band on that specific benchmark. Note the gap to the harder closed frontier elsewhere, though: on SWE-Bench Verified, Opus 4.8 posts 88.6% to K2.6's 80.2% — an eight-point spread that's real, even if the price gap is far wider than the capability gap.
+
+One caution on the HLE number. Humanity's Last Exam has had documented score-inflation issues between vendor harnesses and independent re-runs across the industry this year, so treat 54.0% as a tool-augmented, vendor-condition result rather than a settled fact.
+
+---
+
+## How Does It Compare to Claude Opus 4.8, GPT-5.5, and DeepSeek V4?
+
+Where K2.6 sits against the June 2026 frontier, using the figures I could corroborate:
+
+| Capability | Kimi K2.6 | Claude Opus 4.8 | GPT-5.5 | DeepSeek V4 Pro |
+|------------|-----------|-----------------|---------|-----------------|
+| AA Intelligence Index | 54 | **61** | 59-60 | 52 |
+| SWE-Bench Verified | 80.2% | **88.6%** | ~82% | — |
+| SWE-Bench Pro | **58.6%** | 69.2% | ~58.6% | — |
+| Open weights / self-host | **Yes** | No | No | **Yes** |
+| Context window | 256K | **1M** | 400K | — |
+| Input / output per 1M | **$0.60 / $2.50** | $5 / $25 | ~$5 / ~$30 | $0.14 / $0.28 (Flash) |
+
+A few honest caveats. K2.6 is **not** the smartest model on this table — Opus 4.8 and GPT-5.5 both clear it on the aggregate index, and Opus leads SWE-Bench Verified by eight points. What K2.6 wins is the **intelligence-per-dollar-with-open-weights** corner. Among models you can download and run yourself, it leads the field. Against DeepSeek V4 Pro — the other serious open-weights contender — K2.6 edges ahead on the index (54 vs 52), but DeepSeek's V4 Flash tier is dramatically cheaper at $0.14/$0.28, so for high-volume, error-tolerant work DeepSeek still owns the bottom of the cost curve.
+
+The positioning that holds across sources: **Opus 4.8 is the intelligence leader, GPT-5.5 is the all-rounder, and Kimi K2.6 is the open-weights coding-and-agent leader you can self-host.** For a fuller cross-model breakdown see the [FrankX models tracker](/ai-ops/models-2026), the [Claude Opus 4.8 analysis](/blog/claude-opus-4-8-analysis-2026), and the [DeepSeek V4 analysis](/blog/deepseek-v4-analysis-2026).
+
+---
+
+## What's the Pricing?
+
+| Model | Input / 1M | Output / 1M | Notes |
+|-------|------------|-------------|-------|
+| **Kimi K2.6 (official API)** | **$0.60** | **$2.50** | Plus free open weights |
+| Kimi K2.6 (OpenRouter) | $0.684 | $3.42 | Third-party routing markup |
+| Claude Opus 4.8 | $5.00 | $25.00 | ~8-10x more expensive |
+| DeepSeek V4 Flash | $0.14 | $0.28 | Cheapest tier-1 model |
+| DeepSeek V4 Pro | varies | varies | Open-weights peer |
+
+The pricing is the whole pitch. At $0.60 input / $2.50 output per million on Moonshot's official API, K2.6 is roughly **one-eighth the cost of Claude Opus 4.8 on input and one-tenth on output**. On a per-output-token basis it's about 42x cheaper than Opus. That's the lever: if your evals show K2.6 clears your quality bar on coding or agentic tasks, the cost delta is large enough to change what you can afford to build.
+
+And the API price is only the floor, because the weights are free. Self-hosting trades API cost for infrastructure and ops cost — a trade that pays off only at volume, but one that's available at all precisely because this is an open-weight release.
+
+---
+
+## The Open-Weight and Self-Host Angle
+
+This is where K2.6 is genuinely differentiated from Opus 4.8 and GPT-5.5, neither of which you can run on your own hardware at any price.
+
+The full checkpoint is on Hugging Face under a **Modified MIT license**. The modification is narrow: products above 100M monthly active users or $20M/month in revenue must show a visible "Kimi K2.6" credit. Below those thresholds — which is to say, almost everyone — it behaves like a permissive MIT license, including for commercial use and fine-tuning.
+
+The architecture is built to make self-hosting plausible rather than theoretical:
+
+- **1T total parameters, ~32B active per token.** You pay compute for the active path, not the full trillion, on each forward pass.
+- **Native INT4 quantization.** The weights ship pre-quantized, which cuts the memory footprint substantially versus a naive FP16 trillion-parameter model.
+- **256K context** (262,144 tokens) for input, with output capacity up to the same 262,144-token window per the API specs.
+
+The practical reasons to self-host are the usual ones, now actually attainable at near-frontier quality: data residency and privacy (nothing leaves your VPC), no per-token metering on high-volume workloads, the ability to fine-tune on proprietary data, and no vendor lock-in. The honest counterweight: running a 1T MoE well is a real infrastructure project, and for most teams the $0.60/$2.50 hosted API will be the right call until volume or compliance forces the move.
+
+---
+
+## What Is Agent Swarm and What Is K2.6 Best At?
+
+Agent Swarm is K2.6's signature capability and the clearest reason to reach for it over a general-purpose model. It lets the model decompose a task and fan it out across **up to 300 coordinated sub-agents over roughly 4,000 steps**, running in parallel. K2.5's first-generation swarm capped at 100 sub-agents and ~1,500 tool calls — K2.6 roughly triples the sub-agent ceiling and nearly triples the step budget.
+
+Crucially, Moonshot is explicit that the architecture didn't change between K2.5 and K2.6. The swarm gains are **post-training, not architectural** — more compute spent on long-horizon stability, instruction following, and the routing that coordinates the swarm. The model got better at *using* a capability it already had. That's a useful thing to know, because it means the headline number (300 sub-agents) is a behavioral ceiling, not a hardware one, and your mileage will depend heavily on how well-specified your task is.
+
+The one number that cleanly isolates the swarm: **BrowseComp jumps from 78.4% (K2.5) to 86.3% (K2.6) in swarm mode** — a +7.9-point gain on agentic web research, which is exactly the kind of fan-out-and-reconcile work the swarm is designed for. The Terminal-Bench 2.0 jump from 50.8% to 66.7% tells the same story on the coding side.
+
+**What K2.6 is best at:**
+
+- **Long-horizon agentic coding** — the 12+ hour autonomous-coding demos and the Terminal-Bench gain point here.
+- **Parallel web research and synthesis** — Agent Swarm + BrowseComp 86.3% is the strongest swarm-specific evidence.
+- **Coding-driven UI/UX generation** — Moonshot positions it for prompt-and-visual-to-interface work across Python, Rust, and Go.
+- **Cost-sensitive, high-volume agentic pipelines** where you want near-frontier coding quality without frontier pricing.
+
+**What it's not:** the absolute reasoning frontier. If your work is dominated by the hardest single-shot reasoning where a silent error is expensive, Opus 4.8 or GPT-5.5 still earn their premium.
+
+---
+
+## What Does It Mean for Builders?
+
+### For developers
+
+The migration story is simple: if you're already routing to an OpenAI-compatible endpoint, K2.6 is `kimi-k2.6` on Moonshot's API or `moonshotai/kimi-k2.6` on OpenRouter, and the request surface is conventional. The thing to actually *do* is run your own coding evals before believing the 58.6% SWE-Bench Pro tie — vendor-reported benchmarks are a starting hypothesis, not a deployment decision. Sweep K2.6 against your current model on your real tickets and let the cost delta argue its case.
+
+### For agentic and long-horizon work
+
+This is where K2.6 earns its keep. Agent Swarm is the differentiator, but it rewards a well-specified first turn — give it the full task definition, clear success criteria, and let the swarm fan out, rather than feeding it piecemeal. The 12-hour autonomous-coding claim is real in Moonshot's demos but assumes a gradeable definition of "done"; build that rubric before you turn it loose.
+
+### For cost-conscious routing
+
+K2.6 changes the routing math for the middle tier. For coding and agentic work that previously justified an Opus- or GPT-5.5-tier call, K2.6 at $0.60/$2.50 may now clear your quality bar at a fraction of the cost — and if it doesn't quite, DeepSeek V4 Flash at $0.14/$0.28 sits below it for the genuinely error-tolerant, high-volume cases. The discipline is the same as always: match the model to the task's cost-of-error, not to the leaderboard. Reserve the closed frontier for the routes where a silent miss is expensive.
+
+### For teams with compliance or data-residency constraints
+
+This is K2.6's unique unlock. It's the first time a near-open-weights-frontier coding-and-agent model is available to run entirely inside your own environment under a permissive license. If "the data cannot leave our VPC" has been blocking you from frontier-class coding assistance, K2.6 is the most credible answer on the board today.
+
+---
+
+## FAQ
+
+### Is Kimi K2.6 better than Claude Opus 4.8?
+
+No, not on raw intelligence. Opus 4.8 leads the Artificial Analysis Intelligence Index (61 vs 54) and SWE-Bench Verified (88.6% vs 80.2%). What K2.6 wins is value and openness: it's roughly one-eighth the price, you can self-host it under a permissive license, and on SWE-Bench Pro it lands in the same band as much pricier models. For the absolute frontier, Opus; for open-weight coding-and-agent work at a fraction of the cost, K2.6.
+
+### How much does Kimi K2.6 cost?
+
+$0.60 per million input tokens and $2.50 per million output tokens on Moonshot's official API — roughly one-eighth the input cost and one-tenth the output cost of Claude Opus 4.8. Via OpenRouter it's $0.684 / $3.42 with the routing markup. The open weights are free to download and self-host under a Modified MIT license.
+
+### Can I self-host Kimi K2.6?
+
+Yes. The full checkpoint is on Hugging Face under a Modified MIT license, free for commercial use (the only condition is a visible "Kimi K2.6" credit for products above 100M MAU or $20M/month revenue). It's a 1T-parameter MoE with ~32B active per token, distributed in native INT4, which makes self-hosting practical — though running a trillion-parameter MoE well is still a real infrastructure project.
+
+### What is Agent Swarm and how does it differ from K2.5?
+
+Agent Swarm lets K2.6 decompose a task across up to 300 coordinated sub-agents over roughly 4,000 steps, running in parallel — up from K2.5's 100 sub-agents and ~1,500 tool calls. The gain is post-training, not architectural: the model got better at coordinating a capability it already had. The cleanest evidence is BrowseComp rising from 78.4% to 86.3% in swarm mode.
+
+### What's the context window and which benchmarks are verified vs vendor-claimed?
+
+The context window is 256K (262,144 tokens), with output capacity up to the same window. The most trustworthy number is the Artificial Analysis Intelligence Index of 54 (neutral third-party harness, top of the open-weights field). The coding and reasoning figures — SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, AIME 96.4% — are Moonshot's own evals, widely cited but not all independently reproduced. Treat the AA index as settled and the rest as vendor-claimed until third parties confirm.
+
+### Kimi K2.6 vs DeepSeek V4 — which open-weights model should I use?
+
+K2.6 edges DeepSeek V4 Pro on the Artificial Analysis Intelligence Index (54 vs 52) and is the open-weights coding-and-agent leader. DeepSeek's V4 Flash tier is far cheaper ($0.14/$0.28), so for high-volume, error-tolerant work DeepSeek owns the bottom of the cost curve. Pick K2.6 for agentic coding and swarm workloads; pick DeepSeek Flash for cheap high-volume throughput. See the [DeepSeek V4 analysis](/blog/deepseek-v4-analysis-2026) for the full picture.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026 with benchmarks validated against Moonshot AI's tech blog, Artificial Analysis, llm-stats, and independent coverage. Vendor-claimed figures are marked as such.*

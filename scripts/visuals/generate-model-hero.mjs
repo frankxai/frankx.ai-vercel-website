@@ -119,7 +119,10 @@ const PALETTE = {
 // ---- CONFIGS: filled with VERIFIED values from research ------------------
 // Stat tile values are populated after the per-model research returns so the
 // hero matches the article's cited numbers.
+// Complete source of truth for model-hero regeneration. Output is deterministic,
+// so re-running reproduces every committed hero byte-for-byte.
 const CONFIGS = [
+  // Phase 1 — Western flagships:
   {
     slug: 'claude-opus-4-8-analysis-2026',
     orgKey: 'anthropic',
@@ -175,6 +178,49 @@ const CONFIGS = [
       { value: '$1.25/$2.50', label: 'per 1M tokens' },
     ],
     footer: 'FrankX · Intelligence Dispatch · Verified via Artificial Analysis, xAI docs',
+  },
+  // Phase 2 — open-frontier labs:
+  {
+    slug: 'deepseek-v4-analysis-2026',
+    orgKey: 'deepseek',
+    org: 'DeepSeek',
+    name: 'DeepSeek V4',
+    subtitle: 'Open-weight frontier-class coding at one-sixth the price — MIT-licensed, 1M context',
+    tiles: [
+      { value: '80.6%', label: 'SWE-bench Verified' },
+      { value: '52', label: 'AA Intelligence' },
+      { value: '1M', label: 'Context window' },
+      { value: '$1.74/$3.48', label: 'per 1M tokens' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Artificial Analysis, NIST/CAISI, HuggingFace',
+  },
+  {
+    slug: 'qwen3-max-analysis-2026',
+    orgKey: 'alibaba',
+    org: 'Alibaba · Qwen',
+    name: 'Qwen3.7-Max',
+    subtitle: 'Closed-weight agent flagship — top-5 intelligence, 1M context, 35-hour autonomy',
+    tiles: [
+      { value: '56.6', label: 'AA Intelligence' },
+      { value: '60.6%', label: 'SWE-Bench Pro' },
+      { value: '1M', label: 'Context window' },
+      { value: '$2.50/$7.50', label: 'per 1M tokens' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Verified via Artificial Analysis, Qwen, VentureBeat',
+  },
+  {
+    slug: 'kimi-k2-analysis-2026',
+    orgKey: 'moonshot',
+    org: 'Moonshot AI',
+    name: 'Kimi K2.6',
+    subtitle: 'Top open-weights intelligence — GPT-5.5-class coding at one-eighth the price',
+    tiles: [
+      { value: '54', label: 'AA Intelligence' },
+      { value: '1T / 32B', label: 'MoE params' },
+      { value: '256K', label: 'Context window' },
+      { value: '$0.60/$2.50', label: 'per 1M tokens' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · AA index verified; Moonshot evals labeled vendor-claimed',
   },
 ]
 

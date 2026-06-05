@@ -1,0 +1,219 @@
+---
+title: "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price"
+description: "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.6%, AA Intelligence Index 52, V4-Pro API at $1.74/$3.48 per 1M. Technical breakdown with verified benchmarks, what changed vs V3.2, and the self-host vs API math."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - deepseek
+  - open-weights
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - moe
+keywords:
+  - deepseek v4
+  - deepseek v4 review
+  - deepseek v4 benchmarks
+  - deepseek v4 pro pricing
+  - deepseek v4 vs claude opus 4.8
+  - deepseek v4 flash
+  - deepseek v4 swe-bench
+  - deepseek v4 mit license
+  - open weight frontier model 2026
+  - deepseek v4 self host
+image: "/images/blog/deepseek-v4-analysis-2026-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price
+
+**TL;DR**: DeepSeek released V4 on April 24, 2026 — two models, both MIT-licensed with open weights on Hugging Face. **V4-Pro** is a 1.6T-parameter MoE with ~49B active; **V4-Flash** is 284B total / ~13B active. Both ship a 1M-token context window. V4-Pro posts 80.6% on SWE-bench Verified — within a fraction of a point of Claude Opus 4.6 — and scores 52 on the Artificial Analysis Intelligence Index, the #2 open-weights reasoning model behind Kimi K2.6. The real story is economics: V4-Pro's API runs $1.74 / $3.48 per million tokens, roughly one-sixth the cost of Opus 4.7-class models, and you can self-host the weights for free. It's not the frontier. It's the frontier's price floor. Here's what holds up under scrutiny.
+
+---
+
+## What Is DeepSeek V4?
+
+DeepSeek V4 is a dual-model release, not a single flagship. On April 24, 2026 DeepSeek shipped **V4-Pro** and **V4-Flash** simultaneously — both available via the DeepSeek API and as open weights under the **MIT license**, which is the permissive part that matters: use, modify, fine-tune, and deploy commercially with no strings. The model card and weights live in the official `deepseek-ai/DeepSeek-V4-Pro` Hugging Face repo, and NVIDIA already published an NVFP4 quantization of it.
+
+Three facts frame this release:
+
+1. **It's an efficiency release dressed as a capability release.** The headline architecture work — hybrid CSA+HCA attention, manifold-constrained hyper-connections, the Muon optimizer — is aimed squarely at making a 1M-token context window cheap to serve, not at topping the leaderboard. The capability gains are real but they ride on the efficiency story.
+
+2. **It supersedes the V3.2 line.** V4 is the successor to DeepSeek V3.2 — same 32T-token training corpus, an 8x larger context window (1M vs 128K), and a meaningful jump in coding. If you have an editorial or routing entry pointing at `deepseek-v3-2`, V4 is what replaces it.
+
+3. **The variants are a routing decision, not a tier.** Pro is the reasoning-heavy 49B-active model; Flash is the 13B-active throughput model. They aren't "good" and "cheap" — they're "expensive task" and "high-volume task," and most production stacks will run both.
+
+---
+
+## What Are the Verified Benchmarks?
+
+A note on sourcing, because it matters more here than usual. DeepSeek publishes its own evals, and a lot of the secondary coverage simply restates DeepSeek's claims. I lean on three independent anchors where I can: [Artificial Analysis](https://artificialanalysis.ai/models/deepseek-v4-pro), which ran V4-Pro through its own Intelligence Index; the [NIST/CAISI evaluation](https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro), which tested it on nine benchmarks including held-out private sets; and [VentureBeat's launch coverage](https://venturebeat.com/technology/deepseek-v4-arrives-with-near-state-of-the-art-intelligence-at-1-6th-the-cost-of-opus-4-7-gpt-5-5). Where a figure is DeepSeek's own and not independently reproduced, I mark it **vendor-claimed**.
+
+| Benchmark | V4-Pro | V4-Flash | Source quality | What it measures |
+|-----------|--------|----------|----------------|------------------|
+| SWE-bench Verified | **80.6%** | 79.0% | Corroborated | Real GitHub issue resolution |
+| LiveCodeBench (Pass@1) | **93.5%** | 91.6% | Vendor-claimed | Competitive coding |
+| Codeforces (rating) | **3206** | — | Vendor-claimed | Competitive programming Elo |
+| AA Intelligence Index | **52** | ~40 (coding idx) | Independent (AA) | Composite reasoning/knowledge/math/code |
+| GPQA Diamond | 90.1% | — | Vendor-claimed | Graduate-level science Q&A |
+| MMLU-Pro | 87.5% | — | Vendor-claimed | Broad knowledge |
+| AIME 2025 | 87.5 | — | Vendor-claimed | Olympiad-level math |
+| Terminal-Bench 2.0 | 67.9% | — | Vendor-claimed | Agentic terminal workflows |
+| Humanity's Last Exam | 37.7% | — | Vendor-claimed | Frontier multidisciplinary reasoning |
+
+Two of these deserve more than a table row.
+
+**SWE-bench Verified at 80.6%** is the number that earns the "open-weight frontier" framing. It lands within roughly 0.2 points of Claude Opus 4.6 (80.8%) on the exact benchmark that practitioners trust most for agentic coding. For an MIT-licensed model you can run on your own hardware, being a rounding error behind a flagship from six months prior is the whole pitch.
+
+**The AA Intelligence Index of 52** is the most honest single number in the set, because Artificial Analysis ran it independently. It places V4-Pro (max effort) as the **#2 open-weights reasoning model, behind Kimi K2.6 at 54** — strong, clearly behind the closed frontier, and not the SOTA-beating claim some of the launch hype implied.
+
+The one place V4 visibly stumbles: **frontier reasoning and security**. Humanity's Last Exam at 37.7% trails Opus, GPT-5.4, and Gemini 3.1 Pro. And the CAISI evaluation is blunt about the gap on agentic and security tasks — more on that below.
+
+---
+
+## What Did the Independent NIST/CAISI Evaluation Find?
+
+This is the part of the V4 story that the vendor benchmarks won't tell you, and it's worth taking seriously precisely because it's adversarial. In May 2026, NIST's [Center for AI Standards and Innovation (CAISI)](https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro) ran V4-Pro across nine benchmarks spanning cybersecurity, software engineering, natural sciences, abstract reasoning, and mathematics — including two held-out, non-public sets (the ARC-AGI-2 semi-private split and CAISI's internal PortBench).
+
+The summary: V4-Pro performs roughly like GPT-5, which shipped about eight months earlier. That's the "trails the frontier by ~8 months" headline. The domain breakdown is where it gets specific:
+
+- **Cyber (CTF-Archive-Diamond):** V4-Pro 32% vs GPT-5.5's 71%
+- **Abstract reasoning:** 46% vs 79%
+- **Agentic software engineering (PortBench):** 44% vs 78%
+- **Math (OTIS-AIME-2025):** 97% — slightly *ahead* of Opus 4.6, and within 2–3 points of GPT-5.5
+
+So the gap isn't uniform. On pure math V4-Pro is frontier-competitive. On long-horizon agentic SWE and security it's well behind. DeepSeek pushed back on the "8 months" framing, and both sides have a point: pick the benchmark and you can tell either story. CAISI's own conclusion is the fair one — V4 is the most capable PRC model to date in the domains tested, and it's **more cost-efficient than the cheapest U.S. reference model (GPT-5.4 mini) on 5 of 7 benchmarks**. Cost efficiency, not raw capability, is where V4 actually wins.
+
+---
+
+## How Does It Compare to the Closed Frontier?
+
+Where V4-Pro sits against the June 2026 frontier, with prices included because they're the entire argument:
+
+| Capability | DeepSeek V4-Pro | Claude Opus 4.8 | GPT-5.5 | Notes |
+|------------|-----------------|-----------------|---------|-------|
+| SWE-bench Verified | 80.6% | **88.6%** | ~82% | Opus leads; V4 trails by ~8 pts |
+| Terminal-Bench | 67.9% (v2.0) | 74.6% (v2.1) | **78.2%** (v2.1) | V4 clearly behind on agentic CLI |
+| Humanity's Last Exam | 37.7% | **57.9%** | ~40% | V4's weakest area |
+| AA Intelligence Index | 52 | **61.4** | — | Opus tops the aggregate |
+| Open weights / self-host | **Yes (MIT)** | No | No | V4's structural advantage |
+| Input / output (per 1M) | **$1.74 / $3.48** | $5 / $25 | ~$5 / ~$30 | V4 is ~1/6 the cost |
+
+The honest read: **V4-Pro is not competing with Opus 4.8 or GPT-5.5 on capability, and it doesn't need to.** It's competing on the cost-of-intelligence curve. For the tasks where it's good enough — and SWE-bench Verified at 80.6% says that's a wide range of real coding work — it does the job at a fraction of the price, and you can run it on your own metal if you'd rather not pay an API at all. For the hardest agentic and reasoning work where silent errors are expensive, the closed flagships still win. That's the routing decision the [FrankX models tracker](/ai-ops/models-2026) is built to make, and it's the same discipline I argued for in the [Claude Opus 4.8 breakdown](/blog/claude-opus-4-8-analysis-2026): match the model to the task's cost-of-error, not to the leaderboard.
+
+---
+
+## What's the Pricing — and What Does Open-Weight Change?
+
+| Model | Input / 1M | Output / 1M | Cached input / 1M | Notes |
+|-------|------------|-------------|-------------------|-------|
+| **V4-Pro** | **$1.74** | **$3.48** | $0.0145 | Standard rate; launch discount ran to May 31 |
+| **V4-Flash** | **$0.14** | **$0.28** | $0.0028 | High-throughput tier |
+| Claude Opus 4.8 | $5.00 | $25.00 | — | For comparison |
+| GPT-5.5 | ~$5.00 | ~$30.00 | — | For comparison |
+
+Two things make this pricing table different from every other model comparison.
+
+First, the cache economics are absurd in the good way. **Cached input on V4-Pro is $0.0145 per million tokens** — automatic context caching is on by default, so repeated-prefix workloads (agents, RAG, long system prompts) pay almost nothing to re-read context. On Flash, cached input is $0.0028/M. For an agentic loop that re-sends a large context every turn, this is the difference between a viable product and an unaffordable one.
+
+Second, and more important: **the weights are free.** API pricing is only one of two cost models here. Because V4 is MIT-licensed with open weights, the real comparison isn't "$1.74 vs $5" — it's "$1.74 vs your own GPU amortization." For a team already running inference hardware, the marginal cost of a V4 token can be effectively your electricity bill. That's a structural advantage no closed model can match at any list price.
+
+---
+
+## What Changed vs DeepSeek V3.2?
+
+V4 is a genuine architectural step over V3.2, and the changes are aimed at one goal: making a million-token context cheap.
+
+| Area | V3.2 | V4 |
+|------|------|-----|
+| Context window | 128K | **1M** (8x) |
+| Attention | MLA-style | **Hybrid CSA + HCA** |
+| Residual stream | Standard | **Manifold-constrained hyper-connections (mHC)** |
+| Optimizer | AdamW-class | **Muon** (momentum + orthogonalization) |
+| 1M-context inference FLOPs | baseline | **~27% of V3.2** |
+| 1M-context KV cache | baseline | **~10% of V3.2** |
+| SWE-bench Verified | ~69% | **80.6%** |
+
+The architecture story in plain terms. **Hybrid attention** interleaves two compression schemes: CSA (compressed sparse attention) groups tokens and picks top-k, while HCA (heavily compressed attention) collapses much larger spans into dense summaries. Together they're what gets KV cache down to ~10% of V3.2 at 1M tokens — the [reported numbers](https://huggingface.co/blog/deepseekv4) are 27% of single-token inference FLOPs and 10% of KV cache versus V3.2. **mHC** widens the residual stream (n_hc=4) and constrains the mixing matrix to doubly-stochastic form, which bounds the spectral norm at 1 for stable very-deep training. **Muon** replaces AdamW and orthogonalizes gradient updates to avoid redundant movement along correlated directions — DeepSeek credits it for stability at the 32T-token training scale.
+
+One caveat worth flagging: aggressive KV-cache compression at 1M tokens has a known failure mode — needle-in-a-haystack retrieval can degrade when the context is heavily compressed. If your workload depends on exact recall of a single fact buried in a huge context, test that specifically before trusting the full 1M window.
+
+The coding jump from ~69% to 80.6% on SWE-bench Verified is the practical payoff. Same training corpus, better architecture, dramatically better agentic coding — at roughly comparable per-token cost to V3.2.
+
+---
+
+## Self-Host vs API: Which Should You Run?
+
+This is the decision V4 actually forces, because both paths are real.
+
+**Use the API when** you want zero ops, you're latency-tolerant, or your volume doesn't justify hardware. V4-Pro at $1.74 / $3.48 with near-free cached input is already cheaper than any closed flagship by a wide margin, and the cache pricing makes agentic loops affordable out of the box. For most teams shipping a product this week, the API is the right answer.
+
+**Self-host when** you have data-residency or sovereignty requirements, you're running enough volume to amortize GPUs, or you want to fine-tune. The MIT license means you can do all three with no legal friction. The practical constraint is hardware: V4-Pro is 1.6T total parameters, so even with 49B active you need serious memory to hold the weights — this is a multi-GPU deployment (vLLM is the common path), and NVIDIA's NVFP4 quantization exists specifically to make it fit on fewer cards. **V4-Flash at 284B total / 13B active is the realistic self-host target** for most teams — it fits comfortably where Pro demands a cluster, and at 79.0% SWE-bench Verified it's barely behind Pro on coding.
+
+The honest default: **API for Pro, self-host for Flash.** Run Pro through the API where its reasoning earns the marginal cost, and self-host Flash for high-volume, latency-sensitive, or data-sensitive work where owning the inference is worth the ops.
+
+---
+
+## What Does It Mean for Builders?
+
+### For developers
+
+V4-Pro is now a credible coding-agent backend at a price that changes the routing math. At 80.6% SWE-bench Verified it's good enough for a large share of real issue-resolution work, and at one-sixth the cost of Opus-class models the budget for retries, parallel attempts, and verification passes gets much larger. The pattern that works: use V4-Pro as the default coding agent, escalate to a closed flagship only on the tasks it demonstrably fails. Let cost-of-error, not habit, decide the escalation.
+
+### For cost-conscious and high-volume work
+
+Flash is the unlock. At $0.14 / $0.28 per million — and $0.0028/M cached — it makes high-throughput agentic fan-out, classification, and extraction economically trivial. This is the budget-and-speed tier that used to mean accepting a weak model; Flash posts 91.6% LiveCodeBench and 79.0% SWE-bench Verified while costing cents. If you've been routing volume work to a frontier model out of caution, re-run the numbers.
+
+### For teams with sovereignty requirements
+
+The MIT license plus open weights is the headline for anyone who can't send data to a U.S. API. You can run V4 entirely on infrastructure you control, fine-tune it on proprietary data, and never make an external call. That's a capability closed models structurally cannot offer — and it's the same open-weight argument that makes the broader [frontier-model field](/blog/microsoft-mai-frontier-models-2026) more interesting than a single leaderboard. Just budget the CAISI findings into your risk model: on agentic security and abstract reasoning, V4 lags meaningfully, so don't deploy it unsupervised on those tasks.
+
+---
+
+## Are There Catches?
+
+Three, and they're worth stating plainly.
+
+1. **It's not the frontier.** The independent AA Intelligence Index (52) and CAISI evaluation both put V4-Pro clearly behind Opus 4.8 and GPT-5.5 on the hardest reasoning, agentic, and security work. The "rivals closed frontier models" framing is true only on the benchmarks where it's true — coding and math — and false elsewhere.
+
+2. **Vendor-claimed numbers dominate the spec sheet.** SWE-bench Verified and the AA Index are corroborated. GPQA, MMLU-Pro, AIME, LiveCodeBench, and Codeforces are largely DeepSeek's own evals as of this writing. Treat them as directional until third parties reproduce them.
+
+3. **The 1M context has a compression tax.** Heavy KV-cache compression can hurt exact retrieval in very long contexts. Validate needle-in-a-haystack behavior on your own data before relying on the full window.
+
+None of these undercut the core value. They just define the lane: V4 is the open-weight price floor for frontier-adjacent intelligence, not the frontier itself.
+
+---
+
+## FAQ
+
+### Is DeepSeek V4 as good as Claude Opus 4.8 or GPT-5.5?
+
+No, not on capability. On SWE-bench Verified V4-Pro scores 80.6% vs Opus 4.8's 88.6%, and on the Artificial Analysis Intelligence Index it scores 52 vs Opus 4.8's 61.4. The independent NIST/CAISI evaluation puts it roughly at GPT-5's level — about eight months behind the frontier. Where V4 wins is price and openness: it costs roughly one-sixth as much per token and ships as MIT-licensed open weights you can self-host.
+
+### How much does DeepSeek V4 cost?
+
+V4-Pro is $1.74 per million input tokens and $3.48 per million output, with cached input at $0.0145/M. V4-Flash is $0.14 / $0.28, with cached input at $0.0028/M. A launch discount of roughly 75% ran until May 31, 2026; the figures above are the standard steady-state rates. Because the weights are MIT-licensed and open, you can also self-host at hardware cost instead of paying per token.
+
+### What's the difference between V4-Pro and V4-Flash?
+
+V4-Pro is the reasoning-heavy model: 1.6T total parameters, ~49B active, 80.6% on SWE-bench Verified. V4-Flash is the high-throughput model: 284B total, ~13B active, 79.0% on SWE-bench Verified at a fraction of the cost. Both share the 1M-token context window. Pro is for hard tasks where reasoning earns the cost; Flash is for high-volume, latency-sensitive work.
+
+### Can I self-host DeepSeek V4?
+
+Yes — both models are MIT-licensed with open weights on Hugging Face, so you can deploy commercially, fine-tune, and run them entirely on your own infrastructure. V4-Pro at 1.6T total parameters needs a serious multi-GPU setup (NVIDIA's NVFP4 quantization helps it fit on fewer cards); V4-Flash at 284B is the realistic self-host target for most teams. vLLM is the common serving path.
+
+### What changed architecturally from DeepSeek V3.2?
+
+V4 expands the context window 8x (128K to 1M), introduces hybrid CSA+HCA attention, manifold-constrained hyper-connections (mHC), and the Muon optimizer. The net effect at 1M tokens is roughly 27% of V3.2's single-token inference FLOPs and 10% of its KV cache. SWE-bench Verified jumped from about 69% to 80.6% on the same 32T-token training corpus.
+
+### Which V4 numbers are verified vs vendor-claimed?
+
+SWE-bench Verified (80.6%) and the Artificial Analysis Intelligence Index (52) are independently corroborated, and the NIST/CAISI domain results are from an adversarial third-party evaluation. GPQA, MMLU-Pro, AIME, LiveCodeBench, and Codeforces are largely DeepSeek's own evals as of publication — treat them as directional until reproduced.
+
+---
+
+*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+Published June 5, 2026 with benchmarks validated against Artificial Analysis, the NIST/CAISI evaluation, DeepSeek's official model card, and independent launch coverage. Vendor-claimed figures are marked as such.*

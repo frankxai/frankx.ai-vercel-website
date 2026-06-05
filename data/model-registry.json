@@ -391,6 +391,128 @@
       },
       "sources": []
     },
+    "kimi-k2-6": {
+      "name": "Kimi K2.6",
+      "id": "kimi-k2.6",
+      "organization": "moonshot",
+      "family": "kimi",
+      "released": "2026-04-20",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "1T total / ~32B active per token (MoE, native INT4)",
+      "context_window": 262144,
+      "max_output_tokens": 262144,
+      "modalities": ["text", "code", "image", "video"],
+      "pricing": {
+        "input_per_1m": 0.60,
+        "output_per_1m": 2.50
+      },
+      "benchmarks": {
+        "aa_intelligence_index": 54,
+        "swe_bench_verified": 80.2,
+        "swe_bench_pro": 58.6,
+        "terminal_bench_2_0": 66.7,
+        "livecodebench": 89.6,
+        "humanitys_last_exam_tools": 54.0,
+        "gpqa_diamond": 90.5,
+        "aime_2026": 96.4
+      },
+      "key_capabilities": [
+        "Open-weight self-hostable 1T MoE (Modified MIT license)",
+        "Long-horizon agentic coding (12+ hr autonomous)",
+        "Agent Swarm up to 300 sub-agents / ~4000 steps",
+        "Parallel web research (BrowseComp)",
+        "Coding-driven UI/UX generation",
+        "Intelligence-per-dollar leader among open weights"
+      ],
+      "frankx_notes": "Best open-weights model on the neutral Artificial Analysis index (54), ahead of DeepSeek V4. NOT the absolute frontier — Opus 4.8 (61) and GPT-5.5 (59-60) clear it, and Opus leads SWE-Bench Verified by ~8 pts. The real story is value + openness: ~1/8 the price of Opus, permissive license, self-hostable. Coding/reasoning rows beyond the AA index are Moonshot's own evals — treat as vendor-claimed. Architecture unchanged from K2.5; gains are post-training (swarm scaling).",
+      "sources": [
+        "https://artificialanalysis.ai/models/kimi-k2-6",
+        "https://huggingface.co/moonshotai/Kimi-K2.6",
+        "https://www.deeplearning.ai/the-batch/kimi-k2-6-matches-open-qwen3-6-max-anddeepseek-v4-falls-just-behind-top-closed-models"
+      ]
+    },
+    "deepseek-v4": {
+      "name": "DeepSeek V4",
+      "id": "deepseek-v4",
+      "organization": "deepseek",
+      "family": "deepseek",
+      "released": "2026-04-24",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "1.6T total / 49B active (V4-Pro); 284B total / 13B active (V4-Flash)",
+      "context_window": 1000000,
+      "max_output_tokens": 384000,
+      "modalities": ["text", "code"],
+      "pricing": {
+        "input_per_1m": 1.74,
+        "output_per_1m": 3.48
+      },
+      "benchmarks": {
+        "swe_bench_verified": 80.6,
+        "aa_intelligence_index": 52,
+        "livecodebench": 93.5,
+        "gpqa_diamond": 90.1,
+        "mmlu_pro": 87.5,
+        "aime_2025": 87.5,
+        "terminal_bench_2_0": 67.9,
+        "humanitys_last_exam": 37.7
+      },
+      "key_capabilities": [
+        "Open-weight MIT-licensed frontier-class coding (80.6% SWE-bench Verified)",
+        "1M-token context via hybrid CSA+HCA attention (~10% KV cache vs V3.2)",
+        "Aggressive cost efficiency (~1/6 the price of Opus-class models)",
+        "Dual variants: Pro for reasoning, Flash for high-throughput",
+        "Self-hostable; NVFP4 quantization available"
+      ],
+      "frankx_notes": "The open-weight price floor for frontier-adjacent intelligence, not the frontier itself. SWE-bench Verified (80.6%) and AA Index (52, #2 open-weights) are independently corroborated; NIST/CAISI puts it ~8 months behind GPT-5.5 with clear gaps on agentic SWE, security, and HLE (37.7%). MIT license + open weights is the structural advantage no closed model can match — cheap V4-Pro API or self-host Flash on your own GPUs. Most spec-sheet rows beyond SWE-bench and AA Index are vendor-claimed.",
+      "sources": [
+        "https://artificialanalysis.ai/models/deepseek-v4-pro",
+        "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+      ]
+    },
+    "qwen3-7-max": {
+      "name": "Qwen3.7-Max",
+      "id": "qwen3.7-max",
+      "organization": "alibaba",
+      "family": "qwen",
+      "released": "2026-05-19",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "Undisclosed (Alibaba published no param/MoE config)",
+      "context_window": 1000000,
+      "max_output_tokens": 65536,
+      "modalities": ["text", "code"],
+      "pricing": {
+        "input_per_1m": 2.50,
+        "output_per_1m": 7.50,
+        "cached_input_per_1m": 0.25
+      },
+      "benchmarks": {
+        "aa_intelligence_index": 56.6,
+        "swe_bench_pro": 60.6,
+        "swe_bench_verified": 80.4,
+        "terminal_bench_2_0": 69.7,
+        "gpqa_diamond": 92.4,
+        "livecodebench": 91.6,
+        "mmlu_pro": 89.6,
+        "humanitys_last_exam": 41.4
+      },
+      "key_capabilities": [
+        "1M-token context for long-horizon agentic work",
+        "Documented 35-hour autonomous tool-loop run (vendor demo)",
+        "Native Anthropic Messages-compatible protocol (runs in Claude Code / Qwen Code)",
+        "90% cached-input discount, suited to context-heavy agents",
+        "Top-5 Artificial Analysis Intelligence Index at roughly half Western-frontier price"
+      ],
+      "frankx_notes": "Closed-weight, API-only — breaks the open-weight Qwen association. Leads its peer group (Kimi, DeepSeek V4) on hard agentic-coding benchmarks but trails Opus 4.8 on aggregate. Strong value for high-volume verifiable agentic work; not the pick when silent errors are expensive. Verbose reasoner, so effective cost-per-task runs above the rate card. Architecture undisclosed; the 35-hour run and several rows (HMMT, MCP-Atlas, Apex) are vendor-claimed.",
+      "sources": [
+        "https://qwen.ai/blog?id=qwen3.7",
+        "https://artificialanalysis.ai/models/qwen3-7-max",
+        "https://venturebeat.com/technology/alibabas-proprietary-qwen3-7-max-can-run-for-35-hours-autonomously-and-supports-external-harnesses-like-anthropics-claude-code"
+      ]
+    },
     "llama-4-maverick": {
       "name": "Llama 4 Maverick",
       "id": "llama-4-maverick",
@@ -502,6 +624,21 @@
       "name": "Microsoft AI",
       "url": "https://microsoft.ai",
       "models": ["mai-thinking-1", "mai-image-2-5", "mai-code-1-flash"]
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "url": "https://deepseek.com",
+      "models": ["deepseek-v4"]
+    },
+    "alibaba": {
+      "name": "Alibaba (Qwen)",
+      "url": "https://qwen.ai",
+      "models": ["qwen3-7-max"]
+    },
+    "moonshot": {
+      "name": "Moonshot AI",
+      "url": "https://moonshot.ai",
+      "models": ["kimi-k2-6"]
     }
   },
 
