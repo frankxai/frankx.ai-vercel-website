@@ -1,238 +1,143 @@
 ---
-title: "Claude Code vs Cursor 2026: A Practitioner's Verdict"
-description: "Head-to-head comparison of every major AI coding agent — architecture, pricing, strengths, and which one to choose for your workflow. Updated March 2026."
-date: "2026-03-21"
+title: "Cursor vs Claude Code vs Windsurf in 2026: Which AI Coding Agent for Which Job"
+description: "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing — plus where Copilot and Codex fit."
+date: "2026-06-06"
 author: "FrankX"
 category: "Intelligence Dispatches"
 tags: ["Coding Agents", "Claude Code", "Cursor", "Windsurf", "AI Development"]
-image: "/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png"
-featured: true
+image: "/images/blog/cursor-vs-claude-code-vs-windsurf-2026-hero.png"
+featured: false
 keywords:
   [
-    "cursor vs claude code",
-    "ai coding agents 2026",
-    "windsurf vs cursor",
-    "cline vs claude code",
-    "best ai coding agent",
-    "ai code assistant comparison",
+    "cursor vs claude code vs windsurf",
+    "best ai coding agent 2026",
+    "claude code vs cursor",
+    "windsurf devin desktop",
+    "ai coding agent comparison",
   ]
-readingGoal: "You will know which AI coding agent fits your workflow — based on architecture, model access, pricing, and real-world performance across different development tasks."
-tldr: "Claude Code dominates terminal-first agentic workflows with MCP integration and 200K context. Cursor leads IDE-integrated development with multi-model support. Windsurf (Codeium) focuses on collaborative flows. Cline/Roo Code is the best open-source option. OpenCode is the new CLI contender. This comparison covers architecture, pricing, model access, and real-world performance for each."
+readingGoal: "You will know which AI coding agent fits which job — terminal-first autonomy, IDE-native flow, or agent-manager workflows — based on agentic capability, MCP support, and current 2026 pricing."
+tldr: "Pick by job, not by hype. Claude Code wins long-running autonomous work — refactors, migrations, multi-file features — from the terminal. Cursor wins IDE-native flow: you stay in the editor, tab-complete, and reach for the agent when you want it. Windsurf, rebranded Devin Desktop on June 2 2026, wins when you manage several agents at once from one command center. Copilot is the cheapest entry; Codex rides your ChatGPT plan. This is a practitioner's verdict, not a feature matrix."
 schema: ["Article", "FAQPage"]
 ---
 
-**TL;DR:** The AI coding agent landscape fractured in 2026 into two distinct camps — terminal-first agents that take autonomous action across your entire codebase, and IDE-integrated assistants that enhance your existing editor workflow. Claude Code leads the first camp with MCP protocol support, 200K context, and genuine multi-step autonomy. Cursor leads the second with best-in-class UX and multi-model flexibility. The right choice depends less on which tool is "best" and more on how you actually build software.
+**TL;DR:** Pick the tool by the job, not by which one is "best." **Claude Code** wins long-running autonomous work — large refactors, migrations, multi-file features — driven from the terminal. **Cursor** wins IDE-native flow, where you stay in the editor and reach for the agent on demand. **Windsurf** — rebranded **Devin Desktop** on June 2, 2026 — wins when you supervise several agents at once from a single command center. **GitHub Copilot** is the cheapest on-ramp at $10/mo. **Codex** comes bundled with your ChatGPT plan. Most serious builders run two of these, not one.
 
-I have shipped over 170 pages of a production Next.js site using Claude Code as my primary agent. This comparison is practitioner-grade — not a feature matrix assembled from marketing pages.
-
----
-
-## The Shift From Autocomplete to Autonomous Agents
-
-Two years ago, "AI coding tool" meant GitHub Copilot suggesting your next line. Today that category barely exists as a differentiator. Every serious tool has moved up the stack toward **agentic operation**: multi-step planning, file system access, terminal execution, browser control, and MCP (Model Context Protocol) integration with external services.
-
-The meaningful divide in 2026 is not between AI tools and traditional editors. It is between:
-
-- **Autocomplete-plus tools** — enhanced suggestions, single-file edits, inline chat. Still useful, increasingly table stakes.
-- **Agentic coding systems** — tools that plan, execute, observe results, and iterate. Claude Code, Cursor's Composer, Windsurf's Cascade, and Cline all belong here to varying degrees.
-
-Understanding which category a tool truly operates in — regardless of marketing language — is the fastest way to match tool to workflow.
+I use Claude Code every day to ship a production Next.js site. I have run all three on real work. This is a practitioner's read on which one fits which job — written with that bias stated up front, kept fair.
 
 ---
 
-## The Agents: In-Depth Analysis
+## What actually changed in the coding-agent market by mid-2026?
 
-### Claude Code (Anthropic)
+Two shifts matter.
 
-**Architecture:** Terminal-native CLI agent. No GUI. Runs in your existing terminal, operates on your actual file system, executes shell commands, reads and writes files directly.
+First, the center of gravity moved from autocomplete to autonomy. The question stopped being "how good is the tab-complete" and became "how long can the agent run unsupervised before it goes off the rails." That favors agents with strong long-horizon consistency and real tool access.
 
-**Key differentiator:** MCP (Model Context Protocol) ecosystem integration. Claude Code treats external tools — databases, APIs, browsers, documentation, Vercel deployments — as first-class context. When I run `/frankx-ai-deploy`, Claude Code orchestrates a multi-step workflow across the codebase, git, and Vercel simultaneously. No other agent does this with the same depth.
+Second, the biggest brand in the space disappeared. On June 2, 2026, Cognition retired the Windsurf name and relaunched it as **Devin Desktop**. The IDE most people still call Windsurf shipped as an over-the-air update — same plans, same settings, same extensions — but the default screen is now an Agent Command Center, not a code editor. Cascade, its old in-editor agent, was replaced by Devin Local (a Rust rewrite with subagent support). The legacy Cascade agent stays available through July 1.
 
-**Model access:** Claude Sonnet 4.6 (default), Claude Opus 4.6 (heavy tasks). 200K token context window — large enough to hold an entire Next.js app's worth of relevant files simultaneously.
-
-**Agentic capability:** Genuinely autonomous. Claude Code will read your project structure, understand architecture patterns, write code across multiple files, run tests, observe failures, and iterate without waiting for hand-holding at each step. It maintains conversation memory across a session and uses CLAUDE.md project files to persist preferences, architecture decisions, and agent profiles.
-
-**MCP integration:** This is where Claude Code separates from the field. Through `.mcp.json` and `~/.claude.json`, you wire up real MCP servers — Vercel, GitHub, PostgreSQL, browser automation, custom APIs — and Claude Code can call those tools mid-task. Building a feature that touches the database schema, the API route, the UI component, and a Vercel deployment? One session. Read the [MCP ecosystem comparison](/blog/mcp-ecosystem-2026-clawhub-smithery-guide) for the full server map.
-
-**Pricing:** Charged per token against your Anthropic API key. Heavy usage runs $2–8/session depending on task complexity.
-
-**Limitations:** No GUI. Steeper learning curve. Requires comfort with terminal-first workflows.
-
-**Best for:** Full-stack developers who think in terminals. Complex agentic workflows spanning multiple systems. Projects with significant MCP integration needs.
+So when you read "Windsurf" anywhere in mid-2026, read "Devin Desktop." I use both names below because the muscle memory hasn't caught up yet.
 
 ---
 
-### Cursor
+## Claude Code, Cursor, Windsurf: what is each one actually for?
 
-**Architecture:** VS Code fork with deeply integrated AI at the editor level. Not a VS Code extension — a full editor rebuild that happens to be VS Code-compatible.
+**Claude Code** is a terminal-first agent. No editor chrome. You point it at a repo, describe the outcome, and it plans, edits across files, runs commands, reads output, and iterates. It is the canonical reference for what an agentic coder looks like, and the one most other tools are measured against. Its native home is the command line and CI, not a window with a file tree.
 
-**Key differentiator:** Best-in-class IDE integration with genuine agentic mode via Composer. Multi-model support (GPT-4o, Claude Sonnet, Gemini) lets you route different task types to different models.
+**Cursor** is an editor first. It's a VS Code fork, so everything you know about VS Code still works — your extensions, your keybindings, your muscle memory. The AI is layered on top: tab-complete, inline edits, and an agent panel you invoke when you want it. You stay in the editor; the agent is a tool you reach for, not the surface you live in.
 
-**Agentic capability:** Composer (agent mode) handles multi-file edits, terminal command execution, and iterative task completion. Not as deeply autonomous as Claude Code's full agent loop, but for developers who want to stay in the IDE, Composer is the most capable option.
+**Windsurf / Devin Desktop** sits between them and, post-rebrand, leans toward orchestration. The Agent Command Center is now the front door. The pitch is no longer "best autocomplete" — it's "manage a fleet of agents working in parallel, then drop into the editor when one needs your hands." It also ships open Agent Client Protocol support, so you can plug Codex, a Claude agent, or OpenCode into it.
 
-**Pricing:** $20/month (Pro), $40/month (Business). 500 fast requests/month — heavy agentic use burns through these quickly.
-
-**Best for:** Developers who want AI-native IDE experience without leaving the GUI. Teams where some members want minimal workflow disruption.
+If you want the broader pattern behind all three, I wrote up the architecture in [Build Your Own Jarvis with Claude Code](/blog/build-your-own-jarvis-claude-code).
 
 ---
 
-### Windsurf (Codeium)
+## How do they compare head-to-head?
 
-**Architecture:** IDE-first agent with Cascade as its signature agentic flow system.
+| | Claude Code | Cursor | Windsurf / Devin Desktop |
+|---|---|---|---|
+| **Surface** | Terminal / CLI | IDE (VS Code fork) | IDE + Agent Command Center |
+| **Agentic capability** | Strongest — built for long autonomous runs | Strong agent mode, editor-anchored | Strong, orchestration-first (multi-agent) |
+| **MCP support** | Native, deep; many servers at once | Yes (Pro+), ~40-tool practical ceiling | Yes, plus open Agent Client Protocol |
+| **Best model** | Claude Opus 4.8 (native) | Frontier models, your pick | Devin Local + bring-your-own via ACP |
+| **Entry price** | $20/mo Pro · $100 / $200 Max | $20/mo Pro · $60 Pro+ · $200 Ultra | $20/mo (plans carried over) |
+| **Best for** | Refactors, migrations, multi-file features, CI | Staying in your editor, fast inline iteration | Running several agents in parallel |
+| **Weak spot** | No GUI; terminal comfort required | MCP tool ceiling; editor-bound autonomy | Newer surface; rebrand churn |
 
-**Key differentiator:** Cascade flows — Windsurf's approach to multi-step agentic tasks is more structured and collaborative than Cursor's Composer. Cascade explicitly surfaces its reasoning and planned steps, making it easier to course-correct mid-task. The free tier is legitimately useful.
+A note on the Cursor MCP ceiling: in practice, Cursor degrades once you wire in too many MCP tools at once — roughly 40 is where it gets unreliable, because every tool definition eats the model's context budget before you've typed a word. Claude Code handles a wider tool surface before it strains. If your workflow leans on many MCP servers — databases, browsers, design tools, internal APIs — that gap is real and worth testing on your own stack.
 
-**Pricing:** Free tier is generous. Pro at $15/month. Best value proposition in IDE-integrated agents.
-
-**Best for:** Cost-effective IDE-integrated agent. Teams evaluating AI tooling without committing to paid plans.
-
----
-
-### Cline / Roo Code
-
-**Architecture:** Open-source VS Code extension that gives VS Code agentic capabilities using any API-accessible model. Roo Code is the most actively maintained fork.
-
-**Key differentiator:** Complete model flexibility and open-source transparency. Connect to any OpenAI-compatible API — Anthropic, OpenAI, Google, local models via Ollama, DeepSeek, Mistral. You own the full stack.
-
-**Pricing:** Free (extension) + your own API costs. The most cost-controllable option.
-
-**Best for:** Power users who want full control. Developers with sensitive codebases. Cost-optimizing teams.
+For how MCP itself works and which servers are worth running, see [the best AI superpowers stack for 2026](/blog/best-ai-superpowers-stack-2026).
 
 ---
 
-### OpenCode
+## What does each one cost in 2026?
 
-**Architecture:** Open-source CLI agent — conceptually similar to Claude Code but model-agnostic and community-built.
+Pricing converged near $20 at the entry tier, then split at the top.
 
-**Key differentiator:** Claude Code's terminal-first philosophy with open-source extensibility and multi-provider model support. Growing MCP support.
+**Claude Code** rides Anthropic plans: Pro at $20/mo for copilot-style use a few times a day, Max at $100/mo (5x) for living in the agent loop during work hours, and Max at $200/mo (20x) for running autonomous agents on long tasks. Opus 4.8 shipped May 28, 2026 at the same token pricing as 4.7, with better long-run consistency. One developer reported that eight months of heavy use cost about $800 on Max versus an estimated $15,000+ on raw API tokens — the subscription is the cheap path for sustained work.
 
-**Best for:** Terminal-first agent workflows without Anthropic lock-in.
+**Cursor** runs five tiers: Hobby ($0), Pro ($20, includes ~$20 of usage), Pro+ ($60, includes ~$70 and 3x model usage), Ultra ($200, ~$400 of usage and 20x), and Teams ($40/user). Limits are set by included API credits, not hard request caps, so heavy days can burn the allowance faster than you expect.
 
----
+**Windsurf / Devin Desktop** kept Windsurf's pricing through the rebrand — existing users saw no change, with the entry plan at $20/mo.
 
-### GitHub Copilot
+**GitHub Copilot** is the cheapest door: Free ($0), Pro ($10), Pro+ ($39), Business ($19/user), Enterprise ($39/user). On June 1, 2026 it moved to usage-based billing — GitHub AI Credits tied to token consumption — so Pro now includes $10 of monthly credits rather than a fixed request count.
 
-**Architecture:** IDE extension plus API — the original AI coding assistant, now with Workspace (agentic multi-file editing).
+**Codex** has no standalone subscription. It's bundled into ChatGPT Plus ($20), Pro ($100, 5x), and the $200 tier (20x). On April 2, 2026 OpenAI switched Codex to token-based credits across all plans.
 
-**Key differentiator:** Enterprise distribution and trust. Ships with GitHub Enterprise agreements, gets IT approval in organizations that block other tools.
-
-**Pricing:** $10/month (individual), $19/month (Business), $39/month (Enterprise).
-
-**Best for:** Enterprise teams where IT controls tooling decisions. Developers deep in the GitHub ecosystem.
+The honest read: at $20/mo, Claude Code Pro, Cursor Pro, Windsurf, and Codex (via ChatGPT Plus) are roughly the same money. The difference is the workflow, not the price.
 
 ---
 
-### Amazon Q Developer
+## Where do GitHub Copilot and Codex fit?
 
-**Architecture:** AWS-native coding agent with deep integration into AWS Console, CLI, and SDK ecosystem.
+Neither is a sideshow in 2026, but neither is the lead either.
 
-**Key differentiator:** AWS context. Q Developer can reason about your actual AWS infrastructure — CloudFormation stacks, Lambda functions, CloudWatch logs.
+**Copilot** is the default for teams already living inside GitHub and VS Code. Agent mode went generally available across VS Code and JetBrains earlier in 2026, so it now plans and executes multi-step tasks, not just autocompletes. At $10/mo it's the cheapest way to get real agent behavior. The catch: the June usage-based billing change tightened how much you actually get for that $10, and GitHub paused some new sign-ups to protect capacity. Good entry point, not the tool you reach for on a gnarly migration.
 
-**Best for:** AWS-native engineering teams. Java and Python shops building on AWS.
-
----
-
-### Augment Code
-
-**Architecture:** Context-first coding agent. Builds a persistent index of your entire repository and maintains context across sessions.
-
-**Key differentiator:** Codebase-scale context. For large monorepos where other tools lose the thread, Augment's retrieval system surfaces relevant code.
-
-**Pricing:** Team plans starting at $35/month/user.
-
-**Best for:** Engineering teams with large, complex codebases. Monorepo organizations.
+**Codex** is OpenAI's terminal agent, open-source and written in Rust, powered by the GPT-5 family (5.3 through 5.5 variants for different task types). It runs cloud tasks in isolated sandboxes and bundles into ChatGPT plans, so if you already pay for ChatGPT it costs nothing extra. It's the natural pick if your reasoning model of choice is GPT-5 and you want a CLI agent without a second subscription. For how the underlying models stack up, see [Claude, GPT, Gemini, DeepSeek: which model for which task](/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek).
 
 ---
 
-## Side-by-Side: All 8 Agents
+## Which one should you actually pick?
 
-| Agent           | Architecture  | Models             | Context         | MCP     | Pricing           | Best For                      |
-| --------------- | ------------- | ------------------ | --------------- | ------- | ----------------- | ----------------------------- |
-| **Claude Code** | Terminal CLI  | Claude Sonnet/Opus | 200K            | Full    | API costs (~$2–8) | Terminal-first, MCP ecosystem |
-| **Cursor**      | VS Code fork  | Multi-model        | Model-dependent | Partial | $20–40/mo         | IDE-integrated agentic dev    |
-| **Windsurf**    | IDE (Codeium) | Codeium + frontier | Model-dependent | Limited | Free / $15/mo     | Cost-effective IDE agent      |
-| **Cline/Roo**   | VS Code ext   | Any (configured)   | Model-dependent | Growing | Free + API        | Full control, open-source     |
-| **OpenCode**    | Terminal CLI  | Multi-provider     | Model-dependent | Growing | Free + API        | OSS terminal-first            |
-| **Copilot**     | IDE extension | GPT-4o, Claude     | Limited         | None    | $10–39/mo         | Enterprise, GitHub-native     |
-| **Amazon Q**    | AWS-native    | Amazon fine-tuned  | Limited         | None    | Free / $19/mo     | AWS-heavy teams               |
-| **Augment**     | Context-first | Augment + frontier | Full index      | Partial | $35+/mo/user      | Large codebases               |
+Match the tool to the job:
 
----
+- **You live in an editor and want AI on tap.** Cursor. The VS Code base means zero relearning, and inline edits keep you in flow. Cursor also runs an affiliate program, named here honestly — it doesn't change the recommendation, and Cursor earns the editor-native slot on merit.
+- **You run long autonomous tasks — refactors, migrations, whole features.** Claude Code. Terminal-first, deepest MCP surface, best long-run consistency with Opus 4.8. This is the one I use daily, and the gap on multi-file autonomy is real.
+- **You supervise several agents at once.** Windsurf / Devin Desktop. The Agent Command Center is built for exactly this, and ACP lets you slot other agents in.
+- **You're cost-sensitive and already on GitHub.** Copilot at $10.
+- **You already pay for ChatGPT and like GPT-5.** Codex — no extra spend.
 
-## What I Actually Use
+Most builders I respect run two: an editor-native tool for the inner loop (Cursor or Copilot) and a terminal agent for the heavy autonomous work (Claude Code or Codex). They are not mutually exclusive, and the combination beats forcing one tool to do both jobs.
 
-My primary agent is Claude Code. Not because it wins every category — it doesn't. Cursor has a better GUI. Cline has more model flexibility.
-
-Claude Code wins my workflow for three reasons:
-
-**1. MCP ecosystem depth.** I have wired Claude Code to Vercel, GitHub, browser automation, and custom tools via MCP. In a single session, Claude Code reads deployment logs, understands why a build failed, writes the fix, commits, and pushes — without leaving the terminal.
-
-**2. 200K context window.** The frankx.ai site is a large Next.js application. Claude Code holds the full context of `app/`, `components/`, `lib/`, and `data/` simultaneously. Decisions stay coherent across a session.
-
-**3. ACOS integration.** My [Agentic Creator OS](/acos) lives in CLAUDE.md files, custom slash commands, and skill files that Claude Code reads as first-class context. Every session starts with full awareness of project architecture, voice guidelines, and agent profiles. This compounds — each session is more capable than the last.
-
-The real answer is: primary agent + situational alternatives. Claude Code as the orchestrator, others as specialized tools.
-
----
-
-## Decision Framework: Which Agent for Your Workflow
-
-**Choose Claude Code if** you are comfortable in the terminal, your workflow spans multiple systems, and you want MCP integration.
-
-**Choose Cursor if** you want the best agentic experience inside an IDE with multi-model flexibility.
-
-**Choose Windsurf if** budget matters and you want a capable IDE agent at lower cost.
-
-**Choose Cline/Roo Code if** you want complete model flexibility, open-source transparency, or need to keep code on your infrastructure.
-
-**Choose GitHub Copilot if** your organization controls software procurement and GitHub Enterprise is already in the contract.
-
-**Choose Amazon Q if** your team is AWS-native and wants infrastructure-aware coding assistance.
-
-**Choose Augment Code if** you work on a large monorepo where context loss is a daily problem.
-
----
-
-## Pricing Reality Check
-
-Marketing pages show best-case pricing. Here is what heavy agentic use actually costs:
-
-| Agent        | Real Monthly Cost (Heavy Use) | Notes                                 |
-| ------------ | ----------------------------- | ------------------------------------- |
-| Claude Code  | $100–200/mo API               | Complex Opus sessions $10–15 each     |
-| Cursor Pro   | $20/mo + overages             | 500 fast request cap creates friction |
-| Windsurf Pro | $15/mo                        | Best value for IDE agent              |
-| Cline/Roo    | $30–60/mo API                 | Mix cheap + expensive models          |
-| Copilot      | $10–39/mo                     | Fixed price, capability ceiling       |
-
-For deeper research on AI coding tools, see the [Coding Assistants research domain](/research/coding-assistants).
-
-For the existing deep-dive on agentic coding workflows, see the [ultimate guide to AI coding agents 2026](/blog/ultimate-guide-ai-coding-agents-2026).
+The tool is one layer. The leverage is the system you build around it — your prompts, your context files, your repeatable workflows. That's the actual moat, and it's the thing I build on top of every coding agent. More on that approach in [GenCreator](/gencreator) and in [what still works in prompt engineering in 2026](/blog/prompt-engineering-2026-what-still-works).
 
 ---
 
 ## FAQ
 
-### Is Claude Code better than Cursor in 2026?
+**Is Windsurf still called Windsurf in 2026?**
 
-For terminal-first agentic workflows with MCP integration: Claude Code is the stronger choice. For IDE-integrated development with a polished GUI: Cursor is the stronger choice. They serve different workflows. The question is not which is objectively better but which architecture fits how you build software.
+No. On June 2, 2026, Cognition rebranded Windsurf to Devin Desktop. It shipped as an over-the-air update — same plans, settings, and extensions — but the default surface is now an Agent Command Center instead of the code editor, and its in-editor agent, Cascade, was replaced by Devin Local. The legacy Cascade agent stays available through July 1, 2026. Most people still say "Windsurf" out of habit.
 
-### What is MCP and why does it matter for coding agents?
+**Is Claude Code better than Cursor?**
 
-Model Context Protocol is an open standard for connecting AI models to external tools and data sources. For coding agents, MCP means the agent can access your actual database schema, live deployment status, and GitHub PR history — rather than operating only on code files. Claude Code's native MCP support makes it fundamentally more capable for complex workflows that span multiple systems.
+For different jobs, yes — and for others, no. Claude Code is stronger for long-running autonomous tasks driven from the terminal: large refactors, migrations, multi-file features, CI workflows. Cursor is stronger when you want to stay inside an editor and reach for the agent on demand. They solve different problems. I use Claude Code daily and still keep an editor-native tool for the inner loop.
 
-### Can I use multiple AI coding agents at the same time?
+**What is the MCP tool limit in Cursor?**
 
-Yes, and experienced developers often do. A common stack: Claude Code for complex agentic sessions, Cursor for IDE-integrated edits, GitHub Copilot for inline suggestions. The key is knowing which tool you reach for in which situation.
+Cursor supports MCP on Pro and above, but in practice it gets unreliable once you wire in roughly 40 tools at once, because each tool definition consumes context before the model does any work. Claude Code handles a wider MCP surface before it strains. If your workflow depends on many MCP servers, test the limit on your own setup rather than trusting any single number.
 
-### What is the difference between Cline and Roo Code?
+**How much does Claude Code cost in 2026?**
 
-Roo Code started as a fork of Cline and has become the more actively maintained version. Both are open-source VS Code extensions. Roo Code has added "Boomerang" task orchestration mode and more stable model integrations. If choosing between them today, Roo Code is the recommended starting point.
+It rides Anthropic plans: Pro at $20/mo, Max 5x at $100/mo, and Max 20x at $200/mo. Pro suits occasional copilot use; Max 5x suits living in the agent loop during work hours; Max 20x suits running autonomous agents on long tasks. For sustained heavy use, the subscription is far cheaper than equivalent raw API token spend.
 
-### Is GitHub Copilot still worth using in 2026?
+**Should I use GitHub Copilot or Codex instead?**
 
-For individual developers with access to better agentic tools: probably not as a primary agent. Copilot's value in 2026 is enterprise distribution, GitHub PR workflow integration, and the free tier for open-source contributors. As a pure capability comparison, Copilot's agentic ceiling is lower than Claude Code or Cursor Composer.
+Copilot is the cheapest agent on-ramp at $10/mo and the default if your team already lives in GitHub and VS Code. Codex bundles into ChatGPT plans, so it costs nothing extra if you already pay for ChatGPT and prefer GPT-5 models. Neither leads on long-horizon autonomy the way Claude Code does, but both are solid second tools.
 
-### How much context window do I actually need?
+**Can I run more than one of these at the same time?**
 
-For most individual files: 32K–64K is sufficient. For complex multi-file tasks where the agent needs to understand your full architecture: 128K–200K makes a meaningful difference. The practical impact is session coherence — larger context means the agent retains understanding longer.
+Yes, and most serious builders do. A common setup is an editor-native tool (Cursor or Copilot) for the inner loop plus a terminal agent (Claude Code or Codex) for heavy autonomous work. They aren't mutually exclusive, and pairing them beats stretching one tool across both jobs.
+
+---
+
+_The tool changes every quarter. The system you build on top of it is what compounds._

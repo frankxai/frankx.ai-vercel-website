@@ -1,0 +1,115 @@
+---
+title: "Best No-Code AI Agent Builders 2026: n8n vs Lindy vs Relay vs Make"
+description: "A hands-on comparison of the top no-code AI agent builders in 2026 — n8n, Lindy, Relay.app, Make, Zapier, Gumloop — judged on ease, power, self-hosting, MCP support, and price."
+date: "2026-06-06"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["AI agents", "no-code", "n8n", "automation", "MCP", "Lindy", "Make", "Zapier"]
+image: "/images/blog/best-no-code-ai-agent-builders-2026-hero.png"
+featured: false
+keywords: ["best no-code ai agent builder", "n8n vs lindy", "ai agent builder 2026", "no-code automation mcp", "make vs zapier agents"]
+readingGoal: "Pick the right no-code AI agent builder for your skill level and use case in under 10 minutes."
+schema: ["Article", "FAQPage"]
+---
+
+**The short answer:** If you can run a Docker container, **n8n** is the pick — self-hostable, unlimited executions, and an MCP Server Trigger that turns any workflow into an agent tool. If you want business agents that work in plain English with zero setup, choose **Lindy**. For approval-gated team workflows, **Relay.app**. For the deepest app library, **Make** (now with its Maia AI builder). For agents that ride on tools you already pay for, **Zapier Agents**. For AI-heavy batch work, **Gumloop**. Six builders, six different best-fits. Match the tool to the job, not the hype.
+
+This is a working comparison, not a feature dump. I build AI Center of Excellence frameworks at Oracle and run the same patterns at personal scale. The question that matters in 2026 isn't "which builder has the most integrations" — it's "which one exposes its workflows as agent tools cleanly." That's the MCP angle, and it's the real divide. More on that below.
+
+## What actually separates a no-code AI agent builder in 2026?
+
+Three years ago these tools were if-this-then-that pipelines. Now they run reasoning loops, call models mid-flow, and — the 2026 shift — speak the Model Context Protocol.
+
+MCP is the standard that lets an AI model discover and call tools. The interesting move is the reverse: turning *your own workflows into tools an agent can call*. n8n's MCP Server Trigger, Make's MCP Server, Zapier MCP, and Gumloop's hosted MCP servers all do this. It means your Claude or GPT agent can call a workflow you built — with typed inputs and outputs — instead of you wiring the agent by hand.
+
+Judge a builder on five axes:
+
+- **Ease** — how fast a non-technical person ships a working agent.
+- **Power** — branching, loops, custom code, human-in-the-loop.
+- **Self-host** — do you own the runtime and the data.
+- **MCP support** — can workflows be exposed as agent tools, and can the builder consume external MCP servers.
+- **Price model** — executions vs credits vs tasks vs activities. These are not the same, and the difference decides your bill.
+
+## How do the six builders compare at a glance?
+
+| Builder | Ease | Power | Self-host | MCP support | Entry price | Best for |
+|---|---|---|---|---|---|---|
+| **n8n** | Medium | Very high | Yes (free, unlimited execs) | Server Trigger + Client | €24/mo cloud, $0 self-host | Developers, agencies, full control |
+| **Lindy** | Very high | Medium-high | No | Via integrations | $19.99/mo | Non-technical business agents |
+| **Relay.app** | High | High | No | Model calls, no native MCP server | $19/mo | Approval-gated team workflows |
+| **Make** | Medium | High | No | MCP Server + Client (Pro) | $9/mo Core | Largest app library, visual builder |
+| **Zapier Agents** | High | Medium | No | Zapier MCP on every plan | $33.33/mo (agents) | Riding 9,000+ existing connections |
+| **Gumloop** | Medium | High | No (Enterprise hosts MCP) | 100+ built-in MCP servers | $37/mo Pro | AI-heavy batch automation |
+
+Prices are entry paid tiers as of June 2026 and shift with annual billing. Read each builder's pricing page before you commit — the unit of metering matters more than the headline number.
+
+## Why is n8n the technical pick?
+
+n8n is the one I reach for, and the reason is ownership. The Community Edition is free, self-hosted, and runs unlimited executions. You put it on a Linux VPS with Docker behind a reverse proxy and you own the runtime, the data, and the cost ceiling. Cloud starts at €24/month (Starter, 2,500 executions); Pro is €60/month for 10,000. As of April 2026, n8n removed active-workflow limits on every plan — you pay on executions only.
+
+The differentiator is the **MCP Server Trigger**. Drop it into a workflow and n8n becomes an MCP server. Claude Desktop, Cursor, or any MCP client lists your workflows as tools and calls them with precise inputs. The **MCP Client Tool** node does the reverse — your n8n agent calls external MCP servers. That two-way bridge is why n8n sits at the center of a serious personal or agency stack.
+
+The cost is a learning curve. n8n has fewer one-click native integrations than Make or Zapier, so you'll write HTTP calls to hit some APIs. If you can read API docs, that's a feature — you're never blocked. If you can't, start with Lindy and grow into n8n later. For the bigger picture of how this fits a full agent stack, see my [best AI superpowers stack for 2026](/blog/best-ai-superpowers-stack-2026).
+
+n8n runs a 30% recurring affiliate commission, and I'll name that honestly: I'd recommend it on the self-host story alone, with or without the program.
+
+## Which builder is easiest for non-technical people?
+
+**Lindy.** You describe an automation in plain English and it builds the agent. No node graph to reason about. It connects across 400+ native integrations plus thousands more through Pipedream, ships 50+ templates, and includes a Computer Use skill so agents can drive a website directly when no API exists.
+
+Pricing is credit-based: Free gives 400 credits/month; Starter is $19.99/month (2,000 credits); Pro is $49.99/month (5,000 credits, 30 phone calls); Business is $299/month. Watch the credit burn — basic-model tasks cost 1–3 credits, but switching an agent to Claude Opus or a large GPT model can run roughly 10 credits per task. Intelligence is a premium line item. Budget for it.
+
+Lindy is the right call for inbox triage, meeting scheduling, support, and sales agents where the operator is non-technical and wants results today. It's the no-setup end of the spectrum. n8n is the full-control end. Most people start at Lindy.
+
+## Which builder is best for team workflows with approvals?
+
+**Relay.app.** Its standout is human-in-the-loop done well. Workflows pause until a person approves or a condition is met, and its "Paths" branch down different routes by condition — one workflow handles every outcome with its own steps and approvals per path. It calls GPT, Claude, and Gemini for summarization, translation, image generation, and transcription, and connects Google Workspace, Slack, Notion, HubSpot, and Salesforce.
+
+Pricing: Free (200 steps + 500 AI credits), Professional $19/month (750 steps + 5,000 credits), Team $69/month (2,000 steps, up to 10 users), Enterprise custom. It's SOC 2 compliant.
+
+Relay has no native MCP server — it consumes AI models inside flows rather than exposing flows as agent tools. If your need is "a team process with checkpoints," that doesn't matter and Relay is excellent. If your need is "workflows as agent tools," look at n8n, Make, or Gumloop.
+
+## What about Make, Zapier, and Gumloop?
+
+**Make** has the deepest app library and a mature visual builder. Its **Maia** AI builder lets you describe a scenario and have the modules wired for you (in beta as of mid-2026). Make's MCP Server turns scenarios into agent-callable tools and its MCP Client lets scenarios call external MCP servers — MCP server access lands on the Pro plan at $16/month. Core is $9/month. Metering is credit-based. Make also runs a 35% affiliate commission for 12 months, which I'll name plainly.
+
+**Zapier Agents** is the pragmatic choice if you already live in Zapier. Zapier MCP now ships on every plan, including Free — each MCP tool call costs two tasks from your existing quota, no separate product to buy. That's the appeal: 9,000+ app connections your agent can reach without new procurement. Agents are metered in "activities" — Free runs up to 400/month, paid Agent plans start at $33.33/month billed annually. Zapier's program is a Solution Partner track for agencies, not a click-and-link affiliate program — worth stating accurately.
+
+**Gumloop** is built for AI-heavy batch work — data extraction, web scraping, content generation at volume. Pro is $37/month (20,000 credits). The cost lever to know: bring your own OpenAI or Anthropic API keys and AI nodes drop from 2–30 credits to 1 credit each, cutting advanced-model costs up to 95%. It ships 100+ built-in MCP servers (Salesforce, HubSpot, GitHub, Jira, Slack); hosting custom MCP servers and proxying external ones is an Enterprise feature.
+
+## How do I choose in one decision?
+
+Start from your constraint, not the feature list.
+
+- **You want to own your data and runtime** → n8n, self-hosted.
+- **You're non-technical and want it working today** → Lindy.
+- **Your process needs human approvals** → Relay.app.
+- **You need an app that only Make/Zapier integrate** → Make or Zapier.
+- **You run high-volume AI batch jobs** → Gumloop with BYO keys.
+- **You want workflows as agent tools (the MCP play)** → n8n, Make, or Gumloop.
+
+The right move for most builders: prototype the agent in Lindy or Make this week to prove the use case, then port the keepers to self-hosted n8n once volume or cost justifies owning the runtime. If you want to go a level deeper on agent-native development, my guide to [building your own Jarvis with Claude Code](/blog/build-your-own-jarvis-claude-code) and the [agentic AI roadmap for 2026](/blog/agentic-ai-roadmap-2026) both pick up where the no-code ceiling ends.
+
+## FAQ
+
+**What is the best no-code AI agent builder in 2026?**
+There's no single winner — it depends on your constraint. n8n is the technical pick for control and self-hosting. Lindy is best for non-technical users. Relay.app wins for approval-gated workflows. Make has the largest app library, Zapier the most existing connections, and Gumloop the best AI batch economics.
+
+**Why does MCP support matter for an agent builder?**
+The Model Context Protocol lets an AI model discover and call tools. When a builder exposes your workflows as MCP tools, an agent (Claude, GPT) can call them with typed inputs instead of you wiring it by hand. n8n, Make, Zapier, and Gumloop all support this; Lindy and Relay rely on in-flow model calls instead.
+
+**Can I self-host any of these for free?**
+Only n8n. Its Community Edition is free, self-hosted, and runs unlimited executions on your own server. The others are cloud-only SaaS, though Gumloop's Enterprise tier can host MCP servers. Self-hosting n8n means you own the data and cap the cost.
+
+**Which is cheapest to start?**
+By headline entry price, Make Core at $9/month. But metering differs — n8n bills executions, Lindy and Make and Gumloop bill credits, Zapier bills tasks and activities. A credit-heavy AI workflow on a "cheap" plan can cost more than executions on n8n. Match the metering to your workload.
+
+**Do these tools have affiliate programs?**
+Yes, and I name them honestly: n8n pays 30% recurring, Make pays 35% for 12 months. Zapier runs a Solution Partner program for agencies rather than a simple affiliate link. I recommend each on merit first — the program doesn't change which tool fits your job.
+
+**Should I start with no-code or learn to build agents in code?**
+Start no-code to prove the use case fast, then graduate the workflows that earn their keep. Self-hosted n8n is the natural bridge — it's no-code on the surface but gives you code nodes, MCP, and full ownership. From there, agent-native coding tools take you the rest of the way. See [GenCreator](/gencreator) for the creator-focused path.
+
+---
+
+The builder you pick matters less than picking deliberately. Name your constraint, match the tool, and ship one working agent this week. Then own the keepers. More frameworks like this at [frankx.ai](/).
