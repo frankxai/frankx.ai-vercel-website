@@ -17,11 +17,13 @@ keywords:
     "ai model comparison",
   ]
 readingGoal: "You will understand every major frontier model family — their architecture, sweet spots, and which to choose for different tasks."
-tldr: "Six model families define 2026: Claude (Anthropic) leads in coding and long-context reasoning. GPT-4o and o3 (OpenAI) dominate multimodal and reasoning benchmarks. Gemini 2.5 (Google) excels at grounded search and massive context. DeepSeek R1/V3 (open-weight) disrupted the cost curve. Llama 4 (Meta) powers the open-source ecosystem. Mistral leads European sovereignty. This guide compares them all across coding, research, creative work, and enterprise deployment."
+tldr: "Mid-2026 frontier models: Claude Opus 4.8 (Anthropic) leads agentic coding via Claude Code. OpenAI collapsed its o-series into the unified GPT-5.5 line. Gemini 3.1 Pro / 3.5 Flash (Google) bring frontier multimodal at low cost. DeepSeek V4 reset the price-performance curve with near-top coding at ~1/10th the price. Llama 4 still anchors open weights; Mistral leads European sovereignty. This guide compares them across coding, research, creative work, and enterprise deployment."
 schema: ["Article", "FAQPage"]
 ---
 
-**TL;DR:** The frontier model landscape in 2026 is no longer a two-horse race. Six distinct model families now compete at the top — each with genuine architectural advantages and real tradeoffs. Claude Opus 4.6 leads in agentic coding and long-context reasoning. GPT-4o and o3 dominate multimodal benchmarks and enterprise integrations. Gemini 2.5 Pro brings 1M+ token context with native Google grounding. DeepSeek's open-weight R1 and V3 shattered the cost-per-token curve. Meta's Llama 4 powers the open-source fine-tuning ecosystem. Mistral anchors European data sovereignty. The right model depends on your task — and the best practitioners use several simultaneously.
+_Updated 2026-06-05. The landscape turned over since spring: OpenAI retired the entire o-series and unified reasoning into GPT-5.5, Claude reached Opus 4.8, Gemini moved to 3.x, and DeepSeek V4 reset the cost curve. Versions and prices below reflect the current state._
+
+**TL;DR:** The frontier model landscape in mid-2026 is no longer a two-horse race, and context size stopped being the differentiator — nearly every flagship now runs 1M+ tokens, so the real contest is agentic task completion. Claude Opus 4.8 leads agentic coding and long-horizon reasoning (it powers Claude Code, the category leader). OpenAI folded its separate o-series reasoning models into a single GPT-5.5 line. Gemini 3.1 Pro and the new 3.5 Flash bring frontier multimodal at aggressive prices. DeepSeek's open-weight V4 trades blows with the closed flagships on coding at roughly a tenth of the cost. Meta's Llama 4 still anchors the open-weight ecosystem (though Meta pivoted to a closed model, Muse Spark). Mistral anchors European data sovereignty. The right model depends on your task — and the best practitioners use several simultaneously.
 
 ---
 
@@ -33,21 +35,21 @@ Three structural shifts define 2026:
 
 **Reasoning became mainstream.** Chain-of-thought and extended thinking are no longer premium features — they ship in mid-tier model variants.
 
-**Context exploded past practical limits.** 1M-token context windows exist. The harder problem is whether models actually use that context faithfully.
+**Context commoditized.** 1M-token windows are now standard across nearly every flagship (Grok 4.1 Fast pushes 2M). Context size stopped being a differentiator — the harder problem is whether a model attends to that context faithfully and completes long-horizon agentic tasks.
 
-**Open-weight models reached near-frontier performance.** DeepSeek V3 and Llama 4 perform within a narrow band of GPT-4o on many benchmarks, at a fraction of the API cost.
+**Open-weight models reached the frontier on coding.** DeepSeek V4-Pro now trades blows with GPT-5.5 and Claude Opus on coding benchmarks at roughly a tenth of the price. The gap that remains is ecosystem maturity, not raw capability.
 
 ---
 
-## Anthropic Claude — Opus 4.6, Sonnet 4.6, Haiku 4.5
+## Anthropic Claude — Opus 4.8, Sonnet 4.6, Haiku 4.5
 
-Claude is Anthropic's flagship model family, built around constitutional AI training that prioritizes interpretability, safety, and reasoning depth.
+Claude is Anthropic's flagship model family, built around constitutional AI training that prioritizes interpretability, safety, and reasoning depth. In mid-2026 it's the model the rest of the field is chasing on coding, largely on the back of Claude Code.
 
-### Claude Opus 4.6
+### Claude Opus 4.8
 
-The ceiling of the Claude family — designed for tasks where quality matters more than speed. Extended thinking mode allows multi-step reasoning chains that surface before the final answer, making it possible to verify logic rather than just the output.
+The ceiling of the Claude family — designed for tasks where quality matters more than speed. Extended thinking mode allows multi-step reasoning chains that surface before the final answer, making it possible to verify logic rather than just the output. (Opus 4.6 and 4.7 are now legacy but still available.)
 
-Context window: 200K tokens standard, 1M with extended context. Opus handles the full 200K faithfully — document retrieval at position 180K is nearly as accurate as position 5K.
+Context window: 1M tokens. Opus handles long context faithfully — document retrieval deep in the window is nearly as accurate as near the start. A "Fast mode" runs ~2.5x quicker at a price premium when latency matters.
 
 Coding is where Opus earns its premium. [Claude Code](/blog/build-your-own-jarvis-claude-code) — Anthropic's agentic coding environment — handles multi-file refactors, dependency management, and test generation with consistency that shorter-context models cannot match.
 
@@ -63,49 +65,41 @@ The balance point. Most of Opus's capability at significantly lower cost and lat
 
 Speed and efficiency — sub-second responses, low cost. Handles classification, summarization, extraction, and lightweight generation. Improved substantially on instruction following compared to its predecessor.
 
-**Pricing:** Haiku ~$0.25/M input. Sonnet ~$3/M. Opus ~$15/M.
+**Pricing (input/output per 1M):** Haiku 4.5 ~$1 / $5. Sonnet 4.6 ~$3 / $15. Opus 4.8 ~$5 / $25.
 
-For a closer look: [Claude Opus 4.6 analysis](/blog/claude-opus-4-6-analysis-2026).
-
----
-
-## OpenAI — GPT-4o, o3, o3-mini, o4-mini
-
-OpenAI's lineup bifurcated into two tracks: the GPT series for multimodal general intelligence, and the o-series for explicit reasoning chains.
-
-### GPT-4o
-
-The most capable natively multimodal model — images, audio, video, and text in a unified architecture. For tasks requiring genuine vision reasoning, 4o's visual grounding remains a benchmark leader. Function calling and structured output reliability are strong. The developer ecosystem around 4o is the most mature of any frontier model.
-
-Context window: 128K tokens. Faithful recall across the full window is solid.
-
-### o3 and o4-mini
-
-The o-series introduces explicit extended reasoning — the model allocates compute to a private chain of thought before responding. For mathematical reasoning, complex code generation, and multi-step problem decomposition, o3 performs at a level older GPT variants could not approach.
-
-o4-mini represents the latest iteration on small reasoning models — more capable than o3-mini on most benchmarks while maintaining comparable speed. The practical default for reasoning-at-scale.
-
-**Pricing:** GPT-4o ~$2.50/M input. o3 significantly higher. o4-mini ~$1.10/M.
+For a deeper dive: [Claude Opus analysis](/blog/claude-opus-4-6-analysis-2026).
 
 ---
 
-## Google Gemini — 2.5 Pro, 2.5 Flash
+## OpenAI — the unified GPT-5.5 line
 
-Google's Gemini enters 2026 with architectural advantages in specific contexts — particularly anything touching Google's data infrastructure or requiring million-token context.
+The biggest structural change since spring: **OpenAI retired the entire o-series** (o3, o4-mini) along with GPT-4o and GPT-4.1 in early 2026, and folded explicit reasoning into a single unified model line. There is no o5. Reasoning is now a mode of the GPT-5 family, not a separate product.
 
-### Gemini 2.5 Pro
+### GPT-5.5
 
-Operates at 1M+ token context natively — and unlike some competitors, Gemini's MoE architecture maintains recall quality across the full window with reasonable faithfulness. For research synthesis tasks — reading entire paper corpora or full codebases — this is the operational advantage.
+The current flagship (released April 2026). It unifies what used to be two tracks — general multimodal intelligence and explicit chain-of-thought reasoning — into one model that allocates reasoning compute as the task demands. It leads on agentic coding, computer use, and long-horizon tool workflows (strong Terminal-Bench and SWE-Bench results).
 
-Grounded search integration is a distinct capability: Gemini can call Google Search natively and synthesize results into responses with citations. For research-heavy workflows, this collapses the gap between "what the model knows" and "what is currently true."
+Context window: ~1M tokens, 128K max output. A **GPT-5.5-pro** variant trades cost for maximum accuracy on the hardest problems.
 
-### Gemini 2.5 Flash
+**Pricing (input/output per 1M):** GPT-5.5 ~$5 / $30. GPT-5.5-pro ~$30 / $180. (Confirm against OpenAI's live pricing page — these moved at launch.)
 
-Speed and cost priority. Strong performance on structured tasks at a fraction of Pro's cost. The production workhorse for high-volume Google AI deployments.
+---
 
-**Pricing:** Pro ~$3.50/M input. Flash ~$0.15/M.
+## Google Gemini — 3.1 Pro, 3.5 Flash
 
-> **Going deeper on Gemini?** The Google AI stack has moved fast since this post. Our [Gemini & Google AI Mastery portal](/learn/gemini-mastery) covers the current generation — Gemini 3.5 Flash, 3.1 Pro Deep Think, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — with the official launch videos and the sharpest expert walkthroughs.
+Google moved to the Gemini 3 line in 2026, keeping its structural advantages in anything touching Google's data infrastructure or requiring million-token context — and competing hard on price.
+
+### Gemini 3.1 Pro
+
+The reasoning + multimodal flagship, operating at ~1M token context natively. Gemini's architecture maintains recall quality across the full window with reasonable faithfulness — for research synthesis tasks like reading entire paper corpora or full codebases, this is the operational advantage.
+
+Grounded search integration remains a distinct capability: Gemini calls Google Search natively and synthesizes results with citations, collapsing the gap between "what the model knows" and "what is currently true."
+
+### Gemini 3.5 Flash
+
+Google's cheap-and-fast play, launched May 2026 — near-frontier quality at a fraction of Pro's cost, built to deploy at billions-of-users scale. The production workhorse for high-volume Google AI deployments. (There's no GA "Gemini 3.5 Pro" yet — Pro and Flash are separate tiers.)
+
+**Pricing (input/output per 1M):** 3.1 Pro ~$2 / $12. 3.5 Flash ~$1.50 / $9. Cheaper Flash-Lite tiers run lower still.
 
 ---
 
@@ -113,19 +107,21 @@ Speed and cost priority. Strong performance on structured tasks at a fraction of
 
 DeepSeek's releases did more to reshape frontier model economics than any other development in the period.
 
-### DeepSeek V3
+### DeepSeek V4-Pro
 
-General-purpose LLM with Mixture-of-Experts architecture — 671B total parameters with ~37B active per forward pass. Near-frontier performance at training costs that triggered industry-wide efficiency reanalysis.
+The current open-weight flagship (V4 shipped April 2026) — a Mixture-of-Experts model at 1.6T total / ~49B active parameters, 1M token context. This is the release that reset frontier economics: V4-Pro now sits at the top of coding benchmarks (LiveCodeBench, Codeforces ELO ahead of GPT-5.5, SWE-bench Verified statistically tied with Claude Opus) at roughly a tenth of the closed flagships' price.
 
-As an open-weight model (downloadable, self-hostable, fine-tunable), V3 enables workloads that closed APIs cannot: air-gapped deployments, custom fine-tuning on proprietary data, and unlimited inference at compute cost rather than per-token pricing.
+As an open-weight model (downloadable, self-hostable, fine-tunable), it enables workloads closed APIs cannot: air-gapped deployments, custom fine-tuning on proprietary data, and unlimited inference at compute cost rather than per-token pricing.
 
-Benchmark: V3 sits within a few points of GPT-4o on most standard evaluations. The gap is real but narrow.
+### DeepSeek V4-Flash
 
-### DeepSeek R1
+The price-performance extreme — 284B / ~13B active, 1M context, around $0.10/$0.20 per million in/out. Near-frontier coding (90%+ LiveCodeBench) at a price that makes high-volume self-hosted pipelines trivial.
 
-Reasoning-specialized, analogous to OpenAI's o-series but open-weight. Produces explicit chain-of-thought reasoning traces. Strong on mathematical and logical reasoning. The open-weight nature means researchers can study reasoning traces, fine-tune on domain-specific reasoning, and deploy without per-token costs.
+Note: there was never a "DeepSeek R2." Reasoning was folded into the V-series "Think/Speciale" variants rather than shipped as a separate R-series model.
 
-**Where DeepSeek fits:** Cost-sensitive production. Air-gapped deployments. Research requiring model inspection.
+**Where DeepSeek fits:** Cost-sensitive production. Air-gapped deployments. High-volume coding pipelines. Research requiring model inspection.
+
+**Pricing (input/output per 1M):** V4-Pro ~$0.44 / $0.87. V4-Flash ~$0.10 / $0.20. (Or free, self-hosted.)
 
 ---
 
@@ -139,7 +135,9 @@ Efficiency-optimized — 17B active parameter MoE model with a 10M token context
 
 ### Llama 4 Maverick
 
-Scales to 17B active from a 400B total MoE pool. Benchmark performance that competes with frontier models on many tasks. The open-source model that most consistently challenges GPT-4o and Claude Sonnet.
+Scales to 17B active from a 400B total MoE pool. Benchmark performance that competes on many general tasks — though by mid-2026 Meta has fallen off the frontier-coding conversation that Anthropic, OpenAI, and DeepSeek now dominate.
+
+**The state of Llama in 2026:** Scout and Maverick remain the current open releases — there is no Llama 5 (it slipped to a 2027 forecast), and the larger Llama 4 Behemoth was effectively shelved (used internally as a teacher model, never publicly released). The notable shift: Meta's Superintelligence Labs released **Muse Spark**, its first *closed-weight, API-only* reasoning model — a pivot away from the open-frontier race.
 
 **The Llama ecosystem advantage:** Community. The broadest fine-tuning ecosystem of any open-weight model family. Hundreds of domain-specific fine-tunes. Mature tooling (LlamaIndex, Ollama, llama.cpp, vLLM).
 
@@ -147,36 +145,38 @@ Scales to 17B active from a 400B total MoE pool. Benchmark performance that comp
 
 ## Mistral — European Sovereignty
 
-**Mistral Large** competes with GPT-4o-class models, with particular strength in multilingual tasks and European language support. For enterprises with EU data residency requirements, Mistral Large on EU infrastructure is often the only compliant frontier option.
+**Mistral Large 3** (released late 2025) competes with the GPT-5-class field, with particular strength in multilingual tasks and European language support — and an aggressive price cut (~$0.50/$1.50 per M, roughly 75% below the prior generation). For enterprises with EU data residency requirements, Mistral Large on EU infrastructure is often the only compliant frontier option.
 
-**Codestral** is Mistral's code-specialized model — competitive with larger general models on pure coding benchmarks, efficient enough for real-time IDE integration.
+**Codestral** is Mistral's code-specialized model — competitive on pure coding benchmarks, efficient enough for real-time IDE integration, with fill-in-the-middle support (~$0.30/$0.90 per M, 32K context).
 
 ---
 
 ## Also in the Field
 
-**Grok 3 (xAI):** Real-time X/Twitter data integration as a native capability. DeepSearch mode synthesizes web and X data uniquely. Reasoning improved substantially in 3.0.
+**Grok 4.3 (xAI):** Real-time X data integration as a native capability, 1M context, aggressive pricing (~$1.25/$2.50 per M). A **Grok 4.1 Fast** variant offers a 2M-token context — the largest of any model here — at ~$0.20/$0.50. DeepSearch mode synthesizes web and X data uniquely.
 
-**Qwen 2.5 (Alibaba):** Strongest Chinese frontier lab model available outside DeepSeek. Particular strength in Chinese-language and Asian multilingual applications.
+**Qwen3.7-Max (Alibaba):** The strongest Chinese frontier model outside DeepSeek — 1M context, closed-weight and API-only, built for agent-grade long-horizon reasoning (multi-step agentic runs measured in hours). It ships an Anthropic-protocol drop-in for easy migration. Particular strength in Chinese and Asian multilingual applications.
 
 ---
 
 ## The Comparison Table
 
-| Model             | Context | Coding | Research | Creative | Enterprise | Price       |
-| ----------------- | ------- | ------ | -------- | -------- | ---------- | ----------- |
-| Claude Opus 4.6   | 200K/1M | ★★★★★  | ★★★★★    | ★★★★     | ★★★★★      | ~$15/M      |
-| Claude Sonnet 4.6 | 200K    | ★★★★   | ★★★★     | ★★★★     | ★★★★       | ~$3/M       |
-| Claude Haiku 4.5  | 200K    | ★★★    | ★★★      | ★★★      | ★★★★       | ~$0.25/M    |
-| GPT-4o            | 128K    | ★★★★   | ★★★★     | ★★★★     | ★★★★★      | ~$2.50/M    |
-| o3                | 128K    | ★★★★★  | ★★★★★    | ★★★      | ★★★★       | ~$10/M+     |
-| o4-mini           | 128K    | ★★★★   | ★★★★     | ★★★      | ★★★★       | ~$1.10/M    |
-| Gemini 2.5 Pro    | 1M+     | ★★★★   | ★★★★★    | ★★★★     | ★★★★       | ~$3.50/M    |
-| DeepSeek V3       | 128K    | ★★★★   | ★★★★     | ★★★★     | ★★★        | Self-hosted |
-| DeepSeek R1       | 128K    | ★★★★   | ★★★★★    | ★★★      | ★★★        | Self-hosted |
-| Llama 4 Maverick  | 1M      | ★★★★   | ★★★★     | ★★★      | ★★★        | Self-hosted |
-| Mistral Large     | 128K    | ★★★★   | ★★★      | ★★★★     | ★★★★       | ~$2/M       |
-| Codestral         | 32K     | ★★★★★  | ★★★      | ★★       | ★★★        | ~$0.20/M    |
+_Prices are input / output per 1M tokens, as of 2026-06-05. Confirm against live pricing pages before committing volume._
+
+| Model             | Context | Coding | Research | Creative | Enterprise | Price (in/out)   |
+| ----------------- | ------- | ------ | -------- | -------- | ---------- | ---------------- |
+| Claude Opus 4.8   | 1M      | ★★★★★  | ★★★★★    | ★★★★     | ★★★★★      | ~$5 / $25        |
+| Claude Sonnet 4.6 | 1M      | ★★★★   | ★★★★     | ★★★★     | ★★★★       | ~$3 / $15        |
+| Claude Haiku 4.5  | 200K    | ★★★    | ★★★      | ★★★      | ★★★★       | ~$1 / $5         |
+| GPT-5.5           | 1M      | ★★★★★  | ★★★★★    | ★★★★     | ★★★★★      | ~$5 / $30        |
+| Gemini 3.1 Pro    | 1M      | ★★★★   | ★★★★★    | ★★★★     | ★★★★       | ~$2 / $12        |
+| Gemini 3.5 Flash  | 1M      | ★★★★   | ★★★★     | ★★★      | ★★★★       | ~$1.50 / $9      |
+| DeepSeek V4-Pro   | 1M      | ★★★★★  | ★★★★     | ★★★★     | ★★★        | ~$0.44 / $0.87   |
+| DeepSeek V4-Flash | 1M      | ★★★★   | ★★★★     | ★★★      | ★★★        | ~$0.10 / $0.20   |
+| Llama 4 Maverick  | 1M      | ★★★★   | ★★★★     | ★★★      | ★★★        | Self-hosted      |
+| Mistral Large 3   | 128K    | ★★★★   | ★★★      | ★★★★     | ★★★★       | ~$0.50 / $1.50   |
+| Grok 4.3          | 1M      | ★★★★   | ★★★★     | ★★★★     | ★★★        | ~$1.25 / $2.50   |
+| Qwen3.7-Max       | 1M      | ★★★★   | ★★★★     | ★★★      | ★★★        | ~$2.50 / —       |
 
 ---
 
@@ -186,13 +186,13 @@ Running a single model for everything is a beginner pattern. Here is my actual w
 
 **Claude Code for development.** Claude Sonnet 4.6 through Claude Code is my primary development environment. Long context, extended thinking, and [MCP-native tool integration](/blog/mcp-ecosystem-2026-clawhub-smithery-guide) make it the most capable agentic coding environment. For complex architectural decisions, I escalate to Opus.
 
-**Gemini 2.5 Pro for deep research synthesis.** When I need to read an entire industry report or a set of academic papers simultaneously, Gemini's million-token context is the right tool.
+**Gemini 3.1 Pro for deep research synthesis.** When I need to read an entire industry report or a set of academic papers simultaneously, Gemini's million-token context plus native grounded search is the right tool.
 
-**Gemini for image generation.** For image generation workflows integrated into content pipelines, Gemini's capabilities route through specific tooling in my stack.
+**Gemini (Nano Banana) for image generation.** For image generation workflows integrated into content pipelines, Google's Gemini image models route through specific tooling in my stack.
 
 **Claude for long-form writing.** Blog posts, documentation, course content — Claude Sonnet is my default. Voice is more natural for long-form, instruction following on brand voice guidelines is more consistent.
 
-**o3 or DeepSeek R1 for reasoning-intensive analysis.** When I need explicit steps I can verify — pricing models, algorithm selection, multi-constraint optimization — I reach for reasoning models.
+**GPT-5.5 or DeepSeek V4 for reasoning-intensive analysis.** When I need explicit steps I can verify — pricing models, algorithm selection, multi-constraint optimization — I reach for the reasoning-mode flagships (and DeepSeek V4 when I want it self-hosted and cheap).
 
 **Llama 4 for experiments requiring full model control.** Fine-tuning on proprietary data, sensitive documents that cannot leave local infrastructure — Llama 4 via Ollama.
 
@@ -206,17 +206,17 @@ For students building AI fluency: [AI Briefing](/students/ai-briefing).
 
 Stop asking "what's the best model?" Start asking "what's the best model for this task at this cost tolerance?"
 
-**For coding:** Claude Opus/Sonnet via Claude Code. Budget option: o4-mini or Codestral. Self-hosted: Llama 4 Maverick or DeepSeek V3.
+**For coding:** Claude Opus/Sonnet via Claude Code (the category leader). Budget option: Gemini 3.5 Flash or Codestral. Self-hosted: DeepSeek V4 (now top-tier on coding) or Llama 4 Maverick.
 
-**For long document research:** Gemini 2.5 Pro when >100K tokens. Claude Opus when reasoning quality matters more than raw context.
+**For long document research:** Gemini 3.1 Pro for grounded search at scale. Claude Opus when reasoning quality matters more than raw context.
 
-**For creative writing:** Claude Sonnet for voice consistency. GPT-4o for diverse style range. Mistral Large for multilingual.
+**For creative writing:** Claude Sonnet for voice consistency. GPT-5.5 for diverse style range. Mistral Large 3 for multilingual.
 
-**For enterprise with SLA:** GPT-4o or Claude Sonnet — most mature API infrastructure and compliance certifications.
+**For enterprise with SLA:** GPT-5.5 or Claude Sonnet — most mature API infrastructure and compliance certifications.
 
-**For cost-sensitive production:** Gemini Flash, Claude Haiku, or o4-mini for API. DeepSeek V3 or Llama 4 Scout for self-hosted.
+**For cost-sensitive production:** Gemini 3.5 Flash or Claude Haiku for API. DeepSeek V4-Flash or Llama 4 Scout for self-hosted (an order of magnitude cheaper).
 
-**For data sovereignty:** Llama 4 Maverick for max capability. Mistral Large for European regulatory contexts.
+**For data sovereignty:** Llama 4 Maverick or DeepSeek V4 for max self-hosted capability. Mistral Large 3 for European regulatory contexts.
 
 ---
 
@@ -238,15 +238,15 @@ Stop asking "what's the best model?" Start asking "what's the best model for thi
 
 ### Which AI model is best for coding in 2026?
 
-Claude Opus 4.6 via Claude Code is the most capable for complex, multi-file agentic coding. For pure code generation speed at lower cost, o4-mini and Codestral are competitive. For self-hosted: DeepSeek V3 and Llama 4 Maverick. Most serious developers use at least two models.
+Claude Opus 4.8 via Claude Code is the most capable for complex, multi-file agentic coding — coding is the battleground of 2026 and Anthropic leads it. GPT-5.5 is the closest challenger. For self-hosted at a fraction of the cost, DeepSeek V4 now trades blows with the closed flagships on coding benchmarks. Most serious developers use at least two.
 
-### Is DeepSeek R1 as good as GPT-4o or Claude?
+### Is DeepSeek as good as GPT-5.5 or Claude?
 
-On reasoning benchmarks — mathematical problem solving, logical deduction — R1 is genuinely competitive. On general capability, V3 sits within a few points of GPT-4o. The meaningful gap is ecosystem maturity, API reliability, compliance certifications, and tool use consistency.
+On coding benchmarks, DeepSeek V4-Pro is genuinely competitive — statistically tied with Claude Opus on SWE-bench Verified and ahead of GPT-5.5 on some Codeforces measures, at roughly a tenth of the price. The meaningful gap is ecosystem maturity, API reliability, compliance certifications, and tool-use consistency. (Note: there was never a "DeepSeek R2" — reasoning folded into the V4 line.)
 
 ### What does 1M token context actually mean in practice?
 
-Roughly 750,000 words in a single session. The useful limit is governed by faithfulness — whether the model attends to information at all positions equally. Gemini 2.5 Pro and Llama 4 Scout offer the largest windows in their respective categories.
+Roughly 750,000 words in a single session. By 2026 nearly every flagship offers 1M+ tokens (Grok 4.1 Fast reaches 2M), so context size is no longer a differentiator — the useful limit is governed by faithfulness, whether the model attends to information at all positions equally.
 
 ### Should I use one model or multiple models?
 
