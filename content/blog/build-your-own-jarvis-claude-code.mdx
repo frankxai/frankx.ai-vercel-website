@@ -1,9 +1,10 @@
 ---
 title: "Build Your Own Jarvis: Turn Claude Code Into Your Personal Intelligence System"
-description: "Stop using AI tools like everyone else. Build a personal AI system that knows your work, executes your workflows, and gets smarter every day. Here's exactly how."
+description: "Build a personal AI system that knows your work, runs your workflows, and gets sharper every week. The exact CLAUDE.md + MCP + skills + subagents stack I run, updated for June 2026."
 date: "2026-01-20"
-lastModified: "2026-01-22"
+lastModified: "2026-06-07"
 author: "Frank"
+schema: ["Article", "FAQPage"]
 tags:
   [
     "claude code",
@@ -32,80 +33,64 @@ readingTime: "12 min"
 
 _The exact system I use to manage [12,000+ songs](/blog/music-as-consciousness-technology), this website, and enterprise consulting._
 
+_Updated 2026-06-07._
+
 ---
 
-## TL;DR
+## How do you turn Claude Code into a personal AI assistant?
 
-Your Jarvis has three layers: **Knowledge** (CLAUDE.md context file with your projects, preferences, and decisions), **Execution** (MCP servers for file operations, deployment, email), and **Intelligence** (pattern recognition and continuous learning). Start by creating a CLAUDE.md in your project root. Add skills for repeated workflows. Update weekly with new learnings. In 30 days, you'll have a personal AI system that knows your work and executes complex workflows automatically. [Free on GitHub](https://github.com/frankxai/agentic-creator-os).
+**You give it persistent memory, real tools, and a learning loop.** Memory lives in a `CLAUDE.md` file at your project root — your projects, preferences, and past decisions. Tools come from MCP servers (filesystem, github, Context7, playwright). Repeatable work becomes skills (`SKILL.md` files) and slash commands; isolated jobs go to subagents. Add a few lines after each big task and the system compounds. Set up the first version in an afternoon; in 30 days you have an assistant that knows your work and runs multi-step workflows from one command. Starter config: [free on GitHub](https://github.com/frankxai/agentic-creator-os).
 
 ---
 
 Every creator, founder, and knowledge worker I talk to wants the same thing: **"I want my own Jarvis."**
 
-Not another chat tool. Not another AI that forgets everything the moment you close the tab. A true intelligence partner that:
+Not another chat tool. Not another AI that forgets everything the moment you close the tab. An intelligence partner that:
 
 - Knows your projects intimately
 - Remembers your preferences and decisions
-- Executes complex workflows automatically
-- Gets smarter with every interaction
+- Runs multi-step workflows on command
+- Gets sharper with every interaction
 
-Here's the truth most AI tutorials won't tell you: **The technology to build this already exists.** You just need to know how to wire it together.
+The parts to build this already ship inside Claude Code. The work is wiring them together. This guide shows the wiring.
 
-This guide shows you exactly how.
-
-Here's what your personal intelligence system will be capable of once configured.
+If you're still deciding which assistant to anchor on, I compared the options in [Cursor vs Claude Code vs Windsurf](/blog/cursor-vs-claude-code-vs-windsurf-2026). This post assumes you've landed on Claude Code.
 
 ---
 
-## Why Generic AI Tools Will Never Be Your Jarvis
+## Why won't generic AI tools ever be your Jarvis?
 
-### The Problem
+ChatGPT, Gemini, and stock chat assistants are built for everyone, which means they're tuned for no one. Every conversation starts from zero. They don't know your current projects, your coding preferences, your brand voice, your past decisions, or your goals.
 
-ChatGPT, Gemini, and other AI assistants are designed for everyone. That means they're optimized for no one.
+You spend a third of every session re-explaining context. That's not partnership — that's expensive rubber-ducking.
 
-Every conversation starts from zero. They don't know:
-
-- Your current projects
-- Your coding preferences
-- Your brand voice
-- Your past decisions
-- Your goals
-
-You spend 30% of every session just re-explaining context. That's not intelligence partnership—that's expensive rubber-ducking.
-
-### The Jarvis Difference
-
-A true personal intelligence system:
+A system that remembers is a different category:
 
 | Generic AI         | Your Jarvis            |
 | ------------------ | ---------------------- |
 | Forgets everything | Remembers your work    |
 | Generic responses  | Your voice, your style |
-| One task at a time | Orchestrates workflows |
+| One task at a time | Runs whole workflows   |
 | You adapt to it    | It adapts to you       |
-| Tool you use       | Partner that grows     |
+| A tool you use     | A partner that grows   |
+
+The difference isn't a smarter model. Opus 4.8 and Sonnet 4.6 are excellent out of the box. The difference is the context, tools, and learning loop you wrap around them.
 
 ---
 
-## The Architecture: How to Build Your Intelligence System
+## What are the three layers of a personal intelligence system?
 
-Your personal Jarvis has three layers:
-
-<Diagram
-  src="/images/diagrams/blog/build-your-own-jarvis-claude-code/legacy-diagram-01.svg"
-  alt="The Architecture: How to Build Your Intelligence System diagram 1"
-  caption="The Architecture: How to Build Your Intelligence System"
-/>
-
-Let's build each layer.
+Your Jarvis has three layers: **Knowledge** (what it knows about you), **Execution** (what it can do), and **Intelligence** (how it improves). Build them in that order.
 
 ---
 
-## Layer 1: Knowledge (The Brain)
+## Layer 1 — How do you give Claude Code memory of your work?
 
-The foundation of your Jarvis is the `CLAUDE.md` file. This is where you teach the AI who you are.
+The foundation is the `CLAUDE.md` file at your project root. Claude Code loads it automatically every session. This is where you teach the system who you are.
 
-### Step 1: Create Your CLAUDE.md
+### Create your CLAUDE.md
+
+Keep it tight — facts that are always true, not a wiki. Anthropic's own guidance is to keep these files short and move situational detail into skills.
 
 ```markdown
 # My Intelligence System
@@ -128,349 +113,188 @@ The foundation of your Jarvis is the `CLAUDE.md` file. This is where you teach t
 
 - Always use TypeScript, never JavaScript
 - Prefer functional components over class components
-- Write in first person, conversational tone
+- Write in first person, concise
 - Dark mode everything
 
 ## Past Decisions
 
-- 2024-01: Chose Next.js over Remix because [reason]
-- 2024-02: Using Vercel KV for session storage
+- 2026-01: Chose Next.js over Remix because [reason]
+- 2026-02: Using Postgres over KV for session storage
 - [Document decisions as you make them]
 ```
 
-### Step 2: Add Skills
-
-Skills are predefined capabilities your system can activate:
-
-```markdown
-## Available Skills
-
-### /publish
-
-Full blog publishing pipeline:
-
-1. Write content
-2. Generate hero image
-3. Optimize SEO
-4. Deploy to production
-5. Share on social
-
-### /client-kickoff
-
-New client onboarding:
-
-1. Create CRM entry
-2. Generate project brief
-3. Set up repository
-4. Send welcome email
-```
-
-**Key Insight**: The more context you add to CLAUDE.md, the smarter your system becomes. Update it regularly.
+The more *true* context you add, the sharper the system gets. Update it weekly, and prune anything that's no longer accurate — stale rules are worse than missing ones.
 
 ---
 
-## Layer 2: Execution (The Muscles)
+## Layer 2 — How do you let Claude Code actually do things?
 
-Knowledge without action is just trivia. Your Jarvis needs to DO things.
+Knowledge without action is trivia. Execution comes from three mechanisms that matured a lot through 2025–2026: **MCP servers**, **skills**, and **slash commands**.
 
-### MCP Servers: Local Superpowers
+### MCP servers: tools Claude can reach
 
-MCP (Model Context Protocol) servers give Claude Code access to tools that run on YOUR machine:
+MCP (Model Context Protocol) servers are programs that give Claude Code access to systems it can't otherwise touch. The 2026 working pattern is to pin one server per external system, then write thin skills that orchestrate them. The ones I run on nearly every project:
 
-| Server       | Capability                |
-| ------------ | ------------------------- |
-| `filesystem` | Read, write, search files |
-| `database`   | Query local databases     |
-| `browser`    | Automate web actions      |
-| `email`      | Send notifications        |
-| `website`    | Deploy to production      |
+| Server       | What it does                                          |
+| ------------ | ----------------------------------------------------- |
+| `filesystem` | Read, write, and search files on your machine         |
+| `github`     | Issues, PRs, repo operations without leaving the loop |
+| `Context7`   | Pulls up-to-date library docs into context on demand  |
+| `playwright` | Drives a real browser for testing and web automation  |
 
-### Example: Full Automation
+A practical caution: MCP servers cost context. A five-server setup can burn ~55,000 tokens before you type anything, so add servers you actually use and drop the rest. Skills, by contrast, cost roughly 100 tokens each until they activate — which is why the modern stack leans on skills and keeps MCP servers lean.
 
-When you say "publish this blog post", your Jarvis:
+### Skills: reusable know-how
 
-1. **filesystem-mcp**: Reads content, generates MDX
-2. **nano-banana**: Creates hero image
-3. **website-mcp**: Deploys to Vercel
-4. **email-mcp**: Notifies your newsletter list
-5. **browser-mcp**: Shares on social media
+A skill is a folder with a `SKILL.md` file (plus optional scripts) that teaches Claude how to do one thing repeatably. No SDK, no build step — markdown instructions Claude follows when they're relevant. Project skills live in `.claude/skills/`; personal ones in `~/.claude/skills/`. Use them for your publishing pipeline, your brand-voice check, your client-onboarding sequence.
 
-All from one command. That's the power of execution layers.
+### Slash commands: one word, whole workflow
 
-### Workflow Commands
-
-Create custom commands in `.claude/commands/`:
+Drop a markdown file in `.claude/commands/` and it becomes a command:
 
 ```markdown
 # /daily-ops
 
 Run my daily operations workflow:
 
-1. Check analytics dashboard
+1. Check the analytics dashboard
 2. Review pending tasks
 3. Summarize key metrics
-4. Suggest priorities
+4. Suggest the day's three priorities
 
-Output: Brief daily intelligence report
+Output: a brief daily intelligence report.
 ```
 
-Now just type `/daily-ops` and your Jarvis executes the entire workflow.
+Type `/daily-ops` and the whole sequence runs. When "publish this post" should mean read the draft, generate the MDX, build a hero image, deploy, and notify the list, a command is where you encode that.
+
+### Subagents: isolated jobs, separate context
+
+For research sweeps or code review, spin up a subagent — a specialized session with its own model, tools, and context window. It keeps a heavy job from polluting your main thread and lets you point a cheaper or sharper model at the right task. Reach for one when work is parallelizable or noisy.
 
 ---
 
-## Layer 3: Intelligence (The Growth)
+## Layer 3 — How does your Jarvis get smarter over time?
 
-This is where your system becomes truly personal.
+This is the layer most people skip, and it's the one that makes the system *yours*.
 
-### Pattern Recognition
+### Capture patterns
 
-Over time, your Jarvis learns:
-
-- When you're most productive
-- Common task sequences
-- Your decision-making patterns
-- Optimization opportunities
+Over time you'll notice the same sequences. Write them down where Claude can read them:
 
 ```markdown
 ## Learned Patterns
 
 ### Writing Sessions
 
-- Best time: 6-8 AM
+- Best window: 6–8 AM, no meetings before
 - Typical length: 2 hours
-- Prefers: Quiet, no meetings before
 
 ### Code Reviews
 
-- Focus: Security, performance
-- Pet peeves: Any/any types, console.logs
+- Focus: security, performance
+- Pet peeves: `any` types, stray console.logs
 ```
 
-### Continuous Improvement
+### Add learnings after big tasks
 
-After each major task, add learnings:
+Two minutes after a major piece of work pays back for weeks:
 
 ```markdown
-## Session: 2026-01-20
+## Session: 2026-06-07
 
-### What Worked
+### What worked
 
-- Breaking down the task into smaller chunks
-- Using the Task tool for parallel research
+- Breaking the task into smaller chunks
+- Using a subagent for parallel research
 
-### What to Improve
+### What to improve
 
-- Need better error handling templates
-- Should include tests in all code changes
+- Need better error-handling templates
+- Include tests in every code change
 
-### New Preference
+### New preference
 
 - When writing APIs, always include rate limiting
 ```
 
-### Goal Alignment
-
-Your Jarvis should know what you're working toward:
+### Keep goals in front of it
 
 ```markdown
 ## Active Goals
 
-### Q1 2026
+### This Quarter
 
-- [ ] Publish 12 blog posts (4/12)
+- [ ] Publish 12 posts (4/12)
 - [ ] Launch new product (research phase)
-- [ ] Reach 5K newsletter subscribers (3.2K current)
-
-### This Week
-
-- [ ] Finish authentication refactor
-- [ ] Write Claude Code tutorial
-- [ ] Set up analytics dashboard
+- [ ] Reach 5K subscribers (3.2K current)
 ```
 
----
-
-## The 30-Day Build Plan
-
-### Week 1: Foundation
-
-**Day 1-2**: Create your CLAUDE.md
-
-- Write your context and preferences
-- Document current projects
-- List your tech stack
-
-**Day 3-5**: Set up basic commands
-
-- Create 3-5 workflow commands
-- Test each one thoroughly
-- Refine based on results
-
-**Day 6-7**: Integration check
-
-- Ensure all MCP servers working
-- Test file operations
-- Verify deployment pipeline
-
-### Week 2: Expansion
-
-**Day 8-10**: Add more skills
-
-- Document common workflows
-- Create command shortcuts
-- Build template library
-
-**Day 11-14**: Automation
-
-- Set up recurring tasks
-- Create notification systems
-- Build monitoring dashboards
-
-### Week 3: Intelligence
-
-**Day 15-17**: Pattern documentation
-
-- Record your work patterns
-- Note optimization opportunities
-- Track decision rationale
-
-**Day 18-21**: Learning loops
-
-- Add post-session reviews
-- Update preferences based on feedback
-- Refine command effectiveness
-
-### Week 4: Mastery
-
-**Day 22-25**: Advanced workflows
-
-- Multi-step orchestrations
-- Parallel task execution
-- Cross-project coordination
-
-**Day 26-30**: Continuous improvement
-
-- Review what's working
-- Remove what isn't
-- Plan next iteration
+When the system knows what you're working toward, its suggestions stop being generic.
 
 ---
 
-## Real Examples From My System
+## What does the 30-day build plan look like?
 
-### Example 1: Publishing a Blog Post
+**Week 1 — Foundation.** Write your `CLAUDE.md` (context, projects, preferences). Set up the four core MCP servers. Build three slash commands for your most painful repeated tasks and test each one.
 
-**Command**: `/publish "AI productivity tips"`
+**Week 2 — Expansion.** Turn your common workflows into skills. Add commands for the next tier of work. Start a small template library.
 
-**What happens**:
+**Week 3 — Intelligence.** Document your work patterns and decision rationale. Add post-session reviews so the system learns from each pass.
 
-1. Research agent finds trending topics
-2. Content agent writes draft
-3. SEO agent optimizes
-4. Design agent creates hero image
-5. Dev agent deploys to production
-6. Marketing agent shares on social
+**Week 4 — Mastery.** Chain multi-step orchestrations, push parallel work to subagents, and prune what isn't earning its place. Review, remove, iterate.
 
-**Time**: 15 minutes vs 4+ hours manually
-
-### Example 2: Client Onboarding
-
-**Command**: `/onboard "Acme Corp"`
-
-**What happens**:
-
-1. CRM entry created
-2. Project folder structured
-3. Welcome email sent
-4. First meeting scheduled
-5. Invoice template prepared
-
-**Time**: 3 minutes vs 45+ minutes manually
-
-### Example 3: Weekly Operations
-
-**Command**: `/weekly`
-
-**What happens**:
-
-1. Analytics pulled from all platforms
-2. Content performance summarized
-3. Revenue calculated
-4. Priorities suggested
-5. Calendar optimized
-
-**Time**: 5 minutes vs 2+ hours manually
+You don't need all 30 days to feel it. The first command that saves you an hour does that on day one.
 
 ---
 
-## Common Mistakes to Avoid
+## What does this look like in practice?
 
-### 1. Starting Too Complex
+### Publishing a post
 
-Don't try to automate everything at once. Start with ONE workflow and perfect it.
+`/publish "AI productivity tips"` → research finds the angle, the draft gets written, SEO is checked, a hero image is generated, the page deploys, and a social draft is queued. Fifteen minutes instead of four-plus hours. Nothing publishes without my review — the command stages, it doesn't ship blind.
 
-### 2. Not Updating Context
+### Client onboarding
 
-Your CLAUDE.md isn't "set and forget." Update it weekly with new projects, decisions, and learnings.
+`/onboard "Acme Corp"` → CRM entry created, project folder structured, welcome email drafted, first meeting proposed, invoice template prepared. Three minutes instead of forty-five.
 
-### 3. Generic Commands
+### Weekly operations
 
-`/do-stuff` tells your Jarvis nothing. Be specific: `/deploy-staging`, `/review-pr`, `/write-newsletter`.
-
-### 4. Skipping the Learning Layer
-
-If you're not documenting what works and what doesn't, your system can't improve. Take 2 minutes after each major task to add notes.
+`/weekly` → analytics pulled, content performance summarized, revenue tallied, priorities proposed. Five minutes instead of two hours.
 
 ---
 
-## The Open Source Advantage
+## What mistakes should you avoid?
 
-Everything I've described is free to build. Claude Code, MCP servers, and workflow commands are all open source or included in your Anthropic subscription.
+**Starting too complex.** Don't automate everything at once. Take your single most painful repeated task and perfect one command for it.
 
-But if you want a head start, I've packaged my entire system:
+**Letting context rot.** `CLAUDE.md` isn't set-and-forget. Update it weekly and delete anything that's no longer true.
 
-### [Agentic Creator OS](https://github.com/frankxai/agentic-creator-os)
+**Vague commands.** `/do-stuff` tells the system nothing. Be specific: `/deploy-staging`, `/review-pr`, `/write-newsletter`.
 
-**Free on GitHub**:
+**Skipping the learning layer.** If you never record what worked, the system can't improve. The two-minute review after each big task is the whole compounding mechanism.
 
-- Complete MCP server suite
-- 5 department configurations
-- Workflow templates
-- Skills library
-
-**Premium Support**:
-
-- Live setup sessions
-- Custom configurations
-- Priority support
+**Overloading on MCP servers.** Every server you mount costs context before you say a word. Pin the ones you use; cut the rest.
 
 ---
 
-## Start Today
+## How much does it cost to build your own Jarvis?
 
-You don't need to wait. Here's what to do right now:
+The stack itself is free — `CLAUDE.md`, MCP servers, skills, and commands are open source or built into Claude Code. What you pay for is model usage.
 
-1. **Create your CLAUDE.md** - Take 30 minutes to document your context
-2. **Pick one workflow** - Choose your most painful repeated task
-3. **Build the command** - Create a `.claude/commands/` file for it
-4. **Test and refine** - Use it for a week, improve based on results
+Claude Code plans run **$20/month (Pro)**, **$100/month (Max 5×)**, and **$200/month (Max 20×)**, or pay-per-token via the API. On the API, Opus 4.8 is $5 input / $25 output per million tokens and Sonnet 4.6 is $3 / $15 — so the move is Sonnet for the routine 85% and Opus for the 15% where depth changes the result. I broke the math down in [Claude Code pricing explained](/blog/claude-code-pricing-explained-2026), and the wider toolkit in [the best AI superpowers stack for 2026](/blog/best-ai-superpowers-stack-2026).
 
-In 30 days, you'll have your own Jarvis—a personal intelligence system that knows your work, executes your workflows, and gets smarter every day.
-
-The future of AI isn't better chat tools. It's personal intelligence systems that amplify what makes you unique.
-
-**Build yours.**
+If you want the whole approach as a system rather than a single tool, that's [GenCreator](/gencreator).
 
 ---
 
-## Resources
+## What's the fastest way to start today?
 
-- [Agentic Creator OS on GitHub](https://github.com/frankxai/agentic-creator-os) - Free open source system
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code) - Official docs
-- [MCP Server Guide](/guides/mcp-servers) - How to set up local tools
-- [Creator Intelligence System](/products/creator-intelligence-system) - Premium implementation
+1. **Create your `CLAUDE.md`** — 30 minutes documenting context, projects, preferences.
+2. **Pick one workflow** — your most painful repeated task.
+3. **Build the command** — one file in `.claude/commands/`.
+4. **Use it for a week** — then refine based on what actually happened.
 
----
+The future of AI isn't better chat tools. It's personal intelligence systems that amplify what makes you specific. Build yours.
 
 ---
 
@@ -478,23 +302,27 @@ The future of AI isn't better chat tools. It's personal intelligence systems tha
 
 ### How much does it cost to build your own Jarvis?
 
-Free with your Claude Pro subscription ($20/month). The Agentic Creator OS is open source on GitHub. MCP servers run locally on your machine. No additional costs unless you want premium support.
+The stack is free. `CLAUDE.md`, MCP servers, skills, and slash commands are open source or built into Claude Code. You only pay for model usage: $20/month on Pro, $100 on Max 5×, $200 on Max 20×, or pay-per-token on the API. The [Agentic Creator OS](https://github.com/frankxai/agentic-creator-os) starter is free on GitHub.
 
 ### How long until I see results?
 
-Most users report time savings in the first week after basic setup. The compound benefits—accumulated context, refined workflows, pattern learning—build over 30-90 days.
+Most people save time in the first week, once the first command is wired up. The compounding benefits — accumulated context, refined workflows, captured patterns — build over 30 to 90 days.
 
 ### Do I need to know how to code?
 
-Basic command line familiarity is enough (cd, npm install, git clone). You're configuring markdown files, not writing software. The system is designed for creators, not developers.
+Basic command-line familiarity is enough: `cd`, install a package, clone a repo. You're writing markdown files, not software. The whole stack is markdown configuration.
 
-### What if I use different AI tools?
+### What's the difference between a skill, a subagent, and an MCP server?
 
-The CLAUDE.md pattern works across AI tools. Your context is portable. MCP servers are Claude Code specific, but the workflow patterns transfer to any agentic AI system.
+A skill is markdown know-how Claude follows when relevant. A subagent is an isolated session with its own model and context for research or review. An MCP server is a running program that connects Claude to an external system like GitHub or your filesystem. Modern setups pin a few MCP servers and orchestrate them with thin skills.
+
+### Which MCP servers should I start with?
+
+Four cover most work: `filesystem` (read/write files), `github` (issues and PRs), `Context7` (current library docs on demand), and `playwright` (browser automation and testing). Add more only when you have a concrete use — each one costs context before you type anything.
 
 ### Is my data secure?
 
-Everything runs locally. Your CLAUDE.md lives in your project folder. MCP servers execute on your machine. Nothing is sent to external servers except your Claude API calls (covered by Anthropic's privacy policy).
+The execution layer runs locally. Your `CLAUDE.md` lives in your project folder and MCP servers run on your machine. Only the model calls leave your machine, covered by Anthropic's data policy. Keep secrets out of `CLAUDE.md` — reference environment variables instead.
 
 ---
 
