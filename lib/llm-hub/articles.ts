@@ -19,6 +19,10 @@ export const MODEL_ARTICLES: Record<string, string> = {
   'mistral-large-3': 'mistral-large-3-analysis-2026',
   'gpt-oss': 'gpt-oss-analysis-2026',
   'phi-4': 'phi-analysis-2026',
+  // Microsoft MAI models share the in-house-family deep-dive.
+  'mai-thinking-1': 'microsoft-mai-frontier-models-2026',
+  'mai-image-2-5': 'microsoft-mai-frontier-models-2026',
+  'mai-code-1-flash': 'microsoft-mai-frontier-models-2026',
 }
 
 /** Returns the deep-dive article slug for a model key, if one exists. */

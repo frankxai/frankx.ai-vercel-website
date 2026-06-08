@@ -6,12 +6,25 @@
  * (a stored-XSS vector if data ever includes attacker-influenced text). Escaping
  * `<`, `>`, `&`, and the JS line separators to their \uXXXX forms keeps the JSON
  * semantically identical while making it impossible to close the script tag.
+ *
+ * Single-pass replacement; returns "" if the value cannot be serialized so a
+ * malformed payload yields an empty (harmless) script rather than crashing render.
  */
+const ESCAPE_MAP: Record<string, string> = {
+  "<": "\\u003c",
+  ">": "\\u003e",
+  "&": "\\u0026",
+  "\u2028": "\\u2028",
+  "\u2029": "\\u2029",
+}
+
 export function ldJson(data: unknown): string {
-  return JSON.stringify(data)
-    .replace(/</g, "\\u003c")
-    .replace(/>/g, "\\u003e")
-    .replace(/&/g, "\\u0026")
-    .replace(/\u2028/g, "\\u2028")
-    .replace(/\u2029/g, "\\u2029")
+  try {
+    const json = JSON.stringify(data)
+    if (typeof json !== "string") return ""
+    return json.replace(/[<>&\u2028\u2029]/g, (m) => ESCAPE_MAP[m] ?? m)
+  } catch (error) {
+    console.error("[ldJson] Serialization failed:", error)
+    return ""
+  }
 }
