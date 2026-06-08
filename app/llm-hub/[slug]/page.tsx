@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, ArrowRight, ExternalLink, Zap } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, ExternalLink, Zap } from 'lucide-react'
 
 import {
   formatContext,
@@ -13,7 +13,9 @@ import {
 } from '@/lib/llm-hub/registry'
 import { getEditorial } from '@/lib/llm-hub/editorial'
 import { comparisonsForModel } from '@/lib/llm-hub/comparisons'
+import { articleForModel } from '@/lib/llm-hub/articles'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
+import { ldJson } from '@/lib/seo/jsonld'
 import { CapabilityBadge } from '@/components/llm-hub/CapabilityBadge'
 
 export const revalidate = 3600
@@ -74,6 +76,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
   const outputPrice = live?.outputPer1m ?? (typeof model.pricing?.output_per_1m === 'number' ? model.pricing.output_per_1m : null)
 
   const comparisons = comparisonsForModel(slug)
+  const articleSlug = articleForModel(model.id)
   const platforms = (org?.agentic_platforms || [])
     .map((id) => getPlatform(id))
     .filter(Boolean)
@@ -121,8 +124,8 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(breadcrumb) }} />
 
       <main className="relative z-10 mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-8">
@@ -148,6 +151,16 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
           </div>
           <h1 className="mb-3 text-4xl font-bold md:text-5xl">{model.name}</h1>
           {ed?.tagline ? <p className="max-w-2xl text-lg text-white/60">{ed.tagline}</p> : null}
+          {articleSlug ? (
+            <Link
+              href={`/blog/${articleSlug}`}
+              className="mt-4 inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
+              style={{ borderColor: `${accent}55`, color: accent, backgroundColor: `${accent}14` }}
+            >
+              <BookOpen className="h-4 w-4" aria-hidden="true" /> Read the full {model.name} analysis
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          ) : null}
           {org?.capability_focus && org.capability_focus.length > 0 ? (
             <div className="mt-4 flex flex-wrap gap-1.5">
               {org.capability_focus.map((c) => (

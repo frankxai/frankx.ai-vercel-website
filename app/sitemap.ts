@@ -4,6 +4,8 @@ import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 // Pre-baked at build time by scripts/build-route-index.mjs (which uses
 // lib/route-enumeration.mjs). Importing the JSON keeps the sitemap lambda
 // small — calling enumerateRoutes() at request time forces Turbopack to
@@ -599,6 +601,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/guides/${slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // LLM Hub — per-model pages (dynamic, keyed by registry slug)
+  getAllModels().forEach((m) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/${m.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    })
+  })
+
+  // LLM Hub — head-to-head comparison pages (dynamic)
+  COMPARISONS.forEach((c) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/compare/${c.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
       priority: 0.7,
     })
   })
