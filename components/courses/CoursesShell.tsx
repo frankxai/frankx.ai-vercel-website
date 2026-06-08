@@ -316,7 +316,7 @@ export default function CoursesShell() {
                   name: 'Intro to Deep Learning',
                   source: 'MIT',
                   type: 'Course',
-                  href: 'http://introtodeeplearning.com/',
+                  href: 'https://introtodeeplearning.com/',
                 },
               ].map((resource, i) => (
                 <motion.a
