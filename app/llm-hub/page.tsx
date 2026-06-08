@@ -9,6 +9,7 @@ import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
 import { getAllPlatforms, getProviders } from '@/lib/llm-hub/registry'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
+import { ldJson } from '@/lib/seo/jsonld'
 import { CREATOR_STACKS } from '@/lib/llm-hub/creator-stacks'
 
 export const revalidate = 3600
@@ -95,9 +96,9 @@ export default async function LlmHubPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(breadcrumbJsonLd) }} />
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[#0a0a0b]" />
