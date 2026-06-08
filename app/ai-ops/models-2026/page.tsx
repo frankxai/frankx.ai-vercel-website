@@ -657,8 +657,8 @@ export default function Models2026Page() {
             <h2 className="text-2xl font-bold mb-6">Mixture of Experts (MoE) Architecture</h2>
             <div className="p-8 rounded-xl bg-white/[0.02] border border-white/5">
               <p className="text-white/60 mb-6">
-                MoE is revolutionizing AI efficiency. Llama 4 Maverick has 400B total parameters but only activates 17B per token —
-                running on a single H100 GPU with quantization while matching much larger dense models.
+                MoE is reshaping AI efficiency. Llama 4 Maverick has 400B total parameters but only activates 17B per token —
+                keeping inference cost close to a 17B dense model while matching the quality of much larger ones.
               </p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
