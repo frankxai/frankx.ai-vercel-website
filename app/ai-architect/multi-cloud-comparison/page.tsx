@@ -188,7 +188,7 @@ const cloudProviders = {
     tagline: 'Enterprise Integration Champion',
     color: 'from-blue-600 to-indigo-600',
     pricing: 'Premium',
-    description: 'Enterprise-ready cloud with seamless Microsoft ecosystem integration',
+    description: 'Enterprise-ready cloud with native Microsoft ecosystem integration',
     strengths: ['Microsoft ecosystem', 'Enterprise compliance', 'Hybrid cloud', '.NET excellence'],
     weaknesses: ['Complex pricing', 'Steeper learning curve', 'Less startup-friendly'],
     aiServices: ['Azure OpenAI', 'Cognitive Services', 'ML Studio', 'Form Recognizer'],
@@ -652,7 +652,7 @@ function DecisionFramework() {
               <h3 className="text-xl font-bold text-white">Innovation-Focused</h3>
             </div>
             <p className="text-white/70 mb-4">
-              Cutting-edge AI, rapid experimentation
+              Frontier AI models, rapid experimentation
             </p>
             <div className="space-y-2">
               <p className="text-sm text-white/60">
