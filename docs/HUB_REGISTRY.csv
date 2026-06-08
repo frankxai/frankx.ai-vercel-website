@@ -2,7 +2,7 @@ hub,route,tier,register,voice,fresh,reviewed_model,reviewed_date,priority,notes
 Home,/,1,mainstream,clean,current,Opus 4.8,2026-06-02,P0,Oracle scrub + honest counts + autoplay fix (#107/#110)
 ACOS,/acos,1,product,unaudited,unaudited,legacy,,P0,Verify 90+/60+/80+ counts vs repo
 AI Architecture Hub,/ai-architecture,1,enterprise,unaudited,unaudited,legacy,,P0,Central builder hub
-Music,/music,1,product,review,unaudited,legacy,,P1,MusicShell voice flagged
+Music,/music,1,product,clean,current,Opus 4.8,2026-06-05,P1,MusicShell hits were blog-title refs (not slop)
 Courses,/courses,1,mainstream,unaudited,current,Opus 4.8,2026-06-02,P1,Build-blocker fixed (#140)
 About,/about,1,mainstream,unaudited,unaudited,legacy,,P1,Story & mission
 Bio,/bio,1,enterprise,clean,current,Opus 4.8,2026-06-02,P1,Softened EMEA credential
@@ -10,7 +10,7 @@ Build / Agentic Builder Lab,/build,1,enterprise,unaudited,unaudited,legacy,,P1,B
 Start Here,/start,1,mainstream,unaudited,unaudited,legacy,,P1,First-touch funnel
 GenCreators,/gencreator,2,mainstream,unaudited,unaudited,legacy,,P2,Framework hub
 Learn Hub,/learn,2,mainstream,unaudited,unaudited,legacy,,P2,
-Explore / Resources,/resources,2,mainstream,review,unaudited,legacy,,P2,templates page has guru-slop
+Explore / Resources,/resources,2,mainstream,clean,current,Opus 4.8,2026-06-05,P2,templates de-slopped (#147); Soul Frequency name kept
 Prompt Library,/prompt-library,2,mainstream,unaudited,unaudited,legacy,,P2,Verify 200+ count
 Research Hub,/research,2,enterprise,unaudited,unaudited,legacy,,P2,
 Intelligence Atlas,/intelligence-atlas,2,enterprise,unaudited,unaudited,legacy,,P2,
@@ -27,11 +27,12 @@ Enterprise,/enterprise,2,enterprise,unaudited,unaudited,legacy,,P1,
 AI CoE,/ai-coe,2,enterprise,unaudited,unaudited,legacy,,P2,Build-your-own CoE
 Partnerships,/partnerships,2,enterprise,unaudited,unaudited,legacy,,P2,Oracle scrub (#107)
 Founders Circle,/founders-circle,2,mainstream,clean,current,Opus 4.8,2026-06-02,P2,Past-tense Oracle
-Content Studio,/content-studio,2,mainstream,rewrite,unaudited,legacy,,P2,aligned with soul purpose guru-slop
+Content Studio,/content-studio,2,mainstream,clean,current,Opus 4.8,2026-06-05,P2,Consciousness->Depth/Brand-fit + agent-id bug fixed (#152)
 AI Assessment,/ai-assessment,2,mainstream,review,unaudited,legacy,,P2,AI transformation OK; check rest
-Books,/books,2,mainstream,review,unaudited,legacy,,P2,books-registry flagged; verify count
+Books,/books,2,mainstream,review,unaudited,legacy,,P2,books-registry flagged; site counts treated as source-of-truth per Frank
 Golden Age,/golden-age,2,mainstream,unaudited,unaudited,legacy,,P2,Flagship book
 Blog,/blog,2,mainstream,review,stale,legacy,,P2,Per-post audit
+AI Architecture Multi-Cloud,/ai-architecture/multi-cloud-comparison,2,enterprise,review,unaudited,legacy,,P2,TODO minor copy fix (seamless->native; cutting-edge->frontier) not yet shipped
 Rails / Canon,/canon,3,contemplative,clean,unaudited,legacy,,P3,Serif register by design — do not flatten
 Soulbook,/soulbook,3,contemplative,clean,unaudited,legacy,,P3,Product name; reflective intentional
 German family,/familie,3,personal-de,na,unaudited,legacy,,P3,Personal register
