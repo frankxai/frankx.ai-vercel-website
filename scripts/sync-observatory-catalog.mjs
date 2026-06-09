@@ -40,7 +40,12 @@ if (ACOS && existsSync(ACOS)) {
   const src = join(ACOS, 'tools/observatory/public/catalog.json')
   if (existsSync(gen)) {
     console.log(`↻ regenerating catalog from ${ACOS} …`)
-    execFileSync('node', [gen], { stdio: 'inherit' })
+    // Run from the ACOS root so the generator's relative paths resolve correctly.
+    execFileSync('node', [gen], { stdio: 'inherit', cwd: ACOS })
+    if (!existsSync(src)) {
+      console.error(`✗ generator did not produce ${src}`)
+      process.exit(1)
+    }
     copyFileSync(src, DEST)
     console.log(`✓ copied fresh catalog → ${DEST}`)
   } else {

@@ -53,10 +53,7 @@ function bandKey(node: CatalogNode, view: ObservatoryView): string {
   return node.kind
 }
 function bandLabel(key: string, view: ObservatoryView): string {
-  if (view === 'groups') {
-    const [kind, group] = key.split('::')
-    return `${group}`
-  }
+  if (view === 'groups') return key.split('::')[1] ?? key
   return kindLabel[key as NodeKind] ?? key
 }
 

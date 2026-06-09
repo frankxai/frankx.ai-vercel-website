@@ -1,7 +1,7 @@
 /**
  * Agent Observatory — theme tokens.
  *
- * Built on Anthropic's official brand palette (Dark #141413, Light #faf9f5,
+ * Inspired by Anthropic's brand palette (Dark #141413, Light #faf9f5,
  * Mid/Light gray, accents Orange #d97757 / Blue #6a9bcc / Green #788c5d) and
  * type system (Poppins headings, Lora body). FrankX-owned surface; no Anthropic
  * logos/wordmarks shipped, open-font equivalents used publicly.

@@ -28,8 +28,8 @@ export function IamMatrix({ catalog }: { catalog: Catalog }) {
           Agent IAM — capability matrix
         </h3>
         <p className="mb-5 text-sm" style={{ color: palette.midGray }}>
-          Six role profiles scope which tools each agent class may use and where it may write.
-          Content writers can&apos;t run Bash; security auditors are read-only.
+          {profiles.length} role profiles scope which tools each agent class may use and where it may
+          write. Content writers can&apos;t run Bash; security auditors are read-only.
         </p>
 
         <div className="overflow-hidden rounded-2xl border" style={{ borderColor: palette.line }}>
