@@ -2842,6 +2842,81 @@ export const researchDomains: ResearchDomain[] = [
     ],
     lastVerified: '2026-05-03',
   },
+  {
+    slug: 'model-arena',
+    title: 'Model Arena',
+    subtitle: 'Living head-to-head LLM evals, run natively in Claude Code',
+    description: 'The Model Arena is a standing eval surface: the same tasks dispatched to competing frontier models inside the Claude Code agent harness, verified objectively where possible, judged blind where not, with a JSON receipt for every run. It exists so model-routing decisions on this site — and yours — rest on receipts instead of vibes. This page is the distribution mirror; methodology and raw receipts live in the Starlight Intelligence System repo.',
+    tldr: 'Claude Code\'s Agent tool accepts a per-spawn model override, which turns the CLI itself into an eval harness — zero extra infrastructure. Three rounds of Fable 5 vs Opus 4.8 (June 2026) show correctness near-parity with one exception, and a consistent split: Fable 5 is the precision instrument (output constraints, first-try execution, hard clean reasoning), Opus 4.8 the judgment instrument (gate-flagging, spec pushback, tool efficiency) that keeps leaking past output-shape contracts.',
+    icon: 'BarChart3',
+    color: 'amber',
+    category: 'models-tools',
+    highlights: [
+      { stat: '3', label: 'Rounds receipted (June 2026)', source: 'SIS arena runs' },
+      { stat: '13', label: 'Tasks across 5 axes', source: 'SIS arena runs' },
+      { stat: '0', label: 'Extra infrastructure required', source: 'Harness README' },
+      { stat: '1', label: 'Correctness failure on record (Opus, R3 reasoning)', source: 'R3 receipt' },
+    ],
+    sections: [
+      {
+        title: 'How the Arena Works',
+        content: 'The harness is a usage pattern, not a codebase. The same task prompt is dispatched in one parallel block to N subagents, each pinned to a different model via the Agent tool\'s per-spawn override. Objective tasks self-verify: coding tasks ship with exact asserts the contestant must run, grounding tasks have ground-truth answers the harness fixes before dispatch. Subjective tasks go to a blind, non-contestant judge with shuffled labels per task, and hard constraints (word counts, output format) are checked by script independently of the judge — so taste can never launder a constraint violation. Every run writes a JSON receipt.',
+        items: [
+          { title: 'Dispatch', description: 'Same prompt, parallel subagents, one model override each. Contestants are told their output is raw harness data.', badge: 'Step 1' },
+          { title: 'Verify', description: 'Asserts re-run independently by the harness; ground truth computed before dispatch, never derived from contestant output.', badge: 'Step 2' },
+          { title: 'Judge', description: 'Blind non-contestant model, shuffled A/B labels recorded in the receipt. Judged tasks capped at half the card.', badge: 'Step 3' },
+          { title: 'Receipt', description: 'JSON per run: scores, attempts, tokens, durations, label assignments, caveats. Public artifacts render from receipts.', badge: 'Step 4' },
+        ],
+      },
+      {
+        title: 'What Three Rounds Found (Fable 5 vs Opus 4.8, June 2026)',
+        content: 'Round 1 (capability card): correctness parity everywhere; the discriminating signal was instruction compliance — Fable 5 was the only contestant to respect format and length constraints in both judged tasks. Round 2 (behavioral stress card, zero judge dependence): Fable 5 took it 3–2, but the split is the finding — Fable aced constraint stacks and injection handling yet silently executed a governance-gated edit, while Opus flagged the gate and pushed back on a contradictory spec. Round 3 (hard-capability card with a new agentic tool-use axis): Fable 5 won 2-2-0, including the first correctness failure on record — Opus answered a no-tools reasoning problem confidently wrong in 2.7 seconds — while Opus closed its word-count gap and was faster and more tool-efficient on the agentic axis.',
+        items: [
+          { title: 'Fable 5 — precision instrument', description: 'Stacked output constraints (7/7), first-try fixes, cleanest injection handling, hard clean reasoning. Route agentic pipelines feeding schemas, tools, and other agents here.', badge: 'Measured' },
+          { title: 'Opus 4.8 — judgment instrument', description: 'Flagged governance gates, led with spec contradictions, 2× more tool-efficient on the agentic axis. Expect leaks past "output only" contracts and word caps.', badge: 'Measured' },
+          { title: 'Style: contested', description: 'The blind judge preferred Opus in Round 1 and Fable in Round 3 (n=1 each). No routing decision on prose style until repeated rounds agree.', badge: 'Open' },
+        ],
+      },
+      {
+        title: 'The Eval-Stack Doctrine',
+        content: 'One decision, three layers: head-to-head model rounds run in the Claude Code arena harness (this page); prompt and pattern regression runs in promptfoo — declarative, local, free, colocated with the patterns it tests; runtime tracing waits for Langfuse, and only once an app serves real users, because tracing is a production concern, not an eval concern. LangChain/LangSmith was evaluated and rejected as an eval layer: framework weight for no capability the stack lacks.',
+      },
+    ],
+    faq: [
+      { question: 'What is the Model Arena?', answer: 'A standing head-to-head LLM eval surface: the same tasks dispatched to competing models inside the Claude Code agent harness, verified objectively where possible, judged blind where not, with a published JSON receipt for every run.' },
+      { question: 'How do you run LLM evals inside Claude Code without extra infrastructure?', answer: 'The Agent tool accepts a per-spawn model override. Dispatch the same prompt to parallel subagents pinned to different models, verify with shipped asserts and pre-fixed ground truth, judge subjective tasks with a blind non-contestant model, and write a JSON receipt. The CLI is the harness.' },
+      { question: 'What does Fable 5 do better than Opus 4.8?', answer: 'Measured across three rounds: output discipline and constraint precision (stacked constraints, exact output contracts, first-try execution) plus hard clean reasoning in Round 3. In agentic pipelines where outputs feed schemas and tools, output discipline is a capability.' },
+      { question: 'What does Opus 4.8 do better than Fable 5?', answer: 'Situational judgment: it flagged a governance-gated edit Fable executed silently, led with the contradiction in an impossible spec, and was faster and roughly twice as tool-efficient on the agentic axis. It remains prone to leaking preambles past strict output contracts.' },
+      { question: 'Why should I trust these results?', answer: 'Trust the receipts, not the prose: every round publishes a JSON receipt with prompts category, scores, attempts, label assignments, and caveats — including the winner\'s failures. And n=1 rounds are explicitly directional; claims are promoted only after repeated rounds agree.' },
+    ],
+    keyFindings: [
+      'The Claude Code Agent tool\'s per-spawn model override turns the CLI itself into a zero-infrastructure eval harness measuring model-in-harness behavior — the configuration actually operated, not a raw API benchmark',
+      'Fable 5\'s measured edge across three rounds is constraint precision: it was the only contestant to respect output-format and length constraints consistently, and went 7/7 on a script-verified constraint stack',
+      'Round 3 produced the first correctness failure on record: Opus 4.8 answered a no-tools reasoning task confidently wrong in 2.7 seconds, while Fable 5 solved it exactly',
+      'Opus 4.8\'s measured edge is judgment: it flagged a governance-gated edit the default model executed silently, and pushed back on a self-contradictory spec instead of shipping it',
+      'Blind style verdicts flipped between rounds (Opus R1, Fable R3) — single-judge n=1 style scores are not routing evidence',
+      'Eval-stack doctrine: arena rounds in Claude Code, prompt regression in promptfoo, tracing in Langfuse only once real users exist; LangSmith rejected as framework weight',
+    ],
+    relatedDomains: ['agent-benchmarks', 'coding-assistants', 'agent-frameworks', 'ai-agent-config'],
+    relatedBlogPosts: [],
+    lastUpdated: '2026-06-09',
+    sourceCount: 6,
+    status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'n=1 per task per round — results are directional, not statistical; the arena promotes claims only after repeated rounds agree',
+      'The blind judge is a Claude-family model; shuffled labels mitigate but do not eliminate family bias',
+      'All results measure model-in-Claude-Code-harness behavior, which is the configuration we operate but not a raw API benchmark',
+      'Latency and token figures include agent-harness overhead; treat durations as rough',
+      'First-party evaluation: tasks, harness, and judging were designed and run by the FrankX/SIS system being described — receipts and reproduction instructions are published to offset this',
+    ],
+    whatWeDontKnow: [
+      'Whether the style verdict stabilizes with repeated rounds or stays judge- and prompt-sensitive',
+      'How the discipline-vs-judgment split generalizes beyond the Claude family to GPT, Gemini, and open-weight contestants',
+      'Whether Opus 4.8\'s Round 3 reasoning miss is an outlier or a pattern on no-tools hard reasoning — needs repeated rounds',
+    ],
+    lastVerified: '2026-06-09',
+  },
 ]
 
 // Helper functions
