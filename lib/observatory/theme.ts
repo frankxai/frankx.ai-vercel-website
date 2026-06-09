@@ -1,34 +1,44 @@
 /**
- * Agent Observatory — Anthropic-inspired, FrankX-owned theme tokens.
+ * Agent Observatory — theme tokens.
  *
- * Warm-dark palette that bridges Anthropic's signature warmth (cream / clay /
- * kraft) with the site's dark nav + footer. No Anthropic logos/wordmarks; open
- * font equivalents used publicly (Styrene→Inter, Tiempos→Playfair/serif).
+ * Built on Anthropic's official brand palette (Dark #141413, Light #faf9f5,
+ * Mid/Light gray, accents Orange #d97757 / Blue #6a9bcc / Green #788c5d) and
+ * type system (Poppins headings, Lora body). FrankX-owned surface; no Anthropic
+ * logos/wordmarks shipped, open-font equivalents used publicly.
  */
 
 import type { NodeKind, Tier } from './types'
 
 export const palette = {
-  kraft: '#181712', // near-black warm ground
-  kraftSoft: '#211F18',
-  kraftPanel: '#26241C',
-  line: 'rgba(240,238,230,0.10)',
-  lineStrong: 'rgba(240,238,230,0.18)',
-  cream: '#F0EEE6', // primary text
-  creamDim: '#B7B2A3', // secondary text
-  creamFaint: '#7E7A6E',
-  clay: '#CC785C', // Anthropic "book cloth" — primary accent
-  clayBright: '#E1936F',
-  clayDeep: '#A6573F',
+  // Anthropic neutrals → warm-dark ground
+  ink: '#141413', // Anthropic Dark — ground
+  inkSoft: '#1d1c1a',
+  panel: '#232220',
+  panelHi: '#2b2926',
+  line: 'rgba(250,249,245,0.09)',
+  lineStrong: 'rgba(250,249,245,0.16)',
+  light: '#faf9f5', // Anthropic Light — primary text
+  midGray: '#b0aea5', // Anthropic Mid Gray — secondary text
+  faint: '#7c7a72',
+  lightGray: '#e8e6dc',
+  // Accents (official)
+  orange: '#d97757',
+  orangeBright: '#e89478',
+  orangeDeep: '#b65b3e',
+  blue: '#6a9bcc',
+  green: '#788c5d',
+  // Derived muted tints for the two extra node kinds (kept earthy/on-brand)
+  gold: '#c79a52',
+  plum: '#a87c9f',
 }
 
 /** Color per node kind. */
 export const kindColor: Record<NodeKind, string> = {
-  agent: '#CC785C', // clay
-  skill: '#6A9FB5', // muted sky
-  command: '#C7A35A', // warm gold
-  workflow: '#8C9A5B', // sage
-  'iam-profile': '#B07C9E', // muted plum
+  agent: palette.orange,
+  skill: palette.blue,
+  command: palette.gold,
+  workflow: palette.green,
+  'iam-profile': palette.plum,
 }
 
 export const kindLabel: Record<NodeKind, string> = {
@@ -39,11 +49,11 @@ export const kindLabel: Record<NodeKind, string> = {
   'iam-profile': 'IAM Profiles',
 }
 
-/** Color per model tier (agents). */
+/** Color per model tier — escalating warmth (cheap→green, balanced→blue, orchestrator→orange). */
 export const tierColor: Record<Tier, string> = {
-  haiku: '#8C9A5B', // sage — fast/cheap
-  sonnet: '#6A9FB5', // sky — balanced
-  opus: '#CC785C', // clay — orchestrators
+  haiku: palette.green,
+  sonnet: palette.blue,
+  opus: palette.orange,
 }
 
 export const tierLabel: Record<Tier, string> = {
@@ -52,7 +62,7 @@ export const tierLabel: Record<Tier, string> = {
   opus: 'Opus · orchestrator',
 }
 
-/** Hex → rgba helper for glows. */
+/** Hex → rgba helper for glows/tints. */
 export function withAlpha(hex: string, alpha: number): string {
   const h = hex.replace('#', '')
   const r = parseInt(h.slice(0, 2), 16)

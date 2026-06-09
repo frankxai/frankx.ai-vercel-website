@@ -16,8 +16,9 @@ import type { Catalog, CatalogNode, NodeKind, ObservatoryView } from '@/lib/obse
 import { computeLayout } from '@/lib/observatory/layout'
 import { kindColor, tierColor, palette } from '@/lib/observatory/theme'
 import { ObservatoryNode } from './ObservatoryNode'
+import { ClusterLabel } from './ClusterLabel'
 
-const nodeTypes = { observatory: ObservatoryNode }
+const nodeTypes = { observatory: ObservatoryNode, clusterLabel: ClusterLabel }
 
 interface AgentGraphProps {
   catalog: Catalog
@@ -62,14 +63,22 @@ export function AgentGraph({
   }, [layout, activeIds, selectedId, setNodes, setEdges])
 
   return (
-    <div className="relative h-full w-full" style={{ background: palette.kraft }}>
+    <div
+      className="relative h-full w-full"
+      style={{
+        background: `radial-gradient(ellipse 80% 70% at 50% 42%, ${palette.inkSoft} 0%, ${palette.ink} 70%)`,
+      }}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onNodeClick={(_, n: RFNode) => onSelect?.((n.data as { node: CatalogNode }).node)}
+        onNodeClick={(_, n: RFNode) => {
+          const node = (n.data as { node?: CatalogNode })?.node
+          if (node) onSelect?.(node)
+        }}
         onPaneClick={() => onSelect?.(null)}
         connectionLineType={ConnectionLineType.SmoothStep}
         fitView
@@ -94,7 +103,7 @@ export function AgentGraph({
           zoomable
           nodeColor={(n) => {
             const node = (n.data as { node?: CatalogNode })?.node
-            if (!node) return palette.clay
+            if (!node) return palette.orange
             return node.kind === 'agent' && node.tier ? tierColor[node.tier] : kindColor[node.kind]
           }}
           maskColor="rgba(24,23,18,0.82)"
