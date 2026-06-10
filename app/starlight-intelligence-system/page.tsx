@@ -646,7 +646,7 @@ export default function StarlightIntelligenceSystemPage() {
               href={KNOWLEDGE_TREE}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
             >
               <Network className="h-4 w-4" />
               starlightintelligence.org/knowledge-tree
