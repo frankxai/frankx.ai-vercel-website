@@ -15,7 +15,7 @@
  * frontmatter. Code samples that legitimately contain `<500 lines` or `< 2.5s`
  * are not flagged.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = process.cwd();
@@ -26,8 +26,7 @@ const ROOT = process.cwd();
 // Render roots confirmed via lib/blog.ts, lib/guides.ts, app/sitemap.ts.
 const RENDERED_DIRS = ['content/blog', 'content/guides'];
 
-const { readdirSync, statSync, existsSync } = await import('node:fs');
-let files = [];
+const files = [];
 const walk = (dir) => {
   for (const e of readdirSync(dir)) {
     const p = join(dir, e);
@@ -49,14 +48,13 @@ for (const file of files) {
   const lines = text.split('\n');
   let inFence = false;
   let inFrontmatter = false;
-  let frontmatterDone = false;
 
   for (let i = 0; i < lines.length; i++) {
-    let line = lines[i];
+    const line = lines[i];
 
     // YAML frontmatter (leading --- ... ---)
     if (i === 0 && line.trim() === '---') { inFrontmatter = true; continue; }
-    if (inFrontmatter) { if (line.trim() === '---') { inFrontmatter = false; frontmatterDone = true; } continue; }
+    if (inFrontmatter) { if (line.trim() === '---') inFrontmatter = false; continue; }
 
     // Fenced code blocks
     if (/^\s*(```|~~~)/.test(line)) { inFence = !inFence; continue; }
@@ -73,14 +71,14 @@ for (const file of files) {
 }
 
 if (violations.length > 0) {
-  console.error('\n[31m✗ MDX build-safety check failed[0m — these will break `next build` prerender:\n');
+  console.error('\nMDX build-safety check FAILED — these will break `next build` prerender:\n');
   for (const v of violations) {
     console.error(`  ${v.file}:${v.line}:${v.col}`);
     console.error(`    ${v.text}`);
-    console.error(`    → "<" directly followed by a digit/$ is parsed as a JSX tag. Reword (e.g. "(<$60)" → "(under $60)") or wrap in \`backticks\`.\n`);
+    console.error(`    -> "<" directly followed by a digit/$ is parsed as a JSX tag. Reword (e.g. "(<$60)" -> "(under $60)") or wrap in \`backticks\`.\n`);
   }
   console.error(`${violations.length} issue(s) found across ${files.length} content file(s). Fix before build.\n`);
   process.exit(1);
 }
 
-console.log(`✓ MDX build-safety check passed (${files.length} content files, no unsafe '<' in prose/tables).`);
+console.log(`MDX build-safety check passed (${files.length} content files, no unsafe '<' in prose/tables).`);
