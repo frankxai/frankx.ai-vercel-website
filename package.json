@@ -86,7 +86,8 @@
     "sync:check": "bash scripts/pre-deploy-sync-check.sh",
     "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
     "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
-    "predeploy": "npm run merge:gate && npm run sync:check"
+    "predeploy": "npm run merge:gate && npm run sync:check",
+    "observatory:catalog": "node scripts/sync-observatory-catalog.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
