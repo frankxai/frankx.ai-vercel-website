@@ -1,8 +1,37 @@
 # Branch Audit — frankx.ai-vercel-website
 
-**As of:** 2026-06-01
+**As of:** 2026-06-01 · **Updated:** 2026-06-10 (see Status update below)
 **Auditor:** Claude Code session ([claude.ai/code](https://claude.ai/code))
 **Purpose:** Inventory every non-`main` branch so deletions are zero-risk — the ideas live here.
+
+## Status update — 2026-06-10
+
+What changed since the original audit:
+
+- **Cleanup executed.** The 3 `SAFE_DELETE` branches were deleted via the
+  `branch-cleanup.yml` workflow (run logs confirm). The `KEEP_WIP` and
+  `KEEP_BACKUP` branches were renamed by Frank to the `archive/*` prefix —
+  same refs, clearer intent. Branch names below refer to their pre-archive
+  names; prepend `archive/` (with `/`→`-` in some cases) to find them now.
+- **Generative Model Hub (`archive/claude-build-llm-research-hub-75ba8`):
+  PARTIALLY SUPERSEDED.** Frank rebuilt `/llm-hub` on `main` from scratch
+  (registry, editorial, comparison pages, Model Arena research domain). The
+  archive branch's remaining unique idea is the **multimodal `/models` layer**
+  (image/video/audio/voice/embedding/world categories — 6 route trees). If a
+  multimodal decision layer is wanted, mine the archive for IA and data-shape
+  ideas rather than reviving the diff — `main` has moved too far for a clean
+  rebase.
+- **Newsletter DOI infra (`archive/feat-newsletter-launch-v1`): REVIVED.**
+  Being cherry-picked onto current `main` as a draft PR. Urgency upgraded:
+  the live `email-signup.tsx` success message now says "Check your inbox to
+  confirm" while no confirm route exists on `main` — the site promises a
+  double-opt-in flow it doesn't have. DOI + one-click unsubscribe are also
+  the legally conservative posture for EU sending.
+- **Multi-agent newsletter system (`archive/multi-agent-newsletter-system-anKSZ`):
+  still unique, still archived.** 6 newsletter agents + `lib/newsletter/` +
+  publish script. Revive when newsletter operations resume; depends on the
+  DOI infra landing first.
+
 
 If a branch is marked `SAFE_DELETE`, every meaningful change it contains is already in `main`. If marked `KEEP`, it has unmerged work worth reviving or finishing. `KEEP_BACKUP` is explicit save-points (recovery, staging). Revival is always `git checkout origin/<branch>` (deletion is reversible until GitHub garbage-collects the ref, typically weeks).
 

@@ -99,7 +99,7 @@ const faqs = [
   },
   {
     q: 'How is it different from a free GitHub gist?',
-    a: 'The pack is the result of shipping 8 production builds with these exact files — every artifact has been used, broken, and refined in real work. The eval harness alone saves a week of scaffolding.',
+    a: 'The pack grows out of the 8 builds running in the public lab — every artifact gets used, broken, and refined as those builds progress, with the failure notes documented. The eval harness alone saves a week of scaffolding.',
   },
   {
     q: 'Refund policy?',
@@ -203,11 +203,11 @@ export default function TemplatePackPage() {
               Inside the pack
             </p>
             <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
-              Five core artifacts. Each one tested in production.
+              Five core artifacts, drawn from live builds.
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-400">
-              These are the exact files Frank uses on every build in the public lab. They have
-              shipped real product surfaces — not slideware.
+              These are the working files behind the builds in the public lab — iterated as each
+              build progresses, with the failure notes kept in.
             </p>
           </div>
 
