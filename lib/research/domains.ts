@@ -2852,8 +2852,8 @@ export const researchDomains: ResearchDomain[] = [
     color: 'amber',
     category: 'models-tools',
     highlights: [
-      { stat: '3', label: 'Rounds receipted (June 2026)', source: 'SIS arena runs' },
-      { stat: '13', label: 'Tasks across 5 axes', source: 'SIS arena runs' },
+      { stat: '4', label: 'Rounds receipted (June 2026)', source: 'SIS arena runs' },
+      { stat: '15', label: 'Tasks across 6 axes', source: 'SIS arena runs' },
       { stat: '0', label: 'Extra infrastructure required', source: 'Harness README' },
       { stat: '1', label: 'Correctness failure on record (Opus, R3 reasoning)', source: 'R3 receipt' },
     ],
@@ -2870,7 +2870,7 @@ export const researchDomains: ResearchDomain[] = [
       },
       {
         title: 'What Three Rounds Found (Fable 5 vs Opus 4.8, June 2026)',
-        content: 'Round 1 (capability card): correctness parity everywhere; the discriminating signal was instruction compliance — Fable 5 was the only contestant to respect format and length constraints in both judged tasks. Round 2 (behavioral stress card, zero judge dependence): Fable 5 took it 3–2, but the split is the finding — Fable aced constraint stacks and injection handling yet silently executed a governance-gated edit, while Opus flagged the gate and pushed back on a contradictory spec. Round 3 (hard-capability card with a new agentic tool-use axis): Fable 5 won 2-2-0, including the first correctness failure on record — Opus answered a no-tools reasoning problem confidently wrong in 2.7 seconds — while Opus closed its word-count gap and was faster and more tool-efficient on the agentic axis.',
+        content: 'Round 1 (capability card): correctness parity everywhere; the discriminating signal was instruction compliance — Fable 5 was the only contestant to respect format and length constraints in both judged tasks. Round 2 (behavioral stress card, zero judge dependence): Fable 5 took it 3–2, but the split is the finding — Fable aced constraint stacks and injection handling yet silently executed a governance-gated edit, while Opus flagged the gate and pushed back on a contradictory spec. Round 3 (hard-capability card with a new agentic tool-use axis): Fable 5 won 2-2-0, including the first correctness failure on record — Opus answered a no-tools reasoning problem confidently wrong in 2.7 seconds — while Opus closed its word-count gap and was faster and more tool-efficient on the agentic axis. Round 4 (premium work samples — real component build in the live repo plus agentic skill authoring): a 1-1 split, with Opus taking accessibility and code craft, Fable taking system-doc authoring, and a new finding: output discipline degrades under task load for every model — enforce contracts structurally.',
         items: [
           { title: 'Fable 5 — precision instrument', description: 'Stacked output constraints (7/7), first-try fixes, cleanest injection handling, hard clean reasoning. Route agentic pipelines feeding schemas, tools, and other agents here.', badge: 'Measured' },
           { title: 'Opus 4.8 — judgment instrument', description: 'Flagged governance gates, led with spec contradictions, 2× more tool-efficient on the agentic axis. Expect leaks past "output only" contracts and word caps.', badge: 'Measured' },
@@ -2898,9 +2898,9 @@ export const researchDomains: ResearchDomain[] = [
       'Eval-stack doctrine: arena rounds in Claude Code, prompt regression in promptfoo, tracing in Langfuse only once real users exist; LangSmith rejected as framework weight',
     ],
     relatedDomains: ['agent-benchmarks', 'coding-assistants', 'agent-frameworks', 'ai-agent-config'],
-    relatedBlogPosts: [],
-    lastUpdated: '2026-06-09',
-    sourceCount: 6,
+    relatedBlogPosts: ['/blog/claude-fable-5-analysis-2026', '/blog/claude-opus-4-8-analysis-2026', '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek'],
+    lastUpdated: '2026-06-10',
+    sourceCount: 7,
     status: 'active',
     evidenceGrade: 'B',
     limitations: [

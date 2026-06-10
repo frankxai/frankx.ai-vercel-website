@@ -387,6 +387,7 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'SIS (GitHub)', title: 'Round 1 Receipt — Fable 5 vs Opus 4.8 Capability Card (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-09-fable5-vs-opus48.json', date: '2026-06-09', type: 'benchmark' },
     { name: 'SIS (GitHub)', title: 'Round 2 Receipt — Behavioral Stress Card, Zero Judge Dependence (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-09-r2-stress-fable5-vs-opus48.json', date: '2026-06-09', type: 'benchmark' },
     { name: 'SIS (GitHub)', title: 'Round 3 Receipt — Hard-Capability Card with Agentic Axis (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-09-r3-true-challenge.json', date: '2026-06-09', type: 'benchmark' },
+    { name: 'SIS (GitHub)', title: 'Round 4 Receipt — Premium Work-Sample Card (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-10-r4-work-samples.json', date: '2026-06-10', type: 'benchmark' },
     { name: 'SIS (GitHub)', title: 'Model Operations — Lineup, Routing Heuristics, New-Model-Day Protocol', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/docs/models/MODEL-OPERATIONS.md', type: 'official' },
   ],
 }
