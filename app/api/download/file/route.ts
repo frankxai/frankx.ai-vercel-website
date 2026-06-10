@@ -20,7 +20,13 @@ export async function GET(request: NextRequest) {
     )
   }
 
+  // Validate the key: only safe blob-path characters, and no traversal or
+  // protocol/host injection (prevents redirecting to arbitrary URLs).
+  if (!/^[a-zA-Z0-9._/-]+$/.test(blobKey) || blobKey.includes('..')) {
+    return NextResponse.json({ error: 'Invalid file key' }, { status: 400 })
+  }
+
   // Redirect directly to your public blob storage
-  const blobUrl = `${BLOB_BASE_URL}/${blobKey}`
+  const blobUrl = `${BLOB_BASE_URL}/${blobKey.replace(/^\/+/, '')}`
   return NextResponse.redirect(blobUrl)
 }
