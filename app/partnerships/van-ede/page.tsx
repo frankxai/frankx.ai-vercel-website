@@ -38,13 +38,11 @@ export const metadata = createMetadata({
 // Eyebrow used before every section heading — matches the live /partnerships surface.
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
+    <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400 font-medium mb-4">
       {children}
     </p>
   )
 }
-
-const DISPLAY_FONT = 'var(--font-poppins, Poppins), Inter, sans-serif'
 
 export default function VanEdeProposalPage() {
   return (
@@ -66,8 +64,7 @@ export default function VanEdeProposalPage() {
             <MotionHeroItem delay={0.1}>
               <h1
                 id="hero-heading"
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-6 max-w-3xl"
-                style={{ fontFamily: DISPLAY_FONT, letterSpacing: '-0.025em' }}
+                className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-6 max-w-3xl tracking-tight"
               >
                 Human guidance, amplified by intelligence.
               </h1>
@@ -81,7 +78,7 @@ export default function VanEdeProposalPage() {
               </p>
             </MotionHeroItem>
             <MotionHeroItem delay={0.3}>
-              <p className="text-sm text-zinc-500 leading-relaxed max-w-2xl mb-12">
+              <p className="text-sm text-zinc-400 leading-relaxed max-w-2xl mb-12">
                 Everything here is an existing format, delivered as-is, at a fixed
                 fee. Nothing to build. Proven, ready, fast to book.
               </p>
@@ -122,7 +119,7 @@ export default function VanEdeProposalPage() {
                   <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 tracking-wide">
                     PROVEN FORMAT
                   </span>
-                  <span className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium">
+                  <span className="text-[11px] tracking-[0.2em] uppercase text-emerald-400 font-medium">
                     For clients in transition
                   </span>
                 </div>
@@ -182,7 +179,7 @@ export default function VanEdeProposalPage() {
             <MotionItem className="lg:col-span-2">
               <article className="h-full rounded-3xl border border-white/[0.08] p-8 lg:p-10 bg-white/[0.02]">
                 <div className="mb-5">
-                  <span className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium">
+                  <span className="text-[11px] tracking-[0.2em] uppercase text-emerald-400 font-medium">
                     For the coaches
                   </span>
                 </div>
@@ -260,7 +257,7 @@ export default function VanEdeProposalPage() {
                 key={c.k}
                 className="rounded-2xl bg-white/[0.025] border border-white/[0.08] p-6"
               >
-                <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium mb-3">
+                <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400 font-medium mb-3">
                   {c.k}
                 </p>
                 <p className="text-sm text-zinc-300 leading-[1.7]">{c.v}</p>
@@ -396,8 +393,7 @@ export default function VanEdeProposalPage() {
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <MotionItem>
             <h2
-              className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-8 leading-snug"
-              style={{ fontFamily: DISPLAY_FONT, letterSpacing: '-0.02em' }}
+              className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-8 leading-snug tracking-tight"
             >
               Werk zin geven &mdash; at the scale this decade demands.
             </h2>
@@ -431,7 +427,7 @@ export default function VanEdeProposalPage() {
       {/* Private footer — confidentiality line */}
       <footer className="border-t border-white/5 py-10">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-zinc-400">
             Prepared exclusively for Van Ede &amp; Partners &middot; please share
             internally as useful.
           </p>
