@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { PILLARS, pillarCounts } from '@/data/acos/agents'
 import { catalogL99 } from '@/lib/acos/l99-score'
+import { EmailSignup } from '@/components/email-signup'
 import { ArrowRight, Download, Github, Terminal, Sparkles, CheckCircle2, Hammer, CircleDashed } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -59,19 +60,21 @@ const ACCENT_BORDERS: Record<string, string> = {
   orange: 'hover:border-orange-400/40',
 }
 
-// Pricing per pack. Free packs are the substrate; paid packs are curated bundles.
-const PACK_PRICING: Record<string, { price: string; tier: 'free' | 'pro'; cta: string }> = {
-  content: { price: '€99', tier: 'pro', cta: '/products?pack=content' },
-  music: { price: '€149', tier: 'pro', cta: '/products?pack=music' },
-  visuals: { price: '€99', tier: 'pro', cta: '/products?pack=visuals' },
-  books: { price: '€129', tier: 'pro', cta: '/products?pack=books' },
-  workshops: { price: '€99', tier: 'pro', cta: '/products?pack=workshops' },
-  research: { price: '€99', tier: 'pro', cta: '/products?pack=research' },
-  products: { price: '€199', tier: 'pro', cta: '/products?pack=products' },
-  business: { price: '€199', tier: 'pro', cta: '/products?pack=business' },
-  personal: { price: '€49', tier: 'pro', cta: '/products?pack=personal' },
-  community: { price: '€49', tier: 'pro', cta: '/products?pack=community' },
-  meta: { price: 'Free', tier: 'free', cta: '/agents/packs/meta' },
+// Tier per pack. The free Foundation pack is the substrate every other pack
+// composes; premium packs are curated bundles, currently pre-launch and
+// collecting a waitlist (no pricing shown yet).
+const PACK_TIERS: Record<string, 'free' | 'premium'> = {
+  content: 'premium',
+  music: 'premium',
+  visuals: 'premium',
+  books: 'premium',
+  workshops: 'premium',
+  research: 'premium',
+  products: 'premium',
+  business: 'premium',
+  personal: 'premium',
+  community: 'premium',
+  meta: 'free',
 }
 
 export default function AgentsPage() {
@@ -142,12 +145,11 @@ export default function AgentsPage() {
               <span className="font-mono">~/your-project</span>
             </div>
             <pre className="overflow-x-auto px-4 py-4 font-mono text-sm text-emerald-200">
-{`# Install the free Meta pack (9 infrastructure agents)
+{`# Install the free Foundation pack (9 infrastructure agents)
 npx @frankx/acos install meta
 
-# Or grab a paid pillar pack
-npx @frankx/acos install content   # 9 content agents · €99
-npx @frankx/acos install music     # 9 music production agents · €149
+# Premium pillar packs are pre-launch — join the waitlist for first access
+# content · music · visuals · books · workshops · research · products · business · personal · community
 
 # List everything available
 npx @frankx/acos list`}
@@ -159,7 +161,7 @@ npx @frankx/acos list`}
               href="/agents/packs/meta"
               className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/20 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              <Download className="h-4 w-4" /> Install the free Meta pack
+              <Download className="h-4 w-4" /> Install the free Foundation pack
             </Link>
             <Link
               href="/acos/agents"
@@ -219,13 +221,14 @@ npx @frankx/acos list`}
           <div className="mb-12 text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">The 11 packs</h2>
             <p className="mx-auto mt-3 max-w-2xl text-[17px] leading-relaxed text-white/80">
-              One per pillar. Each ships 9 specialists. Buy individual packs, or grab the full bundle (coming).
+              One per pillar. Each ships 9 specialists. The Foundation pack is free today; premium pillar packs are
+              pre-launch — join a pack&rsquo;s waitlist to get first install access.
             </p>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {PILLARS.map((p) => {
-              const pricing = PACK_PRICING[p.id]
+              const tier = PACK_TIERS[p.id]
               const shipped = p.specialists.filter((s) => s.status === 'shipped').length
               const inProgress = p.specialists.filter((s) => s.status === 'in-progress').length
               const gap = p.specialists.filter((s) => s.status === 'gap').length
@@ -245,12 +248,12 @@ npx @frankx/acos list`}
                     </div>
                     <span
                       className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold ${
-                        pricing.tier === 'free'
+                        tier === 'free'
                           ? 'border-emerald-400/30 bg-emerald-500/10 text-emerald-300'
                           : 'border-white/10 bg-white/5 text-white'
                       }`}
                     >
-                      {pricing.price}
+                      {tier === 'free' ? 'Free' : 'Premium'}
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-slate-400">{p.tagline}</p>
@@ -278,7 +281,7 @@ npx @frankx/acos list`}
                   </div>
 
                   <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition group-hover:gap-3">
-                    {pricing.tier === 'free' ? 'Install free pack' : 'See pack details'}
+                    {tier === 'free' ? 'Install free pack' : 'See pack & join waitlist'}
                     <ArrowRight className="h-4 w-4" />
                   </div>
                 </Link>
@@ -299,7 +302,7 @@ npx @frankx/acos list`}
                 <li>&middot; Installable artifacts you run on your own machine</li>
                 <li>&middot; Compatible with Claude Code, Cursor, Antigravity (and any Claude Agent SDK runtime)</li>
                 <li>&middot; The real catalog Frank uses daily — not marketing personas</li>
-                <li>&middot; Open-source spec, free Meta pack, paid pillar packs</li>
+                <li>&middot; Open-source spec, free Foundation pack, premium pillar packs (waitlist open)</li>
                 <li>&middot; Updated on every commit to <code className="font-mono text-emerald-200">frankxai/FrankX</code></li>
               </ul>
             </div>
@@ -320,24 +323,32 @@ npx @frankx/acos list`}
       {/* CTA */}
       <section className="border-t border-white/5 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Start with the free Meta pack</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Start with the free Foundation pack</h2>
           <p className="mx-auto mt-3 max-w-xl text-[17px] leading-relaxed text-white/80">
             9 infrastructure agents (router, memory guardian, safety guard, verification loop, EOD capture, handover, sync,
             ACOS score, agentic-jujutsu). No card. Works out of the box if you already have Claude Code or Antigravity installed.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex justify-center">
             <Link
               href="/agents/packs/meta"
               className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              <Download className="h-4 w-4" /> Get the Meta pack
+              <Download className="h-4 w-4" /> Get the Foundation pack
             </Link>
-            <Link
-              href="/newsletter?ref=agents-pack"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              Notify me when paid packs launch
-            </Link>
+          </div>
+
+          <div className="mx-auto mt-14 max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+            <h3 className="text-lg font-semibold text-white">Want the premium pillar packs?</h3>
+            <p className="mt-2 text-sm text-white/70">
+              Join the waitlist and you&rsquo;ll be first to install them the day they ship.
+            </p>
+            <EmailSignup
+              listType="premium-packs"
+              compact
+              placeholder="you@example.com"
+              buttonText="Join the waitlist"
+              className="mt-4"
+            />
           </div>
         </div>
       </section>
