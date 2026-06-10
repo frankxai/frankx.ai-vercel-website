@@ -1,0 +1,102 @@
+name: Send Newsletter
+
+# Manually triggered newsletter send. Built so Frank can fire issues from
+# GitHub mobile without opening a terminal. Secrets stay in repo settings —
+# RESEND_API_KEY and BEEHIIV_API_KEY never leave GitHub.
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_path:
+        description: "Path to the issue MDX (e.g. content/newsletters/ai-architect/2026-05-19-subagent-patterns.mdx)"
+        required: true
+        type: string
+      mode:
+        description: "Send mode"
+        required: true
+        type: choice
+        default: "test-to-self"
+        options:
+          - "test-to-self"            # dry-run --to=friemerx@gmail.com (default)
+          - "test-to-custom"          # dry-run --to=<custom recipient>
+          - "live-broadcast"          # real broadcast to the stream's audience
+      recipient:
+        description: "Recipient email (only used when mode is test-to-custom)"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Confirm secrets
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          if [ -z "$RESEND_API_KEY" ]; then
+            echo "RESEND_API_KEY secret not configured in repo settings"
+            exit 1
+          fi
+          echo "Resend key present"
+
+      - name: Send issue
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          BEEHIIV_API_KEY: ${{ secrets.BEEHIIV_API_KEY }}
+          BEEHIIV_PUBLICATION_ID: ${{ secrets.BEEHIIV_PUBLICATION_ID }}
+        run: |
+          set -e
+          ISSUE="${{ inputs.issue_path }}"
+          MODE="${{ inputs.mode }}"
+          CUSTOM="${{ inputs.recipient }}"
+
+          if [ ! -f "$ISSUE" ]; then
+            echo "Issue not found: $ISSUE"
+            exit 1
+          fi
+
+          case "$MODE" in
+            test-to-self)
+              echo "Test send → friemerx@gmail.com"
+              npx tsx scripts/newsletter-publish.ts "$ISSUE" --dry-run --to=friemerx@gmail.com
+              ;;
+            test-to-custom)
+              if [ -z "$CUSTOM" ]; then
+                echo "recipient input required for test-to-custom mode"
+                exit 1
+              fi
+              echo "Test send → $CUSTOM"
+              npx tsx scripts/newsletter-publish.ts "$ISSUE" --dry-run --to="$CUSTOM"
+              ;;
+            live-broadcast)
+              echo "LIVE broadcast — full stream audience"
+              npx tsx scripts/newsletter-publish.ts "$ISSUE"
+              ;;
+            *)
+              echo "Unknown mode: $MODE"
+              exit 1
+              ;;
+          esac
+
+      - name: Commit experiment ledger
+        if: inputs.mode == 'live-broadcast'
+        run: |
+          if ! git diff --quiet data/newsletter-experiments.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/newsletter-experiments.json
+            git commit -m "chore(newsletter): record send for ${{ inputs.issue_path }}"
+            git push
+          fi
