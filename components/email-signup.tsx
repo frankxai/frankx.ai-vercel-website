@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, useId, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -25,8 +25,12 @@ export function EmailSignup({
   compact = false,
 }: EmailSignupProps) {
   const router = useRouter()
+  const hpId = useId()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  // Honeypot — a hidden field real users never see. Bots that auto-fill inputs
+  // trip it, and the API silently discards those submissions.
+  const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -52,6 +56,7 @@ export function EmailSignup({
           email,
           name: showName ? name : undefined,
           listType,
+          website,
         }),
       })
 
@@ -77,9 +82,25 @@ export function EmailSignup({
     }
   }
 
+  const honeypotField = (
+    <div aria-hidden="true" className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <label htmlFor={hpId}>Leave this field blank</label>
+      <input
+        id={hpId}
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        value={website}
+        onChange={(e) => setWebsite(e.target.value)}
+      />
+    </div>
+  )
+
   if (compact) {
     return (
       <form onSubmit={handleSubmit} className={cn('relative', className)}>
+        {honeypotField}
         <div className="flex gap-2">
           <input
             type="email"
@@ -127,6 +148,7 @@ export function EmailSignup({
   return (
     <div className={cn('w-full max-w-md', className)}>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {honeypotField}
         {showName && (
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
