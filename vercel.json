@@ -16,6 +16,14 @@
     {
       "path": "/api/404/agent",
       "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/cron/model-hub-refresh",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/model-hub-audit",
+      "schedule": "0 8 * * 1"
     }
   ]
 }

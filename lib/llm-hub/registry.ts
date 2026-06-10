@@ -29,6 +29,11 @@ export interface ModelEntry {
   acos_tier?: string
   frankx_notes?: string
   sources?: string[]
+  verification?: {
+    last_verified?: string
+    source_quality?: 'independent' | 'vendor-reported' | 'aggregated'
+    independent_corroboration?: string[]
+  }
 }
 
 export interface OrganizationEntry {
