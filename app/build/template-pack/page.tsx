@@ -99,7 +99,7 @@ const faqs = [
   },
   {
     q: 'How is it different from a free GitHub gist?',
-    a: 'The pack grows out of the 8 builds running in the public lab — every artifact gets used, broken, and refined as those builds ship, with the failure notes documented. The eval harness alone saves a week of scaffolding.',
+    a: 'The pack grows out of the 8 builds running in the public lab — every artifact gets used, broken, and refined as those builds progress, with the failure notes documented. The eval harness alone saves a week of scaffolding.',
   },
   {
     q: 'Refund policy?',
@@ -206,8 +206,8 @@ export default function TemplatePackPage() {
               Five core artifacts, drawn from live builds.
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-400">
-              These are the working files behind the builds in the public lab — refined as each
-              build ships, with the failure notes kept in.
+              These are the working files behind the builds in the public lab — iterated as each
+              build progresses, with the failure notes kept in.
             </p>
           </div>
 

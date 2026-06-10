@@ -36,8 +36,8 @@ when the audience is explicitly creators/musicians/spiritual-growth readers.
 - Numbers must be verifiable from a public repo or analytics: `90+ open-source
   AI skills`, `12,000+ Suno tracks`. No invented or rounded-up stats.
 - "Tested in production" only for things that ran in production. For lab
-  artifacts still maturing, say "drawn from live builds" or "refined as each
-  build ships."
+  artifacts still maturing, say "drawn from live builds" or "iterated as each
+  build progresses."
 - Builds with `status: wip` are described as in progress — no implied shipped
   outcomes.
 
