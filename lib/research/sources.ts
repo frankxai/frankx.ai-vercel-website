@@ -380,6 +380,16 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Wisconsin Supreme Court', title: 'State v. Loomis, 2016 WI 68 — Opinion (COMPAS risk scoring)', url: 'https://www.wicourts.gov/sc/opinion/DisplayDocument.pdf?content=pdf&seqNo=171690', date: '2016-07', type: 'official' },
     { name: 'ProPublica', title: 'Machine Bias — Risk Assessments in Criminal Sentencing (COMPAS)', url: 'https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing', date: '2016-05-23', type: 'journal' },
   ],
+
+  'model-arena': [
+    { name: 'Starlight Intelligence System', title: 'Model Arena — Live Results Page (Source of Truth)', url: 'https://starlightintelligence.org/research/model-arena', date: '2026-06-09', type: 'benchmark' },
+    { name: 'SIS (GitHub)', title: 'Arena Harness README — Methodology, Task-Design Rules, Eval-Stack Doctrine', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md', type: 'official' },
+    { name: 'SIS (GitHub)', title: 'Round 1 Receipt — Fable 5 vs Opus 4.8 Capability Card (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-09-fable5-vs-opus48.json', date: '2026-06-09', type: 'benchmark' },
+    { name: 'SIS (GitHub)', title: 'Round 2 Receipt — Behavioral Stress Card, Zero Judge Dependence (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-09-r2-stress-fable5-vs-opus48.json', date: '2026-06-09', type: 'benchmark' },
+    { name: 'SIS (GitHub)', title: 'Round 3 Receipt — Hard-Capability Card with Agentic Axis (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-09-r3-true-challenge.json', date: '2026-06-09', type: 'benchmark' },
+    { name: 'SIS (GitHub)', title: 'Round 4 Receipt — Premium Work-Sample Card (JSON)', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs/2026-06-10-r4-work-samples.json', date: '2026-06-10', type: 'benchmark' },
+    { name: 'SIS (GitHub)', title: 'Model Operations — Lineup, Routing Heuristics, New-Model-Day Protocol', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/docs/models/MODEL-OPERATIONS.md', type: 'official' },
+  ],
 }
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {

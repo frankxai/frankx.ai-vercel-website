@@ -183,7 +183,7 @@ const frontierModels = [
     links: {
       docs: 'https://llama.meta.com/',
     },
-    notes: 'Open-weight. 400B total, 17B active per token. Runs on a single H100. Self-host / fine-tune base.',
+    notes: 'Open-weight. 400B total, 17B active per token. Needs an 8×H100 node (the Scout sibling self-hosts on one H100). Self-host / fine-tune base.',
   },
   {
     name: 'MAI-Thinking-1',
@@ -308,6 +308,34 @@ const ociModels = [
   { name: 'Gemini 2.5 Flash-Lite', provider: 'Google', context: '-', useCase: 'Budget, high-volume', eu: false },
 ]
 
+// Card name -> FrankX deep-dive article slug (/blog/[slug]).
+const deepDiveSlugs: Record<string, string> = {
+  'Claude Opus 4.8': 'claude-opus-4-8-analysis-2026',
+  'GPT-5.5': 'gpt-5-5-analysis-2026',
+  'Grok 4.3': 'grok-4-3-analysis-2026',
+  'DeepSeek V4': 'deepseek-v4-analysis-2026',
+  'Kimi K2.6': 'kimi-k2-analysis-2026',
+  'Qwen3.7-Max': 'qwen3-max-analysis-2026',
+  'Gemini 3.5 Pro': 'gemini-3-5-pro-analysis-2026',
+  'Llama 4 Maverick': 'llama-4-analysis-2026',
+  'MAI-Thinking-1': 'microsoft-mai-frontier-models-2026',
+}
+
+// Card name -> LLM Hub model page (/llm-hub/[registry key]).
+const hubSlugs: Record<string, string> = {
+  'Claude Opus 4.8': 'claude-opus-4-8',
+  'GPT-5.5': 'gpt-5-5',
+  'Gemini 3.5 Flash': 'gemini-3-5-flash',
+  'Grok 4.3': 'grok-4-3',
+  'DeepSeek V4': 'deepseek-v4',
+  'Kimi K2.6': 'kimi-k2-6',
+  'Qwen3.7-Max': 'qwen3-7-max',
+  'Claude Sonnet 4.6': 'claude-sonnet-4-6',
+  'Gemini 3.5 Pro': 'gemini-3-5-pro',
+  'Llama 4 Maverick': 'llama-4-maverick',
+  'MAI-Thinking-1': 'mai-thinking-1',
+}
+
 export default function Models2026Page() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
@@ -353,6 +381,9 @@ export default function Models2026Page() {
                 </Link>
                 <Link href="/blog/deepseek-v4-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#06b6d4]/10 border border-[#06b6d4]/20 hover:border-[#06b6d4]/40 text-[#06b6d4] text-sm transition-colors">
                   <Cpu className="w-4 h-4" /> Open-frontier: DeepSeek V4
+                </Link>
+                <Link href="/llm-hub" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/25 text-white/70 text-sm transition-colors">
+                  <Globe className="w-4 h-4" /> Explore the LLM Hub
                 </Link>
               </div>
             </motion.div>
@@ -419,6 +450,20 @@ export default function Models2026Page() {
                       <span key={tag} className="px-2 py-0.5 text-xs rounded-full bg-white/5 text-white/40">{tag}</span>
                     ))}
                   </div>
+                  {(deepDiveSlugs[m.name] || hubSlugs[m.name]) && (
+                    <div className="mt-4 flex items-center gap-4 border-t border-white/5 pt-3 text-xs">
+                      {deepDiveSlugs[m.name] && (
+                        <Link href={`/blog/${deepDiveSlugs[m.name]}`} className="inline-flex items-center gap-1 text-white/50 hover:text-white transition-colors" aria-label={`Read the ${m.name} deep dive`}>
+                          Deep dive <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
+                        </Link>
+                      )}
+                      {hubSlugs[m.name] && (
+                        <Link href={`/llm-hub/${hubSlugs[m.name]}`} className="inline-flex items-center gap-1 text-white/40 hover:text-white/70 transition-colors" aria-label={`${m.name} on the LLM Hub`}>
+                          Specs &amp; verdict <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
+                        </Link>
+                      )}
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -657,8 +702,8 @@ export default function Models2026Page() {
             <h2 className="text-2xl font-bold mb-6">Mixture of Experts (MoE) Architecture</h2>
             <div className="p-8 rounded-xl bg-white/[0.02] border border-white/5">
               <p className="text-white/60 mb-6">
-                MoE is revolutionizing AI efficiency. Llama 4 Maverick has 400B total parameters but only activates 17B per token —
-                running on a single H100 GPU with quantization while matching much larger dense models.
+                MoE is reshaping AI efficiency. Llama 4 Maverick has 400B total parameters but only activates 17B per token —
+                keeping inference cost close to a 17B dense model while matching the quality of much larger ones.
               </p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">

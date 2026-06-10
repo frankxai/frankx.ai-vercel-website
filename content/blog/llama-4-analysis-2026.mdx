@@ -26,6 +26,18 @@ keywords:
 image: "/images/blog/llama-4-analysis-2026-hero.svg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Do not route capability-bound work to Maverick — DeepSeek V4 and Qwen 3.5 are stronger open models, and the agentic ceiling is Fable 5 at $10/$50. Pay for Maverick only when license clarity and data residency are the binding constraints: a permissively licensed multimodal MoE inside your own VPC on an 8x H100 node. The API case is weak at ~$0.15/$0.60 against stronger open peers; the self-host-for-control case is the real one. Scout's 10M-token context is the single genuinely differentiated feature in the family — and do not plan around Behemoth or Llama 5, neither has shipped."
+  coePillar: "Technology · model routing + Governance · data sovereignty + Governance · vendor risk"
+  personas:
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "Llama 4 Maverick (FP8 on 8x H100) — choose for license + residency, not benchmarks"
+    - persona: "Long-context repo agents"
+      pick: "Llama 4 Scout (10M ctx, one H100 at Q4)"
+    - persona: "Multimodal ingest agents"
+      pick: "Llama 4 Maverick — open, vision-native, commercially licensed"
+    - persona: "Pipeline & coding agents"
+      pick: "DeepSeek V4 (open) or Fable 5 (closed ceiling) — Maverick's 43.4 LiveCodeBench trails"
 ---
 
 # Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack

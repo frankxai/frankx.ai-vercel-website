@@ -35,6 +35,16 @@ export interface BlogPost {
   faq?: FAQItem[] // Question-answer pairs for FAQPage schema
   schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
   lastUpdated?: string // Freshness signal for search engines
+  /**
+   * AI Architect Recommendation box (rendered after the Reading Goal).
+   * The signature format: the routing call, which AI CoE pillar the decision
+   * lives in, and which agent personas should run what.
+   */
+  architectNote?: {
+    recommendation: string
+    coePillar?: string
+    personas?: Array<{ persona: string; pick: string }>
+  }
 }
 
 // Normalize frontmatter field variants to canonical BlogPost fields

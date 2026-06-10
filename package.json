@@ -25,7 +25,7 @@
     "music:index": "node scripts/generate-music-index.mjs",
     "music:asset-registry": "node scripts/music/build-asset-registry.mjs",
     "sync-ais": "node scripts/sync-ais.mjs",
-    "prebuild": "npm run sync-ais && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
+    "prebuild": "npm run sync-ais && node scripts/check-mdx-safety.mjs && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
     "routes:build": "node scripts/build-route-index.mjs",
     "prebuild:force": "npm run gen:html && npm run gen:search && npm run content:index && npm run vault:scan && npm run heroes:scan",
     "roadmap:check": "node scripts/daily-roadmap-check.js",
@@ -86,7 +86,9 @@
     "sync:check": "bash scripts/pre-deploy-sync-check.sh",
     "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
     "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
-    "predeploy": "npm run merge:gate && npm run sync:check"
+    "predeploy": "npm run merge:gate && npm run sync:check",
+    "observatory:catalog": "node scripts/sync-observatory-catalog.mjs",
+    "check:mdx": "node scripts/check-mdx-safety.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",

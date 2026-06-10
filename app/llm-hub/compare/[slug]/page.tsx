@@ -7,6 +7,7 @@ import { COMPARISONS, getComparison } from '@/lib/llm-hub/comparisons'
 import { formatContext, getModel, getProviders, type ModelEntry, type OrganizationEntry } from '@/lib/llm-hub/registry'
 import { getEditorial } from '@/lib/llm-hub/editorial'
 import { fetchLivePricing, type LivePricingMap } from '@/lib/llm-hub/openrouter'
+import { ldJson } from '@/lib/seo/jsonld'
 
 export const revalidate = 3600
 
@@ -103,8 +104,8 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(breadcrumb) }} />
 
       <main className="relative z-10 mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-8">
@@ -130,6 +131,27 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
               {cmp.verdict}
             </p>
           </div>
+
+          {cmp.architect && (
+            <div className="mt-4 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-400">AI Architect Recommendation</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/75">{cmp.architect.call}</p>
+              {cmp.architect.coePillar && (
+                <p className="mt-3 text-xs text-white/40">
+                  AI CoE pillar: <span className="text-white/65">{cmp.architect.coePillar}</span>
+                </p>
+              )}
+              {cmp.architect.personas?.length ? (
+                <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
+                  {cmp.architect.personas.map((p) => (
+                    <li key={p.persona} className="text-xs leading-relaxed text-white/55">
+                      <span className="font-medium text-white/80">{p.persona}:</span> {p.pick}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          )}
         </header>
 
         {/* Spec table */}

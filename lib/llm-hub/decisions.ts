@@ -6,7 +6,7 @@
  * each link resolves to a pre-rendered /llm-hub/[key] page — the registry
  * canonicalizes every model's id to its registry key, which is the routing slug).
  *
- * Refreshed to the June 2026 frontier (Opus 4.8 / GPT-5.5 / Grok 4.3 /
+ * Refreshed to the June 2026 frontier (Fable 5 / Opus 4.8 / GPT-5.5 / Grok 4.3 /
  * DeepSeek V4 / Qwen3.7-Max / Kimi K2.6 / Gemma 4 / gpt-oss / Phi-4).
  * Every reason cites a figure carried in the registry; verified-vs-vendor
  * distinctions live in the per-model pages.
@@ -27,10 +27,16 @@ export const DECISION_MATRIX: DecisionRow[] = [
     reason: 'Tops the intelligence index — GDPval-AA 1890 and SWE-Bench Pro 69.2% lead the field.',
   },
   {
-    constraint: 'Agentic coding + computer use',
+    constraint: 'Agentic coding',
+    primaryId: 'claude-fable-5',
+    altId: 'gpt-5-5',
+    reason: 'New launch ceiling — 95% SWE-Bench Verified, ~80% SWE-Bench Pro vs GPT-5.5’s 58.6% (vendor-claimed).',
+  },
+  {
+    constraint: 'Computer use + terminal autonomy',
     primaryId: 'gpt-5-5',
     altId: 'claude-opus-4-8',
-    reason: 'Best published computer-use scores (84.9% GDPval, 78.7% OSWorld); Opus 4.8 counters on SWE-Bench Pro.',
+    reason: 'Best published computer-use scores (84.9% GDPval, 78.7% OSWorld, 98% Tau2 Telecom).',
   },
   {
     constraint: 'Lowest cost (closed frontier)',

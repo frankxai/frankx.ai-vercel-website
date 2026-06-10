@@ -1,0 +1,115 @@
+---
+title: "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)"
+description: "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grades, and the persona map. Refreshed every quarter and after every arena round."
+date: "2026-06-10"
+lastUpdated: "2026-06-10"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - frontier-models
+  - model-routing
+  - agentic-ai
+  - ai-architecture
+  - ai-2026
+  - ai-coe
+keywords:
+  - which ai model to use 2026
+  - ai model routing guide
+  - best llm for agents 2026
+  - best ai model for coding 2026
+  - claude vs gpt vs gemini which to use
+  - llm routing strategy
+  - ai model selection framework
+  - best ai model for each task
+  - multi model ai strategy
+image: "/images/blog/ai-model-routing-guide-hero.svg"
+featured: true
+flagship: true
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Run a portfolio, not a favorite. The Q2 2026 frontier splits cleanly: Fable 5 owns the agentic-coding ceiling, Opus 4.8 owns judgment and prose at half the price, GPT-5.5 owns computer use and voice, and the open-weights tier (Kimi K2.6, DeepSeek V4) covers volume and sovereignty at a twentieth of flagship cost. Route by the task's cost-of-error, re-evaluate per arena round, and never promote a routing change on a single eval."
+  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting"
+  personas:
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5"
+    - persona: "Reviewer / judgment agents"
+      pick: "Opus 4.8"
+    - persona: "Computer-use / desktop agents"
+      pick: "GPT-5.5"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "DeepSeek V4 or Kimi K2.6"
+---
+
+# The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)
+
+**TL;DR**: Stop asking "which is the best AI model" — the June 2026 frontier has no single answer, and that's the useful fact. Fable 5 is the agentic-coding ceiling ($10/$50), Opus 4.8 the judgment-and-prose pick at half that, GPT-5.5 the computer-use and voice workhorse, Grok 4.3 the cheapest credible intelligence, and Kimi K2.6 / DeepSeek V4 the open-weights value and sovereignty tier. This guide turns that split into a routing decision per agent persona, with the evidence grade behind each call. It refreshes quarterly and after every [Model Arena](/research/model-arena) round.
+
+---
+
+## Why Route by Persona Instead of Picking a Winner?
+
+Because your AI Center of Excellence doesn't run "a model" — it runs a fleet of agents with different cost-of-error profiles. A coding agent whose output feeds a schema fails expensively and silently; a brainstorm drafter fails cheaply and visibly. Paying flagship rates for the second is waste; running the first on a budget model is technical debt with a delay timer. The routing question is always: *what does an error cost on this path, and which model's measured strengths cover it?*
+
+## The Q2 2026 Routing Matrix
+
+| Agent persona | Route to | Price (/1M in/out) | Why — and how sure we are |
+|---|---|---|---|
+| Pipeline & coding agents | **Fable 5** | $10/$50 | SWE-Bench Verified 95% / Pro ~80% (vendor-claimed) + measured constraint precision across [4 receipted rounds](/research/model-arena) |
+| Reviewer / judgment agents | **Opus 4.8** | $5/$25 | Measured: flagged gated edits, pushed back on contradictory specs, won the a11y code-craft judgment |
+| Research & synthesis agents | **Opus 4.8** | $5/$25 | 1M context, 128K output, richest long-form prose — at half flagship cost |
+| Computer-use / desktop agents | **GPT-5.5** | $5/$30 | 78.7% OSWorld, 98% Tau2 Telecom — strongest published autonomy scores |
+| Voice-first agents | **GPT-5.5** | $5/$30 | Native voice; no Claude-family equivalent |
+| Agentic mid-tier / tool-use fleets | **Qwen3.7-Max** | $2.50/$7.50 | Peer-group lead (AA 56.6, SWE Pro 60.6), 1M context — gate vendor risk explicitly |
+| Bulk fan-out workers | **Grok 4.3** or Haiku-tier | $1.25/$2.50 | Credible intelligence at the class's fastest throughput; errors here are cheap |
+| Coding-volume lane | **Kimi K2.6** | $0.60/$2.50 | GPT-5.5-level SWE-Bench Pro (58.6%) at commodity price — best open-weights value |
+| Sovereign / self-hosted stacks | **DeepSeek V4** | MIT / self-host | The only frontier-adjacent tier that never sends a token off-box |
+
+Every row links to a full head-to-head with the evidence: the [comparison hub](/llm-hub) carries seven Fable 5 matchups alone, each with its own AI Architect Recommendation.
+
+## The Three Routing Principles
+
+### 1. Match the model to the cost of error, not the leaderboard
+
+The 20× price gap between Fable 5 and Grok 4.3 is not a quality verdict — it's a budgeting tool. Error-expensive paths (code that ships, outputs feeding tools) earn the ceiling; error-tolerant volume (drafts, classification, exploration) funds itself on the floor. Most mature stacks we've audited route a third or more of token volume to the value tier without measurable quality loss.
+
+### 2. Enforce structurally, route secondarily
+
+The most transferable finding from our arena rounds: **every** model's output discipline degrades under heavy task load — even Fable 5, the most constraint-compliant model we've measured, logged a contract violation on a heavy work sample. Schemas, forced tool outputs, and CI gates are the first line of defense; model choice is the second. A routing guide that ignores this just selects which model fails you politely.
+
+### 3. Never promote a routing change on n=1
+
+Our blind style verdicts flipped between rounds — Opus won Round 1, Fable won Round 3. Single-judge, single-round results are directional, not doctrine. The discipline: run the round, write the receipt, wait for repetition before the routing table moves. (The full method is in the [evals tutorial](/blog/llm-evals-claude-code-guide) — it takes an afternoon, not a platform.)
+
+## What Changed This Quarter?
+
+**Q2 2026 (this edition):** Fable 5 arrived (June 9) and took the agentic-coding row from the Opus/GPT split; Opus 4.8 consolidated the judgment row on measured behavior, not just price; Qwen3.7-Max went closed and earned the mid-tier row; Gemini 3.5 Pro remains preview-only and holds no row — [the honest state here](/llm-hub/compare/claude-fable-5-vs-gemini-3-5-pro). Watch for next edition: Gemini 3.5 Pro GA, a cross-lab Fable-vs-GPT arena round, and whether Fable 5's vendor-claimed benchmarks survive independent reproduction.
+
+## How Does This Fit Your AI Center of Excellence?
+
+Routing is a Technology-pillar decision with Strategy and Governance inputs: cost-of-error budgeting sets the tiers (Strategy), data-sovereignty and vendor-risk constraints veto rows regardless of benchmarks (Governance), and the eval cadence keeps the table honest (Technology). The same [six-pillar CoE structure](/blog/why-everyone-needs-personal-ai-coe) enterprises pay millions for reduces, at personal scale, to exactly this guide plus the discipline to re-run it.
+
+## FAQ
+
+### Which AI model should I use in 2026?
+
+Route by task, not loyalty: Fable 5 for agentic coding and strict-contract pipelines, Opus 4.8 for judgment-heavy review and human-read prose, GPT-5.5 for computer use and voice, Kimi K2.6 or DeepSeek V4 for volume and self-hosted work, Grok 4.3 for cheap error-tolerant fan-out.
+
+### What is the best AI model for coding agents in 2026?
+
+Claude Fable 5 leads the launch-window numbers — 95% SWE-Bench Verified and ~80% SWE-Bench Pro versus GPT-5.5's 58.6% (vendor-claimed) — and our first-party rounds measured the strongest output discipline in production-shaped tasks. For volume coding where the ceiling isn't binding, Kimi K2.6 delivers GPT-5.5-level scores at $0.60/$2.50.
+
+### Is it worth running multiple AI models?
+
+Yes — the Q2 2026 price spread runs 20× between the flagship and value tiers while capability gaps on error-tolerant tasks are far smaller. A two-or-three-lane portfolio (ceiling, judgment, volume) typically cuts token spend dramatically with no measurable quality loss on the paths that matter.
+
+### How often should I re-evaluate my model routing?
+
+Quarterly as a floor, plus same-week when a frontier model ships. The eval itself takes an afternoon in Claude Code with no extra infrastructure — method in our [evals tutorial](/blog/llm-evals-claude-code-guide). Change the routing table only when repeated rounds agree.
+
+### What about Gemini 3.5 Pro?
+
+As of mid-June 2026 it remains a limited Vertex preview — no model card, benchmarks, or pricing — so it holds no row in this table. We re-evaluate the week it ships GA artifacts.
+
+---
+
+*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. This guide refreshes quarterly and after every [Model Arena](/research/model-arena) round; vendor-claimed figures are marked, and every measured claim traces to a [published receipt](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs). Last refreshed June 10, 2026.*

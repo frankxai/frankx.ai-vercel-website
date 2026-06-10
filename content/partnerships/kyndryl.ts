@@ -16,6 +16,7 @@ export const kyndryl: Partner = {
   shortName: 'Kyndryl',
   tier: 'services',
   status: 'active',
+  lastUpdated: '2026-05-16',
 
   title: 'Agentic AI Architecture & Enablement Partner',
   tagline:

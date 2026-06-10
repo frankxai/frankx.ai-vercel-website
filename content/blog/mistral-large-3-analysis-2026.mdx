@@ -26,6 +26,18 @@ keywords:
 image: "/images/blog/mistral-large-3-analysis-2026-hero.svg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Route the volume to Large 3 — multilingual chat, RAG answering, drafting, code completion — at $0.50/$1.50 via la Plateforme or at $0 per token self-hosted FP8 on one 8x H200 node. It is the strongest open non-reasoner (LMArena ~1418) and the only frontier-class model combining Apache 2.0 with EU-resident endpoints, which makes it the default for regulated European workloads. Do not route hard reasoning to it: ~44% GPQA Diamond is roughly half the dedicated reasoners, so keep a DeepSeek-class model or Opus 4.8 on the judgment lane until Mistral's promised reasoning variant ships."
+  coePillar: "Technology · model routing + Governance · data sovereignty"
+  personas:
+    - persona: "Bulk fan-out workers"
+      pick: "Mistral Large 3 ($0.50/$1.50, or $0 self-hosted)"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "Mistral Large 3 (FP8, one 8x H200 node, Apache 2.0)"
+    - persona: "Customer-workflow agents"
+      pick: "Mistral Large 3 — multilingual, fast, human-preferred"
+    - persona: "Reviewer / judgment agents"
+      pick: "Opus 4.8 or DeepSeek-V4 — Large 3's GPQA gap rules it out here"
 ---
 
 # Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For

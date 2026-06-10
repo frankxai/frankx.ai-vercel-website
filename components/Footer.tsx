@@ -95,6 +95,7 @@ export default function Footer() {
               <li><Link href="/os" className="hover:text-white transition-colors">OS</Link></li>
               <li><Link href="/acos" className="hover:text-white transition-colors">ACOS</Link></li>
               <li><Link href="/llm-hub" className="hover:text-white transition-colors">LLM Hub</Link></li>
+              <li><Link href="/research/model-arena" className="hover:text-white transition-colors">Model Arena</Link></li>
             </ul>
           </nav>
 

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { put } from '@vercel/blob'
+import { requireAdmin } from '@/lib/admin-auth'
 
 /**
  * Admin Upload API
@@ -9,18 +10,13 @@ import { put } from '@vercel/blob'
  *   - file: the file to upload
  *   - path: blob storage path (e.g., "products/soulbook/soulbook-7-pillars.pdf")
  *
- * Protected by ADMIN_SECRET header check.
+ * Protected by ADMIN_SECRET header check (fail-closed; no hardcoded fallback).
  * Only works in production (needs BLOB_READ_WRITE_TOKEN).
  */
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET ?? 'frankx-admin-2026'
-
 export async function POST(request: NextRequest) {
-  // Simple auth check
-  const authHeader = request.headers.get('x-admin-secret')
-  if (authHeader !== ADMIN_SECRET) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  const denied = requireAdmin(request)
+  if (denied) return denied
 
   const formData = await request.formData()
   const file = formData.get('file') as File | null
