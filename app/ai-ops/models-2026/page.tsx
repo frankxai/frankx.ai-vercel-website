@@ -183,7 +183,7 @@ const frontierModels = [
     links: {
       docs: 'https://llama.meta.com/',
     },
-    notes: 'Open-weight. 400B total, 17B active per token. Runs on a single H100. Self-host / fine-tune base.',
+    notes: 'Open-weight. 400B total, 17B active per token. Needs an 8×H100 node (the Scout sibling self-hosts on one H100). Self-host / fine-tune base.',
   },
   {
     name: 'MAI-Thinking-1',
