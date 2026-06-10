@@ -29,11 +29,13 @@ const STALE_MONTHS = 4
 const PREVIEW_MONTHS = 3
 
 function monthsBetween(iso: string, now: Date): number {
-  // Accept "YYYY-MM-DD" or "YYYY-MM".
+  // Accepts "YYYY-MM-DD", "YYYY-MM", or "YYYY". Year-only dates carry no
+  // month signal, so we assume December of that year — the conservative
+  // choice that avoids flagging current-year models as stale months early.
   if (!iso) return Infinity
-  const [ys, ms = '01'] = iso.split('-')
-  const y = Number(ys)
-  const m = Number(ms)
+  const parts = iso.split('-')
+  const y = Number(parts[0])
+  const m = parts.length > 1 ? Number(parts[1]) : 12
   if (!y || !m) return Infinity
   const then = new Date(Date.UTC(y, m - 1, 1))
   return (now.getUTCFullYear() - then.getUTCFullYear()) * 12 + (now.getUTCMonth() - then.getUTCMonth())
@@ -54,7 +56,7 @@ export function runStalenessAudit(now: Date = new Date()): StalenessReport {
   for (const [id, raw] of Object.entries(llmModels)) {
     const released = String(raw.released || '')
     const status = String(raw.status || '')
-    const sources = (raw.sources as string[]) || []
+    const sources = Array.isArray(raw.sources) ? (raw.sources as string[]) : []
     const name = String(raw.name || id)
     const age = monthsBetween(released, now)
     const url = `${SITE}/llm-hub/${id}`
@@ -75,7 +77,7 @@ export function runStalenessAudit(now: Date = new Date()): StalenessReport {
   for (const [id, raw] of Object.entries(genModels)) {
     const released = String(raw.released || '')
     const status = String(raw.status || '')
-    const sources = (raw.sources as string[]) || []
+    const sources = Array.isArray(raw.sources) ? (raw.sources as string[]) : []
     const name = String(raw.name || id)
     const cat = String(raw.category || '') as AuditFlag['modality']
     const age = monthsBetween(released, now)

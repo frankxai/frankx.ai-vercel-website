@@ -47,8 +47,8 @@ const INDEPENDENT_DOMAINS = [
 function classifyDomain(url: string): 'primary' | 'independent' | 'aggregator' {
   try {
     const host = new URL(url).hostname.replace(/^www\./, '')
-    if (PRIMARY_DOMAINS.some((d) => host.endsWith(d))) return 'primary'
-    if (INDEPENDENT_DOMAINS.some((d) => host.endsWith(d))) return 'independent'
+    if (PRIMARY_DOMAINS.some((d) => host === d || host.endsWith(`.${d}`))) return 'primary'
+    if (INDEPENDENT_DOMAINS.some((d) => host === d || host.endsWith(`.${d}`))) return 'independent'
     return 'aggregator'
   } catch {
     return 'aggregator'

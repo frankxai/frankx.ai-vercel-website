@@ -627,14 +627,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // LLM Hub — interactive Arena + provenance + agent JSON
+  // LLM Hub — interactive Arena + provenance (JSON endpoints live in llms.txt, not the sitemap)
   entries.push({ url: `${BASE_URL}/llm-hub/arena`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.9 })
   entries.push({ url: `${BASE_URL}/llm-hub/sources`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 })
-  entries.push({ url: `${BASE_URL}/llm-hub.json`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.5 })
 
-  // Generative Model Hub — umbrella + categories + per-model + comparisons + agent JSON
+  // Generative Model Hub — umbrella + categories + per-model + comparisons
   entries.push({ url: `${BASE_URL}/models`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 })
-  entries.push({ url: `${BASE_URL}/models.json`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.5 })
   getGenCategories().forEach((c) => {
     entries.push({ url: `${BASE_URL}/models/${c.id}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.85 })
   })

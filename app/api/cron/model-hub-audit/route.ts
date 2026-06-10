@@ -17,13 +17,16 @@ const CRON_SECRET = process.env.CRON_SECRET
  *   curl https://frankx.ai/api/cron/model-hub-audit?format=markdown   (no secret needed in dev)
  */
 export async function GET(request: NextRequest) {
+  // Auth mirrors /api/404/agent: the Bearer secret is always enforced when
+  // set (Vercel cron sends it automatically; x-vercel-cron is spoofable and
+  // is deliberately NOT an auth bypass), and production fails closed if the
+  // secret is missing.
   const authHeader = request.headers.get('authorization')
-  const cronHeader = request.headers.get('x-vercel-cron')
-  const isVercelCron = Boolean(cronHeader)
-  const isAuthorized = CRON_SECRET ? authHeader === `Bearer ${CRON_SECRET}` : true
-
-  if (!isVercelCron && !isAuthorized) {
+  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (process.env.NODE_ENV === 'production' && !CRON_SECRET) {
+    return NextResponse.json({ error: 'CRON_SECRET not configured' }, { status: 500 })
   }
 
   const report = runStalenessAudit()

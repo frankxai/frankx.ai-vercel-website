@@ -41,7 +41,8 @@ export default async function OgImage() {
           </div>
           <div style={{ fontSize: 80, fontWeight: 900, lineHeight: 1.02, letterSpacing: -2, display: 'flex', flexDirection: 'column' }}>
             <span>Every modality.</span>
-            <span style={{ background: 'linear-gradient(90deg, #ec4899, #a855f7, #06b6d4)', backgroundClip: 'text', color: 'transparent' }}>One decision layer.</span>
+            {/* Satori doesn't support background-clip:text — solid color keeps it visible */}
+            <span style={{ color: '#ec4899' }}>One decision layer.</span>
           </div>
         </div>
 

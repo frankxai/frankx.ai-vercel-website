@@ -19,13 +19,16 @@ const REDEPLOY_HOOK = process.env.VERCEL_DEPLOY_HOOK_MODELS
  * Returns the drift report. The GitHub Action surfaces large drifts.
  */
 export async function GET(request: NextRequest) {
+  // Auth mirrors /api/404/agent: the Bearer secret is always enforced when
+  // set (Vercel cron sends it automatically; x-vercel-cron is spoofable and
+  // is deliberately NOT an auth bypass), and production fails closed if the
+  // secret is missing.
   const authHeader = request.headers.get('authorization')
-  const cronHeader = request.headers.get('x-vercel-cron')
-  const isVercelCron = Boolean(cronHeader)
-  const isAuthorized = CRON_SECRET ? authHeader === `Bearer ${CRON_SECRET}` : true
-
-  if (!isVercelCron && !isAuthorized) {
+  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (process.env.NODE_ENV === 'production' && !CRON_SECRET) {
+    return NextResponse.json({ error: 'CRON_SECRET not configured' }, { status: 500 })
   }
 
   const live = await fetchLivePricing()
@@ -58,7 +61,7 @@ export async function GET(request: NextRequest) {
       { field: 'output_per_1m', reg: m.pricing?.output_per_1m, liveV: lp.outputPer1m },
     ]
     for (const { field, reg, liveV } of checks) {
-      if (typeof reg !== 'number') continue
+      if (typeof reg !== 'number' || typeof liveV !== 'number' || Number.isNaN(liveV)) continue
       if (reg === 0 && liveV === 0) continue
       const denom = Math.max(reg, 0.0001)
       const pct = Math.abs((liveV - reg) / denom) * 100
@@ -68,8 +71,10 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  // Redeploy only on actual drift — firing on every successful probe would
+  // burn a Vercel build daily for nothing.
   let redeployTriggered: 'fired' | 'skipped' | 'unset' = 'unset'
-  if (REDEPLOY_HOOK && (drifts.length > 0 || liveCount > 0)) {
+  if (REDEPLOY_HOOK && drifts.length > 0) {
     try {
       const res = await fetch(REDEPLOY_HOOK, { method: 'POST' })
       redeployTriggered = res.ok ? 'fired' : 'skipped'

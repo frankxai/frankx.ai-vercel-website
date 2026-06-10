@@ -77,22 +77,26 @@ export function ArenaInterface({ rows, initialLeft, initialRight }: ArenaProps) 
   const left = rows.find((r) => r.id === leftId)
   const right = rows.find((r) => r.id === rightId)
 
+  const winnerForRow = useMemo(() => {
+    return (s: SpecRow): 'left' | 'right' | 'tie' | null => {
+      if (!left || !right) return null
+      if (!s.higherIsBetter && !s.lowerIsBetter) return null
+      const lv = s.format(left).sortValue
+      const rv = s.format(right).sortValue
+      if (lv === null || rv === null) return null
+      if (lv === rv) return 'tie'
+      if (s.higherIsBetter) return lv > rv ? 'left' : 'right'
+      return lv < rv ? 'left' : 'right'
+    }
+  }, [left, right])
+
+  const leftWins = useMemo(() => SPEC_ROWS.filter((s) => winnerForRow(s) === 'left').length, [winnerForRow])
+  const rightWins = useMemo(() => SPEC_ROWS.filter((s) => winnerForRow(s) === 'right').length, [winnerForRow])
+  const totalRated = useMemo(() => SPEC_ROWS.filter((s) => winnerForRow(s) !== null).length, [winnerForRow])
+
   if (!left || !right) {
     return <p className="text-sm text-white/40">Pick two models to compare.</p>
   }
-
-  const winnerForRow = (s: SpecRow): 'left' | 'right' | 'tie' | null => {
-    if (!s.higherIsBetter && !s.lowerIsBetter) return null
-    const lv = s.format(left).sortValue
-    const rv = s.format(right).sortValue
-    if (lv === null || rv === null) return null
-    if (lv === rv) return 'tie'
-    if (s.higherIsBetter) return lv > rv ? 'left' : 'right'
-    return lv < rv ? 'left' : 'right'
-  }
-
-  const leftWins = SPEC_ROWS.filter((s) => winnerForRow(s) === 'left').length
-  const rightWins = SPEC_ROWS.filter((s) => winnerForRow(s) === 'right').length
 
   return (
     <div className="space-y-8">
@@ -106,8 +110,8 @@ export function ArenaInterface({ rows, initialLeft, initialRight }: ArenaProps) 
       {/* Tagline strip */}
       {(left.tagline || right.tagline) ? (
         <div className="grid gap-4 md:grid-cols-2">
-          <ContestantCard row={left} side="left" wins={leftWins} totalRated={SPEC_ROWS.filter((s) => winnerForRow(s) !== null).length} />
-          <ContestantCard row={right} side="right" wins={rightWins} totalRated={SPEC_ROWS.filter((s) => winnerForRow(s) !== null).length} />
+          <ContestantCard row={left} side="left" wins={leftWins} totalRated={totalRated} />
+          <ContestantCard row={right} side="right" wins={rightWins} totalRated={totalRated} />
         </div>
       ) : null}
 
@@ -157,7 +161,7 @@ export function ArenaInterface({ rows, initialLeft, initialRight }: ArenaProps) 
           <Award className="h-4 w-4 text-emerald-400" /> Quick verdict
         </h3>
         <p className="text-sm leading-relaxed text-white/75">
-          On the comparable specs, <span style={{ color: left.accent }} className="font-semibold">{left.name}</span> wins {leftWins} of {leftWins + rightWins} rated dimensions; <span style={{ color: right.accent }} className="font-semibold">{right.name}</span> wins {rightWins}.{' '}
+          On the comparable specs, <span style={{ color: left.accent }} className="font-semibold">{left.name}</span> wins {leftWins} of {totalRated} rated dimensions; <span style={{ color: right.accent }} className="font-semibold">{right.name}</span> wins {rightWins}.{' '}
           Different tiers and different jobs — open each model page for the full verdict, or check the curated head-to-head if one exists.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">

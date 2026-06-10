@@ -18,9 +18,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
+  const { category, slug } = await params
   const model = getGenModel(slug)
-  if (!model) return { title: 'Model not found' }
+  // Category must match — otherwise /models/<wrong-cat>/<slug> would serve
+  // duplicate content under arbitrary paths.
+  if (!model || model.category !== category) return { title: 'Model not found' }
   const org = getOrg(model.organization)
   const title = `${model.name} — Capabilities, Pricing & Verdict (2026)`
   return {
@@ -33,9 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
 }
 
 export default async function GenModelPage({ params }: { params: Promise<{ category: string; slug: string }> }) {
-  const { slug } = await params
+  const { category, slug } = await params
   const model = getGenModel(slug)
-  if (!model) notFound()
+  if (!model || model.category !== category) notFound()
 
   const cat = getCategory(model.category)
   const accent = cat?.accent || '#10b981'

@@ -221,7 +221,7 @@ export default function ModelsHubPage() {
             <div className="space-y-3">
               {FAQ.map((f) => (
                 <details key={f.q} className="group rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-colors open:border-white/20 hover:border-white/15">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-white">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-white [&::-webkit-details-marker]:hidden">
                     {f.q}
                     <span className="text-white/30 transition-transform group-open:rotate-45">+</span>
                   </summary>
