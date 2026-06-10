@@ -26,6 +26,18 @@ keywords:
 image: "/images/blog/gpt-oss-analysis-2026-hero.svg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "gpt-oss is the capability-per-VRAM play in your portfolio, not a leaderboard pick: the 20b makes local-first architecture real on a 16GB laptop, and the 120b is near-o4-mini-class on one 80GB card under a clean Apache 2.0 license. The routing discipline is make-or-buy: hosted endpoints serve the 120b for pennies per million, so self-host only at sustained volume or under a hard data-residency mandate. Route error-tolerant, high-volume agent steps to local gpt-oss and reserve the closed frontier — Fable 5 at $10/$50 is the current agentic-coding ceiling — for steps where a silent mistake is costly."
+  coePillar: "Technology · model routing + Governance · data sovereignty"
+  personas:
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "gpt-oss-20b — 16GB, fully offline, Apache 2.0"
+    - persona: "Bulk fan-out workers"
+      pick: "gpt-oss-120b hosted (~$0.04/$0.19 per 1M at the cheapest providers)"
+    - persona: "Fine-tuned domain agents"
+      pick: "gpt-oss-safeguard — policy classification with an auditable chain of thought"
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — gpt-oss is near-o4-mini-class, not frontier, on hard agentic coding"
 ---
 
 # gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On

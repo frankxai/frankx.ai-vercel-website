@@ -26,6 +26,18 @@ keywords:
 image: "/images/blog/gemini-3-5-pro-analysis-2026-hero.svg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Don't put a preview model in your AI Center of Excellence routing table: Gemini 3.5 Pro has no model card, no benchmarks, and no pricing, and everything circulating about it is a vendor-stated target. Deploy Gemini 3.5 Flash today — it already leads the prior Pro tier on agentic coding at $1.50/$9 — and re-evaluate Pro at GA against two specific numbers, ARC-AGI-2 and SWE-bench Pro. Budget for Google's context-length pricing tiers either way; the headline rate is not the rate your long prompts pay. Pay for Pro only if your workload provably hits Flash's hard-reasoning ceiling or needs the targeted 2M window."
+  coePillar: "Technology · model routing + Governance · vendor risk"
+  personas:
+    - persona: "Multimodal ingest agents"
+      pick: "Gemini 3.5 Flash today; reassess Pro at GA"
+    - persona: "Agentic mid-tier / tool-use fleets"
+      pick: "Gemini 3.5 Flash (83.6% MCP Atlas at $1.50/$9)"
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — Opus 4.8 as the value pick"
+    - persona: "Long-context repo agents"
+      pick: "Gemini 3.5 Pro at GA, if the 2M window is confirmed"
 ---
 
 # Gemini 3.5 Pro: What We Actually Know Before GA

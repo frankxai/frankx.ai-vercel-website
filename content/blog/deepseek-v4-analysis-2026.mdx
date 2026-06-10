@@ -26,6 +26,18 @@ keywords:
 image: "/images/blog/deepseek-v4-analysis-2026-hero.svg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Slot V4 in as the price floor of your model portfolio, not its ceiling: V4-Pro as the default coding agent (80.6% SWE-bench Verified at $1.74/$3.48, with near-free cached input for agentic loops), escalating to Fable 5 — the current agentic-coding ceiling at $10/$50 — only on tasks V4 demonstrably fails. The CAISI evaluation is the governance input: V4 lags badly on agentic security and abstract reasoning, so keep it supervised there. V4 supersedes the V3.2 and R1 lines — retire any routing entries still pointing at them."
+  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting + Governance · data sovereignty"
+  personas:
+    - persona: "Pipeline & coding agents"
+      pick: "V4-Pro via API — escalate hard failures to Fable 5"
+    - persona: "Bulk fan-out workers"
+      pick: "V4-Flash ($0.14/$0.28, cached input $0.0028/M)"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "V4-Flash self-hosted (MIT license; Pro needs a cluster)"
+    - persona: "Reviewer / judgment agents"
+      pick: "Opus 4.8 — V4 trails the frontier on the hardest reasoning"
 ---
 
 # DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price
@@ -165,7 +177,7 @@ V4-Pro is now a credible coding-agent backend at a price that changes the routin
 
 ### For cost-conscious and high-volume work
 
-Flash is the unlock. At $0.14 / $0.28 per million — and $0.0028/M cached — it makes high-throughput agentic fan-out, classification, and extraction economically trivial. This is the budget-and-speed tier that used to mean accepting a weak model; Flash posts 91.6% LiveCodeBench and 79.0% SWE-bench Verified while costing cents. If you've been routing volume work to a frontier model out of caution, re-run the numbers.
+Flash is the lever. At $0.14 / $0.28 per million — and $0.0028/M cached — it makes high-throughput agentic fan-out, classification, and extraction economically trivial. This is the budget-and-speed tier that used to mean accepting a weak model; Flash posts 91.6% LiveCodeBench and 79.0% SWE-bench Verified while costing cents. If you've been routing volume work to a frontier model out of caution, re-run the numbers.
 
 ### For teams with sovereignty requirements
 

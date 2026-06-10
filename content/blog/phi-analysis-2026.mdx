@@ -26,6 +26,18 @@ keywords:
 image: "/images/blog/phi-analysis-2026-hero.svg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Phi-4 is the $0-per-token floor of an AI Center of Excellence: route high-volume, well-scoped, privacy-sensitive work — extraction, classification, function-calling, document processing — to Phi-4-mini or the 14B on hardware you already own, and escalate only the genuinely hard tasks to a frontier API (Fable 5, released June 2026 at $10/$50, is the current agentic ceiling). The MIT license makes air-gapped deployment and proprietary fine-tuning frictionless in a way Gemma and Llama terms never were. Two honest limits from the post: the base model's 16K context is short, and the vision model is a charts-and-diagrams specialist, not a generalist."
+  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting"
+  personas:
+    - persona: "Bulk fan-out workers"
+      pick: "Phi-4-mini (3.8B, 128K ctx, function calling, ~3-4GB VRAM)"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "Phi-4 (14B, MIT) — air-gap and regulated deployments"
+    - persona: "Fine-tuned domain agents"
+      pick: "Phi-4 — MIT means fine-tune, redistribute, ship in product, no royalty"
+    - persona: "Reviewer / judgment agents"
+      pick: "Fable 5 or Opus 4.8 — do not ask a 14B STEM specialist for high-stakes judgment"
 ---
 
 # Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop

@@ -26,6 +26,18 @@ featured: false
 schema: ["Article", "FAQPage"]
 readingGoal: "You will understand exactly what Microsoft shipped with its 7 MAI models, which claims are verifiable today, and how to slot them into a model-routing strategy."
 tldr: "Microsoft AI announced seven in-house MAI models on June 2, 2026 — its first fully self-built frontier family, trained on Microsoft's own MAIA silicon. Headliners: MAI-Thinking-1 (35B-active MoE, 256K context, vendor-claimed 97% AIME 2025 and human-rater preference over Sonnet 4.6), MAI-Image-2.5 (claimed #2 on image leaderboards, ahead of Nano Banana 2 on editing), and MAI-Code-1-Flash (51% SWE-Bench Pro at just 5B params). Every number is vendor-claimed from a launch post — treat them as marketing until independent benchmarks land. The real story isn't any single score; it's Microsoft owning the full stack from chip to model to Frontier Tuning."
+architectNote:
+  recommendation: "Change nothing in your routing yet — every MAI number is vendor-claimed from a single launch post, unreproduced by LMArena, ARC Prize, or Artificial Analysis. The cheap experiments are the ones to run: pilot MAI-Code-1-Flash inside VS Code where evaluating it on your own repo costs nothing, and watch the image arena, which will confirm or debunk the Image-2.5 claim within weeks. Keep Fable 5 (the agentic ceiling since June 9, 2026, at $10/$50) and Opus 4.8 as your spine. The piece to evaluate seriously is Frontier Tuning — a tunable model on Microsoft-owned silicon changes enterprise cost math, but it also deepens single-vendor dependence on the Azure stack. Re-check in 30 days."
+  coePillar: "Technology · model routing + Governance · vendor risk"
+  personas:
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — keep; pilot MAI-Code-1-Flash (5B) for in-editor completions only"
+    - persona: "Bulk fan-out workers"
+      pick: "MAI-Image-2.5 Flash — pilot for bulk creative if the leaderboard claim holds"
+    - persona: "Voice-first agents"
+      pick: "MAI-Voice-2 Flash — pilot-tier, no independent data yet"
+    - persona: "Fine-tuned domain agents"
+      pick: "MAI via Frontier Tuning — evaluate the cost math, price the Azure lock-in"
 ---
 
 # Microsoft's 7 MAI Models: The In-House Frontier Bet

@@ -1,0 +1,125 @@
+---
+title: "How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)"
+description: "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts. The exact harness behind our Fable 5 vs Opus 4.8 rounds."
+date: "2026-06-10"
+lastUpdated: "2026-06-10"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - claude-code
+  - llm-evals
+  - agentic-ai
+  - benchmarks
+  - ai-2026
+  - anthropic
+keywords:
+  - llm eval claude code
+  - how to evaluate llm models
+  - claude code model comparison
+  - run llm benchmarks yourself
+  - llm eval harness
+  - compare ai models claude code
+  - model eval without langsmith
+  - promptfoo vs langfuse
+  - blind llm judging
+image: "/images/blog/llm-evals-claude-code-guide-hero.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Make evals a routing reflex, not a platform project. The Claude Code Agent tool's per-spawn model override gives you a zero-infrastructure harness for head-to-head rounds — fix ground truth before dispatch, verify mechanically, judge blind, write a receipt. Adopt promptfoo only for prompt regression, Langfuse only once an app serves real users, and skip LangSmith entirely unless you already live in LangChain."
+  coePillar: "Technology · evaluation discipline + Governance · evidence standards"
+  personas:
+    - persona: "AI Architects / CoE leads"
+      pick: "This harness — new model day = eval day"
+    - persona: "Prompt engineers"
+      pick: "promptfoo for pattern regression"
+    - persona: "Product teams with live users"
+      pick: "Langfuse for runtime tracing"
+---
+
+# How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)
+
+**TL;DR**: You do not need an eval platform to know which model to route where. The Claude Code `Agent` tool accepts a per-spawn `model` override, which makes the CLI itself a head-to-head eval harness: dispatch the same task to two models as parallel subagents, verify objective tasks with asserts you wrote *before* dispatch, judge subjective tasks with a blind non-contestant model under shuffled labels, and write a JSON receipt. This is the exact loop behind our [four receipted Fable 5 vs Opus 4.8 rounds](/research/model-arena), run within 24 hours of the model's release. Full walkthrough below, including the task-design rules and the three caveats that never leave a receipt.
+
+---
+
+## Why Run Your Own Evals at All?
+
+Vendor benchmarks answer the vendor's question on the vendor's tasks. Your routing decision — which model runs your coding agents, your review gates, your fan-out workers — depends on behavior under *your* constraints: your output contracts, your repo, your governance rules. When [Claude Fable 5](/blog/claude-fable-5-analysis-2026) launched, its model card said nothing about whether it would respect a two-line output contract under load, or flag a governance-gated edit instead of executing it. Two afternoons of harness time answered both. A leaderboard you can't audit is marketing with decimals; an eval you ran yourself is a routing decision with receipts.
+
+## How Does the Claude Code Harness Work?
+
+One capability makes the whole pattern possible: when Claude Code spawns a subagent through the `Agent` tool, you can pin that subagent to a specific model (`fable`, `opus`, `sonnet`, `haiku`). The orchestrating session becomes the harness; the subagents become contestants.
+
+The loop has six steps:
+
+### Step 1 — Design the card
+
+Four to six tasks, one per capability axis you actually route on: reasoning under output constraints, coding with shipped asserts, repo-grounded or agentic tool use, constraint-stacked writing. Two design rules carry most of the integrity: **prefer self-verifying tasks** (asserts, known answers) and **keep judged tasks to half the card or less**.
+
+### Step 2 — Fix ground truth before dispatch
+
+Compute the answers yourself, first — script them if needed, write them down. Never derive truth from a contestant's output; the moment you do, the eval grades itself. For our Round 3, the harness computed the reasoning answer with a five-line script and counted the repo facts live before either contestant saw the prompt.
+
+### Step 3 — Dispatch in parallel
+
+Send the same prompt to each contestant in one parallel block, one model override each. Tell contestants their final message is raw harness data, not user-facing prose — instruction compliance is part of what you're measuring. Cap concurrency to your machine's capacity.
+
+### Step 4 — Verify mechanically
+
+Re-run the contestants' test suites yourself. Grep for banned patterns. Count the words. Check the format against the contract character by character. Anything a script can check, a script should check — mechanical verification is immune to the judge biases that plague LLM-graded evals.
+
+### Step 5 — Judge blind, labels shuffled
+
+For taste tasks (voice, code craft), use a **non-contestant** model as judge, shuffle which output is "A" and which is "B" per task, record the assignment, and never show the judge a model name. Crucially: the harness enforces hard constraints separately, so the judge's preference can't launder a violation — a beautiful answer over the word limit still fails the word limit.
+
+### Step 6 — Write the receipt
+
+One JSON file per round: contestants, judge and label assignments, per-task results with attempts and durations, the tally, and the caveats. Publish it. The receipt is what separates an eval from an anecdote — and it's what lets a claim survive the question "says who?"
+
+The complete harness doctrine, task-design rules, and every receipt from our rounds are open source in the [arena repo](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md).
+
+## What Did This Harness Actually Catch?
+
+Things no model card mentions: Opus 4.8 answering a hard reasoning task confidently wrong in 2.7 seconds while Fable 5 solved it; Fable 5 silently executing a governance-gated edit that Opus flagged; a blind style verdict that *flipped* between rounds (which is exactly why single-judge n=1 style scores should never drive routing); and every model's output discipline degrading under heavy task load — the finding that moved "enforce contracts structurally" from preference to doctrine. Four rounds, two afternoons, zero infrastructure.
+
+## Which Eval Tool for Which Job?
+
+| Need | Use | Skip |
+|---|---|---|
+| Head-to-head model rounds | **This harness** — Agent overrides, native to Claude Code | Standing up eval servers |
+| Prompt/pattern regression | **promptfoo** — declarative YAML, local, free, colocated with prompts | — |
+| Runtime tracing of a live app | **Langfuse** — once real users exist; tracing is a production concern | Tracing infra for benchmarks |
+| — | — | **LangSmith** as an eval layer: hosted and paid where promptfoo is local and free, unless you already live in LangChain |
+
+## The Three Caveats That Never Leave a Receipt
+
+1. **n=1 per task is directional, not statistical.** Promote a claim to routing doctrine only after repeated rounds agree.
+2. **Same-family judges have family bias.** Blind, shuffled labels mitigate; objective verification eliminates. Prefer the latter wherever possible.
+3. **You are measuring model-in-harness.** Results include the agent scaffolding — which is the configuration you actually operate, but it is not a raw API benchmark. Say so.
+
+## FAQ
+
+### How do I compare two AI models in Claude Code?
+
+Use the Agent tool to spawn parallel subagents with different `model` overrides, give both the same task prompt, verify objective results with asserts you fixed before dispatch, and judge subjective outputs with a blind non-contestant model under shuffled labels. Record everything in a JSON receipt.
+
+### Do I need LangSmith or Langfuse to evaluate LLMs?
+
+Not for model comparison. LangSmith adds a hosted, paid framework dependency for nothing this harness lacks; Langfuse is runtime tracing — valuable once an app serves real users, irrelevant for benchmarking. For prompt regression testing, promptfoo (local, free, declarative) covers it.
+
+### How do you stop an LLM judge from being biased?
+
+Three layers: prefer mechanical verification so most tasks need no judge; use a non-contestant model from outside the matchup where possible; and always shuffle A/B labels per task while enforcing hard constraints in script — so the judge scores taste, never compliance.
+
+### What is "ground truth before dispatch"?
+
+The integrity rule that makes a homemade eval trustworthy: compute correct answers before any contestant runs, and never adjust them afterward. If the harness derives truth from a contestant's output, the eval silently becomes self-grading.
+
+### How long does a round take?
+
+Our Round 3 — four tasks, two models, mechanical verification, one blind judgment, receipt written — took under an hour of wall-clock time inside a normal Claude Code session. New model day can be eval day.
+
+---
+
+*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. The harness, task-design rules, and all four Fable 5 vs Opus 4.8 receipts are open source: [methodology](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md) · [receipts](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs) · [live results](/research/model-arena).*

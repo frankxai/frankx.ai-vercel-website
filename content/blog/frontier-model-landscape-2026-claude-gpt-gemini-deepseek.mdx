@@ -19,6 +19,18 @@ keywords:
 readingGoal: "You will understand every major frontier model family — their architecture, sweet spots, and which to choose for different tasks."
 tldr: "Mid-2026 frontier models: Claude Opus 4.8 (Anthropic) leads agentic coding via Claude Code. OpenAI collapsed its o-series into the unified GPT-5.5 line. Gemini 3.1 Pro / 3.5 Flash (Google) bring frontier multimodal at low cost. DeepSeek V4 reset the price-performance curve with near-top coding at ~1/10th the price. Llama 4 still anchors open weights; Mistral leads European sovereignty. This guide compares them across coding, research, creative work, and enterprise deployment."
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Run this landscape as a three-lane portfolio, not a single-vendor bet: a Claude lane for agentic coding and long-horizon work, a Gemini lane for grounded million-token research synthesis, and a DeepSeek or Haiku-tier lane for everything high-volume. Context windows commoditized at 1M+, so route on agentic task completion and tool-use consistency — the two properties this guide says compound in pipelines — and keep an open-weight option warm for sovereignty and fine-tuning. One update since the 2026-06-05 refresh: Claude Fable 5 (released June 9 at $10/$50) now sits above Opus 4.8 as the agentic-coding ceiling, so the coding lane has a new top pick."
+  coePillar: "Technology · model routing + Strategy · vendor diversification"
+  personas:
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 (post-dates this guide — now the agentic ceiling at $10/$50)"
+    - persona: "Research & synthesis agents"
+      pick: "Gemini 3.1 Pro (1M ctx + native grounded search)"
+    - persona: "Bulk fan-out workers"
+      pick: "DeepSeek V4-Flash (~$0.10/$0.20)"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "DeepSeek V4-Pro or Llama 4 Maverick"
 ---
 
 _Updated 2026-06-05. The landscape turned over since spring: OpenAI retired the entire o-series and unified reasoning into GPT-5.5, Claude reached Opus 4.8, Gemini moved to 3.x, and DeepSeek V4 reset the cost curve. Versions and prices below reflect the current state._

@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 637,
+    "total": 723,
     "aliases": 19,
     "byType": {
       "core": 22,
-      "section": 342,
+      "section": 344,
       "community": 17,
-      "tool": 10,
+      "tool": 52,
       "static": 15,
-      "blog": 149,
+      "blog": 191,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -798,6 +798,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/aeo-playbook-get-cited-by-ai-2026",
+      "title": "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026",
+      "description": "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini — with a checklist and the tools that track it.",
+      "tags": [
+        "AEO",
+        "AI Search",
+        "SEO",
+        "ChatGPT",
+        "Perplexity"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/agent-family-architecture",
       "title": "Agent Family Architecture vs Agent Swarms",
       "description": "More agents is not more intelligence. The architectural choice between swarm (more workers) and family (governed roles) determines whether your agent stack scales coherently or fragments under load.",
@@ -1017,6 +1030,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-model-routing-guide",
+      "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
+      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grades, and the persona map. Refreshed every quarter and after every arena round.",
+      "tags": [
+        "frontier-models",
+        "model-routing",
+        "agentic-ai",
+        "ai-architecture",
+        "ai-2026",
+        "ai-coe"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
       "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
       "description": "Every major AI video tool compared — quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
@@ -1056,6 +1083,184 @@
       "type": "blog"
     },
     {
+      "href": "/blog/best-ai-affiliate-programs-2026",
+      "title": "The Best AI and MCP Affiliate Programs in 2026 (Ranked by What Actually Pays)",
+      "description": "A ranked, economics-first guide to AI and MCP affiliate programs in 2026 — recurring vs one-time, the honest dead-ends, and the 3-network setup that replaces signing up to 30 sites.",
+      "tags": [
+        "affiliate marketing",
+        "ai tools",
+        "mcp",
+        "creator economy",
+        "monetization",
+        "passive income"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-browser-2026",
+      "title": "Best AI Browser 2026: ChatGPT Atlas vs Perplexity Comet vs Dia",
+      "description": "A current, honest comparison of the 2026 AI browsers — ChatGPT Atlas, Perplexity Comet (free since March), and Dia — on agentic browsing, assistant quality, privacy, price, and platform. Plus where Gemini-in-Chrome and Edge Copilot fit.",
+      "tags": [
+        "AI browser",
+        "ChatGPT Atlas",
+        "Perplexity Comet",
+        "Dia browser",
+        "agentic browsing",
+        "Gemini in Chrome"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-coding-tools-for-beginners-2026",
+      "title": "Best AI Coding Tool for Beginners 2026: Cursor vs GitHub Copilot vs Replit Agent",
+      "description": "An honest comparison of Cursor, GitHub Copilot, and Replit Agent for people learning to code or shipping their first app — learning curve, free tiers, real prices, and which one a non-coder can actually use.",
+      "tags": [
+        "AI coding tools",
+        "beginners",
+        "Cursor",
+        "GitHub Copilot",
+        "Replit Agent"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-headshot-generator-2026",
+      "title": "Best AI Headshot Generator 2026: Aragon vs HeadshotPro vs The Photo AI (Tested)",
+      "description": "I tested Aragon AI, HeadshotPro, BetterPic, Photo AI, and the DIY route on realism, price, turnaround, and privacy. Here's the honest pick for LinkedIn, teams, and dating.",
+      "tags": [
+        "AI Headshots",
+        "Aragon AI",
+        "HeadshotPro",
+        "AI Tools",
+        "LinkedIn"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-image-generators-2026",
+      "title": "Best AI Image Generators in 2026: GPT Image 2, Nano Banana, Midjourney, FLUX",
+      "description": "Every major AI image tool compared — quality, text rendering, pricing, and which to use for photorealism, design, and in-pipeline automation.",
+      "tags": [
+        "AI Image Generation",
+        "GPT Image",
+        "Midjourney",
+        "FLUX",
+        "Generative AI"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-logo-maker-2026",
+      "title": "Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft",
+      "description": "A results-first comparison of the best AI logo makers in 2026 — Looka, Canva, Ideogram, and Recraft — judged on vector export, brand kit, licensing, and price. Recraft wins for the file you actually own.",
+      "tags": [
+        "AI logo maker",
+        "AI design tools",
+        "Recraft",
+        "Looka",
+        "Canva",
+        "Ideogram",
+        "vector graphics",
+        "brand identity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-meeting-assistant-2026",
+      "title": "Best AI Meeting Assistant 2026: Granola vs Otter vs Fathom vs Fireflies",
+      "description": "A results-first comparison of the four AI meeting notetakers worth your money in 2026 — Granola, Otter, Fathom, Fireflies — on accuracy, no-bot vs bot, action items, integrations, privacy, and price.",
+      "tags": [
+        "AI meeting assistant",
+        "Granola",
+        "Otter",
+        "Fathom",
+        "Fireflies",
+        "productivity tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-note-taking-tools-2026",
+      "title": "Best AI Note-Taking and Second-Brain Tools 2026: Notion AI vs Mem vs Reflect vs Obsidian",
+      "description": "A results-first comparison of the best AI note-taking and second-brain tools in June 2026 — Notion AI, Mem, Reflect, Obsidian, and meeting tools Granola and Otter — scored on AI quality, retrieval, transcription, privacy, and price.",
+      "tags": [
+        "second brain",
+        "AI note-taking",
+        "Notion AI",
+        "Obsidian",
+        "knowledge management"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-presentation-maker-2026",
+      "title": "Best AI Presentation Maker 2026: Gamma vs Canva vs NotebookLM (and Why Tome Is Gone)",
+      "description": "Gamma, Canva, Beautiful.ai, Plus AI, NotebookLM, and Presentations.ai compared on quality, editability, PPT/Slides export, and price — plus the Tome shutdown most guides still get wrong.",
+      "tags": [
+        "AI Presentations",
+        "Gamma",
+        "Canva",
+        "NotebookLM",
+        "Productivity Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-product-photography-2026",
+      "title": "Best AI Product Photography Tools 2026 for Amazon and Shopify Sellers",
+      "description": "A results-first comparison of the best AI product photography tools in 2026 — Photoroom, Pebblely, Flair.ai, Claid, plus Nano Banana Pro and GPT Image 2 — ranked on realism, product accuracy, batch power, and price.",
+      "tags": [
+        "AI product photography",
+        "ecommerce",
+        "Amazon sellers",
+        "Shopify",
+        "AI image tools",
+        "Photoroom",
+        "product photos"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-resume-builder-2026",
+      "title": "Best AI Resume Builder 2026: Teal vs Rezi vs Kickresume vs Just Using Claude",
+      "description": "An honest comparison of the top AI resume builders in 2026 — Teal, Rezi, Kickresume, Enhancv — against the $0 Claude-plus-template route. What ATS optimization actually means, real pricing, and when a paid builder is worth it.",
+      "tags": [
+        "AI resume builder",
+        "ATS optimization",
+        "Teal",
+        "Rezi",
+        "Claude",
+        "job search"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-shorts-tiktok-tools-2026",
+      "title": "Best AI Tool for YouTube Shorts and TikTok 2026: Opus Clip vs AutoShorts vs Faceless",
+      "description": "The best AI tools for automated YouTube Shorts and TikTok in 2026 — Opus Clip, AutoShorts, Faceless.so, Submagic, and CapCut compared on automation, quality, scheduling, and price.",
+      "tags": [
+        "AI Video",
+        "YouTube Shorts",
+        "TikTok",
+        "Faceless YouTube",
+        "Short-Form Content"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-superpowers-stack-2026",
+      "title": "The AI Superpowers Stack 2026: The Best Tool and MCP for Every Creator Job",
+      "description": "A curated stack — the single best AI tool and the MCP server that gives an agent that power — for content, websites, research, image, video, music, automation, coding, and voice.",
+      "tags": [
+        "AI Tools",
+        "MCP",
+        "Creator Stack",
+        "AI Agents",
+        "Productivity"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/best-ai-tools-for-creators-2026",
       "title": "The Best AI Tools for Creators in 2026: A GenCreator's Production Stack",
       "description": "The complete AI creator toolkit — from Claude Code for development to Suno for music. Every tool battle-tested in daily production use.",
@@ -1066,6 +1271,88 @@
         "ai-workflow",
         "productivity",
         "automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-video-editor-2026",
+      "title": "Best AI Video Editor 2026: CapCut vs Descript vs Premiere AI vs Runway",
+      "description": "The honest June 2026 comparison of the four AI video editors that matter — CapCut for short-form, Descript for talking-head and podcast video, Premiere with Firefly for pro long-form, Runway for AI-native generation. Picked by job, with verified pricing and a comparison table.",
+      "tags": [
+        "ai-video-editor",
+        "capcut",
+        "descript",
+        "adobe-premiere",
+        "runway",
+        "creator-tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-writing-tools-vs-claude-2026",
+      "title": "Best AI Writing Tools 2026: When You Actually Need One vs Just Using Claude",
+      "description": "An honest comparison of Copy.ai, Writesonic, Rytr, and Surfer against raw Claude and ChatGPT. For most solo writers, the frontier model wins. Here's when a dedicated tool's workflow earns its price.",
+      "tags": [
+        "AI Writing Tools",
+        "Claude",
+        "Copy.ai",
+        "SEO",
+        "Content Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-cheap-ai-music-generator-2026",
+      "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
+      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that decides whether you can legally sell the output: commercial rights.",
+      "tags": [
+        "AI Music",
+        "Suno",
+        "Udio",
+        "Commercial Rights",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-elevenlabs-alternatives-2026",
+      "title": "Best ElevenLabs Alternatives 2026: The Cheapest AI Voice That Still Sounds Human",
+      "description": "ElevenLabs is still the quality benchmark — but you don't always need it. Verified June 2026 pricing for Fish Audio, Cartesia, Hume, Kokoro, and more, ranked by price-per-character.",
+      "tags": [
+        "AI Voice",
+        "Text to Speech",
+        "ElevenLabs",
+        "Voice Cloning",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-local-llm-2026",
+      "title": "Best Local LLM to Run on Your Own Machine in 2026 (by RAM: 8GB / 16GB / 32GB)",
+      "description": "Pick the right open model for your RAM. Verified params, quant levels, and VRAM for Qwen3, Gemma 3, Llama, and DeepSeek distills across 8GB, 16GB, and 32GB machines — plus the runner to use.",
+      "tags": [
+        "local-llm",
+        "open-models",
+        "ollama",
+        "lm-studio",
+        "privacy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-no-code-ai-agent-builders-2026",
+      "title": "Best No-Code AI Agent Builders 2026: n8n vs Lindy vs Relay vs Make",
+      "description": "A hands-on comparison of the top no-code AI agent builders in 2026 — n8n, Lindy, Relay.app, Make, Zapier, Gumloop — judged on ease, power, self-hosting, MCP support, and price.",
+      "tags": [
+        "AI agents",
+        "no-code",
+        "n8n",
+        "automation",
+        "MCP",
+        "Lindy",
+        "Make",
+        "Zapier"
       ],
       "type": "blog"
     },
@@ -1143,6 +1430,34 @@
       "type": "blog"
     },
     {
+      "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
+      "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
+      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
+      "tags": [
+        "AI Assistants",
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "AI Tools",
+        "Consumer AI"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/cheapest-frontier-model-access-2026",
+      "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subscription vs API vs Gateway)",
+      "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro — subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
+      "tags": [
+        "AI pricing",
+        "GPT-5.5",
+        "Claude Opus 4.8",
+        "Gemini 3.1",
+        "OpenRouter",
+        "API costs"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/CLAUDE",
       "title": "CLAUDE",
       "tags": [
@@ -1176,6 +1491,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/claude-code-pricing-explained-2026",
+      "title": "Claude Code Pricing Explained 2026: Pro vs Max 5x vs Max 20x vs API (When Each Wins)",
+      "description": "A verified 2026 breakdown of Claude Code pricing — Pro ($20), Max 5x ($100), Max 20x ($200), and pure API — with the usage-limit mechanics and a decision table for which plan wins at your usage level.",
+      "tags": [
+        "Claude Code",
+        "AI pricing",
+        "developer tools",
+        "Anthropic",
+        "AI coding"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/claude-code-skills-2026-the-10-you-need",
       "title": "Claude Code Skills 2026: The 10 You Actually Need",
       "description": "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples.",
@@ -1185,6 +1513,35 @@
         "ACOS",
         "AI Development",
         "Productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/claude-fable-5-analysis-2026",
+      "title": "Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show",
+      "description": "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro. We ran four first-party eval rounds against Opus 4.8 in Claude Code within 24 hours. Here are the receipts, the pricing math, and the routing guide.",
+      "tags": [
+        "anthropic",
+        "claude-fable-5",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai",
+        "claude-code"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/claude-fable-5-prompting-guide",
+      "title": "Claude Fable 5 Prompting Guide: Seven Rules from Measured Behavior, Not Vibes",
+      "description": "How to prompt Claude Fable 5, derived from four receipted eval rounds — constraint stacking that works, the agreeable-execution trap, why output contracts belong in structure, and a system-prompt template for agentic pipelines.",
+      "tags": [
+        "anthropic",
+        "claude-fable-5",
+        "prompt-engineering",
+        "agentic-ai",
+        "claude-code",
+        "ai-2026"
       ],
       "type": "blog"
     },
@@ -1303,8 +1660,8 @@
     },
     {
       "href": "/blog/cursor-vs-claude-code-vs-windsurf-2026",
-      "title": "Claude Code vs Cursor 2026: A Practitioner's Verdict",
-      "description": "Head-to-head comparison of every major AI coding agent — architecture, pricing, strengths, and which one to choose for your workflow. Updated March 2026.",
+      "title": "Cursor vs Claude Code vs Windsurf in 2026: Which AI Coding Agent for Which Job",
+      "description": "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing — plus where Copilot and Codex fit.",
       "tags": [
         "Coding Agents",
         "Claude Code",
@@ -1401,6 +1758,20 @@
         "founders",
         "investors",
         "european union"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/faceless-youtube-ai-tools-2026",
+      "title": "Best AI Tools for a Faceless YouTube Channel in 2026 (Full Stack Under $60/mo)",
+      "description": "The verified best-in-class AI stack for a faceless YouTube channel in June 2026 — avatar, voice, script, repurposing, editing, music, thumbnails — with a real budget table that lands under $60/month.",
+      "tags": [
+        "faceless-youtube",
+        "ai-video",
+        "creator-stack",
+        "ai-tools",
+        "youtube-automation",
+        "content-repurposing"
       ],
       "type": "blog"
     },
@@ -1631,6 +2002,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/heygen-vs-synthesia-vs-argil-2026",
+      "title": "HeyGen vs Synthesia vs Argil 2026: The Best AI Avatar and Talking-Head Tool",
+      "description": "A results-first comparison of HeyGen, Synthesia, and Argil for 2026 — avatar realism, custom clones, dubbing, API, and pricing. Which wins corporate training, faceless creator content, and ads.",
+      "tags": [
+        "AI avatars",
+        "HeyGen",
+        "Synthesia",
+        "Argil",
+        "talking-head video",
+        "AI video",
+        "faceless content"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/how-to-build-your-soul-md",
       "title": "How to Build Your soul.md — A Creator's Operating File",
       "description": "soul.md is your personal configuration file as a creator. Learn how to build one across 7 dimensions and use it as your creative compass.",
@@ -1732,6 +2118,20 @@
         "local-llms",
         "ai-2026",
         "benchmarks"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/llm-evals-claude-code-guide",
+      "title": "How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)",
+      "description": "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts. The exact harness behind our Fable 5 vs Opus 4.8 rounds.",
+      "tags": [
+        "claude-code",
+        "llm-evals",
+        "agentic-ai",
+        "benchmarks",
+        "ai-2026",
+        "anthropic"
       ],
       "type": "blog"
     },
@@ -2005,6 +2405,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ollama-vs-lm-studio-vs-jan-2026",
+      "title": "Ollama vs LM Studio vs Jan 2026: The Best Way to Run AI Locally",
+      "description": "A tested comparison of the three local-LLM runners in June 2026 — Ollama, LM Studio, and Jan — on ease of use, model library, GUI vs CLI, OpenAI-compatible API, hardware support, and privacy.",
+      "tags": [
+        "local LLM",
+        "Ollama",
+        "LM Studio",
+        "Jan",
+        "privacy",
+        "open source AI",
+        "self-hosted AI"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/openclaw-explained-ai-agent-everyone-talking-about",
       "title": "OpenClaw, NemoClaw, NanoClaw: The AI Agent Ecosystem",
       "description": "The open-source AI agent with 247K GitHub stars. How it works, what NVIDIA added with NemoClaw, and what it means for personal AI agents in 2026.",
@@ -2042,6 +2457,19 @@
         "CLAUDE.md",
         "MCP Servers",
         "Workshops"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/personal-ai-coe-under-100-2026",
+      "title": "How to Build a Personal AI Center of Excellence for Under $100 a Month (2026)",
+      "description": "Enterprise AI Centers of Excellence run on a 6-pillar architecture. The same architecture works for one person at roughly 1/5000th the cost. Here is the exact under-$100 stack, the budget table, and the daily ritual that wires it together.",
+      "tags": [
+        "AI Center of Excellence",
+        "personal AI stack",
+        "AI budget",
+        "AI governance",
+        "creator tools"
       ],
       "type": "blog"
     },
@@ -2380,6 +2808,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/suno-vs-udio-2026",
+      "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
+      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
+      "tags": [
+        "Suno",
+        "Udio",
+        "AI Music",
+        "Commercial License",
+        "Music Production",
+        "Suno v5"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/swarm-intelligence-multi-agent-orchestration",
       "title": "Swarm Intelligence: Multi-Agent Orchestration for Creators",
       "description": "Learn the 4 orchestration patterns that make AI agents work together: Pipeline, Parallel, Weighted Synthesis, and Iterative. Real examples from ACOS production use.",
@@ -2463,6 +2905,74 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ultimate-canva-ai-workflow-2026",
+      "title": "The Ultimate Canva AI Workflow in 2026: Magic Studio, Brand Kits, and the Creator Setup",
+      "description": "The complete Canva AI workflow for 2026: Magic Studio, Brand Kit, Bulk Create, and the repurposing pipeline that turns one asset into a week of content. Honest ROI and who it's for.",
+      "tags": [
+        "Canva",
+        "AI Design",
+        "Magic Studio",
+        "Creator Tools",
+        "Workflow",
+        "Brand Kit"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-capcut-workflow-2026",
+      "title": "The Ultimate CapCut Workflow in 2026: The AI Editing Setup for Short-Form and Faceless Channels",
+      "description": "The verified CapCut workflow for June 2026 — AI captions, auto-reframe, script-to-video, voiceover, and templates — plus the fast faceless pipeline, batch repurposing, and a plan table with honest pricing and ToS nuance.",
+      "tags": [
+        "capcut",
+        "short-form-video",
+        "faceless-channels",
+        "ai-video-editing",
+        "content-repurposing",
+        "creator-tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-descript-workflow-2026",
+      "title": "The Ultimate Descript Workflow in 2026: Edit Video and Audio by Editing Text",
+      "description": "The complete Descript workflow for 2026 — text-based editing, voice cloning, Studio Sound, one-click filler removal, and the repurposing pipeline that turns one recording into a week of content.",
+      "tags": [
+        "Descript",
+        "video editing",
+        "podcasting",
+        "content workflow",
+        "AI tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-elevenlabs-workflow-2026",
+      "title": "The Ultimate ElevenLabs Workflow in 2026: Voice Cloning, Agents, and the Setup That Wins",
+      "description": "The complete ElevenLabs workflow for 2026 — Eleven v3, instant vs professional voice cloning, the API, conversational agents, and dubbing. Real setups for podcasters, course creators, app builders, and AI architects, with honest ROI math.",
+      "tags": [
+        "ElevenLabs",
+        "AI Voice",
+        "Voice Cloning",
+        "Conversational AI",
+        "Content Pipeline",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-gamma-workflow-2026",
+      "title": "The Ultimate Gamma Workflow in 2026: From Prompt to Investor-Ready Deck",
+      "description": "A results-first workflow for Gamma in 2026 — prompt-to-pitch-deck, doc-to-deck, edit-by-chat refinement, and brand-locked templates, plus the real ROI vs. hiring a designer.",
+      "tags": [
+        "Gamma",
+        "AI presentations",
+        "pitch deck",
+        "creator tools",
+        "workflow"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ultimate-guide-ai-coding-agents-2026",
       "title": "The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond",
       "description": "Master AI-powered development with the complete guide to coding agents. Learn to set up Claude Code, OpenCode, Cline, Roo Code, and build your evolution from basic prompts to multi-agent orchestration.",
@@ -2474,6 +2984,78 @@
         "MCP Servers",
         "Agentic AI",
         "Developer Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-heygen-workflow-2026",
+      "title": "The Ultimate HeyGen Workflow in 2026: Avatars, Cloning, and the Faceless Video Setup",
+      "description": "The complete 2026 HeyGen workflow — clone yourself from a 15-second selfie with Avatar V, localize into 175+ languages, automate sales video at scale via the API, and run a faceless channel. Setup, ROI, and who it's for.",
+      "tags": [
+        "HeyGen",
+        "AI avatars",
+        "avatar cloning",
+        "faceless video",
+        "AI video",
+        "talking-head video",
+        "video automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-higgsfield-workflow-2026",
+      "title": "The Ultimate Higgsfield Workflow in 2026: Soul ID, Cinematic Video, and the Claude Code MCP Setup",
+      "description": "How I run Higgsfield in 2026: one subscription for 30+ video models, Soul ID for character-consistent series, and the MCP that lets Claude Code generate video directly. The full workflow, the ROI math, and who it's actually for.",
+      "tags": [
+        "Higgsfield",
+        "AI Video",
+        "Soul ID",
+        "MCP",
+        "Claude Code",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-n8n-workflow-2026",
+      "title": "The Ultimate n8n Workflow in 2026: AI Agents, MCP, and the Automation Backend That Wins",
+      "description": "The complete 2026 guide to building production n8n workflows: self-host vs cloud, the AI Agent node, MCP Server Trigger and Client Tool, content repurposing, RAG, and wiring n8n as the action backend for Claude Code.",
+      "tags": [
+        "n8n",
+        "AI agents",
+        "MCP",
+        "automation",
+        "workflow",
+        "Claude Code",
+        "RAG"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-opus-clip-workflow-2026",
+      "title": "The Ultimate Opus Clip Workflow in 2026: Long Video to Viral Shorts on Autopilot",
+      "description": "A results-first Opus Clip workflow for 2026: turn one podcast or long video into 10 scored shorts, run the virality-score curation loop, and batch-schedule to TikTok, Reels, and Shorts. Verified features, current pricing, and who it's actually for.",
+      "tags": [
+        "Opus Clip",
+        "video repurposing",
+        "short-form video",
+        "AI video",
+        "creator workflow",
+        "content automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-perplexity-workflow-2026",
+      "title": "The Ultimate Perplexity Workflow in 2026: Deep Research Setup, Comet, and How to Actually Use It",
+      "description": "The full Perplexity setup that wins in 2026 — Pro vs free, model routing, Spaces, the free Comet browser, and Deep Research. The discover→ground→reason workflow, citation discipline, and who it's actually for.",
+      "tags": [
+        "Perplexity",
+        "Comet browser",
+        "Deep Research",
+        "AI research",
+        "Perplexity Pro",
+        "research workflow"
       ],
       "type": "blog"
     },
@@ -4213,6 +4795,384 @@
       "type": "section"
     },
     {
+      "href": "/llm-hub/claude-fable-5",
+      "title": "Claude Fable 5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-haiku-4-5",
+      "title": "Claude Haiku 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-5",
+      "title": "Claude Opus 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-6",
+      "title": "Claude Opus 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-8",
+      "title": "Claude Opus 4.8 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-4-5",
+      "title": "Claude Sonnet 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-4-6",
+      "title": "Claude Sonnet 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-claude-opus-4-8",
+      "title": "Claude Fable 5 VS Claude Opus 4 8 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-deepseek-v4",
+      "title": "Claude Fable 5 VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-gemini-3-5-pro",
+      "title": "Claude Fable 5 VS Gemini 3 5 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-gpt-5-5",
+      "title": "Claude Fable 5 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-grok-4-3",
+      "title": "Claude Fable 5 VS Grok 4 3 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-kimi-k2-6",
+      "title": "Claude Fable 5 VS Kimi K2 6 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-qwen3-7-max",
+      "title": "Claude Fable 5 VS Qwen3 7 Max — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-opus-4-6-vs-gpt-5-2-pro",
+      "title": "Claude Opus 4 6 VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-opus-4-8-vs-gpt-5-5",
+      "title": "Claude Opus 4 8 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-sonnet-4-5-vs-gemini-3-5-flash",
+      "title": "Claude Sonnet 4 5 VS Gemini 3 5 Flash — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/deepseek-v4-vs-claude-opus-4-8",
+      "title": "Deepseek V4 VS Claude Opus 4 8 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-3-5-flash-vs-claude-opus-4-6",
+      "title": "Gemini 3 5 Flash VS Claude Opus 4 6 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-3-5-flash-vs-gpt-5-2-pro",
+      "title": "Gemini 3 5 Flash VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gpt-oss-vs-gemma-4",
+      "title": "Gpt Oss VS Gemma 4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/grok-4-3-vs-gpt-5-5",
+      "title": "Grok 4 3 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/kimi-k2-6-vs-deepseek-v4",
+      "title": "Kimi K2 6 VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/qwen3-7-max-vs-deepseek-v4",
+      "title": "Qwen3 7 Max VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/deepseek-v4",
+      "title": "DeepSeek V4 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-5-flash",
+      "title": "Gemini 3.5 Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-5-pro",
+      "title": "Gemini 3.5 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-pro",
+      "title": "Gemini 3 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemma-4",
+      "title": "Gemma 4 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-5-2-pro",
+      "title": "GPT-5.2 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-5-5",
+      "title": "GPT-5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-oss",
+      "title": "gpt-oss (120b / 20b) — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-1",
+      "title": "Grok 4.1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-3",
+      "title": "Grok 4.3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/kimi-k2-6",
+      "title": "Kimi K2.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/llama-4-maverick",
+      "title": "Llama 4 Maverick — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-code-1-flash",
+      "title": "MAI-Code-1-Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-image-2-5",
+      "title": "MAI-Image-2.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-thinking-1",
+      "title": "MAI-Thinking-1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mistral-large-3",
+      "title": "Mistral Large 3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/phi-4",
+      "title": "Microsoft Phi-4 (open-weight family) — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/qwen3-7-max",
+      "title": "Qwen3.7-Max — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/magic",
       "title": "Magic",
       "tags": [
@@ -4455,6 +5415,14 @@
       "type": "section"
     },
     {
+      "href": "/observatory",
+      "title": "Observatory",
+      "tags": [
+        "observatory"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/on-consciousness",
       "title": "ON Consciousness",
       "tags": [
@@ -4658,6 +5626,16 @@
         "kyndryl"
       ],
       "type": "partnership"
+    },
+    {
+      "href": "/partnerships/van-ede",
+      "title": "Van Ede",
+      "tags": [
+        "partnerships",
+        "van",
+        "ede"
+      ],
+      "type": "section"
     },
     {
       "href": "/plan",
