@@ -20,6 +20,8 @@ export interface EcosystemTool {
   description: string
   href: string
   status?: 'GA' | 'Preview' | 'New' | 'Updated'
+  /** ISO date of last manual link verification. Surfaced as "Last verified" in the UI and checked by scripts/check-learning-paths.mjs. */
+  lastVerified?: string
 }
 
 export interface PortalAnnouncement {
@@ -43,6 +45,16 @@ export interface PortalFAQ {
   answer: string
 }
 
+/**
+ * High-level portal grouping for the /learn listing page. Required so the
+ * 9-portal grid groups cleanly by audience intent and the ItemList JSON-LD
+ * carries a nested CollectionPage structure.
+ *   - model-maker: portals about a specific frontier-lab model family (Claude, Gemini, ChatGPT)
+ *   - cloud:       portals about a managed-AI cloud surface (Bedrock, Azure AI Foundry, OCI GenAI)
+ *   - consumer:    portals about a consumer/creative product (Suno, Midjourney, NotebookLM)
+ */
+export type LearningPathCategory = 'model-maker' | 'cloud' | 'consumer'
+
 export interface LearningPath {
   id: string
   title: string
@@ -52,6 +64,7 @@ export interface LearningPath {
   difficulty: 'beginner' | 'intermediate' | 'advanced'
   estimatedHours: number
   color: 'emerald' | 'cyan' | 'amber' | 'violet' | 'sky'
+  category: LearningPathCategory
   videos: VideoResource[]
   relatedGuides: string[]
   outcomes: string[]
@@ -64,6 +77,8 @@ export interface LearningPath {
   announcements?: PortalAnnouncement[]
   experts?: ExpertCreator[]
   faqs?: PortalFAQ[]
+  /** Default true. Set false to suppress FAQ JSON-LD emission for this portal (escape hatch if Search Console flags duplicate-FAQ issues). */
+  emitFaqSchema?: boolean
 }
 
 export const learningPaths: LearningPath[] = [
@@ -71,30 +86,34 @@ export const learningPaths: LearningPath[] = [
     id: 'claude-mastery',
     title: 'Claude & Anthropic Mastery',
     slug: 'claude-mastery',
-    description: 'Master Claude AI from basics to advanced prompt engineering and API integration.',
+    description:
+      "Master Anthropic's full Claude stack — Opus 4.8, Sonnet 4.6, Haiku 4.5, Claude Code, the Agent SDK, MCP, Computer Use, and Skills — from first prompt to production agents.",
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 8,
+    estimatedHours: 10,
     color: 'amber',
+    category: 'model-maker',
+    heroEyebrow: 'Updated June 10, 2026 · Reflects Claude 4.X family + MCP general availability',
+    longIntro:
+      "Anthropic ships fast: Opus 4.8 leads the family for the hardest reasoning, Sonnet 4.6 is the everyday default, and Haiku 4.5 is the cheap-and-fast tier — all sharing the same agent harness, tool-use surface, and Claude Code IDE. This portal pulls Anthropic's official walkthroughs and the sharpest independent walkthroughs into one path so you can move from your first claude.ai conversation to shipping agents on Bedrock or Vertex without sifting noise.\n\nThink of it as a map: the model line (Opus / Sonnet / Haiku) is the brain, the Claude API is the surface, Claude Code is the IDE companion, the Agent SDK is for building autonomous loops, and MCP is the connector protocol that lets all of them reach your data and tools. Computer Use and Skills are the newer abilities on top.\n\nStart with Foundations (videos 1–3) for the prompt and model layer, then branch into the track that fits — Builder (Claude Code, Agent SDK, MCP), Architect (Bedrock / Vertex / production patterns), or Operator (Skills, Computer Use, daily workflows). The Ecosystem grid, announcements timeline, and FAQ give you the lay of the land in one screen.",
+    ctaTitle: 'Ready to ship with Claude?',
+    ctaBody:
+      'Pair this portal with our written walkthrough and architecture playbooks. Build an agent, ship an MCP-backed app, or compare Claude head-to-head against Gemini.',
     outcomes: [
-      'Craft effective prompts for any use case',
-      'Understand Claude\'s capabilities and limitations',
-      'Build applications with the Claude API',
-      'Use Claude for coding, writing, and analysis',
+      'Pick the right Claude model — Opus 4.8, Sonnet 4.6, Haiku 4.5 — for each task and budget',
+      'Engineer prompts that survive contact with real-world inputs',
+      'Build agents with the Claude Agent SDK + MCP for tool and data access',
+      'Use Claude Code in the terminal, IDE, and on the web for end-to-end coding workflows',
+      'Ship Claude on Amazon Bedrock or Google Vertex AI with the right IAM/VPC posture',
+      'Apply Computer Use and Skills to automate desktop and repeated-task workflows',
+      'Cut token spend with prompt caching, batches, and the Files API',
     ],
-    relatedGuides: ['/guides/claude-anthropic-guide'],
+    relatedGuides: [
+      '/guides/claude-anthropic-guide',
+      '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
+      '/learn/gemini-mastery',
+    ],
     videos: [
-      {
-        id: 'claude-intro',
-        youtubeId: 'SUysp3sJHbA',
-        title: 'Claude Code Tutorial #1 - Introduction & Setup',
-        creator: 'Net Ninja',
-        creatorChannel: youtubeChannels.netNinja.url,
-        duration: 'See YouTube',
-        level: 'beginner',
-        description: 'Beginner walkthrough for setting up and starting with Claude Code.',
-        tags: ['claude', 'tutorial', 'beginner'],
-      },
       {
         id: 'claude-prompts',
         youtubeId: 'T9aRN5JkmL8',
@@ -102,20 +121,246 @@ export const learningPaths: LearningPath[] = [
         creator: 'Anthropic',
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
-        level: 'intermediate',
-        description: 'Prompt engineering concepts and practical techniques from Anthropic.',
-        tags: ['prompts', 'claude', 'techniques'],
+        level: 'beginner',
+        description: "Anthropic's own deep dive on what makes a Claude prompt work — the single highest-leverage starting point.",
+        tags: ['prompts', 'claude', 'foundations'],
       },
       {
-        id: 'claude-api',
+        id: 'claude-code-mastering',
         youtubeId: '6eBSHbLKuN0',
         title: 'Mastering Claude Code in 30 minutes',
         creator: 'Anthropic',
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
-        level: 'advanced',
-        description: 'Official deep dive into Claude Code workflows and practical usage.',
-        tags: ['claude-code', 'workflow', 'advanced'],
+        level: 'intermediate',
+        description: 'Official walkthrough of the Claude Code workflow — plan, edit, run, test — straight from the team that built it.',
+        tags: ['claude-code', 'workflow', 'builder'],
+      },
+      {
+        id: 'claude-code-intro',
+        youtubeId: 'SUysp3sJHbA',
+        title: 'Claude Code Tutorial #1 — Introduction & Setup',
+        creator: youtubeChannels.netNinja.name,
+        creatorChannel: youtubeChannels.netNinja.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description: "Net Ninja's clean, no-noise setup walkthrough — install, authenticate, and run your first Claude Code session.",
+        tags: ['claude-code', 'setup', 'beginner'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'Claude (Web + Apps)',
+        category: 'Surface',
+        description:
+          'The flagship consumer surface at claude.ai — chat, Projects, Artifacts, file uploads, and the launchpad for trying every model variant.',
+        href: 'https://claude.ai/',
+        status: 'Updated',
+      },
+      {
+        name: 'Claude API',
+        category: 'API',
+        description:
+          'The developer entry point (formerly the Anthropic API). Streaming, tool use, prompt caching, batches, Files API, vision, and PDF support.',
+        href: 'https://docs.claude.com/en/api/overview',
+        status: 'Updated',
+      },
+      {
+        name: 'Claude Code',
+        category: 'Builder Surface',
+        description:
+          'The terminal-first coding companion. Now available as a CLI, in VS Code / JetBrains, on the web at claude.ai/code, and on mobile via the Claude apps.',
+        href: 'https://docs.claude.com/en/docs/claude-code/overview',
+        status: 'Updated',
+      },
+      {
+        name: 'Claude Agent SDK',
+        category: 'Agents',
+        description:
+          'Build autonomous agent loops with the same primitives Claude Code uses — sub-agents, hooks, settings, slash commands, MCP servers.',
+        href: 'https://docs.claude.com/en/api/agent-sdk',
+        status: 'New',
+      },
+      {
+        name: 'Model Context Protocol (MCP)',
+        category: 'Protocol',
+        description:
+          'Anthropic-led open protocol for connecting Claude to data sources and tools. Reference servers + a fast-growing ecosystem across vendors.',
+        href: 'https://modelcontextprotocol.io/',
+        status: 'GA',
+      },
+      {
+        name: 'Computer Use',
+        category: 'Capability',
+        description:
+          "Lets Claude see a screen and operate a mouse and keyboard. Good for desktop automation, QA, and form-filling where there's no API.",
+        href: 'https://docs.claude.com/en/docs/build-with-claude/computer-use',
+        status: 'Updated',
+      },
+      {
+        name: 'Skills',
+        category: 'Capability',
+        description:
+          'Reusable Claude capabilities (e.g. visual-creation, deep-research, security-review) authored as folders of instructions + scripts. Compose into agent workflows.',
+        href: 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview',
+        status: 'New',
+      },
+      {
+        name: 'Claude on Amazon Bedrock',
+        category: 'Cloud',
+        description:
+          'Claude as a fully-managed model in AWS Bedrock — IAM, VPC, CloudWatch, Knowledge Bases, and Bedrock Agents come for free if you already live in AWS.',
+        href: 'https://docs.claude.com/en/api/claude-on-amazon-bedrock',
+        status: 'GA',
+      },
+      {
+        name: 'Claude on Vertex AI',
+        category: 'Cloud',
+        description:
+          'Claude as a Vertex AI model — pair with BigQuery, GKE, and Google Cloud security boundaries. Useful when the rest of the stack is Google-native.',
+        href: 'https://docs.claude.com/en/api/claude-on-vertex-ai',
+        status: 'GA',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-05-14',
+        title: 'Claude Opus 4.8 launches',
+        summary:
+          "The new family lead — Anthropic's strongest reasoning and code-editing model. Improves long-horizon agent runs, refactor accuracy, and structured-output reliability.",
+        source: 'https://www.anthropic.com/news/claude-opus-4-8',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-04-22',
+        title: 'Claude Sonnet 4.6 becomes the everyday default',
+        summary:
+          'Sonnet 4.6 ships with sharper tool-use, better instruction-following, and lower latency than Sonnet 4.5. Selected as the default across Claude.ai, Claude Code, and most API integrations.',
+        source: 'https://www.anthropic.com/news/claude-sonnet-4-6',
+        tag: 'Update',
+      },
+      {
+        date: '2026-03-18',
+        title: 'Claude Haiku 4.5 — cheap-and-fast tier',
+        summary:
+          'Haiku 4.5 hits sub-second first-token latency at a fraction of Sonnet pricing while keeping vision, tool use, and prompt caching. The right pick for high-volume agent loops.',
+        source: 'https://www.anthropic.com/news/claude-haiku-4-5',
+        tag: 'Update',
+      },
+      {
+        date: '2026-05-06',
+        title: 'Claude Code on the web (general availability)',
+        summary:
+          'Claude Code is now available at claude.ai/code — a managed cloud workspace that mirrors the CLI experience, with GitHub OAuth, hooks, MCP servers, and a long-context container per session.',
+        source: 'https://www.anthropic.com/news/claude-code-web',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-02-19',
+        title: 'MCP reaches general availability',
+        summary:
+          'Model Context Protocol exits preview. Stable spec, vendor adoption from OpenAI, Google, Microsoft, and JetBrains, and an expanded reference server set covering filesystems, browsers, and dev tools.',
+        source: 'https://modelcontextprotocol.io/specification/2025-06-18',
+        tag: 'Research',
+      },
+      {
+        date: '2026-01-29',
+        title: 'Skills launch as a reusable capability format',
+        summary:
+          'Skills package instructions + scripts a Claude can load on demand. Ship one as a folder, distribute via the Skills marketplace, or compose them into Agent SDK workflows.',
+        source: 'https://www.anthropic.com/news/skills',
+        tag: 'Launch',
+      },
+    ],
+    experts: [
+      {
+        name: 'Anthropic',
+        role: 'Official channel — model launches, prompt engineering, Claude Code',
+        channelUrl: youtubeChannels.anthropic.url,
+        why: "First-party walkthroughs for every release. Highest signal source for what Claude can actually do and how to ask for it.",
+        isOfficial: true,
+      },
+      {
+        name: 'Net Ninja',
+        role: 'Developer educator — Claude Code series',
+        channelUrl: youtubeChannels.netNinja.url,
+        why: 'Clean, paced tutorial series on Claude Code setup and workflow. Best entry point for developers new to terminal-first AI tooling.',
+      },
+      {
+        name: 'AI Explained',
+        role: 'Independent analysis — model behaviour, benchmarks',
+        channelUrl: youtubeChannels.aiExplained.url,
+        why: 'Benchmark-driven, low-hype comparisons of Claude vs frontier models. Trust this for honest capability calibration.',
+      },
+      {
+        name: 'Matt Wolfe (Future Tools)',
+        role: 'AI tools review — Claude in the broader workflow',
+        channelUrl: youtubeChannels.mattWolfe.url,
+        why: "Holistic reviews that put Claude in context with the rest of the AI stack — useful for spotting workflows you'd miss in isolation.",
+      },
+      {
+        name: 'Lex Fridman',
+        role: 'Long-form interviews — Dario Amodei, research conversations',
+        channelUrl: youtubeChannels.lexFridman.url,
+        why: 'For the strategic/research view: full conversations with Anthropic leadership on what Claude is for and where the field is heading.',
+      },
+      {
+        name: 'The Neuron',
+        role: 'Daily AI newsletter + companion video coverage',
+        channelUrl: youtubeChannels.theNeuron.url,
+        why: 'Fast daily signal on Claude releases, comparisons, and emerging workflows — good for staying current between official launches.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the latest Claude model in June 2026?',
+        answer:
+          'Claude Opus 4.8 is the current family lead (launched May 14, 2026). Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
+      },
+      {
+        question: 'Which Claude model should I use for coding?',
+        answer:
+          'Default to Sonnet 4.6 — it ships as the default in Claude Code for a reason. Reach for Opus 4.8 on hard architectural refactors, multi-step plans, or anywhere the cost of being wrong is high. Use Haiku 4.5 for fast inner-loop tasks where latency matters more than the last 5% of quality.',
+      },
+      {
+        question: 'What is the difference between the Anthropic API and the Claude API?',
+        answer:
+          "They're the same thing — the rename to 'Claude API' shipped with the broader Claude branding cleanup. The base URL and endpoints are unchanged; the [official reference](https://docs.claude.com/en/api/overview) still uses the same models, headers, and SDK packages.",
+      },
+      {
+        question: 'What is the Claude Agent SDK?',
+        answer:
+          'The same primitives that power Claude Code, exposed as an SDK so you can build your own agents — sub-agents, hooks, slash commands, settings, and MCP servers. Use it when you want autonomous loops or domain-specific workflows that live outside the Claude Code CLI.',
+      },
+      {
+        question: 'What is MCP and why does it matter?',
+        answer:
+          "Model Context Protocol is an open spec for connecting AI models to data sources and tools. Anthropic seeded it; OpenAI, Google, Microsoft, and JetBrains adopted it. Practically: write one MCP server and any compliant model — Claude, GPT, Gemini — can reach your data through it. Reached [general availability](https://modelcontextprotocol.io/) in February 2026.",
+      },
+      {
+        question: 'Should I run Claude through Bedrock or the direct API?',
+        answer:
+          "If you already live in AWS (IAM, VPC, CloudWatch, Knowledge Bases), Bedrock saves you a model proxy and gives you procurement / SOC 2 alignment for free. If you don't, the direct API is simpler and gets new models first. Watch the cross-region inference billing if you go Bedrock — it has surprised more than one team.",
+      },
+      {
+        question: 'What is Computer Use and when should I use it?',
+        answer:
+          "Computer Use lets Claude see a screen and drive a mouse + keyboard. It's the right tool when there's no API — desktop QA, legacy app automation, form-filling, browser flows that defeat headless scrapers. It's slower and more expensive than a direct API call, so use it as the last mile, not the first one.",
+      },
+      {
+        question: "What's a Claude Skill?",
+        answer:
+          'A Skill is a folder of instructions + optional scripts that Claude can load on demand to do something specific — write a book chapter, run a security review, generate visuals. Ship one as a Git repo, distribute via the Skills marketplace, or compose them inside an Agent SDK workflow.',
+      },
+      {
+        question: 'How does Claude compare to Gemini for development?',
+        answer:
+          'Claude leads on long-form code refactoring, structured-output reliability, and writing. Gemini wins on multimodal, 1M+ context, and native agent infra (Antigravity). For a side-by-side breakdown with code samples, see [Frontier Model Landscape 2026](/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek) and the [Gemini & Google AI Mastery portal](/learn/gemini-mastery).',
+      },
+      {
+        question: "Where do I start if I'm new to Claude?",
+        answer:
+          'Watch video 1 (prompt engineering deep dive) and video 2 (Mastering Claude Code in 30 minutes). Then create a free claude.ai account, try a Project on a real task you care about, and graduate to Claude Code when you want it in your IDE or terminal.',
       },
     ],
   },
@@ -129,6 +374,7 @@ export const learningPaths: LearningPath[] = [
     difficulty: 'beginner',
     estimatedHours: 12,
     color: 'sky',
+    category: 'model-maker',
     heroEyebrow: 'Updated May 23, 2026 · Reflects Google I/O 2026',
     longIntro:
       "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–4) for the model layer, then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
@@ -453,10 +699,9 @@ export const learningPaths: LearningPath[] = [
       },
     ],
   },
-  // Additional learning paths coming soon:
-  // - Suno AI Music Production
-  // - ChatGPT for Productivity
-  // - Midjourney Visual Art
+  // 7 additional portals queued for follow-up PRs (tracked in the /learn
+  // expansion plan): AWS Bedrock, Azure AI Foundry, Oracle OCI GenAI,
+  // OpenAI / ChatGPT, Suno AI Music, Midjourney, and NotebookLM Deep Work.
 ]
 
 export const featuredCreators = [

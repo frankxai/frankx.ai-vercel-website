@@ -17,7 +17,13 @@ import {
   ExternalLink,
   GraduationCap,
 } from 'lucide-react'
-import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
+import {
+  learningPaths,
+  featuredCreators,
+  type LearningPath,
+  type LearningPathCategory,
+  type VideoResource,
+} from '@/data/learning-paths'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
@@ -44,11 +50,31 @@ const playButtonBgMap: Record<string, string> = {
 }
 
 const upcomingPortals: string[] = [
+  'AWS Bedrock',
+  'Azure AI Foundry',
+  'Oracle OCI GenAI',
+  'OpenAI / ChatGPT',
   'Suno AI Music',
-  'Midjourney Visual Art',
-  'ChatGPT for Productivity',
+  'Midjourney',
   'NotebookLM Deep Work',
 ]
+
+const categoryLabels: Record<LearningPathCategory, { title: string; blurb: string }> = {
+  'model-maker': {
+    title: 'Frontier model makers',
+    blurb: "The labs that ship the models themselves — Anthropic, Google, OpenAI.",
+  },
+  cloud: {
+    title: 'Cloud AI surfaces',
+    blurb: 'Managed model gateways on AWS, Azure, and Oracle Cloud — where production runs.',
+  },
+  consumer: {
+    title: 'Consumer & creative tools',
+    blurb: 'Specialist products for music, video, image, and research workflows.',
+  },
+}
+
+const CATEGORY_ORDER: LearningPathCategory[] = ['model-maker', 'cloud', 'consumer']
 
 function PathCard({ path }: { path: LearningPath }) {
   const Icon = iconMap[path.icon] || BookOpen
@@ -192,20 +218,52 @@ export default function LearnShell() {
         </div>
       </section>
 
-      {/* Learning Paths Grid */}
+      {/* Learning Paths Grid — grouped by category when every portal has one,
+          otherwise falls back to a flat grid so the page never breaks during
+          incremental rollout of the category field. */}
       <section className="max-w-6xl mx-auto px-6 pb-12">
-        <div className="grid md:grid-cols-2 gap-6">
-          {learningPaths.map((path, i) => (
-            <motion.div
-              key={path.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <PathCard path={path} />
-            </motion.div>
-          ))}
-        </div>
+        {learningPaths.every((p) => p.category) ? (
+          <div className="space-y-12">
+            {CATEGORY_ORDER.map((cat) => {
+              const inCat = learningPaths.filter((p) => p.category === cat)
+              if (inCat.length === 0) return null
+              const meta = categoryLabels[cat]
+              return (
+                <div key={cat}>
+                  <div className="mb-6">
+                    <h2 className="text-2xl font-bold text-white mb-1">{meta.title}</h2>
+                    <p className="text-sm text-white/50">{meta.blurb}</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {inCat.map((path, i) => (
+                      <motion.div
+                        key={path.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: Math.min(i, 4) * 0.05 }}
+                      >
+                        <PathCard path={path} />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-6">
+            {learningPaths.map((path, i) => (
+              <motion.div
+                key={path.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(i, 4) * 0.05 }}
+              >
+                <PathCard path={path} />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Coming Soon */}
