@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { getAdminSecret } from '@/lib/admin-auth'
+import { getAdminSecret, safeEqual } from '@/lib/admin-auth'
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
     // The admin supplied this password; returning it as the session token is the
     // existing contract (command-center stores it and replays it as x-admin-secret).
-    if (typeof password === 'string' && password === secret) {
+    if (typeof password === 'string' && safeEqual(password, secret)) {
       return NextResponse.json({ success: true, token: secret })
     }
 

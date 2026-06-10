@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import { timingSafeEqual } from 'crypto'
 
 /**
  * Shared admin auth for protected API routes.
@@ -11,6 +12,14 @@ import { type NextRequest, NextResponse } from 'next/server'
 export function getAdminSecret(): string | null {
   const secret = process.env.ADMIN_SECRET
   return secret && secret.length > 0 ? secret : null
+}
+
+/** Constant-time string comparison (avoids leaking the secret via timing). */
+export function safeEqual(a: string, b: string): boolean {
+  const ab = Buffer.from(a)
+  const bb = Buffer.from(b)
+  if (ab.length !== bb.length) return false
+  return timingSafeEqual(ab, bb)
 }
 
 /**
@@ -29,7 +38,7 @@ export function requireAdmin(request: NextRequest): NextResponse | null {
     )
   }
   const provided = request.headers.get('x-admin-secret')
-  if (!provided || provided !== secret) {
+  if (!provided || !safeEqual(provided, secret)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   return null
