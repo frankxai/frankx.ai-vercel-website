@@ -51,7 +51,7 @@ One JSON file per eval run: `data/evals/results/<eval-id>__<YYYY-MM-DD>.json`
 ### Rules
 
 1. **`model_id` must match a registry key** (`data/model-registry.json` for text, `data/generative-model-registry.json` for multimodal). Unknown ids are skipped by the loader with a console warning — never a crash.
-2. **`caveats` is required and honest.** Small-N evals are valuable but must say so. The hub displays caveats verbatim.
+2. **`caveats` is strongly recommended and must be honest when present.** Small-N evals are valuable but must say so. The loader treats the field as optional (`caveats?: string[]`) and renders it verbatim when present; a result file without caveats is accepted but will be questioned in review.
 3. **Scores are 0..1 normalized** so the hub can render bars without per-eval logic. Keep `raw` for the human truth.
 4. **Files are append-only.** A re-run is a new file with a new date; history stays. The loader surfaces the latest run per eval_id and keeps the trend.
 5. **No PII, no API keys, no private repo content** in result files — they ship to the public site.

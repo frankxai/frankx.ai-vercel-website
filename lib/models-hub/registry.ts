@@ -96,6 +96,11 @@ export function orgAccent(slug: string): string {
   return RAW.organizations[slug]?.accent_color || '#a855f7'
 }
 
+/** Registry-level last_updated stamp — single source for "Updated ..." UI strings. */
+export function registryLastUpdated(): string {
+  return (registry as { last_updated?: string }).last_updated || ''
+}
+
 export function orgName(slug: string): string {
   return RAW.organizations[slug]?.name || slug
 }

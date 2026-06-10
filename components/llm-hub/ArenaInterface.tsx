@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Award, ChevronDown, Eye, Zap } from 'lucide-react'
 import type { ModelRow } from './ModelExplorer'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 
 interface ArenaProps {
   rows: ModelRow[]
@@ -94,6 +95,13 @@ export function ArenaInterface({ rows, initialLeft, initialRight }: ArenaProps) 
   const rightWins = useMemo(() => SPEC_ROWS.filter((s) => winnerForRow(s) === 'right').length, [winnerForRow])
   const totalRated = useMemo(() => SPEC_ROWS.filter((s) => winnerForRow(s) !== null).length, [winnerForRow])
 
+  const curatedSlug = useMemo(() => {
+    if (!left || !right) return null
+    const fwd = `${left.id}-vs-${right.id}`
+    const rev = `${right.id}-vs-${left.id}`
+    return COMPARISONS.find((c) => c.slug === fwd || c.slug === rev)?.slug ?? null
+  }, [left, right])
+
   if (!left || !right) {
     return <p className="text-sm text-white/40">Pick two models to compare.</p>
   }
@@ -171,9 +179,11 @@ export function ArenaInterface({ rows, initialLeft, initialRight }: ArenaProps) 
           <Link href={`/llm-hub/${right.id}`} className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/70 transition-colors hover:border-white/30 hover:text-white">
             {right.name} page <ArrowRight className="h-3 w-3" />
           </Link>
-          <Link href={`/llm-hub/compare/${left.id}-vs-${right.id}`} className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs text-emerald-300 transition-colors hover:border-emerald-500/50">
-            Curated deep comparison (if curated)
-          </Link>
+          {curatedSlug ? (
+            <Link href={`/llm-hub/compare/${curatedSlug}`} className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs text-emerald-300 transition-colors hover:border-emerald-500/50">
+              Curated deep comparison
+            </Link>
+          ) : null}
         </div>
       </div>
 

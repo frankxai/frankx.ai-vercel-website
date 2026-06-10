@@ -28,15 +28,19 @@ const SITE = 'https://frankx.ai'
 const STALE_MONTHS = 4
 const PREVIEW_MONTHS = 3
 
+const VALID_MODALITIES = new Set(['image', 'video', 'audio', 'voice', 'embedding', 'world'])
+
 function monthsBetween(iso: string, now: Date): number {
   // Accepts "YYYY-MM-DD", "YYYY-MM", or "YYYY". Year-only dates carry no
   // month signal, so we assume December of that year — the conservative
   // choice that avoids flagging current-year models as stale months early.
-  if (!iso) return Infinity
+  // Invalid/missing dates return NaN; callers route those to 'unreviewed'
+  // rather than mislabeling them stale.
+  if (!iso) return NaN
   const parts = iso.split('-')
   const y = Number(parts[0])
   const m = parts.length > 1 ? Number(parts[1]) : 12
-  if (!y || !m) return Infinity
+  if (!y || !m) return NaN
   const then = new Date(Date.UTC(y, m - 1, 1))
   return (now.getUTCFullYear() - then.getUTCFullYear()) * 12 + (now.getUTCMonth() - then.getUTCMonth())
 }
@@ -64,11 +68,15 @@ export function runStalenessAudit(now: Date = new Date()): StalenessReport {
     if (sources.length === 0) {
       flags.push({ modality: 'text', registry: 'model-registry.json', id, name, released, reason: 'missing-sources', detail: 'No sources[] — every claim needs at least one source.', url })
     }
-    if (status === 'preview' && age >= PREVIEW_MONTHS) {
-      flags.push({ modality: 'text', registry: 'model-registry.json', id, name, released, reason: 'preview-overdue', detail: `Status: preview for ${age} months — verify GA status.`, url })
-    }
-    if (age >= STALE_MONTHS && status !== 'legacy') {
-      flags.push({ modality: 'text', registry: 'model-registry.json', id, name, released, reason: 'stale', detail: `Released ${age} months ago — refresh pricing/benchmarks.`, url })
+    if (!Number.isFinite(age)) {
+      flags.push({ modality: 'text', registry: 'model-registry.json', id, name, released, reason: 'unreviewed', detail: 'Missing or invalid released date — fix the registry entry.', url })
+    } else {
+      if (status === 'preview' && age >= PREVIEW_MONTHS) {
+        flags.push({ modality: 'text', registry: 'model-registry.json', id, name, released, reason: 'preview-overdue', detail: `Status: preview for ${age} months — verify GA status.`, url })
+      }
+      if (age >= STALE_MONTHS && status !== 'legacy') {
+        flags.push({ modality: 'text', registry: 'model-registry.json', id, name, released, reason: 'stale', detail: `Released ${age} months ago — refresh pricing/benchmarks.`, url })
+      }
     }
   }
 
@@ -79,18 +87,28 @@ export function runStalenessAudit(now: Date = new Date()): StalenessReport {
     const status = String(raw.status || '')
     const sources = Array.isArray(raw.sources) ? (raw.sources as string[]) : []
     const name = String(raw.name || id)
-    const cat = String(raw.category || '') as AuditFlag['modality']
+    const rawCat = String(raw.category || '')
+    const catValid = VALID_MODALITIES.has(rawCat)
+    const cat = (catValid ? rawCat : 'world') as AuditFlag['modality'] // modality only used for labelling below when invalid
     const age = monthsBetween(released, now)
-    const url = `${SITE}/models/${cat}/${id}`
+    // Only build a deep URL from a validated category; otherwise point at the hub.
+    const url = catValid ? `${SITE}/models/${rawCat}/${id}` : `${SITE}/models`
 
+    if (!catValid) {
+      flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'unreviewed', detail: `Unknown category "${rawCat}" — fix the registry entry.`, url })
+    }
     if (sources.length === 0) {
       flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'missing-sources', detail: 'No sources[].', url })
     }
-    if (status === 'preview' && age >= PREVIEW_MONTHS) {
-      flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'preview-overdue', detail: `Status: preview for ${age} months — verify GA status.`, url })
-    }
-    if (age >= STALE_MONTHS && status !== 'legacy') {
-      flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'stale', detail: `Released ${age} months ago — refresh.`, url })
+    if (!Number.isFinite(age)) {
+      flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'unreviewed', detail: 'Missing or invalid released date — fix the registry entry.', url })
+    } else {
+      if (status === 'preview' && age >= PREVIEW_MONTHS) {
+        flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'preview-overdue', detail: `Status: preview for ${age} months — verify GA status.`, url })
+      }
+      if (age >= STALE_MONTHS && status !== 'legacy') {
+        flags.push({ modality: cat, registry: 'generative-model-registry.json', id, name, released, reason: 'stale', detail: `Released ${age} months ago — refresh.`, url })
+      }
     }
   }
 

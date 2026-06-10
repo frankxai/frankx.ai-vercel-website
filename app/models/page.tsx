@@ -7,6 +7,7 @@ import {
   getCategories,
   getGenModelsByCategory,
   getAllGenModels,
+  registryLastUpdated,
 } from '@/lib/models-hub/registry'
 
 const SOURCES = [
@@ -106,7 +107,7 @@ export default function ModelsHubPage() {
         <section className="px-6 pb-12 pt-16">
           <div className="mx-auto max-w-6xl">
             <p className="mb-4 font-mono text-sm uppercase tracking-wider text-pink-400">
-              Generative Intelligence Directory · Updated May 29, 2026
+              Generative Intelligence Directory · Updated {registryLastUpdated()}
             </p>
             <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
               Generative AI Model Hub <span className="text-white/40">2026</span>
@@ -246,7 +247,7 @@ export default function ModelsHubPage() {
 
         <footer className="border-t border-white/5 px-6 py-12">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm text-white/30">FrankX Intelligence Pipeline · Multimodal registry · Last refreshed May 29, 2026</p>
+            <p className="text-sm text-white/30">FrankX Intelligence Pipeline · Multimodal registry · Last refreshed {registryLastUpdated()}</p>
             <p className="mt-2 text-xs text-white/15">
               Source of truth: <code>data/generative-model-registry.json</code> · Agent surface: <a href="/models.json" className="underline">/models.json</a> · Maintained via <code>/new-gen-model</code>
             </p>

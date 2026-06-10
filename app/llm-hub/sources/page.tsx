@@ -61,7 +61,9 @@ export default function SourcesPage() {
   const providers = getProviders()
 
   function orgName(modelOrg: string): string {
-    const p = providers.find((p) => p.org.slug === modelOrg || p.org.slug.includes(modelOrg))
+    // Boundary-aware: registry keys like "google" map to slugs like "google-deepmind";
+    // bare includes() would false-positive (e.g. "meta" vs "metaverse").
+    const p = providers.find((p) => p.org.slug === modelOrg || p.org.slug.startsWith(`${modelOrg}-`))
     return p?.org.name || modelOrg
   }
 

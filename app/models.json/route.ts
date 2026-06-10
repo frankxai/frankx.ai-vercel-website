@@ -1,4 +1,4 @@
-import { getAllGenModels, getCategories, getOrg } from '@/lib/models-hub/registry'
+import { getAllGenModels, getCategories, getOrg, registryLastUpdated } from '@/lib/models-hub/registry'
 import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
 
 export const revalidate = 3600
@@ -19,7 +19,7 @@ export async function GET() {
       description:
         'Curated decision layer over multimodal generative AI — image, video, music, voice, embeddings, world models. The deciding, not the doing. Built for humans and agents.',
       url: `${SITE}/models`,
-      updated: '2026-05-29',
+      updated: registryLastUpdated(),
       engine_note:
         'This is an intelligence layer, not a generator. Generation in the FrankX ecosystem runs via arcanea-studio (200+ models) and tools like Suno, Nano Banana, Higgsfield, Veo.',
       text_models: `${SITE}/llm-hub.json`,

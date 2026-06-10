@@ -9,7 +9,7 @@ A two-layer intelligence system over the entire generative-AI model landscape �
 - **`/llm-hub`** — the text & reasoning vertical (LLMs). Shipped first; deepest.
 - **`/models`** — the umbrella hub covering *every modality*, with per-category hubs and per-model pages.
 
-This is the **decision layer**, not a generation engine. The generation engine already exists in the ecosystem (`frankxai/arcanea-studio` — 200+ image/video/lipsync/cinema models via a proxy). We don't duplicate the doing; we own the *deciding*: which model for which job, why, with the receipts — and we make that intelligence consumable by AI agents.
+This is the **decision layer**, not a generation engine. The generation engine already exists in the ecosystem ([`frankxai/arcanea-studio`](https://github.com/frankxai/arcanea-studio) — "multi-model generative surface — 200+ image/video/lipsync/cinema models wired through a proxy", per the repo's own description). We don't duplicate the doing; we own the *deciding*: which model for which job, why, with the receipts — and we make that intelligence consumable by AI agents.
 
 ## Why one site, not a new repo
 
@@ -17,7 +17,7 @@ Per the LLM Hub strategy (`LLM_HUB_STRATEGY.md`): never fragment domain authorit
 
 ## Architecture
 
-```
+```text
 data/model-registry.json            # text LLMs (source of truth, /llm-hub)
 data/generative-model-registry.json # image/video/audio/voice/embedding/world (source of truth, /models)
 
@@ -35,9 +35,11 @@ components/models-hub/*              # CategoryCard, GenModelCard, GenModelExplo
 ```
 
 ### Categories (7)
+
 text (→ /llm-hub) · image · video · audio (music) · voice (speech/TTS) · embedding · world
 
 ### Per-model schema (`generative-model-registry.json`)
+
 `name · category · organization · released · status · io · license · tagline · best_for[] · watch_out · pricing_note · access[] · highlight · sources[]`
 
 Multimodal models price per image/second/minute (not per token), so we use a human `pricing_note` + `access[]` (where to run it) rather than token pricing.

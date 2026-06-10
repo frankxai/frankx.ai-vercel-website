@@ -76,10 +76,13 @@ export async function GET(request: NextRequest) {
   let redeployTriggered: 'fired' | 'skipped' | 'unset' = 'unset'
   if (REDEPLOY_HOOK && drifts.length > 0) {
     try {
-      const res = await fetch(REDEPLOY_HOOK, { method: 'POST' })
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 6000)
+      const res = await fetch(REDEPLOY_HOOK, { method: 'POST', signal: controller.signal })
+      clearTimeout(timeout)
       redeployTriggered = res.ok ? 'fired' : 'skipped'
     } catch {
-      redeployTriggered = 'skipped'
+      redeployTriggered = 'skipped' // includes timeout aborts
     }
   }
 
