@@ -44,24 +44,34 @@ export function ObservatoryShell({ catalog }: { catalog: Catalog }) {
   }
 
   return (
-    <div className="flex h-[100dvh] flex-col" style={{ background: palette.ink, color: palette.light }}>
-      <style>{`@keyframes observatory-ping{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}`}</style>
+    // pt offsets the site's fixed nav (h-14 mobile / h-16 desktop)
+    <div
+      className="flex h-[100dvh] flex-col pt-14 sm:pt-16"
+      style={{ background: palette.ink, color: palette.light }}
+    >
+      <style>{`
+        @keyframes observatory-ping{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+        @keyframes observatory-sheet{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+        .obs-scroll-x{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+        .obs-scroll-x::-webkit-scrollbar{display:none}
+      `}</style>
 
       {/* Header */}
-      <header className="border-b px-6 py-4" style={{ borderColor: palette.line }}>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="text-xl font-semibold tracking-tight" style={{ color: palette.light }}>
+      <header className="border-b px-4 pb-3 pt-3 sm:px-6 sm:pt-4" style={{ borderColor: palette.line }}>
+        {/* Row 1 — identity */}
+        <div className="flex items-baseline justify-between gap-3">
+          <div className="min-w-0">
+            <h1 className="text-lg font-semibold tracking-tight sm:text-xl" style={{ color: palette.light }}>
               Agent Observatory
             </h1>
-            <p className="mt-0.5 text-sm" style={{ color: palette.midGray }}>
-              The Agentic Creator OS fleet —{' '}
-              <span style={{ color: palette.orangeBright }}>{catalog.counts?.agent ?? 0} agents</span>,{' '}
-              {catalog.counts?.skill ?? 0} skills, {catalog.counts?.command ?? 0} commands,{' '}
-              {catalog.counts?.workflow ?? 0} workflows.
+            <p className="mt-0.5 truncate text-xs sm:text-sm" style={{ color: palette.midGray }}>
+              <span style={{ color: palette.orangeBright }}>{catalog.counts?.agent ?? 0} agents</span>
+              {' · '}
+              {catalog.counts?.skill ?? 0} skills · {catalog.counts?.command ?? 0} commands ·{' '}
+              {catalog.counts?.workflow ?? 0} workflows
             </p>
           </div>
-          <div className="flex items-center gap-3 text-xs" style={{ color: palette.faint }}>
+          <div className="hidden shrink-0 items-center gap-3 text-xs md:flex" style={{ color: palette.faint }}>
             {(['opus', 'sonnet', 'haiku'] as const).map((t) => (
               <span key={t} className="flex items-center gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full" style={{ background: tierColor[t] }} />
@@ -71,48 +81,60 @@ export function ObservatoryShell({ catalog }: { catalog: Catalog }) {
           </div>
         </div>
 
-        {/* View tabs */}
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          {VIEWS.map((v) => (
-            <button
-              key={v.id}
-              onClick={() => setView(v.id)}
-              title={v.hint}
-              className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
-              style={{
-                background: view === v.id ? withAlpha(palette.orange, 0.2) : 'transparent',
-                color: view === v.id ? palette.orangeBright : palette.midGray,
-                border: `1px solid ${view === v.id ? withAlpha(palette.orange, 0.5) : palette.line}`,
-              }}
-            >
-              {v.label}
-            </button>
-          ))}
-
-          <div className="ml-auto flex items-center gap-3">
-            <LiveToggle live={live} status={liveStatus} onToggle={() => setLive((v) => !v)} />
+        {/* Row 2 — view tabs (scrollable on mobile) + live + search (desktop) */}
+        <div className="mt-3 flex items-center gap-2">
+          <div className="obs-scroll-x -mx-1 min-w-0 flex-1 gap-2 px-1 sm:flex-none">
+            {VIEWS.map((v) => (
+              <button
+                key={v.id}
+                onClick={() => setView(v.id)}
+                title={v.hint}
+                className="shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
+                style={{
+                  background: view === v.id ? withAlpha(palette.orange, 0.2) : 'transparent',
+                  color: view === v.id ? palette.orangeBright : palette.midGray,
+                  border: `1px solid ${view === v.id ? withAlpha(palette.orange, 0.5) : palette.line}`,
+                }}
+              >
+                {v.label}
+              </button>
+            ))}
+          </div>
+          <div className="ml-auto flex shrink-0 items-center gap-2">
+            <LiveToggle live={live} status={liveStatus} compact={isMobile} onToggle={() => setLive((v) => !v)} />
             {view !== 'iam' && (
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search agents, skills…"
-                className="w-56 rounded-lg px-3 py-1.5 text-sm outline-none"
+                className="hidden w-56 rounded-lg px-3 py-1.5 text-sm outline-none sm:block"
                 style={{ background: palette.panel, border: `1px solid ${palette.line}`, color: palette.light }}
               />
             )}
           </div>
         </div>
 
-        {/* Kind filter chips */}
+        {/* Row 3 (mobile only) — full-width search */}
+        {view !== 'iam' && (
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search agents, skills…"
+            className="mt-2 block w-full rounded-lg px-3 py-2 text-sm outline-none sm:hidden"
+            style={{ background: palette.panel, border: `1px solid ${palette.line}`, color: palette.light }}
+          />
+        )}
+
+        {/* Row 4 — kind filter chips (scrollable on mobile) */}
         {view !== 'iam' && view !== 'workflows' && (
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="obs-scroll-x -mx-1 mt-2.5 gap-2 px-1 sm:mt-3 sm:flex-wrap">
             {ALL_KINDS.map((k) => {
               const on = visibleKinds.has(k)
               return (
                 <button
                   key={k}
                   onClick={() => toggleKind(k)}
-                  className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-opacity"
+                  className="flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-opacity"
                   style={{
                     background: withAlpha(kindColor[k], on ? 0.16 : 0.04),
                     color: on ? palette.light : palette.faint,
@@ -130,7 +152,7 @@ export function ObservatoryShell({ catalog }: { catalog: Catalog }) {
       </header>
 
       {/* Main */}
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative min-h-0 flex-1 overflow-hidden">
         {view === 'iam' ? (
           <IamMatrix catalog={catalog} />
         ) : isMobile ? (
@@ -152,111 +174,147 @@ export function ObservatoryShell({ catalog }: { catalog: Catalog }) {
           />
         )}
 
-        {/* Detail drawer */}
-        {selected && (
+        {/* Detail — side drawer on desktop, bottom sheet on mobile */}
+        {selected && !isMobile && (
           <aside
-            className="absolute right-0 top-0 h-full w-full max-w-[360px] overflow-auto border-l p-5"
+            className="absolute right-0 top-0 h-full w-[360px] overflow-auto border-l p-5"
             style={{ background: palette.inkSoft, borderColor: palette.lineStrong }}
           >
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <span
-                  className="h-3 w-3 rounded-full"
-                  style={{
-                    background:
-                      selected.kind === 'agent' && selected.tier
-                        ? tierColor[selected.tier]
-                        : kindColor[selected.kind],
-                  }}
-                />
-                <span className="text-xs uppercase tracking-wider" style={{ color: palette.faint }}>
-                  {kindLabel[selected.kind]}
-                </span>
-              </div>
-              <button onClick={() => setSelected(null)} style={{ color: palette.midGray }} aria-label="Close">
-                ✕
-              </button>
-            </div>
-
-            <h2 className="mt-2 text-lg font-semibold" style={{ color: palette.light }}>
-              {selected.name}
-            </h2>
-
-            <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
-              <span className="rounded-md px-2 py-0.5" style={{ background: palette.panel, color: palette.midGray }}>
-                {selected.group}
-              </span>
-              {selected.tier && (
-                <span
-                  className="rounded-md px-2 py-0.5"
-                  style={{ background: withAlpha(tierColor[selected.tier], 0.18), color: palette.light }}
-                >
-                  {tierLabel[selected.tier]}
-                </span>
-              )}
-              {selected.priority && (
-                <span className="rounded-md px-2 py-0.5" style={{ background: palette.panel, color: palette.midGray }}>
-                  {selected.priority} priority
-                </span>
-              )}
-            </div>
-
-            {selected.description && (
-              <p className="mt-3 text-sm leading-relaxed" style={{ color: palette.midGray }}>
-                {selected.description}
-              </p>
-            )}
-
-            {selected.tools && selected.tools.length > 0 && (
-              <Section title="Tools" palette={palette}>
-                <ChipList items={selected.tools} color={kindColor.agent} />
-              </Section>
-            )}
-            {selected.mcpServers && selected.mcpServers.length > 0 && (
-              <Section title="MCP servers" palette={palette}>
-                <ChipList items={selected.mcpServers} color={kindColor.workflow} />
-              </Section>
-            )}
-            {selected.keywords && selected.keywords.length > 0 && (
-              <Section title="Activation keywords" palette={palette}>
-                <ChipList items={selected.keywords} color={kindColor.skill} />
-              </Section>
-            )}
-            {selected.allowedTools && selected.allowedTools.length > 0 && (
-              <Section title="Allowed tools" palette={palette}>
-                <ChipList items={selected.allowedTools} color="#8C9A5B" />
-              </Section>
-            )}
-            {selected.deniedTools && selected.deniedTools.length > 0 && (
-              <Section title="Denied tools" palette={palette}>
-                <ChipList items={selected.deniedTools} color="#C2624F" />
-              </Section>
-            )}
-            {selected.file && (
-              <p className="mt-4 font-mono text-[11px]" style={{ color: palette.faint }}>
-                {selected.file}
-              </p>
-            )}
+            <DetailContent selected={selected} onClose={() => setSelected(null)} />
           </aside>
         )}
       </div>
+
+      {selected && isMobile && (
+        <>
+          <button
+            aria-label="Close details"
+            className="fixed inset-0 z-40"
+            style={{ background: 'rgba(20,20,19,0.55)', backdropFilter: 'blur(2px)' }}
+            onClick={() => setSelected(null)}
+          />
+          <aside
+            className="fixed inset-x-0 bottom-0 z-50 max-h-[72dvh] overflow-auto rounded-t-2xl border-t px-5 pb-8 pt-2"
+            style={{
+              background: palette.inkSoft,
+              borderColor: palette.lineStrong,
+              animation: 'observatory-sheet .22s ease-out',
+              boxShadow: '0 -12px 40px rgba(0,0,0,0.5)',
+            }}
+          >
+            <div className="mx-auto mb-3 h-1 w-10 rounded-full" style={{ background: palette.lineStrong }} />
+            <DetailContent selected={selected} onClose={() => setSelected(null)} />
+          </aside>
+        </>
+      )}
     </div>
+  )
+}
+
+function DetailContent({ selected, onClose }: { selected: CatalogNode; onClose: () => void }) {
+  return (
+    <>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <span
+            className="h-3 w-3 rounded-full"
+            style={{
+              background:
+                selected.kind === 'agent' && selected.tier
+                  ? tierColor[selected.tier]
+                  : kindColor[selected.kind],
+            }}
+          />
+          <span className="text-xs uppercase tracking-wider" style={{ color: palette.faint }}>
+            {kindLabel[selected.kind]}
+          </span>
+        </div>
+        <button
+          onClick={onClose}
+          className="-m-2 p-2"
+          style={{ color: palette.midGray }}
+          aria-label="Close"
+        >
+          ✕
+        </button>
+      </div>
+
+      <h2 className="mt-2 text-lg font-semibold" style={{ color: palette.light }}>
+        {selected.name}
+      </h2>
+
+      <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
+        <span className="rounded-md px-2 py-0.5" style={{ background: palette.panel, color: palette.midGray }}>
+          {selected.group}
+        </span>
+        {selected.tier && (
+          <span
+            className="rounded-md px-2 py-0.5"
+            style={{ background: withAlpha(tierColor[selected.tier], 0.18), color: palette.light }}
+          >
+            {tierLabel[selected.tier]}
+          </span>
+        )}
+        {selected.priority && (
+          <span className="rounded-md px-2 py-0.5" style={{ background: palette.panel, color: palette.midGray }}>
+            {selected.priority} priority
+          </span>
+        )}
+      </div>
+
+      {selected.description && (
+        <p className="mt-3 text-sm leading-relaxed" style={{ color: palette.midGray }}>
+          {selected.description}
+        </p>
+      )}
+
+      {selected.tools && selected.tools.length > 0 && (
+        <Section title="Tools">
+          <ChipList items={selected.tools} color={kindColor.agent} />
+        </Section>
+      )}
+      {selected.mcpServers && selected.mcpServers.length > 0 && (
+        <Section title="MCP servers">
+          <ChipList items={selected.mcpServers} color={kindColor.workflow} />
+        </Section>
+      )}
+      {selected.keywords && selected.keywords.length > 0 && (
+        <Section title="Activation keywords">
+          <ChipList items={selected.keywords} color={kindColor.skill} />
+        </Section>
+      )}
+      {selected.allowedTools && selected.allowedTools.length > 0 && (
+        <Section title="Allowed tools">
+          <ChipList items={selected.allowedTools} color="#788c5d" />
+        </Section>
+      )}
+      {selected.deniedTools && selected.deniedTools.length > 0 && (
+        <Section title="Denied tools">
+          <ChipList items={selected.deniedTools} color="#C2624F" />
+        </Section>
+      )}
+      {selected.file && (
+        <p className="mt-4 break-all font-mono text-[11px]" style={{ color: palette.faint }}>
+          {selected.file}
+        </p>
+      )}
+    </>
   )
 }
 
 function LiveToggle({
   live,
   status,
+  compact,
   onToggle,
 }: {
   live: boolean
   status: LiveStatus
+  compact?: boolean
   onToggle: () => void
 }) {
-  const dot =
-    status === 'live' ? '#8C9A5B' : status === 'connecting' ? '#C7A35A' : palette.faint
-  const label =
-    !live ? 'Go Live' : status === 'live' ? 'Live' : status === 'connecting' ? 'Connecting…' : 'Offline'
+  const dot = status === 'live' ? palette.green : status === 'connecting' ? palette.gold : palette.faint
+  const label = !live ? 'Go Live' : status === 'live' ? 'Live' : status === 'connecting' ? 'Connecting…' : 'Offline'
   return (
     <button
       onClick={onToggle}
@@ -276,23 +334,15 @@ function LiveToggle({
           animation: status === 'connecting' ? 'observatory-ping 1.2s ease-out infinite' : 'none',
         }}
       />
-      {label}
+      {compact ? (live ? label : 'Live') : label}
     </button>
   )
 }
 
-function Section({
-  title,
-  children,
-  palette: p,
-}: {
-  title: string
-  children: React.ReactNode
-  palette: typeof palette
-}) {
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mt-4">
-      <div className="mb-1.5 text-xs font-medium uppercase tracking-wider" style={{ color: p.faint }}>
+      <div className="mb-1.5 text-xs font-medium uppercase tracking-wider" style={{ color: palette.faint }}>
         {title}
       </div>
       {children}

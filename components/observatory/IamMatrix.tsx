@@ -22,7 +22,7 @@ export function IamMatrix({ catalog }: { catalog: Catalog }) {
   }
 
   return (
-    <div className="h-full overflow-auto p-6" style={{ background: palette.ink }}>
+    <div className="h-full overflow-auto p-4 sm:p-6" style={{ background: palette.ink }}>
       <div className="mx-auto max-w-5xl">
         <h3 className="mb-1 text-lg font-semibold" style={{ color: palette.light }}>
           Agent IAM — capability matrix
@@ -32,8 +32,8 @@ export function IamMatrix({ catalog }: { catalog: Catalog }) {
           write. Content writers can&apos;t run Bash; security auditors are read-only.
         </p>
 
-        <div className="overflow-hidden rounded-2xl border" style={{ borderColor: palette.line }}>
-          <table className="w-full border-collapse text-sm">
+        <div className="overflow-x-auto rounded-2xl border" style={{ borderColor: palette.line }}>
+          <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr>
                 <th
