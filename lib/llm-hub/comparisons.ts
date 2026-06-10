@@ -32,6 +32,74 @@ export interface Comparison {
 
 export const COMPARISONS: Comparison[] = [
   // ─────────────────────────────────────────────────────────────────────────
+  // Fable 5 launch matchups (June 2026)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    slug: 'claude-fable-5-vs-claude-opus-4-8',
+    models: ['claude-fable-5', 'claude-opus-4-8'],
+    title: 'Claude Fable 5 vs Claude Opus 4.8',
+    description:
+      'Claude Fable 5 vs Opus 4.8: launch benchmarks, pricing, and four first-party eval rounds with published receipts. Which Claude flagship to route where in 2026.',
+    verdict:
+      'Fable 5 takes agentic coding, constraint precision, and hard reasoning — at double the price. Opus 4.8 keeps situational judgment, code-craft quality, and the better $/token for human-read prose. Route by task shape, not by leaderboard.',
+    analysis: [
+      'This is the rare comparison with first-party data behind it: we ran four head-to-head eval rounds inside Claude Code within 24 hours of the Fable 5 launch, with published JSON receipts. The split is consistent — Fable 5 was the most constraint-compliant model in every round (7/7 on a script-verified constraint stack Opus failed) and the only one to solve a hard no-tools reasoning task Opus got confidently wrong. Opus 4.8 flagged a governance-gated edit Fable executed silently, pushed back on a contradictory spec, and won the real-world component build on accessibility craft.',
+      'On vendor numbers, Fable 5 is the new agentic ceiling: 95.0% SWE-Bench Verified and ~80% SWE-Bench Pro at launch (vendor-claimed) against Opus 4.8’s well-corroborated 88.6% / 69.2%. Anthropic positions the gap as widening with task length — which matches the agentic shape of the launch card.',
+      'Pricing is the routing fork: Fable 5 at $10/$50 per million tokens is exactly double Opus 4.8’s unchanged $5/$25 (and equal to Opus fast mode). The 2× pays for itself in agentic pipelines where constraint precision and task length bind; it does not pay for itself in judgment-heavy review or prose — our blind style verdicts flipped between rounds.',
+    ],
+    pickFirst: [
+      'Agentic pipelines feeding schemas, tools, and other agents',
+      'Long-horizon, multi-file coding (the SWE-Bench Pro lead is this shape)',
+      'Strict output contracts where a leaked preamble is a failed tool call',
+    ],
+    pickSecond: [
+      'Ambiguous or possibly-wrong specs — it pushes back instead of executing',
+      'Code review and accessibility-critical component work',
+      'Human-read prose and deep single-shot analysis at half the price',
+    ],
+    keywords: [
+      'claude fable 5 vs opus 4.8',
+      'fable 5 vs opus',
+      'claude fable 5 comparison',
+      'fable 5 benchmarks vs opus',
+      'should i upgrade to fable 5',
+      'best claude model 2026',
+    ],
+  },
+  {
+    slug: 'claude-fable-5-vs-gpt-5-5',
+    models: ['claude-fable-5', 'gpt-5-5'],
+    title: 'Claude Fable 5 vs GPT-5.5',
+    description:
+      'Claude Fable 5 vs GPT-5.5 (Spud): SWE-Bench Pro 80% vs 58.6%, pricing, computer use, and which flagship to pick for agentic coding in 2026.',
+    verdict:
+      'Fable 5 leads agentic coding by a generation-sized margin on launch numbers; GPT-5.5 keeps computer-use, terminal autonomy, and native voice. Different ceilings for different jobs.',
+    analysis: [
+      'The launch-window headline is the SWE-Bench Pro gap: Fable 5 at ~80% versus GPT-5.5’s 58.6% — a 21-point lead on a contamination-resistant agentic-coding benchmark (vendor-claimed until independently reproduced). Fable 5 also posts 95.0% SWE-Bench Verified and leads both FrontierCode subsets. GPT-5.5’s strengths sit on a different axis: 84.9% GDPval, 78.7% OSWorld computer use, 98% Tau2 Telecom, and native voice.',
+      'Pricing favors GPT-5.5 on paper — $5/$30 against Fable 5’s $10/$50 — but GPT-5.5’s figure already reflects its April doubling, and output-heavy agentic work narrows the real-world gap via token efficiency. For pure coding-agent workloads the benchmark delta dominates the price delta; for computer-use automation the reverse.',
+      'Honest caveat: we have four first-party eval rounds for Fable 5 vs Opus 4.8 (receipts published), but no first-party Fable-vs-GPT rounds yet — this comparison rests on launch-window vendor figures from both labs. We mark claims accordingly and will receipt a cross-lab round.',
+    ],
+    pickFirst: [
+      'Agentic coding is the core workload (SWE-Bench Pro / Verified lead)',
+      'You operate inside Claude Code or the Anthropic agent stack',
+      'Long-horizon tasks where the lead reportedly widens',
+    ],
+    pickSecond: [
+      'Computer-use / OSWorld-style autonomous desktop automation',
+      'Customer-workflow agents (Tau2 Telecom 98%) and native voice',
+      'Output-heavy workloads where $5/$30 plus token efficiency wins',
+    ],
+    keywords: [
+      'claude fable 5 vs gpt-5.5',
+      'fable 5 vs gpt 5.5',
+      'fable 5 vs spud',
+      'best ai model for coding 2026',
+      'swe bench pro fable 5',
+      'anthropic vs openai 2026',
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
   // Current marquee matchups (June 2026)
   // ─────────────────────────────────────────────────────────────────────────
   {

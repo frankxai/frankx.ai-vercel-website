@@ -79,6 +79,16 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Vendor-claimed 51% SWE-Bench Pro. Benchmark size ≠ how it feels on your repo — pilot before adopting.',
     creatorUse: 'Cheap, fast in-editor help; route real architecture work to a frontier model.',
   },
+  'claude-fable-5': {
+    tagline: 'Mythos-class made generally available — the new agentic-coding ceiling, at 2× Opus pricing.',
+    bestFor: [
+      'Agentic pipelines feeding schemas, tools, and other agents (measured constraint precision)',
+      'Long-horizon coding — SWE-Bench Verified 95% / Pro ~80% at launch (vendor-claimed)',
+      'Hard reasoning under strict output contracts',
+    ],
+    watchOut: '$10/$50 is double Opus 4.8 standard. Launch benchmarks are vendor-claimed. In our stress round it executed a governance-gated edit without flagging it — pair with structural gates, and enforce output contracts in schemas: every model’s discipline degrades under heavy task load.',
+    creatorUse: 'The default Claude Code driver for agentic builds. Route judgment-heavy review and human-read prose to Opus 4.8 at half the price — our blind style verdicts flipped between rounds, so prose is not the upgrade case.',
+  },
   'claude-opus-4-8': {
     tagline: 'Modest version bump, real frontier gains — tops the intelligence index at the same price as 4.7.',
     bestFor: [

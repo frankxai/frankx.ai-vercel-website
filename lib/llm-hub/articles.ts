@@ -7,6 +7,7 @@
  * the same identifier used for /llm-hub/[slug] routing.
  */
 export const MODEL_ARTICLES: Record<string, string> = {
+  'claude-fable-5': 'claude-fable-5-analysis-2026',
   'claude-opus-4-8': 'claude-opus-4-8-analysis-2026',
   'gpt-5-5': 'gpt-5-5-analysis-2026',
   'gemini-3-5-pro': 'gemini-3-5-pro-analysis-2026',
