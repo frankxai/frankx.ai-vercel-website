@@ -214,7 +214,7 @@ It takes ninety minutes, with a coffee. I open a single note that holds the last
 
 I write three lines on each. Sometimes a single line is the whole entry. Sometimes a pillar generates a list of small tasks for the next ninety days.
 
-The whole review fits on two pages. The cost is ninety minutes per quarter — six hours a year. The benefit is that I am running my life with the same architectural intentionality that the Fortune 500 boards I work with run their AI deployments.
+The whole review fits on two pages. The cost is ninety minutes per quarter — six hours a year. The benefit is that I am running my life with the same architectural intentionality that the enterprise boards I worked with run their AI deployments.
 
 The bargain is comical, when you think about it. The architecture that costs Oracle's largest clients eight-figure investments to implement at scale is, for a person, a notebook and ninety minutes a quarter.
 

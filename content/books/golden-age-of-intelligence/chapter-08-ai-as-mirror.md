@@ -177,11 +177,11 @@ The Golden Age is not arriving for some future generation. It is arriving for th
 
 If the model is a mirror that amplifies what you bring, then the discipline of being a person becomes the high-leverage discipline. And the discipline of being a person, scaled deliberately and architecturally, has a name.
 
-The Fortune 500 companies I work with at Oracle call it a *Center of Excellence*. The phrase sounds corporate, and the companies that run the practice well are not always the most lyrical. But the underlying architecture is one of the most useful inventions of the past two decades, and it translates, with almost no modification, to a single human life.
+The large enterprises I worked with at Oracle call it a *Center of Excellence*. The phrase sounds corporate, and the companies that run the practice well are not always the most lyrical. But the underlying architecture is one of the most useful inventions of the past two decades, and it translates, with almost no modification, to a single human life.
 
 In Chapter 9 we walk through the translation. Six pillars: Strategy, Governance, Talent, Technology, Data, Ethics. The structure that an enterprise uses to deploy AI well, mapped onto the structure that a person can use to deploy AI well — at one one-thousandth of the cost.
 
-This is the framework I have been refining for years, in two parallel registers — at Oracle for Fortune 500 boards, and on frankx.ai for free, for everyone.
+This is the framework I have been refining for years, in two parallel registers — at Oracle for Europe’s largest enterprise boards, and on frankx.ai for free, for everyone.
 
 It works at both scales because the mirror does not care about your budget.
 

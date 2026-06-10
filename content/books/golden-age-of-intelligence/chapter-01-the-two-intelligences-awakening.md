@@ -198,7 +198,7 @@ The vocabulary and the practice to enter focused, creative, and contemplative st
 
 A clear-eyed view of what the new mirror is actually doing in 2026 — what is real, what is hype, what to use, what to ignore.
 
-A six-pillar architecture for treating your own life as a personal Center of Excellence — the same enterprise architecture I built for Fortune 500 companies at Oracle, scaled to one human at one one-thousandth the cost.
+A six-pillar architecture for treating your own life as a personal Center of Excellence — the same enterprise architecture I built for Europe’s largest enterprises at Oracle, scaled to one human at one one-thousandth the cost.
 
 A small, specific set of daily disciplines that, if practiced, change the operating envelope of your life within ninety days.
 

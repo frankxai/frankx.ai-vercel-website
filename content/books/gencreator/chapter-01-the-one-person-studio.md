@@ -77,7 +77,7 @@ These five layers interact as a cycle, not a sequence. Strategy informs content,
 
 I track everything. Not because I am obsessive about metrics — because systems require measurement. You cannot improve what you do not observe. Here is what the GenCreator operating system produces in my own practice, as of early 2026:
 
-**Content volume.** Ninety-plus blog articles published. Seventeen books written, totaling over 156,000 words. Over 12,000 songs created. Two hundred fifty production pages on frankx.ai. Thirty active newsletter subscribers within the first month of launch. All while holding a full-time AI Architect role at Oracle.
+**Content volume.** Ninety-plus blog articles published. Seventeen books written, totaling over 156,000 words. Over 12,000 songs created. Two hundred fifty production pages on frankx.ai. Thirty active newsletter subscribers within the first month of launch. All during my years as a full-time AI architect at Oracle.
 
 **Production cost.** Claude Pro subscription: twenty dollars per month. Vercel hosting: free tier plus minimal overages. Suno music generation: ten dollars per month. n8n automation on Railway: approximately five dollars per month. Domain registration: fifteen dollars per year. Total monthly operating cost: roughly fifty dollars.
 

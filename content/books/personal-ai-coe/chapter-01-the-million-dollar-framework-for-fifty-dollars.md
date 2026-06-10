@@ -7,7 +7,7 @@
 
 I build AI Centers of Excellence for a living.
 
-At Oracle's EMEA AI Center of Excellence, my job is to design the frameworks that help Fortune 500 companies adopt artificial intelligence at enterprise scale. These frameworks are not simple. They have six pillars, each with sub-frameworks, maturity models, governance structures, technology assessments, talent programs, and ethical guidelines. The documentation runs to hundreds of pages. The consulting engagement runs to months. The budget runs to millions.
+At Oracle's EMEA AI Center of Excellence, my job was to design the frameworks that helped Europe’s largest enterprises adopt artificial intelligence at enterprise scale. These frameworks are not simple. They have six pillars, each with sub-frameworks, maturity models, governance structures, technology assessments, talent programs, and ethical guidelines. The documentation runs to hundreds of pages. The consulting engagement runs to months. The budget runs to millions.
 
 The companies that invest in these frameworks get extraordinary returns. AI adoption accelerates. Governance prevents costly mistakes. Technology choices are informed rather than impulsive. Talent development compounds over time. Data strategies create competitive advantages that widen with each quarter.
 

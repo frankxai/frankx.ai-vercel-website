@@ -144,7 +144,7 @@ When to leave a piece of writing incomplete rather than over-finishing it.
 
 When to stop optimizing.
 
-This is the discipline that is most missing in the high-performer crowd I work with at Oracle and in the creator economy. Everyone has read about effort. Almost no one has been taught *when to stop*. The Taoist tradition is largely the science of when to stop.
+This is the discipline that is most missing in the high-performer crowd I worked with at Oracle and in the creator economy. Everyone has read about effort. Almost no one has been taught *when to stop*. The Taoist tradition is largely the science of when to stop.
 
 > *Knowing others is intelligence. Knowing yourself is true wisdom. Mastering others is strength. Mastering yourself is true power.*[^11]
 

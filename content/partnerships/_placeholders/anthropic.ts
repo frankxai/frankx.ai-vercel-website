@@ -248,7 +248,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
   ],
 
   whatThisIsNot: [
-    'Not an Anthropic-employee-flavored relationship — Frank is an AI Architect at Oracle EMEA, operator-side.',
+    'Not an Anthropic-employee-flavored relationship — Frank is a former Oracle EMEA AI architect, operator-side.',
     'Not a model-reseller pitch — there is no API margin or reseller mechanic in scope.',
     'Not exclusive — Frank also ships in Codex, Gemini, and ADK where the workflow fits. The honest position is Claude-Code-native by default, not Claude-Code-only.',
     'Not a deck-building consulting role — every deliverable is a public artifact (repo, curriculum module, workshop cohort, deep-dive).',

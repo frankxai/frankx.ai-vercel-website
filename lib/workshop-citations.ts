@@ -107,7 +107,7 @@ export const FRANK_CREDENTIALS = {
   catalog: '12,000+ AI-produced tracks',
   site: 'frankx.ai',
   proofPoints: [
-    'Built enterprise AI Center of Excellence frameworks at Fortune 500 scale',
+    'Built enterprise AI Center of Excellence frameworks at Fortune Global 500 scale',
     'Same patterns open-sourced for individual creators',
     'Multi-pillar operating system: SIS · ACOS · IIS · Workshop OS · Library OS',
   ],
