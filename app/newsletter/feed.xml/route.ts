@@ -1,6 +1,5 @@
 import { getAllIssues } from '@/lib/newsletter-archive'
-
-const SITE_URL = 'https://frankx.ai'
+import { SITE_URL } from '@/lib/email-config'
 const TITLE = 'AI Architect Newsletter'
 const DESCRIPTION =
   'Weekly signal from the intersection of AI, architecture, and the creator economy. No drip sequence, no marketing automation.'

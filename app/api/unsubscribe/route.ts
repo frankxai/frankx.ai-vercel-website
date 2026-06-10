@@ -16,22 +16,29 @@ import {
   verifyToken,
 } from '@/lib/email-config'
 
-async function unsubscribe(request: Request): Promise<NextResponse> {
+async function unsubscribe(request: Request): Promise<Response> {
   const url = new URL(request.url)
   const email = url.searchParams.get('email')?.toLowerCase().trim()
   const token = url.searchParams.get('token')
+  // RFC 8058: mail clients send a programmatic POST and expect a 200,
+  // not a redirect. Humans clicking the link arrive via GET and get the
+  // landing page.
+  const isPost = request.method === 'POST'
 
   if (!email || !token) {
+    if (isPost) return new Response('Missing parameters', { status: 400 })
     return NextResponse.redirect(`${SITE_URL}/newsletter/unsubscribe?status=missing`)
   }
 
   if (!verifyToken(email, 'unsubscribe', token)) {
+    if (isPost) return new Response('Invalid token', { status: 400 })
     return NextResponse.redirect(`${SITE_URL}/newsletter/unsubscribe?status=invalid`)
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY
   if (!RESEND_API_KEY) {
     console.error('RESEND_API_KEY not configured')
+    if (isPost) return new Response('Configuration error', { status: 500 })
     return NextResponse.redirect(`${SITE_URL}/newsletter/unsubscribe?status=error`)
   }
 
@@ -50,8 +57,11 @@ async function unsubscribe(request: Request): Promise<NextResponse> {
   if (!resendResp.ok) {
     const detail = await resendResp.text().catch(() => '')
     console.error('Resend unsubscribe error:', resendResp.status, detail)
+    if (isPost) return new Response('Failed to unsubscribe', { status: 500 })
     return NextResponse.redirect(`${SITE_URL}/newsletter/unsubscribe?status=error`)
   }
+
+  if (isPost) return new Response('OK', { status: 200 })
 
   return NextResponse.redirect(`${SITE_URL}/newsletter/unsubscribe?status=ok`)
 }

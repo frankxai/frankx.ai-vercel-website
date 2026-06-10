@@ -50,10 +50,11 @@ export const SITE_URL =
  * in production.
  */
 function tokenSecret(): string {
-  return (
-    process.env.NEWSLETTER_TOKEN_SECRET ||
-    'frankx-newsletter-token-dev-fallback-NOT-FOR-PROD'
-  )
+  const secret = process.env.NEWSLETTER_TOKEN_SECRET
+  if (!secret && process.env.NODE_ENV === 'production') {
+    throw new Error('NEWSLETTER_TOKEN_SECRET is required in production')
+  }
+  return secret || 'frankx-newsletter-token-dev-fallback-NOT-FOR-PROD'
 }
 
 /** Sign a payload (email + action) → URL-safe base64 token. */

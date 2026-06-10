@@ -44,10 +44,10 @@ interface Frontmatter {
 }
 
 function parseFrontmatter(raw: string): { fm: Frontmatter; body: string } {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/)
   if (!match) return { fm: {}, body: raw }
   const fm: Frontmatter = {}
-  for (const line of match[1].split('\n')) {
+  for (const line of match[1].split(/\r?\n/)) {
     const m = line.match(/^([a-zA-Z_]+):\s*(.*)$/)
     if (!m) continue
     let value = m[2].trim()
