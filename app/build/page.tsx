@@ -105,7 +105,7 @@ const offers = [
 
 const trust = [
   { metric: '12,000+', label: 'AI tracks shipped (Suno)' },
-  { metric: 'Oracle', label: 'Enterprise AI background' },
+  { metric: 'Ex-Oracle', label: 'Enterprise AI architecture' },
   { metric: '8', label: 'Builds in public on the lab' },
   { metric: '5', label: 'Agentic tools in active production' },
 ]
