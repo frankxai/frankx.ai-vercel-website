@@ -42,7 +42,11 @@ export async function POST(request: NextRequest) {
     const denied = requireAdmin(request);
     if (denied) return denied;
 
-    const body = await request.json();
+    // Safe parse: bad/empty/non-object bodies return 400, not a 500.
+    const body = await request.json().catch(() => null);
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json({ error: 'Invalid JSON or request body' }, { status: 400 });
+    }
     const { action, params = {} } = body;
 
     // Validate action: short, safe identifier only.
@@ -50,9 +54,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid or missing action' }, { status: 400 });
     }
 
-    // Validate params: plain object, bounded size (no unbounded payloads).
+    // Validate params: plain object of string values (matches QueueTask), bounded size.
     if (params === null || typeof params !== 'object' || Array.isArray(params)) {
       return NextResponse.json({ error: 'params must be an object' }, { status: 400 });
+    }
+    for (const value of Object.values(params)) {
+      if (typeof value !== 'string') {
+        return NextResponse.json({ error: 'params values must be strings' }, { status: 400 });
+      }
     }
     if (JSON.stringify(params).length > 4000) {
       return NextResponse.json({ error: 'params too large' }, { status: 413 });
