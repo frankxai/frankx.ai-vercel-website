@@ -147,6 +147,19 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
               <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-emerald-300">
                 GA
               </span>
+            ) : model.status === 'legacy' ? (
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white/50">
+                Legacy
+              </span>
+            ) : null}
+            {model.verification?.last_verified ? (
+              <Link
+                href="/llm-hub/sources"
+                className="ml-1 inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-wider text-white/60 transition-colors hover:border-white/40 hover:text-white"
+                title={`Source quality: ${model.verification.source_quality || 'unspecified'}`}
+              >
+                ✓ Verified {model.verification.last_verified}
+              </Link>
             ) : null}
           </div>
           <h1 className="mb-3 text-4xl font-bold md:text-5xl">{model.name}</h1>
@@ -339,12 +352,20 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
           </section>
         ) : null}
 
+        <section className="mb-10 rounded-2xl border border-purple-500/30 bg-purple-500/[0.04] p-6">
+          <h2 className="mb-2 text-lg font-bold text-white">Put {model.name} head-to-head</h2>
+          <p className="mb-4 text-sm text-white/60">Pick a contender and see the spec deltas, pricing deltas, capability overlap, and verdict — live.</p>
+          <Link href="/llm-hub/arena" className="inline-flex items-center gap-2 rounded-lg bg-purple-500/20 px-4 py-2 text-sm font-medium text-purple-200 transition-colors hover:bg-purple-500/30">
+            Open the Arena <ArrowRight className="h-4 w-4" />
+          </Link>
+        </section>
+
         <footer className="flex items-center justify-between border-t border-white/5 pt-6 text-sm">
           <Link href="/llm-hub" className="inline-flex items-center gap-1 text-white/50 transition-colors hover:text-white">
             <ArrowLeft className="h-4 w-4" /> All providers
           </Link>
-          <Link href="/ai-ops/models-2026" className="inline-flex items-center gap-1 text-white/50 transition-colors hover:text-white">
-            Benchmark arena <ArrowRight className="h-4 w-4" />
+          <Link href="/llm-hub/sources" className="inline-flex items-center gap-1 text-white/50 transition-colors hover:text-white">
+            Sources & provenance <ArrowRight className="h-4 w-4" />
           </Link>
         </footer>
       </main>

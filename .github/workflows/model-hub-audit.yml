@@ -1,0 +1,90 @@
+name: Model Hub Staleness Audit
+
+# Weekly: hit the deployed /api/cron/model-hub-audit endpoint, and if it
+# returns any flags, open (or update) a GitHub issue with the markdown report
+# so the curator agent has a work queue. Also runs on manual dispatch.
+
+on:
+  schedule:
+    # Mondays at 09:00 UTC — one hour after the Vercel cron, so the prod
+    # build has fresh ISR before we read it.
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    name: Run audit + open issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch staleness report (markdown)
+        id: fetch
+        env:
+          AUDIT_URL: ${{ vars.MODEL_HUB_AUDIT_URL || 'https://frankx.ai/api/cron/model-hub-audit?format=markdown' }}
+          AUDIT_TOKEN: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -euo pipefail
+          body=$(curl -sS --fail \
+            ${AUDIT_TOKEN:+-H "Authorization: Bearer ${AUDIT_TOKEN}"} \
+            "$AUDIT_URL")
+          # Save to file (markdown body)
+          echo "$body" > audit.md
+
+          # Cheap "any flags?" check: the all-clear message starts with "All clear."
+          if echo "$body" | head -3 | grep -q '^All clear'; then
+            echo "has_flags=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_flags=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          # Issue title — date-stamped so each week gets its own
+          date_stamp=$(date -u +'%Y-%m-%d')
+          echo "title=Model Hub audit — week of $date_stamp" >> "$GITHUB_OUTPUT"
+
+      - name: Open issue when flags present
+        if: steps.fetch.outputs.has_flags == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const body = fs.readFileSync('audit.md', 'utf8')
+            const title = ${{ toJSON(steps.fetch.outputs.title) }}
+
+            // Find an open audit issue from the last 7 days; update instead of duplicating.
+            const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+            const { data: existing } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'model-hub-audit',
+              since,
+              per_page: 5,
+            })
+
+            if (existing.length > 0) {
+              const issue = existing[0]
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                title,
+                body,
+              })
+              core.notice(`Updated existing audit issue #${issue.number}`)
+            } else {
+              const { data: created } = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['model-hub-audit'],
+              })
+              core.notice(`Opened audit issue #${created.number}`)
+            }
+
+      - name: All clear
+        if: steps.fetch.outputs.has_flags == 'false'
+        run: echo "Audit returned no flags — nothing to file."
