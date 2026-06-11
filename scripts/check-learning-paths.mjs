@@ -5,12 +5,14 @@
  * Asserts:
  *   1. Every LearningPath has a `category` set (model-maker | cloud | consumer).
  *   2. Every `slug` is unique.
- *   3. Every internal href in `relatedGuides` and FAQ answers points to a path
- *      that exists locally (skips external https URLs).
- *   4. No hype/forbidden words appear in copy fields (longIntro, description,
- *      outcomes, faqs).
- *   5. Every EcosystemTool has either a `lastVerified` ISO date OR is flagged
- *      for follow-up (warning only — does not fail the gate, yet).
+ *   3. Every internal href in `relatedGuides` points at a real file under
+ *      content/blog or content/guides (skips external https URLs; other
+ *      internal hrefs are deferred to scripts/check-internal-links.mjs).
+ *   4. No hype/forbidden words appear in authored copy (description,
+ *      heroEyebrow, longIntro, ctaTitle, ctaBody, outcomes).
+ *   5. Every EcosystemTool has a `lastVerified` ISO date (warning-only:
+ *      gate emits a per-portal "N/M missing" warning but does not fail).
+ *      A malformed lastVerified (not YYYY-MM-DD) IS a hard failure.
  *
  * Runs as part of `merge:gate`. Exits non-zero on any violation.
  *
@@ -21,7 +23,6 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
-import url from 'node:url'
 
 const ROOT = process.cwd()
 const PATHS_FILE = path.join(ROOT, 'data', 'learning-paths.ts')
@@ -65,24 +66,100 @@ function warn(msg) {
 }
 
 // ─────────────────────────────────────────────────────────
-// Parse — we shell out to tsx-light parsing via a regex-based extractor.
-// learning-paths.ts is a hand-edited data file, not arbitrary code, so this
-// is sufficient. If the file's shape changes substantially, update here.
+// Parse — locate `learningPaths: LearningPath[] = [...]` then iterate the
+// top-level `{ ... }` blocks inside it with a balanced-brace scanner.
+// This is more robust than a single regex because nested arrays inside an
+// entry (videos, ecosystem, announcements, etc.) themselves contain
+// `{ id: '...' }` literals at deeper indentation that a flat regex would
+// false-positive on.
 // ─────────────────────────────────────────────────────────
 
 const src = fs.readFileSync(PATHS_FILE, 'utf8')
 
-// Each entry begins with `id: 'xxx',` and ends with `},\n  {` or `},\n]`.
-const entryRegex = /\{\s*id:\s*['"]([^'"]+)['"][\s\S]*?(?=\n\s{2}\},\s*(?:\n\s{2}\{|\n\s{2}\/\/|\n\]))/g
-
-const entries = []
-let m
-while ((m = entryRegex.exec(src)) !== null) {
-  entries.push({ id: m[1], body: m[0], start: m.index })
+function findLearningPathsArray(s) {
+  const decl = s.match(/learningPaths\s*:\s*LearningPath\[\]\s*=\s*\[/)
+  if (!decl) return null
+  const start = decl.index + decl[0].length - 1 // position of the opening `[`
+  return start
 }
 
+function extractTopLevelEntries(s) {
+  const arrayOpen = findLearningPathsArray(s)
+  if (arrayOpen === null) return []
+  const entries = []
+  let depth = 1 // we're inside the `[` already
+  let i = arrayOpen + 1
+  let entryStart = null
+  let inString = null // '\'' | '"' | '`' | null
+  let inLineComment = false
+  let inBlockComment = false
+  while (i < s.length && depth > 0) {
+    const ch = s[i]
+    const next = s[i + 1]
+    // Comment handling — only outside strings.
+    if (!inString) {
+      if (inLineComment) {
+        if (ch === '\n') inLineComment = false
+        i++
+        continue
+      }
+      if (inBlockComment) {
+        if (ch === '*' && next === '/') {
+          inBlockComment = false
+          i += 2
+          continue
+        }
+        i++
+        continue
+      }
+      if (ch === '/' && next === '/') {
+        inLineComment = true
+        i += 2
+        continue
+      }
+      if (ch === '/' && next === '*') {
+        inBlockComment = true
+        i += 2
+        continue
+      }
+    }
+    // String handling — track open/close, respect backslash-escape.
+    if (inString) {
+      if (ch === '\\') {
+        i += 2
+        continue
+      }
+      if (ch === inString) inString = null
+      i++
+      continue
+    }
+    if (ch === "'" || ch === '"' || ch === '`') {
+      inString = ch
+      i++
+      continue
+    }
+    // Brace tracking.
+    if (ch === '{' || ch === '[') {
+      if (ch === '{' && depth === 1 && entryStart === null) entryStart = i
+      depth++
+    } else if (ch === '}' || ch === ']') {
+      depth--
+      if (ch === '}' && depth === 1 && entryStart !== null) {
+        const body = s.slice(entryStart, i + 1)
+        const idMatch = body.match(/^\{[\s\S]*?id:\s*['"]([^'"]+)['"]/)
+        if (idMatch) entries.push({ id: idMatch[1], body, start: entryStart })
+        entryStart = null
+      }
+    }
+    i++
+  }
+  return entries
+}
+
+const entries = extractTopLevelEntries(src)
+
 if (entries.length === 0) {
-  fail('Could not parse any LearningPath entries from data/learning-paths.ts. Update the parser regex in scripts/check-learning-paths.mjs.')
+  fail('Could not parse any LearningPath entries from data/learning-paths.ts. Inspect the balanced-brace scanner in scripts/check-learning-paths.mjs.')
 }
 
 function field(body, name) {
@@ -198,6 +275,41 @@ for (const e of entries) {
     if (flaggable.includes(word.toLowerCase())) {
       fail(`[${e.id}] forbidden hype word "${word}" in authored copy (description / heroEyebrow / longIntro / ctaTitle / ctaBody / outcomes)`)
     }
+  }
+}
+
+// ─────────────────────────────────────────────────────────
+// Check 4: every EcosystemTool has a `lastVerified` ISO date.
+// Warning-only — links rot quietly and this is the canary, but the gate
+// shouldn't fail an otherwise-fine PR because someone forgot a date.
+// Counts coverage per portal so a future tightening (warn → fail) has
+// a clear baseline to switch on.
+// ─────────────────────────────────────────────────────────
+
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+
+for (const e of entries) {
+  const ecosystem = fieldList(e.body, 'ecosystem')
+  if (!ecosystem.trim()) continue
+  // Match each `{ name: '...', ..., lastVerified?: '...' }` block under
+  // the `ecosystem` array.
+  const toolBlocks = ecosystem.match(/\{[^{}]*?name:\s*['"][^'"]+['"][^{}]*?\}/gs) || []
+  let withVerified = 0
+  let badDate = 0
+  for (const block of toolBlocks) {
+    const nameMatch = block.match(/name:\s*['"]([^'"]+)['"]/)
+    const verifiedMatch = block.match(/lastVerified:\s*['"]([^'"]+)['"]/)
+    if (verifiedMatch) {
+      withVerified++
+      if (!ISO_DATE_RE.test(verifiedMatch[1])) {
+        fail(`[${e.id}] ecosystem.${nameMatch?.[1] ?? '?'} lastVerified="${verifiedMatch[1]}" is not an ISO date (YYYY-MM-DD)`)
+        badDate++
+      }
+    }
+  }
+  if (toolBlocks.length > 0 && withVerified < toolBlocks.length) {
+    const missing = toolBlocks.length - withVerified
+    warn(`[${e.id}] ${missing}/${toolBlocks.length} ecosystem tool(s) missing lastVerified — consider running scripts/check-learning-paths-links.mjs (planned) and stamping the date`)
   }
 }
 

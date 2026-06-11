@@ -1,22 +1,7 @@
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Brain, Clock, ImageIcon, Music2, Play, Sparkles, Zap } from 'lucide-react'
+import { ArrowRight, BookOpen, Clock, Play } from 'lucide-react'
 import { learningPaths, type LearningPath } from '@/data/learning-paths'
-
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  brain: Brain,
-  music: Music2,
-  zap: Zap,
-  image: ImageIcon,
-  sparkles: Sparkles,
-}
-
-const colorMap: Record<string, string> = {
-  emerald: 'from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-400',
-  cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
-  amber: 'from-amber-500/20 to-amber-500/5 border-amber-500/20 text-amber-400',
-  violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
-  sky: 'from-sky-500/20 to-blue-500/5 border-sky-500/20 text-sky-400',
-}
+import { iconMap, colorMap } from '@/lib/learn/portal-display'
 
 /**
  * Bottom-of-content "Continue in the Learn Hub" section. Designed for use at

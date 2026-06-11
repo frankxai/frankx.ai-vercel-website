@@ -6,11 +6,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import {
   ArrowRight,
-  Brain,
-  Music2,
-  Zap,
-  ImageIcon,
-  Sparkles,
   Clock,
   BookOpen,
   Play,
@@ -24,30 +19,7 @@ import {
   type LearningPathCategory,
   type VideoResource,
 } from '@/data/learning-paths'
-
-const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
-  brain: Brain,
-  music: Music2,
-  zap: Zap,
-  image: ImageIcon,
-  sparkles: Sparkles,
-}
-
-const colorMap: Record<string, string> = {
-  emerald: 'from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-400',
-  cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
-  amber: 'from-amber-500/20 to-amber-500/5 border-amber-500/20 text-amber-400',
-  violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
-  sky: 'from-sky-500/20 to-blue-500/5 border-sky-500/20 text-sky-400',
-}
-
-const playButtonBgMap: Record<string, string> = {
-  emerald: 'bg-emerald-500/80 group-hover:bg-emerald-500',
-  cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
-  amber: 'bg-amber-500/80 group-hover:bg-amber-500',
-  violet: 'bg-violet-500/80 group-hover:bg-violet-500',
-  sky: 'bg-sky-500/80 group-hover:bg-sky-500',
-}
+import { iconMap, colorMap, playButtonBgMap } from '@/lib/learn/portal-display'
 
 const upcomingPortals: string[] = [
   'AWS Bedrock',
@@ -218,52 +190,35 @@ export default function LearnShell() {
         </div>
       </section>
 
-      {/* Learning Paths Grid — grouped by category when every portal has one,
-          otherwise falls back to a flat grid so the page never breaks during
-          incremental rollout of the category field. */}
+      {/* Learning Paths Grid — grouped by category (required field on every portal). */}
       <section className="max-w-6xl mx-auto px-6 pb-12">
-        {learningPaths.every((p) => p.category) ? (
-          <div className="space-y-12">
-            {CATEGORY_ORDER.map((cat) => {
-              const inCat = learningPaths.filter((p) => p.category === cat)
-              if (inCat.length === 0) return null
-              const meta = categoryLabels[cat]
-              return (
-                <div key={cat}>
-                  <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-white mb-1">{meta.title}</h2>
-                    <p className="text-sm text-white/50">{meta.blurb}</p>
-                  </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {inCat.map((path, i) => (
-                      <motion.div
-                        key={path.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: Math.min(i, 4) * 0.05 }}
-                      >
-                        <PathCard path={path} />
-                      </motion.div>
-                    ))}
-                  </div>
+        <div className="space-y-12">
+          {CATEGORY_ORDER.map((cat) => {
+            const inCat = learningPaths.filter((p) => p.category === cat)
+            if (inCat.length === 0) return null
+            const meta = categoryLabels[cat]
+            return (
+              <div key={cat}>
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold text-white mb-1">{meta.title}</h2>
+                  <p className="text-sm text-white/50">{meta.blurb}</p>
                 </div>
-              )
-            })}
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 gap-6">
-            {learningPaths.map((path, i) => (
-              <motion.div
-                key={path.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(i, 4) * 0.05 }}
-              >
-                <PathCard path={path} />
-              </motion.div>
-            ))}
-          </div>
-        )}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {inCat.map((path, i) => (
+                    <motion.div
+                      key={path.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: Math.min(i, 4) * 0.05 }}
+                    >
+                      <PathCard path={path} />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </section>
 
       {/* Coming Soon */}
