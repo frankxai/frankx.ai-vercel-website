@@ -6,6 +6,20 @@ export const metadata: Metadata = {
   description:
     'How to operate an installed business OS: day-1 onboarding, the 30-minute weekly rhythm, the quality gates, and how harness updates arrive. Written for founders, no AI background assumed.',
   alternates: { canonical: 'https://frankx.ai/foundry/guide' },
+  openGraph: {
+    title: 'The Operating Guide — FrankX Foundry',
+    description:
+      'Day-1 onboarding, the 30-minute weekly rhythm, the quality gates, and how harness updates arrive.',
+    url: 'https://frankx.ai/foundry/guide',
+    images: [
+      {
+        url: '/images/blog/agentic-os-family-hero.png',
+        width: 1200,
+        height: 675,
+        alt: 'The Foundry — operating systems forged for businesses',
+      },
+    ],
+  },
 }
 
 /** Long-form reading surface — narrow measure, slow cadence, no funnel. */

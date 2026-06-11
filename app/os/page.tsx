@@ -15,6 +15,7 @@ import {
   Zap,
   Layers,
   LineChart,
+  Hammer,
 } from 'lucide-react'
 import { FrankXOSHeader } from '@/components/os/FrankXOSHeader'
 import { osModules, osCRM, type OSModule, type ModuleColor, type ModulePhase } from '@/data/os-modules'
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://frankx.ai/os' },
 }
 
-const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart }
+const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart, Hammer }
 
 const COLOR_TOKENS: Record<ModuleColor, { ring: string; text: string; bg: string; glow: string }> = {
   cyan: {

@@ -120,6 +120,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Tool pages
