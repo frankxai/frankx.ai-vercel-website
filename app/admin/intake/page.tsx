@@ -121,7 +121,7 @@ export default async function IntakeRadarPage() {
           <p className="text-white/55 max-w-2xl">
             Every submission to <code className="text-emerald-400/80">/api/workshop-intake</code>{' '}
             from /workshops/* intake forms. Emails fire to{' '}
-            <code className="text-emerald-400/80">{process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}</code>{' '}
+            <code className="text-emerald-400/80">{process.env.OPERATOR_EMAIL || 'hello@frankx.ai'}</code>{' '}
             on each submission; this view is the durable record.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default async function IntakeRadarPage() {
               <p className="text-sm text-white/40 max-w-md mx-auto">
                 When someone fills out an intake form at <code>/workshops/sovereign-leadership</code>,{' '}
                 <code>/workshops/ikigai-content-studio</code>, or <code>/workshops/personal-ai-coe</code>,
-                their submission lands here + sends to {process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}.
+                their submission lands here + sends to {process.env.OPERATOR_EMAIL || 'hello@frankx.ai'}.
               </p>
               <p className="text-xs text-white/30 mt-4">
                 Storage: <code>{process.env.VERCEL ? '/tmp/workshop-intake.jsonl' : 'private/workshop-intake.jsonl'}</code>.
@@ -286,7 +286,7 @@ export default async function IntakeRadarPage() {
         <div className="max-w-7xl mx-auto px-6 py-8 text-center text-xs text-white/30 space-y-1">
           <p>
             Email notifications fire to{' '}
-            <code className="text-white/50">{process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}</code> (set{' '}
+            <code className="text-white/50">{process.env.OPERATOR_EMAIL || 'hello@frankx.ai'}</code> (set{' '}
             <code className="text-white/50">OPERATOR_EMAIL</code> env var to override).
           </p>
           <p>

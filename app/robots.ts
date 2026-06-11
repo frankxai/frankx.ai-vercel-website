@@ -15,8 +15,6 @@ export default function robots(): MetadataRoute.Robots {
           '/prototype/',
           '/onboarding/',
           '/command-center/',
-          '/tribe/',
-          '/unsubscribe',
         ],
       },
     ],

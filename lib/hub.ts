@@ -233,7 +233,7 @@ export const segmentProfiles: SegmentProfile[] = [
     keywords: ['enterprise ai strategy', 'team ai workflows', 'ai governance'],
     ctas: [
       { label: 'See Enterprise Solutions', href: '/enterprise' },
-      { label: 'Book Strategy Session', href: 'mailto:frank@frankx.ai?subject=Strategy%20Session' }
+      { label: 'Book Strategy Session', href: 'mailto:hello@frankx.ai?subject=Strategy%20Session' }
     ]
   },
   {
@@ -360,8 +360,8 @@ export const resourceCollections: ResourceCollection[] = [
     description: 'Direct collaboration for teams and creators building at scale.',
     focus: 'For those who want personalized guidance and strategy.',
     items: [
-      { label: 'Strategy Session', href: 'mailto:frank@frankx.ai?subject=Strategy%20Session', type: 'Advisory' },
-      { label: 'Team Training', href: 'mailto:frank@frankx.ai?subject=Team%20Training', type: 'Training' },
+      { label: 'Strategy Session', href: 'mailto:hello@frankx.ai?subject=Strategy%20Session', type: 'Advisory' },
+      { label: 'Team Training', href: 'mailto:hello@frankx.ai?subject=Team%20Training', type: 'Training' },
       { label: 'Music Lab', href: '/music-lab', type: 'Experience' }
     ]
   }

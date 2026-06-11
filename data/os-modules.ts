@@ -112,7 +112,7 @@ export const osModules: OSModule[] = [
     shipped: 'pre-existing',
     oneLine: 'The 6-pillar enterprise framework, made personal.',
     description:
-      'The Oracle EMEA AI Center of Excellence methodology Frank refined for Fortune 500 clients, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS\'s `personal-ai-coe` format.',
+      'Frank\'s Oracle EMEA AI Center of Excellence methodology, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS\'s `personal-ai-coe` format.',
     phases: ['cross-cutting'],
     connectsTo: ['workshop-os'],
     artifacts: ['6-pillar framework', 'Assessment tools', 'Blueprint library'],
@@ -196,29 +196,6 @@ export const osModules: OSModule[] = [
       label: 'Browse the 9-platform persona matrix',
       description:
         'LinkedIn (AI Architect), YouTube long-form (the Builder), Shorts + TikTok (the Creator), Instagram (the Aesthete), X (the Thinker), Threads (Conversation-starter), Bluesky (Live-thinker), Spotify (the Producer). One persona per profile.',
-    },
-  },
-  {
-    id: 'foundry',
-    name: 'FrankX Foundry',
-    slug: 'foundry',
-    route: '/foundry',
-    status: 'live',
-    color: 'emerald',
-    iconName: 'Hammer',
-    shipped: '2026-06-11',
-    oneLine: 'Operating-system installs for businesses we believe in.',
-    description:
-      'The service layer of the Agentic OS family. Evaluated installs of agentic-business-os — site, agent harness, claims gate, business memory — derived per brand, owned by the founder, connected via harness-sync PRs. Application-only; priority for sustainable, healthcare, and meaningful businesses.',
-    phases: ['funnel', 'cross-cutting'],
-    connectsTo: ['acos', 'coe-hub'],
-    artifacts: ['OS installs', 'Brand derivations', 'Harness-sync PRs', 'Skill packs'],
-    commands: ['/os-spawn'],
-    deepDive: {
-      route: '/foundry/guide',
-      label: 'Read the operating guide',
-      description:
-        'How a founder runs an installed OS: day-1 onboarding, the 30-minute weekly rhythm, the gates, and how harness updates arrive.',
     },
   },
 ]

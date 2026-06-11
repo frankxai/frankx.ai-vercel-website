@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Home, Search, BookOpen, Sparkles, Compass, Workflow, Library, Video, Briefcase, Atom, Brain, Mail } from 'lucide-react'
+import { ArrowRight, Home, Search, BookOpen, Music, Sparkles, Compass, Workflow, Library, Video, Briefcase, Atom, Brain } from 'lucide-react'
 import FrankOmega from '@/components/FrankOmega'
 import type { ScoredRoute } from '@/lib/fuzzy-route-match'
 
@@ -116,8 +116,8 @@ export default function NotFoundClient({ pathname, matches, topConfidence }: Pro
             glow
             speech={
               hasMatches
-                ? 'This path doesn\'t lead anywhere on frankx.ai. Maybe you wanted one of these.'
-                : 'This path doesn\'t lead anywhere on frankx.ai. Start from one of these.'
+                ? 'This page moved or never existed. Here\'s what looks closest to what you wanted.'
+                : 'This page doesn\'t exist. Try one of these instead.'
             }
           />
         </motion.div>
@@ -213,27 +213,12 @@ export default function NotFoundClient({ pathname, matches, topConfidence }: Pro
           </Link>
         </motion.div>
 
-        {/* Broken link? Email Frank directly */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75, duration: 0.5 }}
-          className="mt-10"
-        >
-          <Link
-            href={`mailto:frank@frankx.ai?subject=${encodeURIComponent('Broken link on frankx.ai')}&body=${encodeURIComponent(`Hi Frank,\n\nI hit a 404 at: ${pathname}\n\nI was trying to reach:\n`)}`}
-            className="inline-flex items-center gap-2 text-xs text-white/30 hover:text-white/60 transition-colors"
-          >
-            <Mail className="w-3 h-3" /> If this was a broken link, email Frank directly
-          </Link>
-        </motion.div>
-
         {/* Footer mark */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="mt-12 text-[10px] font-mono text-white/10"
+          className="mt-16 text-[10px] font-mono text-white/10"
         >
           frankx.ai // FRANK-&#937;
         </motion.p>

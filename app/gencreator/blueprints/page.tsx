@@ -47,18 +47,18 @@ export default function BlueprintsPage() {
       : blueprints.filter((bp) => bp.category === activeCategory)
 
   return (
-    <div className="min-h-screen bg-void text-slate-100">
+    <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <GenCreatorNav />
 
       {/* Hero Image */}
       <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-5xl mt-6 px-6">
         <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
-          <Image src="/images/blog/agentic-creator-os-complete-guide-hero.png" alt="GenCreator Blueprints — actionable creator frameworks" fill sizes="(max-width: 1024px) 100vw, 1024px" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-transparent" />
+          <Image src="/images/blog/agentic-creator-os-complete-guide-hero.png" alt="GenCreator Blueprints — actionable creator frameworks" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         </div>
         <div className="absolute bottom-0 left-0 p-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">GenCreator</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-white">Creator&apos;s Blueprints</p>
+          <h1 className="text-2xl font-bold text-white">Creator&apos;s Blueprints</h1>
         </div>
       </div>
 
@@ -70,12 +70,12 @@ export default function BlueprintsPage() {
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-violet-200">
             {blueprints.length} Blueprints
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             <span className="bg-gradient-to-r from-white via-violet-100 to-purple-100 bg-clip-text text-transparent">
               Creator&apos;s Blueprints
             </span>
           </h1>
-          <p className="mt-6 text-[17px] md:text-xl leading-relaxed text-white/80">
+          <p className="mt-6 text-lg text-white/60 sm:text-xl">
             Actionable frameworks for specific creative workflows.
             <br className="hidden sm:block" />
             Copy the blueprint. Customize for your stack. Execute.
@@ -89,10 +89,8 @@ export default function BlueprintsPage() {
           {blueprintCategories.map((cat) => (
             <button
               key={cat}
-              type="button"
               onClick={() => setActiveCategory(cat)}
-              aria-pressed={activeCategory === cat}
-              className={`shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void ${
+              className={`shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? 'bg-violet-500/15 text-violet-300'
                   : 'text-white/50 hover:bg-white/[0.05] hover:text-white/80'
@@ -144,9 +142,9 @@ export default function BlueprintsPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="border-t border-white/[0.08] bg-white/[0.03] py-20 lg:py-28">
+      <section className="border-t border-white/[0.08] bg-white/[0.03] py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">
             Blueprints shape what you do. Soul shapes who you are.
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">

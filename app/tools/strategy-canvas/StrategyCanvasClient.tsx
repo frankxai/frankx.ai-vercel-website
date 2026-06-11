@@ -141,12 +141,10 @@ export default function StrategyCanvasClient() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <main className="px-6 pt-28 pb-20">
-        <div className="mx-auto max-w-7xl space-y-20">
+    <>
       <header className="space-y-8">
-        <nav className="flex items-center gap-2 text-sm text-white/60" aria-label="Breadcrumb">
-          <Link href="/tools" className="hover:text-white transition-colors flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded">
+        <nav className="flex items-center gap-2 text-sm text-white/60">
+          <Link href="/tools" className="hover:text-white transition-colors flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
             Tools
           </Link>
@@ -159,10 +157,10 @@ export default function StrategyCanvasClient() {
             <Target className="h-5 w-5" />
             Strategic Planning Tool
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+          <h1 className="text-5xl font-bold text-white md:text-6xl leading-tight">
             AI Strategy Canvas
           </h1>
-          <p className="text-[17px] md:text-xl text-white/80 max-w-3xl leading-relaxed">
+          <p className="text-xl text-white/70 max-w-3xl leading-relaxed">
             Plan your AI transformation with a comprehensive visual framework. Map stakeholders, resources, opportunities, and create actionable implementation roadmaps.
           </p>
         </div>
@@ -170,8 +168,8 @@ export default function StrategyCanvasClient() {
 
       <section className="space-y-8">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Interactive Strategy Canvas</h2>
-          <p className="text-[17px] md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-3xl font-bold text-white">Interactive Strategy Canvas</h2>
+          <p className="text-white/70 max-w-2xl mx-auto">
             Click on each section to explore key questions and build your AI strategy step by step.
           </p>
         </div>
@@ -183,16 +181,13 @@ export default function StrategyCanvasClient() {
 
             return (
               <div key={element.id} className="space-y-4">
-                <button
-                  type="button"
-                  aria-expanded={isSelected}
-                  aria-controls={`canvas-panel-${element.id}`}
-                  className={`w-full text-left rounded-2xl border p-6 backdrop-blur-xl cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+                <article
+                  className={`rounded-3xl border p-6 backdrop-blur cursor-pointer transition-all duration-300 ${
                     isSelected
-                      ? 'border-purple-400/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10 scale-[1.02]'
+                      ? 'border-purple-400/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10 scale-105'
                       : isCompleted
                       ? 'border-emerald-400/50 bg-gradient-to-br from-emerald-500/10 to-green-500/10'
-                      : 'border-white/10 bg-white/[0.04] hover:bg-white/[0.08]'
+                      : 'border-white/10 bg-white/5 hover:bg-white/10'
                   }`}
                   onClick={() => handleElementClick(element.id)}
                 >
@@ -210,10 +205,10 @@ export default function StrategyCanvasClient() {
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">{element.title}</h3>
                   <p className="text-white/70 text-sm leading-relaxed">{element.description}</p>
-                </button>
+                </article>
 
                 {isSelected && (
-                  <div id={`canvas-panel-${element.id}`} className="rounded-2xl border border-purple-400/30 bg-gradient-to-br from-purple-500/5 via-slate-900 to-slate-950 p-6 animate-in slide-in-from-top duration-300">
+                  <div className="rounded-2xl border border-purple-400/30 bg-gradient-to-br from-purple-500/5 via-slate-900 to-slate-950 p-6 animate-in slide-in-from-top duration-300">
                     <h4 className="text-lg font-semibold text-white mb-4">Key Questions to Consider:</h4>
                     <ul className="space-y-3 mb-6">
                       {element.questions.map((question, index) => (
@@ -229,7 +224,7 @@ export default function StrategyCanvasClient() {
                       <button
                         type="button"
                         onClick={() => markComplete(element.id)}
-                        className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                        className="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white text-sm font-semibold transition-all duration-300"
                       >
                         Mark as Complete
                         <CheckCircle2 className="w-4 h-4" />
@@ -262,8 +257,8 @@ export default function StrategyCanvasClient() {
 
       <section className="space-y-12">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Download Strategy Templates</h2>
-          <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <h2 className="text-4xl font-bold text-white">Download Strategy Templates</h2>
+          <p className="text-xl text-white/70 max-w-3xl mx-auto">
             Pre-built templates for different organization types and use cases. Start with a framework tailored to your specific needs.
           </p>
         </div>
@@ -283,7 +278,7 @@ export default function StrategyCanvasClient() {
               </ul>
               <Link
                 href={template.downloadUrl}
-                className="inline-flex items-center justify-center gap-2 w-full rounded-full border border-white/20 bg-white/5 px-6 py-3 text-white/90 font-semibold transition-all duration-300 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="inline-flex items-center justify-center gap-2 w-full rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-white/90 font-semibold transition-all duration-300 hover:bg-white/10"
               >
                 <Download className="w-4 h-4" />
                 Download Template
@@ -295,8 +290,8 @@ export default function StrategyCanvasClient() {
 
       <section className="space-y-12">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Strategy Success Stories</h2>
-          <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <h2 className="text-4xl font-bold text-white">Strategy Success Stories</h2>
+          <p className="text-xl text-white/70 max-w-3xl mx-auto">
             See how organizations have used strategic AI planning to achieve transformative results.
           </p>
         </div>
@@ -328,28 +323,26 @@ export default function StrategyCanvasClient() {
       </section>
 
       <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-purple-500/5 via-slate-900 to-slate-950">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Ready to Build Your AI Strategy?</h2>
-        <p className="text-[17px] md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+        <h2 className="text-4xl font-bold text-white">Ready to Build Your AI Strategy?</h2>
+        <p className="text-xl text-white/70 max-w-2xl mx-auto">
           Get expert guidance to accelerate your AI transformation. Our team helps you turn strategy into results.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] transition-all duration-300 hover:-translate-y-1"
           >
             Get Strategy Consultation
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
           <Link
             href="/tools/roi-calculator"
-            className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
           >
             Calculate AI ROI
           </Link>
         </div>
       </section>
-        </div>
-      </main>
-    </div>
+    </>
   )
 }

@@ -239,7 +239,7 @@ export default function ToolsPage() {
                 <Zap className="w-4 h-4 mr-2" />
                 Interactive AI Tools
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
                 Hands-On AI Tools
               </h1>
               <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
@@ -282,33 +282,29 @@ export default function ToolsPage() {
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Search */}
                 <div className="flex-1">
-                  <label htmlFor="tools-search" className="sr-only">Search tools</label>
                   <div className="relative">
-                    <Search className="pointer-events-none absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                     <input
-                      id="tools-search"
-                      type="search"
+                      type="text"
                       placeholder="Search tools..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-11 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-100 placeholder-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus:border-purple-500/50"
+                      className="w-full pl-11 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50"
                     />
                   </div>
                 </div>
 
                 {/* Category Filter */}
-                <div role="group" aria-label="Filter by category" className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {categories.map((category) => (
                     <button
                       key={category.id}
-                      type="button"
                       onClick={() => setSelectedCategory(category.id)}
-                      aria-pressed={selectedCategory === category.id}
                       className={cn(
-                        'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
+                        'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2',
                         selectedCategory === category.id
                           ? 'bg-purple-500/20 text-purple-200 border border-purple-500/30'
-                          : 'bg-slate-800/30 text-slate-400 border border-slate-700/30 hover:bg-slate-700/30 hover:text-slate-200'
+                          : 'bg-slate-800/30 text-slate-400 border border-slate-700/30 hover:bg-slate-700/30'
                       )}
                     >
                       <category.icon className="w-4 h-4" />
@@ -318,18 +314,16 @@ export default function ToolsPage() {
                 </div>
 
                 {/* Difficulty Filter */}
-                <div role="group" aria-label="Filter by difficulty" className="flex flex-wrap gap-2">
+                <div className="flex gap-2">
                   {['beginner', 'intermediate', 'advanced'].map((level) => (
                     <button
                       key={level}
-                      type="button"
                       onClick={() => setSelectedDifficulty(selectedDifficulty === level ? null : level)}
-                      aria-pressed={selectedDifficulty === level}
                       className={cn(
-                        'px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 capitalize focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
+                        'px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 capitalize',
                         selectedDifficulty === level
                           ? getDifficultyColor(level as Tool['difficulty'])
-                          : 'bg-slate-800/30 text-slate-400 border border-slate-700/30 hover:bg-slate-700/30 hover:text-slate-200'
+                          : 'bg-slate-800/30 text-slate-400 border border-slate-700/30 hover:bg-slate-700/30'
                       )}
                     >
                       {level}
@@ -455,12 +449,12 @@ export default function ToolsPage() {
           {/* No Results */}
           {filteredTools.length === 0 && (
             <StaggerItem>
-              <GlassmorphicCard variant="premium" className="mx-auto max-w-xl p-12 text-center" role="status" aria-live="polite">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-purple-500/10 border border-purple-500/20">
-                  <Search className="h-9 w-9 text-purple-300" />
+              <div className="text-center py-16">
+                <div className="w-24 h-24 rounded-2xl bg-slate-800/50 flex items-center justify-center mx-auto mb-6">
+                  <Search className="w-12 h-12 text-slate-500" />
                 </div>
-                <h3 className="text-2xl font-semibold text-slate-100 mb-3 tracking-tight">No tools match those filters</h3>
-                <p className="text-slate-400 mb-8 leading-relaxed">Try a different search term, broaden the category, or clear all filters to see the full library.</p>
+                <h3 className="text-2xl font-semibold text-slate-300 mb-4">No tools found</h3>
+                <p className="text-slate-400 mb-8">Try adjusting your filters or search terms</p>
                 <PremiumButton
                   variant="ghost"
                   onClick={() => {
@@ -471,7 +465,7 @@ export default function ToolsPage() {
                 >
                   Clear Filters
                 </PremiumButton>
-              </GlassmorphicCard>
+              </div>
             </StaggerItem>
           )}
 
@@ -479,7 +473,7 @@ export default function ToolsPage() {
           <StaggerItem>
             <div className="mt-20">
               <GlassmorphicCard variant="luxury" className="p-12 text-center">
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
                   Need a Custom Tool?
                 </h2>
                 <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">

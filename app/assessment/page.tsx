@@ -127,7 +127,7 @@ export default function AssessmentPage() {
               <Brain className="h-5 w-5" />
               AI Assessment Center
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
+            <h1 className="text-5xl font-bold text-white md:text-6xl xl:text-7xl max-w-4xl mx-auto leading-tight">
               <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
                 Evaluate Your
               </span>
@@ -136,21 +136,21 @@ export default function AssessmentPage() {
                 AI Readiness
               </span>
             </h1>
-            <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
               Comprehensive assessments to evaluate your organization's AI maturity, identify strategic opportunities,
               and create personalized roadmaps for successful AI transformation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
               <Link
                 href="/ai-assessment"
-                className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
               >
                 Start Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="#assessments"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
               >
                 Compare Assessments
               </Link>
@@ -173,8 +173,8 @@ export default function AssessmentPage() {
           {/* Assessment Types */}
           <section id="assessments" className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Choose Your Assessment</h2>
-              <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              <h2 className="text-4xl font-bold text-white">Choose Your Assessment</h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
                 Select the assessment that best matches your organization's current AI maturity and transformation goals.
               </p>
             </div>
@@ -248,10 +248,10 @@ export default function AssessmentPage() {
 
                   <Link
                     href={assessment.href}
-                    className={`block w-full text-center px-6 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+                    className={`block w-full text-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                       assessment.recommended
-                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] focus-visible:ring-cyan-400'
-                        : 'border border-white/20 bg-white/5 text-white/90 hover:bg-white/10 focus-visible:ring-white/60'
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)]'
+                        : 'border border-white/20 bg-white/5 text-white/90 hover:bg-white/10'
                     }`}
                   >
                     Start Assessment
@@ -264,8 +264,8 @@ export default function AssessmentPage() {
           {/* Process */}
           <section className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">How It Works</h2>
-              <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              <h2 className="text-4xl font-bold text-white">How It Works</h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
                 Our comprehensive assessment process provides deep insights and actionable recommendations
                 in four simple steps.
               </p>
@@ -296,22 +296,22 @@ export default function AssessmentPage() {
 
           {/* CTA Section */}
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight">Ready to Begin Your AI Journey?</h2>
-            <p className="text-[17px] md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-4xl font-bold text-white">Ready to Begin Your AI Journey?</h2>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
               Take the first step toward strategic AI transformation with a comprehensive assessment
               tailored to your organization's unique needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/ai-assessment"
-                className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
               >
                 Start Free Assessment
                 <Play className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
               >
                 Get Custom Assessment
               </Link>

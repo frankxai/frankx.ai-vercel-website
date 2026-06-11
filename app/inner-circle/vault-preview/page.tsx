@@ -38,7 +38,7 @@ const VAULT_PREVIEW_ITEMS: VaultItem[] = [
     type: 'framework',
     icon: FileText,
     preview:
-      'The exact 1-page brief I wrote at Oracle before any AI engagement starts — sanitized of client specifics, adapted for solo operators. Fill it out for any agent you\'re about to build and you\'ll catch the governance and ethics gaps before you start coding.',
+      'The exact 1-page brief I write at Oracle before any AI engagement starts — sanitized of client specifics, adapted for solo operators. Fill it out for any agent you\'re about to build and you\'ll catch the governance and ethics gaps before you start coding.',
     willInclude: [
       'The 9 questions every CoE intake answers',
       'My personal fill-in template (3 examples)',
@@ -218,7 +218,7 @@ export default function VaultPreviewPage() {
             Five items above. Vault gets a new drop every week after launch.
           </h2>
           <p className="text-white/60 mb-8 max-w-xl mx-auto">
-            Inner Circle opens June 1, 2026 at 09:00 CET. Pricing publishes May 27 to everyone on the waitlist. Founding cohort capped at 100.
+            Inner Circle opens Monday June 1, 2026 at 09:00 CET. Circle is $119/month or $999/year. Founding cohort capped at 100 — first to join June 1–7 get the founders Slack + exclusive July 20 masterclass + founders rate locked for life.
           </p>
           <Link
             href="/inner-circle"

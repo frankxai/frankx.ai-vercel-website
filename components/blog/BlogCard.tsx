@@ -49,7 +49,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
         'hover:-translate-y-1.5',
         'hover:[box-shadow:0_24px_64px_-12px_rgba(0,0,0,0.65),0_0_0_1px_rgba(16,185,129,0.10),inset_0_1px_0_rgba(255,255,255,0.10)]',
         // Accessibility
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
         featured && 'md:col-span-2 lg:col-span-3',
         className
       )}
@@ -71,17 +71,16 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
 
       {/* Hero Image */}
       {showImage && (
-        <div className="relative w-full h-48 md:h-52 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
+        <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
           <Image
             src={post.image!}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
             onError={() => setImgError(true)}
           />
-          {/* Stronger gradient so text below is always legible */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent" />
 
           {/* Category badge */}
           <div className="absolute top-4 left-4">
@@ -137,20 +136,17 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
           {post.description}
         </p>
 
-        <div className="flex items-center gap-3 text-xs text-white/38 group-hover:text-white/55 transition-colors duration-300">
+        <div className="flex items-center gap-4 text-xs text-white/40 group-hover:text-white/55 transition-colors duration-300">
           <span className="flex items-center gap-1.5">
-            <Calendar className="w-3 h-3 shrink-0" aria-hidden="true" />
-            <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </time>
+            <Calendar className="w-3.5 h-3.5" />
+            {new Date(post.date).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
           </span>
-          <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden="true" />
           <span className="flex items-center gap-1.5">
-            <Clock className="w-3 h-3 shrink-0" aria-hidden="true" />
+            <Clock className="w-3.5 h-3.5" />
             {post.readingTime}
           </span>
         </div>

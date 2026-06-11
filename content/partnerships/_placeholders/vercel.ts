@@ -17,7 +17,6 @@ export const vercel: Partner = {
   shortName: 'Vercel',
   tier: 'tooling',
   status: 'strategic-alignment',
-  lastUpdated: '2026-05-16',
 
   title: 'AI Architect — Next-on-Vercel AI CoE practice',
   tagline:

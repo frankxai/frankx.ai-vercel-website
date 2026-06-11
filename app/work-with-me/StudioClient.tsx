@@ -276,34 +276,6 @@ function ServicesSection() {
   )
 }
 
-function FoundrySection() {
-  return (
-    <section className="border-t border-white/5 py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
-            Beyond Advisory
-          </p>
-          <h2 className="text-3xl font-bold text-white tracking-tight mb-3">
-            Some businesses need an operating system, not a session.
-          </h2>
-          <p className="text-white/60 text-base mb-6">
-            The FrankX Foundry installs the full architecture — site, agent harness, quality
-            gates, compounding business memory — derived for your brand and owned by you.
-            Application-only, a small number of installs per quarter.
-          </p>
-          <Link
-            href="/foundry"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-          >
-            Explore the Foundry <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function IndustriesSection() {
   const shouldReduceMotion = useReducedMotion()
   return (
@@ -596,7 +568,6 @@ export default function StudioClient() {
       <main className="relative">
         <HeroSection />
         <ServicesSection />
-        <FoundrySection />
         <IndustriesSection />
         <MethodologySection />
         <ProofPointsSection />

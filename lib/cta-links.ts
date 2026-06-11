@@ -12,4 +12,4 @@ export const MEET_AND_GROW_URL =
 
 /** Generic mail-to for partnership inquiries that don't fit the booking slot. */
 export const PARTNERSHIP_EMAIL =
-  'mailto:frank@frankx.ai?subject=Partnership%20inquiry'
+  'mailto:hello@frankx.ai?subject=Partnership%20inquiry'

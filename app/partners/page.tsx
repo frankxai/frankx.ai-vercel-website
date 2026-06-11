@@ -370,10 +370,10 @@ export default function PartnersPage() {
               If you have a question about any partnership — or you want to discuss a
               new one —{' '}
               <a
-                href="mailto:frank@frankx.ai?subject=Partnership%20inquiry"
+                href="mailto:hello@frankx.ai?subject=Partnership%20inquiry"
                 className="text-cyan-400 hover:text-cyan-300 underline"
               >
-                frank@frankx.ai
+                hello@frankx.ai
               </a>
               .
             </p>
@@ -415,7 +415,7 @@ export default function PartnersPage() {
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-zinc-400 leading-relaxed">
               Partnership status evolves. If a partnership ends or changes kind, this
-              page is updated within 48 hours. Last updated: 2026-06-02.
+              page is updated within 48 hours. Last updated: 2026-05-08.
             </p>
           </div>
         </div>

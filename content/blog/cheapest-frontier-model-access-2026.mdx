@@ -10,18 +10,6 @@ featured: false
 keywords: ["cheapest way to access gpt-5.5 and claude", "frontier model pricing 2026", "openrouter vs api", "claude opus 4.8 cost", "gemini 3.1 pro price"]
 readingGoal: "Pick the lowest-cost route to each frontier model based on how you actually use it."
 schema: ["Article", "FAQPage"]
-architectNote:
-  recommendation: "The cost shape of a working AI Center of Excellence is two line items: one $20 subscription for human-in-the-loop work, and one zero-markup gateway key (OpenRouter or Vercel AI Gateway) for everything programmatic. Then route by task difficulty, not habit — the flagship handles the 10% that needs it, DeepSeek V4 Flash and Flash-Lite handle the bulk, and Batch API plus prompt caching stack another 50-90% off. One update since this June snapshot: Claude Fable 5 landed at $10/$50 — twice Opus 4.8 — which makes the downshift discipline this guide teaches more valuable, not less."
-  coePillar: "Technology · model routing + Strategy · cost governance"
-  personas:
-    - persona: "Pipeline & coding agents"
-      pick: "Fable 5 ($10/$50 — shipped after this guide; same gateway key, swap the model string)"
-    - persona: "Reviewer / judgment agents"
-      pick: "Claude Opus 4.8 ($5/$25 with 1M-token context at flat rate)"
-    - persona: "Bulk fan-out workers"
-      pick: "DeepSeek V4 Flash ($0.14/$0.28, halved again via Batch API)"
-    - persona: "Agentic mid-tier / tool-use fleets"
-      pick: "Gemini 3.1 Pro ($2/$12 — cheapest flagship-class option)"
 ---
 
 **The cheapest route depends entirely on how much you use the model. If you chat in a browser a few hours a day, a single $20 subscription (ChatGPT Plus, Claude Pro, or Google AI Pro) beats the API by a wide margin — you'd burn through $20 of tokens in an afternoon at API rates. If you build agents, scripts, or anything that calls the model programmatically, route through OpenRouter or Vercel AI Gateway — both charge the provider's list price with no inference markup, and one API key reaches all three frontier models. For high-volume background jobs, DeepSeek V4 Flash at $0.14/$0.28 per million tokens does 80% of the work at 3% of the cost.** That's the whole answer. Below is the math that proves it.

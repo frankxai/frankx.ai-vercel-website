@@ -165,12 +165,12 @@ export default function ACOSPage() {
               Open Source
             </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="bg-gradient-to-r from-white via-purple-100 to-cyan-100 bg-clip-text text-transparent">
               Agentic Creator OS
             </span>
           </h1>
-          <p className="mt-6 text-[17px] text-white/70 sm:text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
             The operating system for generative creators.
             <br className="hidden sm:block" />
             99 agents. 35+ skills. 117+ commands. 11 pillars. One entry point.
@@ -266,10 +266,10 @@ export default function ACOSPage() {
             {/* Right: Text explanation */}
             <div>
               <span className="text-xs font-mono uppercase tracking-[0.3em] text-purple-400/70">Architecture</span>
-              <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
                 Four layers.<br />All auto-activating.
               </h2>
-              <p className="mt-4 text-white/60 leading-relaxed">
+              <p className="mt-4 text-white/50 leading-relaxed">
                 The Agentic Creator OS is structured in four layers. Each activates automatically based on what you&apos;re building — no manual loading.
               </p>
               <div className="mt-8 space-y-4">
@@ -300,10 +300,10 @@ export default function ACOSPage() {
             {/* Left: Text */}
             <div className="order-2 lg:order-1">
               <span className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400/70">Smart Router</span>
-              <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
                 One command.<br />Infinite routes.
               </h2>
-              <p className="mt-4 text-white/60 leading-relaxed">
+              <p className="mt-4 text-white/50 leading-relaxed">
                 Type <code className="rounded bg-white/10 px-2 py-0.5 font-mono text-purple-300">/acos</code> and describe what you need. The router parses intent, selects the best agent, loads skills, and chains commands.
               </p>
               {/* Inline terminal example */}
@@ -339,10 +339,10 @@ export default function ACOSPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center">
             <span className="text-xs font-mono uppercase tracking-[0.3em] text-emerald-400/70">Intelligence</span>
-            <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
               Gets smarter every session.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-white/60">
+            <p className="mx-auto mt-4 max-w-2xl text-white/50">
               The Agentic Creator OS tracks what works and applies it next time. No external API — pure local intelligence built from your own usage patterns.
             </p>
           </div>
@@ -380,10 +380,10 @@ export default function ACOSPage() {
       {/* ─── Commands Preview ─── */}
       <section className="border-y border-white/[0.08] bg-white/[0.02] py-20">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
             35+ Commands Across Every Domain
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/60">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
             Each command is a reusable workflow. One trigger, full pipeline.
           </p>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
@@ -413,10 +413,10 @@ export default function ACOSPage() {
       {/* ─── Pricing ─── */}
       <section id="pricing" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
             Choose Your Path
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/60">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
             The code is free. Premium adds guides, templates, support, and direct access.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -481,7 +481,7 @@ export default function ACOSPage() {
           </div>
           <p className="mt-8 text-center text-sm text-white/30">
             Need enterprise-level customization?{' '}
-            <a href="mailto:frank@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
+            <a href="mailto:hello@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
               Contact for custom pricing
             </a>
           </p>
@@ -508,54 +508,13 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── Runs across every major AI tool ─── */}
-      <section className="border-t border-white/5 bg-[#06060a] py-16">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-8 text-center">
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70">
-              Portable by design
-            </div>
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              One system. Every major AI tool.
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-white/70">
-              ACOS isn&apos;t locked to a single assistant. The same agents, commands, and
-              skills run natively across the five harnesses creators actually use &mdash; so
-              your system moves with you, whatever you build in.
-            </p>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-5">
-            {[
-              { n: 'Claude Code', t: 'Reference', d: 'The canonical implementation. Full native integration.' },
-              { n: 'Codex', t: 'OpenAI', d: 'Coding agent for review and second-opinion passes.' },
-              { n: 'Gemini', t: 'Google', d: 'The same commands and catalog inside Google’s CLI.' },
-              { n: 'Antigravity', t: 'Agentic IDE', d: 'Build and creative work with full parity.' },
-              { n: 'Grok', t: 'xAI', d: 'Real-time TUI with subagents, image, and video.' },
-            ].map((h) => (
-              <div key={h.n} className="rounded-xl border border-white/10 bg-white/[0.015] p-4 text-sm">
-                <div className="font-semibold text-white">
-                  {h.n} <span className="text-[10px] text-white/50">&middot; {h.t}</span>
-                </div>
-                <div className="mt-1 text-xs leading-tight text-white/60">{h.d}</div>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-white/45">
-            Build once, run anywhere. Your agents and workflows port across tools instead of
-            locking you to one vendor.
-          </p>
-        </div>
-      </section>
-
       {/* ─── Final CTA ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Start Building with the Agentic Creator OS
           </h2>
-          <p className="mt-4 text-lg text-white/60">
+          <p className="mt-4 text-lg text-white/50">
             Clone the repo. Type /acos. Create something.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

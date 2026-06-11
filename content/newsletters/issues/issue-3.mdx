@@ -12,6 +12,7 @@ connectsTo:
   - issue-2-the-fourth-hub-failed
   - inner-circle-june-1-launch
   - madrid-workshop-2026-05-27
+  - google-ai-live-madrid-2026-05-28
 status: draft
 crossPost: false
 gateStatus: pending
@@ -20,7 +21,7 @@ author: Frank Riemer
 
 # What I built in Madrid
 
-Last Wednesday I flew to Madrid for two workshops + a community dinner. I came back with a notebook full of moments I didn't expect, including one question I couldn't answer in real time.
+Last Wednesday I flew to Madrid for two workshops, a Google AI Live demo on Thursday, and a community dinner. I came back with a notebook full of moments I didn't expect, including one question I couldn't answer in real time and one demo that worked better than the cue card predicted.
 
 This is a field dispatch. The cleaner version goes into a blog post next week. This is what's still raw.
 
@@ -62,6 +63,16 @@ I have a draft of one now, after thinking about it on the flight home. The hones
 
 But I want to think about this longer before I write it as architecture. If you have a working answer, hit reply.
 
+## What multi-model looked like on Thursday
+
+Thursday at Google AI Live I showed four surfaces. The one that drew the longest follow-up conversation wasn't the content pipeline or the visual strategy demo — it was the **multi-model parallel refactor in Antigravity**. Same file, same prompt, two panels: Gemini 3 Pro on the left, Claude Sonnet on the right.
+
+The Gemini side proposed a strategy-pattern refactor with a registry. The Claude side proposed a discriminated-union refactor with type guards. **Both worked. Neither was wrong.** The pick was a context call — which one read more naturally to the next person who'd touch the file.
+
+The moment that landed: I said "I run multi-model because no single model wins every task" and someone in the back said "everyone says that but you actually look at both outputs." That's the gap. Multi-model is rhetoric for most. It's daily practice for almost no one because the comparison cost was too high until Antigravity collapsed it. Now the parallel panel is the substrate; multi-model becomes a habit, not a stance.
+
+I'll write the longer version of this in the blog post next week. The short version: **multi-model is now cheap enough that single-model is a strategic risk.** That's true for individuals and for enterprises.
+
 ## What I shipped on the train home
 
 The amplification loop I described in Issue 1 ran again. 6 workshop attendees posted to LinkedIn within 48 hours. The loop drafted 6 reposts, logged 6 CRM touchpoints, and queued 1 follow-up intro request to a head of AI at a Madrid bank.
@@ -78,9 +89,9 @@ The math on this: Madrid had ~30 attendees. 6 posted within 48h. If I had to wri
 
 ## What's next on the site
 
-- **June 1 (4 days):** [Inner Circle](https://frankx.ai/inner-circle) opens. Founding cohort capped at 100. The pricing email lands today if you're on the waitlist.
-- **Friday after next:** Issue 4 — written from inside the Inner Circle launch week. What the first 7 days looked like from the operator side.
-- **Behind the loop:** Madrid attendee artifacts going to vault next week — the workshop's actual exercises + prompts + the slide deck (only `/labs` members will see it).
+- **Already open — Monday this week:** [Inner Circle](https://frankx.ai/inner-circle) launched June 1 09:00 CET. Founding cohort is filling — first 100 lock the founders rate + the closing Slack channel + the July 20 masterclass. If you've been waiting, this is the week.
+- **Next Friday:** Issue 4 — written from inside Inner Circle's first 14 days. What the first vault drops landed on, what the labs surfaced, what I'd change.
+- **Behind the loop:** Madrid attendee artifacts going to vault next week — the workshop's actual exercises + prompts + the slide deck (only Inner Circle members will see it).
 
 —Frank
 

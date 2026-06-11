@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
-  <title>ACOS - Agentic Creator OS v10.0</title>
+  <meta name="date" content="2026-05-28" />
+  <title>ACOS - Agentic Creator OS v11.0</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
@@ -41,8 +41,8 @@
   </head>
 <body>
   <header>
-    <div class="title">ACOS - Agentic Creator OS v10.0</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="title">ACOS - Agentic Creator OS v11.0</div>
+    <div class="meta">LLM: Unknown • Date: 2026-05-28 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -50,28 +50,121 @@
       <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
     </nav>
     <div class="content">
-      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>acos.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
-      <h1>ACOS - Agentic Creator OS v10.0</h1>
-<p><strong>Autonomous Intelligence</strong> — Self-improving with safety guarantees.</p>
+      <div class="breadcrumbs"><span>acos.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-05-28</strong></div>
+      <h1>ACOS - Agentic Creator OS v11.0</h1>
+<p><strong>Visual Intelligence. Site Integrity. Quality at Scale.</strong></p>
 <h2>System Status</h2>
 <p>Run diagnostic and display:</p>
 <ol>
 <li>Count <code>.claude/trajectories/*.json</code> (exclude _active, _operations, patterns)</li>
 <li>Read <code>.claude/trajectories/patterns.json</code> for pattern count</li>
 <li>Read <code>.claude-flow/metrics/learning-status.json</code> for learning state</li>
+<li>Read <code>data/audit/sitemap-health.json</code> for site health</li>
+<li>Count <code>data/image-generation-log.json</code> entries for visual tracking</li>
 </ol>
 <pre><code>+================================================================+
-|                    AGENTIC CREATOR OS v10.0                      |
-|         &quot;Autonomous Intelligence. One Command.&quot;                  |
+|                    AGENTIC CREATOR OS v11.0                      |
+|     &quot;Visual Intelligence. Site Integrity. Quality at Scale.&quot;     |
 +================================================================+
-|  Skills: 22 curated | Agents: 8 specialist | Profiles: 6 IAM   |
-|  Hooks: 7 events | Intelligence: 93/100 | MCP: 6 servers       |
+|  Skills: 22+ curated | Agents: 8 specialist | Profiles: 6 IAM  |
+|  Hooks: 9 events | Intelligence: 93/100 | MCP: 6+ servers      |
 |  Trajectories: [N] | Avg Success: [N%] | Patterns: [N]         |
-|  Learning: Active | Audit: Immutable | Circuit Breaker: Armed  |
+|  Site Health: [N] pages | Blog Quality: [N]/100 avg             |
+|  Visual Pipeline: [N] images | [N] pending review               |
+|  Learning: Active | Audit: Immutable | Circuit Breaker: Armed   |
 +================================================================+
 </code></pre>
-<h2>v10 Intelligence Systems</h2>
+<h2>What&#39;s New in v11</h2>
+<h3>1. Visual Quality System (5-Layer Enforcement)</h3>
+<p>Image generation now has 5 layers of quality enforcement — no more batch-generating without review:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Mechanism</th>
+<th>Enforcement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLAUDE.md</td>
+<td>Rules section</td>
+<td>Always loaded, sets expectations</td>
+</tr>
+<tr>
+<td>Skill auto-trigger</td>
+<td><code>skill-rules.json</code></td>
+<td>Loads visual-creation on keywords</td>
+</tr>
+<tr>
+<td>PreToolUse hook</td>
+<td><code>image-gen-precheck.js</code></td>
+<td>Warns about model tier, grounding, risks, batch limits, VIS dupes</td>
+</tr>
+<tr>
+<td>PostToolUse hook</td>
+<td><code>image-gen-track.js</code></td>
+<td>Logs everything, warns about pending reviews, opens in Photos</td>
+</tr>
+<tr>
+<td>Council agent</td>
+<td><code>visual-creation-council</code></td>
+<td>3-lens scoring for premium content</td>
+</tr>
+</tbody></table>
+<p>Three image types with different approaches:</p>
+<ul>
+<li><strong>Atmospheric</strong>: Suppress text, describe mood/texture (blog heroes)</li>
+<li><strong>Informational</strong>: Research every word via <code>/infogenius</code> (diagrams, infographics)</li>
+<li><strong>Branded</strong>: Design-thinking 80/20, council review (covers, product shots)</li>
+</ul>
+<h3>2. Site Integrity Audit System</h3>
+<p>First comprehensive site health infrastructure:</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>What&#39;s Tracked</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data/audit/broken-links.json</code></td>
+<td>Internal link health (816 links)</td>
+</tr>
+<tr>
+<td><code>data/audit/link-graph.json</code></td>
+<td>Page interconnection map (302 nodes, 742 edges)</td>
+</tr>
+<tr>
+<td><code>data/audit/blog-quality.json</code></td>
+<td>Per-article quality scores (118 articles)</td>
+</tr>
+<tr>
+<td><code>data/audit/product-delivery.json</code></td>
+<td>Product pipeline status (16 products)</td>
+</tr>
+<tr>
+<td><code>data/audit/orphan-triage.json</code></td>
+<td>Categorized orphan pages (5 tiers)</td>
+</tr>
+<tr>
+<td><code>data/audit/sitemap-health.json</code></td>
+<td>Page-level health by category</td>
+</tr>
+<tr>
+<td><code>data/audit/cta-funnel-audit.json</code></td>
+<td>CTA and funnel integrity (52 CTAs)</td>
+</tr>
+</tbody></table>
+<p>Run <code>node scripts/pre-deploy-audit.mjs</code> before any deploy.
+View dashboard at <code>/admin/site-health</code>.</p>
+<h3>3. Prompt Optimizer (Two-Model Pattern)</h3>
+<p>Step 3.5 in visual-creation pipeline: use a text model to enhance image prompts with missing visual details (lighting, texture, camera, composition) before sending to the image model. Research shows this improves prompt scores from ~49/100 to 95/100.</p>
+<h3>4. VIS Registry Dedup Check</h3>
+<p>PreToolUse hook now checks <code>data/visual-registry.json</code> (408 images) before generating — prevents duplicating existing assets.</p>
+<h3>5. Design Thinking Integration</h3>
+<p>The <code>design-thinking</code> skill enforces 80/20 (80% research/concepting, 20% generating) for all premium visual content. Auto-activates on cover, book cover, design, visual design, brand visual, album cover.</p>
+<h2>v10 Intelligence Systems (Preserved)</h2>
 <table>
 <thead>
 <tr>
@@ -110,19 +203,18 @@ ACOS Auto-Router (this command)
     +-- &quot;build a component&quot;     --&gt; Frontend Designer agent
     +-- &quot;write a blog post&quot;     --&gt; Content Engine + SEO
     +-- &quot;deploy to production&quot;  --&gt; DevOps pipeline
-    +-- &quot;create music&quot;          --&gt; Frequency Alchemist
+    +-- &quot;create music&quot;          --&gt; Music Producer
     +-- &quot;research AI trends&quot;    --&gt; Deep Research swarm
     +-- &quot;build Arcanea world&quot;   --&gt; /ultraworld swarm
     +-- &quot;write chapter 5&quot;       --&gt; /ultraworld Story Weaver
     +-- &quot;review this PR&quot;        --&gt; Code Reviewer agent
+    +-- &quot;generate image&quot;        --&gt; Visual Quality Pipeline (NEW v11)
+    +-- &quot;audit the site&quot;        --&gt; Site Integrity System (NEW v11)
     +-- &quot;optimize performance&quot;  --&gt; Performance analysis swarm
     +-- &quot;complex multi-file&quot;    --&gt; Auto-spawns swarm (3+ files)
     +-- anything else           --&gt; Smart routing via hooks
 </code></pre>
-<p>No need to remember specific commands. No need to type /claude-flow-* anything.
-ACOS IS the interface. Everything else is internal infrastructure.</p>
 <h2>Auto-Routing Rules</h2>
-<p>The system detects intent from your words:</p>
 <table>
 <thead>
 <tr>
@@ -163,13 +255,13 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 </tr>
 <tr>
 <td>image, visual, infographic, thumbnail</td>
-<td>Image Ops Router</td>
+<td>Visual Quality Pipeline</td>
 <td>1-2 agents</td>
 </tr>
 <tr>
-<td>grok image, chatgpt image, replicate</td>
-<td>Image Ops Router</td>
-<td>1-2 agents</td>
+<td>audit, health, integrity, broken links</td>
+<td>Site Integrity</td>
+<td>1-3 agents</td>
 </tr>
 <tr>
 <td>arcanea, gate, realm, guardian, seeker</td>
@@ -182,18 +274,13 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <td>2-4 agents</td>
 </tr>
 <tr>
-<td>game, mechanics, progression</td>
-<td>Ultraworld Game</td>
-<td>2-3 agents</td>
-</tr>
-<tr>
 <td>complex, refactor, overhaul, redesign</td>
 <td>Full Swarm</td>
 <td>5-8 agents</td>
 </tr>
 </tbody></table>
-<h2>What Runs Automatically (You Never Touch These)</h2>
-<p>7 hook events fire every session (optimized from 15 to 7 for performance):</p>
+<h2>What Runs Automatically</h2>
+<p>9 hook events fire every session:</p>
 <table>
 <thead>
 <tr>
@@ -210,12 +297,20 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <td>Skills activated, routing hints, domain classification</td>
 </tr>
 <tr>
-<td>PreToolUse</td>
-<td>Agent IAM enforcement, circuit breaker checks</td>
+<td>PreToolUse (Bash)</td>
+<td>Agent IAM enforcement, git push TypeScript validation</td>
 </tr>
 <tr>
-<td>PostToolUse</td>
+<td>PreToolUse (Image)</td>
+<td>Model tier check, grounding check, risk patterns, VIS dedup, batch limit</td>
+</tr>
+<tr>
+<td>PostToolUse (General)</td>
 <td>Operations tracked, audit trail, success scoring</td>
+</tr>
+<tr>
+<td>PostToolUse (Image)</td>
+<td>Generation logged, pending reviews counted, image opened for review</td>
 </tr>
 <tr>
 <td>Stop</td>
@@ -234,10 +329,10 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <li>Patterns extracted from successful workflows (50+ n-grams)</li>
 <li>Experience Replay injects top-2 similar past successes</li>
 <li>Starlight Intelligence System syncs patterns across sessions</li>
-<li>Intelligence score: 93/100 (up from 72 in v9.3)</li>
+<li>Intelligence score: 93/100</li>
 </ul>
 <h2>Quick Reference</h2>
-<h3>Primary Commands (Use These)</h3>
+<h3>Primary Commands</h3>
 <table>
 <thead>
 <tr>
@@ -248,6 +343,14 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <tbody><tr>
 <td>/acos</td>
 <td>THIS. The auto-router. Start here.</td>
+</tr>
+<tr>
+<td>/create-visual</td>
+<td>Premium image generation with full pipeline</td>
+</tr>
+<tr>
+<td>/infogenius</td>
+<td>Research-grounded diagram/infographic generation</td>
 </tr>
 <tr>
 <td>/ultraworld</td>
@@ -262,15 +365,11 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <td>Deploy to frankx.ai</td>
 </tr>
 <tr>
-<td>/starlight-architect</td>
-<td>Strategic meta-orchestration</td>
-</tr>
-<tr>
 <td>/superintelligence</td>
 <td>Maximum reasoning depth</td>
 </tr>
 </tbody></table>
-<h3>Specialized (Auto-Routed, Rarely Need Directly)</h3>
+<h3>Quality &amp; Monitoring</h3>
 <table>
 <thead>
 <tr>
@@ -279,45 +378,53 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 </tr>
 </thead>
 <tbody><tr>
-<td>/acos-swarm</td>
-<td>Manual swarm init (auto-detected usually)</td>
+<td>/acos-score</td>
+<td>Intelligence score report</td>
 </tr>
 <tr>
-<td>/acos-flow</td>
-<td>System dashboard + metrics</td>
+<td>/acos-monitor</td>
+<td>Real-time activity dashboard</td>
 </tr>
 <tr>
-<td>/acos-agents</td>
-<td>Agent registry reference</td>
+<td>/vis-audit</td>
+<td>Visual health audit</td>
 </tr>
 <tr>
-<td>/acos-memory</td>
-<td>Memory layer operations</td>
-</tr>
-<tr>
-<td>/acos-checkpoint</td>
-<td>Manual checkpoint management</td>
-</tr>
-<tr>
-<td>/agentic-jujutsu</td>
-<td>Learning system status</td>
+<td>/vis-report</td>
+<td>Visual intelligence report</td>
 </tr>
 </tbody></table>
-<h3>Image Ops Routing (New)</h3>
-<p>For image tasks in ACOS, use the shared routing policy:</p>
-<ul>
-<li>Policy: <code>data/ai-ops/image-model-router.json</code></li>
-<li>Planner: <code>npm run image:plan -- --intent &lt;intent&gt;</code></li>
-<li>Generator: <code>npm run image:generate -- --provider &lt;openai|xai|replicate&gt; --prompt &quot;...&quot;</code></li>
-<li>Matrix test: <code>npm run image:matrix -- --prompt &quot;...&quot; --intent &lt;intent&gt;</code></li>
-</ul>
-<p>Nano Banana remains first-class for Claude sessions via MCP (<code>mcp__nanobanana__generate_image</code>).</p>
-<h3>Internal Infrastructure (Never Type These)</h3>
-<p>All 83 /claude-flow-* commands are absorbed into ACOS.
-They still exist for backwards compatibility but you never need them.
-ACOS invokes them internally when appropriate.</p>
+<h3>Image Generation</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Just describe it</td>
+<td>Quick atmospheric images (auto-routed)</td>
+</tr>
+<tr>
+<td>/create-visual</td>
+<td>Premium branded content (full 6-step pipeline)</td>
+</tr>
+<tr>
+<td>/infogenius</td>
+<td>Diagrams with accurate text (research-first)</td>
+</tr>
+<tr>
+<td>/design-gods</td>
+<td>Design excellence council (multi-agent)</td>
+</tr>
+<tr>
+<td>/frankx-infogenius</td>
+<td>FrankX brand premium visuals</td>
+</tr>
+</tbody></table>
 <h2>Architecture</h2>
-<pre><code>                           /acos v10
+<pre><code>                           /acos v11
                               |
                  +------------+------------+
                  |            |            |
@@ -329,6 +436,12 @@ ACOS invokes them internally when appropriate.</p>
            Blog UI SEO World Book Game Star Super
            Eng Des Int  Arch Weav Des light intel
 
+  +-------------- Visual Quality Layer (NEW) --------+
+  |  PreCheck | Council | VIS Dedup | Prompt Optimize |
+  +----------------------------------------------+
+  +------------- Site Integrity Layer (NEW) ---------+
+  |  Link Audit | Blog QA | Product QA | CTA Audit  |
+  +----------------------------------------------+
   +---------------- Safety Layer -----------------+
   |  Agent IAM | Circuit Breaker | Audit Trail    |
   +-----------------------------------------------+

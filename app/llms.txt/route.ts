@@ -34,9 +34,9 @@ export async function GET() {
 
   const content = `# FrankX
 
-> Personal hub of Frank X. Riemer — Former AI Architect, Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — AI Architect at Oracle EMEA AI Center of Excellence, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks, distilled from years of enterprise production work, and translates the same 6-pillar architecture into free, personal-scale tooling for creators, individuals, and families.
+The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks in enterprise environments and translates the same 6-pillar architecture into free, personal-scale tooling for creators, individuals, and families.
 
 ## Foundations
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels

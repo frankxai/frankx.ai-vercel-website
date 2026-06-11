@@ -19,9 +19,9 @@ export const INNER_CIRCLE_FAQS: InnerCircleFAQ[] = [
       "The Inner Circle is FrankX's premium community for builders and creators serious about AI. You get access to the vault, live labs, templates, prompt packs, and direct support from the agent collective.",
   },
   {
-    question: 'When does the Inner Circle launch?',
+    question: 'How much does the Inner Circle cost?',
     answer:
-      "Inner Circle opens Monday June 1, 2026 at 09:00 CET. Pricing publishes Wednesday May 27 to everyone on the waitlist. Between now and then: no marketing emails — just three: a pricing reveal (May 27), a 30-day preview (May 30), and the launch email (June 1 09:00 CET).",
+      "Circle tier is $119/month or $999/year (annual saves ~30%). Alliance starts at $2,000/month with custom scope. Signal stays free. Doors open Monday June 1, 2026 at 09:00 CET. Billing starts the same day. Cancel anytime in one click — no lock-in, no fees, no questions. Annual plans charged once; monthly plans charged monthly via Stripe.",
   },
   {
     question: "What's the founding-member bonus?",

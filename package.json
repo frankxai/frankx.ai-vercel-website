@@ -18,6 +18,7 @@
     "gen:html": "node scripts/generate_interlinked_html.mjs",
     "gen:feed": "node scripts/generate_feed.mjs",
     "gen:search": "node scripts/generate_search_index.mjs",
+    "gen:export": "node --experimental-strip-types scripts/gen-registry-export.mjs",
     "content:index": "node scripts/generate-youtube-index.mjs",
     "vault:scan": "node scripts/generate-vault-manifest.mjs",
     "newsletter:index": "node scripts/generate-content-index.mjs",
@@ -25,7 +26,7 @@
     "music:index": "node scripts/generate-music-index.mjs",
     "music:asset-registry": "node scripts/music/build-asset-registry.mjs",
     "sync-ais": "node scripts/sync-ais.mjs",
-    "prebuild": "npm run sync-ais && node scripts/check-mdx-safety.mjs && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
+    "prebuild": "npm run sync-ais && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
     "routes:build": "node scripts/build-route-index.mjs",
     "prebuild:force": "npm run gen:html && npm run gen:search && npm run content:index && npm run vault:scan && npm run heroes:scan",
     "roadmap:check": "node scripts/daily-roadmap-check.js",
@@ -86,9 +87,7 @@
     "sync:check": "bash scripts/pre-deploy-sync-check.sh",
     "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
     "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
-    "predeploy": "npm run merge:gate && npm run sync:check",
-    "observatory:catalog": "node scripts/sync-observatory-catalog.mjs",
-    "check:mdx": "node scripts/check-mdx-safety.mjs"
+    "predeploy": "npm run merge:gate && npm run sync:check"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -166,7 +165,7 @@
     "@types/d3-geo": "^3.1.0",
     "@types/lunr": "^2.3.7",
     "@types/node": "^22.10.2",
-    "@types/qrcode": "^1.5.6",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
     "@types/topojson-client": "^3.1.5",

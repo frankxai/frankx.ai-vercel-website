@@ -319,7 +319,7 @@ const fadeUp = {
 export default function MusicToolsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: -10 }}
@@ -327,20 +327,20 @@ export default function MusicToolsPage() {
           className="mb-16 text-center"
         >
           <p className="text-5xl">🛠️</p>
-          <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Music Tools & Apps
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-[17px] md:text-xl leading-relaxed text-white/80">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">
             A curated collection of the best digital tools for modern musicians.
             From AI composition engines to practice companions, selected with an
             architect&apos;s eye for quality and utility.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-white/50">
+          <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-white/40">
             {categories.map((cat) => (
               <a
                 key={cat.title}
                 href={`#${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="rounded-full border border-white/10 px-4 py-1.5 transition hover:border-white/20 hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="rounded-full border border-white/10 px-4 py-1.5 transition hover:border-white/20 hover:text-white/60"
               >
                 {cat.emoji} {cat.title}
               </a>
@@ -361,7 +361,7 @@ export default function MusicToolsPage() {
             >
               <div className="mb-6 flex items-center gap-3">
                 <span className="text-3xl">{category.emoji}</span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">{category.title}</h2>
+                <h2 className="text-2xl font-bold text-white">{category.title}</h2>
                 <span className={`rounded-full px-3 py-0.5 text-xs font-medium ${category.badgeBg}`}>
                   {category.tools.length} tools
                 </span>
@@ -444,23 +444,23 @@ export default function MusicToolsPage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-24 flex flex-wrap justify-center gap-4"
+          className="mt-20 flex flex-wrap justify-center gap-4"
         >
           <Link
             href="/music/learn"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/70 transition hover:border-white/20 hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80"
           >
             🎓 Learn Music
           </Link>
           <Link
             href="/music"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/70 transition hover:border-white/20 hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80"
           >
             🎵 Music Hub
           </Link>
           <Link
             href="/acos"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/70 transition hover:border-white/20 hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80"
           >
             🧠 ACOS
           </Link>

@@ -88,11 +88,11 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
               </div>
 
               {/* Pricing */}
-              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-6 mb-6 backdrop-blur-sm">
+              <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 mb-6">
                 <div className="grid grid-cols-2 gap-6 mb-6">
                   <div>
                     <span className="text-xs text-white/40">
-                      {auction.bidCount > 0 ? 'Current bid' : 'Starting bid'}
+                      {auction.bidCount > 0 ? 'Current Bid' : 'Starting Bid'}
                     </span>
                     <div className="text-3xl font-bold text-white">${currentPrice}</div>
                     {auction.bidCount > 0 && (
@@ -101,19 +101,19 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
                   </div>
                   {auction.buyNowPrice && (
                     <div>
-                      <span className="text-xs text-white/40">Reserve at</span>
+                      <span className="text-xs text-white/40">Buy Now</span>
                       <div className="text-3xl font-bold text-amber-400">${auction.buyNowPrice}</div>
-                      <span className="text-xs text-white/30">Skip the bidding</span>
+                      <span className="text-xs text-white/30">Skip the auction</span>
                     </div>
                   )}
                 </div>
 
-                {/* Reserve button */}
+                {/* Buy Now button */}
                 {auction.buyNowPrice && (
                   <CheckoutButton
                     variantId={auction.lemonSqueezy?.productId || undefined}
                     price={auction.buyNowPrice}
-                    label="Reserve invite"
+                    label="Buy Now"
                     size="lg"
                     className="w-full justify-center"
                   />
@@ -121,27 +121,18 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
 
                 {/* Bid placeholder */}
                 <div className="mt-4 p-4 rounded-lg bg-white/[0.02] border border-white/[0.06] text-center">
-                  <Gavel aria-hidden className="w-5 h-5 text-white/30 mx-auto mb-2" />
+                  <Gavel className="w-5 h-5 text-white/30 mx-auto mb-2" />
                   <p className="text-sm text-white/40">
-                    Live bidding opens at launch. Reserve now to secure this item at the listed price.
+                    Live bidding coming soon. Use Buy Now to secure this item immediately.
                   </p>
                 </div>
               </div>
 
               {/* Item details */}
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-                <h3 className="text-sm font-semibold text-white mb-3">Item details</h3>
-                <p className="text-sm text-white/45 leading-relaxed mb-4">
+              <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
+                <h3 className="text-sm font-semibold text-white mb-3">Item Details</h3>
+                <p className="text-sm text-white/45 leading-relaxed">
                   {auction.item.details}
-                </p>
-                <p className="text-xs text-white/35">
-                  Questions about this drop?{' '}
-                  <a
-                    href="mailto:frank@frankx.ai"
-                    className="text-cyan-400 underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded"
-                  >
-                    frank@frankx.ai
-                  </a>
                 </p>
               </div>
             </motion.div>

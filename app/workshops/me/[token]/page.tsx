@@ -224,7 +224,7 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
   // Check env config
   if (!process.env.WORKSHOP_PORTAL_SECRET) {
     return (
-      <main className="min-h-screen bg-void text-zinc-100">
+      <main className="min-h-screen bg-black text-zinc-100">
         <FrankXOSHeader customLabel="Attendee portal" />
         <div className="max-w-xl mx-auto px-4 py-24 text-center">
           <h1 className="text-2xl font-semibold text-zinc-100 mb-3">Portal not configured</h1>
@@ -245,7 +245,7 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
   const payload = verifyToken(token)
   if (!payload) {
     return (
-      <main className="min-h-screen bg-void text-zinc-100">
+      <main className="min-h-screen bg-black text-zinc-100">
         <FrankXOSHeader customLabel="Attendee portal" />
         <div className="max-w-xl mx-auto px-4 py-24 text-center">
           <h1 className="text-2xl font-semibold text-zinc-100 mb-3">Link expired or invalid</h1>
@@ -274,7 +274,7 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
 
   if (!person || !workshop) {
     return (
-      <main className="min-h-screen bg-void text-zinc-100">
+      <main className="min-h-screen bg-black text-zinc-100">
         <FrankXOSHeader customLabel="Attendee portal" />
         <div className="max-w-xl mx-auto px-4 py-24 text-center">
           <h1 className="text-2xl font-semibold text-zinc-100 mb-3">Link expired or invalid</h1>
@@ -301,7 +301,7 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
   const workshopPageUrl = `/workshops/${workshopSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '').split('-').slice(0, -1).join('-') || workshopSlug}`
 
   return (
-    <main className="min-h-screen bg-void text-zinc-100">
+    <main className="min-h-screen bg-black text-zinc-100">
       <FrankXOSHeader customLabel="Attendee portal" />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 space-y-8">

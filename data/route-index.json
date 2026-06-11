@@ -1,21 +1,21 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 723,
-    "aliases": 19,
+    "total": 668,
+    "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 344,
-      "community": 17,
-      "tool": 52,
-      "static": 15,
-      "blog": 191,
+      "section": 341,
+      "community": 12,
+      "tool": 10,
+      "static": 14,
+      "blog": 193,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
       "os": 9,
       "partnership": 4,
-      "product": 32,
+      "product": 26,
       "research": 3,
       "video": 3,
       "workshop": 7
@@ -789,11 +789,10 @@
       "title": "The 2026 AEO Knowledge Graph: From SEO to Entity-First Authority",
       "description": "Discover why Answer Engine Optimization (AEO) and Knowledge Graphs have replaced traditional SEO in 2026, and how to build topical authority clusters.",
       "tags": [
-        "AEO",
-        "Knowledge Graph",
-        "SEO",
-        "Topical Authority",
-        "AI Citations"
+        "aeo",
+        "knowledge",
+        "graph",
+        "2026"
       ],
       "type": "blog"
     },
@@ -879,6 +878,20 @@
         "ai operating system",
         "tutorial",
         "productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/agentic-os-family-foundry-launch",
+      "title": "The Agentic OS Family: One Architecture, Installed Into Real Businesses",
+      "description": "How a one-day install for a friend's company became agentic-business-os, a public template with a sync channel — and the Foundry, an application-only install service with priority for sustainable, healthcare, and meaningful businesses.",
+      "tags": [
+        "agentic-os",
+        "business-os",
+        "foundry",
+        "claude-code",
+        "ai-architecture",
+        "open-source"
       ],
       "type": "blog"
     },
@@ -970,7 +983,7 @@
     {
       "href": "/blog/ai-coe-launch",
       "title": "Launching the AI Center of Excellence: A New Era for FrankX",
-      "description": "Announcing the AI Center of Excellence Hub on FrankX — the six-pillar enterprise CoE framework (strategy, governance, talent, technology, data, ethics) translated for creators and individuals, with a production LLM/agent blog series to back it.",
+      "description": "We are deploying the AI CoE Hub, a production-grade LLM/Agent blog series, and massive UX enhancements. See how we are transforming from tech-overwhelmed to AI-empowered.",
       "tags": [
         "AI Architecture",
         "AI CoE",
@@ -1026,6 +1039,20 @@
         "Athletes",
         "AI Tools",
         "Creators"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-image-video-generation-playbook-2026",
+      "title": "The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost",
+      "description": "Most creators pay twice for AI images — once for the subscription, again for the API. Here's the decision table: which engine to use, which plan already includes it, and the rare times paying per-call is actually worth it.",
+      "tags": [
+        "ai image generation",
+        "ai video generation",
+        "nano banana",
+        "grok imagine",
+        "creator tools",
+        "ai cost optimization"
       ],
       "type": "blog"
     },
@@ -1778,7 +1805,7 @@
     {
       "href": "/blog/frankx-business-plan-canvas",
       "title": "FrankX Business Plan Canvas",
-      "description": "The full business model behind the Agentic Creator OS — problem, segments, value proposition, channels, revenue, costs, and the one unfair advantage that ties it together.",
+      "description": "The concise business model behind the Agentic Creator OS and the FrankX product ladder.",
       "tags": [
         "Business Model",
         "Product Strategy",
@@ -1819,7 +1846,7 @@
     {
       "href": "/blog/frankx-vision-mission-values",
       "title": "FrankX Vision, Mission, and Values",
-      "description": "The mission, vision, and six values that decide what FrankX builds, ships, and refuses — written so you can hold the work accountable to them.",
+      "description": "The core narrative that anchors every FrankX system, launch, and creator experience.",
       "tags": [
         "Vision",
         "Mission",
@@ -1910,7 +1937,7 @@
     {
       "href": "/blog/golden-age-field-guide",
       "title": "Golden Age Field Guide: Principles and Rituals",
-      "description": "A concise field guide to working in the Golden Age of Intelligence — six principles, four creator-stack layers, and a 90-day ritual map you can start this week.",
+      "description": "A concise field guide to navigate the Golden Age of Intelligence with clarity, momentum, and soul.",
       "tags": [
         "Golden Age",
         "AI",
@@ -3330,51 +3357,6 @@
       "type": "section"
     },
     {
-      "href": "/books/arcanea-creator-principles",
-      "title": "The Arcanean Creator Principles",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-01-the-seven-principles",
-      "title": "Ch 1 — The Seven Principles",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-02-the-partnership-principle",
-      "title": "Ch 2 — The Partnership Principle",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-03-complementary-strengths",
-      "title": "Ch 3 — Complementary Strengths",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-04-collaboration-modes",
-      "title": "Ch 4 — Collaboration Modes",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-05-trust-calibration",
-      "title": "Ch 5 — Trust Calibration",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-06-the-generator-editor-dance",
-      "title": "Ch 6 — The Generator-Editor Dance",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-07-advanced-partnership",
-      "title": "Ch 7 — Advanced Partnership",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-08-the-living-practice",
-      "title": "Ch 8 — The Living Practice",
-      "type": "section"
-    },
-    {
       "href": "/build",
       "title": "Build",
       "type": "section"
@@ -4044,16 +4026,6 @@
       "type": "section"
     },
     {
-      "href": "/familie/geschichte/gorte-linie",
-      "title": "Gorte-Linie — Geschichte",
-      "type": "community"
-    },
-    {
-      "href": "/familie/geschichte/karaganda",
-      "title": "Karaganda — Geschichte",
-      "type": "community"
-    },
-    {
       "href": "/familie/geschichte/offene-fragen",
       "title": "Offene Fragen",
       "tags": [
@@ -4063,21 +4035,6 @@
         "fragen"
       ],
       "type": "section"
-    },
-    {
-      "href": "/familie/geschichte/riemer-linie",
-      "title": "Riemer-Linie — Geschichte",
-      "type": "community"
-    },
-    {
-      "href": "/familie/geschichte/trudarmee",
-      "title": "Trudarmee — Geschichte",
-      "type": "community"
-    },
-    {
-      "href": "/familie/geschichte/wolgadeutsche",
-      "title": "Wolgadeutsche — Geschichte",
-      "type": "community"
     },
     {
       "href": "/familie/interview-kit",
@@ -4160,6 +4117,23 @@
         "founders",
         "circle",
         "apply"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/foundry",
+      "title": "Foundry",
+      "tags": [
+        "foundry"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/foundry/guide",
+      "title": "Guide",
+      "tags": [
+        "foundry",
+        "guide"
       ],
       "type": "section"
     },
@@ -4336,7 +4310,7 @@
         "A2A",
         "Agent Card",
         "Interoperability",
-        "Internal Agent Spec"
+        "Oracle OAS"
       ],
       "type": "guide"
     },
@@ -4355,7 +4329,7 @@
     {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
-      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while compounding output",
+      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
       "tags": [
         "Writing",
         "AI",
@@ -4793,384 +4767,6 @@
         "hub"
       ],
       "type": "section"
-    },
-    {
-      "href": "/llm-hub/claude-fable-5",
-      "title": "Claude Fable 5 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/claude-haiku-4-5",
-      "title": "Claude Haiku 4.5 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/claude-opus-4-5",
-      "title": "Claude Opus 4.5 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/claude-opus-4-6",
-      "title": "Claude Opus 4.6 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/claude-opus-4-8",
-      "title": "Claude Opus 4.8 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/claude-sonnet-4-5",
-      "title": "Claude Sonnet 4.5 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/claude-sonnet-4-6",
-      "title": "Claude Sonnet 4.6 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-claude-opus-4-8",
-      "title": "Claude Fable 5 VS Claude Opus 4 8 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-deepseek-v4",
-      "title": "Claude Fable 5 VS Deepseek V4 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-gemini-3-5-pro",
-      "title": "Claude Fable 5 VS Gemini 3 5 Pro — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-gpt-5-5",
-      "title": "Claude Fable 5 VS Gpt 5 5 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-grok-4-3",
-      "title": "Claude Fable 5 VS Grok 4 3 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-kimi-k2-6",
-      "title": "Claude Fable 5 VS Kimi K2 6 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-fable-5-vs-qwen3-7-max",
-      "title": "Claude Fable 5 VS Qwen3 7 Max — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-opus-4-6-vs-gpt-5-2-pro",
-      "title": "Claude Opus 4 6 VS Gpt 5 2 Pro — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-opus-4-8-vs-gpt-5-5",
-      "title": "Claude Opus 4 8 VS Gpt 5 5 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/claude-sonnet-4-5-vs-gemini-3-5-flash",
-      "title": "Claude Sonnet 4 5 VS Gemini 3 5 Flash — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/deepseek-v4-vs-claude-opus-4-8",
-      "title": "Deepseek V4 VS Claude Opus 4 8 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/gemini-3-5-flash-vs-claude-opus-4-6",
-      "title": "Gemini 3 5 Flash VS Claude Opus 4 6 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/gemini-3-5-flash-vs-gpt-5-2-pro",
-      "title": "Gemini 3 5 Flash VS Gpt 5 2 Pro — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/gpt-oss-vs-gemma-4",
-      "title": "Gpt Oss VS Gemma 4 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/grok-4-3-vs-gpt-5-5",
-      "title": "Grok 4 3 VS Gpt 5 5 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/kimi-k2-6-vs-deepseek-v4",
-      "title": "Kimi K2 6 VS Deepseek V4 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/compare/qwen3-7-max-vs-deepseek-v4",
-      "title": "Qwen3 7 Max VS Deepseek V4 — Comparison",
-      "tags": [
-        "llm-hub",
-        "comparison"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/deepseek-v4",
-      "title": "DeepSeek V4 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gemini-3-5-flash",
-      "title": "Gemini 3.5 Flash — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gemini-3-5-pro",
-      "title": "Gemini 3.5 Pro — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gemini-3-pro",
-      "title": "Gemini 3 Pro — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gemma-4",
-      "title": "Gemma 4 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gpt-5-2-pro",
-      "title": "GPT-5.2 Pro — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gpt-5-5",
-      "title": "GPT-5.5 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/gpt-oss",
-      "title": "gpt-oss (120b / 20b) — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/grok-4-1",
-      "title": "Grok 4.1 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/grok-4-3",
-      "title": "Grok 4.3 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/kimi-k2-6",
-      "title": "Kimi K2.6 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/llama-4-maverick",
-      "title": "Llama 4 Maverick — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/mai-code-1-flash",
-      "title": "MAI-Code-1-Flash — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/mai-image-2-5",
-      "title": "MAI-Image-2.5 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/mai-thinking-1",
-      "title": "MAI-Thinking-1 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/mistral-large-3",
-      "title": "Mistral Large 3 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/phi-4",
-      "title": "Microsoft Phi-4 (open-weight family) — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
-      "href": "/llm-hub/qwen3-7-max",
-      "title": "Qwen3.7-Max — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
     },
     {
       "href": "/magic",
@@ -5706,33 +5302,15 @@
     },
     {
       "href": "/products/agentic-creator-os/docs",
-      "title": "Agentic Creator OS — Docs",
-      "type": "product"
-    },
-    {
-      "href": "/products/agentic-creator-os/docs/agents",
-      "title": "ACOS Docs — Agents",
-      "type": "product"
-    },
-    {
-      "href": "/products/agentic-creator-os/docs/getting-started",
-      "title": "ACOS Docs — Getting Started",
-      "type": "product"
-    },
-    {
-      "href": "/products/agentic-creator-os/docs/mcp",
-      "title": "ACOS Docs — MCP",
-      "type": "product"
-    },
-    {
-      "href": "/products/agentic-creator-os/docs/skills",
-      "title": "ACOS Docs — Skills",
-      "type": "product"
-    },
-    {
-      "href": "/products/agentic-creator-os/docs/workflows",
-      "title": "ACOS Docs — Workflows",
-      "type": "product"
+      "title": "Docs",
+      "tags": [
+        "products",
+        "agentic",
+        "creator",
+        "os",
+        "docs"
+      ],
+      "type": "section"
     },
     {
       "href": "/products/aurora-ui-kit",
@@ -6598,11 +6176,29 @@
       "type": "section"
     },
     {
+      "href": "/studio/engines",
+      "title": "Engines",
+      "tags": [
+        "studio",
+        "engines"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/studio/food",
       "title": "Food",
       "tags": [
         "studio",
         "food"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/studio/lanes",
+      "title": "Lanes",
+      "tags": [
+        "studio",
+        "lanes"
       ],
       "type": "section"
     },
@@ -6743,7 +6339,10 @@
     {
       "href": "/unsubscribe",
       "title": "Unsubscribe",
-      "type": "static"
+      "tags": [
+        "unsubscribe"
+      ],
+      "type": "section"
     },
     {
       "href": "/updates",
@@ -7012,11 +6611,7 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
-    "/blog/rss": "/rss.xml",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
-    "/contact-frank": "/contact",
-    "/contact-me": "/contact",
-    "/get-in-touch": "/contact",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
@@ -7025,7 +6620,6 @@
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",
     "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
-    "/workshops/ikigai/v1": "/workshops/ikigai-branding",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",
     "/workshops/ikigai/v3": "/workshops/ikigai-branding",
     "/workshops/ikigai/v4": "/workshops/ikigai-branding"

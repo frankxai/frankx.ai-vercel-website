@@ -4,15 +4,8 @@ import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
-import { getAllModels } from '@/lib/llm-hub/registry'
-import { COMPARISONS } from '@/lib/llm-hub/comparisons'
-// Pre-baked at build time by scripts/build-route-index.mjs (which uses
-// lib/route-enumeration.mjs). Importing the JSON keeps the sitemap lambda
-// small — calling enumerateRoutes() at request time forces Turbopack to
-// bundle every file under content/, data/, lib/research/ etc. into the
-// function (42k+ files → blows past Vercel's 250MB lambda limit and the
-// deploy ERRORs after build).
-import routeIndex from '@/data/route-index.json'
+// lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
+import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -120,8 +113,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Tool pages
@@ -272,11 +263,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/learn/claude-mastery', priority: 0.75, changeFrequency: 'weekly' as const },
-    { url: '/learn/gemini-mastery', priority: 0.85, changeFrequency: 'weekly' as const },
-    // LLM Hub — the model intelligence surface (high-priority SEO)
-    { url: '/llm-hub', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/llm-hub/compare', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
@@ -607,26 +593,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // LLM Hub — per-model pages (dynamic, keyed by registry slug)
-  getAllModels().forEach((m) => {
-    entries.push({
-      url: `${BASE_URL}/llm-hub/${m.id}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.75,
-    })
-  })
-
-  // LLM Hub — head-to-head comparison pages (dynamic)
-  COMPARISONS.forEach((c) => {
-    entries.push({
-      url: `${BASE_URL}/llm-hub/compare/${c.slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    })
-  })
-
   // Library OS — hub + manifesto + build + quotes
   libraryPages.forEach(page => {
     entries.push({
@@ -693,43 +659,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Routes that must NEVER appear in the sitemap because they're noindex'd
-  // at the page level (robots: index: false) or are private surfaces.
-  // Keep in sync with app/robots.ts disallow list + per-page robots metadata.
-  const noindexRoutes = new Set<string>([
-    '/tribe',
-    '/unsubscribe',
-    '/onboarding',
-    '/dashboard',
-    '/command-center',
-    '/papa/erinnerungen',
-    '/papa/mitmachen',
-  ])
-  const noindexPrefixes = ['/tribe/', '/preview/', '/prototype/', '/admin/', '/api/', '/auth/']
-
-  function isNoindex(pathname: string): boolean {
-    if (noindexRoutes.has(pathname)) return true
-    return noindexPrefixes.some((prefix) => pathname.startsWith(prefix))
-  }
-
-  // Auto-discovery safety net — pull every route from the pre-baked
-  // data/route-index.json (built from lib/route-enumeration.mjs at prebuild)
-  // and add any that the hand-curated arrays above missed. The existing
-  // entry wins on collision, so manual priority/changeFrequency settings
-  // are preserved.
+  // Auto-discovery safety net — pull every route from lib/route-enumeration.mjs
+  // (the single source of truth shared with data/route-index.json + the link
+  // checker) and add any that the hand-curated arrays above missed. The
+  // existing entry wins on collision, so manual priority/changeFrequency
+  // settings are preserved.
   const seenUrls = new Set(entries.map((e) => e.url))
-  // Prune any noindex'd routes that the hand-curated arrays accidentally
-  // included (defensive — newer waves may add /tribe etc. to the legacy
-  // arrays without realizing they're noindex'd).
-  for (let i = entries.length - 1; i >= 0; i--) {
-    const pathname = entries[i].url.replace(BASE_URL, '')
-    if (isNoindex(pathname)) {
-      seenUrls.delete(entries[i].url)
-      entries.splice(i, 1)
-    }
-  }
   try {
-    const discovered = (routeIndex as { routes: Array<{ href: string; type: string }> }).routes
+    const discovered = enumerateRoutes() as Array<{ href: string; type: string }>
     // Heuristic priority + frequency by route type — only used for routes that
     // weren't already in the hand-curated arrays above.
     const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
@@ -751,7 +688,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       legacy: { priority: 0.3, changeFrequency: 'yearly' },
     }
     for (const route of discovered) {
-      if (isNoindex(route.href)) continue
       const url = `${BASE_URL}${route.href}`
       if (seenUrls.has(url)) continue
       seenUrls.add(url)
@@ -764,9 +700,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })
     }
   } catch (err) {
-    // Don't fail sitemap generation if the pre-baked index is missing or
-    // malformed — the hand-curated arrays above still produce a valid sitemap.
-    console.warn('[sitemap] route-index auto-discovery failed:', (err as Error).message)
+    // Don't fail sitemap generation if the enumerator can't load —
+    // the hand-curated arrays above still produce a valid sitemap.
+    console.warn('[sitemap] route-enumeration auto-discovery failed:', (err as Error).message)
   }
 
   return entries

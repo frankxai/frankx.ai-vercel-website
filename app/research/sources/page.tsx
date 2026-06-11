@@ -150,7 +150,7 @@ export default function SourceBrowserPage() {
                 <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                   Source Browser
                 </h1>
-                <p className="text-white/60 mt-1">
+                <p className="text-white/40 mt-1">
                   Every source backing our research, searchable and transparent
                 </p>
               </div>

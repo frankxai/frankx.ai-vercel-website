@@ -6,36 +6,27 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useState } from 'react'
 import {
+  ArrowLeft,
   ArrowRight,
   Brain,
   Music2,
   Zap,
   ImageIcon,
-  Sparkles,
   Clock,
   BookOpen,
   Play,
   ExternalLink,
   CheckCircle,
   Target,
-  Rocket,
-  AlertTriangle,
-  FlaskConical,
-  RefreshCw,
-  HelpCircle,
-  Users,
-  Layers,
 } from 'lucide-react'
-import { learningPaths, type VideoResource, type PortalAnnouncement } from '@/data/learning-paths'
+import { learningPaths, type VideoResource } from '@/data/learning-paths'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
-import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
   music: Music2,
   zap: Zap,
   image: ImageIcon,
-  sparkles: Sparkles,
 }
 
 const colorMap: Record<string, { bg: string; text: string; border: string; gradientFrom: string }> = {
@@ -43,7 +34,6 @@ const colorMap: Record<string, { bg: string; text: string; border: string; gradi
   cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20', gradientFrom: 'from-cyan-500/10' },
   amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20', gradientFrom: 'from-amber-500/10' },
   violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20', gradientFrom: 'from-violet-500/10' },
-  sky: { bg: 'bg-sky-500', text: 'text-sky-400', border: 'border-sky-500/20', gradientFrom: 'from-sky-500/15' },
 }
 
 const playButtonBgMap: Record<string, string> = {
@@ -51,37 +41,6 @@ const playButtonBgMap: Record<string, string> = {
   cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
   amber: 'bg-amber-500/80 group-hover:bg-amber-500',
   violet: 'bg-violet-500/80 group-hover:bg-violet-500',
-  sky: 'bg-sky-500/80 group-hover:bg-sky-500',
-}
-
-const announcementTagStyles: Record<PortalAnnouncement['tag'], { bg: string; text: string; icon: React.ComponentType<{className?: string}> }> = {
-  Launch: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', icon: Rocket },
-  Update: { bg: 'bg-sky-500/10', text: 'text-sky-400', icon: RefreshCw },
-  Deprecation: { bg: 'bg-amber-500/10', text: 'text-amber-400', icon: AlertTriangle },
-  Research: { bg: 'bg-violet-500/10', text: 'text-violet-400', icon: FlaskConical },
-}
-
-// Lightweight FAQ answer renderer — converts [label](href) into anchor tags
-// and escapes everything else. Kept tiny on purpose: the FAQ schema gets the
-// raw text via FAQPageJsonLd, so this is purely the visual rendering.
-function renderFaqAnswer(answer: string): string {
-  const escape = (s: string) =>
-    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g
-  const parts: string[] = []
-  let lastIndex = 0
-  let match: RegExpExecArray | null
-  while ((match = linkRe.exec(answer)) !== null) {
-    parts.push(escape(answer.slice(lastIndex, match.index)))
-    const label = escape(match[1])
-    const href = match[2].replace(/"/g, '&quot;')
-    parts.push(
-      `<a href="${href}" class="text-sky-400 hover:underline">${label}</a>`,
-    )
-    lastIndex = match.index + match[0].length
-  }
-  parts.push(escape(answer.slice(lastIndex)))
-  return parts.join('')
 }
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
@@ -104,7 +63,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
         ) : (
           <>
             <Image
-              src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+              src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -184,50 +143,8 @@ export default function LearningPathPage() {
   const Icon = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color]
 
-  const courseSchema = {
-    name: path.title,
-    description: path.description,
-    provider: { '@type': 'Organization', name: 'FrankX.AI', url: 'https://frankx.ai' },
-    url: `https://frankx.ai/learn/${path.slug}`,
-    educationalLevel:
-      path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
-    learningResourceType: 'Course',
-    timeRequired: `PT${path.estimatedHours}H`,
-    inLanguage: 'en',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'Online',
-      courseWorkload: `PT${path.estimatedHours}H`,
-    },
-  }
-
-  const videoListSchema = {
-    name: `${path.title} — Curated Videos`,
-    numberOfItems: path.videos.length,
-    itemListElement: path.videos.map((video, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'VideoObject',
-        name: video.title,
-        description: video.description,
-        thumbnailUrl: `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`,
-        contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
-        embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
-        uploadDate: '2026-01-01',
-      },
-    })),
-  }
-
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <JsonLd type="Course" data={courseSchema} id={`json-ld-course-${path.slug}`} />
-      <JsonLd type="ItemList" data={videoListSchema} id={`json-ld-videos-${path.slug}`} />
-      {path.faqs && path.faqs.length > 0 && (
-        <FAQPageJsonLd faqs={path.faqs} id={`json-ld-faq-${path.slug}`} />
-      )}
-
       {/* Hero */}
       <section className="relative pt-24 pb-12 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradientFrom} via-transparent to-transparent`} />
@@ -247,22 +164,16 @@ export default function LearningPathPage() {
           >
             {/* Main content */}
             <div>
-              {path.heroEyebrow && (
-                <p className={`text-xs font-semibold uppercase tracking-wider ${colors.text} mb-3`}>
-                  {path.heroEyebrow}
-                </p>
-              )}
-
               <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${colors.border} border bg-white/5 ${colors.text} text-sm font-medium mb-6`}>
                 <Icon className="w-4 h-4" />
                 {path.difficulty} path
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 {path.title}
               </h1>
 
-              <p className="text-[17px] leading-relaxed text-white/80 mb-8">
+              <p className="text-xl text-white/60 mb-8">
                 {path.description}
               </p>
 
@@ -298,22 +209,9 @@ export default function LearningPathPage() {
         </div>
       </section>
 
-      {/* Long Intro */}
-      {path.longIntro && (
-        <section className="max-w-4xl mx-auto px-6 pb-12">
-          <div className="prose prose-invert prose-lg max-w-none text-white/70 leading-relaxed">
-            {path.longIntro.split('\n\n').map((paragraph, i) => (
-              <p key={i} className="mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* Videos */}
-      <section id="videos" className="max-w-6xl mx-auto px-6 pb-16">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-8">Course Videos</h2>
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <h2 className="text-2xl font-bold text-white mb-8">Course Videos</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {path.videos.map((video, i) => (
@@ -328,166 +226,6 @@ export default function LearningPathPage() {
           ))}
         </div>
       </section>
-
-      {/* Ecosystem Grid */}
-      {path.ecosystem && path.ecosystem.length > 0 && (
-        <section id="ecosystem" className="max-w-6xl mx-auto px-6 pb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Layers className={`w-6 h-6 ${colors.text}`} />
-            <h2 className="text-2xl font-bold text-white">The Ecosystem</h2>
-          </div>
-          <p className="text-white/50 mb-8 max-w-2xl">
-            Every tool you need to ship — with the official Google product page for each.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {path.ecosystem.map((tool) => (
-              <a
-                key={tool.name}
-                href={tool.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group block p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all`}
-              >
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <span className={`text-xs font-medium px-2 py-0.5 rounded ${colors.text} bg-white/5`}>
-                    {tool.category}
-                  </span>
-                  {tool.status && (
-                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/5 text-white/60">
-                      {tool.status}
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                  {tool.name}
-                  <ExternalLink className="w-3.5 h-3.5 text-white/30 group-hover:text-white/70 transition-colors" />
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">{tool.description}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Announcements Timeline */}
-      {path.announcements && path.announcements.length > 0 && (
-        <section id="announcements" className="max-w-4xl mx-auto px-6 pb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Rocket className={`w-6 h-6 ${colors.text}`} />
-            <h2 className="text-2xl font-bold text-white">What just shipped</h2>
-          </div>
-          <p className="text-white/50 mb-8">
-            Direct from Google — launches, updates, and deprecations to know about.
-          </p>
-          <ol className="relative border-l border-white/10 pl-6 space-y-6">
-            {path.announcements.map((item, i) => {
-              const tagStyle = announcementTagStyles[item.tag]
-              const TagIcon = tagStyle.icon
-              return (
-                <li key={i} className="relative">
-                  <span className={`absolute -left-[31px] top-1 w-3 h-3 rounded-full ${colors.bg}`} />
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="text-xs font-mono text-white/40">{item.date}</span>
-                    <span
-                      className={`inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded ${tagStyle.bg} ${tagStyle.text}`}
-                    >
-                      <TagIcon className="w-3 h-3" />
-                      {item.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-base font-semibold text-white mb-1">{item.title}</h3>
-                  <p className="text-sm text-white/60 mb-2 leading-relaxed">{item.summary}</p>
-                  <a
-                    href={item.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1 text-xs ${colors.text} hover:underline`}
-                  >
-                    Read on Google
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </li>
-              )
-            })}
-          </ol>
-        </section>
-      )}
-
-      {/* Experts */}
-      {path.experts && path.experts.length > 0 && (
-        <section id="experts" className="max-w-6xl mx-auto px-6 pb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Users className={`w-6 h-6 ${colors.text}`} />
-            <h2 className="text-2xl font-bold text-white">Who to follow</h2>
-          </div>
-          <p className="text-white/50 mb-8 max-w-2xl">
-            Official Google channels and the sharpest independent voices in the Gemini ecosystem.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {path.experts.map((expert) => (
-              <a
-                key={expert.name}
-                href={expert.channelUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
-              >
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                    {expert.name}
-                  </h3>
-                  {expert.isOfficial && (
-                    <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded ${colors.text} bg-white/5`}>
-                      Official
-                    </span>
-                  )}
-                </div>
-                <p className={`text-xs font-medium ${colors.text} mb-2`}>{expert.role}</p>
-                <p className="text-sm text-white/60 leading-relaxed mb-3">{expert.why}</p>
-                <span className="inline-flex items-center gap-1 text-xs text-white/40 group-hover:text-white/70 transition-colors">
-                  Visit channel
-                  <ExternalLink className="w-3 h-3" />
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* FAQ */}
-      {path.faqs && path.faqs.length > 0 && (
-        <section id="faq" className="max-w-4xl mx-auto px-6 pb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <HelpCircle className={`w-6 h-6 ${colors.text}`} />
-            <h2 className="text-2xl font-bold text-white">FAQ</h2>
-          </div>
-          <p className="text-white/50 mb-8">
-            Quick answers for AI search and quick scanning. Each Q&amp;A is also emitted as FAQ structured data.
-          </p>
-          <div className="space-y-3">
-            {path.faqs.map((faq, i) => (
-              <details
-                key={i}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] open:bg-white/[0.04] transition-colors"
-              >
-                <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4">
-                  <h3 className="text-base font-semibold text-white">{faq.question}</h3>
-                  <span
-                    className={`flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-white/5 ${colors.text} flex items-center justify-center text-lg leading-none group-open:rotate-45 transition-transform`}
-                    aria-hidden="true"
-                  >
-                    +
-                  </span>
-                </summary>
-                <div
-                  className="px-5 pb-5 text-sm text-white/70 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: renderFaqAnswer(faq.answer) }}
-                />
-              </details>
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* Related Resources */}
       {path.relatedGuides.length > 0 && (
@@ -516,24 +254,25 @@ export default function LearningPathPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-2xl border ${colors.border} backdrop-blur-xl p-8 md:p-12 text-center`}>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
-            {path.ctaTitle || 'Ready for Hands-On Practice?'}
+        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-3xl border ${colors.border} p-8 md:p-12 text-center`}>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Ready for Hands-On Practice?
           </h2>
-          <p className="text-[17px] leading-relaxed text-white/80 mb-8 max-w-xl mx-auto">
-            {path.ctaBody || 'These free videos give you the foundation. Our guides take you deeper with practical exercises.'}
+          <p className="text-white/60 mb-8 max-w-xl mx-auto">
+            These free videos give you the foundation.
+            Our guides take you deeper with practical exercises.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/guides"
-              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-full hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
+              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-xl hover:opacity-90 transition-opacity`}
             >
               Explore Guides
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-full hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-xl hover:bg-white/5 transition-colors"
             >
               More Learning Paths
             </Link>

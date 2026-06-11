@@ -59,14 +59,13 @@ export default function NewsletterHero({
   }
 
   return (
-    <section className="relative overflow-hidden py-20 lg:py-28 pt-32">
+    <section className="relative overflow-hidden pb-16 pt-32">
       {/* Nature-tech constellation background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <Image
           src="/images/design-lab/nature-10-constellation-garden.png"
           alt=""
           fill
-          sizes="100vw"
           className="object-cover opacity-[0.03]"
           priority={false}
         />
@@ -124,7 +123,7 @@ export default function NewsletterHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white"
+          className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
         >
           Subscribe to what
           <span className="mt-2 block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
@@ -136,7 +135,7 @@ export default function NewsletterHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mb-10 max-w-2xl text-[17px] leading-relaxed text-white/80"
+          className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-400"
         >
           AI architecture, music production, investing, worldbuilding — each
           stream has its own voice, cadence, and depth. Subscribe to one or all.
@@ -174,12 +173,12 @@ export default function NewsletterHero({
                   onChange={(e) => setAllEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={allStatus === 'loading'}
-                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+                  className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus:border-violet-500/30 disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={allStatus === 'loading'}
-                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-violet-500 hover:to-cyan-500 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+                  className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-violet-500 hover:to-cyan-500 disabled:opacity-50"
                 >
                   {allStatus === 'loading' ? '...' : 'Get All'}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
