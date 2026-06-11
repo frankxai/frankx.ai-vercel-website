@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { appendFile, mkdir } from 'fs/promises'
 import path from 'path'
+import { leadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import {
   foundryApplicationReceivedEmail,
   foundryApplicationNotifyEmail,
@@ -47,7 +48,28 @@ async function sendEmails(input: FoundryApplicationInput) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 10 applications per hour per client. Fail-open — a KV
+    // outage must never block a legitimate application.
+    try {
+      const { success } = await leadRatelimit.limit(getClientIdentifier(request))
+      if (!success) {
+        return NextResponse.json(
+          { error: 'Too many submissions. Please try again later.' },
+          { status: 429 }
+        )
+      }
+    } catch (err) {
+      console.error('Foundry rate-limit check failed (continuing open):', err)
+    }
+
     const body = await request.json()
+
+    // Honeypot: real users never see or fill this field. Bots that fill it
+    // get a success response and silence — no signal that they were caught.
+    if (typeof body.website === 'string' && body.website.trim() !== '') {
+      return NextResponse.json({ success: true, message: 'Application received.' })
+    }
+
     const input: FoundryApplicationInput = {
       name: String(body.name ?? '').slice(0, 200).trim(),
       email: String(body.email ?? '').slice(0, 200).trim(),

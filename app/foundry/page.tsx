@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FoundryApplicationForm } from '@/components/foundry/FoundryApplicationForm'
 import { FOUNDRY_FAQS } from '@/lib/foundry-faqs'
@@ -14,6 +15,20 @@ export const metadata: Metadata = {
     description:
       'Complete AI operating systems, installed into businesses we believe in. Application-only.',
     url: 'https://frankx.ai/foundry',
+    images: [
+      {
+        url: '/images/blog/agentic-os-family-hero.png',
+        width: 1200,
+        height: 675,
+        alt: 'Molten energy being forged into a three-layer glass architecture — the Foundry metaphor',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FrankX Foundry',
+    description: 'Complete AI operating systems, installed into businesses we believe in.',
+    images: ['/images/blog/agentic-os-family-hero.png'],
   },
 }
 
@@ -161,35 +176,50 @@ export default function FoundryPage() {
 
       {/* Hero */}
       <section className="mx-auto max-w-6xl px-6 pb-24 pt-28 lg:pt-36">
-        <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
-          FrankX Foundry
-        </p>
-        <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-          We install operating systems into businesses we believe in.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-white/60">
-          A website, an AI-agent harness, pre-publish quality gates, and a business memory that
-          compounds — the same architecture that runs frankx.ai, derived for your brand and owned
-          by you. Installed in days, operated in thirty minutes a week, connected for the long run.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Link
-            href="#apply"
-            className="rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-white/90"
-          >
-            Apply for an Install
-          </Link>
-          <Link
-            href="/foundry/guide"
-            className="px-2 py-3.5 text-sm font-semibold text-white/60 transition-colors hover:text-white"
-          >
-            Read the operating guide
-          </Link>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr,400px]">
+          <div>
+            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
+              FrankX Foundry
+            </p>
+            <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
+              We install operating systems into businesses we believe in.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-white/60">
+              A website, an AI-agent harness, pre-publish quality gates, and a business memory that
+              compounds — the same architecture that runs frankx.ai, derived for your brand and
+              owned by you. Installed in days, operated in thirty minutes a week, connected for the
+              long run.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                href="#apply"
+                className="rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-white/90"
+              >
+                Apply for an Install
+              </Link>
+              <Link
+                href="/foundry/guide"
+                className="px-2 py-3.5 text-sm font-semibold text-white/60 transition-colors hover:text-white"
+              >
+                Read the operating guide
+              </Link>
+            </div>
+            <p className="mt-8 font-mono text-xs text-white/50">
+              Founding cohort forming · limited installs per quarter · priority: sustainable,
+              healthcare, meaningful
+            </p>
+          </div>
+          <div className="hidden lg:block">
+            <Image
+              src="/images/blog/agentic-os-family-hero.png"
+              alt="Molten emerald energy being forged into a precise three-layer glass architecture"
+              width={800}
+              height={450}
+              priority
+              className="rounded-3xl border border-white/10 shadow-[0_20px_60px_-12px_rgba(0,0,0,0.6)]"
+            />
+          </div>
         </div>
-        <p className="mt-8 font-mono text-xs text-white/40">
-          Founding cohort forming · limited installs per quarter · priority: sustainable, healthcare,
-          meaningful
-        </p>
       </section>
 
       {/* The architecture — three layers, all inspectable */}
