@@ -198,6 +198,29 @@ export const osModules: OSModule[] = [
         'LinkedIn (AI Architect), YouTube long-form (the Builder), Shorts + TikTok (the Creator), Instagram (the Aesthete), X (the Thinker), Threads (Conversation-starter), Bluesky (Live-thinker), Spotify (the Producer). One persona per profile.',
     },
   },
+  {
+    id: 'foundry',
+    name: 'FrankX Foundry',
+    slug: 'foundry',
+    route: '/foundry',
+    status: 'live',
+    color: 'emerald',
+    iconName: 'Hammer',
+    shipped: '2026-06-11',
+    oneLine: 'Operating-system installs for businesses we believe in.',
+    description:
+      'The service layer of the Agentic OS family. Evaluated installs of agentic-business-os — site, agent harness, claims gate, business memory — derived per brand, owned by the founder, connected via harness-sync PRs. Application-only; priority for sustainable, healthcare, and meaningful businesses.',
+    phases: ['funnel', 'cross-cutting'],
+    connectsTo: ['acos', 'coe-hub'],
+    artifacts: ['OS installs', 'Brand derivations', 'Harness-sync PRs', 'Skill packs'],
+    commands: ['/os-spawn'],
+    deepDive: {
+      route: '/foundry/guide',
+      label: 'Read the operating guide',
+      description:
+        'How a founder runs an installed OS: day-1 onboarding, the 30-minute weekly rhythm, the gates, and how harness updates arrive.',
+    },
+  },
 ]
 
 export const osCRM = {

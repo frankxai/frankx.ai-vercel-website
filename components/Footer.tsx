@@ -130,6 +130,7 @@ export default function Footer() {
           <nav aria-label="Connect">
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Connect</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+              <li><Link href="/foundry" className="text-emerald-400/70 hover:text-emerald-300 transition-colors">Foundry</Link></li>
               <li><Link href="/start" className="hover:text-white transition-colors">Start here</Link></li>
               <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
               <li><Link href="/inner-circle" className="hover:text-white transition-colors">Inner Circle</Link></li>
