@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 723,
+    "total": 731,
     "aliases": 19,
     "byType": {
       "core": 22,
-      "section": 344,
+      "section": 345,
       "community": 17,
       "tool": 52,
       "static": 15,
@@ -17,6 +17,7 @@
       "partnership": 4,
       "product": 32,
       "research": 3,
+      "travel": 7,
       "video": 3,
       "workshop": 7
     }
@@ -6731,6 +6732,95 @@
       "href": "/tools/visual-intelligence",
       "title": "Visual Intelligence",
       "type": "tool"
+    },
+    {
+      "href": "/travel",
+      "title": "Travel",
+      "tags": [
+        "travel"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/travel/barcelona-june",
+      "title": "Barcelona in June",
+      "tags": [
+        "travel",
+        "barcelona",
+        "spain",
+        "nomad",
+        "sonar"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/cape-town-december",
+      "title": "Cape Town in December",
+      "tags": [
+        "travel",
+        "cape town",
+        "south africa",
+        "nomad"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/copenhagen-july",
+      "title": "Copenhagen in July",
+      "tags": [
+        "travel",
+        "copenhagen",
+        "denmark",
+        "nomad",
+        "jazz"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/edinburgh-august",
+      "title": "Edinburgh in August",
+      "tags": [
+        "travel",
+        "edinburgh",
+        "scotland",
+        "nomad",
+        "fringe"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/lisbon-november",
+      "title": "Lisbon in November",
+      "tags": [
+        "travel",
+        "lisbon",
+        "portugal",
+        "nomad",
+        "web summit"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/mexico-city-september",
+      "title": "Mexico City in September",
+      "tags": [
+        "travel",
+        "mexico city",
+        "mexico",
+        "nomad"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/tokyo-october",
+      "title": "Tokyo in October",
+      "tags": [
+        "travel",
+        "tokyo",
+        "japan",
+        "nomad"
+      ],
+      "type": "travel"
     },
     {
       "href": "/tribe",
