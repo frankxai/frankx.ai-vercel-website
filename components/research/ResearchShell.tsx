@@ -608,6 +608,15 @@ function FlagshipArticles() {
         'Sovereign AI architectures that integrate biometrics, persistent memory, and ethical guardrails.',
       readingTime: '15 min',
     },
+    {
+      kanji: '道',
+      label: 'contemplative practice · ai',
+      title: 'AI and the Contemplative Traditions',
+      href: '/research/ai-contemplative-practice',
+      blurb:
+        'What is real, what the traditions say, and the failure modes to respect when AI enters a spiritual practice.',
+      readingTime: '14 min',
+    },
   ]
   return (
     <section className="py-12 md:py-16 border-b border-white/[0.04]">
