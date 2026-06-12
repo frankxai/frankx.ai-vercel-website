@@ -118,7 +118,10 @@ function JsonLd({ j }: { j: TravelJourney }) {
   }
 
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+    />
   )
 }
 
@@ -166,7 +169,7 @@ export default async function TravelJourneyPage({
   const ordered = getJourneysByMonth()
   const idx = ordered.findIndex((x) => x.slug === j.slug)
   const prev = idx > 0 ? ordered[idx - 1] : null
-  const next = idx < ordered.length - 1 ? ordered[idx + 1] : null
+  const next = idx !== -1 && idx < ordered.length - 1 ? ordered[idx + 1] : null
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -255,6 +258,7 @@ export default async function TravelJourneyPage({
                     href={e.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Official site for ${e.name}`}
                     className="inline-flex items-center gap-1 text-xs text-white/55 hover:text-white mt-2 transition-colors"
                   >
                     Official site

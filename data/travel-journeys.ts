@@ -612,7 +612,9 @@ export function getJourneyBySlug(slug: string): TravelJourney | undefined {
   return travelJourneys.find((j) => j.slug === slug)
 }
 
+const sortedJourneys = [...travelJourneys].sort((a, b) => a.monthIndex - b.monthIndex)
+
 /** Chronological — June (6) → December (12). */
 export function getJourneysByMonth(): TravelJourney[] {
-  return [...travelJourneys].sort((a, b) => a.monthIndex - b.monthIndex)
+  return sortedJourneys
 }

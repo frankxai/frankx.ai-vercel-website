@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { travelJourneys, getJourneysByMonth } from '@/data/travel-journeys'
+import type { TravelJourney } from '@/data/travel-journeys'
 
 const SITE_URL = 'https://frankx.ai'
 const TRAVEL_URL = `${SITE_URL}/travel`
@@ -71,12 +72,12 @@ function CollectionJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
     />
   )
 }
 
-const regionColors: Record<string, string> = {
+const regionColors: Record<TravelJourney['region'], string> = {
   Europe: 'bg-amber-500/10 text-amber-300 border-amber-500/20',
   Asia: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
   Americas: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
