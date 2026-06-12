@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { travelJourneys, getJourneysByMonth } from '@/data/travel-journeys'
-import type { TravelJourney } from '@/data/travel-journeys'
+import TravelPlanner, { type PlannerJourney } from '@/components/travel/TravelPlanner'
 
 const SITE_URL = 'https://frankx.ai'
 const TRAVEL_URL = `${SITE_URL}/travel`
@@ -77,13 +77,6 @@ function CollectionJsonLd() {
   )
 }
 
-const regionColors: Record<TravelJourney['region'], string> = {
-  Europe: 'bg-amber-500/10 text-amber-300 border-amber-500/20',
-  Asia: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
-  Americas: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
-  Africa: 'bg-orange-500/10 text-orange-300 border-orange-500/20',
-}
-
 function ArrowIcon() {
   return (
     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
@@ -93,7 +86,18 @@ function ArrowIcon() {
 }
 
 export default function TravelPage() {
-  const journeys = getJourneysByMonth()
+  const plannerJourneys: PlannerJourney[] = getJourneysByMonth().map((j) => ({
+    slug: j.slug,
+    city: j.city,
+    country: j.country,
+    region: j.region,
+    month: j.month,
+    monthIndex: j.monthIndex,
+    hook: j.hook,
+    stayLength: j.stayLength,
+    events: j.events.map((e) => ({ name: e.name, type: e.type })),
+    stayVariants: j.stayVariants.map((v) => ({ length: v.length, focus: v.focus })),
+  }))
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -127,45 +131,9 @@ export default function TravelPage() {
         </div>
       </section>
 
-      {/* Routes grid */}
+      {/* Interactive planner + routes grid */}
       <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {journeys.map((j) => (
-            <Link key={j.slug} href={`/travel/${j.slug}`} className="group block focus-visible:outline-none">
-              <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-amber-500/20 hover:bg-amber-500/[0.03] group-focus-visible:ring-2 group-focus-visible:ring-amber-300 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-[#0a0a0b]">
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-[11px] uppercase tracking-[0.2em] text-amber-400/70">{j.month}</span>
-                  <span className={`px-2.5 py-0.5 text-[10px] font-medium rounded-full border ${regionColors[j.region] || 'bg-white/5 text-white/50 border-white/10'}`}>
-                    {j.region}
-                  </span>
-                </div>
-
-                <h2 className="text-2xl font-bold tracking-tight text-white group-hover:text-amber-200 transition-colors">
-                  {j.city}
-                  <span className="text-white/35 font-normal">, {j.country}</span>
-                </h2>
-
-                <p className="mt-2 text-sm text-white/60 leading-relaxed">{j.hook}</p>
-
-                <div className="mt-5 flex flex-wrap items-center gap-2 text-[11px]">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-white/55">
-                    {j.stayLength}
-                  </span>
-                  {j.events[0] && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/[0.07] border border-amber-500/15 text-amber-200/80">
-                      {j.events[0].name}
-                    </span>
-                  )}
-                </div>
-
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-amber-400/80 group-hover:text-amber-300 transition-colors">
-                  See the route
-                  <ArrowIcon />
-                </span>
-              </article>
-            </Link>
-          ))}
-        </div>
+        <TravelPlanner journeys={plannerJourneys} />
       </section>
 
       {/* How to use this */}
