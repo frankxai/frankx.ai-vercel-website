@@ -80,7 +80,7 @@ export default function DarePage() {
       : undefined
 
   const copyPrompt = async () => {
-    if (!prompt) return
+    if (!prompt || typeof navigator === 'undefined' || !navigator.clipboard) return
     try {
       await navigator.clipboard.writeText(prompt.content)
       setPromptCopied(true)

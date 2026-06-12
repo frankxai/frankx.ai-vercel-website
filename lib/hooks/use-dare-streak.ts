@@ -44,7 +44,8 @@ function saveState(state: DareQuestState) {
 }
 
 function yesterdayKey(today: string): string {
-  return dateKey(new Date(Date.parse(today) - 86_400_000))
+  const [year, month, day] = today.split('-').map(Number)
+  return dateKey(new Date(Date.UTC(year, month - 1, day - 1)))
 }
 
 export function useDareStreak() {

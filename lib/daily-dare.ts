@@ -16,13 +16,25 @@ export const QUEST_EPOCH = '2026-06-15'
 export const QUEST_LENGTH = dailyDares.length // 30
 
 // YYYY-MM-DD for a given date/timezone (en-CA locale formats exactly that way).
+// Invalid timezone input (e.g. a garbage ?tz= on the API route) falls back to UTC
+// instead of throwing RangeError.
 export function dateKey(date: Date = new Date(), timeZone = 'UTC'): string {
-  const fmt = new Intl.DateTimeFormat('en-CA', {
-    timeZone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  })
+  let fmt: Intl.DateTimeFormat
+  try {
+    fmt = new Intl.DateTimeFormat('en-CA', {
+      timeZone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
+  } catch {
+    fmt = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
+  }
   return fmt.format(date)
 }
 

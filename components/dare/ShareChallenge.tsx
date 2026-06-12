@@ -27,12 +27,13 @@ export default function ShareChallenge({ day, dareTitle, streak }: ShareChalleng
         // user dismissed the share sheet — fall through to clipboard
       }
     }
+    if (typeof navigator === 'undefined' || !navigator.clipboard) return
     try {
       await navigator.clipboard.writeText(message)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // clipboard unavailable — nothing sensible to do
+      // clipboard write failed — nothing sensible to do
     }
   }
 
