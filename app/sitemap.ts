@@ -233,6 +233,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/watch', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/watch/shorts', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/rituals', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/dare', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/quest', priority: 0.8, changeFrequency: 'weekly' as const },
   ]
 
   // Individual Short detail pages — SEO gold per Short
