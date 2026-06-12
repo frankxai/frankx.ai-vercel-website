@@ -102,6 +102,8 @@ const navigation = {
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Learn through play' },
       { name: 'Watch', href: '/watch', icon: Play, description: 'Curated video library' },
       { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'NEW · 60-second high-signal insights' },
+      { name: 'Daily Dare', href: '/dare', icon: Flame, description: "NEW · Today's 4-part challenge" },
+      { name: 'The Quest', href: '/quest', icon: Map, description: '30 days, 6 principles of the mind' },
     ],
   },
   build: {

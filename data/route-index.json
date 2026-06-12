@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 668,
+    "total": 670,
     "aliases": 14,
     "byType": {
       "core": 22,
-      "section": 341,
+      "section": 343,
       "community": 12,
       "tool": 10,
       "static": 14,
@@ -3553,6 +3553,14 @@
       "type": "core"
     },
     {
+      "href": "/dare",
+      "title": "Dare",
+      "tags": [
+        "dare"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/dashboard",
       "title": "Dashboard",
       "tags": [
@@ -5687,6 +5695,14 @@
       "title": "Prototypes",
       "tags": [
         "prototypes"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/quest",
+      "title": "Quest",
+      "tags": [
+        "quest"
       ],
       "type": "section"
     },
