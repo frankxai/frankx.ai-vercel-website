@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 678,
-    "aliases": 14,
+    "total": 671,
+    "aliases": 15,
     "byType": {
       "core": 22,
-      "section": 344,
+      "section": 341,
       "community": 12,
       "tool": 10,
       "static": 14,
-      "blog": 193,
+      "blog": 196,
       "guide": 19,
       "library": 4,
       "newsletter": 1,
@@ -17,7 +17,6 @@
       "partnership": 4,
       "product": 26,
       "research": 3,
-      "travel": 7,
       "video": 3,
       "workshop": 7
     }
@@ -1317,6 +1316,22 @@
       "type": "blog"
     },
     {
+      "href": "/blog/best-ai-video-generators-2026-x-aggregated",
+      "title": "Best AI Video Generators June 2026: What Creators on X Are Actually Shipping With",
+      "description": "X-aggregated signals on Higgsfield, Seedance 2.0, Kling 3.0, Veo 3.1, Sora 2, Runway and the rest. Head-to-head on control, audio, value, consistency. Affiliate reality, slop warnings, and the FrankX/ACOS hybrid stack that actually ships.",
+      "tags": [
+        "AI Video",
+        "Higgsfield",
+        "Seedance",
+        "Kling",
+        "Veo",
+        "Sora",
+        "Runway",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/best-ai-writing-tools-vs-claude-2026",
       "title": "Best AI Writing Tools 2026: When You Actually Need One vs Just Using Claude",
       "description": "An honest comparison of Copy.ai, Writesonic, Rytr, and Surfer against raw Claude and ChatGPT. For most solo writers, the frontier model wins. Here's when a dedicated tool's workflow earns its price.",
@@ -1853,6 +1868,19 @@
         "Mission",
         "Values",
         "Brand"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/from-x-tweets-to-blog-gold-2026",
+      "title": "From Latest X Tweets to Blog Gold: How I Aggregate 'Best of X' Into Reference Pieces",
+      "description": "The exact process I use to turn real-time X signals (keyword + semantic searches, high-engagement threads, creator workflows) into evergreen, embed-rich, updateable blog posts that drive authority, AEO, and distribution.",
+      "tags": [
+        "Content Strategy",
+        "X Research",
+        "Blog Workflow",
+        "AEO",
+        "Rich Embeds"
       ],
       "type": "blog"
     },
@@ -2904,6 +2932,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
+      "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
+      "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
+      "tags": [
+        "Short Form",
+        "Sandcastles",
+        "AI Video",
+        "Hooks",
+        "Content Strategy",
+        "Creator Workflow"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/trinity-ai-conscious-operating-system",
       "title": "Trinity AI — The Conscious Operating System for Human Potential",
       "description": "Trinity AI is a 5-layer conscious operating system that remembers you, reads your body, and compounds intelligence daily. Built on Claude Agent SDK, Vercel, and sovereign data principles.",
@@ -3552,14 +3594,6 @@
       "href": "/creators",
       "title": "For Creators",
       "type": "core"
-    },
-    {
-      "href": "/dare",
-      "title": "Dare",
-      "tags": [
-        "dare"
-      ],
-      "type": "section"
     },
     {
       "href": "/dashboard",
@@ -5700,14 +5734,6 @@
       "type": "section"
     },
     {
-      "href": "/quest",
-      "title": "Quest",
-      "tags": [
-        "quest"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/realm",
       "title": "Realm",
       "type": "section"
@@ -6346,95 +6372,6 @@
       "type": "tool"
     },
     {
-      "href": "/travel",
-      "title": "Travel",
-      "tags": [
-        "travel"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/travel/barcelona-june",
-      "title": "Barcelona in June",
-      "tags": [
-        "travel",
-        "barcelona",
-        "spain",
-        "nomad",
-        "sonar"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/cape-town-december",
-      "title": "Cape Town in December",
-      "tags": [
-        "travel",
-        "cape town",
-        "south africa",
-        "nomad"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/copenhagen-july",
-      "title": "Copenhagen in July",
-      "tags": [
-        "travel",
-        "copenhagen",
-        "denmark",
-        "nomad",
-        "jazz"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/edinburgh-august",
-      "title": "Edinburgh in August",
-      "tags": [
-        "travel",
-        "edinburgh",
-        "scotland",
-        "nomad",
-        "fringe"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/lisbon-november",
-      "title": "Lisbon in November",
-      "tags": [
-        "travel",
-        "lisbon",
-        "portugal",
-        "nomad",
-        "web summit"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/mexico-city-september",
-      "title": "Mexico City in September",
-      "tags": [
-        "travel",
-        "mexico city",
-        "mexico",
-        "nomad"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/tokyo-october",
-      "title": "Tokyo in October",
-      "tags": [
-        "travel",
-        "tokyo",
-        "japan",
-        "nomad"
-      ],
-      "type": "travel"
-    },
-    {
       "href": "/tribe",
       "title": "Tribe",
       "tags": [
@@ -6721,6 +6658,7 @@
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
+    "/llm-hub": "/ai-ops/models-2026",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",

@@ -726,6 +726,31 @@
       "snippet": "--- name: ui-ux-pro-max description: 'UI/UX design intelligence with 50 styles, 21 palettes, 50 font pairings, and stack-specific best practices' agent: 'agent' --- # ui-ux-pro-max Searchable database of UI styles, color palettes, font pairings, chart types, product recommendations, UX guidelines, a"
     },
     {
+      "title": "acos excellence",
+      "path": "/reading/.grok/agents/acos-excellence.html",
+      "snippet": "--- name: ACOS Excellence Reviewer role: Applies God 99 gates using repo-mastery, santa-method, verification-loop, gstack QA, plan reviews --- You are the ACOS excellence subagent. Never allow shipping without full gate evidence."
+    },
+    {
+      "title": "Excellence Review Skill — Grok Harness",
+      "path": "/reading/.grok/skills/excellence-review/SKILL.html",
+      "snippet": "--- name: excellence-review description: Mandatory excellence gates for Grok+ACOS. verification-loop, santa-method, gstack-qa, plan-reviews, repo-mastery, cso, rules-distill. Never ship without evidence (gstack screenshots, metrics). Use on any build/suggest/lead task. --- # Excellence Review Skill "
+    },
+    {
+      "title": "Grok Harness Integration (ACOS v10+)",
+      "path": "/reading/.grok/skills/harness-integration/SKILL.html",
+      "snippet": "--- name: harness-integration description: ACOS Grok bridge. SessionStart loads repo-mastery + excellence gates. PreToolUse enforces rules read + suggests harness (claude for plans). Uses gstack for QA, verification-loop/santa-method. Full .claude/ compat + native .grok/. Delegate via terminal when "
+    },
+    {
+      "title": "SKILL",
+      "path": "/reading/.grok/skills/multi-harness-orchestrator/SKILL.html",
+      "snippet": "--- name: multi-harness-orchestrator description: Automatically detect tasks suited for delegation to other agent harnesses (Claude Code as canonical, agy/antigravity, gemini, cursor, etc.). Leverage shared .claude catalog (skills, commands, agents, hooks, junctions for agy). Embody Frank DNA. Outpu"
+    },
+    {
+      "title": "Repo Mastery (Grok Edition)",
+      "path": "/reading/.grok/skills/repo-mastery/SKILL.html",
+      "snippet": "--- name: repo-mastery description: Master ACOS, FrankX, Starlight-Intelligence-System, arcanea, claude-code-config and full starlight/repos ecosystem. Architecture, skills/hooks/MCP map, harness integration points. Read CLAUDE.md/AGENTS.md/GROK.md first. Use MCPs (github, fs-starlight), gstack, sub"
+    },
+    {
       "title": "Investment Analysis AI Agents - Detailed Specifications",
       "path": "/reading/001-FrankX-AI-Investment Team/agent.html",
       "snippet": "# Investment Analysis AI Agents - Detailed Specifications ## Table of Contents 1. [Agent Overview](#agent-overview) 2. [Core Analysis Agents](#core-analysis-agents) 3. [Specialized Agents](#specialized-agents) 4. [Strategic Agents](#strategic-agents) 5. [Agent Communication Protocol](#agent-communic"
@@ -1134,6 +1159,11 @@
       "title": "Twitter Thread: ACOS v10 — Autonomous Intelligence",
       "path": "/reading/content/2-ready-to-publish/social/acos-v10-autonomous-intelligence/twitter-thread.html",
       "snippet": "--- platform: \"twitter\" content_type: \"thread\" article_slug: \"acos-v10-autonomous-intelligence\" article_url: \"https://frankx.ai/blog/acos-v10-autonomous-intelligence\" generated_date: \"2026-02-15\" status: \"generated\" version: \"agent-v1\" metadata: thread_length: 10 estimated_engagement: \"high\" best_po"
+    },
+    {
+      "title": "X Thread Draft — Best AI Video Generators June 2026 (X-Aggregated)",
+      "path": "/reading/content/2-ready-to-publish/social/best-ai-video-generators-2026-x-thread.html",
+      "snippet": "# X Thread Draft — Best AI Video Generators June 2026 (X-Aggregated) **Thread (copy-paste ready, ~8-10 tweets, use images from blog post)** Tweet 1: What creators on X are *actually* shipping with for AI video right now (June 2026) — not hype, the real signals with receipts. Higgsfield dominates the"
     },
     {
       "title": "Instagram Post: The Golden Age of Creators",
@@ -4234,6 +4264,11 @@
       "title": "Ghost CMS Analysis for FrankX",
       "path": "/reading/GHOST-CMS-ANALYSIS.html",
       "snippet": "# Ghost CMS Analysis for FrankX ## Should You Use Ghost Instead of Next.js + MDX? **Research Date:** November 14, 2025 **Status:** Complete analysis with recommendation **Comparison:** Ghost vs Front Matter vs Tina --- ## ⚠️ Critical Difference: Ghost is NOT a CMS Layer **Front Matter & Tina:** - CM"
+    },
+    {
+      "title": "frankx.ai-vercel-website — Grok Build Harness",
+      "path": "/reading/GROK.html",
+      "snippet": "# frankx.ai-vercel-website — Grok Build Harness Grok native support installed (.grok/skills + .grok/hooks excellence). Primary public site (Next.js 16 + FrankX brand). ## For Grok sessions here - Always start by reading the local CLAUDE.md / AGENTS.md (they cover the full site + parallel agent rules"
     },
     {
       "title": "FrankX.AI Hub Enhancement Approach",
