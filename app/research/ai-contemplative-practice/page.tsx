@@ -137,10 +137,7 @@ export default function AIContemplativePracticePage() {
 
         {/* Header */}
         <header className="mb-16">
-          <p
-            className="mb-3 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             Research Domain
           </p>
           <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
@@ -151,10 +148,7 @@ export default function AIContemplativePracticePage() {
 
         {/* Abstract */}
         <section className="mb-16">
-          <h2
-            className="mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             Abstract
           </h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
@@ -189,19 +183,13 @@ export default function AIContemplativePracticePage() {
 
         {/* Key Research Questions */}
         <section className="mb-16">
-          <h2
-            className="mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             Key Research Questions
           </h2>
           <ul className="space-y-3">
             {researchQuestions.map((question) => (
               <li key={question} className="flex items-start gap-3 text-zinc-300">
-                <span
-                  className="mt-2 block h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                  style={{ backgroundColor: '#D4AF37' }}
-                />
+                <span className="mt-2 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#D4AF37]" />
                 {question}
               </li>
             ))}
@@ -210,10 +198,7 @@ export default function AIContemplativePracticePage() {
 
         {/* Findings */}
         <section className="mb-16">
-          <h2
-            className="mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             Findings
           </h2>
           <div className="space-y-8">
@@ -230,10 +215,7 @@ export default function AIContemplativePracticePage() {
 
         {/* Failure Modes */}
         <section className="mb-16">
-          <h2
-            className="mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             Failure Modes
           </h2>
           <div className="space-y-8">
@@ -250,10 +232,7 @@ export default function AIContemplativePracticePage() {
 
         {/* FAQ */}
         <section className="mb-16">
-          <h2
-            className="mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             FAQ
           </h2>
           <div className="space-y-8">
@@ -272,10 +251,7 @@ export default function AIContemplativePracticePage() {
 
         {/* Related Work */}
         <section className="mb-16">
-          <h2
-            className="mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: '#D4AF37' }}
-          >
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
             Related Work
           </h2>
           <ul className="space-y-3">

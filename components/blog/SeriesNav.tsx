@@ -17,7 +17,10 @@ export default function SeriesNav({
   currentSlug: string
   publishedParts: BlogPost[]
 }) {
-  const byPart = new Map(publishedParts.map((p) => [p.series!.part, p]))
+  const byPart = new Map<number, BlogPost>()
+  publishedParts.forEach((p) => {
+    if (p.series) byPart.set(p.series.part, p)
+  })
   const prev = byPart.get(series.part - 1)
   const next = byPart.get(series.part + 1)
 
@@ -63,7 +66,7 @@ export default function SeriesNav({
             </span>
           )
           return (
-            <li key={part}>
+            <li key={part} aria-current={isCurrent ? 'page' : undefined}>
               {post && !isCurrent ? (
                 <Link href={`/blog/${post.slug}`}>{row}</Link>
               ) : (
