@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { trackEvent } from '@/lib/analytics'
 
 export type PlannerJourney = {
   slug: string
@@ -210,7 +211,7 @@ export default function TravelPlanner({ journeys }: { journeys: PlannerJourney[]
       <p className="text-sm text-white/50 mb-5" aria-live="polite">
         {filtered.length === 0
           ? 'No routes match yet — widen a filter.'
-          : `${filtered.length} ${filtered.length === 1 ? 'route' : 'routes'} for a ${lens.toLowerCase()}.`}
+          : `${filtered.length} ${filtered.length === 1 ? 'route' : 'routes'} · ${lens} view`}
       </p>
 
       {/* Grid */}
@@ -228,10 +229,19 @@ export default function TravelPlanner({ journeys }: { journeys: PlannerJourney[]
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map((j) => {
-            const variant =
-              j.stayVariants.find((v) => v.length.toLowerCase() === lens.toLowerCase()) ?? j.stayVariants[0]
+            // Map the selected lens tier to the journey's variant by position.
+            // Every journey defines exactly three variants ordered short → long,
+            // so index mapping stays correct even when a city's middle tier is
+            // labelled "Ten days" or "Three weeks" rather than "Two weeks".
+            const lensIndex = LENSES.indexOf(lens)
+            const variant = j.stayVariants[lensIndex] ?? j.stayVariants[0]
             return (
-              <Link key={j.slug} href={`/travel/${j.slug}`} className="group block focus-visible:outline-none">
+              <Link
+                key={j.slug}
+                href={`/travel/${j.slug}`}
+                onClick={() => trackEvent('travel_journey_select', { slug: j.slug, lens })}
+                className="group block focus-visible:outline-none"
+              >
                 <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-amber-500/20 hover:bg-amber-500/[0.03] group-focus-visible:ring-2 group-focus-visible:ring-amber-300 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-[#0a0a0b]">
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <span className="text-[11px] uppercase tracking-[0.2em] text-amber-400/70">{j.month}</span>
