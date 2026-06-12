@@ -1,1 +1,1 @@
-Drafts for premium blog hero prompts following visual-creation + design-thinking + IMAGE_STYLE_DNA
+Drafts for premium blog hero prompts (synced from vercel-website feat branch)

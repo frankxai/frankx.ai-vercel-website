@@ -459,7 +459,7 @@ export const workshops: Workshop[] = [
     color: 'cyan',
     intakeEnabled: true,
     overview:
-      'A boardroom-format workshop for leaders who are tired of outsourcing AI strategy to vendors and frameworks they did not choose. The session adapts the 6-pillar AI Center of Excellence framework Frank builds for Fortune 500 clients at Oracle (Strategy, Governance, Talent, Technology, Data, Ethics) to the attendee’s actual company. Every participant leaves having identified one AI decision they have been over-delegating and committing to re-own it this quarter.',
+      'A boardroom-format workshop for leaders who are tired of outsourcing AI strategy to vendors and frameworks they did not choose. The session adapts the 6-pillar AI Center of Excellence framework Frank builds for enterprise clients at Oracle (Strategy, Governance, Talent, Technology, Data, Ethics) to the attendee’s actual company. Every participant leaves having identified one AI decision they have been over-delegating and committing to re-own it this quarter.',
     objectives: [
       'Distinguish AI decisions you should own, delegate, or avoid entirely',
       'Apply the 6-Pillar AI CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) to your real context',
@@ -476,7 +476,7 @@ export const workshops: Workshop[] = [
         title: 'What AI Leadership Actually Is',
         duration: '20 min',
         description:
-          'The difference between AI sponsorship, AI delegation, and AI sovereignty. Why the third matters most. Patterns from Fortune 500 deployments where leaders over-delegated the framing decisions and lived with the consequences.',
+          'The difference between AI sponsorship, AI delegation, and AI sovereignty. Why the third matters most. Patterns from enterprise deployments where leaders over-delegated the framing decisions and lived with the consequences.',
         instructorNotes:
           'Open with two short, anonymized case studies — one where a CEO owned the framing, one where it was outsourced to a vendor. Contrast the 18-month outcomes. Keep it concrete and operational, never philosophical.',
         resources: [
@@ -532,7 +532,7 @@ export const workshops: Workshop[] = [
     color: 'amber',
     intakeEnabled: true,
     overview:
-      'A hands-on 90-minute workshop that treats the participant as a 1-person Fortune 500. Frank walks through how he builds AI Centers of Excellence for Oracle enterprise clients — six pillars, roughly €500k typical budget, 6–12 month rollout — then shows the mirror-image personal version: same architecture, 1/5000th the cost. By end of session, every attendee has a working personal AI CoE: a strategy doc, a tool policy, a prompt library, a memory system, and a weekly review cadence.',
+      'A hands-on 90-minute workshop that treats the participant as a 1-person enterprise operating system. Frank walks through how he builds AI Centers of Excellence for Oracle enterprise clients — six pillars, roughly €500k typical budget, 6–12 month rollout — then shows the mirror-image personal version: same architecture, 1/5000th the cost. By end of session, every attendee has a working personal AI CoE: a strategy doc, a tool policy, a prompt library, a memory system, and a weekly review cadence.',
     objectives: [
       'Understand the 6-pillar enterprise CoE Frank ships to Oracle clients',
       'Map each pillar to a personal equivalent without losing the architecture',

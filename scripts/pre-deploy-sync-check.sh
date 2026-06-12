@@ -77,6 +77,7 @@ FILTER_NAMES=(
   "*.mjs"
   "*.sh"
   "*.json"
+  "*.csv"
   "*.mdx"
   "*.md"
   "*.css"

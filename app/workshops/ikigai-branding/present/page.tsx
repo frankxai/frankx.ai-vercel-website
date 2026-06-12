@@ -15,7 +15,7 @@ import {
   RotateCcw,
   MonitorSmartphone,
 } from 'lucide-react'
-import { SLIDES, type SlideDef } from './slides'
+import { SLIDES } from './slides'
 import { useDeckSync } from './use-deck-sync'
 
 function pad(n: number): string {
@@ -49,10 +49,10 @@ export default function IkigaiPresentPage() {
   const total = SLIDES.length
 
   const next = useCallback(
-    () => setIndex((i: number) => Math.min(total - 1, i + 1)),
+    () => setIndex((i) => Math.min(total - 1, i + 1)),
     [setIndex, total],
   )
-  const prev = useCallback(() => setIndex((i: number) => Math.max(0, i - 1)), [setIndex])
+  const prev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), [setIndex])
 
   const startTimer = useCallback(() => {
     startRef.current = Date.now() - elapsed
@@ -303,7 +303,7 @@ export default function IkigaiPresentPage() {
             >
               {/* Nav dots */}
               <div className="flex items-center gap-1">
-                {SLIDES.map((s: SlideDef, i: number) => (
+                {SLIDES.map((s, i) => (
                   <button
                     key={s.id}
                     onClick={() => setIndex(i)}
@@ -411,7 +411,7 @@ export default function IkigaiPresentPage() {
                 </button>
               </div>
               <ul className="space-y-1.5">
-                {slide.speakerNotes.map((n: string, i: number) => (
+                {slide.speakerNotes.map((n, i) => (
                   <li key={i} className="text-sm text-zinc-300 flex items-start gap-2 leading-relaxed">
                     <span className="text-amber-300/60 mt-0.5">›</span>
                     <span>{n}</span>

@@ -112,7 +112,7 @@ export const osModules: OSModule[] = [
     shipped: 'pre-existing',
     oneLine: 'The 6-pillar enterprise framework, made personal.',
     description:
-      'The Oracle EMEA AI Center of Excellence methodology Frank refined for Fortune 500 clients, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS\'s `personal-ai-coe` format.',
+      'Frank\'s Oracle EMEA AI Center of Excellence methodology, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS\'s `personal-ai-coe` format.',
     phases: ['cross-cutting'],
     connectsTo: ['workshop-os'],
     artifacts: ['6-pillar framework', 'Assessment tools', 'Blueprint library'],

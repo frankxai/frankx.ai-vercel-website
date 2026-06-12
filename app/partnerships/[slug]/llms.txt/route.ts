@@ -110,7 +110,7 @@ export async function GET(
 
   lines.push('## Engage')
   lines.push(`Book Meet & Grow: ${MEET_AND_GROW_URL}`)
-  lines.push(`Email: frank@frankx.ai`)
+  lines.push(`Email: hello@frankx.ai`)
   lines.push('')
 
   lines.push('## Related surfaces')

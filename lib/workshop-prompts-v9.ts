@@ -229,7 +229,7 @@ Generate 30 hooks across these 15 formats (2 per format):
 
 Rules:
 - Every hook must feel specific to the audience.
-- No generic "achieve mastery".
+- No generic "unlock your potential".
 - No fake drama.
 - No empty AI hype.
 - Make the reader feel: "This is exactly my problem."
@@ -313,7 +313,7 @@ Then choose the ONE post I should publish FIRST today, and explain why. State th
     module: 5,
     title: 'Write one strong LinkedIn post',
     subtitle:
-      'Hook → problem → tension → insight → shift → close. Under 180 words. Human, useful, no corporate jargon, no fake vulnerability, no "game-changer", no "achieve mastery".',
+      'Hook → problem → tension → insight → shift → close. Under 180 words. Human, useful, no corporate jargon, no fake vulnerability, no "game-changer", no "unlock your potential".',
     body: `${OPERATING_RULE_SHORT}
 
 Write one strong LinkedIn post from the best content idea.
@@ -338,7 +338,7 @@ Style:
 - no fake vulnerability
 - no invented personal story
 - no "game-changer"
-- no "achieve mastery"
+- no "unlock your potential"
 - no "in today's fast-paced world"
 
 Before writing, briefly state:

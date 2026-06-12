@@ -230,7 +230,7 @@ export const travelJourneys: TravelJourney[] = [
   {
     slug: 'edinburgh-august',
     city: 'Edinburgh',
-    country: 'Scotland',
+    country: 'United Kingdom',
     region: 'Europe',
     month: 'August 2026',
     monthIndex: 8,
@@ -335,7 +335,6 @@ export const travelJourneys: TravelJourney[] = [
         window: 'Night of 15 September, into 16 September',
         type: 'culture',
         why: 'The President re-enacts the 1810 cry for independence from the National Palace balcony; the Zócalo fills with hundreds of thousands, fireworks, and music. The single biggest civic night of the Mexican year.',
-        url: 'https://en.wikipedia.org/wiki/Cry_of_Dolores',
       },
     ],
     museumsAndArt: [
@@ -616,5 +615,5 @@ const sortedJourneys = [...travelJourneys].sort((a, b) => a.monthIndex - b.month
 
 /** Chronological — June (6) → December (12). */
 export function getJourneysByMonth(): TravelJourney[] {
-  return sortedJourneys
+  return [...sortedJourneys]
 }

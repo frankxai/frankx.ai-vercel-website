@@ -29,7 +29,7 @@ export default function SovereignLeadershipPage() {
       <CourseSchema workshop={workshop} />
 
       {/* Hero */}
-      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.05] to-transparent" />
         <div className="absolute top-24 right-1/3 w-[500px] h-[500px] bg-cyan-500/[0.06] rounded-full blur-[140px]" />
 
@@ -65,28 +65,28 @@ export default function SovereignLeadershipPage() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
               {workshop.title}
             </h1>
-            <p className="text-[17px] md:text-xl text-zinc-300/90 mb-6 max-w-2xl leading-relaxed">
+            <p className="text-lg text-zinc-400 mb-6 max-w-2xl">
               {workshop.subtitle}.
             </p>
 
-            <p className="text-[15px] text-zinc-400 leading-relaxed max-w-3xl mb-8">
+            <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
               {workshop.overview}
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#intake"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 transition-all"
               >
                 <Send className="w-4 h-4" />
                 Bring this to my team
               </a>
               <Link
                 href="/acos"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-300 hover:text-cyan-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full px-2 py-1"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-300 hover:text-cyan-200 transition-colors"
               >
                 See the personal CoE
                 <ArrowRight className="w-4 h-4" />
@@ -129,7 +129,7 @@ export default function SovereignLeadershipPage() {
               The 6-Pillar AI CoE
             </h2>
             <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              The same enterprise AI architecture Frank worked with at Oracle, adapted
+              The same enterprise AI architecture Frank works with at Oracle, adapted
               to the attendee&rsquo;s real context during the session.
             </p>
           </div>
@@ -233,16 +233,6 @@ export default function SovereignLeadershipPage() {
                   compact
                 />
               </div>
-              <p className="text-xs text-zinc-500 mt-5">
-                Or{' '}
-                <Link
-                  href="/inner-circle"
-                  className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
-                >
-                  reserve a seat in the Inner Circle
-                </Link>{' '}
-                for first access to private cohorts and founder pricing.
-              </p>
             </div>
           </GlowCard>
 

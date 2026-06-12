@@ -70,20 +70,6 @@ const nextConfig = {
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
       ...REDIRECT_ALIASES,
-      // Music School → the music learning curriculum hub (nav/command-palette
-      // linked /music-school but no page existed; /music/learn is the curriculum).
-      {
-        source: '/music-school',
-        destination: '/music/learn',
-        permanent: true,
-      },
-      // QR shortlink — bare /qr is handed out on slides/cards but had no route
-      // (404). Point it at the canonical QR asset page under /connect.
-      {
-        source: '/qr',
-        destination: '/connect/qr',
-        permanent: false,
-      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',
@@ -93,38 +79,6 @@ const nextConfig = {
       {
         source: '/arcanea/:path*',
         destination: 'https://arcanea.ai/:path*',
-        permanent: true,
-      },
-      // Social shortcuts — canonical URLs come from lib/social-links.ts.
-      // /youtube and /music remain real internal hubs (not external aliases).
-      {
-        source: '/github',
-        destination: 'https://github.com/frankxai',
-        permanent: true,
-      },
-      {
-        source: '/linkedin',
-        destination: 'https://www.linkedin.com/in/frank-x-riemer/',
-        permanent: true,
-      },
-      {
-        source: '/twitter',
-        destination: 'https://x.com/frankxeth',
-        permanent: true,
-      },
-      {
-        source: '/x',
-        destination: 'https://x.com/frankxeth',
-        permanent: true,
-      },
-      {
-        source: '/instagram',
-        destination: 'https://www.instagram.com/frank_riemer/',
-        permanent: true,
-      },
-      {
-        source: '/suno',
-        destination: 'https://suno.com/@frankx',
         permanent: true,
       },
       // Creator Lab signup → product page

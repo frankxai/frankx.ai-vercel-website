@@ -9,7 +9,7 @@ import { bookReviews } from '@/data/book-reviews'
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
   description:
-    'Ex-Oracle AI Architect. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows for creators who ship.',
+    'AI Architect at Oracle EMEA AI Center of Excellence. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -76,7 +76,7 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence, and the creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle EMEA and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',
@@ -91,7 +91,7 @@ const homepageFAQs = [
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 90+ skills, 60+ specialized agents, and 80+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',

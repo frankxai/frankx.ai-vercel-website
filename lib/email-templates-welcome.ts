@@ -195,7 +195,7 @@ export function welcomeEmail1(data: {
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 12px 0;">
-            I'm Frank Riemer. I spent years building enterprise AI systems at Oracle; now I build independently and make AI music in the studio — 12,000+ tracks and counting.
+            I'm Frank Riemer. I build enterprise AI systems at Oracle during the day and create AI music in the studio at night — 12,000+ tracks and counting.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">

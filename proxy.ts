@@ -5,7 +5,7 @@ import { getToken } from 'next-auth/jwt'
 // Pages that have a /de/ version available
 const deAvailablePages = ['/valentines-day']
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // ─── 0. /links → /linktree redirect ─────────────────────
@@ -42,17 +42,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // ─── 3. Auth protection (existing) ────────────────────────
-  // Owner-only operational tooling. Mirrored by the session-gated "Owner"
-  // cluster in NavigationMega — these never appear in nav for signed-out users.
-  const protectedPaths = [
-    '/dashboard',
-    '/admin',
-    '/ops',
-    '/command-center',
-    '/frankx-investment-dashboard',
-    '/api/dashboard',
-    '/api/leads',
-  ]
+  const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads']
   const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path))
 
   if (isProtectedRoute) {
@@ -82,7 +72,7 @@ export const config = {
   // Match all paths except API routes, static files, and Next.js internals.
   // Auth-gated paths (/dashboard, /admin, /api/dashboard, /api/leads) and
   // language/redirect logic still trigger via the explicit checks inside
-  // the middleware function above — they don't need to be in the matcher.
+  // the proxy function above — they don't need to be in the matcher.
   //
   // Exceptions:
   //   - /api/dashboard + /api/leads stay protected via explicit matcher entries

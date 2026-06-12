@@ -4,8 +4,6 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
-import ReadingProgress from '@/components/blog/ReadingProgress'
-import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
@@ -45,10 +43,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       post.image ||
       `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
     publishedTime: post.date,
-    updatedTime: post.lastUpdated || undefined,
     authors: [post.author],
     keywords: post.keywords || undefined,
-    canonical: post.canonical || undefined,
   })
 }
 
@@ -103,18 +99,6 @@ export default async function BlogPostPage({
       name: post.author,
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
-      description:
-        "Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Independent builder of agentic AI systems and creator of 500+ AI-assisted songs.",
-      alumniOf: {
-        '@type': 'Organization',
-        name: 'Oracle',
-      },
-      sameAs: [
-        'https://x.com/frankxeth',
-        'https://www.linkedin.com/in/frank-x-riemer/',
-        'https://github.com/frankxai',
-        'https://www.youtube.com/@frankxai',
-      ],
     },
     publisher: {
       '@type': 'Organization',
@@ -140,8 +124,7 @@ export default async function BlogPostPage({
   const extractedFaqs = extractFAQFromContent(post.content)
 
   return (
-    <main className="min-h-screen bg-[#0a0a0b] text-white">
-      <ReadingProgress />
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -213,7 +196,6 @@ export default async function BlogPostPage({
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-sm text-white/50">AI Architect & Creator</div>
-                    <div className="text-xs text-white/35">Former Oracle AI architect · helped build Oracle&apos;s AI CoE</div>
                   </div>
                 </div>
 
@@ -223,18 +205,18 @@ export default async function BlogPostPage({
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
                   >
-                    <Twitter className="h-4 w-4" aria-hidden="true" />
+                    <Twitter className="h-4 w-4" />
                     <span className="hidden sm:inline">Share</span>
                   </a>
                   <a
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
                   >
-                    <Linkedin className="h-4 w-4" aria-hidden="true" />
+                    <Linkedin className="h-4 w-4" />
                     <span className="hidden sm:inline">Share</span>
                   </a>
                 </div>
@@ -255,48 +237,12 @@ export default async function BlogPostPage({
               {post.readingGoal && (
                 <div className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                      {/* Target / aim SVG — avoids emoji rendering inconsistency */}
-                      <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="6" />
-                        <circle cx="12" cy="12" r="2" />
-                      </svg>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20">
+                      <span className="text-lg">🎯</span>
                     </div>
                     <div className="flex-1">
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-400">Reading Goal</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/65">{post.readingGoal}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* AI Architect Recommendation — the signature routing box */}
-              {post.architectNote && (
-                <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/20">
-                      <svg className="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3M7.5 6h9A1.5 1.5 0 0118 7.5v9a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 016 16.5v-9A1.5 1.5 0 017.5 6z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-400">AI Architect Recommendation</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.architectNote.recommendation}</p>
-                      {post.architectNote.coePillar && (
-                        <p className="mt-3 text-xs text-white/40">
-                          AI CoE pillar: <span className="text-white/65">{post.architectNote.coePillar}</span>
-                        </p>
-                      )}
-                      {post.architectNote.personas?.length ? (
-                        <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-                          {post.architectNote.personas.map((pp) => (
-                            <li key={pp.persona} className="text-xs leading-relaxed text-white/55">
-                              <span className="font-medium text-white/80">{pp.persona}:</span> {pp.pick}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
+                      <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Reading Goal</span>
+                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.readingGoal}</p>
                     </div>
                   </div>
                 </div>
@@ -306,8 +252,7 @@ export default async function BlogPostPage({
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-3xl">
-            <TableOfContents />
+          <div className="mx-auto max-w-[680px]">
             <div className="article-prose">
               <MDXContent source={post.content} />
             </div>
@@ -328,7 +273,7 @@ export default async function BlogPostPage({
                     <Link
                       key={tag}
                       href={`/blog?tag=${encodeURIComponent(tag.toLowerCase())}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-all duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 hover:bg-white/10"
                     >
                       #{tag}
                     </Link>
@@ -374,7 +319,7 @@ export default async function BlogPostPage({
           </div>
         </div>
       </article>
-    </main>
+    </div>
   )
 }
 

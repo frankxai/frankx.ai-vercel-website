@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
+  <meta name="date" content="2026-05-28" />
   <title>Visual Creation Skill</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
@@ -42,7 +42,7 @@
 <body>
   <header>
     <div class="title">Visual Creation Skill</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+    <div class="meta">LLM: Unknown • Date: 2026-05-28 • <a href="../../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -50,8 +50,8 @@
       <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
     </nav>
     <div class="content">
-      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fvisual-creation">visual-creation</a> / <span>SKILL.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div class="breadcrumbs"><span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-05-28</strong></div>
       <hr>
 <h2>name: &quot;Visual Creation&quot;
 description: &quot;Quality-gated image generation workflow. Enforces 6-step pipeline with council review, organic-first principle, and human approval gate before batch generation. Use for ALL image generation tasks.&quot;</h2>
@@ -117,6 +117,22 @@ Expected output: Score + verdict (APPROVED / NEEDS-REVISION / REJECTED)
 <p><strong>If NEEDS-REVISION</strong>: Address ALL feedback points, resubmit. Maximum 3 revision cycles.
 <strong>If REJECTED</strong>: Fundamentally rework the prompt. Do not iterate on a rejected concept.
 <strong>If APPROVED</strong>: Proceed to Step 4.</p>
+<hr>
+<h3>Step 3.5: OPTIMIZE PROMPT (Two-Model Pattern)</h3>
+<p>Before sending to the image model, <strong>optimize the prompt using a text model</strong>:</p>
+<ol>
+<li>Take the approved template from Step 3</li>
+<li>Use Claude/Gemini Flash to expand it with:<ul>
+<li>Missing visual details (lighting direction, camera lens, time of day)</li>
+<li>Material textures (brushed metal, leather grain, frosted glass)</li>
+<li>Composition guidance (rule of thirds, leading lines, depth layers)</li>
+<li>Negative prompt enhancement (add common failure patterns to avoid)</li>
+</ul>
+</li>
+<li>The text model&#39;s job: fill gaps the human didn&#39;t think of, NOT change the creative direction</li>
+</ol>
+<p><strong>Why this works</strong>: Image models produce dramatically better results when prompts include specific physical details (lighting, texture, camera) rather than abstract concepts. A text model bridges the gap between &quot;what you mean&quot; and &quot;what the image model needs to hear.&quot; Research shows prompt scores go from ~49/100 to 95/100 with this optimization step.</p>
+<p><strong>Skip for</strong>: Simple test generations or when the prompt is already highly detailed.</p>
 <hr>
 <h3>Step 4: TEST (Human Gate — Blocking)</h3>
 <p>Generate exactly <strong>1 image</strong> using the approved prompt.</p>

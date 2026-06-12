@@ -15,7 +15,6 @@ export const arrow: Partner = {
   shortName: 'Arrow',
   tier: 'distribution',
   status: 'active',
-  lastUpdated: '2026-05-16',
 
   title: 'AI Architect — EMEA AI CoE Partner',
   tagline:

@@ -2,156 +2,183 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { AlertTriangle, RefreshCw, Home, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { RefreshCw, Home, Mail, ArrowRight } from 'lucide-react'
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumButton from '@/components/ui/PremiumButton'
 
 interface ErrorProps {
   error: Error & { digest?: string }
   reset: () => void
 }
 
-const isProd = process.env.NODE_ENV === 'production'
-
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Surface to the browser console — Vercel captures server-side digests
-    // automatically via the next/error logging pipeline. We don't run our own
-    // telemetry endpoint, so don't claim we do in the UI.
+    // Log error to monitoring service
     console.error('Application error:', error)
   }, [error])
 
-  const mailtoBody = `Hi Frank,\n\nSomething broke on frankx.ai.\n\nReference: ${error.digest || 'no-digest'}\nTime: ${new Date().toISOString()}\n\nWhat I was trying to do:\n`
-
   return (
-    <div className="min-h-screen bg-[#080808] flex items-center justify-center px-4 py-20">
-      <div className="max-w-xl w-full mx-auto text-center">
-        {/* Watermark */}
-        <motion.p
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[6rem] sm:text-[7rem] font-bold leading-none tracking-tight text-white/[0.04] select-none mb-2"
-        >
-          500
-        </motion.p>
-
-        {/* Heading */}
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+      <div className="max-w-2xl mx-auto text-center">
+        {/* Error Icon */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.5 }}
-          className="-mt-8 mb-8"
+          className="mb-8"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h1 className="text-2xl sm:text-3xl font-bold text-white/90 mb-3 tracking-tight">
-            Something on this page hit an unexpected state
+          <motion.div
+            className="w-24 h-24 mx-auto mb-6"
+            animate={{
+              rotate: [0, 5, -5, 5, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: 'reverse'
+            }}
+          >
+            <div className="w-full h-full rounded-2xl bg-gradient-to-br from-red-500 via-orange-500 to-yellow-500 flex items-center justify-center shadow-[0_0_40px_rgba(239,68,68,0.6)]">
+              <AlertTriangle className="w-12 h-12 text-white" />
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <h1 className="text-4xl font-bold text-slate-100 mb-4">
+            System Intelligence Error
           </h1>
-          <p className="text-sm text-white/40 max-w-md mx-auto leading-relaxed">
-            Usually a refresh clears it. If it keeps happening, email Frank with the
-            reference below and he&apos;ll take a look.
+          <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+            Our AI agents encountered an unexpected situation.
+            This is typically a temporary issue that resolves quickly.
           </p>
         </motion.div>
 
-        {/* Reference card — only digest, never the raw message in prod */}
+        {/* Error Details */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
           className="mb-8"
         >
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono">
-              <div className="flex items-baseline gap-2">
-                <span className="text-white/30">reference</span>
-                <span className="text-white/70 truncate">{error.digest || 'no-digest-available'}</span>
+          <GlassmorphicCard
+            variant="premium"
+            className="p-6 text-left"
+          >
+            <h3 className="text-lg font-semibold text-slate-100 mb-3">
+              Error Details
+            </h3>
+            <div className="space-y-2 text-sm">
+              <div>
+                <span className="text-slate-400">Message:</span>
+                <span className="text-slate-200 ml-2">{error.message || 'Unknown error'}</span>
               </div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-white/30">timestamp</span>
-                <span className="text-white/70">{new Date().toISOString().slice(0, 19) + 'Z'}</span>
+              {error.digest && (
+                <div>
+                  <span className="text-slate-400">Reference ID:</span>
+                  <span className="text-slate-200 ml-2 font-mono">{error.digest}</span>
+                </div>
+              )}
+              <div>
+                <span className="text-slate-400">Time:</span>
+                <span className="text-slate-200 ml-2">{new Date().toLocaleString()}</span>
               </div>
             </div>
-            {!isProd && error.message && (
-              <p className="mt-3 pt-3 border-t border-white/[0.06] text-[11px] font-mono text-rose-300/80 break-words">
-                {error.message}
-              </p>
-            )}
+          </GlassmorphicCard>
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="space-y-4 mb-8"
+        >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <PremiumButton
+              onClick={reset}
+              variant="luxury"
+              size="lg"
+              glow
+            >
+              <RefreshCw className="w-5 h-5 mr-2" />
+              Try Again
+            </PremiumButton>
+
+            <PremiumButton
+              href="/"
+              variant="secondary"
+              size="lg"
+            >
+              <Home className="w-5 h-5 mr-2" />
+              Return Home
+            </PremiumButton>
           </div>
         </motion.div>
 
-        {/* Primary actions */}
+        {/* Help Section */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.5 }}
-          className="flex flex-col sm:flex-row gap-3 justify-center mb-8"
+          transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <button
-            type="button"
-            onClick={reset}
-            className="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-white bg-white/10 hover:bg-white/15 border border-white/15 hover:border-white/25 transition-colors"
+          <GlassmorphicCard
+            variant="default"
+            className="p-6"
           >
-            <RefreshCw className="w-4 h-4" />
-            Refresh this page
-          </button>
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white border border-white/[0.08] hover:border-white/20 transition-colors"
-          >
-            <Home className="w-4 h-4" />
-            Return home
-          </Link>
+            <h3 className="text-lg font-semibold text-slate-100 mb-4">
+              Need Immediate Help?
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="text-center">
+                <h4 className="font-medium text-slate-200 mb-2">Check System Status</h4>
+                <p className="text-sm text-slate-400 mb-3">
+                  See if this is a known issue affecting multiple users
+                </p>
+                <Link
+                  href="https://status.frankx.ai"
+                  className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Status Page →
+                </Link>
+              </div>
+              <div className="text-center">
+                <h4 className="font-medium text-slate-200 mb-2">Contact Support</h4>
+                <p className="text-sm text-slate-400 mb-3">
+                  Get direct help from our agent team
+                </p>
+                <Link
+                  href={`mailto:support@frankx.ai?subject=Error Report&body=Error ID: ${error.digest || 'Unknown'}%0A%0AError Message: ${encodeURIComponent(error.message || 'Unknown error')}%0A%0APlease describe what you were trying to do when this error occurred:`}
+                  className="text-purple-400 hover:text-purple-300 transition-colors text-sm inline-flex items-center"
+                >
+                  <Mail className="w-4 h-4 mr-1" />
+                  Email Support
+                </Link>
+              </div>
+            </div>
+          </GlassmorphicCard>
         </motion.div>
 
-        {/* Secondary destinations */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-center justify-center"
+          transition={{ delay: 1, duration: 0.6 }}
+          className="mt-8 pt-6 border-t border-slate-700/30"
         >
-          <Link
-            href="/library"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors"
-          >
-            Library <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-          <Link
-            href="/inner-circle"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors"
-          >
-            Inner Circle <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-          <Link
-            href="/newsletter"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors"
-          >
-            Newsletter <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <p className="text-sm text-slate-500">
+            This error has been automatically reported to our monitoring systems.
+            Our agent team will investigate and resolve any systemic issues.
+          </p>
         </motion.div>
-
-        {/* Mailto */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75, duration: 0.5 }}
-          className="mt-10"
-        >
-          <Link
-            href={`mailto:frank@frankx.ai?subject=${encodeURIComponent(`frankx.ai error · ${error.digest || 'no-digest'}`)}&body=${encodeURIComponent(mailtoBody)}`}
-            className="inline-flex items-center gap-2 text-xs text-white/30 hover:text-white/60 transition-colors"
-          >
-            <Mail className="w-3 h-3" /> Email Frank with this reference
-          </Link>
-        </motion.div>
-
-        {/* Footer mark */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-          className="mt-12 text-[10px] font-mono text-white/10"
-        >
-          frankx.ai // FRANK-&#937;
-        </motion.p>
       </div>
     </div>
   )

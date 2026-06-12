@@ -158,14 +158,14 @@ export default function ArcaneanDesignSystemPage() {
           <p className="text-sm uppercase tracking-[0.3em] text-purple-400/60 mb-4">
             Design System
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 leading-[1.1]">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
             <span className="bg-gradient-to-r from-purple-300 via-violet-200 to-amber-300 bg-clip-text text-transparent">
               The Visual Language
             </span>
             <br />
             <span className="text-white/90">of Arcanea</span>
           </h1>
-          <p className="text-[17px] md:text-lg text-white/80 max-w-2xl leading-relaxed">
+          <p className="text-white/50 text-lg max-w-2xl leading-relaxed">
             Color systems derived from frequency, typography rooted in mythology, and visual patterns
             that bridge ancient consciousness with modern technology. Click any color to copy.
           </p>
@@ -518,14 +518,14 @@ export default function ArcaneanDesignSystemPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/books#arcanea"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#070510]"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition-all"
                 >
                   Read the Books
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </Link>
                 <Link
                   href="/vault"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070510]"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all"
                 >
                   Visual Vault
                 </Link>

@@ -24,7 +24,6 @@ export const nvidia: Partner = {
   shortName: 'NVIDIA',
   tier: 'silicon',
   status: 'strategic-alignment',
-  lastUpdated: '2026-05-16',
 
   title: 'AI Architect — NVIDIA-aligned EMEA AI CoE practice',
   tagline:

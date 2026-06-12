@@ -337,10 +337,10 @@ export const products: Product[] = [
     tier: 'architect',
     title: 'Six Primitives Architect',
     subtitle: 'AI Center of Excellence in a box — for lead architects and CTOs',
-    hook: 'The framework Frank built at Oracle EMEA — yours to use.',
+    hook: 'The day-job framework that Frank ships at Oracle EMEA — yours to use.',
     pricing: { eur: 997, usd: 1080, cadence: 'lifetime' },
     positioning:
-      'Your problem isn\'t "how do I build an agent." Your problem is "how do I roll agents into a 500-person engineering org with governance, compliance, and a clear executive narrative." The Architect tier is the framework Frank built at Oracle EMEA: a 6-pillar AI Center of Excellence (Strategy, Governance, Talent, Technology, Data, Ethics) that translates from Fortune 500 enterprise pilots to your team. The same framework. 1/5000th the consultancy price.',
+      'Your problem isn\'t "how do I build an agent." Your problem is "how do I roll agents into a 500-person engineering org with governance, compliance, and a clear executive narrative." The Architect tier is Frank\'s actual day-job framework: a 6-pillar AI Center of Excellence (Strategy, Governance, Talent, Technology, Data, Ethics) that translates from large-enterprise AI pilots to your team. The same framework. 1/5000th the consultancy price.',
     notFor: [
       'Solo builders without organizational scope — Mastery is the right tier',
       'Founders looking for 1:1 strategic AI advisory — Founder\'s Circle',
@@ -386,7 +386,7 @@ export const products: Product[] = [
       },
       {
         label: 'Quarterly intelligence reports',
-        description: 'Enterprise-grade trend distillation on the agent ecosystem — what shipped, what failed, what enterprises are deploying.',
+        description: 'Frank\'s Oracle-grade trend distillation on the agent ecosystem — what shipped, what failed, what enterprises are deploying.',
         introducedAt: 'architect',
       },
       {
@@ -429,7 +429,7 @@ export const products: Product[] = [
       'Use a 30-day async support window after each call for follow-up questions',
       'Receive a quarterly strategic AI retainer document scoped to your business',
       'Get direct introductions where Frank\'s network adds genuine value',
-      'Apply the judgment Frank refined building Oracle EMEA AI CoE frameworks to your specific decisions',
+      'Apply Frank\'s Oracle EMEA AI CoE judgment to your specific decisions',
     ],
     includes: [
       {

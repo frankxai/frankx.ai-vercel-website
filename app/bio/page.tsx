@@ -20,11 +20,11 @@ import CopyableBio from './CopyableBio';
 // or copy the length that fits.
 
 const ONE_LINE =
-  'Frank Riemer is a former Oracle AI Architect who helped build the EMEA AI Center of Excellence, and the creator of 12,000+ AI songs.';
+  'Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence and the creator of 12,000+ AI songs.';
 
-const SHORT_BIO = `Frank Riemer is a former Oracle AI Architect who helped build the EMEA AI Center of Excellence. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He now adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs enterprise AI systems. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
 
-const LONG_BIO = `Frank Riemer is a former Oracle AI Architect who helped build the EMEA AI Center of Excellence. He designed Center-of-Excellence frameworks and agentic systems, battle-tested at enterprise scale. The same six-pillar architecture he refined in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he now scales down for individuals at frankx.ai, the personal AI Center of Excellence.
+const LONG_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs Center-of-Excellence frameworks and agentic systems for enterprise teams across Europe. The same six-pillar architecture he works with in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he scales down for individuals at frankx.ai, the personal AI Center of Excellence.
 
 By night, he is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a visionary manifesto on the convergence of human and artificial intelligence.
 
@@ -38,7 +38,7 @@ const SPEAKER_TOPICS = [
   {
     title: 'The Personal AI Center of Excellence',
     summary:
-      'How the same six-pillar architecture I refined in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
+      'How the same six-pillar architecture I use in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
   },
   {
     title: 'Enterprise Agentic Systems in 2026',
@@ -112,7 +112,7 @@ const SELECTED_WORK = [
 // ─── Press / Quick facts ────────────────────────────────────────────────
 
 const QUICK_FACTS = [
-  ['Role', 'Ex-Oracle AI Architect — helped build the EMEA AI Center of Excellence'],
+  ['Role', 'AI Architect, Oracle EMEA AI Center of Excellence'],
   ['Based', 'Amsterdam, Netherlands'],
   ['Languages', 'English, German, Russian'],
   ['Songs released', '12,000+ via Suno'],
@@ -123,7 +123,7 @@ const QUICK_FACTS = [
 export const metadata: Metadata = {
   title: 'Bio · Frank Riemer | FrankX',
   description:
-    'Press bio, speaker topics, and media kit for Frank Riemer — Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+    'Press bio, speaker topics, and media kit for Frank Riemer — AI Architect at Oracle EMEA, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
 };
 
 export default function BioPage() {
@@ -137,11 +137,7 @@ export default function BioPage() {
           jobTitle: 'AI Architect',
           worksFor: {
             '@type': 'Organization',
-            name: 'Arcanea BV',
-          },
-          alumniOf: {
-            '@type': 'Organization',
-            name: 'Oracle',
+            name: 'Oracle EMEA AI Center of Excellence',
           },
           description: ONE_LINE,
           url: 'https://frankx.ai/bio',
@@ -193,7 +189,7 @@ export default function BioPage() {
               Frank Riemer
             </h1>
             <p className="text-xl sm:text-2xl text-white/70 leading-relaxed max-w-2xl mb-10">
-              AI Architect. Creator. Author of{' '}
+              AI Architect by day. Creator by night. Author of{' '}
               <Link
                 href="/books/golden-age-of-intelligence"
                 className="text-emerald-400 hover:text-emerald-300 transition-colors"
@@ -206,7 +202,7 @@ export default function BioPage() {
             {/* Primary CTA + secondary links — one primary max */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="mailto:frank@frankx.ai"
+                href="mailto:hello@frankx.ai"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90"
               >
                 <Mail className="h-4 w-4" /> Invite to speak
@@ -311,7 +307,7 @@ export default function BioPage() {
 
             <div className="mt-10">
               <a
-                href="mailto:frank@frankx.ai?subject=Speaking%20invitation"
+                href="mailto:hello@frankx.ai?subject=Speaking%20invitation"
                 className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
               >
                 Invite me to speak <ArrowRight className="h-4 w-4" />
@@ -454,7 +450,7 @@ export default function BioPage() {
                 I come from a Volga German family — three generations displaced, each one rebuilding from nothing. My father built houses; my brother builds solar businesses. My medium is different — AI systems and music — but the instinct is the same.
               </p>
               <p>
-                I spent years as an enterprise AI architect, designing Center-of-Excellence frameworks distilled from years of enterprise production work. I'm now independent, full-time at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level.
+                I spend my days at Oracle, designing AI Center-of-Excellence frameworks for large companies in Europe. I spend my evenings at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level.
               </p>
               <p>
                 The bridge is the work. The full version of how I got here lives in <Link href="/about" className="text-emerald-400 hover:text-emerald-300 transition-colors">/about</Link> — including the family story, the music, the books that shaped the books I now write.
@@ -482,10 +478,10 @@ export default function BioPage() {
               For speaking, advisory, press, partnerships, or anything else that deserves a real reply.
             </p>
             <a
-              href="mailto:frank@frankx.ai"
+              href="mailto:hello@frankx.ai"
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90"
             >
-              <Mail className="h-4 w-4" /> frank@frankx.ai
+              <Mail className="h-4 w-4" /> hello@frankx.ai
             </a>
           </div>
         </section>

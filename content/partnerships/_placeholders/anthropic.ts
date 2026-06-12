@@ -21,7 +21,6 @@ export const anthropic: Partner = {
   shortName: 'Anthropic',
   tier: 'model-provider',
   status: 'strategic-alignment',
-  lastUpdated: '2026-05-16',
 
   title: 'AI Architect — Claude-native AI CoE practice',
   tagline:

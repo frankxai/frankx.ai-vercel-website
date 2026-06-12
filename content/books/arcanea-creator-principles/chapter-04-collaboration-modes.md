@@ -372,7 +372,7 @@ The scroll closes with the words of the creator who received this teaching:
 
 ---
 
-**Previous: [Scroll II: The Complementary Strengths](/books/arcanea-creator-principles/chapter-03-complementary-strengths)**
+**Previous: [Scroll II: The Complementary Strengths](02-complementary-strengths.md)**
 
-**Next: [Scroll IV: Trust Calibration](/books/arcanea-creator-principles/chapter-05-trust-calibration)**
+**Next: [Scroll IV: Trust Calibration](04-trust-calibration.md)**
 

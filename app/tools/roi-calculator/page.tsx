@@ -225,10 +225,10 @@ export default function ROICalculatorPage() {
               <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 flex items-center justify-center shadow-[0_0_40px_rgba(34,197,94,0.6)]">
                 <Calculator className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 bg-gradient-to-r from-slate-100 via-green-200 to-slate-300 bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-green-200 to-slate-300 bg-clip-text text-transparent">
                 AI ROI Calculator
               </h1>
-              <p className="text-[17px] md:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
                 Calculate the return on investment for your AI initiatives with comprehensive financial modeling and risk assessment.
               </p>
 
@@ -265,11 +265,9 @@ export default function ROICalculatorPage() {
                 ].map((tab) => (
                   <button
                     key={tab.id}
-                    type="button"
                     onClick={() => setActiveTab(tab.id as any)}
-                    aria-pressed={activeTab === tab.id}
                     className={cn(
-                      'flex items-center px-6 py-3 rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
+                      'flex items-center px-6 py-3 rounded-lg transition-all duration-200',
                       activeTab === tab.id
                         ? 'bg-green-500/20 text-green-300 border border-green-500/30'
                         : 'text-slate-400 hover:text-slate-300'
@@ -298,51 +296,47 @@ export default function ROICalculatorPage() {
                       </h2>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="roi-implementation-cost" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Initial Implementation Cost
                           </label>
                           <input
-                            id="roi-implementation-cost"
                             type="number"
                             value={inputs.implementationCost}
                             onChange={(e) => updateInput('implementationCost', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-monthly-tool" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Monthly Tool Costs
                           </label>
                           <input
-                            id="roi-monthly-tool"
                             type="number"
                             value={inputs.monthlyToolCosts}
                             onChange={(e) => updateInput('monthlyToolCosts', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-training" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Training Costs
                           </label>
                           <input
-                            id="roi-training"
                             type="number"
                             value={inputs.trainingCosts}
                             onChange={(e) => updateInput('trainingCosts', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-maintenance" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Monthly Maintenance
                           </label>
                           <input
-                            id="roi-maintenance"
                             type="number"
                             value={inputs.maintenanceCosts}
                             onChange={(e) => updateInput('maintenanceCosts', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                       </div>
@@ -358,27 +352,25 @@ export default function ROICalculatorPage() {
                       </h2>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="roi-team-size" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Team Size
                           </label>
                           <input
-                            id="roi-team-size"
                             type="number"
                             value={inputs.teamSize}
                             onChange={(e) => updateInput('teamSize', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-salary" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Average Annual Salary
                           </label>
                           <input
-                            id="roi-salary"
                             type="number"
                             value={inputs.averageSalary}
                             onChange={(e) => updateInput('averageSalary', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                       </div>
@@ -394,51 +386,47 @@ export default function ROICalculatorPage() {
                       </h2>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="roi-time-savings" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Time Savings (%)
                           </label>
                           <input
-                            id="roi-time-savings"
                             type="number"
                             value={inputs.timeSavingsPercent}
                             onChange={(e) => updateInput('timeSavingsPercent', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-quality" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Quality Improvement (%)
                           </label>
                           <input
-                            id="roi-quality"
                             type="number"
                             value={inputs.qualityImprovementPercent}
                             onChange={(e) => updateInput('qualityImprovementPercent', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-errors" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Error Reduction (%)
                           </label>
                           <input
-                            id="roi-errors"
                             type="number"
                             value={inputs.errorReductionPercent}
                             onChange={(e) => updateInput('errorReductionPercent', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-revenue" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Revenue Increase (%)
                           </label>
                           <input
-                            id="roi-revenue"
                             type="number"
                             value={inputs.revenueIncreasePercent}
                             onChange={(e) => updateInput('revenueIncreasePercent', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                       </div>
@@ -454,27 +442,25 @@ export default function ROICalculatorPage() {
                       </h2>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="roi-impl-months" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Implementation Period (months)
                           </label>
                           <input
-                            id="roi-impl-months"
                             type="number"
                             value={inputs.implementationMonths}
                             onChange={(e) => updateInput('implementationMonths', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                         <div>
-                          <label htmlFor="roi-eval-years" className="block text-sm font-medium text-slate-300 mb-2">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">
                             Evaluation Period (years)
                           </label>
                           <input
-                            id="roi-eval-years"
                             type="number"
                             value={inputs.evaluationPeriodYears}
                             onChange={(e) => updateInput('evaluationPeriodYears', Number(e.target.value))}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-colors"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                           />
                         </div>
                       </div>
