@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-06-11T22:56:10.517Z",
-  "totalAssets": 915,
+  "generatedAt": "2026-06-12T03:24:22.135Z",
+  "totalAssets": 920,
   "totalCollections": 51,
-  "totalSize": 899112284,
+  "totalSize": 900376188,
   "formats": {
-    "png": 510,
+    "png": 512,
     "svg": 180,
     "webp": 134,
-    "jpg": 81,
+    "jpg": 84,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 268,
+      "count": 273,
       "coverImage": "/images/blog/_archive-uuid-bulk/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -1318,6 +1318,28 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "blog/ai-image-video-generation-playbook-2026-hero",
+          "filename": "ai-image-video-generation-playbook-2026-hero.png",
+          "src": "/images/blog/ai-image-video-generation-playbook-2026-hero.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1280,
+          "height": 720,
+          "fileSize": 206460,
+          "title": "Ai Image Video Generation Playbook 2026",
+          "tags": [
+            "blog",
+            "image",
+            "video",
+            "generation",
+            "playbook",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-06-12"
+        },
+        {
           "id": "blog/ai-model-routing-guide-hero",
           "filename": "ai-model-routing-guide-hero.svg",
           "src": "/images/blog/ai-model-routing-guide-hero.svg",
@@ -1452,6 +1474,48 @@
             "hero"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "blog/best-ai-video-generators-2026-hero",
+          "filename": "best-ai-video-generators-2026-hero.jpg",
+          "src": "/images/blog/best-ai-video-generators-2026-hero.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": 1280,
+          "height": 720,
+          "fileSize": 274047,
+          "title": "Best Ai Video Generators 2026",
+          "tags": [
+            "blog",
+            "best",
+            "video",
+            "generators",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-06-12"
+        },
+        {
+          "id": "blog/best-ai-video-generators-2026-table",
+          "filename": "best-ai-video-generators-2026-table.jpg",
+          "src": "/images/blog/best-ai-video-generators-2026-table.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": 1152,
+          "height": 864,
+          "fileSize": 298380,
+          "title": "Best Ai Video Generators 2026 Table",
+          "tags": [
+            "blog",
+            "best",
+            "video",
+            "generators",
+            "2026",
+            "table"
+          ],
+          "createdAt": "2026-06-12"
         },
         {
           "id": "blog/best-open-local-llms-2026-hero-premium",
@@ -3373,6 +3437,27 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "blog/karpathys-ai-vision-deep-dive-hero",
+          "filename": "karpathys-ai-vision-deep-dive-hero.png",
+          "src": "/images/blog/karpathys-ai-vision-deep-dive-hero.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1280,
+          "height": 720,
+          "fileSize": 241553,
+          "title": "Karpathys Ai Vision Deep Dive",
+          "tags": [
+            "blog",
+            "karpathys",
+            "vision",
+            "deep",
+            "dive",
+            "hero"
+          ],
+          "createdAt": "2026-06-12"
+        },
+        {
           "id": "blog/karpathys-ai-vision-hero",
           "filename": "karpathys-ai-vision-hero.png",
           "src": "/images/blog/karpathys-ai-vision-hero.png",
@@ -4691,6 +4776,26 @@
             "hero"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "blog/research-generation-flywheel-2026",
+          "filename": "research-generation-flywheel-2026.jpg",
+          "src": "/images/blog/research-generation-flywheel-2026.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": 1280,
+          "height": 720,
+          "fileSize": 243464,
+          "title": "Research Generation Flywheel 2026",
+          "tags": [
+            "blog",
+            "research",
+            "generation",
+            "flywheel",
+            "2026"
+          ],
+          "createdAt": "2026-06-12"
         },
         {
           "id": "blog/science-of-state-change-music-hero",
