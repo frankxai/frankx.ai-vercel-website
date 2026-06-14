@@ -301,6 +301,28 @@ const nextConfig = {
       'v1-enterprise-backup/**',
       'public/images/**',
       'public/videos/**',
+      // Build/working artifacts that no serverless function reads at runtime
+      // (verified: zero references under app/ or lib/). generated_audio alone is
+      // ~535MB; leaving these traced was the main reason the sitemap function
+      // blew past Vercel's 300MB function-size limit. 2026-06-14.
+      'generated_audio/**',
+      'generated_imgs/**',
+      'reading-site/**',
+      'playwright-report/**',
+    ],
+    // The /sitemap.xml route imports lib/route-enumeration.mjs, which does
+    // dynamic fs.readFileSync(path.join(ROOT, …)) calls. Next's file tracer
+    // can't resolve those statically, so it conservatively bundles the entire
+    // project root (incl. public/reading ~512MB) into the single sitemap
+    // function — 804MB, over the 300MB cap. The sitemap only reads content/
+    // frontmatter + data/ JSON, never public/, so excluding public/** here is
+    // safe. Scoped to this route (not '*') because API routes — content-studio,
+    // download/file, send-pdf — DO read public/ at runtime. 2026-06-14.
+    '/sitemap.xml': [
+      'public/**',
+      'generated_audio/**',
+      'generated_imgs/**',
+      'reading-site/**',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
