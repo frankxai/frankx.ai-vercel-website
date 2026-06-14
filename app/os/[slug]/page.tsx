@@ -99,18 +99,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-function Schema({ module }: { module: OSModule }) {
+function Schema({ osModule }: { osModule: OSModule }) {
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'SoftwareApplication',
-        '@id': `https://frankx.ai/os/${module.slug}#app`,
-        name: module.name,
+        '@id': `https://frankx.ai/os/${osModule.slug}#app`,
+        name: osModule.name,
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Cross-platform',
-        description: module.description,
-        url: `https://frankx.ai/os/${module.slug}`,
+        description: osModule.description,
+        url: `https://frankx.ai/os/${osModule.slug}`,
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
@@ -120,10 +120,10 @@ function Schema({ module }: { module: OSModule }) {
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': `https://frankx.ai/os/${module.slug}#breadcrumb`,
+        '@id': `https://frankx.ai/os/${osModule.slug}#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'FrankX OS', item: 'https://frankx.ai/os' },
-          { '@type': 'ListItem', position: 2, name: module.name, item: `https://frankx.ai/os/${module.slug}` },
+          { '@type': 'ListItem', position: 2, name: osModule.name, item: `https://frankx.ai/os/${osModule.slug}` },
         ],
       },
     ],
@@ -142,7 +142,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <Schema module={osModule} />
+      <Schema osModule={osModule} />
       <FrankXOSHeader currentModuleId={osModule.id} />
 
       {/* Hero */}
