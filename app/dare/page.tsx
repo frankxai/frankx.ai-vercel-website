@@ -393,13 +393,19 @@ function DareVideo({
   channel?: string
 }) {
   const [isPlaying, setIsPlaying] = useState(false)
+  // maxres doesn't exist for every video; fall back to hqdefault (always present)
+  // on error so the thumbnail never renders broken.
+  const [thumb, setThumb] = useState(
+    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+  )
+  const watchUrl = `https://www.youtube.com/watch?v=${videoId}`
 
   return (
     <div className="rounded-xl overflow-hidden border border-white/10">
       <div className="relative aspect-video bg-black/50">
         {isPlaying ? (
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
             className="absolute inset-0 w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -408,11 +414,15 @@ function DareVideo({
         ) : (
           <>
             <Image
-              src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+              src={thumb}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 672px"
               className="object-cover"
+              unoptimized
+              onError={() =>
+                setThumb(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)
+              }
             />
             <button
               onClick={() => setIsPlaying(true)}
@@ -431,6 +441,19 @@ function DareVideo({
           </>
         )}
       </div>
+      {/* Always-present escape hatch: some videos disable embedding, and this
+          guarantees the dare's video is reachable even when the iframe can't load. */}
+      <a
+        href={watchUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between gap-2 px-3 py-2 bg-black/40 text-xs text-white/40 hover:text-white/70 transition-colors"
+      >
+        <span className="truncate">{title}</span>
+        <span className="inline-flex items-center gap-1 shrink-0">
+          Watch on YouTube <ArrowRight className="w-3 h-3" />
+        </span>
+      </a>
     </div>
   )
 }
