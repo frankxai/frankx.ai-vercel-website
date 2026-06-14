@@ -48,6 +48,8 @@ export function LiveArtifact({ embedUrl, posterSrc }: LiveArtifactProps) {
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
               <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.04] via-amber-500/[0.03] to-transparent" />
               {posterSrc && (
+                // Decorative aria-hidden cover; next/image unnecessary and would force remotePatterns config.
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={posterSrc}
                   alt=""
