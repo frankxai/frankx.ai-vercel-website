@@ -184,8 +184,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Learn anything with the Feynman loop',
       body: 'Pick the skill your aim requires. The Feynman technique — explain, find the gap, go back, simplify — is the fastest known loop for real understanding. It\'s also exactly how you should be using AI: as the student you teach.',
-      videoId: 'zdkGXDq1jqM',
-      videoTitle: 'How to Learn Anything (Feynman Technique)',
+      videoId: 'MlJdMr3O5J4',
+      videoTitle: 'How to Study Way More Effectively (Feynman Technique)',
       videoChannel: 'Freedom in Thought',
     },
     prompt: {
@@ -211,8 +211,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'The math of 1% better',
       body: 'One percent better every day is 37× better in a year — not motivation, arithmetic. James Clear walks the compounding logic that turns a definite aim into a daily unit of work.',
-      videoId: 'mNeXuCYiE0U',
-      videoTitle: '1% Better Every Day',
+      videoId: 'U_nzqnXWvSo',
+      videoTitle: 'Atomic Habits: How to Get 1% Better Every Day',
       videoChannel: 'James Clear',
     },
     prompt: {
@@ -268,7 +268,7 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'You are not done becoming',
       body: 'Psychologist Dan Gilbert\'s finding: people at every age believe they\'ve finished changing — and they\'re wrong every time. The "end of history illusion." Belief in a future self is not delusion; assuming you\'re finished is.',
-      videoId: 'Cqbleas1mmo',
+      videoId: 'XNbaR54Gpj4',
       videoTitle: 'The Psychology of Your Future Self',
       videoChannel: 'TED',
     },
@@ -405,8 +405,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Rick Rubin on the creative act',
       body: 'The most decorated producer alive can\'t play instruments and barely touches a mixing board. What he brings is trained imagination — taste, and the conviction to follow it. Watch what creation looks like when the instrument is the mind itself.',
-      videoId: 'n9iv24yI04nI',
-      videoTitle: 'Rick Rubin: The Creative Act',
+      videoId: 'sE1teB5bN-w',
+      videoTitle: 'Rick Rubin on the Creative Act',
       videoChannel: '60 Minutes',
     },
     prompt: {
@@ -433,7 +433,7 @@ export const dailyDares: DailyDare[] = [
       title: 'A model that dreams in video',
       body: 'Text in, moving world out. Whatever you think about generative video, sit with the fact that imagination — the prototyping of unreal scenes — is no longer exclusively biological. Your workshop just acquired power tools.',
       videoId: 'nbPbK1xYSNY',
-      videoTitle: 'OpenAI Sora: This is Insane!',
+      videoTitle: 'OpenAI Sora: The Age of AI Is Here!',
       videoChannel: 'Two Minute Papers',
     },
     prompt: {
@@ -459,9 +459,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Prompting as a visual language',
       body: 'Image models respond to the precision of your imagination: style, light, lens, mood. Learning to prompt well is learning to see what you\'re imagining clearly enough to describe it — which was always the hard part.',
-      videoId: '9WVZbitXbck',
-      videoTitle: 'Midjourney Complete Tutorial',
-      videoChannel: 'Midjourney Guide',
+      videoId: 'VUDjpOY3YeE',
+      videoTitle: "MidJourney Tutorial: Full Beginner's Guide",
     },
     prompt: {
       promptId: 'midjourney-abstract-art',
@@ -486,9 +485,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Writing songs with AI',
       body: 'Music is imagination you can hear. Watch how lyric and style prompts shape a generated song — then consider that focus, calm, and drive all have soundtracks, and you can now compose them.',
-      videoId: 'EIi5k9TJUvY',
-      videoTitle: 'Suno v4.5 Lyric Writing',
-      videoChannel: 'Suno AI',
+      videoId: 'sIx3LNV51bQ',
+      videoTitle: 'Suno V4.5: Complete AI Music Tutorial',
     },
     prompt: {
       promptId: 'suno-ambient-electronic',
@@ -569,8 +567,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Claude Code: instructions that become behavior',
       body: 'Developers write a file of standing instructions and the AI obeys it every session, automatically. Standing instructions that shape every future action — that\'s a system prompt, and you\'re running one too. Yours just isn\'t written down yet.',
-      videoId: 'Ta5g-OxjPO4',
-      videoTitle: 'Build Anything with Claude Code',
+      videoId: 'hq8J-nj_Sr0',
+      videoTitle: "Build Anything with Claude Code, Here's How",
       videoChannel: 'David Ondrej',
       learningPathSlug: 'claude-mastery',
     },
@@ -625,8 +623,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'The real secret of productivity',
       body: 'Ali Abdaal\'s honest take: the productive people aren\'t more disciplined, they\'ve built systems where the work mostly happens by default. Goals set the direction; the system does the carrying.',
-      videoId: 'H_lZr0BAWhM',
-      videoTitle: 'How I Think: The Real Secret of Productivity',
+      videoId: 'tQSKyvjsUuI',
+      videoTitle: 'My Complete Productivity System',
       videoChannel: 'Ali Abdaal',
     },
     prompt: {
@@ -762,9 +760,9 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Why you\'re actually tired',
       body: 'Most exhaustion isn\'t physical — it\'s decision fatigue, fragmented attention, and a nervous system that never downshifts. Understand the real causes and "I\'m too tired" loses most of its veto power.',
-      videoId: '1Edv43k15cY',
-      videoTitle: "The Real Reason You're Always Tired",
-      videoChannel: 'OptimalMind',
+      videoId: 'KyxYdicOzTg',
+      videoTitle: "Why You're Always Tired",
+      videoChannel: 'After Skool',
     },
     prompt: {
       promptId: 'health-fitness-ai-coe',
@@ -789,9 +787,9 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Finite and infinite games',
       body: 'Sinek\'s distinction changes what "failure" even means: in a finite game you lose; in an infinite game you only fall behind for a while. Your aim is an infinite game. Setbacks are scores, not verdicts.',
-      videoId: 'BSjQk-7j3X0',
-      videoTitle: 'The Infinite Game',
-      videoChannel: 'Simon Sinek',
+      videoId: '_osKgFwKoDQ',
+      videoTitle: 'The Finite and Infinite Games of Leadership',
+      videoChannel: 'Simon Sinek · Talks at Google',
     },
     prompt: {
       promptId: 'system-prompt-design',
@@ -925,8 +923,8 @@ export const dailyDares: DailyDare[] = [
     mindStretch: {
       title: 'Where this is all going',
       body: 'Altman on the trajectory of AI — the tools you\'ve been learning for thirty days are the earliest versions you\'ll ever use again. You\'re not late. You\'re absurdly early. Plan like it.',
-      videoId: '5MUvJv_sB64',
-      videoTitle: 'Sam Altman: The Future of AI',
+      videoId: 'jvqFAi7vkBc',
+      videoTitle: 'Sam Altman: OpenAI, GPT-5, Sora, Power & AGI',
       videoChannel: 'Lex Fridman',
     },
     prompt: {
