@@ -1,0 +1,1 @@
+$(node -e "process.stdout.write(require('fs').readFileSync('/home/user/frankx.ai-vercel-website/public/images/books/the-wordless-laws-cover.png').toString('base64'))")
