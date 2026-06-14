@@ -323,6 +323,13 @@ const nextConfig = {
       'generated_audio/**',
       'generated_imgs/**',
       'reading-site/**',
+      // content/ holds the MDX the sitemap walks for frontmatter, but these two
+      // subtrees are binary-only (content/images ~302MB, content/ingest ~27MB of
+      // mp4s) with zero .mdx — route-enumeration only walks blog/guides/
+      // newsletters/partnerships. Excluding them drops the function from 336MB
+      // to well under the 300MB cap. 2026-06-14.
+      'content/images/**',
+      'content/ingest/**',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
