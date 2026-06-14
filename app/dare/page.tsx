@@ -395,10 +395,17 @@ function DareVideo({
   const [isPlaying, setIsPlaying] = useState(false)
   // maxres doesn't exist for every video; fall back to hqdefault (always present)
   // on error so the thumbnail never renders broken.
-  const [thumb, setThumb] = useState(
-    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-  )
+  const maxres = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+  const hqdefault = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+  const [thumb, setThumb] = useState(maxres)
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`
+
+  // Reset to the high-res thumbnail (and stop playback) if the video changes,
+  // since useState only seeds on mount.
+  useEffect(() => {
+    setThumb(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`)
+    setIsPlaying(false)
+  }, [videoId])
 
   return (
     <div className="rounded-xl overflow-hidden border border-white/10">
@@ -420,9 +427,10 @@ function DareVideo({
               sizes="(max-width: 768px) 100vw, 672px"
               className="object-cover"
               unoptimized
-              onError={() =>
-                setThumb(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)
-              }
+              onError={() => {
+                // Guard against an onError loop if hqdefault also 404s.
+                if (thumb !== hqdefault) setThumb(hqdefault)
+              }}
             />
             <button
               onClick={() => setIsPlaying(true)}
