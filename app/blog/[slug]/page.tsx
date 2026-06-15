@@ -6,9 +6,10 @@ import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
 import { MDXContent } from '@/components/blog/MDXContent'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
+import SeriesNav from '@/components/blog/SeriesNav'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
-import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
+import { getAllBlogPosts, getBlogPost, getSeriesPosts, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
@@ -122,6 +123,9 @@ export default async function BlogPostPage({
 
   // Extract FAQ from content body for FAQPage schema
   const extractedFaqs = extractFAQFromContent(post.content)
+
+  // Resolve series siblings (published parts) when this post belongs to a series
+  const seriesPosts = post.series ? getSeriesPosts(post.series.slug) : []
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
@@ -246,6 +250,15 @@ export default async function BlogPostPage({
                     </div>
                   </div>
                 </div>
+              )}
+
+              {/* Series navigation — only for posts that belong to a series */}
+              {post.series && (
+                <SeriesNav
+                  series={post.series}
+                  currentSlug={post.slug}
+                  publishedParts={seriesPosts}
+                />
               )}
             </header>
           </div>

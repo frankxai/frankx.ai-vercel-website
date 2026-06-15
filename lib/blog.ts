@@ -12,6 +12,15 @@ export interface FAQItem {
   a: string
 }
 
+// Multi-part series membership. Articles sharing a series.slug are linked
+// together (prev/next nav + "Part N of M") by SeriesNav.
+export interface BlogSeries {
+  slug: string // stable series id, e.g. "higher-self-protocol"
+  title: string // display title, e.g. "The Higher Self Protocol"
+  part: number // 1-based position of this article in the series
+  total: number // total parts planned (for "Part N of M")
+}
+
 export interface BlogPost {
   slug: string
   title: string
@@ -32,6 +41,9 @@ export interface BlogPost {
   faq?: FAQItem[] // Question-answer pairs for FAQPage schema
   schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
   lastUpdated?: string // Freshness signal for search engines
+
+  // Series membership (optional) — drives SeriesNav prev/next
+  series?: BlogSeries
 }
 
 // Normalize frontmatter field variants to canonical BlogPost fields
@@ -108,6 +120,16 @@ export function getPostsByTag(tag: string): BlogPost[] {
   return getAllBlogPosts().filter(post =>
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
+}
+
+/**
+ * Return every published post in a series, ordered by part number.
+ * Used by SeriesNav to resolve prev/next and the "Part N of M" rail.
+ */
+export function getSeriesPosts(seriesSlug: string): BlogPost[] {
+  return getAllBlogPosts()
+    .filter(post => post.series?.slug === seriesSlug)
+    .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0))
 }
 
 /**
