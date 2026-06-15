@@ -3,8 +3,10 @@
 // This module is a faithful, render-friendly projection of those receipts; the JSON
 // receipts remain canonical. Update here when a new round is published upstream.
 
+// /blob/ for individual file views (per-round receipt links). GitHub 404s on
+// /tree/<branch>/<file> for blobs; /tree/ is correct only for the directory below.
 const RUNS_BASE =
-  'https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs'
+  'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs'
 
 export const METHODOLOGY_URL =
   'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md'
