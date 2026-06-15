@@ -24,7 +24,7 @@
   "deltas_vs_prior_week": {
     "duration_p50_seconds": "+94",
     "count_total": "+71",
-    "total_build_minutes": "+461",
+    "total_build_minutes": "+461.5",
     "prior_week": "2026-W23",
     "note": "W24 snapshot missing (skipped week); comparing vs W23 (2026-06-01 snapshot)"
   },
