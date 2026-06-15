@@ -39,6 +39,17 @@ export const sourceTypeLabels: Record<SourceType, string> = {
  * Each domain slug maps to an array of validated sources.
  */
 export const domainSources: Record<string, ResearchSource[]> = {
+  'agent-skills-operating-knowledge': [
+    { name: 'Anthropic', title: 'Equipping agents for the real world with Agent Skills', url: 'https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills', date: '2025-10-16', type: 'official' },
+    { name: 'Anthropic', title: 'Skills public repository', url: 'https://github.com/anthropics/skills', type: 'official' },
+    { name: 'Claude Docs', title: 'Agent Skills overview', url: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview', type: 'official' },
+    { name: 'Claude Docs', title: 'Skill authoring best practices', url: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices', type: 'official' },
+    { name: 'Claude Docs', title: 'Skills for enterprise', url: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise', type: 'official' },
+    { name: 'Microsoft Learn', title: 'Establish an AI Center of Excellence', url: 'https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai/center-of-excellence', date: '2026-04-10', type: 'official' },
+    { name: 'AWS Prescriptive Guidance', title: 'Best practices for enterprise generative AI adoption and scaling', url: 'https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-enterprise-ready-gen-ai-platform/best-practices.html', type: 'official' },
+    { name: 'IBM Think', title: 'What is an AI center of excellence?', url: 'https://www.ibm.com/think/topics/ai-center-of-excellence', date: '2026-06-05', type: 'official' },
+  ],
+
   'enterprise-ai': [
     { name: 'MarketsAndMarkets', title: 'AI Agents Market Size — $7.84B to $52.62B by 2030', url: 'https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-56997845.html', type: 'industry-report' },
     { name: 'Gartner', title: 'Predicts 40% of Enterprise Apps Will Feature AI Agents by 2026', url: 'https://www.gartner.com/en/newsroom/press-releases/2024-10-21-gartner-says-by-2028-33-percent-of-enterprise-software-applications-will-include-agentic-ai', type: 'industry-report' },

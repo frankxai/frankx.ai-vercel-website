@@ -59,6 +59,78 @@ export const domainCategories: Record<DomainCategory, { label: string; descripti
 
 export const researchDomains: ResearchDomain[] = [
   {
+    slug: 'agent-skills-operating-knowledge',
+    title: 'Agent Skills as Operating Knowledge',
+    subtitle: 'Reusable AI capability for founders, startups, and enterprise AI CoEs',
+    description: 'Research and operating patterns for turning Agent Skills from prompt snippets into reusable, evaluated, and governed units of organizational AI capability.',
+    tldr: 'Agent Skills are becoming an operating layer for AI teams: metadata routes the agent, instructions encode workflow, references carry deep knowledge, scripts handle deterministic checks, and AI CoE governance turns individual workflows into reusable capability.',
+    icon: 'FileText',
+    color: 'sky',
+    category: 'ai-systems',
+    highlights: [
+      { stat: '3 levels', label: 'Progressive disclosure', source: 'Anthropic' },
+      { stat: '8 max', label: 'API skills per request', source: 'Claude docs' },
+      { stat: '5 tiers', label: 'Risk model for skill governance', source: 'FrankX synthesis' },
+      { stat: '30 days', label: 'First skill library roadmap', source: 'FrankX methodology' },
+    ],
+    sections: [
+      {
+        title: 'The operating knowledge pattern',
+        content: 'Skills package the repeatable way work should be done: trigger conditions, required inputs, references, procedures, deterministic scripts, output standards, and quality checks. This moves teams from one-off prompting to reusable operating knowledge.',
+        items: [
+          { title: 'Metadata routes', description: 'Name and description tell the agent when the skill is relevant without loading the full body.', badge: 'Layer 1' },
+          { title: 'Instructions guide', description: 'SKILL.md carries workflow, decision rules, examples, and failure handling once the skill activates.', badge: 'Layer 2' },
+          { title: 'References deepen', description: 'Policies, examples, templates, schemas, and supporting docs load only when needed.', badge: 'Layer 3' },
+          { title: 'Scripts verify', description: 'Deterministic checks belong in executable scripts instead of language-only judgment.', badge: 'Execution' },
+        ],
+      },
+      {
+        title: 'Why this matters for AI CoEs',
+        content: 'AI Centers of Excellence should govern reusable operating knowledge, not only models and tools. A skill registry creates ownership, versioning, risk tiers, evaluations, deployment rules, and rollback paths for the workflows teams rely on.',
+        items: [
+          { title: 'Founder level', description: 'Three to five personal skills capture the founder operating rhythm: weekly review, customer discovery, content, sales, and product planning.', badge: 'Solo' },
+          { title: 'Startup level', description: 'A shared repository, simple registry, owners, and three eval cases per skill prevent AI workflow fragmentation.', badge: 'Team' },
+          { title: 'Enterprise level', description: 'Role-based bundles, formal review for sensitive workflows, version pinning, and security audits support scale.', badge: 'Enterprise' },
+        ],
+      },
+      {
+        title: 'The FrankX Skillforge standard',
+        content: 'A skill is ready when it produces the intended result repeatedly, under representative conditions, with clear boundaries, visible assumptions, and a maintained owner. This standard turns skills into durable capability instead of prompt packaging.',
+      },
+    ],
+    faq: [
+      { question: 'Are Agent Skills just prompts?', answer: 'No. A prompt is usually conversation-level guidance. A skill packages reusable operating knowledge: trigger logic, workflow, references, scripts, output standards, quality checks, ownership, and evaluation.' },
+      { question: 'What should an AI CoE track for skills?', answer: 'At minimum: name, purpose, owner, version, status, risk tier, user group, required tools, data class, evaluation status, last review date, and rollback version.' },
+      { question: 'How many skills should a team start with?', answer: 'Start with three to five high-leverage workflow-specific skills. Reliability and evaluation matter more than catalog size.' },
+      { question: 'When does a skill need security review?', answer: 'When it touches customer data, legal language, financial reporting, HR decisions, regulated content, production systems, security operations, or privileged tool access.' },
+    ],
+    keyFindings: [
+      'Agent Skills are best understood as operating knowledge units, not prompt snippets',
+      'Progressive disclosure lets teams package deep knowledge without loading all context upfront',
+      'Skill descriptions are routing infrastructure and must include specific trigger conditions',
+      'Deterministic checks should move into scripts rather than model-generated language',
+      'AI CoEs need skill registries, role-based bundles, risk tiers, evaluation requirements, and version management',
+      'The strongest teams start narrow, evaluate behavior, and consolidate only after performance is stable',
+    ],
+    relatedDomains: ['enterprise-ai', 'mcp-ecosystem', 'ai-ops', 'multi-agent-systems', 'production-patterns'],
+    relatedBlogPosts: ['/blog/ai-skills-operating-layer', '/blog/skill-libraries-ai-coe-governance', '/blog/building-custom-skills-acos', '/blog/why-everyone-needs-personal-ai-coe'],
+    lastUpdated: '2026-06-15',
+    sourceCount: 8,
+    status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'The Agent Skills ecosystem is evolving quickly across Claude, open standards, and adjacent agent clients',
+      'Skill evaluation practices are still emerging; teams often need to build their own lightweight eval harnesses',
+      'Enterprise distribution behavior differs across Claude.ai, Claude Code, API, AWS, and Microsoft Foundry surfaces',
+    ],
+    whatWeDontKnow: [
+      'Which skill routing patterns will become durable cross-platform standards',
+      'How large active skill sets affect recall accuracy across different models and agent clients',
+      'How much of skill governance will move into native platform tooling versus internal AI CoE process',
+    ],
+    lastVerified: '2026-06-15',
+  },
+  {
     slug: 'enterprise-ai',
     title: 'Enterprise AI Architecture',
     subtitle: 'Production-grade AI systems for the enterprise',
