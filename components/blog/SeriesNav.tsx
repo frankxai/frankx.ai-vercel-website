@@ -10,7 +10,7 @@ import type { BlogPost, BlogSeries } from '@/lib/blog'
  */
 export default function SeriesNav({
   series,
-  currentSlug,
+  currentSlug: _currentSlug,
   publishedParts,
 }: {
   series: BlogSeries
