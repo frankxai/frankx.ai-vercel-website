@@ -617,6 +617,15 @@ function FlagshipArticles() {
         'What is real, what the traditions say, and the failure modes to respect when AI enters a spiritual practice.',
       readingTime: '14 min',
     },
+    {
+      kanji: '競',
+      label: 'llm evals · model routing',
+      title: 'Starlight Model Arena',
+      href: '/research/model-arena',
+      blurb:
+        'Fable 5 vs Opus 4.8 and the full Anthropic lineup across five receipted rounds, run inside Claude Code. Which model to route where.',
+      readingTime: '10 min',
+    },
   ]
   return (
     <section className="py-12 md:py-16 border-b border-white/[0.04]">
