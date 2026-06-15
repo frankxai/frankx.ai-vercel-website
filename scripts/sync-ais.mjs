@@ -6,13 +6,15 @@ import { existsSync } from 'node:fs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
 const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
-const isVercel = Boolean(process.env.VERCEL);
+// AIS emission is optional in any hosted build environment (Vercel, GitHub
+// Actions CI) — the sibling repo only exists on local dev machines.
+const isHostedBuild = Boolean(process.env.VERCEL) || Boolean(process.env.CI);
 
 if (!existsSync(AIS_ROOT)) {
-  if (isVercel) {
+  if (isHostedBuild) {
     console.warn(
       `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}; ` +
-      `skipping optional AIS emission during Vercel build.`
+      `skipping optional AIS emission during hosted build.`
     );
     process.exit(0);
   }

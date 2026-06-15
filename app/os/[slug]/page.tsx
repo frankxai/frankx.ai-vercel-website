@@ -85,32 +85,32 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const mod = osModules.find((m) => m.slug === slug)
-  if (!mod) return { title: 'Not found' }
+  const osModule = osModules.find((m) => m.slug === slug)
+  if (!osModule) return { title: 'Not found' }
   return {
-    title: `${mod.name} — FrankX OS`,
-    description: `${mod.oneLine} ${mod.description}`,
+    title: `${osModule.name} — FrankX OS`,
+    description: `${osModule.oneLine} ${osModule.description}`,
     openGraph: {
-      title: `${mod.name} — FrankX OS`,
-      description: mod.oneLine,
+      title: `${osModule.name} — FrankX OS`,
+      description: osModule.oneLine,
       type: 'article',
     },
-    alternates: { canonical: `https://frankx.ai/os/${mod.slug}` },
+    alternates: { canonical: `https://frankx.ai/os/${osModule.slug}` },
   }
 }
 
-function Schema({ mod }: { mod: OSModule }) {
+function Schema({ osModule }: { osModule: OSModule }) {
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'SoftwareApplication',
-        '@id': `https://frankx.ai/os/${mod.slug}#app`,
-        name: mod.name,
+        '@id': `https://frankx.ai/os/${osModule.slug}#app`,
+        name: osModule.name,
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Cross-platform',
-        description: mod.description,
-        url: `https://frankx.ai/os/${mod.slug}`,
+        description: osModule.description,
+        url: `https://frankx.ai/os/${osModule.slug}`,
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
@@ -120,10 +120,10 @@ function Schema({ mod }: { mod: OSModule }) {
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': `https://frankx.ai/os/${mod.slug}#breadcrumb`,
+        '@id': `https://frankx.ai/os/${osModule.slug}#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'FrankX OS', item: 'https://frankx.ai/os' },
-          { '@type': 'ListItem', position: 2, name: mod.name, item: `https://frankx.ai/os/${mod.slug}` },
+          { '@type': 'ListItem', position: 2, name: osModule.name, item: `https://frankx.ai/os/${osModule.slug}` },
         ],
       },
     ],
@@ -133,17 +133,17 @@ function Schema({ mod }: { mod: OSModule }) {
 
 export default async function OSModulePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const mod = osModules.find((m) => m.slug === slug)
-  if (!mod) notFound()
+  const osModule = osModules.find((m) => m.slug === slug)
+  if (!osModule) notFound()
 
-  const Icon = ICON_MAP[mod.iconName as keyof typeof ICON_MAP] ?? Sparkles
-  const tokens = COLOR_TOKENS[mod.color]
-  const connections = getConnections(mod.id)
+  const Icon = ICON_MAP[osModule.iconName as keyof typeof ICON_MAP] ?? Sparkles
+  const tokens = COLOR_TOKENS[osModule.color]
+  const connections = getConnections(osModule.id)
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <Schema mod={mod} />
-      <FrankXOSHeader currentModuleId={mod.id} />
+      <Schema osModule={osModule} />
+      <FrankXOSHeader currentModuleId={osModule.id} />
 
       {/* Hero */}
       <section className="relative pt-20 pb-12 overflow-hidden">
@@ -164,32 +164,32 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
             <span
               className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${tokens.border} ${tokens.text} ${tokens.bg}`}
             >
-              Shipped {mod.shipped}
+              Shipped {osModule.shipped}
             </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-bold text-zinc-50 leading-tight tracking-tight mb-4">
-            {mod.name}
+            {osModule.name}
           </h1>
 
-          <p className={`text-lg ${tokens.text} mb-5`}>{mod.oneLine}</p>
+          <p className={`text-lg ${tokens.text} mb-5`}>{osModule.oneLine}</p>
 
-          <p className="text-base text-zinc-400 leading-relaxed max-w-2xl">{mod.description}</p>
+          <p className="text-base text-zinc-400 leading-relaxed max-w-2xl">{osModule.description}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href={mod.route}
+              href={osModule.route}
               className={`inline-flex items-center gap-2 rounded-lg border ${tokens.border} ${tokens.bg} px-5 py-2.5 text-sm font-medium ${tokens.text} hover:bg-white/5 transition-colors`}
             >
-              Open {mod.name}
+              Open {osModule.name}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            {mod.deepDive ? (
+            {osModule.deepDive ? (
               <Link
-                href={mod.deepDive.route}
+                href={osModule.deepDive.route}
                 className="inline-flex items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-zinc-100 hover:bg-white/[0.08] transition-colors"
               >
-                {mod.deepDive.label}
+                {osModule.deepDive.label}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             ) : null}
@@ -201,8 +201,8 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
             </Link>
           </div>
 
-          {mod.deepDive ? (
-            <p className="mt-3 max-w-2xl text-xs text-zinc-500">{mod.deepDive.description}</p>
+          {osModule.deepDive ? (
+            <p className="mt-3 max-w-2xl text-xs text-zinc-500">{osModule.deepDive.description}</p>
           ) : null}
         </div>
       </section>
@@ -217,7 +217,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
                 Artifacts
               </div>
               <ul className="space-y-2 text-sm text-zinc-300">
-                {mod.artifacts.map((artifact) => (
+                {osModule.artifacts.map((artifact) => (
                   <li key={artifact} className="flex items-start gap-2">
                     <span className={`mt-1.5 h-1 w-1 rounded-full ${tokens.bg}`} aria-hidden="true" />
                     <span>{artifact}</span>
@@ -231,7 +231,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
                 Commands
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {mod.commands.map((c) => (
+                {osModule.commands.map((c) => (
                   <code
                     key={c}
                     className="inline-flex items-center rounded-md border border-white/[0.08] bg-black/40 px-2 py-1 text-xs font-mono text-zinc-300"
@@ -287,7 +287,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent p-8 text-center">
             <h2 className="text-2xl font-bold text-zinc-50 mb-3">
-              Try {mod.name} yourself
+              Try {osModule.name} yourself
             </h2>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto mb-6">
               The full stack is being packaged as an installable template. One command scaffolds a
@@ -309,10 +309,10 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
               All modules
             </Link>
             <Link
-              href={mod.route}
+              href={osModule.route}
               className="inline-flex items-center gap-1.5 hover:text-zinc-300 transition-colors"
             >
-              Go to {mod.name}
+              Go to {osModule.name}
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
             </Link>
           </div>

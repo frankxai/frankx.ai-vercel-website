@@ -1,5 +1,44 @@
 [
   {
+    "id": "beautiful-mind-quest",
+    "title": "The Beautiful Mind Quest",
+    "description": "The 30 daily videos behind frankx.ai/dare — one mind-stretching watch per day, in order, across six principles of how the mind works.",
+    "icon": "flame",
+    "color": "#f59e0b",
+    "videoIds": [
+      "aircAruvnKk",
+      "eMlx5fFNoYc",
+      "MlJdMr3O5J4",
+      "U_nzqnXWvSo",
+      "sal78ACtGTc",
+      "XNbaR54Gpj4",
+      "vA50EK70whE",
+      "QmOF0crdyRU",
+      "yb5zpo5WDG4",
+      "heh5XLwZVOY",
+      "sE1teB5bN-w",
+      "nbPbK1xYSNY",
+      "VUDjpOY3YeE",
+      "sIx3LNV51bQ",
+      "kCc8FmEb1nY",
+      "IHZwWFHWa-w",
+      "hq8J-nj_Sr0",
+      "uRuLgar5XZw",
+      "tQSKyvjsUuI",
+      "3E7hkPZ-HTk",
+      "arj7oStGLkU",
+      "o0Fc5_zHvzo",
+      "7xTGNNLPyMI",
+      "KyxYdicOzTg",
+      "_osKgFwKoDQ",
+      "KrRD7r7y7NY",
+      "Gfr50f6ZBvo",
+      "BZ2nSULolKI",
+      "cdiD-9MMpb0",
+      "jvqFAi7vkBc"
+    ]
+  },
+  {
     "id": "ai-engineering",
     "title": "AI Engineering Essentials",
     "description": "Core videos for building production AI systems. From neural nets to deployment.",
@@ -20,7 +59,12 @@
     "description": "Multi-agent systems, orchestration patterns, and autonomous workflows.",
     "icon": "bot",
     "color": "#AB47C7",
-    "videoIds": ["sal78ACtGTc", "KrRD7r7y7NY", "5-2W--zGO0Y", "o0Fc5_zHvzo"]
+    "videoIds": [
+      "sal78ACtGTc",
+      "KrRD7r7y7NY",
+      "sPzc6hMg7So",
+      "o0Fc5_zHvzo"
+    ]
   },
   {
     "id": "music-production",
@@ -28,7 +72,11 @@
     "description": "Suno AI workflows, prompt engineering for music, and distribution strategies.",
     "icon": "music",
     "color": "#F59E0B",
-    "videoIds": ["EIi5k9TJUvY", "jDHMPSSgaMw", "u2pYNRNdcNc", "1bZ0OSEViyo"]
+    "videoIds": [
+      "sIx3LNV51bQ",
+      "u2pYNRNdcNc",
+      "1bZ0OSEViyo"
+    ]
   },
   {
     "id": "creative-ai",
@@ -36,7 +84,11 @@
     "description": "AI tools for creators — from image generation to content pipelines.",
     "icon": "sparkles",
     "color": "#10B981",
-    "videoIds": ["EIi5k9TJUvY", "jDHMPSSgaMw", "9WVZbitXbck", "n9iv24yI04nI"]
+    "videoIds": [
+      "sIx3LNV51bQ",
+      "VUDjpOY3YeE",
+      "sE1teB5bN-w"
+    ]
   },
   {
     "id": "strategy",
@@ -45,12 +97,10 @@
     "icon": "trending-up",
     "color": "#43BFE3",
     "videoIds": [
-      "5MUvJv_sB64",
-      "BSjQk-7j3X0",
       "jvqFAi7vkBc",
+      "_osKgFwKoDQ",
       "CBYhVcO4WgI",
-      "0wIUK0nsyUg",
-      "tqfPCE_gfuc"
+      "0wIUK0nsyUg"
     ]
   },
   {
@@ -61,8 +111,7 @@
     "color": "#AB47C7",
     "videoIds": [
       "BZ2nSULolKI",
-      "cNGpxfcDKms",
-      "H_lZr0BAWhM",
+      "tQSKyvjsUuI",
       "BBAuhqvT_ds",
       "RKXZ7t_RiOE"
     ]
@@ -74,10 +123,10 @@
     "icon": "activity",
     "color": "#F59E0B",
     "videoIds": [
-      "Cqbleas1mmo",
+      "XNbaR54Gpj4",
       "arj7oStGLkU",
       "yb5zpo5WDG4",
-      "mNeXuCYiE0U",
+      "U_nzqnXWvSo",
       "heh5XLwZVOY"
     ]
   },
@@ -87,7 +136,12 @@
     "description": "Meta-learning techniques, research methods, and knowledge acquisition strategies.",
     "icon": "graduation-cap",
     "color": "#10B981",
-    "videoIds": ["aircAruvnKk", "zdkGXDq1jqM", "kCc8FmEb1nY", "3E7hkPZ-HTk"]
+    "videoIds": [
+      "aircAruvnKk",
+      "MlJdMr3O5J4",
+      "kCc8FmEb1nY",
+      "3E7hkPZ-HTk"
+    ]
   },
   {
     "id": "top-shorts",
@@ -95,6 +149,8 @@
     "description": "60-second high-signal Shorts curated by an AI Architect — pairs with /watch/shorts. Each Short earns its place by compressing a real insight into under a minute.",
     "icon": "zap",
     "color": "#F43F5E",
-    "videoIds": ["1Edv43k15cY"]
+    "videoIds": [
+      "KyxYdicOzTg"
+    ]
   }
 ]
