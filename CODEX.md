@@ -17,6 +17,14 @@ For any non-trivial task (3+ steps or research-heavy), use the `planning-with-fi
 - Produce final output in `[deliverable].md`.
 - Update `task_plan.md` after each phase (mark done, log errors, update status).
 
+## Production Content Definition of Done
+For FrankX blog/content requests, do not stop at a plan or local draft unless Frank explicitly asks for planning only. Save useful plans, generated prompts, and delivery notes in repo files when they affect future execution. A content task is successful when:
+- The article/page exists in the production Vercel website repo.
+- A custom generated hero image is saved in `public/images/blog/` and wired into frontmatter or page metadata.
+- Content validation and relevant link checks are run, with any pre-existing unrelated failures called out.
+- The exact changed files are committed without staging unrelated dirty work.
+- The production deploy path is completed and the live URL is verified.
+
 ## Primary Responsibilities
 
 ### 1. Architecture Design
