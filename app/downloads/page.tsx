@@ -7,7 +7,21 @@ export const metadata: Metadata = {
   description: 'Download free guides, frameworks, and resources for AI-powered creators.',
 }
 
-const downloads = [
+type DownloadItem = {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  features: string[]
+  variant: 'default' | 'emerald' | 'purple' | 'sunset' | 'ocean' | 'minimal'
+  icon: string
+  previewUrl?: string
+  href?: string
+  external?: boolean
+  cta?: string
+}
+
+const downloads: DownloadItem[] = [
   {
     id: 'soulbook-guide',
     title: "The Creator's Soulbook",
@@ -27,6 +41,18 @@ const downloads = [
     features: ['50+ Suno Prompts', 'Emotion Mapping', 'Genre Templates', 'Release Playbooks'],
     variant: 'emerald' as const,
     icon: '🎵',
+  },
+  {
+    id: 'blue-life-commons',
+    title: 'Blue Life Commons',
+    subtitle: 'Ocean Intelligence System — Founding Knowledgebase',
+    description: 'An open-source ocean-intelligence commons: 31 sourced species pages, 8 region briefings, welfare assessments, and a sanctuary/rehab model — with how-to guides for researchers, NGOs, sanctuaries, educators, and developers. Built for the people and AI agents protecting marine life.',
+    href: 'https://github.com/frankxai/blue-life-commons/releases/tag/v0.1.0',
+    external: true,
+    cta: 'Download v0.1.0',
+    features: ['31 Species Pages', '8 Region Briefings', '10 Audience Guides', 'MCP + Agent Skills'],
+    variant: 'ocean' as const,
+    icon: '🌊',
   },
 ]
 
@@ -83,15 +109,29 @@ export default function DownloadsPage() {
 
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    href={item.previewUrl}
-                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
-                  >
-                    Preview & Download
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
+                    >
+                      {item.cta ?? 'Download'}
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.previewUrl ?? '#'}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
+                    >
+                      Preview & Download
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  )}
                 </div>
               </AuroraGradient>
             ))}
