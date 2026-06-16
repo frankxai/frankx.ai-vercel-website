@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
+import { Calendar, Clock, Linkedin, Tag, Target, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
 import RelatedResearch from '@/components/blog/RelatedResearch'
@@ -14,6 +14,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
+import TableOfContents from '@/components/blog/TableOfContents'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -146,10 +147,10 @@ export default async function BlogPostPage({
         />
       )}
 
-      {/* Aurora Background Effect */}
+      {/* Editorial background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/35 to-transparent" />
+        <div className="absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.10),rgba(6,182,212,0.04)_42%,transparent_72%)]" />
       </div>
 
       <article className="relative pt-28 pb-24">
@@ -194,12 +195,12 @@ export default async function BlogPostPage({
               </p>
 
               {/* Author Card */}
-              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-[#101216] p-6 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
                   <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover" />
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">AI Architect & Creator</div>
+                    <div className="text-sm text-white/50">AI Architect & Creator Systems Builder</div>
                   </div>
                 </div>
 
@@ -227,22 +228,21 @@ export default async function BlogPostPage({
               </div>
 
               {/* Hero Image */}
-              <div className="rounded-2xl overflow-hidden border border-white/10">
-                <HeroImage
-                  src={post.image}
-                  title={post.title}
-                  subtitle={post.description}
-                  alt={post.title}
-                  priority
-                />
-              </div>
+              <HeroImage
+                src={post.image}
+                title={post.title}
+                subtitle={post.description}
+                alt={post.title}
+                priority
+                className="rounded-2xl"
+              />
 
               {/* Reading Goal */}
               {post.readingGoal && (
-                <div className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
+                <div className="rounded-2xl border border-emerald-500/20 bg-[#101216] p-6">
                   <div className="flex items-start gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20">
-                      <span className="text-lg">🎯</span>
+                      <Target className="h-4 w-4 text-emerald-300" />
                     </div>
                     <div className="flex-1">
                       <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Reading Goal</span>
@@ -266,6 +266,7 @@ export default async function BlogPostPage({
 
         <div className="px-6 pt-12">
           <div className="mx-auto max-w-[680px]">
+            <TableOfContents />
             <div className="article-prose">
               <MDXContent source={post.content} />
             </div>
@@ -297,17 +298,9 @@ export default async function BlogPostPage({
 
             <RelatedResearch blogSlug={slug} />
 
-            {/* Axi article footer accent */}
-            <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
-              <Image
-                src="/images/mascot/axi-v3-icon.png"
-                alt="Axi"
-                width={36}
-                height={36}
-                className="rounded-lg opacity-60"
-              />
-              <p className="text-xs text-white/30">
-                Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
+            <div className="mt-12 border-t border-white/10 pt-8">
+              <p className="text-xs uppercase tracking-[0.24em] text-white/35">
+                FrankX.AI / AI Architecture, Creator Systems, and Builder Intelligence
               </p>
             </div>
           </div>
@@ -335,7 +328,6 @@ export default async function BlogPostPage({
     </div>
   )
 }
-
 
 
 

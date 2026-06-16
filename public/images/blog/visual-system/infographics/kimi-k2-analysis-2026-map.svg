@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price infographic">
+  <rect width="1600" height="900" fill="#0a0a0b"/>
+  <rect x="70" y="70" width="1460" height="760" rx="28" fill="#0d0f13" stroke="#ffffff" stroke-opacity=".11"/>
+  <path d="M170 570H1430" stroke="#10b981" stroke-width="3" stroke-opacity=".55"/>
+  <path d="M250 570C430 230 660 730 810 420C980 70 1140 660 1360 275" fill="none" stroke="#06b6d4" stroke-width="3" stroke-opacity=".45"/>
+  <text x="145" y="150" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">FRANKX OPERATING MAP</text>
+  <text x="145" y="220" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="780" letter-spacing="0">Agent Stack: Kimi K2.6: The Open-Weight</text>
+<text x="145" y="278" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="780" letter-spacing="0">Model That Ties GPT-5.5 on Coding at...</text>
+  
+        <rect x="145" y="365" width="206" height="156" rx="14" fill="#111318" stroke="#10b981" stroke-opacity=".55"/>
+        <text x="248" y="422" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="750">Interface</text>
+        <text x="248" y="462" text-anchor="middle" fill="#9ca3af" font-family="JetBrains Mono, Consolas, monospace" font-size="15">01</text>
+      
+
+        <rect x="410" y="365" width="206" height="156" rx="14" fill="#111318" stroke="#06b6d4" stroke-opacity=".55"/>
+        <text x="513" y="422" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="750">Memory</text>
+        <text x="513" y="462" text-anchor="middle" fill="#9ca3af" font-family="JetBrains Mono, Consolas, monospace" font-size="15">02</text>
+      
+
+        <rect x="675" y="365" width="206" height="156" rx="14" fill="#111318" stroke="#10b981" stroke-opacity=".55"/>
+        <text x="778" y="422" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="750">Tools</text>
+        <text x="778" y="462" text-anchor="middle" fill="#9ca3af" font-family="JetBrains Mono, Consolas, monospace" font-size="15">03</text>
+      
+
+        <rect x="940" y="365" width="206" height="156" rx="14" fill="#111318" stroke="#06b6d4" stroke-opacity=".55"/>
+        <text x="1043" y="422" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="750">Evals</text>
+        <text x="1043" y="462" text-anchor="middle" fill="#9ca3af" font-family="JetBrains Mono, Consolas, monospace" font-size="15">04</text>
+      
+
+        <rect x="1205" y="365" width="206" height="156" rx="14" fill="#111318" stroke="#10b981" stroke-opacity=".55"/>
+        <text x="1308" y="422" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="750">Deploy</text>
+        <text x="1308" y="462" text-anchor="middle" fill="#9ca3af" font-family="JetBrains Mono, Consolas, monospace" font-size="15">05</text>
+      
+  <rect x="145" y="650" width="1310" height="94" rx="14" fill="#050607" stroke="#ffffff" stroke-opacity=".10"/>
+  <text x="178" y="698" fill="#d1d5db" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500" letter-spacing="0">Tools become durable systems when memory, evals, and deployment discipline converge.</text>
+</svg>

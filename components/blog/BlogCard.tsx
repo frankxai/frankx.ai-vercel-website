@@ -37,18 +37,11 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       onTouchMove={handlers.onTouchMove}
       onTouchEnd={handlers.onTouchEnd}
       className={cn(
-        // Liquid glass base
-        'group relative block overflow-hidden rounded-3xl',
-        'border border-white/[0.08]',
-        'bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)]',
-        '[box-shadow:0_8px_32px_-8px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)]',
-        // Transitions
+        'group relative block overflow-hidden rounded-2xl',
+        'border border-white/[0.09]',
+        'bg-[#101216]',
         'transition-all duration-500',
-        // Hover: lift + deeper shadow + emerald tint
-        'hover:border-white/[0.18]',
-        'hover:-translate-y-1.5',
-        'hover:[box-shadow:0_24px_64px_-12px_rgba(0,0,0,0.65),0_0_0_1px_rgba(16,185,129,0.10),inset_0_1px_0_rgba(255,255,255,0.10)]',
-        // Accessibility
+        'hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-[#12161b]',
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
         featured && 'md:col-span-2 lg:col-span-3',
         className
@@ -60,18 +53,18 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       {/* Cursor-following radial glow */}
       <div
         ref={glowRef}
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 z-10"
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 z-10"
       />
 
       {/* Top-edge ambient hover glow */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
         style={{ background: `radial-gradient(ellipse at 50% 0%, rgba(${GLOW_RGB}, 0.08), transparent 65%)` }}
       />
 
       {/* Hero Image */}
       {showImage && (
-        <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
+        <div className="relative h-48 w-full overflow-hidden bg-[#0b0d10] md:h-56">
           <Image
             src={post.image!}
             alt={post.title}
@@ -80,7 +73,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
             sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
             onError={() => setImgError(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/35 to-transparent" />
 
           {/* Category badge */}
           <div className="absolute top-4 left-4">

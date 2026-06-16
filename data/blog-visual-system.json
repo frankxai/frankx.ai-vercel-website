@@ -1,0 +1,745 @@
+{
+  "meta": {
+    "name": "FrankX Blog Visual Operating System",
+    "generatedAt": "2026-06-16T13:25:44.625Z",
+    "generationMode": "repo-native-svg",
+    "builtInImageGeneration": "reserved for cinematic bitmap hero art; not used for this exact-text batch",
+    "counts": {
+      "headers": 40,
+      "infographics": 24,
+      "socialCards": 96,
+      "socialCopyPacks": 32
+    },
+    "reviewPolicy": "Reject stock-like, generic, over-purple, logo-like, unreadable, or text-artifacted assets."
+  },
+  "posts": [
+    {
+      "slug": "claude-agent-sdk-credit-pause-agent-stack-2026",
+      "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-16",
+      "hero": "/images/blog/visual-system/claude-agent-sdk-credit-pause-agent-stack-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/claude-agent-sdk-credit-pause-agent-stack-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/claude-agent-sdk-credit-pause-agent-stack-2026/wide.svg",
+        "square": "/images/social/blog/claude-agent-sdk-credit-pause-agent-stack-2026/square.svg",
+        "vertical": "/images/social/blog/claude-agent-sdk-credit-pause-agent-stack-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "ultimate-guide-ai-coding-agents-2026",
+      "title": "The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond",
+      "category": "Creator Systems",
+      "date": "2026-01-16",
+      "hero": "/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/ultimate-guide-ai-coding-agents-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/ultimate-guide-ai-coding-agents-2026/wide.svg",
+        "square": "/images/social/blog/ultimate-guide-ai-coding-agents-2026/square.svg",
+        "vertical": "/images/social/blog/ultimate-guide-ai-coding-agents-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "production-agentic-ai-systems",
+      "title": "Enterprise Agentic Architecture: Decision Framework for Production",
+      "category": "Intelligence Dispatches",
+      "date": "2026-01-21",
+      "hero": "/images/blog/visual-system/production-agentic-ai-systems-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/production-agentic-ai-systems-map.svg",
+      "social": {
+        "wide": "/images/social/blog/production-agentic-ai-systems/wide.svg",
+        "square": "/images/social/blog/production-agentic-ai-systems/square.svg",
+        "vertical": "/images/social/blog/production-agentic-ai-systems/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Enterprise Agentic Architecture: Decision Framework for Production\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "production-agent-patterns-7-pillars",
+      "title": "The 7 Pillars of Production Agent Systems: What Actually Matters in 2026",
+      "category": "AI Architecture",
+      "date": "2026-01-20",
+      "hero": "/images/blog/visual-system/production-agent-patterns-7-pillars-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/production-agent-patterns-7-pillars-map.svg",
+      "social": {
+        "wide": "/images/social/blog/production-agent-patterns-7-pillars/wide.svg",
+        "square": "/images/social/blog/production-agent-patterns-7-pillars/square.svg",
+        "vertical": "/images/social/blog/production-agent-patterns-7-pillars/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The 7 Pillars of Production Agent Systems: What Actually Matters in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "multi-agent-orchestration-patterns-2026",
+      "title": "Multi-Agent Orchestration Patterns: Building Production Systems in 2026",
+      "category": "AI & Systems",
+      "date": "2026-01-26",
+      "hero": "/images/blog/visual-system/multi-agent-orchestration-patterns-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/multi-agent-orchestration-patterns-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/multi-agent-orchestration-patterns-2026/wide.svg",
+        "square": "/images/social/blog/multi-agent-orchestration-patterns-2026/square.svg",
+        "vertical": "/images/social/blog/multi-agent-orchestration-patterns-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Multi-Agent Orchestration Patterns: Building Production Systems in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "agentic-ai-roadmap-2026",
+      "title": "Agentic AI Roadmap 2026: From Multi-Agent Systems to Enterprise Orchestration",
+      "category": "Intelligence Dispatches",
+      "date": "2026-01-26",
+      "hero": "/images/blog/visual-system/agentic-ai-roadmap-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/agentic-ai-roadmap-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/agentic-ai-roadmap-2026/wide.svg",
+        "square": "/images/social/blog/agentic-ai-roadmap-2026/square.svg",
+        "vertical": "/images/social/blog/agentic-ai-roadmap-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Agentic AI Roadmap 2026: From Multi-Agent Systems to Enterprise Orchestration\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "agent-family-architecture",
+      "title": "Agent Family Architecture vs Agent Swarms",
+      "category": "AI Architecture",
+      "date": "2026-05-03",
+      "hero": "/images/blog/visual-system/agent-family-architecture-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/agent-family-architecture-map.svg",
+      "social": {
+        "wide": "/images/social/blog/agent-family-architecture/wide.svg",
+        "square": "/images/social/blog/agent-family-architecture/square.svg",
+        "vertical": "/images/social/blog/agent-family-architecture/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Agent Family Architecture vs Agent Swarms\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "building-custom-skills-acos",
+      "title": "Building Custom Skills for ACOS: The Complete Developer Guide",
+      "category": "Tutorials",
+      "date": "2026-01-27",
+      "hero": "/images/blog/visual-system/building-custom-skills-acos-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/building-custom-skills-acos-map.svg",
+      "social": {
+        "wide": "/images/social/blog/building-custom-skills-acos/wide.svg",
+        "square": "/images/social/blog/building-custom-skills-acos/square.svg",
+        "vertical": "/images/social/blog/building-custom-skills-acos/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Building Custom Skills for ACOS: The Complete Developer Guide\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "mcp-server-architecture-workshop",
+      "title": "Build Your First MCP Server: The Model Context Protocol Workshop",
+      "category": "Creator Systems",
+      "date": "2026-01-16",
+      "hero": "/images/blog/visual-system/mcp-server-architecture-workshop-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/mcp-server-architecture-workshop-map.svg",
+      "social": {
+        "wide": "/images/social/blog/mcp-server-architecture-workshop/wide.svg",
+        "square": "/images/social/blog/mcp-server-architecture-workshop/square.svg",
+        "vertical": "/images/social/blog/mcp-server-architecture-workshop/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Build Your First MCP Server: The Model Context Protocol Workshop\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "llm-evals-claude-code-guide",
+      "title": "How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-10",
+      "hero": "/images/blog/visual-system/llm-evals-claude-code-guide-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/llm-evals-claude-code-guide-map.svg",
+      "social": {
+        "wide": "/images/social/blog/llm-evals-claude-code-guide/wide.svg",
+        "square": "/images/social/blog/llm-evals-claude-code-guide/square.svg",
+        "vertical": "/images/social/blog/llm-evals-claude-code-guide/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "claude-code-skills-2026-the-10-you-need",
+      "title": "Claude Code Skills 2026: The 10 You Actually Need",
+      "category": "Creator Systems",
+      "date": "2026-03-21",
+      "hero": "/images/blog/visual-system/claude-code-skills-2026-the-10-you-need-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/claude-code-skills-2026-the-10-you-need-map.svg",
+      "social": {
+        "wide": "/images/social/blog/claude-code-skills-2026-the-10-you-need/wide.svg",
+        "square": "/images/social/blog/claude-code-skills-2026-the-10-you-need/square.svg",
+        "vertical": "/images/social/blog/claude-code-skills-2026-the-10-you-need/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Claude Code Skills 2026: The 10 You Actually Need\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "ai-model-routing-guide",
+      "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-10",
+      "hero": "/images/blog/visual-system/ai-model-routing-guide-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/ai-model-routing-guide-map.svg",
+      "social": {
+        "wide": "/images/social/blog/ai-model-routing-guide/wide.svg",
+        "square": "/images/social/blog/ai-model-routing-guide/square.svg",
+        "vertical": "/images/social/blog/ai-model-routing-guide/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "best-open-local-llms-2026",
+      "title": "The Best Open & Local LLMs in 2026: A Self-Host Field Guide",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/best-open-local-llms-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/best-open-local-llms-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/best-open-local-llms-2026/wide.svg",
+        "square": "/images/social/blog/best-open-local-llms-2026/square.svg",
+        "vertical": "/images/social/blog/best-open-local-llms-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The Best Open & Local LLMs in 2026: A Self-Host Field Guide\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "gpt-oss-analysis-2026",
+      "title": "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/gpt-oss-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/gpt-oss-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/gpt-oss-analysis-2026/wide.svg",
+        "square": "/images/social/blog/gpt-oss-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/gpt-oss-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "llama-4-analysis-2026",
+      "title": "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/llama-4-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/llama-4-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/llama-4-analysis-2026/wide.svg",
+        "square": "/images/social/blog/llama-4-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/llama-4-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "deepseek-v4-analysis-2026",
+      "title": "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/deepseek-v4-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/deepseek-v4-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/deepseek-v4-analysis-2026/wide.svg",
+        "square": "/images/social/blog/deepseek-v4-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/deepseek-v4-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "kimi-k2-analysis-2026",
+      "title": "Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/kimi-k2-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/kimi-k2-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/kimi-k2-analysis-2026/wide.svg",
+        "square": "/images/social/blog/kimi-k2-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/kimi-k2-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "qwen3-max-analysis-2026",
+      "title": "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/qwen3-max-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/qwen3-max-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/qwen3-max-analysis-2026/wide.svg",
+        "square": "/images/social/blog/qwen3-max-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/qwen3-max-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "gemini-3-5-pro-analysis-2026",
+      "title": "Gemini 3.5 Pro: What We Actually Know Before GA",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/gemini-3-5-pro-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/gemini-3-5-pro-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/gemini-3-5-pro-analysis-2026/wide.svg",
+        "square": "/images/social/blog/gemini-3-5-pro-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/gemini-3-5-pro-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Gemini 3.5 Pro: What We Actually Know Before GA\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "gpt-5-5-analysis-2026",
+      "title": "GPT-5.5 (\\\"Spud\\\"): What Actually Changed and Why It Matters",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/gpt-5-5-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/gpt-5-5-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/gpt-5-5-analysis-2026/wide.svg",
+        "square": "/images/social/blog/gpt-5-5-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/gpt-5-5-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"GPT-5.5 (\\\"Spud\\\"): What Actually Changed and Why It Matters\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "grok-4-3-analysis-2026",
+      "title": "Grok 4.3: xAI Trades the Crown for the Price Tag",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-05",
+      "hero": "/images/blog/visual-system/grok-4-3-analysis-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/grok-4-3-analysis-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/grok-4-3-analysis-2026/wide.svg",
+        "square": "/images/social/blog/grok-4-3-analysis-2026/square.svg",
+        "vertical": "/images/social/blog/grok-4-3-analysis-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Grok 4.3: xAI Trades the Crown for the Price Tag\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "ai-image-video-generation-playbook-2026",
+      "title": "The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost",
+      "category": "AI Architecture",
+      "date": "2026-06-06",
+      "hero": "/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/ai-image-video-generation-playbook-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/ai-image-video-generation-playbook-2026/wide.svg",
+        "square": "/images/social/blog/ai-image-video-generation-playbook-2026/square.svg",
+        "vertical": "/images/social/blog/ai-image-video-generation-playbook-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "best-ai-tools-for-creators-2026",
+      "title": "The Best AI Tools for Creators in 2026: A GenCreator's Production Stack",
+      "category": "Creator Tools",
+      "date": "2026-03-10",
+      "hero": "/images/blog/visual-system/best-ai-tools-for-creators-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/best-ai-tools-for-creators-2026-map.svg",
+      "social": {
+        "wide": "/images/social/blog/best-ai-tools-for-creators-2026/wide.svg",
+        "square": "/images/social/blog/best-ai-tools-for-creators-2026/square.svg",
+        "vertical": "/images/social/blog/best-ai-tools-for-creators-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The Best AI Tools for Creators in 2026: A GenCreator's Production Stack\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "ai-agents-transform-due-diligence",
+      "title": "How AI Agents Are Transforming Due Diligence in 2026",
+      "category": "Intelligence Dispatches",
+      "date": "2026-02-14",
+      "hero": "/images/blog/visual-system/ai-agents-transform-due-diligence-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/ai-agents-transform-due-diligence-map.svg",
+      "social": {
+        "wide": "/images/social/blog/ai-agents-transform-due-diligence/wide.svg",
+        "square": "/images/social/blog/ai-agents-transform-due-diligence/square.svg",
+        "vertical": "/images/social/blog/ai-agents-transform-due-diligence/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"How AI Agents Are Transforming Due Diligence in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "agentic-workflows-save-hours",
+      "title": "5 Agentic Workflows That Save Creators 10+ Hours Per Week",
+      "category": "Creator Systems",
+      "date": "2026-01-22",
+      "hero": "/images/blog/visual-system/agentic-workflows-save-hours-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/agentic-workflows-save-hours/wide.svg",
+        "square": "/images/social/blog/agentic-workflows-save-hours/square.svg",
+        "vertical": "/images/social/blog/agentic-workflows-save-hours/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"5 Agentic Workflows That Save Creators 10+ Hours Per Week\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "creator-intelligence-systems-2026",
+      "title": "Why Every Creator Needs an Intelligence System in 2026",
+      "category": "Creator Systems",
+      "date": "2026-01-20",
+      "hero": "/images/blog/visual-system/creator-intelligence-systems-2026-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/creator-intelligence-systems-2026/wide.svg",
+        "square": "/images/social/blog/creator-intelligence-systems-2026/square.svg",
+        "vertical": "/images/social/blog/creator-intelligence-systems-2026/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Why Every Creator Needs an Intelligence System in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "golden-age-field-guide",
+      "title": "Golden Age Field Guide: Principles and Rituals",
+      "category": "Intelligence Dispatches",
+      "date": "2025-03-01",
+      "hero": "/images/blog/visual-system/golden-age-field-guide-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/golden-age-field-guide/wide.svg",
+        "square": "/images/social/blog/golden-age-field-guide/square.svg",
+        "vertical": "/images/social/blog/golden-age-field-guide/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Golden Age Field Guide: Principles and Rituals\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "golden-age-of-intelligence",
+      "title": "The Golden Age of Intelligence: Agentic SEO OS for Exponential Reach",
+      "category": "Flagship",
+      "date": "2024-09-19",
+      "hero": "/images/blog/visual-system/golden-age-of-intelligence-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/golden-age-of-intelligence/wide.svg",
+        "square": "/images/social/blog/golden-age-of-intelligence/square.svg",
+        "vertical": "/images/social/blog/golden-age-of-intelligence/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The Golden Age of Intelligence: Agentic SEO OS for Exponential Reach\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "building-research-intelligence-system",
+      "title": "Building a Research Intelligence System: How I Use AI Agents for Daily Knowledge Operations",
+      "category": "Creator Systems",
+      "date": "2026-01-21",
+      "hero": "/images/blog/visual-system/building-research-intelligence-system-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/building-research-intelligence-system/wide.svg",
+        "square": "/images/social/blog/building-research-intelligence-system/square.svg",
+        "vertical": "/images/social/blog/building-research-intelligence-system/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"Building a Research Intelligence System: How I Use AI Agents for Daily Knowledge Operations\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "ai-skills-operating-layer",
+      "title": "AI Skills Are the New Operating Layer",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-15",
+      "hero": "/images/blog/visual-system/ai-skills-operating-layer-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/ai-skills-operating-layer/wide.svg",
+        "square": "/images/social/blog/ai-skills-operating-layer/square.svg",
+        "vertical": "/images/social/blog/ai-skills-operating-layer/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"AI Skills Are the New Operating Layer\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "skill-libraries-ai-coe-governance",
+      "title": "How to Govern an AI Skill Library",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-15",
+      "hero": "/images/blog/visual-system/skill-libraries-ai-coe-governance-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/skill-libraries-ai-coe-governance/wide.svg",
+        "square": "/images/social/blog/skill-libraries-ai-coe-governance/square.svg",
+        "vertical": "/images/social/blog/skill-libraries-ai-coe-governance/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"How to Govern an AI Skill Library\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "the-higher-self-protocol",
+      "title": "The Higher Self Protocol: What Happened When I Used AI to Get Closer to God",
+      "category": "Flagship",
+      "date": "2026-06-12",
+      "hero": "/images/blog/visual-system/the-higher-self-protocol-hero.svg",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/the-higher-self-protocol/wide.svg",
+        "square": "/images/social/blog/the-higher-self-protocol/square.svg",
+        "vertical": "/images/social/blog/the-higher-self-protocol/vertical.svg"
+      },
+      "prompt": "FrankX editorial visual for \"The Higher Self Protocol: What Happened When I Used AI to Get Closer to God\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "agentic-os-family-foundry-launch",
+      "title": "The Agentic OS Family: One Architecture, Installed Into Real Businesses",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-11",
+      "hero": "/images/blog/visual-system/agentic-os-family-foundry-launch-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"The Agentic OS Family: One Architecture, Installed Into Real Businesses\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "claude-fable-5-analysis-2026",
+      "title": "Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-10",
+      "hero": "/images/blog/visual-system/claude-fable-5-analysis-2026-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "claude-fable-5-prompting-guide",
+      "title": "Claude Fable 5 Prompting Guide: Seven Rules from Measured Behavior, Not Vibes",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-10",
+      "hero": "/images/blog/visual-system/claude-fable-5-prompting-guide-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"Claude Fable 5 Prompting Guide: Seven Rules from Measured Behavior, Not Vibes\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "aeo-playbook-get-cited-by-ai-2026",
+      "title": "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-07",
+      "hero": "/images/blog/visual-system/aeo-playbook-get-cited-by-ai-2026-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "best-ai-browser-2026",
+      "title": "Best AI Browser 2026: ChatGPT Atlas vs Perplexity Comet vs Dia",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-07",
+      "hero": "/images/blog/visual-system/best-ai-browser-2026-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"Best AI Browser 2026: ChatGPT Atlas vs Perplexity Comet vs Dia\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "best-ai-coding-tools-for-beginners-2026",
+      "title": "Best AI Coding Tool for Beginners 2026: Cursor vs GitHub Copilot vs Replit Agent",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-07",
+      "hero": "/images/blog/visual-system/best-ai-coding-tools-for-beginners-2026-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"Best AI Coding Tool for Beginners 2026: Cursor vs GitHub Copilot vs Replit Agent\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "best-ai-headshot-generator-2026",
+      "title": "Best AI Headshot Generator 2026: Aragon vs HeadshotPro vs The Photo AI (Tested)",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-07",
+      "hero": "/images/blog/visual-system/best-ai-headshot-generator-2026-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"Best AI Headshot Generator 2026: Aragon vs HeadshotPro vs The Photo AI (Tested)\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "best-ai-logo-maker-2026",
+      "title": "Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft",
+      "category": "Intelligence Dispatches",
+      "date": "2026-06-07",
+      "hero": "/images/blog/visual-system/best-ai-logo-maker-2026-hero.svg",
+      "infographic": null,
+      "social": null,
+      "prompt": "FrankX editorial visual for \"Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "source": "design.md + taste.md + post frontmatter",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    }
+  ]
+}

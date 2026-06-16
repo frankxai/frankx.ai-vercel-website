@@ -36,7 +36,7 @@ function YouTubeEmbed(props: { id: string; title?: string; [key: string]: unknow
   )
 }
 
-type CalloutKind = 'info' | 'warning' | 'tip' | 'success' | 'insight' | 'note'
+type CalloutKind = 'info' | 'warning' | 'tip' | 'success' | 'insight' | 'note' | 'action' | 'evidence'
 
 interface CalloutProps {
   children: ReactNode
@@ -49,7 +49,9 @@ const calloutStyles: Record<CalloutKind, { border: string; bg: string; icon: str
   warning: { border: 'border-amber-400/30', bg: 'bg-amber-400/[0.06]', icon: 'text-amber-400', label: 'Warning' },
   tip: { border: 'border-emerald-400/30', bg: 'bg-emerald-400/[0.06]', icon: 'text-emerald-400', label: 'Tip' },
   success: { border: 'border-emerald-400/30', bg: 'bg-emerald-400/[0.06]', icon: 'text-emerald-400', label: 'Success' },
-  insight: { border: 'border-violet-400/30', bg: 'bg-violet-400/[0.06]', icon: 'text-violet-400', label: 'Insight' },
+  insight: { border: 'border-cyan-400/30', bg: 'bg-cyan-400/[0.06]', icon: 'text-cyan-400', label: 'Insight' },
+  action: { border: 'border-emerald-400/35', bg: 'bg-emerald-400/[0.07]', icon: 'text-emerald-400', label: 'Action' },
+  evidence: { border: 'border-cyan-400/30', bg: 'bg-cyan-400/[0.06]', icon: 'text-cyan-400', label: 'Evidence' },
 }
 
 // Inline SVG icons to avoid React version conflicts with lucide-react in RSC
@@ -86,6 +88,8 @@ function getCalloutIcon(type: CalloutKind) {
     case 'tip': return <LightbulbIcon />
     case 'success': return <CheckIcon />
     case 'insight': return <LightbulbIcon />
+    case 'action': return <CheckIcon />
+    case 'evidence': return <InfoIcon />
   }
 }
 
