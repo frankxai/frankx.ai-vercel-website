@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { musicPromptsEmail } from '@/lib/email-templates'
-import { welcomeEmail1 } from '@/lib/email-templates-welcome'
+import { musicPromptsEmail, newsletterConfirmationEmail } from '@/lib/email-templates'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
+import { notifyAdmin } from '@/lib/notify-admin'
+import { confirmUrl, FROM_ADDRESS } from '@/lib/email-config'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -48,18 +49,47 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   },
 }
 
-async function sendWelcomeEmail(email: string, name: string, listType: string) {
+// Double-opt-in: the confirmation email with the HMAC-signed confirm link.
+// Marketing sends are gated on the user clicking this; the contact is created
+// with unsubscribed:true and flipped by /api/subscribe/confirm.
+async function sendConfirmationEmail(email: string, name: string) {
+  if (!RESEND_API_KEY) return
+
+  const template = newsletterConfirmationEmail({
+    recipientName: name || 'Creator',
+    email,
+    confirmUrl: confirmUrl(email),
+  })
+
+  await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: FROM_ADDRESS,
+      to: email,
+      subject: template.subject,
+      html: template.html,
+    }),
+  })
+}
+
+// Transactional deliveries: the user explicitly requested these assets
+// (lead magnet download, waitlist acknowledgement), so they send immediately
+// regardless of DOI state. Marketing welcome flows do NOT — those wait for
+// the confirm click.
+async function sendTransactionalEmail(email: string, name: string, listType: string) {
   if (!RESEND_API_KEY) return
 
   // Inner Circle waitlist gets a plain-text confirmation that matches the
   // Lenny/Ben-Thompson aesthetic — no HTML wrapper, no marketing chrome.
-  // The template at lib/email-templates-inner-circle.ts owns the format.
   if (listType === 'inner-circle') {
     const innerCircle = innerCircleWaitlistEmail({
       email,
       name,
       joinedAt: new Date().toISOString(),
-      // waitlistPosition wired by a counter in a follow-up commit; safe to omit for v1
     })
 
     await fetch('https://api.resend.com/emails', {
@@ -69,18 +99,15 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Frank <frank@mail.frankx.ai>',
+        from: FROM_ADDRESS,
         to: email,
         subject: innerCircle.subject,
-        // Resend accepts `text` for plain-text only emails — exactly what the
-        // founders-tier waitlist confirmation should be.
         text: innerCircle.plainText,
       }),
     })
     return
   }
 
-  // All other list types still use the styled HTML templates.
   let template
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
@@ -92,9 +119,9 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
       recipientName: name || 'Creator',
     })
   } else {
-    template = welcomeEmail1({
-      recipientName: name || 'Creator',
-    })
+    // Generic lists get no immediate marketing email — the welcome flow
+    // runs after the confirm click (see /api/subscribe/confirm).
+    return
   }
 
   await fetch('https://api.resend.com/emails', {
@@ -104,7 +131,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Frank <frank@mail.frankx.ai>',
+      from: FROM_ADDRESS,
       to: email,
       subject: template.subject,
       html: template.html,
@@ -132,8 +159,11 @@ export async function POST(request: NextRequest) {
     }
 
     const config = LIST_CONFIG[listType] || LIST_CONFIG.newsletter
+    void config // topics applied via Resend audience segmentation
 
-    // Create contact in Resend audience
+    // Create contact in Resend audience.
+    // DOI: contact starts unconfirmed (unsubscribed: true) and is flipped to
+    // subscribed by /api/subscribe/confirm when the user clicks the link.
     const resendResponse = await fetch(`https://api.resend.com/audiences/${AUDIENCE_ID}/contacts`, {
       method: 'POST',
       headers: {
@@ -143,7 +173,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         email,
         first_name: name || undefined,
-        unsubscribed: false,
+        unsubscribed: true,
       }),
     })
 
@@ -166,16 +196,30 @@ export async function POST(request: NextRequest) {
 
     const data = await resendResponse.json()
 
-    // Send welcome/delivery email (non-blocking)
-    sendWelcomeEmail(email, name, listType).catch((err) =>
-      console.error('Welcome email error:', err)
+    // DOI confirmation email (non-blocking)
+    sendConfirmationEmail(email, name).catch((err) =>
+      console.error('Confirmation email error:', err)
     )
+
+    // Transactional asset delivery for lead magnets / waitlists (non-blocking)
+    sendTransactionalEmail(email, name, listType).catch((err) =>
+      console.error('Transactional email error:', err)
+    )
+
+    // Notify admin (non-blocking)
+    notifyAdmin({
+      formType: 'newsletter',
+      email,
+      name,
+      details: { 'List Type': listType, ...(source ? { Source: source } : {}) },
+    }).catch(console.error)
 
     return NextResponse.json({
       success: true,
-      message: listType === 'music-lab'
-        ? 'Check your email for your free prompts!'
-        : 'Successfully subscribed!',
+      message:
+        listType === 'music-lab'
+          ? 'Check your email — your prompts are on the way, plus a one-click confirm link.'
+          : 'Check your inbox for a one-click confirmation link.',
       subscriber: data.id,
     })
   } catch (error) {
