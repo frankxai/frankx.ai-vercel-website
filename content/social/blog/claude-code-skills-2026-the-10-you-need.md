@@ -1,43 +1,48 @@
-# Social Pack: Claude Code Skills 2026: The 10 You Actually Need
+---
+slug: "claude-code-skills-2026-the-10-you-need"
+title: "Claude Code Skills 2026: The 10 You Actually Need"
+socialTitle: "Claude Code Skills: The 10 You Need"
+angle: "developer"
+qualityScore: 8
+qualityTier: "premium"
+hero: "/images/blog/generated/claude-code-skills-2026-the-10-you-need-premium-hero.png"
+socialWide: "/images/social/blog/claude-code-skills-2026-the-10-you-need/wide.png"
+socialSquare: "/images/social/blog/claude-code-skills-2026-the-10-you-need/square.png"
+socialPortrait: "/images/social/blog/claude-code-skills-2026-the-10-you-need/portrait.png"
+postUrl: "https://www.frankx.ai/blog/claude-code-skills-2026-the-10-you-need"
+generatedMode: "built-in-image-gen + deterministic social overlays"
+---
 
-Source: https://frankx.ai/blog/claude-code-skills-2026-the-10-you-need
-Visuals:
-- Wide: /images/social/blog/claude-code-skills-2026-the-10-you-need/wide.svg
-- Square: /images/social/blog/claude-code-skills-2026-the-10-you-need/square.svg
-- Vertical: /images/social/blog/claude-code-skills-2026-the-10-you-need/vertical.svg
+# Claude Code Skills 2026: The 10 You Actually Need
 
-## LinkedIn
-Claude Code Skills 2026: The 10 You Actually Need
-
+## LinkedIn Post
 Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples.
 
-What matters now: Tools become durable systems when memory, evals, and deployment discipline converge.
+The real leverage is not the tool by itself. It is the operating layer around it: context, workflow, evals, deployment discipline, and a taste bar high enough to reject generic outputs.
 
-For builders, this is a practical shift from tool collection to system design. The winners will connect interface, memory, tools, and execution into one operating cadence.
-
-Read the full analysis: https://frankx.ai/blog/claude-code-skills-2026-the-10-you-need
+Read: https://www.frankx.ai/blog/claude-code-skills-2026-the-10-you-need
 
 ## X Thread
-1/ Claude Code Skills 2026: The 10 You Actually Need
-
-Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples.
-
-2/ The real signal is not another isolated AI tool. It is the move toward agent stack as an operating layer.
-
-3/ Watch the stack: Interface -> Memory -> Tools -> Evals -> Deploy.
-
-4/ Builders should ask: what becomes faster, cheaper, measurable, or newly possible when this workflow is agent-native?
-
-5/ Full analysis: https://frankx.ai/blog/claude-code-skills-2026-the-10-you-need
+1. Claude Code Skills 2026: The 10 You Actually Need
+2. The useful question: what changes in the workflow when this becomes part of a repeatable system?
+3. Look for the stack: inputs, context, tools, memory, evals, deployment, and trust.
+4. The teams that win will turn experiments into operating leverage, not demo theater.
+5. Full field note: https://www.frankx.ai/blog/claude-code-skills-2026-the-10-you-need
 
 ## Short Caption
-Agent Stack: what changes for users, devs, builders, founders, and investors.
+Claude Code Skills 2026: The 10 You Actually Need — a FrankX field note for developers building with AI systems in 2026.
 
-## Founder Angle
-Use this to identify the workflows where AI can compress cycle time, reduce coordination drag, and create a defensible operating advantage.
+## Founder / Investor Angle
+Watch the workflow, not the headline. The signal is whether this creates repeatable leverage, lower coordination cost, better diligence, faster shipping, or a defensible operating cadence.
 
 ## Developer Angle
-Treat the article as an implementation map: isolate the interface, wire the memory/tools layer, add evals, then deploy with observability.
+Treat it as architecture: define context boundaries, tool permissions, evals, failure modes, and deployment paths before scaling usage.
 
 ## Builder Takeaway
-Do not chase every tool. Build the smallest system that compounds.
+Ship one narrow loop, instrument it, improve the taste bar, then expand the system only where it compounds.
+
+## Visual Prompt
+Built-in image_gen premium FrankX hero: Claude Code Skills 2026: The 10 You Actually Need. Skill-library capsules are clear and reusable for campaign assets. Dark-first obsidian cinematic technical editorial; emerald/cyan spectrum with restrained amber; no readable text, no letters, no logos, no people, no robots, no watermark, no generic AI brain, no stock-photo laptop composition.
+
+## Rejection Notes
+Rejected or avoided: stock people/laptops, fake logos, readable text artifacts, purple glow wallpaper, AI brain motifs, and weak mobile framing.

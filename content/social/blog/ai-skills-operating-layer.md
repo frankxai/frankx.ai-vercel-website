@@ -1,43 +1,48 @@
-# Social Pack: AI Skills Are the New Operating Layer
+---
+slug: "ai-skills-operating-layer"
+title: "AI Skills Are the New Operating Layer"
+socialTitle: "AI Skills Operating Layer"
+angle: "builder"
+qualityScore: 9
+qualityTier: "flagship"
+hero: "/images/blog/generated/ai-skills-operating-layer-premium-hero.png"
+socialWide: "/images/social/blog/ai-skills-operating-layer/wide.png"
+socialSquare: "/images/social/blog/ai-skills-operating-layer/square.png"
+socialPortrait: "/images/social/blog/ai-skills-operating-layer/portrait.png"
+postUrl: "https://www.frankx.ai/blog/ai-skills-operating-layer"
+generatedMode: "built-in-image-gen + deterministic social overlays"
+---
 
-Source: https://frankx.ai/blog/ai-skills-operating-layer
-Visuals:
-- Wide: /images/social/blog/ai-skills-operating-layer/wide.svg
-- Square: /images/social/blog/ai-skills-operating-layer/square.svg
-- Vertical: /images/social/blog/ai-skills-operating-layer/vertical.svg
+# AI Skills Are the New Operating Layer
 
-## LinkedIn
-AI Skills Are the New Operating Layer
-
+## LinkedIn Post
 Why AI skills are not prompt snippets, but reusable operating knowledge for founders, startups, and enterprise AI teams.
 
-What matters now: Tools become durable systems when memory, evals, and deployment discipline converge.
+The real leverage is not the tool by itself. It is the operating layer around it: context, workflow, evals, deployment discipline, and a taste bar high enough to reject generic outputs.
 
-For builders, this is a practical shift from tool collection to system design. The winners will connect interface, memory, tools, and execution into one operating cadence.
-
-Read the full analysis: https://frankx.ai/blog/ai-skills-operating-layer
+Read: https://www.frankx.ai/blog/ai-skills-operating-layer
 
 ## X Thread
-1/ AI Skills Are the New Operating Layer
-
-Why AI skills are not prompt snippets, but reusable operating knowledge for founders, startups, and enterprise AI teams.
-
-2/ The real signal is not another isolated AI tool. It is the move toward agent stack as an operating layer.
-
-3/ Watch the stack: Interface -> Memory -> Tools -> Evals -> Deploy.
-
-4/ Builders should ask: what becomes faster, cheaper, measurable, or newly possible when this workflow is agent-native?
-
-5/ Full analysis: https://frankx.ai/blog/ai-skills-operating-layer
+1. AI Skills Are the New Operating Layer
+2. The useful question: what changes in the workflow when this becomes part of a repeatable system?
+3. Look for the stack: inputs, context, tools, memory, evals, deployment, and trust.
+4. The teams that win will turn experiments into operating leverage, not demo theater.
+5. Full field note: https://www.frankx.ai/blog/ai-skills-operating-layer
 
 ## Short Caption
-Agent Stack: what changes for users, devs, builders, founders, and investors.
+AI Skills Are the New Operating Layer — a FrankX field note for builders building with AI systems in 2026.
 
-## Founder Angle
-Use this to identify the workflows where AI can compress cycle time, reduce coordination drag, and create a defensible operating advantage.
+## Founder / Investor Angle
+Watch the workflow, not the headline. The signal is whether this creates repeatable leverage, lower coordination cost, better diligence, faster shipping, or a defensible operating cadence.
 
 ## Developer Angle
-Treat the article as an implementation map: isolate the interface, wire the memory/tools layer, add evals, then deploy with observability.
+Treat it as architecture: define context boundaries, tool permissions, evals, failure modes, and deployment paths before scaling usage.
 
 ## Builder Takeaway
-Do not chase every tool. Build the smallest system that compounds.
+Ship one narrow loop, instrument it, improve the taste bar, then expand the system only where it compounds.
+
+## Visual Prompt
+Built-in image_gen premium FrankX hero: AI Skills Are the New Operating Layer. Regenerated layered OS visual; strong systems metaphor. Dark-first obsidian cinematic technical editorial; emerald/cyan spectrum with restrained amber; no readable text, no letters, no logos, no people, no robots, no watermark, no generic AI brain, no stock-photo laptop composition.
+
+## Rejection Notes
+Rejected or avoided: stock people/laptops, fake logos, readable text artifacts, purple glow wallpaper, AI brain motifs, and weak mobile framing.
