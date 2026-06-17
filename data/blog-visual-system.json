@@ -5,11 +5,11 @@
     "generationMode": "hybrid-built-in-image-gen-plus-repo-native-svg",
     "builtInImageGeneration": "used for premium cinematic bitmap hero headers; repo-native SVG remains for exact-text infographics/social cards",
     "counts": {
-      "headers": 41,
+      "headers": 43,
       "infographics": 24,
       "socialCards": 96,
       "socialCopyPacks": 32,
-      "premiumBitmapHeaders": 6
+      "premiumBitmapHeaders": 13
     },
     "reviewPolicy": "Reject stock-like, generic, over-purple, logo-like, unreadable, or text-artifacted assets."
   },
@@ -94,19 +94,20 @@
       "title": "The 7 Pillars of Production Agent Systems: What Actually Matters in 2026",
       "category": "AI Architecture",
       "date": "2026-01-20",
-      "hero": "/images/blog/visual-system/production-agent-patterns-7-pillars-hero.svg",
+      "hero": "/images/blog/generated/production-agent-patterns-7-pillars-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/production-agent-patterns-7-pillars-map.svg",
       "social": {
         "wide": "/images/social/blog/production-agent-patterns-7-pillars/wide.svg",
         "square": "/images/social/blog/production-agent-patterns-7-pillars/square.svg",
         "vertical": "/images/social/blog/production-agent-patterns-7-pillars/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"The 7 Pillars of Production Agent Systems: What Actually Matters in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: seven glass pillars for production agent systems across reliability, evals, memory, tools, governance, observability, and cost control; dark obsidian architecture table, emerald/cyan signal lines, restrained amber, no text or logos.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/production-agent-patterns-7-pillars-hero.svg"
     },
     {
       "slug": "multi-agent-orchestration-patterns-2026",
@@ -133,19 +134,20 @@
       "title": "Agentic AI Roadmap 2026: From Multi-Agent Systems to Enterprise Orchestration",
       "category": "Intelligence Dispatches",
       "date": "2026-01-26",
-      "hero": "/images/blog/visual-system/agentic-ai-roadmap-2026-hero.svg",
+      "hero": "/images/blog/generated/agentic-ai-roadmap-2026-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/agentic-ai-roadmap-2026-map.svg",
       "social": {
         "wide": "/images/social/blog/agentic-ai-roadmap-2026/wide.svg",
         "square": "/images/social/blog/agentic-ai-roadmap-2026/square.svg",
         "vertical": "/images/social/blog/agentic-ai-roadmap-2026/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"Agentic AI Roadmap 2026: From Multi-Agent Systems to Enterprise Orchestration\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: strategic agentic AI roadmap as staged architecture platforms from copilots to governed production systems; dark premium 3D render, emerald/cyan paths, amber decision gates, no text or logos.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/agentic-ai-roadmap-2026-hero.svg"
     },
     {
       "slug": "agent-family-architecture",
@@ -267,19 +269,20 @@
       "title": "The Best Open & Local LLMs in 2026: A Self-Host Field Guide",
       "category": "Intelligence Dispatches",
       "date": "2026-06-05",
-      "hero": "/images/blog/visual-system/best-open-local-llms-2026-hero.svg",
+      "hero": "/images/blog/generated/best-open-local-llms-2026-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/best-open-local-llms-2026-map.svg",
       "social": {
         "wide": "/images/social/blog/best-open-local-llms-2026/wide.svg",
         "square": "/images/social/blog/best-open-local-llms-2026/square.svg",
         "vertical": "/images/social/blog/best-open-local-llms-2026/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"The Best Open & Local LLMs in 2026: A Self-Host Field Guide\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: sovereign local AI lab bench with private model core, local inference hardware, data vaults, and isolated network paths; obsidian, emerald/cyan, restrained amber, no text, logos, people, or generic AI brain.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/best-open-local-llms-2026-hero.svg"
     },
     {
       "slug": "gpt-oss-analysis-2026",
@@ -438,19 +441,20 @@
       "title": "The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost",
       "category": "AI Architecture",
       "date": "2026-06-06",
-      "hero": "/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg",
+      "hero": "/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/ai-image-video-generation-playbook-2026-map.svg",
       "social": {
         "wide": "/images/social/blog/ai-image-video-generation-playbook-2026/wide.svg",
         "square": "/images/social/blog/ai-image-video-generation-playbook-2026/square.svg",
         "vertical": "/images/social/blog/ai-image-video-generation-playbook-2026/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: sophisticated creative generation studio console with image frames, video timelines, camera volumes, and model pipelines converging into a cinematic output wall; emerald/cyan, restrained amber, no text or logos.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg"
     },
     {
       "slug": "best-ai-tools-for-creators-2026",
@@ -476,19 +480,20 @@
       "title": "How AI Agents Are Transforming Due Diligence in 2026",
       "category": "Intelligence Dispatches",
       "date": "2026-02-14",
-      "hero": "/images/blog/visual-system/ai-agents-transform-due-diligence-hero.svg",
+      "hero": "/images/blog/generated/ai-agents-transform-due-diligence-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/ai-agents-transform-due-diligence-map.svg",
       "social": {
         "wide": "/images/social/blog/ai-agents-transform-due-diligence/wide.svg",
         "square": "/images/social/blog/ai-agents-transform-due-diligence/square.svg",
         "vertical": "/images/social/blog/ai-agents-transform-due-diligence/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"How AI Agents Are Transforming Due Diligence in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: investor intelligence war-room table with data rooms, filings, market signals, ledgers, risk flags, and agent analysis nodes converging into an evidence graph; dark institutional feel, no text or logos.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/ai-agents-transform-due-diligence-hero.svg"
     },
     {
       "slug": "agentic-workflows-save-hours",
@@ -761,6 +766,38 @@
       "reviewStatus": "accepted",
       "deploymentStatus": "ready",
       "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+    },
+    {
+      "slug": "ai-video-generation-2026-sora-runway-kling-veo",
+      "title": "AI Video Generation 2026: Sora, Runway, Kling, Veo",
+      "category": "AI Tools",
+      "date": "2026-01-16",
+      "infographic": null,
+      "social": null,
+      "source": "design.md + taste.md + post frontmatter + second premium bitmap batch",
+      "hero": "/images/blog/generated/ai-video-generation-2026-sora-runway-kling-veo-premium-hero.png",
+      "fallbackHero": "/images/blog/ai-video-generation-2026-hero.webp",
+      "prompt": "Built-in image_gen premium FrankX hero: four abstract AI video model engines feeding one film-quality synthesis pipeline with glass reels, volumetric light, timelines, and camera rigs; no brand logos, no text, no people.",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
+      "deploymentStatus": "ready",
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset."
+    },
+    {
+      "slug": "best-no-code-ai-agent-builders-2026",
+      "title": "Best No-Code AI Agent Builders 2026",
+      "category": "AI Tools",
+      "date": "2026-01-16",
+      "infographic": null,
+      "social": null,
+      "source": "design.md + taste.md + post frontmatter + second premium bitmap batch",
+      "hero": "/images/blog/generated/best-no-code-ai-agent-builders-2026-premium-hero.png",
+      "fallbackHero": "/images/blog/best-no-code-ai-agent-builders-2026-hero.png",
+      "prompt": "Built-in image_gen premium FrankX hero: no-code agent builder workbench with modular workflow blocks, triggers, approvals, tools, and governed connectors; dark SaaS product visual language, emerald/cyan lines, restrained amber gates, no text or logos.",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
+      "deploymentStatus": "ready",
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. Previous image remains as fallback/supporting asset."
     }
   ]
 }
