@@ -2,13 +2,14 @@
   "meta": {
     "name": "FrankX Blog Visual Operating System",
     "generatedAt": "2026-06-16T13:25:44.625Z",
-    "generationMode": "repo-native-svg",
-    "builtInImageGeneration": "reserved for cinematic bitmap hero art; not used for this exact-text batch",
+    "generationMode": "hybrid-built-in-image-gen-plus-repo-native-svg",
+    "builtInImageGeneration": "used for premium cinematic bitmap hero headers; repo-native SVG remains for exact-text infographics/social cards",
     "counts": {
-      "headers": 40,
+      "headers": 41,
       "infographics": 24,
       "socialCards": 96,
-      "socialCopyPacks": 32
+      "socialCopyPacks": 32,
+      "premiumBitmapHeaders": 6
     },
     "reviewPolicy": "Reject stock-like, generic, over-purple, logo-like, unreadable, or text-artifacted assets."
   },
@@ -18,57 +19,75 @@
       "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
       "category": "Intelligence Dispatches",
       "date": "2026-06-16",
-      "hero": "/images/blog/visual-system/claude-agent-sdk-credit-pause-agent-stack-2026-hero.svg",
+      "hero": "/images/blog/generated/claude-agent-sdk-credit-pause-agent-stack-2026-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/claude-agent-sdk-credit-pause-agent-stack-2026-map.svg",
       "social": {
         "wide": "/images/social/blog/claude-agent-sdk-credit-pause-agent-stack-2026/wide.svg",
         "square": "/images/social/blog/claude-agent-sdk-credit-pause-agent-stack-2026/square.svg",
         "vertical": "/images/social/blog/claude-agent-sdk-credit-pause-agent-stack-2026/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: Claude Agent SDK credit pause represented as an amber pause control at the center of a dark agent operations board, with emerald/cyan compute paths, pricing telemetry, tool nodes, and no readable text, logos, people, robots, watermark, stock style, or purple-dominant gradient.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. SVG remains as exact-text fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/claude-agent-sdk-credit-pause-agent-stack-2026-hero.svg"
+    },
+    {
+      "slug": "openclaw-explained-ai-agent-everyone-talking-about",
+      "title": "OpenClaw, NemoClaw, NanoClaw: The AI Agent Ecosystem",
+      "category": "Intelligence Dispatches",
+      "date": "2026-03-21",
+      "hero": "/images/blog/generated/openclaw-explained-ai-agent-everyone-talking-about-premium-hero.png",
+      "infographic": null,
+      "social": null,
+      "prompt": "Built-in image_gen premium FrankX hero: OpenClaw, NemoClaw, and NanoClaw ecosystem as a secure local-first agent command lattice with messaging gateways, containerized runtimes, enterprise guardrail modules, dark obsidian glass, emerald/cyan signal paths, restrained amber security highlights, no readable text, no logos, no people, no robots, no watermark, no stock look.",
+      "source": "design.md + taste.md + OpenClaw post frontmatter + user quality reference",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
+      "deploymentStatus": "ready",
+      "notes": "Added after user correction that SVG-only treatment was too basic. Premium bitmap generated with built-in image_gen and copied into public/images/blog/generated."
     },
     {
       "slug": "ultimate-guide-ai-coding-agents-2026",
       "title": "The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond",
       "category": "Creator Systems",
       "date": "2026-01-16",
-      "hero": "/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg",
+      "hero": "/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/ultimate-guide-ai-coding-agents-2026-map.svg",
       "social": {
         "wide": "/images/social/blog/ultimate-guide-ai-coding-agents-2026/wide.svg",
         "square": "/images/social/blog/ultimate-guide-ai-coding-agents-2026/square.svg",
         "vertical": "/images/social/blog/ultimate-guide-ai-coding-agents-2026/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: AI coding agent command center with branching workflow modules, code/debug/review/deploy symbols as abstract icons only, dark glass console, emerald/cyan signal paths, restrained amber highlights, no readable text, no logos, no people, no robots, no watermark.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. SVG remains as exact-text fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg"
     },
     {
       "slug": "production-agentic-ai-systems",
       "title": "Enterprise Agentic Architecture: Decision Framework for Production",
       "category": "Intelligence Dispatches",
       "date": "2026-01-21",
-      "hero": "/images/blog/visual-system/production-agentic-ai-systems-hero.svg",
+      "hero": "/images/blog/generated/production-agentic-ai-systems-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/production-agentic-ai-systems-map.svg",
       "social": {
         "wide": "/images/social/blog/production-agentic-ai-systems/wide.svg",
         "square": "/images/social/blog/production-agentic-ai-systems/square.svg",
         "vertical": "/images/social/blog/production-agentic-ai-systems/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"Enterprise Agentic Architecture: Decision Framework for Production\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: production agentic AI architecture as a transparent modular control room, governance shields, observability panels, runtime layers, dark obsidian surface, emerald/cyan systems glow, restrained amber safety signals, no text, no logos, no people, no stock AI look.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. SVG remains as exact-text fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/production-agentic-ai-systems-hero.svg"
     },
     {
       "slug": "production-agent-patterns-7-pillars",
@@ -94,19 +113,20 @@
       "title": "Multi-Agent Orchestration Patterns: Building Production Systems in 2026",
       "category": "AI & Systems",
       "date": "2026-01-26",
-      "hero": "/images/blog/visual-system/multi-agent-orchestration-patterns-2026-hero.svg",
+      "hero": "/images/blog/generated/multi-agent-orchestration-patterns-2026-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/multi-agent-orchestration-patterns-2026-map.svg",
       "social": {
         "wide": "/images/social/blog/multi-agent-orchestration-patterns-2026/wide.svg",
         "square": "/images/social/blog/multi-agent-orchestration-patterns-2026/square.svg",
         "vertical": "/images/social/blog/multi-agent-orchestration-patterns-2026/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"Multi-Agent Orchestration Patterns: Building Production Systems in 2026\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: multi-agent orchestration as six glass execution pods around a central coordinator, visible handoff streams, routing and validation symbols, dark premium 3D render, emerald/cyan light, restrained amber, no readable text, no logos, no people.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. SVG remains as exact-text fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/multi-agent-orchestration-patterns-2026-hero.svg"
     },
     {
       "slug": "agentic-ai-roadmap-2026",
@@ -227,19 +247,20 @@
       "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
       "category": "Intelligence Dispatches",
       "date": "2026-06-10",
-      "hero": "/images/blog/visual-system/ai-model-routing-guide-hero.svg",
+      "hero": "/images/blog/generated/ai-model-routing-guide-premium-hero.png",
       "infographic": "/images/blog/visual-system/infographics/ai-model-routing-guide-map.svg",
       "social": {
         "wide": "/images/social/blog/ai-model-routing-guide/wide.svg",
         "square": "/images/social/blog/ai-model-routing-guide/square.svg",
         "vertical": "/images/social/blog/ai-model-routing-guide/vertical.svg"
       },
-      "prompt": "FrankX editorial visual for \"The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)\" using dark-first architecture, emerald/cyan spectrum, exact readable title, no stock people, no generic AI shapes.",
+      "prompt": "Built-in image_gen premium FrankX hero: model routing as a transparent high-throughput switchboard taking multiple model families and routing them into one output lane, dark glass hardware, emerald/cyan flows, amber telemetry, no readable text, no logos, no stock look.",
       "source": "design.md + taste.md + post frontmatter",
-      "generationMode": "repo-native-svg",
-      "reviewStatus": "accepted",
+      "generationMode": "built-in-image-gen",
+      "reviewStatus": "accepted-premium-bitmap",
       "deploymentStatus": "ready",
-      "notes": "Exact text rendered as SVG to avoid AI text artifacts and extra API costs."
+      "notes": "Premium bitmap generated with the built-in image_gen path and copied into public/images/blog/generated. SVG remains as exact-text fallback/supporting asset.",
+      "fallbackHero": "/images/blog/visual-system/ai-model-routing-guide-hero.svg"
     },
     {
       "slug": "best-open-local-llms-2026",
