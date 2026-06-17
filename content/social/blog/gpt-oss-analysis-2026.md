@@ -1,43 +1,35 @@
-# Social Pack: gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On
+---
+slug: gpt-oss-analysis-2026
+title: "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On"
+angle: developer
+hero: "/images/blog/generated/gpt-oss-analysis-2026-premium-hero.png"
+wide: "/images/social/blog/gpt-oss-analysis-2026/wide.png"
+square: "/images/social/blog/gpt-oss-analysis-2026/square.png"
+portrait: "/images/social/blog/gpt-oss-analysis-2026/portrait.png"
+qualityScore: 9
+qualityTier: flagship
+reviewStatus: accepted
+---
 
-Source: https://frankx.ai/blog/gpt-oss-analysis-2026
-Visuals:
-- Wide: /images/social/blog/gpt-oss-analysis-2026/wide.svg
-- Square: /images/social/blog/gpt-oss-analysis-2026/square.svg
-- Vertical: /images/social/blog/gpt-oss-analysis-2026/vertical.svg
+# gpt-oss: Open-Weight Reality Check
 
-## LinkedIn
-gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On
-
-OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop. The full self-host breakdown: VRAM, MXFP4 quantization, where to run, verified benchmarks, and how they stack up against Qwen, DeepSeek, and GLM in June 2026.
-
-What matters now: Model choice is now portfolio strategy: capability, latency, cost, openness, and governance.
-
-For builders, this is a practical shift from tool collection to system design. The winners will connect capability, routing, cost, and execution into one operating cadence.
-
-Read the full analysis: https://frankx.ai/blog/gpt-oss-analysis-2026
+## LinkedIn Post
+What open models change when cost and control matter. The practical move is to treat this as an operating system question: what can this unlock this week, what deserves a repeatable workflow, and where does human taste still decide the outcome?
 
 ## X Thread
-1/ gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On
-
-OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop. The full self-host breakdown: VRAM, MXFP4 quantization, where to run, verified benchmarks, and how they stack up against Qwen, DeepSeek, and GLM in June 2026.
-
-2/ The real signal is not another isolated AI tool. It is the move toward model intelligence as an operating layer.
-
-3/ Watch the stack: Capability -> Routing -> Cost -> Latency -> Governance.
-
-4/ Builders should ask: what becomes faster, cheaper, measurable, or newly possible when this workflow is agent-native?
-
-5/ Full analysis: https://frankx.ai/blog/gpt-oss-analysis-2026
+1. gpt-oss: Open-Weight Reality Check
+2. What open models change when cost and control matter.
+3. The leverage is not the model alone. It is the workflow around it: inputs, evals, memory, routing, and review.
+4. Build the smallest repeatable loop, then compound it.
 
 ## Short Caption
-Model Intelligence: what changes for users, devs, builders, founders, and investors.
+gpt-oss: Open-Weight Reality Check: What open models change when cost and control matter.
 
-## Founder Angle
-Use this to identify the workflows where AI can compress cycle time, reduce coordination drag, and create a defensible operating advantage.
+## Founder / Investor Angle
+Watch the workflow adoption curve, not just the model announcement. The durable value is where cost, control, distribution, and trust compound.
 
 ## Developer Angle
-Treat the article as an implementation map: isolate the interface, wire the memory/tools layer, add evals, then deploy with observability.
+Start with one measurable workflow. Add observability, fallbacks, and evals before scaling the agent surface area.
 
 ## Builder Takeaway
-Do not chase every tool. Build the smallest system that compounds.
+Use the image as a campaign anchor, then route readers to the article for the operating model and concrete next steps.

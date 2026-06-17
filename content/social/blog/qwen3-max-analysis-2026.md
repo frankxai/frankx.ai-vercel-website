@@ -1,43 +1,35 @@
-# Social Pack: Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours
+---
+slug: qwen3-max-analysis-2026
+title: "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours"
+angle: developer
+hero: "/images/blog/generated/qwen3-max-analysis-2026-premium-hero.png"
+wide: "/images/social/blog/qwen3-max-analysis-2026/wide.png"
+square: "/images/social/blog/qwen3-max-analysis-2026/square.png"
+portrait: "/images/social/blog/qwen3-max-analysis-2026/portrait.png"
+qualityScore: 9
+qualityTier: flagship
+reviewStatus: accepted
+---
 
-Source: https://frankx.ai/blog/qwen3-max-analysis-2026
-Visuals:
-- Wide: /images/social/blog/qwen3-max-analysis-2026/wide.svg
-- Square: /images/social/blog/qwen3-max-analysis-2026/square.svg
-- Vertical: /images/social/blog/qwen3-max-analysis-2026/vertical.svg
+# Qwen3 Max: Agent Flagship
 
-## LinkedIn
-Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours
-
-Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run. Technical breakdown with sourced benchmarks, what changed vs Qwen3.6, and what it means for builders.
-
-What matters now: Tools become durable systems when memory, evals, and deployment discipline converge.
-
-For builders, this is a practical shift from tool collection to system design. The winners will connect interface, memory, tools, and execution into one operating cadence.
-
-Read the full analysis: https://frankx.ai/blog/qwen3-max-analysis-2026
+## LinkedIn Post
+Long-running tool use and global model competition. The practical move is to treat this as an operating system question: what can this unlock this week, what deserves a repeatable workflow, and where does human taste still decide the outcome?
 
 ## X Thread
-1/ Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours
-
-Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run. Technical breakdown with sourced benchmarks, what changed vs Qwen3.6, and what it means for builders.
-
-2/ The real signal is not another isolated AI tool. It is the move toward agent stack as an operating layer.
-
-3/ Watch the stack: Interface -> Memory -> Tools -> Evals -> Deploy.
-
-4/ Builders should ask: what becomes faster, cheaper, measurable, or newly possible when this workflow is agent-native?
-
-5/ Full analysis: https://frankx.ai/blog/qwen3-max-analysis-2026
+1. Qwen3 Max: Agent Flagship
+2. Long-running tool use and global model competition.
+3. The leverage is not the model alone. It is the workflow around it: inputs, evals, memory, routing, and review.
+4. Build the smallest repeatable loop, then compound it.
 
 ## Short Caption
-Agent Stack: what changes for users, devs, builders, founders, and investors.
+Qwen3 Max: Agent Flagship: Long-running tool use and global model competition.
 
-## Founder Angle
-Use this to identify the workflows where AI can compress cycle time, reduce coordination drag, and create a defensible operating advantage.
+## Founder / Investor Angle
+Watch the workflow adoption curve, not just the model announcement. The durable value is where cost, control, distribution, and trust compound.
 
 ## Developer Angle
-Treat the article as an implementation map: isolate the interface, wire the memory/tools layer, add evals, then deploy with observability.
+Start with one measurable workflow. Add observability, fallbacks, and evals before scaling the agent surface area.
 
 ## Builder Takeaway
-Do not chase every tool. Build the smallest system that compounds.
+Use the image as a campaign anchor, then route readers to the article for the operating model and concrete next steps.

@@ -1,43 +1,35 @@
-# Social Pack: Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price
+---
+slug: kimi-k2-analysis-2026
+title: "Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price"
+angle: developer
+hero: "/images/blog/generated/kimi-k2-analysis-2026-premium-hero.png"
+wide: "/images/social/blog/kimi-k2-analysis-2026/wide.png"
+square: "/images/social/blog/kimi-k2-analysis-2026/square.png"
+portrait: "/images/social/blog/kimi-k2-analysis-2026/portrait.png"
+qualityScore: 8
+qualityTier: premium
+reviewStatus: accepted
+---
 
-Source: https://frankx.ai/blog/kimi-k2-analysis-2026
-Visuals:
-- Wide: /images/social/blog/kimi-k2-analysis-2026/wide.svg
-- Square: /images/social/blog/kimi-k2-analysis-2026/square.svg
-- Vertical: /images/social/blog/kimi-k2-analysis-2026/vertical.svg
+# Kimi K2: Long-Horizon Agents
 
-## LinkedIn
-Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price
-
-Moonshot AI's Kimi K2.6 is a 1T-parameter MoE (32B active) you can self-host. SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, Agent Swarm to 300 sub-agents, $0.60/$2.50 per million. Technical breakdown with verified benchmarks, the open-weight angle, and what it means for builders.
-
-What matters now: Tools become durable systems when memory, evals, and deployment discipline converge.
-
-For builders, this is a practical shift from tool collection to system design. The winners will connect interface, memory, tools, and execution into one operating cadence.
-
-Read the full analysis: https://frankx.ai/blog/kimi-k2-analysis-2026
+## LinkedIn Post
+Tool-use endurance, swarm work, and open competition. The practical move is to treat this as an operating system question: what can this unlock this week, what deserves a repeatable workflow, and where does human taste still decide the outcome?
 
 ## X Thread
-1/ Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price
-
-Moonshot AI's Kimi K2.6 is a 1T-parameter MoE (32B active) you can self-host. SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, Agent Swarm to 300 sub-agents, $0.60/$2.50 per million. Technical breakdown with verified benchmarks, the open-weight angle, and what it means for builders.
-
-2/ The real signal is not another isolated AI tool. It is the move toward agent stack as an operating layer.
-
-3/ Watch the stack: Interface -> Memory -> Tools -> Evals -> Deploy.
-
-4/ Builders should ask: what becomes faster, cheaper, measurable, or newly possible when this workflow is agent-native?
-
-5/ Full analysis: https://frankx.ai/blog/kimi-k2-analysis-2026
+1. Kimi K2: Long-Horizon Agents
+2. Tool-use endurance, swarm work, and open competition.
+3. The leverage is not the model alone. It is the workflow around it: inputs, evals, memory, routing, and review.
+4. Build the smallest repeatable loop, then compound it.
 
 ## Short Caption
-Agent Stack: what changes for users, devs, builders, founders, and investors.
+Kimi K2: Long-Horizon Agents: Tool-use endurance, swarm work, and open competition.
 
-## Founder Angle
-Use this to identify the workflows where AI can compress cycle time, reduce coordination drag, and create a defensible operating advantage.
+## Founder / Investor Angle
+Watch the workflow adoption curve, not just the model announcement. The durable value is where cost, control, distribution, and trust compound.
 
 ## Developer Angle
-Treat the article as an implementation map: isolate the interface, wire the memory/tools layer, add evals, then deploy with observability.
+Start with one measurable workflow. Add observability, fallbacks, and evals before scaling the agent surface area.
 
 ## Builder Takeaway
-Do not chase every tool. Build the smallest system that compounds.
+Use the image as a campaign anchor, then route readers to the article for the operating model and concrete next steps.
