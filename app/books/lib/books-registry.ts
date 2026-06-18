@@ -783,7 +783,7 @@ export const booksRegistry: BookConfig[] = [
     categories: ['Human Potential', 'Mind & Body', 'Consciousness'],
     contentDir: 'content/books/coherence',
     chapters: [
-      { slug: 'chapter-01-the-coherent-state', title: 'The Coherent State', number: 1, readingTime: '13 min', description: 'Every tradition pointed at the same state. None could measure it. Now we can.', published: true, type: 'prose', epigraph: { text: 'Every tradition pointed at the same thing. None of them could measure it. Now we can.', author: 'Coherence' } },
+      { slug: 'chapter-01-the-coherent-state', title: 'The Coherent State', number: 1, readingTime: '13 min', description: 'Every tradition pointed at the same state. None could measure it. Now we can.', published: true, type: 'prose' },
       { slug: 'chapter-02-the-breath-bridge', title: 'The Breath Bridge', number: 2, readingTime: '13 min', description: 'Of all the machinery that runs you without asking, exactly one control is also a switch you can reach.', published: true, type: 'prose' },
       { slug: 'chapter-03-the-signal-and-the-noise', title: 'The Signal and the Noise', number: 3, readingTime: '13 min', description: 'You do not see the world — you see your brain’s best guess about it. A coherent mind makes better guesses.', published: true, type: 'prose' },
     ],
