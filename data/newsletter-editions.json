@@ -1,0 +1,96 @@
+{
+  "editions": [
+    {
+      "issue": 5,
+      "slug": "issue-5-the-ai-bet-that-compounds",
+      "pillar": "strategy",
+      "title": "The AI bet that compounds",
+      "streamId": "ai-architect",
+      "status": "simulated",
+      "plannedDate": "2026-06-19",
+      "offerId": "inner-circle",
+      "experimentId": "issue-5-ai-bet-that-compounds",
+      "contentRefs": [
+        "content/newsletters/issues/issue-5.mdx",
+        "content/newsletters/experiments/issue-5-ai-bet-that-compounds/approval-packet.md"
+      ]
+    },
+    {
+      "issue": 6,
+      "slug": "issue-6-ai-talent-loop",
+      "pillar": "talent",
+      "title": "The AI talent loop",
+      "streamId": "ai-architect",
+      "status": "planned",
+      "plannedDate": "2026-06-26",
+      "offerId": "builder-lab-primer",
+      "contentRefs": []
+    },
+    {
+      "issue": 7,
+      "slug": "issue-7-technology-stack-that-does-not-collapse",
+      "pillar": "technology",
+      "title": "The technology stack that does not collapse",
+      "streamId": "ai-architect",
+      "status": "planned",
+      "plannedDate": "2026-07-03",
+      "offerId": "acos-system",
+      "contentRefs": []
+    },
+    {
+      "issue": 8,
+      "slug": "issue-8-data-as-the-memory-of-the-business",
+      "pillar": "data",
+      "title": "Data as the memory of the business",
+      "streamId": "ai-architect",
+      "status": "planned",
+      "plannedDate": "2026-07-10",
+      "offerId": "acos-system",
+      "contentRefs": []
+    },
+    {
+      "issue": 9,
+      "slug": "issue-9-ethics-is-an-operating-system",
+      "pillar": "ethics",
+      "title": "Ethics is an operating system",
+      "streamId": "ai-architect",
+      "status": "planned",
+      "plannedDate": "2026-07-17",
+      "offerId": "alliance-enterprise",
+      "contentRefs": []
+    },
+    {
+      "issue": 10,
+      "slug": "issue-10-case-study-content-factory",
+      "pillar": "case-study",
+      "title": "Case study: content factory without losing taste",
+      "streamId": "creation-chronicles",
+      "status": "planned",
+      "plannedDate": "2026-07-24",
+      "offerId": "builder-lab-primer",
+      "contentRefs": []
+    },
+    {
+      "issue": 11,
+      "slug": "issue-11-case-study-agentic-creator-os",
+      "pillar": "case-study",
+      "title": "Case study: Agentic Creator OS",
+      "streamId": "ai-architect",
+      "status": "planned",
+      "plannedDate": "2026-07-31",
+      "offerId": "acos-system",
+      "contentRefs": []
+    },
+    {
+      "issue": 12,
+      "slug": "issue-12-case-study-inner-circle",
+      "pillar": "case-study",
+      "title": "Case study: the Inner Circle operating loop",
+      "streamId": "inner-circle",
+      "status": "planned",
+      "plannedDate": "2026-08-07",
+      "offerId": "inner-circle",
+      "contentRefs": []
+    }
+  ]
+}

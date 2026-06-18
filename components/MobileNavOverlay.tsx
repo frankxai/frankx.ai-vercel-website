@@ -82,7 +82,7 @@ const sections: NavSection[] = [
       { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
       { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music-school', icon: GraduationCap, description: 'Theory to production' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory to production' },
       { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
     ],
   },

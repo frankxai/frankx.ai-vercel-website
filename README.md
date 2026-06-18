@@ -19,8 +19,11 @@ Modern creator platform with AI-powered content generation, multi-agent orchestr
 | Hub          | URL                                             | Description                |
 | ------------ | ----------------------------------------------- | -------------------------- |
 | Homepage     | [frankx.ai](https://frankx.ai)                  | Elite creator value prop   |
+| Research     | [/research](https://frankx.ai/research)         | AI research for builders   |
+| Cloud AI     | [/cloud](https://frankx.ai/cloud)               | AI CoE and workload systems |
 | Products     | [/products](https://frankx.ai/products)         | Digital products & tools   |
 | Blog         | [/blog](https://frankx.ai/blog)                 | AI tutorials & insights    |
+| Books        | [/books](https://frankx.ai/books)               | Books and living systems   |
 | AI Architect | [/ai-architect](https://frankx.ai/ai-architect) | Enterprise AI patterns     |
 | Music Lab    | [/music-lab](https://frankx.ai/music-lab)       | Suno AI & music production |
 | Resources    | [/resources](https://frankx.ai/resources)       | Free downloads & templates |
@@ -98,6 +101,36 @@ public/                 # Static assets
 ├── images/             # Optimized images
 └── reading/            # Generated reading site
 ```
+
+## Platform Content Architecture
+
+The authority platform is driven by typed static registries under `data/platform/`:
+
+| File | Owns |
+| ---- | ---- |
+| `types.ts` | Shared content, product, book, cloud, and flow types |
+| `research.ts` | Research areas, seeded research index, research OS flow |
+| `cloud.ts` | `/cloud` hub, AI CoE flow, and Cloud AI subpage content |
+| `products.ts` | Authority offer ladder and platform product catalog |
+| `books.ts` | Living book/IP projects and book creation engine |
+| `blog.ts` | Editorial lanes and seeded essay backlog |
+| `navigation.ts` | Platform nav/footer intent |
+
+Shared UI primitives live in `components/platform/platform-ui.tsx`.
+
+Route ownership:
+
+- `/research` combines the existing research-domain registry with the new platform research layer.
+- `/cloud` and `/cloud/[slug]` are driven by `data/platform/cloud.ts`.
+- `/blog` renders existing MDX posts and the seeded platform essay backlog.
+- `/products` preserves launch-readiness logic and adds the platform offer ladder.
+- `/books` preserves published book routes and adds living book projects.
+
+Docs:
+
+- `docs/content-system.md`
+- `docs/site-map.md`
+- `docs/sis-swarm-execution.md`
 
 ## Development
 

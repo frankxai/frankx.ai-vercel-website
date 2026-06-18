@@ -28,13 +28,16 @@ const blogFaqs = [
 ]
 
 export const metadata = createMetadata({
-  title: 'Creation Chronicles - Building Intelligence Systems',
+  title: 'Essays from the Intelligence Age',
   description:
-    "Inside the build. AI systems, creative workflows, and what's actually shipping — from enterprise architecture to AI music production.",
+    'Sharp notes on AI systems, cloud architecture, agentic workflows, creative intelligence, books, business, and becoming a builder with intelligent tools.',
   keywords: [
     'ai blog',
     'creation chronicles',
     'intelligence systems',
+    'cloud ai',
+    'agentic systems',
+    'creator os',
     'ai music',
     'suno ai',
     'enterprise ai',

@@ -16,7 +16,7 @@ const features = [
     name: 'AI Music Production',
     description: '500+ Suno sessions tested and refined for professional-quality AI music generation.',
     Icon: Music,
-    href: '/ai-music-academy',
+    href: '/music/learn',
     cta: 'Start Creating',
     className: 'col-span-3 lg:col-span-2',
     background: (

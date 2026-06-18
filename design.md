@@ -16,10 +16,13 @@ These are the assets required for the production website.
 
 | Page / Placement | Asset Description | Aspect Ratio | Dimensions | Preferred Model |
 |---|---|---|---|---|
-| **Landing Hero** | Abstract obsidian structure with glowing emerald and cyan data lines | `16:9` | 2K / 4K | `nano_banana_pro` |
+| **Landing Hero** | Abstract obsidian structure with glowing emerald and cyan data lines | `16:9` | 2K / 4K | `nano_banana_pro`; existing upscaled candidate available |
 | **Academy Header** | Ethereal tech-glow library with floating starlight equations | `16:9` | 2K | `nano_banana_pro` |
 | **Default OG Image** | Editorial grid containing brand logo and subtle emerald light leaks | `1.91:1` | 1200×630 | `recraft-v4-1` |
 | **SaaS Tool Dashboard preview** | Bento grid mockup illustrating code and graph nodes | `16:9` | 2K | `nano_banana_pro` |
+
+Existing candidate asset:
+`C:\Users\frank\starlight\higgsfield\assets\frankx\landing_hero_premium_upscaled.png`
 
 ---
 
@@ -31,6 +34,7 @@ These are the assets required for the production website.
 
 ## 4 · Rendering Pipelines (Higgsfield)
 To generate the Landing Hero:
-1. Run `nano_banana_pro` with a prompt detailed in `starlight/higgsfield/experiments/frankx-hero-brief.md`.
-2. Generate a 2K draft, review, and upscale to 4K using `upscale_image`.
-3. Log result in the global [ledger.jsonl](file:///C:/Users/frank/starlight/higgsfield/ledger.jsonl).
+1. Review the existing premium/upscaled candidate before generating a replacement.
+2. If replacement is needed, run `nano_banana_pro` with the prompt in `C:\Users\frank\starlight\higgsfield\experiments\frankx-landing-hero.md`.
+3. Generate a 2K draft, review, and upscale to 4K using `upscale_image`.
+4. Log preflight, generation, result URL, and next action in the global [ledger.jsonl](file:///C:/Users/frank/starlight/higgsfield/ledger.jsonl).

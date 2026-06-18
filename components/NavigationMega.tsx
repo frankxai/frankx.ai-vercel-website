@@ -17,6 +17,7 @@ import {
   GraduationCap,
   Target,
   Code2,
+  Cloud,
   Terminal,
   Workflow,
   Bot,
@@ -47,6 +48,25 @@ import { cn } from '@/lib/utils'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
+  platform: {
+    label: 'Platform',
+    href: '/research',
+    featured: {
+      title: 'FrankX Authority Platform',
+      description: 'Research, cloud AI systems, products, essays, and books in one operating surface.',
+      href: '/research',
+      badge: 'Authority',
+    },
+    items: [
+      { name: 'Research', href: '/research', icon: Microscope, description: 'AI research for builders' },
+      { name: 'Cloud AI', href: '/cloud', icon: Cloud, description: 'From AI hype to cloud workloads' },
+      { name: 'Products', href: '/products', icon: Briefcase, description: 'Templates, playbooks, and sprints' },
+      { name: 'Blog', href: '/blog', icon: FileText, description: 'Essays from the Intelligence Age' },
+      { name: 'Books', href: '/books', icon: BookOpen, description: 'Field notes and living systems' },
+      { name: 'Work with Frank', href: '/work-with-me', icon: Compass, description: 'Advisory, sprints, and studio work' },
+      { name: 'Newsletter', href: '/newsletter', icon: Sparkles, description: 'Weekly architecture and build notes' },
+    ],
+  },
   music: {
     label: 'Music',
     href: '/music',
@@ -60,7 +80,7 @@ const navigation = {
       { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
       { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music-school', icon: GraduationCap, description: 'Full curriculum: theory to production' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Full curriculum: theory to production' },
       { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
     ],
   },
@@ -153,6 +173,9 @@ const navigation = {
     items: [
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence operations' },
+      { name: 'Cloud AI', href: '/cloud', icon: Cloud, description: 'AI CoE, MCP, and workload architecture' },
+      { name: 'Products', href: '/products', icon: Briefcase, description: 'Products for the agentic builder' },
+      { name: 'Books', href: '/books', icon: BookOpen, description: 'Books, field notes, and living systems' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
       { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
@@ -167,11 +190,11 @@ const navigation = {
     groups: [
       {
         label: 'Research & Knowledge',
-        items: ['Research Hub', 'Intelligence Atlas', 'Downloads'],
+        items: ['Research Hub', 'Cloud AI', 'Books', 'Intelligence Atlas', 'Downloads'],
       },
       {
         label: 'Products & Systems',
-        items: ['Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
+        items: ['Products', 'Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
@@ -422,7 +445,7 @@ export default function NavigationMega() {
     return pathname.startsWith(href)
   }
 
-  const desktopSections: NavKey[] = ['music', 'gencreators', 'learn', 'build', 'explore']
+  const desktopSections: NavKey[] = ['platform', 'music', 'gencreators', 'learn', 'build', 'explore']
 
   return (
     <>
@@ -495,10 +518,10 @@ export default function NavigationMega() {
               </kbd>
             </button>
             <Link
-              href="/start"
+              href="/cloud/prototype-sprints"
               className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
-              Start Here
+              Start a Sprint
             </Link>
           </div>
 

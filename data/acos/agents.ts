@@ -212,7 +212,7 @@ export const PILLARS: Pillar[] = [
     title: 'Business Ops',
     tagline: 'Dutch BV, wealth, tax, legal — sovereign operator.',
     accent: 'teal',
-    surface: '/bv',
+    surface: '/products/bv-kit',
     specialists: [
       { name: 'BV Operations', kind: 'command', ref: '/bv-ops', status: 'in-progress', one_liner: 'Arcanea Labs BV — status, milestones, compliance.' },
       { name: 'Business Ops Skill', kind: 'skill', ref: 'business-ops', status: 'in-progress', one_liner: 'Legal, tax, accounting, GDPR, trademarks. Consolidation candidate with BV Operations.' },

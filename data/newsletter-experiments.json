@@ -1,0 +1,85 @@
+{
+  "experiments": [
+    {
+      "id": "issue-5-ai-bet-that-compounds",
+      "editionSlug": "issue-5-the-ai-bet-that-compounds",
+      "status": "simulated",
+      "hypothesis": "The strongest Issue 5 is a personal friend-style opening that earns trust, followed by a simple operator framework and a soft qualified reply CTA.",
+      "variants": [
+        {
+          "id": "variant-a",
+          "label": "Friend message",
+          "mode": "friend",
+          "subject": "The AI bet that compounds",
+          "preview": "The useful question is not what can AI automate. It is what gets better every week.",
+          "targetReader": "Creator or operator who is tired of generic AI advice.",
+          "hypothesis": "A direct, warm note increases replies and trust.",
+          "file": "content/newsletters/experiments/issue-5-ai-bet-that-compounds/variant-a-friend-message.md"
+        },
+        {
+          "id": "variant-b",
+          "label": "Operator framework",
+          "mode": "framework",
+          "subject": "A better filter for AI projects",
+          "preview": "Use this three-part test before you build another automation.",
+          "targetReader": "Founder, technical operator, or team lead choosing where agents belong.",
+          "hypothesis": "A reusable filter increases saves, forwards, and high-quality replies.",
+          "file": "content/newsletters/experiments/issue-5-ai-bet-that-compounds/variant-b-framework.md"
+        },
+        {
+          "id": "variant-c",
+          "label": "Commercial bridge",
+          "mode": "commercial",
+          "subject": "Build the AI loop before the tool stack",
+          "preview": "The stack matters less than the compounding loop it serves.",
+          "targetReader": "High-intent buyer considering Inner Circle, ACOS, or advisory help.",
+          "hypothesis": "A clearer offer bridge improves qualified conversion without flattening trust.",
+          "file": "content/newsletters/experiments/issue-5-ai-bet-that-compounds/variant-c-commercial.md"
+        }
+      ],
+      "scores": [
+        {
+          "variantId": "variant-a",
+          "clarity": 91,
+          "trust": 94,
+          "utility": 82,
+          "conversionFit": 76,
+          "retentionFit": 89,
+          "objections": ["Needs a more explicit repeatable method", "Commercial path may be too soft for high-intent readers"],
+          "recommendedEdits": ["Keep the opening", "Add a three-filter middle section", "Use reply-first CTA"]
+        },
+        {
+          "variantId": "variant-b",
+          "clarity": 88,
+          "trust": 84,
+          "utility": 93,
+          "conversionFit": 80,
+          "retentionFit": 86,
+          "objections": ["Less emotionally sticky", "Can feel like another framework if the opening is cold"],
+          "recommendedEdits": ["Borrow the personal opener from Variant A", "Add one concrete artifact example"]
+        },
+        {
+          "variantId": "variant-c",
+          "clarity": 83,
+          "trust": 78,
+          "utility": 81,
+          "conversionFit": 90,
+          "retentionFit": 79,
+          "objections": ["Offer arrives too early", "Risk of sounding like a funnel instead of a field note"],
+          "recommendedEdits": ["Move CTA to the end", "Keep commercial language qualified and reply based"]
+        }
+      ],
+      "decision": {
+        "winningVariantId": "variant-a",
+        "finalApproach": "Use Variant A as the emotional spine, insert Variant B's three-filter operator method, and keep Variant C's offer bridge as a short P.S.",
+        "approvalState": "needs-review",
+        "approvedChannels": ["repo"],
+        "blockedChannels": ["resend", "beehiiv", "substack"]
+      },
+      "packetFiles": [
+        "content/newsletters/experiments/issue-5-ai-bet-that-compounds/simulation-report.md",
+        "content/newsletters/experiments/issue-5-ai-bet-that-compounds/approval-packet.md"
+      ]
+    }
+  ]
+}

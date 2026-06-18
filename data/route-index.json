@@ -1,21 +1,21 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 671,
-    "aliases": 15,
+    "total": 672,
+    "aliases": 25,
     "byType": {
       "core": 22,
-      "section": 341,
+      "section": 354,
       "community": 12,
       "tool": 10,
-      "static": 14,
-      "blog": 196,
-      "guide": 19,
+      "static": 15,
+      "blog": 197,
+      "guide": 20,
       "library": 4,
       "newsletter": 1,
-      "os": 9,
-      "partnership": 4,
-      "product": 26,
+      "os": 5,
+      "partnership": 3,
+      "product": 16,
       "research": 3,
       "video": 3,
       "workshop": 7
@@ -83,11 +83,6 @@
         "builder",
         "lab"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/agentic-creator-os",
-      "title": "Agentic Creator OS",
       "type": "section"
     },
     {
@@ -1071,6 +1066,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-skills-operating-layer",
+      "title": "AI Skills Are the New Operating Layer",
+      "description": "Why AI skills are not prompt snippets, but reusable operating knowledge for founders, startups, and enterprise AI teams.",
+      "tags": [
+        "ai-skills",
+        "ai-coe",
+        "agentic-systems",
+        "operating-knowledge",
+        "founder-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
       "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
       "description": "Every major AI video tool compared — quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
@@ -1501,10 +1509,16 @@
       "type": "blog"
     },
     {
-      "href": "/blog/CLAUDE",
-      "title": "CLAUDE",
+      "href": "/blog/claude-agent-sdk-credit-pause-agent-stack-2026",
+      "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
+      "description": "Anthropic paused the Claude Agent SDK credit change. What it means for claude -p, OpenClaw, OpenCode, Codex, and agent pricing.",
       "tags": [
-        "CLAUDE"
+        "Claude",
+        "Agent SDK",
+        "AI Agents",
+        "OpenClaw",
+        "OpenCode",
+        "AI Coding"
       ],
       "type": "blog"
     },
@@ -1654,14 +1668,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/CONTENT_SCHEMA",
-      "title": "CONTENT_SCHEMA",
-      "tags": [
-        "CONTENT_SCHEMA"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/creator-intelligence-systems-2026",
       "title": "Why Every Creator Needs an Intelligence System in 2026",
       "description": "The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
@@ -1752,14 +1758,6 @@
         "glassmorphism",
         "ai-development",
         "design-lab"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/EDITORIAL_STANDARD",
-      "title": "EDITORIAL_STANDARD",
-      "tags": [
-        "EDITORIAL_STANDARD"
       ],
       "type": "blog"
     },
@@ -1894,6 +1892,22 @@
         "GPT",
         "Gemini",
         "DeepSeek"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/frontier-model-routing-without-fable-5",
+      "title": "You Don't Need Fable 5 to Work on the Frontier. You Need a Model Routing System.",
+      "description": "Kilo is right that model freedom matters after the Fable/Mythos shock. The next step is a routed frontier stack: Fable 5, Opus 4.8, GPT-5.5 in Kilo Code, Grok 4.3, Gemini 3.5 Flash in Antigravity, Kimi, MiniMax, and Nemotron with receipts.",
+      "tags": [
+        "model-routing",
+        "fable-5",
+        "kilo-code",
+        "grok-4-3",
+        "gemini-3-5",
+        "antigravity",
+        "llm-evals",
+        "frontier-models"
       ],
       "type": "blog"
     },
@@ -2787,6 +2801,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/skill-libraries-ai-coe-governance",
+      "title": "How to Govern an AI Skill Library",
+      "description": "A practical operating model for skill registries, risk tiers, evaluations, and AI CoE ownership.",
+      "tags": [
+        "ai-coe",
+        "ai-skills",
+        "governance",
+        "enterprise-ai",
+        "evals"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/soul-frequency-framework",
       "title": "Soul Frequency Framework",
       "tags": [
@@ -3460,6 +3487,36 @@
       "type": "section"
     },
     {
+      "href": "/cloud",
+      "title": "Cloud AI",
+      "description": "Cloud AI systems for prototypes, AI CoEs, MCP workflows, and production-ready workloads",
+      "type": "core"
+    },
+    {
+      "href": "/cloud/ai-coe",
+      "title": "AI CoE Operating System",
+      "description": "AI CoE operating system for turning demand into prototypes, field assets, and cloud workload paths",
+      "type": "section"
+    },
+    {
+      "href": "/cloud/gpu-model-architecture",
+      "title": "GPU, Model and Workload Architecture",
+      "description": "AI workload architecture across models, inference, RAG, agents, evaluation, cost, and deployment",
+      "type": "section"
+    },
+    {
+      "href": "/cloud/mcp-to-cloud",
+      "title": "MCP-to-Cloud Architecture",
+      "description": "Architecture for connecting AI agents to cloud services, APIs, tools, documents, and governance",
+      "type": "section"
+    },
+    {
+      "href": "/cloud/prototype-sprints",
+      "title": "AI Prototype-to-Production Sprints",
+      "description": "10 business day sprint for working AI prototypes, architecture, demo narrative, and roadmap",
+      "type": "section"
+    },
+    {
       "href": "/coaching",
       "title": "Coaching",
       "type": "community"
@@ -3987,6 +4044,17 @@
       "type": "section"
     },
     {
+      "href": "/downloads/health-intelligence-system",
+      "title": "Health Intelligence System",
+      "tags": [
+        "downloads",
+        "health",
+        "intelligence",
+        "system"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/downloads/preview/soulbook",
       "title": "Soulbook",
       "tags": [
@@ -4069,6 +4137,27 @@
       "type": "section"
     },
     {
+      "href": "/familie/geschichte/gorte-linie",
+      "title": "Die Gorte-Linie",
+      "tags": [
+        "familie",
+        "geschichte",
+        "gorte",
+        "linie"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte/karaganda",
+      "title": "Karaganda — Stadt in der Steppe",
+      "tags": [
+        "familie",
+        "geschichte",
+        "karaganda"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/familie/geschichte/offene-fragen",
       "title": "Offene Fragen",
       "tags": [
@@ -4076,6 +4165,37 @@
         "geschichte",
         "offene",
         "fragen"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte/riemer-linie",
+      "title": "Die Riemer-Linie",
+      "tags": [
+        "familie",
+        "geschichte",
+        "riemer",
+        "linie"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte/trudarmee",
+      "title": "Die Trudarmee",
+      "tags": [
+        "familie",
+        "geschichte",
+        "trudarmee"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/geschichte/wolgadeutsche",
+      "title": "Die Wolgadeutschen",
+      "tags": [
+        "familie",
+        "geschichte",
+        "wolgadeutsche"
       ],
       "type": "section"
     },
@@ -4452,6 +4572,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/frankx-skill-creation-methodology",
+      "title": "The FrankX Skill Creation Methodology",
+      "description": "A practical operating method for turning repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
+      "tags": [
+        "ai-skills",
+        "ai-coe",
+        "agentic-systems",
+        "skillforge",
+        "operating-knowledge"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ifs-ai-agent-architecture",
       "title": "IFS as an AI Architecture Pattern",
       "description": "A practical guide to translating Internal Family Systems role structure into agentic system design — Self-orchestrator, manager / firefighter / protector parts, exile memory, and integration loops.",
@@ -4718,11 +4851,6 @@
       "type": "core"
     },
     {
-      "href": "/learning-paths",
-      "title": "Learning Paths",
-      "type": "core"
-    },
-    {
       "href": "/lebensbaum",
       "title": "Lebensbaum",
       "tags": [
@@ -4810,6 +4938,12 @@
         "hub"
       ],
       "type": "section"
+    },
+    {
+      "href": "/llm-hub.json",
+      "title": "LLM Hub JSON",
+      "description": "Agent-readable LLM Hub dataset",
+      "type": "static"
     },
     {
       "href": "/magic",
@@ -4912,11 +5046,7 @@
     },
     {
       "href": "/music/learn",
-      "title": "Learn",
-      "tags": [
-        "music",
-        "learn"
-      ],
+      "title": "Music School",
       "type": "section"
     },
     {
@@ -5035,6 +5165,15 @@
       "type": "newsletter"
     },
     {
+      "href": "/newsletter/confirm",
+      "title": "Confirm",
+      "tags": [
+        "newsletter",
+        "confirm"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/newsletter/preferences",
       "title": "Preferences",
       "tags": [
@@ -5050,6 +5189,15 @@
         "newsletter",
         "thank",
         "you"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/newsletter/unsubscribe",
+      "title": "Unsubscribe",
+      "tags": [
+        "newsletter",
+        "unsubscribe"
       ],
       "type": "section"
     },
@@ -5176,28 +5324,8 @@
       "type": "os"
     },
     {
-      "href": "/os/library",
-      "title": "OS — Library",
-      "type": "os"
-    },
-    {
-      "href": "/os/sis",
-      "title": "OS — Starlight Intelligence",
-      "type": "os"
-    },
-    {
-      "href": "/os/visual-intelligence",
-      "title": "OS — Visual Intelligence",
-      "type": "os"
-    },
-    {
       "href": "/os/watch",
       "title": "OS — Watch",
-      "type": "os"
-    },
-    {
-      "href": "/os/workshop",
-      "title": "OS — Workshop",
       "type": "os"
     },
     {
@@ -5254,15 +5382,6 @@
       "tags": [
         "partnership",
         "arrow"
-      ],
-      "type": "partnership"
-    },
-    {
-      "href": "/partnerships/kyndryl",
-      "title": "Kyndryl",
-      "tags": [
-        "partnership",
-        "kyndryl"
       ],
       "type": "partnership"
     },
@@ -5354,6 +5473,57 @@
         "docs"
       ],
       "type": "section"
+    },
+    {
+      "href": "/products/agentic-creator-os/docs/agents",
+      "title": "Agents",
+      "tags": [
+        "acos",
+        "docs",
+        "agents"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/agentic-creator-os/docs/getting-started",
+      "title": "Getting Started",
+      "tags": [
+        "acos",
+        "docs",
+        "getting",
+        "started"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/agentic-creator-os/docs/mcp",
+      "title": "Mcp",
+      "tags": [
+        "acos",
+        "docs",
+        "mcp"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/agentic-creator-os/docs/skills",
+      "title": "Skills",
+      "tags": [
+        "acos",
+        "docs",
+        "skills"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/agentic-creator-os/docs/workflows",
+      "title": "Workflows",
+      "tags": [
+        "acos",
+        "docs",
+        "workflows"
+      ],
+      "type": "product"
     },
     {
       "href": "/products/aurora-ui-kit",
@@ -5774,6 +5944,16 @@
       "type": "research"
     },
     {
+      "href": "/research/model-arena",
+      "title": "Model Arena",
+      "tags": [
+        "research",
+        "model",
+        "arena"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/research/series/architecture-of-intelligence",
       "title": "Architecture OF Intelligence",
       "tags": [
@@ -5842,178 +6022,6 @@
         "templates"
       ],
       "type": "section"
-    },
-    {
-      "href": "/shop/templates/claude-code-agent-orchestration",
-      "title": "Agent Orchestration Skill Pack",
-      "tags": [
-        "agents",
-        "mcp",
-        "orchestration",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-content-engine",
-      "title": "Content Engine Skill Pack",
-      "tags": [
-        "content",
-        "seo",
-        "blog",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-dev-tools",
-      "title": "Developer Tools Skill Pack",
-      "tags": [
-        "react",
-        "nextjs",
-        "typescript",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-seo-intelligence",
-      "title": "SEO Intelligence Skill Pack",
-      "tags": [
-        "seo",
-        "schema",
-        "keywords",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-suno-mastery",
-      "title": "Suno Mastery Skill Pack",
-      "tags": [
-        "music",
-        "suno",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-custom-tools",
-      "title": "MCP Custom Tools Starter",
-      "tags": [
-        "mcp",
-        "tools",
-        "typescript",
-        "config"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-multi-server",
-      "title": "Multi-Server MCP Setup",
-      "tags": [
-        "mcp",
-        "config",
-        "multi-server",
-        "production"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/multi-agent-blueprint",
-      "title": "Multi-Agent Framework",
-      "tags": [
-        "agents",
-        "blueprint",
-        "orchestration",
-        "enterprise",
-        "acos"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-content-pipeline",
-      "title": "AI Content Pipeline",
-      "tags": [
-        "n8n",
-        "workflow",
-        "content",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-customer-support",
-      "title": "AI Support Automation",
-      "tags": [
-        "n8n",
-        "workflow",
-        "support",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-lead-enrichment",
-      "title": "Lead Enrichment Engine",
-      "tags": [
-        "n8n",
-        "workflow",
-        "leads",
-        "crm",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-ai-chat",
-      "title": "AI Chat Application",
-      "tags": [
-        "nextjs",
-        "ai",
-        "chat",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-blog-cms",
-      "title": "Blog + CMS Starter",
-      "tags": [
-        "nextjs",
-        "blog",
-        "mdx",
-        "seo",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-saas-boilerplate",
-      "title": "Next.js SaaS Boilerplate",
-      "tags": [
-        "nextjs",
-        "saas",
-        "boilerplate",
-        "fullstack"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/rag-system-blueprint",
-      "title": "RAG System Blueprint",
-      "tags": [
-        "rag",
-        "blueprint",
-        "architecture",
-        "enterprise"
-      ],
-      "type": "product"
     },
     {
       "href": "/showcase",
@@ -6278,6 +6286,15 @@
       "tags": [
         "studio",
         "screen"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/studio/social",
+      "title": "Social",
+      "tags": [
+        "studio",
+        "social"
       ],
       "type": "section"
     },
@@ -6653,15 +6670,25 @@
   ],
   "aliases": {
     "/aco": "/agents",
+    "/agentic-creator-os": "/products/agentic-creator-os",
     "/ai-coe": "/acos",
+    "/ai-music-academy": "/music/learn",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
+    "/for/founders": "/for/creators",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
-    "/llm-hub": "/ai-ops/models-2026",
+    "/learning-paths": "/learn",
+    "/llm": "/llm-hub",
+    "/LLM": "/llm-hub",
+    "/llms": "/llm-hub",
+    "/model-arena": "/research/model-arena",
+    "/music-school": "/music/learn",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
+    "/toolkit": "/products/creative-ai-toolkit",
+    "/vibe-os": "/products/vibe-os",
     "/workshops/ikigai": "/workshops/ikigai-branding",
     "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",

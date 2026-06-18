@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-06-12T03:24:22.135Z",
-  "totalAssets": 920,
+  "generatedAt": "2026-06-18T00:14:56.963Z",
+  "totalAssets": 926,
   "totalCollections": 51,
-  "totalSize": 900376188,
+  "totalSize": 902429848,
   "formats": {
-    "png": 512,
-    "svg": 180,
+    "png": 513,
+    "svg": 185,
     "webp": 134,
     "jpg": 84,
     "jpeg": 10
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 273,
+      "count": 279,
       "coverImage": "/images/blog/_archive-uuid-bulk/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -1494,7 +1494,7 @@
             "2026",
             "hero"
           ],
-          "createdAt": "2026-06-12"
+          "createdAt": "2026-06-15"
         },
         {
           "id": "blog/best-ai-video-generators-2026-table",
@@ -1515,7 +1515,7 @@
             "2026",
             "table"
           ],
-          "createdAt": "2026-06-12"
+          "createdAt": "2026-06-15"
         },
         {
           "id": "blog/best-open-local-llms-2026-hero-premium",
@@ -1739,6 +1739,30 @@
             "blog"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "blog/claude-agent-sdk-credit-pause-agent-stack-2026-hero",
+          "filename": "claude-agent-sdk-credit-pause-agent-stack-2026-hero.png",
+          "src": "/images/blog/claude-agent-sdk-credit-pause-agent-stack-2026-hero.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1672,
+          "height": 941,
+          "fileSize": 2034298,
+          "title": "Claude Agent Sdk Credit Pause Agent Stack 2026",
+          "tags": [
+            "blog",
+            "claude",
+            "agent",
+            "sdk",
+            "credit",
+            "pause",
+            "stack",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-06-16"
         },
         {
           "id": "blog/claude-code-mastery-hero",
@@ -2713,6 +2737,107 @@
             "values"
           ],
           "createdAt": "2026-06-01"
+        },
+        {
+          "id": "blog/frontier-arena-receipts-timeline",
+          "filename": "frontier-arena-receipts-timeline.svg",
+          "src": "/images/blog/frontier-arena-receipts-timeline.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 3440,
+          "title": "Frontier Arena Receipts Timeline",
+          "tags": [
+            "blog",
+            "frontier",
+            "arena",
+            "receipts",
+            "timeline"
+          ],
+          "createdAt": "2026-06-17"
+        },
+        {
+          "id": "blog/frontier-kilo-code-workflow",
+          "filename": "frontier-kilo-code-workflow.svg",
+          "src": "/images/blog/frontier-kilo-code-workflow.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 4215,
+          "title": "Frontier Kilo Code Workflow",
+          "tags": [
+            "blog",
+            "frontier",
+            "kilo",
+            "code",
+            "workflow"
+          ],
+          "createdAt": "2026-06-17"
+        },
+        {
+          "id": "blog/frontier-model-routing-without-fable-5-hero",
+          "filename": "frontier-model-routing-without-fable-5-hero.svg",
+          "src": "/images/blog/frontier-model-routing-without-fable-5-hero.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 5783,
+          "title": "Frontier Model Routing Without Fable 5",
+          "tags": [
+            "blog",
+            "frontier",
+            "model",
+            "routing",
+            "without",
+            "fable",
+            "hero"
+          ],
+          "createdAt": "2026-06-17"
+        },
+        {
+          "id": "blog/frontier-routing-availability-stack",
+          "filename": "frontier-routing-availability-stack.svg",
+          "src": "/images/blog/frontier-routing-availability-stack.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 2942,
+          "title": "Frontier Routing Availability Stack",
+          "tags": [
+            "blog",
+            "frontier",
+            "routing",
+            "availability",
+            "stack"
+          ],
+          "createdAt": "2026-06-17"
+        },
+        {
+          "id": "blog/frontier-routing-matrix",
+          "filename": "frontier-routing-matrix.svg",
+          "src": "/images/blog/frontier-routing-matrix.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 2982,
+          "title": "Frontier Routing Matrix",
+          "tags": [
+            "blog",
+            "frontier",
+            "routing",
+            "matrix"
+          ],
+          "createdAt": "2026-06-17"
         },
         {
           "id": "blog/gemini-3-5-pro-analysis-2026-hero-premium",
@@ -4795,7 +4920,7 @@
             "flywheel",
             "2026"
           ],
-          "createdAt": "2026-06-12"
+          "createdAt": "2026-06-15"
         },
         {
           "id": "blog/science-of-state-change-music-hero",

@@ -10,6 +10,7 @@ import {
   Brain,
   Building2,
   Calendar,
+  Cloud,
   Code,
   Compass,
   Cpu,
@@ -32,6 +33,18 @@ import {
 } from 'lucide-react'
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
+import {
+  researchAreas,
+  researchItems,
+  researchOperatingSystem,
+} from '@/data/platform'
+import {
+  ContentIndex,
+  PlatformCard,
+  SectionHeader,
+  SystemFlow,
+  CTASection as PlatformCTASection,
+} from '@/components/platform/platform-ui'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -64,6 +77,8 @@ const featuredDomains = [...researchDomains]
 const totalSources = researchDomains.reduce((sum, d) => sum + d.sourceCount, 0)
 const totalFindings = researchDomains.reduce((sum, d) => sum + d.keyFindings.length, 0)
 
+const researchAreaIcons = [BarChart3, Brain, Plug, Cloud, Building2, Layers, Heart, Palette]
+
 function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
 
@@ -79,20 +94,20 @@ function HeroSection() {
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">
-              Active Research
+              AI research lab
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-            Research Intelligence
+            AI Research for Builders
             <span className="block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
-              Hub
+              of the Intelligence Age
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
-            Validated research across enterprise AI, production patterns, multi-agent systems,
-            and emerging technology. Every claim cross-referenced, every insight actionable.
+            Field notes, model analysis, architecture patterns, agentic systems, cloud AI strategy,
+            and practical research for people building with AI instead of merely commenting on it.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -104,10 +119,16 @@ function HeroSection() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="#methodology"
+              href="/research/model-arena"
               className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-all"
             >
-              Methodology
+              View Model Arena
+            </Link>
+            <Link
+              href="/cloud"
+              className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-all"
+            >
+              Cloud AI Playbooks
             </Link>
           </div>
         </motion.div>
@@ -132,6 +153,66 @@ function HeroSection() {
             </div>
           ))}
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function BuilderResearchAreas() {
+  return (
+    <section className="py-12 md:py-20 border-b border-white/[0.04]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Research Areas"
+          title="A lab for turning intelligence into systems."
+          deck="The research surface now connects model evaluation, agent infrastructure, cloud AI execution, creator operating systems, and book/IP development into one platform."
+        />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {researchAreas.map((area, index) => (
+            <PlatformCard
+              key={area.title}
+              title={area.title}
+              excerpt={area.excerpt}
+              href={area.href}
+              tags={area.tags}
+              icon={researchAreaIcons[index] || Layers}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ResearchIndexSection() {
+  return (
+    <section className="py-12 md:py-20 border-b border-white/[0.04]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+          <SectionHeader
+            eyebrow="Research Index"
+            title="Canonical notes, drafts, and playbooks in one runway."
+            deck="These entries are seeded as platform content objects. Live pages can mature from this index without hardcoding card copy into page components."
+          />
+          <ContentIndex items={researchItems} />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ResearchOperatingSystemSection() {
+  return (
+    <section className="py-12 md:py-20 border-b border-white/[0.04]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Research Operating System"
+          title="Signals become notes. Notes become systems. Systems become offers."
+          deck="FrankX.ai is organized for compounding: source signals move through research, frameworks, experiments, products, and canonical systems."
+        />
+        <div className="mt-10">
+          <SystemFlow steps={researchOperatingSystem} compact />
+        </div>
       </div>
     </section>
   )
@@ -704,11 +785,21 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
+        <BuilderResearchAreas />
+        <ResearchIndexSection />
+        <ResearchOperatingSystemSection />
         <FlagshipArticles />
         <FeaturedSpotlight />
         <DomainsGrid />
         <ResearchTeamSection />
         <MethodologySection />
+        <PlatformCTASection
+          eyebrow="Research to System"
+          title="Need this translated into a working system?"
+          deck="Turn a research area into a prototype, product, architecture map, or cloud AI sprint with a clear execution path."
+          primary={{ label: 'Explore products', href: '/products' }}
+          secondary={{ label: 'Start a cloud sprint', href: '/cloud/prototype-sprints' }}
+        />
         <CTASection />
       </div>
     </main>

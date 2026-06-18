@@ -61,7 +61,7 @@ const partners: Partner[] = [
       'Claude is Frank\'s recommended model for reasoning, coding, and agent workloads. Claude Code is part of the FrankX daily workflow. We are pursuing Claude for Work Partner Program status — no direct consumer affiliate today.',
     usedIn: [
       '/workshops/build-first-ai-agent (Claude branch)',
-      '/acos and FrankX agent workflows',
+      '/acos',
       'Every content generation pipeline on frankx.ai',
     ],
   },

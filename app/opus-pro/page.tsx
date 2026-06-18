@@ -49,7 +49,7 @@ export default function ShortFormNexusPage() {
         {
           name: 'FrankX Brand Kit',
           description: 'Unified visual standards for all short-form output.',
-          url: '/brand'
+          url: '/design-lab/brand'
         }
       ]}
     >

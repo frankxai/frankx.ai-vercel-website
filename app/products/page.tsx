@@ -12,7 +12,6 @@ import {
   Cpu,
   CheckCircle2,
   Package,
-  Shield,
   Zap,
   Users,
   Star,
@@ -24,6 +23,13 @@ import Image from 'next/image'
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
+import { getShopLaunchItems, offerLadder, templateBundles } from '@/data/gencreator-launch-readiness'
+import { platformOfferLadder, platformProducts } from '@/data/platform'
+import {
+  OfferLadder as PlatformOfferLadder,
+  SectionHeader,
+  StatusBadge,
+} from '@/components/platform/platform-ui'
 
 // Product characters removed — mascot-first strategy (Feb 21)
 
@@ -69,122 +75,37 @@ function ProductsBackground() {
   )
 }
 
-// Product data - structured for premium display
-const products = [
-  {
-    id: 'vibe-os',
-    icon: Music,
-    name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
-    description:
-      'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    status: 'active',
-    href: '/products/vibe-os',
-    color: 'emerald',
-    highlights: [
-      '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
-      'Emotion-to-sound mapping system',
-      'Production enhancement and mastering guide',
-    ],
-    featured: true,
-  },
-  {
-    id: 'creators-soulbook',
-    icon: BookOpen,
-    name: 'The Creator\'s Soulbook',
-    tagline: 'Life Architecture OS',
-    description:
-      'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
-    status: 'active',
-    href: '/soulbook',
-    color: 'cyan',
-    highlights: [
-      '7 Life Pillars framework with reflection exercises',
-      '3 transformational perspectives (Life Symphony, Golden Path, 7 Pillars)',
-      '25+ AI coaching prompts + ready-to-use Obsidian vault',
-    ],
-  },
-  {
-    id: 'suno-prompts-bundle',
-    icon: Sparkles,
-    name: '5 Suno Prompt Bundles',
-    tagline: 'Genre-Specific Music Generation',
-    description:
-      'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
-    status: 'active',
-    href: '/products/suno-prompt-library',
-    color: 'violet',
-    highlights: [
-      '50+ battle-tested prompts across 5 genres',
-      'Emotion and tempo mapping for each genre',
-      'Production tips and remixing guides',
-    ],
-  },
-  {
-    id: 'creative-ai-toolkit',
-    icon: Sparkles,
-    name: 'Creative AI Toolkit',
-    tagline: 'Prompt library + workflow rituals',
-    description:
-      'A digital kit with prompts, templates, and rollout rituals for consistent output.',
-    status: 'early-access',
-    href: '/newsletter?ref=creative-ai-toolkit-early-access',
-    color: 'amber',
-    highlights: [
-      '100+ validated prompts across storytelling, marketing, and operations',
-      '12 ready-to-deploy workflow automations',
-      '30/60/90 day implementation roadmaps',
-    ],
-  },
-  {
-    id: 'creation-chronicles',
-    icon: BookOpen,
-    name: 'Creation Chronicles',
-    tagline: 'Strategic Storytelling OS',
-    description:
-      'Story frameworks, editorial calendars, and prompt stacks to build authority.',
-    status: 'early-access',
-    href: '/newsletter?ref=creation-chronicles-early-access',
-    color: 'cyan',
-    highlights: [
-      'Strategic story architecture and messaging frameworks',
-      'AI-assisted content creation workflows',
-      'Omnichannel distribution templates',
-    ],
-  },
-  {
-    id: 'generative-creator-os',
-    icon: Cpu,
-    name: 'Generative Creator OS',
-    tagline: 'Multi-modal AI Studio',
-    description:
-      'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
-    status: 'early-access',
-    href: '/newsletter?ref=generative-creator-os-early-access',
-    color: 'violet',
-    highlights: [
-      'Multi-modal asset generation pipelines',
-      'Brand intelligence and compliance system',
-      'Team enablement and performance analytics',
-    ],
-  },
-  {
-    id: 'agentic-creator-os',
-    icon: Building2,
-    name: 'Agentic Creator OS',
-    tagline: 'Developer AI Mastery',
-    description:
-      'Agentic playbooks, prompt stacks, and governance checklists for builders.',
-    status: 'early-access',
-    href: '/newsletter?ref=agentic-creator-os-early-access',
-    color: 'rose',
-    highlights: [
-      'Claude Code and Cursor mastery systems',
-      'Agentic workflow and automation patterns',
-      'Production-grade agent development',
-    ],
-  },
-]
+const presentationById = {
+  'vibe-os': { icon: Music, color: 'emerald' as const, featured: true },
+  'creators-soulbook': { icon: BookOpen, color: 'cyan' as const },
+  '5-suno-prompts': { icon: Sparkles, color: 'violet' as const },
+  'suno-prompt-library': { icon: Music, color: 'amber' as const },
+  'creative-ai-toolkit': { icon: Sparkles, color: 'amber' as const },
+  'creation-chronicles': { icon: BookOpen, color: 'cyan' as const },
+  'generative-creator-os': { icon: Cpu, color: 'violet' as const },
+  'agentic-creator-os': { icon: Building2, color: 'rose' as const },
+} as const
+
+const products = getShopLaunchItems().map((item) => {
+  const presentation =
+    presentationById[item.id as keyof typeof presentationById] ??
+    { icon: Package, color: 'emerald' as const }
+  const isPreview = item.status === 'preview' || item.status === 'ready'
+
+  return {
+    id: item.id,
+    icon: presentation.icon,
+    name: item.name,
+    tagline: `${item.track.toUpperCase()} / ${item.price}`,
+    description: item.promise,
+    status: isPreview ? 'active' : 'early-access',
+    statusLabel: isPreview ? 'Preview Ready' : 'Waitlist',
+    href: item.ctaHref,
+    color: presentation.color,
+    highlights: [item.audience, item.proof, item.ownerAction],
+    featured: 'featured' in presentation ? presentation.featured : false,
+  }
+})
 
 const colorMap = {
   violet: {
@@ -334,7 +255,7 @@ export default function ProductsPage() {
                 <Package className="h-5 w-5" />
               </div>
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                Digital Products
+                Agentic Builder Product System
               </span>
             </motion.div>
 
@@ -344,9 +265,9 @@ export default function ProductsPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Systems I use.
+              Products for the Agentic Builder.
               <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400">
-                Packaged for you.
+                Templates, playbooks, systems, and sprints.
               </span>
             </motion.h1>
 
@@ -356,9 +277,67 @@ export default function ProductsPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              The exact frameworks, prompts, and workflows I use in my own creative practice
-              and enterprise work. No theory — just what actually works.
+              Templates, playbooks, systems, sprints, and advisory offers for people turning AI
+              into business infrastructure, creative output, and cloud-native execution.
             </motion.p>
+          </div>
+        </section>
+
+        {/* Authority Offer Ladder */}
+        <section className="py-12 border-y border-white/5">
+          <div className="mx-auto max-w-6xl px-6">
+            <SectionHeader
+              eyebrow="Offer Ladder"
+              title="Attention becomes research. Research becomes products. Products become systems."
+              deck="The platform now has a clean ladder from free public authority to templates, workshops, prototype sprints, and advisory partnerships."
+            />
+            <div className="mt-10">
+              <PlatformOfferLadder tiers={platformOfferLadder} />
+            </div>
+          </div>
+        </section>
+
+        {/* Platform Products */}
+        <section className="py-16 border-b border-white/5">
+          <div className="mx-auto max-w-6xl px-6">
+            <SectionHeader
+              eyebrow="Product Catalog"
+              title="Eight offers that connect the FrankX.ai authority platform."
+              deck="Each product is routed through a verified destination or application-based contact path. No unverified paid checkout is exposed."
+            />
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {platformProducts.map((product, index) => (
+                <motion.div
+                  key={product.slug}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: Math.min(index * 0.05, 0.25) }}
+                  className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5"
+                >
+                  <div className="mb-5 flex items-start justify-between gap-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/38">
+                      {product.category}
+                    </p>
+                    <StatusBadge status={product.status} />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">{product.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/55">{product.excerpt}</p>
+                  <div className="mt-5 space-y-2 border-t border-white/[0.07] pt-5 text-xs leading-5 text-white/45">
+                    <p><span className="text-white/70">Format:</span> {product.format}</p>
+                    <p><span className="text-white/70">Outcome:</span> {product.outcome}</p>
+                    <p><span className="text-white/70">Price:</span> {product.price}</p>
+                  </div>
+                  <Link
+                    href={product.ctaHref || '/newsletter'}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200"
+                  >
+                    {product.ctaLabel || 'View details'}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -428,12 +407,12 @@ export default function ProductsPage() {
                             {isActive ? (
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
                                 <CheckCircle2 className="w-3.5 h-3.5" />
-                                Available
+                                {product.statusLabel}
                               </span>
                             ) : (
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
                                 <Sparkles className="w-3.5 h-3.5" />
-                                Early Access
+                                {product.statusLabel}
                               </span>
                             )}
                           </div>
@@ -465,6 +444,89 @@ export default function ProductsPage() {
                   </motion.div>
                 )
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Offer Ladder */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
+                Launch Architecture
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                The offer ladder agents should follow
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-sm text-white/45">
+                Free resources build trust. Low-ticket products validate demand. The flagship cohort
+                creates transformation. Advanced labs and sprints come after delivery is proven.
+              </p>
+            </motion.div>
+
+            <div className="overflow-hidden rounded-3xl border border-white/10">
+              {offerLadder.map((tier) => (
+                <div
+                  key={tier.tier}
+                  className="grid gap-3 border-b border-white/10 bg-white/[0.03] p-5 last:border-b-0 md:grid-cols-[0.8fr_0.8fr_1fr_2fr]"
+                >
+                  <div className="font-semibold text-white">{tier.tier}</div>
+                  <div className="text-emerald-300">{tier.price}</div>
+                  <div className="text-white/55">{tier.role}</div>
+                  <div className="text-white/45">{tier.offers}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Bundle Packaging */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-violet-400/70 mb-2">
+                Bundle Strategy
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                Package templates into systems
+              </h2>
+            </motion.div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {templateBundles.map((bundle, i) => (
+                <motion.div
+                  key={bundle.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
+                  className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6"
+                >
+                  <div className="mb-4 flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">{bundle.name}</h3>
+                      <p className="mt-1 text-sm text-emerald-300">{bundle.price}</p>
+                    </div>
+                    <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300">
+                      Needs packaging
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-white/55">{bundle.includes}</p>
+                  <p className="mt-4 border-t border-white/10 pt-4 text-xs leading-relaxed text-white/35">
+                    {bundle.ownerAction}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -585,12 +647,12 @@ export default function ProductsPage() {
                   a: "Vibe OS and The Creator's Soulbook are designed for beginners. Creative AI Toolkit and Generative Creator OS are for intermediate users who want to go deeper.",
                 },
                 {
-                  q: "Which products are available now?",
-                  a: "Vibe OS, The Creator's Soulbook, and the Suno Prompt Bundles are available now. Other products are in Early Access—join the list to get priority launch access and exclusive pricing.",
+                  q: "Which products are launch-ready?",
+                  a: "Preview-ready products can be explored now. Paid products stay on waitlist until checkout, delivery, onboarding, and refund policy are verified.",
                 },
                 {
-                  q: "What do I get by joining Early Access?",
-                  a: "Early Access members get priority launch notification, exclusive early-bird pricing, behind-the-scenes development updates, and direct input on product refinement.",
+                  q: "Why do some products route to waitlist?",
+                  a: "Because missing or unverified delivery assets should never be sold through a direct checkout. The waitlist protects trust while the product is packaged properly.",
                 },
               ].map((faq, i) => (
                 <motion.div
@@ -629,22 +691,22 @@ export default function ProductsPage() {
                     Ready to Create
                   </span>
                   <h2 className="text-2xl font-bold text-white sm:text-3xl mb-4">
-                    Start building with our systems today
+                    Start with the flagship path
                   </h2>
                   <p className="text-slate-400">
-                    Vibe OS, The Creator's Soulbook, and Suno Prompt Bundles are available now.
-                    Join early access for upcoming launches with exclusive pricing.
+                    Build Your AI Creator OS is the main implementation path. Products and
+                    bundles support that journey as they become verified.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
                   <Link
-                    href="/products/vibe-os"
+                    href="/courses/build-your-ai-creator-os"
                     onClick={() =>
-                      trackEvent('cta_click', { location: 'products-page', target: 'vibe-os' })
+                      trackEvent('cta_click', { location: 'products-page', target: 'ai-creator-os-course' })
                     }
                     className="group flex-1 flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30"
                   >
-                    Explore Vibe OS
+                    Build Your AI Creator OS
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link

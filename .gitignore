@@ -178,3 +178,15 @@ __pycache__/
 /public/agents.json
 /public/schema-graph.json
 /public/sitemap-extras.xml
+
+# Starlight/ACOS temporary files
+.agent/
+.system_generated/
+.next-backup/
+temp-*.json
+link-checker-report.json
+link-checker-report.txt
+
+# Starlight/ACOS temporary files
+.starlight/
+.gemini/

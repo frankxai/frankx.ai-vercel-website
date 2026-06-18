@@ -23,6 +23,16 @@ type DownloadItem = {
 
 const downloads: DownloadItem[] = [
   {
+    id: 'agentic-creator-os',
+    title: 'Agentic Creator OS',
+    subtitle: 'Universal AI Agent Operating System',
+    description: 'One install. 90+ skills, 65+ commands, and 38 agents packaged for Claude Code, Codex, and Antigravity. Auto-activating context rules.',
+    previewUrl: '/downloads/preview/agentic-creator-os',
+    features: ['90+ Skills', '65+ Commands', '38 Agents', 'Multi-Platform'],
+    variant: 'purple' as const,
+    icon: '⚙️',
+  },
+  {
     id: 'soulbook-guide',
     title: "The Creator's Soulbook",
     subtitle: 'Complete Life Architecture Framework',
@@ -43,6 +53,7 @@ const downloads: DownloadItem[] = [
     icon: '🎵',
   },
   {
+  {
     id: 'blue-life-commons',
     title: 'Blue Life Commons',
     subtitle: 'Ocean Intelligence System — Founding Knowledgebase',
@@ -53,6 +64,37 @@ const downloads: DownloadItem[] = [
     features: ['31 Species Pages', '8 Region Briefings', '10 Audience Guides', 'MCP + Agent Skills'],
     variant: 'ocean' as const,
     icon: '🌊',
+  },
+  {
+    id: 'health-intelligence-system',
+    title: 'Health Intelligence System',
+    subtitle: 'Cancer Prep & Treatment Decision Support',
+    description: 'A SIP-aligned excellence pack for cancer screening prep, abnormal-result briefs, treatment discussion packets, second opinions, and survivorship records.',
+    previewUrl: '/downloads/health-intelligence-system',
+    features: ['Cancer Module', 'Safety Gate', 'Clinician Briefs', 'GitHub Release'],
+    variant: 'emerald' as const,
+    icon: 'HIS',
+  },
+  {
+    id: 'starlight-sip-starter',
+    title: 'Starlight SIP Starter',
+    subtitle: 'Open Intelligence System Module',
+    description: 'Download the open-core SIP starter from Starlight: portable files, public vault seeds, release manifest, checksums, and validation guidance.',
+    previewUrl: 'https://starlightintelligence.org/download',
+    features: ['SIP Core Files', 'Public Vault Seeds', 'SHA256 Checksums', 'Upgrade Path'],
+    variant: 'ocean' as const,
+    icon: '✦',
+  },
+  {
+    id: 'starlight-plugin-starter',
+    title: 'Starlight Plugin Starter',
+    subtitle: 'Codex Plugin Prerelease',
+    description: 'Install four public-safe Codex plugins for enterprise AI, health intelligence safety, prompt evaluation, and Vibe OS product workflows.',
+    previewUrl: 'https://starlightintelligence.org/download#codex-plugin-starter',
+    features: ['4 Codex Plugins', 'GitHub Prerelease', 'SHA256 Checksum', 'Install Guide'],
+    variant: 'ocean' as const,
+    icon: 'CLI',
+  },
   },
 ]
 
@@ -76,7 +118,7 @@ export default function DownloadsPage() {
           </div>
 
           {/* Download Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {downloads.map((item) => (
               <AuroraGradient
                 key={item.id}

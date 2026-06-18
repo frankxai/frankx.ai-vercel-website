@@ -2721,6 +2721,31 @@
       "snippet": "================================================================================ FRANKX WEEKLY BUILDER LETTER February 17, 2026 | Reading Time: ~4 min ================================================================================ SUBJECT: Props to the Builders: A Grounded Note for This Week OPENIN"
     },
     {
+      "title": "Issue 5 Approval Packet",
+      "path": "/reading/content/newsletters/experiments/issue-5-ai-bet-that-compounds/approval-packet.html",
+      "snippet": "# Issue 5 Approval Packet ## Current State **Issue:** Issue 5: The AI bet that compounds **Status:** Needs human review **Source file:** content/newsletters/issues/issue-5.mdx **Experiment:** issue-5-ai-bet-that-compounds ## Approval Gate Live send is blocked for Resend, Beehiiv, and Substack. Repo "
+    },
+    {
+      "title": "Issue 5 Simulation Report",
+      "path": "/reading/content/newsletters/experiments/issue-5-ai-bet-that-compounds/simulation-report.html",
+      "snippet": "# Issue 5 Simulation Report ## Experiment **ID:** issue-5-ai-bet-that-compounds **Hypothesis:** The strongest Issue 5 is a personal friend-style opening that earns trust, followed by a simple operator framework and a soft qualified reply CTA. ## Variant Scores | Variant | Clarity | Trust | Utility |"
+    },
+    {
+      "title": "Variant A: Friend Message",
+      "path": "/reading/content/newsletters/experiments/issue-5-ai-bet-that-compounds/variant-a-friend-message.html",
+      "snippet": "# Variant A: Friend Message **Subject:** The AI bet that compounds **Preview:** The useful question is not what can AI automate. It is what gets better every week. Most AI advice is secretly productivity advice with a new costume. Automate this. Summarize that. Generate more. Move faster. There is n"
+    },
+    {
+      "title": "Variant B: Operator Framework",
+      "path": "/reading/content/newsletters/experiments/issue-5-ai-bet-that-compounds/variant-b-framework.html",
+      "snippet": "# Variant B: Operator Framework **Subject:** A better filter for AI projects **Preview:** Use this three-part test before you build another automation. Before building another AI workflow, run it through this filter. ## 1. Asset improvement Does the workflow improve a durable asset? Examples: - audi"
+    },
+    {
+      "title": "Variant C: Commercial Bridge",
+      "path": "/reading/content/newsletters/experiments/issue-5-ai-bet-that-compounds/variant-c-commercial.html",
+      "snippet": "# Variant C: Commercial Bridge **Subject:** Build the AI loop before the tool stack **Preview:** The stack matters less than the compounding loop it serves. The most common mistake I see with AI stacks is starting with tools. Which model? Which agent framework? Which database? Which email platform? "
+    },
+    {
       "title": "Newsletter Best Of (Patterns)",
       "path": "/reading/content/newsletters/inspiration/BEST_OF.html",
       "snippet": "# Newsletter Best Of (Patterns) Keep only patterns that repeatedly work. ## Subject Line Patterns - [ ] ## Preheader Patterns - [ ] ## Layout Patterns - [ ] ## CTA Patterns - [ ] ## Tone / Voice Patterns - [ ]"
@@ -2739,6 +2764,16 @@
       "title": "Newsletter Inspiration Entry",
       "path": "/reading/content/newsletters/inspiration/TEMPLATE.html",
       "snippet": "# Newsletter Inspiration Entry ## Metadata - Date Captured: - Source URL: - Sender / Brand: - Audience Type: - Campaign Type: (welcome / weekly / launch / promo / digest) ## Subject + Preheader - Subject: - Preheader: - Why it works (or fails): ## Visual Design Notes - Layout pattern: - Header treat"
+    },
+    {
+      "title": "Newsletter Delivery and Vercel Setup",
+      "path": "/reading/content/newsletters/system/delivery-and-vercel-setup.html",
+      "snippet": "# Newsletter Delivery and Vercel Setup This file is the operator checklist for making the FrankX Newsletter Intelligence cockpit work end to end on the main Vercel site. ## Delivery Roles Gmail MCP is for internal preview packets only. It is useful when Frank wants a review email immediately, but it"
+    },
+    {
+      "title": "FrankX Newsletter Intelligence System V1",
+      "path": "/reading/content/newsletters/system/newsletter-intelligence-system-v1.html",
+      "snippet": "# FrankX Newsletter Intelligence System V1 The repo is the source of truth for issue drafts, variants, simulation reports, approval packets, and archive rendering. Resend remains the transactional layer for welcome email, confirmation, unsubscribe, contact updates, topic tags, and test sends. Beehii"
     },
     {
       "title": "Creativity Letter: Keep Human Taste in the Loop",
@@ -3186,6 +3221,11 @@
       "snippet": "# Daily Agent Tasks Framework **Your Daily System for Working with Claude and Codex** *Last Updated: October 14, 2025* --- ## 🎯 Purpose You said: *\"I should daily give multiple tasks to you and Codex but sometimes unclear what I should be doing.\"* This framework solves that. It gives you a clear da"
     },
     {
+      "title": "FrankX Site Wiring Audit",
+      "path": "/reading/data/audit/site-wiring.html",
+      "snippet": "# FrankX Site Wiring Audit Generated: 2026-06-17T12:37:35.998Z Base URL: http://localhost:3017 ## Summary - Routes discovered: 665 - Public routes checked live: 656 - Source files scanned: 2093 - Total findings: 149 - Blocking findings: 0 ## Blocking Findings No blocking public wiring findings. ## C"
+    },
+    {
       "title": "CRM — Local JSON Mirror",
       "path": "/reading/data/crm/README.html",
       "snippet": "# CRM — Local JSON Mirror **Source of truth** for Workshop OS CRM data. Lives in private `FrankX` repo. Never synced to production website repo. ## Files | File | Purpose | Record count | |---|---|---| | `people.json` | Individual humans (engaged contacts) | Grows from intake + workshops | | `orgs.j"
@@ -3241,9 +3281,9 @@
       "snippet": "# ✅ DEPLOYMENT READY - Critical UX Fixes **Date**: January 13, 2026 **Status**: All fixes implemented, tested, and ready for deployment **Impact**: High - Fixes critical conversion funnel issues --- ## 🎯 What Was Fixed ### 1. Newsletter Signup Flow ✅ - **Before**: Showed raw JSON `{\"message\":\"Succe"
     },
     {
-      "title": "FrankX — Design System",
+      "title": "FrankX Website Design Handoff (frankx.ai-vercel-website)",
       "path": "/reading/design.html",
-      "snippet": "--- version: alpha name: FrankX description: > Dual-spectrum dark-first design system for the FrankX creator + AI architect brand. Tech (emerald/cyan) and Soul (amber/gold) live side by side on a deep obsidian foundation. Built for restraint, technical rigor, and humble excellence. colors: # -------"
+      "snippet": "# FrankX Website Design Handoff (frankx.ai-vercel-website) > Local visual specifications. Consumes the global design operating contract at [starlight/design.md](file:///C:/Users/frank/starlight/design.md). --- ## 1 · Brand & Audience - **Brand Identity:** FrankX (Personal authority + learning ecosys"
     },
     {
       "title": "FrankX Design System",
@@ -3431,6 +3471,11 @@
       "snippet": "# Complete PDF Delivery System - Implementation Summary **Status:** ✅ Production Ready **Date:** January 13, 2026 **Files Created:** 45+ production files **Lines of Code:** ~3,500+ fully typed TypeScript **Time to Deploy:** 5 minutes (follow Quick Start guide) --- ## 🎉 What Was Built This is a **co"
     },
     {
+      "title": "Platform Content System",
+      "path": "/reading/docs/content-system.html",
+      "snippet": "# Platform Content System The authority platform uses a typed static content layer under `data/platform/`. It is intentionally simple: no CMS dependency, no checkout assumptions, and no dynamic data source needed for the public pages. ## Files - `data/platform/types.ts` defines shared types for rese"
+    },
+    {
       "title": "FrankX Content Audit Report",
       "path": "/reading/docs/CONTENT_AUDIT_2026-01-27.html",
       "snippet": "# FrankX Content Audit Report ## Comprehensive Brand, SEO/AEO, and Truth-Grounding Assessment **Generated**: 2026-01-27 **Auditor**: Arcanea Master Creative Intelligence **Scope**: 65 blog articles in `/content/blog/` --- ## Executive Summary After reviewing the complete FrankX blog library, I've id"
@@ -3546,6 +3591,11 @@
       "snippet": "# FrankX Foundation Specification *Premium Quality System Architecture* --- ## Vision Transform every AI interaction into world-class output through systematic foundation, knowledge architecture, and quality enforcement. **Brand:** Top Creator. Top AI Architect. Humble Excellence. --- ## Current Sta"
     },
     {
+      "title": "FrankX Site Command Map",
+      "path": "/reading/docs/FRANKX_SITE_COMMAND_MAP.html",
+      "snippet": "# FrankX Site Command Map This is the repo-native source of truth for how frankx.ai should be wired. It connects route enumeration, public navigation, footer links, homepage shortcuts, funnel paths, commerce verification, aliases, and the FigJam mirror. Sources: `lib/route-enumeration.mjs`, `data/si"
+    },
+    {
       "title": "FrankX Skills & MCP Architecture",
       "path": "/reading/docs/FRANKX_SKILL_AND_MCP_ARCHITECTURE.html",
       "snippet": "# FrankX Skills & MCP Architecture **Date**: December 15, 2025 **Purpose**: Comprehensive inventory and strategic organization of Claude Code skills, MCP servers, agents, and automation systems --- ## Executive Summary You have **three distinct but overlapping systems** for AI augmentation: 1. **Cla"
@@ -3554,6 +3604,11 @@
       "title": "FrankX.AI System Architecture",
       "path": "/reading/docs/FRANKX_SYSTEM_ARCHITECTURE.html",
       "snippet": "# FrankX.AI System Architecture > **Version**: 3.0 | **Last Updated**: December 2025 > **Purpose**: Complete architectural reference for AI agents and human developers --- ## Table of Contents 1. [Core Philosophy](#core-philosophy) 2. [Technical Stack](#technical-stack) 3. [Design System Architectur"
+    },
+    {
+      "title": "GenCreator Launch System",
+      "path": "/reading/docs/GENCREATOR_LAUNCH_SYSTEM.html",
+      "snippet": "# GenCreator Launch System This document is the source of truth for the GenCreator launch and offer strategy. It complements `docs/FRANKX_SITE_COMMAND_MAP.md`, which remains the wiring map for routes and links. ## Positioning GenCreator by FrankX is the launch identity. Core promise: > GenCreator he"
     },
     {
       "title": "FrankX.ai Hero Images Inventory",
@@ -3849,6 +3904,16 @@
       "title": "Security Setup Guide - FrankX.AI",
       "path": "/reading/docs/SECURITY_SETUP.html",
       "snippet": "# Security Setup Guide - FrankX.AI Complete guide for securing your PDF delivery system, analytics dashboards, and lead data. --- ## 🔒 Security Overview ### What We're Protecting 1. **Analytics Dashboards** - PDF views, downloads, engagement metrics 2. **Lead Data (PII)** - User emails, names, comp"
+    },
+    {
+      "title": "SIS Swarm Execution Note",
+      "path": "/reading/docs/sis-swarm-execution.html",
+      "snippet": "# SIS Swarm Execution Note FrankX.ai is the public authority surface. Starlight Intelligence Systems is the execution infrastructure behind the surface: agentic operating systems, AI CoE systems, cloud AI architecture, MCP-to-cloud workflows, and business/creator intelligence systems. Arcanea is the"
+    },
+    {
+      "title": "FrankX.ai Authority Site Map",
+      "path": "/reading/docs/site-map.html",
+      "snippet": "# FrankX.ai Authority Site Map FrankX.ai now has five first-class authority surfaces. ## Research Route: `/research` Role: public research hub and trust engine. Primary jobs: - Show Frank as an AI Architect and systems thinker. - Index model evaluation, agent infrastructure, cloud AI, creator OS, an"
     },
     {
       "title": "FrankX.ai V3 - Complete Site Audit & Optimization Roadmap",

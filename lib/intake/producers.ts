@@ -149,6 +149,21 @@ export const producers: ProducerMeta[] = [
     studioRoute: '/studio/travel',
     publicStatusBlurb: 'Live. Travel photo with GPS → IG carousel + blog + Stories.',
   },
+  {
+    id: 'social-producer',
+    label: 'Sovereign Social',
+    status: 'shipped',
+    shipped: '2026-06-15',
+    description:
+      'Staged copy blocks → Web2/Web3 networks + local comment-to-DM routing. Composes starlight-social MCP server (browser contexts + direct XRPC Neynar signing) and starlight-manychat MCP bridge to orchestrate delivery compliant with Meta rules.',
+    acceptedCaptureTypes: ['document', 'quote'],
+    producedAssetTypes: ['thread-post', 'carousel-post', 'quote-card'],
+    targetPlatforms: ['x', 'linkedin', 'threads', 'instagram', 'bluesky', 'farcaster'],
+    skill: 'social-media',
+    command: '/publish-post',
+    studioRoute: '/studio/social',
+    publicStatusBlurb: 'Live. Swarm mesh, sheets ledger logging, and iPhone DM simulator cockpit.',
+  },
 ]
 
 export function getProducer(id: ProducerMeta['id']): ProducerMeta | undefined {

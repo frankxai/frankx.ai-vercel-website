@@ -379,8 +379,8 @@ export default function ACOSv11Roadmap() {
           <Link href="/watch" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
             <Play className="w-3.5 h-3.5" /> /watch hub <ExternalLink className="w-3 h-3" />
           </Link>
-          <Link href="/admin/youtube" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
-            <Monitor className="w-3.5 h-3.5" /> /admin/youtube <ExternalLink className="w-3 h-3" />
+          <Link href="/watch" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
+            <Monitor className="w-3.5 h-3.5" /> /watch hub <ExternalLink className="w-3 h-3" />
           </Link>
           <Link href="/content-strategy/video-creation" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
             <FileText className="w-3.5 h-3.5" /> Content Strategy <ExternalLink className="w-3 h-3" />

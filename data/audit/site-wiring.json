@@ -1,0 +1,640 @@
+{
+  "timestamp": "2026-06-18T00:18:30.699Z",
+  "baseUrl": "http://localhost:3000",
+  "routes": {
+    "total": 672,
+    "aliases": 25,
+    "public": 663,
+    "privateOrOwner": 9
+  },
+  "static": {
+    "scannedFiles": 2107,
+    "findings": [
+      {
+        "route": null,
+        "source": "app/admin/404-radar/page.tsx",
+        "line": 243,
+        "href": "/admin",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/content/page.tsx",
+        "line": 371,
+        "href": "/admin/content/pipeline",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/content/pipeline against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/content/page.tsx",
+        "line": 477,
+        "href": "/admin/content/pipeline",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/content/pipeline against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/content/pipeline/page.tsx",
+        "line": 149,
+        "href": "/admin/content",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/content against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/content/[slug]/page.tsx",
+        "line": 124,
+        "href": "/admin/content",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/content against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/content/[slug]/page.tsx",
+        "line": 143,
+        "href": "/admin/content",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/content against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/intake/page.tsx",
+        "line": 111,
+        "href": "/admin",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/legal/page.tsx",
+        "line": 167,
+        "href": "/admin/bv-command-center",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/bv-command-center against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/map/page.tsx",
+        "line": 362,
+        "href": "/admin",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/revenue/RevenueClient.tsx",
+        "line": 84,
+        "href": "/admin",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/site-health/page.tsx",
+        "line": 131,
+        "href": "/admin/map",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/map against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/site-health/page.tsx",
+        "line": 275,
+        "href": "/admin/map",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin/map against route enumeration or redirect aliases."
+      }
+    ]
+  },
+  "live": {
+    "available": false,
+    "skipped": true,
+    "baseUrl": "http://localhost:3000",
+    "routesChecked": 0,
+    "findings": []
+  },
+  "registry": {
+    "$schema": "https://frankx.ai/schemas/site-links.json",
+    "updated": "2026-06-17",
+    "policy": {
+      "commerce": "Do not migrate paid-product destinations without a verified checkout/product identifier. Flag uncertain paid links as needs-verification.",
+      "sourceOfTruth": "This registry complements lib/social-links.ts, lib/cta-links.ts, data/products.json, and lib/delivery.ts. It exists for site-wide wiring audits and command-map generation."
+    },
+    "internalCanonicals": [
+      {
+        "from": "/music-school",
+        "to": "/music/learn",
+        "status": "verified",
+        "reason": "Music School is a public label; /music/learn is the existing route."
+      },
+      {
+        "from": "/agentic-creator-os",
+        "to": "/products/agentic-creator-os",
+        "status": "verified",
+        "reason": "Legacy product shorthand now resolves to the canonical Agentic Creator OS product page."
+      },
+      {
+        "from": "/ai-music-academy",
+        "to": "/music/learn",
+        "status": "verified",
+        "reason": "AI Music Academy CTAs now land on the public music learning hub."
+      },
+      {
+        "from": "/ai-architectures",
+        "to": "/ai-architecture",
+        "status": "verified",
+        "reason": "Permanent redirect already exists in next.config.mjs."
+      },
+      {
+        "from": "/ai-architect",
+        "to": "/ai-architecture",
+        "status": "verified",
+        "reason": "Permanent redirect already exists in next.config.mjs."
+      },
+      {
+        "from": "/links",
+        "to": "/linktree",
+        "status": "verified",
+        "reason": "Proxy redirects /links to /linktree."
+      },
+      {
+        "from": "/learning-paths",
+        "to": "/learn",
+        "status": "verified",
+        "reason": "Learning-path label now resolves to the consolidated Learn hub."
+      },
+      {
+        "from": "/for/founders",
+        "to": "/for/creators",
+        "status": "verified",
+        "reason": "Founder workshop CTAs now land on the existing creator audience page."
+      },
+      {
+        "from": "/toolkit",
+        "to": "/products/creative-ai-toolkit",
+        "status": "verified",
+        "reason": "Creator Toolkit ladder CTA now resolves to the existing Creative AI Toolkit product page."
+      },
+      {
+        "from": "/soul-frequency-assessment",
+        "to": "/soul-frequency-quiz",
+        "status": "verified",
+        "reason": "Redirect alias exists and quiz page is live."
+      },
+      {
+        "from": "/products/soulbook",
+        "to": "/soulbook",
+        "status": "verified",
+        "reason": "Permanent redirect already exists in next.config.mjs."
+      },
+      {
+        "from": "/vibe-os",
+        "to": "/products/vibe-os",
+        "status": "verified",
+        "reason": "Legacy shorthand now resolves to the canonical Vibe OS product page."
+      }
+    ],
+    "externalProfiles": [
+      {
+        "id": "suno",
+        "label": "Suno Profile",
+        "url": "https://suno.com/@frankx",
+        "status": "verified"
+      },
+      {
+        "id": "github",
+        "label": "GitHub",
+        "url": "https://github.com/frankxai",
+        "status": "verified"
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/frank-x-riemer/",
+        "status": "verified"
+      },
+      {
+        "id": "x",
+        "label": "X",
+        "url": "https://x.com/frankxeth",
+        "status": "verified"
+      },
+      {
+        "id": "youtube",
+        "label": "YouTube",
+        "url": "https://www.youtube.com/@frankxai",
+        "status": "verified"
+      },
+      {
+        "id": "calendar-meet-grow",
+        "label": "Meet & Grow Calendar",
+        "url": "https://calendar.app.google/xS56zYpYw69R9vQj6",
+        "status": "verified"
+      }
+    ],
+    "contactAndCapture": [
+      {
+        "id": "newsletter",
+        "label": "Newsletter",
+        "kind": "internal",
+        "url": "/newsletter",
+        "status": "verified"
+      },
+      {
+        "id": "subscribe-api",
+        "label": "Newsletter Subscribe API",
+        "kind": "api",
+        "url": "/api/subscribe",
+        "status": "verified"
+      },
+      {
+        "id": "book-workshop",
+        "label": "Book Workshop Redirect",
+        "kind": "go-redirect",
+        "url": "/go/book-workshop",
+        "status": "verified"
+      },
+      {
+        "id": "gencreator-skool",
+        "label": "GenCreator Free Skool Invite",
+        "kind": "community",
+        "url": "/newsletter?ref=gencreator-skool-invite",
+        "status": "needs-verification",
+        "ownerAction": "Replace capture fallback with verified Skool invite URL before linking directly."
+      },
+      {
+        "id": "ikigai-coach",
+        "label": "Ikigai Coach GPT Redirect",
+        "kind": "go-redirect",
+        "url": "/go/ikigai-coach",
+        "status": "verified"
+      },
+      {
+        "id": "ikigai-notion-template",
+        "label": "Ikigai Notion Template Redirect",
+        "kind": "go-redirect",
+        "url": "/go/ikigai-notion-template",
+        "status": "needs-verification",
+        "ownerAction": "Replace fallback destination with the verified Notion duplicate URL."
+      },
+      {
+        "id": "ikigai-sheet-template",
+        "label": "Ikigai Sheet Template Redirect",
+        "kind": "go-redirect",
+        "url": "/go/ikigai-sheet-template",
+        "status": "needs-verification",
+        "ownerAction": "Replace fallback destination with the verified Google Sheet URL."
+      },
+      {
+        "id": "claude-cowork",
+        "label": "Claude Cowork Redirect",
+        "kind": "go-redirect",
+        "url": "/go/claude-cowork",
+        "status": "needs-verification",
+        "ownerAction": "Replace fallback destination with the verified Claude artifact URL."
+      },
+      {
+        "id": "ikigai-prompt-scaffold",
+        "label": "Ikigai Prompt Scaffold Redirect",
+        "kind": "go-redirect",
+        "url": "/go/ikigai-prompt-scaffold",
+        "status": "needs-verification",
+        "ownerAction": "Replace fallback destination with the verified prompt scaffold asset."
+      },
+      {
+        "id": "partnership-email",
+        "label": "Partnership Email",
+        "kind": "mailto",
+        "url": "mailto:hello@frankx.ai?subject=Partnership%20inquiry",
+        "status": "verified"
+      },
+      {
+        "id": "contact-email",
+        "label": "Primary Email",
+        "kind": "mailto",
+        "url": "mailto:hello@frankx.ai",
+        "status": "verified"
+      }
+    ],
+    "commerce": [
+      {
+        "id": "vibe-os",
+        "label": "Vibe OS",
+        "kind": "free-download",
+        "url": "/products/vibe-os",
+        "delivery": "products/vibe-os/Vibe-OS-Guide.pdf",
+        "status": "verified"
+      },
+      {
+        "id": "creators-soulbook",
+        "label": "Creator's Soulbook",
+        "kind": "free-download",
+        "url": "/soulbook",
+        "delivery": "products/soulbook/soulbook-7-pillars-framework.pdf",
+        "status": "needs-verification",
+        "ownerAction": "Confirm gated download and email delivery behavior."
+      },
+      {
+        "id": "creative-ai-toolkit",
+        "label": "Creative AI Toolkit",
+        "kind": "paid-product",
+        "url": "https://frankx.gumroad.com/l/creative-ai-toolkit",
+        "status": "needs-verification",
+        "ownerAction": "Confirm canonical checkout platform and delivery file before changing CTAs."
+      },
+      {
+        "id": "creation-chronicles",
+        "label": "Creation Chronicles",
+        "kind": "paid-product",
+        "url": "https://frankx.gumroad.com/l/creation-chronicles-creator",
+        "status": "needs-verification",
+        "ownerAction": "Confirm canonical checkout platform, tier links, and delivery pipeline."
+      },
+      {
+        "id": "bv-kit",
+        "label": "BV Formation Kit",
+        "kind": "paid-product",
+        "url": "https://frankxai.gumroad.com/l/bv-kit",
+        "status": "needs-verification",
+        "ownerAction": "Confirm Gumroad account/domain and whether Stripe or LemonSqueezy should replace it."
+      },
+      {
+        "id": "prompt-vault",
+        "label": "Prompt Vault",
+        "kind": "paid-product",
+        "url": "https://frankxai.gumroad.com/l/prompt-vault",
+        "status": "needs-verification",
+        "ownerAction": "Confirm Gumroad account/domain and whether Stripe or LemonSqueezy should replace it."
+      },
+      {
+        "id": "ai-architecture-templates",
+        "label": "AI Architecture Templates",
+        "kind": "paid-product",
+        "url": "/ai-architecture/templates",
+        "status": "needs-verification",
+        "ownerAction": "Fill verified checkout variant IDs before exposing buy buttons."
+      }
+    ],
+    "platformSurfaces": [
+      {
+        "id": "research",
+        "label": "Research",
+        "kind": "internal",
+        "url": "/research",
+        "status": "verified"
+      },
+      {
+        "id": "cloud",
+        "label": "Cloud AI",
+        "kind": "internal",
+        "url": "/cloud",
+        "status": "verified"
+      },
+      {
+        "id": "cloud-ai-coe",
+        "label": "AI CoE Operating System",
+        "kind": "internal",
+        "url": "/cloud/ai-coe",
+        "status": "verified"
+      },
+      {
+        "id": "cloud-mcp-to-cloud",
+        "label": "MCP-to-Cloud Architecture",
+        "kind": "internal",
+        "url": "/cloud/mcp-to-cloud",
+        "status": "verified"
+      },
+      {
+        "id": "cloud-prototype-sprints",
+        "label": "AI Prototype-to-Production Sprints",
+        "kind": "internal",
+        "url": "/cloud/prototype-sprints",
+        "status": "verified"
+      },
+      {
+        "id": "cloud-gpu-model-architecture",
+        "label": "GPU, Model and Workload Architecture",
+        "kind": "internal",
+        "url": "/cloud/gpu-model-architecture",
+        "status": "verified"
+      },
+      {
+        "id": "books",
+        "label": "Books",
+        "kind": "internal",
+        "url": "/books",
+        "status": "verified"
+      }
+    ],
+    "figjamMirror": {
+      "status": "created",
+      "source": "docs/FRANKX_SITE_COMMAND_MAP.md",
+      "diagramName": "FrankX.AI Site Wiring Command Map",
+      "url": "https://www.figma.com/board/kam8qW2tmvhFeVzpwyOgkd?utm_source=codex&utm_content=edit_in_figjam&oai_id=&request_id=88cb648b-70d2-4c6e-8960-1ed8f6dc9382",
+      "ownerAction": "Use the FigJam board for whiteboarding; keep docs/FRANKX_SITE_COMMAND_MAP.md as the canonical source."
+    }
+  },
+  "summary": {
+    "totalFindings": 12,
+    "blockingFindings": 0,
+    "bySeverity": {
+      "info": 12
+    }
+  },
+  "findings": [
+    {
+      "route": null,
+      "source": "app/admin/404-radar/page.tsx",
+      "line": 243,
+      "href": "/admin",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/content/page.tsx",
+      "line": 371,
+      "href": "/admin/content/pipeline",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/content/pipeline against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/content/page.tsx",
+      "line": 477,
+      "href": "/admin/content/pipeline",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/content/pipeline against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/content/pipeline/page.tsx",
+      "line": 149,
+      "href": "/admin/content",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/content against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/content/[slug]/page.tsx",
+      "line": 124,
+      "href": "/admin/content",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/content against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/content/[slug]/page.tsx",
+      "line": 143,
+      "href": "/admin/content",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/content against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/intake/page.tsx",
+      "line": 111,
+      "href": "/admin",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/legal/page.tsx",
+      "line": 167,
+      "href": "/admin/bv-command-center",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/bv-command-center against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/map/page.tsx",
+      "line": 362,
+      "href": "/admin",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/revenue/RevenueClient.tsx",
+      "line": 84,
+      "href": "/admin",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/site-health/page.tsx",
+      "line": 131,
+      "href": "/admin/map",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/map against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/site-health/page.tsx",
+      "line": 275,
+      "href": "/admin/map",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin/map against route enumeration or redirect aliases."
+    }
+  ]
+}

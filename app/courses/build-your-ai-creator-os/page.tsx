@@ -13,10 +13,12 @@ import {
   ShoppingCart,
   Workflow,
   Zap,
+  Users,
 } from 'lucide-react'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
 import { featuredCourse } from '@/lib/courses/roadmap'
+import { communityLaunch, flagshipOffer } from '@/data/gencreator-launch-readiness'
 
 const moduleIcons = [Brain, Layers, Cable, Workflow, Zap, BookOpen, ShoppingCart, Rocket]
 const moduleColors: GlowColor[] = [
@@ -78,7 +80,7 @@ export default function BuildYourAICreatorOSPage() {
               className="max-w-4xl"
             >
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60 mb-6">
-                Flagship Course
+                Flagship GenCreator Offer
               </p>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
@@ -90,7 +92,7 @@ export default function BuildYourAICreatorOSPage() {
               </p>
 
               <p className="text-sm text-white/40 mb-10">
-                By Frank Riemer, AI Architect at Oracle
+                Beta: {flagshipOffer.betaPrice}. Full program target: {flagshipOffer.fullPrice}. Checkout opens after delivery is verified.
               </p>
 
               <div className="flex flex-wrap gap-8 mb-12">
@@ -115,13 +117,68 @@ export default function BuildYourAICreatorOSPage() {
               </div>
 
               <Link
-                href="/courses/build-your-ai-creator-os/module-1"
+                href="#apply"
                 className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
               >
-                Start Module 1 -- Free
+                Join Beta Waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
+              <Link
+                href="/courses/build-your-ai-creator-os/module-1"
+                className="ml-0 mt-4 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-8 py-4 font-semibold text-white/80 transition-all hover:bg-white/10 sm:ml-3 sm:mt-0"
+              >
+                Start Module 1 Free
+              </Link>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Beta Offer */}
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+              <GlowCard color="emerald" className="p-8">
+                <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-3">
+                  Paid beta
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  {flagshipOffer.name}
+                </h2>
+                <p className="text-white/55 leading-relaxed">
+                  {flagshipOffer.promise} The public page stays waitlist-first until checkout,
+                  delivery assets, onboarding email, Skool access, and refund policy are verified.
+                </p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                    <div className="text-2xl font-bold text-white">{flagshipOffer.betaPrice}</div>
+                    <div className="mt-1 text-sm text-white/45">Founding cohort target</div>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                    <div className="text-2xl font-bold text-white">{flagshipOffer.fullPrice}</div>
+                    <div className="mt-1 text-sm text-white/45">Standard program target</div>
+                  </div>
+                </div>
+              </GlowCard>
+
+              <GlowCard color="cyan" className="p-8">
+                <div className="mb-5 flex items-center gap-3">
+                  <Users className="h-6 w-6 text-cyan-300" />
+                  <h3 className="text-xl font-bold text-white">Community access</h3>
+                </div>
+                <p className="text-sm leading-relaxed text-white/55">
+                  {communityLaunch.model} The beta adds private implementation channels and live labs;
+                  the free community remains the public front door.
+                </p>
+                <ul className="mt-5 space-y-2">
+                  {communityLaunch.freeChannels.map((channel) => (
+                    <li key={channel} className="flex items-center gap-2 text-sm text-white/60">
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                      {channel}
+                    </li>
+                  ))}
+                </ul>
+              </GlowCard>
+            </div>
           </div>
         </section>
 
@@ -275,7 +332,7 @@ export default function BuildYourAICreatorOSPage() {
         </section>
 
         {/* CTA + Email Capture */}
-        <section className="py-20 border-t border-white/5">
+        <section id="apply" className="py-20 border-t border-white/5 scroll-mt-28">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -283,10 +340,11 @@ export default function BuildYourAICreatorOSPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Module 1 is free. Start now.
+                Apply for the beta. Start Module 1 free.
               </h2>
               <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
-                Set up your AI foundation today. Get notified when new modules launch.
+                Join the cohort waitlist for beta access, Skool invite routing, and launch updates.
+                Module 1 stays free so you can test the system before paying.
               </p>
 
               <div className="flex flex-col items-center gap-6">
@@ -305,7 +363,7 @@ export default function BuildYourAICreatorOSPage() {
                   <EmailSignup
                     listType="courses-waitlist"
                     placeholder="you@example.com"
-                    buttonText="Notify Me"
+                    buttonText="Join Beta Waitlist"
                     compact
                   />
                 </div>
