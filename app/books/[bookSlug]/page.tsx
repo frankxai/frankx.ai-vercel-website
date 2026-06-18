@@ -6,6 +6,7 @@ import { getThemeClasses } from '../lib/theme-classes';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
 import BookDownloadGate from '../components/BookDownloadGate';
+import ResumeReading from '../components/ResumeReading';
 
 interface PageProps {
   params: Promise<{ bookSlug: string }>;
@@ -131,6 +132,11 @@ export default async function BookLandingPage({ params }: PageProps) {
                     Start Reading
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                   </Link>
+                )}
+                {publishedChapters.length > 0 && (
+                  <div className="mt-4">
+                    <ResumeReading bookSlug={bookSlug} accentClass={tc.textPrimary} />
+                  </div>
                 )}
               </div>
 
