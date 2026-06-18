@@ -66,7 +66,7 @@ Beneath the heart and the brain sits the layer of *meaning* — your beliefs, yo
 
 Each contradiction is two waves out of phase, and holding them apart is expensive. It produces the specific fatigue of a person who is "trying so hard" and getting nowhere — the exhaustion not of effort but of self-cancellation. You can feel it. It is the friction of pushing the accelerator and the brake at once.
 
-Coherence at this layer is not forced positivity. It is the slow, honest work of getting your stated intentions and your held beliefs to point the same way — of resolving the contradiction rather than papering over it. We will give that work a full movement of this book, because it is where the deepest leverage is. For now, notice only this: a clear intention laid over a contradictory belief does not manifest. It *cancels*. The traditions called this purity of heart. The mechanism is phase-alignment all the way down.
+Coherence at this layer is not forced positivity. It is the slow, honest work of getting your stated intentions and your held beliefs to point the same way — of resolving the contradiction rather than papering over it. We will give that work a full movement of this book, because it is where the deepest change becomes possible. For now, notice only this: a clear intention laid over a contradictory belief does not manifest. It *cancels*. The traditions called this purity of heart. The mechanism is phase-alignment all the way down.
 
 ## VI. Why This Is the Master Skill
 
