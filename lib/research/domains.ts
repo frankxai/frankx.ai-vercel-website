@@ -59,6 +59,89 @@ export const domainCategories: Record<DomainCategory, { label: string; descripti
 
 export const researchDomains: ResearchDomain[] = [
   {
+    slug: 'manifestation-law-of-attraction-ai-systems',
+    title: 'Manifestation, Law of Attraction & AI Systems',
+    subtitle: 'What is mechanism, what is belief, and what changes when you add AI',
+    description:
+      'A grounded synthesis of the manifestation and Law of Attraction literature against modern neuroscience and behavioural science — separating the parts with real mechanisms (mental rehearsal, selective attention, affect and behaviour) from the parts that are metaphor or unfalsifiable belief — and a look at what shifts when a music-driven state system and generative AI are added to the loop.',
+    tldr:
+      'Manifestation is not magic, and it is not nothing. Vivid mental rehearsal measurably changes the brain and behaviour; a clear, specific intention biases what your attention surfaces; the emotional state you carry shifts what you actually do. The Law of Attraction wraps those real mechanisms in metaphysical "vibration" and "quantum" claims that the evidence does not support. Add a deliberate state-setting tool (self-made music) and generative AI that renders a vision in minutes, and you get a practical loop — vision → felt state → attention → action → shipped artifact — not a cosmic transaction.',
+    icon: 'Sparkles',
+    color: 'violet',
+    category: 'health-science',
+    highlights: [
+      { stat: 'Mechanism', label: 'Mental rehearsal changes cortex + behaviour', source: 'Pascual-Leone 1995' },
+      { stat: 'Filter', label: 'Attention promotes goal-relevant stimuli', source: 'Selective attention / RAS' },
+      { stat: 'State', label: 'Valence + arousal shift approach behaviour', source: 'Affective science' },
+      { stat: 'Minutes', label: 'Idea-to-artifact time with generative AI', source: 'FrankX testing (anecdotal)' },
+    ],
+    sections: [
+      {
+        title: 'What has a real mechanism',
+        content:
+          'Strip the cosmology and a defensible core remains. These are the parts of manifestation practice that map onto established neuroscience and behavioural science — not because the universe rearranges itself, but because your brain and your behaviour change.',
+        items: [
+          { title: 'Mental rehearsal', description: 'Vivid imagined practice activates overlapping neural circuits with real action and produces measurable change. Decades of use in elite sport.', badge: 'Evidence' },
+          { title: 'Selective attention', description: 'A specific intention biases the brain to surface goal-relevant people, openings, and resources you would otherwise filter out.', badge: 'Evidence' },
+          { title: 'Affect → behaviour', description: 'Mood (valence) and energy (arousal) measurably change approach behaviour and persistence — the grounded reading of "raise your vibration".', badge: 'Evidence' },
+          { title: 'Goal specificity', description: 'Written, specific goals outperform vague intentions for follow-through. Definiteness is doing real cognitive work.', badge: 'Evidence' },
+        ],
+      },
+      {
+        title: 'What is belief, not mechanism',
+        content:
+          'Honesty is the whole point of this report. Several headline Law of Attraction claims are metaphor at best and unfalsifiable at worst. Treating them as physics is where the genre loses credibility — and where it can do harm.',
+        items: [
+          { title: '"Quantum" framing', description: 'Quantum physics does not say thoughts emit a frequency that reorders matter. The borrowing is metaphor, not mechanism.', badge: 'Belief' },
+          { title: 'Thought-only outcomes', description: 'The claim that focused belief delivers results without action is not supported. Action is the missing half of "receive".', badge: 'Belief' },
+          { title: 'Blame implication', description: 'The corollary that people attract their own misfortune is both unsupported and ethically corrosive. Reject it.', badge: 'Harm' },
+        ],
+      },
+      {
+        title: 'What changes when you add AI + a state system',
+        content:
+          'The new variable is speed and externalisation. A music system (Vibe OS) lets you set the state a practice depends on deliberately, and generative AI collapses the gap between a vivid vision and a tangible artifact from months to minutes — which feeds clarity back into the loop.',
+        items: [
+          { title: 'State on demand', description: 'Tempo, mode, and lyric tune arousal and valence on purpose. Self-made music becomes a tool, not a metaphor.', badge: 'Practice' },
+          { title: 'Vision rendered', description: 'Seeing your imagined outcome as an image, track, or page sharpens the intention and raises the odds you build the real one.', badge: 'Practice' },
+          { title: 'The loop', description: 'Vision → felt state → attention → action → AI-rendered artifact → shipped → lesson. A repeatable production line, not a wish.', badge: 'System' },
+        ],
+      },
+    ],
+    keyFindings: [
+      'Manifestation contains real mechanisms (mental rehearsal, selective attention, affect-driven behaviour) dressed in unsupported metaphysical language',
+      'The "quantum" and "frequency of the universe" framing is metaphor, not physics, and should not be presented as science',
+      'Specificity is load-bearing: written, concrete intentions outperform vague ones for follow-through',
+      'Emotional state is a controllable input — tempo, mode, and lyric can set arousal and valence deliberately (the basis of music-driven alignment)',
+      'Generative AI collapses idea-to-artifact time, which sharpens vision and shortens the gap between imagining and building',
+      'The honest practice is a loop that ends in shipped action — manifestation without action is the part the evidence does not back',
+    ],
+    faq: [
+      { question: 'Is manifestation real or just placebo?', answer: 'Parts of it are neurobiologically real: vivid mental rehearsal changes the brain and behaviour, and a specific intention biases what your attention surfaces. The metaphysical claims — that thought emits a frequency that reorders the world — are not supported. The useful move is to keep the mechanisms and drop the cosmology.' },
+      { question: 'Does the Law of Attraction actually work?', answer: 'Not as advertised. Focused attention plus a felt, specific intention changes what you notice and how you act — and those changes produce results. But "ask, believe, receive" leaves out the doing, and the quantum framing is metaphor. Read it as attention and behaviour, not physics.' },
+      { question: 'Where does the music come in?', answer: 'The emotional state you carry shifts what you do. Music is one of the most reliable, fast levers for state — tempo sets energy, mode sets mood, lyric sets the message. Building your own track for the exact state a goal needs turns a vague idea about "vibration" into a concrete, repeatable tool.' },
+      { question: 'How does AI accelerate any of this?', answer: 'Generative AI externalises a vision fast — an image, a track, a landing page, a plan, in minutes. Seeing the imagined thing rendered back sharpens what you actually want and shortens the distance to building the real version. The limiting factor stops being capability and becomes clarity.' },
+      { question: 'Is this just dressed-up positive thinking?', answer: 'No. Positive thinking on its own is weak; outcome-only fantasy can even reduce effort. What holds up is specific mental rehearsal plus deliberate state plus attention plus action — a loop that ends in something shipped. The action and the feedback are what separate it from wishful thinking.' },
+    ],
+    relatedDomains: ['ai-neuroscience', 'ai-mental-health', 'ai-creative-tools', 'creator-economy-ai', 'ai-personal-productivity'],
+    relatedBlogPosts: ['/blog/manifestation-reality-architect-ai-vibe', '/blog/reality-architecture-generative-ai-neuroscience', '/blog/the-higher-self-protocol'],
+    lastUpdated: '2026-06-18',
+    sourceCount: 9,
+    status: 'emerging',
+    evidenceGrade: 'C',
+    limitations: [
+      'The neuroscience (mental rehearsal, selective attention, affect) is solid; "Law of Attraction" as framed in popular books lacks peer-reviewed support and is largely unfalsifiable',
+      'Much of the personal-practice evidence here is anecdotal (including the author\'s own), and anecdote is labelled as such throughout',
+      'The AI-acceleration effect on idea-to-artifact speed is observable, but its effect on outcomes and on the neurobiology of belief has not been studied',
+    ],
+    whatWeDontKnow: [
+      'Whether combining deliberate visualization with AI-rendered artifacts changes belief or follow-through more than visualization alone',
+      'How much of reported "manifestation" success is selection and survivorship bias versus mechanism',
+      'Whether music-driven state-setting produces durable goal progress or mainly short-term session quality',
+    ],
+    lastVerified: '2026-06-18',
+  },
+  {
     slug: 'agent-skills-operating-knowledge',
     title: 'Agent Skills as Operating Knowledge',
     subtitle: 'Reusable AI capability for founders, startups, and enterprise AI CoEs',
