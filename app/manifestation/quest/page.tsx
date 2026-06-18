@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
-import ManifestationQuestClient, { questFaqs } from './ManifestationQuestClient'
+import { questFaqs } from '@/data/manifestation'
+import ManifestationQuestClient from './ManifestationQuestClient'
 
 export const metadata: Metadata = createMetadata({
   title: 'The 10-Day Reality Architect Quest | FrankX',

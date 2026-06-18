@@ -19,30 +19,8 @@ import {
   identityTiers,
   theSecret,
   thinkAndGrowRich,
+  hubFaqs,
 } from '@/data/manifestation'
-
-export const hubFaqs = [
-  {
-    question: 'Is manifestation real?',
-    answer:
-      'Parts of it are. Vivid mental rehearsal changes your brain and behaviour, and a specific intention biases what your attention surfaces. The metaphysical claims — that thought emits a frequency that reorders the world — are not supported. The useful move is to keep the mechanisms and drop the cosmology.',
-  },
-  {
-    question: 'What is a Reality Architect?',
-    answer:
-      'Someone who turns a felt vision into shipped reality on a loop: vision becomes a spec, the spec becomes something AI helps render, the rendering ships, and the result teaches the next loop. It is the stage past "Manifestation Master" — manifestation plus the build.',
-  },
-  {
-    question: 'How does self-made music fit in?',
-    answer:
-      'The emotional state you carry changes what you do. Music is the fastest reliable lever for state — tempo sets energy, mode sets mood, lyric sets the message. Building your own track for the exact state a goal needs (the Vibe OS idea) turns a vague notion of "vibration" into a concrete, repeatable tool.',
-  },
-  {
-    question: 'Do I need to believe in anything?',
-    answer:
-      'No. The practice runs on how your own brain and behaviour work. You do not have to believe in the universe sending things your way — you set a clear intention, set your state, keep your attention there, and act. The results come from the loop, not from faith.',
-  },
-]
 
 const navCards = [
   { href: '/the-secret', icon: BookOpen, title: 'The Secret', desc: 'The Law of Attraction, read honestly — what worked, what to ignore.' },

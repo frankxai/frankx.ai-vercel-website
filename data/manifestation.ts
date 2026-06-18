@@ -277,6 +277,57 @@ export const exercises: Exercise[] = [
   },
 ]
 
+// ── Page FAQs ──────────────────────────────────────────────────────────────
+// Kept here (a plain module) rather than in the 'use client' page components,
+// so the server pages can import them for JSON-LD without Next.js turning them
+// into client-reference proxies (which breaks .map during prerender).
+
+export const hubFaqs = [
+  {
+    question: 'Is manifestation real?',
+    answer:
+      'Parts of it are. Vivid mental rehearsal changes your brain and behaviour, and a specific intention biases what your attention surfaces. The metaphysical claims — that thought emits a frequency that reorders the world — are not supported. The useful move is to keep the mechanisms and drop the cosmology.',
+  },
+  {
+    question: 'What is a Reality Architect?',
+    answer:
+      'Someone who turns a felt vision into shipped reality on a loop: vision becomes a spec, the spec becomes something AI helps render, the rendering ships, and the result teaches the next loop. It is the stage past "Manifestation Master" — manifestation plus the build.',
+  },
+  {
+    question: 'How does self-made music fit in?',
+    answer:
+      'The emotional state you carry changes what you do. Music is the fastest reliable lever for state — tempo sets energy, mode sets mood, lyric sets the message. Building your own track for the exact state a goal needs (the Vibe OS idea) turns a vague notion of "vibration" into a concrete, repeatable tool.',
+  },
+  {
+    question: 'Do I need to believe in anything?',
+    answer:
+      'No. The practice runs on how your own brain and behaviour work. You do not have to believe in the universe sending things your way — you set a clear intention, set your state, keep your attention there, and act. The results come from the loop, not from faith.',
+  },
+]
+
+export const questFaqs = [
+  {
+    question: 'What is the Reality Architect Quest?',
+    answer:
+      'A guided 10-day loop that takes you from setting a vision and feeling it as real (Manifestation Master) to turning it into something shipped (Reality Architect). Each day is one practice: name it, feel it, render it with AI, set your state with music, build, ship, and learn.',
+  },
+  {
+    question: 'Do I need an account?',
+    answer:
+      'No. Your progress lives in your browser (localStorage) — nothing is sent to a server. The honest trade-off: switching devices or clearing browser data resets your map.',
+  },
+  {
+    question: 'Do I have to do one day per day?',
+    answer:
+      'No. The order matters more than the pace — each day builds on the last. Go a day at a time, or block a weekend. Mark a day done when you have actually run the practice, not just read it.',
+  },
+  {
+    question: 'Do I need Vibe OS or paid tools?',
+    answer:
+      'No. The state-setting step works with any music you make or choose. Vibe OS makes it deliberate — tempo, mode, and lyric tuned to a goal-state — but the loop runs without it.',
+  },
+]
+
 // ── The Books ────────────────────────────────────────────────────────────
 // Honest summaries used on /the-secret and /think-and-grow-rich. The register
 // matches the library: useful, often dated or mystical, still foundational.

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
-import ManifestationClient, { hubFaqs } from './ManifestationClient'
+import { hubFaqs } from '@/data/manifestation'
+import ManifestationClient from './ManifestationClient'
 
 export const metadata: Metadata = createMetadata({
   title: 'Manifestation, Honestly — The Reality Architect Hub | FrankX',

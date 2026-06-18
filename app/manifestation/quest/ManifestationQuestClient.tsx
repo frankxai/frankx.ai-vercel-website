@@ -5,32 +5,9 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ArrowRight, Check, Music, Sparkles, NotebookPen, RotateCcw } from 'lucide-react'
 import { FaqList } from '@/components/manifestation/shared'
-import { questDays, MANIFESTATION_QUEST_LENGTH } from '@/data/manifestation'
+import { questDays, questFaqs, MANIFESTATION_QUEST_LENGTH } from '@/data/manifestation'
 
 const STORAGE_KEY = 'frankx-manifestation-quest'
-
-export const questFaqs = [
-  {
-    question: 'What is the Reality Architect Quest?',
-    answer:
-      'A guided 10-day loop that takes you from setting a vision and feeling it as real (Manifestation Master) to turning it into something shipped (Reality Architect). Each day is one practice: name it, feel it, render it with AI, set your state with music, build, ship, and learn.',
-  },
-  {
-    question: 'Do I need an account?',
-    answer:
-      'No. Your progress lives in your browser (localStorage) — nothing is sent to a server. The honest trade-off: switching devices or clearing browser data resets your map.',
-  },
-  {
-    question: 'Do I have to do one day per day?',
-    answer:
-      'No. The order matters more than the pace — each day builds on the last. Go a day at a time, or block a weekend. Mark a day done when you have actually run the practice, not just read it.',
-  },
-  {
-    question: 'Do I need Vibe OS or paid tools?',
-    answer:
-      'No. The state-setting step works with any music you make or choose. Vibe OS makes it deliberate — tempo, mode, and lyric tuned to a goal-state — but the loop runs without it.',
-  },
-]
 
 export default function ManifestationQuestClient() {
   const [completed, setCompleted] = useState<number[]>([])
