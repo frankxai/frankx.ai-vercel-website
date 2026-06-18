@@ -53,7 +53,6 @@ const downloads: DownloadItem[] = [
     icon: '🎵',
   },
   {
-  {
     id: 'blue-life-commons',
     title: 'Blue Life Commons',
     subtitle: 'Ocean Intelligence System — Founding Knowledgebase',
@@ -94,7 +93,6 @@ const downloads: DownloadItem[] = [
     features: ['4 Codex Plugins', 'GitHub Prerelease', 'SHA256 Checksum', 'Install Guide'],
     variant: 'ocean' as const,
     icon: 'CLI',
-  },
   },
 ]
 

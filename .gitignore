@@ -84,6 +84,7 @@ research/production-llm-agents-2026/
 C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
 
 # Local runtime artifacts
+.acos/
 .claude-flow/daemon.pid
 .claude-flow/daemon-state.json
 .claude-flow/learning/
