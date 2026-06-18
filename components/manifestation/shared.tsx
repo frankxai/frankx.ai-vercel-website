@@ -226,7 +226,7 @@ export function FaqList({ faqs }: { faqs: { question: string; answer: string }[]
           key={faq.question}
           className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6"
         >
-          <summary className="cursor-pointer font-semibold text-white list-none flex items-center justify-between gap-4">
+          <summary className="cursor-pointer font-semibold text-white list-none flex items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
             {faq.question}
             <ArrowRight className="w-4 h-4 text-white/30 group-open:rotate-90 transition-transform shrink-0" />
           </summary>

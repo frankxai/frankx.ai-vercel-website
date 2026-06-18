@@ -41,7 +41,12 @@ export default function ManifestationQuestClient() {
     setMounted(true)
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
-      if (raw) setCompleted(JSON.parse(raw))
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        if (Array.isArray(parsed)) {
+          setCompleted(parsed.filter((d): d is number => typeof d === 'number'))
+        }
+      }
     } catch {
       /* ignore */
     }
