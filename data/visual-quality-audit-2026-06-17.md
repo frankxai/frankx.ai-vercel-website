@@ -49,3 +49,12 @@ Rejected: creator-intelligence-systems-2026 original candidate C:/Users/frank/.c
 | what-is-a-gencreator | 8 | premium | bridge | Accepted: generative media forge with a clear play/production motif; no fake text risk. |
 | starlight-intelligence-system-how-ai-agents-learn | 8 | premium | tech | Accepted: learning-loop architecture is readable and clean for social crops. |
 | golden-age-of-creators-why-now-is-different | 9 | flagship | soul | Accepted extra: warmer first-viewport thesis image that breaks the dark hardware pattern. |
+
+## Batch 3 verified mini-batch - 2026-06-18
+
+Accepted only generated assets with verifiable files in `C:/Users/frank/.codex/generated_images`. Later previews rendered in chat but did not appear on disk, so they were not wired.
+
+| Slug | Score | Tier | Spectrum | Decision Notes |
+|---|---:|---|---|---|
+| suno-prompt-engineering-complete-guide | 8 | premium | soul | Accepted mini-batch 3: strong warm music-studio visual; minor abstract iconography only, no large fake text. |
+| the-great-transition-build-your-own-business | 9 | flagship | soul | Accepted mini-batch 3: distinctive old-to-new bridge scene with warm creator studio and no text artifacts. |

@@ -1,15 +1,15 @@
 {
   "meta": {
     "name": "FrankX Blog Visual Operating System",
-    "generatedAt": "2026-06-17T17:36:27.803Z",
+    "generatedAt": "2026-06-18T00:47:18.413Z",
     "generationMode": "hybrid-built-in-image-gen-plus-deterministic-social-png",
     "builtInImageGeneration": "used for premium cinematic bitmap hero headers; deterministic PNG overlays used for social cards to avoid text artifacts",
     "counts": {
-      "headers": 66,
+      "headers": 68,
       "infographics": 21,
-      "socialCards": 174,
-      "socialCopyPacks": 58,
-      "premiumBitmapHeaders": 54
+      "socialCards": 180,
+      "socialCopyPacks": 60,
+      "premiumBitmapHeaders": 56
     },
     "reviewPolicy": "Public assets must not expose internal quality badges. Reject stock-like, generic, over-purple, logo-like, readable-text-artifacted, weak-mobile-crop, repeated-dashboard, or unclear-topic assets."
   },
@@ -1953,6 +1953,80 @@
       "socialTitle": "The Golden Age of Creators",
       "socialSubtitle": "Why the tools, timing, and leverage changed.",
       "sourceGeneratedFile": "C:/Users/frank/.codex/generated_images/019ecfea-ab22-78d1-867e-585f3c5a941f/ig_088bc8e402edd512016a32d84bbf508191a2fbad782dc1beb0.png"
+    },
+    {
+      "slug": "suno-prompt-engineering-complete-guide",
+      "title": "The Complete Suno Prompt Engineering Guide: From Beginner to Pro",
+      "category": "ai-tools",
+      "date": "2026-01-24",
+      "hero": "/images/blog/generated/suno-prompt-engineering-complete-guide-premium-hero.png",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/suno-prompt-engineering-complete-guide/wide.png",
+        "square": "/images/social/blog/suno-prompt-engineering-complete-guide/square.png",
+        "portrait": "/images/social/blog/suno-prompt-engineering-complete-guide/portrait.png",
+        "vertical": "/images/social/blog/suno-prompt-engineering-complete-guide/portrait.png"
+      },
+      "prompt": "Built-in image_gen premium FrankX hero. Accepted mini-batch 3: strong warm music-studio visual; minor abstract iconography only, no large fake text. Dark-first cinematic editorial, no logos, no people, no readable text, no fake UI, no watermark.",
+      "source": "design.md + taste.md + batch 3 verified mini-batch + post frontmatter",
+      "generationMode": "built-in-image-gen",
+      "generatedMode": "built-in-image-gen",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "qualityScore": 8,
+      "qualityTier": "premium",
+      "assetType": "hero",
+      "spectrum": "soul",
+      "socialAngle": "creator",
+      "storage": {
+        "localPath": "public/images/blog/generated/suno-prompt-engineering-complete-guide-premium-hero.png",
+        "publicUrl": "/images/blog/generated/suno-prompt-engineering-complete-guide-premium-hero.png",
+        "vercelBlobKey": "images/blog/suno-prompt-engineering-complete-guide/suno-prompt-engineering-complete-guide-premium-hero.png",
+        "vercelBlobUrl": null,
+        "googleDriveUrl": null
+      },
+      "notes": "Accepted mini-batch 3: strong warm music-studio visual; minor abstract iconography only, no large fake text.",
+      "fallbackHero": "/images/blog/suno-prompt-engineering-complete-guide-hero.png",
+      "socialTitle": "Suno Prompt Engineering Guide",
+      "socialSubtitle": "Prompt structure becomes sound when the workflow is built like a studio.",
+      "sourceGeneratedFile": "C:/Users/frank/.codex/generated_images/019ecfea-ab22-78d1-867e-585f3c5a941f/ig_0bae3b7c9c38b51e016a32e00a1b7c8191ab1e03d182cb1b96.png"
+    },
+    {
+      "slug": "the-great-transition-build-your-own-business",
+      "title": "The Great Transition: Why Building Your Own Business Is the Smartest Move You Can Make Right Now",
+      "category": "Intelligence Dispatches",
+      "date": "2026-02-18",
+      "hero": "/images/blog/generated/the-great-transition-build-your-own-business-premium-hero.png",
+      "infographic": null,
+      "social": {
+        "wide": "/images/social/blog/the-great-transition-build-your-own-business/wide.png",
+        "square": "/images/social/blog/the-great-transition-build-your-own-business/square.png",
+        "portrait": "/images/social/blog/the-great-transition-build-your-own-business/portrait.png",
+        "vertical": "/images/social/blog/the-great-transition-build-your-own-business/portrait.png"
+      },
+      "prompt": "Built-in image_gen premium FrankX hero. Accepted mini-batch 3: distinctive old-to-new bridge scene with warm creator studio and no text artifacts. Dark-first cinematic editorial, no logos, no people, no readable text, no fake UI, no watermark.",
+      "source": "design.md + taste.md + batch 3 verified mini-batch + post frontmatter",
+      "generationMode": "built-in-image-gen",
+      "generatedMode": "built-in-image-gen",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "qualityScore": 9,
+      "qualityTier": "flagship",
+      "assetType": "hero",
+      "spectrum": "soul",
+      "socialAngle": "founder",
+      "storage": {
+        "localPath": "public/images/blog/generated/the-great-transition-build-your-own-business-premium-hero.png",
+        "publicUrl": "/images/blog/generated/the-great-transition-build-your-own-business-premium-hero.png",
+        "vercelBlobKey": "images/blog/the-great-transition-build-your-own-business/the-great-transition-build-your-own-business-premium-hero.png",
+        "vercelBlobUrl": null,
+        "googleDriveUrl": null
+      },
+      "notes": "Accepted mini-batch 3: distinctive old-to-new bridge scene with warm creator studio and no text artifacts.",
+      "fallbackHero": "/images/blog/great-transition-hero.png",
+      "socialTitle": "The Great Transition",
+      "socialSubtitle": "From corporate grid to independent creator-business operating system.",
+      "sourceGeneratedFile": "C:/Users/frank/.codex/generated_images/019ecfea-ab22-78d1-867e-585f3c5a941f/ig_0bae3b7c9c38b51e016a32e04606f48191a3e7424f51ffc402.png"
     }
   ]
 }
