@@ -46,6 +46,8 @@ export interface BlogPost {
   series?: BlogSeries
 }
 
+export type BlogPostSummary = Omit<BlogPost, 'content'>
+
 // Normalize frontmatter field variants to canonical BlogPost fields
 function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   const normalized = { ...data }
@@ -86,6 +88,9 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 })
 
+export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
+  return getAllBlogPosts().map(({ content: _content, ...post }) => post)
+})
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
   try {
@@ -172,4 +177,3 @@ export function extractFAQFromContent(content: string): { question: string; answ
 
   return faqs
 }
-

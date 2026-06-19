@@ -8,30 +8,15 @@ import { ArrowRight, Sparkles, Filter, Layers3 } from 'lucide-react'
 
 import BlogCard from '@/components/blog/BlogCard'
 import CategoryDropdown from '@/components/blog/CategoryDropdown'
-import { cn } from '@/lib/utils'
+import type { BlogPostSummary } from '@/lib/blog'
 
 // ============================================================================
 // TYPES
 // ============================================================================
 
-interface BlogPost {
-  slug: string
-  title: string
-  description: string
-  date: string
-  author: string
-  category: string
-  tags: string[]
-  image?: string
-  readingTime: string
-  content: string
-  featured?: boolean
-}
-
 interface BlogPageClientProps {
-  posts: BlogPost[]
+  posts: BlogPostSummary[]
   categories: string[]
-  tags: string[]
 }
 
 // ============================================================================

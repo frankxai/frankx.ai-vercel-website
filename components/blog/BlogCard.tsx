@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, ArrowUpRight, Sparkles } from 'lucide-react'
 
-import { BlogPost } from '@/lib/blog'
+import type { BlogPostSummary } from '@/lib/blog'
 import { cn } from '@/lib/utils'
 import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 
@@ -13,7 +13,7 @@ import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 const GLOW_RGB = '16, 185, 129'
 
 interface BlogCardProps {
-  post: BlogPost
+  post: BlogPostSummary
   featured?: boolean
   className?: string
 }
