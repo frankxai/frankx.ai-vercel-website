@@ -3,8 +3,15 @@ import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
+import imageNeeds from '@/data/tools/image-needs.json'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
+const blogImageFallback = '/images/blog/visual-system/best-ai-tools-for-creators-2026-hero.svg'
+const pendingBlogHeroPaths = new Set(
+  (imageNeeds.needs as Array<{ heroPath: string; status?: string }>)
+    .filter((need) => need.status?.startsWith('pending'))
+    .map((need) => need.heroPath)
+)
 
 // FAQ item for AI-extractable structured content
 export interface FAQItem {
@@ -66,6 +73,43 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
+function resolveBlogImage(image: unknown, slug: string): string | undefined {
+  if (typeof image !== 'string' || image.trim() === '') return undefined
+  if (!image.startsWith('/')) return image
+  if (!pendingBlogHeroPaths.has(image)) return image
+
+  if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
+    return '/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg'
+  }
+  if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
+    return '/images/blog/visual-system/ai-model-routing-guide-hero.svg'
+  }
+  if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
+    return '/images/blog/visual-system/production-agentic-ai-systems-hero.svg'
+  }
+  if (/code|coding|cursor|windsurf/.test(slug)) {
+    return '/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg'
+  }
+  if (/skill|coe|note|knowledge/.test(slug)) {
+    return '/images/blog/visual-system/skill-libraries-ai-coe-governance-hero.svg'
+  }
+
+  return blogImageFallback
+}
+
+function buildBlogPost(slug: string, data: Record<string, any>, content: string): BlogPost {
+  const normalized = normalizeFrontmatter(data)
+  const readTime = readingTime(content)
+
+  return {
+    slug,
+    content,
+    readingTime: readTime.text,
+    ...normalized,
+    image: resolveBlogImage(normalized.image, slug),
+  } as BlogPost
+}
+
 export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
@@ -75,14 +119,7 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       const fullPath = path.join(blogDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
-      const readTime = readingTime(content)
-
-      return {
-        slug,
-        content,
-        readingTime: readTime.text,
-        ...normalizeFrontmatter(data),
-      } as BlogPost
+      return buildBlogPost(slug, data, content)
     })
 
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
@@ -98,14 +135,7 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
 
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
-    const readTime = readingTime(content)
-
-    return {
-      slug,
-      content,
-      readingTime: readTime.text,
-      ...normalizeFrontmatter(data),
-    } as BlogPost
+    return buildBlogPost(slug, data, content)
   } catch {
     return null
   }
