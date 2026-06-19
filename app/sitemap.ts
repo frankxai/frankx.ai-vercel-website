@@ -4,8 +4,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { listPartners } from '@/content/partnerships'
-// lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
-import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
+import routeIndex from '@/data/route-index.json'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -668,7 +667,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // settings are preserved.
   const seenUrls = new Set(entries.map((e) => e.url))
   try {
-    const discovered = enumerateRoutes() as Array<{ href: string; type: string }>
+    const discovered = (routeIndex as { routes?: Array<{ href: string; type: string }> }).routes ?? []
     // Heuristic priority + frequency by route type — only used for routes that
     // weren't already in the hand-curated arrays above.
     const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
