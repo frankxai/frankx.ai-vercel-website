@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T09:46:09.602Z",
+  "timestamp": "2026-06-19T11:47:05.747Z",
   "baseUrl": "http://localhost:3000",
   "routes": {
     "total": 685,
@@ -8,7 +8,7 @@
     "privateOrOwner": 9
   },
   "static": {
-    "scannedFiles": 2219,
+    "scannedFiles": 2224,
     "findings": [
       {
         "route": null,
