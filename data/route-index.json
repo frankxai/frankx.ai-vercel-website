@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 672,
+    "total": 685,
     "aliases": 25,
     "byType": {
       "core": 22,
-      "section": 354,
+      "section": 359,
       "community": 12,
       "tool": 10,
       "static": 15,
-      "blog": 197,
+      "blog": 198,
       "guide": 20,
       "library": 4,
       "newsletter": 1,
@@ -17,6 +17,7 @@
       "partnership": 3,
       "product": 16,
       "research": 3,
+      "travel": 7,
       "video": 3,
       "workshop": 7
     }
@@ -2959,6 +2960,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-higher-self-protocol",
+      "title": "The Higher Self Protocol: What Happened When I Used AI to Get Closer to God",
+      "description": "A friend told me she wants to become a saint. So I started using AI the way you'd use a good study partner — to read scripture slowly, sit with hard questions, and show up for a practice. Here is what worked, what was cringe, and what I'd never hand a machine.",
+      "tags": [
+        "higher-self-protocol",
+        "spirituality",
+        "ai and faith",
+        "contemplative practice",
+        "personal"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
       "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
       "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
@@ -3653,6 +3667,14 @@
       "type": "core"
     },
     {
+      "href": "/dare",
+      "title": "Dare",
+      "tags": [
+        "dare"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/dashboard",
       "title": "Dashboard",
       "tags": [
@@ -4051,6 +4073,18 @@
         "health",
         "intelligence",
         "system"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/downloads/preview/agentic-creator-os",
+      "title": "Agentic Creator OS",
+      "tags": [
+        "downloads",
+        "preview",
+        "agentic",
+        "creator",
+        "os"
       ],
       "type": "section"
     },
@@ -5904,6 +5938,14 @@
       "type": "section"
     },
     {
+      "href": "/quest",
+      "title": "Quest",
+      "tags": [
+        "quest"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/realm",
       "title": "Realm",
       "type": "section"
@@ -5912,6 +5954,17 @@
       "href": "/research",
       "title": "Research",
       "type": "research"
+    },
+    {
+      "href": "/research/ai-contemplative-practice",
+      "title": "AI Contemplative Practice",
+      "tags": [
+        "research",
+        "ai",
+        "contemplative",
+        "practice"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/blue-zones-ikigai-ai-era",
@@ -6389,6 +6442,95 @@
       "type": "tool"
     },
     {
+      "href": "/travel",
+      "title": "Travel",
+      "tags": [
+        "travel"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/travel/barcelona-june",
+      "title": "Barcelona in June",
+      "tags": [
+        "travel",
+        "barcelona",
+        "spain",
+        "nomad",
+        "sonar"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/cape-town-december",
+      "title": "Cape Town in December",
+      "tags": [
+        "travel",
+        "cape town",
+        "south africa",
+        "nomad"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/copenhagen-july",
+      "title": "Copenhagen in July",
+      "tags": [
+        "travel",
+        "copenhagen",
+        "denmark",
+        "nomad",
+        "jazz"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/edinburgh-august",
+      "title": "Edinburgh in August",
+      "tags": [
+        "travel",
+        "edinburgh",
+        "scotland",
+        "nomad",
+        "fringe"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/lisbon-november",
+      "title": "Lisbon in November",
+      "tags": [
+        "travel",
+        "lisbon",
+        "portugal",
+        "nomad",
+        "web summit"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/mexico-city-september",
+      "title": "Mexico City in September",
+      "tags": [
+        "travel",
+        "mexico city",
+        "mexico",
+        "nomad"
+      ],
+      "type": "travel"
+    },
+    {
+      "href": "/travel/tokyo-october",
+      "title": "Tokyo in October",
+      "tags": [
+        "travel",
+        "tokyo",
+        "japan",
+        "nomad"
+      ],
+      "type": "travel"
+    },
+    {
       "href": "/tribe",
       "title": "Tribe",
       "tags": [
@@ -6490,8 +6632,8 @@
       "type": "video"
     },
     {
-      "href": "/watch/shorts/1Edv43k15cY",
-      "title": "The Real Reason You're Always Tired",
+      "href": "/watch/shorts/KyxYdicOzTg",
+      "title": "Why You're Always Tired",
       "tags": [
         "short",
         "video",

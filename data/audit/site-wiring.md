@@ -1,14 +1,14 @@
 # FrankX Site Wiring Audit
 
-Generated: 2026-06-18T00:18:30.699Z
+Generated: 2026-06-19T09:46:09.602Z
 Base URL: http://localhost:3000
 
 ## Summary
 
-- Routes discovered: 672
+- Routes discovered: 685
 - Public routes checked live: 0
-- Source files scanned: 2107
-- Total findings: 12
+- Source files scanned: 2219
+- Total findings: 13
 - Blocking findings: 0
 
 ## Blocking Findings

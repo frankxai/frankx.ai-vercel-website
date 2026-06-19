@@ -1,19 +1,31 @@
 {
-  "timestamp": "2026-06-18T00:18:30.699Z",
+  "timestamp": "2026-06-19T09:46:09.602Z",
   "baseUrl": "http://localhost:3000",
   "routes": {
-    "total": 672,
+    "total": 685,
     "aliases": 25,
-    "public": 663,
+    "public": 676,
     "privateOrOwner": 9
   },
   "static": {
-    "scannedFiles": 2107,
+    "scannedFiles": 2219,
     "findings": [
       {
         "route": null,
         "source": "app/admin/404-radar/page.tsx",
         "line": 243,
+        "href": "/admin",
+        "kind": "internal-route",
+        "status": "missing",
+        "canonicalTarget": null,
+        "severity": "info",
+        "ownerAction": "Fix source href or add a verified redirect alias.",
+        "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+      },
+      {
+        "route": null,
+        "source": "app/admin/canvas/page.tsx",
+        "line": 161,
         "href": "/admin",
         "kind": "internal-route",
         "status": "missing",
@@ -485,10 +497,10 @@
     }
   },
   "summary": {
-    "totalFindings": 12,
+    "totalFindings": 13,
     "blockingFindings": 0,
     "bySeverity": {
-      "info": 12
+      "info": 13
     }
   },
   "findings": [
@@ -496,6 +508,18 @@
       "route": null,
       "source": "app/admin/404-radar/page.tsx",
       "line": 243,
+      "href": "/admin",
+      "kind": "internal-route",
+      "status": "missing",
+      "canonicalTarget": null,
+      "severity": "info",
+      "ownerAction": "Fix source href or add a verified redirect alias.",
+      "suggestedFix": "Resolve /admin against route enumeration or redirect aliases."
+    },
+    {
+      "route": null,
+      "source": "app/admin/canvas/page.tsx",
+      "line": 161,
       "href": "/admin",
       "kind": "internal-route",
       "status": "missing",

@@ -94,6 +94,7 @@ C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
 nul
 
 # ACOS session artifacts (regenerated per-session, never commit)
+.acos/
 .claude/checkpoints/
 .claude/trajectories/
 .claude/worktrees/
