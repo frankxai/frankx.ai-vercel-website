@@ -9,14 +9,16 @@ const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
 // AIS emission is optional in any hosted build environment (Vercel, GitHub
 // Actions CI) — the sibling repo only exists on local dev machines.
 const isHostedBuild = Boolean(process.env.VERCEL) || Boolean(process.env.CI);
+const isRequired = process.env.AIS_SYNC_REQUIRED === '1';
+
+function skipOptional(reason) {
+  console.warn(`[sync-ais] ${reason}; skipping optional AIS emission.`);
+  process.exit(0);
+}
 
 if (!existsSync(AIS_ROOT)) {
-  if (isHostedBuild) {
-    console.warn(
-      `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}; ` +
-      `skipping optional AIS emission during hosted build.`
-    );
-    process.exit(0);
+  if (!isRequired) {
+    skipOptional(`Agent-Intelligence-System not found at ${AIS_ROOT}`);
   }
 
   console.error(
@@ -34,6 +36,13 @@ const worktreeEmitPath = resolve(AIS_ROOT, '.worktrees/plan-a/packages/ais-emit/
 const aisEmitPath = existsSync(primaryEmitPath) ? primaryEmitPath : existsSync(worktreeEmitPath) ? worktreeEmitPath : null;
 
 if (!aisEmitPath) {
+  if (!isRequired) {
+    skipOptional(
+      `@frankx-ai/ais-emit is not built in ${AIS_ROOT}. ` +
+      `Set AIS_SYNC_REQUIRED=1 to fail instead`
+    );
+  }
+
   console.error(
     `[sync-ais] @frankx-ai/ais-emit not built. Run:\n` +
     `  cd ${AIS_ROOT} && pnpm --filter @frankx-ai/ais-core build && pnpm --filter @frankx-ai/ais-emit build`
@@ -47,6 +56,22 @@ const { aisEmit } = await import(new URL(`file://${aisEmitPath.replace(/\\/g, '/
 const primaryCanonical = resolve(AIS_ROOT, 'packages/ais-core/canonical');
 const worktreeCanonical = resolve(AIS_ROOT, '.worktrees/plan-a/packages/ais-core/canonical');
 const canonical = existsSync(primaryCanonical) ? primaryCanonical : worktreeCanonical;
+
+if (!existsSync(canonical)) {
+  if (!isRequired) {
+    skipOptional(
+      `AIS canonical directory not found at ${primaryCanonical} or ${worktreeCanonical}. ` +
+      `Set AIS_SYNC_REQUIRED=1 to fail instead`
+    );
+  }
+
+  console.error(
+    `[sync-ais] AIS canonical directory not found. Expected:\n` +
+    `  ${primaryCanonical}\n` +
+    `  ${worktreeCanonical}`
+  );
+  process.exit(1);
+}
 
 await aisEmit({
   canonical,
