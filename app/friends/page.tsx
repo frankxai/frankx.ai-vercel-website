@@ -38,11 +38,15 @@ const portalRoles = [
 
 export default function FriendsPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="relative overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_18%_12%,rgba(245,158,11,0.18),transparent_34%),radial-gradient(circle_at_82%_20%,rgba(20,184,166,0.16),transparent_31%),linear-gradient(135deg,#050505_0%,#10100c_50%,#071113_100%)] px-6 pb-16 pt-28 md:px-10 md:pb-20 md:pt-32">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.78fr] lg:items-end">
+    <main className="min-h-screen overflow-hidden bg-[#070808] text-white">
+      <section className="relative overflow-hidden px-5 pb-16 pt-28 md:px-10 md:pb-24 md:pt-32">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(245,158,11,0.19),transparent_34%),radial-gradient(circle_at_82%_20%,rgba(16,185,129,0.16),transparent_31%),radial-gradient(circle_at_58%_82%,rgba(6,182,212,0.12),transparent_36%),linear-gradient(135deg,#070808_0%,#10100c_50%,#071113_100%)]" />
+        <div className="absolute right-[10%] top-24 -z-10 h-56 w-56 rounded-full bg-amber-200/[0.05] blur-3xl" />
+        <div className="absolute bottom-12 left-[8%] -z-10 h-64 w-64 rounded-full bg-emerald-200/[0.045] blur-3xl" />
+
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.78fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-amber-100">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl">
               <Users className="h-4 w-4" />
               Friends
             </div>
@@ -51,27 +55,27 @@ export default function FriendsPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl">
               Friends is a public portal for the people and founder
-              relationships behind the work. Allies carries the formal company
-              and business layer.
+              relationships behind the work. Allies carries the formal company,
+              business, and intelligence-system layer.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/friends/estefania"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-amber-100"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black shadow-[0_18px_60px_rgba(255,255,255,0.16)] transition hover:bg-amber-100"
               >
                 Open Estefania
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/allies"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white backdrop-blur-xl transition hover:border-white/45 hover:bg-white/10"
               >
                 Allies portal
               </Link>
             </div>
           </div>
 
-          <div className="border border-white/12 bg-white/[0.04] p-5 shadow-2xl shadow-amber-950/20 backdrop-blur">
+          <aside className="relative rounded-[2.35rem] border border-white/12 bg-white/[0.055] p-5 shadow-[0_30px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/45">
@@ -79,33 +83,35 @@ export default function FriendsPage() {
                 </p>
                 <p className="mt-1 text-lg font-bold text-white">Friends to Allies</p>
               </div>
-              <Network className="h-6 w-6 text-amber-100" />
+              <div className="grid h-12 w-12 place-items-center rounded-2xl border border-amber-100/20 bg-amber-100/10">
+                <Network className="h-6 w-6 text-amber-100" />
+              </div>
             </div>
             <div className="mt-5 grid grid-cols-1 gap-3">
-              <div className="border border-amber-200/18 bg-amber-200/10 p-4">
-                <p className="text-sm font-black text-amber-50">Friend profile</p>
-                <p className="mt-2 text-sm leading-6 text-white/62">
-                  Human, warm, careful, and approval-aware.
-                </p>
-              </div>
-              <div className="border border-white/10 bg-black/30 p-4">
-                <p className="text-sm font-black text-white">Ally page</p>
-                <p className="mt-2 text-sm leading-6 text-white/62">
-                  Offers, delivery loops, business architecture, and public strategy.
-                </p>
-              </div>
-              <div className="border border-emerald-200/18 bg-emerald-200/10 p-4">
-                <p className="text-sm font-black text-emerald-50">Operating system</p>
-                <p className="mt-2 text-sm leading-6 text-white/62">
-                  Skills, repos, prompts, routines, launches, and durable assets.
-                </p>
-              </div>
+              {[
+                ["Friend profile", "Human, warm, careful, and approval-aware."],
+                ["Ally page", "Offers, delivery loops, business architecture, and public strategy."],
+                ["Operating system", "Skills, repos, prompts, routines, launches, and durable assets."],
+              ].map(([title, copy], index) => (
+                <div
+                  key={title}
+                  className="rounded-[1.45rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-black text-white">{title}</p>
+                    <span className="font-mono text-xs text-amber-100">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-white/62">{copy}</p>
+                </div>
+              ))}
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section className="px-6 py-14 md:px-10 md:py-18">
+      <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
@@ -116,15 +122,15 @@ export default function FriendsPage() {
             </h2>
           </div>
 
-          <article className="grid gap-0 overflow-hidden border border-white/12 bg-white/[0.04] lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="bg-[linear-gradient(145deg,rgba(245,158,11,0.22),rgba(20,184,166,0.13),rgba(255,255,255,0.04))] p-7 md:p-9">
+          <article className="grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(245,158,11,0.22),rgba(16,185,129,0.13),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
                     <Sparkles className="h-3.5 w-3.5 text-amber-100" />
                     Founder Friend
                   </div>
-                <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
                     Estefania Badra
                   </h3>
                   <p className="mt-4 text-lg leading-8 text-white/76">
@@ -136,14 +142,14 @@ export default function FriendsPage() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     href="/friends/estefania"
-                    className="inline-flex items-center gap-2 bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
                   >
                     Open profile
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link
                     href="/allies/epic-ways"
-                    className="inline-flex items-center gap-2 border border-white/20 px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
                   >
                     TheEpicWays
                   </Link>
@@ -157,7 +163,7 @@ export default function FriendsPage() {
                   return (
                     <div
                       key={role.title}
-                      className="flex gap-4 border border-white/10 bg-black/25 p-4"
+                      className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                     >
                       <Icon className="mt-1 h-5 w-5 shrink-0 text-amber-100" />
                       <div>
@@ -175,8 +181,8 @@ export default function FriendsPage() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-14 md:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2.5rem] border border-white/12 bg-[#081111]/72 p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:flex-row md:items-center md:justify-between md:p-8">
           <div>
             <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-white/45">
               <MessageCircle className="h-4 w-4" />
@@ -192,7 +198,7 @@ export default function FriendsPage() {
           </div>
           <Link
             href="/allies/epic-ways"
-            className="inline-flex shrink-0 items-center gap-2 bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
             Open TheEpicWays ally page
             <ArrowRight className="h-4 w-4" />

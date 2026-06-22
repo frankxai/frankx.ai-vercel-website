@@ -160,6 +160,16 @@ Two files at repo root govern visual decisions. **Read both before any UI work.*
 
 The answer is usually less.
 
+### 7b. Allies / Friends / Partner Intelligence Surfaces
+
+For `/allies`, `/friends`, and public partner systems such as TheEpicWays, the default is premium rounded liquid UI with human-first framing. Do not rebuild these as hard rectangular card walls.
+
+- Read `design.md` § "Allies / Friends / Partner Intelligence Surfaces" before editing these routes.
+- Use `.claude-skills/projects/epicways-client-intelligence/SKILL.md` when the work touches Estefania, TheEpicWays, client-intelligence loops, friend/ally positioning, or installable skill/plugin packs for her.
+- Keep Estefania human-first: leadership, communication, energy, clarity, courage, community, workshops, events, and client service.
+- Put agentic architecture backstage unless the page is explicitly explaining how FrankX technology helps her serve clients better.
+- Do not introduce blockchain/NFT/token/smart-contract language for TheEpicWays unless Frank asks for it in that exact turn.
+
 ---
 
 ## 8. Where things live (pointer-only)
