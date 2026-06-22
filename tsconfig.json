@@ -78,7 +78,6 @@
     "inbound",
     "lib/pipelines",
     "content-universe",
-    "new-landing-page-backup",
     "brand",
     "playwright.config.ts",
     "vitest.config.ts",
