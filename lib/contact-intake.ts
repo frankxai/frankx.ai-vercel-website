@@ -28,37 +28,19 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
 
+import {
+  INTENTS,
+  INTENT_LABEL,
+  INTENT_IS_COMMERCIAL,
+  type Intent,
+} from './intake-types'
+
 // ── Intent taxonomy ────────────────────────────────────────────────────────
+// Defined in the client-safe ./intake-types module (no node imports) and
+// re-exported here so server-side importers keep a single import surface.
 
-export const INTENTS = [
-  'workshop',
-  'sprint',
-  'partnership',
-  'press',
-  'advisory',
-  'general',
-] as const
-
-export type Intent = (typeof INTENTS)[number]
-
-export const INTENT_LABEL: Record<Intent, string> = {
-  workshop: 'Workshop (1-day team build)',
-  sprint: 'Implementation sprint (5–10 days)',
-  partnership: 'Partnership',
-  press: 'Press / speaking',
-  advisory: 'Advisory / retainer',
-  general: 'General inquiry',
-}
-
-/** Whether an intent is commercial (routes to the booking nudge in the ack). */
-export const INTENT_IS_COMMERCIAL: Record<Intent, boolean> = {
-  workshop: true,
-  sprint: true,
-  partnership: true,
-  press: false,
-  advisory: true,
-  general: false,
-}
+export { INTENTS, INTENT_LABEL, INTENT_IS_COMMERCIAL }
+export type { Intent }
 
 // ── Schema ─────────────────────────────────────────────────────────────────
 

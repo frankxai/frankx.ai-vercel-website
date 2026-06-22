@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
 
-import { INTENTS, INTENT_LABEL, type Intent } from '@/lib/contact-intake'
+import { INTENTS, INTENT_LABEL, type Intent } from '@/lib/intake-types'
 
 const INITIAL_INTENT: Intent = 'general'
 
