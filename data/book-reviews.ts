@@ -6364,6 +6364,1566 @@ export const bookReviews: BookReview[] = [
       },
     ],
   },
+  {
+    slug: 'life-keith-richards',
+    title: 'Life',
+    author: 'Keith Richards',
+    coverImage: '/images/library/life-keith-richards.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-06-10',
+    categories: ['Memoir', 'Music', 'Rockstar Energy', 'Creativity'],
+    readingTime: '8 min',
+    publicationYear: 2010,
+    tldr:
+      'Keith Richards’ memoir (with James Fox) is the immersion text for loose-but-mythic rockstar energy — but underneath the legend it is a serious musician talking seriously about craft. The through-line is total, lifelong submission to a sound: how the blues colonized a suburban English kid and became the organizing principle of an entire life, attitude, and silhouette.',
+    keyInsights: [
+      'Taste is a technical skill — Richards’ whole guitar philosophy is subtraction: pull a string, find the space between notes, let the drone carry the weight.',
+      'The tribe precedes the work — the band came first, the sound followed; the brotherhood was the container that made the songs possible.',
+      'Survival ran on discipline inside chaos, not abstinence — meticulous control, not excess, is what let him function until it stopped working.',
+      'Authenticity is a standard, not a posture — the anti-corporate outlaw image was recognized and amplified, never manufactured.',
+      'Passing it on is the only legacy that compounds — what you receive from the tradition (Muddy Waters, Chuck Berry) you owe forward.',
+    ],
+    bestFor: [
+      'Creators building a signature sound or style with deliberate constraint',
+      'Anyone studying how taste and craft underwrite a long career',
+      'Builders interested in band/tribe dynamics over lone-genius myths',
+      'Readers who want the rockstar myth with the engineering shown',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=Life+Keith+Richards+memoir',
+    faq: [
+      {
+        q: 'Is Life just about drugs and decadence?',
+        a: 'No. The drug years are covered with clinical bluntness, but they are one thread in a larger argument about commitment to music — how he absorbed his influences, built his riff vocabulary, and held a band together. Readers expecting only druggy mythology will find far more about craft.',
+      },
+      {
+        q: 'What does Keith actually say about how he writes riffs?',
+        a: 'He traces his entire signature to discovering five-string open-G tuning around 1968–69 — removing the low E and retuning so unfretted strings drone through chord changes. He works in the space between notes rather than filling every gap, crediting "Honky Tonk Women," "Brown Sugar," "Start Me Up," and "Satisfaction" to that one decision.',
+      },
+      {
+        q: 'How honest is he about Mick Jagger?',
+        a: 'Bluntly — it generated press controversy at publication. He writes that Jagger "started to become unbearable" in the early 1980s and frames the solo-career drift as a near-fatal distraction, while still writing warmly about their early symbiosis. The portrait is complex, not just a settling of scores.',
+      },
+      {
+        q: 'Is the book reliable as fact?',
+        a: 'It is reliable as Richards’ honest memory, with the usual memoir caveats. Some details are disputed (Marshall Chess denies the Muddy-Waters-painting-the-ceiling story). James Fox shaped extensive interviews into a coherent narrative while preserving Richards’ spoken voice.',
+      },
+      {
+        q: 'Who should read it, and who should skip it?',
+        a: 'Read it if you care about how a sound, an attitude, and a tribe become inseparable from one person. Skip it if profanity, frank drug content, and a 550-page chronological memoir are not for you — it is immersion, not a quote-book.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'The big discovery late in 1968 or early 1969 was when I started playing the open five-string tuning. It transformed my life. It’s the way of playing that I use for the riffs and songs the Stones are best known for — “Honky Tonk Women,” “Brown Sugar,” “Tumbling Dice,” “Happy,” “All Down the Line,” “Start Me Up” and “Satisfaction.”',
+        context: 'The single technical discovery that defined the Stones’ sonic fingerprint — riffs built on space rather than density.',
+      },
+      {
+        text: 'The beauty, the majesty of the five-string open G tuning for an electric guitar is that you’ve only got three notes — the other two are repetitions of each other an octave apart.',
+        context: 'Why minimal tuning unlocks maximal feel — drone strings fill the gap between bass and treble without crowding the chord.',
+      },
+      {
+        text: 'I could kick smack; I couldn’t kick music.',
+        context: 'The book’s philosophical center: heroin was a phase he survived; the addiction to music was permanent.',
+      },
+      {
+        text: 'You’re sitting with some guys, and you’re playing and you go, “Ooh, yeah!” That feeling is worth more than anything. There’s a certain moment when you realize that you’ve actually just left the planet for a bit and that nobody can touch you. You’re elevated because you’re with a bunch of guys that want to do the same thing as you. And when it works, baby, you’ve got wings.',
+        context: 'The irreducible experience of a band locked in — in his account, the reason the rest of it was worth it.',
+      },
+      {
+        text: 'It’s not only the high quality of the drugs I had that I attribute my survival to. I was very meticulous about how much I took. I’d never put more in to get a little higher. That’s where most people fuck up on drugs. It’s the greed involved that never really affected me.',
+        context: 'His survival argument, offered without glamour — discipline within excess, not abstinence, as the operative variable.',
+      },
+      {
+        text: 'If you don’t know the blues... there’s no point in picking up the guitar and playing rock and roll or any other form of popular music.',
+      },
+      {
+        text: 'First you’ve got to know that fucker. And you go to bed with it. If there’s no babe around, you sleep with it. She’s just the right shape.',
+        chapter: 'On learning guitar',
+        context: 'On craft sequence — start on acoustic; the physical intimacy with the instrument has to come before any electronic trick.',
+      },
+      {
+        text: 'What Muddy Waters did for us is what we should do for others. It’s the old thing, what you want written on your tombstone as a musician: “He passed it on.”',
+        context: 'The Stones’ debt to American blues framed as an obligation — a relay race, not a theft.',
+      },
+      {
+        text: 'When I fell in with Gram Parsons in the summer of 1968, I struck a seam of music that I’m still developing, which widened the range of everything I was playing and writing. It also began an instant friendship that already seemed ancient the first time we sat down and talked.',
+        context: 'Parsons opened country music to him the way Muddy Waters had opened the blues — a permanent expansion of vocabulary.',
+      },
+      {
+        text: 'Gram taught me country music — how it worked, the difference between the Bakersfield style and the Nashville style. He played it all on the piano — Merle Haggard, “Sing Me Back Home,” George Jones, Hank Williams. I learned piano from Gram and started writing songs on it.',
+      },
+      {
+        text: 'It was the beginning of the Eighties when Mick started to become unbearable.',
+        context: 'Richards on the period when Jagger’s solo ambitions nearly broke the band — the most contested passage in the book.',
+      },
+      {
+        text: 'But I’m not here just to make records and money. I’m here to say something and to touch other people, sometimes in a cry of desperation: “Do you know this feeling?”',
+        context: 'His statement of purpose near the end — communication, not mythology or survival, as the point.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Dartford — The Blueprint',
+        keyIdea: 'A working-class postwar childhood plants the obsession that defines six decades: music as escape, identity, and necessity.',
+        summary: 'Richards traces his origins in Dartford, Kent — wartime privation, his jazz-musician grandfather Gus Dupree, and a mother who fed his curiosity. American records by Chuck Berry and Muddy Waters crack open a narrow English suburb. He buys his first guitar at fifteen and the direction of his life is effectively set.',
+      },
+      {
+        number: 2,
+        title: 'The Train Platform — Finding Mick',
+        keyIdea: 'A chance 1961 reunion between two childhood friends carrying American blues records is the accidental origin of the Rolling Stones.',
+        summary: 'Richards and Jagger, drifted apart since childhood, collide again as young men with identical obsessions — Chess Records and electric Chicago blues. With Brian Jones they begin rehearsing and playing small London clubs as pure musical apprenticeship, outside any commercial ambition.',
+      },
+      {
+        number: 3,
+        title: 'The Rollin’ Stones — Early Years and the Chess Pilgrimage',
+        keyIdea: 'The defining early move was not to invent but to transmit — American blues to audiences who had never heard it, with a fidelity that took them to the source.',
+        summary: 'The band rises through British clubs and first American tours, culminating in the Chess Studios visit. Andrew Loog Oldham manages them into a deliberately threatening anti-Beatles image — recognizing and amplifying an outsider stance that was already real, not manufacturing it.',
+      },
+      {
+        number: 4,
+        title: 'Redlands and the Law — The Bust as Mythology',
+        keyIdea: 'The 1967 drug bust turned the Stones from pop stars into counter-cultural symbols, because the establishment’s overreaction made the myth inevitable.',
+        summary: 'Richards recounts the police raid on his West Sussex home, the trial, the brief imprisonment, and the famous Times leader that followed. The bust confirmed what the band had been performing — actual, not theatrical, opposition to respectable England.',
+      },
+      {
+        number: 5,
+        title: 'Exile — Nellcôte and the Tax Years',
+        keyIdea: 'Exile on Main St., recorded in a sweltering French basement during tax exile, endures precisely because the chaos was real, not performed.',
+        summary: 'Fleeing British taxes in 1971, the band decamps to Villa Nellcôte, where months of basement sessions produce the album. Heroin use is operational, personnel flow constant, conditions extreme — and the dislocation is embedded in the sound as document, not artifice.',
+      },
+      {
+        number: 6,
+        title: 'Deep in the Hole — The Heroin Years',
+        keyIdea: 'Addiction is framed not as cliché but as a controlled experiment that eventually stopped being controllable.',
+        summary: 'From the early 1970s to 1977, Richards is unusually clinical about dosage and quality, and about the friends lost to the same substance — including Gram Parsons in 1973. The 1977 Toronto arrest becomes the forced reckoning that ends the era of management-by-discipline.',
+      },
+      {
+        number: 7,
+        title: 'Clean and Estranged — The Mick Rift and the Winos',
+        keyIdea: 'Getting clean exposed rather than resolved the Jagger problem; the response was to prove he could lead without him.',
+        summary: 'Rehabilitation brings clarity that surfaces Jagger’s drift toward solo pop stardom and discomfort with the band’s blues-outlaw identity. Talk Is Cheap (1988) with the X-Pensive Winos is both a survival move and a negotiating position — the Stones’ sound lives in Richards’ hands too.',
+      },
+      {
+        number: 8,
+        title: 'Survival and Later Life',
+        keyIdea: 'Richards survived not despite his life but because of a temperament that treated all of it as material.',
+        summary: 'His 1983 marriage to Patti Hansen and family stabilize a life that ran without structure for two decades. The band returns to touring; the book closes on genuine reflection — and on the strangeness of his integration into the mainstream he spent a life opposing.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'The sacred-alliance counterweight in this same collection — devotion and scene where Life is riffs and survival. Read them as two faces of the same era.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'Please Kill Me',
+        author: 'Legs McNeil & Gillian McCain',
+        reason: 'Also in the Rockstar Energy collection. The oral history of punk picks up the attitude-and-velocity thread Richards embodies, one scene later.',
+        url: 'https://www.amazon.com/s?k=Please+Kill+Me+oral+history+of+punk',
+      },
+      {
+        title: 'Miles: The Autobiography',
+        author: 'Miles Davis with Quincy Troupe',
+        reason: 'The other great musician’s memoir in this stack — where Richards is taste-by-subtraction, Miles is reinvention-as-discipline. Style as a weapon in both.',
+        url: 'https://www.amazon.com/s?k=Miles+The+Autobiography+Davis+Troupe',
+      },
+    ],
+    videos: [
+      {
+        title: 'Keith Richards: Under the Influence',
+        creator: 'Morgan Neville (Netflix)',
+        url: 'https://www.youtube.com/results?search_query=Keith+Richards+Under+the+Influence+documentary',
+        description: 'Neville’s documentary on Richards as songwriter and player. The guitar techniques and influences he describes in Life are here on camera.',
+        duration: '1h 22m',
+        kind: 'explainer',
+      },
+      {
+        title: 'My Life as a Rolling Stone — Keith Richards',
+        creator: 'BBC',
+        url: 'https://www.youtube.com/results?search_query=My+Life+as+a+Rolling+Stone+Keith+Richards',
+        description: 'The 2022 BBC episode covering Richards’ 60 years with the Stones, drawing on the same biographical territory with extensive archival footage.',
+        duration: '1h',
+        kind: 'explainer',
+      },
+      {
+        title: 'Keith Richards on the 5-String Open-G Tuning',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Keith+Richards+open+G+tuning+5+string',
+        description: 'Short clips of Richards demonstrating the tuning that the book credits as the source of the Stones’ signature riffs. Watch after the craft chapters.',
+        kind: 'explainer',
+      },
+    ],
+  },
+  {
+    slug: 'just-kids',
+    title: 'Just Kids',
+    author: 'Patti Smith',
+    coverImage: '/images/library/just-kids.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-06-10',
+    categories: ['Memoir', 'Creativity', 'Scenes', 'Music'],
+    readingTime: '7 min',
+    publicationYear: 2010,
+    relatedBook: 'love-and-poetry',
+    tldr:
+      'Patti Smith’s memoir of her decade with Robert Mapplethorpe — from meeting in Brooklyn in 1967 to his death in 1989 — is the sacred-bohemian counterweight to the macho rockstar myth. Two people with no money, no reputation, and no scene make themselves into major figures through work, devotion to each other, and immersion in New York at its most fertile. Winner of the 2010 National Book Award for Nonfiction.',
+    keyInsights: [
+      'A sacred creative alliance with one person — not a network — is the structural unit of an artistic life; everything else follows from that primary bond.',
+      'Poverty in early creative life is an apprenticeship in inventiveness: when you cannot buy your way through, you develop technique.',
+      'Physical proximity to a scene at the right moment (the Chelsea Hotel, Max’s Kansas City) accelerates development by years.',
+      'Romantic and creative partnership are not the same thing; separating them while keeping the creative alliance intact is a survival act.',
+      'The decision to make art at all — before talent is proven, before an audience exists — is itself the defining creative move.',
+    ],
+    bestFor: [
+      'Creators looking for a model of partnership over networking',
+      'Anyone building or seeking a scene where the future recognizes itself',
+      'Writers and artists in the broke, pre-recognition phase',
+      'Readers who want the Amsterdam/Arcanea creator-circle archetype',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+    faq: [
+      {
+        q: 'What is Just Kids about?',
+        a: 'It is Patti Smith’s memoir of her relationship with photographer Robert Mapplethorpe, from their first meeting in Brooklyn in 1967 to his death from AIDS in 1989, tracing how two penniless young people made themselves into major figures in American art and music.',
+      },
+      {
+        q: 'What was Patti Smith and Robert Mapplethorpe’s relationship?',
+        a: 'They met in 1967, were briefly romantic partners, then became creative allies and mutual guardians. After the romance ended they remained the most important people in each other’s creative lives — he shot the cover of her album Horses; she wrote this book to honor him.',
+      },
+      {
+        q: 'Why did it win the National Book Award?',
+        a: 'It won the 2010 National Book Award for Nonfiction. It is unusual for memoir in refusing self-pity about poverty and sentimentality about loss — it renders bohemian life in precise, unadorned language and treats making art as a concrete daily practice.',
+      },
+      {
+        q: 'Is it about music or art?',
+        a: 'Both, and neither exclusively. It covers Smith’s path to poet and rock performer (culminating in Horses, 1975) and Mapplethorpe’s to photographer — but the real subject is the commitment to creative life itself: the discipline, the alliances, and the cost.',
+      },
+      {
+        q: 'Did Patti Smith write it while Mapplethorpe was alive?',
+        a: 'No. He died in 1989 and asked her on his deathbed to write their story. She took roughly 20 years, publishing in 2010 — and the long gestation shows: it reads as sustained witness, not a quick memorial.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'I was superstitious. Today was a Monday; I was born on Monday. It was a good day to arrive in New York City. No one expected me. Everything awaited me.',
+        chapter: 'Monday’s Children',
+        context: 'The opening — poverty treated as myth rather than obstacle, arrival framed as destiny.',
+      },
+      {
+        text: 'I had no proof that I had the stuff to be an artist, though I hungered to be one.',
+        chapter: 'Monday’s Children',
+        context: 'The honest gap between desire and demonstrated ability, on arrival in New York.',
+      },
+      {
+        text: 'I longed to enter the fraternity of the artist: the hunger, their manner of dress, their process and prayers.',
+        chapter: 'Monday’s Children',
+      },
+      {
+        text: 'I imagined myself as Frida to Diego, both muse and maker. I dreamed of meeting an artist to love and support and work with side by side.',
+        chapter: 'Monday’s Children',
+        context: 'The ambition she held before meeting Mapplethorpe — which became their actual life together.',
+      },
+      {
+        text: 'We were as Hansel and Gretel and we ventured out into the black forest of the world. There were temptations and witches and demons we never dreamed of and there was splendor we only partially imagined.',
+        chapter: 'Just Kids',
+      },
+      {
+        text: 'We used to laugh at our small selves, saying that I was a bad girl trying to be good and that he was a good boy trying to be bad... We contained opposing principles, light and dark.',
+        chapter: 'Just Kids',
+      },
+      {
+        text: 'The city was a real city, shifty and sexual.',
+        chapter: 'Monday’s Children',
+      },
+      {
+        text: 'When I look at it now, I never see me. I see us.',
+        chapter: 'Separate Ways Together',
+        context: 'On the cover of Horses, shot by Mapplethorpe — the product of their alliance, not a solo portrait.',
+      },
+      {
+        text: 'We went our separate ways, but within walking distance of one another.',
+        chapter: 'Separate Ways Together',
+        context: 'On separating romantically while remaining the most important people in each other’s lives.',
+      },
+      {
+        text: 'Suddenly he looked up and said, “Patti, did art get us?” I looked away... “I don’t know, Robert. I don’t know.” Perhaps it did, but no one could regret that. Only a fool would regret being had by art; or a saint.',
+        chapter: 'Holding Hands with God',
+        context: 'The question at the moral center of the book — whether total devotion to art costs you the rest of your life. She refuses a clean answer.',
+      },
+      {
+        text: 'The artist seeks contact with his intuitive sense of the gods, but in order to create his work, he cannot stay in this seductive and incorporeal realm. He must return to the material world in order to do his work.',
+        chapter: 'Hotel Chelsea',
+        context: 'Her clearest statement of what being an artist requires — not transcendence, but the discipline to translate it.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Foreword',
+        keyIdea: 'The book begins at its end — Smith waiting for Mapplethorpe to die, then fulfilling the promise she made at his bedside.',
+        summary: 'Smith opens in 1989, listening to Mapplethorpe’s final hours by phone. He dies on March 9 at age 42. The frame establishes the memoir as a vow kept, and gives weight to everything beautiful that follows — the reader knows from page one it is also elegy.',
+      },
+      {
+        number: 2,
+        title: 'Monday’s Children',
+        keyIdea: 'Two people with no claim to becoming artists decide to become artists anyway, and that decision is the whole foundation.',
+        summary: 'Smith’s New Jersey childhood, a teenage pregnancy resolved through adoption, and her 1967 arrival in New York with art supplies and a copy of Rimbaud. She meets Mapplethorpe by chance, loses him, finds him again. They move into a Brooklyn apartment and make art out of scarcity.',
+      },
+      {
+        number: 3,
+        title: 'Just Kids',
+        keyIdea: 'Poverty shared with another serious artist is not deprivation — it is the condition that forces inventiveness and deepens allegiance.',
+        summary: 'The two move between cheap rooms, sometimes sleeping outdoors, surviving on resourcefulness and mutual devotion. Mapplethorpe experiments with collage; Smith writes and begins to perform. The title comes from a tourist’s dismissal — "they’re just kids" — which the book reclaims as exactly what they were: kids who took it seriously.',
+      },
+      {
+        number: 4,
+        title: 'Hotel Chelsea',
+        keyIdea: 'The right physical scene — the right building at the right moment — accelerates a creative life by years.',
+        summary: 'In 1969 they move into the Hotel Chelsea, home to Burroughs, Ginsberg, Joplin, and dozens of working artists. Smith moves through Max’s Kansas City and the downtown art world; Mapplethorpe turns decisively to photography. The Chelsea is an active force, a community where the future recognized itself before the world did.',
+      },
+      {
+        number: 5,
+        title: 'Separate Ways Together',
+        keyIdea: 'Two artists who were once one unit become individually great by staying in each other’s orbit while following their own work.',
+        summary: 'Through the early-to-mid 1970s Smith becomes a rock performer and records Horses (1975), its cover shot by Mapplethorpe, who himself becomes a major art photographer. No longer romantic or living together, they remain essential to each other. The title names the paradox the whole book builds toward.',
+      },
+      {
+        number: 6,
+        title: 'Holding Hands with God',
+        keyIdea: 'Devotion to art and to another person are, in Smith’s account, the same act.',
+        summary: 'Smith narrates Mapplethorpe’s final illness and death in 1989, present in his last days. Their last conversation includes "Patti, did art get us?" — to which she offers honesty, not reassurance. The book closes by circling back to the promise: in finishing it, she kept her word.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Life',
+        author: 'Keith Richards',
+        reason: 'The other face of the same era in this collection — where Just Kids is devotion and scene, Life is riffs and survival.',
+        url: 'https://www.amazon.com/s?k=Life+Keith+Richards+memoir',
+      },
+      {
+        title: 'POPism: The Warhol Sixties',
+        author: 'Andy Warhol & Pat Hackett',
+        reason: 'Also in the Rockstar Energy collection. Smith and Mapplethorpe orbited the same downtown New York that Warhol’s Factory anchored — read them together for the full scene.',
+        url: 'https://www.amazon.com/s?k=POPism+Warhol+Hackett',
+      },
+      {
+        title: 'The Creative Act',
+        author: 'Rick Rubin',
+        reason: 'Smith lives what Rubin theorizes — the artist as receiver, devotion as practice. Read together as the lived case and the manual.',
+        url: 'https://www.amazon.com/s?k=The+Creative+Act+Rick+Rubin',
+      },
+    ],
+    videos: [
+      {
+        title: 'Patti Smith Discusses Just Kids',
+        creator: 'Smithsonian National Portrait Gallery',
+        url: 'https://www.youtube.com/results?search_query=Patti+Smith+Just+Kids+National+Portrait+Gallery',
+        description: 'Smith in conversation about the book, the Chelsea years, and Mapplethorpe. The closest thing to an author’s commentary track.',
+        duration: '1h',
+        kind: 'interview',
+      },
+      {
+        title: 'Patti Smith reads from Just Kids',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Patti+Smith+reading+from+Just+Kids',
+        description: 'Smith reading passages from the memoir at a memorial concert for Mapplethorpe — the text in her own voice.',
+        kind: 'talk',
+      },
+      {
+        title: 'Dua Lipa in Conversation with Patti Smith',
+        creator: 'Service95 Book Club',
+        url: 'https://www.youtube.com/results?search_query=Dua+Lipa+Patti+Smith+Just+Kids',
+        description: 'A 2023 long-form conversation on the book and the creative life. Accessible entry point if the Portrait Gallery talk feels formal.',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
+    slug: 'the-creative-act',
+    title: 'The Creative Act',
+    author: 'Rick Rubin',
+    coverImage: '/images/library/the-creative-act.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-06-10',
+    categories: ['Creativity', 'Inner Work', 'Mindset'],
+    readingTime: '7 min',
+    publicationYear: 2023,
+    relatedBook: 'imagination',
+    tldr:
+      'Rick Rubin’s first book is the inner-state manual for the collection: not "make content" but how to be tuned enough that creation passes through you. Across 78 short meditations he argues the quality of your art is a direct function of the quality of your attention — and that your lifestyle should make you more receptive, not merely more stimulated. Draws on Zen and Taoist frames without citing them.',
+    keyInsights: [
+      'Receptivity is the core creative skill — your lifestyle either makes you more available to signal or less, and stimulation is not the same as inspiration.',
+      'The artist is a vessel and filter, not a generator — creative block is an access problem, not a capacity problem.',
+      'Source and ego are in opposition — the more the work is about proving something, the less clearly it transmits what is actually alive.',
+      'The four phases (Seed, Experimentation, Craft, Completion) require different, incompatible mental stances — knowing which you’re in prevents most self-sabotage.',
+      'Completion is not the end but the act that initiates the next cycle — non-attachment to any single work is what sustains a creative life.',
+    ],
+    bestFor: [
+      'Creators optimizing their inputs and environment, not just their output',
+      'Anyone stuck treating creativity as a talent rather than a practice',
+      'Builders and engineers who want a calmer relationship to the work',
+      'Readers who want the inner-state complement to the scene books here',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=The+Creative+Act+Rick+Rubin',
+    faq: [
+      {
+        q: 'What is The Creative Act about?',
+        a: 'It is 78 short meditations ("areas of thought") on what it means to live as an artist — not how to make things, but how to become the kind of person capable of receiving and transmitting creative work. The central claim: the quality of your art tracks the quality of your attention.',
+      },
+      {
+        q: 'Is it only for musicians or professional artists?',
+        a: 'No. Rubin opens by arguing everyone is a creator and that the creative orientation is a fundamental human capacity, not a professional category. It is widely read by builders, founders, and engineers — anyone making decisions from genuine attention rather than formula.',
+      },
+      {
+        q: 'What does Rubin mean by "tuning in"?',
+        a: 'Refining your perceptual sensitivity so you detect signal — the rightness of a choice, the aliveness of a direction — before it becomes obvious. It is both passive (clearing the noise of habit and opinion) and active (noticing what draws you). The recurring metaphor is the artist as antenna.',
+      },
+      {
+        q: 'Is it practical or purely philosophical?',
+        a: 'Both. It includes concrete practices — the four-phase model, methods for using feedback, ways to disrupt creative habit — embedded in a philosophical framework about the artist’s relationship to source, self, and world that gives the techniques their rationale.',
+      },
+      {
+        q: 'Who is Rick Rubin?',
+        a: 'One of the most influential record producers in history, working across hip-hop (Beastie Boys, Jay-Z), metal (Slayer), rock (Red Hot Chili Peppers), country (Johnny Cash’s American Recordings), and pop (Adele). He co-founded Def Jam in 1984. He describes his role not as technical producer but as listener — telling artists whether the work is alive.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'To live as an artist is a way of being in the world. A way of perceiving. A practice of paying attention... Attuned choice by attuned choice, your entire life is a form of self-expression.',
+        chapter: 'Everyone Is a Creator',
+        context: 'The opening argument: being an artist is not a job title but a continuous orientation toward experience.',
+      },
+      {
+        text: 'The best artists tend to be the ones with the most sensitive antennae to draw in the energy resonating at a particular moment. Many great artists first develop sensitive antennae not to create art but to protect themselves.',
+        chapter: 'Tuning In',
+        context: 'Reframes heightened sensitivity — usually felt as a liability — as the exact mechanism by which artists receive signal.',
+      },
+      {
+        text: 'This content does not come from inside us. It comes through us. A wisdom surrounding us, an inexhaustible offering that is always available.',
+        chapter: 'The Source of Creativity',
+        context: 'The book’s central claim — the artist as receiver, not originator. It repositions block as an access problem.',
+      },
+      {
+        text: 'If you’ve truly created an innovative work, it’s likely to alienate as many people as it attracts. The best art divides the audience. If everyone likes it, you probably haven’t gone far enough.',
+        chapter: 'The Ecstatic',
+        context: 'Rubin’s inversion of the approval-seeking instinct — consensus is evidence you stayed in mapped territory.',
+      },
+      {
+        text: 'Living life as an artist is a practice. You are either engaging in the practice or you’re not.',
+        chapter: 'Everyone Is a Creator',
+      },
+      {
+        text: 'Art is choosing to do something skillfully, caring about the details, bringing all of yourself to make the finest work you can. It is beyond ego, vanity, self-glorification, and need for approval.',
+        chapter: 'The Vessel and the Filter',
+      },
+      {
+        text: 'Self-doubt lives in all of us. And while we may wish it gone, it’s there to serve us... You can doubt your way to excellence.',
+        chapter: 'Self-Doubt',
+        context: 'Separates doubt about your capacity as a person (destructive) from doubt about the current work (generative).',
+      },
+      {
+        text: 'The reason to finish is to start something new.',
+        chapter: 'Completion',
+        context: 'Completion as the act that clears space for the next cycle of reception, not an endpoint.',
+      },
+      {
+        text: 'Most variables are completely out of our control. The only ones we can control are doing our best work, sharing it, starting the next, and not looking back.',
+        chapter: 'Completion',
+      },
+      {
+        text: 'Holding every rule as breakable is a healthy way to live as an artist.',
+        chapter: 'Rules',
+        context: 'Not an argument against craft — an argument against deference. Rules are diagnostic tools, not constraints to respect for their own sake.',
+      },
+      {
+        text: 'Creativity is not a rare ability. It is not difficult to access. Creativity is a fundamental aspect of being human. It’s our birthright. And it’s for all of us.',
+        chapter: 'Everyone Is a Creator',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'The Artist’s Identity — Everyone Is a Creator',
+        keyIdea: 'Creativity is not a talent category but a perceptual orientation available to anyone who pays close attention.',
+        summary: 'Rubin dissolves the boundary between "artist" and "non-artist." The fundamental unit is not the artwork but the quality of noticing. Being an artist is a continuous practice, not a credential, and the whole range of one’s choices is a form of self-expression.',
+      },
+      {
+        number: 2,
+        title: 'Tuning In — Awareness and Sensitivity',
+        keyIdea: 'The artist’s primary instrument is perceptual sensitivity, and tuning it requires active cultivation.',
+        summary: 'The world constantly emits signal; the artist’s job is to become a better receiver. Practices of attention — meditation, time in nature, deliberate stillness — clear the noise that prevents signal from coming through. Sensitivity is the instrument, not a weakness.',
+      },
+      {
+        number: 3,
+        title: 'The Source — Where Material Comes From',
+        keyIdea: 'Content does not originate inside the artist; it passes through from a source that is external, abundant, and always available.',
+        summary: 'The artist’s constitution — memory, experience, temperament — is a filter giving shape to what passes through. This relocates creative responsibility from "generating" to "receiving and transmitting," changing how a creator approaches both block and abundance.',
+      },
+      {
+        number: 4,
+        title: 'The Creative Environment',
+        keyIdea: 'Lifestyle and environment are not peripheral to the work — they are the primary determinant of what the work can be.',
+        summary: 'Stimulation and consumption can crowd out the quiet that reception needs. Nature is the recurring reference — its complexity and indifference to approval make it the most useful model for ambition. The artist designs a life that keeps the antenna clear.',
+      },
+      {
+        number: 5,
+        title: 'The Seed — Gathering Without Judgment',
+        keyIdea: 'The first phase is pure collection: ideas gathered as seeds, without ranking, in anticipation of the right season.',
+        summary: 'A seed is any fragment — a phrase, a groove, a memory — and the only practice is collection without evaluation. Some lie dormant for years. The governing principle is non-attachment: abundance of seeds makes attachment to any one unnecessary.',
+      },
+      {
+        number: 6,
+        title: 'Experimentation and Craft',
+        keyIdea: 'The Experimentation and Crafting phases require opposite stances: generative openness first, then disciplined narrowing.',
+        summary: 'Critical judgment during experimentation kills possibilities; unchecked openness during crafting prevents resolution. Rubin treats these as genuinely distinct cognitive modes that cannot run simultaneously, and adds "beginner’s mind" — approaching familiar material as if for the first time.',
+      },
+      {
+        number: 7,
+        title: 'The Artist and the World — Ego, Doubt, Opinion',
+        keyIdea: 'The primary threats to the work are internal: need for approval, susceptibility to outside opinion, and conflating self-worth with the current project.',
+        summary: 'Rubin distinguishes productive doubt (about the work) from corrosive doubt (about your fitness to make it). Your own assessment, not audience response, is the primary quality instrument; feedback is for widening your own perception, not finding approval.',
+      },
+      {
+        number: 8,
+        title: 'Collaboration',
+        keyIdea: 'Collaboration works when each party serves the work rather than their own vision of it.',
+        summary: 'Drawing on producing hundreds of records, Rubin frames cooperation as ego-subordination: the question is never "who is right" but "what does the work need." A note from a listener is a data point about their experience, not an instruction.',
+      },
+      {
+        number: 9,
+        title: 'Completion — Finishing and Letting Go',
+        keyIdea: 'A work is finished when it is as close as possible to your current vision — not when it is perfect — and finishing makes the next work possible.',
+        summary: 'Rubin addresses perfectionism, self-imposed delay, and fear of exposure. The argument is structural: the artist grows through the cycle of making and releasing, so holding a project past completion delays the growth only the next project can bring.',
+      },
+      {
+        number: 10,
+        title: 'The Ecstatic — Art’s Highest Aim',
+        keyIdea: 'The purpose of the creative life is to stay in contact with experience vivid enough to pass through into form.',
+        summary: 'The most meaningful creative acts divide audiences and emerge from total honesty with one’s own experience — what Rubin associates with the ecstatic: a directness of contact with reality that bypasses habit and approval-seeking. The creative life is a way of staying alive to experience.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'The War of Art',
+        author: 'Steven Pressfield',
+        reason: 'The blunt, tactical counterpart to Rubin’s receptive frame — Pressfield names the enemy (Resistance) and tells you to sit down and work. Read together for both halves of the creative will.',
+        url: 'https://www.amazon.com/s?k=The+War+of+Art+Pressfield',
+      },
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'Also in this collection. Smith lives what Rubin theorizes — devotion as practice, the artist as receiver. The lived case beside the manual.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'Miles: The Autobiography',
+        author: 'Miles Davis with Quincy Troupe',
+        reason: 'Rubin’s "never look back" in a single career — Miles reinvented his sound five times by refusing to repeat a success. The discipline behind the philosophy.',
+        url: 'https://www.amazon.com/s?k=Miles+The+Autobiography+Davis+Troupe',
+      },
+    ],
+    videos: [
+      {
+        title: 'Rick Rubin: The Creative Act',
+        creator: 'The Tim Ferriss Show',
+        url: 'https://www.youtube.com/results?search_query=Tim+Ferriss+Rick+Rubin+The+Creative+Act',
+        description: 'The canonical long-form interview around the book’s release — Rubin on unlocking creativity, working with strong personalities, and breaking out of "the sameness."',
+        duration: '2h',
+        kind: 'interview',
+      },
+      {
+        title: 'In Shangri-La with Rick Rubin',
+        creator: '60 Minutes',
+        url: 'https://www.youtube.com/results?search_query=Rick+Rubin+60+Minutes+Anderson+Cooper',
+        description: 'Anderson Cooper visits Rubin’s Malibu studio. A short, accessible portrait of the receptive working style the book describes.',
+        duration: '13m',
+        kind: 'interview',
+      },
+      {
+        title: 'Rick Rubin: Protocols to Access Creative Energy',
+        creator: 'Huberman Lab',
+        url: 'https://www.youtube.com/results?search_query=Huberman+Rick+Rubin+creativity',
+        description: 'A practical Q&A on routine, movement, and process — the implementation layer beneath the book’s philosophy.',
+        duration: '2h 30m',
+        kind: 'lecture',
+      },
+    ],
+  },
+  {
+    slug: 'how-music-works',
+    title: 'How Music Works',
+    author: 'David Byrne',
+    coverImage: '/images/library/how-music-works.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-06-10',
+    categories: ['Music', 'Creativity', 'Scenes'],
+    readingTime: '8 min',
+    publicationYear: 2012,
+    tldr:
+      'David Byrne’s central argument is "creation in reverse": music is not born from pure inspiration and then performed in a space — the space, technology, and economics come first, and the music adapts to fit them. Part Talking Heads memoir, part cultural history, part unusually honest music-business manual, it makes the case that context shapes art and rooms create behavior.',
+    keyInsights: [
+      'Context shapes art: the acoustic, social, and economic environment does not merely receive music — it determines what music gets written.',
+      'Scenes produce genius collectively: CBGB generated Talking Heads and the Ramones from cheap rent, permissive booking, and proximity — not lone inspiration.',
+      'The recording industry’s economics structurally prevent most signed artists from earning from recordings; live and licensing are the real income.',
+      'Every music technology — microphone, multitrack, DAW, MP3 — is a compositional constraint that makes some music possible and other music unthinkable.',
+      'Performance is a discipline separate from composition: what happens between a body and an audience in a room has its own logic.',
+    ],
+    bestFor: [
+      'Anyone who designs the context their work will be consumed in',
+      'Creators who want the honest economics of a working artist’s career',
+      'Scene-builders studying how CBGB-style ecosystems actually form',
+      'Makers interested in how tools silently shape what gets made',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=How+Music+Works+David+Byrne',
+    faq: [
+      {
+        q: 'What is How Music Works about?',
+        a: 'Byrne’s argument — backed by his career as musician, producer, and bandleader — that music is always shaped by the context it will be heard in: the physics of a room, the capabilities of a technology, the economics of distribution, and the social conditions of a scene. It is part memoir, part history, part business manual, part anthropology.',
+      },
+      {
+        q: 'What is "creation in reverse"?',
+        a: 'Byrne’s term for how artists adapt their work to fit available contexts rather than imposing a vision on a blank world. Gregorian chant was shaped by cathedral reverberation; Talking Heads songs were shaped by CBGB’s small, dry room; jazz solos were invented to fill time for dancers. Constraints come first and creativity works within them.',
+      },
+      {
+        q: 'Is it a Talking Heads memoir?',
+        a: 'No, though Talking Heads run throughout as examples. The project is analytical and wide-ranging — Gregorian chant, West African drumming, recording-deal economics, the sociology of scenes, evolutionary theories of why music exists. Expect 350+ pages of broader argument, not a behind-the-scenes narrative.',
+      },
+      {
+        q: 'What does Byrne say about how musicians make money?',
+        a: 'The "Business and Finances" chapter shows his actual Talking Heads budgets and per-album P&Ls to demonstrate that standard major-label deals recoup recording, video, and tour costs against royalties before the artist sees anything — so most signed artists earn nothing from recordings. He diagrams six distribution models by effective income.',
+      },
+      {
+        q: 'What does it say about scenes like CBGB?',
+        a: 'In "How to Make a Scene," Byrne argues scenes are not accidents of genius but products of replicable conditions: affordable housing near the venue, permissive booking requiring no record deal, a critical mass of musicians who are each other’s audience, and nearby writers and photographers who make the scene legible. Without the ecosystem, talent alone produces nothing.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'I had an extremely slow-dawning insight about creation. That insight is that context largely determines what is written, painted, sculpted, sung, or performed.',
+        chapter: 'Creation in Reverse',
+        context: 'The book’s thesis — the inversion of the Romantic model. Context precedes and shapes art, not the reverse.',
+      },
+      {
+        text: 'In a sense, we work backward, either consciously or unconsciously, creating work that fits the venue available to us.',
+        chapter: 'Creation in Reverse',
+      },
+      {
+        text: 'In a sense, the space, the platform, and the software “makes” the art, the music, or whatever.',
+        chapter: 'Creation in Reverse',
+      },
+      {
+        text: 'Just because the form that one’s work will take is predetermined and opportunistic... it doesn’t mean that creation must be cold, mechanical, and heartless. Dark and emotional materials usually find a way in, and the tailoring process... is largely unconscious, instinctive. We usually don’t even notice it.',
+        chapter: 'Creation in Reverse',
+        context: 'His answer to the objection that a context-first theory drains creativity of authenticity.',
+      },
+      {
+        text: 'How music works is determined by what surrounds it, where you hear it and when you hear it. How it’s performed, how it’s sold and distributed, how it’s recorded, who performs it, whom you hear it with, and, of course, finally, what it sounds like.',
+        chapter: 'Creation in Reverse',
+        context: 'The widest-angle definition of "context" — everything except the notes themselves.',
+      },
+      {
+        text: 'Making music is like constructing a machine whose function is to dredge up emotions in performer and listener alike.',
+        chapter: 'My Life in Performance',
+      },
+      {
+        text: 'I’m beginning to think of the artist as someone who is adept at making devices that tap into our shared psychological makeup and that trigger the deeply moving parts we have in common.',
+        chapter: 'My Life in Performance',
+        context: 'The artist as engineer of shared psychological resonance, not confessor of private feeling.',
+      },
+      {
+        text: 'I begin by improvising a melody over the music. I do this by singing nonsense syllables, but with weirdly inappropriate passion, given that I’m not saying anything.',
+        chapter: 'My Life in Performance',
+        context: 'Byrne’s lyric process — melody and vowel sounds precede meaning.',
+      },
+      {
+        text: 'It can often seem that those in power don’t want us to enjoy making things for ourselves — they’d prefer to establish a cultural hierarchy that devalues our amateur efforts and encourages consumption rather than creation.',
+        chapter: 'Amateurs!',
+        context: 'His diagnosis of a culture that converts active music-makers into passive consumers — structural, not conspiratorial.',
+      },
+      {
+        text: 'Individual imagination is not enough. Without an ecosystem, there can be no musical miracle.',
+        chapter: 'How to Make a Scene',
+        context: 'The scenius thesis — CBGB produced its bands because the conditions were right, not because the individuals were uniquely exceptional.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Creation in Reverse',
+        keyIdea: 'The space comes first, and music adapts to fit it — not the other way around.',
+        summary: 'Byrne introduces his thesis: artists unconsciously tailor output to the acoustic, social, and economic context available, from cathedral chant to jazz solos to Talking Heads songs written for CBGB’s small dry room. The creative act is real but operates within constraints that precede it — and those constraints are generative.',
+      },
+      {
+        number: 2,
+        title: 'My Life in Performance',
+        keyIdea: 'Performance is a discipline in its own right, separate from composition.',
+        summary: 'Byrne traces his evolution from rigid, nervous performer to the choreographed spectacle of Talking Heads’ peak. He argues performance is a co-equal art form — using a body in space to move an audience — and that emotional content is built into sound (his nonsense-syllable lyric method) before it is built into meaning.',
+      },
+      {
+        number: 3,
+        title: 'Technology Shapes Music: Analog',
+        keyIdea: 'Recording and amplification never captured music neutrally — each new technology created new musical forms.',
+        summary: 'The microphone made intimate crooning possible; the electric guitar made amplified blues possible; the phonograph changed what people wanted music to do. There is no "pure" music — it is all already technological. Dense West African polyrhythm that sings in open air turns to mud in a reverberant cathedral.',
+      },
+      {
+        number: 4,
+        title: 'Technology Shapes Music: Digital',
+        keyIdea: 'Digital tools are not just a delivery system but a new constraint reshaping what music gets made and by whom.',
+        summary: 'Digital democratized production (anyone can record) while homogenizing it (everyone uses the same templates and plug-ins). Compression artifacts, the loudness war, and the shift from album to single-track consumption altered not just distribution but sound. The DAW itself is a compositional instrument.',
+      },
+      {
+        number: 5,
+        title: 'In the Recording Studio',
+        keyIdea: 'The studio is not a neutral capture device but a compositional space that determines what a record becomes.',
+        summary: 'Drawing on sessions from early Talking Heads to Remain in Light with Brian Eno, Byrne shows the studio’s layout, the producer’s tendencies, and the gear as an invisible co-writer. Remain in Light was built from layered loops and improvised fragments — a process the studio made possible and that would be incoherent elsewhere.',
+      },
+      {
+        number: 6,
+        title: 'Collaborations',
+        keyIdea: 'Collaboration works by each partner doing what the other cannot, producing work neither could reach alone.',
+        summary: 'Byrne examines his work with Brian Eno, Caetano Veloso, and others, distinguishing collaboration as division of labor from collaboration as mutual transformation — where each party’s assumptions are destabilized by the other. The presence of another creative intelligence is itself a form of context.',
+      },
+      {
+        number: 7,
+        title: 'Business and Finances',
+        keyIdea: 'Recorded-music economics are structured so most signed artists earn nothing from recordings.',
+        summary: 'The longest chapter, and unusual in the music canon for naming real numbers. Using his own budgets, tour spreadsheets, and album P&Ls, Byrne shows how recording, video, and tour-support costs are recouped against royalties before any are paid. He diagrams six distribution models — from the 360 deal to fully self-released — by effective per-unit earning.',
+      },
+      {
+        number: 8,
+        title: 'How to Make a Scene',
+        keyIdea: 'Scenes are produced by specific, replicable structural conditions — not discovered after the fact.',
+        summary: 'Byrne uses CBGB as a case study: affordable adjacent rents, a venue owner with few permissive rules and no gatekeeping, a critical mass of musicians who were each other’s audience, and nearby photographers and writers who amplified the scene into a legible moment. The conclusion runs counter to the solitary-genius myth.',
+      },
+      {
+        number: 9,
+        title: 'Amateurs!',
+        keyIdea: 'Amateur music-making is the social substrate on which all music rests, and the forces that devalue it serve passive consumption.',
+        summary: 'Byrne argues the dominant culture systematically devalues amateur participation — from gutted school programs to the prestige hierarchy that ranks the concert hall above the choir above the living-room jam — in the commercial interest of an industry built on consumption. He frames music-making as a human right, not a credential.',
+      },
+      {
+        number: 10,
+        title: 'Harmonia Mundi',
+        keyIdea: 'Music is not ornamental to human life but constitutive of it — a technology for synchronizing feeling and binding communities.',
+        summary: 'Byrne surveys evolutionary biology, neuroscience, and anthropology to ask why music exists at all. He explores music as social-bonding agent and as an adaptation that may have scaffolded language. Its presence in every known human culture is not coincidental — it does something essential nothing else does.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Meet Me in the Bathroom',
+        author: 'Lizzy Goodman',
+        reason: 'Also in this collection. Byrne theorizes how scenes form; Goodman documents one (2001–2011 NYC) forming and dissolving in real time. Theory then case study.',
+        url: 'https://www.amazon.com/s?k=Meet+Me+in+the+Bathroom+Lizzy+Goodman',
+      },
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'The CBGB and downtown New York that Byrne analyzes is the world Smith lived. Read for the inside view of the scene Byrne diagrams.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'Please Kill Me',
+        author: 'Legs McNeil & Gillian McCain',
+        reason: 'The oral history of the same CBGB ecosystem from the punk side — the raw testimony beneath Byrne’s "How to Make a Scene" argument.',
+        url: 'https://www.amazon.com/s?k=Please+Kill+Me+oral+history+of+punk',
+      },
+    ],
+    videos: [
+      {
+        title: 'How architecture helped music evolve — David Byrne',
+        creator: 'TED',
+        url: 'https://www.youtube.com/results?search_query=David+Byrne+TED+how+architecture+helped+music+evolve',
+        description: 'The compressed precursor to Chapter 1 — Byrne demonstrating live how acoustic space (cathedral, arena, CBGB) shapes musical form. Watch this first.',
+        duration: '16m',
+        kind: 'talk',
+      },
+      {
+        title: 'David Byrne: How Do Spaces Shape the Music We Make?',
+        creator: 'NPR TED Radio Hour',
+        url: 'https://www.youtube.com/results?search_query=David+Byrne+TED+Radio+Hour+spaces+music',
+        description: 'Byrne revisits and expands the architecture-and-music thesis in conversation. A good audio companion to the book’s first chapters.',
+        duration: '30m',
+        kind: 'interview',
+      },
+      {
+        title: 'David Byrne on How Music Works',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=David+Byrne+How+Music+Works+interview',
+        description: 'Long-form interviews where Byrne discusses the book’s argument directly, including the context thesis and the CBGB chapter.',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
+    slug: 'meet-me-in-the-bathroom',
+    title: 'Meet Me in the Bathroom',
+    author: 'Lizzy Goodman',
+    coverImage: '/images/library/meet-me-in-the-bathroom.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-06-10',
+    categories: ['Music', 'Scenes', 'Rockstar Energy'],
+    readingTime: '8 min',
+    publicationYear: 2017,
+    tldr:
+      'An oral history assembled from 200+ interviews, tracing the NYC indie rock revival of 2001–2011 — the Strokes, Yeah Yeah Yeahs, Interpol, LCD Soundsystem, and the Brooklyn wave — entirely in the words of the people who lived it. It documents one of the last scenes to form before the internet made geography irrelevant to music discovery: scenius in real time, and its dissolution.',
+    keyInsights: [
+      'Scenius requires a physical address — the revival was inseparable from cheap Lower East Side rent and specific venues; when the geography changed, the scene’s conditions changed.',
+      'Rivalry is creative fuel — the Strokes, Yeah Yeah Yeahs, and Interpol competed in a small social ecosystem, and that proximity produced better work than isolation would.',
+      'The internet killed the conditions it later documented — blogs spread the scene globally while destroying the scarcity and locality that made it cohere.',
+      'New York is a character, not a backdrop — the city’s density and particular type of ambitious misfit were material conditions of the music.',
+      'Every scene ends before the people inside it realize it’s happening — the self-awareness that produces nostalgia only arrives after the thing dissolves.',
+    ],
+    bestFor: [
+      'Scene-builders studying how a modern movement forms and burns out',
+      'Anyone who lived through or loves the early-2000s NYC rock revival',
+      'Creators thinking about how the internet reshaped scene formation',
+      'Readers who want the contemporary bookend to the older scene books here',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=Meet+Me+in+the+Bathroom+Lizzy+Goodman',
+    faq: [
+      {
+        q: 'What is Meet Me in the Bathroom about?',
+        a: 'An oral history of the New York City indie rock scene from 2001 to 2011 — how The Strokes, Yeah Yeah Yeahs, Interpol, LCD Soundsystem, and others emerged from downtown clubs to become one of the last scenes to form before the internet made geography irrelevant. Goodman conducted 200+ interviews over six years.',
+      },
+      {
+        q: 'Which bands does it cover?',
+        a: 'Core subjects are The Strokes, Yeah Yeah Yeahs, Interpol, and LCD Soundsystem. The extended cast includes The Rapture, TV on the Radio, Grizzly Bear, Dirty Projectors, Vampire Weekend, MGMT, Ryan Adams, and Kings of Leon, plus managers, journalists, label heads, bloggers, and DJs.',
+      },
+      {
+        q: 'Where does the title come from?',
+        a: 'It is taken from a Strokes song on their 2003 album Room on Fire, referencing the backstage/after-show social ritual of the scene — the bathroom as an unofficial meeting point. It captures the intimacy and slight illicitness of how the scene actually operated.',
+      },
+      {
+        q: 'Is there a documentary?',
+        a: 'Yes — Meet Me in the Bathroom (2022), directed by Will Lovelace and Dylan Southern, premiered at Sundance and streamed on Showtime. It uses archival footage and home video rather than new interviews and focuses on the four core bands.',
+      },
+      {
+        q: 'Is it written as a narrative or as interviews?',
+        a: 'Entirely as interviews. There is no authorial narration — Goodman selected and sequenced excerpts from 200+ subjects into a chronological story. It reads like an extended conversation among dozens of people who were at the same events and remember them differently.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'Everybody is living through their own golden age, but you only realize it afterward, so start living it now.',
+        context: 'Conor McNicholas (NME editor), the book’s epigraph — its whole thesis in one line.',
+      },
+      {
+        text: 'New York is an apparition generated by those who come together to breathe life into something not quite temporal, something that has to be conjured... the particular alchemy generated when every last person who happens to be there at that precise moment — the famous and the anonymous — come together serendipitously.',
+        context: 'Lizzy Goodman, on why the scene was not replicable — the city itself as a conjured phenomenon.',
+      },
+      {
+        text: 'All I wanted was to do good enough work that it was important. I wanted to be important. I didn’t know what that meant, even.',
+        context: 'James Murphy (LCD Soundsystem), on the ambition behind the DFA era — significance, not fame.',
+      },
+      {
+        text: 'I was dancing and I was happy and I had a revelation: this is actually me.',
+        context: 'James Murphy, on the night that converted a frustrated rock musician into a dance-music evangelist and set DFA Records in motion.',
+      },
+      {
+        text: 'There was this amazing time, before we had to record the first record, we’d play to eighty people or something like that, but no one really knew us... Everything was so innocent. Somehow you lose the innocence through time and through doing too much, then you spend a lot of time chasing that same innocence.',
+        context: 'Albert Hammond Jr. (The Strokes), on the pre-fame window when the work itself was the reward.',
+      },
+      {
+        text: 'The Shout! parties totally, totally, totally set the groundwork for all 2000s bands.',
+        context: 'Gideon Yago (MTV), on the weekly mod dance party where the future musicians and audiences first found each other.',
+      },
+      {
+        text: 'You had to find some way to not accept the fact that there’s actually five dudes out there that are cool as fuck that are writing insanely awesome music. And they did it by themselves. They are cooler and better than you are, and they will steal your girlfriend.',
+        context: 'Paul Banks (Interpol), on how rival bands processed the Strokes’ rise — by inventing reasons to disqualify them.',
+      },
+      {
+        text: 'I’m sure Ryan Adams has his own story and it’s grandiose and beautiful and whatnot, but he’s not that major of a player in the Strokes’ history.',
+        context: 'Fabrizio Moretti (The Strokes), a dry dismissal that became one of the most-quoted lines in coverage of the book.',
+      },
+      {
+        text: 'My thing about New York was just to be around cute, cool guys... This was fantasy land where those kinds of guys existed.',
+        context: 'Karen O (Yeah Yeah Yeahs), reframing the scene as a social ecosystem before it was a musical one.',
+      },
+      {
+        text: 'I manifested that shit for you! I wanted to get in there like a motherfucker and that’s what I did.',
+        context: 'Karen O, on her own drive and agency — a counterweight to the book’s many portraits of passive drifting.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Before the Scene — Pre-2001 Formation',
+        keyIdea: 'The revival had a pre-history in dance parties, cheap rent, and musicians who moved to the city before anyone was watching.',
+        summary: 'The book opens before 2001, establishing the social infrastructure: weekly events like the Shout! parties at Bar 13, the network of aspiring musicians who already knew each other, and Lower East Side neighborhoods still affordable. The Strokes were playing to eighty people, unknown outside the room.',
+      },
+      {
+        number: 2,
+        title: 'The Strokes and Is This It (2001)',
+        keyIdea: 'The Strokes’ debut arrived at the precise moment a generation needed something to believe in that wasn’t the mainstream.',
+        summary: 'Their rise from local fixtures to international obsession, built on Is This It (released in the US weeks after 9/11). The NME championed them before American press caught on. Hammond describes the pre-fame months as the best time of his life — the benchmark against which everything after is measured.',
+      },
+      {
+        number: 3,
+        title: 'September 11 and the Acceleration',
+        keyIdea: '9/11 didn’t create the scene but gave it a sudden cultural weight it hadn’t asked for.',
+        summary: 'The attack sits at the hinge of the first part. Bands already honing their sound in obscurity were cast as symbols of urban resilience and forward-looking youth. The music didn’t change, but its context did — a dozen bands became anthems for a generation processing grief.',
+      },
+      {
+        number: 4,
+        title: 'Yeah Yeah Yeahs and Interpol — The Scene Expands',
+        keyIdea: 'The second wave proved the Strokes weren’t an accident — New York had a genuine generational cluster.',
+        summary: 'Yeah Yeah Yeahs and Interpol emerge as distinct proof points. Karen O’s physical performance made the Yeah Yeah Yeahs a live phenomenon; Interpol’s Turn on the Bright Lights offered the dark, disciplined counterpart to the Strokes’ looseness. The bands are social neighbors — competitive, aware of each other, sharing venues and managers.',
+      },
+      {
+        number: 5,
+        title: 'DFA Records and Dance-Punk',
+        keyIdea: 'James Murphy built DFA partly from creative frustration and partly to fuse the rock scene with the dance music he’d discovered.',
+        summary: 'Running parallel to the guitar-band story, Murphy and Tim Goldsworthy found a label producing LCD Soundsystem and The Rapture’s Echoes, creating the dance-punk moment. The tension between Murphy and Luke Jenner shows the scene’s social dynamics at their least romanticized.',
+      },
+      {
+        number: 6,
+        title: 'The Blog Era and the Internet’s Arrival',
+        keyIdea: 'Music blogs bypassed the gatekeepers who made the scene and replaced scarcity with instant global access — killing the conditions that produced it.',
+        summary: 'By mid-decade the scene that grew through word of mouth and NME features was documented in real time by bloggers; Pitchfork’s influence expanded. The availability of music online eroded the local, venue-specific energy. Being a band in New York stopped meaning the same thing once geography no longer gated access.',
+      },
+      {
+        number: 7,
+        title: 'The Brooklyn Shift',
+        keyIdea: 'The center of gravity moved to Brooklyn, and the new music was more sonically ambitious and less tied to Lower East Side mythology.',
+        summary: 'As Manhattan prices pushed artists to Williamsburg, a new cluster emerged — TV on the Radio, Grizzly Bear, Dirty Projectors — more eclectic and experimental, native to the internet rather than adopting it. An evolution and a departure from the original scene.',
+      },
+      {
+        number: 8,
+        title: 'Fragmentation and the Comedown',
+        keyIdea: 'The same forces that amplified the scene — money, attention, drugs, the internet — dissolved its conditions.',
+        summary: 'From roughly 2008 to 2011 the bands break up, go on hiatus, or play arenas without the original social glue. The Strokes’ internal tensions, Hammond’s drug problems, and LCD Soundsystem’s 2011 farewell at Madison Square Garden are framed as symptoms of a scene that consumed itself. Goodman ends not with closure but with the participants’ recognition that they didn’t understand what they were living through at the time.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'How Music Works',
+        author: 'David Byrne',
+        reason: 'Also in this collection. Byrne’s "How to Make a Scene" is the theory; this book is the live case study of a scene forming and dissolving on the same streets a generation later.',
+        url: 'https://www.amazon.com/s?k=How+Music+Works+David+Byrne',
+      },
+      {
+        title: 'Please Kill Me',
+        author: 'Legs McNeil & Gillian McCain',
+        reason: 'The oral-history template this book follows, one scene earlier — punk’s CBGB to this book’s 2000s revival, same city, same form.',
+        url: 'https://www.amazon.com/s?k=Please+Kill+Me+oral+history+of+punk',
+      },
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'The 1970s New York that every later NYC scene measures itself against. Read for the deep roots of the mythology these bands inherited.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+    ],
+    videos: [
+      {
+        title: 'Meet Me in the Bathroom — Official Trailer',
+        creator: 'Utopia',
+        url: 'https://www.youtube.com/results?search_query=Meet+Me+in+the+Bathroom+documentary+trailer',
+        description: 'Trailer for the 2022 documentary adaptation — archival footage of the Strokes, Yeah Yeah Yeahs, Interpol, and LCD Soundsystem in their natural habitat.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Lizzy Goodman on Meet Me in the Bathroom',
+        creator: 'Faber Social',
+        url: 'https://www.youtube.com/results?search_query=Lizzy+Goodman+Meet+Me+in+the+Bathroom+interview',
+        description: 'The author on assembling 200+ interviews into a single narrative and what made the scene unrepeatable. The closest thing to a method commentary.',
+        kind: 'interview',
+      },
+      {
+        title: 'Meet Me in the Bathroom — full documentary',
+        creator: 'Showtime / Utopia',
+        url: 'https://www.youtube.com/results?search_query=Meet+Me+in+the+Bathroom+2022+full+documentary',
+        description: 'The full 2022 film. Best watched after the book — it compresses the four core bands and leans on home video and concert footage.',
+        duration: '1h 45m',
+        kind: 'explainer',
+      },
+    ],
+  },
+  {
+    slug: 'please-kill-me',
+    title: 'Please Kill Me',
+    author: 'Legs McNeil & Gillian McCain',
+    coverImage: '/images/library/please-kill-me.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-06-10',
+    categories: ['Music', 'Scenes', 'Rockstar Energy'],
+    readingTime: '8 min',
+    publicationYear: 1996,
+    tldr:
+      'The first and definitive oral history of American punk, assembled entirely from firsthand interviews with no authorial narration. It traces the music from the Velvet Underground and Warhol’s Factory through the Stooges and MC5, the New York Dolls, and CBGB’s Ramones-and-Television scene. A document of velocity, attitude, and scene mutation — with self-destruction shown as the unflinching cost, not a romance.',
+    keyInsights: [
+      'Attitude is the product — every band here that mattered led with a posture that preceded the music and outlasted commercial success.',
+      'Scenes form around a specific venue and a gatekeeper willing to lose money — CBGB worked because Hilly Kristal would book anyone.',
+      'Stripping down is a form of innovation — the Ramones’ two-minute songs and Hell’s torn clothes were subtractions that read as something new.',
+      'DIY without permission is the engine — Punk magazine, self-booked gigs, handmade flyers; the scene built its infrastructure before any institution noticed.',
+      'Velocity and self-destruction are not separate forces — the energy that made the scene great also damaged most people in its orbit; the book documents the cost without moralizing.',
+    ],
+    bestFor: [
+      'Scene-builders studying DIY infrastructure and gatekeepers',
+      'Creators interested in attitude and subtraction as innovation',
+      'Readers who want punk’s raw firsthand record, cost included',
+      'Anyone studying how a movement mutates and exports itself',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=Please+Kill+Me+oral+history+of+punk',
+    faq: [
+      {
+        q: 'What is Please Kill Me about?',
+        a: 'The first oral history of American punk — 400+ pages of direct interview quotes from the musicians, managers, and observers who built the scene, from Warhol’s Factory in the mid-1960s through the Stooges, MC5, New York Dolls, CBGB, Ramones, Patti Smith, Television, and the Dead Boys. Sequenced chronologically with no authorial narration.',
+      },
+      {
+        q: 'Where does the title come from?',
+        a: 'Richard Hell made a "Please Kill Me" T-shirt but wouldn’t wear it; Television’s Richard Lloyd wore it at a Max’s Kansas City show, and audience members approached him afterward asking if he was serious. McNeil and McCain adopted it because it captures the self-destructive edge of the scene.',
+      },
+      {
+        q: 'Which scenes and bands does it cover?',
+        a: 'Chronologically: the Velvet Underground and Warhol’s Factory; the MC5 and Stooges in Detroit; the New York Dolls and Max’s Kansas City glam scene; the founding of CBGB; Patti Smith, Television, and Richard Hell; the Ramones; the Dead Boys; and the cross-Atlantic exchange with British punk. The center of gravity is American.',
+      },
+      {
+        q: 'Does it glamorize drug use?',
+        a: 'No — it documents it unflinchingly and without moralistic framing. The testimony of Dee Dee Ramone alone is one of the more honest accounts of addiction in rock literature. The editors let speakers characterize their own experiences, so the reader sees both the exhilaration and the wreckage without a narrator’s gloss.',
+      },
+      {
+        q: 'Why is it considered the definitive punk book?',
+        a: 'Form and access. The oral-history format keeps the contradictions intact — when Dee Dee and Richard Hell tell different versions of "Chinese Rocks," both stay in. And McNeil was inside the scene, co-founder of Punk magazine, present at CBGB from the start.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'Rock & roll is so great, people should start dying for it... The people just have to die for the music. People are dying for everything else, so why not the music? Die for it. Isn’t it pretty? Wouldn’t you die for something pretty?',
+        context: 'Lou Reed, the line that opens the book and frames the whole oral history as punk’s answer to a question.',
+      },
+      {
+        text: 'Richard Hell had designed a T-shirt for himself that said Please Kill Me, but he wouldn’t wear it. I was like, “I’ll wear it.” So I wore it when we played upstairs at Max’s Kansas City, and afterwards these kids came up to me... “Are you serious?”... I thought, I’m not wearing this shirt again.',
+        context: 'Richard Lloyd (Television), explaining the origin of the book’s title — a confrontation, not a pose.',
+      },
+      {
+        text: 'The reason I wrote that song was out of spite for Richard Hell, because he told me he was gonna write a song better than Lou Reed’s “Heroin,” so I went home and wrote “Chinese Rocks.” I wrote it by myself, in Debbie Harry’s apartment on First Avenue and First Street.',
+        context: 'Dee Dee Ramone, on writing "Chinese Rocks" — one of the book’s great competing-testimony moments.',
+      },
+      {
+        text: 'Dee Dee called me one day and said, “I wrote a song that the Ramones won’t do.” He said, “It’s not finished. How about I come over and show it to you and we can finish it if you like it?”',
+        context: 'Richard Hell, giving his version of the same "Chinese Rocks" origin — the book’s method in miniature: no arbiter, just competing accounts.',
+      },
+      {
+        text: 'We didn’t want the book to be about punk, we wanted the book to be punk.',
+        context: 'Legs McNeil, on the editorial method — no authorial prose, only sequenced interview testimony.',
+      },
+      {
+        text: 'It was about advocating kids to not wait to be told what to do, but make life up for themselves... it was about saying it was okay to be amateurish and funny, that real creativity came out of making a mess, it was about working with what you got in front of you and turning everything embarrassing, awful, and stupid in your life to your advantage.',
+        context: 'Legs McNeil, the clearest statement of what punk was for, as opposed to what it destroyed.',
+      },
+      {
+        text: 'Patti Smith was a poet. I think she elevated rock & roll to literature. Bob Dylan elevated it.',
+        context: 'Danny Fields, the A&R man who signed the MC5 and Stooges, on the scene’s literary self-consciousness.',
+      },
+      {
+        text: 'The first time I heard the Velvet Underground and Nico record was at a party on the University of Michigan campus. I just hated the sound. “HOW COULD ANYBODY MAKE A RECORD THAT SOUNDS LIKE SUCH A PIECE OF SHIT? THIS IS DISGUSTING!”',
+        context: 'Iggy Pop, on first hearing the record that would reshape his sense of what music could be — hating it, then being formed by it.',
+      },
+      {
+        text: 'I wanted them to be Chairman Mao, and they just wanted to be the Beatles.',
+        context: 'John Sinclair, the MC5’s White Panther manager, on the gap between his revolutionary agenda and the band’s rock-star ambitions.',
+      },
+      {
+        text: 'I think we created a world.',
+        context: 'Legs McNeil, reflecting on what the CBGB scene produced — short, declarative, and earned by 400 pages of testimony.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Prologue: All Tomorrow’s Parties (1965–1968)',
+        keyIdea: 'The Velvet Underground and Warhol’s Factory set the template every later punk act would inherit — ugliness as beauty, transgression as subject, feedback as texture.',
+        summary: 'Lou Reed, John Cale, and Nico are the proto-punk ur-source. Warhol funded their first record and gave the Factory as a laboratory for provocation, creating the conditions under which art-world transgression crossed into rock. The section establishes why the New York art underground matters before punk has a name.',
+      },
+      {
+        number: 2,
+        title: 'Part I: I Wanna Be Your Dog — Detroit (1967–1971)',
+        keyIdea: 'The MC5 and Stooges translated the Velvets’ art-world provocation into physical aggression and volume, inventing a confrontation-first proto-punk.',
+        summary: 'John Sinclair’s White Panther framework for the MC5 and Iggy Pop’s transformation of live performance into dangerous spectacle. Danny Fields arrives, signs both bands to Elektra, and becomes the first institutional bridge to New York. The Stooges’ escalating self-destruction is shown as documented testimony, not myth — and their commercial failure establishes the cost of uncompromising extremity.',
+      },
+      {
+        number: 3,
+        title: 'Part II: The Lipstick Killers — Glam and the New York Dolls (1971–1974)',
+        keyIdea: 'The New York Dolls grafted glam theatrics onto garage-band noise, proving attitude and image could substitute for technical ability and still generate a scene.',
+        summary: 'David Johansen, Johnny Thunders, and the Dolls emerge from the Max’s Kansas City orbit. The section covers drummer Billy Murcia’s death, the band’s commercial failure, and Malcolm McLaren’s brief management — whose lessons became the Sex Pistols template. The Dolls are the book’s first full arc of a scene generating a band, burning out, and leaving an outsized influence.',
+      },
+      {
+        number: 4,
+        title: 'Part III: The Birth of CBGB and the Bowery Scene (1974–1975)',
+        keyIdea: 'CBGB gave bands a stage when no one else would, and Hilly Kristal’s indifference to commercial viability accidentally created the incubator for the entire New York sound.',
+        summary: 'CBGB opens at 315 Bowery and becomes the showcase for Television, Patti Smith, Richard Hell, Blondie, and the Ramones. The chapter "Why Don’t We Call It Punk?" documents the naming of the genre and McNeil’s role through Punk magazine. The DIY infrastructure — self-booking, handmade flyers, no record deals — is shown through firsthand testimony.',
+      },
+      {
+        number: 5,
+        title: 'Part III: Patti Smith, Television, and Richard Hell',
+        keyIdea: 'Smith and Television brought literary and art-school ambition into the Bowery scene without losing confrontational energy.',
+        summary: 'Smith’s emergence from poet to rock performer, and Tom Verlaine and Richard Hell co-founding Television before Hell’s departure to form the Heartbreakers — the recurring tension of art versus ego. Hell’s invention of torn clothes and safety pins is documented here, predating the British punk look.',
+      },
+      {
+        number: 6,
+        title: 'Part III: The Ramones and Punk’s Velocity',
+        keyIdea: 'The Ramones stripped rock to its irreducible minimum — four chords, two minutes, leather jackets — and removed the barrier between audience and band.',
+        summary: 'Formation in Forest Hills, the first CBGB shows, and the debut album, told through the band members’ own voices alongside Danny Fields and other witnesses. A band that looked like a gang and sounded like pop at double speed; their 1976 London tour becomes the moment British punk took direct instruction.',
+      },
+      {
+        number: 7,
+        title: 'Part IV: The British Rupture and the Dead Boys (1976–1977)',
+        keyIdea: 'British punk fed back into the American scene as a distorted export while the Dead Boys embodied the original scene’s darkest impulses.',
+        summary: 'The Ramones’ London tour and its influence on the nascent British scene, McLaren applying New York ideas to the Sex Pistols, and the cross-Atlantic feedback loop that briefly made punk a mainstream controversy. Simultaneously the Cleveland-bred Dead Boys arrive at CBGB as the scene’s most nihilistic wing.',
+      },
+      {
+        number: 8,
+        title: 'Coda: Punk’s Mutation and the Comedown',
+        keyIdea: 'The scene CBGB incubated consumed itself through addiction and co-option, leaving a methodology rather than a surviving community.',
+        summary: 'The aftermath: escalating addiction, the British scene’s commercialization, and the dispersal of the original circle. The book offers no redemptive conclusion — it ends when the energy runs out, documenting punk as a finite explosion. That refusal of a tidy ending is what makes it a historical record rather than a celebration.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Meet Me in the Bathroom',
+        author: 'Lizzy Goodman',
+        reason: 'Also in this collection. The same oral-history form and the same city, one scene later — the 2000s NYC revival as the direct descendant of CBGB.',
+        url: 'https://www.amazon.com/s?k=Meet+Me+in+the+Bathroom+Lizzy+Goodman',
+      },
+      {
+        title: 'POPism: The Warhol Sixties',
+        author: 'Andy Warhol & Pat Hackett',
+        reason: 'Punk begins at Warhol’s Factory. POPism is the Factory from the inside — the proto-scene this book opens with.',
+        url: 'https://www.amazon.com/s?k=POPism+Warhol+Hackett',
+      },
+      {
+        title: 'Life',
+        author: 'Keith Richards',
+        reason: 'The attitude-and-survival thread one generation earlier — the rock-and-roll authenticity punk both inherited and rebelled against.',
+        url: 'https://www.amazon.com/s?k=Life+Keith+Richards+memoir',
+      },
+    ],
+    videos: [
+      {
+        title: 'Punk Revolution NYC — The Velvets, the Dolls, and CBGB',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Punk+Revolution+NYC+documentary',
+        description: 'A documentary tracing the full arc from Warhol through CBGB — directly parallel to the book’s American storyline.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Punk: Attitude — Don Letts',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Punk+Attitude+Don+Letts+documentary',
+        description: 'Don Letts’ award-winning documentary with interview footage from across the American and British punk scenes. A strong visual companion.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Legs McNeil interview — Please Kill Me',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Legs+McNeil+Please+Kill+Me+interview',
+        description: 'The co-author on assembling the oral history and what it was like inside the scene. Context for the book’s method.',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
+    slug: 'popism',
+    title: 'POPism: The Warhol Sixties',
+    author: 'Andy Warhol & Pat Hackett',
+    coverImage: '/images/library/popism.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-06-10',
+    categories: ['Memoir', 'Creativity', 'Scenes', 'Rockstar Energy'],
+    readingTime: '7 min',
+    publicationYear: 1980,
+    tldr:
+      'Andy Warhol’s firsthand, year-by-year memoir of New York’s pop-art decade, co-written with Pat Hackett. From the founding of the silver Factory through the Velvet Underground and the rise and fall of the Warhol superstars to the 1968 shooting that ended the open-door era. A study in persona, scene-building, and fame engineered as a deliberate system.',
+    keyInsights: [
+      'Persona is a deliberate construction — Warhol’s studied blankness and silver wig were engineered surfaces, not personality deficits; the persona was the work.',
+      'The Factory was a magnet-scene built on permission — it attracted talent not by curating but by leaving the door open and letting the right people self-select.',
+      'Surface as strategy, not poverty — Pop’s embrace of the commercial image was a conscious choice to make subject matter of what academic art refused to see.',
+      'Fame as a system Warhol ran deliberately — from manufacturing "superstars" with no prior achievement to controlling his own image, he treated celebrity as a medium.',
+      'The entourage is the creative engine — the Factory’s output came from the friction and energy of the crowd around Warhol, not from solitary genius.',
+    ],
+    bestFor: [
+      'Creators thinking deliberately about persona and public image',
+      'Scene-builders studying the open-door studio as a talent magnet',
+      'Anyone interested in fame and attention as engineered systems',
+      'Readers mapping the downtown New York that fed punk and beyond',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=POPism+Warhol+Hackett',
+    faq: [
+      {
+        q: 'What is POPism about?',
+        a: 'Warhol’s year-by-year account of the 1960s New York art and cultural scene as he lived it — the Factory, the films, the music, the superstars, and the personal and historical violence that ended the decade. A primary source on the most influential American art scene of the century.',
+      },
+      {
+        q: 'What was the Factory?',
+        a: 'Warhol’s studio — first on East 47th Street with silver-foil walls, later at Union Square. It operated as an open-access social environment as much as a production space: artists, musicians, hustlers, drag queens, socialites, and journalists moved through continuously, many appearing in his films.',
+      },
+      {
+        q: 'Does POPism cover the Velvet Underground?',
+        a: 'Yes, in detail. Warhol describes meeting Lou Reed and the band, adding Nico over their resistance, the banana album cover, and the Exploding Plastic Inevitable touring shows. The 1966 chapter is the book’s most vivid account of his multimedia ambitions.',
+      },
+      {
+        q: 'Is this the same as The Philosophy of Andy Warhol?',
+        a: 'No. The Philosophy of Andy Warhol (1975) is organized by theme and reads as aphoristic observations. POPism is a chronological memoir of a specific decade. The famous "business art" line, for example, comes from The Philosophy, not POPism.',
+      },
+      {
+        q: 'Who actually wrote it?',
+        a: 'Pat Hackett, Warhol’s longtime collaborator, is co-credited. The book draws on the audio recordings Warhol made throughout the decade; Hackett shaped the raw material into a continuous narrative in Warhol’s voice — the same process she later used for The Andy Warhol Diaries.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'A lot of people thought it was me everyone at the Factory was hanging around... but that’s absolutely backward: it was me who was hanging around everyone else. I just paid the rent, and the crowds came simply because the door was open.',
+        chapter: '1960–1963',
+        context: 'Warhol’s central inversion — he was the host, not the magnet. The scene self-organized around permission, not personality.',
+      },
+      {
+        text: 'The Pop artists did images that anybody walking down Broadway could recognize in a split second — comics, picnic tables, men’s trousers, celebrities, shower curtains, refrigerators, Coke bottles. All the great modern things that the Abstract Expressionists tried so hard not to notice at all.',
+        chapter: '1960–1963',
+        context: 'Warhol defining Pop by contrast — where Abstract Expressionism turned away from commercial culture, Pop turned toward it.',
+      },
+      {
+        text: 'The more you look at the same exact thing, the more the meaning goes away, and the better and emptier you feel.',
+        chapter: '1960–1963',
+        page: 50,
+        context: 'Repetition as a deliberate aesthetic strategy — silk-screening the same image to evacuate fixed meaning.',
+      },
+      {
+        text: 'The pop idea, after all, was that anybody could do anything, so naturally we were all trying to do it all.',
+        chapter: '1965',
+        page: 169,
+        context: 'Pop’s democratic, boundary-dissolving premise — the same logic that let a commercial illustrator become a fine artist and then a film and rock producer.',
+      },
+      {
+        text: 'Candy didn’t want to be a perfect woman — that would be too simple... What she wanted was to be a woman with all the little problems that a woman has to deal with — runs in her stocking, runny mascara, men that left her... as if the more real she could make the little problems, the less real the big one... would be.',
+        chapter: '1967',
+        context: 'Warhol on Candy Darling’s method of persona — performance as strategic accumulation of authenticating detail.',
+      },
+      {
+        text: 'The second the main course was served, the Velvets started to blast and Nico started to wail... The doors flew open and Jonas Mekas and Barbara Rubin with her crew of people with cameras and bright lights came storming into the room.',
+        chapter: '1966',
+        context: 'The Society for Clinical Psychiatry dinner — the Factory’s strategy of infiltration rather than petition.',
+      },
+      {
+        text: 'One afternoon when she called, we were in the middle of shooting a sequence for “I, A Man,” so I said why didn’t she come over and be in the movie and earn twenty-five dollars instead of asking for a handout... she was actually funny and that was that.',
+        chapter: '1967',
+        context: 'Warhol’s first, matter-of-fact description of Valerie Solanas — a structural hinge, given how the 1968 chapter ends.',
+      },
+      {
+        text: 'I said “No! No, Valerie! Don’t do it!” and she shot at me again. I dropped down to the floor as if I’d been hit... she moved in closer, fired again, and then I felt horrible, horrible pain, like a cherry bomb exploding inside me.',
+        chapter: '1968–1969',
+        context: 'Warhol’s account of the June 3, 1968 shooting — one of the few moments in the book stripped of irony. It ended the open-door Factory.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: '1960–1963',
+        keyIdea: 'Choosing commercial subject matter — soup cans, celebrities, disaster images — is itself the artistic statement, not a concession.',
+        summary: 'Warhol transitions from commercial illustrator to fine artist through his early silk-screens and first encounters with the emerging Pop circle. The Factory does not yet exist; these years establish the deadpan aesthetic — repetition, flat color, found imagery — that will fill it.',
+      },
+      {
+        number: 2,
+        title: '1964',
+        keyIdea: 'The silver Factory becomes a scene that generates its own population and its own rules.',
+        summary: 'With the silver-painted Factory established, Warhol begins making underground films and gathering the cast — Gerard Malanga, Ondine, Billy Name — who define its mythology. The open door draws a shifting crowd; Warhol frames himself as permissive host rather than directing force. The environment produces people as much as art.',
+      },
+      {
+        number: 3,
+        title: '1965',
+        keyIdea: 'Edie Sedgwick becomes the Factory’s first fully manufactured media persona — proof that celebrity could be engineered without a conventional achievement behind it.',
+        summary: 'Warhol recognizes Sedgwick as the right image for the moment and casts her in a run of films; the two become inseparable on the social circuit, accelerating the Factory’s crossover from art world to mass-media visibility. Factory celebrity emerges as a concept distinct from conventional stardom.',
+      },
+      {
+        number: 4,
+        title: '1966',
+        keyIdea: 'The Exploding Plastic Inevitable fuses rock, film, dance, and light into a multimedia assault.',
+        summary: 'Warhol stages the EPI — the Velvet Underground and Nico with films, strobes, and dancing — at the Dom on St. Marks Place and on tour. The show is embraced in New York and rejected in California (Bill Graham’s famous hostility). The chapter documents the Factory’s relationship to amphetamine culture and how it shaped the work rate.',
+      },
+      {
+        number: 5,
+        title: '1967',
+        keyIdea: 'The underground films cross into mainstream exhibition while the human cost of the scene becomes harder to screen out.',
+        summary: 'Chelsea Girls is screened commercially and internationally, making Warhol’s cinema visible beyond the art world. Valerie Solanas appears in passing, paid $25 for I, A Man. The Factory’s social fabric frays as drug use escalates, and Warhol documents the shifting gender politics around the drag queens moving toward visibility.',
+      },
+      {
+        number: 6,
+        title: '1968–1969',
+        keyIdea: 'The June 1968 shooting ends the open-door Factory and forces Warhol into a relationship with his own mortality.',
+        summary: 'Valerie Solanas enters the Factory and fires three times; Warhol is critically wounded and declared clinically dead before resuscitation. The open-door policy ends; the Factory becomes guarded and bureaucratic. Warhol describes the period as a fundamental discontinuity — having to learn to care about his own survival.',
+      },
+      {
+        number: 7,
+        title: 'Postscript',
+        keyIdea: 'The sixties ended not with a cultural shift but with a series of deaths that closed out the Factory’s cast one by one.',
+        summary: 'A brief coda cataloguing deaths among the Factory circle after 1969 — Edie Sedgwick, Candy Darling, and others — delivered in Warhol’s characteristic flat tone, which by now reads as grief wearing the mask of detachment. The scene’s cost was not merely aesthetic.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'Also in this collection. Smith and Mapplethorpe orbited the same downtown New York that the Factory anchored — read together for the full scene from two vantage points.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'Please Kill Me',
+        author: 'Legs McNeil & Gillian McCain',
+        reason: 'Punk begins at the Factory. This oral history picks up exactly where POPism’s Velvet Underground material points.',
+        url: 'https://www.amazon.com/s?k=Please+Kill+Me+oral+history+of+punk',
+      },
+      {
+        title: 'Miles: The Autobiography',
+        author: 'Miles Davis with Quincy Troupe',
+        reason: 'The other great study of persona and style-as-weapon in this collection — Warhol engineered an image; Miles wore one as armor.',
+        url: 'https://www.amazon.com/s?k=Miles+The+Autobiography+Davis+Troupe',
+      },
+    ],
+    videos: [
+      {
+        title: 'Andy Warhol: A Documentary Film',
+        creator: 'Ric Burns (PBS American Masters)',
+        url: 'https://www.youtube.com/results?search_query=Andy+Warhol+A+Documentary+Film+Ric+Burns',
+        description: 'The four-hour PBS documentary, focused heavily on the 1960s Factory era the book covers. The definitive screen companion.',
+        kind: 'explainer',
+      },
+      {
+        title: 'The Andy Warhol Diaries',
+        creator: 'Netflix (Andrew Rossi)',
+        url: 'https://www.youtube.com/results?search_query=The+Andy+Warhol+Diaries+Netflix+trailer',
+        description: 'The 2022 series based on the posthumous diaries Pat Hackett also assembled. Covers his full life with depth on the Factory years.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Andy Warhol’s Factory People',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Andy+Warhol+Factory+People+documentary',
+        description: 'A documentary built from rediscovered Factory-era footage and interviews with the regulars who populate POPism.',
+        kind: 'explainer',
+      },
+    ],
+  },
+  {
+    slug: 'miles-the-autobiography',
+    title: 'Miles: The Autobiography',
+    author: 'Miles Davis with Quincy Troupe',
+    coverImage: '/images/library/miles-the-autobiography.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-06-10',
+    categories: ['Memoir', 'Autobiography', 'Music', 'Creativity'],
+    readingTime: '8 min',
+    publicationYear: 1989,
+    tldr:
+      'Miles Davis’s blunt firsthand account of six decades reshaping American music — from East St. Louis to bebop, the Birth of the Cool, Kind of Blue, and electric fusion — told in his own profane, unguarded voice through Quincy Troupe’s recorded interviews. Less a jazz history than a treatise on originality as a survival strategy. Winner of the 1990 American Book Award.',
+    keyInsights: [
+      'Reinvention is a discipline, not an accident — Miles rebuilt his sound five times from the conviction that repeating a success is the same as stopping.',
+      'Space and restraint carry more weight than velocity — the Birth of the Cool’s influence came from what the nonet did not play.',
+      'Surrounding yourself with hungry young players keeps the music alive — established musicians play safe; players still becoming discover things.',
+      'Style is identity, not decoration — the clothes, the posture, the turned back to the audience were the same act of composition as the notes.',
+      'Refusing to honor your own past work is the price of the next breakthrough — nostalgia is the enemy of what comes next.',
+    ],
+    bestFor: [
+      'Creators who need to reinvent rather than repeat a winning formula',
+      'Anyone studying restraint and space as sources of power',
+      'Builders who lead by curating hungry young talent',
+      'Readers who want style-as-identity at its most uncompromising',
+    ],
+    amazonUrl: 'https://www.amazon.com/s?k=Miles+The+Autobiography+Davis+Troupe',
+    faq: [
+      {
+        q: 'What is Miles: The Autobiography about?',
+        a: 'Miles Davis’s firsthand account of his life from childhood in East St. Louis through his 1980s comeback, covering every major era — bebop, Birth of the Cool, Kind of Blue, the electric turn with Bitches Brew, and the five-year retirement — plus the racism he faced, his relationships, and his philosophy of constant reinvention. Co-written with poet Quincy Troupe from recorded interviews.',
+      },
+      {
+        q: 'Who is Quincy Troupe?',
+        a: 'An American poet, journalist, and professor. A 1985 Spin interview led Simon & Schuster to hire him as Miles’s co-author; he conducted hours of recorded conversations and shaped them into the first-person narrative. The book won the American Book Award in 1990. Troupe later became California’s first Poet Laureate.',
+      },
+      {
+        q: 'Is the language really that blunt?',
+        a: 'Yes. Miles speaks in the uncensored voice of the interviews — profanity throughout, direct opinions of colleagues (some warm, some brutal), and frankness about drugs, sex, and racial anger. Troupe preserved the register of his actual speech rather than smoothing it.',
+      },
+      {
+        q: 'Which albums and eras does it cover?',
+        a: 'The full arc: the bebop recordings with Charlie Parker (1945–48), the Birth of the Cool nonet (1949–50), the mid-1950s quintet with Coltrane, Kind of Blue (1959), the second great quintet (1964–68), In a Silent Way and Bitches Brew (1969–70), the 1975–80 retirement, and the 1980s comeback through Tutu.',
+      },
+      {
+        q: 'What does Miles say about creativity and reinvention?',
+        a: 'His most concentrated line is that bebop "wasn’t about standing still and becoming safe" and that anyone who wants to keep creating "has to be about change." He frames every pivot as a refusal to repeat himself, hired younger musicians because hunger produces discovery, and insisted: "Always look ahead, but never look back."',
+      },
+    ],
+    quotes: [
+      {
+        text: 'The greatest feeling I ever had in my life — with my clothes on — was when I first heard Diz and Bird together in St. Louis, Missouri, back in 1944.',
+        context: 'The memoir’s opening line — Miles at 18, about to follow Dizzy Gillespie and Charlie Parker to New York.',
+      },
+      {
+        text: 'Bebop was about change, about evolution. It wasn’t about standing still and becoming safe. If anybody wants to keep creating they have to be about change.',
+        context: 'Bebop framed not as a style to preserve but as proof that evolution is the discipline — the principle behind every era of his career.',
+      },
+      {
+        text: 'I’ve changed music four or five times. What have you done of any importance other than be white?',
+        chapter: 'Later years',
+        page: 371,
+        context: 'His reply to a society woman at a 1987 White House reception who asked what he had done to be invited.',
+      },
+      {
+        text: 'For me, music and life are all about style.',
+        page: 398,
+        context: 'A distillation of his philosophy — style as substance, not ornament.',
+      },
+      {
+        text: 'But you’ve got to have style in whatever you do — writing, music, painting, fashion, boxing, anything.',
+        context: 'Extending the style philosophy beyond music; boxing sits alongside painting as equally demanding of aesthetic precision.',
+      },
+      {
+        text: 'I got my looks from my mother and also my love of clothes and sense of style.',
+        context: 'Personal style framed as inherited identity, not affectation — his mother Cleota was glamorous and dressed elaborately.',
+      },
+      {
+        text: 'Being rebellious and black, a nonconformist, being cool and hip and angry and sophisticated and ultra clean, whatever else you want to call it — I was all those things and more.',
+        context: 'On his self-constructed public identity — the image was never separate from the music; the work earned the posture.',
+      },
+      {
+        text: 'A person is lucky if he has one soldier or Gil Evans in his life, someone close enough to pull your coattail when something’s gone wrong.',
+        context: 'On his decades-long partnership with arranger Gil Evans, which produced Birth of the Cool and the orchestral albums.',
+      },
+      {
+        text: 'When I tell people that I missed what I was trying to do on Kind of Blue, that I missed getting the exact sound of the African finger piano up in that sound, they just look at me like I’m crazy.',
+        context: 'His private verdict on a record history calls a masterpiece — that he fell short of his own vision for it.',
+      },
+      {
+        text: 'Sex and drugs took the place music had occupied in my life.',
+        context: 'On the 1975–80 retirement — cocaine, alcohol, and physical decline before the 1981 comeback. The cautionary low point of the book.',
+      },
+      {
+        text: 'Always look ahead, but never look back.',
+        context: 'The operating principle behind every reinvention — he would not perform earlier-era repertoire once the music had moved on.',
+      },
+      {
+        text: 'I was born May 26, 1926, in Alton, Illinois... I was named after my father; he was named after his father. That made me Miles Dewey Davis III, but everybody in my family called me Junior.',
+        chapter: 'Chapter 1',
+        context: 'The book’s plain opening of the life proper — no myth-making, just where it began.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'East St. Louis — Where the Sound Began',
+        keyIdea: 'A prosperous Black family gave Miles the class confidence and stylistic ambition that critical hostility could never strip away.',
+        summary: 'Born in 1926 and raised in East St. Louis by a dentist father and a glamorous mother whose love of clothes he absorbed, Miles gets his first trumpet at thirteen. Teacher Elwood Buchanan tells him to play without vibrato — cleaner, cooler. His father’s counsel never to copy (the mockingbird has no sound of its own) underpins every later pivot.',
+      },
+      {
+        number: 2,
+        title: 'New York 1944 — Juilliard as a Launchpad',
+        keyIdea: 'Miles enrolled at Juilliard for theory but spent his nights on 52nd Street finding Charlie Parker, who taught him more in a week than the conservatory could.',
+        summary: 'He studies classical theory seriously while recognizing the real curriculum is on the bandstand. He tracks down Bird and Diz, sits in, and is rapidly pulled into their orbit. Juilliard gives him the harmonic vocabulary; the street gives him the ear for what to do with it.',
+      },
+      {
+        number: 3,
+        title: 'Playing with Bird — Bebop as Apprenticeship',
+        keyIdea: 'Parker’s quintet gave Miles bebop’s sophistication and a vivid negative example — genius did not protect Bird from self-destruction.',
+        summary: 'Miles records defining bebop sides in the late 1940s and writes about Parker with reverence and frustration — the greatest mind he’d met, and someone who treated his body as disposable. The lesson would later apply to his own heroin years, and pushed him toward a quieter, more compositionally organized kind of band.',
+      },
+      {
+        number: 4,
+        title: 'Birth of the Cool — Space as the New Language',
+        keyIdea: 'The 1949–50 nonet replaced bebop’s velocity with density of arrangement and harmonic color — restraint as power.',
+        summary: 'With Gil Evans, Gerry Mulligan, and Lee Konitz, Miles records the Capitol sides later collected as Birth of the Cool — a conscious turn toward orchestral texture and space, fewer notes carrying more weight. The Evans collaboration is one of the book’s most affectionate threads. It barely registered commercially but reshaped jazz arranging.',
+      },
+      {
+        number: 5,
+        title: 'The Heroin Years — Losing the Music',
+        keyIdea: 'From roughly 1950 to 1954, addiction was the only period when music stopped being primary.',
+        summary: 'Miles is candid about going from observing Bird’s addiction to sharing it — four largely wasted years, unreliable on the bandstand. His account of getting clean alone at his father’s farm is physical and unromantic. Motivated partly by Sugar Ray Robinson’s discipline, he emerged clean in 1954 and did not relapse.',
+      },
+      {
+        number: 6,
+        title: 'The First Great Quintet — Coltrane and Hard Bop',
+        keyIdea: 'Miles surrounded himself with musicians who were still becoming — hungry enough to push the music forward.',
+        summary: 'After getting clean he builds the first great quintet with John Coltrane, Red Garland, Paul Chambers, and Philly Joe Jones. He is frank about Coltrane’s early struggles and his own impatience, and equally frank about Coltrane’s genius. His theory: accomplished musicians play safe; hungry ones discover things.',
+      },
+      {
+        number: 7,
+        title: 'Kind of Blue — Modal Jazz and the Unfinished Vision',
+        keyIdea: 'Kind of Blue (1959) opened jazz to modal improvisation, but Miles considered it a missed experiment.',
+        summary: 'The sessions with Coltrane, Bill Evans, and Cannonball Adderley produce the best-selling jazz album of all time, but Miles is forward-looking rather than celebratory. He describes the modal approach — improvising on scales rather than chord changes — and his private verdict that he never captured the African finger-piano texture he heard. He refused to rest on it.',
+      },
+      {
+        number: 8,
+        title: 'The Second Great Quintet and the Electric Turn',
+        keyIdea: 'The 1964–68 quintet pushed acoustic jazz to its edge — and Miles was already hearing past it.',
+        summary: 'With Herbie Hancock, Wayne Shorter, Ron Carter, and Tony Williams, Miles assembles one of the finest small groups in jazz — and is already restless inside it. James Brown, Sly Stone, and Jimi Hendrix pull him toward electric instruments, leading to In a Silent Way (1969) as the next necessary disruption.',
+      },
+      {
+        number: 9,
+        title: 'Bitches Brew and the Silent Years',
+        keyIdea: 'Bitches Brew (1970) invented jazz-rock fusion, and within five years Miles withdrew entirely.',
+        summary: 'He describes the sessions as an organized chaos he conducted like a painter. The album outsold any previous jazz record and alienated the jazz establishment — an outcome he found clarifying. By 1975 his body was failing and his interest collapsed; the 1975–80 years are documented bluntly as a period of drugs and almost no music.',
+      },
+      {
+        number: 10,
+        title: 'The Comeback — 1981 and the Long Final Act',
+        keyIdea: 'The 1981 return was Miles insisting on another reinvention rather than letting the silent years be the last word.',
+        summary: 'Hospitalization forces the comeback; Cicely Tyson, whom he marries in 1981, is central to his recovery. He returns to Columbia, records The Man with the Horn, and performs again — diminished but present. The final stretch covers his 1980s work and ongoing restlessness, ending two years before his death in 1991.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Life',
+        author: 'Keith Richards',
+        reason: 'Also in this collection — the other great musician’s memoir. Richards is taste-by-subtraction; Miles is reinvention-as-discipline. Style as a weapon in both.',
+        url: 'https://www.amazon.com/s?k=Life+Keith+Richards+memoir',
+      },
+      {
+        title: 'The Creative Act',
+        author: 'Rick Rubin',
+        reason: 'Rubin’s "never look back" as a single career. Read Miles as the lived proof of Rubin’s philosophy of completion and non-attachment.',
+        url: 'https://www.amazon.com/s?k=The+Creative+Act+Rick+Rubin',
+      },
+      {
+        title: 'How Music Works',
+        author: 'David Byrne',
+        reason: 'Byrne’s analysis of how technology and context reshape music maps directly onto Miles’s electric turn — the same forces, lived from the inside.',
+        url: 'https://www.amazon.com/s?k=How+Music+Works+David+Byrne',
+      },
+    ],
+    videos: [
+      {
+        title: 'Miles Davis: Birth of the Cool',
+        creator: 'Stanley Nelson (PBS American Masters)',
+        url: 'https://www.youtube.com/results?search_query=Miles+Davis+Birth+of+the+Cool+documentary',
+        description: 'The Emmy-winning 2019 documentary covering the full arc the book describes. The definitive screen companion.',
+        duration: '1h 53m',
+        kind: 'explainer',
+      },
+      {
+        title: 'Miles Davis on 60 Minutes (1989)',
+        creator: '60 Minutes',
+        url: 'https://www.youtube.com/results?search_query=Miles+Davis+60+Minutes+1989',
+        description: 'A CBS interview filmed the same year the autobiography was published — Miles in his own voice, late in life.',
+        kind: 'interview',
+      },
+      {
+        title: 'Miles Davis — Rare Interview (1988)',
+        creator: 'YouTube',
+        url: 'https://www.youtube.com/results?search_query=Miles+Davis+rare+interview+1988',
+        description: 'Filmed in Munich during his final touring years — the blunt voice of the book, on camera.',
+        kind: 'interview',
+      },
+    ],
+  },
 ];
 
 // ─── Helper Functions ────────────────────────────────────────────
