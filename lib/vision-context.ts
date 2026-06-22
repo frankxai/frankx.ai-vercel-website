@@ -97,9 +97,9 @@ const ROUTE_CATALOG = [
 
 const DOC_HIGHLIGHTS = [
   'MASTER_DEVELOPMENT_PLAN.md',
-  'COMPREHENSIVE_VISION_AND_BEST_PRACTICES.md',
-  'CREATOR_PRODUCT_ROADMAP.md',
-  'WEBSITE_MEMORY.md',
+  'docs/archive/root-cleanup-2026-06/COMPREHENSIVE_VISION_AND_BEST_PRACTICES.md',
+  'docs/archive/root-cleanup-2026-06/CREATOR_PRODUCT_ROADMAP.md',
+  'docs/archive/root-cleanup-2026-06/WEBSITE_MEMORY.md',
   'docs/WEBSITE_PHILOSOPHY.md',
   'docs/strategy/V3_TRANSFORMATION_STRATEGY.md',
   'docs/TEAM_STRUCTURE.md',
