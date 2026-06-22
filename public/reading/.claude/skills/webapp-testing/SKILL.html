@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Web Application Testing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/webapp-testing/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Web Application Testing</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fwebapp-testing">webapp-testing</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: webapp-testing
+description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+license: Complete terms in LICENSE.txt</h2>
+<h1>Web Application Testing</h1>
+<p>To test local web applications, write native Python Playwright scripts.</p>
+<p><strong>Helper Scripts Available</strong>:</p>
+<ul>
+<li><code>scripts/with_server.py</code> - Manages server lifecycle (supports multiple servers)</li>
+</ul>
+<p><strong>Always run scripts with <code>--help</code> first</strong> to see usage. DO NOT read the source until you try running the script first and find that a customized solution is abslutely necessary. These scripts can be very large and thus pollute your context window. They exist to be called directly as black-box scripts rather than ingested into your context window.</p>
+<h2>Decision Tree: Choosing Your Approach</h2>
+<pre><code>User task → Is it static HTML?
+    ├─ Yes → Read HTML file directly to identify selectors
+    │         ├─ Success → Write Playwright script using selectors
+    │         └─ Fails/Incomplete → Treat as dynamic (below)
+    │
+    └─ No (dynamic webapp) → Is the server already running?
+        ├─ No → Run: python scripts/with_server.py --help
+        │        Then use the helper + write simplified Playwright script
+        │
+        └─ Yes → Reconnaissance-then-action:
+            1. Navigate and wait for networkidle
+            2. Take screenshot or inspect DOM
+            3. Identify selectors from rendered state
+            4. Execute actions with discovered selectors
+</code></pre>
+<h2>Example: Using with_server.py</h2>
+<p>To start a server, run <code>--help</code> first, then use the helper:</p>
+<p><strong>Single server:</strong></p>
+<pre><code class="language-bash">python scripts/with_server.py --server &quot;npm run dev&quot; --port 5173 -- python your_automation.py
+</code></pre>
+<p><strong>Multiple servers (e.g., backend + frontend):</strong></p>
+<pre><code class="language-bash">python scripts/with_server.py \
+  --server &quot;cd backend &amp;&amp; python server.py&quot; --port 3000 \
+  --server &quot;cd frontend &amp;&amp; npm run dev&quot; --port 5173 \
+  -- python your_automation.py
+</code></pre>
+<p>To create an automation script, include only Playwright logic (servers are managed automatically):</p>
+<pre><code class="language-python">from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True) # Always launch chromium in headless mode
+    page = browser.new_page()
+    page.goto(&#39;http://localhost:5173&#39;) # Server already running and ready
+    page.wait_for_load_state(&#39;networkidle&#39;) # CRITICAL: Wait for JS to execute
+    # ... your automation logic
+    browser.close()
+</code></pre>
+<h2>Reconnaissance-Then-Action Pattern</h2>
+<ol>
+<li><p><strong>Inspect rendered DOM</strong>:</p>
+<pre><code class="language-python">page.screenshot(path=&#39;/tmp/inspect.png&#39;, full_page=True)
+content = page.content()
+page.locator(&#39;button&#39;).all()
+</code></pre>
+</li>
+<li><p><strong>Identify selectors</strong> from inspection results</p>
+</li>
+<li><p><strong>Execute actions</strong> using discovered selectors</p>
+</li>
+</ol>
+<h2>Common Pitfall</h2>
+<p>❌ <strong>Don&#39;t</strong> inspect the DOM before waiting for <code>networkidle</code> on dynamic apps
+✅ <strong>Do</strong> wait for <code>page.wait_for_load_state(&#39;networkidle&#39;)</code> before inspection</p>
+<h2>Best Practices</h2>
+<ul>
+<li><strong>Use bundled scripts as black boxes</strong> - To accomplish a task, consider whether one of the scripts available in <code>scripts/</code> can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use <code>--help</code> to see usage, then invoke directly. </li>
+<li>Use <code>sync_playwright()</code> for synchronous scripts</li>
+<li>Always close the browser when done</li>
+<li>Use descriptive selectors: <code>text=</code>, <code>role=</code>, CSS selectors, or IDs</li>
+<li>Add appropriate waits: <code>page.wait_for_selector()</code> or <code>page.wait_for_timeout()</code></li>
+</ul>
+<h2>Reference Files</h2>
+<ul>
+<li><strong>examples/</strong> - Examples showing common patterns:<ul>
+<li><code>element_discovery.py</code> - Discovering buttons, links, and inputs on a page</li>
+<li><code>static_html_automation.py</code> - Using file:// URLs for local HTML</li>
+<li><code>console_logging.py</code> - Capturing console logs during automation</li>
+</ul>
+</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

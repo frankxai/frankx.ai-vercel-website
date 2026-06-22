@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>FrankX Site Wiring Audit</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="data/audit/site-wiring.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX Site Wiring Audit</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#data">data</a> / <a href="index.html#data%2Faudit">audit</a> / <span>site-wiring.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>FrankX Site Wiring Audit</h1>
+<p>Generated: 2026-06-19T11:47:05.747Z
+Base URL: <a href="http://localhost:3000">http://localhost:3000</a></p>
+<h2>Summary</h2>
+<ul>
+<li>Routes discovered: 685</li>
+<li>Public routes checked live: 0</li>
+<li>Source files scanned: 2224</li>
+<li>Total findings: 13</li>
+<li>Blocking findings: 0</li>
+</ul>
+<h2>Blocking Findings</h2>
+<p>No blocking public wiring findings.</p>
+<h2>Commerce Verification</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Kind</th>
+<th>URL</th>
+<th>Status</th>
+<th>Owner action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vibe-os</td>
+<td>free-download</td>
+<td>/products/vibe-os</td>
+<td>verified</td>
+<td></td>
+</tr>
+<tr>
+<td>creators-soulbook</td>
+<td>free-download</td>
+<td>/soulbook</td>
+<td>needs-verification</td>
+<td>Confirm gated download and email delivery behavior.</td>
+</tr>
+<tr>
+<td>creative-ai-toolkit</td>
+<td>paid-product</td>
+<td><a href="https://frankx.gumroad.com/l/creative-ai-toolkit">https://frankx.gumroad.com/l/creative-ai-toolkit</a></td>
+<td>needs-verification</td>
+<td>Confirm canonical checkout platform and delivery file before changing CTAs.</td>
+</tr>
+<tr>
+<td>creation-chronicles</td>
+<td>paid-product</td>
+<td><a href="https://frankx.gumroad.com/l/creation-chronicles-creator">https://frankx.gumroad.com/l/creation-chronicles-creator</a></td>
+<td>needs-verification</td>
+<td>Confirm canonical checkout platform, tier links, and delivery pipeline.</td>
+</tr>
+<tr>
+<td>bv-kit</td>
+<td>paid-product</td>
+<td><a href="https://frankxai.gumroad.com/l/bv-kit">https://frankxai.gumroad.com/l/bv-kit</a></td>
+<td>needs-verification</td>
+<td>Confirm Gumroad account/domain and whether Stripe or LemonSqueezy should replace it.</td>
+</tr>
+<tr>
+<td>prompt-vault</td>
+<td>paid-product</td>
+<td><a href="https://frankxai.gumroad.com/l/prompt-vault">https://frankxai.gumroad.com/l/prompt-vault</a></td>
+<td>needs-verification</td>
+<td>Confirm Gumroad account/domain and whether Stripe or LemonSqueezy should replace it.</td>
+</tr>
+<tr>
+<td>ai-architecture-templates</td>
+<td>paid-product</td>
+<td>/ai-architecture/templates</td>
+<td>needs-verification</td>
+<td>Fill verified checkout variant IDs before exposing buy buttons.</td>
+</tr>
+</tbody></table>
+<h2>Canonical Aliases</h2>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Status</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/music-school</td>
+<td>/music/learn</td>
+<td>verified</td>
+<td>Music School is a public label; /music/learn is the existing route.</td>
+</tr>
+<tr>
+<td>/agentic-creator-os</td>
+<td>/products/agentic-creator-os</td>
+<td>verified</td>
+<td>Legacy product shorthand now resolves to the canonical Agentic Creator OS product page.</td>
+</tr>
+<tr>
+<td>/ai-music-academy</td>
+<td>/music/learn</td>
+<td>verified</td>
+<td>AI Music Academy CTAs now land on the public music learning hub.</td>
+</tr>
+<tr>
+<td>/ai-architectures</td>
+<td>/ai-architecture</td>
+<td>verified</td>
+<td>Permanent redirect already exists in next.config.mjs.</td>
+</tr>
+<tr>
+<td>/ai-architect</td>
+<td>/ai-architecture</td>
+<td>verified</td>
+<td>Permanent redirect already exists in next.config.mjs.</td>
+</tr>
+<tr>
+<td>/links</td>
+<td>/linktree</td>
+<td>verified</td>
+<td>Proxy redirects /links to /linktree.</td>
+</tr>
+<tr>
+<td>/learning-paths</td>
+<td>/learn</td>
+<td>verified</td>
+<td>Learning-path label now resolves to the consolidated Learn hub.</td>
+</tr>
+<tr>
+<td>/for/founders</td>
+<td>/for/creators</td>
+<td>verified</td>
+<td>Founder workshop CTAs now land on the existing creator audience page.</td>
+</tr>
+<tr>
+<td>/toolkit</td>
+<td>/products/creative-ai-toolkit</td>
+<td>verified</td>
+<td>Creator Toolkit ladder CTA now resolves to the existing Creative AI Toolkit product page.</td>
+</tr>
+<tr>
+<td>/soul-frequency-assessment</td>
+<td>/soul-frequency-quiz</td>
+<td>verified</td>
+<td>Redirect alias exists and quiz page is live.</td>
+</tr>
+<tr>
+<td>/products/soulbook</td>
+<td>/soulbook</td>
+<td>verified</td>
+<td>Permanent redirect already exists in next.config.mjs.</td>
+</tr>
+<tr>
+<td>/vibe-os</td>
+<td>/products/vibe-os</td>
+<td>verified</td>
+<td>Legacy shorthand now resolves to the canonical Vibe OS product page.</td>
+</tr>
+</tbody></table>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

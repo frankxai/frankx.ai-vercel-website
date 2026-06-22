@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Chapter 4: Memory Architectures for Agents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-04-memory-architectures.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Chapter 4: Memory Architectures for Agents</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-04-memory-architectures.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Chapter 4: Memory Architectures for Agents</h1>
+<blockquote>
+<p>&quot;A man&#39;s real possession is his memory. In nothing else is he rich, in nothing else is he poor.&quot;
+-- Alexander Smith</p>
+</blockquote>
+<hr>
+<h2>I. The Stateless Trap</h2>
+<p>The agent you built in Chapter 3 has a fatal flaw: it forgets everything the moment it exits. Every invocation starts from zero. It does not remember what it did yesterday. It does not know your preferences. It cannot learn from mistakes it made an hour ago. It is a brilliant amnesiac -- capable of extraordinary reasoning within a session and incapable of accumulating knowledge across sessions.</p>
+<p>This is the stateless trap, and most deployed agents are stuck in it. They handle each conversation as an isolated event, burning context window tokens to re-establish facts that should be permanently known. The user explains their tech stack for the fifth time. The agent re-discovers that the database is PostgreSQL, not MySQL. The same error occurs, and the same debugging process unfolds, because the agent has no record of solving this exact problem before.</p>
+<p>Memory is what transforms an agent from a tool you use into a system that works for you. Tools do the same thing every time. Systems compound. They get better with use. They accumulate understanding. They learn your codebase, your conventions, your priorities.</p>
+<p>This chapter covers the four types of agent memory, how to implement each one, and when to use which.</p>
+<hr>
+<h2>II. The Four Memory Types</h2>
+<p>Cognitive science distinguishes multiple memory systems in the human brain. The same taxonomy maps cleanly to agent architectures, and the mapping is not metaphorical -- it is structural. Each memory type serves a distinct function that the others cannot replicate.</p>
+<h3>Working Memory</h3>
+<p>Working memory is the information the agent is actively processing: the current context window. It includes the system prompt, the conversation history, tool results from the current session, and any injected context. Working memory is fast (zero retrieval latency -- it is already in the prompt), limited (bounded by the context window), and volatile (lost when the session ends).</p>
+<p>Every LLM-based agent has working memory by default. The challenge is managing it: what stays in the context window, what gets summarized, and what gets evicted when space runs low.</p>
+<h3>Episodic Memory</h3>
+<p>Episodic memory is the record of specific past events: conversations, tool interactions, decisions, and their outcomes. &quot;On March 15, I debugged a Redis connection timeout in the payment service. The root cause was a missing <code>connectTimeout</code> parameter in the client config. The fix was to add <code>connectTimeout: 5000</code> to <code>redis.config.ts</code>.&quot;</p>
+<p>Episodic memory answers the question: &quot;Have I seen this before?&quot; It prevents repeated mistakes and enables pattern recognition across sessions.</p>
+<h3>Semantic Memory</h3>
+<p>Semantic memory is structured knowledge about the domain: facts, relationships, hierarchies, and schemas. &quot;The production database is PostgreSQL 15.4. The API uses Express.js with TypeScript. The deploy target is Vercel. Environment variables are in <code>.env.local</code>.&quot;</p>
+<p>Semantic memory answers the question: &quot;What do I know about this?&quot; It eliminates the need to re-discover static facts on every invocation.</p>
+<h3>Procedural Memory</h3>
+<p>Procedural memory is knowledge of how to perform specific tasks: learned procedures, refined workflows, and accumulated skills. &quot;To deploy to production: 1. Run tests, 2. Build the project, 3. Push to main, 4. Verify the Vercel deployment, 5. Check the production URL.&quot;</p>
+<p>Procedural memory answers the question: &quot;How do I do this?&quot; It encodes expertise that improves with repetition.</p>
+<hr>
+<h2>III. Working Memory Management</h2>
+<p>The context window is the most valuable real estate in your agent&#39;s architecture. Every token counts. Effective working memory management is the difference between an agent that handles complex tasks and one that chokes on context limits.</p>
+<h3>The Sliding Window Problem</h3>
+<p>In the Chapter 3 agent, every message accumulates in the <code>messages</code> array. After 15-20 iterations with verbose tool outputs, the array can easily consume 50,000+ tokens. The model&#39;s context window is finite. At some point, you must choose what to keep and what to discard.</p>
+<h3>Strategy 1: Truncation</h3>
+<p>The simplest approach: when the messages array exceeds a threshold, drop the oldest messages.</p>
+<pre><code class="language-typescript">function truncateMessages(
+  messages: Message[],
+  maxTokens: number,
+  estimateTokens: (msg: Message) =&gt; number
+): Message[] {
+  let totalTokens = messages.reduce((sum, msg) =&gt; sum + estimateTokens(msg), 0);
+
+  // Always keep the first message (the original goal)
+  const preserved = [messages[0]];
+  const candidates = messages.slice(1);
+
+  // Drop oldest messages until under budget
+  let startIndex = 0;
+  while (totalTokens &gt; maxTokens &amp;&amp; startIndex &lt; candidates.length - 2) {
+    totalTokens -= estimateTokens(candidates[startIndex]);
+    startIndex++;
+  }
+
+  return [...preserved, ...candidates.slice(startIndex)];
+}
+</code></pre>
+<p>Truncation is fast and simple but lossy. The agent may lose important context from early in the conversation.</p>
+<h3>Strategy 2: Summarization</h3>
+<p>A better approach: when the context grows too large, summarize older interactions into a compact representation and replace the original messages with the summary.</p>
+<pre><code class="language-typescript">async function summarizeOlderMessages(
+  client: Anthropic,
+  messages: Message[],
+  keepRecent: number
+): Promise&lt;Message[]&gt; {
+  if (messages.length &lt;= keepRecent + 1) return messages;
+
+  const goal = messages[0];
+  const toSummarize = messages.slice(1, messages.length - keepRecent);
+  const toKeep = messages.slice(messages.length - keepRecent);
+
+  // Generate a summary of older interactions
+  const summaryResponse = await client.messages.create({
+    model: &#39;claude-sonnet-4-20250514&#39;,
+    max_tokens: 1024,
+    system: &quot;Summarize the following agent interaction history concisely. &quot; +
+            &quot;Focus on: key decisions made, tools used and their results, &quot; +
+            &quot;errors encountered and how they were resolved, and current &quot; +
+            &quot;progress toward the goal. Omit verbose tool outputs.&quot;,
+    messages: [
+      {
+        role: &#39;user&#39;,
+        content: `Goal: ${extractText(goal)}\n\nInteraction history:\n${
+          toSummarize.map(m =&gt; `[${m.role}]: ${extractText(m)}`).join(&#39;\n\n&#39;)
+        }`
+      }
+    ]
+  });
+
+  const summaryText = extractText(summaryResponse);
+
+  return [
+    goal,
+    {
+      role: &#39;user&#39;,
+      content: `[CONTEXT SUMMARY - Previous ${toSummarize.length} messages summarized]\n${summaryText}`
+    },
+    ...toKeep
+  ];
+}
+</code></pre>
+<p>Summarization preserves the semantic content while reducing token count. The cost is an additional API call for the summary, which is typically small relative to the ongoing agent conversation.</p>
+<h3>Strategy 3: Structured Context Injection</h3>
+<p>The most sophisticated approach: instead of keeping the entire conversation in the messages array, maintain a structured state object that is serialized into the system prompt on each iteration.</p>
+<pre><code class="language-typescript">interface AgentState {
+  goal: string;
+  plan: string[];
+  completedSteps: { step: string; result: string; timestamp: number }[];
+  currentStep: string;
+  knownFacts: Record&lt;string, string&gt;;
+  errors: { step: string; error: string; resolution: string }[];
+}
+
+function buildSystemPrompt(basePrompt: string, state: AgentState): string {
+  return `${basePrompt}
+
+## Current Task State
+
+**Goal**: ${state.goal}
+
+**Plan**:
+${state.plan.map((s, i) =&gt; `${i + 1}. ${s}`).join(&#39;\n&#39;)}
+
+**Completed**:
+${state.completedSteps.map(s =&gt; `- ${s.step}: ${s.result}`).join(&#39;\n&#39;)}
+
+**Current Step**: ${state.currentStep}
+
+**Known Facts**:
+${Object.entries(state.knownFacts).map(([k, v]) =&gt; `- ${k}: ${v}`).join(&#39;\n&#39;)}
+
+**Previous Errors**:
+${state.errors.map(e =&gt; `- ${e.step}: ${e.error} (resolved: ${e.resolution})`).join(&#39;\n&#39;)}
+`;
+}
+</code></pre>
+<p>This approach gives you precise control over what the agent remembers within a session. The state object is updated after each iteration, and the system prompt is rebuilt with current state. Old messages can be aggressively pruned because the essential information is captured in the state.</p>
+<hr>
+<h2>IV. Episodic Memory: Learning from Experience</h2>
+<p>Episodic memory persists across sessions. When the agent encounters a situation it has seen before, it can retrieve the relevant episode and apply past learning.</p>
+<h3>File-Based Episodic Memory</h3>
+<p>The simplest implementation: append each significant interaction to a log file. On startup, load recent episodes into the context.</p>
+<pre><code class="language-typescript">import { appendFile, readFile, mkdir } from &#39;fs/promises&#39;;
+import { join } from &#39;path&#39;;
+
+interface Episode {
+  timestamp: string;
+  goal: string;
+  outcome: &#39;success&#39; | &#39;failure&#39; | &#39;partial&#39;;
+  summary: string;
+  toolsUsed: string[];
+  lessonsLearned: string[];
+}
+
+class EpisodicMemory {
+  private logPath: string;
+
+  constructor(memoryDir: string) {
+    this.logPath = join(memoryDir, &#39;episodes.jsonl&#39;);
+  }
+
+  async record(episode: Episode): Promise&lt;void&gt; {
+    await mkdir(join(this.logPath, &#39;..&#39;), { recursive: true });
+    await appendFile(this.logPath, JSON.stringify(episode) + &#39;\n&#39;);
+  }
+
+  async retrieveRecent(count: number): Promise&lt;Episode[]&gt; {
+    try {
+      const content = await readFile(this.logPath, &#39;utf-8&#39;);
+      const lines = content.trim().split(&#39;\n&#39;).filter(Boolean);
+      return lines
+        .slice(-count)
+        .map(line =&gt; JSON.parse(line) as Episode);
+    } catch {
+      return [];
+    }
+  }
+
+  async retrieveRelevant(goal: string, count: number): Promise&lt;Episode[]&gt; {
+    // Simple keyword matching -- upgrade to embeddings for production
+    const episodes = await this.retrieveRecent(100);
+    const goalWords = new Set(goal.toLowerCase().split(/\s+/));
+
+    const scored = episodes.map(ep =&gt; {
+      const epWords = new Set(
+        `${ep.goal} ${ep.summary}`.toLowerCase().split(/\s+/)
+      );
+      const overlap = [...goalWords].filter(w =&gt; epWords.has(w)).length;
+      return { episode: ep, score: overlap };
+    });
+
+    return scored
+      .sort((a, b) =&gt; b.score - a.score)
+      .slice(0, count)
+      .map(s =&gt; s.episode);
+  }
+}
+</code></pre>
+<p>At the end of each agent run, record the episode:</p>
+<pre><code class="language-typescript">const memory = new EpisodicMemory(&#39;.agent/memory&#39;);
+
+// After agent completes
+await memory.record({
+  timestamp: new Date().toISOString(),
+  goal: originalGoal,
+  outcome: result.success ? &#39;success&#39; : &#39;failure&#39;,
+  summary: result.output.slice(0, 500),
+  toolsUsed: [...new Set(result.toolCalls.map(tc =&gt; tc.tool))],
+  lessonsLearned: extractLessons(result) // LLM-generated lessons from the run
+});
+</code></pre>
+<p>At the start of each run, inject relevant episodes into the system prompt:</p>
+<pre><code class="language-typescript">const relevantEpisodes = await memory.retrieveRelevant(goal, 3);
+if (relevantEpisodes.length &gt; 0) {
+  systemPrompt += &#39;\n\n## Relevant Past Experience\n&#39;;
+  for (const ep of relevantEpisodes) {
+    systemPrompt += `\n### ${ep.goal} (${ep.outcome})\n`;
+    systemPrompt += `${ep.summary}\n`;
+    systemPrompt += `Lessons: ${ep.lessonsLearned.join(&#39;; &#39;)}\n`;
+  }
+}
+</code></pre>
+<h3>The CLAUDE.md Pattern</h3>
+<p>A powerful variant of episodic memory is the CLAUDE.md pattern, used by Claude Code and adopted across the Claude ecosystem. Instead of a structured log, the agent maintains a markdown file that serves as persistent context across sessions.</p>
+<pre><code class="language-typescript">class ClaudeMdMemory {
+  private filePath: string;
+
+  constructor(projectRoot: string) {
+    this.filePath = join(projectRoot, &#39;CLAUDE.md&#39;);
+  }
+
+  async read(): Promise&lt;string&gt; {
+    try {
+      return await readFile(this.filePath, &#39;utf-8&#39;);
+    } catch {
+      return &#39;&#39;;
+    }
+  }
+
+  async addSection(heading: string, content: string): Promise&lt;void&gt; {
+    const existing = await this.read();
+    const newSection = `\n## ${heading}\n\n${content}\n`;
+
+    if (existing.includes(`## ${heading}`)) {
+      // Update existing section
+      const updated = existing.replace(
+        new RegExp(`## ${heading}[\\s\\S]*?(?=\\n## |$)`),
+        newSection.trim()
+      );
+      await writeFile(this.filePath, updated);
+    } else {
+      await appendFile(this.filePath, newSection);
+    }
+  }
+
+  async getSection(heading: string): Promise&lt;string | null&gt; {
+    const content = await this.read();
+    const match = content.match(
+      new RegExp(`## ${heading}\\n\\n([\\s\\S]*?)(?=\\n## |$)`)
+    );
+    return match ? match[1].trim() : null;
+  }
+}
+</code></pre>
+<p>The CLAUDE.md pattern is effective because:</p>
+<ol>
+<li>It is human-readable. You can open the file and see what the agent knows.</li>
+<li>It is human-editable. You can correct mistakes, add context, or adjust priorities.</li>
+<li>It is version-controlled. Git tracks changes to the agent&#39;s knowledge over time.</li>
+<li>It is injected automatically. The file is loaded into the system prompt at session start.</li>
+</ol>
+<p>I use this pattern extensively in ACOS. The project CLAUDE.md contains architecture decisions, naming conventions, deployment procedures, and known issues. Every agent session starts with this context, eliminating the ramp-up period that would otherwise consume the first several interactions.</p>
+<hr>
+<h2>V. Semantic Memory: Structured Knowledge</h2>
+<p>Semantic memory stores facts and relationships that the agent needs to know but that are too numerous or too detailed to keep in the system prompt permanently.</p>
+<h3>Vector Database Implementation</h3>
+<p>For large knowledge bases, vector databases enable semantic retrieval: find information that is conceptually related to a query, not just keyword-matched.</p>
+<pre><code class="language-typescript">interface SemanticMemory {
+  store(key: string, content: string, metadata?: Record&lt;string, unknown&gt;): Promise&lt;void&gt;;
+  search(query: string, limit?: number): Promise&lt;SearchResult[]&gt;;
+  delete(key: string): Promise&lt;void&gt;;
+}
+
+interface SearchResult {
+  key: string;
+  content: string;
+  similarity: number;
+  metadata?: Record&lt;string, unknown&gt;;
+}
+
+// Implementation using an embedding model and a vector store
+class VectorSemanticMemory implements SemanticMemory {
+  private embedder: EmbeddingModel;
+  private store: VectorStore;
+
+  constructor(embedder: EmbeddingModel, store: VectorStore) {
+    this.embedder = embedder;
+    this.store = store;
+  }
+
+  async store(key: string, content: string, metadata?: Record&lt;string, unknown&gt;): Promise&lt;void&gt; {
+    const embedding = await this.embedder.embed(content);
+    await this.store.upsert({
+      id: key,
+      vector: embedding,
+      payload: { content, ...metadata }
+    });
+  }
+
+  async search(query: string, limit = 5): Promise&lt;SearchResult[]&gt; {
+    const queryEmbedding = await this.embedder.embed(query);
+    const results = await this.store.search(queryEmbedding, limit);
+
+    return results.map(r =&gt; ({
+      key: r.id,
+      content: r.payload.content as string,
+      similarity: r.score,
+      metadata: r.payload
+    }));
+  }
+
+  async delete(key: string): Promise&lt;void&gt; {
+    await this.store.delete(key);
+  }
+}
+</code></pre>
+<p>Integrating vector search into the agent loop:</p>
+<pre><code class="language-typescript">async function buildContextWithSemanticMemory(
+  goal: string,
+  memory: SemanticMemory,
+  basePrompt: string
+): Promise&lt;string&gt; {
+  // Search for relevant knowledge
+  const relevant = await memory.search(goal, 5);
+
+  if (relevant.length === 0) return basePrompt;
+
+  let contextBlock = &#39;\n\n## Relevant Knowledge\n&#39;;
+  for (const result of relevant) {
+    if (result.similarity &lt; 0.5) continue; // Skip low-relevance results
+    contextBlock += `\n### ${result.key} (relevance: ${(result.similarity * 100).toFixed(0)}%)\n`;
+    contextBlock += result.content + &#39;\n&#39;;
+  }
+
+  return basePrompt + contextBlock;
+}
+</code></pre>
+<h3>When to Use File-Based vs. Vector vs. Graph Memory</h3>
+<p>The choice depends on the nature of the knowledge:</p>
+<p><strong>File-based (CLAUDE.md, JSONL)</strong>: Best for structured, curated knowledge that changes infrequently. Project conventions, architecture decisions, deployment procedures. Human-readable and human-editable. Works without additional infrastructure.</p>
+<p><strong>Vector database (Qdrant, Pinecone, Chroma)</strong>: Best for large, unstructured knowledge bases where retrieval is by semantic similarity. Documentation, past conversations, research notes. Scales to millions of entries. Requires an embedding model and a vector store.</p>
+<p><strong>Graph database (Neo4j, or in-memory graphs)</strong>: Best for knowledge with rich relationships. &quot;Service A depends on Service B. Service B uses Database C. Database C is hosted on Server D.&quot; Graph queries can traverse relationships that neither keyword search nor vector similarity can efficiently express.</p>
+<pre><code class="language-typescript">// Graph memory for relationship-rich domains
+interface GraphMemory {
+  addEntity(id: string, type: string, properties: Record&lt;string, unknown&gt;): Promise&lt;void&gt;;
+  addRelation(from: string, relation: string, to: string): Promise&lt;void&gt;;
+  query(pattern: string): Promise&lt;GraphResult[]&gt;;
+  getNeighbors(id: string, depth?: number): Promise&lt;GraphNode[]&gt;;
+}
+
+// Example: understanding a microservice architecture
+await graph.addEntity(&#39;payment-service&#39;, &#39;service&#39;, { language: &#39;typescript&#39;, port: 3001 });
+await graph.addEntity(&#39;user-service&#39;, &#39;service&#39;, { language: &#39;typescript&#39;, port: 3002 });
+await graph.addEntity(&#39;postgres-main&#39;, &#39;database&#39;, { version: &#39;15.4&#39;, host: &#39;db.internal&#39; });
+await graph.addRelation(&#39;payment-service&#39;, &#39;depends_on&#39;, &#39;user-service&#39;);
+await graph.addRelation(&#39;payment-service&#39;, &#39;reads_from&#39;, &#39;postgres-main&#39;);
+await graph.addRelation(&#39;user-service&#39;, &#39;writes_to&#39;, &#39;postgres-main&#39;);
+
+// Agent can now query: &quot;What services depend on postgres-main?&quot;
+const dependents = await graph.query(&#39;(?)-[:reads_from|writes_to]-&gt;(postgres-main)&#39;);
+// Returns: payment-service, user-service
+</code></pre>
+<hr>
+<h2>VI. Procedural Memory: Learning How</h2>
+<p>Procedural memory stores learned procedures -- sequences of actions that accomplish specific tasks. Unlike episodic memory (which records what happened), procedural memory records how to do something, refined through experience.</p>
+<h3>Skill Files</h3>
+<p>The most practical implementation of procedural memory is the skill file: a structured document that describes a procedure, including prerequisites, steps, error handling, and verification.</p>
+<pre><code class="language-typescript">interface Skill {
+  name: string;
+  description: string;
+  triggers: string[];     // Keywords or patterns that activate this skill
+  prerequisites: string[];
+  steps: SkillStep[];
+  errorHandlers: ErrorHandler[];
+  verification: string;
+  lastUsed: string;
+  successRate: number;     // Tracked over time
+  refinements: string[];   // Notes from past executions
+}
+
+interface SkillStep {
+  description: string;
+  tool: string;
+  inputTemplate: Record&lt;string, unknown&gt;;
+  expectedOutput: string;
+}
+
+class ProceduralMemory {
+  private skillsDir: string;
+
+  constructor(skillsDir: string) {
+    this.skillsDir = skillsDir;
+  }
+
+  async findSkill(goal: string): Promise&lt;Skill | null&gt; {
+    const skills = await this.loadAllSkills();
+    // Check triggers
+    for (const skill of skills) {
+      const goalLower = goal.toLowerCase();
+      if (skill.triggers.some(t =&gt; goalLower.includes(t.toLowerCase()))) {
+        return skill;
+      }
+    }
+    return null;
+  }
+
+  async recordRefinement(skillName: string, refinement: string): Promise&lt;void&gt; {
+    const skill = await this.loadSkill(skillName);
+    if (skill) {
+      skill.refinements.push(`[${new Date().toISOString()}] ${refinement}`);
+      skill.lastUsed = new Date().toISOString();
+      await this.saveSkill(skill);
+    }
+  }
+
+  async updateSuccessRate(skillName: string, succeeded: boolean): Promise&lt;void&gt; {
+    const skill = await this.loadSkill(skillName);
+    if (skill) {
+      // Exponential moving average
+      const alpha = 0.2;
+      skill.successRate = alpha * (succeeded ? 1 : 0) + (1 - alpha) * skill.successRate;
+      await this.saveSkill(skill);
+    }
+  }
+
+  private async loadAllSkills(): Promise&lt;Skill[]&gt; {
+    const fs = await import(&#39;fs/promises&#39;);
+    const files = await fs.readdir(this.skillsDir);
+    const skills: Skill[] = [];
+    for (const file of files) {
+      if (file.endsWith(&#39;.json&#39;)) {
+        const content = await fs.readFile(join(this.skillsDir, file), &#39;utf-8&#39;);
+        skills.push(JSON.parse(content));
+      }
+    }
+    return skills;
+  }
+
+  private async loadSkill(name: string): Promise&lt;Skill | null&gt; {
+    try {
+      const fs = await import(&#39;fs/promises&#39;);
+      const content = await fs.readFile(
+        join(this.skillsDir, `${name}.json`), &#39;utf-8&#39;
+      );
+      return JSON.parse(content);
+    } catch {
+      return null;
+    }
+  }
+
+  private async saveSkill(skill: Skill): Promise&lt;void&gt; {
+    const fs = await import(&#39;fs/promises&#39;);
+    await fs.writeFile(
+      join(this.skillsDir, `${skill.name}.json`),
+      JSON.stringify(skill, null, 2)
+    );
+  }
+}
+</code></pre>
+<p>The skill file pattern is used in ACOS to manage 75+ skills across 38 agents. Each skill has activation triggers, step-by-step procedures, and refinement logs that accumulate with use. When an agent encounters a task that matches a skill trigger, it loads the skill and follows the procedure rather than reasoning from scratch. The success rate tracking surfaces skills that need refinement -- if a skill&#39;s success rate drops below a threshold, it gets flagged for review.</p>
+<hr>
+<h2>VII. The Compound Effect</h2>
+<p>Memory architectures are not independent systems. They interact and amplify each other:</p>
+<ol>
+<li><p><strong>Working memory</strong> is the agent&#39;s scratch pad. It holds the current conversation plus injected context from the other three memory types.</p>
+</li>
+<li><p><strong>Episodic memory</strong> provides relevant history: &quot;last time you did this, here is what happened.&quot; This is injected into working memory at the start of each session.</p>
+</li>
+<li><p><strong>Semantic memory</strong> provides domain knowledge: &quot;here are the facts relevant to your current goal.&quot; This is retrieved via semantic search and injected into working memory on each iteration or at session start.</p>
+</li>
+<li><p><strong>Procedural memory</strong> provides learned procedures: &quot;here is how to accomplish this type of task.&quot; This is matched by trigger keywords and injected when relevant.</p>
+</li>
+</ol>
+<p>The compound effect: an agent with all four memory types does not just remember more -- it reasons better. Episodic memory prevents repeated mistakes. Semantic memory eliminates redundant discovery. Procedural memory provides tested procedures. Working memory orchestrates all of it in service of the current goal.</p>
+<p>Over time, the improvement is not linear but exponential. Each successful task generates episodes that inform future tasks. Each learned fact reduces the cognitive overhead of future interactions. Each refined procedure increases the success rate of future executions.</p>
+<p>An agent you use for one week is useful. An agent you use for one month is valuable. An agent you use for one year is indispensable. The difference is memory.</p>
+<hr>
+<h2>VIII. Implementation Checklist</h2>
+<p>Start with file-based memory. It requires no infrastructure, is human-readable, and handles most use cases. Add vector search when your knowledge base exceeds what fits in a system prompt. Add graph memory when relationships between entities are critical to your domain.</p>
+<p>The practical starting point:</p>
+<ol>
+<li><p>Add a CLAUDE.md file to your project. Populate it with conventions, architecture decisions, and known issues. Inject it into the system prompt.</p>
+</li>
+<li><p>Add episodic logging. At the end of each agent run, append a structured episode to a JSONL file. At the start of each run, load the most recent and most relevant episodes.</p>
+</li>
+<li><p>Add working memory management. Implement summarization for long conversations. Set a token budget and enforce it.</p>
+</li>
+<li><p>Add procedural memory when you notice the agent performing the same multi-step tasks repeatedly. Extract the procedure into a skill file with triggers, steps, and verification.</p>
+</li>
+</ol>
+<p>Each layer adds value independently. Together, they transform a stateless tool into a system that learns.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

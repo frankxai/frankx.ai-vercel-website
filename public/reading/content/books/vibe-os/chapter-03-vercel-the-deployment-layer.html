@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Vercel -- The Deployment Layer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/vibe-os/chapter-03-vercel-the-deployment-layer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Vercel -- The Deployment Layer</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fvibe-os">vibe-os</a> / <span>chapter-03-vercel-the-deployment-layer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Vercel -- The Deployment Layer</h1>
+<p>The deployment layer is where code becomes a live website. For most of computing history, this layer was expensive, fragile, and required a dedicated operations team. You needed servers, load balancers, SSL certificates, CDN configuration, monitoring, log aggregation, and someone to wake up at 3 AM when the deployment pipeline broke.</p>
+<p>Vercel eliminated all of that. The deployment model is: push to main, and the site is live in under 60 seconds, served from a global edge network, with automatic SSL, image optimization, and serverless function execution. The cost is $20 per month.</p>
+<p>This chapter covers every aspect of the deployment infrastructure: how Vercel works under the hood, how the configuration is set up, what the Pro plan includes, how Blob storage works, and how Claude Code monitors and manages deployments through the Vercel MCP server.</p>
+<hr>
+<h2>I. Vercel&#39;s Architecture</h2>
+<p>Vercel is not a traditional hosting provider. It is a deployment platform built specifically for frontend frameworks, with Next.js as the primary target. Understanding the architecture explains why it works so well for a creator platform.</p>
+<h3>The Edge Network</h3>
+<p>When you deploy to Vercel, your static assets -- HTML files, images, CSS, JavaScript bundles -- are distributed to edge nodes in 70+ locations worldwide. When a reader in Berlin requests a page, the HTML is served from a Frankfurt edge node. When a reader in Tokyo requests the same page, it is served from a Tokyo edge node. The content is the same; the distance is different.</p>
+<p>For a statically generated site like frankx.ai, this means every page loads in under 100ms regardless of the reader&#39;s location. No origin server involved. No round-trip to a data center. The edge node has the file and serves it directly.</p>
+<h3>Serverless Functions</h3>
+<p>Dynamic routes and API endpoints deploy as Vercel Serverless Functions. Each function runs in an isolated container that spins up on demand, handles the request, and shuts down. There is no idle server consuming resources. There is no &quot;scaling&quot; to configure. If one person visits the site, one function instance runs. If a thousand people visit simultaneously, a thousand instances run.</p>
+<p>The Pro plan provides:</p>
+<ul>
+<li>1,000 GB-hours of function execution per month</li>
+<li>100 GB of bandwidth</li>
+<li>12 concurrent function executions</li>
+<li>10-second default timeout (configurable up to 300 seconds)</li>
+<li>Node.js 20 runtime</li>
+</ul>
+<p>For a creator platform with moderate traffic, these limits are generous. frankx.ai has never approached them.</p>
+<h3>Build Pipeline</h3>
+<p>Every deployment goes through the same pipeline:</p>
+<ol>
+<li><strong>Git push</strong> triggers a webhook from GitHub to Vercel</li>
+<li>Vercel clones the repository and installs dependencies</li>
+<li>The <code>prebuild</code> script runs (search index, RSS feed, content indexes)</li>
+<li><code>next build</code> compiles the application, generating static pages and serverless functions</li>
+<li>The output is distributed to the edge network</li>
+<li>The DNS record is updated to point to the new deployment</li>
+<li>The previous deployment remains available for instant rollback</li>
+</ol>
+<p>The entire process takes 60-90 seconds for frankx.ai. During this time, the previous deployment continues serving traffic. There is zero downtime.</p>
+<hr>
+<h2>II. The Git-Push Deployment Model</h2>
+<p>This is the core deployment workflow, and it is worth understanding precisely because of how simple it is.</p>
+<pre><code class="language-bash"># In the production repository
+cd /mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux
+
+# Stage and commit changes
+git add content/blog/new-article.mdx
+git add public/images/blog/new-article-hero.png
+git commit -m &quot;feat: publish article on MCP architecture&quot;
+
+# Deploy to production
+git push origin main
+</code></pre>
+<p>That last command -- <code>git push origin main</code> -- is the entire deployment process. Vercel watches the <code>main</code> branch of the production repository. When a new commit arrives, the build pipeline triggers automatically.</p>
+<h3>Preview Deployments</h3>
+<p>Every branch and every pull request gets its own preview deployment with a unique URL. If you push to a branch called <code>draft/new-design</code>, Vercel deploys it to a URL like <code>frankx-ai-draft-new-design.vercel.app</code>. You can share this URL with reviewers, test it on mobile, or verify changes before merging to main.</p>
+<p>Preview deployments use the same build pipeline as production. They are not approximations or dev-mode renders. They are full production builds with the only difference being the URL.</p>
+<p>For a solo creator, preview deployments serve as a safety net. Before merging a major design change or a new feature, you can verify the preview deployment looks correct, loads correctly, and does not break existing pages.</p>
+<hr>
+<h2>III. Configuration</h2>
+<p>Vercel is configured through two files: <code>vercel.json</code> for deployment settings, and <code>next.config.mjs</code> for the Next.js build.</p>
+<h3>vercel.json</h3>
+<p>The frankx.ai <code>vercel.json</code> is minimal:</p>
+<pre><code class="language-json">{
+  &quot;framework&quot;: &quot;nextjs&quot;,
+  &quot;cleanUrls&quot;: true,
+  &quot;headers&quot;: [
+    {
+      &quot;source&quot;: &quot;/(.*)&quot;,
+      &quot;headers&quot;: [
+        { &quot;key&quot;: &quot;X-Frame-Options&quot;, &quot;value&quot;: &quot;SAMEORIGIN&quot; },
+        { &quot;key&quot;: &quot;X-Content-Type-Options&quot;, &quot;value&quot;: &quot;nosniff&quot; },
+        { &quot;key&quot;: &quot;Referrer-Policy&quot;, &quot;value&quot;: &quot;strict-origin-when-cross-origin&quot; }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>Three security headers applied to every route. <code>cleanUrls</code> removes <code>.html</code> extensions from URLs. The <code>framework</code> field tells Vercel to use the Next.js build adapter.</p>
+<h3>next.config.mjs: The Critical Sections</h3>
+<p>The Next.js configuration handles four concerns:</p>
+<p><strong>Image optimization.</strong> Vercel automatically optimizes images served through the <code>next/image</code> component, converting them to AVIF and WebP formats and serving the right size for each device:</p>
+<pre><code class="language-javascript">images: {
+  formats: [&#39;image/avif&#39;, &#39;image/webp&#39;],
+  deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+  minimumCacheTTL: 31536000, // Cache for 1 year
+}
+</code></pre>
+<p><strong>Console removal.</strong> In production builds, all <code>console.log</code> statements are stripped automatically:</p>
+<pre><code class="language-javascript">compiler: {
+  removeConsole: process.env.NODE_ENV === &#39;production&#39;,
+}
+</code></pre>
+<p><strong>Redirects.</strong> Twenty-one permanent and temporary redirects handle URL migrations, product page consolidations, and legacy URL support:</p>
+<pre><code class="language-javascript">async redirects() {
+  return [
+    { source: &#39;/realm&#39;, destination: &#39;/inner-circle&#39;, permanent: true },
+    { source: &#39;/store&#39;, destination: &#39;/shop&#39;, permanent: true },
+    { source: &#39;/ai-art&#39;, destination: &#39;/gallery&#39;, permanent: true },
+    // ... 18 more
+  ]
+}
+</code></pre>
+<p>Redirects are defined in code, not in a hosting dashboard. This means they are version-controlled, reviewable in pull requests, and deployed with the application. When you rename a URL, the redirect ships in the same commit as the new page.</p>
+<p><strong>Content Security Policy.</strong> A comprehensive CSP header controls which domains can load scripts, styles, frames, and connections:</p>
+<pre><code class="language-javascript">headers: [
+  {
+    source: &#39;/(.*)&#39;,
+    headers: [
+      {
+        key: &#39;Content-Security-Policy&#39;,
+        value: [
+          &quot;default-src &#39;self&#39;&quot;,
+          &quot;script-src &#39;self&#39; &#39;unsafe-inline&#39; https://vercel.live https://va.vercel-scripts.com https://plausible.io&quot;,
+          &quot;frame-src &#39;self&#39; https://suno.com https://www.youtube.com https://open.spotify.com&quot;,
+          // ...
+        ].join(&#39;; &#39;),
+      },
+    ],
+  },
+]
+</code></pre>
+<p>Every external service that loads in the browser must be explicitly allowed in this policy. When you add a new embed source -- a Spotify player, a YouTube video, a Suno music widget -- you add the domain to the CSP. This is defense-in-depth against XSS attacks and unauthorized script injection.</p>
+<hr>
+<h2>IV. The outputFileTracingExcludes Save</h2>
+<p>This deserves its own section because it saved the project from four consecutive deployment failures, and the solution is not well-documented.</p>
+<p>Vercel Serverless Functions have a 250MB compressed size limit. When Next.js builds a function, it traces every file imported by that function and bundles them together. For a content-rich site, the public directory can contain hundreds of high-resolution images that get caught in the trace.</p>
+<p>The symptom: builds complete successfully but deployments fail with &quot;Function size exceeds maximum.&quot; The error does not tell you which files are causing the overflow.</p>
+<p>The fix:</p>
+<pre><code class="language-javascript">outputFileTracingRoot: __dirname,
+outputFileTracingExcludes: {
+  &#39;*&#39;: [
+    &#39;./public/images/blog/**&#39;,
+    &#39;./public/images/mascot/**&#39;,
+    &#39;./public/images/acos/**&#39;,
+    &#39;./public/images/golden-age/**&#39;,
+    &#39;./public/images/arcanea/**&#39;,
+    &#39;./public/reading/**&#39;,
+  ],
+},
+</code></pre>
+<p>The <code>&#39;*&#39;</code> key applies the exclusion to all serverless functions. Each glob pattern removes a directory of static assets from the function bundle. These assets are still served by Vercel&#39;s static file server -- they are just not included in the serverless function payload.</p>
+<p>On frankx.ai, this exclusion reduced the function bundle from approximately 310MB to 180MB, well under the limit. The build time also decreased because fewer files needed to be traced and compressed.</p>
+<p>The lesson: when your Vercel deployment fails with a size error, check what the file tracer is including. The fix is almost always excluding static assets, not reducing code.</p>
+<hr>
+<h2>V. Environment Variables</h2>
+<p>Vercel manages environment variables through its dashboard, with separate values for Production, Preview, and Development environments. frankx.ai uses the following:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Environment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RESEND_API_KEY</code></td>
+<td>Email delivery via Resend</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>BLOB_READ_WRITE_TOKEN</code></td>
+<td>Vercel Blob storage access</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>KV_REST_API_URL</code></td>
+<td>Vercel KV (Redis) for rate limiting</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>KV_REST_API_TOKEN</code></td>
+<td>Vercel KV authentication</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>STRIPE_SECRET_KEY</code></td>
+<td>Payment processing</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>STRIPE_WEBHOOK_SECRET</code></td>
+<td>Webhook signature verification</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>ADMIN_SECRET</code></td>
+<td>Admin API route authentication</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>NEXTAUTH_SECRET</code></td>
+<td>Authentication session encryption</td>
+<td>All</td>
+</tr>
+</tbody></table>
+<p>Environment variables never appear in the codebase. They are set in the Vercel dashboard and injected at build time and runtime. The production repository contains no <code>.env</code> file. If someone cloned the repository, they would have the code but none of the secrets.</p>
+<p>This is another advantage of the two-repo architecture: the development repo has a <code>.env</code> file for local development, but it never touches the production repository.</p>
+<hr>
+<h2>VI. Vercel Blob Storage</h2>
+<p>Vercel Blob is object storage integrated into the Vercel platform. It stores files with a permanent, CDN-backed URL. frankx.ai uses it for three categories of binary assets:</p>
+<h3>Product Downloads</h3>
+<p>When a user purchases or requests a product, the PDF is served from Blob storage:</p>
+<pre><code>https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/
+  products/acos/ACOS-Product-Guide-v2.pdf
+  products/soulbook/SoulBook-Complete.pdf
+  products/gencreator-os/GenCreator-OS-v1.pdf
+</code></pre>
+<h3>Music Files</h3>
+<p>The 61 self-hosted music tracks live on Blob at predictable paths:</p>
+<pre><code>https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/
+  music/{sunoId}/{sunoId}.mp3
+</code></pre>
+<h3>The Storage Wrapper</h3>
+<p>The <code>lib/storage.ts</code> file provides a typed interface over the raw Vercel Blob SDK:</p>
+<pre><code class="language-typescript">import { put, list, del, head } from &#39;@vercel/blob&#39;
+
+export async function uploadProductFile(
+  productSlug: string,
+  filename: string,
+  file: Buffer | Blob | ReadableStream,
+  contentType?: string
+) {
+  return put(`products/${productSlug}/${filename}`, file, {
+    access: &#39;public&#39;,
+    contentType: contentType ?? guessMimeType(filename),
+    addRandomSuffix: false,
+  })
+}
+</code></pre>
+<p>The <code>addRandomSuffix: false</code> option is critical. By default, Vercel Blob appends a random string to prevent filename collisions. For product downloads, you want stable, predictable URLs that can be referenced from email templates and API routes. Disabling the random suffix means the URL is determined entirely by the path you specify.</p>
+<h3>Cost</h3>
+<p>Blob storage is included in the Vercel Pro plan. The current frankx.ai usage -- approximately 35MB of PDFs and 500MB of music files -- costs nothing incremental. Vercel Blob becomes billable at scale (pennies per GB per month), but for a creator platform, the included storage is more than sufficient.</p>
+<hr>
+<h2>VII. The Vercel MCP Server</h2>
+<p>This is where the deployment layer connects to the compute layer. The Vercel MCP server allows Claude Code to interact with Vercel&#39;s API directly from the command line.</p>
+<p>Available operations:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>list_deployments</code></td>
+<td>See recent deployments and status</td>
+</tr>
+<tr>
+<td><code>get_deployment</code></td>
+<td>Get details of a specific deployment</td>
+</tr>
+<tr>
+<td><code>get_deployment_build_logs</code></td>
+<td>Read build output and errors</td>
+</tr>
+<tr>
+<td><code>get_runtime_logs</code></td>
+<td>View serverless function logs</td>
+</tr>
+<tr>
+<td><code>get_project</code></td>
+<td>Project configuration and settings</td>
+</tr>
+<tr>
+<td><code>list_projects</code></td>
+<td>All projects in the Vercel account</td>
+</tr>
+</tbody></table>
+<p>The most common workflow: after pushing a commit, Claude Code checks the deployment status by listing recent deployments. If a build fails, it reads the build logs, identifies the error, fixes the code, and pushes a corrected commit. The entire debug-fix-deploy cycle happens within a single conversation.</p>
+<p>This eliminates the tab-switching workflow of traditional deployment monitoring. Instead of pushing code, opening the Vercel dashboard in a browser, navigating to the deployment, reading the logs, switching back to the editor, making the fix, and pushing again -- the entire cycle happens in one terminal window.</p>
+<p>For verification without a local build (which takes 10-15 minutes in WSL due to NTFS I/O overhead), the Vercel MCP is the authoritative source. The Vercel build runs on fast Linux infrastructure and completes in 60-90 seconds. Checking deployment status through the MCP is faster and more reliable than running <code>npm run build</code> locally.</p>
+<hr>
+<h2>VIII. Cost Analysis: Free vs. Pro</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Hobby (Free)</th>
+<th>Pro ($20/month)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bandwidth</td>
+<td>100 GB</td>
+<td>1 TB</td>
+</tr>
+<tr>
+<td>Serverless execution</td>
+<td>100 GB-hrs</td>
+<td>1,000 GB-hrs</td>
+</tr>
+<tr>
+<td>Builds per day</td>
+<td>100</td>
+<td>6,000</td>
+</tr>
+<tr>
+<td>Concurrent builds</td>
+<td>1</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Preview deployments</td>
+<td>Unlimited</td>
+<td>Unlimited</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>Basic</td>
+<td>Advanced</td>
+</tr>
+<tr>
+<td>Image optimization</td>
+<td>1,000 images/month</td>
+<td>5,000 images/month</td>
+</tr>
+<tr>
+<td>Blob storage</td>
+<td>250 MB</td>
+<td>Included + pay-per-use</td>
+</tr>
+<tr>
+<td>Password protection</td>
+<td>None</td>
+<td>Available</td>
+</tr>
+<tr>
+<td>Team members</td>
+<td>1</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<p>The free tier is sufficient for starting out. Upgrade to Pro when you need advanced analytics, higher bandwidth for growing traffic, or Blob storage beyond 250MB. For frankx.ai, the Pro plan has been the right tier since launch -- the analytics alone justify the $20.</p>
+<hr>
+<h2>IX. The Deployment Checklist</h2>
+<p>Before every production push, this checklist runs:</p>
+<pre><code class="language-bash"># Type check -- catches type errors in ~60 seconds
+npm run type-check
+
+# Marketing claims audit -- ensures no unverifiable claims
+npm run claims:audit:strict
+
+# Link check -- verifies no broken internal links
+npm run links:check:ci
+
+# Sync check -- verifies production repo matches development
+npm run sync:check
+</code></pre>
+<p>These are combined into a single <code>predeploy</code> script:</p>
+<pre><code class="language-json">{
+  &quot;predeploy&quot;: &quot;npm run merge:gate &amp;&amp; npm run sync:check&quot;
+}
+</code></pre>
+<p>The merge gate (<code>type-check</code> + <code>claims:audit:strict</code> + <code>links:check:ci</code>) runs locally before pushing. The Vercel build pipeline runs the full <code>prebuild</code> and <code>next build</code> on Vercel&#39;s infrastructure.</p>
+<p>This two-stage verification -- local fast checks, remote full build -- balances speed with thoroughness. You catch most errors in seconds locally and verify the complete build on Vercel&#39;s faster hardware.</p>
+<hr>
+<h2>X. Rollbacks and Recovery</h2>
+<p>Every Vercel deployment is immutable. When you push a new commit, Vercel creates a new deployment alongside the previous one. The previous deployment remains accessible at its unique URL indefinitely. If the new deployment introduces a bug, rolling back is a single click in the Vercel dashboard -- or a single API call through the Vercel MCP server.</p>
+<p>This means production is never at risk. The worst case scenario for a bad deployment is a 30-second rollback to the previous version. There is no &quot;the site is down and we are trying to fix it&quot; state. There is only &quot;the site is serving the previous deployment while we fix the new one.&quot;</p>
+<p>In practice, the rollback capability has been used twice in six months on frankx.ai -- both times for CSS regressions that were not caught by the type checker (which only catches TypeScript errors, not visual bugs). In both cases, the rollback was executed within five minutes of discovering the issue, and the fix was deployed within the hour.</p>
+<p>This is the deployment philosophy in one sentence: make deployments so fast and so reversible that deploying becomes a non-event. When deploying takes 60 seconds and rolling back takes 30, the risk of each deployment approaches zero. And when the risk approaches zero, you deploy more often, which means smaller changes per deployment, which means fewer bugs per deployment. The virtuous cycle compounds.</p>
+<hr>
+<h2>XI. When to Leave Vercel</h2>
+<p>No platform is right forever. Here are the signals that would indicate it is time to consider alternatives:</p>
+<p><strong>Serverless function limits.</strong> If your API routes start hitting the 10-second timeout consistently, or if you need long-running background processes (video transcoding, large data processing), you will need a persistent server. Railway, Fly.io, or a dedicated VPS would be better for compute-heavy workloads.</p>
+<p><strong>Cost at scale.</strong> Vercel Pro is exceptional value up to approximately 100,000 monthly page views and moderate API usage. Beyond that, the per-unit pricing for bandwidth, serverless execution, and image optimization starts to matter. At very high scale, a self-hosted Next.js deployment on a dedicated server can be significantly cheaper.</p>
+<p><strong>Vendor lock-in.</strong> Vercel Blob, Vercel KV, and Vercel Analytics are convenient but proprietary. If you use them extensively, migration becomes non-trivial. The mitigation: keep the abstraction layer (like <code>lib/storage.ts</code>) between your application code and the Vercel SDK, so you can swap implementations without changing business logic.</p>
+<p>For frankx.ai at its current scale, none of these signals are present. The $20/month Pro plan is the correct choice, and is likely to remain so for the foreseeable future.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

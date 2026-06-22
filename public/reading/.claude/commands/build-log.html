@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/build-log</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/build-log.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/build-log</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>build-log.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>/build-log</h1>
+<p><strong>Convert a build session into the full content flywheel.</strong></p>
+<p>One build session produces five artifacts that all ship to frankx.ai. This command activates the <code>agentic-builder-lab</code> skill (mirrored from ACOS at <code>.claude-skills/projects/agentic-builder-lab/</code>) and walks the build through the five-output pipeline.</p>
+<h2>What it produces</h2>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Destination</th>
+<th>Site renders it at</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MDX build log</td>
+<td><code>content/builds/[slug].mdx</code></td>
+<td><code>/agentic-builder-lab/[slug]</code></td>
+</tr>
+<tr>
+<td>LinkedIn draft</td>
+<td><code>drafts/linkedin/[slug].md</code></td>
+<td>— (drafts)</td>
+</tr>
+<tr>
+<td>60–90s demo brief</td>
+<td><code>drafts/demos/[slug]-brief.md</code></td>
+<td>— (drafts)</td>
+</tr>
+<tr>
+<td>Mermaid diagram</td>
+<td><code>drafts/diagrams/[slug].mmd</code></td>
+<td>inline via <code>```mermaid</code> in MDX</td>
+</tr>
+<tr>
+<td>Prompt-pack entry</td>
+<td><code>.claude-skills/projects/agentic-builder-lab/resources/prompt-pack/[slug].md</code></td>
+<td>in-skill</td>
+</tr>
+</tbody></table>
+<h2>Voice override</h2>
+<p>The skill depends on <code>frankx-brand</code> but overrides its default studio voice for every artifact it produces. Output uses the <strong>technical-authority</strong> register: results first, no spiritual or hype language, no exclamation marks. Lint runs at exit (banned words: <code>soul</code>, <code>awaken</code>, <code>transformation</code>, <code>journey</code>, <code>studio</code> as metaphor, etc.). Full spec at <code>.claude-skills/projects/agentic-builder-lab/resources/voice-spec.md</code>.</p>
+<h2>How to invoke</h2>
+<pre><code>/build-log
+</code></pre>
+<p>The skill will ask for the required inputs in one batched prompt:</p>
+<ul>
+<li><code>build_name</code> — short label (becomes the title)</li>
+<li><code>status</code> — <code>live | shipping | wip | paused | archived</code></li>
+<li><code>stack</code> — list of tools and what each one does</li>
+<li><code>key_learning</code> — the one thing you&#39;d tell another builder</li>
+</ul>
+<p>Optional:</p>
+<ul>
+<li><code>demo_url</code>, <code>repo_url</code>, <code>day_number</code>, <code>outcome_metric</code>, <code>slug</code></li>
+</ul>
+<p>Then the skill writes the five files and reports paths. It does not commit or push — the caller decides what to ship.</p>
+<h2>Acceptance criteria</h2>
+<p>A clean exit from <code>/build-log</code> means:</p>
+<ul>
+<li><input disabled="" type="checkbox"> All five artifact files exist at the destinations above</li>
+<li><input disabled="" type="checkbox"> MDX frontmatter validates against <code>lib/builds.ts</code> types</li>
+<li><input disabled="" type="checkbox"> Banned-words lint passes on every artifact</li>
+<li><input disabled="" type="checkbox"> No exclamation marks anywhere in the output</li>
+<li><input disabled="" type="checkbox"> <code>What broke</code> section in the MDX has at least one honest item</li>
+</ul>
+<h2>Companion surface</h2>
+<p>The MDX entries this command writes are rendered by:</p>
+<ul>
+<li><strong>List page</strong>: <code>app/agentic-builder-lab/page.tsx</code> (the 8-card chronological log)</li>
+<li><strong>Detail pages</strong>: <code>app/agentic-builder-lab/[slug]/page.tsx</code> (full body with prev/next and prompt-pack link)</li>
+<li><strong>Commercial gallery</strong>: <code>app/build/page.tsx</code> (outcome-framed 4-card subset)</li>
+</ul>
+<h2>Upstream</h2>
+<p>The skill is canonical in <code>agentic-creator-os/skills/projects/agentic-builder-lab/</code>. This repo mirrors it under <code>.claude-skills/</code> for in-session discovery. To re-mirror after an upstream update, run <code>node scripts/port-acos-skill.mjs agentic-builder-lab</code> (added in this PR).</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

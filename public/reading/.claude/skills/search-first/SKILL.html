@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/search-first — Research Before You Code</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/search-first/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/search-first — Research Before You Code</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fsearch-first">search-first</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: search-first
+description: Research-before-coding workflow. Search for existing tools, libraries, and patterns before writing custom code. Invokes the researcher agent.
+origin: ECC</h2>
+<h1>/search-first — Research Before You Code</h1>
+<p>Systematizes the &quot;search for existing solutions before implementing&quot; workflow.</p>
+<h2>Trigger</h2>
+<p>Use this skill when:</p>
+<ul>
+<li>Starting a new feature that likely has existing solutions</li>
+<li>Adding a dependency or integration</li>
+<li>The user asks &quot;add X functionality&quot; and you&#39;re about to write code</li>
+<li>Before creating a new utility, helper, or abstraction</li>
+</ul>
+<h2>Workflow</h2>
+<pre><code>┌─────────────────────────────────────────────┐
+│  1. NEED ANALYSIS                           │
+│     Define what functionality is needed      │
+│     Identify language/framework constraints  │
+├─────────────────────────────────────────────┤
+│  2. PARALLEL SEARCH (researcher agent)      │
+│     ┌──────────┐ ┌──────────┐ ┌──────────┐  │
+│     │  npm /   │ │  MCP /   │ │  GitHub / │  │
+│     │  PyPI    │ │  Skills  │ │  Web      │  │
+│     └──────────┘ └──────────┘ └──────────┘  │
+├─────────────────────────────────────────────┤
+│  3. EVALUATE                                │
+│     Score candidates (functionality, maint, │
+│     community, docs, license, deps)         │
+├─────────────────────────────────────────────┤
+│  4. DECIDE                                  │
+│     ┌─────────┐  ┌──────────┐  ┌─────────┐  │
+│     │  Adopt  │  │  Extend  │  │  Build   │  │
+│     │ as-is   │  │  /Wrap   │  │  Custom  │  │
+│     └─────────┘  └──────────┘  └─────────┘  │
+├─────────────────────────────────────────────┤
+│  5. IMPLEMENT                               │
+│     Install package / Configure MCP /       │
+│     Write minimal custom code               │
+└─────────────────────────────────────────────┘
+</code></pre>
+<h2>Decision Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Exact match, well-maintained, MIT/Apache</td>
+<td><strong>Adopt</strong> — install and use directly</td>
+</tr>
+<tr>
+<td>Partial match, good foundation</td>
+<td><strong>Extend</strong> — install + write thin wrapper</td>
+</tr>
+<tr>
+<td>Multiple weak matches</td>
+<td><strong>Compose</strong> — combine 2-3 small packages</td>
+</tr>
+<tr>
+<td>Nothing suitable found</td>
+<td><strong>Build</strong> — write custom, but informed by research</td>
+</tr>
+</tbody></table>
+<h2>How to Use</h2>
+<h3>Quick Mode (inline)</h3>
+<p>Before writing a utility or adding functionality, mentally run through:</p>
+<ol start="0">
+<li>Does this already exist in the repo? → <code>rg</code> through relevant modules/tests first</li>
+<li>Is this a common problem? → Search npm/PyPI</li>
+<li>Is there an MCP for this? → Check <code>~/.claude/settings.json</code> and search</li>
+<li>Is there a skill for this? → Check <code>~/.claude/skills/</code></li>
+<li>Is there a GitHub implementation/template? → Run GitHub code search for maintained OSS before writing net-new code</li>
+</ol>
+<h3>Full Mode (agent)</h3>
+<p>For non-trivial functionality, launch the researcher agent:</p>
+<pre><code>Task(subagent_type=&quot;general-purpose&quot;, prompt=&quot;
+  Research existing tools for: [DESCRIPTION]
+  Language/framework: [LANG]
+  Constraints: [ANY]
+
+  Search: npm/PyPI, MCP servers, Claude Code skills, GitHub
+  Return: Structured comparison with recommendation
+&quot;)
+</code></pre>
+<h2>Search Shortcuts by Category</h2>
+<h3>Development Tooling</h3>
+<ul>
+<li>Linting → <code>eslint</code>, <code>ruff</code>, <code>textlint</code>, <code>markdownlint</code></li>
+<li>Formatting → <code>prettier</code>, <code>black</code>, <code>gofmt</code></li>
+<li>Testing → <code>jest</code>, <code>pytest</code>, <code>go test</code></li>
+<li>Pre-commit → <code>husky</code>, <code>lint-staged</code>, <code>pre-commit</code></li>
+</ul>
+<h3>AI/LLM Integration</h3>
+<ul>
+<li>Claude SDK → Context7 for latest docs</li>
+<li>Prompt management → Check MCP servers</li>
+<li>Document processing → <code>unstructured</code>, <code>pdfplumber</code>, <code>mammoth</code></li>
+</ul>
+<h3>Data &amp; APIs</h3>
+<ul>
+<li>HTTP clients → <code>httpx</code> (Python), <code>ky</code>/<code>got</code> (Node)</li>
+<li>Validation → <code>zod</code> (TS), <code>pydantic</code> (Python)</li>
+<li>Database → Check for MCP servers first</li>
+</ul>
+<h3>Content &amp; Publishing</h3>
+<ul>
+<li>Markdown processing → <code>remark</code>, <code>unified</code>, <code>markdown-it</code></li>
+<li>Image optimization → <code>sharp</code>, <code>imagemin</code></li>
+</ul>
+<h2>Integration Points</h2>
+<h3>With planner agent</h3>
+<p>The planner should invoke researcher before Phase 1 (Architecture Review):</p>
+<ul>
+<li>Researcher identifies available tools</li>
+<li>Planner incorporates them into the implementation plan</li>
+<li>Avoids &quot;reinventing the wheel&quot; in the plan</li>
+</ul>
+<h3>With architect agent</h3>
+<p>The architect should consult researcher for:</p>
+<ul>
+<li>Technology stack decisions</li>
+<li>Integration pattern discovery</li>
+<li>Existing reference architectures</li>
+</ul>
+<h3>With iterative-retrieval skill</h3>
+<p>Combine for progressive discovery:</p>
+<ul>
+<li>Cycle 1: Broad search (npm, PyPI, MCP)</li>
+<li>Cycle 2: Evaluate top candidates in detail</li>
+<li>Cycle 3: Test compatibility with project constraints</li>
+</ul>
+<h2>Examples</h2>
+<h3>Example 1: &quot;Add dead link checking&quot;</h3>
+<pre><code>Need: Check markdown files for broken links
+Search: npm &quot;markdown dead link checker&quot;
+Found: textlint-rule-no-dead-link (score: 9/10)
+Action: ADOPT — npm install textlint-rule-no-dead-link
+Result: Zero custom code, battle-tested solution
+</code></pre>
+<h3>Example 2: &quot;Add HTTP client wrapper&quot;</h3>
+<pre><code>Need: Resilient HTTP client with retries and timeout handling
+Search: npm &quot;http client retry&quot;, PyPI &quot;httpx retry&quot;
+Found: got (Node) with retry plugin, httpx (Python) with built-in retry
+Action: ADOPT — use got/httpx directly with retry config
+Result: Zero custom code, production-proven libraries
+</code></pre>
+<h3>Example 3: &quot;Add config file linter&quot;</h3>
+<pre><code>Need: Validate project config files against a schema
+Search: npm &quot;config linter schema&quot;, &quot;json schema validator cli&quot;
+Found: ajv-cli (score: 8/10)
+Action: ADOPT + EXTEND — install ajv-cli, write project-specific schema
+Result: 1 package + 1 schema file, no custom validation logic
+</code></pre>
+<h2>Anti-Patterns</h2>
+<ul>
+<li><strong>Jumping to code</strong>: Writing a utility without checking if one exists</li>
+<li><strong>Ignoring MCP</strong>: Not checking if an MCP server already provides the capability</li>
+<li><strong>Over-customizing</strong>: Wrapping a library so heavily it loses its benefits</li>
+<li><strong>Dependency bloat</strong>: Installing a massive package for one small feature</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

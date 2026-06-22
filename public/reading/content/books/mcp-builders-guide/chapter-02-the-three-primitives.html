@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>The Three Primitives</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/mcp-builders-guide/chapter-02-the-three-primitives.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">The Three Primitives</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fmcp-builders-guide">mcp-builders-guide</a> / <span>chapter-02-the-three-primitives.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>The Three Primitives</h1>
+<blockquote>
+<p>&quot;Simplicity is the ultimate sophistication.&quot;
+— Leonardo da Vinci</p>
+</blockquote>
+<hr>
+<p>MCP has three primitives. Not thirty. Not thirteen. Three.</p>
+<p>Every MCP server, from the simplest file reader to the most complex cloud orchestration layer, is built from three building blocks: Resources, Tools, and Prompts. Understanding these three primitives is understanding MCP. Everything else is implementation detail.</p>
+<hr>
+<h2>I. Resources: What the Server Knows</h2>
+<p>A Resource is data that the server exposes to the AI client. Read-only. Declarative. The AI can see it but cannot change it through the Resource interface.</p>
+<p>Think of Resources as windows into your system. The AI looks through the window, sees the data, and uses what it sees to inform its responses.</p>
+<p>Examples of Resources:</p>
+<ul>
+<li>A database server exposes table schemas and query results as Resources</li>
+<li>A file system server exposes directory listings and file contents</li>
+<li>A GitHub server exposes repository structure, branch lists, and file trees</li>
+<li>A project management server exposes issue lists, sprint boards, and team assignments</li>
+</ul>
+<p>Resources are <strong>pulled by the client</strong>, not pushed by the server. The AI client discovers what Resources are available and requests the ones it needs. This pull model means the AI only loads context that is relevant to the current task — an efficiency pattern that matters when context windows have token limits.</p>
+<pre><code class="language-typescript">// Minimal Resource implementation
+server.setResourceHandler(async (uri) =&gt; {
+  if (uri === &#39;config://app-settings&#39;) {
+    return {
+      contents: [{
+        uri: &#39;config://app-settings&#39;,
+        mimeType: &#39;application/json&#39;,
+        text: JSON.stringify(await loadSettings())
+      }]
+    }
+  }
+})
+</code></pre>
+<p>That is a complete Resource. Ten lines. The server exposes application settings as a readable JSON document. Any MCP client that connects to this server can now ask the AI: &quot;What are the current application settings?&quot; The AI reads the Resource and answers accurately — not from training data, but from live system data.</p>
+<hr>
+<h2>II. Tools: What the Server Can Do</h2>
+<p>A Tool is an action that the server can perform. Unlike Resources (read-only), Tools change state. They create, update, delete, deploy, send, query, and transform.</p>
+<p>Think of Tools as the hands of the AI. Resources are the eyes — the AI sees. Tools are the hands — the AI acts.</p>
+<p>Examples of Tools:</p>
+<ul>
+<li>A deployment server has a <code>deploy</code> Tool that pushes code to production</li>
+<li>A database server has a <code>query</code> Tool that executes SQL statements</li>
+<li>An email server has a <code>send_email</code> Tool that dispatches messages</li>
+<li>An image generation server has a <code>generate</code> Tool that creates visuals</li>
+</ul>
+<p>Tools have <strong>input schemas</strong> — JSON Schema definitions that describe what parameters the Tool accepts. This is critical: the schema tells the AI exactly what inputs are required, what types they should be, and what values are valid. The AI reads the schema and generates the correct input without the user needing to specify the format.</p>
+<pre><code class="language-typescript">// Minimal Tool implementation
+server.setToolHandler(async (name, args) =&gt; {
+  if (name === &#39;create-issue&#39;) {
+    const result = await github.createIssue({
+      title: args.title,
+      body: args.body,
+      labels: args.labels || []
+    })
+    return { content: [{ type: &#39;text&#39;, text: `Issue #${result.number} created` }] }
+  }
+})
+</code></pre>
+<p>Twelve lines. The server can now create GitHub issues. When a user says &quot;create an issue about the login bug,&quot; the AI reads the Tool&#39;s schema, generates the appropriate <code>title</code> and <code>body</code>, calls the Tool, and reports the result.</p>
+<p>The separation between Resources (read) and Tools (write) is a deliberate safety pattern. Resources cannot cause harm — they only expose information. Tools can cause harm — they change state. This separation allows fine-grained permission control: you can give an AI access to Resources without giving it access to Tools, or restrict which Tools are available in which contexts.</p>
+<hr>
+<h2>III. Prompts: What the Server Suggests</h2>
+<p>Prompts are pre-built instruction templates that the server provides to the AI client. They encode common workflows, best practices, and domain-specific patterns.</p>
+<p>Think of Prompts as recipes. Resources are ingredients (data). Tools are kitchen equipment (capabilities). Prompts are recipes that combine ingredients and equipment into specific outcomes.</p>
+<p>Examples of Prompts:</p>
+<ul>
+<li>A database server provides a Prompt template: &quot;Generate a SQL query for {table} that finds {criteria}&quot;</li>
+<li>A code review server provides: &quot;Review this code for {language} best practices, focusing on {area}&quot;</li>
+<li>A content server provides: &quot;Write a blog post about {topic} following the {style} voice guide&quot;</li>
+</ul>
+<pre><code class="language-typescript">// Minimal Prompt implementation
+server.setPromptHandler(async (name) =&gt; {
+  if (name === &#39;analyze-data&#39;) {
+    return {
+      messages: [{
+        role: &#39;user&#39;,
+        content: {
+          type: &#39;text&#39;,
+          text: &#39;Analyze the following dataset. Focus on trends, outliers, and actionable insights. Present findings as a structured report with sections for Summary, Key Findings, and Recommendations.&#39;
+        }
+      }]
+    }
+  }
+})
+</code></pre>
+<p>Prompts are the least-used primitive, but potentially the most powerful for teams. A well-designed Prompt library ensures that every team member gets consistent, high-quality AI interactions — regardless of their individual prompting skill. The Prompt encodes the organization&#39;s expertise into reusable templates.</p>
+<hr>
+<h2>IV. How the Three Primitives Work Together</h2>
+<p>A real-world example: a project management MCP server for Linear.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><code>issues://active</code> — list of active issues with status, assignee, priority</li>
+<li><code>projects://current</code> — current projects with milestones and deadlines</li>
+<li><code>team://members</code> — team members with roles and availability</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><code>create_issue</code> — creates a new issue with title, description, labels, assignee</li>
+<li><code>update_status</code> — changes an issue&#39;s status (todo → in_progress → done)</li>
+<li><code>add_comment</code> — adds a comment to an existing issue</li>
+</ul>
+<p><strong>Prompts:</strong></p>
+<ul>
+<li><code>sprint-planning</code> — &quot;Review active issues, suggest prioritization based on deadlines and dependencies&quot;</li>
+<li><code>standup-summary</code> — &quot;Summarize yesterday&#39;s progress, today&#39;s plan, and blockers for each team member&quot;</li>
+</ul>
+<p>With these three primitives configured, a user can say:</p>
+<p>&quot;What issues are blocking the release?&quot; → AI reads Resources, finds blocked issues
+&quot;Create a bug report for the login timeout&quot; → AI uses the create_issue Tool
+&quot;Run the standup summary&quot; → AI uses the Prompt template with current Resource data</p>
+<p>Three primitives. Infinite applications. The simplicity is the point.</p>
+<hr>
+<h2>V. The Design Principle</h2>
+<p>The three-primitive architecture is not an accident. It is a deliberate design choice that mirrors the most successful standards in computing:</p>
+<ul>
+<li><strong>HTTP</strong> has methods: GET (read), POST (create), PUT (update), DELETE (remove)</li>
+<li><strong>SQL</strong> has operations: SELECT (read), INSERT (create), UPDATE (modify), DELETE (remove)</li>
+<li><strong>MCP</strong> has primitives: Resources (read), Tools (act), Prompts (guide)</li>
+</ul>
+<p>Each of these standards succeeded because they reduced infinite complexity to a small number of composable operations. The power does not come from the individual operations — it comes from their composition. A single HTTP GET is trivial. Millions of HTTP GETs composed into the World Wide Web changed civilization.</p>
+<p>MCP&#39;s three primitives will follow the same trajectory. Each individual Resource, Tool, or Prompt is simple. Thousands of them, composed across hundreds of servers, connected to every AI client — that composition is what transforms AI from a conversation into an operating system for everything.</p>
+<p>Build with the primitives. The composition will emerge.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

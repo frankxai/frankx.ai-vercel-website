@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>gstack — AI Engineering Workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">gstack — AI Engineering Workflow</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack">gstack</a> / <span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>gstack — AI Engineering Workflow</h1>
+<p>gstack is a collection of SKILL.md files that give AI agents structured roles for
+software development. Each skill is a specialist: CEO reviewer, eng manager,
+designer, QA lead, release engineer, debugger, and more.</p>
+<h2>Available skills</h2>
+<p>Skills live in <code>.agents/skills/</code>. Invoke them by name (e.g., <code>/office-hours</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/office-hours</code></td>
+<td>Start here. Reframes your product idea before you write code.</td>
+</tr>
+<tr>
+<td><code>/plan-ceo-review</code></td>
+<td>CEO-level review: find the 10-star product in the request.</td>
+</tr>
+<tr>
+<td><code>/plan-eng-review</code></td>
+<td>Lock architecture, data flow, edge cases, and tests.</td>
+</tr>
+<tr>
+<td><code>/plan-design-review</code></td>
+<td>Rate each design dimension 0-10, explain what a 10 looks like.</td>
+</tr>
+<tr>
+<td><code>/design-consultation</code></td>
+<td>Build a complete design system from scratch.</td>
+</tr>
+<tr>
+<td><code>/review</code></td>
+<td>Pre-landing PR review. Finds bugs that pass CI but break in prod.</td>
+</tr>
+<tr>
+<td><code>/debug</code></td>
+<td>Systematic root-cause debugging. No fixes without investigation.</td>
+</tr>
+<tr>
+<td><code>/design-review</code></td>
+<td>Design audit + fix loop with atomic commits.</td>
+</tr>
+<tr>
+<td><code>/qa</code></td>
+<td>Open a real browser, find bugs, fix them, re-verify.</td>
+</tr>
+<tr>
+<td><code>/qa-only</code></td>
+<td>Same as /qa but report only — no code changes.</td>
+</tr>
+<tr>
+<td><code>/ship</code></td>
+<td>Run tests, review, push, open PR. One command.</td>
+</tr>
+<tr>
+<td><code>/document-release</code></td>
+<td>Update all docs to match what you just shipped.</td>
+</tr>
+<tr>
+<td><code>/retro</code></td>
+<td>Weekly retro with per-person breakdowns and shipping streaks.</td>
+</tr>
+<tr>
+<td><code>/browse</code></td>
+<td>Headless browser — real Chromium, real clicks, ~100ms/command.</td>
+</tr>
+<tr>
+<td><code>/setup-browser-cookies</code></td>
+<td>Import cookies from your real browser for authenticated testing.</td>
+</tr>
+<tr>
+<td><code>/careful</code></td>
+<td>Warn before destructive commands (rm -rf, DROP TABLE, force-push).</td>
+</tr>
+<tr>
+<td><code>/freeze</code></td>
+<td>Lock edits to one directory. Hard block, not just a warning.</td>
+</tr>
+<tr>
+<td><code>/guard</code></td>
+<td>Activate both careful + freeze at once.</td>
+</tr>
+<tr>
+<td><code>/unfreeze</code></td>
+<td>Remove directory edit restrictions.</td>
+</tr>
+<tr>
+<td><code>/gstack-upgrade</code></td>
+<td>Update gstack to the latest version.</td>
+</tr>
+</tbody></table>
+<h2>Build commands</h2>
+<pre><code class="language-bash">bun install              # install dependencies
+bun test                 # run tests (free, &lt;5s)
+bun run build            # generate docs + compile binaries
+bun run gen:skill-docs   # regenerate SKILL.md files from templates
+bun run skill:check      # health dashboard for all skills
+</code></pre>
+<h2>Key conventions</h2>
+<ul>
+<li>SKILL.md files are <strong>generated</strong> from <code>.tmpl</code> templates. Edit the template, not the output.</li>
+<li>Run <code>bun run gen:skill-docs --host codex</code> to regenerate Codex-specific output.</li>
+<li>The browse binary provides headless browser access. Use <code>$B &lt;command&gt;</code> in skills.</li>
+<li>Safety skills (careful, freeze, guard) use inline advisory prose — always confirm before destructive operations.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

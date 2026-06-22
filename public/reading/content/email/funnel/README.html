@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Six Primitives Primer — 10-day email course</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Six Primitives Primer — 10-day email course</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>funnel: build-first-ai-agent
+sequence: six-primitives-primer
+trigger: subscription to courses-waitlist with stream=six-primitives-primer</h2>
+<h1>Six Primitives Primer — 10-day email course</h1>
+<p>A daily-cadence drip course for free Primer subscribers. Each email teaches one
+primitive with a code sample, a concrete exercise, and one short case study.</p>
+<h2>Sequence overview</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Subject</th>
+<th>Primitive</th>
+<th>Soft CTA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Welcome — your handout is in the next email</td>
+<td>—</td>
+<td>Confirm download</td>
+</tr>
+<tr>
+<td>1</td>
+<td>What separates an agent from a chatbot</td>
+<td>(foundation)</td>
+<td>Reply with your stack</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Primitive 1: Model</td>
+<td>model</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Primitive 2: Tool</td>
+<td>tool</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Primitive 3: Memory (and why it&#39;s three primitives in disguise)</td>
+<td>memory</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Primitive 4: The Loop</td>
+<td>loop</td>
+<td>First mention of €7 Pack</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Primitive 5: The Spec — your Agent Card</td>
+<td>spec</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Primitive 6: Deploy</td>
+<td>deploy</td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Real example: shipping a research assistant in 90 minutes</td>
+<td>(synthesis)</td>
+<td>Workshop reminder</td>
+</tr>
+<tr>
+<td>9</td>
+<td>The transfer matrix — what changes between stacks</td>
+<td>(mastery preview)</td>
+<td>€7 Pack offer (gentle)</td>
+</tr>
+</tbody></table>
+<h2>Voice rules</h2>
+<ul>
+<li>Each email opens with a one-sentence hook.</li>
+<li>One concrete code sample per email (TypeScript).</li>
+<li>One named exercise the reader can do in 10 minutes.</li>
+<li>One short case study (real or composite — labeled honestly).</li>
+<li>Soft CTA only on Day 5 and Day 9. Day 5 = first mention. Day 9 = explicit but understated.</li>
+<li>Sign-off: &quot;— Frank&quot; — not Frank Riemer / FrankX / your AI assistant.</li>
+<li>600-900 words per email. Reading time stated.</li>
+</ul>
+<h2>What never appears</h2>
+<ul>
+<li>Manufactured urgency (&quot;only 24 hours&quot;)</li>
+<li>Personal-attack hooks (&quot;are you still struggling with...?&quot;)</li>
+<li>Caps-lock subject lines</li>
+<li>More than two CTAs in one email</li>
+<li>&quot;Unsubscribe&quot; treated as anything other than friendly</li>
+</ul>
+<h2>Files in this folder</h2>
+<ul>
+<li><code>00-welcome.md</code> — sent immediately after signup</li>
+<li><code>01-foundation.md</code> ... <code>09-transfer-matrix.md</code> — daily emails</li>
+</ul>
+<p>These are MARKDOWN SOURCE files. Frank converts to whichever email service
+(ConvertKit / Resend / Postmark) is selected. Subject line, preheader, and
+body are clearly separated.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

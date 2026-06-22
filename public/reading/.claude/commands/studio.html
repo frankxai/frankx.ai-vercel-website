@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/studio — Multimodal Production Pipeline</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/studio.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/studio — Multimodal Production Pipeline</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>studio.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: studio
+description: End-to-end multimodal production — turn a brief into a coherent set of images, video, and consistent characters via the Multimodal Studio (Higgsfield MCP).</h2>
+<h1>/studio — Multimodal Production Pipeline</h1>
+<p><strong>One brief in, a finished brand-locked asset set out. Images + video + consistent characters across 30+ models.</strong></p>
+<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════╗
+║                      MULTIMODAL STUDIO PIPELINE                        ║
+║         &quot;One connector. Stills, motion, and a character that stays.&quot;   ║
+╠══════════════════════════════════════════════════════════════════════╣
+║  BRIEF  →  ROUTE  →  CRAFT  →  GENERATE (async, parallel)  →  ASSEMBLE  ║
+╚══════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<p>This command activates the <code>multimodal-studio</code> skill and the <strong>Multimodal Director</strong> agent. Read the skill before generating; it holds the model matrix, prompt structure, and async lifecycle.</p>
+<h2>Step 0 — Connector check</h2>
+<p>Confirm the higgsfield MCP tools are available (<code>generate_image</code>, <code>generate_video</code>, <code>create_character</code>, <code>list_characters</code>, <code>get_generation_status</code>). If they&#39;re missing, stop and tell the operator:</p>
+<pre><code class="language-bash">claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp
+</code></pre>
+<p>Never fabricate an image or a URL.</p>
+<h2>Step 1 — BRIEF</h2>
+<p>Gather (infer from project context; ask only for gaps):</p>
+<ul>
+<li><strong>Goal &amp; placement</strong> — blog hero / OG card / IG reel / YouTube thumbnail / campaign set</li>
+<li><strong>Aspect ratio</strong> — derive from placement (see skill matrix); don&#39;t ask for pixels</li>
+<li><strong>Style</strong> — photoreal / 3D / illustration / minimalist / cinematic; inherit brand tokens if a brand skill is active</li>
+<li><strong>Character?</strong> — recurring subject that must stay consistent across assets</li>
+<li><strong>Modality</strong> — stills, video, or both</li>
+</ul>
+<h2>Step 2 — ROUTE</h2>
+<p>Pick models deliberately and state the choice in one line each:</p>
+<ul>
+<li>Photoreal people/products → <strong>Soul</strong> (4K)</li>
+<li>Stylized / illustration / in-image text → <strong>Flux / Seedream</strong></li>
+<li>Motion from a still → <strong>image→video</strong> (Kling / Hailuo / DoP)</li>
+<li>Text→video, complex scenes → <strong>Veo / Sora-class</strong></li>
+</ul>
+<h2>Step 3 — CRAFT</h2>
+<p>Build each prompt as <strong>Subject + Action + Setting + Composition + Lighting + Style + Technical</strong>. For video, describe camera move + subject motion + pacing explicitly. Inject brand palette/mood.</p>
+<h2>Step 4 — GENERATE (async + parallel)</h2>
+<ul>
+<li>For a recurring subject: <code>create_character</code> once → reuse its ID in every call.</li>
+<li>Submit independent assets in parallel, capture job IDs, poll <code>get_generation_status</code>.</li>
+<li>Download finished assets to the project&#39;s canonical asset path.</li>
+<li>On policy/failure: report, adjust, retry once.</li>
+</ul>
+<h2>Step 5 — ASSEMBLE</h2>
+<ul>
+<li>Verify the set reads as one campaign (same character ID, palette, lighting).</li>
+<li>Produce derivatives (hero → OG 1200×630, square 1080×1080, vertical 1080×1920).</li>
+<li>Run the AI-slop checklist; regenerate anything that fails.</li>
+<li>Log model + prompt + seed/job ID per keeper.</li>
+</ul>
+<h2>Usage</h2>
+<pre><code class="language-text">/studio hero image + 3 social cards + 5s teaser for the &quot;Agentic Creator OS&quot; launch post
+/studio a consistent course-instructor character, then 4 lesson thumbnails featuring her
+/studio animate this product still into a 5s cinematic loop
+</code></pre>
+<h2>Related</h2>
+<ul>
+<li><code>/generate-video</code> — video-first entry point</li>
+<li><code>/generate-images</code> — single-image / article-asset flow</li>
+<li><code>/infogenius</code> — research-grounded image prompts</li>
+<li><code>/create-music</code> — score the videos this produces</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

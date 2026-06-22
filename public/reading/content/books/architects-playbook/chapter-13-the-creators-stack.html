@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>The Creator's Stack</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/architects-playbook/chapter-13-the-creators-stack.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">The Creator's Stack</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Farchitects-playbook">architects-playbook</a> / <span>chapter-13-the-creators-stack.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>The Creator&#39;s Stack</h1>
+<blockquote>
+<p>&quot;Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.&quot;
+— Antoine de Saint-Exupéry</p>
+</blockquote>
+<hr>
+<p>Here is the complete technology stack that powers frankx.ai — a platform with 250+ production pages, 90+ articles, 15 books, 12,000+ songs, an education ecosystem serving four professional audiences, and an open-source operating system with seventy-five skills.</p>
+<p>The monthly cost is fifty dollars.</p>
+<hr>
+<h2>I. The Stack</h2>
+<pre><code>COMPUTE + HOSTING
+├── Vercel (Pro: $20/month)
+│   ├── Next.js 16 App Router — 250+ pages, SSG + SSR
+│   ├── Edge Functions — API routes, middleware
+│   ├── Blob Storage — PDFs, music files, assets
+│   ├── Analytics — traffic, Core Web Vitals
+│   └── SpeedInsights — performance monitoring
+│
+├── Railway ($5/month)
+│   ├── n8n — 9 automation workflows
+│   └── Background services — cron jobs, webhooks
+│
+└── Cloudflare (Free)
+    ├── DNS — domain management
+    └── CDN — edge caching
+
+AI LAYER
+├── Claude Pro ($20/month)
+│   ├── Claude Code — primary development tool
+│   ├── Claude Chat — writing, analysis, research
+│   └── MCP — 21 server connections
+│
+├── Suno (subscription)
+│   └── Music generation — 12,000+ tracks
+│
+└── Nano Banana MCP (pay-per-use)
+    └── Gemini 3 Pro Image — book covers, hero images
+
+DATA
+├── Supabase (Free tier)
+│   ├── PostgreSQL — structured data
+│   ├── Auth — NextAuth.js integration
+│   └── Realtime — live updates
+│
+├── Vercel Blob (included in Pro)
+│   ├── PDFs — 6 book downloads
+│   ├── Music — 61 MP3 files
+│   └── Products — digital assets
+│
+└── Git (Free)
+    ├── GitHub — code + content version control
+    └── 2 repos — dev + production
+
+AUTOMATION
+├── n8n (self-hosted on Railway)
+│   ├── Content Atomizer — blog → social distribution
+│   ├── Newsletter Engine — weekly dispatch via Resend
+│   ├── Morning Brief — daily intelligence
+│   ├── Mega Orchestrator — intent routing
+│   └── 5 more workflows
+│
+└── Claude Code Hooks
+    ├── Pre-commit — lint, format
+    ├── Quality gates — brand voice, author name
+    └── Session logging — trajectory capture
+
+EMAIL
+└── Resend (Free tier: 3K/month)
+    ├── Newsletter — weekly dispatch
+    ├── Welcome sequences — per-product onboarding
+    └── Transactional — PDF delivery, confirmations
+
+MONITORING
+├── Vercel Analytics (included)
+├── Vercel SpeedInsights (included)
+└── n8n execution logs
+</code></pre>
+<hr>
+<h2>II. What Each Component Does</h2>
+<p><strong>Vercel</strong> is the foundation. It hosts the Next.js application, serves 250+ statically generated pages, handles API routes through edge functions, stores binary assets in Blob storage, and provides analytics. The Pro tier at twenty dollars per month includes everything a creator needs — custom domains, unlimited bandwidth, team features, and production-grade infrastructure.</p>
+<p><strong>Railway</strong> runs the services that need to be always-on but do not need to be fast. n8n — the workflow automation platform — runs here, executing nine workflows that handle content distribution, newsletter generation, intelligence briefings, and system orchestration. Railway&#39;s pricing is usage-based; my nine workflows cost approximately five dollars per month.</p>
+<p><strong>Claude Pro</strong> is the intelligence layer. Claude Code is my primary development tool — used for writing code, creating content, generating books, and orchestrating deployments. Claude Chat handles analysis, research, and ideation. MCP connects Claude to twenty-one external services. Twenty dollars per month for the most capable AI system available.</p>
+<p><strong>Supabase</strong> provides the database and authentication layer. The free tier includes a PostgreSQL database, authentication via NextAuth.js, and real-time subscriptions. For a creator operation, the free tier is more than sufficient — my database stores user data, newsletter subscriptions, and content metadata.</p>
+<p><strong>Resend</strong> handles email. Three thousand emails per month on the free tier covers newsletter distribution, welcome sequences, and transactional messages (PDF delivery, purchase confirmations). The developer experience is excellent — React-based email templates that render consistently across clients.</p>
+<p><strong>Git</strong> provides version control for everything. Content, code, configuration, and planning documents are all version-controlled in two GitHub repositories — one private (development) and one public (production). This means every change is traceable, every mistake is reversible, and the entire system can be reconstructed from the repository alone.</p>
+<hr>
+<h2>III. What This Stack Replaces</h2>
+<table>
+<thead>
+<tr>
+<th>Enterprise Tool</th>
+<th>Monthly Cost</th>
+<th>Creator Stack Equivalent</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS/GCP hosting</td>
+<td>$500-5,000</td>
+<td>Vercel Pro</td>
+<td>$20</td>
+</tr>
+<tr>
+<td>Salesforce CRM</td>
+<td>$300+</td>
+<td>Supabase + custom forms</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Mailchimp/HubSpot</td>
+<td>$100-500</td>
+<td>Resend</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Zapier Pro</td>
+<td>$49-299</td>
+<td>n8n on Railway</td>
+<td>$5</td>
+</tr>
+<tr>
+<td>Adobe Creative Suite</td>
+<td>$55-85</td>
+<td>Gemini Image + Suno</td>
+<td>~$5</td>
+</tr>
+<tr>
+<td>Contentful/Sanity CMS</td>
+<td>$100-500</td>
+<td>MDX files in Git</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>DataDog/New Relic</td>
+<td>$200-1,000</td>
+<td>Vercel Analytics</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Notion/Confluence</td>
+<td>$10-20/user</td>
+<td>Markdown in Git</td>
+<td>$0</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>$1,300-7,400</strong></td>
+<td><strong>Total</strong></td>
+<td><strong>~$50</strong></td>
+</tr>
+</tbody></table>
+<p>The ratio is approximately 1:100. The enterprise stack costs one hundred times more for similar capabilities at the individual scale.</p>
+<hr>
+<h2>IV. The Design Principles</h2>
+<p>Five principles govern every technology decision in this stack:</p>
+<p><strong>1. Managed over self-hosted.</strong> If someone else will run the infrastructure, let them. Vercel manages hosting. Supabase manages the database. Resend manages email delivery. My job is to create, not to maintain servers.</p>
+<p><strong>2. Free tiers are real products.</strong> Supabase&#39;s free tier is not a demo — it is a production-grade PostgreSQL database. Resend&#39;s free tier is not a trial — it sends real emails. Vercel&#39;s free tier is not a toy — it hosts real websites. Use free tiers until you outgrow them. Most creators never will.</p>
+<p><strong>3. Markdown is the universal format.</strong> Every piece of content in this system is markdown — blog posts, book chapters, documentation, planning files. Markdown is human-readable, version-controllable, portable, and understood by every tool in the stack. No proprietary format locks. No migration costs. No vendor dependency.</p>
+<p><strong>4. Git is the system of record.</strong> If it is not in git, it does not exist. Code, content, configuration, and planning — all version-controlled. This means complete history, easy rollback, collaborative workflows, and the confidence that comes from knowing the system can be rebuilt from a single repository clone.</p>
+<p><strong>5. AI handles the mechanical work.</strong> The stack is designed to let AI do what AI does well — write code, generate content, automate workflows — while I do what I do well — make decisions, set direction, maintain quality standards, and create original work that no AI can produce from training data alone.</p>
+<hr>
+<h2>V. Building Your Version</h2>
+<p>You do not need this exact stack. You need the principles.</p>
+<p>Start with three components:</p>
+<ol>
+<li><strong>A hosting platform</strong> — Vercel (free tier)</li>
+<li><strong>An AI tool</strong> — Claude Pro ($20/month)</li>
+<li><strong>Version control</strong> — GitHub (free)</li>
+</ol>
+<p>This gives you a website, an intelligence layer, and a system of record. Total cost: twenty dollars per month. Total capability: you can build, deploy, and iterate on any digital product.</p>
+<p>Add components only when you need them:</p>
+<ul>
+<li>Need a database? Add Supabase (free)</li>
+<li>Need email? Add Resend (free)</li>
+<li>Need automation? Add n8n on Railway ($5/month)</li>
+<li>Need music? Add Suno (subscription)</li>
+<li>Need images? Add Nano Banana MCP (pay-per-use)</li>
+</ul>
+<p>Each addition solves a specific problem. No addition is made speculatively. The stack grows as the work demands it, not as the technology marketing suggests.</p>
+<p>The creator&#39;s stack is not about having more tools. It is about having the right tools, connected intelligently, at a cost that makes the work sustainable indefinitely.</p>
+<p>Fifty dollars per month. Everything you need. Nothing you don&#39;t.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

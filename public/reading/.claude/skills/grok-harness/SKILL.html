@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Grok Harness (ACOS + Grok Build)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/grok-harness/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Grok Harness (ACOS + Grok Build)</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgrok-harness">grok-harness</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: grok-harness
+description: &quot;Grok Build (xAI CLI/TUI) harness integration for ACOS. Full native support via grok-harness-adapter: .grok/skills/ seeds (grok-personal excellence 4: harness-integration/excellence-review/repo-mastery/multi-harness-orchestrator), .grok/hooks/ (2 excellence json), GROK.md + AGENTS.md compat, subagents, MCP (github/fs-starlight/git), image/video gen. Use when working in Grok TUI, detecting .grok/, running install --platform=grok, or needing harness-specific patterns + multi-fleet delegation. Loads with excellence gates always.&quot;
+tags: [&quot;core&quot;, &quot;harness&quot;, &quot;grok&quot;, &quot;adapter&quot;, &quot;xai&quot;, &quot;multi-platform&quot;]</h2>
+<h1>Grok Harness (ACOS + Grok Build)</h1>
+<p>Grok Build (xAI Grok CLI/TUI) is a first-class harness in the 5-fleet (Claude canonical, Grok, Antigravity/AGY, Gemini, Codex). ACOS provides deep integration via <code>grok-harness-adapter</code> (adapters/grok/index.ts + install.sh --platform=grok).</p>
+<h2>Quick Start in Grok</h2>
+<pre><code class="language-bash"># From any project
+./install.sh --platform=grok   # or in ACOS source itself
+
+# Then:
+grok
+/hooks-trust
+/skills harness-integration
+# or just describe: &quot;use repo-mastery on this ACOS change + gstack qa if UI&quot;
+</code></pre>
+<p>Grok loads (priority):</p>
+<ul>
+<li>Project: GROK.md + .grok/skills/ (highest) + .grok/hooks/ + .grok/agents/</li>
+<li>Global: ~/.grok/skills/ + ~/.grok/hooks/</li>
+<li>Compat: ~/.claude/skills/ + ~/.claude/ (full ACOS catalog via junctions)</li>
+</ul>
+<h2>The 4 grok-personal .grok-Only Excellence Seeds (SIP §5 encoded-self; .grok ONLY)</h2>
+<p>Per SHARING.md + SIP, these stay ONLY in project .grok/skills/ (never in ACOS core .claude or shared flat catalog):</p>
+<ol>
+<li><strong>harness-integration</strong> — SessionStart excellence + PreToolUse gates + auto repo-mastery + multi-delegate + claude compat.</li>
+<li><strong>excellence-review</strong> — God 99 gates: repo-mastery + plan-*-review + verification-loop + santa-method + gstack (qa/browse/design) + cso.</li>
+<li><strong>repo-mastery</strong> — Deep ACOS/FrankX/SIS/Arcanea ecosystem map. Read rules first (CLAUDE/AGENTS/GROK.md). Use MCP github/fs-starlight + subagents.</li>
+<li><strong>multi-harness-orchestrator</strong> — Detect task → choose best harness (claude for heavy plan/eng) → emit exact shell cmd with full injected context (rules + DNA + partition filter + gstack/santa).</li>
+</ol>
+<ul>
+<li>2 .grok/hooks/ json ONLY (for /hooks-trust):</li>
+</ul>
+<ul>
+<li>session-start-excellence.json</li>
+<li>pretooluse-excellence.json</li>
+</ul>
+<p>Core ACOS (gstack, santa, verification, brand-voice, mcp-architecture, nextjs-*, etc.) reach Grok via .claude/ compat junctions. See <code>adapters/grok/index.ts:getGrokSeeds()</code> and <code>install_grok()</code> in install.sh for generator.</p>
+<h2>Architecture: Full Stack</h2>
+<pre><code>User Intent (Grok TUI / natural)
+    ↓
+Grok native: /skills, /task (subagents: explore/plan/general), MCP (search_tool/use_tool), image/video, terminal/pwsh, edit
+    ↓ (auto via seeds/hooks)
+harness-integration + excellence-review (grok-personal .grok-only seeds)
+    ↓
+repo-mastery (read CLAUDE.md/AGENTS.md/GROK.md first; deeper wins)
+    ↓
+ACOS substrate: skill-rules (if compat), commands (/acos router), 90+ skills, 38 agents, workflows
+    ↓ (delegation)
+multi-harness-orchestrator → e.g. `claude -p &quot;$(cat CLAUDE.md; cat SHARING.md) &lt;task&gt; — apply gstack + santa + repo-mastery&quot; --cwd ...`
+    ↓
+SIP substrate (Starlight Intelligence Protocol) + memory/MCP cross-repo
+    ↓
+Output with evidence (gstack screenshots, metrics, atomic commits, SIP attest)
+</code></pre>
+<p><strong>5-Fleet Parity + Partition (core vs grok-personal vs personal-creative):</strong></p>
+<ul>
+<li>Grok personal excellence: the exact 4 seeds + 2 json hooks (.grok only, &quot;a bit magical&quot; opt-in per SIP §5).</li>
+<li>Core/shared: everything else (gstack, ACOS commands/skills/agents, mcp-*, frankx-brand). Via .claude/ junctions from ACOS + claude-code-config + SIS.</li>
+<li>Use <code>/sip-share-audit</code> (or equiv) before moving anything across.</li>
+</ul>
+<p>Grok strengths leveraged: real-time TUI, subagents (with persona/capability_mode/read-only/worktree/resume_from), MCP discovery (search_tool then use_tool), built-in gen (Imagine + video), strong native terminal/grep/edit.</p>
+<h2>Excellence Gates (Mandatory — God 99)</h2>
+<p>Before any edit, PR, ship, or structural rec:</p>
+<ol>
+<li>repo-mastery (inventory + read all rules files)</li>
+<li>plan reviews (ceo/eng/design via subagent or delegate)</li>
+<li>verification-loop + santa-method (adversarial dual pass)</li>
+<li>gstack (browse/qa/design-review/benchmark for UI/web/perf; screenshots)</li>
+<li>cso/security-auditor if data/auth</li>
+<li>rules-distill + skill-comply</li>
+<li>Post: document-release + log</li>
+</ol>
+<p>Never ship without evidence. &quot;Show don&#39;t tell.&quot;</p>
+<h2>MCP in Grok (for repo-mastery / cross-starlight)</h2>
+<ul>
+<li>Discovery: <code>search_tool &quot;github&quot;</code> or &quot;fs-starlight&quot; or &quot;git&quot;</li>
+<li>Call: <code>use_tool &quot;github__search_issues&quot; ...</code> (full qualified)</li>
+<li>github: frankxai org (agentic-creator-os, Starlight-Intelligence-System, frankx.ai-vercel-website, claude-code-config, arcanea-*, kura, ...)</li>
+<li>fs-starlight: starlight/ (repos/, .claude/, scratch/)</li>
+<li>Fallback: gh CLI (auth as frankxai), terminal git, native list_dir/read_file/grep/search_replace</li>
+</ul>
+<p>See global <code>grok-harness-adapter</code> skill + <code>mcp-architecture</code> for patterns.</p>
+<h2>Commands / Natural Usage in Grok</h2>
+<ul>
+<li><code>/skills grok-harness</code> or &quot;grok support&quot; → this skill</li>
+<li><code>/skills harness-integration</code> (if seeded) or &quot;setup harness&quot;</li>
+<li><code>/skills repo-mastery</code> + &quot;on agentic-creator-os + changes for Grok&quot;</li>
+<li><code>/skills excellence-review</code></li>
+<li>Natural: &quot;Write a blog... &quot; → content-strategy (via ACOS compat)</li>
+<li>&quot;QA the site with gstack&quot; → gstack-*</li>
+<li>Delegate heavy: &quot;use claude for the plan review&quot;</li>
+</ul>
+<p>See adapters/grok/index.ts for parseGrokCommand, GROK_SKILL_MAPPINGS, processGrokInput (maps native /skills + ACOS natural → workflows/excellence).</p>
+<h2>Related</h2>
+<ul>
+<li><code>adapters/grok/</code> (index.ts programmatic: isGrok, generateGrokContext, getGrokSeeds, installGrokPlatform)</li>
+<li><code>install.sh --platform=grok</code> (and --platform=all)</li>
+<li><code>CLAUDE.md</code> (Grok section + full ACOS)</li>
+<li><code>AGENTS.md</code></li>
+<li><code>adapters/README.md</code> (parity table)</li>
+<li>Global: <code>~/.claude/skills/grok-harness-adapter/SKILL.md</code> (detailed setup, delegation examples, MCP)</li>
+<li>SIP / SHARING.md (partition rules; read first on cross)</li>
+<li><code>gstack</code> (all QA; injected for Grok)</li>
+</ul>
+<h2>For ACOS Contributors</h2>
+<p>When enhancing harness:</p>
+<ul>
+<li>Update BOTH adapters/grok/index.ts (TS source for programmatic) AND the inline seeds in install.sh:install_grok (bash runtime) — keep identical.</li>
+<li>Update this skill + CLAUDE.md + README.md + AGENTS.md</li>
+<li>Test: <code>./install.sh --platform=grok --target /tmp/acos-grok-test &amp;&amp; ls /tmp/acos-grok-test/.grok/skills/</code></li>
+<li>Never leak the 4+2 grok-personal seeds into .claude/skills/ or ACOS published files.</li>
+<li>Add tests/scripts if extending adapter.</li>
+<li>Run excellence gates + gstack verification on changes.</li>
+</ul>
+<p><strong>Built on SIP v1.1.1</strong> (starlightintelligence.org/protocol). 5-fleet. Small reversible. God 99.</p>
+<p>Frank DNA: premium, measurable, actionable, direct/technical/warm/playful. Use this harness for TUI speed + MCP depth on starlight work.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

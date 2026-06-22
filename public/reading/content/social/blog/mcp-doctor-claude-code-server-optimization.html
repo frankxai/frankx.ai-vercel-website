@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>I Had 18 Broken MCP Servers — So I Built a Doctor</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/social/blog/mcp-doctor-claude-code-server-optimization.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">I Had 18 Broken MCP Servers — So I Built a Doctor</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fsocial">social</a> / <a href="index.html#content%2Fsocial%2Fblog">blog</a> / <span>mcp-doctor-claude-code-server-optimization.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>slug: &quot;mcp-doctor-claude-code-server-optimization&quot;
+title: &quot;I Had 18 Broken MCP Servers — So I Built a Doctor&quot;
+socialTitle: &quot;MCP Doctor for Claude Code&quot;
+angle: &quot;developer&quot;
+qualityScore: 8
+qualityTier: &quot;premium&quot;
+hero: &quot;/images/blog/generated/mcp-doctor-claude-code-server-optimization-premium-hero.png&quot;
+socialWide: &quot;/images/social/blog/mcp-doctor-claude-code-server-optimization/wide.png&quot;
+socialSquare: &quot;/images/social/blog/mcp-doctor-claude-code-server-optimization/square.png&quot;
+socialPortrait: &quot;/images/social/blog/mcp-doctor-claude-code-server-optimization/portrait.png&quot;
+postUrl: &quot;<a href="https://www.frankx.ai/blog/mcp-doctor-claude-code-server-optimization">https://www.frankx.ai/blog/mcp-doctor-claude-code-server-optimization</a>&quot;
+generatedMode: &quot;built-in-image-gen + deterministic social overlays&quot;</h2>
+<h1>I Had 18 Broken MCP Servers — So I Built a Doctor</h1>
+<h2>LinkedIn Post</h2>
+<p>How a messy Claude Code MCP configuration led to building mcp-doctor, a free open-source tool that diagnoses, optimizes, and manages your MCP server setup.</p>
+<p>The real leverage is not the tool by itself. It is the operating layer around it: context, workflow, evals, deployment discipline, and a taste bar high enough to reject generic outputs.</p>
+<p>Read: <a href="https://www.frankx.ai/blog/mcp-doctor-claude-code-server-optimization">https://www.frankx.ai/blog/mcp-doctor-claude-code-server-optimization</a></p>
+<h2>X Thread</h2>
+<ol>
+<li>I Had 18 Broken MCP Servers — So I Built a Doctor</li>
+<li>The useful question: what changes in the workflow when this becomes part of a repeatable system?</li>
+<li>Look for the stack: inputs, context, tools, memory, evals, deployment, and trust.</li>
+<li>The teams that win will turn experiments into operating leverage, not demo theater.</li>
+<li>Full field note: <a href="https://www.frankx.ai/blog/mcp-doctor-claude-code-server-optimization">https://www.frankx.ai/blog/mcp-doctor-claude-code-server-optimization</a></li>
+</ol>
+<h2>Short Caption</h2>
+<p>I Had 18 Broken MCP Servers — So I Built a Doctor — a FrankX field note for developers building with AI systems in 2026.</p>
+<h2>Founder / Investor Angle</h2>
+<p>Watch the workflow, not the headline. The signal is whether this creates repeatable leverage, lower coordination cost, better diligence, faster shipping, or a defensible operating cadence.</p>
+<h2>Developer Angle</h2>
+<p>Treat it as architecture: define context boundaries, tool permissions, evals, failure modes, and deployment paths before scaling usage.</p>
+<h2>Builder Takeaway</h2>
+<p>Ship one narrow loop, instrument it, improve the taste bar, then expand the system only where it compounds.</p>
+<h2>Visual Prompt</h2>
+<p>Built-in image_gen premium FrankX hero: I Had 18 Broken MCP Servers — So I Built a Doctor. Diagnostic optimization bay; visually distinct from the architecture pieces. Dark-first obsidian cinematic technical editorial; emerald/cyan spectrum with restrained amber; no readable text, no letters, no logos, no people, no robots, no watermark, no generic AI brain, no stock-photo laptop composition.</p>
+<h2>Rejection Notes</h2>
+<p>Rejected or avoided: stock people/laptops, fake logos, readable text artifacts, purple glow wallpaper, AI brain motifs, and weak mobile framing.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

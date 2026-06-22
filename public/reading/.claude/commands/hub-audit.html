@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/hub-audit — Single-Hub Excellence Sweep</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/hub-audit.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/hub-audit — Single-Hub Excellence Sweep</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>hub-audit.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<p>name: hub-audit
+description: Quarterly excellence sweep on one site hub. Composes /v (Vercel swarm) + /seo-check + /vis-audit + brand voice gate + design-gods review against a single public route. Raises the floor on every hub without re-inventing the prompt.
+triggers:</p>
+<ul>
+<li>/hub-audit</li>
+<li>/audit-hub
+arguments:</li>
+<li>name: hub
+required: true
+enum: [library, studio, watch, workshops, research, partnerships, papa, os, intelligence-system, familie, prompt-library, blog, newsletter]
+description: Which hub to audit (must be a top-level public route on frankx.ai)</li>
+<li>name: mode
+required: false
+enum: [quick, deep]
+default: quick
+description: quick = read-only audit + recommendations. deep = also generates a fix manifest with file:line diffs.</li>
+</ul>
+<hr>
+<h1>/hub-audit — Single-Hub Excellence Sweep</h1>
+<p>The site has 9+ public hubs. Without a scheduled audit, excellence is implicit (worked on the day it shipped, drifts thereafter). This command runs <strong>all the gates against one hub on rotation</strong> — Saturday by default in the weekly cadence.</p>
+<h2>When to run</h2>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Saturday rotation</td>
+<td>Cycle through hubs week-by-week (Library → Studio → Watch → Workshops → Research → Partnerships → Papa → OS → repeat)</td>
+</tr>
+<tr>
+<td>Pre-launch</td>
+<td>Audit Inner Circle before June 1 launch, audit Newsletter before Issue 1 send</td>
+</tr>
+<tr>
+<td>Post-major-edit</td>
+<td>Any time a hub gets 5+ files changed</td>
+</tr>
+<tr>
+<td>Bug report</td>
+<td>Reader/operator surfaces a brand, performance, or accessibility issue</td>
+</tr>
+</tbody></table>
+<h2>What it composes</h2>
+<pre><code>                         /hub-audit &lt;hub&gt;
+                                │
+        ┌─────────────────┬─────┴─────┬──────────────────┐
+        ▼                 ▼           ▼                  ▼
+    /v BUILD          /seo-check   /vis-audit       brand-voice
+   (Lighthouse,      (schema,      (image          gate (banned
+    a11y, perf,       FAQs, meta,   registry,       phrases, AI-slop,
+    bundle size)      AEO, OG)      alt text,       Arcanea-leak
+                                    LCP imgs)       on FrankX surfaces)
+                                │
+                                ▼
+                       @design-gods review
+                       (taste.md 8-step polish pass +
+                        baseline-ui + ui-ux-pro-max
+                        acceptance criteria)
+                                │
+                                ▼
+                       Verdict report:
+                       PASS  / WARN N / FAIL N
+                       + per-finding file:line + fix priority
+</code></pre>
+<h2>Acceptance criteria (gates that must pass)</h2>
+<ol>
+<li><strong>Performance</strong> — LCP ≤ 2.5s, CLS ≤ 0.1, INP ≤ 200ms, Lighthouse Performance ≥ 90.</li>
+<li><strong>Accessibility</strong> — WCAG 2.2 AA. Lighthouse a11y ≥ 95. Color contrast ≥ 4.5:1 for body text, ≥ 3:1 for large text + UI.</li>
+<li><strong>SEO + AEO</strong> — H1 unique. H2s question-based where appropriate. FAQ schema if FAQ exists. Article/CollectionPage/Review schema as appropriate. OG image present, 1200×630, ≤ 200KB.</li>
+<li><strong>Internal linking</strong> — every page on the hub links to ≥ 3 related pages + ≥ 1 conversion surface (Inner Circle / Newsletter / Waitlist).</li>
+<li><strong>Brand voice</strong> — no banned phrases (delve, dive into, certainly, absolutely, it&#39;s worth noting). No &quot;AI Systems Architect&quot; (must be &quot;AI Architect&quot;). No Arcanean mythology unless route is <code>/ultraworld/*</code>.</li>
+<li><strong>Visual quality</strong> — all hero images ≥ 2K res. No placeholder strings. Alt text present + descriptive. Registry entry in <code>data/vault-manifest.json</code>.</li>
+<li><strong>Design contract</strong> — tokens from <code>design.md</code> honored. The 8-step <code>taste.md</code> polish pass scored ≥ 7/10.</li>
+<li><strong>Conversion</strong> — every detail page has ≥ 1 primary CTA above the fold. CTAs route to one of the three waitlist surfaces.</li>
+</ol>
+<h2>Workflow</h2>
+<h3>Step 1: Discover the hub surface</h3>
+<pre><code class="language-bash"># Get all routes under the hub
+find app/&lt;hub&gt; -name &quot;page.tsx&quot; -o -name &quot;page.mdx&quot; | head -50
+
+# Get all components for the hub
+find components/&lt;hub&gt; -type f 2&gt;/dev/null | head -50
+
+# Get all content
+find content/&lt;hub&gt; -type f 2&gt;/dev/null | head -50
+</code></pre>
+<p>Quote the count of routes + components + content files.</p>
+<h3>Step 2: Dispatch the gates in parallel</h3>
+<pre><code>Task @nextjs-vercel-deployment + @performance-guardian → /v BUILD audit on the hub root + 3 sample detail pages
+Task /seo-check on hub root + index page (schema, meta, OG, AEO)
+Task @visual-vis-registry → registry audit for hub images
+Task brand-voice gate → grep for banned phrases + brand violations across hub files
+Task @visual-design-gods → design review against taste.md against 2 representative routes
+</code></pre>
+<p>Run all in parallel — no dependencies between them.</p>
+<h3>Step 3: Synthesize findings</h3>
+<p>Aggregate into one report:</p>
+<pre><code class="language-markdown"># /hub-audit &lt;hub&gt; — 2026-MM-DD
+
+**Hub:** /&lt;hub&gt;
+**Routes audited:** N
+**Verdict:** PASS / WARN (X warnings) / FAIL (X failures)
+
+## Gates
+| Gate | Score | Verdict |
+|---|---|---|
+| Performance | LCP 1.8s / CLS 0.04 / INP 120ms | PASS |
+| Accessibility | Lighthouse 97 | PASS |
+| SEO + AEO | 4/5 pages have schema | WARN (1 missing on /&lt;hub&gt;/&lt;slug&gt;) |
+| Internal linking | avg 4.2 links/page | PASS |
+| Brand voice | 0 banned phrases | PASS |
+| Visual quality | 2 hero images &lt; 2K | WARN |
+| Design contract | taste score 8/10 | PASS |
+| Conversion | 1 page missing CTA above fold | WARN |
+
+## Findings (priority order)
+1. [SAFE] file.tsx:42 — Hero image is 1024×683, regenerate at 2K via /infogenius
+2. [SAFE] file.tsx:88 — Missing CTA above fold on /&lt;hub&gt;/&lt;slug&gt;
+3. [DECIDE] file.tsx:7 — JSON-LD missing on this page; Frank confirms type
+
+## Fix manifest
+[deep mode only — unified diffs written to .agent/audits/&lt;date&gt;-hub-&lt;hub&gt;.md]
+</code></pre>
+<h3>Step 4: Write report + handover</h3>
+<ul>
+<li>Quick mode: write to <code>.agent/audits/2026-MM-DD-hub-&lt;hub&gt;.md</code> and post summary to chat.</li>
+<li>Deep mode: also write fix-manifest diffs to the same file, leave them un-applied. Frank reviews + approves chunk by chunk.</li>
+</ul>
+<h3>Step 5: Update memory</h3>
+<p>If the hub passed all gates, note it in MEMORY.md as a recently-audited hub. Next rotation skips it for 2 weeks.</p>
+<h2>Token discipline</h2>
+<ul>
+<li>Quick mode: ≤ 5k input (per-route reads), ≤ 1.5k output (synthesized report only).</li>
+<li>Deep mode: full budget — runs once per quarter per hub.</li>
+</ul>
+<h2>Anti-patterns</h2>
+<ul>
+<li>❌ Don&#39;t audit /ultraworld/* with the brand-voice gate enabled — that route is the intentional Arcanea quarantine.</li>
+<li>❌ Don&#39;t auto-apply fixes — even in deep mode. Operator review is mandatory.</li>
+<li>❌ Don&#39;t audit more than 1 hub per session (token + focus pollution).</li>
+<li>❌ Don&#39;t run if the merge gate is currently failing — fix the gate first, then audit.</li>
+</ul>
+<h2>v1 known gaps (from first pilot 2026-05-20 on /library)</h2>
+<p>Surfaced during real execution against /library. To be addressed in v2:</p>
+<ol>
+<li><strong>Performance gate is partial without Lighthouse</strong> — without a real deploy, gate 1 falls back to code-auditable checks: Next.js Image usage on hero/cover images, lazy-load on below-fold assets, no render-blocking third-party scripts above fold. For full LCP / CLS / INP numbers, run after a Vercel preview deploy.</li>
+<li><strong>&quot;Primary CTA&quot; needs explicit definition</strong> — for v1 interpretation: a link or button with <code>cta</code> / <code>button-primary</code> / <code>call-to-action</code> class semantics, above the first viewport scroll, routing to a gravity surface (<code>/inner-circle</code>, <code>/newsletter</code>, <code>/waitlist</code>, or hub-internal next step). Secondary CTAs (related-item links, Amazon affiliate links) don&#39;t count.</li>
+<li><strong>Brand-voice gate should grep thematic leakage</strong>, not just literal strings — Arcanea mythology can sneak in via &quot;the Construct&quot;, &quot;Third Age&quot;, &quot;Archons&quot; even when &quot;Realm/Seeker/Gate&quot; aren&#39;t used. Add a thematic blocklist alongside the literal one.</li>
+<li><strong>Add vault-manifest validation</strong> — every hub image should have an entry in <code>data/vault-manifest.json</code> (alt text, resolution, source). Currently checked manually; gate 6 should automate.</li>
+<li><strong>Design contract scoring needs the rubric inline</strong> — gate 7 (<code>taste.md</code> 8-step polish pass) requires reading <code>taste.md</code> as input. Either resolve at command-load time or pass via argument.</li>
+</ol>
+<p>These are not blockers; the v1 spec runs and produces actionable findings (the /library pilot returned PASS with 3 P1 recommendations + 3 P2 polish notes). v2 is a quarterly improvement, not a hotfix.</p>
+<h2>v2 spec (drafted 2026-05-21 after 6 pilots)</h2>
+<p>After 6 pilots — 5 PASS + 1 WARN across 4 hub archetypes — three new dimensions surfaced that v1 doesn&#39;t handle.</p>
+<h3>1. <code>--archetype</code> parameter (mandatory in v2)</h3>
+<p>v1 conflates all hubs under one lens. /papa hub revealed this: conversion gate would mis-flag a memorial hub as failing for not having &quot;Join now&quot; CTAs above the fold. v2 accepts archetype context:</p>
+<pre><code>/hub-audit &lt;hub&gt; --archetype &lt;type&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Archetype</th>
+<th>Conversion gate calibration</th>
+<th>Brand-voice calibration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>product</code></td>
+<td>gravity-surface CTAs above fold = REQUIRED</td>
+<td>marketing register = OK</td>
+</tr>
+<tr>
+<td><code>authority</code></td>
+<td>thought leadership CTAs = OK, no hard-sell expected</td>
+<td>technical / reflective = OK</td>
+</tr>
+<tr>
+<td><code>memorial</code></td>
+<td>NO gravity-surface CTAs above fold = EXPECTED</td>
+<td>reflective / familial = REQUIRED</td>
+</tr>
+<tr>
+<td><code>family</code></td>
+<td>private archive routes noindex&#39;d = REQUIRED</td>
+<td>warm / intimate = OK</td>
+</tr>
+<tr>
+<td><code>personal</code></td>
+<td>minimal funnel = EXPECTED</td>
+<td>first-person = REQUIRED</td>
+</tr>
+</tbody></table>
+<p>Default if omitted: <code>product</code> (most common; same as v1 behavior).</p>
+<h3>2. Multilingual parity check (new dimension)</h3>
+<p>/papa hub revealed multilingual design as either translation-parity OR intentional asymmetry:</p>
+<table>
+<thead>
+<tr>
+<th>Parity model</th>
+<th>Use case</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>full-parity</code></td>
+<td>product hubs (marketing must reach all markets)</td>
+<td>DE/EN content identical; both indexed</td>
+</tr>
+<tr>
+<td><code>bridge-parity</code></td>
+<td>memorial / authority secondary language</td>
+<td>secondary language = summary/pointer; canonical correct</td>
+</tr>
+<tr>
+<td><code>market-specific</code></td>
+<td>features available only in primary language</td>
+<td>hreflang declares scope</td>
+</tr>
+</tbody></table>
+<p>v2 spec: declare parity model in hub config; audit checks against it.</p>
+<h3>3. Component-level findings (new tag)</h3>
+<p>/studio pilot revealed: one component (<code>ProducerPlaceholderPage</code>) had one bug, but 7 pages inherited it. v1 reported as N separate findings on N pages. v2 tags as <code>[COMPONENT]</code> so the operator sees the leverage point:</p>
+<pre><code>P0: [COMPONENT] components/studio/ProducerPlaceholderPage.tsx
+    Affects 7 pages: /studio/{audio,music,prose,screen,food,travel,video}-producer
+    Fix: add primaryCta prop with smart default routing
+</code></pre>
+<h3>4. Archetype-specific gates (new)</h3>
+<ul>
+<li><strong>research/authority archetype</strong> — sub-gate 6.5 &quot;Research authority&quot;: validate <code>evidenceGrade</code> + <code>sourceCount</code> in JSON-LD if hub claims research grounding</li>
+<li><strong>partner-relationship archetype</strong> — sub-gate &quot;Relationship-status rendering consistency&quot;: every declared status (active / in-conversation / placeholder) has a corresponding UI state; no orphaned configs</li>
+<li><strong>memorial archetype</strong> — sub-gate &quot;Family-archive privacy&quot;: routes that hold family-contributed material default to page-level <code>robots: noindex</code></li>
+</ul>
+<h3>5. <code>--aggregate</code> flag (new mode)</h3>
+<p>After 6 pilots there are 6 individual audit reports at <code>.agent/audits/</code>. v2 adds:</p>
+<pre><code>/hub-audit --aggregate
+</code></pre>
+<p>Reads all pilot reports, produces site-wide excellence summary:</p>
+<ul>
+<li>Pass-rate by archetype</li>
+<li>Pattern recognition across hubs (e.g., &quot;5 of 6 hubs have OG image at correct size; outlier is /studio&quot;)</li>
+<li>Trending issues (e.g., &quot;vault-manifest coverage incomplete across 4 of 6 hubs&quot;)</li>
+<li>Stale audits (hubs not re-audited in &gt; 90 days)</li>
+</ul>
+<h3>6 pilots that produced the v2 spec</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Hub</th>
+<th>Verdict</th>
+<th>Archetype</th>
+<th>Key learning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>/library</td>
+<td>PASS</td>
+<td>authority</td>
+<td>v1 baseline works</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/workshops</td>
+<td>PASS</td>
+<td>product</td>
+<td>consistency holds</td>
+</tr>
+<tr>
+<td>3</td>
+<td>/research</td>
+<td>PASS</td>
+<td>authority</td>
+<td>TechArticle schema validated</td>
+</tr>
+<tr>
+<td>4</td>
+<td>/studio</td>
+<td>WARN</td>
+<td>product</td>
+<td>component-level findings + first WARN validates honesty</td>
+</tr>
+<tr>
+<td>5</td>
+<td>/partnerships</td>
+<td>PASS</td>
+<td>product (relationship)</td>
+<td>relationship-status dimension surfaced</td>
+</tr>
+<tr>
+<td>6</td>
+<td>/papa</td>
+<td>PASS</td>
+<td>memorial</td>
+<td>archetype parameter requirement surfaced</td>
+</tr>
+</tbody></table>
+<h2>Composition</h2>
+<p>Calls (via Task tool):</p>
+<ul>
+<li><code>@nextjs-vercel-deployment</code> + <code>@performance-guardian</code> (the /v swarm specialists for build + perf)</li>
+<li><code>/seo-check</code> (schema + AEO + meta validation)</li>
+<li><code>@visual-vis-registry</code> + <code>@visual-design-gods</code> (visual surface)</li>
+<li><code>@accessibility-auditor</code> (WCAG 2.2 AA pass)</li>
+<li><code>brand-voice</code> skill via direct grep + grep-based checks</li>
+</ul>
+<p>Composes into the L4 Excellence Gates layer of the weekly cadence (see CLAUDE.md § &quot;The 6-layer operating loop&quot;).</p>
+<hr>
+<p><em>Excellence across every hub, on rotation. The site stays top-notch by design, not by remembering.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

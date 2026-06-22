@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>05 loop</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/05-loop.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">05 loop</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>05-loop.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 5
+subject: &quot;Primitive 4 — The Loop (where most agent bugs actually live)&quot;
+preheader: &quot;Reading time: 6 min. Plus a brief note on the €7 Pack.&quot;</h2>
+<p>Five days in. You&#39;re past the warm-up — today&#39;s the dense one.</p>
+<p>The loop is the orchestrator. Its job is one sentence:</p>
+<blockquote>
+<p><strong>Keep the model and tools talking until the agent has an answer or gives up.</strong></p>
+</blockquote>
+<p>Most beginners think the loop is a small detail. It&#39;s not. <strong>Most agent bugs are loop bugs.</strong> Loops that never terminate. Loops that swallow errors. Loops that re-call the same tool 10 times in a row because the model didn&#39;t get what it wanted.</p>
+<h2>The simplest loop</h2>
+<pre><code class="language-ts">let messages = [{ role: &#39;user&#39;, content: question }]
+while (true) {
+  const response = await model.generate(messages, tools)
+  messages.push({ role: &#39;assistant&#39;, content: response })
+  if (response.finishReason === &#39;stop&#39;) return response
+  if (response.toolCalls) {
+    for (const call of response.toolCalls) {
+      const result = await tools[call.name].execute(call.args)
+      messages.push({ role: &#39;tool&#39;, content: result })
+    }
+  }
+  if (messages.length &gt; 50) throw new Error(&#39;loop overrun&#39;)
+}
+</code></pre>
+<p>The <code>messages.length &gt; 50</code> is the <strong>termination guard</strong>. Without it, a misbehaving model + a misbehaving tool can loop forever and burn your API budget before you notice.</p>
+<p>In Vercel AI SDK, this whole loop is wrapped in <code>generateObject</code>:</p>
+<pre><code class="language-ts">const result = await generateObject({
+  model,
+  system: SYSTEM_PROMPT,
+  messages,
+  schema: ResearchSchema,
+  tools: { web_search: webSearch },
+  maxSteps: 5,  // ← always set this
+})
+</code></pre>
+<p><code>maxSteps: 5</code> is your guard. Always set it. Never trust the model to terminate on its own.</p>
+<h2>The architectural test</h2>
+<p>For your loop, can you state in one sentence what makes it stop?</p>
+<p><strong>Good answer:</strong> &quot;Either the model returns a final answer matching the schema, or we hit 5 steps, or a tool returns an unrecoverable error.&quot;</p>
+<p><strong>Bad answer:</strong> &quot;It... stops when it&#39;s done?&quot;</p>
+<p>If you can&#39;t state your loop&#39;s termination condition, you don&#39;t own your loop. The model owns it. That&#39;s how surprise bills happen.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>In the starter repo, set <code>maxSteps: 1</code> (deliberately too low) and ask a question that needs web search:</p>
+<pre><code class="language-ts">maxSteps: 1
+</code></pre>
+<p>The agent will fail because it can&#39;t both call the tool AND return a final answer in one step.</p>
+<p>Set it to 2 — now it works. Set it to 10 — works but unnecessary.</p>
+<p>The exercise is to feel where the bound actually is for your agent. Most simple agents need 3-5 steps. Multi-step research agents need 8-15. Past 20 you&#39;re probably orchestrating something that should be split.</p>
+<h2>A short case</h2>
+<p>A customer agent at FrankX once started looping because their <code>fetch_user_profile</code> tool returned <code>{ status: &quot;rate_limited&quot; }</code> and the model kept retrying without backoff. They had <code>maxSteps: 50</code> (way too high), no retry-aware tool design, and no observability.</p>
+<p>The fix took 20 minutes once we knew what to look for: lower <code>maxSteps</code>, return tools as <code>{ ok: false, retryAfter: 60 }</code>, log every step. The post-mortem took 3 hours because they didn&#39;t have observability — which is Day 7&#39;s topic.</p>
+<h2>A brief note — the Six Primitives Pack</h2>
+<p>Halfway through the course feels like the honest place to mention this. If you&#39;d like:</p>
+<ul>
+<li>The 60-page polished pocket book (PDF + EPUB) of all six primitives</li>
+<li>A 5-card Agent Card library you can fork</li>
+<li>A 15-case eval harness</li>
+<li>The Vercel deploy checklist</li>
+</ul>
+<p>It&#39;s all in the <strong>Six Primitives Pack</strong> at €7 — <a href="https://frankx.ai/build/six-primitives-pack">frankx.ai/build/six-primitives-pack</a>. 30-day refund. Many readers buy it just to have something to print and re-read.</p>
+<p>If the email course is enough, it&#39;s enough. The Pack is convenience, not gating.</p>
+<h2>Tomorrow</h2>
+<p>Day 6 — Primitive 5: <strong>The Spec</strong>. Your Agent Card and why it&#39;s the portability contract.</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

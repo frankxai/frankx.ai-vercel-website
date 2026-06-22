@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Hook Learning Loop</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/hooks/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Hook Learning Loop</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#content">content</a> / <a href="index.html#content%2Fhooks">hooks</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Hook Learning Loop</h1>
+<p>Closed-loop analytics → hook-generation bias. Solves the ACO research finding from
+<code>docs/ops/HANDOVER-2026-04-21-aco-video-stack.md</code>:
+every viral-content system the research found ingests platform analytics and
+feeds winning patterns back into prompt generation. This is that loop.</p>
+<h2>Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>learned.json</code></td>
+<td>Canonical snapshot of proven hook patterns. Consumed by <code>/hook</code> and <code>/talking-head-ship</code>.</td>
+</tr>
+<tr>
+<td><code>schema.json</code></td>
+<td>JSON-schema for <code>learned.json</code> — validation + editor autocomplete.</td>
+</tr>
+<tr>
+<td><code>README.md</code></td>
+<td>This file.</td>
+</tr>
+</tbody></table>
+<h2>How it works</h2>
+<pre><code>┌──────────────────┐     ┌──────────────────────┐     ┌──────────────┐
+│ platform source  │ ──► │ scripts/hooks/       │ ──► │ learned.json │
+│ (MCP or CSV)     │     │ reduce-weekly.mjs    │     │              │
+└──────────────────┘     └──────────────────────┘     └──────┬───────┘
+                                                             │
+                                                             ▼
+                                                   ┌─────────────────┐
+                                                   │ /hook command   │
+                                                   │ reads top-N     │
+                                                   │ patterns        │
+                                                   └─────────────────┘
+</code></pre>
+<h2>Sources (ranked by integration maturity)</h2>
+<ol>
+<li><strong>CSV manual</strong> (today) — drop YouTube Studio / TikTok export CSV into
+<code>content/hooks/inbox/*.csv</code>, run <code>node scripts/hooks/reduce-weekly.mjs</code>.</li>
+<li><strong>MCP YouTube Analytics</strong> (<code>dogfrogfog/youtube-analytics-mcp</code>) — ranked
+install priority in the ACO handover. When installed, the reducer reads
+directly from the MCP.</li>
+<li><strong>MCP TikTok insights</strong> (not yet available as OSS MCP) — CSV until then.</li>
+<li><strong>MCP LinkedIn analytics</strong> (research showed no reliable OSS MCP) — CSV.</li>
+</ol>
+<h2>Pattern lifecycle</h2>
+<ul>
+<li>A pattern enters <code>learned.json</code> when it appears in ≥ 3 distinct posts AND
+beats baseline by ≥ 20% on the primary metric (CTR for YT, watch% for TT).</li>
+<li><code>score</code> decays when last_observed is &gt; 60 days ago.</li>
+<li>Patterns with <code>sample_size &lt; 3</code> are suggestions, not instructions — <code>/hook</code>
+treats them as hypotheses to test.</li>
+<li><code>do_not_use_if</code> entries prevent overfitting to one niche.</li>
+</ul>
+<h2>Using in <code>/hook</code> command</h2>
+<p>The hook command reads the top 10 shipped patterns (by score) and injects them
+as &quot;proven patterns to lean on&quot; in the generation prompt. It also reads the
+<code>do_not_use_if</code> list and emits warnings when a generated hook matches an
+anti-pattern.</p>
+<h2>Not in scope (yet)</h2>
+<ul>
+<li>Per-creator hook learning (this is Frank-specific today — multi-creator
+scoring requires a tenant dimension).</li>
+<li>Real-time scoring (weekly reduction is fine; compute cost matters more
+than recency for hook templates).</li>
+<li>Hook personalization by audience segment (v2 — needs cohort data).</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

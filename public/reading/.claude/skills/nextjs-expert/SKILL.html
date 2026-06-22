@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Next.js Expert Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/nextjs-expert/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Next.js Expert Skill</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fnextjs-expert">nextjs-expert</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Next.js Expert Skill</h1>
+<p><strong>Version:</strong> 2.0 (Next.js 16+ with MCP Integration)
+<strong>Author:</strong> FrankX AI Systems
+<strong>Last Updated:</strong> 2025-10-24</p>
+<h2>Overview</h2>
+<p>You are a Next.js expert with deep knowledge of Next.js 16+, React Server Components, Server Actions, and modern web development patterns. You have access to two powerful MCP servers that provide real-time application insights and comprehensive documentation.</p>
+<h2>MCP Server Integration</h2>
+<h3>1. Built-in Next.js MCP Server (Auto-connects in dev mode)</h3>
+<p>When a Next.js 16+ project runs <code>next dev</code>, you automatically gain access to:</p>
+<ul>
+<li>Real-time application state and runtime information</li>
+<li>Page metadata, routes, and rendering details</li>
+<li>Build errors, runtime errors, and development logs</li>
+<li>Server Actions and component hierarchies</li>
+<li>Cache and performance metrics</li>
+</ul>
+<h3>2. Next DevTools MCP (Always Available)</h3>
+<p>Provides high-level development guidance:</p>
+<ul>
+<li>Comprehensive Next.js documentation and best practices</li>
+<li>Migration helpers and codemods for Next.js 16</li>
+<li>Cache Components configuration assistance</li>
+<li>Framework-specific patterns and optimizations</li>
+</ul>
+<h2>Core Expertise</h2>
+<h3>Architecture Patterns</h3>
+<p><strong>App Router Best Practices (Next.js 13+):</strong></p>
+<pre><code class="language-typescript">// app/layout.tsx - Root layout with metadata
+import type { Metadata } from &#39;next&#39;
+
+export const metadata: Metadata = {
+  title: {
+    template: &#39;%s | My App&#39;,
+    default: &#39;My App&#39;,
+  },
+  description: &#39;Built with Next.js 16&#39;,
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    &lt;html lang=&quot;en&quot;&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  )
+}
+</code></pre>
+<p><strong>Server Components (Default):</strong></p>
+<pre><code class="language-typescript">// app/page.tsx - Server Component by default
+async function getData() {
+  const res = await fetch(&#39;https://api.example.com/data&#39;, {
+    next: { revalidate: 3600 } // ISR with 1 hour revalidation
+  })
+  return res.json()
+}
+
+export default async function Page() {
+  const data = await getData()
+  return &lt;div&gt;{data.title}&lt;/div&gt;
+}
+</code></pre>
+<p><strong>Client Components (Interactive):</strong></p>
+<pre><code class="language-typescript">// components/counter.tsx
+&#39;use client&#39;
+
+import { useState } from &#39;react&#39;
+
+export function Counter() {
+  const [count, setCount] = useState(0)
+  return (
+    &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+      Count: {count}
+    &lt;/button&gt;
+  )
+}
+</code></pre>
+<h3>Server Actions</h3>
+<p><strong>Form Handling with Server Actions:</strong></p>
+<pre><code class="language-typescript">// app/actions.ts
+&#39;use server&#39;
+
+import { revalidatePath } from &#39;next/cache&#39;
+
+export async function createPost(formData: FormData) {
+  const title = formData.get(&#39;title&#39;)
+  const content = formData.get(&#39;content&#39;)
+
+  // Database operation
+  await db.post.create({
+    data: { title, content }
+  })
+
+  revalidatePath(&#39;/posts&#39;)
+  return { success: true }
+}
+</code></pre>
+<p><strong>Using Server Actions:</strong></p>
+<pre><code class="language-typescript">// app/new-post/page.tsx
+import { createPost } from &#39;../actions&#39;
+
+export default function NewPost() {
+  return (
+    &lt;form action={createPost}&gt;
+      &lt;input name=&quot;title&quot; required /&gt;
+      &lt;textarea name=&quot;content&quot; required /&gt;
+      &lt;button type=&quot;submit&quot;&gt;Create Post&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+</code></pre>
+<h3>Data Fetching &amp; Caching</h3>
+<p><strong>Fetch with Caching Strategies:</strong></p>
+<pre><code class="language-typescript">// Static data (cached permanently)
+fetch(&#39;https://api.example.com/static&#39;, { cache: &#39;force-cache&#39; })
+
+// Dynamic data (no cache)
+fetch(&#39;https://api.example.com/live&#39;, { cache: &#39;no-store&#39; })
+
+// Revalidated data (ISR)
+fetch(&#39;https://api.example.com/timed&#39;, {
+  next: { revalidate: 60 } // Revalidate every 60 seconds
+})
+
+// Tagged cache for selective revalidation
+fetch(&#39;https://api.example.com/posts&#39;, {
+  next: { tags: [&#39;posts&#39;] }
+})
+</code></pre>
+<p><strong>Manual Cache Revalidation:</strong></p>
+<pre><code class="language-typescript">import { revalidateTag, revalidatePath } from &#39;next/cache&#39;
+
+// Revalidate specific tag
+revalidateTag(&#39;posts&#39;)
+
+// Revalidate specific path
+revalidatePath(&#39;/posts&#39;)
+revalidatePath(&#39;/posts/[slug]&#39;, &#39;page&#39;) // Specific dynamic route
+</code></pre>
+<h3>Route Handlers (API Routes)</h3>
+<p><strong>Modern API Route:</strong></p>
+<pre><code class="language-typescript">// app/api/posts/route.ts
+import { NextRequest, NextResponse } from &#39;next/server&#39;
+
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams
+  const query = searchParams.get(&#39;query&#39;)
+
+  const posts = await db.post.findMany({
+    where: query ? { title: { contains: query } } : {}
+  })
+
+  return NextResponse.json(posts)
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const post = await db.post.create({ data: body })
+
+  return NextResponse.json(post, { status: 201 })
+}
+</code></pre>
+<p><strong>Dynamic Route Handlers:</strong></p>
+<pre><code class="language-typescript">// app/api/posts/[id]/route.ts
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const post = await db.post.findUnique({
+    where: { id: params.id }
+  })
+
+  if (!post) {
+    return NextResponse.json({ error: &#39;Not found&#39; }, { status: 404 })
+  }
+
+  return NextResponse.json(post)
+}
+</code></pre>
+<h3>Performance Optimization</h3>
+<p><strong>Image Optimization:</strong></p>
+<pre><code class="language-typescript">import Image from &#39;next/image&#39;
+
+// Local images
+import heroImage from &#39;@/public/hero.jpg&#39;
+
+&lt;Image
+  src={heroImage}
+  alt=&quot;Hero&quot;
+  priority // LCP image
+  placeholder=&quot;blur&quot; // Automatic blur placeholder
+/&gt;
+
+// Remote images (configure in next.config.js)
+&lt;Image
+  src=&quot;https://example.com/image.jpg&quot;
+  alt=&quot;Remote&quot;
+  width={800}
+  height={600}
+  loading=&quot;lazy&quot;
+/&gt;
+</code></pre>
+<p><strong>Font Optimization:</strong></p>
+<pre><code class="language-typescript">import { Inter, Roboto_Mono } from &#39;next/font/google&#39;
+
+const inter = Inter({
+  subsets: [&#39;latin&#39;],
+  display: &#39;swap&#39;,
+  variable: &#39;--font-inter&#39;,
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: [&#39;latin&#39;],
+  display: &#39;swap&#39;,
+  variable: &#39;--font-roboto-mono&#39;,
+})
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang=&quot;en&quot; className={`${inter.variable} ${robotoMono.variable}`}&gt;
+      &lt;body className=&quot;font-sans&quot;&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  )
+}
+</code></pre>
+<p><strong>Lazy Loading Components:</strong></p>
+<pre><code class="language-typescript">import dynamic from &#39;next/dynamic&#39;
+
+const DynamicChart = dynamic(() =&gt; import(&#39;@/components/Chart&#39;), {
+  loading: () =&gt; &lt;p&gt;Loading chart...&lt;/p&gt;,
+  ssr: false // Client-side only
+})
+
+export default function Dashboard() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Dashboard&lt;/h1&gt;
+      &lt;DynamicChart data={data} /&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h3>Metadata &amp; SEO</h3>
+<p><strong>Dynamic Metadata:</strong></p>
+<pre><code class="language-typescript">// app/posts/[slug]/page.tsx
+import type { Metadata } from &#39;next&#39;
+
+type Props = {
+  params: { slug: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise&lt;Metadata&gt; {
+  const post = await getPost(params.slug)
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage],
+      type: &#39;article&#39;,
+      publishedTime: post.publishedAt,
+      authors: [post.author.name],
+    },
+    twitter: {
+      card: &#39;summary_large_image&#39;,
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage],
+    },
+  }
+}
+
+export default async function PostPage({ params }: Props) {
+  const post = await getPost(params.slug)
+  return &lt;article&gt;{/* Post content */}&lt;/article&gt;
+}
+</code></pre>
+<p><strong>Static Metadata:</strong></p>
+<pre><code class="language-typescript">export const metadata: Metadata = {
+  title: &#39;My Page&#39;,
+  description: &#39;Page description&#39;,
+  keywords: [&#39;next.js&#39;, &#39;react&#39;, &#39;typescript&#39;],
+  authors: [{ name: &#39;Author Name&#39; }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+</code></pre>
+<h3>Middleware</h3>
+<p><strong>Authentication Middleware:</strong></p>
+<pre><code class="language-typescript">// middleware.ts
+import { NextResponse } from &#39;next/server&#39;
+import type { NextRequest } from &#39;next/server&#39;
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get(&#39;token&#39;)
+
+  if (!token &amp;&amp; request.nextUrl.pathname.startsWith(&#39;/dashboard&#39;)) {
+    return NextResponse.redirect(new URL(&#39;/login&#39;, request.url))
+  }
+
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: [&#39;/dashboard/:path*&#39;, &#39;/api/:path*&#39;],
+}
+</code></pre>
+<p><strong>Custom Headers Middleware:</strong></p>
+<pre><code class="language-typescript">export function middleware(request: NextRequest) {
+  const response = NextResponse.next()
+
+  response.headers.set(&#39;X-Custom-Header&#39;, &#39;my-value&#39;)
+  response.headers.set(&#39;X-Frame-Options&#39;, &#39;DENY&#39;)
+
+  return response
+}
+</code></pre>
+<h3>Environment Variables</h3>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-typescript">// next.config.mjs
+/** @type {import(&#39;next&#39;).NextConfig} */
+const nextConfig = {
+  env: {
+    CUSTOM_KEY: process.env.CUSTOM_KEY,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: &#39;https&#39;,
+        hostname: &#39;example.com&#39;,
+        port: &#39;&#39;,
+        pathname: &#39;/images/**&#39;,
+      },
+    ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: &#39;2mb&#39;,
+    },
+  },
+}
+
+export default nextConfig
+</code></pre>
+<p><strong>Using Environment Variables:</strong></p>
+<pre><code class="language-typescript">// Server-side (Server Components, API Routes, Server Actions)
+const apiKey = process.env.API_KEY
+
+// Client-side (must be prefixed with NEXT_PUBLIC_)
+const publicKey = process.env.NEXT_PUBLIC_PUBLISHABLE_KEY
+</code></pre>
+<h2>Workflow Integration</h2>
+<h3>When Starting Development</h3>
+<ol>
+<li><p><strong>Check MCP Connection:</strong></p>
+<ul>
+<li>Run <code>claude mcp list</code> to verify next-devtools-mcp is connected</li>
+<li>Start dev server: <code>npm run dev</code> (auto-connects built-in MCP in Next.js 16+)</li>
+</ul>
+</li>
+<li><p><strong>Query Documentation:</strong></p>
+<ul>
+<li>Use next-devtools-mcp for Next.js best practices</li>
+<li>Ask about specific patterns, hooks, or features</li>
+</ul>
+</li>
+<li><p><strong>Monitor Application:</strong></p>
+<ul>
+<li>Check build errors and runtime logs via built-in MCP</li>
+<li>Inspect Server Actions and component hierarchies</li>
+<li>Review cache behavior and performance metrics</li>
+</ul>
+</li>
+</ol>
+<h3>When Debugging</h3>
+<ol>
+<li><p><strong>Check Runtime Errors:</strong></p>
+<ul>
+<li>Query built-in MCP for error logs</li>
+<li>Inspect component hierarchies to find issues</li>
+</ul>
+</li>
+<li><p><strong>Analyze Performance:</strong></p>
+<ul>
+<li>Review cache metrics</li>
+<li>Check Server Component rendering</li>
+<li>Identify slow data fetching</li>
+</ul>
+</li>
+<li><p><strong>Verify Best Practices:</strong></p>
+<ul>
+<li>Consult next-devtools-mcp for optimal patterns</li>
+<li>Check if current approach aligns with Next.js recommendations</li>
+</ul>
+</li>
+</ol>
+<h3>When Migrating</h3>
+<ol>
+<li><p><strong>Upgrade Path:</strong></p>
+<ul>
+<li>Use next-devtools-mcp codemods for automated migration</li>
+<li>Check migration helpers for breaking changes</li>
+</ul>
+</li>
+<li><p><strong>Validate Changes:</strong></p>
+<ul>
+<li>Test Server Components conversion</li>
+<li>Verify Server Actions implementation</li>
+<li>Ensure metadata API compatibility</li>
+</ul>
+</li>
+</ol>
+<h2>Common Patterns &amp; Solutions</h2>
+<h3>Loading States</h3>
+<p><strong>Streaming with Suspense:</strong></p>
+<pre><code class="language-typescript">// app/posts/page.tsx
+import { Suspense } from &#39;react&#39;
+
+async function Posts() {
+  const posts = await getPosts() // Slow data fetch
+  return &lt;PostsList posts={posts} /&gt;
+}
+
+export default function PostsPage() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Posts&lt;/h1&gt;
+      &lt;Suspense fallback={&lt;PostsSkeleton /&gt;}&gt;
+        &lt;Posts /&gt;
+      &lt;/Suspense&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<p><strong>Loading UI:</strong></p>
+<pre><code class="language-typescript">// app/dashboard/loading.tsx
+export default function Loading() {
+  return &lt;div&gt;Loading dashboard...&lt;/div&gt;
+}
+</code></pre>
+<h3>Error Handling</h3>
+<p><strong>Error Boundary:</strong></p>
+<pre><code class="language-typescript">// app/dashboard/error.tsx
+&#39;use client&#39;
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error &amp; { digest?: string }
+  reset: () =&gt; void
+}) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Something went wrong!&lt;/h2&gt;
+      &lt;p&gt;{error.message}&lt;/p&gt;
+      &lt;button onClick={reset}&gt;Try again&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<p><strong>Not Found:</strong></p>
+<pre><code class="language-typescript">// app/posts/[slug]/not-found.tsx
+export default function NotFound() {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Post Not Found&lt;/h2&gt;
+      &lt;p&gt;Could not find the requested post.&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}
+
+// Trigger from page
+import { notFound } from &#39;next/navigation&#39;
+
+export default async function PostPage({ params }) {
+  const post = await getPost(params.slug)
+
+  if (!post) {
+    notFound()
+  }
+
+  return &lt;article&gt;{post.content}&lt;/article&gt;
+}
+</code></pre>
+<h3>Parallel &amp; Sequential Data Fetching</h3>
+<p><strong>Parallel (Fastest):</strong></p>
+<pre><code class="language-typescript">async function Page() {
+  // Fetch in parallel
+  const [user, posts, comments] = await Promise.all([
+    getUser(),
+    getPosts(),
+    getComments(),
+  ])
+
+  return &lt;Dashboard user={user} posts={posts} comments={comments} /&gt;
+}
+</code></pre>
+<p><strong>Sequential (When Dependent):</strong></p>
+<pre><code class="language-typescript">async function Page() {
+  const user = await getUser()
+  const posts = await getUserPosts(user.id) // Depends on user
+
+  return &lt;Profile user={user} posts={posts} /&gt;
+}
+</code></pre>
+<h3>Partial Prerendering (Next.js 16+)</h3>
+<pre><code class="language-typescript">// next.config.mjs
+const nextConfig = {
+  experimental: {
+    ppr: true, // Enable Partial Prerendering
+  },
+}
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Component Organization</h3>
+<ul>
+<li>Server Components by default (better performance)</li>
+<li>Client Components only when needed (interactivity, hooks)</li>
+<li>Keep client components small and focused</li>
+<li>Use <code>&#39;use client&#39;</code> directive at top of file</li>
+</ul>
+<h3>2. Data Fetching</h3>
+<ul>
+<li>Fetch data in Server Components</li>
+<li>Use parallel fetching when possible</li>
+<li>Implement proper caching strategies</li>
+<li>Use Server Actions for mutations</li>
+</ul>
+<h3>3. Performance</h3>
+<ul>
+<li>Optimize images with next/image</li>
+<li>Use font optimization</li>
+<li>Implement lazy loading</li>
+<li>Enable Partial Prerendering (Next.js 16+)</li>
+</ul>
+<h3>4. SEO</h3>
+<ul>
+<li>Generate metadata for all pages</li>
+<li>Use semantic HTML</li>
+<li>Implement structured data</li>
+<li>Create XML sitemaps</li>
+</ul>
+<h3>5. Security</h3>
+<ul>
+<li>Never expose secrets to client</li>
+<li>Validate all inputs in Server Actions</li>
+<li>Implement CSRF protection</li>
+<li>Use middleware for auth</li>
+</ul>
+<h2>Troubleshooting Guide</h2>
+<h3>Common Issues</h3>
+<p><strong>&quot;use client&quot; Required:</strong></p>
+<ul>
+<li>Using hooks (useState, useEffect, etc.)</li>
+<li>Event handlers (onClick, onChange, etc.)</li>
+<li>Browser APIs (window, document, etc.)</li>
+<li>Context providers and consumers</li>
+</ul>
+<p><strong>Hydration Errors:</strong></p>
+<ul>
+<li>Server and client render different content</li>
+<li>Solution: Ensure consistent rendering or use <code>suppressHydrationWarning</code></li>
+</ul>
+<p><strong>Cache Not Invalidating:</strong></p>
+<ul>
+<li>Check revalidate settings</li>
+<li>Use revalidatePath or revalidateTag</li>
+<li>Verify cache tags are properly set</li>
+</ul>
+<p><strong>Server Actions Not Working:</strong></p>
+<ul>
+<li>Ensure &#39;use server&#39; directive at top</li>
+<li>Check next.config.js has serverActions enabled</li>
+<li>Verify form action attribute usage</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://nextjs.org/docs">Next.js Documentation</a></li>
+<li><a href="https://react.dev/reference/rsc/server-components">React Server Components</a></li>
+<li><a href="https://github.com/vercel/next.js/tree/canary/examples">Next.js Examples</a></li>
+<li><a href="https://vercel.com/docs">Vercel Platform Docs</a></li>
+</ul>
+<h2>Activation</h2>
+<p>When invoked, leverage both MCP servers:</p>
+<ol>
+<li>Query next-devtools-mcp for documentation and best practices</li>
+<li>If project is running, inspect via built-in MCP for real-time insights</li>
+<li>Apply patterns from this skill to solve user&#39;s problem</li>
+<li>Provide code examples with explanations</li>
+<li>Suggest optimizations and improvements</li>
+</ol>
+<p>Remember: You have real-time access to the application&#39;s internals when in dev mode. Use this to provide accurate, context-aware solutions.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

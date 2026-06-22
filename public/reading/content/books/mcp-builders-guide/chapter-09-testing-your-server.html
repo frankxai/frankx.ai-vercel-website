@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Testing Your Server</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/mcp-builders-guide/chapter-09-testing-your-server.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Testing Your Server</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fmcp-builders-guide">mcp-builders-guide</a> / <span>chapter-09-testing-your-server.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Testing Your Server</h1>
+<blockquote>
+<p>&quot;Testing shows the presence, not the absence of bugs.&quot;
+— Edsger W. Dijkstra</p>
+</blockquote>
+<hr>
+<p>An MCP server that works most of the time is a server that will fail at the worst time.</p>
+<p>Testing MCP servers is not optional. It is the practice that separates a demo from a product. A server that handles the happy path is impressive. A server that handles malformed inputs, network failures, authentication errors, and edge cases is reliable.</p>
+<p>This chapter covers how to test MCP servers — from simple smoke tests to comprehensive integration testing.</p>
+<hr>
+<h2>I. The Testing Pyramid for MCP</h2>
+<p>MCP servers have three testing layers, mirroring the classic testing pyramid:</p>
+<p><strong>Unit tests</strong> (bottom layer, many tests, fast): Test individual handler functions in isolation. Does the weather lookup return the correct format? Does the SQL validator reject DROP statements? Does the input schema match the expected types?</p>
+<p><strong>Integration tests</strong> (middle layer, moderate tests, medium speed): Test the server&#39;s interaction with external services. Does the database connection work? Does the API authentication succeed? Does the deployment trigger actually deploy?</p>
+<p><strong>End-to-end tests</strong> (top layer, few tests, slow): Test the complete flow from AI client to server to external service and back. Does Claude Code correctly use the tool? Does the response format parse correctly in the client?</p>
+<hr>
+<h2>II. Unit Testing Your Handlers</h2>
+<p>The simplest and most valuable tests are handler unit tests. Extract your handler logic into pure functions, then test those functions independently.</p>
+<pre><code class="language-javascript">// handler.js — extracted logic
+export function validateQuery(query) {
+  const forbidden = [&#39;DROP&#39;, &#39;DELETE&#39;, &#39;TRUNCATE&#39;, &#39;ALTER&#39;, &#39;INSERT&#39;, &#39;UPDATE&#39;]
+  const upper = query.toUpperCase().trim()
+  if (forbidden.some(f =&gt; upper.startsWith(f))) {
+    return { valid: false, error: &#39;Only SELECT queries are allowed.&#39; }
+  }
+  return { valid: true }
+}
+
+export function formatWeatherResponse(city, data) {
+  if (!data) return `Weather data not available for ${city}.`
+  return `Weather in ${city}: ${data.temp}, ${data.condition}. Humidity: ${data.humidity}`
+}
+</code></pre>
+<pre><code class="language-javascript">// handler.test.js
+import { validateQuery, formatWeatherResponse } from &#39;./handler.js&#39;
+
+test(&#39;rejects DROP queries&#39;, () =&gt; {
+  expect(validateQuery(&#39;DROP TABLE users&#39;).valid).toBe(false)
+})
+
+test(&#39;allows SELECT queries&#39;, () =&gt; {
+  expect(validateQuery(&#39;SELECT * FROM users&#39;).valid).toBe(true)
+})
+
+test(&#39;formats weather correctly&#39;, () =&gt; {
+  const result = formatWeatherResponse(&#39;Amsterdam&#39;, { temp: &#39;14°C&#39;, condition: &#39;Cloudy&#39;, humidity: &#39;72%&#39; })
+  expect(result).toContain(&#39;14°C&#39;)
+  expect(result).toContain(&#39;Amsterdam&#39;)
+})
+
+test(&#39;handles missing data&#39;, () =&gt; {
+  const result = formatWeatherResponse(&#39;Unknown&#39;, null)
+  expect(result).toContain(&#39;not available&#39;)
+})
+</code></pre>
+<p>These tests run in milliseconds, require no external dependencies, and catch the most common bugs: malformed output, missing validation, and edge case handling.</p>
+<hr>
+<h2>III. Integration Testing</h2>
+<p>Integration tests verify that your server correctly interacts with external services. These tests are slower, require credentials, and should run in a test environment — never against production.</p>
+<pre><code class="language-javascript">// integration.test.js
+import { McpServer } from &#39;@modelcontextprotocol/sdk/server/mcp.js&#39;
+
+test(&#39;database server connects and queries&#39;, async () =&gt; {
+  const server = createDatabaseServer({ connectionString: process.env.TEST_DB_URL })
+
+  // Test Resource: list tables
+  const tables = await server.handleResourceRequest(&#39;schema://tables&#39;)
+  expect(tables.contents).toBeDefined()
+  expect(tables.contents.length).toBeGreaterThan(0)
+
+  // Test Tool: run query
+  const result = await server.handleToolCall(&#39;run-query&#39;, { query: &#39;SELECT 1 as test&#39; })
+  expect(result.content[0].text).toContain(&#39;test&#39;)
+})
+</code></pre>
+<p><strong>Key practice</strong>: Use a separate test database with known data. Never test against production. Seed the test database with predictable data so your assertions are deterministic.</p>
+<hr>
+<h2>IV. Testing with Claude Code</h2>
+<p>The ultimate test: does your server work correctly when Claude Code calls it?</p>
+<p>Create a test script that uses Claude Code to exercise your server:</p>
+<ol>
+<li>Start Claude Code with your server configured</li>
+<li>Give it a specific instruction: &quot;Using the weather server, get the weather for Amsterdam&quot;</li>
+<li>Verify the output matches expectations</li>
+</ol>
+<p>This is manual testing — but it catches issues that automated tests miss, particularly around Tool description clarity and response formatting. If Claude Code misinterprets what your server does, the Tool description needs improvement.</p>
+<p><strong>Common issues caught by Claude Code testing:</strong></p>
+<ul>
+<li>Tool descriptions too vague (Claude selects the wrong tool)</li>
+<li>Response format not parseable (Claude cannot extract the answer)</li>
+<li>Missing input validation (Claude sends unexpected parameter types)</li>
+<li>Error messages not helpful (Claude cannot recover from failures)</li>
+</ul>
+<hr>
+<h2>V. The Testing Checklist</h2>
+<p>Before declaring any MCP server production-ready:</p>
+<ul>
+<li><input disabled="" type="checkbox"> All handler functions have unit tests</li>
+<li><input disabled="" type="checkbox"> Input validation rejects malformed inputs gracefully</li>
+<li><input disabled="" type="checkbox"> Error handling returns structured messages, not stack traces</li>
+<li><input disabled="" type="checkbox"> Destructive operations are blocked or require explicit confirmation</li>
+<li><input disabled="" type="checkbox"> Authentication works with real credentials</li>
+<li><input disabled="" type="checkbox"> The server recovers from connection failures</li>
+<li><input disabled="" type="checkbox"> Tool descriptions are clear enough for Claude to route correctly</li>
+<li><input disabled="" type="checkbox"> Response formats are consistent and parseable</li>
+<li><input disabled="" type="checkbox"> Audit logging captures all Tool invocations</li>
+<li><input disabled="" type="checkbox"> The server runs for 24+ hours without memory leaks</li>
+</ul>
+<p>This checklist is your governance pillar applied to MCP development. Not every item requires a formal test — some can be verified manually. But every item must be verified before the server handles real work.</p>
+<p>Test it. Then trust it. In that order.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

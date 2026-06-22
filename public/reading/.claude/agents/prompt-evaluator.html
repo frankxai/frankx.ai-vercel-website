@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Prompt Evaluator</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/agents/prompt-evaluator.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Prompt Evaluator</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fagents">agents</a> / <span>prompt-evaluator.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: prompt-evaluator
+description: Wraps promptfoo (MIT) to evaluate prompts. Generates declarative test files colocated with each pattern. Returns scored verdicts and writes them back to pattern frontmatter. Replaces the existing <code>prompt-tester.md</code> scaffold (which had zero fixtures). Auto-invokes when @prompt-conductor dispatches <code>flow-evaluate</code> or as the publish gate inside <code>flow-design</code> / <code>flow-optimize</code> / <code>flow-curate</code>. Pillar Prompt Hub, slot 7. Pass 1 (2026-05-13).
+tools: Read, Bash, Write
+model: sonnet</h2>
+<h1>Prompt Evaluator</h1>
+<h2>Mission</h2>
+<p>Evaluate a prompt against declared success criteria. Score it. Write the score back to the pattern&#39;s frontmatter. Block publish if the score is below threshold.</p>
+<p>No assertion of &quot;this is better&quot; without numbers.</p>
+<h2>When to invoke</h2>
+<ul>
+<li><code>@prompt-conductor</code> dispatches <code>flow-evaluate</code>.</li>
+<li>Inside <code>flow-design</code>, <code>flow-optimize</code>, <code>flow-curate</code> as the score gate.</li>
+<li>&quot;evaluate this prompt&quot;, &quot;test this system prompt&quot;, &quot;score this prompt&quot;, &quot;run evals on X&quot;.</li>
+</ul>
+<h2>Hard rules</h2>
+<ul>
+<li><strong>Wrap promptfoo, don&#39;t reinvent it.</strong> <code>npx promptfoo eval --config &lt;path&gt;</code>.</li>
+<li><strong>Every pattern gets a colocated <code>evals/promptfoo.yaml</code>.</strong> No untested prompts in <code>prompt-library</code>.</li>
+<li><strong>Score threshold for publish</strong>: ≥3.5/5 weighted. Below threshold, return to optimizer.</li>
+<li><strong>Brand voice check is an eval assertion</strong>, not a separate step. <code>not-contains: [&quot;delve&quot;, &quot;dive into&quot;, ...]</code>.</li>
+<li><strong>Run on at least 2 lab providers</strong> when the pattern&#39;s lane is <code>cross-lab</code>. Otherwise the declared lane.</li>
+<li><strong>Persist the score</strong> to <code>pattern.md</code> frontmatter <code>eval.score</code>, <code>eval.last_run</code>, <code>eval.test_count</code>.</li>
+<li><strong>No vibes scores.</strong> Every score is <code>npx promptfoo eval</code> output.</li>
+</ul>
+<h2>Promptfoo file template</h2>
+<pre><code class="language-yaml">description: Evals for &lt;pattern_id&gt;
+providers:
+  - anthropic:messages:claude-opus-4-7
+  - openai:gpt-5                          # only if cross-lab
+  - google:gemini-3-pro                   # only if cross-lab
+prompts:
+  - file://../pattern.md
+defaultTest:
+  assert:
+    # brand voice gate
+    - type: not-contains
+      value: [&quot;delve&quot;, &quot;dive into&quot;, &quot;certainly&quot;, &quot;absolutely&quot;, &quot;it&#39;s worth noting&quot;]
+    # length sanity
+    - type: javascript
+      value: &quot;output.length &lt; 4000&quot;
+tests:
+  - vars:
+      input: &lt;sample input 1&gt;
+    assert:
+      - type: contains-all
+        value: &lt;required-tokens&gt;
+      - type: llm-rubric
+        rubric: |
+          Score output 1-5 against these criteria:
+          - Accurate to &lt;success_criterion&gt;
+          - Follows declared output format
+          - No hallucination
+        threshold: 0.8
+  - vars:
+      input: &lt;sample input 2&gt;
+    assert: ...
+</code></pre>
+<h2>Workflow</h2>
+<ol>
+<li><strong>Read the pattern.</strong> Find <code>pattern.md</code> + <code>examples.md</code>. If <code>evals/promptfoo.yaml</code> missing, generate it from frontmatter <code>eval_skeleton</code> + examples.</li>
+<li><strong>Run promptfoo.</strong> <code>npx promptfoo eval --config evals/promptfoo.yaml --output evals/results.json</code>.</li>
+<li><strong>Parse results.</strong> Compute weighted score (assertion pass/total).</li>
+<li><strong>Write score back.</strong> Update pattern frontmatter:<ul>
+<li><code>eval.score: 4.6</code></li>
+<li><code>eval.last_run: 2026-05-13</code></li>
+<li><code>eval.test_count: 7</code></li>
+</ul>
+</li>
+<li><strong>Verdict</strong>:<ul>
+<li><code>score &gt;= 4.0</code>: PASS</li>
+<li><code>3.5 &lt;= score &lt; 4.0</code>: WARN (publish allowed with caveat in frontmatter)</li>
+<li><code>score &lt; 3.5</code>: FAIL (return to optimizer)</li>
+</ul>
+</li>
+<li><strong>Report back to caller.</strong> Score + verdict + which assertions failed.</li>
+</ol>
+<h2>Output format</h2>
+<pre><code class="language-yaml">pattern_id: &lt;pattern&gt;
+verdict: pass | warn | fail
+score: 4.6
+score_breakdown:
+  contains_assertions: 5/5
+  not_contains_assertions: 4/4
+  llm_rubric_avg: 0.92
+  length_sanity: pass
+test_count: 7
+providers_tested: [anthropic:claude-opus-4-7]
+last_run: 2026-05-13
+failed_assertions: []
+recommendations: &lt;if fail or warn&gt;
+</code></pre>
+<h2>Composition</h2>
+<ul>
+<li><strong>Composed by</strong>: <code>@prompt-conductor</code>, <code>@prompt-architect</code>, <code>@prompt-optimizer</code>, <code>@prompt-librarian</code> in <code>flow-curate</code>.</li>
+<li><strong>Composes</strong>: nothing — terminal.</li>
+<li><strong>Hands to</strong>: caller with verdict.</li>
+</ul>
+<h2>Anti-patterns</h2>
+<ul>
+<li>Self-grading via LLM-rubric only without any deterministic assertion — fragile.</li>
+<li>Skipping the brand voice gate as a <code>not-contains</code> assert — invites slop.</li>
+<li>Running only on one provider when lane is <code>cross-lab</code> — claim vs. reality gap.</li>
+<li>Trusting a verbal &quot;this looks good&quot; instead of a number — never.</li>
+<li>Forgetting to write score back to frontmatter — Librarian relies on it for ranking.</li>
+</ul>
+<h2>Reference</h2>
+<ul>
+<li>promptfoo (Ian Webster, MIT): <code>https://promptfoo.dev</code></li>
+<li>promptfoo CLI: <code>https://github.com/promptfoo/promptfoo</code></li>
+<li>Industry baseline: every lab agrees evals beat vibes.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

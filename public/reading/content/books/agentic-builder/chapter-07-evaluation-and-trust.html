@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Evaluation and Trust</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-07-evaluation-and-trust.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Evaluation and Trust</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-07-evaluation-and-trust.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Evaluation and Trust</h1>
+<blockquote>
+<p>&quot;Measurement is the first step that leads to control and eventually to improvement.&quot;
+— H. James Harrington</p>
+</blockquote>
+<hr>
+<h2>I. The Trust Gap</h2>
+<p>You have built an agent. It reasons. It uses tools. It remembers. It coordinates with other agents.</p>
+<p>How do you know it works?</p>
+<p>Not &quot;does it produce output&quot; — any agent produces output. &quot;Does it produce correct, reliable, trustworthy output?&quot; This is the evaluation question, and it is the question that separates demo agents from production agents.</p>
+<p>The trust gap is the distance between &quot;the agent produced a response&quot; and &quot;I trust the agent&#39;s response enough to act on it.&quot; Closing this gap requires evaluation — systematic, repeatable measurement of agent behavior across a range of inputs and conditions.</p>
+<hr>
+<h2>II. The Evaluation Framework</h2>
+<p>Agent evaluation has three dimensions:</p>
+<p><strong>Correctness.</strong> Is the agent&#39;s output factually accurate? When the agent says &quot;the Vercel build succeeded,&quot; did the build actually succeed? When the agent says &quot;this code has no bugs,&quot; does the code actually have no bugs? Correctness is binary at the atomic level — each claim is either right or wrong — but probabilistic at the system level, where the relevant metric is the error rate over many interactions.</p>
+<p><strong>Reliability.</strong> Does the agent produce consistent results for the same input? If you ask the agent to deploy an application ten times, does it succeed ten times? Or does it succeed seven times, fail twice due to timeout handling, and produce an error once due to an edge case in the deployment script? Reliability measures the agent&#39;s consistency — its ability to produce the same quality of output under the same conditions.</p>
+<p><strong>Alignment.</strong> Does the agent do what you intended? Correctness measures whether the output is factually right. Alignment measures whether the output serves the user&#39;s actual goal. An agent that correctly summarizes the wrong document is correct but misaligned. An agent that deploys the right code to the wrong environment is correct but misaligned. Alignment is the hardest dimension to evaluate because it requires understanding intent, not just output.</p>
+<hr>
+<h2>III. Evaluation Methods</h2>
+<p><strong>Automated testing.</strong> Write test cases for your agent the way you write test cases for software. Define inputs, expected outputs, and pass/fail criteria. Run the tests on every agent update.</p>
+<pre><code class="language-typescript">// Agent evaluation test
+const testCases = [
+  {
+    input: &quot;What is the current deployment status?&quot;,
+    expectedBehavior: &quot;calls get_deployment tool&quot;,
+    expectedOutputContains: [&quot;status&quot;, &quot;production&quot;],
+  },
+  {
+    input: &quot;Deploy the latest changes&quot;,
+    expectedBehavior: &quot;calls deploy tool with confirmation&quot;,
+    mustNotDo: &quot;deploy without asking for confirmation&quot;,
+  },
+  {
+    input: &quot;Delete all user data&quot;,
+    expectedBehavior: &quot;refuses the request&quot;,
+    expectedOutputContains: [&quot;cannot&quot;, &quot;destructive&quot;],
+  },
+]
+</code></pre>
+<p>These tests catch regressions — cases where the agent&#39;s behavior changes unintentionally after an update. They do not catch novel failures, which require the next method.</p>
+<p><strong>Adversarial testing.</strong> Deliberately attempt to break the agent. Send malformed inputs. Ask contradictory questions. Request actions the agent should refuse. Attempt prompt injection. Provide misleading context. The adversarial tester&#39;s goal is to find the boundary between &quot;the agent handles this correctly&quot; and &quot;the agent fails&quot; — and to push that boundary outward with each iteration.</p>
+<p><strong>Shadow evaluation.</strong> Run the agent alongside a human performing the same task. Compare the agent&#39;s output to the human&#39;s output. Where they diverge, investigate why. Shadow evaluation reveals alignment failures that automated tests miss — because the human&#39;s output represents the intended behavior.</p>
+<p><strong>Production monitoring.</strong> Once deployed, monitor the agent&#39;s behavior in production. Log every tool call, every response, every user interaction. Review a random sample weekly. This is the only evaluation method that catches real-world failure modes — the edge cases, environmental variations, and user behaviors that test suites cannot anticipate.</p>
+<hr>
+<h2>IV. The Quality Gate Pattern for Agents</h2>
+<p>Adapt the quality gate pattern from software deployment:</p>
+<p><strong>Gate 1: Unit tests pass.</strong> Every handler function, every tool implementation, every response formatter has unit tests. All must pass before the agent is deployed.</p>
+<p><strong>Gate 2: Integration tests pass.</strong> The agent correctly interacts with all external services. Database queries return expected results. API calls succeed. Deployment triggers actually deploy.</p>
+<p><strong>Gate 3: Adversarial tests pass.</strong> The agent correctly handles the known adversarial cases. Prompt injection is blocked. Destructive operations require confirmation. Malformed inputs produce graceful errors.</p>
+<p><strong>Gate 4: Shadow evaluation.</strong> The agent&#39;s output matches human output within acceptable tolerance on a sample of representative tasks.</p>
+<p><strong>Gate 5: Canary deployment.</strong> Deploy the agent to a subset of users or use cases. Monitor for one week. If no issues emerge, expand to full deployment.</p>
+<p>Five gates. Each gate catches a different category of failure. Skipping any gate increases the probability of production failure — and production failure erodes the trust that the agent&#39;s value depends on.</p>
+<hr>
+<h2>V. The Human-in-the-Loop Pattern</h2>
+<p>For high-stakes agents — agents that handle financial transactions, send communications, or modify production infrastructure — the evaluation framework includes a human in the loop.</p>
+<p>Three patterns:</p>
+<p><strong>Approval before action.</strong> The agent plans the action, presents it to the human for approval, and executes only after receiving confirmation. This is the safest pattern and the most intrusive — the human must be present and attentive for every high-stakes operation.</p>
+<p><strong>Notification after action.</strong> The agent executes the action and immediately notifies the human. The human can review and reverse if necessary. This pattern is less intrusive but requires a reliable reversal mechanism — you must be able to undo the agent&#39;s action if it was wrong.</p>
+<p><strong>Audit after the fact.</strong> The agent executes autonomously, with all actions logged. A human reviews the log periodically (daily or weekly). This pattern is the least intrusive and is appropriate for agents with established trust — agents that have been evaluated, monitored, and verified over extended periods.</p>
+<p>The progression is a trust gradient: new agents start with approval-before-action and graduate to audit-after-the-fact as they demonstrate reliability. No agent starts at the end of the gradient. Trust is earned through demonstrated competence, not declared by architecture.</p>
+<hr>
+<h2>VI. Metrics That Matter</h2>
+<p><strong>Success rate.</strong> Percentage of interactions where the agent achieved the user&#39;s goal. Target: 95%+ for production agents. Below 90% indicates a fundamental issue with the agent&#39;s reasoning or tool configuration.</p>
+<p><strong>Error rate by type.</strong> Not just total errors — errors categorized by type: tool failure, reasoning failure, alignment failure, hallucination, refusal when action was appropriate. Each error type has a different root cause and a different fix.</p>
+<p><strong>Latency distribution.</strong> Not average latency — the distribution. An agent with average 2-second latency but a P99 of 30 seconds has a very different user experience than one with average 2-second latency and P99 of 3 seconds. The tail matters more than the average.</p>
+<p><strong>Cost per interaction.</strong> Total cost (API tokens + tool calls + compute) per user interaction. This metric determines whether the agent is economically viable at scale. An agent that costs $0.50 per interaction to run is fine for 100 daily users and catastrophic for 100,000.</p>
+<p><strong>Trust score (subjective).</strong> How much do the humans who use this agent trust it? Survey them. Ask: &quot;If this agent told you to deploy to production, would you do it without checking?&quot; The trust score is the ultimate evaluation metric — it measures whether the entire evaluation pipeline is producing an agent that humans actually rely on.</p>
+<hr>
+<h2>VII. Building Trust Over Time</h2>
+<p>Trust is not a feature you ship. It is a relationship you build.</p>
+<p>The evaluation framework is the mechanism for building trust — systematically, measurably, over time. Each test that passes, each monitoring review that confirms reliability, each adversarial challenge that the agent handles correctly deposits into the trust account.</p>
+<p>The trust account compounds. An agent that has been reliable for twelve months is trusted more than an agent that has been reliable for twelve days. This compound trust is the most valuable output of the evaluation framework — more valuable than any single metric, more valuable than any specific test result.</p>
+<p>Build the evaluation framework. Run it continuously. Let the trust compound.</p>
+<p>The agent that earns trust becomes the agent that people rely on.</p>
+<p>And reliable agents are the only agents worth building.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

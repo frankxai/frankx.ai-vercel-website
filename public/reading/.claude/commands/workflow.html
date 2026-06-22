@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/workflow.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/workflow</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>workflow.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>description: Meta-command for FrankX Workflow Tier operations — list, run, cost, status, validate, docs
+argument-hint: &quot;&lt;list|run|cost|status|validate|docs&gt; [workflow-name] [--args=<json>]&quot;</h2>
+<h1>/workflow</h1>
+<p>Meta-command for all Workflow Tier operations. One entry point for discovery, invocation, observability, validation. Replaces the need for per-workflow slash commands.</p>
+<h2>Subcommands</h2>
+<h3><code>/workflow list</code> — show the catalog</h3>
+<p>Shows the 14 workflows with tier, cadence, portability, cost envelope, composition graph.</p>
+<p>Run:</p>
+<pre><code class="language-bash">node scripts/workflow-catalog.mjs table
+</code></pre>
+<p>Or for the Mermaid composition graph:</p>
+<pre><code class="language-bash">node scripts/workflow-catalog.mjs mermaid
+</code></pre>
+<h3><code>/workflow run &lt;name&gt; [--args=&lt;json&gt;]</code> — invoke a workflow</h3>
+<p>Dispatches a named workflow with optional args. The Workflow tool returns a runId; the workflow runs in the background and you get notified on completion.</p>
+<p>Examples:</p>
+<pre><code>/workflow run repo-onboarding
+/workflow run hub-audit-rotation --args=&#39;{&quot;hub&quot;:&quot;library&quot;}&#39;
+/workflow run book-deepen-pipeline --args=&#39;{&quot;title&quot;:&quot;Thinking in Systems&quot;,&quot;author&quot;:&quot;Donella Meadows&quot;}&#39;
+/workflow run model-arena-daily
+</code></pre>
+<p>Invocation pattern (Claude executes):</p>
+<pre><code class="language-js">Workflow({ name: &#39;&lt;name&gt;&#39;, args: &lt;parsed-json&gt; })
+</code></pre>
+<p><strong>Known limitation:</strong> nested object args may not propagate to the script&#39;s <code>args</code> global for local Workflow tool calls. If a workflow fails with &quot;requires args.X&quot; despite args being passed, use <code>scriptPath</code> invocation after editing the snapshot, OR invoke via CCR cloud routine where args go through the prompt.</p>
+<h3><code>/workflow cost</code> — show calibrated cost data</h3>
+<p>Shows the calibrated <code>estimatedCost</code> per workflow with <code>lastRun</code> evidence where available.</p>
+<p>Run:</p>
+<pre><code class="language-bash">node scripts/workflow-catalog.mjs json | jq &#39;[.[]|{name,cost:.acos.estimatedCost,calibratedRuns:.acos.estimatedCost.calibratedRuns}]&#39;
+</code></pre>
+<h3><code>/workflow status</code> — live status of in-flight workflows</h3>
+<p>Use the built-in <code>/workflows</code> slash command (or check the cloud routines dashboard).</p>
+<p>Cloud routines: <a href="https://claude.ai/code/routines">https://claude.ai/code/routines</a></p>
+<h3><code>/workflow validate</code> — run the static validator</h3>
+<p>Validates all <code>.claude/workflows/*.js</code> files: meta block schema, composition graph references, agentType references (recursive scan of project + global agent dirs), portable-composes-portable contract.</p>
+<p>Run:</p>
+<pre><code class="language-bash">npm run workflow:validate
+</code></pre>
+<p>Exit code 0 = clean. Exit code 1 = issues. Already wired into <code>merge:gate</code> — broken workflows can&#39;t ship to main.</p>
+<h3><code>/workflow docs</code> — regenerate operator surface</h3>
+<p>Regenerates <code>docs/ops/WORKFLOWS.md</code> from the catalog. Includes table + Mermaid composition graph + per-workflow descriptions with invocation snippets.</p>
+<p>Run:</p>
+<pre><code class="language-bash">npm run workflow:docs
+</code></pre>
+<h2>Adding a new workflow</h2>
+<ol>
+<li>Author <code>.claude/workflows/&lt;name&gt;.js</code> per the schema in <code>.claude/skills/acos-meta/SKILL.md</code> (Workflow Tier section)</li>
+<li><code>/workflow validate</code> — must exit 0</li>
+<li>Smoke test on cheapest scenario</li>
+<li>Calibrate <code>meta.acos.estimatedCost</code> from real run</li>
+<li><code>/workflow docs</code> to regenerate the operator surface</li>
+<li>Commit + push</li>
+</ol>
+<h2>Scheduling a workflow as a cloud routine</h2>
+<p>For cadence-driven workflows (daily/weekly/monthly), schedule via the <code>/schedule</code> skill which creates Anthropic CCR routines that run in the cloud without your machine.</p>
+<p>Reference: <code>docs/ops/SCHEDULED-ROUTINES.md</code> for active routines and management URLs.</p>
+<h2>Anti-patterns</h2>
+<ul>
+<li>❌ Per-workflow slash commands (<code>/newsletter-workflow</code>, <code>/dependency-workflow</code>) — drift risk, no value over <code>/workflow run &lt;name&gt;</code>.</li>
+<li>❌ Running heavy workflows (<code>hub-audit-rotation</code>, <code>research-fanout</code>) without checking the calibrated cost envelope first. <code>hub-audit-rotation</code> on a 32-page hub costs ~2.8M tokens.</li>
+<li>❌ Inventing new workflow scripts when an existing one composes the work. Check <code>composes</code> graph first.</li>
+<li>❌ Skipping <code>/workflow validate</code> before push. Wired into <code>merge:gate</code> but local pre-push is cheaper than CI failure.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

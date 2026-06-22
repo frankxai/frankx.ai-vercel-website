@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Features Research Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gsd/templates/research-project/FEATURES.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Features Research Template</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude">.claude</a> / <a href="../../../index.html#.claude%2Fskills">skills</a> / <a href="../../index.html#.claude%2Fskills%2Fgsd">gsd</a> / <a href="../index.html#.claude%2Fskills%2Fgsd%2Ftemplates">templates</a> / <a href="index.html#.claude%2Fskills%2Fgsd%2Ftemplates%2Fresearch-project">research-project</a> / <span>FEATURES.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Features Research Template</h1>
+<p>Template for <code>.planning/research/FEATURES.md</code> — feature landscape for the project domain.</p>
+<template>
+
+<pre><code class="language-markdown"># Feature Research
+
+**Domain:** [domain type]
+**Researched:** [date]
+**Confidence:** [HIGH/MEDIUM/LOW]
+
+## Feature Landscape
+
+### Table Stakes (Users Expect These)
+
+Features users assume exist. Missing these = product feels incomplete.
+
+| Feature | Why Expected | Complexity | Notes |
+|---------|--------------|------------|-------|
+| [feature] | [user expectation] | LOW/MEDIUM/HIGH | [implementation notes] |
+| [feature] | [user expectation] | LOW/MEDIUM/HIGH | [implementation notes] |
+| [feature] | [user expectation] | LOW/MEDIUM/HIGH | [implementation notes] |
+
+### Differentiators (Competitive Advantage)
+
+Features that set the product apart. Not required, but valuable.
+
+| Feature | Value Proposition | Complexity | Notes |
+|---------|-------------------|------------|-------|
+| [feature] | [why it matters] | LOW/MEDIUM/HIGH | [implementation notes] |
+| [feature] | [why it matters] | LOW/MEDIUM/HIGH | [implementation notes] |
+| [feature] | [why it matters] | LOW/MEDIUM/HIGH | [implementation notes] |
+
+### Anti-Features (Commonly Requested, Often Problematic)
+
+Features that seem good but create problems.
+
+| Feature | Why Requested | Why Problematic | Alternative |
+|---------|---------------|-----------------|-------------|
+| [feature] | [surface appeal] | [actual problems] | [better approach] |
+| [feature] | [surface appeal] | [actual problems] | [better approach] |
+
+## Feature Dependencies
+</code></pre>
+<p>[Feature A]
+    └──requires──&gt; [Feature B]
+                       └──requires──&gt; [Feature C]</p>
+<p>[Feature D] ──enhances──&gt; [Feature A]</p>
+<p>[Feature E] ──conflicts──&gt; [Feature F]</p>
+<pre><code>
+### Dependency Notes
+
+- **[Feature A] requires [Feature B]:** [why the dependency exists]
+- **[Feature D] enhances [Feature A]:** [how they work together]
+- **[Feature E] conflicts with [Feature F]:** [why they&#39;re incompatible]
+
+## MVP Definition
+
+### Launch With (v1)
+
+Minimum viable product — what&#39;s needed to validate the concept.
+
+- [ ] [Feature] — [why essential]
+- [ ] [Feature] — [why essential]
+- [ ] [Feature] — [why essential]
+
+### Add After Validation (v1.x)
+
+Features to add once core is working.
+
+- [ ] [Feature] — [trigger for adding]
+- [ ] [Feature] — [trigger for adding]
+
+### Future Consideration (v2+)
+
+Features to defer until product-market fit is established.
+
+- [ ] [Feature] — [why defer]
+- [ ] [Feature] — [why defer]
+
+## Feature Prioritization Matrix
+
+| Feature | User Value | Implementation Cost | Priority |
+|---------|------------|---------------------|----------|
+| [feature] | HIGH/MEDIUM/LOW | HIGH/MEDIUM/LOW | P1/P2/P3 |
+| [feature] | HIGH/MEDIUM/LOW | HIGH/MEDIUM/LOW | P1/P2/P3 |
+| [feature] | HIGH/MEDIUM/LOW | HIGH/MEDIUM/LOW | P1/P2/P3 |
+
+**Priority key:**
+- P1: Must have for launch
+- P2: Should have, add when possible
+- P3: Nice to have, future consideration
+
+## Competitor Feature Analysis
+
+| Feature | Competitor A | Competitor B | Our Approach |
+|---------|--------------|--------------|--------------|
+| [feature] | [how they do it] | [how they do it] | [our plan] |
+| [feature] | [how they do it] | [how they do it] | [our plan] |
+
+## Sources
+
+- [Competitor products analyzed]
+- [User research or feedback sources]
+- [Industry standards referenced]
+
+---
+*Feature research for: [domain]*
+*Researched: [date]*
+</code></pre>
+</template>
+
+<guidelines>
+
+<p><strong>Table Stakes:</strong></p>
+<ul>
+<li>These are non-negotiable for launch</li>
+<li>Users don&#39;t give credit for having them, but penalize for missing them</li>
+<li>Example: A community platform without user profiles is broken</li>
+</ul>
+<p><strong>Differentiators:</strong></p>
+<ul>
+<li>These are where you compete</li>
+<li>Should align with the Core Value from PROJECT.md</li>
+<li>Don&#39;t try to differentiate on everything</li>
+</ul>
+<p><strong>Anti-Features:</strong></p>
+<ul>
+<li>Prevent scope creep by documenting what seems good but isn&#39;t</li>
+<li>Include the alternative approach</li>
+<li>Example: &quot;Real-time everything&quot; often creates complexity without value</li>
+</ul>
+<p><strong>Feature Dependencies:</strong></p>
+<ul>
+<li>Critical for roadmap phase ordering</li>
+<li>If A requires B, B must be in an earlier phase</li>
+<li>Conflicts inform what NOT to combine in same phase</li>
+</ul>
+<p><strong>MVP Definition:</strong></p>
+<ul>
+<li>Be ruthless about what&#39;s truly minimum</li>
+<li>&quot;Nice to have&quot; is not MVP</li>
+<li>Launch with less, validate, then expand</li>
+</ul>
+</guidelines>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

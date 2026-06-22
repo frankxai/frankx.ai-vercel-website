@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>gstack</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">gstack</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack">gstack</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>gstack</h1>
+<blockquote>
+<p>&quot;I don&#39;t think I&#39;ve typed like a line of code probably since December, basically, which is an extremely large change.&quot; — <a href="https://fortune.com/2026/03/21/andrej-karpathy-openai-cofounder-ai-agents-coding-state-of-psychosis-openclaw/">Andrej Karpathy</a>, No Priors podcast, March 2026</p>
+</blockquote>
+<p>When I heard Karpathy say this, I wanted to find out how. How does one person ship like a team of twenty? Peter Steinberger built <a href="https://github.com/openclaw/openclaw">OpenClaw</a> — 247K GitHub stars — essentially solo with AI agents. The revolution is here. A single builder with the right tooling can move faster than a traditional team.</p>
+<p>I&#39;m <a href="https://x.com/garrytan">Garry Tan</a>, President &amp; CEO of <a href="https://www.ycombinator.com/">Y Combinator</a>. I&#39;ve worked with thousands of startups — Coinbase, Instacart, Rippling — when they were one or two people in a garage. Before YC, I was one of the first eng/PM/designers at Palantir, cofounded Posterous (sold to Twitter), and built Bookface, YC&#39;s internal social network.</p>
+<p><strong>gstack is my answer.</strong> I&#39;ve been building products for twenty years, and right now I&#39;m shipping more code than I ever have. In the last 60 days: <strong>600,000+ lines of production code</strong> (35% tests), <strong>10,000-20,000 lines per day</strong>, part-time, while running YC full-time. Here&#39;s my last <code>/retro</code> across 3 projects: <strong>140,751 lines added, 362 commits, ~115k net LOC</strong> in one week.</p>
+<p><strong>2026 — 1,237 contributions and counting:</strong></p>
+<p><img src="docs/images/github-2026.png" alt="GitHub contributions 2026 — 1,237 contributions, massive acceleration in Jan-Mar"></p>
+<p><strong>2013 — when I built Bookface at YC (772 contributions):</strong></p>
+<p><img src="docs/images/github-2013.png" alt="GitHub contributions 2013 — 772 contributions building Bookface at YC"></p>
+<p>Same person. Different era. The difference is the tooling.</p>
+<p><strong>gstack is how I do it.</strong> It turns Claude Code into a virtual engineering team — a CEO who rethinks the product, an eng manager who locks architecture, a designer who catches AI slop, a reviewer who finds production bugs, a QA lead who opens a real browser, a security officer who runs OWASP + STRIDE audits, and a release engineer who ships the PR. Twenty specialists and eight power tools, all slash commands, all Markdown, all free, MIT license.</p>
+<p>This is my open source software factory. I use it every day. I&#39;m sharing it because these tools should be available to everyone.</p>
+<p>Fork it. Improve it. Make it yours. And if you want to hate on free open source software — you&#39;re welcome to, but I&#39;d rather you just try it first.</p>
+<p><strong>Who this is for:</strong></p>
+<ul>
+<li><strong>Founders and CEOs</strong> — especially technical ones who still want to ship</li>
+<li><strong>First-time Claude Code users</strong> — structured roles instead of a blank prompt</li>
+<li><strong>Tech leads and staff engineers</strong> — rigorous review, QA, and release automation on every PR</li>
+</ul>
+<h2>Quick start</h2>
+<ol>
+<li>Install gstack (30 seconds — see below)</li>
+<li>Run <code>/office-hours</code> — describe what you&#39;re building</li>
+<li>Run <code>/plan-ceo-review</code> on any feature idea</li>
+<li>Run <code>/review</code> on any branch with changes</li>
+<li>Run <code>/qa</code> on your staging URL</li>
+<li>Stop there. You&#39;ll know if this is for you.</li>
+</ol>
+<h2>Install — 30 seconds</h2>
+<p><strong>Requirements:</strong> <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, <a href="https://git-scm.com/">Git</a>, <a href="https://bun.sh/">Bun</a> v1.0+, <a href="https://nodejs.org/">Node.js</a> (Windows only)</p>
+<h3>Step 1: Install on your machine</h3>
+<p>Open Claude Code and paste this. Claude does the rest.</p>
+<blockquote>
+<p>Install gstack: run <strong><code>git clone https://github.com/garrytan/gstack.git ~/.claude/skills/gstack &amp;&amp; cd ~/.claude/skills/gstack &amp;&amp; ./setup</code></strong> then add a &quot;gstack&quot; section to CLAUDE.md that says to use the /browse skill from gstack for all web browsing, never use mcp__claude-in-chrome__* tools, and lists the available skills: /office-hours, /plan-ceo-review, /plan-eng-review, /plan-design-review, /design-consultation, /review, /ship, /land-and-deploy, /canary, /benchmark, /browse, /qa, /qa-only, /design-review, /setup-browser-cookies, /setup-deploy, /retro, /investigate, /document-release, /codex, /cso, /autoplan, /careful, /freeze, /guard, /unfreeze, /gstack-upgrade. Then ask the user if they also want to add gstack to the current project so teammates get it.</p>
+</blockquote>
+<h3>Step 2: Add to your repo so teammates get it (optional)</h3>
+<blockquote>
+<p>Add gstack to this project: run <strong><code>cp -Rf ~/.claude/skills/gstack .claude/skills/gstack &amp;&amp; rm -rf .claude/skills/gstack/.git &amp;&amp; cd .claude/skills/gstack &amp;&amp; ./setup</code></strong> then add a &quot;gstack&quot; section to this project&#39;s CLAUDE.md that says to use the /browse skill from gstack for all web browsing, never use mcp__claude-in-chrome__* tools, lists the available skills: /office-hours, /plan-ceo-review, /plan-eng-review, /plan-design-review, /design-consultation, /review, /ship, /land-and-deploy, /canary, /benchmark, /browse, /qa, /qa-only, /design-review, /setup-browser-cookies, /setup-deploy, /retro, /investigate, /document-release, /codex, /cso, /careful, /freeze, /guard, /unfreeze, /gstack-upgrade, and tells Claude that if gstack skills aren&#39;t working, run <code>cd .claude/skills/gstack &amp;&amp; ./setup</code> to build the binary and register skills.</p>
+</blockquote>
+<p>Real files get committed to your repo (not a submodule), so <code>git clone</code> just works. Everything lives inside <code>.claude/</code>. Nothing touches your PATH or runs in the background.</p>
+<h3>Codex, Gemini CLI, or Cursor</h3>
+<p>gstack works on any agent that supports the <a href="https://github.com/anthropics/claude-code">SKILL.md standard</a>. Skills live in <code>.agents/skills/</code> and are discovered automatically.</p>
+<pre><code class="language-bash">git clone https://github.com/garrytan/gstack.git ~/.codex/skills/gstack
+cd ~/.codex/skills/gstack &amp;&amp; ./setup --host codex
+</code></pre>
+<p>Or let setup auto-detect which agents you have installed:</p>
+<pre><code class="language-bash">git clone https://github.com/garrytan/gstack.git ~/gstack
+cd ~/gstack &amp;&amp; ./setup --host auto
+</code></pre>
+<p>This installs to <code>~/.claude/skills/gstack</code> and/or <code>~/.codex/skills/gstack</code> depending on what&#39;s available. All 28 skills work across all supported agents. Hook-based safety skills (careful, freeze, guard) use inline safety advisory prose on non-Claude hosts.</p>
+<h2>See it work</h2>
+<pre><code>You:    I want to build a daily briefing app for my calendar.
+You:    /office-hours
+Claude: [asks about the pain — specific examples, not hypotheticals]
+
+You:    Multiple Google calendars, events with stale info, wrong locations.
+        Prep takes forever and the results aren&#39;t good enough...
+
+Claude: I&#39;m going to push back on the framing. You said &quot;daily briefing
+        app.&quot; But what you actually described is a personal chief of
+        staff AI.
+        [extracts 5 capabilities you didn&#39;t realize you were describing]
+        [challenges 4 premises — you agree, disagree, or adjust]
+        [generates 3 implementation approaches with effort estimates]
+        RECOMMENDATION: Ship the narrowest wedge tomorrow, learn from
+        real usage. The full vision is a 3-month project — start with
+        the daily briefing that actually works.
+        [writes design doc → feeds into downstream skills automatically]
+
+You:    /plan-ceo-review
+        [reads the design doc, challenges scope, runs 10-section review]
+
+You:    /plan-eng-review
+        [ASCII diagrams for data flow, state machines, error paths]
+        [test matrix, failure modes, security concerns]
+
+You:    Approve plan. Exit plan mode.
+        [writes 2,400 lines across 11 files. ~8 minutes.]
+
+You:    /review
+        [AUTO-FIXED] 2 issues. [ASK] Race condition → you approve fix.
+
+You:    /qa https://staging.myapp.com
+        [opens real browser, clicks through flows, finds and fixes a bug]
+
+You:    /ship
+        Tests: 42 → 51 (+9 new). PR: github.com/you/app/pull/42
+</code></pre>
+<p>You said &quot;daily briefing app.&quot; The agent said &quot;you&#39;re building a chief of staff AI&quot; — because it listened to your pain, not your feature request. Eight commands, end to end. That is not a copilot. That is a team.</p>
+<h2>The sprint</h2>
+<p>gstack is a process, not a collection of tools. The skills run in the order a sprint runs:</p>
+<p><strong>Think → Plan → Build → Review → Test → Ship → Reflect</strong></p>
+<p>Each skill feeds into the next. <code>/office-hours</code> writes a design doc that <code>/plan-ceo-review</code> reads. <code>/plan-eng-review</code> writes a test plan that <code>/qa</code> picks up. <code>/review</code> catches bugs that <code>/ship</code> verifies are fixed. Nothing falls through the cracks because every step knows what came before it.</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Your specialist</th>
+<th>What they do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/office-hours</code></td>
+<td><strong>YC Office Hours</strong></td>
+<td>Start here. Six forcing questions that reframe your product before you write code. Pushes back on your framing, challenges premises, generates implementation alternatives. Design doc feeds into every downstream skill.</td>
+</tr>
+<tr>
+<td><code>/plan-ceo-review</code></td>
+<td><strong>CEO / Founder</strong></td>
+<td>Rethink the problem. Find the 10-star product hiding inside the request. Four modes: Expansion, Selective Expansion, Hold Scope, Reduction.</td>
+</tr>
+<tr>
+<td><code>/plan-eng-review</code></td>
+<td><strong>Eng Manager</strong></td>
+<td>Lock in architecture, data flow, diagrams, edge cases, and tests. Forces hidden assumptions into the open.</td>
+</tr>
+<tr>
+<td><code>/plan-design-review</code></td>
+<td><strong>Senior Designer</strong></td>
+<td>Rates each design dimension 0-10, explains what a 10 looks like, then edits the plan to get there. AI Slop detection. Interactive — one AskUserQuestion per design choice.</td>
+</tr>
+<tr>
+<td><code>/design-consultation</code></td>
+<td><strong>Design Partner</strong></td>
+<td>Build a complete design system from scratch. Researches the landscape, proposes creative risks, generates realistic product mockups.</td>
+</tr>
+<tr>
+<td><code>/review</code></td>
+<td><strong>Staff Engineer</strong></td>
+<td>Find the bugs that pass CI but blow up in production. Auto-fixes the obvious ones. Flags completeness gaps.</td>
+</tr>
+<tr>
+<td><code>/investigate</code></td>
+<td><strong>Debugger</strong></td>
+<td>Systematic root-cause debugging. Iron Law: no fixes without investigation. Traces data flow, tests hypotheses, stops after 3 failed fixes.</td>
+</tr>
+<tr>
+<td><code>/design-review</code></td>
+<td><strong>Designer Who Codes</strong></td>
+<td>Same audit as /plan-design-review, then fixes what it finds. Atomic commits, before/after screenshots.</td>
+</tr>
+<tr>
+<td><code>/qa</code></td>
+<td><strong>QA Lead</strong></td>
+<td>Test your app, find bugs, fix them with atomic commits, re-verify. Auto-generates regression tests for every fix.</td>
+</tr>
+<tr>
+<td><code>/qa-only</code></td>
+<td><strong>QA Reporter</strong></td>
+<td>Same methodology as /qa but report only. Pure bug report without code changes.</td>
+</tr>
+<tr>
+<td><code>/cso</code></td>
+<td><strong>Chief Security Officer</strong></td>
+<td>OWASP Top 10 + STRIDE threat model. Zero-noise: 17 false positive exclusions, 8/10+ confidence gate, independent finding verification. Each finding includes a concrete exploit scenario.</td>
+</tr>
+<tr>
+<td><code>/ship</code></td>
+<td><strong>Release Engineer</strong></td>
+<td>Sync main, run tests, audit coverage, push, open PR. Bootstraps test frameworks if you don&#39;t have one.</td>
+</tr>
+<tr>
+<td><code>/land-and-deploy</code></td>
+<td><strong>Release Engineer</strong></td>
+<td>Merge the PR, wait for CI and deploy, verify production health. One command from &quot;approved&quot; to &quot;verified in production.&quot;</td>
+</tr>
+<tr>
+<td><code>/canary</code></td>
+<td><strong>SRE</strong></td>
+<td>Post-deploy monitoring loop. Watches for console errors, performance regressions, and page failures.</td>
+</tr>
+<tr>
+<td><code>/benchmark</code></td>
+<td><strong>Performance Engineer</strong></td>
+<td>Baseline page load times, Core Web Vitals, and resource sizes. Compare before/after on every PR.</td>
+</tr>
+<tr>
+<td><code>/document-release</code></td>
+<td><strong>Technical Writer</strong></td>
+<td>Update all project docs to match what you just shipped. Catches stale READMEs automatically.</td>
+</tr>
+<tr>
+<td><code>/retro</code></td>
+<td><strong>Eng Manager</strong></td>
+<td>Team-aware weekly retro. Per-person breakdowns, shipping streaks, test health trends, growth opportunities. <code>/retro global</code> runs across all your projects and AI tools (Claude Code, Codex, Gemini).</td>
+</tr>
+<tr>
+<td><code>/browse</code></td>
+<td><strong>QA Engineer</strong></td>
+<td>Real Chromium browser, real clicks, real screenshots. ~100ms per command.</td>
+</tr>
+<tr>
+<td><code>/setup-browser-cookies</code></td>
+<td><strong>Session Manager</strong></td>
+<td>Import cookies from your real browser (Chrome, Arc, Brave, Edge) into the headless session. Test authenticated pages.</td>
+</tr>
+<tr>
+<td><code>/autoplan</code></td>
+<td><strong>Review Pipeline</strong></td>
+<td>One command, fully reviewed plan. Runs CEO → design → eng review automatically with encoded decision principles. Surfaces only taste decisions for your approval.</td>
+</tr>
+</tbody></table>
+<h3>Power tools</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/codex</code></td>
+<td><strong>Second Opinion</strong> — independent code review from OpenAI Codex CLI. Three modes: review (pass/fail gate), adversarial challenge, and open consultation. Cross-model analysis when both <code>/review</code> and <code>/codex</code> have run.</td>
+</tr>
+<tr>
+<td><code>/careful</code></td>
+<td><strong>Safety Guardrails</strong> — warns before destructive commands (rm -rf, DROP TABLE, force-push). Say &quot;be careful&quot; to activate. Override any warning.</td>
+</tr>
+<tr>
+<td><code>/freeze</code></td>
+<td><strong>Edit Lock</strong> — restrict file edits to one directory. Prevents accidental changes outside scope while debugging.</td>
+</tr>
+<tr>
+<td><code>/guard</code></td>
+<td><strong>Full Safety</strong> — <code>/careful</code> + <code>/freeze</code> in one command. Maximum safety for prod work.</td>
+</tr>
+<tr>
+<td><code>/unfreeze</code></td>
+<td><strong>Unlock</strong> — remove the <code>/freeze</code> boundary.</td>
+</tr>
+<tr>
+<td><code>/setup-deploy</code></td>
+<td><strong>Deploy Configurator</strong> — one-time setup for <code>/land-and-deploy</code>. Detects your platform, production URL, and deploy commands.</td>
+</tr>
+<tr>
+<td><code>/gstack-upgrade</code></td>
+<td><strong>Self-Updater</strong> — upgrade gstack to latest. Detects global vs vendored install, syncs both, shows what changed.</td>
+</tr>
+</tbody></table>
+<p><strong><a href="docs/skills.md">Deep dives with examples and philosophy for every skill →</a></strong></p>
+<h2>Parallel sprints</h2>
+<p>gstack works well with one sprint. It gets interesting with ten running at once.</p>
+<p><a href="https://conductor.build">Conductor</a> runs multiple Claude Code sessions in parallel — each in its own isolated workspace. One session on <code>/office-hours</code>, another on <code>/review</code>, a third implementing a feature, a fourth running <code>/qa</code>. All at the same time. The sprint structure is what makes parallelism work — without a process, ten agents is ten sources of chaos. With a process, each agent knows exactly what to do and when to stop.</p>
+<hr>
+<p>Free, MIT licensed, open source. No premium tier, no waitlist.</p>
+<p>I open sourced how I build software. You can fork it and make it your own.</p>
+<blockquote>
+<p><strong>We&#39;re hiring.</strong> Want to ship 10K+ LOC/day and help harden gstack?
+Come work at YC — <a href="https://ycombinator.com/software">ycombinator.com/software</a>
+Extremely competitive salary and equity. San Francisco, Dogpatch District.</p>
+</blockquote>
+<h2>Docs</h2>
+<table>
+<thead>
+<tr>
+<th>Doc</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="docs/skills.md">Skill Deep Dives</a></td>
+<td>Philosophy, examples, and workflow for every skill (includes Greptile integration)</td>
+</tr>
+<tr>
+<td><a href="ETHOS.md">Builder Ethos</a></td>
+<td>Builder philosophy: Boil the Lake, Search Before Building, three layers of knowledge</td>
+</tr>
+<tr>
+<td><a href="ARCHITECTURE.md">Architecture</a></td>
+<td>Design decisions and system internals</td>
+</tr>
+<tr>
+<td><a href="BROWSER.md">Browser Reference</a></td>
+<td>Full command reference for <code>/browse</code></td>
+</tr>
+<tr>
+<td><a href="CONTRIBUTING.md">Contributing</a></td>
+<td>Dev setup, testing, contributor mode, and dev mode</td>
+</tr>
+<tr>
+<td><a href="CHANGELOG.md">Changelog</a></td>
+<td>What&#39;s new in every version</td>
+</tr>
+</tbody></table>
+<h2>Privacy &amp; Telemetry</h2>
+<p>gstack includes <strong>opt-in</strong> usage telemetry to help improve the project. Here&#39;s exactly what happens:</p>
+<ul>
+<li><strong>Default is off.</strong> Nothing is sent anywhere unless you explicitly say yes.</li>
+<li><strong>On first run,</strong> gstack asks if you want to share anonymous usage data. You can say no.</li>
+<li><strong>What&#39;s sent (if you opt in):</strong> skill name, duration, success/fail, gstack version, OS. That&#39;s it.</li>
+<li><strong>What&#39;s never sent:</strong> code, file paths, repo names, branch names, prompts, or any user-generated content.</li>
+<li><strong>Change anytime:</strong> <code>gstack-config set telemetry off</code> disables everything instantly.</li>
+</ul>
+<p>Data is stored in <a href="https://supabase.com">Supabase</a> (open source Firebase alternative). The schema is in <a href="supabase/migrations/001_telemetry.sql"><code>supabase/migrations/001_telemetry.sql</code></a> — you can verify exactly what&#39;s collected. The Supabase publishable key in the repo is a public key (like a Firebase API key) — row-level security policies restrict it to insert-only access.</p>
+<p><strong>Local analytics are always available.</strong> Run <code>gstack-analytics</code> to see your personal usage dashboard from the local JSONL file — no remote data needed.</p>
+<h2>Troubleshooting</h2>
+<p><strong>Skill not showing up?</strong> <code>cd ~/.claude/skills/gstack &amp;&amp; ./setup</code></p>
+<p><strong><code>/browse</code> fails?</strong> <code>cd ~/.claude/skills/gstack &amp;&amp; bun install &amp;&amp; bun run build</code></p>
+<p><strong>Stale install?</strong> Run <code>/gstack-upgrade</code> — or set <code>auto_upgrade: true</code> in <code>~/.gstack/config.yaml</code></p>
+<p><strong>Windows users:</strong> gstack works on Windows 11 via Git Bash or WSL. Node.js is required in addition to Bun — Bun has a known bug with Playwright&#39;s pipe transport on Windows (<a href="https://github.com/oven-sh/bun/issues/4253">bun#4253</a>). The browse server automatically falls back to Node.js. Make sure both <code>bun</code> and <code>node</code> are on your PATH.</p>
+<p><strong>Claude says it can&#39;t see the skills?</strong> Make sure your project&#39;s <code>CLAUDE.md</code> has a gstack section. Add this:</p>
+<pre><code>## gstack
+Use /browse from gstack for all web browsing. Never use mcp__claude-in-chrome__* tools.
+Available skills: /office-hours, /plan-ceo-review, /plan-eng-review, /plan-design-review,
+/design-consultation, /review, /ship, /land-and-deploy, /canary, /benchmark, /browse,
+/qa, /qa-only, /design-review, /setup-browser-cookies, /setup-deploy, /retro,
+/investigate, /document-release, /codex, /cso, /autoplan, /careful, /freeze, /guard,
+/unfreeze, /gstack-upgrade.
+</code></pre>
+<h2>License</h2>
+<p>MIT. Free forever. Go build something.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

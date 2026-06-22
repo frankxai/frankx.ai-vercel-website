@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>add ANTHROPIC_API_KEY=...</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/02-model.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">add ANTHROPIC_API_KEY=...</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>02-model.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 2
+subject: &quot;Primitive 1 — The Model (and why &#39;pick a model&#39; is the wrong frame)&quot;
+preheader: &quot;Reading time: 5 min. The 5-line provider swap.&quot;</h2>
+<p>The most common mistake with first agents is treating the model as the architecture.</p>
+<p>It isn&#39;t. The model is a <strong>pluggable component behind an interface</strong>.</p>
+<p>Here&#39;s the entire model primitive in the Vercel AI SDK starter repo:</p>
+<pre><code class="language-ts">import { anthropic } from &#39;@ai-sdk/anthropic&#39;
+import { openai } from &#39;@ai-sdk/openai&#39;
+import { google } from &#39;@ai-sdk/google&#39;
+
+export function getModel() {
+  const name = process.env.AGENT_PROVIDER ?? &#39;anthropic&#39;
+  if (name === &#39;anthropic&#39;) return anthropic(&#39;claude-sonnet-4-6&#39;)
+  if (name === &#39;openai&#39;) return openai(&#39;gpt-5&#39;)
+  return google(&#39;gemini-2.5-pro&#39;)
+}
+</code></pre>
+<p>That&#39;s it. Five lines. The rest of your agent calls <code>getModel()</code> and doesn&#39;t know or care which provider it got.</p>
+<p>The benefit isn&#39;t theoretical. Last quarter I had a customer agent on Claude Sonnet 4.6 hit a rate limit during a launch event. Three minutes later it was running on GPT-5 with one env var change and a redeploy. The agent didn&#39;t know. The customers didn&#39;t know. That&#39;s what a clean model primitive buys you.</p>
+<h2>The architectural test</h2>
+<p>Ask yourself this about your current agent (if you have one):</p>
+<p><strong>Can I swap providers in under 60 seconds without touching anything else?</strong></p>
+<p>If yes — your model primitive is clean.</p>
+<p>If no — your provider-specific code has bled into your loop, your tools, or your prompts. That&#39;s the leaky abstraction the workshop teaches you to fix.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>Clone the starter repo and try the swap yourself:</p>
+<pre><code class="language-bash">git clone https://github.com/frankxai/first-agent-vercel-aisdk
+cd first-agent-vercel-aisdk
+pnpm install
+cp .env.example .env
+# add ANTHROPIC_API_KEY=...
+# (and optionally OPENAI_API_KEY=...)
+pnpm dev
+</code></pre>
+<p>Visit <a href="http://localhost:3000">http://localhost:3000</a>. Ask any question. Then change <code>AGENT_PROVIDER=openai</code> in <code>.env</code>, restart, ask again. You&#39;re now running the same agent on a different provider.</p>
+<p>Most people who do this never go back to &quot;I&#39;ll just pick a model and commit to it.&quot; The portability lesson lands once you feel it.</p>
+<h2>Which model would I pick today?</h2>
+<p>For first agents in 2026:</p>
+<ul>
+<li><strong>Claude Sonnet 4.6</strong> — best reasoning + tool use, my default</li>
+<li><strong>GPT-5</strong> — largest install base, best ecosystem integrations</li>
+<li><strong>Gemini 2.5 Pro</strong> — best long-context (1M+ tokens), best multimodal</li>
+</ul>
+<p>Try Claude Sonnet first. Swap to others when you have a specific reason.</p>
+<h2>Tomorrow</h2>
+<p>Day 3 — Primitive 2: <strong>Tools</strong>. The four-field rule that makes tools port across every framework.</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

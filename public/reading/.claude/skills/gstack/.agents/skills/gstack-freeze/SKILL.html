@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/freeze — Restrict Edits to a Directory</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/.agents/skills/gstack-freeze/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/freeze — Restrict Edits to a Directory</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#.claude">.claude</a> / <a href="../../../../index.html#.claude%2Fskills">skills</a> / <a href="../../../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="../../index.html#.claude%2Fskills%2Fgstack%2F.agents">.agents</a> / <a href="../index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills%2Fgstack-freeze">gstack-freeze</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: freeze
+description: |
+  Restrict file edits to a specific directory for the session. Blocks Edit and
+  Write outside the allowed path. Use when debugging to prevent accidentally
+  &quot;fixing&quot; unrelated code, or when you want to scope changes to one module.
+  Use when asked to &quot;freeze&quot;, &quot;restrict edits&quot;, &quot;only edit this folder&quot;,
+  or &quot;lock down edits&quot;.</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+<blockquote>
+<p><strong>Safety Advisory:</strong> This skill includes safety checks that verify file edits are within the allowed scope boundary before applying, and verify file writes are within the allowed scope boundary before applying. When using this skill, always pause and verify before executing potentially destructive operations. If uncertain about a command&#39;s safety, ask the user for confirmation before proceeding.</p>
+</blockquote>
+<h1>/freeze — Restrict Edits to a Directory</h1>
+<p>Lock file edits to a specific directory. Any Edit or Write operation targeting
+a file outside the allowed path will be <strong>blocked</strong> (not just warned).</p>
+<pre><code class="language-bash">mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;freeze&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+</code></pre>
+<h2>Setup</h2>
+<p>Ask the user which directory to restrict edits to. Use AskUserQuestion:</p>
+<ul>
+<li>Question: &quot;Which directory should I restrict edits to? Files outside this path will be blocked from editing.&quot;</li>
+<li>Text input (not multiple choice) — the user types a path.</li>
+</ul>
+<p>Once the user provides a directory path:</p>
+<ol>
+<li>Resolve it to an absolute path:</li>
+</ol>
+<pre><code class="language-bash">FREEZE_DIR=$(cd &quot;&lt;user-provided-path&gt;&quot; 2&gt;/dev/null &amp;&amp; pwd)
+echo &quot;$FREEZE_DIR&quot;
+</code></pre>
+<ol start="2">
+<li>Ensure trailing slash and save to the freeze state file:</li>
+</ol>
+<pre><code class="language-bash">FREEZE_DIR=&quot;${FREEZE_DIR%/}/&quot;
+STATE_DIR=&quot;${CLAUDE_PLUGIN_DATA:-$HOME/.gstack}&quot;
+mkdir -p &quot;$STATE_DIR&quot;
+echo &quot;$FREEZE_DIR&quot; &gt; &quot;$STATE_DIR/freeze-dir.txt&quot;
+echo &quot;Freeze boundary set: $FREEZE_DIR&quot;
+</code></pre>
+<p>Tell the user: &quot;Edits are now restricted to <code>&lt;path&gt;/</code>. Any Edit or Write
+outside this directory will be blocked. To change the boundary, run <code>/freeze</code>
+again. To remove it, run <code>/unfreeze</code> or end the session.&quot;</p>
+<h2>How it works</h2>
+<p>The hook reads <code>file_path</code> from the Edit/Write tool input JSON, then checks
+whether the path starts with the freeze directory. If not, it returns
+<code>permissionDecision: &quot;deny&quot;</code> to block the operation.</p>
+<p>The freeze boundary persists for the session via the state file. The hook
+script reads it on every Edit/Write invocation.</p>
+<h2>Notes</h2>
+<ul>
+<li>The trailing <code>/</code> on the freeze directory prevents <code>/src</code> from matching <code>/src-old</code></li>
+<li>Freeze applies to Edit and Write tools only — Read, Bash, Glob, Grep are unaffected</li>
+<li>This prevents accidental edits, not a security boundary — Bash commands like <code>sed</code> can still modify files outside the boundary</li>
+<li>To deactivate, run <code>/unfreeze</code> or end the conversation</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

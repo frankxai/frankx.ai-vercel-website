@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>GitHub Multi-Repository Coordination Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/github-multi-repo/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Multi-Repository Coordination Skill</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgithub-multi-repo">github-multi-repo</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: github-multi-repo
+version: 1.0.0
+description: Multi-repository coordination, synchronization, and architecture management with AI swarm orchestration
+category: github-integration
+tags: [multi-repo, synchronization, architecture, coordination, github]
+author: Claude Flow Team
+requires:
+  - ruv-swarm@^1.0.11
+  - gh-cli@^2.0.0
+capabilities:
+  - cross-repository coordination
+  - package synchronization
+  - architecture optimization
+  - template management
+  - distributed workflows</h2>
+<h1>GitHub Multi-Repository Coordination Skill</h1>
+<h2>Overview</h2>
+<p>Advanced multi-repository coordination system that combines swarm intelligence, package synchronization, and repository architecture optimization. This skill enables organization-wide automation, cross-project collaboration, and scalable repository management.</p>
+<h2>Core Capabilities</h2>
+<h3>🔄 Multi-Repository Swarm Coordination</h3>
+<p>Cross-repository AI swarm orchestration for distributed development workflows.</p>
+<h3>📦 Package Synchronization</h3>
+<p>Intelligent dependency resolution and version alignment across multiple packages.</p>
+<h3>🏗️ Repository Architecture</h3>
+<p>Structure optimization and template management for scalable projects.</p>
+<h3>🔗 Integration Management</h3>
+<p>Cross-package integration testing and deployment coordination.</p>
+<h2>Quick Start</h2>
+<h3>Initialize Multi-Repo Coordination</h3>
+<pre><code class="language-bash"># Basic swarm initialization
+npx claude-flow skill run github-multi-repo init \
+  --repos &quot;org/frontend,org/backend,org/shared&quot; \
+  --topology hierarchical
+
+# Advanced initialization with synchronization
+npx claude-flow skill run github-multi-repo init \
+  --repos &quot;org/frontend,org/backend,org/shared&quot; \
+  --topology mesh \
+  --shared-memory \
+  --sync-strategy eventual
+</code></pre>
+<h3>Synchronize Packages</h3>
+<pre><code class="language-bash"># Synchronize package versions and dependencies
+npx claude-flow skill run github-multi-repo sync \
+  --packages &quot;claude-code-flow,ruv-swarm&quot; \
+  --align-versions \
+  --update-docs
+</code></pre>
+<h3>Optimize Architecture</h3>
+<pre><code class="language-bash"># Analyze and optimize repository structure
+npx claude-flow skill run github-multi-repo optimize \
+  --analyze-structure \
+  --suggest-improvements \
+  --create-templates
+</code></pre>
+<h2>Features</h2>
+<h3>1. Cross-Repository Swarm Orchestration</h3>
+<h4>Repository Discovery</h4>
+<pre><code class="language-javascript">// Auto-discover related repositories with gh CLI
+const REPOS = Bash(`gh repo list my-organization --limit 100 \
+  --json name,description,languages,topics \
+  --jq &#39;.[] | select(.languages | keys | contains([&quot;TypeScript&quot;]))&#39;`)
+
+// Analyze repository dependencies
+const DEPS = Bash(`gh repo list my-organization --json name | \
+  jq -r &#39;.[].name&#39; | while read -r repo; do
+    gh api repos/my-organization/$repo/contents/package.json \
+      --jq &#39;.content&#39; 2&gt;/dev/null | base64 -d | jq &#39;{name, dependencies}&#39;
+  done | jq -s &#39;.&#39;`)
+
+// Initialize swarm with discovered repositories
+mcp__claude-flow__swarm_init({
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 8,
+  metadata: { repos: REPOS, dependencies: DEPS }
+})
+</code></pre>
+<h4>Synchronized Operations</h4>
+<pre><code class="language-javascript">// Execute synchronized changes across repositories
+[Parallel Multi-Repo Operations]:
+  // Spawn coordination agents
+  Task(&quot;Repository Coordinator&quot;, &quot;Coordinate changes across all repositories&quot;, &quot;coordinator&quot;)
+  Task(&quot;Dependency Analyzer&quot;, &quot;Analyze cross-repo dependencies&quot;, &quot;analyst&quot;)
+  Task(&quot;Integration Tester&quot;, &quot;Validate cross-repo changes&quot;, &quot;tester&quot;)
+
+  // Get matching repositories
+  Bash(`gh repo list org --limit 100 --json name \
+    --jq &#39;.[] | select(.name | test(&quot;-service$&quot;)) | .name&#39; &gt; /tmp/repos.txt`)
+
+  // Execute task across repositories
+  Bash(`cat /tmp/repos.txt | while read -r repo; do
+    gh repo clone org/$repo /tmp/$repo -- --depth=1
+    cd /tmp/$repo
+
+    # Apply changes
+    npm update
+    npm test
+
+    # Create PR if successful
+    if [ $? -eq 0 ]; then
+      git checkout -b update-dependencies-$(date +%Y%m%d)
+      git add -A
+      git commit -m &quot;chore: Update dependencies&quot;
+      git push origin HEAD
+      gh pr create --title &quot;Update dependencies&quot; --body &quot;Automated update&quot; --label &quot;dependencies&quot;
+    fi
+  done`)
+
+  // Track all operations
+  TodoWrite { todos: [
+    { id: &quot;discover&quot;, content: &quot;Discover all service repositories&quot;, status: &quot;completed&quot; },
+    { id: &quot;update&quot;, content: &quot;Update dependencies&quot;, status: &quot;completed&quot; },
+    { id: &quot;test&quot;, content: &quot;Run integration tests&quot;, status: &quot;in_progress&quot; },
+    { id: &quot;pr&quot;, content: &quot;Create pull requests&quot;, status: &quot;pending&quot; }
+  ]}
+</code></pre>
+<h3>2. Package Synchronization</h3>
+<h4>Version Alignment</h4>
+<pre><code class="language-javascript">// Synchronize package dependencies and versions
+[Complete Package Sync]:
+  // Initialize sync swarm
+  mcp__claude-flow__swarm_init({ topology: &quot;mesh&quot;, maxAgents: 5 })
+
+  // Spawn sync agents
+  Task(&quot;Sync Coordinator&quot;, &quot;Coordinate version alignment&quot;, &quot;coordinator&quot;)
+  Task(&quot;Dependency Analyzer&quot;, &quot;Analyze dependencies&quot;, &quot;analyst&quot;)
+  Task(&quot;Integration Tester&quot;, &quot;Validate synchronization&quot;, &quot;tester&quot;)
+
+  // Read package states
+  Read(&quot;/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json&quot;)
+  Read(&quot;/workspaces/ruv-FANN/ruv-swarm/npm/package.json&quot;)
+
+  // Align versions using gh CLI
+  Bash(`gh api repos/:owner/:repo/git/refs \
+    -f ref=&#39;refs/heads/sync/package-alignment&#39; \
+    -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq &#39;.object.sha&#39;)`)
+
+  // Update package.json files
+  Bash(`gh api repos/:owner/:repo/contents/package.json \
+    --method PUT \
+    -f message=&quot;feat: Align Node.js version requirements&quot; \
+    -f branch=&quot;sync/package-alignment&quot; \
+    -f content=&quot;$(cat aligned-package.json | base64)&quot;`)
+
+  // Store sync state
+  mcp__claude-flow__memory_usage({
+    action: &quot;store&quot;,
+    key: &quot;sync/packages/status&quot;,
+    value: {
+      timestamp: Date.now(),
+      packages_synced: [&quot;claude-code-flow&quot;, &quot;ruv-swarm&quot;],
+      status: &quot;synchronized&quot;
+    }
+  })
+</code></pre>
+<h4>Documentation Synchronization</h4>
+<pre><code class="language-javascript">// Synchronize CLAUDE.md files across packages
+[Documentation Sync]:
+  // Get source documentation
+  Bash(`gh api repos/:owner/:repo/contents/ruv-swarm/docs/CLAUDE.md \
+    --jq &#39;.content&#39; | base64 -d &gt; /tmp/claude-source.md`)
+
+  // Update target documentation
+  Bash(`gh api repos/:owner/:repo/contents/claude-code-flow/CLAUDE.md \
+    --method PUT \
+    -f message=&quot;docs: Synchronize CLAUDE.md&quot; \
+    -f branch=&quot;sync/documentation&quot; \
+    -f content=&quot;$(cat /tmp/claude-source.md | base64)&quot;`)
+
+  // Track sync status
+  mcp__claude-flow__memory_usage({
+    action: &quot;store&quot;,
+    key: &quot;sync/documentation/status&quot;,
+    value: { status: &quot;synchronized&quot;, files: [&quot;CLAUDE.md&quot;] }
+  })
+</code></pre>
+<h4>Cross-Package Integration</h4>
+<pre><code class="language-javascript">// Coordinate feature implementation across packages
+[Cross-Package Feature]:
+  // Push changes to all packages
+  mcp__github__push_files({
+    branch: &quot;feature/github-integration&quot;,
+    files: [
+      {
+        path: &quot;claude-code-flow/.claude/commands/github/github-modes.md&quot;,
+        content: &quot;[GitHub modes documentation]&quot;
+      },
+      {
+        path: &quot;ruv-swarm/src/github-coordinator/hooks.js&quot;,
+        content: &quot;[GitHub coordination hooks]&quot;
+      }
+    ],
+    message: &quot;feat: Add GitHub workflow integration&quot;
+  })
+
+  // Create coordinated PR
+  Bash(`gh pr create \
+    --title &quot;Feature: GitHub Workflow Integration&quot; \
+    --body &quot;## 🚀 GitHub Integration
+
+### Features
+- ✅ Multi-repo coordination
+- ✅ Package synchronization
+- ✅ Architecture optimization
+
+### Testing
+- [x] Package dependency verification
+- [x] Integration tests
+- [x] Cross-package compatibility&quot;`)
+</code></pre>
+<h3>3. Repository Architecture</h3>
+<h4>Structure Analysis</h4>
+<pre><code class="language-javascript">// Analyze and optimize repository structure
+[Architecture Analysis]:
+  // Initialize architecture swarm
+  mcp__claude-flow__swarm_init({ topology: &quot;hierarchical&quot;, maxAgents: 6 })
+
+  // Spawn architecture agents
+  Task(&quot;Senior Architect&quot;, &quot;Analyze repository structure&quot;, &quot;architect&quot;)
+  Task(&quot;Structure Analyst&quot;, &quot;Identify optimization opportunities&quot;, &quot;analyst&quot;)
+  Task(&quot;Performance Optimizer&quot;, &quot;Optimize structure for scalability&quot;, &quot;optimizer&quot;)
+  Task(&quot;Best Practices Researcher&quot;, &quot;Research architecture patterns&quot;, &quot;researcher&quot;)
+
+  // Analyze current structures
+  LS(&quot;/workspaces/ruv-FANN/claude-code-flow/claude-code-flow&quot;)
+  LS(&quot;/workspaces/ruv-FANN/ruv-swarm/npm&quot;)
+
+  // Search for best practices
+  Bash(`gh search repos &quot;language:javascript template architecture&quot; \
+    --limit 10 \
+    --json fullName,description,stargazersCount \
+    --sort stars \
+    --order desc`)
+
+  // Store analysis results
+  mcp__claude-flow__memory_usage({
+    action: &quot;store&quot;,
+    key: &quot;architecture/analysis/results&quot;,
+    value: {
+      repositories_analyzed: [&quot;claude-code-flow&quot;, &quot;ruv-swarm&quot;],
+      optimization_areas: [&quot;structure&quot;, &quot;workflows&quot;, &quot;templates&quot;],
+      recommendations: [&quot;standardize_structure&quot;, &quot;improve_workflows&quot;]
+    }
+  })
+</code></pre>
+<h4>Template Creation</h4>
+<pre><code class="language-javascript">// Create standardized repository template
+[Template Creation]:
+  // Create template repository
+  mcp__github__create_repository({
+    name: &quot;claude-project-template&quot;,
+    description: &quot;Standardized template for Claude Code projects&quot;,
+    private: false,
+    autoInit: true
+  })
+
+  // Push template structure
+  mcp__github__push_files({
+    repo: &quot;claude-project-template&quot;,
+    files: [
+      {
+        path: &quot;.claude/commands/github/github-modes.md&quot;,
+        content: &quot;[GitHub modes template]&quot;
+      },
+      {
+        path: &quot;.claude/config.json&quot;,
+        content: JSON.stringify({
+          version: &quot;1.0&quot;,
+          mcp_servers: {
+            &quot;ruv-swarm&quot;: {
+              command: &quot;npx&quot;,
+              args: [&quot;ruv-swarm&quot;, &quot;mcp&quot;, &quot;start&quot;]
+            }
+          }
+        })
+      },
+      {
+        path: &quot;CLAUDE.md&quot;,
+        content: &quot;[Standardized CLAUDE.md]&quot;
+      },
+      {
+        path: &quot;package.json&quot;,
+        content: JSON.stringify({
+          name: &quot;claude-project-template&quot;,
+          engines: { node: &quot;&gt;=20.0.0&quot; },
+          dependencies: { &quot;ruv-swarm&quot;: &quot;^1.0.11&quot; }
+        })
+      }
+    ],
+    message: &quot;feat: Create standardized template&quot;
+  })
+</code></pre>
+<h4>Cross-Repository Standardization</h4>
+<pre><code class="language-javascript">// Synchronize structure across repositories
+[Structure Standardization]:
+  const repositories = [&quot;claude-code-flow&quot;, &quot;ruv-swarm&quot;, &quot;claude-extensions&quot;]
+
+  // Update common files across all repositories
+  repositories.forEach(repo =&gt; {
+    mcp__github__create_or_update_file({
+      repo: &quot;ruv-FANN&quot;,
+      path: `${repo}/.github/workflows/integration.yml`,
+      content: `name: Integration Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { node-version: &#39;20&#39; }
+      - run: npm install &amp;&amp; npm test`,
+      message: &quot;ci: Standardize integration workflow&quot;,
+      branch: &quot;structure/standardization&quot;
+    })
+  })
+</code></pre>
+<h3>4. Orchestration Workflows</h3>
+<h4>Dependency Management</h4>
+<pre><code class="language-javascript">// Update dependencies across all repositories
+[Organization-Wide Dependency Update]:
+  // Create tracking issue
+  TRACKING_ISSUE=$(Bash(`gh issue create \
+    --title &quot;Dependency Update: typescript@5.0.0&quot; \
+    --body &quot;Tracking TypeScript update across all repositories&quot; \
+    --label &quot;dependencies,tracking&quot; \
+    --json number -q .number`))
+
+  // Find all TypeScript repositories
+  TS_REPOS=$(Bash(`gh repo list org --limit 100 --json name | \
+    jq -r &#39;.[].name&#39; | while read -r repo; do
+      if gh api repos/org/$repo/contents/package.json 2&gt;/dev/null | \
+         jq -r &#39;.content&#39; | base64 -d | grep -q &#39;&quot;typescript&quot;&#39;; then
+        echo &quot;$repo&quot;
+      fi
+    done`))
+
+  // Update each repository
+  Bash(`echo &quot;$TS_REPOS&quot; | while read -r repo; do
+    gh repo clone org/$repo /tmp/$repo -- --depth=1
+    cd /tmp/$repo
+
+    npm install --save-dev typescript@5.0.0
+
+    if npm test; then
+      git checkout -b update-typescript-5
+      git add package.json package-lock.json
+      git commit -m &quot;chore: Update TypeScript to 5.0.0
+
+Part of #$TRACKING_ISSUE&quot;
+
+      git push origin HEAD
+      gh pr create \
+        --title &quot;Update TypeScript to 5.0.0&quot; \
+        --body &quot;Updates TypeScript\n\nTracking: #$TRACKING_ISSUE&quot; \
+        --label &quot;dependencies&quot;
+    else
+      gh issue comment $TRACKING_ISSUE \
+        --body &quot;❌ Failed to update $repo - tests failing&quot;
+    fi
+  done`)
+</code></pre>
+<h4>Refactoring Operations</h4>
+<pre><code class="language-javascript">// Coordinate large-scale refactoring
+[Cross-Repo Refactoring]:
+  // Initialize refactoring swarm
+  mcp__claude-flow__swarm_init({ topology: &quot;mesh&quot;, maxAgents: 8 })
+
+  // Spawn specialized agents
+  Task(&quot;Refactoring Coordinator&quot;, &quot;Coordinate refactoring across repos&quot;, &quot;coordinator&quot;)
+  Task(&quot;Impact Analyzer&quot;, &quot;Analyze refactoring impact&quot;, &quot;analyst&quot;)
+  Task(&quot;Code Transformer&quot;, &quot;Apply refactoring changes&quot;, &quot;coder&quot;)
+  Task(&quot;Migration Guide Creator&quot;, &quot;Create migration documentation&quot;, &quot;documenter&quot;)
+  Task(&quot;Integration Tester&quot;, &quot;Validate refactored code&quot;, &quot;tester&quot;)
+
+  // Execute refactoring
+  mcp__claude-flow__task_orchestrate({
+    task: &quot;Rename OldAPI to NewAPI across all repositories&quot;,
+    strategy: &quot;sequential&quot;,
+    priority: &quot;high&quot;
+  })
+</code></pre>
+<h4>Security Updates</h4>
+<pre><code class="language-javascript">// Coordinate security patches
+[Security Patch Deployment]:
+  // Scan all repositories
+  Bash(`gh repo list org --limit 100 --json name | jq -r &#39;.[].name&#39; | \
+    while read -r repo; do
+      gh repo clone org/$repo /tmp/$repo -- --depth=1
+      cd /tmp/$repo
+      npm audit --json &gt; /tmp/audit-$repo.json
+    done`)
+
+  // Apply patches
+  Bash(`for repo in /tmp/audit-*.json; do
+    if [ $(jq &#39;.vulnerabilities | length&#39; $repo) -gt 0 ]; then
+      cd /tmp/$(basename $repo .json | sed &#39;s/audit-//&#39;)
+      npm audit fix
+
+      if npm test; then
+        git checkout -b security/patch-$(date +%Y%m%d)
+        git add -A
+        git commit -m &quot;security: Apply security patches&quot;
+        git push origin HEAD
+        gh pr create --title &quot;Security patches&quot; --label &quot;security&quot;
+      fi
+    fi
+  done`)
+</code></pre>
+<h2>Configuration</h2>
+<h3>Multi-Repo Config File</h3>
+<pre><code class="language-yaml"># .swarm/multi-repo.yml
+version: 1
+organization: my-org
+
+repositories:
+  - name: frontend
+    url: github.com/my-org/frontend
+    role: ui
+    agents: [coder, designer, tester]
+
+  - name: backend
+    url: github.com/my-org/backend
+    role: api
+    agents: [architect, coder, tester]
+
+  - name: shared
+    url: github.com/my-org/shared
+    role: library
+    agents: [analyst, coder]
+
+coordination:
+  topology: hierarchical
+  communication: webhook
+  memory: redis://shared-memory
+
+dependencies:
+  - from: frontend
+    to: [backend, shared]
+  - from: backend
+    to: [shared]
+</code></pre>
+<h3>Repository Roles</h3>
+<pre><code class="language-javascript">{
+  &quot;roles&quot;: {
+    &quot;ui&quot;: {
+      &quot;responsibilities&quot;: [&quot;user-interface&quot;, &quot;ux&quot;, &quot;accessibility&quot;],
+      &quot;default-agents&quot;: [&quot;designer&quot;, &quot;coder&quot;, &quot;tester&quot;]
+    },
+    &quot;api&quot;: {
+      &quot;responsibilities&quot;: [&quot;endpoints&quot;, &quot;business-logic&quot;, &quot;data&quot;],
+      &quot;default-agents&quot;: [&quot;architect&quot;, &quot;coder&quot;, &quot;security&quot;]
+    },
+    &quot;library&quot;: {
+      &quot;responsibilities&quot;: [&quot;shared-code&quot;, &quot;utilities&quot;, &quot;types&quot;],
+      &quot;default-agents&quot;: [&quot;analyst&quot;, &quot;coder&quot;, &quot;documenter&quot;]
+    }
+  }
+}
+</code></pre>
+<h2>Communication Strategies</h2>
+<h3>1. Webhook-Based Coordination</h3>
+<pre><code class="language-javascript">const { MultiRepoSwarm } = require(&#39;ruv-swarm&#39;);
+
+const swarm = new MultiRepoSwarm({
+  webhook: {
+    url: &#39;https://swarm-coordinator.example.com&#39;,
+    secret: process.env.WEBHOOK_SECRET
+  }
+});
+
+swarm.on(&#39;repo:update&#39;, async (event) =&gt; {
+  await swarm.propagate(event, {
+    to: event.dependencies,
+    strategy: &#39;eventual-consistency&#39;
+  });
+});
+</code></pre>
+<h3>2. Event Streaming</h3>
+<pre><code class="language-yaml"># Kafka configuration for real-time coordination
+kafka:
+  brokers: [&#39;kafka1:9092&#39;, &#39;kafka2:9092&#39;]
+  topics:
+    swarm-events:
+      partitions: 10
+      replication: 3
+    swarm-memory:
+      partitions: 5
+      replication: 3
+</code></pre>
+<h2>Synchronization Patterns</h2>
+<h3>1. Eventually Consistent</h3>
+<pre><code class="language-javascript">{
+  &quot;sync&quot;: {
+    &quot;strategy&quot;: &quot;eventual&quot;,
+    &quot;max-lag&quot;: &quot;5m&quot;,
+    &quot;retry&quot;: {
+      &quot;attempts&quot;: 3,
+      &quot;backoff&quot;: &quot;exponential&quot;
+    }
+  }
+}
+</code></pre>
+<h3>2. Strong Consistency</h3>
+<pre><code class="language-javascript">{
+  &quot;sync&quot;: {
+    &quot;strategy&quot;: &quot;strong&quot;,
+    &quot;consensus&quot;: &quot;raft&quot;,
+    &quot;quorum&quot;: 0.51,
+    &quot;timeout&quot;: &quot;30s&quot;
+  }
+}
+</code></pre>
+<h3>3. Hybrid Approach</h3>
+<pre><code class="language-javascript">{
+  &quot;sync&quot;: {
+    &quot;default&quot;: &quot;eventual&quot;,
+    &quot;overrides&quot;: {
+      &quot;security-updates&quot;: &quot;strong&quot;,
+      &quot;dependency-updates&quot;: &quot;strong&quot;,
+      &quot;documentation&quot;: &quot;eventual&quot;
+    }
+  }
+}
+</code></pre>
+<h2>Use Cases</h2>
+<h3>1. Microservices Coordination</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo microservices \
+  --services &quot;auth,users,orders,payments&quot; \
+  --ensure-compatibility \
+  --sync-contracts \
+  --integration-tests
+</code></pre>
+<h3>2. Library Updates</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo lib-update \
+  --library &quot;org/shared-lib&quot; \
+  --version &quot;2.0.0&quot; \
+  --find-consumers \
+  --update-imports \
+  --run-tests
+</code></pre>
+<h3>3. Organization-Wide Changes</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo org-policy \
+  --policy &quot;add-security-headers&quot; \
+  --repos &quot;org/*&quot; \
+  --validate-compliance \
+  --create-reports
+</code></pre>
+<h2>Architecture Patterns</h2>
+<h3>Monorepo Structure</h3>
+<pre><code>ruv-FANN/
+├── packages/
+│   ├── claude-code-flow/
+│   │   ├── src/
+│   │   ├── .claude/
+│   │   └── package.json
+│   ├── ruv-swarm/
+│   │   ├── src/
+│   │   ├── wasm/
+│   │   └── package.json
+│   └── shared/
+│       ├── types/
+│       ├── utils/
+│       └── config/
+├── tools/
+│   ├── build/
+│   ├── test/
+│   └── deploy/
+├── docs/
+│   ├── architecture/
+│   ├── integration/
+│   └── examples/
+└── .github/
+    ├── workflows/
+    ├── templates/
+    └── actions/
+</code></pre>
+<h3>Command Structure</h3>
+<pre><code>.claude/
+├── commands/
+│   ├── github/
+│   │   ├── github-modes.md
+│   │   ├── pr-manager.md
+│   │   ├── issue-tracker.md
+│   │   └── sync-coordinator.md
+│   ├── sparc/
+│   │   ├── sparc-modes.md
+│   │   ├── coder.md
+│   │   └── tester.md
+│   └── swarm/
+│       ├── coordination.md
+│       └── orchestration.md
+├── templates/
+│   ├── issue.md
+│   ├── pr.md
+│   └── project.md
+└── config.json
+</code></pre>
+<h2>Monitoring &amp; Visualization</h2>
+<h3>Multi-Repo Dashboard</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo dashboard \
+  --port 3000 \
+  --metrics &quot;agent-activity,task-progress,memory-usage&quot; \
+  --real-time
+</code></pre>
+<h3>Dependency Graph</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo dep-graph \
+  --format mermaid \
+  --include-agents \
+  --show-data-flow
+</code></pre>
+<h3>Health Monitoring</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo health-check \
+  --repos &quot;org/*&quot; \
+  --check &quot;connectivity,memory,agents&quot; \
+  --alert-on-issues
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Repository Organization</h3>
+<ul>
+<li>Clear repository roles and boundaries</li>
+<li>Consistent naming conventions</li>
+<li>Documented dependencies</li>
+<li>Shared configuration standards</li>
+</ul>
+<h3>2. Communication</h3>
+<ul>
+<li>Use appropriate sync strategies</li>
+<li>Implement circuit breakers</li>
+<li>Monitor latency and failures</li>
+<li>Clear error propagation</li>
+</ul>
+<h3>3. Security</h3>
+<ul>
+<li>Secure cross-repo authentication</li>
+<li>Encrypted communication channels</li>
+<li>Audit trail for all operations</li>
+<li>Principle of least privilege</li>
+</ul>
+<h3>4. Version Management</h3>
+<ul>
+<li>Semantic versioning alignment</li>
+<li>Dependency compatibility validation</li>
+<li>Automated version bump coordination</li>
+</ul>
+<h3>5. Testing Integration</h3>
+<ul>
+<li>Cross-package test validation</li>
+<li>Integration test automation</li>
+<li>Performance regression detection</li>
+</ul>
+<h2>Performance Optimization</h2>
+<h3>Caching Strategy</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo cache-strategy \
+  --analyze-patterns \
+  --suggest-cache-layers \
+  --implement-invalidation
+</code></pre>
+<h3>Parallel Execution</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo parallel-optimize \
+  --analyze-dependencies \
+  --identify-parallelizable \
+  --execute-optimal
+</code></pre>
+<h3>Resource Pooling</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo resource-pool \
+  --share-agents \
+  --distribute-load \
+  --monitor-usage
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>Connectivity Issues</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo diagnose-connectivity \
+  --test-all-repos \
+  --check-permissions \
+  --verify-webhooks
+</code></pre>
+<h3>Memory Synchronization</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo debug-memory \
+  --check-consistency \
+  --identify-conflicts \
+  --repair-state
+</code></pre>
+<h3>Performance Bottlenecks</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo perf-analysis \
+  --profile-operations \
+  --identify-bottlenecks \
+  --suggest-optimizations
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>1. Distributed Task Queue</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo queue \
+  --backend redis \
+  --workers 10 \
+  --priority-routing \
+  --dead-letter-queue
+</code></pre>
+<h3>2. Cross-Repo Testing</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo test \
+  --setup-test-env \
+  --link-services \
+  --run-e2e \
+  --tear-down
+</code></pre>
+<h3>3. Monorepo Migration</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo to-monorepo \
+  --analyze-repos \
+  --suggest-structure \
+  --preserve-history \
+  --create-migration-prs
+</code></pre>
+<h2>Examples</h2>
+<h3>Full-Stack Application Update</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo fullstack-update \
+  --frontend &quot;org/web-app&quot; \
+  --backend &quot;org/api-server&quot; \
+  --database &quot;org/db-migrations&quot; \
+  --coordinate-deployment
+</code></pre>
+<h3>Cross-Team Collaboration</h3>
+<pre><code class="language-bash">npx claude-flow skill run github-multi-repo cross-team \
+  --teams &quot;frontend,backend,devops&quot; \
+  --task &quot;implement-feature-x&quot; \
+  --assign-by-expertise \
+  --track-progress
+</code></pre>
+<h2>Metrics and Reporting</h2>
+<h3>Sync Quality Metrics</h3>
+<ul>
+<li>Package version alignment percentage</li>
+<li>Documentation consistency score</li>
+<li>Integration test success rate</li>
+<li>Synchronization completion time</li>
+</ul>
+<h3>Architecture Health Metrics</h3>
+<ul>
+<li>Repository structure consistency score</li>
+<li>Documentation coverage percentage</li>
+<li>Cross-repository integration success rate</li>
+<li>Template adoption and usage statistics</li>
+</ul>
+<h3>Automated Reporting</h3>
+<ul>
+<li>Weekly sync status reports</li>
+<li>Dependency drift detection</li>
+<li>Documentation divergence alerts</li>
+<li>Integration health monitoring</li>
+</ul>
+<h2>Integration Points</h2>
+<h3>Related Skills</h3>
+<ul>
+<li><code>github-workflow</code> - GitHub workflow automation</li>
+<li><code>github-pr</code> - Pull request management</li>
+<li><code>sparc-architect</code> - Architecture design</li>
+<li><code>sparc-optimizer</code> - Performance optimization</li>
+</ul>
+<h3>Related Commands</h3>
+<ul>
+<li><code>/github sync-coordinator</code> - Cross-repo synchronization</li>
+<li><code>/github release-manager</code> - Coordinated releases</li>
+<li><code>/github repo-architect</code> - Repository optimization</li>
+<li><code>/sparc architect</code> - Detailed architecture design</li>
+</ul>
+<h2>Support and Resources</h2>
+<ul>
+<li>Documentation: <a href="https://github.com/ruvnet/claude-flow">https://github.com/ruvnet/claude-flow</a></li>
+<li>Issues: <a href="https://github.com/ruvnet/claude-flow/issues">https://github.com/ruvnet/claude-flow/issues</a></li>
+<li>Examples: <code>.claude/examples/github-multi-repo/</code></li>
+</ul>
+<hr>
+<p><strong>Version:</strong> 1.0.0
+<strong>Last Updated:</strong> 2025-10-19
+<strong>Maintainer:</strong> Claude Flow Team</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

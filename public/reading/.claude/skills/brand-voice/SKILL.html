@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Brand Voice</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/brand-voice/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Brand Voice</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fbrand-voice">brand-voice</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: brand-voice
+description: &quot;Apply and enforce brand voice across all content creation. Manages voice attributes, tone adaptation by channel, style rules, and terminology. Use when writing content, reviewing drafts, or defining brand voice for a new project. Loads voice config from CREATOR.md or creator-memory/voice.md.&quot;</h2>
+<h1>Brand Voice</h1>
+<p>Write in a consistent voice — not just tone, but the specific fingerprint of how a creator communicates.</p>
+<h2>Voice vs. Tone</h2>
+<p><strong>Voice</strong> is fixed. It&#39;s the personality — what the brand always sounds like.
+<strong>Tone</strong> is variable. It&#39;s the emotional inflection applied to the voice based on context.</p>
+<p>A creator&#39;s voice stays consistent across channels. Tone adapts: more formal on LinkedIn, punchier on X, warmer in email.</p>
+<h2>Voice Loading</h2>
+<p>Before writing, check for voice config in this order:</p>
+<ol>
+<li><code>CREATOR.md</code> — voice section (quick ref, covers 90% of cases)</li>
+<li><code>creator-memory/voice.md</code> — full documentation with examples</li>
+<li>If neither exists: ask user to describe their voice, or offer to initialize</li>
+</ol>
+<h2>The 5 Voice Components</h2>
+<p>A complete voice profile covers:</p>
+<h3>1. Voice Attributes (3-5 maximum)</h3>
+<p>Each attribute defined as:</p>
+<ul>
+<li><strong>We are</strong>: what it means in practice</li>
+<li><strong>We are not</strong>: the misinterpretation to avoid</li>
+<li><strong>Sounds like</strong>: example sentence</li>
+<li><strong>Never sounds like</strong>: anti-example</li>
+</ul>
+<p>Example for &quot;Cool Authority&quot;:</p>
+<ul>
+<li><strong>We are</strong>: confident, precise, lets the work speak</li>
+<li><strong>We are not</strong>: arrogant, dismissive, or name-dropping</li>
+<li><strong>Sounds like</strong>: &quot;[Specific result]. Here&#39;s what that teaches you about [topic].&quot;</li>
+<li><strong>Never sounds like</strong>: &quot;As a top AI architect, I know better than most that...&quot;</li>
+</ul>
+<h3>2. Audience Definition</h3>
+<ul>
+<li>Who the primary audience is</li>
+<li>What they already know (don&#39;t over-explain)</li>
+<li>What they want from this creator</li>
+<li>How they expect to be addressed (peer, student, collaborator)</li>
+</ul>
+<h3>3. Content Pillars</h3>
+<p>3-5 core themes the creator consistently covers. Every piece of content should belong to one. Defined with topic focus, audience, and core argument.</p>
+<h3>4. Tone Adaptation Rules</h3>
+<p>How the voice shifts by context while staying recognizably consistent.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Tone shift</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Long-form blog</td>
+<td>Educational, complete, evidence-based</td>
+<td>Full arguments, examples, conclusions</td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td>Professional, thought-provoking, personal</td>
+<td>First-person insight, business framing</td>
+</tr>
+<tr>
+<td>X/Twitter</td>
+<td>Direct, punchy, opinionated</td>
+<td>Short sentences, bold claims</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Personal, warm, action-oriented</td>
+<td>&quot;You&quot; framing, clear next step</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>Conversational, energetic</td>
+<td>Shorter sentences, visual language</td>
+</tr>
+</tbody></table>
+<h3>5. Terminology Rules</h3>
+<p>Preferred and avoided terms. Examples:</p>
+<ul>
+<li>&quot;creators&quot; not &quot;influencers&quot;</li>
+<li>&quot;ships&quot; not &quot;launches&quot; (for product releases)</li>
+<li>&quot;AI music&quot; not &quot;generated music&quot;</li>
+<li>Never: spiritual language, guru tone, lazy CTAs (&quot;drop a comment below&quot;)</li>
+</ul>
+<h2>Applying Voice to Content</h2>
+<p>When writing, run this checklist:</p>
+<ol>
+<li>Read the voice attributes from CREATOR.md</li>
+<li>Draft the opener — rewrite until it sounds like the creator</li>
+<li>Check for anti-patterns (things this creator never says)</li>
+<li>Verify tone matches the channel rules</li>
+<li>Check terminology — any flagged words used?</li>
+</ol>
+<p><strong>Red flags requiring revision:</strong></p>
+<ul>
+<li>Opener starts with &quot;I&quot; (usually weak, unless intentional personal story)</li>
+<li>More than one &quot;!&quot; in a piece</li>
+<li>&quot;Amazing&quot;, &quot;awesome&quot;, &quot;incredible&quot; (generic, not precise)</li>
+<li>&quot;In today&#39;s fast-paced world...&quot; (stock opener, never use)</li>
+<li>Passive voice where active works better</li>
+<li>Hedging: &quot;I think&quot;, &quot;maybe&quot;, &quot;possibly&quot; (unless intentional)</li>
+</ul>
+<h2>Loading Voice Config</h2>
+<p>Check for voice documentation in this priority order:</p>
+<ol>
+<li><code>CREATOR.md</code> in the current project (hot cache — covers 90% of requests)</li>
+<li><code>creator-memory/voice.md</code> in the current project (full documentation)</li>
+<li>Project <code>CLAUDE.md</code> — look for a &quot;Brand Positioning&quot; or &quot;Voice&quot; section</li>
+<li>If none found: ask the user to describe their voice, or run <code>/creator-sprint</code></li>
+</ol>
+<p>See <code>references/voice-frameworks.md</code> for the full voice documentation template and attribute definition system.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

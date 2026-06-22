@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Phase [X]: [Name] - Context</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gsd/discuss-phase.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Phase [X]: [Name] - Context</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgsd">gsd</a> / <span>discuss-phase.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <purpose>
+Extract implementation decisions that downstream agents need. Analyze the phase to identify gray areas and capture decisions that guide research and planning.
+Headless SDK variant — in autonomous mode, AI self-discusses by analyzing available context and making decisions based on project artifacts and codebase patterns.
+</purpose>
+
+<downstream_awareness>
+**CONTEXT.md feeds into:**
+
+<ol>
+<li><p><strong>Researcher</strong> — Reads CONTEXT.md to know WHAT to research</p>
+<ul>
+<li>Locked decisions guide research focus</li>
+<li>Discretion areas get options explored</li>
+</ul>
+</li>
+<li><p><strong>Planner</strong> — Reads CONTEXT.md to know WHAT decisions are locked</p>
+<ul>
+<li>Locked decisions become non-negotiable plan constraints</li>
+<li>Discretion areas allow planner flexibility</downstream_awareness></li>
+</ul>
+</li>
+</ol>
+<philosophy>
+In headless mode, the AI acts as both visionary and builder. It:
+- Analyzes the phase goal and available context
+- Identifies gray areas that need decisions
+- Makes autonomous decisions based on codebase patterns, requirements, and best practices
+- Documents decisions clearly for downstream agents
+</philosophy>
+
+<scope_guardrail>
+The phase boundary comes from the roadmap and is FIXED. Discussion clarifies HOW to implement what's scoped, never WHETHER to add new capabilities.
+
+<p>When analysis suggests scope creep: note it in &quot;Deferred Ideas&quot; section, do not act on it.
+</scope_guardrail></p>
+<process>
+
+<step name="initialize" priority="first">
+Load phase context from injected context files. Extract: phase directory, phase number, phase name, has_research, has_context, has_plans.
+
+<p>If phase not found: report error via event stream.
+</step></p>
+<step name="check_existing">
+If CONTEXT.md already exists: load it and use as-is (in headless mode, existing context is not re-discussed).
+If no CONTEXT.md: proceed to analysis.
+</step>
+
+<step name="load_prior_context">
+Read project-level and prior phase context:
+- PROJECT.md — vision, principles, non-negotiables
+- REQUIREMENTS.md — acceptance criteria, constraints
+- STATE.md — current progress, decisions
+- Prior CONTEXT.md files — locked preferences from earlier phases
+</step>
+
+<step name="analyze_phase">
+Analyze the phase to identify gray areas:
+
+<ol>
+<li><strong>Domain boundary</strong> — What capability is this phase delivering?</li>
+<li><strong>Check prior decisions</strong> — What&#39;s already decided from earlier phases?</li>
+<li><strong>Gray areas by category</strong> — For each relevant category, identify 1-2 specific ambiguities</li>
+<li><strong>Auto-resolve each gray area</strong> — Make decisions based on:<ul>
+<li>Codebase patterns (existing conventions)</li>
+<li>Prior phase decisions (consistency)</li>
+<li>Requirements (constraints)</li>
+<li>Best practices (industry standard)</li>
+</ul>
+</li>
+<li><strong>Log each decision</strong> with rationale</step></li>
+</ol>
+<step name="write_context">
+Create CONTEXT.md capturing decisions made:
+
+<pre><code class="language-markdown"># Phase [X]: [Name] - Context
+
+**Gathered:** [date]
+**Status:** Ready for planning
+**Source:** AI self-discuss (headless mode)
+
+## Phase Boundary
+[Clear statement of what this phase delivers]
+
+## Implementation Decisions
+### [Category]
+- **D-01:** [Decision] — Rationale: [why]
+
+### AI Discretion
+[Areas where AI had flexibility and chose approach]
+
+## Existing Code Insights
+### Reusable Assets
+- [Component/hook/utility]: [How it could be used]
+
+### Established Patterns
+- [Pattern]: [How it constrains/enables this phase]
+
+## Specific Ideas
+[Any particular approaches derived from codebase analysis]
+
+## Deferred Ideas
+[Ideas that came up but belong in other phases]
+</code></pre>
+</step>
+
+</process>
+
+<success_criteria>
+- Phase validated against roadmap
+- Prior context loaded and honored
+- Gray areas identified and resolved autonomously
+- CONTEXT.md captures actual decisions with rationale
+- Scope maintained (no creep into deferred ideas)
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>taste.md — the FrankX taste contract</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="taste.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">taste.md — the FrankX taste contract</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>taste.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>taste.md — the FrankX taste contract</h1>
+<blockquote>
+<p><strong>Read together with <code>design.md</code>.</strong> That file describes <em>what is</em> — tokens, components, do&#39;s and don&#39;ts. This file describes <em>what good looks like</em> — the judgment calls, the references, the things we refuse, the polish that lives between the rules.</p>
+<p>Tokens make a system consistent. Taste makes it excellent.
+Without taste, a token system produces software that&#39;s correct and forgettable.</p>
+</blockquote>
+<hr>
+<h2>North Star</h2>
+<p><strong>Elite Creator. AI Architect. Humble Excellence.</strong></p>
+<p>Three words, three duties:</p>
+<ul>
+<li><strong>Elite</strong> — every detail considered. We are not shipping the average. The reader can feel the work without being told.</li>
+<li><strong>Architect</strong> — the surface signals technical depth. Code samples, system diagrams, real numbers. We earn intellectual trust with proof, not adjectives.</li>
+<li><strong>Humble</strong> — the chrome stays out of the way. The work, the words, the craft is the loudest thing on the page. The brand never shouts; it carries itself.</li>
+</ul>
+<p>If a screen feels like it&#39;s begging to be admired, strip it back. If it feels like the product <em>is</em> the design, the design has won at the wrong job.</p>
+<hr>
+<h2>Reference points</h2>
+<p>The taste lineage we sit inside. Study these often.</p>
+<table>
+<thead>
+<tr>
+<th>Brand</th>
+<th>Why we look</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Vercel</strong></td>
+<td>The deepest-dark, most precise dev brand on the internet. Note the restraint.</td>
+</tr>
+<tr>
+<td><strong>Linear</strong></td>
+<td>Density without overwhelm. Animation that feels structural, not decorative.</td>
+</tr>
+<tr>
+<td><strong>Stripe</strong></td>
+<td>Technical precision presented as inevitability. Every page reads like an API.</td>
+</tr>
+<tr>
+<td><strong>Apple (Pro pages)</strong></td>
+<td>Dramatic typography on near-black. Long-scroll cinema.</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td>Quiet authority. Off-white warmth balancing technical content. We borrow the tonal restraint, not the palette.</td>
+</tr>
+<tr>
+<td><strong>Studio Ghibli (production stills)</strong></td>
+<td>The light. The composition. Why we treat hero imagery as cinema, not stock.</td>
+</tr>
+<tr>
+<td><strong>The New Yorker</strong> (online)</td>
+<td>The discipline of editorial typography. Evidence that prose deserves art direction too.</td>
+</tr>
+<tr>
+<td><strong>Ableton Live (UI)</strong></td>
+<td>Dense pro-tools energy that creators trust. Why our music surfaces are tighter and darker than our marketing surfaces.</td>
+</tr>
+</tbody></table>
+<p>We don&#39;t copy these. We are part of the conversation they belong to.</p>
+<hr>
+<h2>What we refuse</h2>
+<p>The AI-slop checklist. If a draft contains any of these, send it back.</p>
+<ul>
+<li>❌ <strong>Stock-photo people on laptops.</strong> If we can&#39;t generate or commission imagery, leave it out.</li>
+<li>❌ <strong>Decorative gradients with no purpose.</strong> A gradient frames meaning or it leaves the page.</li>
+<li>❌ <strong>Generic SaaS hero language</strong> — <em>&quot;Empower your team&quot;</em>, <em>&quot;Unlock your potential&quot;</em>, <em>&quot;Take your X to the next level&quot;</em>. Strike on sight.</li>
+<li>❌ <strong>Walls of identical cards</strong> — three rows of nine cards is a sitemap, not a section.</li>
+<li>❌ <strong>Spinning loaders longer than 400ms</strong> — pre-render, stream, or skeleton; never spin.</li>
+<li>❌ <strong>Confetti animations.</strong> Once. Ever. Earned.</li>
+<li>❌ <strong>Pure black (<code>#000</code>)</strong> — see <code>design.md</code>. <code>void</code> (<code>#0a0a0b</code>) is the answer.</li>
+<li>❌ <strong>Two equal CTAs</strong> — design indecision in pixel form.</li>
+<li>❌ <strong>Emojis used as design.</strong> They live in copy. Never in chrome, headers, or buttons.</li>
+<li>❌ <strong>Drop-shadow + border + blur</strong> on the same element. Pick one.</li>
+<li>❌ <strong>Floating labels on inputs.</strong> Reads as gimmick on this brand.</li>
+<li>❌ <strong>Auto-playing video with sound.</strong> Hostile.</li>
+<li>❌ <strong>Marquee / news-ticker scrolls.</strong> Decoration disguised as motion.</li>
+<li>❌ <strong>Glassmorphism without imagery underneath.</strong> The effect needs something to blur.</li>
+<li>❌ <strong>AI-tone phrases in copy</strong> — &quot;delve into&quot;, &quot;dive deep&quot;, &quot;it&#39;s worth noting&quot;, &quot;certainly&quot;, &quot;absolutely&quot;, &quot;in conclusion&quot;, &quot;navigate the landscape&quot;, &quot;unleash&quot;, &quot;harness&quot;. Strike on sight.</li>
+<li>❌ <strong>Pricing-page tricks</strong> — fake countdown timers, &quot;limited time only&quot;, strike-through original prices. The brand is honest pricing. Founder pricing is real because it&#39;s first-wave; that&#39;s the only urgency we use.</li>
+</ul>
+<hr>
+<h2>The restraint test</h2>
+<p>Before adding anything to a screen, ask in this order:</p>
+<ol>
+<li><strong>Does removing this make the screen worse?</strong> If no, remove it.</li>
+<li><strong>Does this exist already in <code>components/</code>?</strong> If yes, use it. If almost-yes, extend it.</li>
+<li><strong>Does this carry meaning?</strong> Decoration without meaning is noise.</li>
+<li><strong>Will the reader notice if it&#39;s gone?</strong> If no, it&#39;s not earning its space.</li>
+<li><strong>Does this raise the page&#39;s signal-to-noise ratio?</strong> If no, cut it.</li>
+</ol>
+<p>The goal is not minimalism. The goal is that <strong>everything on the page has a job</strong>, and you can name the job in one sentence.</p>
+<hr>
+<h2>Density &amp; pacing</h2>
+<p>FrankX is a long-scroll brand. The cadence:</p>
+<ul>
+<li><strong>Hero</strong> — one screen, one statement, one primary CTA, the eyebrow + headline + deck pattern, breathing room above the fold.</li>
+<li><strong>Sections</strong> — <code>py-24 lg:py-32</code> (96–128px vertical), separated by hairline borders at <code>white/5</code>. The reader exhales between sections.</li>
+<li><strong>Section internals</strong> — start dense (eyebrow + headline + deck), end with negative space (the CTA breathes).</li>
+<li><strong>Footer</strong> — quiet. The footer is not the place for one more thing.</li>
+</ul>
+<p><strong>Rhythm rule:</strong> never stack two text-heavy sections without a visual break. Image, code block, quote, illustration — something. Three text sections in a row is a wall.</p>
+<p><strong>Mobile rule:</strong> mobile is not desktop scaled down; it&#39;s a different rhythm. Cards stack, type drops a step, padding tightens. Test both, design both.</p>
+<hr>
+<h2>The sound of the brand</h2>
+<p>Voice principles that show up in every visual decision.</p>
+<ul>
+<li><strong>Cinematic</strong> — scenes, not statements. Hero imagery composed like a film still. Section openers stage the topic before they explain it.</li>
+<li><strong>Intimate</strong> — like late-night studio conversation. Use second person. Use questions. Don&#39;t hide behind the corporate &quot;we&quot; when &quot;I&quot; is the truth.</li>
+<li><strong>Technically warm</strong> — complex made accessible without dumbing down. We name the abstraction, then we show the code. Both, always.</li>
+<li><strong>Direct, not harsh</strong> — say what needs saying, with care. Never apologize for craft. Never punch down.</li>
+<li><strong>Studio-rooted</strong> — the page should feel like the inside of a working studio: instruments, evidence, pinned references. Not a portfolio gallery.</li>
+</ul>
+<p>When the visual feels off, it usually means the voice is off. Re-read the copy aloud first.</p>
+<hr>
+<h2>What we&#39;ve already decided</h2>
+<p>Frozen choices. Don&#39;t relitigate without explicit cause.</p>
+<ul>
+<li><strong>Dark-first.</strong> Light mode is not on the roadmap. Most readers find FrankX at night, on a phone, between work and craft. The brand is for that hour.</li>
+<li><strong>One serif.</strong> Playfair Display for italic quotes only. Not for headings, not for body. We are not a literary magazine.</li>
+<li><strong>One mono.</strong> JetBrains Mono everywhere code, command, terminal output appears.</li>
+<li><strong>Inter for body, Poppins for display ≥18px.</strong> This pairing is solved. Do not propose alternatives.</li>
+<li><strong><code>rounded-full</code> primary CTAs.</strong> This is the recognizable FrankX button shape. Don&#39;t square them.</li>
+<li><strong>The eyebrow pattern.</strong> 11px / 0.25em tracking / 60% alpha / above the h2. This is the section-opener fingerprint of the brand.</li>
+<li><strong>No animations on text.</strong> Type does not slide in, fade in, or scale in. It&#39;s already there. Page-load motion is reserved for hero imagery and accent elements.</li>
+<li><strong>No light-on-light.</strong> White cards on white pages happen on other brands. Not this one.</li>
+<li><strong>The two-spectrum rule.</strong> A page picks tech (emerald) <em>or</em> soul (amber). Bridge spectrum is a third tier for the worlds where they meet — not a license to mix.</li>
+</ul>
+<hr>
+<h2>The polish pass</h2>
+<p>Before any visual ships to production, walk the page through this list. Out loud. Mentally narrate each step.</p>
+<h3>1. The squint test</h3>
+<p>Squint at the screen until detail blurs. Is the visual hierarchy still readable? If everything is equally loud, nothing is.</p>
+<h3>2. The mobile test</h3>
+<p>Open on a phone. Is the headline above the fold? Is the primary CTA reachable with a thumb? Is the type still readable at the smallest size? Does the layout collapse gracefully or just shrink?</p>
+<h3>3. The contrast test</h3>
+<p>Ramp brightness to minimum on a phone in sunlight. If body text disappears at 65% alpha, you went too low. Re-tune.</p>
+<h3>4. The keyboard test</h3>
+<p>Tab through every interactive element. Is the focus ring visible? Is the order logical? Can you operate the page without a mouse?</p>
+<h3>5. The slowness test</h3>
+<p>Throttle to slow 3G in DevTools. Does the layout shift on load? Do images pop in? Is the page meaningful before it&#39;s pretty?</p>
+<h3>6. The reading test</h3>
+<p>Read all the copy aloud. Does it sound like a person? Does any sentence trigger AI-tone alarms? (See &quot;What we refuse.&quot;)</p>
+<h3>7. The taste test</h3>
+<p>Show it to one person who didn&#39;t build it. Watch their face. Don&#39;t ask them what they think — watch what they do. The first three seconds tell you everything.</p>
+<h3>8. The compress test</h3>
+<p>Try removing the second-most-prominent element. If the page is <em>better</em> without it, remove it for real.</p>
+<p>If the page passes all eight, ship it. If even one fails, the work isn&#39;t done — and the version that&#39;s almost-good is worse than the version that took one more pass.</p>
+<hr>
+<h2>On AI-generated visuals</h2>
+<p>We use AI imagery (Nano Banana, NB Pro, NB2, Suno for music, Remotion for video). The taste rules:</p>
+<ul>
+<li><strong>Always derive ext from <code>inlineData.mimeType</code></strong> — not from the slug. (See <code>feedback_image_gen_mime</code>.)</li>
+<li><strong>Pass <code>imageSize: &#39;2K&#39;</code> or higher</strong> for hero quality. Sub-1K renders are draft-only.</li>
+<li><strong>Council review before publish</strong> — the image generation pipeline includes Council, Director, and Guardian review steps. Don&#39;t bypass them.</li>
+<li><strong>Never Canva-generate.</strong> (See <code>feedback_no_canva_visuals</code>.) Nano Banana ships, Canva ships ugly.</li>
+<li><strong>Cinema, not stock.</strong> Compose, don&#39;t generate-and-pray. State the lighting, the lens, the mood, the composition. Anything less is dice-rolling.</li>
+<li><strong>Imagery is voice.</strong> If the imagery doesn&#39;t sound like the brand, the imagery is wrong. AI-perfect faces, generic city skylines, abstract gradients-as-art — all out.</li>
+</ul>
+<hr>
+<h2>On AI-generated copy</h2>
+<p>We write <em>with</em> AI; we don&#39;t <em>publish</em> AI. The taste rules:</p>
+<ul>
+<li><strong>Read it aloud.</strong> If a sentence sounds like a model, rewrite.</li>
+<li><strong>No filler verbs.</strong> &quot;Helps&quot;, &quot;enables&quot;, &quot;allows&quot;, &quot;empowers&quot; usually mark a sentence that hasn&#39;t found its real verb. Find the real one.</li>
+<li><strong>Concrete over abstract.</strong> &quot;12,000 songs&quot; beats &quot;extensive musical output&quot;. &quot;Oracle EMEA AI Center of Excellence&quot; beats &quot;enterprise AI experience&quot;.</li>
+<li><strong>First person when first person is the truth.</strong> &quot;I built this&quot; is stronger than &quot;We built this&quot; when one person built it.</li>
+<li><strong>One idea per paragraph.</strong> If a paragraph turns a corner, it&#39;s two paragraphs.</li>
+</ul>
+<hr>
+<h2>On taste itself</h2>
+<p>Taste is not opinion. Taste is the accumulated result of paying attention to what works and what doesn&#39;t, over years, on purpose. It can be cultivated. It cannot be skipped.</p>
+<p>We sharpen taste by:</p>
+<ul>
+<li><strong>Reading the references</strong> above, regularly. Not for inspiration — for calibration.</li>
+<li><strong>Studying our own ship history.</strong> What aged well? What didn&#39;t? Why?</li>
+<li><strong>Cutting more than we add.</strong> The edit is where the work happens.</li>
+<li><strong>Noticing what bothers us.</strong> Discomfort with our own work is information. Sit with it before fixing it.</li>
+<li><strong>Not chasing trends.</strong> Trends decay. Taste compounds.</li>
+</ul>
+<p>The brand will be here in ten years. Design like the visit you make today is the one the reader remembers.</p>
+<hr>
+<h2>Provenance</h2>
+<p>This file is the philosophical companion to <code>design.md</code> (Google Labs spec, alpha) and is intentionally outside the YAML schema — taste does not lint. It is read together with <code>design.md</code> by every coding agent before any visual work.</p>
+<p>When in doubt: tokens come from <code>design.md</code>, judgment comes from <code>taste.md</code>, the answer is usually less.</p>
+<p>Last reviewed: 2026-04-25</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

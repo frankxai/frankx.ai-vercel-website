@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Release Swarm - Intelligent Release Automation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/github/release-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Release Swarm - Intelligent Release Automation</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fcommands">commands</a> / <a href="index.html#.claude%2Fcommands%2Fgithub">github</a> / <span>release-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Release Swarm - Intelligent Release Automation</h1>
+<h2>Overview</h2>
+<p>Orchestrate complex software releases using AI swarms that handle everything from changelog generation to multi-platform deployment.</p>
+<h2>Core Features</h2>
+<h3>1. Release Planning</h3>
+<pre><code class="language-bash"># Plan next release using gh CLI
+# Get commit history since last release
+LAST_TAG=$(gh release list --limit 1 --json tagName -q &#39;.[0].tagName&#39;)
+COMMITS=$(gh api repos/:owner/:repo/compare/${LAST_TAG}...HEAD --jq &#39;.commits&#39;)
+
+# Get merged PRs
+MERGED_PRS=$(gh pr list --state merged --base main --json number,title,labels,mergedAt \
+  --jq &quot;.[] | select(.mergedAt &gt; \&quot;$(gh release view $LAST_TAG --json publishedAt -q .publishedAt)\&quot;)&quot;)  
+
+# Plan release with commit analysis
+npx ruv-swarm github release-plan \
+  --commits &quot;$COMMITS&quot; \
+  --merged-prs &quot;$MERGED_PRS&quot; \
+  --analyze-commits \
+  --suggest-version \
+  --identify-breaking \
+  --generate-timeline
+</code></pre>
+<h3>2. Automated Versioning</h3>
+<pre><code class="language-bash"># Smart version bumping
+npx ruv-swarm github release-version \
+  --strategy &quot;semantic&quot; \
+  --analyze-changes \
+  --check-breaking \
+  --update-files
+</code></pre>
+<h3>3. Release Orchestration</h3>
+<pre><code class="language-bash"># Full release automation with gh CLI
+# Generate changelog from PRs and commits
+CHANGELOG=$(gh api repos/:owner/:repo/compare/${LAST_TAG}...HEAD \
+  --jq &#39;.commits[].commit.message&#39; | \
+  npx ruv-swarm github generate-changelog)
+
+# Create release draft
+gh release create v2.0.0 \
+  --draft \
+  --title &quot;Release v2.0.0&quot; \
+  --notes &quot;$CHANGELOG&quot; \
+  --target main
+
+# Run release orchestration
+npx ruv-swarm github release-create \
+  --version &quot;2.0.0&quot; \
+  --changelog &quot;$CHANGELOG&quot; \
+  --build-artifacts \
+  --deploy-targets &quot;npm,docker,github&quot;
+
+# Publish release after validation
+gh release edit v2.0.0 --draft=false
+
+# Create announcement issue
+gh issue create \
+  --title &quot;🎉 Released v2.0.0&quot; \
+  --body &quot;$CHANGELOG&quot; \
+  --label &quot;announcement,release&quot;
+</code></pre>
+<h2>Release Configuration</h2>
+<h3>Release Config File</h3>
+<pre><code class="language-yaml"># .github/release-swarm.yml
+version: 1
+release:
+  versioning:
+    strategy: semantic
+    breaking-keywords: [&quot;BREAKING&quot;, &quot;!&quot;]
+    
+  changelog:
+    sections:
+      - title: &quot;🚀 Features&quot;
+        labels: [&quot;feature&quot;, &quot;enhancement&quot;]
+      - title: &quot;🐛 Bug Fixes&quot;
+        labels: [&quot;bug&quot;, &quot;fix&quot;]
+      - title: &quot;📚 Documentation&quot;
+        labels: [&quot;docs&quot;, &quot;documentation&quot;]
+        
+  artifacts:
+    - name: npm-package
+      build: npm run build
+      publish: npm publish
+      
+    - name: docker-image
+      build: docker build -t app:$VERSION .
+      publish: docker push app:$VERSION
+      
+    - name: binaries
+      build: ./scripts/build-binaries.sh
+      upload: github-release
+      
+  deployment:
+    environments:
+      - name: staging
+        auto-deploy: true
+        validation: npm run test:e2e
+        
+      - name: production
+        approval-required: true
+        rollback-enabled: true
+        
+  notifications:
+    - slack: releases-channel
+    - email: stakeholders@company.com
+    - discord: webhook-url
+</code></pre>
+<h2>Release Agents</h2>
+<h3>Changelog Agent</h3>
+<pre><code class="language-bash"># Generate intelligent changelog with gh CLI
+# Get all merged PRs between versions
+PRS=$(gh pr list --state merged --base main --json number,title,labels,author,mergedAt \
+  --jq &quot;.[] | select(.mergedAt &gt; \&quot;$(gh release view v1.0.0 --json publishedAt -q .publishedAt)\&quot;)&quot;)  
+
+# Get contributors
+CONTRIBUTORS=$(echo &quot;$PRS&quot; | jq -r &#39;[.author.login] | unique | join(&quot;, &quot;)&#39;)
+
+# Get commit messages
+COMMITS=$(gh api repos/:owner/:repo/compare/v1.0.0...HEAD \
+  --jq &#39;.commits[].commit.message&#39;)
+
+# Generate categorized changelog
+CHANGELOG=$(npx ruv-swarm github changelog \
+  --prs &quot;$PRS&quot; \
+  --commits &quot;$COMMITS&quot; \
+  --contributors &quot;$CONTRIBUTORS&quot; \
+  --from v1.0.0 \
+  --to HEAD \
+  --categorize \
+  --add-migration-guide)
+
+# Save changelog
+echo &quot;$CHANGELOG&quot; &gt; CHANGELOG.md
+
+# Create PR with changelog update
+gh pr create \
+  --title &quot;docs: Update changelog for v2.0.0&quot; \
+  --body &quot;Automated changelog update&quot; \
+  --base main
+</code></pre>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Semantic commit analysis</li>
+<li>Breaking change detection</li>
+<li>Contributor attribution</li>
+<li>Migration guide generation</li>
+<li>Multi-language support</li>
+</ul>
+<h3>Version Agent</h3>
+<pre><code class="language-bash"># Determine next version
+npx ruv-swarm github version-suggest \
+  --current v1.2.3 \
+  --analyze-commits \
+  --check-compatibility \
+  --suggest-pre-release
+</code></pre>
+<p><strong>Logic:</strong></p>
+<ul>
+<li>Analyzes commit messages</li>
+<li>Detects breaking changes</li>
+<li>Suggests appropriate bump</li>
+<li>Handles pre-releases</li>
+<li>Validates version constraints</li>
+</ul>
+<h3>Build Agent</h3>
+<pre><code class="language-bash"># Coordinate multi-platform builds
+npx ruv-swarm github release-build \
+  --platforms &quot;linux,macos,windows&quot; \
+  --architectures &quot;x64,arm64&quot; \
+  --parallel \
+  --optimize-size
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Cross-platform compilation</li>
+<li>Parallel build execution</li>
+<li>Artifact optimization</li>
+<li>Dependency bundling</li>
+<li>Build caching</li>
+</ul>
+<h3>Test Agent</h3>
+<pre><code class="language-bash"># Pre-release testing
+npx ruv-swarm github release-test \
+  --suites &quot;unit,integration,e2e,performance&quot; \
+  --environments &quot;node:16,node:18,node:20&quot; \
+  --fail-fast false \
+  --generate-report
+</code></pre>
+<h3>Deploy Agent</h3>
+<pre><code class="language-bash"># Multi-target deployment
+npx ruv-swarm github release-deploy \
+  --targets &quot;npm,docker,github,s3&quot; \
+  --staged-rollout \
+  --monitor-metrics \
+  --auto-rollback
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>1. Progressive Deployment</h3>
+<pre><code class="language-yaml"># Staged rollout configuration
+deployment:
+  strategy: progressive
+  stages:
+    - name: canary
+      percentage: 5
+      duration: 1h
+      metrics:
+        - error-rate &lt; 0.1%
+        - latency-p99 &lt; 200ms
+        
+    - name: partial
+      percentage: 25
+      duration: 4h
+      validation: automated-tests
+      
+    - name: full
+      percentage: 100
+      approval: required
+</code></pre>
+<h3>2. Multi-Repo Releases</h3>
+<pre><code class="language-bash"># Coordinate releases across repos
+npx ruv-swarm github multi-release \
+  --repos &quot;frontend:v2.0.0,backend:v2.1.0,cli:v1.5.0&quot; \
+  --ensure-compatibility \
+  --atomic-release \
+  --synchronized
+</code></pre>
+<h3>3. Hotfix Automation</h3>
+<pre><code class="language-bash"># Emergency hotfix process
+npx ruv-swarm github hotfix \
+  --issue 789 \
+  --target-version v1.2.4 \
+  --cherry-pick-commits \
+  --fast-track-deploy
+</code></pre>
+<h2>Release Workflows</h2>
+<h3>Standard Release Flow</h3>
+<pre><code class="language-yaml"># .github/workflows/release.yml
+name: Release Workflow
+on:
+  push:
+    tags: [&#39;v*&#39;]
+
+jobs:
+  release-swarm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Setup GitHub CLI
+        run: echo &quot;${{ secrets.GITHUB_TOKEN }}&quot; | gh auth login --with-token
+          
+      - name: Initialize Release Swarm
+        run: |
+          # Get release tag and previous tag
+          RELEASE_TAG=${{ github.ref_name }}
+          PREV_TAG=$(gh release list --limit 2 --json tagName -q &#39;.[1].tagName&#39;)
+          
+          # Get PRs and commits for changelog
+          PRS=$(gh pr list --state merged --base main --json number,title,labels,author \
+            --search &quot;merged:&gt;=$(gh release view $PREV_TAG --json publishedAt -q .publishedAt)&quot;)
+          
+          npx ruv-swarm github release-init \
+            --tag $RELEASE_TAG \
+            --previous-tag $PREV_TAG \
+            --prs &quot;$PRS&quot; \
+            --spawn-agents &quot;changelog,version,build,test,deploy&quot;
+            
+      - name: Generate Release Assets
+        run: |
+          # Generate changelog from PR data
+          CHANGELOG=$(npx ruv-swarm github release-changelog \
+            --format markdown)
+          
+          # Update release notes
+          gh release edit ${{ github.ref_name }} \
+            --notes &quot;$CHANGELOG&quot;
+          
+          # Generate and upload assets
+          npx ruv-swarm github release-assets \
+            --changelog \
+            --binaries \
+            --documentation
+            
+      - name: Upload Release Assets
+        run: |
+          # Upload generated assets to GitHub release
+          for file in dist/*; do
+            gh release upload ${{ github.ref_name }} &quot;$file&quot;
+          done
+          
+      - name: Publish Release
+        run: |
+          # Publish to package registries
+          npx ruv-swarm github release-publish \
+            --platforms all
+          
+          # Create announcement issue
+          gh issue create \
+            --title &quot;🚀 Released ${{ github.ref_name }}&quot; \
+            --body &quot;See [release notes](https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }})&quot; \
+            --label &quot;announcement&quot;
+</code></pre>
+<h3>Continuous Deployment</h3>
+<pre><code class="language-bash"># Automated deployment pipeline
+npx ruv-swarm github cd-pipeline \
+  --trigger &quot;merge-to-main&quot; \
+  --auto-version \
+  --deploy-on-success \
+  --rollback-on-failure
+</code></pre>
+<h2>Release Validation</h2>
+<h3>Pre-Release Checks</h3>
+<pre><code class="language-bash"># Comprehensive validation
+npx ruv-swarm github release-validate \
+  --checks &quot;
+    version-conflicts,
+    dependency-compatibility,
+    api-breaking-changes,
+    security-vulnerabilities,
+    performance-regression,
+    documentation-completeness
+  &quot; \
+  --block-on-failure
+</code></pre>
+<h3>Compatibility Testing</h3>
+<pre><code class="language-bash"># Test backward compatibility
+npx ruv-swarm github compat-test \
+  --previous-versions &quot;v1.0,v1.1,v1.2&quot; \
+  --api-contracts \
+  --data-migrations \
+  --generate-report
+</code></pre>
+<h3>Security Scanning</h3>
+<pre><code class="language-bash"># Security validation
+npx ruv-swarm github release-security \
+  --scan-dependencies \
+  --check-secrets \
+  --audit-permissions \
+  --sign-artifacts
+</code></pre>
+<h2>Monitoring &amp; Rollback</h2>
+<h3>Release Monitoring</h3>
+<pre><code class="language-bash"># Monitor release health
+npx ruv-swarm github release-monitor \
+  --version v2.0.0 \
+  --metrics &quot;error-rate,latency,throughput&quot; \
+  --alert-thresholds \
+  --duration 24h
+</code></pre>
+<h3>Automated Rollback</h3>
+<pre><code class="language-bash"># Configure auto-rollback
+npx ruv-swarm github rollback-config \
+  --triggers &#39;{
+    &quot;error-rate&quot;: &quot;&gt;5%&quot;,
+    &quot;latency-p99&quot;: &quot;&gt;1000ms&quot;,
+    &quot;availability&quot;: &quot;&lt;99.9%&quot;
+  }&#39; \
+  --grace-period 5m \
+  --notify-on-rollback
+</code></pre>
+<h3>Release Analytics</h3>
+<pre><code class="language-bash"># Analyze release performance
+npx ruv-swarm github release-analytics \
+  --version v2.0.0 \
+  --compare-with v1.9.0 \
+  --metrics &quot;adoption,performance,stability&quot; \
+  --generate-insights
+</code></pre>
+<h2>Documentation</h2>
+<h3>Auto-Generated Docs</h3>
+<pre><code class="language-bash"># Update documentation
+npx ruv-swarm github release-docs \
+  --api-changes \
+  --migration-guide \
+  --example-updates \
+  --publish-to &quot;docs-site,wiki&quot;
+</code></pre>
+<h3>Release Notes</h3>
+<pre><code class="language-markdown">&lt;!-- Auto-generated release notes template --&gt;
+# Release v2.0.0
+
+## 🎉 Highlights
+- Major feature X with 50% performance improvement
+- New API endpoints for feature Y
+- Enhanced security with feature Z
+
+## 🚀 Features
+### Feature Name (#PR)
+Detailed description of the feature...
+
+## 🐛 Bug Fixes
+### Fixed issue with... (#PR)
+Description of the fix...
+
+## 💥 Breaking Changes
+### API endpoint renamed
+- Before: `/api/old-endpoint`
+- After: `/api/new-endpoint`
+- Migration: Update all client calls...
+
+## 📈 Performance Improvements
+- Reduced memory usage by 30%
+- API response time improved by 200ms
+
+## 🔒 Security Updates
+- Updated dependencies to patch CVE-XXXX
+- Enhanced authentication mechanism
+
+## 📚 Documentation
+- Added examples for new features
+- Updated API reference
+- New troubleshooting guide
+
+## 🙏 Contributors
+Thanks to all contributors who made this release possible!
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Release Planning</h3>
+<ul>
+<li>Regular release cycles</li>
+<li>Feature freeze periods</li>
+<li>Beta testing phases</li>
+<li>Clear communication</li>
+</ul>
+<h3>2. Automation</h3>
+<ul>
+<li>Comprehensive CI/CD</li>
+<li>Automated testing</li>
+<li>Progressive rollouts</li>
+<li>Monitoring and alerts</li>
+</ul>
+<h3>3. Documentation</h3>
+<ul>
+<li>Up-to-date changelogs</li>
+<li>Migration guides</li>
+<li>API documentation</li>
+<li>Example updates</li>
+</ul>
+<h2>Integration Examples</h2>
+<h3>NPM Package Release</h3>
+<pre><code class="language-bash"># NPM package release
+npx ruv-swarm github npm-release \
+  --version patch \
+  --test-all \
+  --publish-beta \
+  --tag-latest-on-success
+</code></pre>
+<h3>Docker Image Release</h3>
+<pre><code class="language-bash"># Docker multi-arch release
+npx ruv-swarm github docker-release \
+  --platforms &quot;linux/amd64,linux/arm64&quot; \
+  --tags &quot;latest,v2.0.0,stable&quot; \
+  --scan-vulnerabilities \
+  --push-to &quot;dockerhub,gcr,ecr&quot;
+</code></pre>
+<h3>Mobile App Release</h3>
+<pre><code class="language-bash"># Mobile app store release
+npx ruv-swarm github mobile-release \
+  --platforms &quot;ios,android&quot; \
+  --build-release \
+  --submit-review \
+  --staged-rollout
+</code></pre>
+<h2>Emergency Procedures</h2>
+<h3>Hotfix Process</h3>
+<pre><code class="language-bash"># Emergency hotfix
+npx ruv-swarm github emergency-release \
+  --severity critical \
+  --bypass-checks security-only \
+  --fast-track \
+  --notify-all
+</code></pre>
+<h3>Rollback Procedure</h3>
+<pre><code class="language-bash"># Immediate rollback
+npx ruv-swarm github rollback \
+  --to-version v1.9.9 \
+  --reason &quot;Critical bug in v2.0.0&quot; \
+  --preserve-data \
+  --notify-users
+</code></pre>
+<p>See also: <a href="./workflow-automation.md">workflow-automation.md</a>, <a href="./multi-repo-swarm.md">multi-repo-swarm.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>01 foundation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/01-foundation.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">01 foundation</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>01-foundation.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 1
+subject: &quot;Day 1 — What actually separates an agent from a chatbot&quot;
+preheader: &quot;Reading time: 4 min. One sample. One exercise.&quot;</h2>
+<p>A friend asked me last week: &quot;What&#39;s actually the difference between ChatGPT and an agent?&quot;</p>
+<p>The answer that gets you 80% of the way there in one sentence:</p>
+<blockquote>
+<p><strong>A chatbot generates a response. An agent runs a loop.</strong></p>
+</blockquote>
+<p>The chatbot version: you ask, the model answers, conversation over.</p>
+<p>The agent version: you ask, the model decides whether to answer directly or call a tool, the tool returns data, the model decides again, eventually it produces a final structured answer — and the loop stops.</p>
+<p>The architectural difference is <strong>the loop and the tools</strong>. Everything else is window dressing.</p>
+<pre><code class="language-ts">// Chatbot — one shot
+const reply = await model.generate({ prompt: userQuestion })
+
+// Agent — loop until done
+let messages = [{ role: &#39;user&#39;, content: userQuestion }]
+while (true) {
+  const response = await model.generate(messages, tools)
+  messages.push({ role: &#39;assistant&#39;, content: response })
+  if (response.finishReason === &#39;stop&#39;) return response
+  // run tool calls, append results, loop again
+}
+</code></pre>
+<p>Once you see this, &quot;AI agents&quot; stop being mysterious. They&#39;re just LLMs with a <code>while</code> loop and a typed function call.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>Open <code>https://chat.openai.com</code> or <code>claude.ai</code>. Ask any question that requires up-to-date information (&quot;what&#39;s the latest Vercel AI SDK release?&quot;). Notice if the model decided to use web search.</p>
+<p>That decision — to use or not use a tool — is the whole agentic primitive. The architecture is just systematizing that decision and giving the model more tools.</p>
+<h2>A short case from this week</h2>
+<p>A reader of this list emailed me last month asking &quot;should we rip out our LangGraph setup and rewrite on Vercel AI SDK?&quot; My answer was: no. They had already invested in LangGraph for the loop primitive — what they actually needed was to clean up their tools (which were leaking into the loop logic) and add a proper Agent Card.</p>
+<p>Knowing the primitives let me answer in 30 seconds. Without that mental model, that conversation would have been an hour.</p>
+<h2>Tomorrow</h2>
+<p>Day 2 covers Primitive 1 — the <strong>model</strong> — and why &quot;pick a model&quot; is the wrong frame.</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

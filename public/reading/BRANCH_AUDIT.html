@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Branch Audit — frankx.ai-vercel-website</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="BRANCH_AUDIT.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Branch Audit — frankx.ai-vercel-website</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>BRANCH_AUDIT.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Branch Audit — frankx.ai-vercel-website</h1>
+<p><strong>As of:</strong> 2026-06-01
+<strong>Auditor:</strong> Claude Code session (<a href="https://claude.ai/code">claude.ai/code</a>)
+<strong>Purpose:</strong> Inventory every non-<code>main</code> branch so deletions are zero-risk — the ideas live here.</p>
+<p>If a branch is marked <code>SAFE_DELETE</code>, every meaningful change it contains is already in <code>main</code>. If marked <code>KEEP</code>, it has unmerged work worth reviving or finishing. <code>KEEP_BACKUP</code> is explicit save-points (recovery, staging). Revival is always <code>git checkout origin/&lt;branch&gt;</code> (deletion is reversible until GitHub garbage-collects the ref, typically weeks).</p>
+<h2>Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SAFE_DELETE</code> (work in main or superseded)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>KEEP_UNMERGED</code> (substantive unmerged ideas — preserve as draft PRs)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>KEEP</code> (backs an open PR)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>KEEP_WIP</code> (massive 600-950 commit branches — leave for you to triage)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>KEEP_BACKUP</code> (recovery / staging / observability snapshots)</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<h2>Safe to delete (work in main or cleanly superseded)</h2>
+<h3><code>chore/normalize-line-endings-2026-05</code></h3>
+<ul>
+<li><strong>1 unique commit</strong>: <code>chore: normalize line endings to LF (52 files)</code></li>
+<li><strong>Status:</strong> Superseded by <code>chore/normalize-line-endings-2026-W20</code> (larger, more recent — though that branch is itself huge WIP — see <code>KEEP_WIP</code>).</li>
+<li><strong>Recommendation:</strong> <code>SAFE_DELETE</code></li>
+</ul>
+<h3><code>feat/smart-404-routing</code></h3>
+<ul>
+<li><strong>2 unique commits</strong>: smart 404 + 11 broken link fix</li>
+<li><strong>Status:</strong> Smart-404 routing shipped via PR #90 (&quot;feat(routing): smart-404 follow-ups — sitemap auto-discovery + merge:gate + 5 aliases&quot;). This branch was the precursor; main now carries the canonical version.</li>
+<li><strong>Recommendation:</strong> <code>SAFE_DELETE</code></li>
+</ul>
+<h3><code>hotfix/mobile-nav-restore</code></h3>
+<ul>
+<li><strong>1 unique commit</strong>: <code>fix(nav): restore mobile menu overlay (regression from 0b0a474b)</code></li>
+<li><strong>Status:</strong> Superseded by PR #100 / PR #102 (&quot;fix(nav): restore mobile menu + owner-only cluster + surface ecosystem map&quot;) and (&quot;fix(nav): repair broken menu links + footer ecosystem discoverability&quot;) — both merged. The mobile nav is fully restored.</li>
+<li><strong>Recommendation:</strong> <code>SAFE_DELETE</code></li>
+</ul>
+<h2>Substantive unmerged work — open as draft PRs before deleting source branches</h2>
+<h3><code>claude/build-llm-research-hub-75ba8</code> — <strong>GENERATIVE MODEL HUB</strong> (largest)</h3>
+<ul>
+<li><strong>5 unique commits, 63 files changed, +27,502 / -20,645</strong></li>
+<li>Adds a full LLM/model decision layer: <code>/llm-hub</code> and <code>/models</code> route trees, model + comparison pages, OG images, sitemap entries, cron jobs (<code>model-hub-audit</code>, <code>model-hub-refresh</code>), 18 hero images for Google I/O &#39;26 coverage, Vercel cron config, MODEL_HUB strategy + workflow docs, BenchmarkRadar / BenchmarkBarGroup / AgenticPlatformPill / CapabilityBadge / CapabilityCategoryGrid / ModelArenaCard components.</li>
+<li><strong>Status verified MISSING from main:</strong> <code>MODEL_HUB.md</code>, <code>app/llm-hub/page.tsx</code>, <code>app/models/page.tsx</code>, <code>components/llm-hub/BenchmarkRadar.tsx</code> — none exist on main.</li>
+<li><strong>Recommendation:</strong> <code>KEEP_UNMERGED</code> — open as draft PR so the work is queued for your review. Significant feature; do not delete without landing or explicit triage.</li>
+<li><strong>Revival:</strong> <code>git checkout origin/claude/build-llm-research-hub-75ba8</code></li>
+</ul>
+<h3><code>claude/multi-agent-newsletter-system-anKSZ</code> — <strong>MULTI-AGENT NEWSLETTER</strong></h3>
+<ul>
+<li><strong>3 unique commits, 30 files changed</strong></li>
+<li>Adds 6 newsletter agents (<code>.claude/agents/newsletter-{analyst,copywriter,designer,editor,publisher,researcher}.md</code>), 3 newsletter commands (<code>newsletter-design/publish/write.md</code>), full <code>lib/newsletter/</code> (compile-mdx, publish, render-beehiiv, render-email, render-rss, types), 6 sample issues across streams, MDX preview route, experiments log + platforms doc, email-templates-2026/index, <code>scripts/newsletter-publish.ts</code>.</li>
+<li><strong>Status verified MISSING from main:</strong> <code>.claude/agents/newsletter-analyst.md</code>, <code>lib/newsletter/types.ts</code>, <code>scripts/newsletter-publish.ts</code>. (<code>app/newsletters/preview/[stream]/[slug]/page.tsx</code> IS in main — partial absorption.)</li>
+<li><strong>Recommendation:</strong> <code>KEEP_UNMERGED</code> — substantive multi-agent system. Open as draft PR.</li>
+<li><strong>Revival:</strong> <code>git checkout origin/claude/multi-agent-newsletter-system-anKSZ</code></li>
+</ul>
+<h3><code>feat/newsletter-launch-v1</code> — <strong>NEWSLETTER LAUNCH INFRA</strong></h3>
+<ul>
+<li><strong>1 unique commit, 12 files changed</strong>: <code>feat(newsletter): DOI flow + unsubscribe + archive + RSS infra</code></li>
+<li>Adds DOI confirm route, unsubscribe route + page, archive index + detail pages, RSS feed, <code>lib/email-config.ts</code>, <code>lib/newsletter-archive.ts</code>, expanded <code>lib/email-templates.ts</code> (+263 lines).</li>
+<li><strong>Status verified MISSING from main:</strong> <code>app/newsletter/unsubscribe/page.tsx</code>, <code>app/api/subscribe/confirm/route.ts</code>, <code>lib/newsletter-archive.ts</code>, <code>app/newsletter/feed.xml/route.ts</code>. (<code>app/newsletter/archive/page.tsx</code> IS in main — partial absorption.)</li>
+<li><strong>Recommendation:</strong> <code>KEEP_UNMERGED</code> — newsletter compliance infra (DOI/unsubscribe) is launch-blocking. Open as draft PR.</li>
+<li><strong>Revival:</strong> <code>git checkout origin/feat/newsletter-launch-v1</code></li>
+</ul>
+<h2>Keep — back open PRs</h2>
+<h3><code>claude/focused-gauss-IdjMf</code> → PR #107 (draft)</h3>
+<ul>
+<li><strong>Launch hardening:</strong> Oracle legal-risk scrub, honest skill counts, footer cleanup. Pre-launch safety pass.</li>
+<li><strong>Recommendation:</strong> <code>KEEP</code> until PR #107 is merged or closed.</li>
+</ul>
+<h3><code>claude/frankx-freemium-experience-hJuk4</code> → PR #93</h3>
+<ul>
+<li><strong>Studio Crew chat + Ask flywheel:</strong> AI Gateway, RAG, public Q&amp;A acquisition engine.</li>
+<li><strong>Recommendation:</strong> <code>KEEP</code> until PR #93 is merged or closed.</li>
+</ul>
+<h3><code>claude/gifted-pasteur-9LsID</code> → PR #106 (draft)</h3>
+<ul>
+<li><strong>Blog excellence:</strong> flagship system, cinematic heroes, content fixes.</li>
+<li><strong>Recommendation:</strong> <code>KEEP</code> until PR #106 is merged or closed.</li>
+</ul>
+<h3><code>feat/birthday-tribe-page</code> → PR #61 (draft)</h3>
+<ul>
+<li><strong>Private birthday tribe dedication pages.</strong> Personal/private content.</li>
+<li><strong>Recommendation:</strong> <code>KEEP</code> until PR #61 is merged or closed.</li>
+</ul>
+<h3><code>feat/acos-pillar-9-10-agents</code> → PR #103</h3>
+<ul>
+<li><strong>18 new specialist agents</strong> (Pillar 9 Personal Ops + Pillar 10 Community Fabric) + Antigravity dynamic swarm registry.</li>
+<li><strong>Recommendation:</strong> <code>KEEP</code> until PR #103 is merged or closed.</li>
+</ul>
+<h2>Keep WIP — massive branches you should triage personally</h2>
+<p>These 6 branches each carry 600–950 unique commits and share an identical &quot;missing&quot; file set (<code>app/(preview)/{music-lab,products}-v{1,2,3}/page.tsx</code> and related preview routes). They appear to be a family of dev-workspace snapshots from W18–W20 that branched from a common ancestor with abandoned preview routes. <strong>Do not bulk-delete without your call.</strong> Possible interpretations: (a) parallel exploration that overlaps heavily, (b) Frank&#39;s working snapshots, (c) genuinely abandoned WIP. Recommend a triage session — pick one to keep as the canonical, archive the rest.</p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>Unique commits</th>
+<th>Shared missing pattern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>chore/normalize-line-endings-2026-W20</code></td>
+<td>933</td>
+<td><code>app/(preview)/*</code></td>
+</tr>
+<tr>
+<td><code>feat/ikigai-branding-workshop</code></td>
+<td>671</td>
+<td><code>app/(preview)/*</code></td>
+</tr>
+<tr>
+<td><code>feat/ikigai-upgrade-2-2026-W20</code></td>
+<td>947</td>
+<td><code>app/(preview)/*</code></td>
+</tr>
+<tr>
+<td><code>feat/ikigai-upgrade-3-2026-W20</code></td>
+<td>948</td>
+<td><code>app/(preview)/*</code></td>
+</tr>
+<tr>
+<td><code>feat/sync-prompt-hub-from-frankx</code></td>
+<td>950</td>
+<td><code>app/(preview)/*</code></td>
+</tr>
+<tr>
+<td><code>rails/phase-0</code></td>
+<td>835</td>
+<td><code>app/(preview)/*</code></td>
+</tr>
+</tbody></table>
+<p>The shared missing files (<code>music-lab-v1/v2/v3</code>, <code>products-v1/v2/v3</code> under <code>app/(preview)/</code>) were likely intentionally removed from <code>main</code> — the previews shipped or were retired. If they should come back, cherry-pick from <code>feat/ikigai-upgrade-3-2026-W20</code> (newest, most complete).</p>
+<h2>Keep — recovery / staging / observability snapshots</h2>
+<ul>
+<li><code>recovery/nested-2026-04-20</code> + <code>-dirty</code> — explicit backup before April 20 nested restructure</li>
+<li><code>recovery/sibling-2026-04-20</code> + <code>-dirty</code> — same date, sibling-restructure recovery</li>
+<li><code>staging/madrid-2026-05-25</code> — Madrid sprint handoff</li>
+<li><code>observability/vercel-cost-2026-W21</code> — weekly Vercel cost snapshots (RED week W21, includes p95 latency delta)</li>
+</ul>
+<p><strong>Recommendation:</strong> <code>KEEP_BACKUP</code> — these are time-stamped save-points. Delete only when you&#39;re certain the period they cover is closed.</p>
+<h2>One-shot delete (run when ready)</h2>
+<pre><code class="language-bash"># 3 branches safe to delete from frankx.ai-vercel-website
+for b in \
+  chore/normalize-line-endings-2026-05 \
+  feat/smart-404-routing \
+  hotfix/mobile-nav-restore; do
+  gh api -X DELETE &quot;repos/frankxai/frankx.ai-vercel-website/git/refs/heads/$b&quot; &amp;&amp; echo &quot;deleted $b&quot;
+done
+</code></pre>
+<p>(GitHub UI: same 3 branches under <a href="https://github.com/frankxai/frankx.ai-vercel-website/branches">Branches</a> → trash icon each.)</p>
+<h2>Updates to this doc</h2>
+<p>When a new orphan branch appears, add a section above with: unique-commit count · file inventory · <code>IN MAIN</code> / <code>MISSING</code> verification · <code>KEEP</code> or <code>SAFE_DELETE</code> recommendation.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

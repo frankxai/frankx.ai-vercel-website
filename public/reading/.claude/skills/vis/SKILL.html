@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Visual Intelligence System (VIS)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/vis/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Visual Intelligence System (VIS)</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fvis">vis</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: Visual Intelligence System (VIS)
+description: Agentic visual asset management — scan, audit, and manage images across your site with AI-powered quality enforcement
+version: 1.0.0
+category: visual-management
+triggers:
+  - visual registry
+  - image audit
+  - visual health
+  - placeholder image
+  - orphaned image
+  - oversized image
+  - brand visual
+  - image management
+  - visual intelligence
+  - vis scan
+  - vis audit
+  - vis report</h2>
+<h1>Visual Intelligence System (VIS)</h1>
+<h2>What VIS Does</h2>
+<p>VIS is the visual asset management layer for ACOS. It ensures every image across your site is:</p>
+<ul>
+<li><strong>Tagged</strong> — auto-detected mood, theme, color palette, placement suitability</li>
+<li><strong>Audited</strong> — placeholders, duplicates, orphans, and oversized images detected</li>
+<li><strong>Mapped</strong> — every page linked to its images with coverage status</li>
+<li><strong>Brand-aligned</strong> — validated against your brand visual DNA</li>
+</ul>
+<h2>Core Workflow</h2>
+<h3>1. Always Query Registry First</h3>
+<p>Before generating ANY new image, query the visual registry:</p>
+<pre><code class="language-bash"># Find dark, atmospheric music images suitable for homepage
+jq &#39;[.[] | select(.tags | contains([&quot;music&quot;])) | select(.mood == &quot;atmospheric&quot;)]&#39; data/visual-registry.json
+</code></pre>
+<p>If a suitable image exists, USE IT. Only generate new images when nothing fits.</p>
+<h3>2. Scan Images</h3>
+<p>Rebuild the registry after adding new images:</p>
+<pre><code class="language-bash">node scripts/scan-visual-registry.mjs          # Full rebuild
+node scripts/scan-visual-registry.mjs --diff   # Only new images
+node scripts/scan-visual-registry.mjs --report # Health summary
+</code></pre>
+<h3>3. Audit Visual Health</h3>
+<p>Run automated quality checks:</p>
+<pre><code class="language-bash">node scripts/audit-visual-health.mjs           # Full audit with score
+node scripts/audit-visual-health.mjs --json    # JSON for n8n/Slack
+</code></pre>
+<p><strong>Health Score Interpretation:</strong></p>
+<ul>
+<li>90-100: EXCELLENT — no action needed</li>
+<li>70-89: GOOD — minor issues to address</li>
+<li>50-69: NEEDS ATTENTION — several issues</li>
+<li>0-49: CRITICAL — immediate action required</li>
+</ul>
+<h3>4. Check Page Coverage</h3>
+<p>Query the sitemap-image map:</p>
+<pre><code class="language-bash"># Find pages that need images
+jq &#39;[.[] | select(.status == &quot;needs-images&quot;)]&#39; data/sitemap-image-map.json
+
+# Find pages using placeholders
+jq &#39;[.[] | select(.status == &quot;placeholder&quot;)]&#39; data/sitemap-image-map.json
+</code></pre>
+<h2>Key Data Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+<th>Update Frequency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data/visual-registry.json</code></td>
+<td>408+ images tagged &amp; indexed</td>
+<td>After every image addition</td>
+</tr>
+<tr>
+<td><code>data/brand-visual-dna.json</code></td>
+<td>Brand visual standards</td>
+<td>Rarely (brand changes)</td>
+</tr>
+<tr>
+<td><code>data/sitemap-image-map.json</code></td>
+<td>Page-to-image coverage</td>
+<td>After page/image changes</td>
+</tr>
+</tbody></table>
+<h2>Brand Visual DNA</h2>
+<p>The brand DNA file (<code>data/brand-visual-dna.json</code>) defines:</p>
+<ul>
+<li><strong>Palette</strong> — primary background (#0a0a0b), accent colors with usage rules</li>
+<li><strong>Image Standards</strong> — hero (16:9, min 1600px), OG (1200x630), thumbnails (16:10)</li>
+<li><strong>Mood Profiles</strong> — atmospheric, branded, technical, artistic, cinematic</li>
+<li><strong>Quality Council</strong> — 3-perspective review before any visual ships:<ol>
+<li><strong>Brand Guardian</strong> — Does it match visual DNA? Dark theme, accent harmony?</li>
+<li><strong>Conversion Optimizer</strong> — Does it drive action? Mood-setting vs distracting?</li>
+<li><strong>Accessibility Auditor</strong> — Sufficient contrast? Meaningful alt text?</li>
+</ol>
+</li>
+</ul>
+<h2>Generation Rules</h2>
+<p>When generating new images:</p>
+<ol>
+<li>Use <code>mcp__nanobanana__generate_image</code> with model_tier &quot;pro&quot; for heroes</li>
+<li>Always use dark background (#0a0a0b) — images must blend with site theme</li>
+<li>Aspect ratio 16:9 for heroes, 1200x630 for OG images</li>
+<li>Run through council review before deploying</li>
+<li>Auto-register in visual-registry.json after generation</li>
+<li>Include negative_prompt: &quot;text, watermark, logo, bright background, cartoon, flat design&quot;</li>
+</ol>
+<h2>Common Issues &amp; Fixes</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Detection</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Placeholder SVG</td>
+<td><code>blog-hero-aurora.svg</code> in frontmatter</td>
+<td>Generate unique hero image</td>
+</tr>
+<tr>
+<td>Duplicate hero</td>
+<td>Same image in header AND body</td>
+<td>Remove body <code>![](...)</code> reference</td>
+</tr>
+<tr>
+<td>Oversized image</td>
+<td>&gt;2MB in registry</td>
+<td>Optimize with sharp or re-generate at lower resolution</td>
+</tr>
+<tr>
+<td>Orphaned image</td>
+<td>In registry but no code reference</td>
+<td>Investigate — may be dynamically loaded</td>
+</tr>
+<tr>
+<td>Missing alt text</td>
+<td>Empty <code>alt=&quot;&quot;</code> on <code>&lt;Image&gt;</code></td>
+<td>Add descriptive alt text</td>
+</tr>
+</tbody></table>
+<h2>Integration Points</h2>
+<ul>
+<li><strong>visual-creation skill</strong> — Generation pipeline with quality gates</li>
+<li><strong>brand-rules skill</strong> — Brand Guardian enforcement</li>
+<li><strong>design-system skill</strong> — Color domain mapping and token architecture</li>
+<li><strong>nanobanana MCP</strong> — Image generation (Gemini 3 Pro/Flash)</li>
+<li><strong>n8n</strong> — Automated weekly audits via webhook</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

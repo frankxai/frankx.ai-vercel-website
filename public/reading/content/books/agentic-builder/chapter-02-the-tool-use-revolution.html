@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Chapter 2: The Tool Use Revolution</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-02-the-tool-use-revolution.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Chapter 2: The Tool Use Revolution</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-02-the-tool-use-revolution.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Chapter 2: The Tool Use Revolution</h1>
+<blockquote>
+<p>&quot;We shape our tools, and thereafter our tools shape us.&quot;
+-- Marshall McLuhan</p>
+</blockquote>
+<hr>
+<h2>I. The Hands of the Mind</h2>
+<p>A language model without tools is a brain in a jar. It can reason, analyze, compose, and critique. It can draft contracts, debug algorithms, explain quantum mechanics, and write sonnets. But it cannot check the weather. It cannot query a database. It cannot send an email, create a file, or verify that the code it wrote actually compiles.</p>
+<p>Tools are what connect reasoning to reality.</p>
+<p>The concept is deceptively simple. You describe a function to the model -- its name, its parameters, what it does -- and the model can choose to call that function when it determines the function would help accomplish its goal. The model does not execute the function itself. It generates structured output indicating which function to call and with what arguments. Your application executes the function, returns the result, and the model continues reasoning with the new information.</p>
+<p>This loop -- reason, decide to use a tool, receive results, continue reasoning -- is the atomic unit of agentic behavior. Everything else in this book builds on it.</p>
+<hr>
+<h2>II. The Evolution of Function Calling</h2>
+<p>The path from &quot;LLMs that generate text&quot; to &quot;LLMs that use tools&quot; evolved through three distinct phases.</p>
+<h3>Phase 1: Prompt Engineering (2022-2023)</h3>
+<p>Before native function calling existed, developers hacked tool use into existence through prompt engineering. You would instruct the model to output structured JSON when it wanted to use a tool, then parse the output, execute the function, and inject the result back into the conversation.</p>
+<pre><code>System: You have access to the following tools:
+- search(query: string): Searches the web and returns results
+- calculator(expression: string): Evaluates a math expression
+
+When you need to use a tool, output EXACTLY this format:
+&lt;tool_call&gt;{&quot;name&quot;: &quot;search&quot;, &quot;args&quot;: {&quot;query&quot;: &quot;population of Tokyo&quot;}}&lt;/tool_call&gt;
+
+Then STOP and wait for the result.
+</code></pre>
+<p>This worked surprisingly well with capable models, but it was fragile. Models would forget the format, hallucinate tool names, nest tool calls in prose, or generate invalid JSON. Reliability was perhaps 70-80% for simple cases and degraded rapidly with complexity. Production systems built on prompt-engineered tool use required extensive error handling and retry logic.</p>
+<h3>Phase 2: Native Function Calling (2023-2024)</h3>
+<p>OpenAI introduced native function calling in June 2023, and Anthropic followed with its own tool use implementation. Instead of relying on prompt engineering, the model&#39;s output format was extended to include structured tool calls as a first-class response type.</p>
+<p>The API contract changed. You define tools in the request:</p>
+<pre><code class="language-typescript">const tools = [{
+  name: &quot;query_database&quot;,
+  description: &quot;Execute a read-only SQL query against the analytics database. Returns rows as JSON arrays. Use this when the user asks about metrics, counts, or data that requires database access.&quot;,
+  input_schema: {
+    type: &quot;object&quot;,
+    properties: {
+      query: {
+        type: &quot;string&quot;,
+        description: &quot;A valid PostgreSQL SELECT query. Must be read-only (no INSERT, UPDATE, DELETE).&quot;
+      },
+      limit: {
+        type: &quot;number&quot;,
+        description: &quot;Maximum number of rows to return. Default 100. Maximum 1000.&quot;
+      }
+    },
+    required: [&quot;query&quot;]
+  }
+}];
+</code></pre>
+<p>The model responds with a structured tool use block:</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;tool_use&quot;,
+  &quot;name&quot;: &quot;query_database&quot;,
+  &quot;input&quot;: {
+    &quot;query&quot;: &quot;SELECT date, count(*) as signups FROM users WHERE date &gt;= &#39;2026-01-01&#39; GROUP BY date ORDER BY date&quot;,
+    &quot;limit&quot;: 30
+  }
+}
+</code></pre>
+<p>Your application executes the query, returns the result as a tool result, and the model continues. Reliability jumped to 95%+ for well-described tools. The model understood the contract because it was trained on the format, not prompted to follow it.</p>
+<h3>Phase 3: MCP -- The Universal Protocol (2024-present)</h3>
+<p>Native function calling solved the model-side problem. Each model provider had reliable tool use. But the ecosystem-side problem remained: every tool had to be custom-built for every application. If you built a Slack integration for your agent, that integration worked only in your agent. The next developer building a Slack integration started from scratch.</p>
+<p>The Model Context Protocol (MCP), introduced by Anthropic in November 2024, solved this by standardizing the protocol between tool providers (servers) and tool consumers (clients). An MCP server exposes tools through a standard interface. Any MCP client can discover and use those tools without custom integration code.</p>
+<p>The analogy is precise: MCP is to agent tools what HTTP is to web content. Before HTTP, every networked application invented its own communication protocol. After HTTP, a single client (the browser) could interact with any server. Before MCP, every agent framework invented its own tool integration. After MCP, a single agent can interact with any MCP-compatible tool server.</p>
+<hr>
+<h2>III. Anatomy of a Tool</h2>
+<p>A well-designed tool has five components. Miss any one and the agent will struggle to use it correctly.</p>
+<h3>1. Name</h3>
+<p>The tool name is the first thing the model sees when deciding which tool to use. It should be a verb-noun pair that unambiguously describes the action: <code>query_database</code>, <code>send_email</code>, <code>create_file</code>, <code>search_documents</code>. Avoid generic names like <code>run</code>, <code>execute</code>, or <code>process</code>. The model selects tools by matching the name and description to the current task. Ambiguous names cause selection errors.</p>
+<h3>2. Description</h3>
+<p>The description is the most important component. It is API documentation written for an AI reader. The model uses it to decide (a) whether to use this tool, (b) when to use it instead of alternatives, and (c) how to construct valid inputs.</p>
+<p>Bad description:</p>
+<pre><code>&quot;Queries the database&quot;
+</code></pre>
+<p>Good description:</p>
+<pre><code>&quot;Execute a read-only SQL query against the PostgreSQL analytics database.
+Returns results as an array of JSON objects, one per row. Column names
+become object keys. Use this when the user asks about metrics, statistics,
+user counts, revenue data, or any question that requires aggregating data
+from the analytics database. Do NOT use this for real-time data -- the
+analytics database is refreshed every 6 hours. For real-time metrics,
+use the get_live_metrics tool instead.&quot;
+</code></pre>
+<p>The good description tells the model:</p>
+<ul>
+<li>What the tool does (executes SQL queries)</li>
+<li>What the output format is (JSON array)</li>
+<li>When to use it (metrics, statistics, aggregations)</li>
+<li>When NOT to use it (real-time data)</li>
+<li>What to use instead (get_live_metrics)</li>
+</ul>
+<p>That last point -- describing when not to use a tool -- is as important as describing when to use it. Without negative guidance, models will use the first tool that seems approximately right, even when a better option exists.</p>
+<h3>3. Input Schema</h3>
+<p>The input schema defines what arguments the tool accepts, their types, which are required, and what constraints apply. Use JSON Schema:</p>
+<pre><code class="language-typescript">{
+  type: &quot;object&quot;,
+  properties: {
+    query: {
+      type: &quot;string&quot;,
+      description: &quot;A valid PostgreSQL SELECT query. Must be read-only.&quot;
+    },
+    limit: {
+      type: &quot;number&quot;,
+      description: &quot;Max rows to return. Range: 1-1000. Default: 100.&quot;
+    },
+    format: {
+      type: &quot;string&quot;,
+      enum: [&quot;json&quot;, &quot;csv&quot;, &quot;markdown&quot;],
+      description: &quot;Output format. Default: json.&quot;
+    }
+  },
+  required: [&quot;query&quot;]
+}
+</code></pre>
+<p>Every property should have a description. Enum values should be used wherever the set of valid inputs is finite. Default values should be documented in the description. Range constraints should be explicit. The more constraints you encode in the schema, the fewer invalid inputs the model will generate.</p>
+<h3>4. Error Handling</h3>
+<p>Tools will fail. Network requests time out. Queries return errors. Files do not exist. The question is not whether tools fail but whether the agent can recover when they do.</p>
+<p>The key principle: return errors as structured information, not as exceptions that crash the agent loop.</p>
+<pre><code class="language-typescript">async function queryDatabase(input: { query: string; limit?: number }): Promise&lt;ToolResult&gt; {
+  try {
+    // Validate input before execution
+    if (!input.query.trim().toUpperCase().startsWith(&#39;SELECT&#39;)) {
+      return {
+        success: false,
+        error: &quot;INVALID_QUERY&quot;,
+        message: &quot;Only SELECT queries are allowed. The query must start with SELECT.&quot;,
+        suggestion: &quot;Rewrite the query as a SELECT statement.&quot;
+      };
+    }
+
+    const result = await db.query(input.query, { limit: input.limit ?? 100 });
+
+    return {
+      success: true,
+      data: result.rows,
+      metadata: {
+        rowCount: result.rows.length,
+        executionTimeMs: result.duration,
+        truncated: result.rows.length === (input.limit ?? 100)
+      }
+    };
+  } catch (error) {
+    if (error.code === &#39;42P01&#39;) {
+      return {
+        success: false,
+        error: &quot;TABLE_NOT_FOUND&quot;,
+        message: `Table does not exist: ${error.table}`,
+        suggestion: &quot;Use the list_tables tool to see available tables.&quot;
+      };
+    }
+    if (error.code === &#39;42601&#39;) {
+      return {
+        success: false,
+        error: &quot;SYNTAX_ERROR&quot;,
+        message: `SQL syntax error near: ${error.position}`,
+        suggestion: &quot;Check the query syntax and try again.&quot;
+      };
+    }
+    return {
+      success: false,
+      error: &quot;EXECUTION_ERROR&quot;,
+      message: error.message,
+      suggestion: &quot;Review the query and retry. If the error persists, try a simpler query.&quot;
+    };
+  }
+}
+</code></pre>
+<p>Notice the <code>suggestion</code> field. This is the agent&#39;s recovery path. When a tool fails, the model needs to know not just what went wrong but what to try next. Without suggestions, models tend to retry the same failing input or abandon the task entirely.</p>
+<h3>5. Output Format</h3>
+<p>The output should be structured, consistent, and informative. The model needs to parse the result and incorporate it into its reasoning. Free-form text outputs are harder for models to process reliably than structured JSON.</p>
+<p>Always include metadata alongside data: row counts, execution time, pagination info, truncation warnings. The model uses this metadata to decide whether it has enough information or needs to make additional calls.</p>
+<hr>
+<h2>IV. Building a Complete Tool: Database Explorer</h2>
+<p>Let us build a real tool from scratch. This tool allows an agent to explore and query a PostgreSQL database -- the kind of tool you would deploy in a data analysis agent.</p>
+<pre><code class="language-typescript">import { Client } from &#39;pg&#39;;
+
+interface ToolDefinition {
+  name: string;
+  description: string;
+  input_schema: object;
+}
+
+interface ToolResult {
+  success: boolean;
+  data?: unknown;
+  error?: string;
+  message?: string;
+  suggestion?: string;
+  metadata?: Record&lt;string, unknown&gt;;
+}
+
+// Tool definitions -- what the agent sees
+export const databaseTools: ToolDefinition[] = [
+  {
+    name: &quot;list_tables&quot;,
+    description:
+      &quot;List all tables in the analytics database with their row counts &quot; +
+      &quot;and column names. Use this first when you need to understand what &quot; +
+      &quot;data is available before writing queries. Returns table name, &quot; +
+      &quot;approximate row count, and column definitions.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        schema: {
+          type: &quot;string&quot;,
+          description: &quot;Database schema to list tables from. Default: &#39;public&#39;.&quot;
+        }
+      },
+      required: []
+    }
+  },
+  {
+    name: &quot;describe_table&quot;,
+    description:
+      &quot;Get detailed column information for a specific table: column names, &quot; +
+      &quot;data types, nullable status, and sample values. Use this when you &quot; +
+      &quot;need to understand a table&#39;s structure before writing a query. &quot; +
+      &quot;More detailed than list_tables for a single table.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        table: {
+          type: &quot;string&quot;,
+          description: &quot;The table name to describe.&quot;
+        }
+      },
+      required: [&quot;table&quot;]
+    }
+  },
+  {
+    name: &quot;query_database&quot;,
+    description:
+      &quot;Execute a read-only SQL query against the PostgreSQL analytics database. &quot; +
+      &quot;Returns results as JSON array. Use list_tables and describe_table first &quot; +
+      &quot;if you are unsure about the schema. Only SELECT queries are allowed. &quot; +
+      &quot;Maximum 1000 rows per query. For large result sets, use LIMIT and OFFSET &quot; +
+      &quot;for pagination.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        query: {
+          type: &quot;string&quot;,
+          description: &quot;A valid PostgreSQL SELECT query.&quot;
+        },
+        limit: {
+          type: &quot;number&quot;,
+          description: &quot;Maximum rows to return. Range: 1-1000. Default: 100.&quot;
+        }
+      },
+      required: [&quot;query&quot;]
+    }
+  }
+];
+
+// Tool implementations -- what actually executes
+export async function executeDatabaseTool(
+  name: string,
+  input: Record&lt;string, unknown&gt;,
+  client: Client
+): Promise&lt;ToolResult&gt; {
+  switch (name) {
+    case &quot;list_tables&quot;:
+      return listTables(client, input.schema as string | undefined);
+    case &quot;describe_table&quot;:
+      return describeTable(client, input.table as string);
+    case &quot;query_database&quot;:
+      return queryDatabase(client, input.query as string, input.limit as number | undefined);
+    default:
+      return {
+        success: false,
+        error: &quot;UNKNOWN_TOOL&quot;,
+        message: `No tool named &#39;${name}&#39;`,
+        suggestion: &quot;Available tools: list_tables, describe_table, query_database&quot;
+      };
+  }
+}
+
+async function listTables(client: Client, schema = &#39;public&#39;): Promise&lt;ToolResult&gt; {
+  try {
+    const result = await client.query(`
+      SELECT
+        t.table_name,
+        pg_stat_user_tables.n_live_tup AS approximate_row_count,
+        array_agg(c.column_name ORDER BY c.ordinal_position) AS columns
+      FROM information_schema.tables t
+      JOIN information_schema.columns c
+        ON t.table_name = c.table_name AND t.table_schema = c.table_schema
+      LEFT JOIN pg_stat_user_tables
+        ON t.table_name = pg_stat_user_tables.relname
+      WHERE t.table_schema = $1 AND t.table_type = &#39;BASE TABLE&#39;
+      GROUP BY t.table_name, pg_stat_user_tables.n_live_tup
+      ORDER BY t.table_name
+    `, [schema]);
+
+    return {
+      success: true,
+      data: result.rows,
+      metadata: { tableCount: result.rows.length, schema }
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: &quot;LIST_TABLES_FAILED&quot;,
+      message: (error as Error).message,
+      suggestion: &quot;Verify the schema name exists. Default schema is &#39;public&#39;.&quot;
+    };
+  }
+}
+
+async function describeTable(client: Client, table: string): Promise&lt;ToolResult&gt; {
+  if (!table || !/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(table)) {
+    return {
+      success: false,
+      error: &quot;INVALID_TABLE_NAME&quot;,
+      message: `Invalid table name: &#39;${table}&#39;`,
+      suggestion: &quot;Table names must contain only letters, numbers, and underscores. Use list_tables to see available tables.&quot;
+    };
+  }
+
+  try {
+    const columns = await client.query(`
+      SELECT column_name, data_type, is_nullable, column_default
+      FROM information_schema.columns
+      WHERE table_name = $1 AND table_schema = &#39;public&#39;
+      ORDER BY ordinal_position
+    `, [table]);
+
+    if (columns.rows.length === 0) {
+      return {
+        success: false,
+        error: &quot;TABLE_NOT_FOUND&quot;,
+        message: `Table &#39;${table}&#39; does not exist.`,
+        suggestion: &quot;Use list_tables to see available tables.&quot;
+      };
+    }
+
+    // Get sample values for each column
+    const sample = await client.query(
+      `SELECT * FROM &quot;${table}&quot; LIMIT 3`
+    );
+
+    return {
+      success: true,
+      data: {
+        table,
+        columns: columns.rows,
+        sampleRows: sample.rows
+      },
+      metadata: { columnCount: columns.rows.length }
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: &quot;DESCRIBE_FAILED&quot;,
+      message: (error as Error).message,
+      suggestion: &quot;Check that the table name is correct using list_tables.&quot;
+    };
+  }
+}
+
+async function queryDatabase(
+  client: Client,
+  query: string,
+  limit = 100
+): Promise&lt;ToolResult&gt; {
+  // Validate: read-only
+  const normalized = query.trim().toUpperCase();
+  if (!normalized.startsWith(&#39;SELECT&#39;) &amp;&amp; !normalized.startsWith(&#39;WITH&#39;)) {
+    return {
+      success: false,
+      error: &quot;WRITE_OPERATION_BLOCKED&quot;,
+      message: &quot;Only SELECT queries (and WITH/CTE queries) are allowed.&quot;,
+      suggestion: &quot;Rewrite the query as a SELECT statement.&quot;
+    };
+  }
+
+  // Validate: no destructive keywords
+  const forbidden = [&#39;INSERT&#39;, &#39;UPDATE&#39;, &#39;DELETE&#39;, &#39;DROP&#39;, &#39;ALTER&#39;, &#39;TRUNCATE&#39;, &#39;GRANT&#39;];
+  for (const keyword of forbidden) {
+    if (normalized.includes(keyword)) {
+      return {
+        success: false,
+        error: &quot;FORBIDDEN_KEYWORD&quot;,
+        message: `Query contains forbidden keyword: ${keyword}`,
+        suggestion: &quot;Remove the forbidden keyword. This tool only supports read operations.&quot;
+      };
+    }
+  }
+
+  // Enforce limit
+  const effectiveLimit = Math.min(Math.max(limit, 1), 1000);
+  const limitedQuery = query.replace(/;\s*$/, &#39;&#39;) + ` LIMIT ${effectiveLimit}`;
+
+  try {
+    const start = Date.now();
+    const result = await client.query(limitedQuery);
+    const duration = Date.now() - start;
+
+    return {
+      success: true,
+      data: result.rows,
+      metadata: {
+        rowCount: result.rows.length,
+        executionTimeMs: duration,
+        truncated: result.rows.length === effectiveLimit,
+        appliedLimit: effectiveLimit
+      }
+    };
+  } catch (error) {
+    const pgError = error as { code?: string; position?: string; message: string };
+    return {
+      success: false,
+      error: `QUERY_ERROR_${pgError.code || &#39;UNKNOWN&#39;}`,
+      message: pgError.message,
+      suggestion: pgError.code === &#39;42P01&#39;
+        ? &quot;Table not found. Use list_tables to see available tables.&quot;
+        : pgError.code === &#39;42601&#39;
+        ? &quot;SQL syntax error. Check your query syntax.&quot;
+        : &quot;Review the error message and adjust your query.&quot;
+    };
+  }
+}
+</code></pre>
+<p>This implementation demonstrates the principles in practice: descriptive tool definitions, input validation before execution, structured error responses with recovery suggestions, and metadata that helps the agent make follow-up decisions.</p>
+<hr>
+<h2>V. MCP: Tools as Infrastructure</h2>
+<p>The database explorer above is useful for a single agent. But what if you want to share it across multiple agents, applications, and frameworks? This is where MCP transforms tool use from application code into infrastructure.</p>
+<p>An MCP server is a process that exposes tools through the MCP protocol. Here is the same database explorer as an MCP server:</p>
+<pre><code class="language-typescript">import { McpServer } from &#39;@modelcontextprotocol/sdk/server/mcp.js&#39;;
+import { StdioServerTransport } from &#39;@modelcontextprotocol/sdk/server/stdio.js&#39;;
+import { z } from &#39;zod&#39;;
+import { Client } from &#39;pg&#39;;
+
+const server = new McpServer({
+  name: &quot;database-explorer&quot;,
+  version: &quot;1.0.0&quot;
+});
+
+const dbClient = new Client({
+  connectionString: process.env.DATABASE_URL
+});
+
+server.tool(
+  &quot;list_tables&quot;,
+  &quot;List all tables in the database with row counts and column names. &quot; +
+  &quot;Use this first to understand what data is available.&quot;,
+  { schema: z.string().optional().describe(&quot;Database schema. Default: &#39;public&#39;&quot;) },
+  async ({ schema }) =&gt; {
+    const s = schema ?? &#39;public&#39;;
+    const result = await dbClient.query(`
+      SELECT t.table_name,
+             pg_stat_user_tables.n_live_tup AS approximate_row_count,
+             array_agg(c.column_name ORDER BY c.ordinal_position) AS columns
+      FROM information_schema.tables t
+      JOIN information_schema.columns c
+        ON t.table_name = c.table_name AND t.table_schema = c.table_schema
+      LEFT JOIN pg_stat_user_tables
+        ON t.table_name = pg_stat_user_tables.relname
+      WHERE t.table_schema = $1 AND t.table_type = &#39;BASE TABLE&#39;
+      GROUP BY t.table_name, pg_stat_user_tables.n_live_tup
+      ORDER BY t.table_name
+    `, [s]);
+
+    return {
+      content: [{
+        type: &quot;text&quot;,
+        text: JSON.stringify(result.rows, null, 2)
+      }]
+    };
+  }
+);
+
+server.tool(
+  &quot;query_database&quot;,
+  &quot;Execute a read-only SQL query. Use list_tables first to understand &quot; +
+  &quot;the schema. Only SELECT queries allowed. Max 1000 rows.&quot;,
+  {
+    query: z.string().describe(&quot;A valid PostgreSQL SELECT query&quot;),
+    limit: z.number().min(1).max(1000).optional().describe(&quot;Max rows. Default: 100&quot;)
+  },
+  async ({ query, limit }) =&gt; {
+    const normalized = query.trim().toUpperCase();
+    if (!normalized.startsWith(&#39;SELECT&#39;) &amp;&amp; !normalized.startsWith(&#39;WITH&#39;)) {
+      return {
+        content: [{
+          type: &quot;text&quot;,
+          text: JSON.stringify({
+            error: &quot;Only SELECT queries are allowed.&quot;,
+            suggestion: &quot;Rewrite as a SELECT statement.&quot;
+          })
+        }],
+        isError: true
+      };
+    }
+
+    const effectiveLimit = limit ?? 100;
+    const limitedQuery = query.replace(/;\s*$/, &#39;&#39;) + ` LIMIT ${effectiveLimit}`;
+    const start = Date.now();
+    const result = await dbClient.query(limitedQuery);
+
+    return {
+      content: [{
+        type: &quot;text&quot;,
+        text: JSON.stringify({
+          rows: result.rows,
+          rowCount: result.rows.length,
+          executionTimeMs: Date.now() - start,
+          truncated: result.rows.length === effectiveLimit
+        }, null, 2)
+      }]
+    };
+  }
+);
+
+async function main() {
+  await dbClient.connect();
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+main().catch(console.error);
+</code></pre>
+<p>The MCP version is structurally similar but now accessible to any MCP client. Claude Desktop, Claude Code, a custom agent built with the Claude Agent SDK, or any third-party MCP-compatible application can connect to this server and use its tools. You build the tool once. Every agent can use it.</p>
+<hr>
+<h2>VI. Claude Tool Use vs. MCP vs. Computer Use</h2>
+<p>Three mechanisms exist for agents to interact with the world. They are not interchangeable -- each serves a different use case.</p>
+<h3>Native Tool Use</h3>
+<p>Native tool use is appropriate when you are building a specific agent with a defined set of capabilities. You control the tool definitions, the execution environment, and the response format. Tool definitions are sent with each API request.</p>
+<p><strong>Best for</strong>: Custom agents with application-specific tools. When you need tight control over the tool execution pipeline. When tools require access to application-internal state (database connections, in-memory caches, authenticated sessions).</p>
+<h3>MCP Tool Use</h3>
+<p>MCP is appropriate when you want tools to be reusable across agents and applications, or when you want to leverage the ecosystem of existing MCP servers.</p>
+<p><strong>Best for</strong>: Standardized integrations (Slack, GitHub, databases, file systems). When multiple agents need the same tool. When you want to add capabilities without modifying the agent&#39;s code.</p>
+<h3>Computer Use</h3>
+<p>Computer use -- the ability for an agent to interact with graphical interfaces by viewing screenshots and generating mouse/keyboard actions -- is appropriate when the target system has no API and no MCP server.</p>
+<p><strong>Best for</strong>: Legacy applications with only GUI interfaces. Testing web applications from the user&#39;s perspective. Workflows that span multiple applications. Automating tasks that a human would do manually.</p>
+<p>The decision tree:</p>
+<ol>
+<li>Does the target system have a well-documented API? Use native tool use or build an MCP server.</li>
+<li>Does an MCP server already exist for the target system? Use MCP.</li>
+<li>Does the target system only have a GUI? Use computer use.</li>
+<li>Does the task require interacting with multiple systems, some with APIs and some without? Combine approaches -- use native/MCP tools for API-accessible systems and computer use for GUI-only systems.</li>
+</ol>
+<hr>
+<h2>VII. Design Principles for Agent Tools</h2>
+<p>After building and deploying dozens of tools across enterprise and personal agent systems, I have distilled the following principles:</p>
+<p><strong>1. Tools should do one thing well.</strong> A tool that queries a database, formats the output as a chart, and emails it to a stakeholder is three tools poorly merged into one. Break it apart. The agent can compose single-purpose tools into complex workflows -- that is its job.</p>
+<p><strong>2. Descriptions are contracts.</strong> Write tool descriptions as though you are onboarding a new team member who has never seen your codebase. Explain what the tool does, what the output looks like, when to use it, when not to use it, and what alternatives exist.</p>
+<p><strong>3. Validate inputs aggressively.</strong> The model will occasionally generate invalid inputs. Catch them early with clear error messages rather than letting them propagate into cryptic runtime errors.</p>
+<p><strong>4. Return structured errors with recovery paths.</strong> Never return bare error messages. Always include: what went wrong, why it went wrong, and what the agent should try instead.</p>
+<p><strong>5. Include metadata in outputs.</strong> Row counts, execution times, truncation warnings, pagination cursors -- the agent needs this information to decide its next action.</p>
+<p><strong>6. Scope tools to the minimum necessary permissions.</strong> A database tool should execute read-only queries. A file system tool should be restricted to specific directories. Agents will eventually make mistakes. Limit the blast radius.</p>
+<p><strong>7. Make tools idempotent where possible.</strong> If the agent calls the same tool with the same arguments twice, the result should be the same. This makes retries safe, which is critical because agents will retry.</p>
+<p><strong>8. Test tools with adversarial inputs.</strong> What happens when the model sends an empty string? A SQL injection attempt? A query that returns 10 million rows? A file path with <code>../../../etc/passwd</code>? Design for the worst case.</p>
+<p>These principles are not theoretical. They come from debugging agents that called the wrong tool because the description was ambiguous, agents that crashed because an error propagated instead of being caught, and agents that entered infinite retry loops because the error message did not tell them what to do differently.</p>
+<p>Tools are the interface between intelligence and action. Design them with the same care you would design an API that a million developers will use -- because in the agentic future, they will.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

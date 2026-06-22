@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Descript Operator</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/descript-operator/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Descript Operator</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fdescript-operator">descript-operator</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: descript-operator
+description: &quot;Operate Descript via its MCP server for agentic video editing — rough cuts, filler removal, Studio Sound, captions, clip exports. Use whenever raw recordings need an edit pass, when the user says &#39;edit today&#39;s recordings&#39;, &#39;/edit-pass&#39;, or any Descript project work. Requires the Descript MCP connector.&quot;</h2>
+<h1>Descript Operator</h1>
+<p>Drive Descript so the human never opens a timeline for rough work.</p>
+<h2>Tools</h2>
+<ul>
+<li><code>list_projects</code> / <code>get_project</code> — always <code>get_project</code> first; composition IDs come from here, never guessed.</li>
+<li><code>import_media</code> — URLs (direct/Drive/Dropbox as-is) or direct upload (PUT to <code>upload_urls</code>, Content-Type: application/octet-stream, exact <code>file_size</code>). New project → include <code>add_compositions</code>; existing project → omit unless asked.</li>
+<li><code>prompt_project_agent</code> — the workhorse. Natural-language edit instructions.</li>
+<li><code>wait_for_job</code> — poll every queued job; never report done on a queued job.</li>
+<li><code>export_transcript</code> / <code>publish_project</code> — outputs.</li>
+</ul>
+<h2>Standard edit pass (one prompt_project_agent call)</h2>
+<p>&quot;Remove filler words and tighten pauses over 1.5s. Apply Studio Sound. Add captions in brand style. Mark chapter points at topic shifts. Keep all takes flagged &#39;keeper&#39; in the script.&quot;</p>
+<h2>Rules</h2>
+<ul>
+<li>One review link to the human per video, not per operation.</li>
+<li>Long-form master stays in Descript; shorts are exported, atomization happens in Higgsfield (see higgsfield-operator).</li>
+<li>Project naming: <code>{YYYY-WW} {brand} {slug}</code> — e.g. <code>2026-24 FrankX agent-memory</code>.</li>
+<li>Local rough-cut fallback (no Descript credits): <code>auto-editor input.mp4 --margin 0.2s</code> via bash, then import the result.</li>
+</ul>
+<h2>Handoff</h2>
+<p>After pass completes: update the Notion Content Engine item to <code>Edited</code>, attach the Descript review link, log in Ops Log.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

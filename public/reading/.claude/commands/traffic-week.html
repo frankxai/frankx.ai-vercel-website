@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/traffic-week — Drive-Traffic Forcing Function</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/traffic-week.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/traffic-week — Drive-Traffic Forcing Function</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>traffic-week.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<p>name: traffic-week
+description: Pick 2-3 traffic levers for the week and execute them. Sibling to /plan-week (which is capacity) — this is the drive-traffic forcing function. Composes /research + /seo-check + internal-link audit + schema gap-fill + AEO positioning.
+triggers:</p>
+<ul>
+<li>/traffic-week</li>
+<li>/traffic
+arguments:</li>
+<li>name: mode
+required: false
+enum: [plan, execute, review]
+default: plan
+description: plan = pick the week&#39;s 2-3 levers · execute = run the chosen lever now · review = report last-week traffic delta</li>
+</ul>
+<hr>
+<h1>/traffic-week — Drive-Traffic Forcing Function</h1>
+<p><code>/plan-week</code> answers &quot;what gets made this week.&quot; This command answers <strong>&quot;what brings readers to the site this week.&quot;</strong> Both fire Sunday evening, both feed into the same sprint doc.</p>
+<h2>The 8 traffic levers</h2>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>What it does</th>
+<th>Effort</th>
+<th>Compounds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. <strong>Internal link density</strong></td>
+<td>Audit a hub, raise links/page from N to N+2</td>
+<td>~2h</td>
+<td>Yes — every new article inherits</td>
+</tr>
+<tr>
+<td>2. <strong>Schema gap-fill</strong></td>
+<td>Add Article / FAQPage / Review / BreadcrumbList / Quotation JSON-LD where missing</td>
+<td>~2h</td>
+<td>Yes — AI citation lift</td>
+</tr>
+<tr>
+<td>3. <strong>AEO positioning</strong></td>
+<td>Convert headers to question form on top-3 pages by search volume</td>
+<td>~3h</td>
+<td>Yes — AI snippet capture</td>
+</tr>
+<tr>
+<td>4. <strong>New pillar content</strong></td>
+<td>One 2000-3000w article on a chosen pillar</td>
+<td>~6h</td>
+<td>Yes — long tail</td>
+</tr>
+<tr>
+<td>5. <strong>Newsletter cross-post</strong></td>
+<td>Take last 4 newsletter issues, publish best 1 as standalone blog</td>
+<td>~2h</td>
+<td>Medium — one-time per issue</td>
+</tr>
+<tr>
+<td>6. <strong>Repost amplification</strong></td>
+<td>Workshop attendees&#39; posts → Frank repost + comment within 24h</td>
+<td>~30min × N</td>
+<td>High — network effect</td>
+</tr>
+<tr>
+<td>7. <strong>Original research</strong></td>
+<td>Publish one research brief (500w validated claims)</td>
+<td>~3h</td>
+<td>High — citation magnet</td>
+</tr>
+<tr>
+<td>8. <strong>Visual upgrade</strong></td>
+<td>Replace 5 low-res / placeholder hero images with NB2-generated 2K assets</td>
+<td>~2h</td>
+<td>Medium — CTR lift</td>
+</tr>
+</tbody></table>
+<h2>Weekly cadence</h2>
+<pre><code>SUN evening   /traffic-week plan
+              → ingest last-week traffic signals
+              → pick 2-3 levers for the week
+              → write to docs/planning/2026-W{n}-traffic.md
+
+MON-THU       /traffic-week execute &lt;lever-id&gt;
+              → run the chosen lever
+              → write outputs to content/ or app/ as appropriate
+
+FRI           ship the lever&#39;s deliverable (publish, deploy, sync)
+
+NEXT SUN      /traffic-week review
+              → report delta on the chosen levers
+              → feed into next-week plan
+</code></pre>
+<h2>Plan mode workflow</h2>
+<h3>Step 1: Ingest last-week signals</h3>
+<p>If analytics are wired (memory <code>project_hook_learn</code> for social), pull them. Otherwise:</p>
+<pre><code class="language-bash"># Manual signals
+- which routes saw new search hits (Google Search Console, Plausible, or similar)
+- which routes have schema gaps (grep for &quot;@type&quot; in app/*/page.tsx)
+- which routes have low internal-link density (count &lt;Link&gt; per page)
+- which routes have placeholder images (grep for &quot;placeholder&quot; in public/images/)
+</code></pre>
+<p>If analytics aren&#39;t wired, surface that as a [DECIDE] and use proxy signals (recently-shipped routes, hub-audit findings, social engagement).</p>
+<h3>Step 2: Pick the levers</h3>
+<p>Lever selection criteria, in order:</p>
+<ol>
+<li><strong>Compounds</strong> — levers 1, 2, 3, 7 compound across all future content. Bias here.</li>
+<li><strong>Capacity-matched</strong> — pick levers totaling ≤ 10h for a normal week, ≤ 5h for a travel week (e.g. W22 Madrid).</li>
+<li><strong>Forcing-function-aligned</strong> — if a hub is about to launch (Inner Circle June 1, Newsletter Friday), bias toward levers that touch that hub.</li>
+<li><strong>Diversified</strong> — at least 1 lever should be on-page (1,2,3), 1 should be content-creation (4,5,7), 1 can be operational (6,8).</li>
+</ol>
+<p>Pick <strong>2-3 levers total</strong>, not more. Focus beats breadth.</p>
+<h3>Step 3: Write the plan</h3>
+<pre><code class="language-markdown"># Traffic Plan — W{n} (2026-MM-DD → 2026-MM-DD)
+
+## Picked
+1. Lever 2: Schema gap-fill on /library (5 detail pages missing Article + Review)
+   - Effort: ~2h
+   - Execute: Tue afternoon
+2. Lever 7: Original research brief — &quot;Multi-Agent Handoff Patterns: 2026 Benchmark&quot;
+   - Effort: ~3h
+   - Execute: Wed morning
+3. Lever 6: NLDigital attendee repost sweep (Day 1-5)
+   - Effort: ~30min/day
+   - Execute: continuous via @amplification-liaison
+
+## Skipped (next week)
+- Lever 1: Internal link density on /studio (3h, can wait)
+- Lever 4: New pillar article (no fresh research to back it this week)
+
+## Success signal
+Measurable change in week +1 review:
+- /library hub: schema PASS on /seo-check
+- /research/multi-agent-handoff-patterns-2026: published, 3+ internal links from /blog
+- NLDigital amplification: ≥ 60% of posting attendees got a Frank repost within 24h
+</code></pre>
+<h2>Execute mode workflow</h2>
+<p>When invoked with <code>/traffic-week execute &lt;lever-id&gt;</code>:</p>
+<ul>
+<li><strong>Lever 1 (internal links)</strong> — dispatch @nextjs-vercel-deployment to add <code>&lt;Link&gt;</code> to identified gaps.</li>
+<li><strong>Lever 2 (schema gap-fill)</strong> — dispatch /seo-check then write JSON-LD to identified files.</li>
+<li><strong>Lever 3 (AEO)</strong> — read top-3 routes, rewrite H1/H2 to question form, regenerate metadata.</li>
+<li><strong>Lever 4 (new pillar)</strong> — dispatch /factory with the picked topic.</li>
+<li><strong>Lever 5 (newsletter cross-post)</strong> — read <code>content/newsletters/</code>, pick best issue, fork to <code>content/blog/</code>.</li>
+<li><strong>Lever 6 (repost amplification)</strong> — dispatch @amplification-liaison (already auto-fires).</li>
+<li><strong>Lever 7 (research brief)</strong> — dispatch /deepresearch with the chosen topic, output to <code>content/research/briefs/</code>.</li>
+<li><strong>Lever 8 (visual upgrade)</strong> — dispatch /visual-strategy + /infogenius for the identified images.</li>
+</ul>
+<h2>Review mode workflow</h2>
+<p>End-of-week (Sunday before /palace):</p>
+<pre><code class="language-markdown"># Traffic Review — W{n}
+
+## Levers shipped
+- ✅ Lever 2: schema on /library — 5/5 pages now PASS
+- ✅ Lever 7: research brief published, 4 internal links from /blog
+- ⚠️ Lever 6: amplification at 40% (target 60%) — investigate
+
+## Signals
+- Search Console: TBD (manual check)
+- Social: hook-learn report
+- Direct: any inbound from amplified posts
+
+## Carry-forward
+- Lever 6 underperformed → debug @amplification-liaison drafts quality
+</code></pre>
+<h2>Composition</h2>
+<p>Calls (via Task tool):</p>
+<ul>
+<li><code>/research</code> or <code>/deepresearch</code> (intelligence layer)</li>
+<li><code>/seo-check</code> (schema + AEO validation)</li>
+<li><code>@amplification-liaison</code> (lever 6)</li>
+<li><code>/factory</code> (lever 4)</li>
+<li><code>/visual-strategy</code> + <code>/infogenius</code> (lever 8)</li>
+<li><code>@nextjs-vercel-deployment</code> (lever 1 implementation)</li>
+</ul>
+<p>Pairs with <code>/plan-week</code> and <code>/content-ops fill</code> as the Sunday close-ritual triad.</p>
+<h2>Anti-patterns</h2>
+<ul>
+<li>❌ Don&#39;t pick &gt; 3 levers — focus dilutes traffic gains.</li>
+<li>❌ Don&#39;t pick the same lever 2 weeks in a row (unless review shows it&#39;s still moving).</li>
+<li>❌ Don&#39;t run execute mode without first running plan mode that week.</li>
+<li>❌ Don&#39;t conflate &quot;drive traffic&quot; with &quot;drive conversions&quot; — conversion is a separate concern; this command is awareness/reach only.</li>
+</ul>
+<hr>
+<p><em>The site that drives traffic chooses levers Sunday and ships them by Friday. Predictable, not heroic.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

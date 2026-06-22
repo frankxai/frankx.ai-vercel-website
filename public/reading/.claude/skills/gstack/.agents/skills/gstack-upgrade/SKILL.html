@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/gstack-upgrade</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/.agents/skills/gstack-upgrade/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/gstack-upgrade</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#.claude">.claude</a> / <a href="../../../../index.html#.claude%2Fskills">skills</a> / <a href="../../../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="../../index.html#.claude%2Fskills%2Fgstack%2F.agents">.agents</a> / <a href="../index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills%2Fgstack-upgrade">gstack-upgrade</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: gstack-upgrade
+description: |
+  Upgrade gstack to the latest version. Detects global vs vendored install,
+  runs the upgrade, and shows what&#39;s new. Use when asked to &quot;upgrade gstack&quot;,
+  &quot;update gstack&quot;, or &quot;get latest version&quot;.</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h1>/gstack-upgrade</h1>
+<p>Upgrade gstack to the latest version and show what&#39;s new.</p>
+<h2>Inline upgrade flow</h2>
+<p>This section is referenced by all skill preambles when they detect <code>UPGRADE_AVAILABLE</code>.</p>
+<h3>Step 1: Ask the user (or auto-upgrade)</h3>
+<p>First, check if auto-upgrade is enabled:</p>
+<pre><code class="language-bash">_AUTO=&quot;&quot;
+[ &quot;${GSTACK_AUTO_UPGRADE:-}&quot; = &quot;1&quot; ] &amp;&amp; _AUTO=&quot;true&quot;
+[ -z &quot;$_AUTO&quot; ] &amp;&amp; _AUTO=$(~/.codex/skills/gstack/bin/gstack-config get auto_upgrade 2&gt;/dev/null || true)
+echo &quot;AUTO_UPGRADE=$_AUTO&quot;
+</code></pre>
+<p><strong>If <code>AUTO_UPGRADE=true</code> or <code>AUTO_UPGRADE=1</code>:</strong> Skip AskUserQuestion. Log &quot;Auto-upgrading gstack v{old} → v{new}...&quot; and proceed directly to Step 2. If <code>./setup</code> fails during auto-upgrade, restore from backup (<code>.bak</code> directory) and warn the user: &quot;Auto-upgrade failed — restored previous version. Run <code>/gstack-upgrade</code> manually to retry.&quot;</p>
+<p><strong>Otherwise</strong>, use AskUserQuestion:</p>
+<ul>
+<li>Question: &quot;gstack <strong>v{new}</strong> is available (you&#39;re on v{old}). Upgrade now?&quot;</li>
+<li>Options: [&quot;Yes, upgrade now&quot;, &quot;Always keep me up to date&quot;, &quot;Not now&quot;, &quot;Never ask again&quot;]</li>
+</ul>
+<p><strong>If &quot;Yes, upgrade now&quot;:</strong> Proceed to Step 2.</p>
+<p><strong>If &quot;Always keep me up to date&quot;:</strong></p>
+<pre><code class="language-bash">~/.codex/skills/gstack/bin/gstack-config set auto_upgrade true
+</code></pre>
+<p>Tell user: &quot;Auto-upgrade enabled. Future updates will install automatically.&quot; Then proceed to Step 2.</p>
+<p><strong>If &quot;Not now&quot;:</strong> Write snooze state with escalating backoff (first snooze = 24h, second = 48h, third+ = 1 week), then continue with the current skill. Do not mention the upgrade again.</p>
+<pre><code class="language-bash">_SNOOZE_FILE=~/.gstack/update-snoozed
+_REMOTE_VER=&quot;{new}&quot;
+_CUR_LEVEL=0
+if [ -f &quot;$_SNOOZE_FILE&quot; ]; then
+  _SNOOZED_VER=$(awk &#39;{print $1}&#39; &quot;$_SNOOZE_FILE&quot;)
+  if [ &quot;$_SNOOZED_VER&quot; = &quot;$_REMOTE_VER&quot; ]; then
+    _CUR_LEVEL=$(awk &#39;{print $2}&#39; &quot;$_SNOOZE_FILE&quot;)
+    case &quot;$_CUR_LEVEL&quot; in *[!0-9]*) _CUR_LEVEL=0 ;; esac
+  fi
+fi
+_NEW_LEVEL=$((_CUR_LEVEL + 1))
+[ &quot;$_NEW_LEVEL&quot; -gt 3 ] &amp;&amp; _NEW_LEVEL=3
+echo &quot;$_REMOTE_VER $_NEW_LEVEL $(date +%s)&quot; &gt; &quot;$_SNOOZE_FILE&quot;
+</code></pre>
+<p>Note: <code>{new}</code> is the remote version from the <code>UPGRADE_AVAILABLE</code> output — substitute it from the update check result.</p>
+<p>Tell user the snooze duration: &quot;Next reminder in 24h&quot; (or 48h or 1 week, depending on level). Tip: &quot;Set <code>auto_upgrade: true</code> in <code>~/.gstack/config.yaml</code> for automatic upgrades.&quot;</p>
+<p><strong>If &quot;Never ask again&quot;:</strong></p>
+<pre><code class="language-bash">~/.codex/skills/gstack/bin/gstack-config set update_check false
+</code></pre>
+<p>Tell user: &quot;Update checks disabled. Run <code>~/.codex/skills/gstack/bin/gstack-config set update_check true</code> to re-enable.&quot;
+Continue with the current skill.</p>
+<h3>Step 2: Detect install type</h3>
+<pre><code class="language-bash">if [ -d &quot;$HOME/.agents/skills/gstack/.git&quot; ]; then
+  INSTALL_TYPE=&quot;global-git&quot;
+  INSTALL_DIR=&quot;$HOME/.agents/skills/gstack&quot;
+elif [ -d &quot;.agents/skills/gstack/.git&quot; ]; then
+  INSTALL_TYPE=&quot;local-git&quot;
+  INSTALL_DIR=&quot;.agents/skills/gstack&quot;
+elif [ -d &quot;.agents/skills/gstack&quot; ]; then
+  INSTALL_TYPE=&quot;vendored&quot;
+  INSTALL_DIR=&quot;.agents/skills/gstack&quot;
+elif [ -d &quot;$HOME/.agents/skills/gstack&quot; ]; then
+  INSTALL_TYPE=&quot;vendored-global&quot;
+  INSTALL_DIR=&quot;$HOME/.agents/skills/gstack&quot;
+else
+  echo &quot;ERROR: gstack not found&quot;
+  exit 1
+fi
+echo &quot;Install type: $INSTALL_TYPE at $INSTALL_DIR&quot;
+</code></pre>
+<p>The install type and directory path printed above will be used in all subsequent steps.</p>
+<h3>Step 3: Save old version</h3>
+<p>Use the install directory from Step 2&#39;s output below:</p>
+<pre><code class="language-bash">OLD_VERSION=$(cat &quot;$INSTALL_DIR/VERSION&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)
+</code></pre>
+<h3>Step 4: Upgrade</h3>
+<p>Use the install type and directory detected in Step 2:</p>
+<p><strong>For git installs</strong> (global-git, local-git):</p>
+<pre><code class="language-bash">cd &quot;$INSTALL_DIR&quot;
+STASH_OUTPUT=$(git stash 2&gt;&amp;1)
+git fetch origin
+git reset --hard origin/main
+./setup
+</code></pre>
+<p>If <code>$STASH_OUTPUT</code> contains &quot;Saved working directory&quot;, warn the user: &quot;Note: local changes were stashed. Run <code>git stash pop</code> in the skill directory to restore them.&quot;</p>
+<p><strong>For vendored installs</strong> (vendored, vendored-global):</p>
+<pre><code class="language-bash">PARENT=$(dirname &quot;$INSTALL_DIR&quot;)
+TMP_DIR=$(mktemp -d)
+git clone --depth 1 https://github.com/garrytan/gstack.git &quot;$TMP_DIR/gstack&quot;
+mv &quot;$INSTALL_DIR&quot; &quot;$INSTALL_DIR.bak&quot;
+mv &quot;$TMP_DIR/gstack&quot; &quot;$INSTALL_DIR&quot;
+cd &quot;$INSTALL_DIR&quot; &amp;&amp; ./setup
+rm -rf &quot;$INSTALL_DIR.bak&quot; &quot;$TMP_DIR&quot;
+</code></pre>
+<h3>Step 4.5: Sync local vendored copy</h3>
+<p>Use the install directory from Step 2. Check if there&#39;s also a local vendored copy that needs updating:</p>
+<pre><code class="language-bash">_ROOT=$(git rev-parse --show-toplevel 2&gt;/dev/null)
+LOCAL_GSTACK=&quot;&quot;
+if [ -n &quot;$_ROOT&quot; ] &amp;&amp; [ -d &quot;$_ROOT/.agents/skills/gstack&quot; ]; then
+  _RESOLVED_LOCAL=$(cd &quot;$_ROOT/.agents/skills/gstack&quot; &amp;&amp; pwd -P)
+  _RESOLVED_PRIMARY=$(cd &quot;$INSTALL_DIR&quot; &amp;&amp; pwd -P)
+  if [ &quot;$_RESOLVED_LOCAL&quot; != &quot;$_RESOLVED_PRIMARY&quot; ]; then
+    LOCAL_GSTACK=&quot;$_ROOT/.agents/skills/gstack&quot;
+  fi
+fi
+echo &quot;LOCAL_GSTACK=$LOCAL_GSTACK&quot;
+</code></pre>
+<p>If <code>LOCAL_GSTACK</code> is non-empty, update it by copying from the freshly-upgraded primary install (same approach as README vendored install):</p>
+<pre><code class="language-bash">mv &quot;$LOCAL_GSTACK&quot; &quot;$LOCAL_GSTACK.bak&quot;
+cp -Rf &quot;$INSTALL_DIR&quot; &quot;$LOCAL_GSTACK&quot;
+rm -rf &quot;$LOCAL_GSTACK/.git&quot;
+cd &quot;$LOCAL_GSTACK&quot; &amp;&amp; ./setup
+rm -rf &quot;$LOCAL_GSTACK.bak&quot;
+</code></pre>
+<p>Tell user: &quot;Also updated vendored copy at <code>$LOCAL_GSTACK</code> — commit <code>.agents/skills/gstack/</code> when you&#39;re ready.&quot;</p>
+<p>If <code>./setup</code> fails, restore from backup and warn the user:</p>
+<pre><code class="language-bash">rm -rf &quot;$LOCAL_GSTACK&quot;
+mv &quot;$LOCAL_GSTACK.bak&quot; &quot;$LOCAL_GSTACK&quot;
+</code></pre>
+<p>Tell user: &quot;Sync failed — restored previous version at <code>$LOCAL_GSTACK</code>. Run <code>/gstack-upgrade</code> manually to retry.&quot;</p>
+<h3>Step 5: Write marker + clear cache</h3>
+<pre><code class="language-bash">mkdir -p ~/.gstack
+echo &quot;$OLD_VERSION&quot; &gt; ~/.gstack/just-upgraded-from
+rm -f ~/.gstack/last-update-check
+rm -f ~/.gstack/update-snoozed
+</code></pre>
+<h3>Step 6: Show What&#39;s New</h3>
+<p>Read <code>$INSTALL_DIR/CHANGELOG.md</code>. Find all version entries between the old version and the new version. Summarize as 5-7 bullets grouped by theme. Don&#39;t overwhelm — focus on user-facing changes. Skip internal refactors unless they&#39;re significant.</p>
+<p>Format:</p>
+<pre><code>gstack v{new} — upgraded from v{old}!
+
+What&#39;s new:
+- [bullet 1]
+- [bullet 2]
+- ...
+
+Happy shipping!
+</code></pre>
+<h3>Step 7: Continue</h3>
+<p>After showing What&#39;s New, continue with whatever skill the user originally invoked. The upgrade is done — no further action needed.</p>
+<hr>
+<h2>Standalone usage</h2>
+<p>When invoked directly as <code>/gstack-upgrade</code> (not from a preamble):</p>
+<ol>
+<li>Force a fresh update check (bypass cache):</li>
+</ol>
+<pre><code class="language-bash">~/.codex/skills/gstack/bin/gstack-update-check --force 2&gt;/dev/null || \
+.agents/skills/gstack/bin/gstack-update-check --force 2&gt;/dev/null || true
+</code></pre>
+<p>Use the output to determine if an upgrade is available.</p>
+<ol start="2">
+<li><p>If <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: follow Steps 2-6 above.</p>
+</li>
+<li><p>If no output (primary is up to date): check for a stale local vendored copy.</p>
+</li>
+</ol>
+<p>Run the Step 2 bash block above to detect the primary install type and directory (<code>INSTALL_TYPE</code> and <code>INSTALL_DIR</code>). Then run the Step 4.5 detection bash block above to check for a local vendored copy (<code>LOCAL_GSTACK</code>).</p>
+<p><strong>If <code>LOCAL_GSTACK</code> is empty</strong> (no local vendored copy): tell the user &quot;You&#39;re already on the latest version (v{version}).&quot;</p>
+<p><strong>If <code>LOCAL_GSTACK</code> is non-empty</strong>, compare versions:</p>
+<pre><code class="language-bash">PRIMARY_VER=$(cat &quot;$INSTALL_DIR/VERSION&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)
+LOCAL_VER=$(cat &quot;$LOCAL_GSTACK/VERSION&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;PRIMARY=$PRIMARY_VER LOCAL=$LOCAL_VER&quot;
+</code></pre>
+<p><strong>If versions differ:</strong> follow the Step 4.5 sync bash block above to update the local copy from the primary. Tell user: &quot;Global v{PRIMARY_VER} is up to date. Updated local vendored copy from v{LOCAL_VER} → v{PRIMARY_VER}. Commit <code>.agents/skills/gstack/</code> when you&#39;re ready.&quot;</p>
+<p><strong>If versions match:</strong> tell the user &quot;You&#39;re on the latest version (v{PRIMARY_VER}). Global and local vendored copy are both up to date.&quot;</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

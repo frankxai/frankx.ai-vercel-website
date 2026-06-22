@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Newsletter Delivery and Vercel Setup</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/newsletters/system/delivery-and-vercel-setup.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Newsletter Delivery and Vercel Setup</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fnewsletters">newsletters</a> / <a href="index.html#content%2Fnewsletters%2Fsystem">system</a> / <span>delivery-and-vercel-setup.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Newsletter Delivery and Vercel Setup</h1>
+<p>This file is the operator checklist for making the FrankX Newsletter Intelligence cockpit work end to end on the main Vercel site.</p>
+<h2>Delivery Roles</h2>
+<p>Gmail MCP is for internal preview packets only. It is useful when Frank wants a review email immediately, but it is not the production newsletter platform.</p>
+<p>Resend is the transactional and test layer:</p>
+<ul>
+<li>welcome email</li>
+<li>confirmation links</li>
+<li>unsubscribe links</li>
+<li>single-recipient test sends</li>
+<li>contact and topic operations</li>
+<li>fallback delivery</li>
+</ul>
+<p>Beehiiv is the recommended growth and publishing layer:</p>
+<ul>
+<li>newsletter publish</li>
+<li>archive/growth tooling</li>
+<li>analytics</li>
+<li>referrals</li>
+<li>sponsorship readiness</li>
+<li>audience operations</li>
+</ul>
+<p>The repo remains the source of truth for:</p>
+<ul>
+<li>issue MDX</li>
+<li>variants</li>
+<li>simulation reports</li>
+<li>approval packets</li>
+<li>planned calendar</li>
+<li>cockpit inventory</li>
+</ul>
+<p>Substack is out of scope for V1 unless it becomes a deliberate mirror.</p>
+<h2>Required Environment Variables</h2>
+<p>Local <code>.env.local</code>:</p>
+<pre><code class="language-bash">RESEND_API_KEY=&quot;re_xxx&quot;
+RESEND_AUDIENCE_ID=&quot;4d2e913e-6903-4dd4-8749-c02cdb844331&quot;
+EMAIL_TOKEN_SECRET=&quot;generate-a-long-random-secret&quot;
+NEWSLETTER_PUBLISH_APPROVAL_TOKEN=&quot;generate-a-second-long-random-secret&quot;
+NEXT_PUBLIC_SITE_URL=&quot;https://frankx.ai&quot;
+SITE_URL=&quot;https://frankx.ai&quot;
+</code></pre>
+<p>Beehiiv, when ready:</p>
+<pre><code class="language-bash">BEEHIIV_API_KEY=&quot;...&quot;
+BEEHIIV_PUBLICATION_ID=&quot;...&quot;
+</code></pre>
+<p>Optional sender override for local preview scripts:</p>
+<pre><code class="language-bash">NEWSLETTER_PREVIEW_FROM=&quot;Frank &lt;frank@mail.frankx.ai&gt;&quot;
+</code></pre>
+<h2>Vercel CLI Commands</h2>
+<p>Run from <code>C:\Users\frank\starlight\repos\frankx.ai-vercel-website</code>.</p>
+<pre><code class="language-powershell">vercel env add RESEND_API_KEY production
+vercel env add RESEND_API_KEY preview
+vercel env add RESEND_API_KEY development
+
+vercel env add RESEND_AUDIENCE_ID production
+vercel env add EMAIL_TOKEN_SECRET production
+vercel env add NEWSLETTER_PUBLISH_APPROVAL_TOKEN production
+vercel env add NEXT_PUBLIC_SITE_URL production
+vercel env add SITE_URL production
+
+vercel env add BEEHIIV_API_KEY production
+vercel env add BEEHIIV_PUBLICATION_ID production
+</code></pre>
+<p>For preview and development, repeat the non-public secrets if those environments need real email tests.</p>
+<h2>Local Verification</h2>
+<pre><code class="language-powershell">npm run type-check
+npx next build
+node scripts/send-newsletter-preview.mjs friemerx@gmail.com
+</code></pre>
+<p>The <code>send-newsletter-preview.mjs</code> script sends a single-recipient internal review packet. It is not a broadcast tool.</p>
+<h2>Production Verification</h2>
+<p>After deployment:</p>
+<ol>
+<li>Open <code>https://frankx.ai/admin/newsletter</code>.</li>
+<li>Confirm Issues 1-5 appear under tracked editions.</li>
+<li>Confirm Issues 6-12 appear in the planned calendar.</li>
+<li>Open <code>https://frankx.ai/api/admin/newsletter/inventory</code> while authenticated.</li>
+<li>Test confirmation and unsubscribe links with a seeded test contact.</li>
+<li>Create a Beehiiv draft only after the approval packet is reviewed.</li>
+</ol>
+<h2>Approval Rule</h2>
+<p>No live newsletter publish should happen unless all are true:</p>
+<ul>
+<li>issue status is promoted from <code>draft</code> to <code>staged</code></li>
+<li>approval packet is reviewed</li>
+<li>experiment approval state is <code>approved-for-live</code></li>
+<li><code>NEWSLETTER_PUBLISH_APPROVAL_TOKEN</code> is supplied intentionally</li>
+<li>provider target is explicit</li>
+</ul>
+<p>This keeps the system useful, powerful, and hard to accidentally misuse.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

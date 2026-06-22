@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Chapter 12: MCP -- The Universal Integration Protocol</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-12-mcp-the-universal-integration-protocol.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Chapter 12: MCP -- The Universal Integration Protocol</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-12-mcp-the-universal-integration-protocol.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Chapter 12: MCP -- The Universal Integration Protocol</h1>
+<blockquote>
+<p>&quot;The most important property of a program is whether it accomplishes the intention of its user.&quot;
+-- C.A.R. Hoare</p>
+</blockquote>
+<hr>
+<h2>I. The Integration Problem</h2>
+<p>Before MCP, every AI provider invented its own tool integration layer. OpenAI had function calling with a specific JSON schema. Anthropic had tool use with a different JSON schema. Google had function declarations with yet another format. LangChain introduced tool classes. AutoGen used function maps. CrewAI had tool decorators. Semantic Kernel had plugins. Each was incompatible with the others.</p>
+<p>If you built a tool for Claude, it did not work with GPT. If you built a tool for GPT, it did not work with Gemini. If you built a tool in LangChain, it did not work in CrewAI. The fragmentation was total.</p>
+<p>This is the integration tax. Every tool author pays it by maintaining multiple implementations of the same capability. Every agent builder pays it by writing adapter layers between incompatible interfaces. Every organization pays it by locking into a single provider&#39;s tool ecosystem because the switching cost is too high.</p>
+<p>The integration tax is not a new problem. The history of computing is a history of interface standardization solving exactly this problem. USB replaced a dozen proprietary connectors. HTTP replaced a dozen proprietary network protocols. SQL replaced a dozen proprietary query languages. REST replaced a dozen proprietary RPC mechanisms. In each case, the standard was not technically superior to every proprietary alternative -- it was universally adopted, which made it categorically more valuable.</p>
+<p>MCP is that standard for agent-tool interaction.</p>
+<hr>
+<h2>II. What MCP Actually Is</h2>
+<p>The Model Context Protocol, released by Anthropic in November 2024, is a client-server protocol that defines how AI applications (clients) connect to external data sources and tools (servers). It uses JSON-RPC 2.0 as its wire format and defines three categories of capabilities that a server can expose.</p>
+<p>The architecture is straightforward. An MCP client (Claude Desktop, Claude Code, Cursor, or any application that implements the protocol) connects to one or more MCP servers. Each server exposes capabilities through a standardized interface. The client discovers what capabilities are available, presents them to the language model, and routes the model&#39;s requests to the appropriate server.</p>
+<pre><code>[LLM] &lt;-&gt; [MCP Client] &lt;-&gt; [MCP Server A: GitHub]
+                        &lt;-&gt; [MCP Server B: Database]
+                        &lt;-&gt; [MCP Server C: Filesystem]
+</code></pre>
+<p>The client handles the model interaction. The server handles the domain logic. Neither needs to know the implementation details of the other. This separation is the source of MCP&#39;s power: a server built once works with every compliant client.</p>
+<hr>
+<h2>III. The Three Primitives</h2>
+<p>MCP defines three primitive types that a server can expose. Each serves a distinct purpose in the agent-tool interaction model.</p>
+<h3>Resources</h3>
+<p>Resources are data that the server makes available to the client. They are the read side of the protocol -- structured information that the model can access but not modify through the resource interface itself.</p>
+<p>A resource has a URI, a name, a description, and content that can be text or binary. Resources are analogous to GET endpoints in REST: they provide information without side effects.</p>
+<pre><code class="language-typescript">// Resource definition in an MCP server
+server.setRequestHandler(ListResourcesRequestSchema, async () =&gt; {
+  return {
+    resources: [
+      {
+        uri: &quot;config://app/settings&quot;,
+        name: &quot;Application Settings&quot;,
+        description: &quot;Current application configuration values&quot;,
+        mimeType: &quot;application/json&quot;
+      },
+      {
+        uri: &quot;docs://api/reference&quot;,
+        name: &quot;API Reference&quot;,
+        description: &quot;Complete API documentation for the service&quot;,
+        mimeType: &quot;text/markdown&quot;
+      }
+    ]
+  };
+});
+
+server.setRequestHandler(ReadResourceRequestSchema, async (request) =&gt; {
+  const { uri } = request.params;
+
+  if (uri === &quot;config://app/settings&quot;) {
+    const settings = await loadSettings();
+    return {
+      contents: [{
+        uri,
+        mimeType: &quot;application/json&quot;,
+        text: JSON.stringify(settings, null, 2)
+      }]
+    };
+  }
+
+  throw new McpError(ErrorCode.InvalidRequest, `Unknown resource: ${uri}`);
+});
+</code></pre>
+<p>Use resources for: configuration data, documentation, reference material, database schemas, system state -- anything the model needs to read to make informed decisions about tool use.</p>
+<h3>Tools</h3>
+<p>Tools are functions that the server exposes for the model to invoke. They are the write side of the protocol -- operations that produce side effects, query external systems, or perform computations. Tools are what make agents agentic.</p>
+<p>A tool has a name, a description, and an input schema defined using JSON Schema. The description is critical: the model reads it to decide when and how to use the tool.</p>
+<pre><code class="language-typescript">server.setRequestHandler(ListToolsRequestSchema, async () =&gt; {
+  return {
+    tools: [
+      {
+        name: &quot;query_database&quot;,
+        description:
+          &quot;Execute a read-only SQL query against the analytics database. &quot; +
+          &quot;Returns results as a JSON array of objects. Tables available: &quot; +
+          &quot;users, events, transactions. Maximum 1000 rows returned. &quot; +
+          &quot;Use this when you need to look up specific data points or &quot; +
+          &quot;calculate aggregates.&quot;,
+        inputSchema: {
+          type: &quot;object&quot;,
+          properties: {
+            sql: {
+              type: &quot;string&quot;,
+              description: &quot;A read-only SQL query (SELECT only, no mutations)&quot;
+            }
+          },
+          required: [&quot;sql&quot;]
+        }
+      },
+      {
+        name: &quot;create_issue&quot;,
+        description:
+          &quot;Create a new issue in the project tracker. Returns the &quot; +
+          &quot;issue ID and URL. Use this when the user wants to track &quot; +
+          &quot;a bug, feature request, or task.&quot;,
+        inputSchema: {
+          type: &quot;object&quot;,
+          properties: {
+            title: {
+              type: &quot;string&quot;,
+              description: &quot;Issue title (concise, under 100 characters)&quot;
+            },
+            body: {
+              type: &quot;string&quot;,
+              description: &quot;Detailed description with reproduction steps if applicable&quot;
+            },
+            labels: {
+              type: &quot;array&quot;,
+              items: { type: &quot;string&quot; },
+              description: &quot;Labels to apply: &#39;bug&#39;, &#39;feature&#39;, &#39;enhancement&#39;, &#39;docs&#39;&quot;
+            }
+          },
+          required: [&quot;title&quot;, &quot;body&quot;]
+        }
+      }
+    ]
+  };
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) =&gt; {
+  const { name, arguments: args } = request.params;
+
+  switch (name) {
+    case &quot;query_database&quot;: {
+      const results = await executeReadOnlyQuery(args.sql as string);
+      return {
+        content: [{
+          type: &quot;text&quot;,
+          text: JSON.stringify(results, null, 2)
+        }]
+      };
+    }
+    case &quot;create_issue&quot;: {
+      const issue = await tracker.createIssue({
+        title: args.title as string,
+        body: args.body as string,
+        labels: (args.labels as string[]) || []
+      });
+      return {
+        content: [{
+          type: &quot;text&quot;,
+          text: `Created issue #${issue.id}: ${issue.url}`
+        }]
+      };
+    }
+    default:
+      throw new McpError(ErrorCode.MethodNotFound, `Unknown tool: ${name}`);
+  }
+});
+</code></pre>
+<p>The input schema is a contract. The model generates arguments that conform to the schema; the server validates them. This is stronger than prompt-engineered tool use, where argument structure was a suggestion. With MCP, it is a specification.</p>
+<h3>Prompts</h3>
+<p>Prompts are reusable templates that the server provides to the client. They define structured interaction patterns -- predefined workflows that the user can invoke by name, with the server supplying the prompt text and the client filling in dynamic arguments.</p>
+<pre><code class="language-typescript">server.setRequestHandler(ListPromptsRequestSchema, async () =&gt; {
+  return {
+    prompts: [
+      {
+        name: &quot;code_review&quot;,
+        description: &quot;Review code for bugs, security issues, and style&quot;,
+        arguments: [
+          {
+            name: &quot;language&quot;,
+            description: &quot;Programming language of the code&quot;,
+            required: true
+          },
+          {
+            name: &quot;code&quot;,
+            description: &quot;The code to review&quot;,
+            required: true
+          }
+        ]
+      }
+    ]
+  };
+});
+
+server.setRequestHandler(GetPromptRequestSchema, async (request) =&gt; {
+  const { name, arguments: args } = request.params;
+
+  if (name === &quot;code_review&quot;) {
+    return {
+      messages: [
+        {
+          role: &quot;user&quot;,
+          content: {
+            type: &quot;text&quot;,
+            text:
+              `Review this ${args?.language} code for:\n` +
+              `1. Bugs and logic errors\n` +
+              `2. Security vulnerabilities\n` +
+              `3. Performance issues\n` +
+              `4. Style and readability\n\n` +
+              `Code:\n\`\`\`${args?.language}\n${args?.code}\n\`\`\``
+          }
+        }
+      ]
+    };
+  }
+
+  throw new McpError(ErrorCode.InvalidRequest, `Unknown prompt: ${name}`);
+});
+</code></pre>
+<p>Prompts are the least understood of the three primitives because their purpose is subtle. They codify domain expertise into reusable interaction patterns. A security team can publish a <code>threat_model</code> prompt that ensures threat modeling follows organizational standards. A data team can publish a <code>data_quality_check</code> prompt that applies consistent validation criteria. The prompt author encodes the expertise; the model applies it.</p>
+<hr>
+<h2>IV. Building an MCP Server from Scratch</h2>
+<p>Here is a complete MCP server -- a project management tool that exposes tasks through all three primitives. This is approximately 100 lines of working code.</p>
+<pre><code class="language-typescript">import { Server } from &quot;@modelcontextprotocol/sdk/server/index.js&quot;;
+import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+  ListResourcesRequestSchema,
+  ReadResourceRequestSchema,
+  ListPromptsRequestSchema,
+  GetPromptRequestSchema,
+  ErrorCode,
+  McpError,
+} from &quot;@modelcontextprotocol/sdk/types.js&quot;;
+
+// --- In-memory task store ---
+
+interface Task {
+  id: string;
+  title: string;
+  status: &quot;todo&quot; | &quot;in_progress&quot; | &quot;done&quot;;
+  created: string;
+}
+
+const tasks: Map&lt;string, Task&gt; = new Map();
+let nextId = 1;
+
+// --- Server setup ---
+
+const server = new Server(
+  { name: &quot;task-manager&quot;, version: &quot;1.0.0&quot; },
+  { capabilities: { tools: {}, resources: {}, prompts: {} } }
+);
+
+// --- Resources: read current task state ---
+
+server.setRequestHandler(ListResourcesRequestSchema, async () =&gt; ({
+  resources: [{
+    uri: &quot;tasks://all&quot;,
+    name: &quot;All Tasks&quot;,
+    description: &quot;Current list of all tasks with status&quot;,
+    mimeType: &quot;application/json&quot;
+  }]
+}));
+
+server.setRequestHandler(ReadResourceRequestSchema, async (request) =&gt; {
+  if (request.params.uri === &quot;tasks://all&quot;) {
+    return {
+      contents: [{
+        uri: &quot;tasks://all&quot;,
+        mimeType: &quot;application/json&quot;,
+        text: JSON.stringify([...tasks.values()], null, 2)
+      }]
+    };
+  }
+  throw new McpError(ErrorCode.InvalidRequest, &quot;Unknown resource&quot;);
+});
+
+// --- Tools: create and update tasks ---
+
+server.setRequestHandler(ListToolsRequestSchema, async () =&gt; ({
+  tools: [
+    {
+      name: &quot;create_task&quot;,
+      description: &quot;Create a new task. Returns the task ID.&quot;,
+      inputSchema: {
+        type: &quot;object&quot;,
+        properties: {
+          title: { type: &quot;string&quot;, description: &quot;Task title&quot; }
+        },
+        required: [&quot;title&quot;]
+      }
+    },
+    {
+      name: &quot;update_task_status&quot;,
+      description: &quot;Update a task&#39;s status to todo, in_progress, or done.&quot;,
+      inputSchema: {
+        type: &quot;object&quot;,
+        properties: {
+          id: { type: &quot;string&quot;, description: &quot;Task ID&quot; },
+          status: {
+            type: &quot;string&quot;,
+            enum: [&quot;todo&quot;, &quot;in_progress&quot;, &quot;done&quot;],
+            description: &quot;New status&quot;
+          }
+        },
+        required: [&quot;id&quot;, &quot;status&quot;]
+      }
+    }
+  ]
+}));
+
+server.setRequestHandler(CallToolRequestSchema, async (request) =&gt; {
+  const { name, arguments: args } = request.params;
+
+  if (name === &quot;create_task&quot;) {
+    const id = String(nextId++);
+    const task: Task = {
+      id,
+      title: args!.title as string,
+      status: &quot;todo&quot;,
+      created: new Date().toISOString()
+    };
+    tasks.set(id, task);
+    return { content: [{ type: &quot;text&quot;, text: `Created task ${id}: &quot;${task.title}&quot;` }] };
+  }
+
+  if (name === &quot;update_task_status&quot;) {
+    const task = tasks.get(args!.id as string);
+    if (!task) {
+      return { content: [{ type: &quot;text&quot;, text: `Task ${args!.id} not found` }], isError: true };
+    }
+    task.status = args!.status as Task[&quot;status&quot;];
+    return { content: [{ type: &quot;text&quot;, text: `Task ${task.id} status: ${task.status}` }] };
+  }
+
+  throw new McpError(ErrorCode.MethodNotFound, `Unknown tool: ${name}`);
+});
+
+// --- Prompts: structured task planning ---
+
+server.setRequestHandler(ListPromptsRequestSchema, async () =&gt; ({
+  prompts: [{
+    name: &quot;plan_sprint&quot;,
+    description: &quot;Plan a sprint by breaking a goal into tasks&quot;,
+    arguments: [{
+      name: &quot;goal&quot;,
+      description: &quot;The sprint goal to decompose into tasks&quot;,
+      required: true
+    }]
+  }]
+}));
+
+server.setRequestHandler(GetPromptRequestSchema, async (request) =&gt; {
+  if (request.params.name === &quot;plan_sprint&quot;) {
+    const currentTasks = [...tasks.values()];
+    return {
+      messages: [{
+        role: &quot;user&quot;,
+        content: {
+          type: &quot;text&quot;,
+          text:
+            `Plan a sprint for this goal: &quot;${request.params.arguments?.goal}&quot;\n\n` +
+            `Current tasks:\n${JSON.stringify(currentTasks, null, 2)}\n\n` +
+            `Break the goal into 3-7 concrete tasks. For each task, use the ` +
+            `create_task tool. Consider dependencies and ordering.`
+        }
+      }]
+    };
+  }
+  throw new McpError(ErrorCode.InvalidRequest, &quot;Unknown prompt&quot;);
+});
+
+// --- Start the server ---
+
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error(&quot;Task Manager MCP server running on stdio&quot;);
+}
+
+main().catch(console.error);
+</code></pre>
+<p>That is a complete, functional MCP server. Save it as <code>server.ts</code>, install <code>@modelcontextprotocol/sdk</code>, and connect it to any MCP-compatible client. The server exposes resources (task list), tools (create and update tasks), and prompts (sprint planning) through a single standardized interface.</p>
+<hr>
+<h2>V. The Server Lifecycle</h2>
+<p>An MCP server goes through a defined lifecycle that every implementation must handle correctly. Understanding this lifecycle is essential for building servers that behave predictably under real-world conditions.</p>
+<h3>Initialization</h3>
+<p>When a client connects, it sends an <code>initialize</code> request containing its protocol version and capabilities. The server responds with its own protocol version and the capabilities it supports. This handshake establishes what both sides can do.</p>
+<pre><code>Client -&gt; Server: initialize {
+  protocolVersion: &quot;2025-03-26&quot;,
+  capabilities: { roots: { listChanged: true } },
+  clientInfo: { name: &quot;claude-code&quot;, version: &quot;1.0.0&quot; }
+}
+
+Server -&gt; Client: {
+  protocolVersion: &quot;2025-03-26&quot;,
+  capabilities: { tools: {}, resources: {}, prompts: {} },
+  serverInfo: { name: &quot;task-manager&quot;, version: &quot;1.0.0&quot; }
+}
+
+Client -&gt; Server: notifications/initialized
+</code></pre>
+<p>The <code>capabilities</code> object in the server&#39;s response tells the client which of the three primitives this server supports. A server can support any subset: tools only, resources and tools, all three, or even none (a server that only exposes notifications).</p>
+<h3>Capability Negotiation</h3>
+<p>Capability negotiation is not just a formality. It determines the protocol surface area for the session. If a server does not declare <code>tools</code> in its capabilities, the client will not send <code>tools/list</code> or <code>tools/call</code> requests. If the server does not declare <code>resources</code>, the client will not attempt to read resources.</p>
+<p>This means you can build servers incrementally. Start with tools only. Add resources when your server has data worth exposing. Add prompts when you have interaction patterns worth codifying. The protocol scales with your implementation.</p>
+<h3>Request Handling</h3>
+<p>After initialization, the client sends requests based on the negotiated capabilities. The request-response pattern follows JSON-RPC 2.0: each request has an <code>id</code>, a <code>method</code>, and optional <code>params</code>. The server responds with the same <code>id</code> and either a <code>result</code> or an <code>error</code>.</p>
+<p>Servers must handle requests for all declared capabilities. If you declared <code>tools</code> in your capabilities, you must handle <code>tools/list</code> and <code>tools/call</code>. If you declared <code>resources</code>, you must handle <code>resources/list</code> and <code>resources/read</code>. Failing to handle a declared capability is a protocol violation.</p>
+<h3>Shutdown</h3>
+<p>The protocol defines a clean shutdown sequence. The client sends a <code>close</code> notification, and the server releases resources and exits. In stdio transport, the server also shuts down when the parent process terminates (stdin closes).</p>
+<p>Clean shutdown matters for servers that maintain state. A database server needs to close connections. A file-watching server needs to release file handles. A server managing external processes needs to terminate them. The shutdown handler is your cleanup hook.</p>
+<pre><code class="language-typescript">server.onclose = async () =&gt; {
+  await database.close();
+  await fileWatcher.stop();
+  process.exit(0);
+};
+</code></pre>
+<hr>
+<h2>VI. Transport Options</h2>
+<p>MCP defines two transport mechanisms, each optimized for different deployment scenarios.</p>
+<h3>Stdio Transport</h3>
+<p>In stdio transport, the client spawns the server as a child process. Communication flows through standard input and standard output. Each message is a JSON-RPC object delimited by newlines.</p>
+<pre><code>Client Process &lt;-- stdin/stdout --&gt; Server Process (child)
+</code></pre>
+<p>Stdio is the default for local servers. It requires zero network configuration, works behind firewalls, needs no authentication (the server runs as the same user), and has minimal latency. When you configure an MCP server in Claude Desktop or Claude Code, you specify a command to execute, and the client spawns that command as a child process.</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;task-manager&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;tsx&quot;, &quot;server.ts&quot;],
+      &quot;env&quot;: { &quot;DATABASE_URL&quot;: &quot;postgres://localhost/tasks&quot; }
+    }
+  }
+}
+</code></pre>
+<p>Use stdio when: the server runs on the same machine as the client, the server needs access to local resources (filesystem, local databases, local processes), or the server is a developer tool intended for single-user operation.</p>
+<h3>HTTP with Server-Sent Events (Streamable HTTP)</h3>
+<p>HTTP transport runs the server as a standalone web service. The client connects over HTTP, using Server-Sent Events for server-to-client streaming and POST requests for client-to-server messages.</p>
+<pre><code>Client &lt;-- HTTP/SSE --&gt; Server (remote, standalone process)
+</code></pre>
+<p>HTTP transport supports remote deployment: the server can run on a different machine, in a container, behind a load balancer. It also supports multiple concurrent clients, which stdio does not (each stdio connection is a dedicated process).</p>
+<pre><code class="language-typescript">import { StreamableHTTPServerTransport } from
+  &quot;@modelcontextprotocol/sdk/server/streamableHttp.js&quot;;
+import express from &quot;express&quot;;
+
+const app = express();
+
+app.post(&quot;/mcp&quot;, async (req, res) =&gt; {
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: () =&gt; crypto.randomUUID(),
+  });
+  await server.connect(transport);
+  await transport.handleRequest(req, res);
+});
+
+app.listen(3001, () =&gt; {
+  console.log(&quot;MCP server listening on http://localhost:3001/mcp&quot;);
+});
+</code></pre>
+<p>Use HTTP when: the server serves multiple users, the server runs in a cloud environment, the server needs to be accessible from different machines, or the server integrates with infrastructure that speaks HTTP (load balancers, API gateways, monitoring).</p>
+<h3>Choosing Between Them</h3>
+<p>The decision matrix is simple:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Stdio</th>
+<th>HTTP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deployment</td>
+<td>Local, single user</td>
+<td>Remote, multi-user</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Implicit (OS user)</td>
+<td>Explicit (tokens, OAuth)</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Minimal</td>
+<td>Network-dependent</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>One client per process</td>
+<td>Multiple clients</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>No concerns</td>
+<td>Requires open ports</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Per-process</td>
+<td>Shared or per-session</td>
+</tr>
+</tbody></table>
+<p>Most MCP servers start as stdio and migrate to HTTP when they need to serve a team. The server code does not change -- only the transport layer and the startup configuration.</p>
+<hr>
+<h2>VII. The MCP Ecosystem</h2>
+<p>The MCP ecosystem has grown from Anthropic&#39;s initial release to over 1,400 published servers as of early 2026. This growth is the strongest signal that the protocol has achieved the network effects necessary for a standard to succeed.</p>
+<h3>Discovery</h3>
+<p>The primary directory is <a href="https://mcp.so">mcp.so</a>, which indexes servers by category, provider, and capability. Categories span the full range of developer infrastructure: databases (PostgreSQL, MongoDB, Redis), version control (GitHub, GitLab), cloud providers (AWS, GCP, Vercel), communication (Slack, email), file systems, web scraping, and specialized domains from bioinformatics to financial data.</p>
+<p>Anthropic also maintains an official registry of reviewed servers, and major providers ship their own: Vercel, Stripe, Sentry, Linear, Notion, and Figma all maintain first-party MCP servers.</p>
+<h3>Distribution</h3>
+<p>MCP servers distribute through package managers. The standard pattern for TypeScript servers is npm:</p>
+<pre><code class="language-bash"># Install and run an MCP server
+npx @modelcontextprotocol/server-postgres
+
+# Or install globally
+npm install -g @anthropic/mcp-server-github
+</code></pre>
+<p>Python servers distribute through pip and uvx. The protocol is language-agnostic; the SDK has official implementations in TypeScript and Python, with community implementations in Go, Rust, Java, and C#.</p>
+<h3>Composition</h3>
+<p>The real power of the ecosystem is composition. A single MCP client can connect to multiple servers simultaneously, and the model sees all their capabilities as a unified toolset. You can compose a custom environment by selecting servers:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;github&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@anthropic/mcp-server-github&quot;],
+      &quot;env&quot;: { &quot;GITHUB_TOKEN&quot;: &quot;${GITHUB_TOKEN}&quot; }
+    },
+    &quot;postgres&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@modelcontextprotocol/server-postgres&quot;, &quot;${DATABASE_URL}&quot;]
+    },
+    &quot;filesystem&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@modelcontextprotocol/server-filesystem&quot;, &quot;/home/user/projects&quot;]
+    }
+  }
+}
+</code></pre>
+<p>With this configuration, an agent can read your codebase, query your database, and create GitHub issues -- all through standardized interfaces, all composable without custom integration code. Each server is developed, tested, and maintained independently. The protocol is the integration layer.</p>
+<hr>
+<h2>VIII. Publishing Your Server</h2>
+<p>Building a server that works on your machine is step one. Publishing a server that works on anyone&#39;s machine requires attention to packaging, documentation, and versioning.</p>
+<h3>Packaging</h3>
+<p>The standard packaging for a TypeScript MCP server:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;@yourorg/mcp-server-yourservice&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;bin&quot;: {
+    &quot;mcp-server-yourservice&quot;: &quot;./dist/index.js&quot;
+  },
+  &quot;files&quot;: [&quot;dist&quot;],
+  &quot;dependencies&quot;: {
+    &quot;@modelcontextprotocol/sdk&quot;: &quot;^1.12.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;start&quot;: &quot;node dist/index.js&quot;
+  }
+}
+</code></pre>
+<p>The <code>bin</code> field is important. It allows users to run your server with <code>npx @yourorg/mcp-server-yourservice</code> without installing it globally. The <code>files</code> field ensures only built output ships in the package.</p>
+<h3>Documentation</h3>
+<p>Server documentation needs to answer three questions:</p>
+<ol>
+<li><strong>What does this server do?</strong> List every resource, tool, and prompt with descriptions.</li>
+<li><strong>How do I configure it?</strong> Environment variables, command-line arguments, required credentials.</li>
+<li><strong>How do I connect it?</strong> Client configuration snippets for Claude Desktop, Claude Code, and other popular clients.</li>
+</ol>
+<p>A README that answers these three questions is sufficient. A README that does not answer any of them is useless regardless of how much else it contains.</p>
+<h3>Versioning</h3>
+<p>MCP servers should follow semantic versioning with particular attention to tool changes:</p>
+<ul>
+<li><strong>Patch</strong> (1.0.0 -&gt; 1.0.1): Bug fixes, internal improvements. No changes to tool names, descriptions, or schemas.</li>
+<li><strong>Minor</strong> (1.0.0 -&gt; 1.1.0): New tools, resources, or prompts added. Existing interfaces unchanged.</li>
+<li><strong>Major</strong> (1.0.0 -&gt; 2.0.0): Breaking changes to existing tool interfaces -- renamed tools, changed schemas, removed capabilities.</li>
+</ul>
+<p>Breaking changes in MCP servers are more disruptive than in typical libraries because agents develop behavioral patterns around tool descriptions. If you rename <code>create_issue</code> to <code>new_issue</code>, every agent configuration that references the old name breaks, and every prompt that mentions the old name becomes stale. Treat tool interfaces as public API surfaces.</p>
+<hr>
+<h2>IX. MCP and the Future of Agent Infrastructure</h2>
+<p>MCP is not the final word on agent-tool interaction. It will evolve. But it has achieved the critical mass that makes it the foundation rather than a competitor. The number of servers, the number of clients, and the number of organizations building on MCP have crossed the threshold where the protocol&#39;s value comes from its ubiquity rather than its technical merits.</p>
+<p>The implications for builders are concrete. Build your tools as MCP servers, and they work everywhere. Build them as framework-specific integrations, and they work in one place. The engineering effort is comparable. The reach is not.</p>
+<p>Chapter 2 taught you how tools connect reasoning to reality. This chapter taught you how MCP standardizes that connection into a protocol that scales across providers, frameworks, and organizations. The next chapter addresses the organizational patterns that make agentic systems succeed beyond the individual builder -- how teams, departments, and enterprises adopt the patterns in this book.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

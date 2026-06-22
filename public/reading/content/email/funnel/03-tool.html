@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>03 tool</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/03-tool.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">03 tool</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>03-tool.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 3
+subject: &quot;Primitive 2 — A tool is a typed function. That&#39;s the whole rule.&quot;
+preheader: &quot;Reading time: 5 min. Four fields. One example.&quot;</h2>
+<p>People over-complicate tools.</p>
+<p>A tool is a typed function the agent can call. Four fields:</p>
+<ol>
+<li><strong>Name</strong> — <code>web_search</code>, <code>fetch_user_profile</code>, <code>calculate</code></li>
+<li><strong>Description</strong> — what the tool does (the model reads this to decide when to call)</li>
+<li><strong>Parameter schema</strong> — typed inputs (zod in TypeScript, Pydantic in Python)</li>
+<li><strong>Execute function</strong> — the actual code that runs</li>
+</ol>
+<p>Here&#39;s a tool, complete:</p>
+<pre><code class="language-ts">import { tool } from &#39;ai&#39;
+import { z } from &#39;zod&#39;
+
+export const webSearch = tool({
+  description: &#39;Search the web for up-to-date information.&#39;,
+  parameters: z.object({
+    query: z.string().min(3),
+    maxResults: z.number().int().min(1).max(5).default(3),
+  }),
+  execute: async ({ query, maxResults }) =&gt; {
+    const results = await searchApi(query, maxResults)
+    return { results }
+  },
+})
+</code></pre>
+<p>That&#39;s the whole thing. Same shape on Vercel AI SDK, Claude Agent SDK, OpenAI Agents, Google ADK — different ceremony, same four parts.</p>
+<h2>Why the schema matters</h2>
+<p>The parameter schema is your contract with the model. The model is going to <strong>fill in those parameters</strong> based on the user&#39;s question. If your schema is too loose, the model sends junk. If it&#39;s too strict, the model can&#39;t use the tool when it should.</p>
+<p>Common bugs:</p>
+<ul>
+<li><code>query: z.string()</code> — model passes empty strings. Fix: <code>z.string().min(3)</code>.</li>
+<li><code>maxResults: z.number()</code> — model passes 100, your search API rate-limits. Fix: <code>z.number().int().min(1).max(5)</code>.</li>
+<li>No <code>default()</code> on optional fields — model gets confused. Fix: <code>.default(3)</code>.</li>
+</ul>
+<p>The schema isn&#39;t documentation. It&#39;s runtime validation that prevents the model from making mistakes.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>Open <code>src/tools/web-search.ts</code> in the starter repo. Add a second tool — anything you want. A <code>calculate</code> tool that does basic math. A <code>wikipedia</code> tool that fetches a summary. A <code>define</code> tool that returns dictionary entries.</p>
+<p>Register it in <code>src/agent/loop.ts</code> next to <code>web_search</code>:</p>
+<pre><code class="language-ts">tools: { web_search: webSearch, your_tool: yourTool }
+</code></pre>
+<p>Restart <code>pnpm dev</code>. Ask a question that needs your new tool. Watch the model decide whether to call it.</p>
+<p>The first time you see a model correctly route a question to a tool you wrote, the agentic paradigm clicks. That moment is what this email course is for.</p>
+<h2>A short case</h2>
+<p>A FrankX customer last month was building a code-review agent. Their first version had one giant tool: <code>review_code(repo, branch, files)</code>. It was unreliable — the model couldn&#39;t decide when to call it and what to pass.</p>
+<p>We split it into four small tools: <code>list_changed_files</code>, <code>read_file</code>, <code>run_linter</code>, <code>flag_issue</code>. The agent&#39;s accuracy went from ~40% to ~85% in one afternoon.</p>
+<p><strong>Small, named, typed tools beat large generic ones.</strong> Always.</p>
+<h2>Tomorrow</h2>
+<p>Day 4 — Primitive 3: <strong>Memory</strong>. Why &quot;memory&quot; is actually three different primitives wearing the same word.</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

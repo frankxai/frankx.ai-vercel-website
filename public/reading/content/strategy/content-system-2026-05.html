@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Architecture decision</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/strategy/content-system-2026-05.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Architecture decision</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#content">content</a> / <a href="index.html#content%2Fstrategy">strategy</a> / <span>content-system-2026-05.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>title: Content System — May 2026 Runway
+status: active
+owner: Frank
+window: 2026-05-01 → 2026-06-30
+last_updated: 2026-04-30</h2>
+<h1>Architecture decision</h1>
+<p><strong>Local md inventory + Blotato broadcast.</strong> Source of truth = this repo. Distribution = Blotato API (Chrome MCP fallback). MCP-based content studios are not yet reliable for cross-platform; revisit Q3.</p>
+<pre><code>FrankX/
+├── content/
+│   ├── strategy/                       ← this file
+│   ├── social/
+│   │   ├── linkedin/                   ← .md per post, frontmatter-driven
+│   │   ├── x/
+│   │   ├── threads/
+│   │   ├── instagram/
+│   │   ├── youtube-shorts/
+│   │   ├── voice/                      ← raw voice memo .m4a + transcript .md
+│   │   └── _drafts/
+│   ├── newsletter/
+│   ├── blog/                           ← long-form for frankx.ai
+│   └── visuals/
+│       ├── prompts/                    ← image_prompt library
+│       ├── generated/                  ← nano-banana-2 / gpt-image-2 outputs
+│       └── b-roll/
+└── public/video/raw/                   ← phone footage
+</code></pre>
+<h2>Post frontmatter contract</h2>
+<pre><code class="language-yaml">---
+platform: linkedin            # linkedin | x | threads | ig | yt-shorts
+status: draft                 # draft | scheduled | posted
+scheduled_at: 2026-05-01T08:30:00+02:00
+pillar: departure             # departure | coe | build | ritual
+arc: 1                        # position in narrative arc (1–7 for May)
+hook: &quot;...&quot;
+body: |
+  ...
+cta: &quot;→ frankx.ai&quot;
+visual: visuals/generated/2026-05-01-architect-window.png
+image_prompt: &quot;...&quot;
+tags: []
+comment_pin: &quot;...&quot;            # optional 1-hour follow-up
+---
+</code></pre>
+<h1>Content pillars (May 2026)</h1>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Weight</th>
+<th>Through-line</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Architect&#39;s Departure</td>
+<td>35%</td>
+<td>Time-boxed to May. 7-beat arc: receipts → reflection → leap → invitation.</td>
+</tr>
+<tr>
+<td>Personal AI CoE</td>
+<td>30%</td>
+<td>Six pillars (Strategy, Governance, Talent, Tech, Data, Ethics) at 1/5000× cost.</td>
+</tr>
+<tr>
+<td>Build in Public</td>
+<td>25%</td>
+<td>Arcanea, GenCreator, Vibeclubs, Sovereign Scripture. Ship cycles, not roadmaps.</td>
+</tr>
+<tr>
+<td>Ritual / Process</td>
+<td>10%</td>
+<td>Lumina streak, Dispenza, gym/plunge, lo-fi/anime. Proof-of-process only.</td>
+</tr>
+</tbody></table>
+<h1>7-beat departure arc (May)</h1>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Date</th>
+<th>Beat</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>May 1 (Fri)</td>
+<td>Oracle gave me the architecture.</td>
+<td>LI long + hero image</td>
+</tr>
+<tr>
+<td>2</td>
+<td>May 6 (Wed)</td>
+<td>The six pillars I&#39;m taking with me.</td>
+<td>LI carousel infographic</td>
+</tr>
+<tr>
+<td>3</td>
+<td>May 11 (Mon)</td>
+<td>What I learned from the UAE / Spain / smart-city RFPs.</td>
+<td>LI long, no flex</td>
+</tr>
+<tr>
+<td>4</td>
+<td>May 15 (Fri)</td>
+<td>The seven AI Architects I onboarded — what they taught me.</td>
+<td>LI short + photo</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May 20 (Wed)</td>
+<td>Why a houseboat, not a headquarters.</td>
+<td>LI long, vulnerable</td>
+</tr>
+<tr>
+<td>6</td>
+<td>May 26 (Tue)</td>
+<td>What an AI CoE looks like for one person.</td>
+<td>YT long + LI excerpt</td>
+</tr>
+<tr>
+<td>7</td>
+<td>May 31 (Sun)</td>
+<td>Last day. Photo of the badge / desk / sunset. One sentence.</td>
+<td>LI + IG, multi-platform</td>
+</tr>
+</tbody></table>
+<p>June 1: <strong>orchestrated launch</strong> — <code>frankx.ai/coe</code>, newsletter blast, all 5 platforms simultaneously.</p>
+<h1>Cadence</h1>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Volume / week</th>
+<th>Generation cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LinkedIn long</td>
+<td>2</td>
+<td>30 min review</td>
+</tr>
+<tr>
+<td>LinkedIn short</td>
+<td>3</td>
+<td>5 min review each</td>
+</tr>
+<tr>
+<td>X / Threads atomic</td>
+<td>4</td>
+<td>bulk-batch Friday</td>
+</tr>
+<tr>
+<td>X thread</td>
+<td>2</td>
+<td>20 min review</td>
+</tr>
+<tr>
+<td>Short video (LI/IG/YT Shorts/TT)</td>
+<td>3</td>
+<td>90s shoot, I edit</td>
+</tr>
+<tr>
+<td>Infographic carousel</td>
+<td>2</td>
+<td>nano-banana-2 + Canva polish</td>
+</tr>
+<tr>
+<td>Long-form blog</td>
+<td>1</td>
+<td>60 min review</td>
+</tr>
+<tr>
+<td>Newsletter</td>
+<td>1 (Sunday)</td>
+<td>20 min review</td>
+</tr>
+</tbody></table>
+<h1>Generation pipeline</h1>
+<pre><code>Sunday  → schedule skill triggers `fill-the-runway` agent
+        → reads voice memos + this week&#39;s beat → generates 7d of drafts to _drafts/
+        → I review Sunday evening, approve → status: scheduled
+Monday  → Blotato pulls scheduled posts via API, queues them
+Friday  → `weekly-digest` agent compiles top-performing into newsletter draft
+</code></pre>
+<p>Skills used: <code>brand-voice:enforce-voice</code>, <code>marketing:draft-content</code>, <code>marketing:campaign-plan</code>, <code>canvas-design</code>, <code>schedule</code>.</p>
+<h1>Visual generation rules</h1>
+<ul>
+<li>nano-banana-2 = atmosphere, hero shots, cinematic narrative frames</li>
+<li>gpt-image-2 = infographics, diagrams, text-bearing visuals (better text rendering)</li>
+<li>One hero image per long post. No carousels for narrative posts; carousels reserved for frameworks/teaching.</li>
+<li>Visual style guardrails (from <code>taste.md</code>): restraint, no AI-slop tells, no chrome gradients, no glowing eyes, no &quot;futuristic&quot; clichés.</li>
+</ul>
+<h1>What Frank produces (weekly)</h1>
+<ol>
+<li>3× 90-second walking-selfie monologues (vertical, scripts delivered Friday)</li>
+<li>1× whiteboard breakdown 5–7 min (horizontal, one CoE pillar)</li>
+<li>B-roll batch: notebook, gym, plunge, production shot, location footage, anime stills</li>
+<li>3+ voice memos to <code>content/social/voice/</code></li>
+<li>Receipts vault: drop-and-forget into <code>content/visuals/receipts-raw/</code></li>
+</ol>
+<p>Total: ~2 hours/week.</p>
+<h1>Metrics that matter</h1>
+<ul>
+<li>LI: profile views, follower delta, <strong>comment-to-impression ratio</strong> (depth signal, not vanity)</li>
+<li>frankx.ai: organic search impressions for &quot;personal AI CoE&quot; cluster</li>
+<li>Newsletter: replies &gt; opens. Replies are the only honest engagement metric.</li>
+<li>Anti-metric: vanity follower count, post frequency, &quot;engagement rate&quot; without depth signal</li>
+</ul>
+<h1>Anti-patterns (never)</h1>
+<ul>
+<li>Humble-bragging about Oracle achievements without converting to a lesson the reader can use</li>
+<li>Spiritual / guru language (&quot;manifesting,&quot; &quot;abundance,&quot; &quot;sovereignty&quot; outside Sovereign Scripture context)</li>
+<li>Threads of more than 9 atomic posts (compression &gt; volume)</li>
+<li>Carousels longer than 7 slides</li>
+<li>Hashtags on long-form LI posts (cap reach as of 2024+)</li>
+<li>Posting before 7am or after 9pm local time (deflates algorithm)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

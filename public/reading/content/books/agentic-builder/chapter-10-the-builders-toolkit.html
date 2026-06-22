@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>The Builder's Toolkit</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-10-the-builders-toolkit.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">The Builder's Toolkit</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-10-the-builders-toolkit.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>The Builder&#39;s Toolkit</h1>
+<blockquote>
+<p>&quot;Give me six hours to chop down a tree and I will spend the first four sharpening the axe.&quot;
+— Abraham Lincoln</p>
+</blockquote>
+<hr>
+<h2>I. The Essential Stack</h2>
+<p>Nine chapters of architecture and theory. This chapter is the practical reference — the specific tools, frameworks, and resources that an agentic builder needs in 2026.</p>
+<p>This is not a comprehensive catalog. It is a curated selection of the tools that have proven themselves in production. Each recommendation comes from direct experience — I have used these tools, encountered their limitations, and chosen them despite (and sometimes because of) those limitations.</p>
+<hr>
+<h2>II. Language Models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Provider</th>
+<th>Best For</th>
+<th>Cost (per 1M tokens)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Opus 4</td>
+<td>Anthropic</td>
+<td>Complex reasoning, code generation, long context</td>
+<td>$15 input / $75 output</td>
+</tr>
+<tr>
+<td>Claude Sonnet 4</td>
+<td>Anthropic</td>
+<td>Fast reasoning, most tasks, cost-efficient</td>
+<td>$3 input / $15 output</td>
+</tr>
+<tr>
+<td>Claude Haiku 4.5</td>
+<td>Anthropic</td>
+<td>Classification, routing, simple tasks</td>
+<td>$0.25 input / $1.25 output</td>
+</tr>
+<tr>
+<td>GPT-4o</td>
+<td>OpenAI</td>
+<td>Multimodal, vision, function calling</td>
+<td>$2.50 input / $10 output</td>
+</tr>
+<tr>
+<td>Gemini 2.5 Flash</td>
+<td>Google</td>
+<td>Fast inference, grounding, long context</td>
+<td>$0.15 input / $0.60 output</td>
+</tr>
+<tr>
+<td>Llama 3.3 70B</td>
+<td>Meta (open)</td>
+<td>Self-hosted, privacy-sensitive tasks</td>
+<td>Free (compute cost only)</td>
+</tr>
+</tbody></table>
+<p><strong>The model selection framework:</strong></p>
+<p>Use the cheapest model that handles the task correctly. Do not default to the most expensive model. Classification tasks: Haiku. Standard reasoning: Sonnet. Complex architecture decisions: Opus. Image understanding: GPT-4o or Gemini.</p>
+<p>Route by complexity, not by habit.</p>
+<hr>
+<h2>III. Agent Frameworks</h2>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Language</th>
+<th>Pattern</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Agent SDK</td>
+<td>TS/Python</td>
+<td>Tool use + computer use</td>
+<td>Production Claude agents</td>
+</tr>
+<tr>
+<td>LangGraph</td>
+<td>Python</td>
+<td>Graph-based workflows</td>
+<td>Complex multi-step agents</td>
+</tr>
+<tr>
+<td>CrewAI</td>
+<td>Python</td>
+<td>Role-based multi-agent</td>
+<td>Team-simulation patterns</td>
+</tr>
+<tr>
+<td>AutoGen</td>
+<td>Python</td>
+<td>Conversational multi-agent</td>
+<td>Research and experimentation</td>
+</tr>
+<tr>
+<td>Mastra</td>
+<td>TypeScript</td>
+<td>Agent + workflow</td>
+<td>TypeScript-first teams</td>
+</tr>
+<tr>
+<td>Vercel AI SDK</td>
+<td>TypeScript</td>
+<td>Streaming + tool use</td>
+<td>Next.js integrated agents</td>
+</tr>
+</tbody></table>
+<p><strong>The framework selection framework:</strong></p>
+<p>If you are building with Claude: use the Claude Agent SDK. It provides native tool use, computer use, and the tightest integration with Claude&#39;s capabilities.</p>
+<p>If you need complex multi-step workflows with conditional branching: use LangGraph. The graph abstraction maps naturally to workflow design.</p>
+<p>If you are building in Next.js: use the Vercel AI SDK. It provides streaming, tool use, and seamless integration with the React server component model.</p>
+<p>Do not use more than one framework per project unless you have a specific reason. Framework proliferation creates maintenance burden without proportional capability gain.</p>
+<hr>
+<h2>IV. MCP Servers (Top 20)</h2>
+<p>The MCP ecosystem has 1,400+ servers. These 20 are the most useful for an agentic builder:</p>
+<p><strong>Development:</strong></p>
+<ol>
+<li><code>@modelcontextprotocol/server-github</code> — Repository management, issues, PRs</li>
+<li><code>vercel-mcp-server</code> — Deployments, build logs, project management</li>
+<li><code>@anthropic/mcp-memory-server</code> — Persistent knowledge graph</li>
+<li><code>@playwright/mcp</code> — Browser automation, testing, screenshots</li>
+</ol>
+<p><strong>Data:</strong>
+5. <code>@modelcontextprotocol/server-postgres</code> — PostgreSQL database operations
+6. <code>@modelcontextprotocol/server-sqlite</code> — SQLite for local databases
+7. <code>@supabase/mcp-server</code> — Supabase database + auth management</p>
+<p><strong>Content:</strong>
+8. <code>@nanobanana/mcp</code> — Image generation (Gemini 3 Pro Image)
+9. <code>@resend/mcp</code> — Email operations
+10. <code>@firecrawl/mcp-server</code> — Web scraping, content extraction</p>
+<p><strong>Communication:</strong>
+11. <code>@slack/mcp-server</code> — Slack messaging and channel management
+12. <code>@notion/mcp-server</code> — Notion pages, databases, comments
+13. <code>@linear/mcp-server</code> — Issue tracking, project management</p>
+<p><strong>Automation:</strong>
+14. <code>n8n-mcp</code> — Workflow management, execution monitoring
+15. <code>@modelcontextprotocol/server-sequential-thinking</code> — Structured reasoning</p>
+<p><strong>Design:</strong>
+16. <code>@figma/mcp-server</code> — Design context, component mapping
+17. <code>@canva/mcp-server</code> — Design generation, brand kit access
+18. <code>@v0/mcp-server</code> — UI component generation</p>
+<p><strong>Search &amp; Research:</strong>
+19. <code>@tavily/mcp-server</code> — Web search, content extraction
+20. <code>@exa/mcp-server</code> — Semantic search, similar content discovery</p>
+<p>Install these with <code>npx</code> — most require only an API key and a single configuration entry.</p>
+<hr>
+<h2>V. Development Tools</h2>
+<p><strong>IDE:</strong> Claude Code (CLI) or Cursor (GUI). Both provide AI-powered development. Claude Code is terminal-first and integrates with MCP. Cursor is editor-first and integrates with VS Code. Choose based on your workflow preference — terminal people choose Claude Code, visual people choose Cursor.</p>
+<p><strong>Version Control:</strong> Git + GitHub. Non-negotiable. Every project, every agent, every configuration is version-controlled. The git history is your audit trail, your rollback mechanism, and your collaboration platform.</p>
+<p><strong>TypeScript:</strong> The language of choice for agentic development. Type safety prevents the class of bugs that are hardest to debug in agent systems — malformed tool inputs, incorrect response parsing, and schema mismatches. If you are building agents, learn TypeScript.</p>
+<p><strong>Testing:</strong> Vitest for unit tests. Playwright for browser automation tests. Custom evaluation scripts for agent behavior tests. Testing is not optional — untested agents are liabilities.</p>
+<p><strong>Deployment:</strong> Vercel for web applications and serverless functions. Railway for long-running processes (n8n, databases, custom servers). Cloudflare Workers for edge logic. The trio covers every deployment pattern an agentic builder needs.</p>
+<hr>
+<h2>VI. Learning Resources</h2>
+<p><strong>Documentation:</strong></p>
+<ul>
+<li>Anthropic&#39;s Claude documentation: the most comprehensive AI API documentation available</li>
+<li>MCP specification: the protocol reference</li>
+<li>LangGraph documentation: graph-based agent patterns</li>
+</ul>
+<p><strong>Books:</strong></p>
+<ul>
+<li>This one (you are reading it)</li>
+<li>&quot;AI Engineering&quot; by Chip Huyen — production ML systems</li>
+<li>&quot;Designing Data-Intensive Applications&quot; by Martin Kleppmann — distributed systems fundamentals</li>
+<li>&quot;The Personal AI CoE&quot; by Frank Riemer — enterprise AI frameworks for individuals</li>
+</ul>
+<p><strong>Communities:</strong></p>
+<ul>
+<li>MCP Discord: the protocol community</li>
+<li>Claude Code Discord: practitioner community</li>
+<li>Hacker News: general AI engineering discussion</li>
+<li>X/Twitter: real-time AI development discourse</li>
+</ul>
+<p><strong>Practice:</strong></p>
+<ul>
+<li>Build one agent per month. Not for production — for learning. Each agent teaches different lessons: tool use, memory, orchestration, evaluation. After 12 agents, you will have encountered every common pattern and most common failure modes.</li>
+</ul>
+<hr>
+<h2>VII. The Toolkit Philosophy</h2>
+<p>Tools are means, not ends. The builder who masters three tools produces better output than the builder who collects thirty.</p>
+<p>Select your tools once. Master them over months. Replace them only when a tool demonstrably fails to serve your needs — not when a shinier alternative appears.</p>
+<p>The toolkit is complete. The architecture is described. The practices are documented. The future is sketched.</p>
+<p>What remains is the building.</p>
+<p>Build.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

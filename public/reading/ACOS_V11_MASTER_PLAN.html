@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>MASTER PLAN: ACOS v11 - The Ultimate Agentic Creator OS</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="ACOS_V11_MASTER_PLAN.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MASTER PLAN: ACOS v11 - The Ultimate Agentic Creator OS</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>ACOS_V11_MASTER_PLAN.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>MASTER PLAN: ACOS v11 - The Ultimate Agentic Creator OS</h1>
+<h2>Vision</h2>
+<p>Create ACOS v11 as the <strong>ultimate agent harness</strong> that:</p>
+<ul>
+<li>Works first-class on <strong>both Claude Code AND OpenCode</strong></li>
+<li>Absorbs the best from <strong>oh-my-opencode</strong> (32.5k stars) + <strong>claude-flow</strong> + current ACOS</li>
+<li>Maintains <strong>upstream sync</strong> capability</li>
+<li>Is <strong>fully branded</strong> for Agentic Creator OS</li>
+<li>Tested safely in a <strong>development branch</strong></li>
+</ul>
+<hr>
+<h2>Source Analysis</h2>
+<h3>oh-my-opencode (32.5k ⭐ - THE GOLD STANDARD)</h3>
+<pre><code>Strengths to absorb:
+├── Sisyphus agent (main orchestrator)
+├── Hephaestus agent (autonomous deep worker)
+├── 25+ hooks (PreToolUse, PostToolUse, etc.)
+├── Hash-anchored Edit tool (LINE#ID)
+├── Todo continuation enforcer
+├── Comment checker
+├── Background parallel agents
+├── MCPs built-in (Exa, Context7, Grep.app)
+├── Magic word: ultrawork / ulw
+└── Multi-model orchestration
+</code></pre>
+<h3>claude-flow (if exists)</h3>
+<pre><code>Strengths to absorb:
+├── Swarm orchestration patterns
+├── Hierarchical topologies
+├── Experience replay
+└── [Need to analyze further]
+</code></pre>
+<h3>Current ACOS v10</h3>
+<pre><code>What we keep:
+├── 75+ skills (domain knowledge)
+├── 35+ commands (/acos, /create-music, etc.)
+├── 38 specialized agents
+├── v10 safety hooks (circuit breaker, IAM)
+└── FrankX branding
+</code></pre>
+<hr>
+<h2>Architecture: Dual-Platform ACOS</h2>
+<pre><code>ACOS v11
+├── .opencode/              ← OpenCode config (plugin format)
+│   └── oh-my-opencode.json
+├── .claude/                ← Claude Code config
+│   ├── commands/
+│   ├── skills/
+│   ├── agents/
+│   └── hooks/
+├── src/                    ← Shared core (platform-agnostic)
+│   ├── agents/
+│   ├── skills/
+│   ├── hooks/
+│   └── utils/
+├── adapters/
+│   ├── opencode/          ← OpenCode-specific
+│   └── claude-code/       ← Claude Code-specific
+└── scripts/
+    └── sync-upstream.sh    ← Sync from oh-my-opencode
+</code></pre>
+<hr>
+<h2>Implementation Phases</h2>
+<h3>Phase 1: Create Development Branch</h3>
+<pre><code class="language-bash"># Create acos-v11-integration branch
+git checkout -b acos-v11-integration
+</code></pre>
+<h3>Phase 2: Fork oh-my-opencode Core</h3>
+<pre><code>Copy to ACOS structure:
+├── .sisyphus/              ← Core from oh-my-opencode
+│   ├── rules/              ← Hook rules
+│   └── agents/             ← Sisyphus, Hephaestus
+├── src/
+│   ├── hooks/              ← 25+ hooks
+│   ├── tools/              ← Hash-anchored edit
+│   └── models/             ← Model configurations
+</code></pre>
+<h3>Phase 3: Merge Current ACOS</h3>
+<pre><code>Add existing:
+├── skills/                  ← 75+ skills (keep)
+├── commands/                ← 35+ commands (keep)
+├── agents/                  ← 38 agents (keep)
+└── hooks/v10/              ← Circuit breaker, IAM (keep)
+</code></pre>
+<h3>Phase 4: Create Dual Platform Adapters</h3>
+<pre><code>.opencode/                  ← For OpenCode users
+├── oh-my-opencode.json     ← Plugin config
+└── install.sh             ← Auto-install
+
+.claude/                   ← For Claude Code users
+├── commands/               ← Slash commands
+├── skills/                 ← Auto-activating skills
+└── agents/                ← Agent personas
+</code></pre>
+<h3>Phase 5: Add Magic Words</h3>
+<pre><code>Both platforms:
+├── ultrawork / ulw         ← Fire all agents parallel
+├── acos                    ← Smart router
+├── frankx                  ← FrankX-specific workflows
+└── [custom]
+</code></pre>
+<h3>Phase 6: Upstream Sync Script</h3>
+<pre><code>sync-upstream.sh:
+├── Fetch oh-my-opencode updates
+├── Merge into ACOS structure
+├── Resolve conflicts
+├── Run tests
+└── Create PR
+</code></pre>
+<hr>
+<h2>Breaking Changes Risk Assessment</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Config conflicts</strong></td>
+<td>Adapters isolate platform configs</td>
+</tr>
+<tr>
+<td><strong>Hook duplication</strong></td>
+<td>Prefix with <code>acos_</code> to avoid conflicts</td>
+</tr>
+<tr>
+<td><strong>Agent name collision</strong></td>
+<td>Rename: <code>sisyphus</code> → <code>acos_sisyphus</code></td>
+</tr>
+<tr>
+<td><strong>Missing dependencies</strong></td>
+<td>Package.json with all required deps</td>
+</tr>
+<tr>
+<td><strong>Tests break</strong></td>
+<td>Full test suite before merge</td>
+</tr>
+<tr>
+<td><strong>Upstream breaks</strong></td>
+<td>Branch-based sync with manual merge</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Branch Strategy</h2>
+<pre><code>main                    ← Current stable (DO NOT TOUCH)
+├── acos-v10            ← Previous version (tag)
+└── acos-v11-integration ← DEVELOPMENT (THIS BRANCH)
+    └── PR → main       ← Merge after testing
+</code></pre>
+<hr>
+<h2>What Gets Branded</h2>
+<table>
+<thead>
+<tr>
+<th>Original</th>
+<th>ACOS v11</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sisyphus</td>
+<td>ACOS Sisyphus</td>
+</tr>
+<tr>
+<td>Hephaestus</td>
+<td>ACOS Hephaestus</td>
+</tr>
+<tr>
+<td>ultrawork</td>
+<td>ultrawork (keep!)</td>
+</tr>
+<tr>
+<td>oh-my-opencode</td>
+<td>(reference only, NOT copied)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Success Metrics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Skills available</td>
+<td>75+</td>
+</tr>
+<tr>
+<td>Commands available</td>
+<td>40+</td>
+</tr>
+<tr>
+<td>Agent personas</td>
+<td>45+</td>
+</tr>
+<tr>
+<td>Hooks</td>
+<td>30+</td>
+</tr>
+<tr>
+<td>Platform support</td>
+<td>2 (CC + OC)</td>
+</tr>
+<tr>
+<td>Upstream sync</td>
+<td>Automated</td>
+</tr>
+<tr>
+<td>Test pass rate</td>
+<td>100%</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Next Actions</h2>
+<ol>
+<li><strong>Create branch</strong>: <code>acos-v11-integration</code></li>
+<li><strong>Fork oh-my-opencode core</strong> → <code>.sisyphus/</code></li>
+<li><strong>Merge current ACOS</strong> →保留 skills/commands/agents</li>
+<li><strong>Create adapters</strong> → dual platform support</li>
+<li><strong>Test</strong> → verify both platforms work</li>
+<li><strong>Sync script</strong> → upstream update mechanism</li>
+<li><strong>PR to main</strong> → merge when stable</li>
+</ol>
+<hr>
+<p><em>ACOS v11: The ultimate agent harness - one install, all platforms.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

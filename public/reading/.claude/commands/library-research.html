@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/library-research — External Context for a Book</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/library-research.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/library-research — External Context for a Book</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>library-research.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>description: Enrich a book entry with curated &quot;Continue Reading&quot; recommendations and &quot;Go Deeper&quot; videos. Final step in the Library OS deepen workflow.</h2>
+<h1>/library-research — External Context for a Book</h1>
+<p>You are the <strong>Library OS Research agent</strong>. Your job is to populate <code>continueReading</code> (external books that pair with this one) and <code>videos</code> (talks, interviews, lectures that extend the book&#39;s ideas) on an existing library entry.</p>
+<h2>Input</h2>
+<p>Arguments: <code>/library-research {slug}</code> (e.g. <code>/library-research atomic-habits</code>)</p>
+<h2>Execution</h2>
+<h3>Step 1 — Understand the book&#39;s intellectual neighborhood</h3>
+<p>Read the existing entry. The <code>categories</code>, <code>keyInsights</code>, <code>tldr</code>, and <code>chapters</code> already define what territory this book lives in. Your job is to map the surrounding territory.</p>
+<h3>Step 2 — Curate <code>continueReading</code> (6–8 items)</h3>
+<p>For each recommendation, answer: <strong>&quot;Why does this book pair with the source book?&quot;</strong></p>
+<p>Target distribution:</p>
+<ul>
+<li><strong>1–2 foundational</strong> — the intellectual ancestors the source book builds on (e.g. Popper for Deutsch, Gerber for Michalowicz)</li>
+<li><strong>1–2 contemporaries</strong> — books making similar arguments from a different angle</li>
+<li><strong>1–2 contrarians</strong> — books that challenge or extend the source book&#39;s claims (Penrose vs. Deutsch on computation)</li>
+<li><strong>1–2 practical</strong> — books that apply the source book&#39;s ideas to a specific domain</li>
+<li><strong>1 adjacent</strong> — a book from a different field that unexpectedly illuminates the source</li>
+</ul>
+<p><strong>Each item:</strong></p>
+<ul>
+<li><code>title</code>, <code>author</code> — required, exact</li>
+<li><code>reason</code> — 1–2 sentences explaining the pairing. Not a summary of the recommended book — a <em>connection</em>.</li>
+<li><code>url</code> — canonical Amazon or publisher link, optional but preferred</li>
+</ul>
+<p><strong>Never recommend algorithmically</strong>. Every item must earn its place by reason. If you cannot articulate the pairing in one sentence, it does not belong.</p>
+<h3>Step 3 — Curate <code>videos</code> (3–6 items)</h3>
+<p>Priorities:</p>
+<ol>
+<li><strong>The author in long-form</strong> — interview/lecture/podcast with the book&#39;s author. Often the richest context.</li>
+<li><strong>The author&#39;s canonical talk</strong> — TED, keynote, summary talk. 10–30 min entry points.</li>
+<li><strong>Critical engagement</strong> — a thinker who takes the book seriously and argues with it.</li>
+<li><strong>Domain explainer</strong> — a short overview for readers who want the TL;DR before committing.</li>
+</ol>
+<p><strong>Each item:</strong></p>
+<ul>
+<li><code>title</code>, <code>creator</code> — required</li>
+<li><code>url</code> — YouTube URL preferred. If uncertain whether a specific video exists, use a YouTube search URL (<code>https://www.youtube.com/results?search_query=...</code>) rather than inventing a URL</li>
+<li><code>description</code> — 1–2 sentences: what the viewer learns</li>
+<li><code>duration</code> — approximate, optional</li>
+<li><code>kind</code> — one of <code>interview</code>, <code>lecture</code>, <code>talk</code>, <code>explainer</code>, <code>summary</code></li>
+</ul>
+<h3>Step 4 — Verify</h3>
+<p>For each URL, confirm:</p>
+<ul>
+<li>If direct YouTube URL: the channel / video title matches what you claimed</li>
+<li>If YouTube search URL: the search query returns sensible results (just check shape)</li>
+<li>If Amazon URL: the ISBN pattern matches the book (no fake links)</li>
+</ul>
+<p><strong>Never fabricate URLs.</strong> Better to use a search query than a dead direct link.</p>
+<h3>Step 5 — Merge and ship</h3>
+<p>Write the results into <code>data/book-reviews.ts</code> against the slug&#39;s entry. Type-check. Print a summary:</p>
+<pre><code>Continue Reading: N items
+Videos: N items
+
+Deep-dive complete for {slug}. See /library/{slug} — TOC now has all 7 sections.
+</code></pre>
+<h2>Quality standards</h2>
+<h3>continueReading</h3>
+<ul>
+<li><strong>Reason, not blurb.</strong> &quot;Popper is where Deutsch&#39;s epistemology comes from&quot; beats &quot;A classic of 20th-century philosophy of science&quot;</li>
+<li><strong>No padding.</strong> If you only have 4 strong pairings, ship 4. Weak recommendations erode trust in the 4 strong ones.</li>
+<li><strong>Disclose contrarians honestly.</strong> &quot;Penrose argues consciousness is non-computable, directly contradicting Deutsch&#39;s Turing principle&quot; is more valuable than pretending everyone agrees.</li>
+</ul>
+<h3>videos</h3>
+<ul>
+<li><strong>Watch-worthy, not algorithmic.</strong> If the top YouTube result for the author is a low-quality reaction video, use a search URL and let the user filter.</li>
+<li><strong>Entry points matter more than comprehensiveness.</strong> A 15-minute TED talk that opens the door beats a 3-hour podcast most people won&#39;t finish.</li>
+<li><strong>Describe the value, not the video.</strong> &quot;Naval&#39;s framing of why &#39;problems are soluble&#39; is a physics claim, not a slogan&quot; beats &quot;Naval interviews Deutsch about epistemology.&quot;</li>
+</ul>
+<h2>Integration</h2>
+<ul>
+<li>Upstream: <code>/library-deepen</code> (typically runs right after)</li>
+<li>Skill: <code>library-os</code></li>
+<li>Data written into: <code>data/book-reviews.ts</code> (same file as <code>/library-add</code> and <code>/library-deepen</code>)</li>
+</ul>
+<h2>Example output shape</h2>
+<pre><code class="language-ts">continueReading: [
+  {
+    title: &#39;The Beginning of Infinity&#39;,
+    author: &#39;David Deutsch&#39;,
+    reason: &quot;Deutsch&#39;s 2011 sequel. If Fabric of Reality is the synthesis, Beginning of Infinity is the mature worldview — &#39;good explanations&#39;, the reach of knowledge, and the ethics of progress.&quot;,
+    url: &#39;https://www.amazon.com/Beginning-Infinity-.../dp/0143121359&#39;,
+  },
+  // ...
+],
+videos: [
+  {
+    title: &#39;David Deutsch — A new way to explain explanation&#39;,
+    creator: &#39;TED&#39;,
+    url: &#39;https://www.ted.com/talks/david_deutsch_a_new_way_to_explain_explanation&#39;,
+    description: &quot;Deutsch&#39;s canonical 16-minute talk. The &#39;hard-to-vary&#39; criterion for good explanations, distilled. Best single-video entry point to his worldview.&quot;,
+    duration: &#39;16m&#39;,
+    kind: &#39;talk&#39;,
+  },
+  // ...
+],
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>
