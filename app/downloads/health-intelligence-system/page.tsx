@@ -5,20 +5,23 @@ import { ArrowLeft, CheckCircle2, Download, ExternalLink, ShieldCheck } from 'lu
 export const metadata: Metadata = {
   title: 'Health Intelligence System Download | FrankX.AI',
   description:
-    'Download the Health Intelligence System excellence pack for cancer screening prep, treatment discussion prep, second opinions, and survivorship records.',
+    'Download the Health Intelligence System package and agent pack for private health operations, clinician handoffs, prompt packs, and cancer-prep workflows.',
 }
 
 const repoUrl = 'https://github.com/frankxai/health-intelligence-system'
-const releaseUrl = 'https://github.com/frankxai/health-intelligence-system/releases/tag/v0.2.0'
+const releaseUrl = 'https://github.com/frankxai/health-intelligence-system/releases/tag/v0.2.1'
 const zipUrl =
-  'https://github.com/frankxai/health-intelligence-system/releases/download/v0.2.0/health-intelligence-system-v0.2.0.zip'
+  'https://github.com/frankxai/health-intelligence-system/releases/download/v0.2.1/health-intelligence-system-v0.2.1.zip'
+const agentPackUrl =
+  'https://github.com/frankxai/health-intelligence-system/releases/download/v0.2.1/health-intelligence-agent-pack-v0.2.1.zip'
 const starlightUrl = 'https://starlightintelligence.org/verticals/health-intelligence'
 
 const included = [
   'SIP-aligned Health Intelligence System file contract',
-  'Cancer detection prep and treatment discussion module',
+  'Personal health operations, cancer-prep, wearable-ingestion, and clinician-handoff workflows',
+  'Codex plugin, sovereign health operator skill, ChatGPT/Claude prompt pack, and local redaction prompt',
   'Screening, diagnostic, treatment, second-opinion, and follow-up command specs',
-  'Clinician summary, evidence ledger, side-effect log, and follow-up templates',
+  'Clinician summary, evidence ledger, private-vault, and health-operator templates',
   'Safety, privacy, validation, release, and clinical/legal review gate docs',
   'Release manifest with checksums',
 ]
@@ -53,9 +56,10 @@ export default function HealthIntelligenceDownloadPage() {
               Health Intelligence System
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              A guided excellence pack for cancer screening prep, abnormal-result organization,
-              treatment discussion packets, second opinions, and survivorship records. It helps
-              people prepare for care conversations without pretending to be medical care.
+              A guided excellence pack for private health operations, cancer screening prep,
+              abnormal-result organization, wearable-data manifests, clinician handoffs, prompt
+              packs, and agent workflows. It helps people prepare for care conversations without
+              pretending to be medical care.
             </p>
 
             <div className="mt-8 rounded-2xl border border-amber-400/20 bg-amber-400/10 p-5 text-sm leading-7 text-amber-100/90">
@@ -70,7 +74,14 @@ export default function HealthIntelligenceDownloadPage() {
                 className="inline-flex items-center gap-2 rounded-xl bg-emerald-300 px-6 py-3 font-semibold text-emerald-950 transition-colors hover:bg-emerald-200"
               >
                 <Download className="h-4 w-4" />
-                Download ZIP
+                Full package
+              </a>
+              <a
+                href={agentPackUrl}
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-300/50 bg-emerald-300/10 px-6 py-3 font-semibold text-emerald-100 transition-colors hover:bg-emerald-300/15"
+              >
+                <Download className="h-4 w-4" />
+                Agent pack
               </a>
               <a
                 href={releaseUrl}
