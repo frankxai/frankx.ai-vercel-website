@@ -1,4 +1,4 @@
-[Resource from github at repo://frankxai/frankx.ai-vercel-website/sha/35ef09d6c6e63e852a728acaee06c058182b791b/contents/app/books/lib/books-registry.ts] import type { BookConfig } from '../types';
+import type { BookConfig } from '../types';
 
 export type BookLocale = 'de' | 'en';
 
@@ -1076,7 +1076,7 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-07-building-in-public', title: 'Building in Public', number: 7, readingTime: '8 min', description: 'The practice of sharing your process, attracting your audience, and compounding trust.', published: true, type: 'prose' },
       { slug: 'chapter-08-the-first-90-days', title: 'The First 90 Days', number: 8, readingTime: '10 min', description: 'A practical roadmap for the first three months of building something you own.', published: true, type: 'prose' },
     ],
-  },,
+  },
 
   // ─── Wonderproof ─────────────────────────────────────────────────────────────
   {
