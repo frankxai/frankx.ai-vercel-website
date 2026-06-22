@@ -14,6 +14,18 @@ export interface BookTheme {
   bodyFont: 'serif' | 'sans';
 }
 
+// ─── Experiment Device (Wonderproof signature) ──────────────────
+
+export interface Experiment {
+  title: string;
+  number: number;
+  hypothesis: string;
+  setup: string;
+  duration: string; // e.g. '24 hours', '3 days'
+  track: string;
+  whatItMeans: string;
+}
+
 // ─── Core Book Types ────────────────────────────────────────────
 
 export interface BookChapter {
@@ -26,6 +38,7 @@ export interface BookChapter {
   image?: string;
   type?: 'prose' | 'poetry' | 'quotes' | 'exercises';
   epigraph?: { text: string; author: string };
+  experiment?: Experiment;
 }
 
 export interface BookConfig {
@@ -81,7 +94,7 @@ export interface BookVideo {
   creator: string; // channel / host
   url: string;
   description: string;
-  duration?: string; // e.g. "1h 42m"
+  duration?: string; // e.g. '1h 42m'
   kind?: 'interview' | 'lecture' | 'talk' | 'explainer' | 'summary';
 }
 
