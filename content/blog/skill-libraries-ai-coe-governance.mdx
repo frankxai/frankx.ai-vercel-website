@@ -68,9 +68,24 @@ Minimum fields:
 | Last reviewed | Freshness signal |
 | Rollback | Last known-good version |
 
-This can start as a Markdown table.
+This can start as a Markdown table. Here is one row, filled in, so the shape is concrete:
 
-The standard matters more than the software.
+| Field | Example value |
+| --- | --- |
+| Skill name | `sales-proposal-builder` |
+| Purpose | Draft a customer proposal from a deal brief using approved security language |
+| Owner | Revenue Ops — J. Okafor |
+| Version | 2.3.1 |
+| Status | Approved |
+| Risk tier | T2 |
+| User group | Sales bundle |
+| Tools | CRM read, pricing API (read-only) |
+| Data class | Internal |
+| Evaluations | `evals/sales-proposal/` — 7 scenarios, last pass 2026-06-10 |
+| Last reviewed | 2026-06-10 |
+| Rollback | 2.2.4 |
+
+The standard matters more than the software. A row like this is the difference between a skill at maturity **L3** (it is evaluated) and one at **L4** (it is governed — owned, versioned, tiered, and reversible).
 
 ## The Risk Model
 
@@ -91,6 +106,10 @@ Writing a blog outline should not need a committee.
 Changing production configuration should never be delegated casually.
 
 Governance should match possible harm.
+
+<Diagram src="/images/infographics/skill-risk-tiers.svg" alt="Risk tiers as a pyramid from T0 personal productivity to T4 operational action, with the review each tier requires" caption="Risk tiers — the controls scale with possible harm. T3 and above are where a skill must reach maturity L4 to ship." />
+
+In the [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard), these tiers are not advisory. A skill above T2 cannot claim maturity level L4 until its registry row, evaluation suite, and rollback path exist.
 
 ## Evaluation Before Expansion
 
@@ -229,7 +248,8 @@ Creating too many broad skills. Start narrow, evaluate, then consolidate only wh
 
 ## Related Reading
 
-- [The FrankX Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [The Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
 - [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer)
 - [Why Everyone Needs Their Own AI Center of Excellence](/blog/why-everyone-needs-personal-ai-coe)
 - [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)
+- [Agent Skill Standard (open spec)](https://github.com/frankxai/claude-skills-library/tree/main/standard)

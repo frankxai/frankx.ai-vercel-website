@@ -1,0 +1,112 @@
+---
+title: "Skills vs Agents vs Prompts vs MCP: What Goes Where"
+description: "Four AI primitives that get confused constantly. Here is what each one is for, why they compose instead of compete, and how to decide which you actually need."
+date: "2026-06-22"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["ai-skills", "agents", "mcp", "agent-skill-standard", "agentic-systems"]
+image: "/images/infographics/skill-primitive-landscape.svg"
+featured: false
+keywords: ["skills vs agents", "mcp vs skills", "prompt vs skill", "agent skill standard", "model context protocol", "ai primitives"]
+readingGoal: "You will learn the distinct job of a prompt, a skill, an agent, and an MCP server, and how to decide which one a given problem actually calls for."
+tldr: "A prompt says what to say once. A skill packages how to do a recurring job well. An agent pursues a goal and decides which skills and tools to use. MCP is the wire that gives the model access to a system. They stack: model + MCP + skill + agent. Most teams reach for an agent when they needed a skill."
+schema: ["Article", "FAQPage"]
+---
+
+# Skills vs Agents vs Prompts vs MCP: What Goes Where
+
+## TL;DR
+
+These four words get used as if they compete. They do not. They stack.
+
+- **Prompt** — what do I say? (once)
+- **Skill** — how do we do this job? (every time)
+- **Agent** — what is the goal? (and which skills and tools reach it)
+- **MCP** — what can the model touch? (tools and data, over a protocol)
+
+The new operating layer is all four together: model capability, plus MCP tool access, plus skill operating knowledge, plus agent autonomy.
+
+---
+
+Most confused architecture decisions come from picking the wrong primitive. Teams reach for an autonomous agent when they actually needed a well-written skill, or they bolt an MCP server onto a problem that a prompt would have solved. Naming the four cleanly removes most of that confusion.
+
+<Diagram src="/images/infographics/skill-primitive-landscape.svg" alt="Comparison of four AI primitives: Prompt, Skill, Agent, and MCP, each answering a different question" caption="Four primitives, four different questions. They compose into one operating layer." />
+
+## What is a prompt actually for?
+
+A prompt is a single instruction. It answers one question: what do I say to the model right now?
+
+Prompts are where everything starts and where most value leaks away. A great prompt lives in someone's chat history, gets re-typed slightly differently each time, and disappears when that person is busy. There is nothing wrong with a prompt. The problem is that a prompt is not a system, so it cannot improve.
+
+**Reach for a prompt when:** the task is one-off, exploratory, or genuinely novel.
+
+## What is a skill, and why is it different?
+
+A skill answers a different question: how does this organization want a recurring job done?
+
+A skill packages the workflow — trigger conditions, required inputs, references, steps, deterministic checks, an output standard, a quality bar, and the risks that need a human. It is the difference between "write me a proposal" and "follow our proposal workflow, use approved security language, validate required sections, and never invent pricing."
+
+That is operating knowledge, and it is the unit that compounds. The [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard) exists to make skills reliable enough to depend on.
+
+**Reach for a skill when:** you do the same kind of work repeatedly and want it done the same good way every time.
+
+## What does an agent add on top?
+
+An agent answers: given a goal, what sequence of actions reaches it?
+
+An agent runs a loop. It plans, decides, calls skills and tools, observes the result, and decides again. The autonomy is the point — and the risk. An agent without good skills is improvising every step. An agent with a strong skill library is executing known-good workflows toward a goal.
+
+This is the most over-reached-for primitive. Autonomy is expensive and harder to evaluate. Many problems labelled "we need an agent" are really "we need three reliable skills and a thin orchestration."
+
+**Reach for an agent when:** the path to the goal genuinely varies run to run and cannot be scripted in advance.
+
+## Where does MCP fit?
+
+MCP — the Model Context Protocol — answers: what systems can the model touch, and how?
+
+MCP is a wire protocol. An MCP server exposes resources, tools, and prompts so any compatible model or client can reach a system — your database, your design tool, your repo — through one standard interface. MCP is plumbing. It is what a skill or an agent uses to actually do something in the world.
+
+**Reach for MCP when:** the model needs live access to an external system, and you want that access to be reusable across clients instead of hand-wired into one app.
+
+## How do they compose?
+
+From the bottom up:
+
+1. **Model capability** is the raw reasoning.
+2. **MCP** gives it hands — access to real systems.
+3. **A skill** gives it operating knowledge — how to do a specific job well.
+4. **An agent** gives it autonomy — a goal and the loop to pursue it.
+
+A prompt is the ad-hoc baseline that predates the other three. As soon as you find yourself re-typing a prompt, you have found a skill waiting to be written.
+
+The teams that win are not the ones with the most agents. They are the ones whose agents stand on a deep library of evaluated, governed skills.
+
+## FAQ
+
+### Is a skill just a saved prompt?
+
+No. A saved prompt is text. A skill is a folder with a routing description, a workflow body, references, deterministic scripts, an output standard, evaluations, and an owner. A prompt works once; a skill is built to work repeatedly and to be improved.
+
+### Do I need an agent to use skills?
+
+No. Skills work in a plain chat client the moment their description matches your request. Agents make skills more powerful by chaining them toward a goal, but they are not a prerequisite.
+
+### Is MCP a competitor to skills?
+
+No — they are complementary. MCP provides access to systems; a skill provides the knowledge of how to use that access well. A skill often calls MCP tools as part of its workflow.
+
+### Which should a small team build first?
+
+Skills. Start with three to five skills for your most repeated work, get them to the Evaluated maturity level, and only add agent orchestration once those skills are reliable.
+
+### Where can I learn the skill standard?
+
+Read [The Skill Creation Methodology](/guides/frankx-skill-creation-methodology) and the open [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard).
+
+## Related Reading
+
+- [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer)
+- [The Skill Maturity Model](/blog/skill-maturity-model)
+- [The Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance)
+- [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)
