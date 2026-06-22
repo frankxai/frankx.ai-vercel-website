@@ -1,4 +1,4 @@
-import type { BookConfig } from '../types';
+[Resource from github at repo://frankxai/frankx.ai-vercel-website/sha/35ef09d6c6e63e852a728acaee06c058182b791b/contents/app/books/lib/books-registry.ts] import type { BookConfig } from '../types';
 
 export type BookLocale = 'de' | 'en';
 
@@ -1076,29 +1076,19 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-07-building-in-public', title: 'Building in Public', number: 7, readingTime: '8 min', description: 'The practice of sharing your process, attracting your audience, and compounding trust.', published: true, type: 'prose' },
       { slug: 'chapter-08-the-first-90-days', title: 'The First 90 Days', number: 8, readingTime: '10 min', description: 'A practical roadmap for the first three months of building something you own.', published: true, type: 'prose' },
     ],
-  },
-  // ─── Wonderproof · Book 1 ──────────────────────────────────────
+  },,
+
+  // ─── Wonderproof ─────────────────────────────────────────────────────────────
   {
     slug: 'wonderproof',
     title: 'Wonderproof',
-    subtitle: 'Run the experiment. Then decide.',
-    author: 'Frank Riemer',
+    subtitle: 'Nine Experiments to Prove What Your Mind Can Do',
+    author: 'Frank',
     publishDate: '2026',
     description:
-      'A lab manual for human potential. Nine experiments — 24 to 72 hours each — that let you test the science of attention, expectation, and perception against your own direct experience.',
-    keywords: [
-      'wonderproof',
-      'human potential',
-      'attention science',
-      'expectation effects',
-      'reticular activating system',
-      'neuroplasticity',
-      'placebo science',
-      'self-experiments',
-      'frank riemer',
-      'personal empiricism',
-    ],
-    coverImage: '/images/books/wonderproof/cover.jpg',
+      'A lab manual for human potential. Nine experiments designed to give you direct, personal evidence of what attention, expectation, and perception can do. No belief required. Run the test, record the result, draw your own conclusion.',
+    keywords: ['human potential', 'experiments', 'attention', 'neuroscience', 'evidence-based', 'RAS', 'expectation'],
+    coverImage: '/images/books/wonderproof-cover.png',
     theme: {
       id: 'wonderproof',
       name: 'Wonderproof',
@@ -1109,21 +1099,21 @@ export const booksRegistry: BookConfig[] = [
       bodyFont: 'sans',
     },
     status: 'in-progress',
-    categories: ['Science', 'Human Potential', 'Experiments', 'Attention', 'Neuroscience'],
+    categories: ['Human Potential', 'Science', 'Experiments'],
     contentDir: 'content/books/wonderproof',
     chapters: [
-      { slug: 'introduction', title: 'The Experiment Begins', number: 0, readingTime: '8 min', description: 'Why proof beats belief — and how this book works.', published: true, type: 'prose' },
-      { slug: 'chapter-01-the-filter', title: 'The Filter', number: 1, readingTime: '18 min', description: 'Your brain is a prediction machine. Reticular Activating System science and Experiment 1.', published: true, type: 'prose' },
-      { slug: 'chapter-02-the-milkshake-effect', title: 'The Milkshake Effect', number: 2, readingTime: '20 min', description: 'How expectation rewrites physiology. Crum\'s mindset studies and Experiment 2.', published: true, type: 'prose' },
-      { slug: 'chapter-03-the-open-channel', title: 'The Open Channel', number: 3, readingTime: '22 min', description: 'Slow breath, vagal tone, and the nervous system experiment.', published: false, type: 'prose' },
-      { slug: 'chapter-04-the-attention-athlete', title: 'The Attention Athlete', number: 4, readingTime: '20 min', description: 'Amishi Jha\'s research on trained attention and Experiment 4.', published: false, type: 'prose' },
-      { slug: 'chapter-05-the-reshaping', title: 'The Reshaping', number: 5, readingTime: '18 min', description: 'Neuroplasticity in 3 months: Draganski et al. and Experiment 5.', published: false, type: 'prose' },
-      { slug: 'chapter-06-the-social-mirror', title: 'The Social Mirror', number: 6, readingTime: '20 min', description: 'Mirror neurons, behavioral contagion, and Experiment 6.', published: false, type: 'prose' },
-      { slug: 'chapter-07-the-stoic-rehearsal', title: 'The Stoic Rehearsal', number: 7, readingTime: '18 min', description: 'Premeditatio malorum as a cognitive immunization experiment.', published: false, type: 'prose' },
-      { slug: 'chapter-08-the-open-placebo', title: 'The Open Placebo', number: 8, readingTime: '22 min', description: 'Kaptchuk\'s open-label placebo studies: you can know it\'s placebo and it still works.', published: false, type: 'prose' },
-      { slug: 'chapter-09-the-field', title: 'The Field', number: 9, readingTime: '20 min', description: 'Intention experiments in the literature — McTaggart, PEAR lab — and what they actually show.', published: false, type: 'prose' },
+      { slug: 'introduction', title: 'Introduction: The Laboratory', number: 0, readingTime: '8 min', description: 'Why the lab-manual format works where belief fails. The one rule: record before you interpret.', published: true, type: 'prose' },
+      { slug: 'chapter-01-the-filter', title: 'The Filter: How Your Brain Decides What Exists', number: 1, readingTime: '18 min', description: 'The Reticular Activating System filters 11 million bits per second down to roughly 40. Change what the filter is tuned for and what you perceive changes with it.', published: true, type: 'prose' },
+      { slug: 'chapter-02-the-milkshake-effect', title: 'The Milkshake Effect: Expectation as Physiology', number: 2, readingTime: '20 min', description: 'Alia Crum\'s milkshake study showed that what subjects believed about a meal changed the ghrelin their bodies produced — without changing the meal itself.', published: true, type: 'prose' },
+      { slug: 'chapter-03-the-body-vote', title: 'The Body Vote', number: 3, readingTime: '15 min', description: 'HRV, slow breathing, and the bidirectional link between cardiac rhythm and mental state.', published: false, type: 'prose' },
+      { slug: 'chapter-04-the-attention-experiment', title: 'The Attention Experiment', number: 4, readingTime: '15 min', description: 'Amishi Jha\'s controlled trials: 12 minutes of daily attention training protects working memory under stress.', published: false, type: 'prose' },
+      { slug: 'chapter-05-the-placebo-is-the-treatment', title: 'The Placebo Is the Treatment', number: 5, readingTime: '16 min', description: 'Ted Kaptchuk\'s open-label placebo trials at Harvard: outcomes improved even when patients knew they were receiving a placebo.', published: false, type: 'prose' },
+      { slug: 'chapter-06-the-rewire', title: 'The Rewire', number: 6, readingTime: '17 min', description: 'Bogdan Draganski\'s MRI studies: three months of juggling practice produced measurable gray-matter expansion in areas that handle visual motion.', published: false, type: 'prose' },
+      { slug: 'chapter-07-the-field-of-others', title: 'The Field of Others', number: 7, readingTime: '14 min', description: 'How shared attention and group coherence affect individual physiology — and what the evidence actually says.', published: false, type: 'prose' },
+      { slug: 'chapter-08-the-meaning-layer', title: 'The Meaning Layer', number: 8, readingTime: '15 min', description: 'Viktor Frankl\'s core insight meets modern stress research: perceived meaning is a measurable buffer against cortisol response.', published: false, type: 'prose' },
+      { slug: 'chapter-09-your-personal-protocol', title: 'Your Personal Protocol', number: 9, readingTime: '12 min', description: 'Designing a 9-week personal experiment stack from your own baseline data. The protocol belongs to you.', published: false, type: 'prose' },
     ],
-  },
+  }
 ];
 
 // ─── Helper Functions ───────────────────────────────────────────
