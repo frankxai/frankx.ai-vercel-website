@@ -3089,7 +3089,7 @@ export const researchDomains: ResearchDomain[] = [
     sections: [
       {
         title: 'What Is a Claw (and Why It\'s Not Just an Agent)',
-        content: 'Karpathy\'s March 2026 framing on the No Briars podcast and follow-up X threads places claws as a distinct layer above LLM agents — the way agents sit above raw LLMs. A claw owns its sandbox, persists identity across sessions, schedules its own work, and communicates over messaging protocols rather than a chat UI. Where an agent executes a task, a claw resides on a machine. Karpathy\'s own claw "Dobby" runs his smart home over WhatsApp. The framing is still settling — "claw" was popularized by OpenClaw (originally Clawdbot, renamed January 2026 after a trademark complaint), and Karpathy adopted and abstracted the term.',
+        content: 'Karpathy\'s March 2026 framing on the No Priors podcast and follow-up X threads places claws as a distinct layer above LLM agents — the way agents sit above raw LLMs. A claw owns its sandbox, persists identity across sessions, schedules its own work, and communicates over messaging protocols rather than a chat UI. Where an agent executes a task, a claw resides on a machine. Karpathy\'s own claw "Dobby" runs his smart home over WhatsApp. The framing is still settling — "claw" was popularized by OpenClaw (originally Clawdbot, renamed January 2026 after a trademark complaint), and Karpathy adopted and abstracted the term.',
         items: [
           { title: 'LLM', description: 'Stateless next-token prediction', badge: 'Base' },
           { title: 'Agent', description: 'Task-scoped, ephemeral execution with tools', badge: 'Layer 2' },
