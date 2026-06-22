@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 }
 
 const repoUrl = 'https://github.com/frankxai/health-intelligence-system'
-const releaseUrl = 'https://github.com/frankxai/health-intelligence-system/releases/tag/v0.1.1'
+const releaseUrl = 'https://github.com/frankxai/health-intelligence-system/releases/tag/v0.2.0'
 const zipUrl =
-  'https://github.com/frankxai/health-intelligence-system/releases/download/v0.1.1/health-intelligence-system-v0.1.1.zip'
+  'https://github.com/frankxai/health-intelligence-system/releases/download/v0.2.0/health-intelligence-system-v0.2.0.zip'
 const starlightUrl = 'https://starlightintelligence.org/verticals/health-intelligence'
 
 const included = [
