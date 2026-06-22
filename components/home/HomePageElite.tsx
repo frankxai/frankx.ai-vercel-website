@@ -327,7 +327,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
+  'AI Architect & Creator',
   '12,000+ AI Songs Created',
   '630+ AI Skills Shipped',
   'Everything Documented',

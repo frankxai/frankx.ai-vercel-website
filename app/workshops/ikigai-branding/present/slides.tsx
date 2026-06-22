@@ -65,7 +65,7 @@ export const SLIDES: Slide[] = [
     title: 'Ikigai & Branding',
     minutes: 2,
     speakerNotes: [
-      'Welcome. One sentence on who you are: AI Architect at Oracle EMEA, building the same CoE frameworks for individuals.',
+      'Welcome. One sentence on who you are: AI Architect & Creator, building CoE frameworks for individuals after years in enterprise.',
       'Frame the promise: leave with an audience map, an angle, a hook bank, a 7-day plan, and a premium visual — all built live with an AI partner.',
       'Set the tone: we build, we do not lecture.',
     ],

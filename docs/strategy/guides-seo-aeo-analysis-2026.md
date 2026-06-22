@@ -315,8 +315,8 @@ Keep content current:
   "author": {
     "@type": "Person",
     "name": "Frank",
-    "jobTitle": "AI Architect at Oracle, AI Creator",
-    "description": "Created 500+ AI songs, built ACOS, Oracle AI architect"
+    "jobTitle": "AI Architect & Creator",
+    "description": "Created 12,000+ AI songs, built ACOS, AI Architect"
   },
   "totalTime": "PT2H",
   "step": [

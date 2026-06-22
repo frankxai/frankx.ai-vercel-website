@@ -446,7 +446,7 @@ Music Academy success → Showcase in Arcanea
 
 ### **Your Unfair Advantages:**
 
-- **Oracle AI CoE background** (enterprise credibility when needed)
+- **Enterprise AI CoE background** (built Oracle EMEA AI CoE — enterprise credibility)
 - **Multiple successful projects** (proof of execution)
 - **Technical depth** (can build what you design)
 - **Creator mindset** (understand the audience deeply)

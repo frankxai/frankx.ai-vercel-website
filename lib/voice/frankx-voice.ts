@@ -46,7 +46,7 @@ export const FRANKX_VOICE = {
   identity: {
     name: 'Frank',
     title: 'AI Architect', // memory-anchored — see below
-    role: 'AI Architect at Oracle EMEA AI Center of Excellence',
+    role: 'AI Architect & Creator (formerly Oracle EMEA AI CoE)',
     positioning: 'Elite Creator. AI Architect. Humble Excellence.',
     narrative:
       "Personal AI CoE — the same 6-pillar framework (Strategy, Governance, Talent, Technology, Data, Ethics) Frank builds for Fortune 500s, made personal at 1/5000th the cost.",

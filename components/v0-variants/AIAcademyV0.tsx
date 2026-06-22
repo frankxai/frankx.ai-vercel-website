@@ -402,7 +402,7 @@ export default function AcademyPage() {
                       {'Meet Your Instructor'}
                     </CardTitle>
                     <CardDescription className="text-base">
-                      {'Frank — AI Architect with enterprise experience at Oracle, creator of ACOS'}
+                      {'Frank — AI Architect & Creator, builder of ACOS'}
                     </CardDescription>
                   </div>
                 </div>

@@ -24,8 +24,7 @@ export interface Affiliate {
   signupUrl?: string            // Where to sign up for the affiliate program
   logoIcon?: string             // Lucide or custom icon name
   brandColor?: string           // Hex color for button styling
-  // Oracle non-compete
-  oracleCompatible: boolean     // Safe to promote given Oracle employment
+  compatible: boolean           // Safe to promote
 }
 
 export type AffiliateLink = Affiliate & {

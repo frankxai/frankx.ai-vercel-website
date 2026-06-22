@@ -35,11 +35,12 @@ When they're old enough to explore, they'll find:
 
 ## Professional
 
-- **Day Job:** AI Architect at Oracle
+- **Role:** AI Architect & Creator (full-time independent)
+- **Previously:** AI Architect at Oracle's EMEA AI CoE
 - **Focus Areas:**
-  - Enterprise AI systems
+  - Music OS, Health OS, GenCreator System, Vibe Clubs
   - Multi-agent orchestration
-  - Oracle Cloud Infrastructure
+  - Workshops & community building
   - Agentic workflows
 
 ---

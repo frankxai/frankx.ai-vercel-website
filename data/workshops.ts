@@ -459,7 +459,7 @@ export const workshops: Workshop[] = [
     color: 'cyan',
     intakeEnabled: true,
     overview:
-      'A boardroom-format workshop for leaders who are tired of outsourcing AI strategy to vendors and frameworks they did not choose. The session adapts the 6-pillar AI Center of Excellence framework Frank builds for enterprise clients at Oracle (Strategy, Governance, Talent, Technology, Data, Ethics) to the attendee’s actual company. Every participant leaves having identified one AI decision they have been over-delegating and committing to re-own it this quarter.',
+      'A boardroom-format workshop for leaders who are tired of outsourcing AI strategy to vendors and frameworks they did not choose. The session adapts the 6-pillar AI Center of Excellence framework Frank built for enterprise clients (Strategy, Governance, Talent, Technology, Data, Ethics) to the attendee’s actual company. Every participant leaves having identified one AI decision they have been over-delegating and committing to re-own it this quarter.',
     objectives: [
       'Distinguish AI decisions you should own, delegate, or avoid entirely',
       'Apply the 6-Pillar AI CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) to your real context',
@@ -549,7 +549,7 @@ export const workshops: Workshop[] = [
         title: 'The Enterprise CoE',
         duration: '20 min',
         description:
-          'How an enterprise AI Center of Excellence actually works: the 6 pillars, the typical budget, the common failure modes. A short, grounded tour of what Frank ships at Oracle before we mirror it at personal scale.',
+          'How an enterprise AI Center of Excellence actually works: the 6 pillars, the typical budget, the common failure modes. A short, grounded tour of what Frank shipped at Oracle before we mirror it at personal scale.',
         instructorNotes:
           'Show one real (anonymized) CoE deliverable on screen — a pillar scorecard or a governance brief. Seeing the artifact collapses the abstraction. Skip slide-heavy storytelling; the personal build needs the time.',
         resources: [

@@ -15,7 +15,7 @@ const deployPlatforms: Affiliate[] = [
     signupUrl: 'https://railway.app/account',
     logoIcon: 'Train',
     brandColor: '#A855F7',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'vercel',
@@ -29,7 +29,7 @@ const deployPlatforms: Affiliate[] = [
     signupUrl: 'https://partners.dub.co/v0',
     logoIcon: 'Triangle',
     brandColor: '#000000',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'n8n',
@@ -43,7 +43,7 @@ const deployPlatforms: Affiliate[] = [
     signupUrl: 'https://n8n.io/affiliates/',
     logoIcon: 'Workflow',
     brandColor: '#FF6D5A',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'render',
@@ -56,7 +56,7 @@ const deployPlatforms: Affiliate[] = [
     templateMarketplace: false,
     logoIcon: 'Globe',
     brandColor: '#46E3B7',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -73,7 +73,7 @@ const monitoringTools: Affiliate[] = [
     signupUrl: 'https://betterstack.com/affiliates',
     logoIcon: 'Activity',
     brandColor: '#2DD4BF',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -90,7 +90,7 @@ const salesPlatforms: Affiliate[] = [
     signupUrl: 'https://polar.sh',
     logoIcon: 'Snowflake',
     brandColor: '#0EA5E9',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'lemon-squeezy',
@@ -102,7 +102,7 @@ const salesPlatforms: Affiliate[] = [
     signupUrl: 'https://lemonsqueezy.com',
     logoIcon: 'Citrus',
     brandColor: '#FFC233',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -116,7 +116,7 @@ const aiTools: Affiliate[] = [
     category: 'ai-tool',
     commission: '25% (via Impact)',
     cookieDuration: '90 days',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'midjourney',
@@ -125,7 +125,7 @@ const aiTools: Affiliate[] = [
     category: 'ai-tool',
     commission: 'No affiliate program',
     cookieDuration: 'N/A',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -140,7 +140,7 @@ const productivityTools: Affiliate[] = [
     commission: '50% first payment',
     cookieDuration: '90 days',
     signupUrl: 'https://www.notion.so/affiliates',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'zapier',
@@ -149,7 +149,7 @@ const productivityTools: Affiliate[] = [
     category: 'productivity',
     commission: '30% recurring',
     cookieDuration: '45 days',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'make',
@@ -158,7 +158,7 @@ const productivityTools: Affiliate[] = [
     category: 'productivity',
     commission: '25% recurring',
     cookieDuration: '60 days',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -172,7 +172,7 @@ const creativeTools: Affiliate[] = [
     category: 'creative-tool',
     commission: 'Up to $36 per subscriber',
     cookieDuration: '30 days',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'adobe-suite',
@@ -181,7 +181,7 @@ const creativeTools: Affiliate[] = [
     category: 'creative-tool',
     commission: '85% first month',
     cookieDuration: '30 days',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -195,7 +195,7 @@ const businessTools: Affiliate[] = [
     category: 'business-tool',
     commission: '30% recurring',
     cookieDuration: '60 days',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'teachable',
@@ -204,7 +204,7 @@ const businessTools: Affiliate[] = [
     category: 'business-tool',
     commission: '30-50% recurring',
     cookieDuration: '90 days',
-    oracleCompatible: true,
+    compatible: true,
   },
   {
     id: 'gumroad',
@@ -213,7 +213,7 @@ const businessTools: Affiliate[] = [
     category: 'business-tool',
     commission: '10% via Gumroad Discover',
     cookieDuration: '30 days',
-    oracleCompatible: true,
+    compatible: true,
   },
 ]
 
@@ -251,8 +251,8 @@ export const getDeployPlatforms = (): Affiliate[] => {
   return affiliates.filter((a) => a.category === 'deploy-platform' && a.deployButton)
 }
 
-export const getOracleCompatible = (): Affiliate[] => {
-  return affiliates.filter((a) => a.oracleCompatible)
+export const getCompatible = (): Affiliate[] => {
+  return affiliates.filter((a) => a.compatible)
 }
 
 export const getAffiliateLink = (
