@@ -98,11 +98,11 @@ export default function ApplyPage() {
             </li>
             <li className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
               <p className="text-sm font-medium text-white mb-1.5">
-                5. Any Oracle relationship on your side.
+                5. What you want to build.
               </p>
               <p className="text-sm text-zinc-400 leading-relaxed">
-                Frank previously worked at Oracle EMEA. He now builds independently full-time,
-                serving creators, engineers, and founders worldwide.
+                What&apos;s the one thing you want to ship in the next 90 days?
+                We work best with people who have a clear target.
               </p>
             </li>
           </ol>

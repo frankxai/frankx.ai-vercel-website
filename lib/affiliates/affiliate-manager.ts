@@ -252,7 +252,7 @@ export const getDeployPlatforms = (): Affiliate[] => {
 }
 
 export const getCompatible = (): Affiliate[] => {
-  return affiliates.filter((a) => a.compatible)
+  return affiliates
 }
 
 export const getAffiliateLink = (
