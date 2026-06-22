@@ -398,7 +398,7 @@ function ResearchSchema() {
         })),
       },
     ],
-  })
+  }).replace(/</g, '\\u003c')
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />
 }
 
@@ -559,7 +559,7 @@ export default function TheLightWithinResearchPage() {
             </p>
           </div>
 
-          <ol className="space-y-5">
+          <ul className="space-y-5">
             {LINEAGES.map((l, i) => (
               <li
                 key={l.tradition}
@@ -593,7 +593,7 @@ export default function TheLightWithinResearchPage() {
                 <p className="text-base text-zinc-200 leading-relaxed">{l.testable}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
