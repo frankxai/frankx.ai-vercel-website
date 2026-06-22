@@ -47,7 +47,6 @@
 /keystatic-frankx/
 /sanity-frankx/
 /tina-frankx/
-/new-landing-page-backup/
 
 # Local book project (separate from app/books/, content/books/)
 /books/
@@ -59,7 +58,6 @@
 /nul
 /content/hooks/inbox/*.csv
 /data/acos/agentdb/
-/next.config.mjs.backup
 /repo_sync_report.md
 /notes.md
 /task_plan.md
