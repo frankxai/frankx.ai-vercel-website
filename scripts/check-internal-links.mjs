@@ -71,6 +71,53 @@ const validHrefs = new Set(idx.routes.map((r) => r.href))
 const aliasMap = idx.aliases || {}
 const validAliases = new Set(Object.keys(aliasMap))
 
+// ─── app/ filesystem resolver ───────────────────────────────
+// The route-index enumerates pages, but not every backing file maps cleanly:
+//   - route handlers (app/llm-hub.json/route.ts → /llm-hub.json) aren't pages
+//   - dynamic [slug] routes whose slugs come from a TS registry not walked by
+//     the enumerator (e.g. app/familie/geschichte/[slug] → /familie/geschichte/<slug>)
+// Rather than enumerate every such slug (which would also leak private/noindex
+// pages into the public sitemap), we resolve the href directly against the app/
+// tree, honoring literal segments, dynamic [param]/[...catchAll] segments, and
+// transparent (route group) folders. This is purely ADDITIVE — it can only
+// clear a real route, never introduce a new failure.
+const APP_DIR = path.join(ROOT, 'app')
+const ROUTE_FILES = ['page.tsx', 'page.mdx', 'page.jsx', 'page.js', 'route.ts', 'route.js', 'route.tsx']
+function hasRouteFile(dir) {
+  return ROUTE_FILES.some((f) => fs.existsSync(path.join(dir, f)))
+}
+function matchAppSegments(dir, segments) {
+  if (segments.length === 0) return hasRouteFile(dir)
+  let entries
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true })
+  } catch {
+    return false
+  }
+  const [seg, ...rest] = segments
+  for (const e of entries) {
+    if (!e.isDirectory()) continue
+    const name = e.name
+    // Route group — transparent, consumes no URL segment
+    if (name.startsWith('(') && name.endsWith(')')) {
+      if (matchAppSegments(path.join(dir, name), segments)) return true
+      continue
+    }
+    // Catch-all [...x] / optional catch-all [[...x]] — matches the rest
+    if (/^\[\[?\.\.\..+\]\]?$/.test(name)) {
+      if (hasRouteFile(path.join(dir, name))) return true
+      continue
+    }
+    // Literal match, then single dynamic [param] match
+    if (name === seg && matchAppSegments(path.join(dir, name), rest)) return true
+    if (/^\[[^.].*\]$/.test(name) && matchAppSegments(path.join(dir, name), rest)) return true
+  }
+  return false
+}
+function resolvesInAppDir(href) {
+  return matchAppSegments(APP_DIR, href.split('/').filter(Boolean))
+}
+
 // ─── walk source tree ───────────────────────────────────────
 /** @type {{file: string, line: number, href: string}[]} */
 const findings = []
@@ -144,6 +191,9 @@ function scanFile(file) {
           // (e.g. unreadable frontmatter). Logged at --warn level.
           continue
         }
+        // Filesystem fallback: resolve against the app/ tree to catch dynamic
+        // [slug] routes and non-page route handlers the route-index omits.
+        if (resolvesInAppDir(cleanHref)) continue
 
         findings.push({
           file: path.relative(ROOT, file).replace(/\\/g, '/'),
