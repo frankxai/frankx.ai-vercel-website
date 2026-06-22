@@ -657,4 +657,4 @@ This design system should be updated when:
 **Last Updated**: 2026-01-14
 **Next Review**: 2026-02-14
 **Maintained By**: FrankX Design Team
-**Questions?** Contact hello@frankx.ai
+**Questions?** Contact frank@frankx.ai

@@ -221,7 +221,7 @@ NOTION_BLOG_DB_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 # Email
 SENDGRID_API_KEY=SG.prod_xxxxxxxxxxxxxxxxxx
-SENDGRID_FROM_EMAIL=hello@frankx.ai
+SENDGRID_FROM_EMAIL=frank@frankx.ai
 
 # Features
 NEXT_PUBLIC_ENABLE_NOTION_CMS=true

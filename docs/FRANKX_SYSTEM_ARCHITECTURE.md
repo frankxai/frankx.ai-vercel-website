@@ -675,7 +675,7 @@ When working on FrankX:
 
 ## Contact & Support
 
-- **Primary Contact**: Frank (hello@frankx.ai)
+- **Primary Contact**: Frank (frank@frankx.ai)
 - **Documentation Issues**: GitHub Issues
 - **Community**: Discord (link in README)
 - **Strategic Consulting**: Calendly (calendly.com/frankx)
