@@ -1,0 +1,403 @@
+/**
+ * Unified intake system — the single front door.
+ *
+ * Generalizes the proven `app/api/workshop-intake/route.ts` v2 pattern into one
+ * endpoint that every "contact Frank" surface routes through. One schema, one
+ * handler, one durable record.
+ *
+ * Pipeline (each stage degrades gracefully — a failure in one never blocks the
+ * others, and the form never lies about what happened):
+ *
+ *   1. Operator notification  → frank@frankx.ai          (Resend, reply_to = requester)
+ *   2. Requester auto-reply   → instant branded ack      (Resend, reply_to = frank@frankx.ai)
+ *   3. Durable record         → Notion "Inquiries" DB    (the CRM — survives Vercel restarts)
+ *   4. Local log              → JSONL                    (/admin/intake dashboard + fallback)
+ *   5. Team ping              → Slack webhook            (real-time awareness)
+ *
+ * Env vars (all optional — the system ships working with just RESEND_API_KEY;
+ * each additional var lights up another layer):
+ *   - RESEND_API_KEY            notify + auto-ack
+ *   - OPERATOR_EMAIL            where notifications land   (default frank@frankx.ai)
+ *   - NOTION_TOKEN              durable CRM record
+ *   - NOTION_INQUIRIES_DB_ID    the Inquiries database id
+ *   - SLACK_WEBHOOK_URL         #leads ping
+ *   - INTAKE_AUDIENCE_ID        add lead to a Resend audience for nurture
+ */
+
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
+import { z } from 'zod'
+
+// ── Intent taxonomy ────────────────────────────────────────────────────────
+
+export const INTENTS = [
+  'workshop',
+  'sprint',
+  'partnership',
+  'press',
+  'advisory',
+  'general',
+] as const
+
+export type Intent = (typeof INTENTS)[number]
+
+export const INTENT_LABEL: Record<Intent, string> = {
+  workshop: 'Workshop (1-day team build)',
+  sprint: 'Implementation sprint (5–10 days)',
+  partnership: 'Partnership',
+  press: 'Press / speaking',
+  advisory: 'Advisory / retainer',
+  general: 'General inquiry',
+}
+
+/** Whether an intent is commercial (routes to the booking nudge in the ack). */
+export const INTENT_IS_COMMERCIAL: Record<Intent, boolean> = {
+  workshop: true,
+  sprint: true,
+  partnership: true,
+  press: false,
+  advisory: true,
+  general: false,
+}
+
+// ── Schema ─────────────────────────────────────────────────────────────────
+
+export const IntakeSchema = z.object({
+  intent: z.enum(INTENTS),
+  name: z.string().trim().min(1, 'Name is required').max(200),
+  email: z.string().trim().email('A valid email is required').max(200),
+  company: z.string().trim().max(200).optional().or(z.literal('')),
+  message: z.string().trim().min(1, 'A short message is required').max(4000),
+  // Honeypot — bots fill this, humans never see it. Must be empty.
+  website: z.string().max(0).optional().or(z.literal('')),
+  // Source page (auto-filled by the form) for attribution.
+  source: z.string().trim().max(300).optional().or(z.literal('')),
+  consent: z.literal(true, {
+    error: () => 'Please confirm you consent to being contacted.',
+  }),
+})
+
+export type IntakePayload = z.infer<typeof IntakeSchema>
+
+export interface IntakeMeta {
+  referrer: string | null
+  userAgent: string | null
+  ipHint: string | null
+}
+
+export type StageStatus = 'sent' | 'failed' | 'skipped' | 'added' | 'duplicate'
+
+export interface IntakeLogEntry {
+  ts: string
+  intent: Intent
+  name: string
+  email: string
+  company?: string
+  message: string
+  source?: string
+  referrer?: string
+  userAgent?: string
+  ipHint?: string
+  notify: StageStatus
+  ack: StageStatus
+  notion: StageStatus
+  slack: StageStatus
+  audience: StageStatus
+}
+
+// ── Config ─────────────────────────────────────────────────────────────────
+
+const RESEND_API_KEY = process.env.RESEND_API_KEY
+const OPERATOR_EMAIL = process.env.OPERATOR_EMAIL || 'frank@frankx.ai'
+const REPLY_TO = 'frank@frankx.ai'
+const FROM_NOTIFY = 'FrankX Intake <notify@mail.frankx.ai>'
+const FROM_FRANK = 'Frank <frank@mail.frankx.ai>'
+const NOTION_TOKEN = process.env.NOTION_TOKEN
+const NOTION_DB = process.env.NOTION_INQUIRIES_DB_ID
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL
+const INTAKE_AUDIENCE_ID = process.env.INTAKE_AUDIENCE_ID
+const BOOKING_URL =
+  process.env.NEXT_PUBLIC_BOOKING_URL || 'https://frankx.ai/contact'
+
+export function getLogPath() {
+  if (process.env.VERCEL) return '/tmp/intake.jsonl'
+  return path.join(process.cwd(), 'private', 'intake.jsonl')
+}
+
+// ── Stage 1: operator notification ───────────────────────────────────────────
+
+async function sendOperatorNotification(
+  payload: IntakePayload,
+  meta: IntakeMeta,
+): Promise<StageStatus> {
+  if (!RESEND_API_KEY) return 'skipped'
+
+  const subject = `Inquiry · ${INTENT_LABEL[payload.intent]} · ${payload.name}`
+  const lines = [
+    `New ${INTENT_LABEL[payload.intent]} inquiry.`,
+    '',
+    `Name:    ${payload.name}`,
+    `Email:   ${payload.email}`,
+    payload.company ? `Company: ${payload.company}` : 'Company: (not provided)',
+    '',
+    'MESSAGE',
+    payload.message,
+    '',
+    'METADATA',
+    `Intent:    ${payload.intent}`,
+    `Source:    ${payload.source || meta.referrer || '(unknown)'}`,
+    `Timestamp: ${new Date().toISOString()}`,
+    '',
+    '---',
+    'Reply directly to this email — it goes to the requester.',
+    'Pipeline: https://frankx.ai/admin/intake',
+  ]
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM_NOTIFY,
+        to: OPERATOR_EMAIL,
+        reply_to: payload.email,
+        subject,
+        text: lines.join('\n'),
+      }),
+    })
+    return res.ok ? 'sent' : 'failed'
+  } catch {
+    return 'failed'
+  }
+}
+
+// ── Stage 2: requester auto-acknowledgement ──────────────────────────────────
+
+function buildAckBody(payload: IntakePayload): { text: string; html: string } {
+  const firstName = payload.name.split(' ')[0]
+  const commercial = INTENT_IS_COMMERCIAL[payload.intent]
+
+  const textLines = [
+    `Hi ${firstName},`,
+    '',
+    'Thanks — your message reached Frank directly. This is an automatic',
+    'confirmation so you know it landed; a real reply follows, usually within',
+    '1–2 working days (Madrid time).',
+    '',
+    `What you sent: ${INTENT_LABEL[payload.intent]}`,
+    '',
+    commercial
+      ? `If it's faster to just talk, grab a 20-minute intro slot: ${BOOKING_URL}`
+      : `In the meantime, the work is all public: https://frankx.ai/agentic-builder-lab`,
+    '',
+    '— Frank',
+    'frank@frankx.ai · frankx.ai',
+  ]
+
+  const html = `
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:520px;margin:0 auto;color:#0f172a;line-height:1.6">
+  <p>Hi ${firstName},</p>
+  <p>Thanks — your message reached Frank directly. This is an automatic confirmation so you know it landed; a real reply follows, usually within <strong>1–2 working days</strong> (Madrid time).</p>
+  <p style="background:#f1f5f9;border-radius:8px;padding:12px 16px;font-size:14px;color:#475569">
+    <strong>What you sent:</strong> ${INTENT_LABEL[payload.intent]}
+  </p>
+  <p>${
+    commercial
+      ? `If it's faster to just talk, <a href="${BOOKING_URL}" style="color:#0891b2">grab a 20-minute intro slot</a>.`
+      : `In the meantime, the work is all public — see the <a href="https://frankx.ai/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
+  }</p>
+  <p style="margin-top:24px;color:#64748b;font-size:14px">— Frank<br/>frank@frankx.ai · frankx.ai</p>
+</div>`.trim()
+
+  return { text: textLines.join('\n'), html }
+}
+
+async function sendRequesterAck(payload: IntakePayload): Promise<StageStatus> {
+  if (!RESEND_API_KEY) return 'skipped'
+
+  const { text, html } = buildAckBody(payload)
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM_FRANK,
+        to: payload.email,
+        reply_to: REPLY_TO,
+        subject: 'Got your message — Frank',
+        text,
+        html,
+      }),
+    })
+    return res.ok ? 'sent' : 'failed'
+  } catch {
+    return 'failed'
+  }
+}
+
+// ── Stage 3: durable Notion record (the CRM) ─────────────────────────────────
+
+async function writeToNotion(
+  payload: IntakePayload,
+  meta: IntakeMeta,
+): Promise<StageStatus> {
+  if (!NOTION_TOKEN || !NOTION_DB) return 'skipped'
+
+  try {
+    const res = await fetch('https://api.notion.com/v1/pages', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${NOTION_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Notion-Version': '2022-06-28',
+      },
+      body: JSON.stringify({
+        parent: { database_id: NOTION_DB },
+        properties: {
+          Name: { title: [{ text: { content: payload.name } }] },
+          Email: { email: payload.email },
+          Intent: { select: { name: INTENT_LABEL[payload.intent] } },
+          Stage: { select: { name: 'New' } },
+          Company: payload.company
+            ? { rich_text: [{ text: { content: payload.company } }] }
+            : { rich_text: [] },
+          Source: {
+            rich_text: [
+              { text: { content: payload.source || meta.referrer || 'unknown' } },
+            ],
+          },
+          Message: {
+            rich_text: [{ text: { content: payload.message.slice(0, 1900) } }],
+          },
+        },
+      }),
+    })
+    return res.ok ? 'added' : 'failed'
+  } catch {
+    return 'failed'
+  }
+}
+
+// ── Stage 4: local JSONL log ─────────────────────────────────────────────────
+
+async function appendIntakeLog(entry: IntakeLogEntry): Promise<boolean> {
+  const filePath = getLogPath()
+  try {
+    await fs.mkdir(path.dirname(filePath), { recursive: true })
+    await fs.appendFile(filePath, JSON.stringify(entry) + '\n', 'utf8')
+    return true
+  } catch (err) {
+    console.error('[intake] log append failed', err)
+    return false
+  }
+}
+
+// ── Stage 5: Slack ping ──────────────────────────────────────────────────────
+
+async function pingSlack(payload: IntakePayload): Promise<StageStatus> {
+  if (!SLACK_WEBHOOK_URL) return 'skipped'
+
+  try {
+    const res = await fetch(SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: `*New inquiry · ${INTENT_LABEL[payload.intent]}*\n*${payload.name}*${
+          payload.company ? ` · ${payload.company}` : ''
+        } — ${payload.email}\n> ${payload.message.slice(0, 280)}`,
+      }),
+    })
+    return res.ok ? 'sent' : 'failed'
+  } catch {
+    return 'failed'
+  }
+}
+
+// ── Resend audience (nurture) ────────────────────────────────────────────────
+
+async function addToAudience(payload: IntakePayload): Promise<StageStatus> {
+  if (!RESEND_API_KEY || !INTAKE_AUDIENCE_ID) return 'skipped'
+
+  try {
+    const res = await fetch(
+      `https://api.resend.com/audiences/${INTAKE_AUDIENCE_ID}/contacts`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: payload.email,
+          first_name: payload.name.split(' ')[0],
+          last_name: payload.name.split(' ').slice(1).join(' ') || undefined,
+          unsubscribed: false,
+        }),
+      },
+    )
+    if (res.ok) return 'added'
+    if (res.status === 409) return 'duplicate'
+    return 'failed'
+  } catch {
+    return 'failed'
+  }
+}
+
+// ── Orchestrator ─────────────────────────────────────────────────────────────
+
+export interface IntakeResult {
+  ok: boolean
+  entry: IntakeLogEntry
+  logged: boolean
+}
+
+/**
+ * Runs the full intake pipeline. All five stages fire in parallel; none blocks
+ * another. Returns ok:false only when BOTH the notification and the local log
+ * failed (i.e. the inquiry would truly be lost) — so the form can honestly retry.
+ */
+export async function processIntake(
+  payload: IntakePayload,
+  meta: IntakeMeta,
+): Promise<IntakeResult> {
+  const [notify, ack, notion, slack, audience] = await Promise.all([
+    sendOperatorNotification(payload, meta),
+    sendRequesterAck(payload),
+    writeToNotion(payload, meta),
+    pingSlack(payload),
+    addToAudience(payload),
+  ])
+
+  const entry: IntakeLogEntry = {
+    ts: new Date().toISOString(),
+    intent: payload.intent,
+    name: payload.name,
+    email: payload.email,
+    company: payload.company || undefined,
+    message: payload.message,
+    source: payload.source || undefined,
+    referrer: meta.referrer || undefined,
+    userAgent: meta.userAgent || undefined,
+    ipHint: meta.ipHint || undefined,
+    notify,
+    ack,
+    notion,
+    slack,
+    audience,
+  }
+
+  const logged = await appendIntakeLog(entry)
+  console.log('[intake]', JSON.stringify(entry))
+
+  // The inquiry is "lost" only if it neither notified Frank, reached the CRM,
+  // nor wrote to the local log. Any one durable sink = success.
+  const reachedFrank =
+    notify === 'sent' || notion === 'added' || logged
+  return { ok: reachedFrank, entry, logged }
+}

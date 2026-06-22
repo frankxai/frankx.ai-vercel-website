@@ -1,84 +1,120 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import Link from 'next/link'
-import { ArrowLeft, Mail, Linkedin, MapPin, Briefcase, Clock, ExternalLink } from 'lucide-react'
+import { ArrowLeft, Mail, Clock, Building2 } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
+import { INTENT_LABEL, type Intent } from '@/lib/contact-intake'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export const metadata = createMetadata({
-  title: 'Workshop Intake Radar | Admin | FrankX',
-  description: 'Operator dashboard for workshop intake submissions.',
+  title: 'Inquiry Inbox | Admin | FrankX',
+  description: 'Operator dashboard for all inbound inquiries.',
   path: '/admin/intake',
   noindex: true,
 })
 
-interface IntakeEntry {
+/** Unified display row — both the new /api/intake log and the legacy
+ *  workshop-intake log are mapped into this shape. */
+interface Row {
   ts: string
-  workshop: 'ikigai-content-studio' | 'sovereign-leadership' | 'personal-ai-coe' | 'custom'
-  fullName: string
+  intent: Intent
+  name: string
   email: string
-  company: string
-  role: string
-  location: string
-  format: 'in-person' | 'virtual' | 'hybrid'
-  linkedin?: string
-  notes?: string
-  referrer?: string
-  notificationStatus: 'sent' | 'failed' | 'skipped'
-  audienceStatus: 'added' | 'failed' | 'skipped' | 'duplicate'
+  company?: string
+  message: string
+  source?: string
+  notify: string
 }
 
-const WORKSHOP_LABEL: Record<IntakeEntry['workshop'], string> = {
-  'ikigai-content-studio': 'Ikigai + AI Content Studio',
-  'sovereign-leadership': 'Sovereign Leadership',
-  'personal-ai-coe': 'Personal AI CoE',
-  custom: 'Custom format',
+const INTENT_COLOR: Record<Intent, string> = {
+  workshop: 'text-amber-300 bg-amber-500/10 border-amber-500/20',
+  sprint: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20',
+  partnership: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20',
+  press: 'text-violet-300 bg-violet-500/10 border-violet-500/20',
+  advisory: 'text-sky-300 bg-sky-500/10 border-sky-500/20',
+  general: 'text-slate-300 bg-white/5 border-white/15',
 }
 
-const WORKSHOP_COLOR: Record<IntakeEntry['workshop'], string> = {
-  'ikigai-content-studio': 'text-amber-300 bg-amber-500/10 border-amber-500/20',
-  'sovereign-leadership': 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20',
-  'personal-ai-coe': 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20',
-  custom: 'text-violet-300 bg-violet-500/10 border-violet-500/20',
+function vercelPath(name: string) {
+  return process.env.VERCEL
+    ? path.join('/tmp', name)
+    : path.join(process.cwd(), 'private', name)
 }
 
-const FORMAT_LABEL: Record<IntakeEntry['format'], string> = {
-  'in-person': 'In-person',
-  virtual: 'Virtual',
-  hybrid: 'Hybrid',
-}
-
-function getLogPath() {
-  if (process.env.VERCEL) return '/tmp/workshop-intake.jsonl'
-  return path.join(process.cwd(), 'private', 'workshop-intake.jsonl')
-}
-
-async function loadEntries(): Promise<IntakeEntry[]> {
+async function readJsonl<T>(file: string): Promise<T[]> {
   try {
-    const content = await fs.readFile(getLogPath(), 'utf8')
-    const lines = content.trim().split('\n').filter(Boolean)
-    return lines
+    const content = await fs.readFile(file, 'utf8')
+    return content
+      .trim()
+      .split('\n')
+      .filter(Boolean)
       .map((line) => {
         try {
-          return JSON.parse(line) as IntakeEntry
+          return JSON.parse(line) as T
         } catch {
           return null
         }
       })
-      .filter((e): e is IntakeEntry => e !== null)
-      .reverse()
-      .slice(0, 200)
+      .filter((e): e is T => e !== null)
   } catch {
     return []
   }
 }
 
+async function loadRows(): Promise<Row[]> {
+  // New unified intake log
+  const unified = await readJsonl<{
+    ts: string
+    intent: Intent
+    name: string
+    email: string
+    company?: string
+    message: string
+    source?: string
+    notify: string
+  }>(vercelPath('intake.jsonl'))
+
+  // Legacy workshop-intake log — map into the unified shape
+  const legacy = await readJsonl<{
+    ts: string
+    fullName: string
+    email: string
+    company: string
+    notes?: string
+    referrer?: string
+    notificationStatus: string
+  }>(vercelPath('workshop-intake.jsonl'))
+
+  const rows: Row[] = [
+    ...unified.map((e) => ({
+      ts: e.ts,
+      intent: e.intent,
+      name: e.name,
+      email: e.email,
+      company: e.company,
+      message: e.message,
+      source: e.source,
+      notify: e.notify,
+    })),
+    ...legacy.map((e) => ({
+      ts: e.ts,
+      intent: 'workshop' as Intent,
+      name: e.fullName,
+      email: e.email,
+      company: e.company,
+      message: e.notes || '(no notes)',
+      source: e.referrer,
+      notify: e.notificationStatus,
+    })),
+  ]
+
+  return rows.sort((a, b) => b.ts.localeCompare(a.ts)).slice(0, 300)
+}
+
 function relativeTime(iso: string): string {
-  const then = new Date(iso).getTime()
-  const now = Date.now()
-  const diff = (now - then) / 1000
+  const diff = (Date.now() - new Date(iso).getTime()) / 1000
   if (diff < 60) return 'just now'
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`
@@ -86,25 +122,19 @@ function relativeTime(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
-export default async function IntakeRadarPage() {
-  const entries = await loadEntries()
+export default async function InquiryInboxPage() {
+  const rows = await loadRows()
 
-  // Stats
-  const total = entries.length
-  const last24h = entries.filter(
-    (e) => Date.now() - new Date(e.ts).getTime() < 24 * 3600 * 1000,
-  ).length
-  const last7d = entries.filter(
-    (e) => Date.now() - new Date(e.ts).getTime() < 7 * 24 * 3600 * 1000,
-  ).length
-  const byWorkshop = entries.reduce<Record<string, number>>((acc, e) => {
-    acc[e.workshop] = (acc[e.workshop] || 0) + 1
+  const total = rows.length
+  const last24h = rows.filter((r) => Date.now() - new Date(r.ts).getTime() < 24 * 3600 * 1000).length
+  const last7d = rows.filter((r) => Date.now() - new Date(r.ts).getTime() < 7 * 24 * 3600 * 1000).length
+  const byIntent = rows.reduce<Record<string, number>>((acc, r) => {
+    acc[r.intent] = (acc[r.intent] || 0) + 1
     return acc
   }, {})
 
   return (
     <main className="relative min-h-screen bg-[#0a0a0b]">
-      {/* Header */}
       <section className="relative border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 pt-24 pb-10">
           <Link
@@ -114,24 +144,22 @@ export default async function IntakeRadarPage() {
             <ArrowLeft className="w-4 h-4" />
             Admin
           </Link>
-
           <h1 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">
-            Workshop Intake Radar
+            Inquiry Inbox
           </h1>
           <p className="text-white/55 max-w-2xl">
-            Every submission to <code className="text-emerald-400/80">/api/workshop-intake</code>{' '}
-            from /workshops/* intake forms. Emails fire to{' '}
-            <code className="text-emerald-400/80">{process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}</code>{' '}
-            on each submission; this view is the durable record.
+            Every submission to <code className="text-emerald-400/80">/api/intake</code> (and legacy{' '}
+            <code className="text-emerald-400/80">/api/workshop-intake</code>). Notifications fire to{' '}
+            <code className="text-emerald-400/80">{process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}</code>;
+            the durable record is the Notion CRM. This view is the live local mirror.
           </p>
         </div>
       </section>
 
-      {/* Stats */}
       <section className="border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1.5">Total submissions</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1.5">Total</p>
             <p className="text-3xl font-bold text-white">{total}</p>
           </div>
           <div className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.04] p-4">
@@ -143,14 +171,14 @@ export default async function IntakeRadarPage() {
             <p className="text-3xl font-bold text-white">{last7d}</p>
           </div>
           <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1.5">By workshop</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1.5">By intent</p>
             <div className="space-y-1 text-xs text-white/60">
-              {Object.entries(byWorkshop)
+              {Object.entries(byIntent)
                 .sort(([, a], [, b]) => b - a)
                 .slice(0, 3)
                 .map(([k, v]) => (
                   <div key={k} className="flex justify-between gap-2">
-                    <span className="truncate">{WORKSHOP_LABEL[k as IntakeEntry['workshop']] || k}</span>
+                    <span className="truncate">{INTENT_LABEL[k as Intent] || k}</span>
                     <span className="text-white/40">{v}</span>
                   </div>
                 ))}
@@ -159,120 +187,75 @@ export default async function IntakeRadarPage() {
         </div>
       </section>
 
-      {/* Entries */}
       <section>
         <div className="max-w-7xl mx-auto px-6 py-10">
-          {entries.length === 0 ? (
+          {rows.length === 0 ? (
             <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-12 text-center">
               <Mail className="w-10 h-10 text-white/20 mx-auto mb-4" />
-              <p className="text-white/60 mb-2">No submissions yet.</p>
+              <p className="text-white/60 mb-2">No inquiries yet.</p>
               <p className="text-sm text-white/40 max-w-md mx-auto">
-                When someone fills out an intake form at <code>/workshops/sovereign-leadership</code>,{' '}
-                <code>/workshops/ikigai-content-studio</code>, or <code>/workshops/personal-ai-coe</code>,
-                their submission lands here + sends to {process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}.
-              </p>
-              <p className="text-xs text-white/30 mt-4">
-                Storage: <code>{process.env.VERCEL ? '/tmp/workshop-intake.jsonl' : 'private/workshop-intake.jsonl'}</code>.
-                On Vercel this is ephemeral per Fluid Compute instance — long-term storage via Vercel KV
-                is a follow-up.
+                When someone submits the form at <code>/contact</code>, it lands here, fires to{' '}
+                {process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}, and (if configured) writes to the
+                Notion CRM.
               </p>
             </div>
           ) : (
             <div className="space-y-3">
-              {entries.map((entry, idx) => (
+              {rows.map((row, idx) => (
                 <article
-                  key={`${entry.ts}-${idx}`}
+                  key={`${row.ts}-${idx}`}
                   className="rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] p-5 transition-colors"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-1.5">
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] font-medium rounded border ${
-                            WORKSHOP_COLOR[entry.workshop]
-                          }`}
+                          className={`inline-flex items-center px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] font-medium rounded border ${INTENT_COLOR[row.intent]}`}
                         >
-                          {WORKSHOP_LABEL[entry.workshop]}
-                        </span>
-                        <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-white/40">
-                          {FORMAT_LABEL[entry.format]}
+                          {INTENT_LABEL[row.intent]}
                         </span>
                         <span className="inline-flex items-center gap-1 text-xs text-white/40">
                           <Clock className="w-3 h-3" />
-                          {relativeTime(entry.ts)}
+                          {relativeTime(row.ts)}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold text-white mb-1">
-                        {entry.fullName}{' '}
-                        <span className="font-normal text-white/50">— {entry.role}</span>
-                      </h3>
-                      <p className="text-sm text-white/60 flex items-center gap-1.5">
-                        <Briefcase className="w-3.5 h-3.5 text-white/30" />
-                        {entry.company}
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-end gap-1.5 text-xs text-white/40">
-                      <span className={
-                        entry.notificationStatus === 'sent'
-                          ? 'text-emerald-400'
-                          : entry.notificationStatus === 'failed'
-                          ? 'text-rose-400'
-                          : 'text-white/30'
-                      }>
-                        Email: {entry.notificationStatus}
-                      </span>
-                      {entry.audienceStatus !== 'skipped' && (
-                        <span className={
-                          entry.audienceStatus === 'added' || entry.audienceStatus === 'duplicate'
-                            ? 'text-emerald-400'
-                            : 'text-rose-400'
-                        }>
-                          Audience: {entry.audienceStatus}
-                        </span>
+                      <h3 className="text-lg font-semibold text-white mb-1">{row.name}</h3>
+                      {row.company && (
+                        <p className="text-sm text-white/60 flex items-center gap-1.5">
+                          <Building2 className="w-3.5 h-3.5 text-white/30" />
+                          {row.company}
+                        </p>
                       )}
                     </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-2.5 text-sm mb-3">
-                    <a
-                      href={`mailto:${entry.email}`}
-                      className="inline-flex items-center gap-2 text-white/70 hover:text-emerald-300 transition-colors"
+                    <span
+                      className={
+                        row.notify === 'sent'
+                          ? 'text-emerald-400 text-xs'
+                          : row.notify === 'failed'
+                          ? 'text-rose-400 text-xs'
+                          : 'text-white/30 text-xs'
+                      }
                     >
-                      <Mail className="w-3.5 h-3.5 text-white/40" />
-                      {entry.email}
-                    </a>
-                    {entry.linkedin && (
-                      <a
-                        href={entry.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-white/70 hover:text-cyan-300 transition-colors"
-                      >
-                        <Linkedin className="w-3.5 h-3.5 text-white/40" />
-                        LinkedIn
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    )}
-                    <span className="inline-flex items-center gap-2 text-white/60">
-                      <MapPin className="w-3.5 h-3.5 text-white/40" />
-                      {entry.location}
+                      Email: {row.notify}
                     </span>
-                    {entry.referrer && (
-                      <span className="inline-flex items-center gap-2 text-white/40 text-xs truncate">
-                        From: {entry.referrer.replace('https://www.frankx.ai', '')}
-                      </span>
-                    )}
                   </div>
 
-                  {entry.notes && (
-                    <div className="rounded-lg border border-white/[0.04] bg-black/20 p-3 mt-3">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1.5">
-                        Notes
-                      </p>
-                      <p className="text-sm text-white/75 leading-relaxed whitespace-pre-wrap">
-                        {entry.notes}
-                      </p>
-                    </div>
+                  <a
+                    href={`mailto:${row.email}`}
+                    className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-emerald-300 transition-colors mb-3"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-white/40" />
+                    {row.email}
+                  </a>
+
+                  <div className="rounded-lg border border-white/[0.04] bg-black/20 p-3">
+                    <p className="text-sm text-white/75 leading-relaxed whitespace-pre-wrap">{row.message}</p>
+                  </div>
+
+                  {row.source && (
+                    <p className="mt-2 text-xs text-white/40 truncate">
+                      From: {row.source.replace('https://www.frankx.ai', '').replace('https://frankx.ai', '')}
+                    </p>
                   )}
                 </article>
               ))}
@@ -281,21 +264,16 @@ export default async function IntakeRadarPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <section className="border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 py-8 text-center text-xs text-white/30 space-y-1">
           <p>
-            Email notifications fire to{' '}
-            <code className="text-white/50">{process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}</code> (set{' '}
-            <code className="text-white/50">OPERATOR_EMAIL</code> env var to override).
+            Notifications fire to{' '}
+            <code className="text-white/50">{process.env.OPERATOR_EMAIL || 'frank@frankx.ai'}</code>. Durable
+            record: Notion CRM (<code className="text-white/50">NOTION_TOKEN</code> +{' '}
+            <code className="text-white/50">NOTION_INQUIRIES_DB_ID</code>).
           </p>
           <p>
-            Audience writes require{' '}
-            <code className="text-white/50">WORKSHOP_INTAKE_AUDIENCE_ID</code> set in Vercel.
-          </p>
-          <p>
-            Storage is ephemeral on Vercel Fluid Compute. Long-term storage via Vercel KV is the
-            follow-up.
+            Local JSONL is ephemeral on Vercel Fluid Compute — Notion is the source of truth once wired.
           </p>
         </div>
       </section>
