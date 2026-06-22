@@ -286,7 +286,9 @@ const nextConfig = {
     // React-Three-Fiber; kept separate from this React 18 app on purpose). Guarded by
     // PALACE_ORIGIN so the build is safe when the env var is unset (route simply 404s).
     // The palace is served under basePath=/mind-palace, so the path is preserved 1:1.
-    const palaceOrigin = process.env.PALACE_ORIGIN
+    // Normalize so a trailing slash (common when pasting a Vercel URL) doesn't
+    // produce `//mind-palace` in the destination.
+    const palaceOrigin = (process.env.PALACE_ORIGIN || '').replace(/\/+$/, '')
     if (!palaceOrigin) return []
     return [
       { source: '/mind-palace', destination: `${palaceOrigin}/mind-palace` },
