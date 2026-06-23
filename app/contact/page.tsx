@@ -67,8 +67,8 @@ const faqs = [
     a: 'Workshop and sprint price ranges live on /build. Advisory and custom builds are scoped per engagement. Template pack is fixed-price (€149 list, early-access pricing while v1 ships).',
   },
   {
-    q: 'Reply time?',
-    a: 'Most replies inside 1–2 working days. Time zones: Madrid (CET/CEST). You get an instant automatic confirmation when your message lands, so you\'re never left wondering if it sent.',
+    q: 'Reply time and the 24-hour artifact?',
+    a: 'You get an instant confirmation when your message lands. Within 24 hours, you receive an artifact named to your intent — a stack-critique Loom for workshops, a one-page architecture critique for sprints, a partnership memo, an office-hours voice memo for advisory. A real reply from Frank follows within 1–2 working days (Madrid, CET/CEST).',
   },
 ] as const
 
@@ -155,8 +155,8 @@ export default async function ContactPage({
                 <a href={`mailto:${PRIMARY_EMAIL}`} className="text-cyan-300 underline-offset-4 hover:underline">
                   {PRIMARY_EMAIL}
                 </a>
-                . You get an instant confirmation, then a real reply within 1–2
-                working days.
+                . Within 24 hours you get a useful artifact named to your intent;
+                a real reply follows within 1–2 working days.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -177,6 +177,14 @@ export default async function ContactPage({
                   {PRIMARY_EMAIL}
                 </a>
                 . Madrid time (CET/CEST).
+              </p>
+
+              <p className="mt-6 max-w-md text-[12px] text-slate-500 leading-relaxed">
+                For organizations operating at significant scale, the{' '}
+                <Link href="/engagements/strategic-advisor" className="text-slate-400 underline-offset-4 hover:text-white">
+                  Strategic Advisor door
+                </Link>{' '}
+                is by introduction.
               </p>
             </div>
 
