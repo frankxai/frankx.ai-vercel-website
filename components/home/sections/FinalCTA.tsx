@@ -29,13 +29,20 @@ export default function FinalCTA() {
             <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
           </Link>
           <Link
-            href="mailto:frank@frankx.ai?subject=Strategy%20Session"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-xl border border-white/30 px-8 py-4 text-sm font-semibold text-white/85 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/30"
           >
             Work with Frank
             <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
+        <p className="pt-6 text-xs text-neutral-300/70">
+          For organizations operating at significant scale, the{' '}
+          <Link href="/engagements/strategic-advisor" className="text-neutral-200 underline-offset-4 hover:underline">
+            Strategic Advisor door
+          </Link>{' '}
+          is by introduction.
+        </p>
       </div>
     </section>
   )

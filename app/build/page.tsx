@@ -88,6 +88,40 @@ export default function BuildHubPage() {
         </div>
       </section>
 
+      {/* Strategic Advisor — door #3, Executive Concierge.
+          Intentionally restrained, off-palette (warm neutral on near-black, no
+          gradient), so it reads as a different tier — not the next step up the
+          ladder above, but a sideways door for a different audience. See
+          docs/strategy/PREMIUM_OPERATIONS.md. */}
+      <section className="pb-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-[#3a3833] bg-[#15140f] p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-6">
+            <div className="flex-1">
+              <p className="text-[10px] uppercase tracking-[0.32em] text-[#a89c7d] mb-3">
+                Strategic Advisor · By introduction
+              </p>
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#f5f1e6] mb-3 tracking-tight">
+                For organizations operating at significant scale.
+              </h2>
+              <p className="text-sm text-[#bdb39c] leading-relaxed mb-2">
+                Frank operates as a fractional Chief AI Architect for two to four
+                organizations at a time. Engagement begins with a written one-page
+                architecture brief, before any contract.
+              </p>
+              <p className="text-xs text-[#80785f] leading-relaxed">
+                Scoped per engagement. No public pricing.
+              </p>
+            </div>
+            <Link
+              href="/engagements/strategic-advisor"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs uppercase tracking-[0.2em] font-medium border border-[#a89c7d]/40 bg-transparent text-[#e8dfc8] hover:bg-[#a89c7d]/10 hover:border-[#a89c7d]/70 whitespace-nowrap transition-colors flex-shrink-0"
+            >
+              Read more
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Why paying is honest */}
       <section className="pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
