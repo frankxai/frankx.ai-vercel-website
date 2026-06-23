@@ -1,6 +1,9 @@
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, Heart, Share, Sparkles, Users } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
+
+const soulFrequencyHero = '/images/blog/native-premium/headers/soul-frequency-framework-hero.webp'
 
 export const metadata: Metadata = {
   title: 'Soul Frequency Framework | FrankX.AI',
@@ -10,6 +13,7 @@ export const metadata: Metadata = {
     description: 'Map the creative signature AI should amplify across your brand, family, and leadership.',
     type: 'article',
     publishedTime: '2024-08-20T00:00:00.000Z',
+    images: [soulFrequencyHero],
   },
 }
 
@@ -107,6 +111,17 @@ export default function SoulFrequencyFramework() {
                 <Share className="w-4 h-4" />
                 <span>Share</span>
               </button>
+            </div>
+
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl shadow-purple-950/20">
+              <Image
+                src={soulFrequencyHero}
+                alt="Premium acoustic studio visualizing human signal, resonance, and creative frequency"
+                fill
+                priority
+                className="object-cover"
+                sizes="(min-width: 1024px) 896px, calc(100vw - 48px)"
+              />
             </div>
           </header>
 
