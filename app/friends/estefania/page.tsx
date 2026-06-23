@@ -132,6 +132,13 @@ export default function EstefaniaFriendPage() {
               >
                 Official site
               </a>
+              <Link
+                href="/downloads/epicways-intelligence"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-100/25 bg-emerald-100/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/45 hover:bg-emerald-100/15"
+              >
+                Download starter kit
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
 
@@ -280,6 +287,13 @@ export default function EstefaniaFriendPage() {
                 className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
               >
                 Open business page
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/downloads/epicways-intelligence"
+                className="ml-0 mt-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white transition hover:border-white/40 hover:bg-white/10 md:ml-3"
+              >
+                Download kit
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </article>

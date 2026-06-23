@@ -198,6 +198,13 @@ export default function EpicWaysAllyPage() {
                 Build the system
                 <ArrowRight className="h-4 w-4" />
               </a>
+              <Link
+                href="/downloads/epicways-intelligence"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-100/25 bg-emerald-100/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/45 hover:bg-emerald-100/15"
+              >
+                Download starter kit
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -438,6 +445,13 @@ export default function EpicWaysAllyPage() {
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white backdrop-blur-xl transition hover:border-white/35 hover:bg-white/10"
             >
               Back to allies
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/downloads/epicways-intelligence"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
+            >
+              Download starter kit
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

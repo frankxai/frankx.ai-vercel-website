@@ -75,6 +75,16 @@ const downloads: DownloadItem[] = [
     icon: 'HIS',
   },
   {
+    id: 'epicways-intelligence',
+    title: 'EpicWays Intelligence Kit',
+    subtitle: 'TheEpicWays Client Service System',
+    description: 'A practical starter system for TheEpicWays: client signal, offer design, workshop flow, follow-up, impact tracking, privacy boundaries, and agent briefs.',
+    previewUrl: '/downloads/epicways-intelligence',
+    features: ['Signal Brief', 'Workshop Loop', 'Follow-Up Pack', 'Agent Briefs'],
+    variant: 'emerald' as const,
+    icon: 'EPW',
+  },
+  {
     id: 'starlight-sip-starter',
     title: 'Starlight SIP Starter',
     subtitle: 'Open Intelligence System Module',
