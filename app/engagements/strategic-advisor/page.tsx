@@ -21,7 +21,7 @@ export const metadata = createMetadata({
   noindex: true,
 })
 
-export default async function PrivateEngagementPage() {
+export default async function StrategicAdvisorPage() {
   const cookieStore = await cookies()
   const cookieValue = cookieStore.get(PRIVATE_ACCESS_COOKIE)?.value
   const hasAccess = isPasscodeConfigured() && checkPasscode(cookieValue)
@@ -70,23 +70,25 @@ export default async function PrivateEngagementPage() {
             <li className="grid grid-cols-[28px_1fr] gap-6">
               <span className="text-[#bbb] tabular-nums">01</span>
               <p>
-                A 45-minute conversation to establish whether there is a fit. No
-                pitch deck, no proposal, no obligation.
+                A written one-page architecture brief on the problem you named,
+                produced within seven days of your message. Yours to keep
+                regardless of next steps — no pitch deck, no proposal, no
+                obligation.
               </p>
             </li>
             <li className="grid grid-cols-[28px_1fr] gap-6">
               <span className="text-[#bbb] tabular-nums">02</span>
               <p>
-                A written one-page architecture brief on the problem you named,
-                produced within seven days. Yours to keep regardless of next steps.
+                A 45-minute conversation to decide whether the brief is the
+                right read. If it is, scope and price come next; if it isn't,
+                you've still got the brief.
               </p>
             </li>
             <li className="grid grid-cols-[28px_1fr] gap-6">
               <span className="text-[#bbb] tabular-nums">03</span>
               <p>
-                If the brief is the right read, a written engagement letter
-                follows. One page. Scope, deliverables, cadence, price, and the
-                date the first artifact is in your inbox.
+                A written engagement letter — one page. Scope, deliverables,
+                cadence, price, and the date the first artifact is in your inbox.
               </p>
             </li>
             <li className="grid grid-cols-[28px_1fr] gap-6">

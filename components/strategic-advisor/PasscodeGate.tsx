@@ -55,7 +55,13 @@ export function PasscodeGate() {
           className="w-full border-0 border-b border-[#ccc] bg-transparent px-0 py-2 text-base font-serif text-[#111] placeholder:text-[#bbb] focus:border-[#111] focus:outline-none"
         />
         {error && (
-          <p className="mt-4 text-xs text-[#a33] font-serif">{error}</p>
+          <p
+            role="alert"
+            aria-live="polite"
+            className="mt-4 text-xs text-[#a33] font-serif"
+          >
+            {error}
+          </p>
         )}
         <button
           type="submit"

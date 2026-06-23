@@ -1,9 +1,12 @@
 import { promises as fs } from 'node:fs'
-import path from 'node:path'
 import Link from 'next/link'
 import { ArrowLeft, Mail, Clock, Building2 } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
-import { INTENT_LABEL, type Intent } from '@/lib/contact-intake'
+import {
+  INTENT_LABEL,
+  resolvePrivatePath,
+  type Intent,
+} from '@/lib/contact-intake'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -34,16 +37,14 @@ const INTENT_COLOR: Record<Intent, string> = {
   partnership: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20',
   press: 'text-violet-300 bg-violet-500/10 border-violet-500/20',
   advisory: 'text-sky-300 bg-sky-500/10 border-sky-500/20',
-  // Executive intent: warm-neutral on cream — matches /engagements/private register.
+  // Executive intent: warm-neutral on cream — matches the
+  // /engagements/strategic-advisor register.
   executive: 'text-[#e8dfc8] bg-[#a89c7d]/10 border-[#a89c7d]/30',
   general: 'text-slate-300 bg-white/5 border-white/15',
 }
 
-function vercelPath(name: string) {
-  return process.env.VERCEL
-    ? path.join('/tmp', name)
-    : path.join(process.cwd(), 'private', name)
-}
+// Path resolution lives in lib/contact-intake.ts → resolvePrivatePath, kept
+// in one place so the API route writer and the dashboard reader stay aligned.
 
 async function readJsonl<T>(file: string): Promise<T[]> {
   try {
@@ -76,7 +77,7 @@ async function loadRows(): Promise<Row[]> {
     message: string
     source?: string
     notify: string
-  }>(vercelPath('intake.jsonl'))
+  }>(resolvePrivatePath('intake.jsonl'))
 
   // Legacy workshop-intake log — map into the unified shape
   const legacy = await readJsonl<{
@@ -87,7 +88,7 @@ async function loadRows(): Promise<Row[]> {
     notes?: string
     referrer?: string
     notificationStatus: string
-  }>(vercelPath('workshop-intake.jsonl'))
+  }>(resolvePrivatePath('workshop-intake.jsonl'))
 
   const rows: Row[] = [
     ...unified.map((e) => ({

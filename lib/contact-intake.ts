@@ -56,7 +56,7 @@ export const IntakeSchema = z.object({
   // Source page (auto-filled by the form) for attribution.
   source: z.string().trim().max(300).optional().or(z.literal('')),
   consent: z.literal(true, {
-    error: () => 'Please confirm you consent to being contacted.',
+    error: (_issue) => 'Please confirm you consent to being contacted.',
   }),
 })
 
@@ -65,7 +65,6 @@ export type IntakePayload = z.infer<typeof IntakeSchema>
 export interface IntakeMeta {
   referrer: string | null
   userAgent: string | null
-  ipHint: string | null
 }
 
 export type StageStatus = 'sent' | 'failed' | 'skipped' | 'added' | 'duplicate'
@@ -80,7 +79,6 @@ export interface IntakeLogEntry {
   source?: string
   referrer?: string
   userAgent?: string
-  ipHint?: string
   notify: StageStatus
   ack: StageStatus
   notion: StageStatus
@@ -102,9 +100,18 @@ const INTAKE_AUDIENCE_ID = process.env.INTAKE_AUDIENCE_ID
 const BOOKING_URL =
   process.env.NEXT_PUBLIC_BOOKING_URL || 'https://frankx.ai/contact'
 
+/**
+ * Resolve a private (operator-only) storage path. On Vercel, that's `/tmp`
+ * (ephemeral per Fluid Compute instance); locally, it's `private/` (gitignored).
+ * Exported so the admin dashboard can reuse the same path resolution.
+ */
+export function resolvePrivatePath(name: string): string {
+  if (process.env.VERCEL) return path.join('/tmp', name)
+  return path.join(process.cwd(), 'private', name)
+}
+
 export function getLogPath() {
-  if (process.env.VERCEL) return '/tmp/intake.jsonl'
-  return path.join(process.cwd(), 'private', 'intake.jsonl')
+  return resolvePrivatePath('intake.jsonl')
 }
 
 // ── Stage 1: operator notification ───────────────────────────────────────────
@@ -159,16 +166,36 @@ async function sendOperatorNotification(
 
 // ── Stage 2: requester auto-acknowledgement ──────────────────────────────────
 
+/**
+ * Escape user-controlled text for safe inclusion in HTML.
+ * payload.name is interpolated into the HTML body via firstName; without this
+ * escape a payload like `<img src=x onerror=...>` could fire in HTML-rendering
+ * email clients. Resend doesn't sanitize what we send.
+ */
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 function buildAckBody(payload: IntakePayload): { text: string; html: string } {
-  const firstName = payload.name.split(' ')[0]
+  const firstNameRaw = payload.name.split(' ')[0]
+  // Plain-text body has no injection vector; HTML body does.
+  const firstNameText = firstNameRaw
+  const firstNameHtml = escapeHtml(firstNameRaw)
   const commercial = INTENT_IS_COMMERCIAL[payload.intent]
   const artifact = INTENT_24H_ARTIFACT[payload.intent]
   // Executive engagements get a discretion-tier ack — no booking nudge, no
-  // public-link CTA. Just the artifact promise and the named human.
+  // public-link CTA. Aligns with the brief-first sequence on the
+  // /engagements/strategic-advisor page (the brief lands within seven days,
+  // then a 45-minute conversation to decide on next steps).
   const isExecutive = payload.intent === 'executive'
 
   const textLines = [
-    `Hi ${firstName},`,
+    `Hi ${firstNameText},`,
     '',
     'Your message reached Frank. This is an automatic confirmation so you',
     'know it landed; a real reply follows within 1–2 working days (Madrid time).',
@@ -176,7 +203,7 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
     `Within 24 hours you'll also receive ${artifact}.`,
     '',
     isExecutive
-      ? 'Engagements at this level start with a written one-page brief before any contract or call.'
+      ? 'Engagements at this level begin with a written one-page brief on the problem you named, produced within seven days. A 45-minute conversation follows, to decide whether the brief is the right read.'
       : commercial
         ? `If it's faster to just talk, grab a 20-minute intro slot: ${BOOKING_URL}`
         : `In the meantime, the work is all public: https://frankx.ai/agentic-builder-lab`,
@@ -187,14 +214,14 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
 
   const html = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:520px;margin:0 auto;color:#0f172a;line-height:1.6">
-  <p>Hi ${firstName},</p>
+  <p>Hi ${firstNameHtml},</p>
   <p>Your message reached Frank. This is an automatic confirmation so you know it landed; a real reply follows within <strong>1–2 working days</strong> (Madrid time).</p>
   <p style="background:#f8fafc;border-left:3px solid #0891b2;padding:14px 18px;font-size:14px;color:#0f172a;margin:20px 0">
     Within <strong>24 hours</strong> you'll also receive ${artifact}.
   </p>
   <p>${
     isExecutive
-      ? 'Engagements at this level start with a written one-page brief before any contract or call.'
+      ? 'Engagements at this level begin with a written one-page brief on the problem you named, produced within seven days. A 45-minute conversation follows, to decide whether the brief is the right read.'
       : commercial
         ? `If it's faster to just talk, <a href="${BOOKING_URL}" style="color:#0891b2">grab a 20-minute intro slot</a>.`
         : `In the meantime, the work is all public — see the <a href="https://frankx.ai/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
@@ -263,7 +290,16 @@ async function writeToNotion(
             ],
           },
           Message: {
-            rich_text: [{ text: { content: payload.message.slice(0, 1900) } }],
+            rich_text: [
+              {
+                text: {
+                  content:
+                    payload.message.length > 1900
+                      ? payload.message.slice(0, 1897) + '…'
+                      : payload.message,
+                },
+              },
+            ],
           },
         },
       }),
@@ -349,8 +385,15 @@ export interface IntakeResult {
 
 /**
  * Runs the full intake pipeline. All five stages fire in parallel; none blocks
- * another. Returns ok:false only when BOTH the notification and the local log
- * failed (i.e. the inquiry would truly be lost) — so the form can honestly retry.
+ * another. The inquiry is considered "reached Frank" — and the form returns
+ * ok:true — when **any one** of the three durable sinks succeeded:
+ *
+ *   1. operator notification email (Resend → frank@frankx.ai), OR
+ *   2. Notion "Inquiries" CRM row, OR
+ *   3. local JSONL log entry.
+ *
+ * Returns ok:false only when **all three** failed — only then is the inquiry
+ * truly lost, and only then should the form admit the failure to the user.
  */
 export async function processIntake(
   payload: IntakePayload,
@@ -374,7 +417,6 @@ export async function processIntake(
     source: payload.source || undefined,
     referrer: meta.referrer || undefined,
     userAgent: meta.userAgent || undefined,
-    ipHint: meta.ipHint || undefined,
     notify,
     ack,
     notion,

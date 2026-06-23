@@ -81,7 +81,7 @@ The mechanics that turn "good" into "people quietly tell other billionaires abou
 
 ### Mechanic #1 in detail — the 24-hour artifact
 
-Per intent, a specific artifact is named in the auto-acknowledgement and the operator notification:
+Per intent, a specific artifact is named in the auto-acknowledgement to the requester (the operator notification stays focused on the message itself — Frank knows which artifact to send from the intent label):
 
 | Intent | 24-hour artifact |
 |---|---|

@@ -9,10 +9,12 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /**
- * POST: validate a passcode. On success, set the access cookie and
- * redirect to /engagements/private.
- * On failure (or if no passcode is configured server-side), surface
- * a generic error — never reveal whether the passcode env is set.
+ * POST: validate a passcode. On success, set the access cookie and return
+ * { ok: true } as JSON — the client (PasscodeGate) reloads to pick up the
+ * server-rendered /engagements/strategic-advisor page.
+ *
+ * On failure (or if no passcode is configured server-side), surface a
+ * generic 401 — never reveal whether the passcode env is set.
  */
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null)
@@ -32,7 +34,9 @@ export async function POST(request: NextRequest) {
   const res = NextResponse.json({ ok: true })
   res.cookies.set(PRIVATE_ACCESS_COOKIE, passcode, {
     httpOnly: true,
-    secure: true,
+    // Only require Secure in production. Local dev runs on http://localhost,
+    // and Secure would silently drop the cookie there.
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
     // 30 days — passcode-holders are pre-qualified; long session is fine.
