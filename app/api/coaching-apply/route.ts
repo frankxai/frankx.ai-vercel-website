@@ -6,7 +6,11 @@ const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
 // frank@mail.frankx.ai is the Resend SEND-ONLY subdomain — does NOT receive mail.
 // Notifications must land at the IONOS-hosted root domain inbox (frank@frankx.ai)
 // or whatever OPERATOR_EMAIL env var points at (e.g., a Gmail). Fixed 2026-05-22.
-const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || process.env.RESEND_FROM_EMAIL || 'frank@frankx.ai'
+// Notification recipient: OPERATOR_EMAIL override → monitored default. Do NOT
+// fall back to RESEND_FROM_EMAIL — that's the send-only sender address (often
+// notify@mail.frankx.ai), and using it as the destination silently routes
+// applications into an unmonitored inbox.
+const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || 'frank@frankx.ai'
 
 const VALID_FOCUS_AREAS = [
   'AI Architecture',

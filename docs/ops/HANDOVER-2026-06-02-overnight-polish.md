@@ -51,7 +51,7 @@
 
 - **Closed PR #61** ("Add private birthday tribe dedication pages") — 22 days stale, Type+Lint failing, Build skipped.
 - **Closed PR #93** ("Studio Crew + Ask flywheel") — Vercel deploy failing 9 days. Surface is too valuable to ship broken.
-- **Dropped 2 stashes** that would have reverted the `frank@frankx.ai → frank@frankx.ai` migration.
+- **Dropped 2 stashes** that would have reverted the `hello@frankx.ai → frank@frankx.ai` migration.
 - **Pushed dev FrankX main** — was 1 commit ahead (`f1a9b6bc`).
 - **Deleted orphaned local branch** `feat/acos-pillar-9-10-agents`.
 - **Merged PR #106** (blog excellence + cinematic heroes).
