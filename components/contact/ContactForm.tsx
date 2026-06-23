@@ -33,7 +33,8 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
       company: String(data.get('company') || ''),
       message: String(data.get('message') || ''),
       website: String(data.get('website') || ''), // honeypot
-      source: typeof window !== 'undefined' ? window.location.pathname : '/contact',
+      // 'use client' + form submit handler → window is always defined here.
+      source: window.location.pathname,
       consent: data.get('consent') === 'on',
     }
 

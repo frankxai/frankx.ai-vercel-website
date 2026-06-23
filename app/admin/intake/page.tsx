@@ -1,9 +1,14 @@
 import { promises as fs } from 'node:fs'
-import path from 'node:path'
+import { cookies } from 'next/headers'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Mail, Clock, Building2 } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
-import { INTENT_LABEL, type Intent } from '@/lib/contact-intake'
+import {
+  INTENT_LABEL,
+  resolvePrivatePath,
+  type Intent,
+} from '@/lib/contact-intake'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -37,11 +42,8 @@ const INTENT_COLOR: Record<Intent, string> = {
   general: 'text-slate-300 bg-white/5 border-white/15',
 }
 
-function vercelPath(name: string) {
-  return process.env.VERCEL
-    ? path.join('/tmp', name)
-    : path.join(process.cwd(), 'private', name)
-}
+// Path resolution lives in lib/contact-intake.ts → resolvePrivatePath, kept
+// in one place so the API route writer and the dashboard reader stay aligned.
 
 async function readJsonl<T>(file: string): Promise<T[]> {
   try {
@@ -74,7 +76,7 @@ async function loadRows(): Promise<Row[]> {
     message: string
     source?: string
     notify: string
-  }>(vercelPath('intake.jsonl'))
+  }>(resolvePrivatePath('intake.jsonl'))
 
   // Legacy workshop-intake log — map into the unified shape
   const legacy = await readJsonl<{
@@ -85,7 +87,7 @@ async function loadRows(): Promise<Row[]> {
     notes?: string
     referrer?: string
     notificationStatus: string
-  }>(vercelPath('workshop-intake.jsonl'))
+  }>(resolvePrivatePath('workshop-intake.jsonl'))
 
   const rows: Row[] = [
     ...unified.map((e) => ({
@@ -123,6 +125,13 @@ function relativeTime(iso: string): string {
 }
 
 export default async function InquiryInboxPage() {
+  // Defense-in-depth: middleware.ts already gates /admin/* by ADMIN_TOKEN,
+  // but the cost of a redundant check is one cookie read and the upside is
+  // "matcher config drift never silently exposes PII".
+  const adminToken = process.env.ADMIN_TOKEN
+  const cookieToken = (await cookies()).get('admin-token')?.value
+  if (!adminToken || cookieToken !== adminToken) notFound()
+
   const rows = await loadRows()
 
   const total = rows.length
