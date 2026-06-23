@@ -282,17 +282,17 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    // Proxy frankx.ai/mind-palace → the standalone frankx-palace deployment (React 19 +
+    // Proxy frankx.ai/palace → the standalone frankx-palace deployment (React 19 +
     // React-Three-Fiber; kept separate from this React 18 app on purpose). Guarded by
     // PALACE_ORIGIN so the build is safe when the env var is unset (route simply 404s).
-    // The palace is served under basePath=/mind-palace, so the path is preserved 1:1.
+    // The palace is served under basePath=/palace, so the path is preserved 1:1.
     // Normalize so a trailing slash (common when pasting a Vercel URL) doesn't
-    // produce `//mind-palace` in the destination.
+    // produce `//palace` in the destination.
     const palaceOrigin = (process.env.PALACE_ORIGIN || '').replace(/\/+$/, '')
     if (!palaceOrigin) return []
     return [
-      { source: '/mind-palace', destination: `${palaceOrigin}/mind-palace` },
-      { source: '/mind-palace/:path*', destination: `${palaceOrigin}/mind-palace/:path*` },
+      { source: '/palace', destination: `${palaceOrigin}/palace` },
+      { source: '/palace/:path*', destination: `${palaceOrigin}/palace/:path*` },
     ]
   },
   outputFileTracingRoot: __dirname,
@@ -375,9 +375,9 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Strict site-wide CSP — excludes /mind-palace, which needs a WebGL-friendly
+        // Strict site-wide CSP — excludes /palace, which needs a WebGL-friendly
         // policy (see the dedicated block below).
-        source: '/((?!mind-palace).*)',
+        source: '/((?!palace).*)',
         headers: [
           {
             key: 'Content-Security-Policy',
@@ -406,10 +406,15 @@ const nextConfig = {
       },
       {
         // The 3D memory palace (Three.js / React-Three-Fiber) needs WebGL: unsafe-eval,
-        // blob: workers, and Google Fonts. Scoped to /mind-palace only — the strict
+        // blob: workers, and Google Fonts. Scoped to /palace only — the strict
         // policy above still governs the rest of frankx.ai.
-        source: '/mind-palace/:path*',
+        // noindex: palace is an internal showcase, not a search-indexed page.
+        source: '/palace/:path*',
         headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
           {
             key: 'Content-Security-Policy',
             value: [
