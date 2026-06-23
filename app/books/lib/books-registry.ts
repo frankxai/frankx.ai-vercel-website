@@ -785,7 +785,7 @@ export const booksRegistry: BookConfig[] = [
     chapters: [
       { slug: 'chapter-01-the-coherent-state', title: 'The Coherent State', number: 1, readingTime: '13 min', description: 'Every tradition pointed at the same state. None could measure it. Now we can.', published: true, type: 'prose' },
       { slug: 'chapter-02-the-breath-bridge', title: 'The Breath Bridge', number: 2, readingTime: '13 min', description: 'Of all the machinery that runs you without asking, exactly one control is also a switch you can reach.', published: true, type: 'prose' },
-      { slug: 'chapter-03-the-signal-and-the-noise', title: 'The Signal and the Noise', number: 3, readingTime: '13 min', description: 'You do not see the world — you see your brain’s best guess about it. A coherent mind makes better guesses.', published: true, type: 'prose' },
+      { slug: 'chapter-03-the-signal-and-the-noise', title: 'The Signal and the Noise', number: 3, readingTime: '13 min', description: 'You do not see the world — you see your brain\'s best guess about it. A coherent mind makes better guesses.', published: true, type: 'prose' },
     ],
   },
   {
@@ -1077,6 +1077,43 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-08-the-first-90-days', title: 'The First 90 Days', number: 8, readingTime: '10 min', description: 'A practical roadmap for the first three months of building something you own.', published: true, type: 'prose' },
     ],
   },
+
+  // ─── Wonderproof ─────────────────────────────────────────────────────────────
+  {
+    slug: 'wonderproof',
+    title: 'Wonderproof',
+    subtitle: 'Nine Experiments to Prove What Your Mind Can Do',
+    author: 'Frank',
+    publishDate: '2026',
+    description:
+      'A lab manual for human potential. Nine experiments designed to give you direct, personal evidence of what attention, expectation, and perception can do. No belief required. Run the test, record the result, draw your own conclusion.',
+    keywords: ['human potential', 'experiments', 'attention', 'neuroscience', 'evidence-based', 'RAS', 'expectation'],
+    coverImage: '/images/books/wonderproof-cover.png',
+    theme: {
+      id: 'wonderproof',
+      name: 'Wonderproof',
+      primary: 'amber',
+      accent: 'emerald',
+      bgDark: '#0a0a0b',
+      headingFont: 'sans',
+      bodyFont: 'sans',
+    },
+    status: 'in-progress',
+    categories: ['Human Potential', 'Science', 'Experiments'],
+    contentDir: 'content/books/wonderproof',
+    chapters: [
+      { slug: 'introduction', title: 'Introduction: The Laboratory', number: 0, readingTime: '8 min', description: 'Why the lab-manual format works where belief fails. The one rule: record before you interpret.', published: true, type: 'prose' },
+      { slug: 'chapter-01-the-filter', title: 'The Filter: How Your Brain Decides What Exists', number: 1, readingTime: '18 min', description: 'The Reticular Activating System filters 11 million bits per second down to roughly 40. Change what the filter is tuned for and what you perceive changes with it.', published: true, type: 'prose' },
+      { slug: 'chapter-02-the-milkshake-effect', title: 'The Milkshake Effect: Expectation as Physiology', number: 2, readingTime: '20 min', description: 'Alia Crum\'s milkshake study showed that what subjects believed about a meal changed the ghrelin their bodies produced — without changing the meal itself.', published: true, type: 'prose' },
+      { slug: 'chapter-03-the-body-vote', title: 'The Body Vote', number: 3, readingTime: '15 min', description: 'HRV, slow breathing, and the bidirectional link between cardiac rhythm and mental state.', published: false, type: 'prose' },
+      { slug: 'chapter-04-the-attention-experiment', title: 'The Attention Experiment', number: 4, readingTime: '15 min', description: 'Amishi Jha\'s controlled trials: 12 minutes of daily attention training protects working memory under stress.', published: false, type: 'prose' },
+      { slug: 'chapter-05-the-placebo-is-the-treatment', title: 'The Placebo Is the Treatment', number: 5, readingTime: '16 min', description: 'Ted Kaptchuk\'s open-label placebo trials at Harvard: outcomes improved even when patients knew they were receiving a placebo.', published: false, type: 'prose' },
+      { slug: 'chapter-06-the-rewire', title: 'The Rewire', number: 6, readingTime: '17 min', description: 'Bogdan Draganski\'s MRI studies: three months of juggling practice produced measurable gray-matter expansion in areas that handle visual motion.', published: false, type: 'prose' },
+      { slug: 'chapter-07-the-field-of-others', title: 'The Field of Others', number: 7, readingTime: '14 min', description: 'How shared attention and group coherence affect individual physiology — and what the evidence actually says.', published: false, type: 'prose' },
+      { slug: 'chapter-08-the-meaning-layer', title: 'The Meaning Layer', number: 8, readingTime: '15 min', description: 'Viktor Frankl\'s core insight meets modern stress research: perceived meaning is a measurable buffer against cortisol response.', published: false, type: 'prose' },
+      { slug: 'chapter-09-your-personal-protocol', title: 'Your Personal Protocol', number: 9, readingTime: '12 min', description: 'Designing a 9-week personal experiment stack from your own baseline data. The protocol belongs to you.', published: false, type: 'prose' },
+    ],
+  }
 ];
 
 // ─── Helper Functions ───────────────────────────────────────────

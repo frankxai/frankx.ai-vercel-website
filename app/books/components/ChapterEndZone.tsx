@@ -5,9 +5,11 @@ import Link from 'next/link';
 import ChapterFeedback from './ChapterFeedback';
 import ChapterShareButtons from './ChapterShareButtons';
 import BookDownloadGate from './BookDownloadGate';
+import ExperimentCard from './ExperimentCard';
 import { GlassCard } from '@/components/liquid-glass';
 import { markChapterRead } from '@/lib/reading-progress';
 import { getBookGlossary } from '@/lib/glossary';
+import type { Experiment } from '../types';
 
 interface ChapterEndZoneProps {
   bookSlug: string;
@@ -22,6 +24,8 @@ interface ChapterEndZoneProps {
   };
   themeId: string;
   borderClass: string;
+  accentColor?: string;
+  experiment?: Experiment;
 }
 
 export default function ChapterEndZone({
@@ -34,6 +38,8 @@ export default function ChapterEndZone({
   chapterEpigraph,
   themeId,
   borderClass,
+  accentColor,
+  experiment,
 }: ChapterEndZoneProps) {
   const zoneRef = useRef<HTMLDivElement>(null);
   const glossary = getBookGlossary(bookSlug);
@@ -57,6 +63,17 @@ export default function ChapterEndZone({
 
   return (
     <div ref={zoneRef} className="mt-16 mb-12 space-y-8">
+      {/* Experiment card — rendered before the divider so it reads as a chapter capstone */}
+      {experiment && (
+        <ExperimentCard
+          experiment={experiment}
+          borderClass={borderClass}
+          accentColor={accentColor}
+          bookSlug={bookSlug}
+          chapterSlug={chapterSlug}
+        />
+      )}
+
       {/* Divider */}
       <div className={`border-t ${borderClass}`} />
 
