@@ -257,6 +257,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Section pages (important navigation destinations)
   const sectionPages = [
     { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/manifestation', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/manifestation/quest', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/the-secret', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/think-and-grow-rich', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/see-through-the-noise', priority: 0.8, changeFrequency: 'weekly' as const },
