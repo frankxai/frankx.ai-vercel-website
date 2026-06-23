@@ -21,6 +21,7 @@ interface BlogCardProps {
 export default function BlogCard({ post, featured = false, className }: BlogCardProps) {
   const [imgError, setImgError] = useState(false)
   const showImage = post.image && !imgError
+  const isEditorialHeader = post.image?.includes('/images/blog/editorial/headers/')
 
   const { cardRef, glowRef, handlers } = useMouseGlow<HTMLAnchorElement>({
     rgb: GLOW_RGB,
@@ -69,19 +70,20 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
             src={post.image!}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover object-left transition-transform duration-700 group-hover:scale-110"
             sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
             onError={() => setImgError(true)}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/35 to-transparent" />
 
-          {/* Category badge */}
-          <div className="absolute top-4 left-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-sm">
-              <Sparkles className="w-3 h-3" />
-              {post.category || 'Article'}
-            </span>
-          </div>
+          {!isEditorialHeader && (
+            <div className="absolute top-4 left-4">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-sm">
+                <Sparkles className="w-3 h-3" />
+                {post.category || 'Article'}
+              </span>
+            </div>
+          )}
 
           {featured && (
             <div className="absolute top-4 right-4">

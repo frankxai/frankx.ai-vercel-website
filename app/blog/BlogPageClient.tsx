@@ -93,7 +93,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          className="object-cover object-left transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>
                       <div className="flex flex-col justify-center p-6 md:p-8">

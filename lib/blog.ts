@@ -6,7 +6,7 @@ import { cache } from 'react'
 import imageNeeds from '@/data/tools/image-needs.json'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
-const blogImageFallback = '/images/blog/visual-system/best-ai-tools-for-creators-2026-hero.svg'
+const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
 const pendingBlogHeroPaths = new Set(
   (imageNeeds.needs as Array<{ heroPath: string; status?: string }>)
     .filter((need) => need.status?.startsWith('pending'))
@@ -79,19 +79,19 @@ function resolveBlogImage(image: unknown, slug: string): string | undefined {
   if (!pendingBlogHeroPaths.has(image)) return image
 
   if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
-    return '/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg'
+    return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
   }
   if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
-    return '/images/blog/visual-system/ai-model-routing-guide-hero.svg'
+    return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
   }
   if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
-    return '/images/blog/visual-system/production-agentic-ai-systems-hero.svg'
+    return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
   }
   if (/code|coding|cursor|windsurf/.test(slug)) {
-    return '/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg'
+    return '/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png'
   }
   if (/skill|coe|note|knowledge/.test(slug)) {
-    return '/images/blog/visual-system/skill-libraries-ai-coe-governance-hero.svg'
+    return '/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp'
   }
 
   return blogImageFallback
