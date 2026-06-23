@@ -1,6 +1,4 @@
 import { promises as fs } from 'node:fs'
-import { cookies } from 'next/headers'
-import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Mail, Clock, Building2 } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
@@ -125,13 +123,9 @@ function relativeTime(iso: string): string {
 }
 
 export default async function InquiryInboxPage() {
-  // Defense-in-depth: middleware.ts already gates /admin/* by ADMIN_TOKEN,
-  // but the cost of a redundant check is one cookie read and the upside is
-  // "matcher config drift never silently exposes PII".
-  const adminToken = process.env.ADMIN_TOKEN
-  const cookieToken = (await cookies()).get('admin-token')?.value
-  if (!adminToken || cookieToken !== adminToken) notFound()
-
+  // Auth: /admin/* is gated upstream by proxy.ts (the Next 16 successor
+  // to middleware.ts), which redirects unauthenticated requests to
+  // /auth/signin via NextAuth getToken(). See proxy.ts § "Auth protection".
   const rows = await loadRows()
 
   const total = rows.length
