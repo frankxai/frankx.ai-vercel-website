@@ -296,7 +296,7 @@ npx @frankx/acos list`}
                 <li>&middot; Not an &ldquo;Orchestrator&rdquo; that runs your work for you</li>
                 <li>&middot; Not free credits — you pay your own AI provider</li>
                 <li>&middot; Not vendor-locked — clone the spec, fork freely</li>
-                <li>&middot; Not enterprise CoE consulting (Frank does that at Oracle)</li>
+                <li>&middot; Not enterprise CoE consulting (Frank did that at Oracle)</li>
               </ul>
             </div>
           </div>

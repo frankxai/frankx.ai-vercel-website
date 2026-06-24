@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Examples: Planning with Files in Action</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/planning-with-files/examples.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Examples: Planning with Files in Action</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fplanning-with-files">planning-with-files</a> / <span>examples.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Examples: Planning with Files in Action</h1>
+<h2>Example 1: Research Task</h2>
+<p><strong>User Request:</strong> &quot;Research the benefits of morning exercise and write a summary&quot;</p>
+<h3>Loop 1: Create Plan</h3>
+<pre><code class="language-bash">Write task_plan.md
+</code></pre>
+<pre><code class="language-markdown"># Task Plan: Morning Exercise Benefits Research
+
+## Goal
+Create a research summary on the benefits of morning exercise.
+
+## Phases
+- [ ] Phase 1: Create this plan ✓
+- [ ] Phase 2: Search and gather sources
+- [ ] Phase 3: Synthesize findings
+- [ ] Phase 4: Deliver summary
+
+## Key Questions
+1. What are the physical health benefits?
+2. What are the mental health benefits?
+3. What scientific studies support this?
+
+## Status
+**Currently in Phase 1** - Creating plan
+</code></pre>
+<h3>Loop 2: Research</h3>
+<pre><code class="language-bash">Read task_plan.md           # Refresh goals
+WebSearch &quot;morning exercise benefits&quot;
+Write notes.md              # Store findings
+Edit task_plan.md           # Mark Phase 2 complete
+</code></pre>
+<h3>Loop 3: Synthesize</h3>
+<pre><code class="language-bash">Read task_plan.md           # Refresh goals
+Read notes.md               # Get findings
+Write morning_exercise_summary.md
+Edit task_plan.md           # Mark Phase 3 complete
+</code></pre>
+<h3>Loop 4: Deliver</h3>
+<pre><code class="language-bash">Read task_plan.md           # Verify complete
+Deliver morning_exercise_summary.md
+</code></pre>
+<hr>
+<h2>Example 2: Bug Fix Task</h2>
+<p><strong>User Request:</strong> &quot;Fix the login bug in the authentication module&quot;</p>
+<h3>task_plan.md</h3>
+<pre><code class="language-markdown"># Task Plan: Fix Login Bug
+
+## Goal
+Identify and fix the bug preventing successful login.
+
+## Phases
+- [x] Phase 1: Understand the bug report ✓
+- [x] Phase 2: Locate relevant code ✓
+- [ ] Phase 3: Identify root cause (CURRENT)
+- [ ] Phase 4: Implement fix
+- [ ] Phase 5: Test and verify
+
+## Key Questions
+1. What error message appears?
+2. Which file handles authentication?
+3. What changed recently?
+
+## Decisions Made
+- Auth handler is in src/auth/login.ts
+- Error occurs in validateToken() function
+
+## Errors Encountered
+- [Initial] TypeError: Cannot read property &#39;token&#39; of undefined
+  → Root cause: user object not awaited properly
+
+## Status
+**Currently in Phase 3** - Found root cause, preparing fix
+</code></pre>
+<hr>
+<h2>Example 3: Feature Development</h2>
+<p><strong>User Request:</strong> &quot;Add a dark mode toggle to the settings page&quot;</p>
+<h3>The 3-File Pattern in Action</h3>
+<p><strong>task_plan.md:</strong></p>
+<pre><code class="language-markdown"># Task Plan: Dark Mode Toggle
+
+## Goal
+Add functional dark mode toggle to settings.
+
+## Phases
+- [x] Phase 1: Research existing theme system ✓
+- [x] Phase 2: Design implementation approach ✓
+- [ ] Phase 3: Implement toggle component (CURRENT)
+- [ ] Phase 4: Add theme switching logic
+- [ ] Phase 5: Test and polish
+
+## Decisions Made
+- Using CSS custom properties for theme
+- Storing preference in localStorage
+- Toggle component in SettingsPage.tsx
+
+## Status
+**Currently in Phase 3** - Building toggle component
+</code></pre>
+<p><strong>notes.md:</strong></p>
+<pre><code class="language-markdown"># Notes: Dark Mode Implementation
+
+## Existing Theme System
+- Located in: src/styles/theme.ts
+- Uses: CSS custom properties
+- Current themes: light only
+
+## Files to Modify
+1. src/styles/theme.ts - Add dark theme colors
+2. src/components/SettingsPage.tsx - Add toggle
+3. src/hooks/useTheme.ts - Create new hook
+4. src/App.tsx - Wrap with ThemeProvider
+
+## Color Decisions
+- Dark background: #1a1a2e
+- Dark surface: #16213e
+- Dark text: #eaeaea
+</code></pre>
+<p><strong>dark_mode_implementation.md:</strong> (deliverable)</p>
+<pre><code class="language-markdown"># Dark Mode Implementation
+
+## Changes Made
+
+### 1. Added dark theme colors
+File: src/styles/theme.ts
+...
+
+### 2. Created useTheme hook
+File: src/hooks/useTheme.ts
+...
+</code></pre>
+<hr>
+<h2>Example 4: Error Recovery Pattern</h2>
+<p>When something fails, DON&#39;T hide it:</p>
+<h3>Before (Wrong)</h3>
+<pre><code>Action: Read config.json
+Error: File not found
+Action: Read config.json  # Silent retry
+Action: Read config.json  # Another retry
+</code></pre>
+<h3>After (Correct)</h3>
+<pre><code>Action: Read config.json
+Error: File not found
+
+# Update task_plan.md:
+## Errors Encountered
+- config.json not found → Will create default config
+
+Action: Write config.json (default config)
+Action: Read config.json
+Success!
+</code></pre>
+<hr>
+<h2>The Read-Before-Decide Pattern</h2>
+<p><strong>Always read your plan before major decisions:</strong></p>
+<pre><code>[Many tool calls have happened...]
+[Context is getting long...]
+[Original goal might be forgotten...]
+
+→ Read task_plan.md          # This brings goals back into attention!
+→ Now make the decision       # Goals are fresh in context
+</code></pre>
+<p>This is why Manus can handle ~50 tool calls without losing track. The plan file acts as a &quot;goal refresh&quot; mechanism.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

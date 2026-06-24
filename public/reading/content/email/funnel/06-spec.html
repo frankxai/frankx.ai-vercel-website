@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>06 spec</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/06-spec.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">06 spec</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>06-spec.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 6
+subject: &quot;Primitive 5 — The Spec. Your Agent Card and why other agents need it.&quot;
+preheader: &quot;Reading time: 5 min. The portability contract.&quot;</h2>
+<p>Once your agent is shipped, who else can use it?</p>
+<p>If the answer is &quot;humans clicking my UI&quot; — you have a product, but you don&#39;t have an agent in the architectural sense. You have a tool with an LLM inside it.</p>
+<p>The spec primitive is what makes your agent <strong>discoverable and callable by other agents</strong>.</p>
+<h2>The Agent Card</h2>
+<p>Google&#39;s Agent-to-Agent (A2A) protocol defines an &quot;Agent Card&quot; — a JSON document describing your agent&#39;s identity, capabilities, and skills. You serve it at <code>/.well-known/agent.json</code> on your domain.</p>
+<p>Here&#39;s the Card from the workshop starter:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;First Agent — Research Assistant&quot;,
+  &quot;description&quot;: &quot;A research assistant that answers questions with cited sources.&quot;,
+  &quot;url&quot;: &quot;https://first-agent-vercel-aisdk.vercel.app&quot;,
+  &quot;provider&quot;: { &quot;name&quot;: &quot;Frank Riemer&quot;, &quot;url&quot;: &quot;https://frankx.ai&quot; },
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;capabilities&quot;: { &quot;streaming&quot;: false },
+  &quot;skills&quot;: [{
+    &quot;id&quot;: &quot;research-with-sources&quot;,
+    &quot;name&quot;: &quot;Research with sources&quot;,
+    &quot;description&quot;: &quot;Given a question, searches the web, synthesizes an answer.&quot;,
+    &quot;tags&quot;: [&quot;research&quot;, &quot;search&quot;],
+    &quot;examples&quot;: [&quot;What changed in Vercel AI SDK v5?&quot;]
+  }]
+}
+</code></pre>
+<p>That JSON is the contract. Other agents fetch it, read your <code>skills</code>, and decide if you&#39;re the right router target for their request.</p>
+<h2>Why this matters now (not in some hypothetical future)</h2>
+<p>In 2026 the agent ecosystem is fragmenting fast. Every framework (LangGraph, AgentKit, MCP, A2A, Oracle ADK, etc.) has slightly different conventions. The Agent Card is the <strong>lowest-common-denominator spec</strong> that&#39;s emerging as the de facto standard.</p>
+<p>BCG&#39;s enterprise agent playbook references it as the discovery contract between agents in a mesh. That&#39;s the signal — once consultancies start templatizing around a spec, it has crossed the chasm.</p>
+<p>Even if you never plug into a multi-agent system, having a valid Agent Card means:</p>
+<ul>
+<li>Your agent has documented identity (no &quot;what does this thing do?&quot; guessing)</li>
+<li>You can swap implementations without breaking callers (Card stays the same)</li>
+<li>A future you (or future teammate) can read the spec and not have to dig through code</li>
+</ul>
+<h2>The architectural test</h2>
+<p>Can another system discover your agent and know how to talk to it <strong>without reading your source code</strong>?</p>
+<p>If yes — you have a spec.</p>
+<p>If no — your agent is a private tool, not a component.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>If you cloned the starter repo, the Agent Card is already at <code>public/.well-known/agent.json</code>. Update three fields:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Your agent name&quot;,
+  &quot;description&quot;: &quot;Your one-paragraph description&quot;,
+  &quot;url&quot;: &quot;https://your-vercel-url.vercel.app&quot;
+}
+</code></pre>
+<p>Deploy (<code>vercel --prod</code>). Then:</p>
+<pre><code class="language-bash">curl https://your-url.vercel.app/.well-known/agent.json | jq
+</code></pre>
+<p>Should return valid JSON. Validate against the A2A schema if you want to be thorough — there&#39;s a guide here: <a href="https://frankx.ai/guides/agent-card-a2a-spec">frankx.ai/guides/agent-card-a2a-spec</a>.</p>
+<h2>What about Oracle&#39;s Open Agent Specification?</h2>
+<p>Brief mention because some of you will care: Oracle&#39;s OAS is a YAML-first spec that describes the <strong>whole</strong> agent (tools, memory, workflows) — not just the external interface.</p>
+<p>Your Agent Card is a <strong>subset</strong> of what an OAS file contains. You can think of OAS as the OpenAPI for agents — define once, generate stacks for Oracle ADK / LangGraph / roll-your-own.</p>
+<p>For your first agent, the Card is enough. OAS earns its keep when you&#39;re running agents in regulated enterprise environments. That&#39;s deep in the Architect tier.</p>
+<h2>Tomorrow</h2>
+<p>Day 7 — Primitive 6: <strong>Deploy</strong>. The four parts of &quot;actually shipped&quot; vs &quot;running on my laptop.&quot;</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

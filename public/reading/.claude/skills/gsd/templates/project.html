@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>PROJECT.md Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gsd/templates/project.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">PROJECT.md Template</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgsd">gsd</a> / <a href="index.html#.claude%2Fskills%2Fgsd%2Ftemplates">templates</a> / <span>project.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>PROJECT.md Template</h1>
+<p>Template for <code>.planning/PROJECT.md</code> — the living project context document.</p>
+<template>
+
+<pre><code class="language-markdown"># [Project Name]
+
+## What This Is
+
+[Current accurate description — 2-3 sentences. What does this product do and who is it for?
+Use the user&#39;s language and framing. Update whenever reality drifts from this description.]
+
+## Core Value
+
+[The ONE thing that matters most. If everything else fails, this must work.
+One sentence that drives prioritization when tradeoffs arise.]
+
+## Requirements
+
+### Validated
+
+&lt;!-- Shipped and confirmed valuable. --&gt;
+
+(None yet — ship to validate)
+
+### Active
+
+&lt;!-- Current scope. Building toward these. --&gt;
+
+- [ ] [Requirement 1]
+- [ ] [Requirement 2]
+- [ ] [Requirement 3]
+
+### Out of Scope
+
+&lt;!-- Explicit boundaries. Includes reasoning to prevent re-adding. --&gt;
+
+- [Exclusion 1] — [why]
+- [Exclusion 2] — [why]
+
+## Context
+
+[Background information that informs implementation:
+- Technical environment or ecosystem
+- Relevant prior work or experience
+- User research or feedback themes
+- Known issues to address]
+
+## Constraints
+
+- **[Type]**: [What] — [Why]
+- **[Type]**: [What] — [Why]
+
+Common types: Tech stack, Timeline, Budget, Dependencies, Compatibility, Performance, Security
+
+## Key Decisions
+
+&lt;!-- Decisions that constrain future work. Add throughout project lifecycle. --&gt;
+
+| Decision | Rationale | Outcome |
+|----------|-----------|---------|
+| [Choice] | [Why] | [✓ Good / ⚠️ Revisit / — Pending] |
+
+---
+*Last updated: [date] after [trigger]*
+</code></pre>
+</template>
+
+<guidelines>
+
+<p><strong>What This Is:</strong></p>
+<ul>
+<li>Current accurate description of the product</li>
+<li>2-3 sentences capturing what it does and who it&#39;s for</li>
+<li>Use the user&#39;s words and framing</li>
+<li>Update when the product evolves beyond this description</li>
+</ul>
+<p><strong>Core Value:</strong></p>
+<ul>
+<li>The single most important thing</li>
+<li>Everything else can fail; this cannot</li>
+<li>Drives prioritization when tradeoffs arise</li>
+<li>Rarely changes; if it does, it&#39;s a significant pivot</li>
+</ul>
+<p><strong>Requirements — Validated:</strong></p>
+<ul>
+<li>Requirements that shipped and proved valuable</li>
+<li>Format: <code>- ✓ [Requirement] — [version/phase]</code></li>
+<li>These are locked — changing them requires explicit discussion</li>
+</ul>
+<p><strong>Requirements — Active:</strong></p>
+<ul>
+<li>Current scope being built toward</li>
+<li>These are hypotheses until shipped and validated</li>
+<li>Move to Validated when shipped, Out of Scope if invalidated</li>
+</ul>
+<p><strong>Requirements — Out of Scope:</strong></p>
+<ul>
+<li>Explicit boundaries on what we&#39;re not building</li>
+<li>Always include reasoning (prevents re-adding later)</li>
+<li>Includes: considered and rejected, deferred to future, explicitly excluded</li>
+</ul>
+<p><strong>Context:</strong></p>
+<ul>
+<li>Background that informs implementation decisions</li>
+<li>Technical environment, prior work, user feedback</li>
+<li>Known issues or technical debt to address</li>
+<li>Update as new context emerges</li>
+</ul>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>Hard limits on implementation choices</li>
+<li>Tech stack, timeline, budget, compatibility, dependencies</li>
+<li>Include the &quot;why&quot; — constraints without rationale get questioned</li>
+</ul>
+<p><strong>Key Decisions:</strong></p>
+<ul>
+<li>Significant choices that affect future work</li>
+<li>Add decisions as they&#39;re made throughout the project</li>
+<li>Track outcome when known:<ul>
+<li>✓ Good — decision proved correct</li>
+<li>⚠️ Revisit — decision may need reconsideration</li>
+<li>— Pending — too early to evaluate</li>
+</ul>
+</li>
+</ul>
+<p><strong>Last Updated:</strong></p>
+<ul>
+<li>Always note when and why the document was updated</li>
+<li>Format: <code>after Phase 2</code> or <code>after v1.0 milestone</code></li>
+<li>Triggers review of whether content is still accurate</li>
+</ul>
+</guidelines>
+
+<evolution>
+
+<p>PROJECT.md evolves throughout the project lifecycle.
+These rules are embedded in the generated PROJECT.md (## Evolution section)
+and implemented by transition and milestone-completion workflows.</p>
+<p><strong>After each phase transition:</strong></p>
+<ol>
+<li>Requirements invalidated? → Move to Out of Scope with reason</li>
+<li>Requirements validated? → Move to Validated with phase reference</li>
+<li>New requirements emerged? → Add to Active</li>
+<li>Decisions to log? → Add to Key Decisions</li>
+<li>&quot;What This Is&quot; still accurate? → Update if drifted</li>
+</ol>
+<p><strong>After each milestone:</strong></p>
+<ol>
+<li>Full review of all sections</li>
+<li>Core Value check — still the right priority?</li>
+<li>Audit Out of Scope — reasons still valid?</li>
+<li>Update Context with current state (users, feedback, metrics)</li>
+</ol>
+</evolution>
+
+<brownfield>
+
+<p>For existing codebases:</p>
+<ol>
+<li><p><strong>Map the codebase first</strong> — analyze the project structure and existing code before defining requirements.</p>
+</li>
+<li><p><strong>Infer Validated requirements</strong> from existing code:</p>
+<ul>
+<li>What does the codebase actually do?</li>
+<li>What patterns are established?</li>
+<li>What&#39;s clearly working and relied upon?</li>
+</ul>
+</li>
+<li><p><strong>Gather Active requirements</strong> from user:</p>
+<ul>
+<li>Present inferred current state</li>
+<li>Ask what they want to build next</li>
+</ul>
+</li>
+<li><p><strong>Initialize:</strong></p>
+<ul>
+<li>Validated = inferred from existing code</li>
+<li>Active = user&#39;s goals for this work</li>
+<li>Out of Scope = boundaries user specifies</li>
+<li>Context = includes current codebase state</li>
+</ul>
+</li>
+</ol>
+</brownfield>
+
+<state_reference>
+
+<p>STATE.md references PROJECT.md:</p>
+<pre><code class="language-markdown">## Project Reference
+
+See: .planning/PROJECT.md (updated [date])
+
+**Core value:** [One-liner from Core Value section]
+**Current focus:** [Current phase name]
+</code></pre>
+<p>This ensures Claude reads current PROJECT.md context.</p>
+</state_reference>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

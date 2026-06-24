@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>ACOS Meta</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/acos-meta/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ACOS Meta</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Facos-meta">acos-meta</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: acos-meta
+description: &quot;ACOS self-description and configuration skill. Documents how ACOS works, how to extend it, how to add new skills/commands/agents, and how to debug the hook system. Use when building new ACOS capabilities, understanding the system architecture, or onboarding to ACOS for the first time.&quot;</h2>
+<h1>ACOS Meta</h1>
+<p>ACOS describes itself using the same primitives it uses to build everything else. This skill is ACOS about ACOS.</p>
+<h2>System Architecture</h2>
+<pre><code>acos-intelligence-system/
+├── .claude-plugin/
+│   └── plugin.json              ← Plugin manifest (v11.0.0)
+├── .mcp.json                    ← MCP server registry
+├── CONNECTORS.md                ← Connector category map
+├── skills/                      ← Domain expertise (subdirs, progressive disclosure)
+│   ├── [skill-name]/
+│   │   ├── SKILL.md             ← Lean main file (&lt;3K words)
+│   │   └── references/          ← Deep content, fetched on demand
+├── commands/                    ← Slash commands (one .md per command)
+├── hooks/                       ← Lifecycle automation (SessionStart, Stop, etc.)
+├── docs/                        ← Strategy documents
+└── README.md                    ← Entry point
+</code></pre>
+<h2>The 3 Design Principles (Drawn from knowledge-work-plugins)</h2>
+<h3>1. Progressive Disclosure</h3>
+<p>SKILL.md contains the mental model and workflow skeleton. Details live in <code>references/</code>. Claude loads the lean summary and fetches references only when needed. This keeps context efficient without sacrificing depth.</p>
+<h3>2. Connector Agnosticism</h3>
+<p>Skills reference <code>~~categories</code>, not vendor names. The <code>.mcp.json</code> maps categories to specific tools. Swap tools without touching skill content.</p>
+<h3>3. Commands as Workflows</h3>
+<p>Commands are fully-specified workflows in markdown — trigger, input gathering, decision logic, output structure, follow-up options. No code. Claude interprets and executes.</p>
+<h2>How ACOS Auto-Routing Works</h2>
+<p>The <code>/acos</code> command is the entry point. It routes based on keyword detection:</p>
+<pre><code>User request
+    |
+    ├── AI architecture keywords    → Technical Architect agent
+    ├── Content/writing keywords    → Content Engine
+    ├── Music keywords              → Music Producer
+    ├── Visual/image keywords       → Visual Creation Council
+    ├── Deploy/build keywords       → DevOps Pipeline
+    ├── Research keywords           → Deep Research swarm
+    └── Complex/multi-file          → Full swarm (5+ agents)
+</code></pre>
+<p>The hook system (<code>hooks/skill-activation-prompt.sh</code>) enhances routing with pattern matching before Claude processes the request.</p>
+<h2>Adding a New Skill</h2>
+<ol>
+<li>Create <code>skills/[skill-name]/SKILL.md</code></li>
+<li>Add YAML frontmatter: <code>name</code>, <code>description</code> (include trigger phrases)</li>
+<li>Write lean main content (&lt;3K words) covering: overview, core concepts, workflow, key principles</li>
+<li>Create <code>skills/[skill-name]/references/</code> for detailed content</li>
+<li>Register in <code>skills/skill-rules.json</code> if using activation matching</li>
+<li>Test: mention trigger phrases and verify activation in session</li>
+</ol>
+<p><strong>SKILL.md frontmatter template:</strong></p>
+<pre><code class="language-yaml">---
+name: skill-name
+description: &quot;One-sentence description. Include trigger phrases like: what actions activate this skill, what topics it covers.&quot;
+---
+</code></pre>
+<h2>Adding a New Command</h2>
+<ol>
+<li>Create <code>commands/[command-name].md</code></li>
+<li>Use the standard command structure:<ul>
+<li>YAML frontmatter: <code>description</code>, <code>argument-hint</code> (optional)</li>
+<li><code>&gt; See CONNECTORS.md</code> reference</li>
+<li><code>## Workflow</code> with numbered steps</li>
+<li>Input gathering, tool use, output format, follow-up options</li>
+</ul>
+</li>
+<li>No code logic — pure markdown workflow</li>
+<li>Test: run <code>/[command-name]</code> and verify execution</li>
+</ol>
+<p><strong>Command frontmatter template:</strong></p>
+<pre><code class="language-yaml">---
+description: What this command does in one sentence
+argument-hint: &quot;&lt;optional argument description&gt;&quot;
+---
+</code></pre>
+<h2>Adding a New Agent</h2>
+<ol>
+<li>Create <code>.claude/agents/[agent-name].md</code></li>
+<li>Define: role, capabilities, tools, escalation path</li>
+<li>Reference from orchestration commands or swarm topology</li>
+<li>Test via Task tool: <code>Task(subagent_type=&quot;[agent-name]&quot;, prompt=&quot;...&quot;)</code></li>
+</ol>
+<h2>Debugging the Hook System</h2>
+<p>ACOS has 15 hooks across 6 lifecycle events. When hooks behave unexpectedly:</p>
+<ol>
+<li>Check audit trail: <code>cat .claude-flow/audit.jsonl | tail -20</code></li>
+<li>Check circuit breaker state: <code>cat .claude-flow/circuit-breaker.json</code></li>
+<li>View learning metrics: <code>cat .claude-flow/metrics/learning-status.json</code></li>
+<li>Run monitor: <code>npm run monitor</code> (real-time hook dashboard)</li>
+</ol>
+<p><strong>Hook event map:</strong></p>
+<pre><code>SessionStart    → session-start.js + starlight-bridge + todo-continuation restore
+UserPromptSubmit → skill-activation-prompt.sh
+PreToolUse      → quality-gate + circuit-breaker
+PostToolUse     → post-tool-track.js + audit-trail
+Stop            → stop-finalize.js + todo-continuation save + learning-hooks
+PreCompact      → context preservation
+</code></pre>
+<h2>Intelligence Score System</h2>
+<p>ACOS tracks its own intelligence score across sessions:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+<th>Measured by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Skill activation accuracy</td>
+<td>25%</td>
+<td>Trajectory success rates</td>
+</tr>
+<tr>
+<td>Pattern extraction quality</td>
+<td>25%</td>
+<td>n-gram count in patterns.json</td>
+</tr>
+<tr>
+<td>Memory utilization</td>
+<td>20%</td>
+<td>Context recovery on session start</td>
+</tr>
+<tr>
+<td>Hook reliability</td>
+<td>15%</td>
+<td>Zero circuit breaker breaks</td>
+</tr>
+<tr>
+<td>Self-modify safety</td>
+<td>15%</td>
+<td>Score delta tracking</td>
+</tr>
+</tbody></table>
+<p>View with <code>/acos-score</code>.</p>
+<h2>ACOS × knowledge-work-plugins</h2>
+<p>ACOS v11 integrates patterns from the <a href="https://github.com/frankxai/knowledge-work-plugins">knowledge-work-plugins</a> ecosystem:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Source</th>
+<th>Applied in ACOS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Progressive disclosure</td>
+<td>knowledge-work-plugins</td>
+<td>All new skills use SKILL.md + references/</td>
+</tr>
+<tr>
+<td>Plugin manifest</td>
+<td>knowledge-work-plugins</td>
+<td><code>.claude-plugin/plugin.json</code></td>
+</tr>
+<tr>
+<td>Connector agnosticism</td>
+<td>knowledge-work-plugins</td>
+<td><code>CONNECTORS.md</code> with <code>~~category</code> placeholders</td>
+</tr>
+<tr>
+<td>Command workflow format</td>
+<td>knowledge-work-plugins</td>
+<td>Standardized command structure with input gathering</td>
+</tr>
+<tr>
+<td>Two-tier memory</td>
+<td>productivity plugin</td>
+<td>creator-productivity skill</td>
+</tr>
+<tr>
+<td>Brand voice framework</td>
+<td>marketing plugin</td>
+<td>brand-voice skill</td>
+</tr>
+</tbody></table>
+<p>ACOS contributes back to knowledge-work-plugins:</p>
+<ul>
+<li><code>creator/</code> plugin — creator-specific domain (content, visual, music)</li>
+<li>Pattern: quality gates in visual and content creation</li>
+<li>Pattern: music prompt engineering pipeline</li>
+</ul>
+<p>See <code>references/v11-architecture-decisions.md</code> for the full integration rationale.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

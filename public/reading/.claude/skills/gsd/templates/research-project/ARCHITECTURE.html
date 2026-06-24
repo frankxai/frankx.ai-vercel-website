@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Architecture Research Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gsd/templates/research-project/ARCHITECTURE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Architecture Research Template</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude">.claude</a> / <a href="../../../index.html#.claude%2Fskills">skills</a> / <a href="../../index.html#.claude%2Fskills%2Fgsd">gsd</a> / <a href="../index.html#.claude%2Fskills%2Fgsd%2Ftemplates">templates</a> / <a href="index.html#.claude%2Fskills%2Fgsd%2Ftemplates%2Fresearch-project">research-project</a> / <span>ARCHITECTURE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Architecture Research Template</h1>
+<p>Template for <code>.planning/research/ARCHITECTURE.md</code> — system structure patterns for the project domain.</p>
+<template>
+
+<pre><code class="language-markdown"># Architecture Research
+
+**Domain:** [domain type]
+**Researched:** [date]
+**Confidence:** [HIGH/MEDIUM/LOW]
+
+## Standard Architecture
+
+### System Overview
+</code></pre>
+<p>┌─────────────────────────────────────────────────────────────┐
+│                        [Layer Name]                          │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
+│  │ [Comp]  │  │ [Comp]  │  │ [Comp]  │  │ [Comp]  │        │
+│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘        │
+│       │            │            │            │              │
+├───────┴────────────┴────────────┴────────────┴──────────────┤
+│                        [Layer Name]                          │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                    [Component]                       │    │
+│  └─────────────────────────────────────────────────────┘    │
+├─────────────────────────────────────────────────────────────┤
+│                        [Layer Name]                          │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐                   │
+│  │ [Store]  │  │ [Store]  │  │ [Store]  │                   │
+│  └──────────┘  └──────────┘  └──────────┘                   │
+└─────────────────────────────────────────────────────────────┘</p>
+<pre><code>
+### Component Responsibilities
+
+| Component | Responsibility | Typical Implementation |
+|-----------|----------------|------------------------|
+| [name] | [what it owns] | [how it&#39;s usually built] |
+| [name] | [what it owns] | [how it&#39;s usually built] |
+| [name] | [what it owns] | [how it&#39;s usually built] |
+
+## Recommended Project Structure
+</code></pre>
+<p>src/
+├── [folder]/           # [purpose]
+│   ├── [subfolder]/    # [purpose]
+│   └── [file].ts       # [purpose]
+├── [folder]/           # [purpose]
+│   ├── [subfolder]/    # [purpose]
+│   └── [file].ts       # [purpose]
+├── [folder]/           # [purpose]
+└── [folder]/           # [purpose]</p>
+<pre><code>
+### Structure Rationale
+
+- **[folder]/:** [why organized this way]
+- **[folder]/:** [why organized this way]
+
+## Architectural Patterns
+
+### Pattern 1: [Pattern Name]
+
+**What:** [description]
+**When to use:** [conditions]
+**Trade-offs:** [pros and cons]
+
+**Example:**
+```typescript
+// [Brief code example showing the pattern]
+</code></pre>
+<h3>Pattern 2: [Pattern Name]</h3>
+<p><strong>What:</strong> [description]
+<strong>When to use:</strong> [conditions]
+<strong>Trade-offs:</strong> [pros and cons]</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">// [Brief code example showing the pattern]
+</code></pre>
+<h3>Pattern 3: [Pattern Name]</h3>
+<p><strong>What:</strong> [description]
+<strong>When to use:</strong> [conditions]
+<strong>Trade-offs:</strong> [pros and cons]</p>
+<h2>Data Flow</h2>
+<h3>Request Flow</h3>
+<pre><code>[User Action]
+    ↓
+[Component] → [Handler] → [Service] → [Data Store]
+    ↓              ↓           ↓            ↓
+[Response] ← [Transform] ← [Query] ← [Database]
+</code></pre>
+<h3>State Management</h3>
+<pre><code>[State Store]
+    ↓ (subscribe)
+[Components] ←→ [Actions] → [Reducers/Mutations] → [State Store]
+</code></pre>
+<h3>Key Data Flows</h3>
+<ol>
+<li><strong>[Flow name]:</strong> [description of how data moves]</li>
+<li><strong>[Flow name]:</strong> [description of how data moves]</li>
+</ol>
+<h2>Scaling Considerations</h2>
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th>Architecture Adjustments</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-1k users</td>
+<td>[approach — usually monolith is fine]</td>
+</tr>
+<tr>
+<td>1k-100k users</td>
+<td>[approach — what to optimize first]</td>
+</tr>
+<tr>
+<td>100k+ users</td>
+<td>[approach — when to consider splitting]</td>
+</tr>
+</tbody></table>
+<h3>Scaling Priorities</h3>
+<ol>
+<li><strong>First bottleneck:</strong> [what breaks first, how to fix]</li>
+<li><strong>Second bottleneck:</strong> [what breaks next, how to fix]</li>
+</ol>
+<h2>Anti-Patterns</h2>
+<h3>Anti-Pattern 1: [Name]</h3>
+<p><strong>What people do:</strong> [the mistake]
+<strong>Why it&#39;s wrong:</strong> [the problem it causes]
+<strong>Do this instead:</strong> [the correct approach]</p>
+<h3>Anti-Pattern 2: [Name]</h3>
+<p><strong>What people do:</strong> [the mistake]
+<strong>Why it&#39;s wrong:</strong> [the problem it causes]
+<strong>Do this instead:</strong> [the correct approach]</p>
+<h2>Integration Points</h2>
+<h3>External Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Integration Pattern</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[service]</td>
+<td>[how to connect]</td>
+<td>[gotchas]</td>
+</tr>
+<tr>
+<td>[service]</td>
+<td>[how to connect]</td>
+<td>[gotchas]</td>
+</tr>
+</tbody></table>
+<h3>Internal Boundaries</h3>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Communication</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[module A ↔ module B]</td>
+<td>[API/events/direct]</td>
+<td>[considerations]</td>
+</tr>
+</tbody></table>
+<h2>Sources</h2>
+<ul>
+<li>[Architecture references]</li>
+<li>[Official documentation]</li>
+<li>[Case studies]</li>
+</ul>
+<hr>
+<p><em>Architecture research for: [domain]</em>
+<em>Researched: [date]</em></p>
+<pre><code>
+&lt;/template&gt;
+
+&lt;guidelines&gt;
+
+**System Overview:**
+- Use ASCII box-drawing diagrams for clarity (├── └── │ ─ for structure visualization only)
+- Show major components and their relationships
+- Don&#39;t over-detail — this is conceptual, not implementation
+
+**Project Structure:**
+- Be specific about folder organization
+- Explain the rationale for grouping
+- Match conventions of the chosen stack
+
+**Patterns:**
+- Include code examples where helpful
+- Explain trade-offs honestly
+- Note when patterns are overkill for small projects
+
+**Scaling Considerations:**
+- Be realistic — most projects don&#39;t need to scale to millions
+- Focus on &quot;what breaks first&quot; not theoretical limits
+- Avoid premature optimization recommendations
+
+**Anti-Patterns:**
+- Specific to this domain
+- Include what to do instead
+- Helps prevent common mistakes during implementation
+
+&lt;/guidelines&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

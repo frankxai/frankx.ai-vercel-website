@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Test Page - Upload</title>
+</head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <h1>Upload Test</h1>
+  <input type="file" id="file-input" />
+  <input type="file" id="multi-input" multiple />
+  <p id="upload-result"></p>
+  <script>
+    document.getElementById('file-input').addEventListener('change', function(e) {
+      const files = e.target.files;
+      const names = Array.from(files).map(f => f.name).join(', ');
+      document.getElementById('upload-result').textContent = 'Uploaded: ' + names;
+    });
+    document.getElementById('multi-input').addEventListener('change', function(e) {
+      const files = e.target.files;
+      const names = Array.from(files).map(f => f.name).join(', ');
+      document.getElementById('upload-result').textContent = 'Multi: ' + names;
+    });
+  </script>
+</body>
+</html>

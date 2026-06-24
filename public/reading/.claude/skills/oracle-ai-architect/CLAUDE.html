@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Oracle AI Architect</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/oracle-ai-architect/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Oracle AI Architect</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Foracle-ai-architect">oracle-ai-architect</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Oracle AI Architect</h1>
+<p>Comprehensive AI architecture expertise for Oracle Cloud Infrastructure - from Generative AI to Autonomous Database 26ai, NVIDIA NIM integration, and enterprise-grade agent development.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Designing AI solutions on OCI</li>
+<li>Architecting multi-cloud AI with Oracle components</li>
+<li>Evaluating Oracle AI vs other cloud providers</li>
+<li>Building production AI agents on Oracle infrastructure</li>
+</ul>
+<h2>Oracle AI Stack Overview</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    APPLICATION LAYER                             │
+│  AI Agents │ RAG Apps │ Chatbots │ Document Processing          │
+├─────────────────────────────────────────────────────────────────┤
+│                    DEVELOPMENT LAYER                             │
+│  Oracle ADK │ Agent Hub │ AI Data Platform Workbench            │
+├─────────────────────────────────────────────────────────────────┤
+│                    MODEL LAYER                                   │
+│  OCI Generative AI      │  NVIDIA NIM    │  Private AI Containers│
+│  - Cohere Command A     │  - 100+ models │  - ONNX models        │
+│  - Llama 4 Maverick     │  - Embeddings  │  - Custom fine-tuned  │
+│  - Embed 4              │  - RAG         │                       │
+├─────────────────────────────────────────────────────────────────┤
+│                    AI SERVICES LAYER                             │
+│  Vision │ Language │ Speech │ Document Understanding │ Anomaly  │
+├─────────────────────────────────────────────────────────────────┤
+│                    DATA LAYER                                    │
+│  Autonomous AI Database 26ai                                     │
+│  - AI Vector Search     │  Select AI Agents  │  JSON Duality     │
+│  - NVIDIA NIM integration│  MCP Server support│  Graph analytics  │
+├─────────────────────────────────────────────────────────────────┤
+│                    INFRASTRUCTURE LAYER                          │
+│  NVIDIA GPUs (H100/GB200) │ Zettascale Cluster │ FastConnect     │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>OCI Generative AI Service</h2>
+<h3>Available Models (2026)</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameters</th>
+<th>Context</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cohere Command A</strong></td>
+<td>Latest</td>
+<td>256K tokens</td>
+<td>Tool use, agents, RAG, multilingual</td>
+</tr>
+<tr>
+<td><strong>Llama 4 Maverick</strong></td>
+<td>17B active/400B total</td>
+<td>Large</td>
+<td>Complex reasoning (MoE)</td>
+</tr>
+<tr>
+<td><strong>Llama 4 Scout</strong></td>
+<td>17B active/109B total</td>
+<td>Efficient</td>
+<td>Cost-optimized inference</td>
+</tr>
+<tr>
+<td><strong>Llama 3.3</strong></td>
+<td>70B</td>
+<td>Fine-tunable</td>
+<td>Custom use cases</td>
+</tr>
+<tr>
+<td><strong>Cohere Embed 4</strong></td>
+<td>-</td>
+<td>-</td>
+<td>Vector embeddings</td>
+</tr>
+</tbody></table>
+<h3>Fine-Tuning Options</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Method</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cohere Command</td>
+<td>T-Few / Vanilla</td>
+<td>Task-specific adaptation</td>
+</tr>
+<tr>
+<td>Llama 3</td>
+<td>LoRA</td>
+<td>Efficient large model tuning</td>
+</tr>
+</tbody></table>
+<h3>Production Features</h3>
+<ul>
+<li>Content moderation controls</li>
+<li>Endpoint model swap (zero downtime)</li>
+<li>Endpoint deactivation/activation</li>
+<li>Agent Hub for agent management</li>
+<li>Sovereign/classified cloud deployment</li>
+</ul>
+<h2>Oracle Database 26ai AI Features</h2>
+<h3>AI Vector Search</h3>
+<pre><code class="language-sql">-- Create vector column
+CREATE TABLE documents (
+    id NUMBER,
+    content CLOB,
+    embedding VECTOR(1536, FLOAT32)
+);
+
+-- Similarity search
+SELECT id, content
+FROM documents
+ORDER BY VECTOR_DISTANCE(embedding, :query_vector, COSINE)
+FETCH FIRST 10 ROWS ONLY;
+</code></pre>
+<h3>Select AI (Natural Language to SQL)</h3>
+<pre><code class="language-sql">-- Enable Select AI
+SELECT AI &quot;Show me last quarter&#39;s top 10 customers by revenue&quot;;
+
+-- Returns actual SQL result, not just the query
+</code></pre>
+<h3>Select AI Agents (NEW in 26ai)</h3>
+<pre><code class="language-sql">-- Define agent with tools
+DBMS_CLOUD_AI.CREATE_AGENT(
+    agent_name =&gt; &#39;sales_assistant&#39;,
+    tools =&gt; JSON(&#39;[
+        {&quot;type&quot;: &quot;database&quot;, &quot;tables&quot;: [&quot;customers&quot;, &quot;orders&quot;]},
+        {&quot;type&quot;: &quot;rest&quot;, &quot;endpoint&quot;: &quot;https://api.crm.com/lookup&quot;}
+    ]&#39;),
+    mcp_servers =&gt; JSON(&#39;[&quot;postgres-mcp&quot;, &quot;salesforce-mcp&quot;]&#39;)
+);
+
+-- Run agent
+SELECT AI AGENT &#39;sales_assistant&#39; &#39;Analyze Q4 performance and create summary&#39;;
+</code></pre>
+<h3>NVIDIA Integration</h3>
+<ul>
+<li>NeMo Retriever API support</li>
+<li>NIM container integration for embeddings</li>
+<li>cuVS for GPU-accelerated vector operations</li>
+</ul>
+<h2>NVIDIA NIM on OCI</h2>
+<h3>Deployment Options</h3>
+<ol>
+<li><p><strong>OCI Console Native</strong> (New 2026)</p>
+<ul>
+<li>160+ AI tools available</li>
+<li>100+ NIM microservices</li>
+<li>One-click deployment</li>
+</ul>
+</li>
+<li><p><strong>Bare Metal / VM</strong></p>
+<ul>
+<li>Full control</li>
+<li>Strong isolation</li>
+<li>Custom configurations</li>
+</ul>
+</li>
+<li><p><strong>AI Blueprints</strong> (No-code)</p>
+<ul>
+<li>Pre-configured recipes</li>
+<li>Hardware recommendations</li>
+<li>Built-in observability</li>
+</ul>
+</li>
+</ol>
+<h3>Available NIM Microservices</h3>
+<ul>
+<li>LLM inference</li>
+<li>Embedding generation</li>
+<li>RAG pipelines</li>
+<li>Vision models</li>
+<li>Speech recognition</li>
+</ul>
+<h2>AI Data Platform (AIDP)</h2>
+<h3>Medallion Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│ BRONZE (Raw)        │ SILVER (Cleaned)   │ GOLD (Curated) │
+│ Object Storage      │ Data Engineering   │ Autonomous DB  │
+│ - Raw data landing  │ - ETL/Spark        │ - Query-ready  │
+│ - Any format        │ - Quality checks   │ - AI-optimized │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>AIDP Workbench</h3>
+<ul>
+<li>Unified notebook environment</li>
+<li>Spark-based data processing</li>
+<li>ML model training</li>
+<li>Governed data catalogs</li>
+<li>Collaborative workflows</li>
+</ul>
+<h2>OCI AI Services (Pre-trained)</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Capability</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Vision</strong></td>
+<td>Image/object detection</td>
+<td>Manufacturing QA, asset tagging</td>
+</tr>
+<tr>
+<td><strong>Language</strong></td>
+<td>NLP (sentiment, NER, translation)</td>
+<td>Customer feedback analysis</td>
+</tr>
+<tr>
+<td><strong>Speech</strong></td>
+<td>ASR + TTS (Whisper support)</td>
+<td>Voice interfaces, transcription</td>
+</tr>
+<tr>
+<td><strong>Document Understanding</strong></td>
+<td>OCR, table extraction</td>
+<td>Invoice processing, contracts</td>
+</tr>
+<tr>
+<td><strong>Anomaly Detection</strong></td>
+<td>Outlier identification</td>
+<td>Fraud, predictive maintenance</td>
+</tr>
+</tbody></table>
+<h2>Oracle Agent Development</h2>
+<h3>Oracle ADK</h3>
+<pre><code class="language-python">from oci_adk import Agent, FunctionTool
+
+@FunctionTool(name=&quot;query_sales&quot;)
+def query_sales(region: str, quarter: str):
+    return adb.execute(f&quot;SELECT * FROM sales WHERE region=&#39;{region}&#39;&quot;)
+
+agent = Agent(
+    name=&quot;sales_analyst&quot;,
+    model=&quot;cohere.command-a&quot;,
+    tools=[query_sales]
+)
+</code></pre>
+<h3>Agent Hub (OCI Generative AI)</h3>
+<ul>
+<li>Centralized agent management</li>
+<li>Built-in governance</li>
+<li>Deployment orchestration</li>
+<li>Monitoring and logging</li>
+</ul>
+<h3>Oracle Agent Spec (Framework-agnostic)</h3>
+<pre><code class="language-yaml">version: &quot;1.0&quot;
+agent:
+  name: EnterpriseBot
+  components:
+    classifier:
+      type: LLMNode
+      model: cohere.command-a
+    executor:
+      type: AgentNode
+      tools: [database_tool, api_tool]
+</code></pre>
+<h2>Multi-Cloud Strategy</h2>
+<h3>Oracle&#39;s Unique Position</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Oracle Advantage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Database</strong></td>
+<td>26ai is only DB with native AI Vector Search + Select AI Agents</td>
+</tr>
+<tr>
+<td><strong>Licensing</strong></td>
+<td>Bring Oracle licenses to any cloud (BYOL)</td>
+</tr>
+<tr>
+<td><strong>Sovereign AI</strong></td>
+<td>Classified cloud deployment (US Gov)</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>20-40% cheaper than AWS/Azure</td>
+</tr>
+<tr>
+<td><strong>NVIDIA</strong></td>
+<td>Deep NIM integration, Zettascale cluster</td>
+</tr>
+</tbody></table>
+<h3>Multi-Cloud Deployment</h3>
+<pre><code>┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│   AWS        │    │   Azure      │    │   OCI        │
+│   (Apps)     │    │   (M365)     │    │   (Data+AI)  │
+└──────┬───────┘    └──────┬───────┘    └──────┬───────┘
+       │                   │                    │
+       └───────────────────┴────────────────────┘
+                          │
+                ┌─────────▼─────────┐
+                │  Oracle Database  │
+                │  (Any Cloud)      │
+                │  - ADB Dedicated  │
+                │  - Exadata C@C    │
+                │  - DB@Azure/AWS   │
+                └───────────────────┘
+</code></pre>
+<h2>Architecture Decision Framework</h2>
+<h3>When to Use Oracle AI</h3>
+<p><strong>Best Fit:</strong></p>
+<ul>
+<li>Existing Oracle Database investment</li>
+<li>Need Select AI / AI Vector Search in database</li>
+<li>Want integrated agent development with ADK</li>
+<li>Sovereign/classified workloads</li>
+<li>Cost-sensitive with predictable usage</li>
+</ul>
+<p><strong>Consider Alternatives:</strong></p>
+<ul>
+<li>Need OpenAI GPT-4o specifically → Azure OpenAI</li>
+<li>Deep AWS ecosystem already → Bedrock</li>
+<li>Google-native org → Vertex AI</li>
+</ul>
+<h3>Recommended Stack for Enterprise AI</h3>
+<pre><code>┌─────────────────────────────────────────────────┐
+│              RECOMMENDED ORACLE AI STACK         │
+├─────────────────────────────────────────────────┤
+│ Agents:     Oracle ADK + Agent Hub               │
+│ Models:     Cohere Command A / Llama 4           │
+│ Database:   Autonomous AI Database 26ai          │
+│ Vectors:    AI Vector Search (native)            │
+│ NL-to-SQL:  Select AI Agents                     │
+│ Inference:  NVIDIA NIM on OCI                    │
+│ Processing: AI Data Platform Workbench           │
+│ Governance: OCI IAM + Data Safe                  │
+└─────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>💰 OCI AI VERIFIED PRICING (January 2026)</h2>
+<blockquote>
+<p><strong>IMPORTANT</strong>: Pricing verified against official Oracle sources. Always confirm at <a href="https://www.oracle.com/cloud/price-list/">oracle.com/cloud/price-list</a>.</p>
+</blockquote>
+<h3>Always Free AI Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Free Allocation</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Autonomous Database</strong></td>
+<td>2 instances (20GB each)</td>
+<td>Includes AI Vector Search</td>
+</tr>
+<tr>
+<td><strong>Ampere A1 Compute</strong></td>
+<td>3,000 OCPU-hrs/mo</td>
+<td>For NIM or custom inference</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer</strong></td>
+<td>1 NLB</td>
+<td>FREE, no data charges</td>
+</tr>
+<tr>
+<td><strong>Data Egress</strong></td>
+<td>10 TB/month</td>
+<td>Per region</td>
+</tr>
+</tbody></table>
+<h3>OCI Generative AI Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Input Tokens</th>
+<th>Output Tokens</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cohere Command A</strong></td>
+<td>~$0.0015/1K</td>
+<td>~$0.002/1K</td>
+<td>Agents, RAG, tools</td>
+</tr>
+<tr>
+<td><strong>Cohere Command Light</strong></td>
+<td>~$0.0003/1K</td>
+<td>~$0.0006/1K</td>
+<td>Simple tasks</td>
+</tr>
+<tr>
+<td><strong>Llama 4 Maverick</strong></td>
+<td>~$0.001/1K</td>
+<td>~$0.002/1K</td>
+<td>Complex reasoning</td>
+</tr>
+<tr>
+<td><strong>Llama 4 Scout</strong></td>
+<td>~$0.0005/1K</td>
+<td>~$0.001/1K</td>
+<td>Cost-optimized</td>
+</tr>
+<tr>
+<td><strong>Cohere Embed 4</strong></td>
+<td>~$0.0001/1K</td>
+<td>N/A</td>
+<td>Embeddings</td>
+</tr>
+</tbody></table>
+<p><strong>Monthly Estimate (moderate usage ~1M tokens)</strong>: ~$2-5/mo</p>
+<h3>Autonomous Database 26ai Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Always Free</strong></td>
+<td><strong>$0</strong></td>
+<td>2 instances, 20GB, AI Vector Search included</td>
+</tr>
+<tr>
+<td><strong>Paid (ECPU)</strong></td>
+<td>$0.336/ECPU-hr</td>
+<td>License included</td>
+</tr>
+<tr>
+<td><strong>Paid (BYOL)</strong></td>
+<td>$0.0807/ECPU-hr</td>
+<td>76% savings</td>
+</tr>
+<tr>
+<td><strong>Minimum Paid</strong></td>
+<td>~$238/mo</td>
+<td>2 ECPU continuous</td>
+</tr>
+<tr>
+<td><strong>Elastic Pools</strong></td>
+<td>Up to 87% compute savings</td>
+<td>Multi-DB consolidation</td>
+</tr>
+</tbody></table>
+<p><strong>AI Vector Search</strong>: Included FREE in all Autonomous Database tiers</p>
+<h3>NVIDIA NIM on OCI Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Deployment</th>
+<th>Cost</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AI Blueprints (Console)</strong></td>
+<td>Compute only</td>
+<td>No NIM license fee</td>
+</tr>
+<tr>
+<td><strong>VM.GPU.A10.1</strong></td>
+<td>~$2.50/hr</td>
+<td>Single A10 GPU</td>
+</tr>
+<tr>
+<td><strong>VM.GPU.A10.2</strong></td>
+<td>~$5.00/hr</td>
+<td>2x A10 GPUs</td>
+</tr>
+<tr>
+<td><strong>BM.GPU.H100.8</strong></td>
+<td>~$30/hr</td>
+<td>8x H100 GPUs</td>
+</tr>
+<tr>
+<td><strong>Reserved H100 (1yr)</strong></td>
+<td>~$18/hr</td>
+<td>40% savings</td>
+</tr>
+</tbody></table>
+<p><strong>Container Instance with GPU</strong>: Same compute pricing, uses free tier pool for CPU</p>
+<h3>Compute for AI Workloads</h3>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Price</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>VM.Standard.A1.Flex</strong></td>
+<td><strong>$0.0165/OCPU-hr</strong></td>
+<td>Agents, API servers</td>
+</tr>
+<tr>
+<td><strong>Container Instance</strong></td>
+<td><strong>$0.0165/OCPU-hr</strong></td>
+<td>Serverless inference</td>
+</tr>
+<tr>
+<td><strong>BM.GPU.H100.8</strong></td>
+<td>~$30/hr</td>
+<td>Large model training</td>
+</tr>
+<tr>
+<td><strong>BM.GPU4.8 (A100)</strong></td>
+<td>~$15/hr</td>
+<td>Inference, fine-tuning</td>
+</tr>
+</tbody></table>
+<p><strong>First 3,000 OCPU-hours FREE</strong> (Ampere A1)</p>
+<h3>Storage for AI</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Price/GB/Month</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Object Storage</strong></td>
+<td><strong>$0.0255</strong></td>
+<td>Model weights, datasets</td>
+</tr>
+<tr>
+<td><strong>Archive</strong></td>
+<td><strong>$0.0026</strong></td>
+<td>Training data retention</td>
+</tr>
+<tr>
+<td><strong>Block Volume</strong></td>
+<td>$0.0255</td>
+<td>High-IOPS model storage</td>
+</tr>
+</tbody></table>
+<h3>AI Architecture Cost Examples</h3>
+<p><strong>RAG Chatbot (Small)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Autonomous DB (Vector Search)</td>
+<td>$0 (Always Free)</td>
+</tr>
+<tr>
+<td>Container Instance (API)</td>
+<td>$0-18</td>
+</tr>
+<tr>
+<td>Cohere Command A (~500K tokens)</td>
+<td>~$1-2</td>
+</tr>
+<tr>
+<td>Object Storage (10GB docs)</td>
+<td>$0.26</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>$0-20/mo</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Production AI Agent System</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Autonomous DB 26ai (4 ECPU)</td>
+<td>~$500</td>
+</tr>
+<tr>
+<td>OKE (3 nodes, A1)</td>
+<td>~$100</td>
+</tr>
+<tr>
+<td>GenAI API (5M tokens)</td>
+<td>~$10-15</td>
+</tr>
+<tr>
+<td>Object Storage (100GB)</td>
+<td>~$2.55</td>
+</tr>
+<tr>
+<td>Load Balancer</td>
+<td>~$20</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>~$630/mo</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Enterprise NVIDIA NIM Deployment</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BM.GPU.H100.8 (reserved)</td>
+<td>~$13,000</td>
+</tr>
+<tr>
+<td>Autonomous DB (production)</td>
+<td>~$1,500</td>
+</tr>
+<tr>
+<td>Object Storage (1TB)</td>
+<td>~$26</td>
+</tr>
+<tr>
+<td>FastConnect (10 Gbps)</td>
+<td>~$2,200</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>~$16,700/mo</strong></td>
+</tr>
+</tbody></table>
+<h3>Cost Comparison: OCI vs AWS Bedrock</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>OCI</th>
+<th>AWS</th>
+<th>Savings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1M tokens (Cohere/Claude)</strong></td>
+<td>~$2</td>
+<td>~$8-15</td>
+<td><strong>75-85%</strong></td>
+</tr>
+<tr>
+<td><strong>Vector DB (500K vectors)</strong></td>
+<td>$0 (ADB Free)</td>
+<td>$70+ (Pinecone)</td>
+<td><strong>100%</strong></td>
+</tr>
+<tr>
+<td><strong>50TB Egress</strong></td>
+<td>~$340</td>
+<td>~$4,500</td>
+<td><strong>92%</strong></td>
+</tr>
+<tr>
+<td><strong>GPU Instance (H100/mo)</strong></td>
+<td>~$13,000</td>
+<td>~$25,000</td>
+<td><strong>48%</strong></td>
+</tr>
+</tbody></table>
+<h3>OCI AI Accelerator Packs (NEW)</h3>
+<p>Pre-configured AI solution bundles for quick deployment:</p>
+<ul>
+<li><strong>RAG Pack</strong>: GenAI + Vector Search + Object Storage</li>
+<li><strong>Agent Pack</strong>: ADK + Agent Hub + ADB</li>
+<li><strong>Vision Pack</strong>: AI Vision + Object Storage + Functions</li>
+</ul>
+<blockquote>
+<p>Pricing varies by pack - check OCI Console for current bundles</p>
+</blockquote>
+<h3>Pricing Verification Resources</h3>
+<ul>
+<li><strong>OCI Price List</strong>: <a href="https://www.oracle.com/cloud/price-list/">https://www.oracle.com/cloud/price-list/</a></li>
+<li><strong>Cost Estimator</strong>: <a href="https://www.oracle.com/cloud/costestimator.html">https://www.oracle.com/cloud/costestimator.html</a></li>
+<li><strong>Always Free</strong>: <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm">https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm</a></li>
+<li><strong>GenAI Pricing</strong>: <a href="https://www.oracle.com/artificial-intelligence/generative-ai/pricing/">https://www.oracle.com/artificial-intelligence/generative-ai/pricing/</a></li>
+</ul>
+<blockquote>
+<p><strong>Last Verified</strong>: January 2026
+<strong>Source</strong>: Oracle official documentation and price lists</p>
+</blockquote>
+<hr>
+<h2>Related Skills</h2>
+<ul>
+<li><code>oci-services-expert</code> - General OCI architecture (includes full pricing reference)</li>
+<li><code>oracle-adk</code> - Agent development details</li>
+<li><code>oracle-agent-spec</code> - Framework-agnostic agents</li>
+<li><code>oracle-database-expert</code> - Database optimization</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/">OCI Generative AI</a></li>
+<li><a href="https://www.oracle.com/database/26ai/">Oracle Database 26ai</a></li>
+<li><a href="https://www.oracle.com/ai-data-platform/">AI Data Platform</a></li>
+<li><a href="https://www.oracle.com/cloud/nvidia/">NVIDIA on OCI</a></li>
+<li><a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/adk/">Oracle ADK Docs</a></li>
+</ul>
+<hr>
+<p><em>Architect enterprise AI solutions leveraging Oracle&#39;s unique database-centric approach and multi-cloud flexibility.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

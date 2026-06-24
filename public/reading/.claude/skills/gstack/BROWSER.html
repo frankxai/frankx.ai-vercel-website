@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Browser — technical details</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/BROWSER.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Browser — technical details</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack">gstack</a> / <span>BROWSER.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Browser — technical details</h1>
+<p>This document covers the command reference and internals of gstack&#39;s headless browser.</p>
+<h2>Command reference</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Commands</th>
+<th>What for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Navigate</td>
+<td><code>goto</code>, <code>back</code>, <code>forward</code>, <code>reload</code>, <code>url</code></td>
+<td>Get to a page</td>
+</tr>
+<tr>
+<td>Read</td>
+<td><code>text</code>, <code>html</code>, <code>links</code>, <code>forms</code>, <code>accessibility</code></td>
+<td>Extract content</td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td><code>snapshot [-i] [-c] [-d N] [-s sel] [-D] [-a] [-o] [-C]</code></td>
+<td>Get refs, diff, annotate</td>
+</tr>
+<tr>
+<td>Interact</td>
+<td><code>click</code>, <code>fill</code>, <code>select</code>, <code>hover</code>, <code>type</code>, <code>press</code>, <code>scroll</code>, <code>wait</code>, <code>viewport</code>, <code>upload</code></td>
+<td>Use the page</td>
+</tr>
+<tr>
+<td>Inspect</td>
+<td><code>js</code>, <code>eval</code>, <code>css</code>, <code>attrs</code>, <code>is</code>, <code>console</code>, <code>network</code>, <code>dialog</code>, <code>cookies</code>, <code>storage</code>, <code>perf</code></td>
+<td>Debug and verify</td>
+</tr>
+<tr>
+<td>Visual</td>
+<td><code>screenshot [--viewport] [--clip x,y,w,h] [sel|@ref] [path]</code>, <code>pdf</code>, <code>responsive</code></td>
+<td>See what Claude sees</td>
+</tr>
+<tr>
+<td>Compare</td>
+<td><code>diff &lt;url1&gt; &lt;url2&gt;</code></td>
+<td>Spot differences between environments</td>
+</tr>
+<tr>
+<td>Dialogs</td>
+<td><code>dialog-accept [text]</code>, <code>dialog-dismiss</code></td>
+<td>Control alert/confirm/prompt handling</td>
+</tr>
+<tr>
+<td>Tabs</td>
+<td><code>tabs</code>, <code>tab</code>, <code>newtab</code>, <code>closetab</code></td>
+<td>Multi-page workflows</td>
+</tr>
+<tr>
+<td>Cookies</td>
+<td><code>cookie-import</code>, <code>cookie-import-browser</code></td>
+<td>Import cookies from file or real browser</td>
+</tr>
+<tr>
+<td>Multi-step</td>
+<td><code>chain</code> (JSON from stdin)</td>
+<td>Batch commands in one call</td>
+</tr>
+<tr>
+<td>Handoff</td>
+<td><code>handoff [reason]</code>, <code>resume</code></td>
+<td>Switch to visible Chrome for user takeover</td>
+</tr>
+</tbody></table>
+<p>All selector arguments accept CSS selectors, <code>@e</code> refs after <code>snapshot</code>, or <code>@c</code> refs after <code>snapshot -C</code>. 50+ commands total plus cookie import.</p>
+<h2>How it works</h2>
+<p>gstack&#39;s browser is a compiled CLI binary that talks to a persistent local Chromium daemon over HTTP. The CLI is a thin client — it reads a state file, sends a command, and prints the response to stdout. The server does the real work via <a href="https://playwright.dev/">Playwright</a>.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│  Claude Code                                                    │
+│                                                                 │
+│  &quot;browse goto https://staging.myapp.com&quot;                        │
+│       │                                                         │
+│       ▼                                                         │
+│  ┌──────────┐    HTTP POST     ┌──────────────┐                 │
+│  │ browse   │ ──────────────── │ Bun HTTP     │                 │
+│  │ CLI      │  localhost:rand  │ server       │                 │
+│  │          │  Bearer token    │              │                 │
+│  │ compiled │ ◄──────────────  │  Playwright  │──── Chromium    │
+│  │ binary   │  plain text      │  API calls   │    (headless)   │
+│  └──────────┘                  └──────────────┘                 │
+│   ~1ms startup                  persistent daemon               │
+│                                 auto-starts on first call       │
+│                                 auto-stops after 30 min idle    │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Lifecycle</h3>
+<ol>
+<li><p><strong>First call</strong>: CLI checks <code>.gstack/browse.json</code> (in the project root) for a running server. None found — it spawns <code>bun run browse/src/server.ts</code> in the background. The server launches headless Chromium via Playwright, picks a random port (10000-60000), generates a bearer token, writes the state file, and starts accepting HTTP requests. This takes ~3 seconds.</p>
+</li>
+<li><p><strong>Subsequent calls</strong>: CLI reads the state file, sends an HTTP POST with the bearer token, prints the response. ~100-200ms round trip.</p>
+</li>
+<li><p><strong>Idle shutdown</strong>: After 30 minutes with no commands, the server shuts down and cleans up the state file. Next call restarts it automatically.</p>
+</li>
+<li><p><strong>Crash recovery</strong>: If Chromium crashes, the server exits immediately (no self-healing — don&#39;t hide failure). The CLI detects the dead server on the next call and starts a fresh one.</p>
+</li>
+</ol>
+<h3>Key components</h3>
+<pre><code>browse/
+├── src/
+│   ├── cli.ts              # Thin client — reads state file, sends HTTP, prints response
+│   ├── server.ts           # Bun.serve HTTP server — routes commands to Playwright
+│   ├── browser-manager.ts  # Chromium lifecycle — launch, tabs, ref map, crash handling
+│   ├── snapshot.ts         # Accessibility tree → @ref assignment → Locator map + diff/annotate/-C
+│   ├── read-commands.ts    # Non-mutating commands (text, html, links, js, css, is, dialog, etc.)
+│   ├── write-commands.ts   # Mutating commands (click, fill, select, upload, dialog-accept, etc.)
+│   ├── meta-commands.ts    # Server management, chain, diff, snapshot routing
+│   ├── cookie-import-browser.ts  # Decrypt + import cookies from real Chromium browsers
+│   ├── cookie-picker-routes.ts   # HTTP routes for interactive cookie picker UI
+│   ├── cookie-picker-ui.ts       # Self-contained HTML/CSS/JS for cookie picker
+│   └── buffers.ts          # CircularBuffer&lt;T&gt; + console/network/dialog capture
+├── test/                   # Integration tests + HTML fixtures
+└── dist/
+    └── browse              # Compiled binary (~58MB, Bun --compile)
+</code></pre>
+<h3>The snapshot system</h3>
+<p>The browser&#39;s key innovation is ref-based element selection, built on Playwright&#39;s accessibility tree API:</p>
+<ol>
+<li><code>page.locator(scope).ariaSnapshot()</code> returns a YAML-like accessibility tree</li>
+<li>The snapshot parser assigns refs (<code>@e1</code>, <code>@e2</code>, ...) to each element</li>
+<li>For each ref, it builds a Playwright <code>Locator</code> (using <code>getByRole</code> + nth-child)</li>
+<li>The ref-to-Locator map is stored on <code>BrowserManager</code></li>
+<li>Later commands like <code>click @e3</code> look up the Locator and call <code>locator.click()</code></li>
+</ol>
+<p>No DOM mutation. No injected scripts. Just Playwright&#39;s native accessibility API.</p>
+<p><strong>Ref staleness detection:</strong> SPAs can mutate the DOM without navigation (React router, tab switches, modals). When this happens, refs collected from a previous <code>snapshot</code> may point to elements that no longer exist. To handle this, <code>resolveRef()</code> runs an async <code>count()</code> check before using any ref — if the element count is 0, it throws immediately with a message telling the agent to re-run <code>snapshot</code>. This fails fast (~5ms) instead of waiting for Playwright&#39;s 30-second action timeout.</p>
+<p><strong>Extended snapshot features:</strong></p>
+<ul>
+<li><code>--diff</code> (<code>-D</code>): Stores each snapshot as a baseline. On the next <code>-D</code> call, returns a unified diff showing what changed. Use this to verify that an action (click, fill, etc.) actually worked.</li>
+<li><code>--annotate</code> (<code>-a</code>): Injects temporary overlay divs at each ref&#39;s bounding box, takes a screenshot with ref labels visible, then removes the overlays. Use <code>-o &lt;path&gt;</code> to control the output path.</li>
+<li><code>--cursor-interactive</code> (<code>-C</code>): Scans for non-ARIA interactive elements (divs with <code>cursor:pointer</code>, <code>onclick</code>, <code>tabindex&gt;=0</code>) using <code>page.evaluate</code>. Assigns <code>@c1</code>, <code>@c2</code>... refs with deterministic <code>nth-child</code> CSS selectors. These are elements the ARIA tree misses but users can still click.</li>
+</ul>
+<h3>Screenshot modes</h3>
+<p>The <code>screenshot</code> command supports four modes:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Syntax</th>
+<th>Playwright API</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Full page (default)</td>
+<td><code>screenshot [path]</code></td>
+<td><code>page.screenshot({ fullPage: true })</code></td>
+</tr>
+<tr>
+<td>Viewport only</td>
+<td><code>screenshot --viewport [path]</code></td>
+<td><code>page.screenshot({ fullPage: false })</code></td>
+</tr>
+<tr>
+<td>Element crop</td>
+<td><code>screenshot &quot;#sel&quot; [path]</code> or <code>screenshot @e3 [path]</code></td>
+<td><code>locator.screenshot()</code></td>
+</tr>
+<tr>
+<td>Region clip</td>
+<td><code>screenshot --clip x,y,w,h [path]</code></td>
+<td><code>page.screenshot({ clip })</code></td>
+</tr>
+</tbody></table>
+<p>Element crop accepts CSS selectors (<code>.class</code>, <code>#id</code>, <code>[attr]</code>) or <code>@e</code>/<code>@c</code> refs from <code>snapshot</code>. Auto-detection: <code>@e</code>/<code>@c</code> prefix = ref, <code>.</code>/<code>#</code>/<code>[</code> prefix = CSS selector, <code>--</code> prefix = flag, everything else = output path.</p>
+<p>Mutual exclusion: <code>--clip</code> + selector and <code>--viewport</code> + <code>--clip</code> both throw errors. Unknown flags (e.g. <code>--bogus</code>) also throw.</p>
+<h3>Authentication</h3>
+<p>Each server session generates a random UUID as a bearer token. The token is written to the state file (<code>.gstack/browse.json</code>) with chmod 600. Every HTTP request must include <code>Authorization: Bearer &lt;token&gt;</code>. This prevents other processes on the machine from controlling the browser.</p>
+<h3>Console, network, and dialog capture</h3>
+<p>The server hooks into Playwright&#39;s <code>page.on(&#39;console&#39;)</code>, <code>page.on(&#39;response&#39;)</code>, and <code>page.on(&#39;dialog&#39;)</code> events. All entries are kept in O(1) circular buffers (50,000 capacity each) and flushed to disk asynchronously via <code>Bun.write()</code>:</p>
+<ul>
+<li>Console: <code>.gstack/browse-console.log</code></li>
+<li>Network: <code>.gstack/browse-network.log</code></li>
+<li>Dialog: <code>.gstack/browse-dialog.log</code></li>
+</ul>
+<p>The <code>console</code>, <code>network</code>, and <code>dialog</code> commands read from the in-memory buffers, not disk.</p>
+<h3>User handoff</h3>
+<p>When the headless browser can&#39;t proceed (CAPTCHA, MFA, complex auth), <code>handoff</code> opens a visible Chrome window at the exact same page with all cookies, localStorage, and tabs preserved. The user solves the problem manually, then <code>resume</code> returns control to the agent with a fresh snapshot.</p>
+<pre><code class="language-bash">$B handoff &quot;Stuck on CAPTCHA at login page&quot;   # opens visible Chrome
+# User solves CAPTCHA...
+$B resume                                       # returns to headless with fresh snapshot
+</code></pre>
+<p>The browser auto-suggests <code>handoff</code> after 3 consecutive failures. State is fully preserved across the switch — no re-login needed.</p>
+<h3>Dialog handling</h3>
+<p>Dialogs (alert, confirm, prompt) are auto-accepted by default to prevent browser lockup. The <code>dialog-accept</code> and <code>dialog-dismiss</code> commands control this behavior. For prompts, <code>dialog-accept &lt;text&gt;</code> provides the response text. All dialogs are logged to the dialog buffer with type, message, and action taken.</p>
+<h3>JavaScript execution (<code>js</code> and <code>eval</code>)</h3>
+<p><code>js</code> runs a single expression, <code>eval</code> runs a JS file. Both support <code>await</code> — expressions containing <code>await</code> are automatically wrapped in an async context:</p>
+<pre><code class="language-bash">$B js &quot;await fetch(&#39;/api/data&#39;).then(r =&gt; r.json())&quot;  # works
+$B js &quot;document.title&quot;                                  # also works (no wrapping needed)
+$B eval my-script.js                                    # file with await works too
+</code></pre>
+<p>For <code>eval</code> files, single-line files return the expression value directly. Multi-line files need explicit <code>return</code> when using <code>await</code>. Comments containing &quot;await&quot; don&#39;t trigger wrapping.</p>
+<h3>Multi-workspace support</h3>
+<p>Each workspace gets its own isolated browser instance with its own Chromium process, tabs, cookies, and logs. State is stored in <code>.gstack/</code> inside the project root (detected via <code>git rev-parse --show-toplevel</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Workspace</th>
+<th>State file</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/code/project-a</code></td>
+<td><code>/code/project-a/.gstack/browse.json</code></td>
+<td>random (10000-60000)</td>
+</tr>
+<tr>
+<td><code>/code/project-b</code></td>
+<td><code>/code/project-b/.gstack/browse.json</code></td>
+<td>random (10000-60000)</td>
+</tr>
+</tbody></table>
+<p>No port collisions. No shared state. Each project is fully isolated.</p>
+<h3>Environment variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BROWSE_PORT</code></td>
+<td>0 (random 10000-60000)</td>
+<td>Fixed port for the HTTP server (debug override)</td>
+</tr>
+<tr>
+<td><code>BROWSE_IDLE_TIMEOUT</code></td>
+<td>1800000 (30 min)</td>
+<td>Idle shutdown timeout in ms</td>
+</tr>
+<tr>
+<td><code>BROWSE_STATE_FILE</code></td>
+<td><code>.gstack/browse.json</code></td>
+<td>Path to state file (CLI passes to server)</td>
+</tr>
+<tr>
+<td><code>BROWSE_SERVER_SCRIPT</code></td>
+<td>auto-detected</td>
+<td>Path to server.ts</td>
+</tr>
+</tbody></table>
+<h3>Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>First call</th>
+<th>Subsequent calls</th>
+<th>Context overhead per call</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chrome MCP</td>
+<td>~5s</td>
+<td>~2-5s</td>
+<td>~2000 tokens (schema + protocol)</td>
+</tr>
+<tr>
+<td>Playwright MCP</td>
+<td>~3s</td>
+<td>~1-3s</td>
+<td>~1500 tokens (schema + protocol)</td>
+</tr>
+<tr>
+<td><strong>gstack browse</strong></td>
+<td><strong>~3s</strong></td>
+<td><strong>~100-200ms</strong></td>
+<td><strong>0 tokens</strong> (plain text stdout)</td>
+</tr>
+</tbody></table>
+<p>The context overhead difference compounds fast. In a 20-command browser session, MCP tools burn 30,000-40,000 tokens on protocol framing alone. gstack burns zero.</p>
+<h3>Why CLI over MCP?</h3>
+<p>MCP (Model Context Protocol) works well for remote services, but for local browser automation it adds pure overhead:</p>
+<ul>
+<li><strong>Context bloat</strong>: every MCP call includes full JSON schemas and protocol framing. A simple &quot;get the page text&quot; costs 10x more context tokens than it should.</li>
+<li><strong>Connection fragility</strong>: persistent WebSocket/stdio connections drop and fail to reconnect.</li>
+<li><strong>Unnecessary abstraction</strong>: Claude Code already has a Bash tool. A CLI that prints to stdout is the simplest possible interface.</li>
+</ul>
+<p>gstack skips all of this. Compiled binary. Plain text in, plain text out. No protocol. No schema. No connection management.</p>
+<h2>Acknowledgments</h2>
+<p>The browser automation layer is built on <a href="https://playwright.dev/">Playwright</a> by Microsoft. Playwright&#39;s accessibility tree API, locator system, and headless Chromium management are what make ref-based interaction possible. The snapshot system — assigning <code>@ref</code> labels to accessibility tree nodes and mapping them back to Playwright Locators — is built entirely on top of Playwright&#39;s primitives. Thank you to the Playwright team for building such a solid foundation.</p>
+<h2>Development</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><a href="https://bun.sh/">Bun</a> v1.0+</li>
+<li>Playwright&#39;s Chromium (installed automatically by <code>bun install</code>)</li>
+</ul>
+<h3>Quick start</h3>
+<pre><code class="language-bash">bun install              # install dependencies + Playwright Chromium
+bun test                 # run integration tests (~3s)
+bun run dev &lt;cmd&gt;        # run CLI from source (no compile)
+bun run build            # compile to browse/dist/browse
+</code></pre>
+<h3>Dev mode vs compiled binary</h3>
+<p>During development, use <code>bun run dev</code> instead of the compiled binary. It runs <code>browse/src/cli.ts</code> directly with Bun, so you get instant feedback without a compile step:</p>
+<pre><code class="language-bash">bun run dev goto https://example.com
+bun run dev text
+bun run dev snapshot -i
+bun run dev click @e3
+</code></pre>
+<p>The compiled binary (<code>bun run build</code>) is only needed for distribution. It produces a single ~58MB executable at <code>browse/dist/browse</code> using Bun&#39;s <code>--compile</code> flag.</p>
+<h3>Running tests</h3>
+<pre><code class="language-bash">bun test                         # run all tests
+bun test browse/test/commands              # run command integration tests only
+bun test browse/test/snapshot              # run snapshot tests only
+bun test browse/test/cookie-import-browser # run cookie import unit tests only
+</code></pre>
+<p>Tests spin up a local HTTP server (<code>browse/test/test-server.ts</code>) serving HTML fixtures from <code>browse/test/fixtures/</code>, then exercise the CLI commands against those pages. 203 tests across 3 files, ~15 seconds total.</p>
+<h3>Source map</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>browse/src/cli.ts</code></td>
+<td>Entry point. Reads <code>.gstack/browse.json</code>, sends HTTP to the server, prints response.</td>
+</tr>
+<tr>
+<td><code>browse/src/server.ts</code></td>
+<td>Bun HTTP server. Routes commands to the right handler. Manages idle timeout.</td>
+</tr>
+<tr>
+<td><code>browse/src/browser-manager.ts</code></td>
+<td>Chromium lifecycle — launch, tab management, ref map, crash detection.</td>
+</tr>
+<tr>
+<td><code>browse/src/snapshot.ts</code></td>
+<td>Parses accessibility tree, assigns <code>@e</code>/<code>@c</code> refs, builds Locator map. Handles <code>--diff</code>, <code>--annotate</code>, <code>-C</code>.</td>
+</tr>
+<tr>
+<td><code>browse/src/read-commands.ts</code></td>
+<td>Non-mutating commands: <code>text</code>, <code>html</code>, <code>links</code>, <code>js</code>, <code>css</code>, <code>is</code>, <code>dialog</code>, <code>forms</code>, etc. Exports <code>getCleanText()</code>.</td>
+</tr>
+<tr>
+<td><code>browse/src/write-commands.ts</code></td>
+<td>Mutating commands: <code>goto</code>, <code>click</code>, <code>fill</code>, <code>upload</code>, <code>dialog-accept</code>, <code>useragent</code> (with context recreation), etc.</td>
+</tr>
+<tr>
+<td><code>browse/src/meta-commands.ts</code></td>
+<td>Server management, chain routing, diff (DRY via <code>getCleanText</code>), snapshot delegation.</td>
+</tr>
+<tr>
+<td><code>browse/src/cookie-import-browser.ts</code></td>
+<td>Decrypt Chromium cookies via macOS Keychain + PBKDF2/AES-128-CBC. Auto-detects installed browsers.</td>
+</tr>
+<tr>
+<td><code>browse/src/cookie-picker-routes.ts</code></td>
+<td>HTTP routes for <code>/cookie-picker/*</code> — browser list, domain search, import, remove.</td>
+</tr>
+<tr>
+<td><code>browse/src/cookie-picker-ui.ts</code></td>
+<td>Self-contained HTML generator for the interactive cookie picker (dark theme, no frameworks).</td>
+</tr>
+<tr>
+<td><code>browse/src/buffers.ts</code></td>
+<td><code>CircularBuffer&lt;T&gt;</code> (O(1) ring buffer) + console/network/dialog capture with async disk flush.</td>
+</tr>
+</tbody></table>
+<h3>Deploying to the active skill</h3>
+<p>The active skill lives at <code>~/.claude/skills/gstack/</code>. After making changes:</p>
+<ol>
+<li>Push your branch</li>
+<li>Pull in the skill directory: <code>cd ~/.claude/skills/gstack &amp;&amp; git pull</code></li>
+<li>Rebuild: <code>cd ~/.claude/skills/gstack &amp;&amp; bun run build</code></li>
+</ol>
+<p>Or copy the binary directly: <code>cp browse/dist/browse ~/.claude/skills/gstack/browse/dist/browse</code></p>
+<h3>Adding a new command</h3>
+<ol>
+<li>Add the handler in <code>read-commands.ts</code> (non-mutating) or <code>write-commands.ts</code> (mutating)</li>
+<li>Register the route in <code>server.ts</code></li>
+<li>Add a test case in <code>browse/test/commands.test.ts</code> with an HTML fixture if needed</li>
+<li>Run <code>bun test</code> to verify</li>
+<li>Run <code>bun run build</code> to compile</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

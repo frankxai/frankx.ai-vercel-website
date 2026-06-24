@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>QA Report: {APP_NAME}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/qa/templates/qa-report-template.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">QA Report: {APP_NAME}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude">.claude</a> / <a href="../../../index.html#.claude%2Fskills">skills</a> / <a href="../../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="../index.html#.claude%2Fskills%2Fgstack%2Fqa">qa</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fqa%2Ftemplates">templates</a> / <span>qa-report-template.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>QA Report: {APP_NAME}</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Date</strong></td>
+<td>{DATE}</td>
+</tr>
+<tr>
+<td><strong>URL</strong></td>
+<td>{URL}</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>{BRANCH}</td>
+</tr>
+<tr>
+<td><strong>Commit</strong></td>
+<td>{COMMIT_SHA} ({COMMIT_DATE})</td>
+</tr>
+<tr>
+<td><strong>PR</strong></td>
+<td>{PR_NUMBER} ({PR_URL}) or &quot;—&quot;</td>
+</tr>
+<tr>
+<td><strong>Tier</strong></td>
+<td>Quick / Standard / Exhaustive</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>{SCOPE or &quot;Full app&quot;}</td>
+</tr>
+<tr>
+<td><strong>Duration</strong></td>
+<td>{DURATION}</td>
+</tr>
+<tr>
+<td><strong>Pages visited</strong></td>
+<td>{COUNT}</td>
+</tr>
+<tr>
+<td><strong>Screenshots</strong></td>
+<td>{COUNT}</td>
+</tr>
+<tr>
+<td><strong>Framework</strong></td>
+<td>{DETECTED or &quot;Unknown&quot;}</td>
+</tr>
+<tr>
+<td><strong>Index</strong></td>
+<td><a href="./index.md">All QA runs</a></td>
+</tr>
+</tbody></table>
+<h2>Health Score: {SCORE}/100</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Console</td>
+<td>{0-100}</td>
+</tr>
+<tr>
+<td>Links</td>
+<td>{0-100}</td>
+</tr>
+<tr>
+<td>Visual</td>
+<td>{0-100}</td>
+</tr>
+<tr>
+<td>Functional</td>
+<td>{0-100}</td>
+</tr>
+<tr>
+<td>UX</td>
+<td>{0-100}</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>{0-100}</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>{0-100}</td>
+</tr>
+</tbody></table>
+<h2>Top 3 Things to Fix</h2>
+<ol>
+<li><strong>{ISSUE-NNN}: {title}</strong> — {one-line description}</li>
+<li><strong>{ISSUE-NNN}: {title}</strong> — {one-line description}</li>
+<li><strong>{ISSUE-NNN}: {title}</strong> — {one-line description}</li>
+</ol>
+<h2>Console Health</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Count</th>
+<th>First seen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{error message}</td>
+<td>{N}</td>
+<td>{URL}</td>
+</tr>
+</tbody></table>
+<h2>Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Critical</td>
+<td>0</td>
+</tr>
+<tr>
+<td>High</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody></table>
+<h2>Issues</h2>
+<h3>ISSUE-001: {Short title}</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Severity</strong></td>
+<td>critical / high / medium / low</td>
+</tr>
+<tr>
+<td><strong>Category</strong></td>
+<td>visual / functional / ux / content / performance / console / accessibility</td>
+</tr>
+<tr>
+<td><strong>URL</strong></td>
+<td>{page URL}</td>
+</tr>
+</tbody></table>
+<p><strong>Description:</strong> {What is wrong, expected vs actual.}</p>
+<p><strong>Repro Steps:</strong></p>
+<ol>
+<li>Navigate to {URL}
+<img src="screenshots/issue-001-step-1.png" alt="Step 1"></li>
+<li>{Action}
+<img src="screenshots/issue-001-step-2.png" alt="Step 2"></li>
+<li><strong>Observe:</strong> {what goes wrong}
+<img src="screenshots/issue-001-result.png" alt="Result"></li>
+</ol>
+<hr>
+<h2>Fixes Applied (if applicable)</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Fix Status</th>
+<th>Commit</th>
+<th>Files Changed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISSUE-NNN</td>
+<td>verified / best-effort / reverted / deferred</td>
+<td>{SHA}</td>
+<td>{files}</td>
+</tr>
+</tbody></table>
+<h3>Before/After Evidence</h3>
+<h4>ISSUE-NNN: {title}</h4>
+<p><strong>Before:</strong> <img src="screenshots/issue-NNN-before.png" alt="Before">
+<strong>After:</strong> <img src="screenshots/issue-NNN-after.png" alt="After"></p>
+<hr>
+<h2>Regression Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Test File</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISSUE-NNN</td>
+<td>path/to/test</td>
+<td>committed / deferred / skipped</td>
+<td>description</td>
+</tr>
+</tbody></table>
+<h3>Deferred Tests</h3>
+<h4>ISSUE-NNN: {title}</h4>
+<p><strong>Precondition:</strong> {setup state that triggers the bug}
+<strong>Action:</strong> {what the user does}
+<strong>Expected:</strong> {correct behavior}
+<strong>Why deferred:</strong> {reason}</p>
+<hr>
+<h2>Ship Readiness</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Health score</td>
+<td>{before} → {after} ({delta})</td>
+</tr>
+<tr>
+<td>Issues found</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Fixes applied</td>
+<td>N (verified: X, best-effort: Y, reverted: Z)</td>
+</tr>
+<tr>
+<td>Deferred</td>
+<td>N</td>
+</tr>
+</tbody></table>
+<p><strong>PR Summary:</strong> &quot;QA found N issues, fixed M, health score X → Y.&quot;</p>
+<hr>
+<h2>Regression (if applicable)</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Baseline</th>
+<th>Current</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Health score</td>
+<td>{N}</td>
+<td>{N}</td>
+<td>{+/-N}</td>
+</tr>
+<tr>
+<td>Issues</td>
+<td>{N}</td>
+<td>{N}</td>
+<td>{+/-N}</td>
+</tr>
+</tbody></table>
+<p><strong>Fixed since baseline:</strong> {list}
+<strong>New since baseline:</strong> {list}</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Build Your Stack This Weekend</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/vibe-os/chapter-11-build-your-stack-this-weekend.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Build Your Stack This Weekend</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fvibe-os">vibe-os</a> / <span>chapter-11-build-your-stack-this-weekend.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Build Your Stack This Weekend</h1>
+<blockquote>
+<p>&quot;The best time to plant a tree was twenty years ago. The second best time is now.&quot;
+— Chinese proverb</p>
+</blockquote>
+<hr>
+<h2>I. The Weekend Workshop</h2>
+<p>Ten chapters of architecture. This chapter is the construction manual — the hour-by-hour guide that takes you from zero to a fully operational Vibe OS stack in a single weekend.</p>
+<p>Everything described in this book — the five-layer infrastructure, the two-repo architecture, the automation workflows, the AI-assisted content pipeline — can be built in approximately sixteen hours of focused work. Not because it is simple. Because the services are designed for rapid deployment, and this guide eliminates the decision overhead that turns a weekend project into a month-long research exercise.</p>
+<p>The end state: a production website running on Vercel, content stored in Git, email working through Resend, automation running on n8n via Railway, and Claude Code connected to your entire stack through MCP servers. Total recurring cost: approximately $50 per month.</p>
+<p>These instructions assume you have a laptop, a terminal, a GitHub account, and a credit card. No prior experience with any of these tools is required — though familiarity with a text editor and basic command-line operations will help.</p>
+<hr>
+<h2>II. Saturday Morning — The Application Layer (9:00 AM - 12:00 PM)</h2>
+<h3>Hour 1: Environment Setup (9:00 - 10:00)</h3>
+<p>Install the foundation tools. If you already have Node.js and Git, skip ahead.</p>
+<pre><code class="language-bash"># Install Node.js 20+ (LTS)
+# macOS:
+brew install node
+
+# Windows (WSL recommended):
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verify installations
+node --version   # Should show v20.x or higher
+npm --version    # Should show 10.x or higher
+git --version    # Should show 2.x or higher
+</code></pre>
+<p>Install the Vercel CLI:</p>
+<pre><code class="language-bash">npm install -g vercel
+</code></pre>
+<p>Create your project directory and initialize:</p>
+<pre><code class="language-bash">mkdir my-creator-stack &amp;&amp; cd my-creator-stack
+git init
+</code></pre>
+<h3>Hour 2: Next.js Application (10:00 - 11:00)</h3>
+<p>Create the Next.js application with the App Router:</p>
+<pre><code class="language-bash">npx create-next-app@latest . --typescript --tailwind --eslint \
+  --app --src-dir --import-alias &quot;@/*&quot;
+</code></pre>
+<p>Accept all defaults. This creates a Next.js 15+ application with TypeScript, Tailwind CSS, ESLint, the App Router, and a <code>src/</code> directory.</p>
+<p>Verify the application runs:</p>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+<p>Open <code>http://localhost:3000</code> in your browser. You should see the Next.js welcome page. Stop the dev server with <code>Ctrl+C</code>.</p>
+<p>Create the content structure:</p>
+<pre><code class="language-bash">mkdir -p content/blog
+mkdir -p content/books
+mkdir -p public/images/blog
+mkdir -p data
+</code></pre>
+<p>Create your first MDX blog post. Install the MDX dependencies:</p>
+<pre><code class="language-bash">npm install @next/mdx @mdx-js/loader @mdx-js/react gray-matter \
+  reading-time rehype-slug rehype-autolink-headings
+</code></pre>
+<p>Create <code>content/blog/hello-world.mdx</code>:</p>
+<pre><code class="language-mdx">---
+title: &quot;Hello World&quot;
+description: &quot;The first post from my creator stack.&quot;
+date: &quot;2026-03-22&quot;
+author: &quot;Your Name&quot;
+---
+
+# Hello World
+
+This is the first post from my Vibe OS stack. The infrastructure is live.
+The work begins now.
+</code></pre>
+<p>Create a minimal blog route at <code>src/app/blog/[slug]/page.tsx</code>:</p>
+<pre><code class="language-tsx">import fs from &quot;fs&quot;;
+import path from &quot;path&quot;;
+import matter from &quot;gray-matter&quot;;
+
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise&lt;{ slug: string }&gt;;
+}) {
+  const { slug } = await params;
+  const filePath = path.join(
+    process.cwd(),
+    &quot;content/blog&quot;,
+    `${slug}.mdx`
+  );
+  const fileContents = fs.readFileSync(filePath, &quot;utf8&quot;);
+  const { data, content } = matter(fileContents);
+
+  return (
+    &lt;article className=&quot;max-w-2xl mx-auto py-16 px-4&quot;&gt;
+      &lt;h1 className=&quot;text-4xl font-bold mb-4&quot;&gt;{data.title}&lt;/h1&gt;
+      &lt;p className=&quot;text-gray-500 mb-8&quot;&gt;{data.date}&lt;/p&gt;
+      &lt;div className=&quot;prose&quot;&gt;{content}&lt;/div&gt;
+    &lt;/article&gt;
+  );
+}
+</code></pre>
+<p>Verification checkpoint: run <code>npm run dev</code> and navigate to <code>http://localhost:3000/blog/hello-world</code>. You should see your blog post rendered with the title, date, and content.</p>
+<h3>Hour 3: Vercel Deployment (11:00 - 12:00)</h3>
+<p>Connect to Vercel and deploy:</p>
+<pre><code class="language-bash">vercel login
+</code></pre>
+<p>Follow the prompts to authenticate with your Vercel account. If you do not have a Vercel account, create one at vercel.com — the free tier is sufficient to start.</p>
+<p>Deploy to Vercel:</p>
+<pre><code class="language-bash">vercel --prod
+</code></pre>
+<p>Follow the prompts:</p>
+<ul>
+<li>Set up and deploy? <strong>Yes</strong></li>
+<li>Which scope? Select your account</li>
+<li>Link to existing project? <strong>No</strong> (create new)</li>
+<li>Project name? Your choice (e.g., <code>my-creator-stack</code>)</li>
+<li>Directory? <code>./</code> (current directory)</li>
+</ul>
+<p>Vercel will build and deploy your application. When it completes, you will receive a production URL. Open it in your browser.</p>
+<p>Verification checkpoint: your site is live on the internet. The URL will look like <code>my-creator-stack.vercel.app</code>. Navigate to <code>/blog/hello-world</code> to confirm the blog post renders in production.</p>
+<p>Connect your custom domain (optional but recommended):</p>
+<pre><code class="language-bash">vercel domains add yourdomain.com
+</code></pre>
+<p>Follow the DNS configuration instructions Vercel provides. If your domain is registered with a provider that supports automatic DNS configuration (Vercel, Cloudflare), the process takes minutes.</p>
+<p>Push to GitHub for automatic deployments:</p>
+<pre><code class="language-bash"># Create a new repository on GitHub, then:
+git remote add origin https://github.com/yourusername/your-repo.git
+git add -A
+git commit -m &quot;feat: initial Next.js application with blog&quot;
+git push -u origin main
+</code></pre>
+<p>Connect the GitHub repository to Vercel via the Vercel dashboard: Settings &gt; Git &gt; Connected Git Repository. From this point forward, every push to <code>main</code> triggers an automatic production deployment.</p>
+<hr>
+<h2>III. Saturday Afternoon — The Data Layer (1:00 PM - 5:00 PM)</h2>
+<h3>Hour 4: Supabase Setup (1:00 - 2:00)</h3>
+<p>Go to supabase.com and create a new project. Select the free tier. Choose a region close to your audience. Set a strong database password — you will need it later.</p>
+<p>While the project provisions (takes 1-2 minutes), install the Supabase client:</p>
+<pre><code class="language-bash">npm install @supabase/supabase-js
+</code></pre>
+<p>Create <code>src/lib/supabase.ts</code>:</p>
+<pre><code class="language-typescript">import { createClient } from &quot;@supabase/supabase-js&quot;;
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+</code></pre>
+<p>Find your project URL and anon key in the Supabase dashboard: Settings &gt; API. Create a <code>.env.local</code> file in your project root:</p>
+<pre><code class="language-bash">NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+</code></pre>
+<p>Add <code>.env.local</code> to your <code>.gitignore</code> if it is not already there. Never commit API keys to Git.</p>
+<p>Create your first table. In the Supabase SQL Editor, run:</p>
+<pre><code class="language-sql">-- Email subscribers table
+CREATE TABLE subscribers (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  name TEXT,
+  source TEXT DEFAULT &#39;website&#39;,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security
+ALTER TABLE subscribers ENABLE ROW LEVEL SECURITY;
+
+-- Policy: allow inserts from the anon key (for the signup form)
+CREATE POLICY &quot;Allow anonymous inserts&quot; ON subscribers
+  FOR INSERT TO anon
+  WITH CHECK (true);
+</code></pre>
+<h3>Hour 5: Email Signup Form (2:00 - 3:00)</h3>
+<p>Create a reusable email signup component at <code>src/components/EmailSignup.tsx</code>:</p>
+<pre><code class="language-tsx">&quot;use client&quot;;
+
+import { useState } from &quot;react&quot;;
+import { supabase } from &quot;@/lib/supabase&quot;;
+
+export function EmailSignup() {
+  const [email, setEmail] = useState(&quot;&quot;);
+  const [status, setStatus] = useState&lt;
+    &quot;idle&quot; | &quot;loading&quot; | &quot;success&quot; | &quot;error&quot;
+  &gt;(&quot;idle&quot;);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus(&quot;loading&quot;);
+
+    const { error } = await supabase
+      .from(&quot;subscribers&quot;)
+      .insert({ email, source: &quot;website&quot; });
+
+    if (error) {
+      setStatus(error.code === &quot;23505&quot; ? &quot;success&quot; : &quot;error&quot;);
+    } else {
+      setStatus(&quot;success&quot;);
+    }
+    setEmail(&quot;&quot;);
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit} className=&quot;flex gap-2 max-w-md&quot;&gt;
+      &lt;input
+        type=&quot;email&quot;
+        value={email}
+        onChange={(e) =&gt; setEmail(e.target.value)}
+        placeholder=&quot;your@email.com&quot;
+        required
+        className=&quot;flex-1 px-4 py-2 border rounded-lg&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        disabled={status === &quot;loading&quot;}
+        className=&quot;px-6 py-2 bg-black text-white rounded-lg
+                   hover:bg-gray-800 disabled:opacity-50&quot;
+      &gt;
+        {status === &quot;loading&quot; ? &quot;...&quot; : &quot;Subscribe&quot;}
+      &lt;/button&gt;
+      {status === &quot;success&quot; &amp;&amp; (
+        &lt;p className=&quot;text-green-600 text-sm mt-1&quot;&gt;Subscribed.&lt;/p&gt;
+      )}
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p>Add the component to your homepage at <code>src/app/page.tsx</code>:</p>
+<pre><code class="language-tsx">import { EmailSignup } from &quot;@/components/EmailSignup&quot;;
+
+export default function Home() {
+  return (
+    &lt;main className=&quot;max-w-2xl mx-auto py-16 px-4&quot;&gt;
+      &lt;h1 className=&quot;text-4xl font-bold mb-4&quot;&gt;Your Name&lt;/h1&gt;
+      &lt;p className=&quot;text-lg text-gray-600 mb-8&quot;&gt;
+        Builder. Creator. Architect.
+      &lt;/p&gt;
+      &lt;EmailSignup /&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<p>Verification checkpoint: run <code>npm run dev</code>, enter an email in the signup form, then check the Supabase Table Editor. Your subscriber should appear in the <code>subscribers</code> table.</p>
+<h3>Hours 6-7: First Content Piece (3:00 - 5:00)</h3>
+<p>Write your first real blog post. Not a placeholder — an actual article about something you know. The topic does not matter for the infrastructure. What matters is that real content flows through the system.</p>
+<p>Create <code>content/blog/your-first-real-article.mdx</code> with proper frontmatter:</p>
+<pre><code class="language-mdx">---
+title: &quot;Your Article Title&quot;
+description: &quot;A one-sentence summary for SEO and social sharing.&quot;
+date: &quot;2026-03-22&quot;
+author: &quot;Your Name&quot;
+tags: [&quot;your-topic&quot;, &quot;another-tag&quot;]
+---
+
+Write the article here. Use your voice. Be specific.
+The system handles the infrastructure. You handle the ideas.
+</code></pre>
+<p>Deploy:</p>
+<pre><code class="language-bash">git add -A
+git commit -m &quot;feat: first real article and email signup&quot;
+git push origin main
+</code></pre>
+<p>Vercel will build and deploy automatically. Check the deployment status:</p>
+<pre><code class="language-bash">vercel ls --prod
+</code></pre>
+<p>Verification checkpoint: your production site has a homepage with an email signup form that writes to Supabase, and a blog with at least two posts. The entire stack is version-controlled in Git and deployed automatically on push.</p>
+<hr>
+<h2>IV. Saturday Evening — The Email Layer (7:00 PM - 9:00 PM)</h2>
+<h3>Hour 8: Resend Configuration (7:00 - 8:00)</h3>
+<p>Go to resend.com and create an account. The free tier provides 3,000 emails per month — more than sufficient for a growing creator platform.</p>
+<p>Add your domain. In the Resend dashboard: Domains &gt; Add Domain. Resend will provide DNS records (SPF, DKIM) that you must add to your domain&#39;s DNS settings. This step is critical for email deliverability — without proper DNS records, your emails will land in spam.</p>
+<p>After adding the DNS records, wait for verification (usually 5-30 minutes). Resend will show a green checkmark when the domain is verified.</p>
+<p>Get your API key from the Resend dashboard: API Keys &gt; Create API Key. Add it to your environment:</p>
+<pre><code class="language-bash"># Add to .env.local
+RESEND_API_KEY=re_your_api_key_here
+</code></pre>
+<p>Add it to Vercel:</p>
+<pre><code class="language-bash">vercel env add RESEND_API_KEY
+# Paste your API key when prompted
+# Select: Production, Preview, Development
+</code></pre>
+<p>Install the Resend SDK:</p>
+<pre><code class="language-bash">npm install resend
+</code></pre>
+<h3>Hour 9: Welcome Email API Route (8:00 - 9:00)</h3>
+<p>Create an API route that sends a welcome email when someone subscribes. Create <code>src/app/api/welcome/route.ts</code>:</p>
+<pre><code class="language-typescript">import { NextRequest, NextResponse } from &quot;next/server&quot;;
+import { Resend } from &quot;resend&quot;;
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(req: NextRequest) {
+  try {
+    const { email, name } = await req.json();
+
+    await resend.emails.send({
+      from: &quot;Your Name &lt;hello@yourdomain.com&gt;&quot;,
+      to: email,
+      subject: &quot;Welcome — here is what to expect&quot;,
+      html: `
+        &lt;div style=&quot;max-width: 600px; margin: 0 auto; font-family: sans-serif;&quot;&gt;
+          &lt;h1 style=&quot;font-size: 24px;&quot;&gt;Welcome${name ? `, ${name}` : &quot;&quot;}.&lt;/h1&gt;
+          &lt;p&gt;You are now part of a small group of people who care about
+             building systems that compound.&lt;/p&gt;
+          &lt;p&gt;Here is what you will receive:&lt;/p&gt;
+          &lt;ul&gt;
+            &lt;li&gt;Weekly articles on building with AI&lt;/li&gt;
+            &lt;li&gt;Early access to tools and frameworks&lt;/li&gt;
+            &lt;li&gt;The occasional behind-the-scenes note&lt;/li&gt;
+          &lt;/ul&gt;
+          &lt;p&gt;The first article is already waiting for you on the site.&lt;/p&gt;
+          &lt;p&gt;-- Your Name&lt;/p&gt;
+        &lt;/div&gt;
+      `,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error(&quot;Email send failed:&quot;, error);
+    return NextResponse.json(
+      { error: &quot;Failed to send email&quot; },
+      { status: 500 }
+    );
+  }
+}
+</code></pre>
+<p>Update your <code>EmailSignup</code> component to call this API after a successful signup:</p>
+<pre><code class="language-tsx">// After the successful Supabase insert, add:
+if (!error) {
+  fetch(&quot;/api/welcome&quot;, {
+    method: &quot;POST&quot;,
+    headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+    body: JSON.stringify({ email }),
+  });
+}
+</code></pre>
+<p>Verification checkpoint: subscribe with your own email address. You should receive the welcome email within seconds. Check the Resend dashboard to confirm delivery. If the email lands in spam, verify your DNS records are correctly configured.</p>
+<p>Deploy the email integration:</p>
+<pre><code class="language-bash">git add -A
+git commit -m &quot;feat: Resend welcome email on subscriber signup&quot;
+git push origin main
+</code></pre>
+<p>Also add the Supabase environment variables to Vercel:</p>
+<pre><code class="language-bash">vercel env add NEXT_PUBLIC_SUPABASE_URL
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
+</code></pre>
+<hr>
+<h2>V. Sunday Morning — The Automation Layer (9:00 AM - 12:00 PM)</h2>
+<h3>Hour 10: Railway Account and n8n Deployment (9:00 - 10:00)</h3>
+<p>Go to railway.app and create an account. Railway provides $5 of free credits per month, and n8n typically costs $5-7/month at idle.</p>
+<p>Deploy n8n from the Railway template:</p>
+<ol>
+<li>Click &quot;New Project&quot; in the Railway dashboard</li>
+<li>Search for &quot;n8n&quot; in the template marketplace</li>
+<li>Click &quot;Deploy&quot; on the official n8n template</li>
+<li>Railway will provision a PostgreSQL database and an n8n instance automatically</li>
+</ol>
+<p>Wait for the deployment to complete (2-3 minutes). Railway will provide a URL for your n8n instance.</p>
+<p>Set essential environment variables in Railway (Settings &gt; Variables):</p>
+<pre><code>N8N_TRUST_PROXY=true
+WEBHOOK_URL=https://your-n8n-instance.railway.app
+</code></pre>
+<p>Open the n8n instance URL and create your admin account. This is your automation control center.</p>
+<h3>Hour 11: First Automation Workflow (10:00 - 11:00)</h3>
+<p>Create a workflow that monitors your RSS feed and posts new content to Slack (or sends you a notification).</p>
+<p>In n8n, create a new workflow:</p>
+<p><strong>Node 1: Schedule Trigger</strong></p>
+<ul>
+<li>Type: Schedule Trigger</li>
+<li>Interval: Every 6 hours</li>
+</ul>
+<p><strong>Node 2: RSS Read</strong></p>
+<ul>
+<li>Type: RSS Feed Read</li>
+<li>URL: <code>https://yourdomain.com/feed.xml</code> (you will create this next)</li>
+</ul>
+<p><strong>Node 3: IF</strong></p>
+<ul>
+<li>Type: IF</li>
+<li>Condition: Check if new items exist since last run</li>
+</ul>
+<p><strong>Node 4: Send Email (Resend HTTP Request)</strong></p>
+<ul>
+<li>Type: HTTP Request</li>
+<li>Method: POST</li>
+<li>URL: <code>https://api.resend.com/emails</code></li>
+<li>Headers: <code>Authorization: Bearer your-resend-api-key</code></li>
+<li>Body:</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;from&quot;: &quot;Automation &lt;hello@yourdomain.com&gt;&quot;,
+  &quot;to&quot;: &quot;your@email.com&quot;,
+  &quot;subject&quot;: &quot;New content published: {{$json.title}}&quot;,
+  &quot;html&quot;: &quot;&lt;p&gt;New post: {{$json.title}}&lt;/p&gt;&lt;p&gt;{{$json.link}}&lt;/p&gt;&quot;
+}
+</code></pre>
+<p>Create an RSS feed for your Next.js site. Create <code>src/app/feed.xml/route.ts</code>:</p>
+<pre><code class="language-typescript">import fs from &quot;fs&quot;;
+import path from &quot;path&quot;;
+import matter from &quot;gray-matter&quot;;
+
+export async function GET() {
+  const blogDir = path.join(process.cwd(), &quot;content/blog&quot;);
+  const files = fs.readdirSync(blogDir).filter((f) =&gt; f.endsWith(&quot;.mdx&quot;));
+
+  const posts = files.map((file) =&gt; {
+    const content = fs.readFileSync(path.join(blogDir, file), &quot;utf8&quot;);
+    const { data } = matter(content);
+    const slug = file.replace(&quot;.mdx&quot;, &quot;&quot;);
+    return { ...data, slug };
+  });
+
+  const rss = `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Your Site&lt;/title&gt;
+    &lt;link&gt;https://yourdomain.com&lt;/link&gt;
+    &lt;description&gt;Your description&lt;/description&gt;
+    ${posts
+      .map(
+        (post) =&gt; `
+    &lt;item&gt;
+      &lt;title&gt;${post.title}&lt;/title&gt;
+      &lt;link&gt;https://yourdomain.com/blog/${post.slug}&lt;/link&gt;
+      &lt;pubDate&gt;${new Date(post.date).toUTCString()}&lt;/pubDate&gt;
+      &lt;description&gt;${post.description}&lt;/description&gt;
+    &lt;/item&gt;`
+      )
+      .join(&quot;&quot;)}
+  &lt;/channel&gt;
+&lt;/rss&gt;`;
+
+  return new Response(rss, {
+    headers: { &quot;Content-Type&quot;: &quot;application/xml&quot; },
+  });
+}
+</code></pre>
+<h3>Hour 12: Content Atomizer Workflow (11:00 - 12:00)</h3>
+<p>Create a second workflow — the Content Atomizer. This workflow takes a blog post URL and generates social media variants.</p>
+<p><strong>Node 1: Webhook</strong></p>
+<ul>
+<li>Type: Webhook</li>
+<li>Method: POST</li>
+<li>Path: <code>/atomize</code></li>
+</ul>
+<p><strong>Node 2: HTTP Request</strong></p>
+<ul>
+<li>Fetch the blog post content from the URL provided in the webhook payload</li>
+</ul>
+<p><strong>Node 3: AI (HTTP Request to your AI provider)</strong></p>
+<ul>
+<li>Send the content to Claude or another AI API with the prompt:</li>
+</ul>
+<pre><code>Take this blog post and create:
+1. A Twitter/X thread (5-7 tweets)
+2. A LinkedIn post (200 words)
+3. A newsletter snippet (100 words)
+
+Blog post content:
+{{$json.content}}
+</code></pre>
+<p><strong>Node 4: Send results via email</strong></p>
+<ul>
+<li>Email yourself the generated social content for review before posting</li>
+</ul>
+<p>Activate both workflows. Verify the webhook by sending a test request:</p>
+<pre><code class="language-bash">curl -X POST https://your-n8n.railway.app/webhook/atomize \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;url&quot;: &quot;https://yourdomain.com/blog/hello-world&quot;}&#39;
+</code></pre>
+<p>Verification checkpoint: you have two active n8n workflows — one that monitors your RSS feed for new content, and one that atomizes content into social media formats when triggered. Both are running on Railway at approximately $5-7/month.</p>
+<p>Deploy the RSS feed:</p>
+<pre><code class="language-bash">git add -A
+git commit -m &quot;feat: RSS feed and n8n automation integration&quot;
+git push origin main
+</code></pre>
+<hr>
+<h2>VI. Sunday Afternoon — The Compute Layer (1:00 PM - 5:00 PM)</h2>
+<h3>Hour 13: Claude Code Installation (1:00 - 2:00)</h3>
+<p>Install Claude Code:</p>
+<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code
+</code></pre>
+<p>You will need a Claude Pro subscription ($20/month) at claude.ai. After subscribing, authenticate:</p>
+<pre><code class="language-bash">claude
+</code></pre>
+<p>Follow the authentication prompts. Once authenticated, Claude Code has access to your terminal, your filesystem, and your codebase.</p>
+<h3>Hour 14: MCP Server Configuration (2:00 - 3:00)</h3>
+<p>MCP (Model Context Protocol) servers extend Claude Code&#39;s capabilities. Configure the essential servers.</p>
+<p>Create <code>.claude/settings.json</code> in your project root (or configure globally at <code>~/.claude/settings.json</code>):</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: {
+    &quot;allow&quot;: [
+      &quot;Bash(npm run dev)&quot;,
+      &quot;Bash(npm run build)&quot;,
+      &quot;Bash(git *)&quot;,
+      &quot;Bash(vercel *)&quot;
+    ]
+  }
+}
+</code></pre>
+<p>Add the Vercel MCP server (if available through your Claude subscription):</p>
+<pre><code class="language-bash">claude mcp add vercel -- npx -y @vercel/mcp-server
+</code></pre>
+<p>This gives Claude Code the ability to check deployment status, read build logs, and monitor your production site — all from the terminal.</p>
+<p>Add the memory MCP server for persistent context across sessions:</p>
+<pre><code class="language-bash">claude mcp add memory -- npx -y @anthropic-ai/memory-mcp-server
+</code></pre>
+<h3>Hour 15: CLAUDE.md Configuration (3:00 - 4:00)</h3>
+<p>Create the <code>CLAUDE.md</code> file in your project root. This file is the instruction set that Claude Code reads at the start of every session. It defines your project context, your brand voice, your content standards, and your deployment workflow.</p>
+<pre><code class="language-markdown"># My Creator Stack
+
+## Project Overview
+Personal creator platform built on the Vibe OS architecture.
+
+## Stack
+- Next.js 15+ (App Router, TypeScript, Tailwind)
+- Vercel (hosting, deployments, blob storage)
+- Supabase (database, auth)
+- Resend (transactional email)
+- n8n on Railway (automation)
+
+## Content Structure
+- Blog posts: `content/blog/*.mdx`
+- Images: `public/images/`
+- Data: `data/*.json`
+
+## Deployment
+Push to `main` branch triggers automatic Vercel deployment.
+
+## Content Standards
+- Every factual claim must be verifiable
+- Voice: [describe your voice here]
+- Author name: [your full name]
+
+## Commands
+- `npm run dev` — local development
+- `npm run build` — production build
+- `vercel --prod` — manual deploy
+</code></pre>
+<h3>Hour 16: First AI-Assisted Content Piece (4:00 - 5:00)</h3>
+<p>This is where the stack comes together. Use Claude Code to create a complete piece of content, end to end.</p>
+<p>Open Claude Code in your project directory:</p>
+<pre><code class="language-bash">claude
+</code></pre>
+<p>Then give it a task:</p>
+<pre><code>Write a blog post about [your topic of expertise]. Save it as
+content/blog/[slug].mdx with proper frontmatter including title,
+description, date, author, and tags. The post should be 1,500 words,
+include practical examples, and end with a clear takeaway.
+</code></pre>
+<p>Claude Code will:</p>
+<ol>
+<li>Create the MDX file with proper frontmatter</li>
+<li>Write the content based on your instructions</li>
+<li>Save the file to the correct location in your project</li>
+</ol>
+<p>Review the output. Edit for voice. Verify any claims. Then deploy:</p>
+<pre><code class="language-bash">git add content/blog/your-new-article.mdx
+git commit -m &quot;feat: publish article on [topic]&quot;
+git push origin main
+</code></pre>
+<p>Vercel deploys. Your article is live. The RSS workflow will detect it on the next cycle. You can trigger the Content Atomizer to generate social variants.</p>
+<p>Verification checkpoint: you have created, reviewed, and published a complete article using Claude Code, deployed it to production via Git push, and can generate social media content from it via n8n automation.</p>
+<hr>
+<h2>VII. The Complete Stack Verification</h2>
+<p>Before you close your laptop on Sunday evening, run through the full verification checklist:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Test</th>
+<th>Expected Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Next.js</td>
+<td>Visit your production URL</td>
+<td>Homepage loads with email signup</td>
+</tr>
+<tr>
+<td>Blog</td>
+<td>Navigate to <code>/blog/hello-world</code></td>
+<td>Blog post renders correctly</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Submit the email signup form</td>
+<td>New row appears in <code>subscribers</code> table</td>
+</tr>
+<tr>
+<td>Resend</td>
+<td>Check your email after subscribing</td>
+<td>Welcome email received, not in spam</td>
+</tr>
+<tr>
+<td>Vercel</td>
+<td>Push a change to <code>main</code></td>
+<td>Automatic deployment completes</td>
+</tr>
+<tr>
+<td>RSS</td>
+<td>Navigate to <code>/feed.xml</code></td>
+<td>Valid RSS XML with your posts</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td>Check workflow execution logs</td>
+<td>Schedule trigger has fired at least once</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>Run <code>claude</code> in your project directory</td>
+<td>Claude loads, reads CLAUDE.md</td>
+</tr>
+</tbody></table>
+<p>If all eight checks pass, your stack is operational.</p>
+<hr>
+<h2>VIII. What $50 Per Month Gets You</h2>
+<p>Here is the recurring cost of what you just built:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Pro</td>
+<td>$20</td>
+</tr>
+<tr>
+<td>Vercel Pro (upgrade when ready)</td>
+<td>$20</td>
+</tr>
+<tr>
+<td>Railway (n8n)</td>
+<td>$5-7</td>
+</tr>
+<tr>
+<td>Resend</td>
+<td>$0 (free tier)</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>$0 (free tier)</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>$0 (free tier)</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>$45-47</strong></td>
+</tr>
+</tbody></table>
+<p>For this cost, you have:</p>
+<ul>
+<li>A production website with automatic deployments from Git</li>
+<li>A blog system with MDX content and proper SEO metadata</li>
+<li>An email subscriber database with row-level security</li>
+<li>Automated welcome emails on signup</li>
+<li>An RSS feed for content syndication</li>
+<li>Two automation workflows (RSS monitor and Content Atomizer)</li>
+<li>An AI coding assistant that understands your entire project</li>
+<li>MCP integrations connecting your AI to your infrastructure</li>
+</ul>
+<p>This is the infrastructure that previously required a team of five and a budget north of $500,000. The architecture is the same. The capability is comparable. The cost is $50 per month.</p>
+<hr>
+<h2>IX. The Next 90 Days</h2>
+<p>The stack is built. The infrastructure is running. The work begins now.</p>
+<p><strong>Week 1-2:</strong> Publish two articles per week. Every article flows through the system: write with Claude Code, review for voice and accuracy, commit to Git, push to deploy, atomize for social distribution. The goal is to establish the rhythm, not to produce masterpieces.</p>
+<p><strong>Week 3-4:</strong> Set up your weekly review. Every Sunday, spend thirty minutes reviewing: what was published, what performed, what is planned for next week. This is Chapter 10 — The Operating Manual — in practice.</p>
+<p><strong>Month 2:</strong> Add complexity gradually. A second n8n workflow. A digital product (a PDF, a template, a checklist). A Stripe integration for paid downloads. Each addition follows the same pattern: build locally, test, deploy, verify.</p>
+<p><strong>Month 3:</strong> Evaluate the compound effect. Is the content library growing? Is the email list growing? Is the quality improving? Are you spending less time on infrastructure and more time on creation? The evidence will tell you.</p>
+<hr>
+<h2>X. The Final Word</h2>
+<p>You now have a $50/month creator infrastructure that runs on the same architectural principles as platforms costing a thousand times more. The deployment is automatic. The email is configured. The automation is running. The AI assistant knows your codebase.</p>
+<p>The next step is to use it — daily, consistently, for years.</p>
+<p>The compound effect handles the rest.</p>
+<p>Not the tools. Not the architecture. Not the automation. The compound effect of showing up, creating work that meets your standard, publishing it through a system that handles the distribution, and doing it again tomorrow.</p>
+<p>The stack is the foundation. The work is the building. The time is the architect.</p>
+<p>Start building.</p>
+<p>— Frank Riemer</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

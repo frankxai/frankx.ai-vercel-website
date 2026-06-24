@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/agent-quality — ACOS Agent Quality Audit</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/agent-quality.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/agent-quality — ACOS Agent Quality Audit</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>agent-quality.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>description: Run the ACOS agent-quality audit — 9-check rubric over .claude/agents/*.md, produces ranked priority queue
+argument-hint: &quot;[agent-name | --json | nothing for full audit]&quot;</h2>
+<h1>/agent-quality — ACOS Agent Quality Audit</h1>
+<p>Run the deterministic 9-check structural audit over every <code>.claude/agents/*.md</code> file. Surfaces which agents need revision first.</p>
+<p>This is the <strong>slash-command surface</strong> for the audit. The <code>@meta-agent-quality-auditor</code> subagent uses the same script.</p>
+<h2>Workflow</h2>
+<h3>1. Determine scope</h3>
+<p>If <code>$ARGUMENTS</code> is empty → audit all agents.
+If <code>$ARGUMENTS</code> is <code>--json</code> → output JSON for tooling/CI.
+If <code>$ARGUMENTS</code> is an agent name (e.g., <code>meta-acos-router</code>) → audit just that one.</p>
+<h3>2. Run</h3>
+<pre><code class="language-bash">node scripts/agents/audit-agent-quality.mjs $ARGUMENTS
+</code></pre>
+<p>Equivalent invocations:</p>
+<ul>
+<li><code>npm run agents:quality</code> — full audit, writes report</li>
+<li><code>npm run agents:quality:json</code> — JSON to stdout (CI-friendly)</li>
+</ul>
+<h3>3. Report</h3>
+<p>The script writes two artifacts:</p>
+<ul>
+<li><code>docs/acos/agent-quality-audit-&lt;date&gt;.md</code> — human-readable ranked report</li>
+<li><code>.frankx/machine/agent-quality-audit-&lt;date&gt;.json</code> — machine-readable snapshot</li>
+</ul>
+<p>Console summary shows:</p>
+<ul>
+<li>Total audited</li>
+<li>Disqualified count (existential gate fail)</li>
+<li>L99-ready count (score 9/9)</li>
+<li>Mean score</li>
+<li>Top 8 priority fixes</li>
+</ul>
+<h3>4. The 9-check rubric (what it scores)</h3>
+<ol>
+<li><strong>Frontmatter complete</strong> — name/description/tools/model (EXISTENTIAL)</li>
+<li><strong>Description with triggers</strong> — ≥50 chars + auto-fire cues</li>
+<li><strong>Tools minimality</strong> — every declared tool referenced in Process</li>
+<li><strong>Template-v2 sections</strong> — ≥8 of 10 canonical sections</li>
+<li><strong>Memory contract</strong> — Process has recall + remember</li>
+<li><strong>Anti-patterns</strong> — ≥4 negation bullets in §8</li>
+<li><strong>Brand voice clean</strong> — zero AI-slop hits (EXISTENTIAL)</li>
+<li><strong>No Arcanean leak</strong> — zero quarantine matches in prose (EXISTENTIAL)</li>
+<li><strong>Smoke fixture exists</strong> — tests/fixtures/<ref>/smoke.mjs present</li>
+</ol>
+<h3>5. When to dispatch the agent instead</h3>
+<p>Use <code>@meta-agent-quality-auditor</code> (subagent) instead of <code>/agent-quality</code> (slash) when:</p>
+<ul>
+<li>The audit is part of a larger orchestrated flow</li>
+<li>You want the result to come back as a structured JSON for downstream tooling</li>
+<li>You need the audit to run with memory recall (subagent does step 0 memory load)</li>
+</ul>
+<p>Use <code>/agent-quality</code> (this command) when:</p>
+<ul>
+<li>You&#39;re a human running it interactively</li>
+<li>You want the report rendered for reading</li>
+<li>You want CI-style exit code</li>
+</ul>
+<h3>6. Follow-up: what to do with findings</h3>
+<p>See <code>experiments/2026-05-15-agent-format-best-practices/recommendations.md</code> for the ranked patch list:</p>
+<ul>
+<li>R1 — Frontmatter migration sprint (16 agents, ~2h, +0.21 mean)</li>
+<li>R2 — Brand-voice cleanup (6 agents, ~30min, clears 6 disqualifications)</li>
+<li>R3 — Smoke fixture sprint (35 agents, ~6h, biggest L99 lift)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

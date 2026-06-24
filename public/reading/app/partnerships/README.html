@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Partnerships system</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="app/partnerships/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Partnerships system</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#app">app</a> / <a href="index.html#app%2Fpartnerships">partnerships</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Partnerships system</h1>
+<p>A reusable Partner Proposal page system. First instance is <strong>Arrow Electronics ECS</strong> (Oracle Global Distributor of the Year 2025). The system is layered as <strong>working reality (Tier 1) → labeled proposal (Tier 2)</strong> so a 30-year channel veteran encounters trust before ask.</p>
+<ul>
+<li>Public hub: <code>/partnerships</code></li>
+<li>Per-partner deep page: <code>/partnerships/[slug]</code></li>
+<li>LLM citation surface: <code>/partnerships/[slug]/llms.txt</code></li>
+<li>Affiliate transparency (separate hub): <code>/partners</code></li>
+<li>Design spec: <a href="../../docs/superpowers/specs/2026-05-07-partnerships-arrow-design.md"><code>docs/superpowers/specs/2026-05-07-partnerships-arrow-design.md</code></a></li>
+</ul>
+<h2>File tree</h2>
+<pre><code>app/partnerships/
+├── layout.tsx                        # tech-spectrum route boundary
+├── page.tsx                          # hub
+├── README.md                         # this file
+└── [slug]/
+    ├── page.tsx                      # deep page
+    └── llms.txt/route.ts             # plain-text LLM summary
+
+components/partnerships/              # 12 domain-specific components
+content/partnerships/
+├── types.ts                          # Partner schema
+├── index.ts                          # registry — wire new partners here
+├── arrow.ts                          # full instance
+└── _placeholders/{nvidia,anthropic,vercel,google}.ts
+
+lib/
+├── cta-links.ts                      # MEET_AND_GROW_URL
+└── cross-links.ts                    # canonical surface hrefs
+
+.frankx/private/partnerships/         # GITIGNORED — operator-only briefs
+└── &lt;slug&gt;-brief.md
+
+public/images/partnerships/
+├── og-default.png                    # placeholder OG, 1200x630
+├── arrow-og.png                      # generated via NB2 (TODO Frank)
+└── logos/&lt;slug&gt;.svg                  # official press-kit downloads (TODO Frank)
+</code></pre>
+<h2>Add a new partner in under 10 minutes</h2>
+<h3>1. Drop a config file</h3>
+<p>Create <code>content/partnerships/&lt;slug&gt;.ts</code> (for <code>active</code>) or <code>content/partnerships/_placeholders/&lt;slug&gt;.ts</code> (for <code>placeholder</code> / <code>in-conversation</code>):</p>
+<pre><code class="language-ts">import type { Partner } from &#39;../types&#39;           // or &#39;../../types&#39; from _placeholders/
+import { crossLink } from &#39;@/lib/cross-links&#39;
+import { MEET_AND_GROW_URL } from &#39;@/lib/cta-links&#39;
+
+export const &lt;slug&gt;: Partner = {
+  slug: &#39;&lt;slug&gt;&#39;,
+  name: &#39;&lt;Full Name&gt;&#39;,
+  shortName: &#39;&lt;Short Name&gt;&#39;,
+  tier: &#39;distribution&#39; | &#39;cloud&#39; | &#39;model-provider&#39; | &#39;tooling&#39; | &#39;silicon&#39;,
+  status: &#39;active&#39; | &#39;in-conversation&#39; | &#39;placeholder&#39;,
+
+  // Hero
+  title: &#39;&lt;Frank\&#39;s role on this page&gt;&#39;,
+  tagline: &#39;&lt;one-sentence partnership statement&gt;&#39;,
+  subTagline: &#39;&lt;verifiable market context&gt;&#39;,
+
+  // Tier 1 — working reality (verifiable today, top of page)
+  contextWindow: `&lt;~150-word grounding paragraph in 2 to 3 paragraphs&gt;`,
+  workingReality: [
+    {
+      label: &#39;&lt;short label&gt;&#39;,
+      detail: &#39;&lt;one-sentence verifiable fact&gt;&#39;,
+      evidence: { label: &#39;&lt;link text&gt;&#39;, href: &#39;&lt;URL or relative path&gt;&#39; }, // optional
+    },
+    // 3 to 6 blocks total
+  ],
+  proofPoints: [
+    { label: &#39;&lt;artifact label&gt;&#39;, href: &#39;&lt;URL&gt;&#39; },
+    // optional metric, e.g. metric: &#39;85+ repos / 31 tools&#39;
+  ],
+
+  // Tier 2 — proposal (only for active partners)
+  proposalIntro: &#39;&lt;1 to 2 sentence intro&gt;&#39;,                  // active only
+  asymmetricValue: [/* exactly 5 ValueBlocks */],            // active only
+  programs: [/* 1 to 6 Programs */],                         // active only
+  compoundingModel: [/* 4 nodes — month 0, 3, 6, 12 */],     // active only
+  crossLinks: [                                              // active only
+    crossLink(&#39;ai-coe&#39;,           &#39;&lt;partner-specific rationale&gt;&#39;),
+    crossLink(&#39;ai-architecture&#39;,  &#39;&lt;rationale&gt;&#39;),
+    crossLink(&#39;ai-architect-academy&#39;, &#39;&lt;rationale&gt;&#39;),
+    crossLink(&#39;research&#39;,         &#39;&lt;rationale&gt;&#39;),
+    crossLink(&#39;workshops&#39;,        &#39;&lt;rationale&gt;&#39;),
+  ],
+  whatThisIsNot: [/* 3 to 5 scope-limit strings */],         // active only
+
+  cta: { label: &#39;Book Meet &amp; Grow with Frank&#39;, href: MEET_AND_GROW_URL },
+
+  accent: &#39;tech&#39;,                                            // default &#39;tech&#39;
+  ogImagePath: &#39;/images/partnerships/&lt;slug&gt;-og.png&#39;,         // optional; default OG used if missing
+
+  seo: {
+    title: &#39;&lt;60-char or so meta title&gt;&#39;,
+    description: &#39;&lt;155-char or so meta description&gt;&#39;,
+  },
+}
+</code></pre>
+<p>For a <strong>placeholder</strong>, set all Tier 2 fields to empty arrays and <code>proposalIntro: &#39;&#39;</code>. The page will render Tier 1 plus <code>PlaceholderState</code> automatically.</p>
+<h3>2. Wire it into the registry</h3>
+<p>Edit <code>content/partnerships/index.ts</code>:</p>
+<pre><code class="language-ts">import { &lt;slug&gt; } from &#39;./&lt;slug&gt;&#39;                            // or &#39;./_placeholders/&lt;slug&gt;&#39;
+
+const registry: Record&lt;string, Partner&gt; = {
+  // ...existing partners
+  [&lt;slug&gt;.slug]: &lt;slug&gt;,
+}
+</code></pre>
+<h3>3. Add the OG image (optional but recommended)</h3>
+<p>Generate <code>public/images/partnerships/&lt;slug&gt;-og.png</code> (1200x630). Suggested prompt for NB2 (<code>node scripts/nb-generate.mjs</code>):</p>
+<blockquote>
+<p>Editorial-tech composition. Near-black <code>#0a0a0b</code> background with subtle iridescent emerald glow upper-left. White typography: &quot;FrankX × <Partner>&quot; centered. Subtitle below in muted white: &quot;<partner tagline>&quot;. Bottom-left small wordmark &quot;frankx.ai&quot;. Cinematic, restrained, Vercel-Linear taste. No people, no logos, no stock imagery.</p>
+</blockquote>
+<h3>4. Add the partner logo (optional but recommended)</h3>
+<p>Per playbook (see spec §13):</p>
+<ol>
+<li>Download SVG from official press kit (see spec for canonical URLs)</li>
+<li>Save to <code>public/images/partnerships/logos/&lt;slug&gt;.svg</code></li>
+<li>Create <code>public/images/partnerships/logos/&lt;slug&gt;-attribution.txt</code> with source URL + retrieved-on date + license terms</li>
+<li>Reference in partner config: <code>partnerLogoUrl: &#39;/images/partnerships/logos/&lt;slug&gt;.svg&#39;</code></li>
+</ol>
+<h3>5. Verify</h3>
+<pre><code class="language-bash">npm run type-check                   # 9 baseline errors expected
+npm run validate:rails               # all pass
+npm run claims:audit:strict          # only pre-existing baseline findings
+npm run build                        # full prod build
+</code></pre>
+<p>Visit <code>/partnerships</code>, <code>/partnerships/&lt;slug&gt;</code>, <code>/partnerships/&lt;slug&gt;/llms.txt</code>. Confirm:</p>
+<ul>
+<li>Hero pairs FrankX + partner at equal weight</li>
+<li>Tier 1 working reality renders before any proposal language</li>
+<li>Tier 2 only renders for <code>status === &#39;active&#39;</code></li>
+<li><code>ProposalDivider</code> cleanly labels the transition</li>
+<li>llms.txt returns sanitized text/plain</li>
+</ul>
+<h2>Two-tier model — why it matters</h2>
+<p>A 30-year channel veteran can smell a proposal page from the parking lot. The model that earns trust:</p>
+<pre><code>TIER 1: Working reality (top of page)
+  ├─ What I already build with this kind of partner
+  ├─ Verifiable facts — repos, events, audience numbers
+  └─ Evidence links
+
+──── ProposalDivider — labeled hairline ────
+
+TIER 2: Proposal (bottom of page, clearly labeled)
+  ├─ Asymmetric value (leverage blocks)
+  ├─ Operating modes (program cards, qualitative pricing)
+  ├─ Compounding model (M0 / M3 / M6 / M12)
+  ├─ Cross-link tour (working surfaces of frankx.ai)
+  ├─ Scope limits (anti-positioning)
+  └─ Closing CTA (Meet &amp; Grow)
+</code></pre>
+<p>Trust before ask. Honest layering. The proposal IS a proposal, and we don&#39;t pretend otherwise — we just earn the right to make it by leading with verifiable working reality.</p>
+<h2>Private vs public</h2>
+<p>Anything you wouldn&#39;t shout in a corridor lives in <code>.frankx/private/partnerships/&lt;slug&gt;-brief.md</code> (gitignored). The public page references roles, not named individuals. The public page never names Oracle transition timing or pricing brackets.</p>
+<p>Validate that a new private brief is invisible to git:</p>
+<pre><code class="language-bash">git check-ignore -v .frankx/private/partnerships/&lt;slug&gt;-brief.md
+# Expect: .gitignore:&lt;line&gt;:.frankx/private/   .frankx/private/partnerships/&lt;slug&gt;-brief.md
+</code></pre>
+<h2>Brand contract</h2>
+<ul>
+<li><strong>Spectrum</strong>: tech only (emerald <code>#10b981</code>). Never mix soul (amber) on partnership pages.</li>
+<li><strong>Typography</strong>: Inter body, Poppins display ≥18px, eyebrow pattern (11px / 0.25em tracking / 60% alpha) before every h2.</li>
+<li><strong>CTAs</strong>: one primary per viewport. Primary = <code>bg-emerald-500 text-black rounded-full</code>. Secondary = <code>bg-white/[0.04] border border-white/10 rounded-full</code>.</li>
+<li><strong>No emojis</strong>, <strong>no Arcanea language</strong>, <strong>no AI-tone phrases</strong> (&quot;delve&quot;, &quot;harness&quot;, &quot;unleash&quot;, &quot;navigate the landscape&quot;, &quot;in conclusion&quot;). Editorial gates: <code>validate:rails</code> + <code>claims:audit:strict</code> + manual <code>taste.md</code> polish pass.</li>
+</ul>
+<h2>Anti-patterns (never do)</h2>
+<ul>
+<li>Don&#39;t paste named individuals into a public partner file.</li>
+<li>Don&#39;t paste numeric pricing into a public partner file.</li>
+<li>Don&#39;t add unverifiable speed, trust, or enterprise-name claims -- they break <code>claims:audit:strict</code>.</li>
+<li>Don&#39;t import affiliate components from <code>components/affiliates/</code> — that lives on the <code>/partners</code> transparency hub, not here.</li>
+<li>Don&#39;t break the two-tier order by sliding proposal language into Tier 1.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

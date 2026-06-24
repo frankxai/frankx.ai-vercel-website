@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Iterative Retrieval Pattern</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/iterative-retrieval/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Iterative Retrieval Pattern</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fiterative-retrieval">iterative-retrieval</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: iterative-retrieval
+description: Pattern for progressively refining context retrieval to solve the subagent context problem
+origin: ECC</h2>
+<h1>Iterative Retrieval Pattern</h1>
+<p>Solves the &quot;context problem&quot; in multi-agent workflows where subagents don&#39;t know what context they need until they start working.</p>
+<h2>When to Activate</h2>
+<ul>
+<li>Spawning subagents that need codebase context they cannot predict upfront</li>
+<li>Building multi-agent workflows where context is progressively refined</li>
+<li>Encountering &quot;context too large&quot; or &quot;missing context&quot; failures in agent tasks</li>
+<li>Designing RAG-like retrieval pipelines for code exploration</li>
+<li>Optimizing token usage in agent orchestration</li>
+</ul>
+<h2>The Problem</h2>
+<p>Subagents are spawned with limited context. They don&#39;t know:</p>
+<ul>
+<li>Which files contain relevant code</li>
+<li>What patterns exist in the codebase</li>
+<li>What terminology the project uses</li>
+</ul>
+<p>Standard approaches fail:</p>
+<ul>
+<li><strong>Send everything</strong>: Exceeds context limits</li>
+<li><strong>Send nothing</strong>: Agent lacks critical information</li>
+<li><strong>Guess what&#39;s needed</strong>: Often wrong</li>
+</ul>
+<h2>The Solution: Iterative Retrieval</h2>
+<p>A 4-phase loop that progressively refines context:</p>
+<pre><code>┌─────────────────────────────────────────────┐
+│                                             │
+│   ┌──────────┐      ┌──────────┐            │
+│   │ DISPATCH │─────▶│ EVALUATE │            │
+│   └──────────┘      └──────────┘            │
+│        ▲                  │                 │
+│        │                  ▼                 │
+│   ┌──────────┐      ┌──────────┐            │
+│   │   LOOP   │◀─────│  REFINE  │            │
+│   └──────────┘      └──────────┘            │
+│                                             │
+│        Max 3 cycles, then proceed           │
+└─────────────────────────────────────────────┘
+</code></pre>
+<h3>Phase 1: DISPATCH</h3>
+<p>Initial broad query to gather candidate files:</p>
+<pre><code class="language-javascript">// Start with high-level intent
+const initialQuery = {
+  patterns: [&#39;src/**/*.ts&#39;, &#39;lib/**/*.ts&#39;],
+  keywords: [&#39;authentication&#39;, &#39;user&#39;, &#39;session&#39;],
+  excludes: [&#39;*.test.ts&#39;, &#39;*.spec.ts&#39;]
+};
+
+// Dispatch to retrieval agent
+const candidates = await retrieveFiles(initialQuery);
+</code></pre>
+<h3>Phase 2: EVALUATE</h3>
+<p>Assess retrieved content for relevance:</p>
+<pre><code class="language-javascript">function evaluateRelevance(files, task) {
+  return files.map(file =&gt; ({
+    path: file.path,
+    relevance: scoreRelevance(file.content, task),
+    reason: explainRelevance(file.content, task),
+    missingContext: identifyGaps(file.content, task)
+  }));
+}
+</code></pre>
+<p>Scoring criteria:</p>
+<ul>
+<li><strong>High (0.8-1.0)</strong>: Directly implements target functionality</li>
+<li><strong>Medium (0.5-0.7)</strong>: Contains related patterns or types</li>
+<li><strong>Low (0.2-0.4)</strong>: Tangentially related</li>
+<li><strong>None (0-0.2)</strong>: Not relevant, exclude</li>
+</ul>
+<h3>Phase 3: REFINE</h3>
+<p>Update search criteria based on evaluation:</p>
+<pre><code class="language-javascript">function refineQuery(evaluation, previousQuery) {
+  return {
+    // Add new patterns discovered in high-relevance files
+    patterns: [...previousQuery.patterns, ...extractPatterns(evaluation)],
+
+    // Add terminology found in codebase
+    keywords: [...previousQuery.keywords, ...extractKeywords(evaluation)],
+
+    // Exclude confirmed irrelevant paths
+    excludes: [...previousQuery.excludes, ...evaluation
+      .filter(e =&gt; e.relevance &lt; 0.2)
+      .map(e =&gt; e.path)
+    ],
+
+    // Target specific gaps
+    focusAreas: evaluation
+      .flatMap(e =&gt; e.missingContext)
+      .filter(unique)
+  };
+}
+</code></pre>
+<h3>Phase 4: LOOP</h3>
+<p>Repeat with refined criteria (max 3 cycles):</p>
+<pre><code class="language-javascript">async function iterativeRetrieve(task, maxCycles = 3) {
+  let query = createInitialQuery(task);
+  let bestContext = [];
+
+  for (let cycle = 0; cycle &lt; maxCycles; cycle++) {
+    const candidates = await retrieveFiles(query);
+    const evaluation = evaluateRelevance(candidates, task);
+
+    // Check if we have sufficient context
+    const highRelevance = evaluation.filter(e =&gt; e.relevance &gt;= 0.7);
+    if (highRelevance.length &gt;= 3 &amp;&amp; !hasCriticalGaps(evaluation)) {
+      return highRelevance;
+    }
+
+    // Refine and continue
+    query = refineQuery(evaluation, query);
+    bestContext = mergeContext(bestContext, highRelevance);
+  }
+
+  return bestContext;
+}
+</code></pre>
+<h2>Practical Examples</h2>
+<h3>Example 1: Bug Fix Context</h3>
+<pre><code>Task: &quot;Fix the authentication token expiry bug&quot;
+
+Cycle 1:
+  DISPATCH: Search for &quot;token&quot;, &quot;auth&quot;, &quot;expiry&quot; in src/**
+  EVALUATE: Found auth.ts (0.9), tokens.ts (0.8), user.ts (0.3)
+  REFINE: Add &quot;refresh&quot;, &quot;jwt&quot; keywords; exclude user.ts
+
+Cycle 2:
+  DISPATCH: Search refined terms
+  EVALUATE: Found session-manager.ts (0.95), jwt-utils.ts (0.85)
+  REFINE: Sufficient context (2 high-relevance files)
+
+Result: auth.ts, tokens.ts, session-manager.ts, jwt-utils.ts
+</code></pre>
+<h3>Example 2: Feature Implementation</h3>
+<pre><code>Task: &quot;Add rate limiting to API endpoints&quot;
+
+Cycle 1:
+  DISPATCH: Search &quot;rate&quot;, &quot;limit&quot;, &quot;api&quot; in routes/**
+  EVALUATE: No matches - codebase uses &quot;throttle&quot; terminology
+  REFINE: Add &quot;throttle&quot;, &quot;middleware&quot; keywords
+
+Cycle 2:
+  DISPATCH: Search refined terms
+  EVALUATE: Found throttle.ts (0.9), middleware/index.ts (0.7)
+  REFINE: Need router patterns
+
+Cycle 3:
+  DISPATCH: Search &quot;router&quot;, &quot;express&quot; patterns
+  EVALUATE: Found router-setup.ts (0.8)
+  REFINE: Sufficient context
+
+Result: throttle.ts, middleware/index.ts, router-setup.ts
+</code></pre>
+<h2>Integration with Agents</h2>
+<p>Use in agent prompts:</p>
+<pre><code class="language-markdown">When retrieving context for this task:
+1. Start with broad keyword search
+2. Evaluate each file&#39;s relevance (0-1 scale)
+3. Identify what context is still missing
+4. Refine search criteria and repeat (max 3 cycles)
+5. Return files with relevance &gt;= 0.7
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Start broad, narrow progressively</strong> - Don&#39;t over-specify initial queries</li>
+<li><strong>Learn codebase terminology</strong> - First cycle often reveals naming conventions</li>
+<li><strong>Track what&#39;s missing</strong> - Explicit gap identification drives refinement</li>
+<li><strong>Stop at &quot;good enough&quot;</strong> - 3 high-relevance files beats 10 mediocre ones</li>
+<li><strong>Exclude confidently</strong> - Low-relevance files won&#39;t become relevant</li>
+</ol>
+<h2>Related</h2>
+<ul>
+<li><a href="https://x.com/affaanmustafa/status/2014040193557471352">The Longform Guide</a> - Subagent orchestration section</li>
+<li><code>continuous-learning</code> skill - For patterns that improve over time</li>
+<li>Agent definitions bundled with ECC (manual install path: <code>agents/</code>)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

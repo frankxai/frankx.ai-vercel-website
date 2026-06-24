@@ -89,7 +89,7 @@ export function GlassCathedralHero() {
         <p className="text-base text-white/35 max-w-lg mx-auto mb-16 leading-relaxed">
           AI architecture, creative systems, and open tools.
           <br className="hidden sm:block" />
-          Built at Oracle. Documented here.
+          Built with enterprise rigor. Documented here.
         </p>
 
         {/* Crystal stat cards — 3 across */}

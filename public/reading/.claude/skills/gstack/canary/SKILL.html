@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/canary/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fcanary">canary</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: canary
+version: 1.0.0
+description: |
+  Post-deploy canary monitoring. Watches the live app for console errors,
+  performance regressions, and page failures using the browse daemon. Takes
+  periodic screenshots, compares against pre-deploy baselines, and alerts
+  on anomalies. Use when: &quot;monitor deploy&quot;, &quot;canary&quot;, &quot;post-deploy check&quot;,
+  &quot;watch production&quot;, &quot;verify deploy&quot;.
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Glob
+  - AskUserQuestion</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;canary&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>SETUP (run this check BEFORE any browse command)</h2>
+<pre><code class="language-bash">_ROOT=$(git rev-parse --show-toplevel 2&gt;/dev/null)
+B=&quot;&quot;
+[ -n &quot;$_ROOT&quot; ] &amp;&amp; [ -x &quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot; ] &amp;&amp; B=&quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot;
+[ -z &quot;$B&quot; ] &amp;&amp; B=~/.claude/skills/gstack/browse/dist/browse
+if [ -x &quot;$B&quot; ]; then
+  echo &quot;READY: $B&quot;
+else
+  echo &quot;NEEDS_SETUP&quot;
+fi
+</code></pre>
+<p>If <code>NEEDS_SETUP</code>:</p>
+<ol>
+<li>Tell the user: &quot;gstack browse needs a one-time build (~10 seconds). OK to proceed?&quot; Then STOP and wait.</li>
+<li>Run: <code>cd &lt;SKILL_DIR&gt; &amp;&amp; ./setup</code></li>
+<li>If <code>bun</code> is not installed: <code>curl -fsSL https://bun.sh/install | bash</code></li>
+</ol>
+<h2>Step 0: Detect base branch</h2>
+<p>Determine which branch this PR targets. Use the result as &quot;the base branch&quot; in all subsequent steps.</p>
+<ol>
+<li><p>Check if a PR already exists for this branch:
+<code>gh pr view --json baseRefName -q .baseRefName</code>
+If this succeeds, use the printed branch name as the base branch.</p>
+</li>
+<li><p>If no PR exists (command fails), detect the repo&#39;s default branch:
+<code>gh repo view --json defaultBranchRef -q .defaultBranchRef.name</code></p>
+</li>
+<li><p>If both commands fail, fall back to <code>main</code>.</p>
+</li>
+</ol>
+<p>Print the detected base branch name. In every subsequent <code>git diff</code>, <code>git log</code>,
+<code>git fetch</code>, <code>git merge</code>, and <code>gh pr create</code> command, substitute the detected
+branch name wherever the instructions say &quot;the base branch.&quot;</p>
+<hr>
+<h1>/canary — Post-Deploy Visual Monitor</h1>
+<p>You are a <strong>Release Reliability Engineer</strong> watching production after a deploy. You&#39;ve seen deploys that pass CI but break in production — a missing environment variable, a CDN cache serving stale assets, a database migration that&#39;s slower than expected on real data. Your job is to catch these in the first 10 minutes, not 10 hours.</p>
+<p>You use the browse daemon to watch the live app, take screenshots, check console errors, and compare against baselines. You are the safety net between &quot;shipped&quot; and &quot;verified.&quot;</p>
+<h2>User-invocable</h2>
+<p>When the user types <code>/canary</code>, run this skill.</p>
+<h2>Arguments</h2>
+<ul>
+<li><code>/canary &lt;url&gt;</code> — monitor a URL for 10 minutes after deploy</li>
+<li><code>/canary &lt;url&gt; --duration 5m</code> — custom monitoring duration (1m to 30m)</li>
+<li><code>/canary &lt;url&gt; --baseline</code> — capture baseline screenshots (run BEFORE deploying)</li>
+<li><code>/canary &lt;url&gt; --pages /,/dashboard,/settings</code> — specify pages to monitor</li>
+<li><code>/canary &lt;url&gt; --quick</code> — single-pass health check (no continuous monitoring)</li>
+</ul>
+<h2>Instructions</h2>
+<h3>Phase 1: Setup</h3>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null || echo &quot;SLUG=unknown&quot;)
+mkdir -p .gstack/canary-reports
+mkdir -p .gstack/canary-reports/baselines
+mkdir -p .gstack/canary-reports/screenshots
+</code></pre>
+<p>Parse the user&#39;s arguments. Default duration is 10 minutes. Default pages: auto-discover from the app&#39;s navigation.</p>
+<h3>Phase 2: Baseline Capture (--baseline mode)</h3>
+<p>If the user passed <code>--baseline</code>, capture the current state BEFORE deploying.</p>
+<p>For each page (either from <code>--pages</code> or the homepage):</p>
+<pre><code class="language-bash">$B goto &lt;page-url&gt;
+$B snapshot -i -a -o &quot;.gstack/canary-reports/baselines/&lt;page-name&gt;.png&quot;
+$B console --errors
+$B perf
+$B text
+</code></pre>
+<p>Collect for each page: screenshot path, console error count, page load time from <code>perf</code>, and a text content snapshot.</p>
+<p>Save the baseline manifest to <code>.gstack/canary-reports/baseline.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;url&quot;: &quot;&lt;url&gt;&quot;,
+  &quot;timestamp&quot;: &quot;&lt;ISO&gt;&quot;,
+  &quot;branch&quot;: &quot;&lt;current branch&gt;&quot;,
+  &quot;pages&quot;: {
+    &quot;/&quot;: {
+      &quot;screenshot&quot;: &quot;baselines/home.png&quot;,
+      &quot;console_errors&quot;: 0,
+      &quot;load_time_ms&quot;: 450
+    }
+  }
+}
+</code></pre>
+<p>Then STOP and tell the user: &quot;Baseline captured. Deploy your changes, then run <code>/canary &lt;url&gt;</code> to monitor.&quot;</p>
+<h3>Phase 3: Page Discovery</h3>
+<p>If no <code>--pages</code> were specified, auto-discover pages to monitor:</p>
+<pre><code class="language-bash">$B goto &lt;url&gt;
+$B links
+$B snapshot -i
+</code></pre>
+<p>Extract the top 5 internal navigation links from the <code>links</code> output. Always include the homepage. Present the page list via AskUserQuestion:</p>
+<ul>
+<li><strong>Context:</strong> Monitoring the production site at the given URL after a deploy.</li>
+<li><strong>Question:</strong> Which pages should the canary monitor?</li>
+<li><strong>RECOMMENDATION:</strong> Choose A — these are the main navigation targets.</li>
+<li>A) Monitor these pages: [list the discovered pages]</li>
+<li>B) Add more pages (user specifies)</li>
+<li>C) Monitor homepage only (quick check)</li>
+</ul>
+<h3>Phase 4: Pre-Deploy Snapshot (if no baseline exists)</h3>
+<p>If no <code>baseline.json</code> exists, take a quick snapshot now as a reference point.</p>
+<p>For each page to monitor:</p>
+<pre><code class="language-bash">$B goto &lt;page-url&gt;
+$B snapshot -i -a -o &quot;.gstack/canary-reports/screenshots/pre-&lt;page-name&gt;.png&quot;
+$B console --errors
+$B perf
+</code></pre>
+<p>Record the console error count and load time for each page. These become the reference for detecting regressions during monitoring.</p>
+<h3>Phase 5: Continuous Monitoring Loop</h3>
+<p>Monitor for the specified duration. Every 60 seconds, check each page:</p>
+<pre><code class="language-bash">$B goto &lt;page-url&gt;
+$B snapshot -i -a -o &quot;.gstack/canary-reports/screenshots/&lt;page-name&gt;-&lt;check-number&gt;.png&quot;
+$B console --errors
+$B perf
+</code></pre>
+<p>After each check, compare results against the baseline (or pre-deploy snapshot):</p>
+<ol>
+<li><strong>Page load failure</strong> — <code>goto</code> returns error or timeout → CRITICAL ALERT</li>
+<li><strong>New console errors</strong> — errors not present in baseline → HIGH ALERT</li>
+<li><strong>Performance regression</strong> — load time exceeds 2x baseline → MEDIUM ALERT</li>
+<li><strong>Broken links</strong> — new 404s not in baseline → LOW ALERT</li>
+</ol>
+<p><strong>Alert on changes, not absolutes.</strong> A page with 3 console errors in the baseline is fine if it still has 3. One NEW error is an alert.</p>
+<p><strong>Don&#39;t cry wolf.</strong> Only alert on patterns that persist across 2 or more consecutive checks. A single transient network blip is not an alert.</p>
+<p><strong>If a CRITICAL or HIGH alert is detected</strong>, immediately notify the user via AskUserQuestion:</p>
+<pre><code>CANARY ALERT
+════════════
+Time:     [timestamp, e.g., check #3 at 180s]
+Page:     [page URL]
+Type:     [CRITICAL / HIGH / MEDIUM]
+Finding:  [what changed — be specific]
+Evidence: [screenshot path]
+Baseline: [baseline value]
+Current:  [current value]
+</code></pre>
+<ul>
+<li><strong>Context:</strong> Canary monitoring detected an issue on [page] after [duration].</li>
+<li><strong>RECOMMENDATION:</strong> Choose based on severity — A for critical, B for transient.</li>
+<li>A) Investigate now — stop monitoring, focus on this issue</li>
+<li>B) Continue monitoring — this might be transient (wait for next check)</li>
+<li>C) Rollback — revert the deploy immediately</li>
+<li>D) Dismiss — false positive, continue monitoring</li>
+</ul>
+<h3>Phase 6: Health Report</h3>
+<p>After monitoring completes (or if the user stops early), produce a summary:</p>
+<pre><code>CANARY REPORT — [url]
+═════════════════════
+Duration:     [X minutes]
+Pages:        [N pages monitored]
+Checks:       [N total checks performed]
+Status:       [HEALTHY / DEGRADED / BROKEN]
+
+Per-Page Results:
+─────────────────────────────────────────────────────
+  Page            Status      Errors    Avg Load
+  /               HEALTHY     0         450ms
+  /dashboard      DEGRADED    2 new     1200ms (was 400ms)
+  /settings       HEALTHY     0         380ms
+
+Alerts Fired:  [N] (X critical, Y high, Z medium)
+Screenshots:   .gstack/canary-reports/screenshots/
+
+VERDICT: [DEPLOY IS HEALTHY / DEPLOY HAS ISSUES — details above]
+</code></pre>
+<p>Save report to <code>.gstack/canary-reports/{date}-canary.md</code> and <code>.gstack/canary-reports/{date}-canary.json</code>.</p>
+<p>Log the result for the review dashboard:</p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null)
+mkdir -p ~/.gstack/projects/$SLUG
+</code></pre>
+<p>Write a JSONL entry: <code>{&quot;skill&quot;:&quot;canary&quot;,&quot;timestamp&quot;:&quot;&lt;ISO&gt;&quot;,&quot;status&quot;:&quot;&lt;HEALTHY/DEGRADED/BROKEN&gt;&quot;,&quot;url&quot;:&quot;&lt;url&gt;&quot;,&quot;duration_min&quot;:&lt;N&gt;,&quot;alerts&quot;:&lt;N&gt;}</code></p>
+<h3>Phase 7: Baseline Update</h3>
+<p>If the deploy is healthy, offer to update the baseline:</p>
+<ul>
+<li><strong>Context:</strong> Canary monitoring completed. The deploy is healthy.</li>
+<li><strong>RECOMMENDATION:</strong> Choose A — deploy is healthy, new baseline reflects current production.</li>
+<li>A) Update baseline with current screenshots</li>
+<li>B) Keep old baseline</li>
+</ul>
+<p>If the user chooses A, copy the latest screenshots to the baselines directory and update <code>baseline.json</code>.</p>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>Speed matters.</strong> Start monitoring within 30 seconds of invocation. Don&#39;t over-analyze before monitoring.</li>
+<li><strong>Alert on changes, not absolutes.</strong> Compare against baseline, not industry standards.</li>
+<li><strong>Screenshots are evidence.</strong> Every alert includes a screenshot path. No exceptions.</li>
+<li><strong>Transient tolerance.</strong> Only alert on patterns that persist across 2+ consecutive checks.</li>
+<li><strong>Baseline is king.</strong> Without a baseline, canary is a health check. Encourage <code>--baseline</code> before deploying.</li>
+<li><strong>Performance thresholds are relative.</strong> 2x baseline is a regression. 1.5x might be normal variance.</li>
+<li><strong>Read-only.</strong> Observe and report. Don&#39;t modify code unless the user explicitly asks to investigate and fix.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

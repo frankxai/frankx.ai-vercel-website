@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Evaluation and Trust</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/architects-playbook/chapter-16-evaluation-and-trust.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Evaluation and Trust</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Farchitects-playbook">architects-playbook</a> / <span>chapter-16-evaluation-and-trust.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Evaluation and Trust</h1>
+<blockquote>
+<p>&quot;In God we trust. All others must bring data.&quot;
+— W. Edwards Deming</p>
+</blockquote>
+<hr>
+<p>An AI model produces output. The output looks good. It reads well. The code compiles. The paragraph flows. The analysis seems reasonable.</p>
+<p>Is it correct?</p>
+<p>This is the question that separates productive AI use from dangerous AI use. The person who accepts AI output without evaluation is not using AI — they are being used by it. The person who builds systematic evaluation into their workflow produces reliable output at scale. The difference is not intelligence or caution. It is architecture.</p>
+<p>This chapter is about building evaluation systems — quality gates, verification pipelines, and trust calibration — that ensure AI output meets your standards consistently, not occasionally.</p>
+<hr>
+<h2>I. The Trust Calibration Problem</h2>
+<p>Trust in AI output is not binary. It is not &quot;trust everything&quot; or &quot;trust nothing.&quot; It is a calibration problem: for each type of output, in each context, how much verification is required?</p>
+<p>The calibration depends on three variables:</p>
+<p><strong>Consequence of error.</strong> If the AI generates a wrong color value in a UI component, the consequence is a visual glitch that takes two minutes to fix. If the AI generates a wrong claim in a published article, the consequence is reputational damage that takes months to repair. If the AI generates a wrong medical recommendation, the consequence is catastrophic. The verification investment should be proportional to the consequence of error.</p>
+<p><strong>Model competence in domain.</strong> Large language models are not equally competent across all tasks. Claude is exceptional at writing, code generation, and analysis. It is weaker at precise numerical computation, real-time factual claims, and tasks requiring visual-spatial reasoning. Knowing where the model is strong and where it is weak informs how much verification each output type requires.</p>
+<p><strong>Output verifiability.</strong> Some outputs are easy to verify: code either compiles or it does not. Some outputs are hard to verify: is this the best possible phrasing, or merely an acceptable one? Stylistic judgments require taste. Factual claims require source checking. Logical arguments require careful reading. The harder the output is to verify, the more structured the verification process needs to be.</p>
+<p>My trust calibration operates on a four-tier scale:</p>
+<pre><code>Tier 1 — Auto-trust (verify by automation):
+  - TypeScript compilation (tsc --noEmit)
+  - Lint checks (ESLint)
+  - Schema validation
+  - Build success (Vercel deployment)
+  → If automation passes, ship it.
+
+Tier 2 — Spot-check (verify by sampling):
+  - UI component output (render and glance)
+  - Routine blog edits (read the changed paragraphs)
+  - Data formatting (check first and last entries)
+  → If the sample looks right, the rest probably is.
+
+Tier 3 — Full review (verify everything):
+  - Factual claims in published content
+  - Financial calculations
+  - API security logic
+  - Anything that affects other people&#39;s data
+  → Read every line. Check every claim.
+
+Tier 4 — External validation (verify with outside sources):
+  - Legal language
+  - Medical or health claims
+  - Compliance-related assertions
+  - Anything where being wrong has consequences you cannot reverse
+  → Do not trust your own review. Get expert confirmation.
+</code></pre>
+<p>Most AI users operate at a single trust level — either they verify everything (slow, unsustainable) or they verify nothing (fast, dangerous). The calibrated approach is to match verification effort to consequence severity. This is not laziness. It is resource allocation.</p>
+<hr>
+<h2>II. Quality Gates for Code</h2>
+<p>Code is the easiest AI output to evaluate because code has objective quality signals. It compiles or it does not. Tests pass or they do not. The type checker reports errors or it reports zero.</p>
+<p><strong>Gate 1: Type checking.</strong></p>
+<pre><code class="language-bash">tsc --noEmit
+</code></pre>
+<p>This single command catches a category of errors that visual inspection cannot: type mismatches, missing properties, incorrect function signatures, unused imports. It runs in sixty seconds on a large Next.js project. It should run before every commit, regardless of whether the code was written by a human or an AI.</p>
+<p>In my workflow, this is automated. A pre-commit hook runs <code>tsc --noEmit</code> and blocks the commit if it fails. The AI writes code. The type checker verifies the code. I review the intent and architecture. This division of labor means each verifier operates on what it is best at: the type checker catches structural errors, I catch logical errors and design problems.</p>
+<p><strong>Gate 2: Lint and format.</strong></p>
+<pre><code class="language-bash">npx eslint . --ext .ts,.tsx
+npx prettier --check .
+</code></pre>
+<p>Linting catches patterns that compile but indicate problems: unused variables, unreachable code, accessibility violations in JSX, inconsistent naming. Formatting catches style inconsistencies that make code harder to read. Both run in seconds and catch errors that humans routinely miss.</p>
+<p><strong>Gate 3: Runtime verification.</strong></p>
+<p>Type checking catches structural errors. Runtime verification catches behavioral errors — the code compiles but does not do what it should.</p>
+<pre><code class="language-typescript">// A simple verification function for AI-generated API routes
+async function verifyEndpoint(
+  url: string,
+  method: string,
+  body: Record&lt;string, unknown&gt; | null,
+  expected: {
+    status: number;
+    bodyContains?: string[];
+    bodyExcludes?: string[];
+  }
+): Promise&lt;{ pass: boolean; details: string }&gt; {
+  const response = await fetch(url, {
+    method,
+    headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+    body: body ? JSON.stringify(body) : null,
+  });
+
+  const responseBody = await response.text();
+
+  if (response.status !== expected.status) {
+    return { pass: false, details: `Expected status ${expected.status}, got ${response.status}` };
+  }
+
+  for (const term of expected.bodyContains ?? []) {
+    if (!responseBody.includes(term)) {
+      return { pass: false, details: `Response missing expected content: &quot;${term}&quot;` };
+    }
+  }
+
+  for (const term of expected.bodyExcludes ?? []) {
+    if (responseBody.includes(term)) {
+      return { pass: false, details: `Response contains excluded content: &quot;${term}&quot;` };
+    }
+  }
+
+  return { pass: true, details: &#39;All checks passed&#39; };
+}
+</code></pre>
+<p>This is not a test framework. It is a verification function — something you run once after AI generates an API route to confirm the route behaves correctly. The distinction matters: test frameworks are ongoing maintenance. Verification functions are one-time checks that confirm the AI&#39;s output is correct before you move on.</p>
+<p><strong>Gate 4: Architectural review.</strong></p>
+<p>The gates above verify correctness. They do not verify quality. A function can be type-safe, lint-clean, and behaviorally correct while being architecturally wrong — using global state where local state would suffice, putting business logic in a UI component, coupling two modules that should be independent.</p>
+<p>Architectural review is a human activity. It cannot be automated because it requires understanding the system&#39;s intent, not just its behavior. This is the review I spend my time on: does this code belong here? Does this abstraction make the system simpler or more complex? Will this design decision create problems in six months?</p>
+<p>The four-gate pipeline: type check (automated) → lint (automated) → runtime verify (semi-automated) → architectural review (human). Each gate catches a different category of error. Together, they produce a level of confidence that no single gate provides.</p>
+<hr>
+<h2>III. Quality Gates for Content</h2>
+<p>Content evaluation is harder than code evaluation because content quality is partially subjective. But &quot;partially subjective&quot; is not &quot;entirely subjective.&quot; There are objective quality signals in written content, and they can be checked systematically.</p>
+<p><strong>Gate 1: Factual accuracy.</strong></p>
+<p>Every factual claim in a published article should be verifiable. This does not mean every claim needs a footnote — it means every claim should withstand the question &quot;how do I know this is true?&quot;</p>
+<p>My process: after AI generates a draft, I read every sentence that makes a factual assertion and classify it:</p>
+<ul>
+<li><strong>Verifiable from personal experience:</strong> &quot;I have produced twelve thousand songs.&quot; I know this is true because I produced them.</li>
+<li><strong>Verifiable from public data:</strong> &quot;Claude Opus 4.6 has a one-million-token context window.&quot; Anthropic&#39;s documentation confirms this.</li>
+<li><strong>Verifiable from cited source:</strong> &quot;According to McKinsey&#39;s 2025 State of AI report...&quot; The source exists and says what is claimed.</li>
+<li><strong>Not verifiable:</strong> &quot;Most enterprises fail at AI adoption.&quot; This is a common claim, but is it supported? What percentage is &quot;most&quot;? What does &quot;fail&quot; mean? This kind of claim gets either sourced, qualified (&quot;many enterprises report challenges with AI adoption&quot;), or removed.</li>
+</ul>
+<p>The AI does not perform this check. The AI generates the claims. I verify them. This is the correct division of labor — the model is excellent at generating plausible statements and poor at distinguishing plausible from proven.</p>
+<p><strong>Gate 2: Brand voice consistency.</strong></p>
+<p>My brand voice has specific rules: no filler words, no AI-sounding phrases (&quot;delve into,&quot; &quot;it&#39;s important to note,&quot; &quot;in today&#39;s rapidly evolving landscape&quot;), no spiritual language, no grandiose claims. These rules are encoded in the skill files that Claude loads, and Claude generally follows them. But &quot;generally&quot; is not &quot;always.&quot; <!-- ai-slop-allow --></p>
+<p>The check is a scan of the generated text for voice violations. I have a mental checklist:</p>
+<ul>
+<li>Any sentence starting with &quot;In today&#39;s...&quot;? Remove it.</li>
+<li>Any use of &quot;delve,&quot; &quot;landscape,&quot; &quot;journey,&quot; &quot;unleash,&quot; &quot;harness&quot;? Replace with precise language. <!-- ai-slop-allow --></li>
+<li>Any sentence that could be removed without losing information? Remove it.</li>
+<li>Does every paragraph advance the argument? If not, cut it.</li>
+</ul>
+<p>This check takes five minutes for a 2,000-word article. It catches the 5% of AI output that technically follows the rules but produces generic-sounding prose. The five minutes are the difference between content that sounds AI-generated and content that sounds authored.</p>
+<p><strong>Gate 3: SEO structure.</strong></p>
+<p>SEO quality is largely objective and automatable:</p>
+<pre><code class="language-markdown">SEO Checklist:
+- [ ] Title tag: 50-60 characters, primary keyword front-loaded
+- [ ] Meta description: 150-160 characters, action verb opening
+- [ ] H1: one per page, matches the primary topic
+- [ ] H2s: question-based where possible, include secondary keywords
+- [ ] Internal links: 3+ to relevant existing content
+- [ ] Schema markup: Article + FAQPage where applicable
+- [ ] TL;DR in first 100 words
+- [ ] FAQ section: 5+ questions
+</code></pre>
+<p>Each item is binary — it is present or it is not. The checklist runs after every content generation and before every publish. AI generates the content. The checklist verifies the structure. Missing items are added before publishing.</p>
+<p><strong>Gate 4: The read-aloud test.</strong></p>
+<p>Read the article aloud. Every sentence that makes you stumble is a sentence that needs rewriting. Every paragraph that makes you lose the thread is a paragraph that needs restructuring. Every section that feels redundant is a section that needs cutting.</p>
+<p>This is the most effective content quality gate and the one most people skip because it feels low-tech. It is low-tech. It is also the only check that catches rhythm problems, pacing issues, and logical gaps that no automated check detects. The ear catches what the eye misses.</p>
+<hr>
+<h2>IV. The LMSYS Approach: Comparative Evaluation</h2>
+<p>The LMSYS Chatbot Arena pioneered an evaluation approach that is directly applicable to personal AI systems: comparative evaluation. Instead of asking &quot;is this output good?&quot; — which requires an absolute quality standard that is hard to define — ask &quot;is this output better than that output?&quot; Comparative judgments are more reliable than absolute judgments because humans are better at ranking than rating.</p>
+<p>Applied to personal AI work:</p>
+<p><strong>A/B generation.</strong> For important content — a homepage headline, a product description, an email subject line — generate two versions and compare. Not two versions from the same prompt, but two versions from different approaches. The first might be a direct statement. The second might be a question. The third might be a story opening. Compare them against each other. The winner is the output.</p>
+<p><strong>Cross-model comparison.</strong> For architectural decisions, generate answers from multiple models. Ask Claude and GPT the same architectural question. If they agree, confidence is high. If they disagree, the disagreement is a signal that the question has genuine complexity and requires deeper analysis.</p>
+<p><strong>Temporal comparison.</strong> Compare today&#39;s output to output you produced a month ago on a similar task. Is the quality improving? If your blog posts from March are consistently better than your blog posts from January, your system is compounding. If they are roughly the same, something is stagnant — probably the memory layer or the skill stack.</p>
+<hr>
+<h2>V. Human-in-the-Loop Patterns</h2>
+<p>The phrase &quot;human-in-the-loop&quot; gets used so frequently that it has lost its precision. Here is what it actually means in practice: defining exactly where in the pipeline a human evaluates output, what criteria they evaluate against, and what power they have to alter the pipeline&#39;s behavior.</p>
+<p><strong>Pattern 1: Approval gate.</strong></p>
+<p>The pipeline runs. At a defined point, it stops and waits for human approval before continuing. The human reviews the output and either approves (pipeline continues) or rejects (pipeline stops or reverts).</p>
+<pre><code>Research Agent → Writing Agent → [HUMAN APPROVAL] → SEO Agent → Deploy Agent
+</code></pre>
+<p>In my content pipeline, the approval gate sits after the Writing Agent and before the SEO Agent. I review the draft for accuracy, voice, and completeness. If it passes, I approve and the pipeline continues. If it does not, I provide feedback and the Writing Agent revises. The SEO and deployment stages never see content I have not approved.</p>
+<p>The approval gate is the simplest human-in-the-loop pattern and the one that provides the most value per unit of effort. One review point. One decision. The pipeline handles everything else.</p>
+<p><strong>Pattern 2: Correction loop.</strong></p>
+<p>The human does not just approve or reject — they correct. The AI generates a draft. The human edits specific sections. The AI incorporates the edits and continues. This is the most common pattern in my writing workflow: Claude generates a chapter section, I revise two paragraphs, Claude integrates my revisions and generates the next section.</p>
+<p>The correction loop is more time-intensive than the approval gate but produces higher quality, because the human&#39;s edits directly shape the AI&#39;s subsequent output. The model learns from the corrections within the session context and adjusts its approach for the remaining sections.</p>
+<p><strong>Pattern 3: Council review.</strong></p>
+<p>Multiple AI agents evaluate the same output, and a human synthesizes their assessments. I use this for product decisions and architectural choices. The Technical Architect evaluates implementation complexity. The Content Engine evaluates content requirements. The SEO agent evaluates market demand. I read three assessments and make the decision.</p>
+<p>The council pattern is the highest-quality evaluation mechanism because it provides multiple expert perspectives. It is also the most expensive in time and compute. I reserve it for decisions with significant downstream consequences — product launches, architectural changes, major content initiatives.</p>
+<hr>
+<h2>VI. Automated Testing of AI-Generated Artifacts</h2>
+<p>AI-generated code and content should be subject to the same automated testing that human-generated artifacts undergo. The testing infrastructure does not care who wrote the code.</p>
+<p><strong>Snapshot testing for UI components.</strong></p>
+<p>When AI generates a new component, snapshot testing captures the rendered output and detects unintended changes in future modifications:</p>
+<pre><code class="language-typescript">import { render } from &#39;@testing-library/react&#39;;
+import { Card } from &#39;./Card&#39;;
+
+test(&#39;Card renders default variant correctly&#39;, () =&gt; {
+  const { container } = render(
+    &lt;Card variant=&quot;default&quot;&gt;
+      &lt;p&gt;Test content&lt;/p&gt;
+    &lt;/Card&gt;
+  );
+  expect(container.firstChild).toMatchSnapshot();
+});
+</code></pre>
+<p>The snapshot is a contract: this is what the component looks like now. If a future AI-generated edit changes the rendering, the snapshot test fails, and the change is surfaced for review. Snapshots do not tell you whether the component looks good. They tell you when it changes, which is a different and equally valuable signal.</p>
+<p><strong>Schema validation for data files.</strong></p>
+<p>AI frequently generates or modifies JSON data files — content inventories, configuration files, metadata records. Schema validation ensures the generated data conforms to the expected structure:</p>
+<pre><code class="language-typescript">import { z } from &#39;zod&#39;;
+
+const BlogPostSchema = z.object({
+  title: z.string().min(10).max(70),
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  date: z.string().datetime(),
+  author: z.literal(&#39;Frank Riemer&#39;),
+  description: z.string().min(50).max(160),
+  tags: z.array(z.string()).min(1).max(8),
+  published: z.boolean(),
+});
+
+// Validate AI-generated blog post metadata
+function validatePostMeta(meta: unknown): boolean {
+  const result = BlogPostSchema.safeParse(meta);
+  if (!result.success) {
+    console.error(&#39;Validation failures:&#39;, result.error.issues);
+    return false;
+  }
+  return true;
+}
+</code></pre>
+<p>Notice the <code>author: z.literal(&#39;Frank Riemer&#39;)</code> — this is a quality gate that prevents a known failure mode. AI models occasionally hallucinate author names. The schema enforces the correct name at the data layer, catching the error before it reaches production.</p>
+<p><strong>Link verification for content.</strong></p>
+<p>AI-generated content frequently includes internal and external links. Links go stale, URLs change, and AI sometimes generates plausible-looking links to pages that do not exist.</p>
+<pre><code class="language-bash"># Check all internal links in a generated MDX file
+grep -oP &#39;\[.*?\]\((\/[^)]+)\)&#39; content/blog/new-article.mdx | \
+  while read -r link; do
+    path=$(echo &quot;$link&quot; | grep -oP &#39;\/[^)]+&#39;)
+    if [ ! -d &quot;app${path}&quot; ] &amp;&amp; [ ! -f &quot;app${path}/page.tsx&quot; ]; then
+      echo &quot;BROKEN: $path&quot;
+    fi
+  done
+</code></pre>
+<p>This is a ten-second check that catches a common AI failure mode. Run it before committing any content with internal links.</p>
+<hr>
+<h2>VII. When to Trust, When to Verify</h2>
+<p>The general principle is straightforward: trust the model&#39;s strengths, verify its weaknesses, and never trust a claim you cannot check.</p>
+<p><strong>Trust the model for:</strong></p>
+<ul>
+<li>Code structure and patterns (it has seen billions of lines of code)</li>
+<li>Prose quality and flow (it is an exceptional writer)</li>
+<li>Synthesis and summarization (it handles context well)</li>
+<li>Format consistency (it follows templates reliably)</li>
+<li>Generating multiple options (it explores solution spaces effectively)</li>
+</ul>
+<p><strong>Verify the model for:</strong></p>
+<ul>
+<li>Specific factual claims (dates, numbers, quotes, attributions)</li>
+<li>Code correctness in edge cases (boundary conditions, error handling)</li>
+<li>Current information (the model&#39;s training data has a cutoff)</li>
+<li>Nuanced domain expertise (the model knows patterns, not practice)</li>
+<li>Anything involving your identity, credentials, or professional claims</li>
+</ul>
+<p><strong>Never trust the model for:</strong></p>
+<ul>
+<li>Legal advice (always consult a qualified professional)</li>
+<li>Medical recommendations (always consult a qualified professional)</li>
+<li>Financial calculations you will act on (always verify independently)</li>
+<li>Security-critical logic (always have a human security review)</li>
+<li>Claims about what it can or cannot do (the model is not a reliable narrator of its own capabilities)</li>
+</ul>
+<p>This calibration is not paranoia. It is engineering discipline applied to a probabilistic system. The model is extraordinarily capable. It is also capable of being confidently wrong, and the confidence makes the wrongness harder to detect. The evaluation pipeline is your defense against confident wrongness at scale.</p>
+<hr>
+<h2>VIII. Building an Evaluation Culture</h2>
+<p>The hardest part of evaluation is not building the pipelines. It is building the habit. The gravitational pull is always toward shipping faster, skipping the verification step, trusting that it &quot;looks right.&quot;</p>
+<p>Resist this pull through architecture, not willpower.</p>
+<p>Make evaluation automatic. Pre-commit hooks run whether you remember them or not. Schema validation runs as part of the build pipeline. Type checking runs before every deployment. The more evaluation you can encode as automated gates, the less you depend on human discipline to maintain quality.</p>
+<p>Make evaluation visible. When a quality gate catches an error, log it. When a human review catches an issue the automated gates missed, add a new automated check for that issue. The evaluation system should improve continuously — each failure that makes it past the gates should result in a new gate that catches that class of failure in the future.</p>
+<p>Make evaluation proportional. Not every output requires the same level of scrutiny. A quick Slack message does not need four quality gates. A published book chapter does. Calibrate the verification investment to the consequence of error, and do not let perfectionism on low-stakes tasks consume time that should be spent on high-stakes verification.</p>
+<hr>
+<h2>The Standard</h2>
+<p>Evaluation is not overhead. It is the architecture that makes AI-assisted production reliable at scale.</p>
+<p>The standard I operate to: every AI output passes through at least one quality gate before it reaches production. Code passes through type checking. Content passes through factual review and voice checking. Data passes through schema validation. Architectural decisions pass through council review.</p>
+<p>The gates are not optional when I am in a hurry. They are especially not optional when I am in a hurry — because hurry is when errors are most likely and consequences most expensive.</p>
+<p>Build the gates. Automate what you can. Review what you must. Trust the model for what it is good at. Verify everything else.</p>
+<p>The model produces output. You produce trust. That distinction is the difference between someone who uses AI and someone who builds with it.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

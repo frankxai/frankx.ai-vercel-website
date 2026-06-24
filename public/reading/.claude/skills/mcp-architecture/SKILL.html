@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>MCP Architecture Expert Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/mcp-architecture/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MCP Architecture Expert Skill</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fmcp-architecture">mcp-architecture</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: MCP Architecture Expert
+description: Design and implement Model Context Protocol servers for standardized AI-to-data integration with resources, tools, prompts, and security best practices
+version: 1.0.0</h2>
+<h1>MCP Architecture Expert Skill</h1>
+<h2>Purpose</h2>
+<p>Master the Model Context Protocol (MCP) to build standardized, reusable integrations between AI systems and data sources, eliminating the N×M integration problem.</p>
+<h2>What is MCP?</h2>
+<h3>Model Context Protocol</h3>
+<p>Open standard (November 2024, Anthropic) for connecting AI systems to external data sources and tools through a unified protocol.</p>
+<p><strong>The Problem:</strong> N agents × M tools = N×M custom integrations
+<strong>The Solution:</strong> N agents + M MCP servers = N+M integrations (any agent uses any tool)</p>
+<h2>Architecture</h2>
+<pre><code>┌─────────────┐
+│  MCP Host   │  (Claude Desktop, IDEs, Apps)
+│   ┌─────┐   │
+│   │Client│──┼──┐
+│   └─────┘   │  │
+└─────────────┘  │
+                 │ JSON-RPC 2.0
+                 │
+┌────────────────┼─────────────┐
+│  MCP Server    ▼             │
+│  ┌──────────────────┐        │
+│  │  Resources       │        │
+│  │  Tools           │        │
+│  │  Prompts         │        │
+│  └──────────────────┘        │
+│         │                    │
+│         ▼                    │
+│  ┌──────────────────┐        │
+│  │ Data Source      │        │
+│  │ (DB, API, Files) │        │
+│  └──────────────────┘        │
+└─────────────────────────────┘
+</code></pre>
+<h2>Three Core Capabilities</h2>
+<h3>1. Resources</h3>
+<p><strong>Purpose:</strong> Expose data for AI to read</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>File contents</li>
+<li>Database records</li>
+<li>API responses</li>
+<li>Documentation</li>
+</ul>
+<p><strong>Definition:</strong></p>
+<pre><code class="language-json">{
+  &quot;resources&quot;: [
+    {
+      &quot;uri&quot;: &quot;file:///docs/api-spec.md&quot;,
+      &quot;name&quot;: &quot;API Specification&quot;,
+      &quot;mimeType&quot;: &quot;text/markdown&quot;
+    },
+    {
+      &quot;uri&quot;: &quot;db://customers/12345&quot;,
+      &quot;name&quot;: &quot;Customer Record&quot;,
+      &quot;mimeType&quot;: &quot;application/json&quot;
+    }
+  ]
+}
+</code></pre>
+<h3>2. Tools</h3>
+<p><strong>Purpose:</strong> Functions AI can invoke</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Query database</li>
+<li>Call external API</li>
+<li>Process files</li>
+<li>Execute commands</li>
+</ul>
+<p><strong>Definition:</strong></p>
+<pre><code class="language-json">{
+  &quot;tools&quot;: [
+    {
+      &quot;name&quot;: &quot;query_database&quot;,
+      &quot;description&quot;: &quot;Execute SQL query on customer database&quot;,
+      &quot;inputSchema&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;query&quot;: {&quot;type&quot;: &quot;string&quot;}
+        },
+        &quot;required&quot;: [&quot;query&quot;]
+      }
+    }
+  ]
+}
+</code></pre>
+<h3>3. Prompts</h3>
+<p><strong>Purpose:</strong> Reusable prompt templates</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Common task patterns</li>
+<li>Domain-specific workflows</li>
+<li>Best practice templates</li>
+</ul>
+<p><strong>Definition:</strong></p>
+<pre><code class="language-json">{
+  &quot;prompts&quot;: [
+    {
+      &quot;name&quot;: &quot;analyze_customer&quot;,
+      &quot;description&quot;: &quot;Analyze customer behavior and generate insights&quot;,
+      &quot;arguments&quot;: [
+        {
+          &quot;name&quot;: &quot;customer_id&quot;,
+          &quot;description&quot;: &quot;Customer identifier&quot;,
+          &quot;required&quot;: true
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<h2>Building MCP Servers</h2>
+<h3>Python Server Example</h3>
+<pre><code class="language-python">from mcp import Server, Tool, Resource
+
+server = Server(&quot;customer-data&quot;)
+
+@server.resource(&quot;customer://&quot;)
+async def get_customer(uri: str):
+    &quot;&quot;&quot;Expose customer data as resources&quot;&quot;&quot;
+    customer_id = uri.split(&quot;://&quot;)[1]
+    return {
+        &quot;uri&quot;: uri,
+        &quot;mimeType&quot;: &quot;application/json&quot;,
+        &quot;text&quot;: json.dumps(get_customer_data(customer_id))
+    }
+
+@server.tool()
+async def query_customers(
+    filters: dict
+) -&gt; list:
+    &quot;&quot;&quot;Query customer database&quot;&quot;&quot;
+    return database.query(&quot;customers&quot;, filters)
+
+@server.prompt()
+async def customer_analysis(customer_id: str):
+    &quot;&quot;&quot;Generate customer analysis prompt&quot;&quot;&quot;
+    return {
+        &quot;messages&quot;: [
+            {
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: f&quot;Analyze customer {customer_id} behavior and provide insights&quot;
+            }
+        ]
+    }
+
+if __name__ == &quot;__main__&quot;:
+    server.run()
+</code></pre>
+<h3>TypeScript Server Example</h3>
+<pre><code class="language-typescript">import { Server } from &quot;@modelcontextprotocol/sdk/server/index.js&quot;;
+import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
+
+const server = new Server({
+  name: &quot;github-server&quot;,
+  version: &quot;1.0.0&quot;
+}, {
+  capabilities: {
+    resources: {},
+    tools: {},
+    prompts: {}
+  }
+});
+
+server.setRequestHandler(ListResourcesRequestSchema, async () =&gt; {
+  return {
+    resources: [
+      {
+        uri: &quot;github://issues&quot;,
+        name: &quot;GitHub Issues&quot;,
+        mimeType: &quot;application/json&quot;
+      }
+    ]
+  };
+});
+
+server.setRequestHandler(ListToolsRequestSchema, async () =&gt; {
+  return {
+    tools: [
+      {
+        name: &quot;create_issue&quot;,
+        description: &quot;Create a new GitHub issue&quot;,
+        inputSchema: {
+          type: &quot;object&quot;,
+          properties: {
+            title: { type: &quot;string&quot; },
+            body: { type: &quot;string&quot; }
+          }
+        }
+      }
+    ]
+  };
+});
+
+const transport = new StdioServerTransport();
+await server.connect(transport);
+</code></pre>
+<h2>Common MCP Servers</h2>
+<h3>Official Servers (by Anthropic)</h3>
+<ul>
+<li><strong>GitHub</strong> - Issues, PRs, repos</li>
+<li><strong>Slack</strong> - Messages, channels</li>
+<li><strong>Google Drive</strong> - Files, docs</li>
+<li><strong>PostgreSQL</strong> - Database queries</li>
+<li><strong>Puppeteer</strong> - Web scraping</li>
+<li><strong>Git</strong> - Repository operations</li>
+<li><strong>Stripe</strong> - Payment data</li>
+</ul>
+<h3>Installing Official Servers</h3>
+<pre><code class="language-bash"># Via npm
+npx @modelcontextprotocol/server-github
+
+# Via Docker
+docker run mcp-postgres-server
+
+# Via Python
+pip install mcp-server-slack
+python -m mcp_server_slack
+</code></pre>
+<h2>Client Integration</h2>
+<h3>Claude Desktop Configuration</h3>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;github&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;],
+      &quot;env&quot;: {
+        &quot;GITHUB_TOKEN&quot;: &quot;your-token&quot;
+      }
+    },
+    &quot;postgres&quot;: {
+      &quot;command&quot;: &quot;docker&quot;,
+      &quot;args&quot;: [&quot;run&quot;, &quot;mcp-postgres-server&quot;],
+      &quot;env&quot;: {
+        &quot;DATABASE_URL&quot;: &quot;postgresql://...&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3>Claude SDK Integration</h3>
+<pre><code class="language-python">from anthropic import Anthropic
+
+client = Anthropic()
+
+response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,
+    mcp_servers={
+        &quot;github&quot;: {
+            &quot;command&quot;: &quot;npx&quot;,
+            &quot;args&quot;: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;]
+        }
+    },
+    messages=[{
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;List my GitHub issues&quot;
+    }]
+)
+</code></pre>
+<h2>Security Best Practices</h2>
+<h3>Authentication</h3>
+<pre><code class="language-python"># OAuth 2.0 with Resource Indicators (RFC 8707)
+server = Server(
+    &quot;secure-api&quot;,
+    auth_type=&quot;oauth2&quot;,
+    scopes=[&quot;read:data&quot;, &quot;write:data&quot;]
+)
+
+@server.tool(required_scope=&quot;write:data&quot;)
+async def update_record(record_id: str, data: dict):
+    # Only callable with write permissions
+    pass
+</code></pre>
+<h3>Input Validation</h3>
+<pre><code class="language-python">@server.tool()
+async def execute_query(query: str):
+    # Validate to prevent injection
+    if not is_safe_query(query):
+        raise ValueError(&quot;Unsafe query detected&quot;)
+
+    # Sanitize inputs
+    safe_query = sanitize_sql(query)
+    return database.execute(safe_query)
+</code></pre>
+<h3>Rate Limiting</h3>
+<pre><code class="language-python">from functools import lru_cache
+from time import time
+
+@server.tool()
+@rate_limit(calls=10, period=60)  # 10 calls per minute
+async def expensive_operation():
+    pass
+</code></pre>
+<h3>Audit Logging</h3>
+<pre><code class="language-python">@server.tool()
+async def sensitive_operation(data: dict):
+    audit_log.write({
+        &quot;timestamp&quot;: datetime.now(),
+        &quot;operation&quot;: &quot;sensitive_operation&quot;,
+        &quot;user&quot;: current_user(),
+        &quot;data&quot;: data
+    })
+    return process(data)
+</code></pre>
+<h2>Advanced Patterns</h2>
+<h3>Multi-Source Aggregation</h3>
+<pre><code class="language-python">@server.resource(&quot;aggregated://customer&quot;)
+async def aggregate_customer_data(customer_id: str):
+    &quot;&quot;&quot;Combine data from multiple sources&quot;&quot;&quot;
+    crm_data = await crm_server.get_resource(f&quot;crm://{customer_id}&quot;)
+    support_data = await support_server.get_resource(f&quot;support://{customer_id}&quot;)
+    analytics_data = await analytics_server.get_resource(f&quot;analytics://{customer_id}&quot;)
+
+    return {
+        &quot;uri&quot;: f&quot;aggregated://customer/{customer_id}&quot;,
+        &quot;data&quot;: {
+            **crm_data,
+            **support_data,
+            **analytics_data
+        }
+    }
+</code></pre>
+<h3>Caching Layer</h3>
+<pre><code class="language-python">from functools import lru_cache
+
+@server.resource(&quot;cached://&quot;)
+@lru_cache(maxsize=1000)
+async def cached_resource(uri: str):
+    &quot;&quot;&quot;Cache frequently accessed resources&quot;&quot;&quot;
+    return await expensive_fetch(uri)
+</code></pre>
+<h3>Streaming Large Data</h3>
+<pre><code class="language-python">@server.tool()
+async def stream_large_dataset(query: str):
+    &quot;&quot;&quot;Stream results for large datasets&quot;&quot;&quot;
+    async for chunk in database.stream(query):
+        yield chunk
+</code></pre>
+<h2>Monitoring &amp; Observability</h2>
+<h3>Metrics Collection</h3>
+<pre><code class="language-python">from prometheus_client import Counter, Histogram
+
+tool_calls = Counter(&#39;mcp_tool_calls&#39;, &#39;Tool invocations&#39;, [&#39;tool_name&#39;])
+latency = Histogram(&#39;mcp_latency&#39;, &#39;Operation latency&#39;)
+
+@server.tool()
+@latency.time()
+async def monitored_tool():
+    tool_calls.labels(tool_name=&#39;monitored_tool&#39;).inc()
+    # Tool implementation
+</code></pre>
+<h3>Error Tracking</h3>
+<pre><code class="language-python">import logging
+
+logger = logging.getLogger(&quot;mcp_server&quot;)
+
+@server.tool()
+async def error_tracked_tool():
+    try:
+        return await risky_operation()
+    except Exception as e:
+        logger.error(f&quot;Tool failed: {e}&quot;, exc_info=True)
+        raise
+</code></pre>
+<h2>Testing MCP Servers</h2>
+<h3>Unit Testing</h3>
+<pre><code class="language-python">import pytest
+from mcp.testing import MockServer
+
+@pytest.mark.asyncio
+async def test_customer_tool():
+    server = MockServer()
+    result = await server.call_tool(&quot;get_customer&quot;, {&quot;id&quot;: &quot;123&quot;})
+    assert result[&quot;customer_id&quot;] == &quot;123&quot;
+</code></pre>
+<h3>Integration Testing</h3>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_full_workflow():
+    # Start test server
+    async with TestMCPServer() as server:
+        # Test resource access
+        resource = await server.get_resource(&quot;test://data&quot;)
+        assert resource is not None
+
+        # Test tool execution
+        result = await server.call_tool(&quot;process_data&quot;, {&quot;input&quot;: &quot;test&quot;})
+        assert result[&quot;success&quot;] == True
+</code></pre>
+<h2>Decision Framework</h2>
+<p><strong>Build MCP Server when:</strong></p>
+<ul>
+<li>Creating reusable data/tool integration</li>
+<li>Want AI agents to access your data</li>
+<li>Need standardized interface across frameworks</li>
+<li>Building for ecosystem (others can use your server)</li>
+</ul>
+<p><strong>Use existing MCP Server when:</strong></p>
+<ul>
+<li>Connecting to GitHub, Slack, Drive, Postgres, etc.</li>
+<li>Standard data sources with official servers</li>
+<li>Prototyping quickly</li>
+</ul>
+<h2>Resources</h2>
+<p><strong>Official:</strong></p>
+<ul>
+<li>Specification: <a href="https://modelcontextprotocol.io/specification">https://modelcontextprotocol.io/specification</a></li>
+<li>GitHub: <a href="https://github.com/modelcontextprotocol">https://github.com/modelcontextprotocol</a></li>
+<li>Server Registry: <a href="https://github.com/modelcontextprotocol/servers">https://github.com/modelcontextprotocol/servers</a></li>
+</ul>
+<p><strong>SDKs:</strong></p>
+<ul>
+<li>Python: <code>pip install mcp</code></li>
+<li>TypeScript: <code>npm install @modelcontextprotocol/sdk</code></li>
+</ul>
+<hr>
+<p><em>MCP is the universal standard for AI-to-data integration in 2025 and beyond.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

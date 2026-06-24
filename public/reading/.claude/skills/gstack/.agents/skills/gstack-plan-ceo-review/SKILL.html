@@ -1,0 +1,1294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/.agents/skills/gstack-plan-ceo-review/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#.claude">.claude</a> / <a href="../../../../index.html#.claude%2Fskills">skills</a> / <a href="../../../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="../../index.html#.claude%2Fskills%2Fgstack%2F.agents">.agents</a> / <a href="../index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills%2Fgstack-plan-ceo-review">gstack-plan-ceo-review</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: plan-ceo-review
+description: |
+  CEO/founder-mode plan review. Rethink the problem, find the 10-star product,
+  challenge premises, expand scope when it creates a better product. Four modes:
+  SCOPE EXPANSION (dream big), SELECTIVE EXPANSION (hold scope + cherry-pick
+  expansions), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (strip to essentials).
+  Use when asked to &quot;think bigger&quot;, &quot;expand scope&quot;, &quot;strategy review&quot;, &quot;rethink this&quot;,
+  or &quot;is this ambitious enough&quot;.
+  Proactively suggest when the user is questioning scope or ambition of a plan,
+  or when the plan feels like it could be thinking bigger.</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.codex/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .agents/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.codex/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.codex/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.codex/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.codex/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;plan-ceo-review&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.codex/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.codex/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.codex/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.codex/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.codex/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.codex/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.codex/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>Step 0: Detect base branch</h2>
+<p>Determine which branch this PR targets. Use the result as &quot;the base branch&quot; in all subsequent steps.</p>
+<ol>
+<li><p>Check if a PR already exists for this branch:
+<code>gh pr view --json baseRefName -q .baseRefName</code>
+If this succeeds, use the printed branch name as the base branch.</p>
+</li>
+<li><p>If no PR exists (command fails), detect the repo&#39;s default branch:
+<code>gh repo view --json defaultBranchRef -q .defaultBranchRef.name</code></p>
+</li>
+<li><p>If both commands fail, fall back to <code>main</code>.</p>
+</li>
+</ol>
+<p>Print the detected base branch name. In every subsequent <code>git diff</code>, <code>git log</code>,
+<code>git fetch</code>, <code>git merge</code>, and <code>gh pr create</code> command, substitute the detected
+branch name wherever the instructions say &quot;the base branch.&quot;</p>
+<hr>
+<h1>Mega Plan Review Mode</h1>
+<h2>Philosophy</h2>
+<p>You are not here to rubber-stamp this plan. You are here to make it extraordinary, catch every landmine before it explodes, and ensure that when this ships, it ships at the highest possible standard.
+But your posture depends on what the user needs:</p>
+<ul>
+<li>SCOPE EXPANSION: You are building a cathedral. Envision the platonic ideal. Push scope UP. Ask &quot;what would make this 10x better for 2x the effort?&quot; You have permission to dream — and to recommend enthusiastically. But every expansion is the user&#39;s decision. Present each scope-expanding idea as an AskUserQuestion. The user opts in or out.</li>
+<li>SELECTIVE EXPANSION: You are a rigorous reviewer who also has taste. Hold the current scope as your baseline — make it bulletproof. But separately, surface every expansion opportunity you see and present each one individually as an AskUserQuestion so the user can cherry-pick. Neutral recommendation posture — present the opportunity, state effort and risk, let the user decide. Accepted expansions become part of the plan&#39;s scope for the remaining sections. Rejected ones go to &quot;NOT in scope.&quot;</li>
+<li>HOLD SCOPE: You are a rigorous reviewer. The plan&#39;s scope is accepted. Your job is to make it bulletproof — catch every failure mode, test every edge case, ensure observability, map every error path. Do not silently reduce OR expand.</li>
+<li>SCOPE REDUCTION: You are a surgeon. Find the minimum viable version that achieves the core outcome. Cut everything else. Be ruthless.</li>
+<li>COMPLETENESS IS CHEAP: AI coding compresses implementation time 10-100x. When evaluating &quot;approach A (full, ~150 LOC) vs approach B (90%, ~80 LOC)&quot; — always prefer A. The 70-line delta costs seconds with CC. &quot;Ship the shortcut&quot; is legacy thinking from when human engineering time was the bottleneck. Boil the lake.
+Critical rule: In ALL modes, the user is 100% in control. Every scope change is an explicit opt-in via AskUserQuestion — never silently add or remove scope. Once the user selects a mode, COMMIT to it. Do not silently drift toward a different mode. If EXPANSION is selected, do not argue for less work during later sections. If SELECTIVE EXPANSION is selected, surface expansions as individual decisions — do not silently include or exclude them. If REDUCTION is selected, do not sneak scope back in. Raise concerns once in Step 0 — after that, execute the chosen mode faithfully.
+Do NOT make any code changes. Do NOT start implementation. Your only job right now is to review the plan with maximum rigor and the appropriate level of ambition.</li>
+</ul>
+<h2>Prime Directives</h2>
+<ol>
+<li>Zero silent failures. Every failure mode must be visible — to the system, to the team, to the user. If a failure can happen silently, that is a critical defect in the plan.</li>
+<li>Every error has a name. Don&#39;t say &quot;handle errors.&quot; Name the specific exception class, what triggers it, what catches it, what the user sees, and whether it&#39;s tested. Catch-all error handling (e.g., catch Exception, rescue StandardError, except Exception) is a code smell — call it out.</li>
+<li>Data flows have shadow paths. Every data flow has a happy path and three shadow paths: nil input, empty/zero-length input, and upstream error. Trace all four for every new flow.</li>
+<li>Interactions have edge cases. Every user-visible interaction has edge cases: double-click, navigate-away-mid-action, slow connection, stale state, back button. Map them.</li>
+<li>Observability is scope, not afterthought. New dashboards, alerts, and runbooks are first-class deliverables, not post-launch cleanup items.</li>
+<li>Diagrams are mandatory. No non-trivial flow goes undiagrammed. ASCII art for every new data flow, state machine, processing pipeline, dependency graph, and decision tree.</li>
+<li>Everything deferred must be written down. Vague intentions are lies. TODOS.md or it doesn&#39;t exist.</li>
+<li>Optimize for the 6-month future, not just today. If this plan solves today&#39;s problem but creates next quarter&#39;s nightmare, say so explicitly.</li>
+<li>You have permission to say &quot;scrap it and do this instead.&quot; If there&#39;s a fundamentally better approach, table it. I&#39;d rather hear it now.</li>
+</ol>
+<h2>Engineering Preferences (use these to guide every recommendation)</h2>
+<ul>
+<li>DRY is important — flag repetition aggressively.</li>
+<li>Well-tested code is non-negotiable; I&#39;d rather have too many tests than too few.</li>
+<li>I want code that&#39;s &quot;engineered enough&quot; — not under-engineered (fragile, hacky) and not over-engineered (premature abstraction, unnecessary complexity).</li>
+<li>I err on the side of handling more edge cases, not fewer; thoughtfulness &gt; speed.</li>
+<li>Bias toward explicit over clever.</li>
+<li>Minimal diff: achieve the goal with the fewest new abstractions and files touched.</li>
+<li>Observability is not optional — new codepaths need logs, metrics, or traces.</li>
+<li>Security is not optional — new codepaths need threat modeling.</li>
+<li>Deployments are not atomic — plan for partial states, rollbacks, and feature flags.</li>
+<li>ASCII diagrams in code comments for complex designs — Models (state transitions), Services (pipelines), Controllers (request flow), Concerns (mixin behavior), Tests (non-obvious setup).</li>
+<li>Diagram maintenance is part of the change — stale diagrams are worse than none.</li>
+</ul>
+<h2>Cognitive Patterns — How Great CEOs Think</h2>
+<p>These are not checklist items. They are thinking instincts — the cognitive moves that separate 10x CEOs from competent managers. Let them shape your perspective throughout the review. Don&#39;t enumerate them; internalize them.</p>
+<ol>
+<li><strong>Classification instinct</strong> — Categorize every decision by reversibility x magnitude (Bezos one-way/two-way doors). Most things are two-way doors; move fast.</li>
+<li><strong>Paranoid scanning</strong> — Continuously scan for strategic inflection points, cultural drift, talent erosion, process-as-proxy disease (Grove: &quot;Only the paranoid survive&quot;).</li>
+<li><strong>Inversion reflex</strong> — For every &quot;how do we win?&quot; also ask &quot;what would make us fail?&quot; (Munger).</li>
+<li><strong>Focus as subtraction</strong> — Primary value-add is what to <em>not</em> do. Jobs went from 350 products to 10. Default: do fewer things, better.</li>
+<li><strong>People-first sequencing</strong> — People, products, profits — always in that order (Horowitz). Talent density solves most other problems (Hastings).</li>
+<li><strong>Speed calibration</strong> — Fast is default. Only slow down for irreversible + high-magnitude decisions. 70% information is enough to decide (Bezos).</li>
+<li><strong>Proxy skepticism</strong> — Are our metrics still serving users or have they become self-referential? (Bezos Day 1).</li>
+<li><strong>Narrative coherence</strong> — Hard decisions need clear framing. Make the &quot;why&quot; legible, not everyone happy.</li>
+<li><strong>Temporal depth</strong> — Think in 5-10 year arcs. Apply regret minimization for major bets (Bezos at age 80).</li>
+<li><strong>Founder-mode bias</strong> — Deep involvement isn&#39;t micromanagement if it expands (not constrains) the team&#39;s thinking (Chesky/Graham).</li>
+<li><strong>Wartime awareness</strong> — Correctly diagnose peacetime vs wartime. Peacetime habits kill wartime companies (Horowitz).</li>
+<li><strong>Courage accumulation</strong> — Confidence comes <em>from</em> making hard decisions, not before them. &quot;The struggle IS the job.&quot;</li>
+<li><strong>Willfulness as strategy</strong> — Be intentionally willful. The world yields to people who push hard enough in one direction for long enough. Most people give up too early (Altman).</li>
+<li><strong>Leverage obsession</strong> — Find the inputs where small effort creates massive output. Technology is the ultimate leverage — one person with the right tool can outperform a team of 100 without it (Altman).</li>
+<li><strong>Hierarchy as service</strong> — Every interface decision answers &quot;what should the user see first, second, third?&quot; Respecting their time, not prettifying pixels.</li>
+<li><strong>Edge case paranoia (design)</strong> — What if the name is 47 chars? Zero results? Network fails mid-action? First-time user vs power user? Empty states are features, not afterthoughts.</li>
+<li><strong>Subtraction default</strong> — &quot;As little design as possible&quot; (Rams). If a UI element doesn&#39;t earn its pixels, cut it. Feature bloat kills products faster than missing features.</li>
+<li><strong>Design for trust</strong> — Every interface decision either builds or erodes user trust. Pixel-level intentionality about safety, identity, and belonging.</li>
+</ol>
+<p>When you evaluate architecture, think through the inversion reflex. When you challenge scope, apply focus as subtraction. When you assess timeline, use speed calibration. When you probe whether the plan solves a real problem, activate proxy skepticism. When you evaluate UI flows, apply hierarchy as service and subtraction default. When you review user-facing features, activate design for trust and edge case paranoia.</p>
+<h2>Priority Hierarchy Under Context Pressure</h2>
+<p>Step 0 &gt; System audit &gt; Error/rescue map &gt; Test diagram &gt; Failure modes &gt; Opinionated recommendations &gt; Everything else.
+Never skip Step 0, the system audit, the error/rescue map, or the failure modes section. These are the highest-leverage outputs.</p>
+<h2>PRE-REVIEW SYSTEM AUDIT (before Step 0)</h2>
+<p>Before doing anything else, run a system audit. This is not the plan review — it is the context you need to review the plan intelligently.
+Run the following commands:</p>
+<pre><code>git log --oneline -30                          # Recent history
+git diff &lt;base&gt; --stat                           # What&#39;s already changed
+git stash list                                 # Any stashed work
+grep -r &quot;TODO\|FIXME\|HACK\|XXX&quot; -l --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=.git . | head -30
+git log --since=30.days --name-only --format=&quot;&quot; | sort | uniq -c | sort -rn | head -20  # Recently touched files
+</code></pre>
+<p>Then read CLAUDE.md, TODOS.md, and any existing architecture docs.</p>
+<p><strong>Design doc check:</strong></p>
+<pre><code class="language-bash">SLUG=$(~/.codex/skills/gstack/browse/bin/remote-slug 2&gt;/dev/null || basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null || pwd)&quot;)
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2&gt;/dev/null | tr &#39;/&#39; &#39;-&#39; || echo &#39;no-branch&#39;)
+DESIGN=$(ls -t ~/.gstack/projects/$SLUG/*-$BRANCH-design-*.md 2&gt;/dev/null | head -1)
+[ -z &quot;$DESIGN&quot; ] &amp;&amp; DESIGN=$(ls -t ~/.gstack/projects/$SLUG/*-design-*.md 2&gt;/dev/null | head -1)
+[ -n &quot;$DESIGN&quot; ] &amp;&amp; echo &quot;Design doc found: $DESIGN&quot; || echo &quot;No design doc found&quot;
+</code></pre>
+<p>If a design doc exists (from <code>/office-hours</code>), read it. Use it as the source of truth for the problem statement, constraints, and chosen approach. If it has a <code>Supersedes:</code> field, note that this is a revised design.</p>
+<p><strong>Handoff note check</strong> (reuses $SLUG and $BRANCH from the design doc check above):</p>
+<pre><code class="language-bash">HANDOFF=$(ls -t ~/.gstack/projects/$SLUG/*-$BRANCH-ceo-handoff-*.md 2&gt;/dev/null | head -1)
+[ -n &quot;$HANDOFF&quot; ] &amp;&amp; echo &quot;HANDOFF_FOUND: $HANDOFF&quot; || echo &quot;NO_HANDOFF&quot;
+</code></pre>
+<p>If this block runs in a separate shell from the design doc check, recompute $SLUG and $BRANCH first using the same commands from that block.
+If a handoff note is found: read it. This contains system audit findings and discussion
+from a prior CEO review session that paused so the user could run <code>/office-hours</code>. Use it
+as additional context alongside the design doc. The handoff note helps you avoid re-asking
+questions the user already answered. Do NOT skip any steps — run the full review, but use
+the handoff note to inform your analysis and avoid redundant questions.</p>
+<p>Tell the user: &quot;Found a handoff note from your prior CEO review session. I&#39;ll use that
+context to pick up where we left off.&quot;</p>
+<h2>Prerequisite Skill Offer</h2>
+<p>When the design doc check above prints &quot;No design doc found,&quot; offer the prerequisite
+skill before proceeding.</p>
+<p>Say to the user via AskUserQuestion:</p>
+<blockquote>
+<p>&quot;No design doc found for this branch. <code>/office-hours</code> produces a structured problem
+statement, premise challenge, and explored alternatives — it gives this review much
+sharper input to work with. Takes about 10 minutes. The design doc is per-feature,
+not per-product — it captures the thinking behind this specific change.&quot;</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Run /office-hours first (in another window, then come back)</li>
+<li>B) Skip — proceed with standard review</li>
+</ul>
+<p>If they skip: &quot;No worries — standard review. If you ever want sharper input, try
+/office-hours first next time.&quot; Then proceed normally. Do not re-offer later in the session.</p>
+<p><strong>Handoff note save (BENEFITS_FROM):</strong> If the user chose A (run /office-hours first),
+save a handoff context note before they leave. Reuse $SLUG and $BRANCH from the
+design doc check block above (they use the same <code>remote-slug || basename</code> fallback
+that handles repos without an origin remote). Then run:</p>
+<pre><code class="language-bash">mkdir -p ~/.gstack/projects/$SLUG
+USER=$(whoami)
+DATETIME=$(date +%Y%m%d-%H%M%S)
+</code></pre>
+<p>Write to <code>~/.gstack/projects/$SLUG/$USER-$BRANCH-ceo-handoff-$DATETIME.md</code>:</p>
+<pre><code class="language-markdown"># CEO Review Handoff Note
+
+Generated by /plan-ceo-review on {date}
+Branch: {branch}
+Repo: {owner/repo}
+
+## Why I paused
+User chose to run /office-hours first (no design doc found).
+
+## System Audit Summary
+{Summarize what the system audit found — recent git history, diff scope,
+CLAUDE.md key points, TODOS.md relevant items, known pain points}
+
+## Discussion So Far
+{Empty — handoff happened before Step 0. Frontend/UI scope detection has not
+run yet — it will be assessed when the review resumes.}
+</code></pre>
+<p>Tell the user: &quot;Context saved. Run /office-hours in another window. When you come back
+and invoke /plan-ceo-review, I&#39;ll pick up the context automatically — including the
+design doc /office-hours produces.&quot;</p>
+<p><strong>Mid-session detection:</strong> During Step 0A (Premise Challenge), if the user can&#39;t
+articulate the problem, keeps changing the problem statement, answers with &quot;I&#39;m not
+sure,&quot; or is clearly exploring rather than reviewing — offer <code>/office-hours</code>:</p>
+<blockquote>
+<p>&quot;It sounds like you&#39;re still figuring out what to build — that&#39;s totally fine, but
+that&#39;s what /office-hours is designed for. Want to pause this review and run
+/office-hours first? It&#39;ll help you nail down the problem and approach, then come
+back here for the strategic review.&quot;</p>
+</blockquote>
+<p>Options: A) Yes, run /office-hours first. B) No, keep going.
+If they keep going, proceed normally — no guilt, no re-asking.</p>
+<p><strong>Handoff note save (mid-session):</strong> If the user chose A (run /office-hours first from
+mid-session detection), save a handoff context note with the same format above, but
+include any Step 0A progress in the &quot;Discussion So Far&quot; section — premises discussed,
+problem framing attempts, user answers so far. Use the same bash block to generate the
+file path.</p>
+<p>Tell the user: &quot;Context saved with your discussion so far. Run /office-hours, then
+come back to /plan-ceo-review.&quot;</p>
+<p>When reading TODOS.md, specifically:</p>
+<ul>
+<li>Note any TODOs this plan touches, blocks, or unlocks</li>
+<li>Check if deferred work from prior reviews relates to this plan</li>
+<li>Flag dependencies: does this plan enable or depend on deferred items?</li>
+<li>Map known pain points (from TODOS) to this plan&#39;s scope</li>
+</ul>
+<p>Map:</p>
+<ul>
+<li>What is the current system state?</li>
+<li>What is already in flight (other open PRs, branches, stashed changes)?</li>
+<li>What are the existing known pain points most relevant to this plan?</li>
+<li>Are there any FIXME/TODO comments in files this plan touches?</li>
+</ul>
+<h3>Retrospective Check</h3>
+<p>Check the git log for this branch. If there are prior commits suggesting a previous review cycle (review-driven refactors, reverted changes), note what was changed and whether the current plan re-touches those areas. Be MORE aggressive reviewing areas that were previously problematic. Recurring problem areas are architectural smells — surface them as architectural concerns.</p>
+<h3>Frontend/UI Scope Detection</h3>
+<p>Analyze the plan. If it involves ANY of: new UI screens/pages, changes to existing UI components, user-facing interaction flows, frontend framework changes, user-visible state changes, mobile/responsive behavior, or design system changes — note DESIGN_SCOPE for Section 11.</p>
+<h3>Taste Calibration (EXPANSION and SELECTIVE EXPANSION modes)</h3>
+<p>Identify 2-3 files or patterns in the existing codebase that are particularly well-designed. Note them as style references for the review. Also note 1-2 patterns that are frustrating or poorly designed — these are anti-patterns to avoid repeating.
+Report findings before proceeding to Step 0.</p>
+<h3>Landscape Check</h3>
+<p>Read ETHOS.md for the Search Before Building framework (the preamble&#39;s Search Before Building section has the path). Before challenging scope, understand the landscape. WebSearch for:</p>
+<ul>
+<li>&quot;[product category] landscape {current year}&quot;</li>
+<li>&quot;[key feature] alternatives&quot;</li>
+<li>&quot;why [incumbent/conventional approach] [succeeds/fails]&quot;</li>
+</ul>
+<p>If WebSearch is unavailable, skip this check and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<p>Run the three-layer synthesis:</p>
+<ul>
+<li><strong>[Layer 1]</strong> What&#39;s the tried-and-true approach in this space?</li>
+<li><strong>[Layer 2]</strong> What are the search results saying?</li>
+<li><strong>[Layer 3]</strong> First-principles reasoning — where might the conventional wisdom be wrong?</li>
+</ul>
+<p>Feed into the Premise Challenge (0A) and Dream State Mapping (0C). If you find a eureka moment, surface it during the Expansion opt-in ceremony as a differentiation opportunity. Log it (see preamble).</p>
+<h2>Step 0: Nuclear Scope Challenge + Mode Selection</h2>
+<h3>0A. Premise Challenge</h3>
+<ol>
+<li>Is this the right problem to solve? Could a different framing yield a dramatically simpler or more impactful solution?</li>
+<li>What is the actual user/business outcome? Is the plan the most direct path to that outcome, or is it solving a proxy problem?</li>
+<li>What would happen if we did nothing? Real pain point or hypothetical one?</li>
+</ol>
+<h3>0B. Existing Code Leverage</h3>
+<ol>
+<li>What existing code already partially or fully solves each sub-problem? Map every sub-problem to existing code. Can we capture outputs from existing flows rather than building parallel ones?</li>
+<li>Is this plan rebuilding anything that already exists? If yes, explain why rebuilding is better than refactoring.</li>
+</ol>
+<h3>0C. Dream State Mapping</h3>
+<p>Describe the ideal end state of this system 12 months from now. Does this plan move toward that state or away from it?</p>
+<pre><code>  CURRENT STATE                  THIS PLAN                  12-MONTH IDEAL
+  [describe]          ---&gt;       [describe delta]    ---&gt;    [describe target]
+</code></pre>
+<h3>0C-bis. Implementation Alternatives (MANDATORY)</h3>
+<p>Before selecting a mode (0F), produce 2-3 distinct implementation approaches. This is NOT optional — every plan must consider alternatives.</p>
+<p>For each approach:</p>
+<pre><code>APPROACH A: [Name]
+  Summary: [1-2 sentences]
+  Effort:  [S/M/L/XL]
+  Risk:    [Low/Med/High]
+  Pros:    [2-3 bullets]
+  Cons:    [2-3 bullets]
+  Reuses:  [existing code/patterns leveraged]
+
+APPROACH B: [Name]
+  ...
+
+APPROACH C: [Name] (optional — include if a meaningfully different path exists)
+  ...
+</code></pre>
+<p><strong>RECOMMENDATION:</strong> Choose [X] because [one-line reason mapped to engineering preferences].</p>
+<p>Rules:</p>
+<ul>
+<li>At least 2 approaches required. 3 preferred for non-trivial plans.</li>
+<li>One approach must be the &quot;minimal viable&quot; (fewest files, smallest diff).</li>
+<li>One approach must be the &quot;ideal architecture&quot; (best long-term trajectory).</li>
+<li>If only one approach exists, explain concretely why alternatives were eliminated.</li>
+<li>Do NOT proceed to mode selection (0F) without user approval of the chosen approach.</li>
+</ul>
+<h3>0D. Mode-Specific Analysis</h3>
+<p><strong>For SCOPE EXPANSION</strong> — run all three, then the opt-in ceremony:</p>
+<ol>
+<li>10x check: What&#39;s the version that&#39;s 10x more ambitious and delivers 10x more value for 2x the effort? Describe it concretely.</li>
+<li>Platonic ideal: If the best engineer in the world had unlimited time and perfect taste, what would this system look like? What would the user feel when using it? Start from experience, not architecture.</li>
+<li>Delight opportunities: What adjacent 30-minute improvements would make this feature sing? Things where a user would think &quot;oh nice, they thought of that.&quot; List at least 5.</li>
+<li><strong>Expansion opt-in ceremony:</strong> Describe the vision first (10x check, platonic ideal). Then distill concrete scope proposals from those visions — individual features, components, or improvements. Present each proposal as its own AskUserQuestion. Recommend enthusiastically — explain why it&#39;s worth doing. But the user decides. Options: <strong>A)</strong> Add to this plan&#39;s scope <strong>B)</strong> Defer to TODOS.md <strong>C)</strong> Skip. Accepted items become plan scope for all remaining review sections. Rejected items go to &quot;NOT in scope.&quot;</li>
+</ol>
+<p><strong>For SELECTIVE EXPANSION</strong> — run the HOLD SCOPE analysis first, then surface expansions:</p>
+<ol>
+<li>Complexity check: If the plan touches more than 8 files or introduces more than 2 new classes/services, treat that as a smell and challenge whether the same goal can be achieved with fewer moving parts.</li>
+<li>What is the minimum set of changes that achieves the stated goal? Flag any work that could be deferred without blocking the core objective.</li>
+<li>Then run the expansion scan (do NOT add these to scope yet — they are candidates):<ul>
+<li>10x check: What&#39;s the version that&#39;s 10x more ambitious? Describe it concretely.</li>
+<li>Delight opportunities: What adjacent 30-minute improvements would make this feature sing? List at least 5.</li>
+<li>Platform potential: Would any expansion turn this feature into infrastructure other features can build on?</li>
+</ul>
+</li>
+<li><strong>Cherry-pick ceremony:</strong> Present each expansion opportunity as its own individual AskUserQuestion. Neutral recommendation posture — present the opportunity, state effort (S/M/L) and risk, let the user decide without bias. Options: <strong>A)</strong> Add to this plan&#39;s scope <strong>B)</strong> Defer to TODOS.md <strong>C)</strong> Skip. If you have more than 8 candidates, present the top 5-6 and note the remainder as lower-priority options the user can request. Accepted items become plan scope for all remaining review sections. Rejected items go to &quot;NOT in scope.&quot;</li>
+</ol>
+<p><strong>For HOLD SCOPE</strong> — run this:</p>
+<ol>
+<li>Complexity check: If the plan touches more than 8 files or introduces more than 2 new classes/services, treat that as a smell and challenge whether the same goal can be achieved with fewer moving parts.</li>
+<li>What is the minimum set of changes that achieves the stated goal? Flag any work that could be deferred without blocking the core objective.</li>
+</ol>
+<p><strong>For SCOPE REDUCTION</strong> — run this:</p>
+<ol>
+<li>Ruthless cut: What is the absolute minimum that ships value to a user? Everything else is deferred. No exceptions.</li>
+<li>What can be a follow-up PR? Separate &quot;must ship together&quot; from &quot;nice to ship together.&quot;</li>
+</ol>
+<h3>0D-POST. Persist CEO Plan (EXPANSION and SELECTIVE EXPANSION only)</h3>
+<p>After the opt-in/cherry-pick ceremony, write the plan to disk so the vision and decisions survive beyond this conversation. Only run this step for EXPANSION and SELECTIVE EXPANSION modes.</p>
+<pre><code class="language-bash">source &lt;(~/.codex/skills/gstack/bin/gstack-slug 2&gt;/dev/null) &amp;&amp; mkdir -p ~/.gstack/projects/$SLUG/ceo-plans
+</code></pre>
+<p>Before writing, check for existing CEO plans in the ceo-plans/ directory. If any are &gt;30 days old or their branch has been merged/deleted, offer to archive them:</p>
+<pre><code class="language-bash">mkdir -p ~/.gstack/projects/$SLUG/ceo-plans/archive
+# For each stale plan: mv ~/.gstack/projects/$SLUG/ceo-plans/{old-plan}.md ~/.gstack/projects/$SLUG/ceo-plans/archive/
+</code></pre>
+<p>Write to <code>~/.gstack/projects/$SLUG/ceo-plans/{date}-{feature-slug}.md</code> using this format:</p>
+<pre><code class="language-markdown">---
+status: ACTIVE
+---
+# CEO Plan: {Feature Name}
+Generated by /plan-ceo-review on {date}
+Branch: {branch} | Mode: {EXPANSION / SELECTIVE EXPANSION}
+Repo: {owner/repo}
+
+## Vision
+
+### 10x Check
+{10x vision description}
+
+### Platonic Ideal
+{platonic ideal description — EXPANSION mode only}
+
+## Scope Decisions
+
+| # | Proposal | Effort | Decision | Reasoning |
+|---|----------|--------|----------|-----------|
+| 1 | {proposal} | S/M/L | ACCEPTED / DEFERRED / SKIPPED | {why} |
+
+## Accepted Scope (added to this plan)
+- {bullet list of what&#39;s now in scope}
+
+## Deferred to TODOS.md
+- {items with context}
+</code></pre>
+<p>Derive the feature slug from the plan being reviewed (e.g., &quot;user-dashboard&quot;, &quot;auth-refactor&quot;). Use the date in YYYY-MM-DD format.</p>
+<p>After writing the CEO plan, run the spec review loop on it:</p>
+<h2>Spec Review Loop</h2>
+<p>Before presenting the document to the user for approval, run an adversarial review.</p>
+<p><strong>Step 1: Dispatch reviewer subagent</strong></p>
+<p>Use the Agent tool to dispatch an independent reviewer. The reviewer has fresh context
+and cannot see the brainstorming conversation — only the document. This ensures genuine
+adversarial independence.</p>
+<p>Prompt the subagent with:</p>
+<ul>
+<li>The file path of the document just written</li>
+<li>&quot;Read this document and review it on 5 dimensions. For each dimension, note PASS or
+list specific issues with suggested fixes. At the end, output a quality score (1-10)
+across all dimensions.&quot;</li>
+</ul>
+<p><strong>Dimensions:</strong></p>
+<ol>
+<li><strong>Completeness</strong> — Are all requirements addressed? Missing edge cases?</li>
+<li><strong>Consistency</strong> — Do parts of the document agree with each other? Contradictions?</li>
+<li><strong>Clarity</strong> — Could an engineer implement this without asking questions? Ambiguous language?</li>
+<li><strong>Scope</strong> — Does the document creep beyond the original problem? YAGNI violations?</li>
+<li><strong>Feasibility</strong> — Can this actually be built with the stated approach? Hidden complexity?</li>
+</ol>
+<p>The subagent should return:</p>
+<ul>
+<li>A quality score (1-10)</li>
+<li>PASS if no issues, or a numbered list of issues with dimension, description, and fix</li>
+</ul>
+<p><strong>Step 2: Fix and re-dispatch</strong></p>
+<p>If the reviewer returns issues:</p>
+<ol>
+<li>Fix each issue in the document on disk (use Edit tool)</li>
+<li>Re-dispatch the reviewer subagent with the updated document</li>
+<li>Maximum 3 iterations total</li>
+</ol>
+<p><strong>Convergence guard:</strong> If the reviewer returns the same issues on consecutive iterations
+(the fix didn&#39;t resolve them or the reviewer disagrees with the fix), stop the loop
+and persist those issues as &quot;Reviewer Concerns&quot; in the document rather than looping
+further.</p>
+<p>If the subagent fails, times out, or is unavailable — skip the review loop entirely.
+Tell the user: &quot;Spec review unavailable — presenting unreviewed doc.&quot; The document is
+already written to disk; the review is a quality bonus, not a gate.</p>
+<p><strong>Step 3: Report and persist metrics</strong></p>
+<p>After the loop completes (PASS, max iterations, or convergence guard):</p>
+<ol>
+<li><p>Tell the user the result — summary by default:
+&quot;Your doc survived N rounds of adversarial review. M issues caught and fixed.
+Quality score: X/10.&quot;
+If they ask &quot;what did the reviewer find?&quot;, show the full reviewer output.</p>
+</li>
+<li><p>If issues remain after max iterations or convergence, add a &quot;## Reviewer Concerns&quot;
+section to the document listing each unresolved issue. Downstream skills will see this.</p>
+</li>
+<li><p>Append metrics:</p>
+</li>
+</ol>
+<pre><code class="language-bash">mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;plan-ceo-review&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;iterations&quot;:ITERATIONS,&quot;issues_found&quot;:FOUND,&quot;issues_fixed&quot;:FIXED,&quot;remaining&quot;:REMAINING,&quot;quality_score&quot;:SCORE}&#39; &gt;&gt; ~/.gstack/analytics/spec-review.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace ITERATIONS, FOUND, FIXED, REMAINING, SCORE with actual values from the review.</p>
+<h3>0E. Temporal Interrogation (EXPANSION, SELECTIVE EXPANSION, and HOLD modes)</h3>
+<p>Think ahead to implementation: What decisions will need to be made during implementation that should be resolved NOW in the plan?</p>
+<pre><code>  HOUR 1 (foundations):     What does the implementer need to know?
+  HOUR 2-3 (core logic):   What ambiguities will they hit?
+  HOUR 4-5 (integration):  What will surprise them?
+  HOUR 6+ (polish/tests):  What will they wish they&#39;d planned for?
+</code></pre>
+<p>NOTE: These represent human-team implementation hours. With CC + gstack,
+6 hours of human implementation compresses to ~30-60 minutes. The decisions
+are identical — the implementation speed is 10-20x faster. Always present
+both scales when discussing effort.</p>
+<p>Surface these as questions for the user NOW, not as &quot;figure it out later.&quot;</p>
+<h3>0F. Mode Selection</h3>
+<p>In every mode, you are 100% in control. No scope is added without your explicit approval.</p>
+<p>Present four options:</p>
+<ol>
+<li><strong>SCOPE EXPANSION:</strong> The plan is good but could be great. Dream big — propose the ambitious version. Every expansion is presented individually for your approval. You opt in to each one.</li>
+<li><strong>SELECTIVE EXPANSION:</strong> The plan&#39;s scope is the baseline, but you want to see what else is possible. Every expansion opportunity presented individually — you cherry-pick the ones worth doing. Neutral recommendations.</li>
+<li><strong>HOLD SCOPE:</strong> The plan&#39;s scope is right. Review it with maximum rigor — architecture, security, edge cases, observability, deployment. Make it bulletproof. No expansions surfaced.</li>
+<li><strong>SCOPE REDUCTION:</strong> The plan is overbuilt or wrong-headed. Propose a minimal version that achieves the core goal, then review that.</li>
+</ol>
+<p>Context-dependent defaults:</p>
+<ul>
+<li>Greenfield feature → default EXPANSION</li>
+<li>Feature enhancement or iteration on existing system → default SELECTIVE EXPANSION</li>
+<li>Bug fix or hotfix → default HOLD SCOPE</li>
+<li>Refactor → default HOLD SCOPE</li>
+<li>Plan touching &gt;15 files → suggest REDUCTION unless user pushes back</li>
+<li>User says &quot;go big&quot; / &quot;ambitious&quot; / &quot;cathedral&quot; → EXPANSION, no question</li>
+<li>User says &quot;hold scope but tempt me&quot; / &quot;show me options&quot; / &quot;cherry-pick&quot; → SELECTIVE EXPANSION, no question</li>
+</ul>
+<p>After mode is selected, confirm which implementation approach (from 0C-bis) applies under the chosen mode. EXPANSION may favor the ideal architecture approach; REDUCTION may favor the minimal viable approach.</p>
+<p>Once selected, commit fully. Do not silently drift.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</p>
+<h2>Review Sections (10 sections, after scope and mode are agreed)</h2>
+<h3>Section 1: Architecture Review</h3>
+<p>Evaluate and diagram:</p>
+<ul>
+<li>Overall system design and component boundaries. Draw the dependency graph.</li>
+<li>Data flow — all four paths. For every new data flow, ASCII diagram the:<ul>
+<li>Happy path (data flows correctly)</li>
+<li>Nil path (input is nil/missing — what happens?)</li>
+<li>Empty path (input is present but empty/zero-length — what happens?)</li>
+<li>Error path (upstream call fails — what happens?)</li>
+</ul>
+</li>
+<li>State machines. ASCII diagram for every new stateful object. Include impossible/invalid transitions and what prevents them.</li>
+<li>Coupling concerns. Which components are now coupled that weren&#39;t before? Is that coupling justified? Draw the before/after dependency graph.</li>
+<li>Scaling characteristics. What breaks first under 10x load? Under 100x?</li>
+<li>Single points of failure. Map them.</li>
+<li>Security architecture. Auth boundaries, data access patterns, API surfaces. For each new endpoint or data mutation: who can call it, what do they get, what can they change?</li>
+<li>Production failure scenarios. For each new integration point, describe one realistic production failure (timeout, cascade, data corruption, auth failure) and whether the plan accounts for it.</li>
+<li>Rollback posture. If this ships and immediately breaks, what&#39;s the rollback procedure? Git revert? Feature flag? DB migration rollback? How long?</li>
+</ul>
+<p><strong>EXPANSION and SELECTIVE EXPANSION additions:</strong></p>
+<ul>
+<li>What would make this architecture beautiful? Not just correct — elegant. Is there a design that would make a new engineer joining in 6 months say &quot;oh, that&#39;s clever and obvious at the same time&quot;?</li>
+<li>What infrastructure would make this feature a platform that other features can build on?</li>
+</ul>
+<p><strong>SELECTIVE EXPANSION:</strong> If any accepted cherry-picks from Step 0D affect the architecture, evaluate their architectural fit here. Flag any that create coupling concerns or don&#39;t integrate cleanly — this is a chance to revisit the decision with new information.</p>
+<p>Required ASCII diagram: full system architecture showing new components and their relationships to existing ones.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</p>
+<h3>Section 2: Error &amp; Rescue Map</h3>
+<p>This is the section that catches silent failures. It is not optional.
+For every new method, service, or codepath that can fail, fill in this table:</p>
+<pre><code>  METHOD/CODEPATH          | WHAT CAN GO WRONG           | EXCEPTION CLASS
+  -------------------------|-----------------------------|-----------------
+  ExampleService#call      | API timeout                 | TimeoutError
+                           | API returns 429             | RateLimitError
+                           | API returns malformed JSON  | JSONParseError
+                           | DB connection pool exhausted| ConnectionPoolExhausted
+                           | Record not found            | RecordNotFound
+  -------------------------|-----------------------------|-----------------
+
+  EXCEPTION CLASS              | RESCUED?  | RESCUE ACTION          | USER SEES
+  -----------------------------|-----------|------------------------|------------------
+  TimeoutError                 | Y         | Retry 2x, then raise   | &quot;Service temporarily unavailable&quot;
+  RateLimitError               | Y         | Backoff + retry         | Nothing (transparent)
+  JSONParseError               | N ← GAP   | —                      | 500 error ← BAD
+  ConnectionPoolExhausted      | N ← GAP   | —                      | 500 error ← BAD
+  RecordNotFound               | Y         | Return nil, log warning | &quot;Not found&quot; message
+</code></pre>
+<p>Rules for this section:</p>
+<ul>
+<li>Catch-all error handling (<code>rescue StandardError</code>, <code>catch (Exception e)</code>, <code>except Exception</code>) is ALWAYS a smell. Name the specific exceptions.</li>
+<li>Catching an error with only a generic log message is insufficient. Log the full context: what was being attempted, with what arguments, for what user/request.</li>
+<li>Every rescued error must either: retry with backoff, degrade gracefully with a user-visible message, or re-raise with added context. &quot;Swallow and continue&quot; is almost never acceptable.</li>
+<li>For each GAP (unrescued error that should be rescued): specify the rescue action and what the user should see.</li>
+<li>For LLM/AI service calls specifically: what happens when the response is malformed? When it&#39;s empty? When it hallucinates invalid JSON? When the model returns a refusal? Each of these is a distinct failure mode.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</li>
+</ul>
+<h3>Section 3: Security &amp; Threat Model</h3>
+<p>Security is not a sub-bullet of architecture. It gets its own section.
+Evaluate:</p>
+<ul>
+<li>Attack surface expansion. What new attack vectors does this plan introduce? New endpoints, new params, new file paths, new background jobs?</li>
+<li>Input validation. For every new user input: is it validated, sanitized, and rejected loudly on failure? What happens with: nil, empty string, string when integer expected, string exceeding max length, unicode edge cases, HTML/script injection attempts?</li>
+<li>Authorization. For every new data access: is it scoped to the right user/role? Is there a direct object reference vulnerability? Can user A access user B&#39;s data by manipulating IDs?</li>
+<li>Secrets and credentials. New secrets? In env vars, not hardcoded? Rotatable?</li>
+<li>Dependency risk. New gems/npm packages? Security track record?</li>
+<li>Data classification. PII, payment data, credentials? Handling consistent with existing patterns?</li>
+<li>Injection vectors. SQL, command, template, LLM prompt injection — check all.</li>
+<li>Audit logging. For sensitive operations: is there an audit trail?</li>
+</ul>
+<p>For each finding: threat, likelihood (High/Med/Low), impact (High/Med/Low), and whether the plan mitigates it.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</p>
+<h3>Section 4: Data Flow &amp; Interaction Edge Cases</h3>
+<p>This section traces data through the system and interactions through the UI with adversarial thoroughness.</p>
+<p><strong>Data Flow Tracing:</strong> For every new data flow, produce an ASCII diagram showing:</p>
+<pre><code>  INPUT ──▶ VALIDATION ──▶ TRANSFORM ──▶ PERSIST ──▶ OUTPUT
+    │            │              │            │           │
+    ▼            ▼              ▼            ▼           ▼
+  [nil?]    [invalid?]    [exception?]  [conflict?]  [stale?]
+  [empty?]  [too long?]   [timeout?]    [dup key?]   [partial?]
+  [wrong    [wrong type?] [OOM?]        [locked?]    [encoding?]
+   type?]
+</code></pre>
+<p>For each node: what happens on each shadow path? Is it tested?</p>
+<p><strong>Interaction Edge Cases:</strong> For every new user-visible interaction, evaluate:</p>
+<pre><code>  INTERACTION          | EDGE CASE              | HANDLED? | HOW?
+  ---------------------|------------------------|----------|--------
+  Form submission      | Double-click submit    | ?        |
+                       | Submit with stale CSRF | ?        |
+                       | Submit during deploy   | ?        |
+  Async operation      | User navigates away    | ?        |
+                       | Operation times out    | ?        |
+                       | Retry while in-flight  | ?        |
+  List/table view      | Zero results           | ?        |
+                       | 10,000 results         | ?        |
+                       | Results change mid-page| ?        |
+  Background job       | Job fails after 3 of   | ?        |
+                       | 10 items processed     |          |
+                       | Job runs twice (dup)   | ?        |
+                       | Queue backs up 2 hours | ?        |
+</code></pre>
+<p>Flag any unhandled edge case as a gap. For each gap, specify the fix.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</p>
+<h3>Section 5: Code Quality Review</h3>
+<p>Evaluate:</p>
+<ul>
+<li>Code organization and module structure. Does new code fit existing patterns? If it deviates, is there a reason?</li>
+<li>DRY violations. Be aggressive. If the same logic exists elsewhere, flag it and reference the file and line.</li>
+<li>Naming quality. Are new classes, methods, and variables named for what they do, not how they do it?</li>
+<li>Error handling patterns. (Cross-reference with Section 2 — this section reviews the patterns; Section 2 maps the specifics.)</li>
+<li>Missing edge cases. List explicitly: &quot;What happens when X is nil?&quot; &quot;When the API returns 429?&quot; etc.</li>
+<li>Over-engineering check. Any new abstraction solving a problem that doesn&#39;t exist yet?</li>
+<li>Under-engineering check. Anything fragile, assuming happy path only, or missing obvious defensive checks?</li>
+<li>Cyclomatic complexity. Flag any new method that branches more than 5 times. Propose a refactor.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</li>
+</ul>
+<h3>Section 6: Test Review</h3>
+<p>Make a complete diagram of every new thing this plan introduces:</p>
+<pre><code>  NEW UX FLOWS:
+    [list each new user-visible interaction]
+
+  NEW DATA FLOWS:
+    [list each new path data takes through the system]
+
+  NEW CODEPATHS:
+    [list each new branch, condition, or execution path]
+
+  NEW BACKGROUND JOBS / ASYNC WORK:
+    [list each]
+
+  NEW INTEGRATIONS / EXTERNAL CALLS:
+    [list each]
+
+  NEW ERROR/RESCUE PATHS:
+    [list each — cross-reference Section 2]
+</code></pre>
+<p>For each item in the diagram:</p>
+<ul>
+<li>What type of test covers it? (Unit / Integration / System / E2E)</li>
+<li>Does a test for it exist in the plan? If not, write the test spec header.</li>
+<li>What is the happy path test?</li>
+<li>What is the failure path test? (Be specific — which failure?)</li>
+<li>What is the edge case test? (nil, empty, boundary values, concurrent access)</li>
+</ul>
+<p>Test ambition check (all modes): For each new feature, answer:</p>
+<ul>
+<li>What&#39;s the test that would make you confident shipping at 2am on a Friday?</li>
+<li>What&#39;s the test a hostile QA engineer would write to break this?</li>
+<li>What&#39;s the chaos test?</li>
+</ul>
+<p>Test pyramid check: Many unit, fewer integration, few E2E? Or inverted?
+Flakiness risk: Flag any test depending on time, randomness, external services, or ordering.
+Load/stress test requirements: For any new codepath called frequently or processing significant data.</p>
+<p>For LLM/prompt changes: Check CLAUDE.md for the &quot;Prompt/LLM changes&quot; file patterns. If this plan touches ANY of those patterns, state which eval suites must be run, which cases should be added, and what baselines to compare against.
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</p>
+<h3>Section 7: Performance Review</h3>
+<p>Evaluate:</p>
+<ul>
+<li>N+1 queries. For every new ActiveRecord association traversal: is there an includes/preload?</li>
+<li>Memory usage. For every new data structure: what&#39;s the maximum size in production?</li>
+<li>Database indexes. For every new query: is there an index?</li>
+<li>Caching opportunities. For every expensive computation or external call: should it be cached?</li>
+<li>Background job sizing. For every new job: worst-case payload, runtime, retry behavior?</li>
+<li>Slow paths. Top 3 slowest new codepaths and estimated p99 latency.</li>
+<li>Connection pool pressure. New DB connections, Redis connections, HTTP connections?
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</li>
+</ul>
+<h3>Section 8: Observability &amp; Debuggability Review</h3>
+<p>New systems break. This section ensures you can see why.
+Evaluate:</p>
+<ul>
+<li>Logging. For every new codepath: structured log lines at entry, exit, and each significant branch?</li>
+<li>Metrics. For every new feature: what metric tells you it&#39;s working? What tells you it&#39;s broken?</li>
+<li>Tracing. For new cross-service or cross-job flows: trace IDs propagated?</li>
+<li>Alerting. What new alerts should exist?</li>
+<li>Dashboards. What new dashboard panels do you want on day 1?</li>
+<li>Debuggability. If a bug is reported 3 weeks post-ship, can you reconstruct what happened from logs alone?</li>
+<li>Admin tooling. New operational tasks that need admin UI or rake tasks?</li>
+<li>Runbooks. For each new failure mode: what&#39;s the operational response?</li>
+</ul>
+<p><strong>EXPANSION and SELECTIVE EXPANSION addition:</strong></p>
+<ul>
+<li>What observability would make this feature a joy to operate? (For SELECTIVE EXPANSION, include observability for any accepted cherry-picks.)
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</li>
+</ul>
+<h3>Section 9: Deployment &amp; Rollout Review</h3>
+<p>Evaluate:</p>
+<ul>
+<li>Migration safety. For every new DB migration: backward-compatible? Zero-downtime? Table locks?</li>
+<li>Feature flags. Should any part be behind a feature flag?</li>
+<li>Rollout order. Correct sequence: migrate first, deploy second?</li>
+<li>Rollback plan. Explicit step-by-step.</li>
+<li>Deploy-time risk window. Old code and new code running simultaneously — what breaks?</li>
+<li>Environment parity. Tested in staging?</li>
+<li>Post-deploy verification checklist. First 5 minutes? First hour?</li>
+<li>Smoke tests. What automated checks should run immediately post-deploy?</li>
+</ul>
+<p><strong>EXPANSION and SELECTIVE EXPANSION addition:</strong></p>
+<ul>
+<li>What deploy infrastructure would make shipping this feature routine? (For SELECTIVE EXPANSION, assess whether accepted cherry-picks change the deployment risk profile.)
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</li>
+</ul>
+<h3>Section 10: Long-Term Trajectory Review</h3>
+<p>Evaluate:</p>
+<ul>
+<li>Technical debt introduced. Code debt, operational debt, testing debt, documentation debt.</li>
+<li>Path dependency. Does this make future changes harder?</li>
+<li>Knowledge concentration. Documentation sufficient for a new engineer?</li>
+<li>Reversibility. Rate 1-5: 1 = one-way door, 5 = easily reversible.</li>
+<li>Ecosystem fit. Aligns with Rails/JS ecosystem direction?</li>
+<li>The 1-year question. Read this plan as a new engineer in 12 months — obvious?</li>
+</ul>
+<p><strong>EXPANSION and SELECTIVE EXPANSION additions:</strong></p>
+<ul>
+<li>What comes after this ships? Phase 2? Phase 3? Does the architecture support that trajectory?</li>
+<li>Platform potential. Does this create capabilities other features can leverage?</li>
+<li>(SELECTIVE EXPANSION only) Retrospective: Were the right cherry-picks accepted? Did any rejected expansions turn out to be load-bearing for the accepted ones?
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</li>
+</ul>
+<h3>Section 11: Design &amp; UX Review (skip if no UI scope detected)</h3>
+<p>The CEO calling in the designer. Not a pixel-level audit — that&#39;s /plan-design-review and /design-review. This is ensuring the plan has design intentionality.</p>
+<p>Evaluate:</p>
+<ul>
+<li>Information architecture — what does the user see first, second, third?</li>
+<li>Interaction state coverage map:
+FEATURE | LOADING | EMPTY | ERROR | SUCCESS | PARTIAL</li>
+<li>User journey coherence — storyboard the emotional arc</li>
+<li>AI slop risk — does the plan describe generic UI patterns?</li>
+<li>DESIGN.md alignment — does the plan match the stated design system?</li>
+<li>Responsive intention — is mobile mentioned or afterthought?</li>
+<li>Accessibility basics — keyboard nav, screen readers, contrast, touch targets</li>
+</ul>
+<p><strong>EXPANSION and SELECTIVE EXPANSION additions:</strong></p>
+<ul>
+<li>What would make this UI feel <em>inevitable</em>?</li>
+<li>What 30-minute UI touches would make users think &quot;oh nice, they thought of that&quot;?</li>
+</ul>
+<p>Required ASCII diagram: user flow showing screens/states and transitions.</p>
+<p>If this plan has significant UI scope, recommend: &quot;Consider running /plan-design-review for a deep design review of this plan before implementation.&quot;
+<strong>STOP.</strong> AskUserQuestion once per issue. Do NOT batch. Recommend + WHY. If no issues or fix is obvious, state what you&#39;ll do and move on — don&#39;t waste a question. Do NOT proceed until user responds.</p>
+<h2>Post-Implementation Design Audit (if UI scope detected)</h2>
+<p>After implementation, run <code>/design-review</code> on the live site to catch visual issues that can only be evaluated with rendered output.</p>
+<h2>CRITICAL RULE — How to ask questions</h2>
+<p>Follow the AskUserQuestion format from the Preamble above. Additional rules for plan reviews:</p>
+<ul>
+<li><strong>One issue = one AskUserQuestion call.</strong> Never combine multiple issues into one question.</li>
+<li>Describe the problem concretely, with file and line references.</li>
+<li>Present 2-3 options, including &quot;do nothing&quot; where reasonable.</li>
+<li>For each option: effort, risk, and maintenance burden in one line.</li>
+<li><strong>Map the reasoning to my engineering preferences above.</strong> One sentence connecting your recommendation to a specific preference.</li>
+<li>Label with issue NUMBER + option LETTER (e.g., &quot;3A&quot;, &quot;3B&quot;).</li>
+<li><strong>Escape hatch:</strong> If a section has no issues, say so and move on. If an issue has an obvious fix with no real alternatives, state what you&#39;ll do and move on — don&#39;t waste a question on it. Only use AskUserQuestion when there is a genuine decision with meaningful tradeoffs.</li>
+</ul>
+<h2>Required Outputs</h2>
+<h3>&quot;NOT in scope&quot; section</h3>
+<p>List work considered and explicitly deferred, with one-line rationale each.</p>
+<h3>&quot;What already exists&quot; section</h3>
+<p>List existing code/flows that partially solve sub-problems and whether the plan reuses them.</p>
+<h3>&quot;Dream state delta&quot; section</h3>
+<p>Where this plan leaves us relative to the 12-month ideal.</p>
+<h3>Error &amp; Rescue Registry (from Section 2)</h3>
+<p>Complete table of every method that can fail, every exception class, rescued status, rescue action, user impact.</p>
+<h3>Failure Modes Registry</h3>
+<pre><code>  CODEPATH | FAILURE MODE   | RESCUED? | TEST? | USER SEES?     | LOGGED?
+  ---------|----------------|----------|-------|----------------|--------
+</code></pre>
+<p>Any row with RESCUED=N, TEST=N, USER SEES=Silent → <strong>CRITICAL GAP</strong>.</p>
+<h3>TODOS.md updates</h3>
+<p>Present each potential TODO as its own individual AskUserQuestion. Never batch TODOs — one per question. Never silently skip this step. Follow the format in <code>.agents/skills/gstack/review/TODOS-format.md</code>.</p>
+<p>For each TODO, describe:</p>
+<ul>
+<li><strong>What:</strong> One-line description of the work.</li>
+<li><strong>Why:</strong> The concrete problem it solves or value it unlocks.</li>
+<li><strong>Pros:</strong> What you gain by doing this work.</li>
+<li><strong>Cons:</strong> Cost, complexity, or risks of doing it.</li>
+<li><strong>Context:</strong> Enough detail that someone picking this up in 3 months understands the motivation, the current state, and where to start.</li>
+<li><strong>Effort estimate:</strong> S/M/L/XL (human team) → with CC+gstack: S→S, M→S, L→M, XL→L</li>
+<li><strong>Priority:</strong> P1/P2/P3</li>
+<li><strong>Depends on / blocked by:</strong> Any prerequisites or ordering constraints.</li>
+</ul>
+<p>Then present options: <strong>A)</strong> Add to TODOS.md <strong>B)</strong> Skip — not valuable enough <strong>C)</strong> Build it now in this PR instead of deferring.</p>
+<h3>Scope Expansion Decisions (EXPANSION and SELECTIVE EXPANSION only)</h3>
+<p>For EXPANSION and SELECTIVE EXPANSION modes: expansion opportunities and delight items were surfaced and decided in Step 0D (opt-in/cherry-pick ceremony). The decisions are persisted in the CEO plan document. Reference the CEO plan for the full record. Do not re-surface them here — list the accepted expansions for completeness:</p>
+<ul>
+<li>Accepted: {list items added to scope}</li>
+<li>Deferred: {list items sent to TODOS.md}</li>
+<li>Skipped: {list items rejected}</li>
+</ul>
+<h3>Diagrams (mandatory, produce all that apply)</h3>
+<ol>
+<li>System architecture</li>
+<li>Data flow (including shadow paths)</li>
+<li>State machine</li>
+<li>Error flow</li>
+<li>Deployment sequence</li>
+<li>Rollback flowchart</li>
+</ol>
+<h3>Stale Diagram Audit</h3>
+<p>List every ASCII diagram in files this plan touches. Still accurate?</p>
+<h3>Completion Summary</h3>
+<pre><code>  +====================================================================+
+  |            MEGA PLAN REVIEW — COMPLETION SUMMARY                   |
+  +====================================================================+
+  | Mode selected        | EXPANSION / SELECTIVE / HOLD / REDUCTION     |
+  | System Audit         | [key findings]                              |
+  | Step 0               | [mode + key decisions]                      |
+  | Section 1  (Arch)    | ___ issues found                            |
+  | Section 2  (Errors)  | ___ error paths mapped, ___ GAPS            |
+  | Section 3  (Security)| ___ issues found, ___ High severity         |
+  | Section 4  (Data/UX) | ___ edge cases mapped, ___ unhandled        |
+  | Section 5  (Quality) | ___ issues found                            |
+  | Section 6  (Tests)   | Diagram produced, ___ gaps                  |
+  | Section 7  (Perf)    | ___ issues found                            |
+  | Section 8  (Observ)  | ___ gaps found                              |
+  | Section 9  (Deploy)  | ___ risks flagged                           |
+  | Section 10 (Future)  | Reversibility: _/5, debt items: ___         |
+  | Section 11 (Design)  | ___ issues / SKIPPED (no UI scope)          |
+  +--------------------------------------------------------------------+
+  | NOT in scope         | written (___ items)                          |
+  | What already exists  | written                                     |
+  | Dream state delta    | written                                     |
+  | Error/rescue registry| ___ methods, ___ CRITICAL GAPS              |
+  | Failure modes        | ___ total, ___ CRITICAL GAPS                |
+  | TODOS.md updates     | ___ items proposed                          |
+  | Scope proposals      | ___ proposed, ___ accepted (EXP + SEL)      |
+  | CEO plan             | written / skipped (HOLD/REDUCTION)           |
+  | Lake Score           | X/Y recommendations chose complete option   |
+  | Diagrams produced    | ___ (list types)                            |
+  | Stale diagrams found | ___                                         |
+  | Unresolved decisions | ___ (listed below)                          |
+  +====================================================================+
+</code></pre>
+<h3>Unresolved Decisions</h3>
+<p>If any AskUserQuestion goes unanswered, note it here. Never silently default.</p>
+<h2>Handoff Note Cleanup</h2>
+<p>After producing the Completion Summary, clean up any handoff notes for this branch —
+the review is complete and the context is no longer needed.</p>
+<pre><code class="language-bash">source &lt;(~/.codex/skills/gstack/bin/gstack-slug 2&gt;/dev/null)
+rm -f ~/.gstack/projects/$SLUG/*-$BRANCH-ceo-handoff-*.md 2&gt;/dev/null || true
+</code></pre>
+<h2>Review Log</h2>
+<p>After producing the Completion Summary above, persist the review result.</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes review metadata to
+<code>~/.gstack/</code> (user config directory, not project files). The skill preamble
+already writes to <code>~/.gstack/sessions/</code> and <code>~/.gstack/analytics/</code> — this is
+the same pattern. The review dashboard depends on this data. Skipping this
+command breaks the review readiness dashboard in /ship.</p>
+<pre><code class="language-bash">~/.codex/skills/gstack/bin/gstack-review-log &#39;{&quot;skill&quot;:&quot;plan-ceo-review&quot;,&quot;timestamp&quot;:&quot;TIMESTAMP&quot;,&quot;status&quot;:&quot;STATUS&quot;,&quot;unresolved&quot;:N,&quot;critical_gaps&quot;:N,&quot;mode&quot;:&quot;MODE&quot;,&quot;scope_proposed&quot;:N,&quot;scope_accepted&quot;:N,&quot;scope_deferred&quot;:N,&quot;commit&quot;:&quot;COMMIT&quot;}&#39;
+</code></pre>
+<p>Before running this command, substitute the placeholder values from the Completion Summary you just produced:</p>
+<ul>
+<li><strong>TIMESTAMP</strong>: current ISO 8601 datetime (e.g., 2026-03-16T14:30:00)</li>
+<li><strong>STATUS</strong>: &quot;clean&quot; if 0 unresolved decisions AND 0 critical gaps; otherwise &quot;issues_open&quot;</li>
+<li><strong>unresolved</strong>: number from &quot;Unresolved decisions&quot; in the summary</li>
+<li><strong>critical_gaps</strong>: number from &quot;Failure modes: ___ CRITICAL GAPS&quot; in the summary</li>
+<li><strong>MODE</strong>: the mode the user selected (SCOPE_EXPANSION / SELECTIVE_EXPANSION / HOLD_SCOPE / SCOPE_REDUCTION)</li>
+<li><strong>scope_proposed</strong>: number from &quot;Scope proposals: ___ proposed&quot; in the summary (0 for HOLD/REDUCTION)</li>
+<li><strong>scope_accepted</strong>: number from &quot;Scope proposals: ___ accepted&quot; in the summary (0 for HOLD/REDUCTION)</li>
+<li><strong>scope_deferred</strong>: number of items deferred to TODOS.md from scope decisions (0 for HOLD/REDUCTION)</li>
+<li><strong>COMMIT</strong>: output of <code>git rev-parse --short HEAD</code></li>
+</ul>
+<h2>Review Readiness Dashboard</h2>
+<p>After completing the review, read the review log and config to display the dashboard.</p>
+<pre><code class="language-bash">~/.codex/skills/gstack/bin/gstack-review-read
+</code></pre>
+<p>Parse the output. Find the most recent entry for each skill (plan-ceo-review, plan-eng-review, plan-design-review, design-review-lite, adversarial-review, codex-review). Ignore entries with timestamps older than 7 days. For the Adversarial row, show whichever is more recent between <code>adversarial-review</code> (new auto-scaled) and <code>codex-review</code> (legacy). For Design Review, show whichever is more recent between <code>plan-design-review</code> (full visual audit) and <code>design-review-lite</code> (code-level check). Append &quot;(FULL)&quot; or &quot;(LITE)&quot; to the status to distinguish. Display:</p>
+<pre><code>+====================================================================+
+|                    REVIEW READINESS DASHBOARD                       |
++====================================================================+
+| Review          | Runs | Last Run            | Status    | Required |
+|-----------------|------|---------------------|-----------|----------|
+| Eng Review      |  1   | 2026-03-16 15:00    | CLEAR     | YES      |
+| CEO Review      |  0   | —                   | —         | no       |
+| Design Review   |  0   | —                   | —         | no       |
+| Adversarial     |  0   | —                   | —         | no       |
++--------------------------------------------------------------------+
+| VERDICT: CLEARED — Eng Review passed                                |
++====================================================================+
+</code></pre>
+<p><strong>Review tiers:</strong></p>
+<ul>
+<li><strong>Eng Review (required by default):</strong> The only review that gates shipping. Covers architecture, code quality, tests, performance. Can be disabled globally with `gstack-config set skip_eng_review true` (the &quot;don&#39;t bother me&quot; setting).</li>
+<li><strong>CEO Review (optional):</strong> Use your judgment. Recommend it for big product/business changes, new user-facing features, or scope decisions. Skip for bug fixes, refactors, infra, and cleanup.</li>
+<li><strong>Design Review (optional):</strong> Use your judgment. Recommend it for UI/UX changes. Skip for backend-only, infra, or prompt-only changes.</li>
+<li><strong>Adversarial Review (automatic):</strong> Auto-scales by diff size. Small diffs (&lt;50 lines) skip adversarial. Medium diffs (50–199) get cross-model adversarial. Large diffs (200+) get all 4 passes: Claude structured, Codex structured, Claude adversarial subagent, Codex adversarial. No configuration needed.</li>
+</ul>
+<p><strong>Verdict logic:</strong></p>
+<ul>
+<li><strong>CLEARED</strong>: Eng Review has &gt;= 1 entry within 7 days with status &quot;clean&quot; (or `skip_eng_review` is `true`)</li>
+<li><strong>NOT CLEARED</strong>: Eng Review missing, stale (&gt;7 days), or has open issues</li>
+<li>CEO, Design, and Codex reviews are shown for context but never block shipping</li>
+<li>If `skip_eng_review` config is `true`, Eng Review shows &quot;SKIPPED (global)&quot; and verdict is CLEARED</li>
+</ul>
+<p><strong>Staleness detection:</strong> After displaying the dashboard, check if any existing reviews may be stale:</p>
+<ul>
+<li>Parse the `---HEAD---` section from the bash output to get the current HEAD commit hash</li>
+<li>For each review entry that has a `commit` field: compare it against the current HEAD. If different, count elapsed commits: `git rev-list --count STORED_COMMIT..HEAD`. Display: &quot;Note: {skill} review from {date} may be stale — {N} commits since review&quot;</li>
+<li>For entries without a `commit` field (legacy entries): display &quot;Note: {skill} review from {date} has no commit tracking — consider re-running for accurate staleness detection&quot;</li>
+<li>If all reviews match the current HEAD, do not display any staleness notes</li>
+</ul>
+<h2>Plan File Review Report</h2>
+<p>After displaying the Review Readiness Dashboard in conversation output, also update the
+<strong>plan file</strong> itself so review status is visible to anyone reading the plan.</p>
+<h3>Detect the plan file</h3>
+<ol>
+<li>Check if there is an active plan file in this conversation (the host provides plan file
+paths in system messages — look for plan file references in the conversation context).</li>
+<li>If not found, skip this section silently — not every review runs in plan mode.</li>
+</ol>
+<h3>Generate the report</h3>
+<p>Read the review log output you already have from the Review Readiness Dashboard step above.
+Parse each JSONL entry. Each skill logs different fields:</p>
+<ul>
+<li><strong>plan-ceo-review</strong>: `status`, `unresolved`, `critical_gaps`, `mode`, `scope_proposed`, `scope_accepted`, `scope_deferred`, `commit`
+→ Findings: &quot;{scope_proposed} proposals, {scope_accepted} accepted, {scope_deferred} deferred&quot;
+→ If scope fields are 0 or missing (HOLD/REDUCTION mode): &quot;mode: {mode}, {critical_gaps} critical gaps&quot;</li>
+<li><strong>plan-eng-review</strong>: `status`, `unresolved`, `critical_gaps`, `issues_found`, `mode`, `commit`
+→ Findings: &quot;{issues_found} issues, {critical_gaps} critical gaps&quot;</li>
+<li><strong>plan-design-review</strong>: `status`, `initial_score`, `overall_score`, `unresolved`, `decisions_made`, `commit`
+→ Findings: &quot;score: {initial_score}/10 → {overall_score}/10, {decisions_made} decisions&quot;</li>
+<li><strong>codex-review</strong>: `status`, `gate`, `findings`, `findings_fixed`
+→ Findings: &quot;{findings} findings, {findings_fixed}/{findings} fixed&quot;</li>
+</ul>
+<p>All fields needed for the Findings column are now present in the JSONL entries.
+For the review you just completed, you may use richer details from your own Completion
+Summary. For prior reviews, use the JSONL fields directly — they contain all required data.</p>
+<p>Produce this markdown table:</p>
+<p>```markdown</p>
+<h2>GSTACK REVIEW REPORT</h2>
+<table>
+<thead>
+<tr>
+<th>Review</th>
+<th>Trigger</th>
+<th>Why</th>
+<th>Runs</th>
+<th>Status</th>
+<th>Findings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CEO Review</td>
+<td>`/plan-ceo-review`</td>
+<td>Scope &amp; strategy</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>Codex Review</td>
+<td>`/codex review`</td>
+<td>Independent 2nd opinion</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>Eng Review</td>
+<td>`/plan-eng-review`</td>
+<td>Architecture &amp; tests (required)</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>Design Review</td>
+<td>`/plan-design-review`</td>
+<td>UI/UX gaps</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>```</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Below the table, add these lines (omit any that are empty/not applicable):</p>
+<ul>
+<li><strong>CODEX:</strong> (only if codex-review ran) — one-line summary of codex fixes</li>
+<li><strong>CROSS-MODEL:</strong> (only if both Claude and Codex reviews exist) — overlap analysis</li>
+<li><strong>UNRESOLVED:</strong> total unresolved decisions across all reviews</li>
+<li><strong>VERDICT:</strong> list reviews that are CLEAR (e.g., &quot;CEO + ENG CLEARED — ready to implement&quot;).
+If Eng Review is not CLEAR and not skipped globally, append &quot;eng review required&quot;.</li>
+</ul>
+<h3>Write to the plan file</h3>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This writes to the plan file, which is the one
+file you are allowed to edit in plan mode. The plan file review report is part of the
+plan&#39;s living status.</p>
+<ul>
+<li>Search the plan file for a `## GSTACK REVIEW REPORT` section <strong>anywhere</strong> in the file
+(not just at the end — content may have been added after it).</li>
+<li>If found, <strong>replace it</strong> entirely using the Edit tool. Match from `## GSTACK REVIEW REPORT`
+through either the next `## ` heading or end of file, whichever comes first. This ensures
+content added after the report section is preserved, not eaten. If the Edit fails
+(e.g., concurrent edit changed the content), re-read the plan file and retry once.</li>
+<li>If no such section exists, <strong>append it</strong> to the end of the plan file.</li>
+<li>Always place it as the very last section in the plan file. If it was found mid-file,
+move it: delete the old location and append at the end.</li>
+</ul>
+<h2>Next Steps — Review Chaining</h2>
+<p>After displaying the Review Readiness Dashboard, recommend the next review(s) based on what this CEO review discovered. Read the dashboard output to see which reviews have already been run and whether they are stale.</p>
+<p><strong>Recommend /plan-eng-review if eng review is not skipped globally</strong> — check the dashboard output for <code>skip_eng_review</code>. If it is <code>true</code>, eng review is opted out — do not recommend it. Otherwise, eng review is the required shipping gate. If this CEO review expanded scope, changed architectural direction, or accepted scope expansions, emphasize that a fresh eng review is needed. If an eng review already exists in the dashboard but the commit hash shows it predates this CEO review, note that it may be stale and should be re-run.</p>
+<p><strong>Recommend /plan-design-review if UI scope was detected</strong> — specifically if Section 11 (Design &amp; UX Review) was NOT skipped, or if accepted scope expansions included UI-facing features. If an existing design review is stale (commit hash drift), note that. In SCOPE REDUCTION mode, skip this recommendation — design review is unlikely relevant for scope cuts.</p>
+<p><strong>If both are needed, recommend eng review first</strong> (required gate), then design review.</p>
+<p>Use AskUserQuestion to present the next step. Include only applicable options:</p>
+<ul>
+<li><strong>A)</strong> Run /plan-eng-review next (required gate)</li>
+<li><strong>B)</strong> Run /plan-design-review next (only if UI scope detected)</li>
+<li><strong>C)</strong> Skip — I&#39;ll handle reviews manually</li>
+</ul>
+<h2>docs/designs Promotion (EXPANSION and SELECTIVE EXPANSION only)</h2>
+<p>At the end of the review, if the vision produced a compelling feature direction, offer to promote the CEO plan to the project repo. AskUserQuestion:</p>
+<p>&quot;The vision from this review produced {N} accepted scope expansions. Want to promote it to a design doc in the repo?&quot;</p>
+<ul>
+<li><strong>A)</strong> Promote to <code>docs/designs/{FEATURE}.md</code> (committed to repo, visible to the team)</li>
+<li><strong>B)</strong> Keep in <code>~/.gstack/projects/</code> only (local, personal reference)</li>
+<li><strong>C)</strong> Skip</li>
+</ul>
+<p>If promoted, copy the CEO plan content to <code>docs/designs/{FEATURE}.md</code> (create the directory if needed) and update the <code>status</code> field in the original CEO plan from <code>ACTIVE</code> to <code>PROMOTED</code>.</p>
+<h2>Formatting Rules</h2>
+<ul>
+<li>NUMBER issues (1, 2, 3...) and LETTERS for options (A, B, C...).</li>
+<li>Label with NUMBER + LETTER (e.g., &quot;3A&quot;, &quot;3B&quot;).</li>
+<li>One sentence max per option.</li>
+<li>After each section, pause and wait for feedback.</li>
+<li>Use <strong>CRITICAL GAP</strong> / <strong>WARNING</strong> / <strong>OK</strong> for scannability.</li>
+</ul>
+<h2>Mode Quick Reference</h2>
+<pre><code>  ┌────────────────────────────────────────────────────────────────────────────────┐
+  │                            MODE COMPARISON                                     │
+  ├─────────────┬──────────────┬──────────────┬──────────────┬────────────────────┤
+  │             │  EXPANSION   │  SELECTIVE   │  HOLD SCOPE  │  REDUCTION         │
+  ├─────────────┼──────────────┼──────────────┼──────────────┼────────────────────┤
+  │ Scope       │ Push UP      │ Hold + offer │ Maintain     │ Push DOWN          │
+  │             │ (opt-in)     │              │              │                    │
+  │ Recommend   │ Enthusiastic │ Neutral      │ N/A          │ N/A                │
+  │ posture     │              │              │              │                    │
+  │ 10x check   │ Mandatory    │ Surface as   │ Optional     │ Skip               │
+  │             │              │ cherry-pick  │              │                    │
+  │ Platonic    │ Yes          │ No           │ No           │ No                 │
+  │ ideal       │              │              │              │                    │
+  │ Delight     │ Opt-in       │ Cherry-pick  │ Note if seen │ Skip               │
+  │ opps        │ ceremony     │ ceremony     │              │                    │
+  │ Complexity  │ &quot;Is it big   │ &quot;Is it right │ &quot;Is it too   │ &quot;Is it the bare    │
+  │ question    │  enough?&quot;    │  + what else │  complex?&quot;   │  minimum?&quot;         │
+  │             │              │  is tempting&quot;│              │                    │
+  │ Taste       │ Yes          │ Yes          │ No           │ No                 │
+  │ calibration │              │              │              │                    │
+  │ Temporal    │ Full (hr 1-6)│ Full (hr 1-6)│ Key decisions│ Skip               │
+  │ interrogate │              │              │  only        │                    │
+  │ Observ.     │ &quot;Joy to      │ &quot;Joy to      │ &quot;Can we      │ &quot;Can we see if     │
+  │ standard    │  operate&quot;    │  operate&quot;    │  debug it?&quot;  │  it&#39;s broken?&quot;     │
+  │ Deploy      │ Infra as     │ Safe deploy  │ Safe deploy  │ Simplest possible  │
+  │ standard    │ feature scope│ + cherry-pick│  + rollback  │  deploy            │
+  │             │              │  risk check  │              │                    │
+  │ Error map   │ Full + chaos │ Full + chaos │ Full         │ Critical paths     │
+  │             │  scenarios   │ for accepted │              │  only              │
+  │ CEO plan    │ Written      │ Written      │ Skipped      │ Skipped            │
+  │ Phase 2/3   │ Map accepted │ Map accepted │ Note it      │ Skip               │
+  │ planning    │              │ cherry-picks │              │                    │
+  │ Design      │ &quot;Inevitable&quot; │ If UI scope  │ If UI scope  │ Skip               │
+  │ (Sec 11)    │  UI review   │  detected    │  detected    │                    │
+  └─────────────┴──────────────┴──────────────┴──────────────┴────────────────────┘
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

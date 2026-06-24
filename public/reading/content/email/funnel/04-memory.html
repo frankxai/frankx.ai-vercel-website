@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>04 memory</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/04-memory.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">04 memory</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>04-memory.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 4
+subject: &quot;Primitive 3 — Memory is actually three primitives in disguise&quot;
+preheader: &quot;Reading time: 5 min. Don&#39;t conflate them.&quot;</h2>
+<p>If your agent acts weird, memory is usually the cause.</p>
+<p>The reason is that &quot;memory&quot; gets used to describe three different things, and most beginners conflate them.</p>
+<h2>The three kinds</h2>
+<p><strong>Session memory</strong> — the messages within one conversation. User says X, agent says Y, user says Z, agent remembers X-Y-Z. Lives in-process or in Vercel KV / Redis.</p>
+<p><strong>Working memory</strong> — state the agent accumulates <em>during a single task</em>. Half-finished plans, intermediate tool results, &quot;still need to call X.&quot; Lives inside one <code>runAgent()</code> invocation, dies when it returns.</p>
+<p><strong>Long-term memory</strong> — facts the agent should remember across sessions. &quot;User Frank prefers Vercel deploy. User Frank&#39;s projects are usually TypeScript.&quot; Lives in a vector DB or a typed key-value store.</p>
+<p>Each one has different failure modes. Session memory grows unbounded if you don&#39;t prune. Working memory leaks into session memory if you&#39;re sloppy. Long-term memory becomes a vector-DB junk drawer if you let the agent write to it freely.</p>
+<h2>The architectural test</h2>
+<p>For any piece of state in your agent, ask: <strong>which of the three kinds is it?</strong></p>
+<p>If you can answer cleanly, your memory primitive is architected.</p>
+<p>If you have to think, you have a bug waiting to happen.</p>
+<h2>In code</h2>
+<p>The starter repo has session memory only — that&#39;s all a 90-minute workshop needs:</p>
+<pre><code class="language-ts">const conversations = new Map&lt;string, CoreMessage[]&gt;()
+
+const MAX_TURNS = 20
+
+export function getHistory(sessionId: string): CoreMessage[] {
+  return conversations.get(sessionId) ?? []
+}
+
+export function appendTurn(sessionId: string, messages: CoreMessage[]) {
+  const prior = conversations.get(sessionId) ?? []
+  const combined = [...prior, ...messages]
+  // prune at 20 turns to prevent unbounded growth
+  const pruned = combined.length &gt; MAX_TURNS * 2 ? combined.slice(-MAX_TURNS * 2) : combined
+  conversations.set(sessionId, pruned)
+}
+</code></pre>
+<p>In production, swap the <code>Map</code> for Vercel KV. Same interface. Same code shape. The only thing that changes is where the data lives.</p>
+<h2>When you need long-term memory (you don&#39;t yet)</h2>
+<p>Here&#39;s the rule that saves most beginners months: <strong>don&#39;t add long-term memory until you have a specific user-facing reason.</strong></p>
+<p>&quot;My agent should remember things&quot; is not a reason. &quot;My agent should remember the user&#39;s project type so it doesn&#39;t ask every session&quot; is a reason.</p>
+<p>Without a specific reason, long-term memory becomes a vector-DB junk drawer that confuses the agent more than it helps.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>In the starter repo, ask your agent the same question twice in different sessions:</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;question&quot;:&quot;What is your name?&quot;,&quot;sessionId&quot;:&quot;alice&quot;}&#39;
+
+curl -X POST http://localhost:3000/api/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;question&quot;:&quot;What is your name?&quot;,&quot;sessionId&quot;:&quot;bob&quot;}&#39;
+</code></pre>
+<p>Both sessions are independent. Now repeat the call with <code>sessionId:alice</code> — the agent has Alice&#39;s history.</p>
+<p>That&#39;s session memory working as designed. Now imagine if Alice&#39;s questions started bleeding into Bob&#39;s session because long-term memory was overwriting things. That&#39;s what bad memory architecture looks like.</p>
+<h2>Tomorrow</h2>
+<p>Day 5 — Primitive 4: <strong>The Loop</strong>. Where most agent bugs live, and how <code>maxSteps</code> saves you from runaway costs.</p>
+<p>(I&#39;ll also mention the Six Primitives Pack on Day 5 — €7 — for builders who want the polished pocket book and the templates. Not pushing it; just letting you know it exists.)</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

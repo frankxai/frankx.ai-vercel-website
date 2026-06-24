@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/careful — Destructive Command Guardrails</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/.agents/skills/gstack-careful/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/careful — Destructive Command Guardrails</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#.claude">.claude</a> / <a href="../../../../index.html#.claude%2Fskills">skills</a> / <a href="../../../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="../../index.html#.claude%2Fskills%2Fgstack%2F.agents">.agents</a> / <a href="../index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2F.agents%2Fskills%2Fgstack-careful">gstack-careful</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: careful
+description: |
+  Safety guardrails for destructive commands. Warns before rm -rf, DROP TABLE,
+  force-push, git reset --hard, kubectl delete, and similar destructive operations.
+  User can override each warning. Use when touching prod, debugging live systems,
+  or working in a shared environment. Use when asked to &quot;be careful&quot;, &quot;safety mode&quot;,
+  &quot;prod mode&quot;, or &quot;careful mode&quot;.</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+<blockquote>
+<p><strong>Safety Advisory:</strong> This skill includes safety checks that check bash commands for destructive operations (rm -rf, DROP TABLE, force-push, git reset --hard, etc.) before execution. When using this skill, always pause and verify before executing potentially destructive operations. If uncertain about a command&#39;s safety, ask the user for confirmation before proceeding.</p>
+</blockquote>
+<h1>/careful — Destructive Command Guardrails</h1>
+<p>Safety mode is now <strong>active</strong>. Every bash command will be checked for destructive
+patterns before running. If a destructive command is detected, you&#39;ll be warned
+and can choose to proceed or cancel.</p>
+<pre><code class="language-bash">mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;careful&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+</code></pre>
+<h2>What&#39;s protected</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Example</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>rm -rf</code> / <code>rm -r</code> / <code>rm --recursive</code></td>
+<td><code>rm -rf /var/data</code></td>
+<td>Recursive delete</td>
+</tr>
+<tr>
+<td><code>DROP TABLE</code> / <code>DROP DATABASE</code></td>
+<td><code>DROP TABLE users;</code></td>
+<td>Data loss</td>
+</tr>
+<tr>
+<td><code>TRUNCATE</code></td>
+<td><code>TRUNCATE orders;</code></td>
+<td>Data loss</td>
+</tr>
+<tr>
+<td><code>git push --force</code> / <code>-f</code></td>
+<td><code>git push -f origin main</code></td>
+<td>History rewrite</td>
+</tr>
+<tr>
+<td><code>git reset --hard</code></td>
+<td><code>git reset --hard HEAD~3</code></td>
+<td>Uncommitted work loss</td>
+</tr>
+<tr>
+<td><code>git checkout .</code> / <code>git restore .</code></td>
+<td><code>git checkout .</code></td>
+<td>Uncommitted work loss</td>
+</tr>
+<tr>
+<td><code>kubectl delete</code></td>
+<td><code>kubectl delete pod</code></td>
+<td>Production impact</td>
+</tr>
+<tr>
+<td><code>docker rm -f</code> / <code>docker system prune</code></td>
+<td><code>docker system prune -a</code></td>
+<td>Container/image loss</td>
+</tr>
+</tbody></table>
+<h2>Safe exceptions</h2>
+<p>These patterns are allowed without warning:</p>
+<ul>
+<li><code>rm -rf node_modules</code> / <code>.next</code> / <code>dist</code> / <code>__pycache__</code> / <code>.cache</code> / <code>build</code> / <code>.turbo</code> / <code>coverage</code></li>
+</ul>
+<h2>How it works</h2>
+<p>The hook reads the command from the tool input JSON, checks it against the
+patterns above, and returns <code>permissionDecision: &quot;ask&quot;</code> with a warning message
+if a match is found. You can always override the warning and proceed.</p>
+<p>To deactivate, end the conversation or start a new one. Hooks are session-scoped.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

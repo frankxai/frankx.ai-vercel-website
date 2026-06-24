@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>TODOS</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/TODOS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">TODOS</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack">gstack</a> / <span>TODOS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>TODOS</h1>
+<h2>Builder Ethos</h2>
+<h3>First-time Search Before Building intro</h3>
+<p><strong>What:</strong> Add a <code>generateSearchIntro()</code> function (like <code>generateLakeIntro()</code>) that introduces the Search Before Building principle on first use, with a link to the blog essay.</p>
+<p><strong>Why:</strong> Boil the Lake has an intro flow that links to the essay and marks <code>.completeness-intro-seen</code>. Search Before Building should have the same pattern for discoverability.</p>
+<p><strong>Context:</strong> Blocked on a blog post to link to. When the essay exists, add the intro flow with a <code>.search-intro-seen</code> marker file. Pattern: <code>generateLakeIntro()</code> at gen-skill-docs.ts:176.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> Blog post about Search Before Building</p>
+<h2>Browse</h2>
+<h3>Bundle server.ts into compiled binary</h3>
+<p><strong>What:</strong> Eliminate <code>resolveServerScript()</code> fallback chain entirely — bundle server.ts into the compiled browse binary.</p>
+<p><strong>Why:</strong> The current fallback chain (check adjacent to cli.ts, check global install) is fragile and caused bugs in v0.3.2. A single compiled binary is simpler and more reliable.</p>
+<p><strong>Context:</strong> Bun&#39;s <code>--compile</code> flag can bundle multiple entry points. The server is currently resolved at runtime via file path lookup. Bundling it removes the resolution step entirely.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> None</p>
+<h3>Sessions (isolated browser instances)</h3>
+<p><strong>What:</strong> Isolated browser instances with separate cookies/storage/history, addressable by name.</p>
+<p><strong>Why:</strong> Enables parallel testing of different user roles, A/B test verification, and clean auth state management.</p>
+<p><strong>Context:</strong> Requires Playwright browser context isolation. Each session gets its own context with independent cookies/localStorage. Prerequisite for video recording (clean context lifecycle) and auth vault.</p>
+<p><strong>Effort:</strong> L
+<strong>Priority:</strong> P3</p>
+<h3>Video recording</h3>
+<p><strong>What:</strong> Record browser interactions as video (start/stop controls).</p>
+<p><strong>Why:</strong> Video evidence in QA reports and PR bodies. Currently deferred because <code>recreateContext()</code> destroys page state.</p>
+<p><strong>Context:</strong> Needs sessions for clean context lifecycle. Playwright supports video recording per context. Also needs WebM → GIF conversion for PR embedding.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Sessions</p>
+<h3>v20 encryption format support</h3>
+<p><strong>What:</strong> AES-256-GCM support for future Chromium cookie DB versions (currently v10).</p>
+<p><strong>Why:</strong> Future Chromium versions may change encryption format. Proactive support prevents breakage.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P3</p>
+<h3>State persistence</h3>
+<p><strong>What:</strong> Save/load cookies + localStorage to JSON files for reproducible test sessions.</p>
+<p><strong>Why:</strong> Enables &quot;resume where I left off&quot; for QA sessions and repeatable auth states.</p>
+<p><strong>Context:</strong> The <code>saveState()</code>/<code>restoreState()</code> helpers from the handoff feature (browser-manager.ts) already capture cookies + localStorage + sessionStorage + URLs. Adding file I/O on top is ~20 lines.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Sessions</p>
+<h3>Auth vault</h3>
+<p><strong>What:</strong> Encrypted credential storage, referenced by name. LLM never sees passwords.</p>
+<p><strong>Why:</strong> Security — currently auth credentials flow through the LLM context. Vault keeps secrets out of the AI&#39;s view.</p>
+<p><strong>Effort:</strong> L
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Sessions, state persistence</p>
+<h3>Iframe support</h3>
+<p><strong>What:</strong> <code>frame &lt;sel&gt;</code> and <code>frame main</code> commands for cross-frame interaction.</p>
+<p><strong>Why:</strong> Many web apps use iframes (embeds, payment forms, ads). Currently invisible to browse.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P4</p>
+<h3>Semantic locators</h3>
+<p><strong>What:</strong> <code>find role/label/text/placeholder/testid</code> with attached actions.</p>
+<p><strong>Why:</strong> More resilient element selection than CSS selectors or ref numbers.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P4</p>
+<h3>Device emulation presets</h3>
+<p><strong>What:</strong> <code>set device &quot;iPhone 16 Pro&quot;</code> for mobile/tablet testing.</p>
+<p><strong>Why:</strong> Responsive layout testing without manual viewport resizing.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P4</p>
+<h3>Network mocking/routing</h3>
+<p><strong>What:</strong> Intercept, block, and mock network requests.</p>
+<p><strong>Why:</strong> Test error states, loading states, and offline behavior.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P4</p>
+<h3>Download handling</h3>
+<p><strong>What:</strong> Click-to-download with path control.</p>
+<p><strong>Why:</strong> Test file download flows end-to-end.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P4</p>
+<h3>Content safety</h3>
+<p><strong>What:</strong> <code>--max-output</code> truncation, <code>--allowed-domains</code> filtering.</p>
+<p><strong>Why:</strong> Prevent context window overflow and restrict navigation to safe domains.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P4</p>
+<h3>Streaming (WebSocket live preview)</h3>
+<p><strong>What:</strong> WebSocket-based live preview for pair browsing sessions.</p>
+<p><strong>Why:</strong> Enables real-time collaboration — human watches AI browse.</p>
+<p><strong>Effort:</strong> L
+<strong>Priority:</strong> P4</p>
+<h3>CDP mode</h3>
+<p><strong>What:</strong> Connect to already-running Chrome/Electron apps via Chrome DevTools Protocol.</p>
+<p><strong>Why:</strong> Test production apps, Electron apps, and existing browser sessions without launching new instances.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P4</p>
+<h3>Linux/Windows cookie decryption</h3>
+<p><strong>What:</strong> GNOME Keyring / kwallet / DPAPI support for non-macOS cookie import.</p>
+<p><strong>Why:</strong> Cross-platform cookie import. Currently macOS-only (Keychain).</p>
+<p><strong>Effort:</strong> L
+<strong>Priority:</strong> P4</p>
+<h2>Ship</h2>
+<h3>Ship log — persistent record of /ship runs</h3>
+<p><strong>What:</strong> Append structured JSON entry to <code>.gstack/ship-log.json</code> at end of every /ship run (version, date, branch, PR URL, review findings, Greptile stats, todos completed, test results).</p>
+<p><strong>Why:</strong> /retro has no structured data about shipping velocity. Ship log enables: PRs-per-week trending, review finding rates, Greptile signal over time, test suite growth.</p>
+<p><strong>Context:</strong> /retro already reads greptile-history.md — same pattern. Eval persistence (eval-store.ts) shows the JSON append pattern exists in the codebase. ~15 lines in ship template.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> None</p>
+<h3>Visual verification with screenshots in PR body</h3>
+<p><strong>What:</strong> /ship Step 7.5: screenshot key pages after push, embed in PR body.</p>
+<p><strong>Why:</strong> Visual evidence in PRs. Reviewers see what changed without deploying locally.</p>
+<p><strong>Context:</strong> Part of Phase 3.6. Needs S3 upload for image hosting.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> /setup-gstack-upload</p>
+<h2>Review</h2>
+<h3>Inline PR annotations</h3>
+<p><strong>What:</strong> /ship and /review post inline review comments at specific file:line locations using <code>gh api</code> to create pull request review comments.</p>
+<p><strong>Why:</strong> Line-level annotations are more actionable than top-level comments. The PR thread becomes a line-by-line conversation between Greptile, Claude, and human reviewers.</p>
+<p><strong>Context:</strong> GitHub supports inline review comments via <code>gh api repos/$REPO/pulls/$PR/reviews</code>. Pairs naturally with Phase 3.6 visual annotations.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> None</p>
+<h3>Greptile training feedback export</h3>
+<p><strong>What:</strong> Aggregate greptile-history.md into machine-readable JSON summary of false positive patterns, exportable to the Greptile team for model improvement.</p>
+<p><strong>Why:</strong> Closes the feedback loop — Greptile can use FP data to stop making the same mistakes on your codebase.</p>
+<p><strong>Context:</strong> Was a P3 Future Idea. Upgraded to P2 now that greptile-history.md data infrastructure exists. The signal data is already being collected; this just makes it exportable. ~40 lines.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> Enough FP data accumulated (10+ entries)</p>
+<h3>Visual review with annotated screenshots</h3>
+<p><strong>What:</strong> /review Step 4.5: browse PR&#39;s preview deploy, annotated screenshots of changed pages, compare against production, check responsive layouts, verify accessibility tree.</p>
+<p><strong>Why:</strong> Visual diff catches layout regressions that code review misses.</p>
+<p><strong>Context:</strong> Part of Phase 3.6. Needs S3 upload for image hosting.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> /setup-gstack-upload</p>
+<h2>QA</h2>
+<h3>QA trend tracking</h3>
+<p><strong>What:</strong> Compare baseline.json over time, detect regressions across QA runs.</p>
+<p><strong>Why:</strong> Spot quality trends — is the app getting better or worse?</p>
+<p><strong>Context:</strong> QA already writes structured reports. This adds cross-run comparison.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2</p>
+<h3>CI/CD QA integration</h3>
+<p><strong>What:</strong> <code>/qa</code> as GitHub Action step, fail PR if health score drops.</p>
+<p><strong>Why:</strong> Automated quality gate in CI. Catch regressions before merge.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2</p>
+<h3>Smart default QA tier</h3>
+<p><strong>What:</strong> After a few runs, check index.md for user&#39;s usual tier pick, skip the AskUserQuestion.</p>
+<p><strong>Why:</strong> Reduces friction for repeat users.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2</p>
+<h3>Accessibility audit mode</h3>
+<p><strong>What:</strong> <code>--a11y</code> flag for focused accessibility testing.</p>
+<p><strong>Why:</strong> Dedicated accessibility testing beyond the general QA checklist.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P3</p>
+<h3>CI/CD generation for non-GitHub providers</h3>
+<p><strong>What:</strong> Extend CI/CD bootstrap to generate GitLab CI (<code>.gitlab-ci.yml</code>), CircleCI (<code>.circleci/config.yml</code>), and Bitrise pipelines.</p>
+<p><strong>Why:</strong> Not all projects use GitHub Actions. Universal CI/CD bootstrap would make test bootstrap work for everyone.</p>
+<p><strong>Context:</strong> v1 ships with GitHub Actions only. Detection logic already checks for <code>.gitlab-ci.yml</code>, <code>.circleci/</code>, <code>bitrise.yml</code> and skips with an informational note. Each provider needs ~20 lines of template text in <code>generateTestBootstrap()</code>.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Test bootstrap (shipped)</p>
+<h3>Auto-upgrade weak tests (★) to strong tests (★★★)</h3>
+<p><strong>What:</strong> When Step 3.4 coverage audit identifies existing ★-rated tests (smoke/trivial assertions), generate improved versions testing edge cases and error paths.</p>
+<p><strong>Why:</strong> Many codebases have tests that technically exist but don&#39;t catch real bugs — <code>expect(component).toBeDefined()</code> isn&#39;t testing behavior. Upgrading these closes the gap between &quot;has tests&quot; and &quot;has good tests.&quot;</p>
+<p><strong>Context:</strong> Requires the quality scoring rubric from the test coverage audit. Modifying existing test files is riskier than creating new ones — needs careful diffing to ensure the upgraded test still passes. Consider creating a companion test file rather than modifying the original.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Test quality scoring (shipped)</p>
+<h2>Retro</h2>
+<h3>Deployment health tracking (retro + browse)</h3>
+<p><strong>What:</strong> Screenshot production state, check perf metrics (page load times), count console errors across key pages, track trends over retro window.</p>
+<p><strong>Why:</strong> Retro should include production health alongside code metrics.</p>
+<p><strong>Context:</strong> Requires browse integration. Screenshots + metrics fed into retro output.</p>
+<p><strong>Effort:</strong> L
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Browse sessions</p>
+<h2>Infrastructure</h2>
+<h3>/setup-gstack-upload skill (S3 bucket)</h3>
+<p><strong>What:</strong> Configure S3 bucket for image hosting. One-time setup for visual PR annotations.</p>
+<p><strong>Why:</strong> Prerequisite for visual PR annotations in /ship and /review.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2</p>
+<h3>gstack-upload helper</h3>
+<p><strong>What:</strong> <code>browse/bin/gstack-upload</code> — upload file to S3, return public URL.</p>
+<p><strong>Why:</strong> Shared utility for all skills that need to embed images in PRs.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> /setup-gstack-upload</p>
+<h3>WebM to GIF conversion</h3>
+<p><strong>What:</strong> ffmpeg-based WebM → GIF conversion for video evidence in PRs.</p>
+<p><strong>Why:</strong> GitHub PR bodies render GIFs but not WebM. Needed for video recording evidence.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Video recording</p>
+<h3>GitHub Actions eval upload</h3>
+<p><strong>What:</strong> Run eval suite in CI, upload result JSON as artifact, post summary comment on PR.</p>
+<p><strong>Why:</strong> CI integration catches quality regressions before merge and provides persistent eval records per PR.</p>
+<p><strong>Context:</strong> Requires <code>ANTHROPIC_API_KEY</code> in CI secrets. Cost is <del>$4/run. Eval persistence system (v0.3.6) writes JSON to `</del>/.gstack-dev/evals/<code>— CI would upload as GitHub Actions artifacts and use</code>eval:compare` to post delta comment.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> Eval persistence (shipped in v0.3.6)</p>
+<h3>E2E model pinning — SHIPPED</h3>
+<p><del><strong>What:</strong> Pin E2E tests to claude-sonnet-4-6 for cost efficiency, add retry:2 for flaky LLM responses.</del></p>
+<p>Shipped: Default model changed to Sonnet for structure tests (<del>30), Opus retained for quality tests (</del>10). <code>--retry 2</code> added. <code>EVALS_MODEL</code> env var for override. <code>test:e2e:fast</code> tier added. Rate-limit telemetry (first_response_ms, max_inter_turn_ms) and wall_clock_ms tracking added to eval-store.</p>
+<h3>Eval web dashboard</h3>
+<p><strong>What:</strong> <code>bun run eval:dashboard</code> serves local HTML with charts: cost trending, detection rate, pass/fail history.</p>
+<p><strong>Why:</strong> Visual charts better for spotting trends than CLI tools.</p>
+<p><strong>Context:</strong> Reads <code>~/.gstack-dev/evals/*.json</code>. ~200 lines HTML + chart.js via Bun HTTP server.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Eval persistence (shipped in v0.3.6)</p>
+<h3>CI/CD QA quality gate</h3>
+<p><strong>What:</strong> Run <code>/qa</code> as a GitHub Action step, fail PR if health score drops below threshold.</p>
+<p><strong>Why:</strong> Automated quality gate catches regressions before merge. Currently QA is manual — CI integration makes it part of the standard workflow.</p>
+<p><strong>Context:</strong> Requires headless browse binary available in CI. The <code>/qa</code> skill already produces <code>baseline.json</code> with health scores — CI step would compare against the main branch baseline and fail if score drops. Would need <code>ANTHROPIC_API_KEY</code> in CI secrets since <code>/qa</code> uses Claude.</p>
+<p><strong>Effort:</strong> M
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> None</p>
+<h3>Cross-platform URL open helper</h3>
+<p><strong>What:</strong> <code>gstack-open-url</code> helper script — detect platform, use <code>open</code> (macOS) or <code>xdg-open</code> (Linux).</p>
+<p><strong>Why:</strong> The first-time Completeness Principle intro uses macOS <code>open</code> to launch the essay. If gstack ever supports Linux, this silently fails.</p>
+<p><strong>Effort:</strong> S (human: ~30 min / CC: ~2 min)
+<strong>Priority:</strong> P4
+<strong>Depends on:</strong> Nothing</p>
+<h3>CDP-based DOM mutation detection for ref staleness</h3>
+<p><strong>What:</strong> Use Chrome DevTools Protocol <code>DOM.documentUpdated</code> / MutationObserver events to proactively invalidate stale refs when the DOM changes, without requiring an explicit <code>snapshot</code> call.</p>
+<p><strong>Why:</strong> Current ref staleness detection (async count() check) only catches stale refs at action time. CDP mutation detection would proactively warn when refs become stale, preventing the 5-second timeout entirely for SPA re-renders.</p>
+<p><strong>Context:</strong> Parts 1+2 of ref staleness fix (RefEntry metadata + eager validation via count()) are shipped. This is Part 3 — the most ambitious piece. Requires CDP session alongside Playwright, MutationObserver bridge, and careful performance tuning to avoid overhead on every DOM change.</p>
+<p><strong>Effort:</strong> L
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Ref staleness Parts 1+2 (shipped)</p>
+<h2>Office Hours / Design</h2>
+<h3>Design docs → Supabase team store sync</h3>
+<p><strong>What:</strong> Add design docs (<code>*-design-*.md</code>) to the Supabase sync pipeline alongside test plans, retro snapshots, and QA reports.</p>
+<p><strong>Why:</strong> Cross-team design discovery at scale. Local <code>~/.gstack/projects/$SLUG/</code> keyword-grep discovery works for same-machine users now, but Supabase sync makes it work across the whole team. Duplicate ideas surface, everyone sees what&#39;s been explored.</p>
+<p><strong>Context:</strong> /office-hours writes design docs to <code>~/.gstack/projects/$SLUG/</code>. The team store already syncs test plans, retro snapshots, QA reports. Design docs follow the same pattern — just add a sync adapter.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> <code>garrytan/team-supabase-store</code> branch landing on main</p>
+<h3>/yc-prep skill</h3>
+<p><strong>What:</strong> Skill that helps founders prepare their YC application after /office-hours identifies strong signal. Pulls from the design doc, structures answers to YC app questions, runs a mock interview.</p>
+<p><strong>Why:</strong> Closes the loop. /office-hours identifies the founder, /yc-prep helps them apply well. The design doc already contains most of the raw material for a YC application.</p>
+<p><strong>Effort:</strong> M (human: ~2 weeks / CC: ~2 hours)
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> office-hours founder discovery engine shipping first</p>
+<h2>Design Review</h2>
+<h3>/plan-design-review + /qa-design-review + /design-consultation — SHIPPED</h3>
+<p>Shipped as v0.5.0 on main. Includes <code>/plan-design-review</code> (report-only design audit), <code>/qa-design-review</code> (audit + fix loop), and <code>/design-consultation</code> (interactive DESIGN.md creation). <code>{{DESIGN_METHODOLOGY}}</code> resolver provides shared 80-item design audit checklist.</p>
+<h2>Document-Release</h2>
+<h3>Auto-invoke /document-release from /ship — SHIPPED</h3>
+<p>Shipped in v0.8.3. Step 8.5 added to <code>/ship</code> — after creating the PR, <code>/ship</code> automatically reads <code>document-release/SKILL.md</code> and executes the doc update workflow. Zero-friction doc updates.</p>
+<h3><code>{{DOC_VOICE}}</code> shared resolver</h3>
+<p><strong>What:</strong> Create a placeholder resolver in gen-skill-docs.ts encoding the gstack voice guide (friendly, user-forward, lead with benefits). Inject into /ship Step 5, /document-release Step 5, and reference from CLAUDE.md.</p>
+<p><strong>Why:</strong> DRY — voice rules currently live inline in 3 places (CLAUDE.md CHANGELOG style section, /ship Step 5, /document-release Step 5). When the voice evolves, all three drift.</p>
+<p><strong>Context:</strong> Same pattern as <code>{{QA_METHODOLOGY}}</code> — shared block injected into multiple templates to prevent drift. ~20 lines in gen-skill-docs.ts.</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P2
+<strong>Depends on:</strong> None</p>
+<h2>Ship Confidence Dashboard</h2>
+<h3>Smart review relevance detection — PARTIALLY SHIPPED</h3>
+<p><del><strong>What:</strong> Auto-detect which of the 4 reviews are relevant based on branch changes (skip Design Review if no CSS/view changes, skip Code Review if plan-only).</del></p>
+<p><code>bin/gstack-diff-scope</code> shipped — categorizes diff into SCOPE_FRONTEND, SCOPE_BACKEND, SCOPE_PROMPTS, SCOPE_TESTS, SCOPE_DOCS, SCOPE_CONFIG. Used by design-review-lite to skip when no frontend files changed. Dashboard integration for conditional row display is a follow-up.</p>
+<p><strong>Remaining:</strong> Dashboard conditional row display (hide &quot;Design Review: NOT YET RUN&quot; when SCOPE_FRONTEND=false). Extend to Eng Review (skip for docs-only) and CEO Review (skip for config-only).</p>
+<p><strong>Effort:</strong> S
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> gstack-diff-scope (shipped)</p>
+<h2>Completeness</h2>
+<h3>Completeness metrics dashboard</h3>
+<p><strong>What:</strong> Track how often Claude chooses the complete option vs shortcut across gstack sessions. Aggregate into a dashboard showing completeness trend over time.</p>
+<p><strong>Why:</strong> Without measurement, we can&#39;t know if the Completeness Principle is working. Could surface patterns (e.g., certain skills still bias toward shortcuts).</p>
+<p><strong>Context:</strong> Would require logging choices (e.g., append to a JSONL file when AskUserQuestion resolves), parsing them, and displaying trends. Similar pattern to eval persistence.</p>
+<p><strong>Effort:</strong> M (human) / S (CC)
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Boil the Lake shipped (v0.6.1)</p>
+<h2>Safety &amp; Observability</h2>
+<h3>On-demand hook skills (/careful, /freeze, /guard) — SHIPPED</h3>
+<p><del><strong>What:</strong> Three new skills that use Claude Code&#39;s session-scoped PreToolUse hooks to add safety guardrails on demand.</del></p>
+<p>Shipped as <code>/careful</code>, <code>/freeze</code>, <code>/guard</code>, and <code>/unfreeze</code> in v0.6.5. Includes hook fire-rate telemetry (pattern name only, no command content) and inline skill activation telemetry.</p>
+<h3>Skill usage telemetry — SHIPPED</h3>
+<p><del><strong>What:</strong> Track which skills get invoked, how often, from which repo.</del></p>
+<p>Shipped in v0.6.5. TemplateContext in gen-skill-docs.ts bakes skill name into preamble telemetry line. Analytics CLI (<code>bun run analytics</code>) for querying. /retro integration shows skills-used-this-week.</p>
+<h3>/investigate scoped debugging enhancements (gated on telemetry)</h3>
+<p><strong>What:</strong> Six enhancements to /investigate auto-freeze, contingent on telemetry showing the freeze hook actually fires in real debugging sessions.</p>
+<p><strong>Why:</strong> /investigate v0.7.1 auto-freezes edits to the module being debugged. If telemetry shows the hook fires often, these enhancements make the experience smarter. If it never fires, the problem wasn&#39;t real and these aren&#39;t worth building.</p>
+<p><strong>Context:</strong> All items are prose additions to <code>investigate/SKILL.md.tmpl</code>. No new scripts.</p>
+<p><strong>Items:</strong></p>
+<ol>
+<li>Stack trace auto-detection for freeze directory (parse deepest app frame)</li>
+<li>Freeze boundary widening (ask to widen instead of hard-block when hitting boundary)</li>
+<li>Post-fix auto-unfreeze + full test suite run</li>
+<li>Debug instrumentation cleanup (tag with DEBUG-TEMP, remove before commit)</li>
+<li>Debug session persistence (~/.gstack/investigate-sessions/ — save investigation for reuse)</li>
+<li>Investigation timeline in debug report (hypothesis log with timing)</li>
+</ol>
+<p><strong>Effort:</strong> M (all 6 combined)
+<strong>Priority:</strong> P3
+<strong>Depends on:</strong> Telemetry data showing freeze hook fires in real /investigate sessions</p>
+<h2>Completed</h2>
+<h3>Deploy pipeline (v0.9.8.0)</h3>
+<ul>
+<li>/land-and-deploy — merge PR, wait for CI/deploy, canary verification</li>
+<li>/canary — post-deploy monitoring loop with anomaly detection</li>
+<li>/benchmark — performance regression detection with Core Web Vitals</li>
+<li>/setup-deploy — one-time deploy platform configuration</li>
+<li>/review Performance &amp; Bundle Impact pass</li>
+<li>E2E model pinning (Sonnet default, Opus for quality tests)</li>
+<li>E2E timing telemetry (first_response_ms, max_inter_turn_ms, wall_clock_ms)</li>
+<li>test:e2e:fast tier, --retry 2 on all E2E scripts
+<strong>Completed:</strong> v0.9.8.0</li>
+</ul>
+<h3>Phase 1: Foundations (v0.2.0)</h3>
+<ul>
+<li>Rename to gstack</li>
+<li>Restructure to monorepo layout</li>
+<li>Setup script for skill symlinks</li>
+<li>Snapshot command with ref-based element selection</li>
+<li>Snapshot tests
+<strong>Completed:</strong> v0.2.0</li>
+</ul>
+<h3>Phase 2: Enhanced Browser (v0.2.0)</h3>
+<ul>
+<li>Annotated screenshots, snapshot diffing, dialog handling, file upload</li>
+<li>Cursor-interactive elements, element state checks</li>
+<li>CircularBuffer, async buffer flush, health check</li>
+<li>Playwright error wrapping, useragent fix</li>
+<li>148 integration tests
+<strong>Completed:</strong> v0.2.0</li>
+</ul>
+<h3>Phase 3: QA Testing Agent (v0.3.0)</h3>
+<ul>
+<li>/qa SKILL.md with 6-phase workflow, 3 modes (full/quick/regression)</li>
+<li>Issue taxonomy, severity classification, exploration checklist</li>
+<li>Report template, health score rubric, framework detection</li>
+<li>wait/console/cookie-import commands, find-browse binary
+<strong>Completed:</strong> v0.3.0</li>
+</ul>
+<h3>Phase 3.5: Browser Cookie Import (v0.3.x)</h3>
+<ul>
+<li>cookie-import-browser command (Chromium cookie DB decryption)</li>
+<li>Cookie picker web UI, /setup-browser-cookies skill</li>
+<li>18 unit tests, browser registry (Comet, Chrome, Arc, Brave, Edge)
+<strong>Completed:</strong> v0.3.1</li>
+</ul>
+<h3>E2E test cost tracking</h3>
+<ul>
+<li>Track cumulative API spend, warn if over threshold
+<strong>Completed:</strong> v0.3.6</li>
+</ul>
+<h3>Auto-upgrade mode + smart update check</h3>
+<ul>
+<li>Config CLI (<code>bin/gstack-config</code>), auto-upgrade via <code>~/.gstack/config.yaml</code>, 12h cache TTL, exponential snooze backoff (24h→48h→1wk), &quot;never ask again&quot; option, vendored copy sync on upgrade
+<strong>Completed:</strong> v0.3.8</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

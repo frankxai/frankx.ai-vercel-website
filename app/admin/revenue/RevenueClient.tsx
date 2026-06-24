@@ -422,11 +422,6 @@ function AffiliatesTab({ affiliates }: { affiliates: Affiliate[] }) {
                   <div className="mb-2 flex items-center gap-2">
                     {PlatformIcon && <PlatformIcon className="h-4 w-4 text-white/50" />}
                     <span className="font-medium">{a.name}</span>
-                    {a.oracleCompatible && (
-                      <span className="ml-auto rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] text-emerald-400">
-                        Oracle Safe
-                      </span>
-                    )}
                   </div>
                   <div className="space-y-1 text-xs text-white/40">
                     <p>

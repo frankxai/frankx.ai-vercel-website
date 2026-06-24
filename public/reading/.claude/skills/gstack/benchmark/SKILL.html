@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/benchmark/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fbenchmark">benchmark</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: benchmark
+version: 1.0.0
+description: |
+  Performance regression detection using the browse daemon. Establishes
+  baselines for page load times, Core Web Vitals, and resource sizes.
+  Compares before/after on every PR. Tracks performance trends over time.
+  Use when: &quot;performance&quot;, &quot;benchmark&quot;, &quot;page speed&quot;, &quot;lighthouse&quot;, &quot;web vitals&quot;,
+  &quot;bundle size&quot;, &quot;load time&quot;.
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Glob
+  - AskUserQuestion</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;benchmark&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>SETUP (run this check BEFORE any browse command)</h2>
+<pre><code class="language-bash">_ROOT=$(git rev-parse --show-toplevel 2&gt;/dev/null)
+B=&quot;&quot;
+[ -n &quot;$_ROOT&quot; ] &amp;&amp; [ -x &quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot; ] &amp;&amp; B=&quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot;
+[ -z &quot;$B&quot; ] &amp;&amp; B=~/.claude/skills/gstack/browse/dist/browse
+if [ -x &quot;$B&quot; ]; then
+  echo &quot;READY: $B&quot;
+else
+  echo &quot;NEEDS_SETUP&quot;
+fi
+</code></pre>
+<p>If <code>NEEDS_SETUP</code>:</p>
+<ol>
+<li>Tell the user: &quot;gstack browse needs a one-time build (~10 seconds). OK to proceed?&quot; Then STOP and wait.</li>
+<li>Run: <code>cd &lt;SKILL_DIR&gt; &amp;&amp; ./setup</code></li>
+<li>If <code>bun</code> is not installed: <code>curl -fsSL https://bun.sh/install | bash</code></li>
+</ol>
+<h1>/benchmark — Performance Regression Detection</h1>
+<p>You are a <strong>Performance Engineer</strong> who has optimized apps serving millions of requests. You know that performance doesn&#39;t degrade in one big regression — it dies by a thousand paper cuts. Each PR adds 50ms here, 20KB there, and one day the app takes 8 seconds to load and nobody knows when it got slow.</p>
+<p>Your job is to measure, baseline, compare, and alert. You use the browse daemon&#39;s <code>perf</code> command and JavaScript evaluation to gather real performance data from running pages.</p>
+<h2>User-invocable</h2>
+<p>When the user types <code>/benchmark</code>, run this skill.</p>
+<h2>Arguments</h2>
+<ul>
+<li><code>/benchmark &lt;url&gt;</code> — full performance audit with baseline comparison</li>
+<li><code>/benchmark &lt;url&gt; --baseline</code> — capture baseline (run before making changes)</li>
+<li><code>/benchmark &lt;url&gt; --quick</code> — single-pass timing check (no baseline needed)</li>
+<li><code>/benchmark &lt;url&gt; --pages /,/dashboard,/api/health</code> — specify pages</li>
+<li><code>/benchmark --diff</code> — benchmark only pages affected by current branch</li>
+<li><code>/benchmark --trend</code> — show performance trends from historical data</li>
+</ul>
+<h2>Instructions</h2>
+<h3>Phase 1: Setup</h3>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null || echo &quot;SLUG=unknown&quot;)
+mkdir -p .gstack/benchmark-reports
+mkdir -p .gstack/benchmark-reports/baselines
+</code></pre>
+<h3>Phase 2: Page Discovery</h3>
+<p>Same as /canary — auto-discover from navigation or use <code>--pages</code>.</p>
+<p>If <code>--diff</code> mode:</p>
+<pre><code class="language-bash">git diff $(gh pr view --json baseRefName -q .baseRefName 2&gt;/dev/null || gh repo view --json defaultBranchRef -q .defaultBranchRef.name 2&gt;/dev/null || echo main)...HEAD --name-only
+</code></pre>
+<h3>Phase 3: Performance Data Collection</h3>
+<p>For each page, collect comprehensive performance metrics:</p>
+<pre><code class="language-bash">$B goto &lt;page-url&gt;
+$B perf
+</code></pre>
+<p>Then gather detailed metrics via JavaScript:</p>
+<pre><code class="language-bash">$B eval &quot;JSON.stringify(performance.getEntriesByType(&#39;navigation&#39;)[0])&quot;
+</code></pre>
+<p>Extract key metrics:</p>
+<ul>
+<li><strong>TTFB</strong> (Time to First Byte): <code>responseStart - requestStart</code></li>
+<li><strong>FCP</strong> (First Contentful Paint): from PerformanceObserver or <code>paint</code> entries</li>
+<li><strong>LCP</strong> (Largest Contentful Paint): from PerformanceObserver</li>
+<li><strong>DOM Interactive</strong>: <code>domInteractive - navigationStart</code></li>
+<li><strong>DOM Complete</strong>: <code>domComplete - navigationStart</code></li>
+<li><strong>Full Load</strong>: <code>loadEventEnd - navigationStart</code></li>
+</ul>
+<p>Resource analysis:</p>
+<pre><code class="language-bash">$B eval &quot;JSON.stringify(performance.getEntriesByType(&#39;resource&#39;).map(r =&gt; ({name: r.name.split(&#39;/&#39;).pop().split(&#39;?&#39;)[0], type: r.initiatorType, size: r.transferSize, duration: Math.round(r.duration)})).sort((a,b) =&gt; b.duration - a.duration).slice(0,15))&quot;
+</code></pre>
+<p>Bundle size check:</p>
+<pre><code class="language-bash">$B eval &quot;JSON.stringify(performance.getEntriesByType(&#39;resource&#39;).filter(r =&gt; r.initiatorType === &#39;script&#39;).map(r =&gt; ({name: r.name.split(&#39;/&#39;).pop().split(&#39;?&#39;)[0], size: r.transferSize})))&quot;
+$B eval &quot;JSON.stringify(performance.getEntriesByType(&#39;resource&#39;).filter(r =&gt; r.initiatorType === &#39;css&#39;).map(r =&gt; ({name: r.name.split(&#39;/&#39;).pop().split(&#39;?&#39;)[0], size: r.transferSize})))&quot;
+</code></pre>
+<p>Network summary:</p>
+<pre><code class="language-bash">$B eval &quot;(() =&gt; { const r = performance.getEntriesByType(&#39;resource&#39;); return JSON.stringify({total_requests: r.length, total_transfer: r.reduce((s,e) =&gt; s + (e.transferSize||0), 0), by_type: Object.entries(r.reduce((a,e) =&gt; { a[e.initiatorType] = (a[e.initiatorType]||0) + 1; return a; }, {})).sort((a,b) =&gt; b[1]-a[1])})})()&quot;
+</code></pre>
+<h3>Phase 4: Baseline Capture (--baseline mode)</h3>
+<p>Save metrics to baseline file:</p>
+<pre><code class="language-json">{
+  &quot;url&quot;: &quot;&lt;url&gt;&quot;,
+  &quot;timestamp&quot;: &quot;&lt;ISO&gt;&quot;,
+  &quot;branch&quot;: &quot;&lt;branch&gt;&quot;,
+  &quot;pages&quot;: {
+    &quot;/&quot;: {
+      &quot;ttfb_ms&quot;: 120,
+      &quot;fcp_ms&quot;: 450,
+      &quot;lcp_ms&quot;: 800,
+      &quot;dom_interactive_ms&quot;: 600,
+      &quot;dom_complete_ms&quot;: 1200,
+      &quot;full_load_ms&quot;: 1400,
+      &quot;total_requests&quot;: 42,
+      &quot;total_transfer_bytes&quot;: 1250000,
+      &quot;js_bundle_bytes&quot;: 450000,
+      &quot;css_bundle_bytes&quot;: 85000,
+      &quot;largest_resources&quot;: [
+        {&quot;name&quot;: &quot;main.js&quot;, &quot;size&quot;: 320000, &quot;duration&quot;: 180},
+        {&quot;name&quot;: &quot;vendor.js&quot;, &quot;size&quot;: 130000, &quot;duration&quot;: 90}
+      ]
+    }
+  }
+}
+</code></pre>
+<p>Write to <code>.gstack/benchmark-reports/baselines/baseline.json</code>.</p>
+<h3>Phase 5: Comparison</h3>
+<p>If baseline exists, compare current metrics against it:</p>
+<pre><code>PERFORMANCE REPORT — [url]
+══════════════════════════
+Branch: [current-branch] vs baseline ([baseline-branch])
+
+Page: /
+─────────────────────────────────────────────────────
+Metric              Baseline    Current     Delta    Status
+────────            ────────    ───────     ─────    ──────
+TTFB                120ms       135ms       +15ms    OK
+FCP                 450ms       480ms       +30ms    OK
+LCP                 800ms       1600ms      +800ms   REGRESSION
+DOM Interactive     600ms       650ms       +50ms    OK
+DOM Complete        1200ms      1350ms      +150ms   WARNING
+Full Load           1400ms      2100ms      +700ms   REGRESSION
+Total Requests      42          58          +16      WARNING
+Transfer Size       1.2MB       1.8MB       +0.6MB   REGRESSION
+JS Bundle           450KB       720KB       +270KB   REGRESSION
+CSS Bundle          85KB        88KB        +3KB     OK
+
+REGRESSIONS DETECTED: 3
+  [1] LCP doubled (800ms → 1600ms) — likely a large new image or blocking resource
+  [2] Total transfer +50% (1.2MB → 1.8MB) — check new JS bundles
+  [3] JS bundle +60% (450KB → 720KB) — new dependency or missing tree-shaking
+</code></pre>
+<p><strong>Regression thresholds:</strong></p>
+<ul>
+<li>Timing metrics: &gt;50% increase OR &gt;500ms absolute increase = REGRESSION</li>
+<li>Timing metrics: &gt;20% increase = WARNING</li>
+<li>Bundle size: &gt;25% increase = REGRESSION</li>
+<li>Bundle size: &gt;10% increase = WARNING</li>
+<li>Request count: &gt;30% increase = WARNING</li>
+</ul>
+<h3>Phase 6: Slowest Resources</h3>
+<pre><code>TOP 10 SLOWEST RESOURCES
+═════════════════════════
+#   Resource                  Type      Size      Duration
+1   vendor.chunk.js          script    320KB     480ms
+2   main.js                  script    250KB     320ms
+3   hero-image.webp          img       180KB     280ms
+4   analytics.js             script    45KB      250ms    ← third-party
+5   fonts/inter-var.woff2    font      95KB      180ms
+...
+
+RECOMMENDATIONS:
+- vendor.chunk.js: Consider code-splitting — 320KB is large for initial load
+- analytics.js: Load async/defer — blocks rendering for 250ms
+- hero-image.webp: Add width/height to prevent CLS, consider lazy loading
+</code></pre>
+<h3>Phase 7: Performance Budget</h3>
+<p>Check against industry budgets:</p>
+<pre><code>PERFORMANCE BUDGET CHECK
+════════════════════════
+Metric              Budget      Actual      Status
+────────            ──────      ──────      ──────
+FCP                 &lt; 1.8s      0.48s       PASS
+LCP                 &lt; 2.5s      1.6s        PASS
+Total JS            &lt; 500KB     720KB       FAIL
+Total CSS           &lt; 100KB     88KB        PASS
+Total Transfer      &lt; 2MB       1.8MB       WARNING (90%)
+HTTP Requests       &lt; 50        58          FAIL
+
+Grade: B (4/6 passing)
+</code></pre>
+<h3>Phase 8: Trend Analysis (--trend mode)</h3>
+<p>Load historical baseline files and show trends:</p>
+<pre><code>PERFORMANCE TRENDS (last 5 benchmarks)
+══════════════════════════════════════
+Date        FCP     LCP     Bundle    Requests    Grade
+2026-03-10  420ms   750ms   380KB     38          A
+2026-03-12  440ms   780ms   410KB     40          A
+2026-03-14  450ms   800ms   450KB     42          A
+2026-03-16  460ms   850ms   520KB     48          B
+2026-03-18  480ms   1600ms  720KB     58          B
+
+TREND: Performance degrading. LCP doubled in 8 days.
+       JS bundle growing 50KB/week. Investigate.
+</code></pre>
+<h3>Phase 9: Save Report</h3>
+<p>Write to <code>.gstack/benchmark-reports/{date}-benchmark.md</code> and <code>.gstack/benchmark-reports/{date}-benchmark.json</code>.</p>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>Measure, don&#39;t guess.</strong> Use actual performance.getEntries() data, not estimates.</li>
+<li><strong>Baseline is essential.</strong> Without a baseline, you can report absolute numbers but can&#39;t detect regressions. Always encourage baseline capture.</li>
+<li><strong>Relative thresholds, not absolute.</strong> 2000ms load time is fine for a complex dashboard, terrible for a landing page. Compare against YOUR baseline.</li>
+<li><strong>Third-party scripts are context.</strong> Flag them, but the user can&#39;t fix Google Analytics being slow. Focus recommendations on first-party resources.</li>
+<li><strong>Bundle size is the leading indicator.</strong> Load time varies with network. Bundle size is deterministic. Track it religiously.</li>
+<li><strong>Read-only.</strong> Produce the report. Don&#39;t modify code unless explicitly asked.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

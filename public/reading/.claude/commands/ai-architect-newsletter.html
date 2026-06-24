@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
+  <meta name="date" content="2026-06-22" />
   <title>/ai-architect-newsletter - AI Architect Newsletter Generator</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
@@ -42,7 +42,7 @@
 <body>
   <header>
     <div class="title">/ai-architect-newsletter - AI Architect Newsletter Generator</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,7 +51,7 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>ai-architect-newsletter.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
       <hr>
 <h2>description: Generate high-quality AI Architect newsletters with latest news, research integration, and visual design
 thinking: true</h2>
@@ -160,12 +160,14 @@ Write Frank&#39;s 2-3 sentence take on the week&#39;s theme</p>
 </ul>
 <h3>Phase 4: Output &amp; Distribution</h3>
 <p><strong>1. Save Newsletter</strong></p>
-<pre><code>FrankX: content/newsletters/YYYY-MM-DD-ai-architect.html
-FrankX: content/newsletters/YYYY-MM-DD-ai-architect.txt
+<pre><code>FrankX: content/newsletters/YYYY-MM-DD-weekly.html
+Academy: newsletters/YYYY-MM-DD.html
 </code></pre>
 <p><strong>2. Generate Text Version</strong>
 Plain text version for email clients</p>
-<p><strong>3. Summary</strong>
+<p><strong>3. Social Preview</strong>
+HTML social sharing card</p>
+<p><strong>4. Summary</strong>
 Display to user:</p>
 <ul>
 <li>Top stories count</li>
@@ -173,39 +175,6 @@ Display to user:</p>
 <li>Output location</li>
 <li>Preview link</li>
 </ul>
-<h3>Phase 5: Resend Broadcast (Optional)</h3>
-<p>After generating the newsletter, ask the user:</p>
-<p><strong>&quot;Send this edition to your AI Architect subscriber list via Resend Broadcast?&quot;</strong></p>
-<p>If yes, execute these steps using Resend MCP tools:</p>
-<p><strong>1. Create Broadcast Draft</strong>
-Use <code>mcp__resend__create-broadcast</code> with:</p>
-<ul>
-<li><code>audience_id</code>: <code>4d2e913e-6903-4dd4-8749-c02cdb844331</code></li>
-<li><code>from</code>: <code>Frank &lt;frank@mail.frankx.ai&gt;</code></li>
-<li><code>subject</code>: The generated subject line</li>
-<li><code>html</code>: The generated HTML content</li>
-<li><code>text</code>: The generated plain text content</li>
-<li><code>name</code>: <code>AI Architect Dispatch — YYYY-MM-DD</code></li>
-</ul>
-<p><strong>2. Confirm Before Sending</strong>
-Show the user:</p>
-<ul>
-<li>Subject line</li>
-<li>Broadcast ID (from create response)</li>
-<li>Audience: AI Architect subscribers</li>
-<li>From: <a href="mailto:frank@mail.frankx.ai">frank@mail.frankx.ai</a></li>
-</ul>
-<p>Ask: &quot;Broadcast created as draft. Send now or keep as draft for manual review in Resend dashboard?&quot;</p>
-<p><strong>3. Send Broadcast</strong> (only if user confirms)
-Use <code>mcp__resend__send-broadcast</code> with the broadcast ID from step 1.</p>
-<p><strong>4. Confirmation</strong>
-Display:</p>
-<ul>
-<li>Broadcast ID</li>
-<li>Send status</li>
-<li>Link to Resend dashboard for delivery tracking</li>
-</ul>
-<p><strong>Important:</strong> Never auto-send without explicit user confirmation. The default is draft-only.</p>
 <hr>
 <h2>Voice Guidelines (CRITICAL)</h2>
 <p><strong>Frank&#39;s Voice - Builder to Builder:</strong></p>

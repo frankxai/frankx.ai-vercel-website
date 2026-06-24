@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/setup-browser-cookies/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fsetup-browser-cookies">setup-browser-cookies</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: setup-browser-cookies
+version: 1.0.0
+description: |
+  Import cookies from your real browser (Comet, Chrome, Arc, Brave, Edge) into the
+  headless browse session. Opens an interactive picker UI where you select which
+  cookie domains to import. Use before QA testing authenticated pages. Use when asked
+  to &quot;import cookies&quot;, &quot;login to the site&quot;, or &quot;authenticate the browser&quot;.
+allowed-tools:
+  - Bash
+  - Read
+  - AskUserQuestion</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;setup-browser-cookies&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h1>Setup Browser Cookies</h1>
+<p>Import logged-in sessions from your real Chromium browser into the headless browse session.</p>
+<h2>How it works</h2>
+<ol>
+<li>Find the browse binary</li>
+<li>Run <code>cookie-import-browser</code> to detect installed browsers and open the picker UI</li>
+<li>User selects which cookie domains to import in their browser</li>
+<li>Cookies are decrypted and loaded into the Playwright session</li>
+</ol>
+<h2>Steps</h2>
+<h3>1. Find the browse binary</h3>
+<h2>SETUP (run this check BEFORE any browse command)</h2>
+<pre><code class="language-bash">_ROOT=$(git rev-parse --show-toplevel 2&gt;/dev/null)
+B=&quot;&quot;
+[ -n &quot;$_ROOT&quot; ] &amp;&amp; [ -x &quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot; ] &amp;&amp; B=&quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot;
+[ -z &quot;$B&quot; ] &amp;&amp; B=~/.claude/skills/gstack/browse/dist/browse
+if [ -x &quot;$B&quot; ]; then
+  echo &quot;READY: $B&quot;
+else
+  echo &quot;NEEDS_SETUP&quot;
+fi
+</code></pre>
+<p>If <code>NEEDS_SETUP</code>:</p>
+<ol>
+<li>Tell the user: &quot;gstack browse needs a one-time build (~10 seconds). OK to proceed?&quot; Then STOP and wait.</li>
+<li>Run: <code>cd &lt;SKILL_DIR&gt; &amp;&amp; ./setup</code></li>
+<li>If <code>bun</code> is not installed: <code>curl -fsSL https://bun.sh/install | bash</code></li>
+</ol>
+<h3>2. Open the cookie picker</h3>
+<pre><code class="language-bash">$B cookie-import-browser
+</code></pre>
+<p>This auto-detects installed Chromium browsers (Comet, Chrome, Arc, Brave, Edge) and opens
+an interactive picker UI in your default browser where you can:</p>
+<ul>
+<li>Switch between installed browsers</li>
+<li>Search domains</li>
+<li>Click &quot;+&quot; to import a domain&#39;s cookies</li>
+<li>Click trash to remove imported cookies</li>
+</ul>
+<p>Tell the user: <strong>&quot;Cookie picker opened — select the domains you want to import in your browser, then tell me when you&#39;re done.&quot;</strong></p>
+<h3>3. Direct import (alternative)</h3>
+<p>If the user specifies a domain directly (e.g., <code>/setup-browser-cookies github.com</code>), skip the UI:</p>
+<pre><code class="language-bash">$B cookie-import-browser comet --domain github.com
+</code></pre>
+<p>Replace <code>comet</code> with the appropriate browser if specified.</p>
+<h3>4. Verify</h3>
+<p>After the user confirms they&#39;re done:</p>
+<pre><code class="language-bash">$B cookies
+</code></pre>
+<p>Show the user a summary of imported cookies (domain counts).</p>
+<h2>Notes</h2>
+<ul>
+<li>First import per browser may trigger a macOS Keychain dialog — click &quot;Allow&quot; / &quot;Always Allow&quot;</li>
+<li>Cookie picker is served on the same port as the browse server (no extra process)</li>
+<li>Only domain names and cookie counts are shown in the UI — no cookie values are exposed</li>
+<li>The browse session persists cookies between commands, so imported cookies work immediately</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

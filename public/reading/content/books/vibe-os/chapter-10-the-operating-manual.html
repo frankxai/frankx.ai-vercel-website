@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>The Operating Manual</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/vibe-os/chapter-10-the-operating-manual.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">The Operating Manual</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fvibe-os">vibe-os</a> / <span>chapter-10-the-operating-manual.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>The Operating Manual</h1>
+<blockquote>
+<p>&quot;Plans are worthless, but planning is everything.&quot;
+— Dwight D. Eisenhower</p>
+</blockquote>
+<hr>
+<h2>I. The System in Operation</h2>
+<p>Nine chapters of architecture. This chapter is the operating manual — the day-to-day practices, troubleshooting procedures, and maintenance routines that keep the Vibe OS stack running smoothly.</p>
+<p>Infrastructure without operations is a sculpture. Beautiful, perhaps, but static. The operating manual makes the infrastructure alive — responsive, adaptive, and continuously improving.</p>
+<hr>
+<h2>II. Daily Operations</h2>
+<h3>Morning Check (5 minutes)</h3>
+<p>Before starting any creative work, verify the infrastructure:</p>
+<p><strong>1. Vercel status.</strong> Check the latest deployment status. If the last deploy failed, investigate before creating new content. A broken deployment means published content is not reaching the audience.</p>
+<pre><code class="language-bash"># Quick deployment check via CLI
+vercel ls --prod
+</code></pre>
+<p>Or use the Vercel MCP server from Claude Code:</p>
+<pre><code>&quot;Check the latest Vercel deployment status for frankx.ai&quot;
+</code></pre>
+<p><strong>2. n8n health.</strong> Verify that automated workflows are running. The most common failure: Railway restarts the n8n instance, and webhook endpoints need re-registration.</p>
+<pre><code class="language-bash"># Check n8n via API
+curl -s https://your-n8n.railway.app/api/v1/workflows \
+  -H &quot;X-N8N-API-KEY: $N8N_API_KEY&quot; | jq &#39;.data | length&#39;
+</code></pre>
+<p>Expected output: the number of active workflows (25 for the full Vibe OS stack).</p>
+<p><strong>3. Email deliverability.</strong> Check Resend dashboard for bounce rate and spam complaints. If bounce rate exceeds 2% or spam complaints exceed 0.1%, investigate immediately — these metrics affect all future email deliverability.</p>
+<h3>Content Session (60-90 minutes)</h3>
+<p>The primary creative session follows the Vibe Architecture daily protocol:</p>
+<ol>
+<li>Load the relevant skill file in Claude Code</li>
+<li>Create the compound content piece</li>
+<li>Run through quality gates</li>
+<li>Publish and distribute</li>
+</ol>
+<h3>End-of-Day Check (5 minutes)</h3>
+<ol>
+<li>Commit all changes to git</li>
+<li>Push to production if new content was published</li>
+<li>Log the day&#39;s output in the evidence journal</li>
+<li>Verify the deployment succeeded</li>
+</ol>
+<hr>
+<h2>III. Weekly Maintenance</h2>
+<h3>Sunday Review (30 minutes)</h3>
+<p><strong>Infrastructure review (10 min):</strong></p>
+<ul>
+<li>Vercel: any failed deployments this week? Investigate root causes.</li>
+<li>n8n: any failed workflow executions? Check execution logs.</li>
+<li>Supabase: database storage usage trending? Row counts growing as expected?</li>
+<li>Email: week-over-week open rate change? Any deliverability issues?</li>
+</ul>
+<p><strong>Cost review (5 min):</strong></p>
+<ul>
+<li>Vercel usage: bandwidth, serverless function invocations, blob storage</li>
+<li>Claude API: token usage (if using API beyond Claude Code)</li>
+<li>Railway: n8n compute hours</li>
+<li>Total spend vs. $50/month budget</li>
+</ul>
+<p><strong>Content review (15 min):</strong></p>
+<ul>
+<li>What was published this week?</li>
+<li>What performed best (by engagement depth, not views)?</li>
+<li>What is queued for next week?</li>
+<li>Any content gaps that need filling?</li>
+</ul>
+<hr>
+<h2>IV. Monthly Maintenance</h2>
+<h3>Infrastructure Audit (1 hour)</h3>
+<p><strong>Dependency updates.</strong></p>
+<pre><code class="language-bash"># Check for outdated packages
+npm outdated
+
+# Update non-breaking changes
+npm update
+
+# For major version updates, test thoroughly before deploying
+</code></pre>
+<p><strong>Security review.</strong></p>
+<ul>
+<li>Rotate any API keys that have been in use for 90+ days</li>
+<li>Review Vercel environment variables for any that are no longer needed</li>
+<li>Check npm audit for vulnerability alerts</li>
+<li>Verify that no secrets have been accidentally committed to git</li>
+</ul>
+<p><strong>Performance review.</strong></p>
+<ul>
+<li>Vercel Analytics: Core Web Vitals (LCP, FID, CLS)</li>
+<li>Page load times for key pages</li>
+<li>Serverless function cold start times</li>
+<li>Blob storage access patterns (any frequently accessed files that should be cached?)</li>
+</ul>
+<p><strong>Database maintenance.</strong></p>
+<ul>
+<li>Supabase: check for unused indexes, orphaned rows, tables approaching row limits</li>
+<li>Clean up development/test data</li>
+<li>Verify RLS policies are correctly enforced</li>
+</ul>
+<hr>
+<h2>V. Troubleshooting Guide</h2>
+<h3>Problem: Vercel deployment fails</h3>
+<p><strong>Symptom:</strong> Push to main succeeds, but Vercel build fails.</p>
+<p><strong>Common causes:</strong></p>
+<ol>
+<li><strong>Serverless function too large (&gt;250MB).</strong> Fix: add entries to <code>outputFileTracingExcludes</code> in next.config.mjs. Common culprits: large image directories in <code>public/</code>.</li>
+<li><strong>TypeScript errors.</strong> Fix: run <code>npx tsc --noEmit</code> locally to identify and fix errors before pushing.</li>
+<li><strong>Missing environment variables.</strong> Fix: check Vercel dashboard → Project Settings → Environment Variables. Ensure all required variables are set for the Production environment.</li>
+<li><strong>Build timeout (&gt;45 minutes).</strong> Fix: optimize the build. Common cause: too many pages being statically generated. Use ISR or SSR for pages that don&#39;t need SSG.</li>
+</ol>
+<h3>Problem: n8n webhooks not firing</h3>
+<p><strong>Symptom:</strong> External services (Next.js, Stripe) call n8n webhook URLs, but workflows don&#39;t execute.</p>
+<p><strong>Common causes:</strong></p>
+<ol>
+<li><strong>Workflow not active.</strong> Fix: activate the workflow in n8n UI.</li>
+<li><strong>Webhook URL changed after Railway restart.</strong> Fix: set <code>WEBHOOK_URL</code> environment variable in Railway to your custom domain or Railway URL.</li>
+<li><strong>Missing <code>httpMethod: &quot;POST&quot;</code> in webhook node.</strong> Fix: edit the webhook node and explicitly set the HTTP method.</li>
+<li><strong>Missing <code>webhookId</code> property.</strong> Fix: ensure the webhook node has a unique webhookId.</li>
+<li><strong>Workflow updated without deactivate/reactivate.</strong> Fix: deactivate the workflow, then reactivate it. This re-registers all webhooks.</li>
+</ol>
+<h3>Problem: Email going to spam</h3>
+<p><strong>Symptom:</strong> Resend shows emails as &quot;delivered&quot; but subscribers report they are in spam/junk folders.</p>
+<p><strong>Common causes:</strong></p>
+<ol>
+<li><strong>Missing DNS records.</strong> Fix: verify SPF, DKIM, and DMARC records in your domain&#39;s DNS settings. Use Resend&#39;s verification tool.</li>
+<li><strong>High bounce rate.</strong> Fix: clean your email list. Remove addresses that have bounced.</li>
+<li><strong>Spammy content.</strong> Fix: avoid ALL CAPS, excessive exclamation marks, and words like &quot;FREE!!!&quot; in subject lines.</li>
+<li><strong>New domain reputation.</strong> Fix: warm up your sending domain gradually. Start with 50 emails/day and increase over 2-4 weeks.</li>
+</ol>
+<h3>Problem: Git push hangs in WSL</h3>
+<p><strong>Symptom:</strong> <code>git push</code> hangs indefinitely when pushing to GitHub from WSL.</p>
+<p><strong>Cause:</strong> Windows git-credential-manager.exe interference.</p>
+<p><strong>Fix:</strong> Temporarily switch to SSH:</p>
+<pre><code class="language-bash">git remote set-url origin git@github.com:your-org/your-repo.git
+git push
+# Then restore HTTPS if desired:
+git remote set-url origin https://github.com/your-org/your-repo.git
+</code></pre>
+<h3>Problem: Claude Code context degradation</h3>
+<p><strong>Symptom:</strong> Claude Code starts producing lower-quality output, ignoring loaded skill files, or &quot;forgetting&quot; instructions from earlier in the conversation.</p>
+<p><strong>Cause:</strong> Context window filling with accumulated conversation history.</p>
+<p><strong>Fix:</strong> Start a fresh session. The context window is finite (1M tokens). Long sessions accumulate tool results, file reads, and conversation that can push important instructions out of the active attention window. Fresh sessions reload CLAUDE.md and skill files with full priority.</p>
+<p><strong>Prevention:</strong> Keep sessions under 90 minutes for intensive work. Use explicit context transfer between sessions: at the end of Session 1, ask Claude to summarize the key decisions and state. At the start of Session 2, provide the summary.</p>
+<hr>
+<h2>VI. Disaster Recovery</h2>
+<h3>Scenario: Production site goes down</h3>
+<ol>
+<li>Check Vercel status page (vercel.com/status)</li>
+<li>If Vercel is operational, check latest deployment for errors</li>
+<li>If deployment is the issue, revert: <code>git revert HEAD &amp;&amp; git push</code></li>
+<li>If Vercel is down, wait — your site will come back when Vercel recovers</li>
+<li>If data is affected, Supabase has daily backups (Pro tier)</li>
+</ol>
+<h3>Scenario: Lost access to a service</h3>
+<ol>
+<li>All API keys are stored in Vercel environment variables — accessible from the dashboard</li>
+<li>All code is in GitHub — accessible from any machine</li>
+<li>All content is in markdown files — portable, readable, version-controlled</li>
+<li>n8n workflows can be exported as JSON and reimported</li>
+</ol>
+<h3>Scenario: Need to migrate off a service</h3>
+<p><strong>Vercel → Netlify/Cloudflare:</strong> Next.js is framework-agnostic for hosting. Change deployment target, adjust configuration, redeploy.</p>
+<p><strong>Supabase → any PostgreSQL:</strong> Supabase is standard PostgreSQL. Export with <code>pg_dump</code>, import to any PostgreSQL host.</p>
+<p><strong>Resend → any email:</strong> Email templates are React components in your codebase. Adapt to SendGrid/Postmark/SES by changing the API calls.</p>
+<p><strong>n8n → any automation:</strong> Workflows export as JSON. Many can be reimplemented in Make/Zapier, though n8n&#39;s code nodes are harder to migrate.</p>
+<p>The Vibe OS stack is designed for portability. No proprietary lock-in. Every component uses standard formats and protocols. The migration cost for any single service is measured in hours, not weeks.</p>
+<hr>
+<h2>VII. The Maintenance Philosophy</h2>
+<p>The Vibe OS stack requires approximately 2 hours per month of maintenance — less than the time spent maintaining a car, a home, or a garden.</p>
+<p>The maintenance philosophy:</p>
+<p><strong>Automate the predictable.</strong> Deployment is automated (git push). Email sequences are automated (n8n). Content distribution is automated (Content Atomizer). Monitoring is automated (Vercel Analytics). Human attention is reserved for the unpredictable.</p>
+<p><strong>Fix the root cause.</strong> When a problem recurs, fix the underlying cause — do not apply band-aids. A webhook that fails every time Railway restarts needs a startup script, not manual reactivation.</p>
+<p><strong>Document what you learn.</strong> Every troubleshooting session produces knowledge. Capture that knowledge in the troubleshooting guide (this chapter). The guide grows over time, reducing future troubleshooting time.</p>
+<p><strong>Invest in simplicity.</strong> Every tool, every integration, every automation adds complexity. Complexity is the enemy of reliability. Before adding a new tool, ask: &quot;Can I achieve this with what I already have?&quot; Usually, yes.</p>
+<p>The stack is $50/month. The maintenance is 2 hours/month. The output is unlimited.</p>
+<p>This is the Vibe OS promise: infrastructure so simple that maintaining it is an afterthought, freeing your attention for the work that matters.</p>
+<p>Build the stack. Run the manual. Create without friction.</p>
+<p>The infrastructure serves you. Not the other way around.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

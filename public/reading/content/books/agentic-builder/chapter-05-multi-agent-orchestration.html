@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Chapter 5: Multi-Agent Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-05-multi-agent-orchestration.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Chapter 5: Multi-Agent Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-05-multi-agent-orchestration.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Chapter 5: Multi-Agent Orchestration</h1>
+<blockquote>
+<p>&quot;No man is an island, entire of itself; every man is a piece of the continent, a part of the main.&quot;
+-- John Donne</p>
+</blockquote>
+<hr>
+<h2>I. The Scaling Wall</h2>
+<p>A single agent with the right tools can accomplish remarkable things. It can research topics, write code, manage files, query databases, and synthesize findings. But there is a ceiling. As the number of tools grows, tool selection accuracy degrades. As the task complexity grows, the context window fills with intermediate state that crowds out the original objective. As the scope grows, the agent attempts to hold too many concerns in its working memory simultaneously.</p>
+<p>This is the scaling wall. Not a hard failure -- a gradual degradation in quality, coherence, and reliability. An agent with 15 tools performs well. An agent with 50 tools starts picking wrong ones. An agent with 150 tools is unreliable.</p>
+<p>The solution is the same one that software engineering discovered decades ago: decomposition. Instead of one system that does everything, build multiple systems with clear boundaries and defined interfaces. Instead of one agent with every tool, build multiple agents with distinct competencies.</p>
+<p>One agent is a tool. Multiple agents working together are a team.</p>
+<hr>
+<h2>II. Orchestration Patterns</h2>
+<p>There are four fundamental patterns for coordinating multiple agents. Each has distinct characteristics that make it appropriate for different problem structures.</p>
+<h3>Pattern 1: Sequential Pipeline</h3>
+<p>Agents execute in a fixed order, each transforming the output of the previous stage.</p>
+<pre><code>[Input] → Agent A → Agent B → Agent C → [Output]
+</code></pre>
+<p>The pipeline is appropriate when the task has a natural sequential decomposition: research, then draft, then review. Each agent receives the full output of the previous agent as its input. There are no loops, no branching, no parallel execution.</p>
+<pre><code class="language-typescript">interface PipelineStage {
+  name: string;
+  agent: Agent;
+  transform?: (input: string) =&gt; string; // Optional input transformation
+}
+
+async function runPipeline(
+  input: string,
+  stages: PipelineStage[]
+): Promise&lt;string&gt; {
+  let current = input;
+
+  for (const stage of stages) {
+    console.log(`\n[Pipeline] Stage: ${stage.name}`);
+    const stageInput = stage.transform ? stage.transform(current) : current;
+    const result = await stage.agent.run(stageInput);
+
+    if (!result.success) {
+      throw new Error(
+        `Pipeline failed at stage &#39;${stage.name}&#39;: ${result.output}`
+      );
+    }
+
+    current = result.output;
+  }
+
+  return current;
+}
+
+// Usage: Research → Write → Review pipeline
+const pipeline: PipelineStage[] = [
+  {
+    name: &#39;research&#39;,
+    agent: createAgent({
+      systemPrompt: &quot;You are a research agent. Investigate the given topic thoroughly. Return structured findings with sources.&quot;,
+      tools: [webSearch, readUrl, extractContent]
+    })
+  },
+  {
+    name: &#39;write&#39;,
+    agent: createAgent({
+      systemPrompt: &quot;You are a writing agent. Using the provided research, write a comprehensive article. Follow the structure: introduction, key findings, analysis, conclusion.&quot;,
+      tools: [writeFile, readFile]
+    }),
+    transform: (research) =&gt; `Write an article based on this research:\n\n${research}`
+  },
+  {
+    name: &#39;review&#39;,
+    agent: createAgent({
+      systemPrompt: &quot;You are an editorial agent. Review the article for accuracy, clarity, and completeness. Return the revised article with improvements.&quot;,
+      tools: [readFile, writeFile, webSearch]  // Can fact-check claims
+    }),
+    transform: (draft) =&gt; `Review and improve this article:\n\n${draft}`
+  }
+];
+
+const article = await runPipeline(&quot;AI agents in healthcare 2026&quot;, pipeline);
+</code></pre>
+<p><strong>Strengths</strong>: Simple to implement, easy to debug, predictable execution order.</p>
+<p><strong>Weaknesses</strong>: No parallelism, no feedback loops, one stage&#39;s failure blocks everything downstream.</p>
+<h3>Pattern 2: Parallel Fan-Out</h3>
+<p>Multiple agents work simultaneously on independent subtasks, and their results are aggregated.</p>
+<pre><code>            ┌→ Agent A →┐
+[Input] → ──┼→ Agent B →┼── [Aggregate] → [Output]
+            └→ Agent C →┘
+</code></pre>
+<p>Fan-out is appropriate when a task can be decomposed into independent subtasks that do not depend on each other&#39;s outputs.</p>
+<pre><code class="language-typescript">interface FanOutTask {
+  name: string;
+  agent: Agent;
+  input: string;
+}
+
+interface FanOutResult {
+  name: string;
+  success: boolean;
+  output: string;
+  durationMs: number;
+}
+
+async function fanOut(tasks: FanOutTask[]): Promise&lt;FanOutResult[]&gt; {
+  const startTime = Date.now();
+
+  const results = await Promise.allSettled(
+    tasks.map(async (task): Promise&lt;FanOutResult&gt; =&gt; {
+      const taskStart = Date.now();
+      const result = await task.agent.run(task.input);
+      return {
+        name: task.name,
+        success: result.success,
+        output: result.output,
+        durationMs: Date.now() - taskStart
+      };
+    })
+  );
+
+  return results.map((r, i) =&gt; {
+    if (r.status === &#39;fulfilled&#39;) return r.value;
+    return {
+      name: tasks[i].name,
+      success: false,
+      output: `Agent error: ${r.reason}`,
+      durationMs: Date.now() - startTime
+    };
+  });
+}
+
+// Usage: Analyze a codebase from multiple angles simultaneously
+const analysisResults = await fanOut([
+  {
+    name: &#39;security-audit&#39;,
+    agent: securityAgent,
+    input: `Audit this codebase for security vulnerabilities: ${codebaseSummary}`
+  },
+  {
+    name: &#39;performance-review&#39;,
+    agent: performanceAgent,
+    input: `Identify performance bottlenecks in: ${codebaseSummary}`
+  },
+  {
+    name: &#39;architecture-review&#39;,
+    agent: architectureAgent,
+    input: `Review the architecture of: ${codebaseSummary}`
+  }
+]);
+</code></pre>
+<p><strong>Strengths</strong>: Fast (wall-clock time = slowest agent, not sum of all agents), naturally parallel.</p>
+<p><strong>Weaknesses</strong>: No inter-agent communication, requires independent subtasks, aggregation can be non-trivial.</p>
+<h3>Pattern 3: Hierarchical Delegation</h3>
+<p>A coordinator agent receives a goal, decomposes it, delegates subtasks to specialist agents, and synthesizes their results. The coordinator can re-delegate, request revisions, and manage the overall workflow dynamically.</p>
+<pre><code>                     [Coordinator]
+                    /      |      \
+              Agent A   Agent B   Agent C
+                |         |         |
+             Result A  Result B  Result C
+                    \      |      /
+                     [Synthesis]
+</code></pre>
+<p>This is the most powerful and most common pattern for complex tasks.</p>
+<pre><code class="language-typescript">interface SpecialistAgent {
+  name: string;
+  description: string;
+  capabilities: string[];
+  agent: Agent;
+}
+
+interface DelegationRequest {
+  specialist: string;
+  task: string;
+  context: string;
+  expectedOutput: string;
+}
+
+class Coordinator {
+  private client: Anthropic;
+  private specialists: Map&lt;string, SpecialistAgent&gt;;
+  private conversationLog: string[];
+
+  constructor(specialists: SpecialistAgent[]) {
+    this.client = new Anthropic();
+    this.specialists = new Map(specialists.map(s =&gt; [s.name, s]));
+    this.conversationLog = [];
+  }
+
+  async orchestrate(goal: string): Promise&lt;string&gt; {
+    const systemPrompt = this.buildCoordinatorPrompt();
+
+    const messages: Anthropic.MessageParam[] = [
+      { role: &#39;user&#39;, content: goal }
+    ];
+
+    // The coordinator&#39;s tool: delegate to specialists
+    const coordinatorTools: Anthropic.Tool[] = [
+      {
+        name: &#39;delegate&#39;,
+        description:
+          &#39;Delegate a subtask to a specialist agent. Choose the specialist &#39; +
+          &#39;based on the task requirements. Provide clear, self-contained &#39; +
+          &#39;instructions -- the specialist has no access to your conversation &#39; +
+          &#39;history unless you include it in the context.&#39;,
+        input_schema: {
+          type: &#39;object&#39; as const,
+          properties: {
+            specialist: {
+              type: &#39;string&#39;,
+              description: `Name of the specialist. Available: ${
+                [...this.specialists.keys()].join(&#39;, &#39;)
+              }`
+            },
+            task: {
+              type: &#39;string&#39;,
+              description: &#39;Clear description of what the specialist should accomplish.&#39;
+            },
+            context: {
+              type: &#39;string&#39;,
+              description: &#39;Relevant context the specialist needs. Include any outputs from previous delegations that inform this task.&#39;
+            }
+          },
+          required: [&#39;specialist&#39;, &#39;task&#39;, &#39;context&#39;]
+        }
+      },
+      {
+        name: &#39;request_revision&#39;,
+        description:
+          &#39;Send a specialist\&#39;s output back for revision with specific feedback. &#39; +
+          &#39;Use when the output is close but needs improvement.&#39;,
+        input_schema: {
+          type: &#39;object&#39; as const,
+          properties: {
+            specialist: { type: &#39;string&#39;, description: &#39;Specialist to revise.&#39; },
+            originalOutput: { type: &#39;string&#39;, description: &#39;The output to revise.&#39; },
+            feedback: { type: &#39;string&#39;, description: &#39;Specific revision instructions.&#39; }
+          },
+          required: [&#39;specialist&#39;, &#39;originalOutput&#39;, &#39;feedback&#39;]
+        }
+      }
+    ];
+
+    let iterations = 0;
+    const maxIterations = 20;
+
+    while (iterations &lt; maxIterations) {
+      iterations++;
+
+      const response = await this.client.messages.create({
+        model: &#39;claude-sonnet-4-20250514&#39;,
+        max_tokens: 4096,
+        system: systemPrompt,
+        tools: coordinatorTools,
+        messages
+      });
+
+      if (response.stop_reason === &#39;end_turn&#39;) {
+        const textBlocks = response.content.filter(
+          (b): b is Anthropic.TextBlock =&gt; b.type === &#39;text&#39;
+        );
+        return textBlocks.map(b =&gt; b.text).join(&#39;\n&#39;);
+      }
+
+      if (response.stop_reason === &#39;tool_use&#39;) {
+        messages.push({ role: &#39;assistant&#39;, content: response.content });
+
+        const toolResults: Anthropic.ToolResultBlockParam[] = [];
+
+        for (const block of response.content) {
+          if (block.type !== &#39;tool_use&#39;) continue;
+
+          const input = block.input as Record&lt;string, string&gt;;
+          let result: string;
+
+          if (block.name === &#39;delegate&#39;) {
+            result = await this.executeDelegation(
+              input.specialist,
+              input.task,
+              input.context
+            );
+          } else if (block.name === &#39;request_revision&#39;) {
+            result = await this.executeDelegation(
+              input.specialist,
+              `Revise the following output based on this feedback:\n\nFeedback: ${input.feedback}\n\nOriginal output:\n${input.originalOutput}`,
+              &#39;&#39;
+            );
+          } else {
+            result = `Unknown coordinator tool: ${block.name}`;
+          }
+
+          toolResults.push({
+            type: &#39;tool_result&#39;,
+            tool_use_id: block.id,
+            content: result
+          });
+        }
+
+        messages.push({ role: &#39;user&#39;, content: toolResults });
+      }
+    }
+
+    return &#39;Coordinator exceeded maximum iterations.&#39;;
+  }
+
+  private async executeDelegation(
+    specialistName: string,
+    task: string,
+    context: string
+  ): Promise&lt;string&gt; {
+    const specialist = this.specialists.get(specialistName);
+    if (!specialist) {
+      return `Error: Unknown specialist &#39;${specialistName}&#39;. Available: ${
+        [...this.specialists.keys()].join(&#39;, &#39;)
+      }`;
+    }
+
+    console.log(`\n[Coordinator] Delegating to ${specialistName}: ${task.slice(0, 100)}...`);
+
+    const fullInput = context
+      ? `Context:\n${context}\n\nTask:\n${task}`
+      : task;
+
+    const result = await specialist.agent.run(fullInput);
+
+    this.conversationLog.push(
+      `[${specialistName}] Task: ${task.slice(0, 200)}\n` +
+      `Result: ${result.output.slice(0, 500)}`
+    );
+
+    return result.success
+      ? result.output
+      : `Specialist &#39;${specialistName}&#39; failed: ${result.output}`;
+  }
+
+  private buildCoordinatorPrompt(): string {
+    const specialistList = [...this.specialists.values()]
+      .map(s =&gt; `- **${s.name}**: ${s.description}. Capabilities: ${s.capabilities.join(&#39;, &#39;)}`)
+      .join(&#39;\n&#39;);
+
+    return `You are a coordinator agent. Your role is to accomplish complex goals by delegating subtasks to specialist agents and synthesizing their results.
+
+## Available Specialists
+${specialistList}
+
+## Coordination Principles
+
+1. **Decompose first**: Before delegating, break the goal into clear subtasks.
+2. **Match specialists to tasks**: Choose the specialist whose capabilities best fit each subtask.
+3. **Provide complete context**: Specialists have no memory of previous delegations. Include all relevant information in the context field.
+4. **Verify and synthesize**: After receiving results, verify they meet requirements. Request revisions if needed. Synthesize all results into a coherent final output.
+5. **Handle failures**: If a specialist fails, try a different approach or specialist. Do not repeat the same delegation.
+
+## Output
+When all subtasks are complete, produce a final synthesis that addresses the original goal. Do not use the delegate tool in your final response -- just provide the answer.`;
+  }
+}
+</code></pre>
+<h3>Pattern 4: Peer-to-Peer Negotiation</h3>
+<p>Agents communicate directly with each other to reach consensus or coordinate actions. There is no central coordinator -- agents negotiate roles, share information, and resolve conflicts through direct messaging.</p>
+<p>This pattern is the most complex and the least commonly deployed in production. It is appropriate for adversarial scenarios (red team vs. blue team), consensus problems (multiple agents must agree on a decision), and simulation environments (agents modeling different stakeholders).</p>
+<p>I mention it for completeness but recommend starting with hierarchical delegation. It covers 90% of real-world multi-agent use cases with a fraction of the complexity.</p>
+<hr>
+<h2>III. Building a Three-Agent System</h2>
+<p>Let us build a concrete multi-agent system: a code improvement pipeline with three specialized agents.</p>
+<ul>
+<li><strong>Explore</strong>: Reads the codebase, understands the structure, identifies the relevant files</li>
+<li><strong>Build</strong>: Implements changes based on the exploration findings</li>
+<li><strong>Review</strong>: Verifies the changes, runs tests, identifies issues</li>
+</ul>
+<pre><code class="language-typescript">import Anthropic from &#39;@anthropic-ai/sdk&#39;;
+
+// Assume the Agent class from Chapter 3 with a `run(goal: string)` method
+
+// --- Specialist Definitions ---
+
+const exploreAgent: SpecialistAgent = {
+  name: &#39;explore&#39;,
+  description: &#39;Codebase exploration and analysis. Reads files, understands structure, identifies patterns and issues.&#39;,
+  capabilities: [&#39;read files&#39;, &#39;list directories&#39;, &#39;search code&#39;, &#39;analyze architecture&#39;],
+  agent: createAgent({
+    systemPrompt:
+      &quot;You are an exploration agent. Your job is to thoroughly understand &quot; +
+      &quot;a codebase or a specific part of it. Read files, examine structure, &quot; +
+      &quot;and produce a detailed analysis. Your output will be used by other &quot; +
+      &quot;agents to make changes, so be precise about file paths, function &quot; +
+      &quot;names, and current behavior.\n\n&quot; +
+      &quot;Always include:\n&quot; +
+      &quot;- File paths of relevant files\n&quot; +
+      &quot;- Current code snippets that will need to change\n&quot; +
+      &quot;- Dependencies and imports that affect the change\n&quot; +
+      &quot;- Potential risks or side effects&quot;,
+    tools: [readFile, listDirectory, searchCode],
+    maxIterations: 15
+  })
+};
+
+const buildAgent: SpecialistAgent = {
+  name: &#39;build&#39;,
+  description: &#39;Code implementation. Writes, modifies, and creates files based on specifications.&#39;,
+  capabilities: [&#39;write files&#39;, &#39;modify code&#39;, &#39;create new files&#39;, &#39;install packages&#39;],
+  agent: createAgent({
+    systemPrompt:
+      &quot;You are a build agent. You implement code changes based on &quot; +
+      &quot;detailed specifications. You receive context from an exploration &quot; +
+      &quot;agent including file paths, current code, and requirements.\n\n&quot; +
+      &quot;Rules:\n&quot; +
+      &quot;- Read the target file before modifying it\n&quot; +
+      &quot;- Make minimal, focused changes\n&quot; +
+      &quot;- Preserve existing code style\n&quot; +
+      &quot;- Add comments only where the logic is non-obvious\n&quot; +
+      &quot;- Report exactly what you changed and why&quot;,
+    tools: [readFile, writeFile, runCommand],
+    maxIterations: 15
+  })
+};
+
+const reviewAgent: SpecialistAgent = {
+  name: &#39;review&#39;,
+  description: &#39;Code review and verification. Reads changes, runs tests, identifies issues.&#39;,
+  capabilities: [&#39;read files&#39;, &#39;run tests&#39;, &#39;compare code&#39;, &#39;identify bugs&#39;],
+  agent: createAgent({
+    systemPrompt:
+      &quot;You are a review agent. You verify code changes made by other &quot; +
+      &quot;agents. Your job is to ensure correctness, completeness, and &quot; +
+      &quot;quality.\n\n&quot; +
+      &quot;Review checklist:\n&quot; +
+      &quot;1. Read the modified files and verify the changes are correct\n&quot; +
+      &quot;2. Run the test suite and report results\n&quot; +
+      &quot;3. Check for obvious bugs, edge cases, or missing error handling\n&quot; +
+      &quot;4. Verify the changes match the original requirements\n&quot; +
+      &quot;5. List any issues found with severity (critical/warning/info)\n\n&quot; +
+      &quot;Output format:\n&quot; +
+      &quot;- APPROVED: if changes are correct and tests pass\n&quot; +
+      &quot;- CHANGES REQUESTED: if issues need to be fixed (list specific issues)\n&quot; +
+      &quot;- BLOCKED: if there are critical problems that prevent approval&quot;,
+    tools: [readFile, listDirectory, runCommand],
+    maxIterations: 10
+  })
+};
+
+// --- Orchestration ---
+
+async function improveCode(request: string): Promise&lt;string&gt; {
+  const coordinator = new Coordinator([exploreAgent, buildAgent, reviewAgent]);
+
+  const goal = `
+Improve the codebase based on this request: &quot;${request}&quot;
+
+Follow this process:
+1. Delegate to &#39;explore&#39; to understand the current codebase state relevant to this request
+2. Based on the exploration results, delegate to &#39;build&#39; to implement the changes. Include the full exploration context so the build agent knows exactly what to modify.
+3. After implementation, delegate to &#39;review&#39; to verify the changes. Include both the original request and the exploration context so the reviewer can verify completeness.
+4. If the reviewer requests changes, delegate back to &#39;build&#39; with the specific feedback.
+5. When the reviewer approves, synthesize a summary of all changes made.
+`;
+
+  return coordinator.orchestrate(goal);
+}
+
+// Run it
+const result = await improveCode(
+  &quot;Add input validation to the user registration endpoint in src/routes/auth.ts&quot;
+);
+console.log(result);
+</code></pre>
+<hr>
+<h2>IV. Communication Between Agents</h2>
+<p>The critical challenge in multi-agent systems is information transfer. Each agent has its own context window. When the coordinator delegates to a specialist, it must package all relevant context into the delegation message. When the specialist returns results, the coordinator must extract the essential information and route it to the next specialist.</p>
+<h3>The Context Packaging Problem</h3>
+<p>Consider what happens when the coordinator delegates from Explore to Build:</p>
+<ol>
+<li>Explore reads 10 files and produces a 3,000-word analysis</li>
+<li>The coordinator receives this analysis</li>
+<li>The coordinator must now construct a delegation to Build that includes:<ul>
+<li>The relevant parts of Explore&#39;s analysis</li>
+<li>The original user request</li>
+<li>Any additional instructions for the Build agent</li>
+</ul>
+</li>
+</ol>
+<p>If the coordinator simply forwards Explore&#39;s entire output, it works -- but it consumes significant context in Build&#39;s window. If the coordinator summarizes too aggressively, Build may miss critical details.</p>
+<p>The practical solution is structured output. Train your agents to produce structured analyses rather than prose:</p>
+<pre><code class="language-typescript">// Instruct the explore agent to output structured findings
+const exploreOutput = `
+## Exploration Findings
+
+### Target Files
+- src/routes/auth.ts (lines 45-89): User registration handler
+- src/middleware/validate.ts: Existing validation middleware (not used in auth routes)
+- src/types/user.ts: User type definition
+
+### Current Implementation
+The registration endpoint accepts POST /auth/register with body { email, password, name }.
+No input validation is performed. The handler passes raw body directly to db.createUser().
+
+### Required Changes
+1. Add email format validation (RFC 5322)
+2. Add password strength requirements (min 8 chars, 1 uppercase, 1 number)
+3. Add name length validation (1-100 chars)
+4. Sanitize inputs before database insertion
+
+### Dependencies
+- Consider using the existing validate.ts middleware pattern
+- zod is already in package.json (v3.22.4) -- use it for schema validation
+`;
+</code></pre>
+<p>Structured output reduces the coordinator&#39;s cognitive overhead. It can forward specific sections to the Build agent rather than the entire exploration output.</p>
+<hr>
+<h2>V. Failure Modes and Mitigations</h2>
+<p>Multi-agent systems introduce failure modes that do not exist in single-agent systems. Understanding these failures is essential for building reliable orchestrations.</p>
+<h3>1. Circular Delegation</h3>
+<p>The coordinator delegates to Agent A, which (through some chain of events) causes the coordinator to delegate back to Agent A with essentially the same task. The system loops indefinitely.</p>
+<p><strong>Mitigation</strong>: Track delegation history. If the same specialist receives a substantially similar task within a short window, the coordinator should recognize the loop and try a different approach.</p>
+<pre><code class="language-typescript">class DelegationTracker {
+  private history: { specialist: string; taskHash: string; timestamp: number }[] = [];
+
+  isCircular(specialist: string, task: string): boolean {
+    const hash = this.hashTask(task);
+    const recent = this.history.filter(
+      h =&gt; h.specialist === specialist &amp;&amp;
+           h.taskHash === hash &amp;&amp;
+           Date.now() - h.timestamp &lt; 60000 // Within last minute
+    );
+    return recent.length &gt;= 2; // Same task delegated twice = circular
+  }
+
+  record(specialist: string, task: string): void {
+    this.history.push({
+      specialist,
+      taskHash: this.hashTask(task),
+      timestamp: Date.now()
+    });
+  }
+
+  private hashTask(task: string): string {
+    // Simple content-based hash (first 200 chars, normalized)
+    return task.slice(0, 200).toLowerCase().replace(/\s+/g, &#39; &#39;).trim();
+  }
+}
+</code></pre>
+<h3>2. Context Pollution</h3>
+<p>Agent A&#39;s output contains assumptions or directives that confuse Agent B. For example, Agent A&#39;s analysis includes &quot;next, implement the validation logic&quot; -- and Agent B interprets this as an instruction rather than a summary of what needs to happen.</p>
+<p><strong>Mitigation</strong>: Clearly delimit agent outputs. Use structured formats (JSON, markdown with headers) that separate observations from instructions. The coordinator should frame delegations explicitly: &quot;The following is the analysis from the explore agent. Your task is...&quot;</p>
+<h3>3. Conflicting Agent Outputs</h3>
+<p>Two agents provide contradictory information or recommendations. The security agent says &quot;add rate limiting to all endpoints.&quot; The performance agent says &quot;remove middleware from hot paths.&quot;</p>
+<p><strong>Mitigation</strong>: This is the coordinator&#39;s job. Give the coordinator explicit instructions for resolving conflicts:</p>
+<pre><code>When specialists provide conflicting recommendations:
+1. Identify the specific conflict
+2. Evaluate each recommendation against the original goal
+3. If both are valid, find a compromise (e.g., rate limiting with caching)
+4. If one is clearly superior, explain why and adopt it
+5. Never silently ignore a specialist&#39;s recommendation
+</code></pre>
+<h3>4. Specialist Scope Creep</h3>
+<p>A specialist agent, given broad instructions, goes beyond its intended scope -- the Build agent starts refactoring unrelated code, or the Review agent starts implementing fixes instead of reporting issues.</p>
+<p><strong>Mitigation</strong>: Constrain specialist system prompts tightly. Define what the agent should and should not do. Limit tool access: the Review agent should not have <code>write_file</code>. If it cannot write files, it cannot implement fixes.</p>
+<hr>
+<h2>VI. Real-World Reference: ACOS Orchestration</h2>
+<p>The patterns described in this chapter are not theoretical. ACOS -- the Agentic Cognitive Operating System I use for my personal and professional work -- coordinates 38 agents across six domains.</p>
+<p>The architecture follows hierarchical delegation with domain specialization:</p>
+<ul>
+<li><strong>Technical Architect</strong>: System design, backend, API architecture</li>
+<li><strong>Frontend Designer</strong>: UI/UX, component design, accessibility</li>
+<li><strong>Content Engine</strong>: Blog articles, courses, SEO</li>
+<li><strong>SEO Intelligence</strong>: Search optimization, keyword strategy, structured data</li>
+<li><strong>Music Producer</strong>: AI music creation, Suno prompts, genre production</li>
+<li><strong>DevOps Engineer</strong>: Deployment, CI/CD, monitoring</li>
+</ul>
+<p>Each agent has:</p>
+<ul>
+<li>A defined role and system prompt</li>
+<li>Specific skills (75+ total across all agents)</li>
+<li>Activation triggers (keywords or patterns that auto-select the agent)</li>
+<li>Tool access limited to its domain</li>
+</ul>
+<p>The coordination rules are explicit:</p>
+<ol>
+<li>When a task arrives, match it against activation triggers to select the primary agent</li>
+<li>If the task spans multiple domains, the coordinator decomposes it and delegates to relevant specialists</li>
+<li>Each specialist operates independently within its tools and context</li>
+<li>Results flow back to the coordinator for synthesis</li>
+<li>Conflicts are resolved by the coordinator based on the original goal</li>
+</ol>
+<p>The key lesson from operating this system for months: specificity beats generality. An agent with 10 well-chosen tools and a focused system prompt outperforms an agent with 50 tools and a generic prompt. The decomposition into specialized agents is not just an organizational convenience -- it directly improves the quality of each agent&#39;s output.</p>
+<hr>
+<h2>VII. Starting Your Multi-Agent System</h2>
+<p>Begin with two agents and a pipeline. Do not start with a coordinator and five specialists. The overhead of orchestration is real, and you need to calibrate it against the complexity of your actual tasks.</p>
+<p>Practical starting points:</p>
+<ol>
+<li><p><strong>Write + Review pipeline</strong>: One agent implements, another verifies. This catches errors that a single agent would miss and is immediately valuable for code generation tasks.</p>
+</li>
+<li><p><strong>Research + Synthesis fan-out</strong>: Multiple agents research different aspects of a question simultaneously, and a synthesizer combines their findings. This is faster than sequential research and produces more comprehensive results.</p>
+</li>
+<li><p><strong>Coordinator + 2 specialists</strong>: When your pipeline or fan-out needs dynamic task decomposition, introduce a coordinator. Start with two specialists whose boundaries are clear and whose capabilities are distinct.</p>
+</li>
+</ol>
+<p>Scale by adding specialists, not by making existing agents broader. When a specialist&#39;s scope grows too large, split it into two. When a new domain arises, create a new specialist rather than expanding an existing one.</p>
+<p>The goal is not the maximum number of agents. The goal is the minimum number of agents that handle your tasks reliably. For most engineering workflows, three to five agents with clear specializations will outperform both a single overloaded agent and a swarm of fifteen loosely-defined ones.</p>
+<p>Multi-agent orchestration is coordination, not multiplication. The value is not in having more agents -- it is in having the right agents, with the right boundaries, communicating through the right protocols.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

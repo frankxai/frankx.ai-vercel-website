@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/codex/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fcodex">codex</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: codex
+version: 1.0.0
+description: |
+  OpenAI Codex CLI wrapper — three modes. Code review: independent diff review via
+  codex review with pass/fail gate. Challenge: adversarial mode that tries to break
+  your code. Consult: ask codex anything with session continuity for follow-ups.
+  The &quot;200 IQ autistic developer&quot; second opinion. Use when asked to &quot;codex review&quot;,
+  &quot;codex challenge&quot;, &quot;ask codex&quot;, &quot;second opinion&quot;, or &quot;consult codex&quot;.
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Glob
+  - Grep
+  - AskUserQuestion</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;codex&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>Step 0: Detect base branch</h2>
+<p>Determine which branch this PR targets. Use the result as &quot;the base branch&quot; in all subsequent steps.</p>
+<ol>
+<li><p>Check if a PR already exists for this branch:
+<code>gh pr view --json baseRefName -q .baseRefName</code>
+If this succeeds, use the printed branch name as the base branch.</p>
+</li>
+<li><p>If no PR exists (command fails), detect the repo&#39;s default branch:
+<code>gh repo view --json defaultBranchRef -q .defaultBranchRef.name</code></p>
+</li>
+<li><p>If both commands fail, fall back to <code>main</code>.</p>
+</li>
+</ol>
+<p>Print the detected base branch name. In every subsequent <code>git diff</code>, <code>git log</code>,
+<code>git fetch</code>, <code>git merge</code>, and <code>gh pr create</code> command, substitute the detected
+branch name wherever the instructions say &quot;the base branch.&quot;</p>
+<hr>
+<h1>/codex — Multi-AI Second Opinion</h1>
+<p>You are running the <code>/codex</code> skill. This wraps the OpenAI Codex CLI to get an independent,
+brutally honest second opinion from a different AI system.</p>
+<p>Codex is the &quot;200 IQ autistic developer&quot; — direct, terse, technically precise, challenges
+assumptions, catches things you might miss. Present its output faithfully, not summarized.</p>
+<hr>
+<h2>Step 0: Check codex binary</h2>
+<pre><code class="language-bash">CODEX_BIN=$(which codex 2&gt;/dev/null || echo &quot;&quot;)
+[ -z &quot;$CODEX_BIN&quot; ] &amp;&amp; echo &quot;NOT_FOUND&quot; || echo &quot;FOUND: $CODEX_BIN&quot;
+</code></pre>
+<p>If <code>NOT_FOUND</code>: stop and tell the user:
+&quot;Codex CLI not found. Install it: <code>npm install -g @openai/codex</code> or see <a href="https://github.com/openai/codex">https://github.com/openai/codex</a>&quot;</p>
+<hr>
+<h2>Step 1: Detect mode</h2>
+<p>Parse the user&#39;s input to determine which mode to run:</p>
+<ol>
+<li><code>/codex review</code> or <code>/codex review &lt;instructions&gt;</code> — <strong>Review mode</strong> (Step 2A)</li>
+<li><code>/codex challenge</code> or <code>/codex challenge &lt;focus&gt;</code> — <strong>Challenge mode</strong> (Step 2B)</li>
+<li><code>/codex</code> with no arguments — <strong>Auto-detect:</strong><ul>
+<li>Check for a diff (with fallback if origin isn&#39;t available):
+<code>git diff origin/&lt;base&gt; --stat 2&gt;/dev/null | tail -1 || git diff &lt;base&gt; --stat 2&gt;/dev/null | tail -1</code></li>
+<li>If a diff exists, use AskUserQuestion:<pre><code>Codex detected changes against the base branch. What should it do?
+A) Review the diff (code review with pass/fail gate)
+B) Challenge the diff (adversarial — try to break it)
+C) Something else — I&#39;ll provide a prompt
+</code></pre>
+</li>
+<li>If no diff, check for plan files scoped to the current project:
+<code>ls -t ~/.claude/plans/*.md 2&gt;/dev/null | xargs grep -l &quot;$(basename $(pwd))&quot; 2&gt;/dev/null | head -1</code>
+If no project-scoped match, fall back to: <code>ls -t ~/.claude/plans/*.md 2&gt;/dev/null | head -1</code>
+but warn the user: &quot;Note: this plan may be from a different project.&quot;</li>
+<li>If a plan file exists, offer to review it</li>
+<li>Otherwise, ask: &quot;What would you like to ask Codex?&quot;</li>
+</ul>
+</li>
+<li><code>/codex &lt;anything else&gt;</code> — <strong>Consult mode</strong> (Step 2C), where the remaining text is the prompt</li>
+</ol>
+<hr>
+<h2>Step 2A: Review Mode</h2>
+<p>Run Codex code review against the current branch diff.</p>
+<ol>
+<li>Create temp files for output capture:</li>
+</ol>
+<pre><code class="language-bash">TMPERR=$(mktemp /tmp/codex-err-XXXXXX.txt)
+</code></pre>
+<ol start="2">
+<li>Run the review (5-minute timeout):</li>
+</ol>
+<pre><code class="language-bash">codex review --base &lt;base&gt; -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached 2&gt;&quot;$TMPERR&quot;
+</code></pre>
+<p>Use <code>timeout: 300000</code> on the Bash call. If the user provided custom instructions
+(e.g., <code>/codex review focus on security</code>), pass them as the prompt argument:</p>
+<pre><code class="language-bash">codex review &quot;focus on security&quot; --base &lt;base&gt; -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached 2&gt;&quot;$TMPERR&quot;
+</code></pre>
+<ol start="3">
+<li>Capture the output. Then parse cost from stderr:</li>
+</ol>
+<pre><code class="language-bash">grep &quot;tokens used&quot; &quot;$TMPERR&quot; 2&gt;/dev/null || echo &quot;tokens: unknown&quot;
+</code></pre>
+<ol start="4">
+<li><p>Determine gate verdict by checking the review output for critical findings.
+If the output contains <code>[P1]</code> — the gate is <strong>FAIL</strong>.
+If no <code>[P1]</code> markers are found (only <code>[P2]</code> or no findings) — the gate is <strong>PASS</strong>.</p>
+</li>
+<li><p>Present the output:</p>
+</li>
+</ol>
+<pre><code>CODEX SAYS (code review):
+════════════════════════════════════════════════════════════
+&lt;full codex output, verbatim — do not truncate or summarize&gt;
+════════════════════════════════════════════════════════════
+GATE: PASS                    Tokens: 14,331 | Est. cost: ~$0.12
+</code></pre>
+<p>or</p>
+<pre><code>GATE: FAIL (N critical findings)
+</code></pre>
+<ol start="6">
+<li><strong>Cross-model comparison:</strong> If <code>/review</code> (Claude&#39;s own review) was already run
+earlier in this conversation, compare the two sets of findings:</li>
+</ol>
+<pre><code>CROSS-MODEL ANALYSIS:
+  Both found: [findings that overlap between Claude and Codex]
+  Only Codex found: [findings unique to Codex]
+  Only Claude found: [findings unique to Claude&#39;s /review]
+  Agreement rate: X% (N/M total unique findings overlap)
+</code></pre>
+<ol start="7">
+<li>Persist the review result:</li>
+</ol>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-review-log &#39;{&quot;skill&quot;:&quot;codex-review&quot;,&quot;timestamp&quot;:&quot;TIMESTAMP&quot;,&quot;status&quot;:&quot;STATUS&quot;,&quot;gate&quot;:&quot;GATE&quot;,&quot;findings&quot;:N,&quot;findings_fixed&quot;:N}&#39;
+</code></pre>
+<p>Substitute: TIMESTAMP (ISO 8601), STATUS (&quot;clean&quot; if PASS, &quot;issues_found&quot; if FAIL),
+GATE (&quot;pass&quot; or &quot;fail&quot;), findings (count of [P1] + [P2] markers),
+findings_fixed (count of findings that were addressed/fixed before shipping).</p>
+<ol start="8">
+<li>Clean up temp files:</li>
+</ol>
+<pre><code class="language-bash">rm -f &quot;$TMPERR&quot;
+</code></pre>
+<h2>Plan File Review Report</h2>
+<p>After displaying the Review Readiness Dashboard in conversation output, also update the
+<strong>plan file</strong> itself so review status is visible to anyone reading the plan.</p>
+<h3>Detect the plan file</h3>
+<ol>
+<li>Check if there is an active plan file in this conversation (the host provides plan file
+paths in system messages — look for plan file references in the conversation context).</li>
+<li>If not found, skip this section silently — not every review runs in plan mode.</li>
+</ol>
+<h3>Generate the report</h3>
+<p>Read the review log output you already have from the Review Readiness Dashboard step above.
+Parse each JSONL entry. Each skill logs different fields:</p>
+<ul>
+<li><strong>plan-ceo-review</strong>: `status`, `unresolved`, `critical_gaps`, `mode`, `scope_proposed`, `scope_accepted`, `scope_deferred`, `commit`
+→ Findings: &quot;{scope_proposed} proposals, {scope_accepted} accepted, {scope_deferred} deferred&quot;
+→ If scope fields are 0 or missing (HOLD/REDUCTION mode): &quot;mode: {mode}, {critical_gaps} critical gaps&quot;</li>
+<li><strong>plan-eng-review</strong>: `status`, `unresolved`, `critical_gaps`, `issues_found`, `mode`, `commit`
+→ Findings: &quot;{issues_found} issues, {critical_gaps} critical gaps&quot;</li>
+<li><strong>plan-design-review</strong>: `status`, `initial_score`, `overall_score`, `unresolved`, `decisions_made`, `commit`
+→ Findings: &quot;score: {initial_score}/10 → {overall_score}/10, {decisions_made} decisions&quot;</li>
+<li><strong>codex-review</strong>: `status`, `gate`, `findings`, `findings_fixed`
+→ Findings: &quot;{findings} findings, {findings_fixed}/{findings} fixed&quot;</li>
+</ul>
+<p>All fields needed for the Findings column are now present in the JSONL entries.
+For the review you just completed, you may use richer details from your own Completion
+Summary. For prior reviews, use the JSONL fields directly — they contain all required data.</p>
+<p>Produce this markdown table:</p>
+<p>```markdown</p>
+<h2>GSTACK REVIEW REPORT</h2>
+<table>
+<thead>
+<tr>
+<th>Review</th>
+<th>Trigger</th>
+<th>Why</th>
+<th>Runs</th>
+<th>Status</th>
+<th>Findings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CEO Review</td>
+<td>`/plan-ceo-review`</td>
+<td>Scope &amp; strategy</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>Codex Review</td>
+<td>`/codex review`</td>
+<td>Independent 2nd opinion</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>Eng Review</td>
+<td>`/plan-eng-review`</td>
+<td>Architecture &amp; tests (required)</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>Design Review</td>
+<td>`/plan-design-review`</td>
+<td>UI/UX gaps</td>
+<td>{runs}</td>
+<td>{status}</td>
+<td>{findings}</td>
+</tr>
+<tr>
+<td>```</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Below the table, add these lines (omit any that are empty/not applicable):</p>
+<ul>
+<li><strong>CODEX:</strong> (only if codex-review ran) — one-line summary of codex fixes</li>
+<li><strong>CROSS-MODEL:</strong> (only if both Claude and Codex reviews exist) — overlap analysis</li>
+<li><strong>UNRESOLVED:</strong> total unresolved decisions across all reviews</li>
+<li><strong>VERDICT:</strong> list reviews that are CLEAR (e.g., &quot;CEO + ENG CLEARED — ready to implement&quot;).
+If Eng Review is not CLEAR and not skipped globally, append &quot;eng review required&quot;.</li>
+</ul>
+<h3>Write to the plan file</h3>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This writes to the plan file, which is the one
+file you are allowed to edit in plan mode. The plan file review report is part of the
+plan&#39;s living status.</p>
+<ul>
+<li>Search the plan file for a `## GSTACK REVIEW REPORT` section <strong>anywhere</strong> in the file
+(not just at the end — content may have been added after it).</li>
+<li>If found, <strong>replace it</strong> entirely using the Edit tool. Match from `## GSTACK REVIEW REPORT`
+through either the next `## ` heading or end of file, whichever comes first. This ensures
+content added after the report section is preserved, not eaten. If the Edit fails
+(e.g., concurrent edit changed the content), re-read the plan file and retry once.</li>
+<li>If no such section exists, <strong>append it</strong> to the end of the plan file.</li>
+<li>Always place it as the very last section in the plan file. If it was found mid-file,
+move it: delete the old location and append at the end.</li>
+</ul>
+<hr>
+<h2>Step 2B: Challenge (Adversarial) Mode</h2>
+<p>Codex tries to break your code — finding edge cases, race conditions, security holes,
+and failure modes that a normal review would miss.</p>
+<ol>
+<li>Construct the adversarial prompt. If the user provided a focus area
+(e.g., <code>/codex challenge security</code>), include it:</li>
+</ol>
+<p>Default prompt (no focus):
+&quot;Review the changes on this branch against the base branch. Run <code>git diff origin/&lt;base&gt;</code> to see the diff. Your job is to find ways this code will fail in production. Think like an attacker and a chaos engineer. Find edge cases, race conditions, security holes, resource leaks, failure modes, and silent data corruption paths. Be adversarial. Be thorough. No compliments — just the problems.&quot;</p>
+<p>With focus (e.g., &quot;security&quot;):
+&quot;Review the changes on this branch against the base branch. Run <code>git diff origin/&lt;base&gt;</code> to see the diff. Focus specifically on SECURITY. Your job is to find every way an attacker could exploit this code. Think about injection vectors, auth bypasses, privilege escalation, data exposure, and timing attacks. Be adversarial.&quot;</p>
+<ol start="2">
+<li>Run codex exec with <strong>JSONL output</strong> to capture reasoning traces and tool calls (5-minute timeout):</li>
+</ol>
+<pre><code class="language-bash">codex exec &quot;&lt;prompt&gt;&quot; -s read-only -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached --json 2&gt;/dev/null | python3 -c &quot;
+import sys, json
+for line in sys.stdin:
+    line = line.strip()
+    if not line: continue
+    try:
+        obj = json.loads(line)
+        t = obj.get(&#39;type&#39;,&#39;&#39;)
+        if t == &#39;item.completed&#39; and &#39;item&#39; in obj:
+            item = obj[&#39;item&#39;]
+            itype = item.get(&#39;type&#39;,&#39;&#39;)
+            text = item.get(&#39;text&#39;,&#39;&#39;)
+            if itype == &#39;reasoning&#39; and text:
+                print(f&#39;[codex thinking] {text}&#39;)
+                print()
+            elif itype == &#39;agent_message&#39; and text:
+                print(text)
+            elif itype == &#39;command_execution&#39;:
+                cmd = item.get(&#39;command&#39;,&#39;&#39;)
+                if cmd: print(f&#39;[codex ran] {cmd}&#39;)
+        elif t == &#39;turn.completed&#39;:
+            usage = obj.get(&#39;usage&#39;,{})
+            tokens = usage.get(&#39;input_tokens&#39;,0) + usage.get(&#39;output_tokens&#39;,0)
+            if tokens: print(f&#39;\ntokens used: {tokens}&#39;)
+    except: pass
+&quot;
+</code></pre>
+<p>This parses codex&#39;s JSONL events to extract reasoning traces, tool calls, and the final
+response. The <code>[codex thinking]</code> lines show what codex reasoned through before its answer.</p>
+<ol start="3">
+<li>Present the full streamed output:</li>
+</ol>
+<pre><code>CODEX SAYS (adversarial challenge):
+════════════════════════════════════════════════════════════
+&lt;full output from above, verbatim&gt;
+════════════════════════════════════════════════════════════
+Tokens: N | Est. cost: ~$X.XX
+</code></pre>
+<hr>
+<h2>Step 2C: Consult Mode</h2>
+<p>Ask Codex anything about the codebase. Supports session continuity for follow-ups.</p>
+<ol>
+<li><strong>Check for existing session:</strong></li>
+</ol>
+<pre><code class="language-bash">cat .context/codex-session-id 2&gt;/dev/null || echo &quot;NO_SESSION&quot;
+</code></pre>
+<p>If a session file exists (not <code>NO_SESSION</code>), use AskUserQuestion:</p>
+<pre><code>You have an active Codex conversation from earlier. Continue it or start fresh?
+A) Continue the conversation (Codex remembers the prior context)
+B) Start a new conversation
+</code></pre>
+<ol start="2">
+<li>Create temp files:</li>
+</ol>
+<pre><code class="language-bash">TMPRESP=$(mktemp /tmp/codex-resp-XXXXXX.txt)
+TMPERR=$(mktemp /tmp/codex-err-XXXXXX.txt)
+</code></pre>
+<ol start="3">
+<li><strong>Plan review auto-detection:</strong> If the user&#39;s prompt is about reviewing a plan,
+or if plan files exist and the user said <code>/codex</code> with no arguments:</li>
+</ol>
+<pre><code class="language-bash">ls -t ~/.claude/plans/*.md 2&gt;/dev/null | xargs grep -l &quot;$(basename $(pwd))&quot; 2&gt;/dev/null | head -1
+</code></pre>
+<p>If no project-scoped match, fall back to <code>ls -t ~/.claude/plans/*.md 2&gt;/dev/null | head -1</code>
+but warn: &quot;Note: this plan may be from a different project — verify before sending to Codex.&quot;
+Read the plan file and prepend the persona to the user&#39;s prompt:
+&quot;You are a brutally honest technical reviewer. Review this plan for: logical gaps and
+unstated assumptions, missing error handling or edge cases, overcomplexity (is there a
+simpler approach?), feasibility risks (what could go wrong?), and missing dependencies
+or sequencing issues. Be direct. Be terse. No compliments. Just the problems.</p>
+<p>THE PLAN:
+<plan content>&quot;</p>
+<ol start="4">
+<li>Run codex exec with <strong>JSONL output</strong> to capture reasoning traces (5-minute timeout):</li>
+</ol>
+<p>For a <strong>new session:</strong></p>
+<pre><code class="language-bash">codex exec &quot;&lt;prompt&gt;&quot; -s read-only -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached --json 2&gt;&quot;$TMPERR&quot; | python3 -c &quot;
+import sys, json
+for line in sys.stdin:
+    line = line.strip()
+    if not line: continue
+    try:
+        obj = json.loads(line)
+        t = obj.get(&#39;type&#39;,&#39;&#39;)
+        if t == &#39;thread.started&#39;:
+            tid = obj.get(&#39;thread_id&#39;,&#39;&#39;)
+            if tid: print(f&#39;SESSION_ID:{tid}&#39;)
+        elif t == &#39;item.completed&#39; and &#39;item&#39; in obj:
+            item = obj[&#39;item&#39;]
+            itype = item.get(&#39;type&#39;,&#39;&#39;)
+            text = item.get(&#39;text&#39;,&#39;&#39;)
+            if itype == &#39;reasoning&#39; and text:
+                print(f&#39;[codex thinking] {text}&#39;)
+                print()
+            elif itype == &#39;agent_message&#39; and text:
+                print(text)
+            elif itype == &#39;command_execution&#39;:
+                cmd = item.get(&#39;command&#39;,&#39;&#39;)
+                if cmd: print(f&#39;[codex ran] {cmd}&#39;)
+        elif t == &#39;turn.completed&#39;:
+            usage = obj.get(&#39;usage&#39;,{})
+            tokens = usage.get(&#39;input_tokens&#39;,0) + usage.get(&#39;output_tokens&#39;,0)
+            if tokens: print(f&#39;\ntokens used: {tokens}&#39;)
+    except: pass
+&quot;
+</code></pre>
+<p>For a <strong>resumed session</strong> (user chose &quot;Continue&quot;):</p>
+<pre><code class="language-bash">codex exec resume &lt;session-id&gt; &quot;&lt;prompt&gt;&quot; -s read-only -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached --json 2&gt;&quot;$TMPERR&quot; | python3 -c &quot;
+&lt;same python streaming parser as above&gt;
+&quot;
+</code></pre>
+<ol start="5">
+<li>Capture session ID from the streamed output. The parser prints <code>SESSION_ID:&lt;id&gt;</code>
+from the <code>thread.started</code> event. Save it for follow-ups:</li>
+</ol>
+<pre><code class="language-bash">mkdir -p .context
+</code></pre>
+<p>Save the session ID printed by the parser (the line starting with <code>SESSION_ID:</code>)
+to <code>.context/codex-session-id</code>.</p>
+<ol start="6">
+<li>Present the full streamed output:</li>
+</ol>
+<pre><code>CODEX SAYS (consult):
+════════════════════════════════════════════════════════════
+&lt;full output, verbatim — includes [codex thinking] traces&gt;
+════════════════════════════════════════════════════════════
+Tokens: N | Est. cost: ~$X.XX
+Session saved — run /codex again to continue this conversation.
+</code></pre>
+<ol start="7">
+<li>After presenting, note any points where Codex&#39;s analysis differs from your own
+understanding. If there is a disagreement, flag it:
+&quot;Note: Claude Code disagrees on X because Y.&quot;</li>
+</ol>
+<hr>
+<h2>Model &amp; Reasoning</h2>
+<p><strong>Model:</strong> No model is hardcoded — codex uses whatever its current default is (the frontier
+agentic coding model). This means as OpenAI ships newer models, /codex automatically
+uses them. If the user wants a specific model, pass <code>-m</code> through to codex.</p>
+<p><strong>Reasoning effort:</strong> All modes use <code>xhigh</code> — maximum reasoning power. When reviewing code, breaking code, or consulting on architecture, you want the model thinking as hard as possible.</p>
+<p><strong>Web search:</strong> All codex commands use <code>--enable web_search_cached</code> so Codex can look up
+docs and APIs during review. This is OpenAI&#39;s cached index — fast, no extra cost.</p>
+<p>If the user specifies a model (e.g., <code>/codex review -m gpt-5.1-codex-max</code>
+or <code>/codex challenge -m gpt-5.2</code>), pass the <code>-m</code> flag through to codex.</p>
+<hr>
+<h2>Cost Estimation</h2>
+<p>Parse token count from stderr. Codex prints <code>tokens used\nN</code> to stderr.</p>
+<p>Display as: <code>Tokens: N</code></p>
+<p>If token count is not available, display: <code>Tokens: unknown</code></p>
+<hr>
+<h2>Error Handling</h2>
+<ul>
+<li><strong>Binary not found:</strong> Detected in Step 0. Stop with install instructions.</li>
+<li><strong>Auth error:</strong> Codex prints an auth error to stderr. Surface the error:
+&quot;Codex authentication failed. Run <code>codex login</code> in your terminal to authenticate via ChatGPT.&quot;</li>
+<li><strong>Timeout:</strong> If the Bash call times out (5 min), tell the user:
+&quot;Codex timed out after 5 minutes. The diff may be too large or the API may be slow. Try again or use a smaller scope.&quot;</li>
+<li><strong>Empty response:</strong> If <code>$TMPRESP</code> is empty or doesn&#39;t exist, tell the user:
+&quot;Codex returned no response. Check stderr for errors.&quot;</li>
+<li><strong>Session resume failure:</strong> If resume fails, delete the session file and start fresh.</li>
+</ul>
+<hr>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>Never modify files.</strong> This skill is read-only. Codex runs in read-only sandbox mode.</li>
+<li><strong>Present output verbatim.</strong> Do not truncate, summarize, or editorialize Codex&#39;s output
+before showing it. Show it in full inside the CODEX SAYS block.</li>
+<li><strong>Add synthesis after, not instead of.</strong> Any Claude commentary comes after the full output.</li>
+<li><strong>5-minute timeout</strong> on all Bash calls to codex (<code>timeout: 300000</code>).</li>
+<li><strong>No double-reviewing.</strong> If the user already ran <code>/review</code>, Codex provides a second
+independent opinion. Do not re-run Claude Code&#39;s own review.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

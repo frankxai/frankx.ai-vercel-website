@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>n8n -- The Automation Layer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/vibe-os/chapter-04-n8n-the-automation-layer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">n8n -- The Automation Layer</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fvibe-os">vibe-os</a> / <span>chapter-04-n8n-the-automation-layer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>n8n -- The Automation Layer</h1>
+<p>Automation is the multiplier that turns a one-person operation into what feels like a team. Without automation, every action requires manual intervention: publish a blog post, then manually write social media threads, then manually format a newsletter snippet, then manually email subscribers, then manually check if anyone downloaded anything. With automation, you publish the post and the infrastructure handles the rest.</p>
+<p>n8n is the orchestration engine for frankx.ai. It is an open-source workflow automation platform, self-hosted on Railway for approximately $7 per month. It runs 25 active workflows that handle content distribution, email sequences, intelligence gathering, catalog synchronization, and operational reporting.</p>
+<p>This chapter covers the architecture, the real workflows, the webhook patterns, and the hard-won lessons that prevent you from spending three hours debugging why your workflow silently stopped firing.</p>
+<hr>
+<h2>I. Why n8n Over Zapier</h2>
+<p>The decision to use n8n over Zapier, Make, or any other automation platform came down to three factors.</p>
+<p><strong>Cost.</strong> Zapier&#39;s equivalent plan for 25 active workflows with webhook triggers costs $50-100 per month. n8n self-hosted costs the price of a Railway container: approximately $7 per month based on actual compute usage. Over a year, this saves $500-1,100.</p>
+<p><strong>Control.</strong> n8n is self-hosted, which means the workflow definitions, execution logs, and credentials live on infrastructure you control. There is no vendor lock-in. If Railway doubles their prices tomorrow, you can move the n8n container to any Docker host in an afternoon. The workflow JSON exports are portable.</p>
+<p><strong>Flexibility.</strong> n8n allows arbitrary JavaScript code in Function nodes, direct HTTP requests to any API, and custom webhook endpoints. Zapier&#39;s equivalent features require premium plans and have execution time limits that can break complex workflows.</p>
+<p>The trade-off is operational overhead. With Zapier, you never think about uptime, updates, or container health. With self-hosted n8n, you are responsible for keeping it running. In practice, Railway handles this well -- the container auto-restarts on failure, and n8n has been stable enough that manual intervention has been needed fewer than five times in six months of operation.</p>
+<hr>
+<h2>II. n8n on Railway</h2>
+<p>Railway is a cloud platform that runs Docker containers with usage-based billing. The n8n deployment is a single container with the following configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Image</td>
+<td><code>n8nio/n8n:latest</code></td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>~512MB average</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Persistent volume for SQLite database</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>5678 (internal), public URL via Railway</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>~$7/month based on actual compute usage</td>
+</tr>
+</tbody></table>
+<p>Key environment variables:</p>
+<pre><code>N8N_BASIC_AUTH_USER=admin
+N8N_BASIC_AUTH_PASSWORD=[redacted]
+N8N_TRUST_PROXY=true
+WEBHOOK_URL=https://[railway-url].railway.app
+</code></pre>
+<p>The <code>N8N_TRUST_PROXY=true</code> variable is critical when running behind Railway&#39;s reverse proxy. Without it, n8n cannot correctly determine the external URL for webhooks, causing webhook registration to fail silently.</p>
+<hr>
+<h2>III. The 25 Active Workflows</h2>
+<p>The workflows fall into five categories. Each workflow is identified by an internal ID and triggered by either a schedule (cron), a webhook, or a manual trigger.</p>
+<h3>Content Distribution (4 workflows)</h3>
+<p><strong>Content Atomizer</strong> (<code>X5qZYPNayRMspuYX</code>)</p>
+<ul>
+<li>Trigger: Webhook at <code>/atomize</code></li>
+<li>Input: Blog post URL or content payload</li>
+<li>Process: AI (Gemini Flash Lite) breaks the article into a Twitter/X thread (4-6 tweets), a LinkedIn post, and a newsletter snippet</li>
+<li>Output: All three formats posted to Slack #content channel for review</li>
+<li>Cost per execution: ~$0.001 (Gemini Flash Lite token cost)</li>
+</ul>
+<p>This workflow is the most valuable single automation in the stack. Writing a 3,000-word blog post takes 2-3 hours. The Content Atomizer turns it into three distribution formats in under 10 seconds. Without it, repurposing a blog post for social media would take an additional 30-60 minutes of manual writing.</p>
+<p><strong>Newsletter Engine</strong> (webhook-triggered)</p>
+<ul>
+<li>Trigger: Webhook from Mega Orchestrator or manual</li>
+<li>Input: Content index from frankx.ai</li>
+<li>Process: Formats latest content into newsletter template, sends via Resend</li>
+<li>Output: Newsletter delivered to subscriber list</li>
+</ul>
+<p><strong>RSS Monitor</strong> (daily schedule)</p>
+<ul>
+<li>Trigger: Cron, daily at 9 AM UTC</li>
+<li>Input: RSS feeds from competitor blogs, industry publications, AI research</li>
+<li>Process: Checks for new posts, filters by relevance keywords</li>
+<li>Output: Summary posted to Slack with links and key takeaways</li>
+</ul>
+<p><strong>Content Studio Trigger</strong> (webhook)</p>
+<ul>
+<li>Trigger: Called from frankx.ai <code>/api/content-studio/trigger</code> route</li>
+<li>Process: Coordinates content creation and publishing pipeline</li>
+<li>Output: Status updates back to the content studio dashboard</li>
+</ul>
+<h3>Email Automation (2 workflows)</h3>
+<p><strong>Email Nurture Sequence</strong> (webhook-triggered)</p>
+<ul>
+<li>Trigger: Webhook from frankx.ai signup forms</li>
+<li>Input: Email address, signup source, lead magnet requested</li>
+<li>Process: Calls frankx.ai <code>/api/welcome-sequence</code> endpoint on a 3-day cadence</li>
+<li>Emails sent:<ul>
+<li>Day 0: PDF delivery + welcome message</li>
+<li>Day 3: Follow-up with related content</li>
+<li>Day 7: Value-driven engagement + community invitation</li>
+</ul>
+</li>
+</ul>
+<p><strong>Coaching Application Notifier</strong> (webhook)</p>
+<ul>
+<li>Trigger: Called when <code>/api/coaching-apply</code> receives a submission</li>
+<li>Process: Formats application data, sends notification to personal channel</li>
+<li>Output: Slack notification with applicant details</li>
+</ul>
+<h3>Intelligence Gathering (4 workflows)</h3>
+<p><strong>Morning Brief</strong> (daily schedule, 7 AM UTC)</p>
+<ul>
+<li>Trigger: Cron</li>
+<li>Process: Aggregates AI news, tech headlines, and creator economy updates</li>
+<li>Output: Formatted intelligence report delivered to Slack</li>
+</ul>
+<p><strong>Strategic Brief</strong> (weekly schedule, Monday 8 AM UTC)</p>
+<ul>
+<li>Trigger: Cron</li>
+<li>Process: Deeper analysis of weekly trends, competitive landscape</li>
+<li>Output: Strategic summary with recommended actions</li>
+</ul>
+<p><strong>Intelligence Hub</strong> (webhook-triggered)</p>
+<ul>
+<li>Trigger: Manual or scheduled</li>
+<li>Process: Runs targeted intelligence queries on specific topics</li>
+<li>Output: Research summaries posted to designated channels</li>
+</ul>
+<p><strong>CoinGecko Pulse</strong> (daily schedule)</p>
+<ul>
+<li>Trigger: Cron, daily at 8 AM UTC</li>
+<li>Process: Fetches crypto market data from CoinGecko API</li>
+<li>Output: Market summary for personal portfolio monitoring</li>
+</ul>
+<h3>Operational (3 workflows)</h3>
+<p><strong>Mega Orchestrator</strong> (webhook + schedule)</p>
+<ul>
+<li>Trigger: Multiple routes via webhook parameter</li>
+<li>Routes: CONTENT, NEWSLETTER, INTELLIGENCE, REPORT</li>
+<li>Process: Central dispatcher that calls other workflows based on the requested operation</li>
+<li>This is the master workflow that coordinates cross-workflow operations</li>
+</ul>
+<p><strong>ACOS Skills Monitor</strong> (weekly schedule)</p>
+<ul>
+<li>Trigger: Cron, weekly</li>
+<li>Process: Checks for updates to ACOS skill repositories</li>
+<li>Output: Summary of new or updated skills</li>
+</ul>
+<p><strong>Music Catalog Sync</strong> (<code>AEalmmG7xGSmq6Wh</code>, daily at 8 AM UTC)</p>
+<ul>
+<li>Trigger: Cron + webhook at <code>/music-sync</code></li>
+<li>Process: Checks Suno catalog for new tracks, updates <code>data/inventories/frankx/music.json</code></li>
+<li>Output: New track notifications, inventory update</li>
+</ul>
+<h3>Infrastructure (2+ workflows)</h3>
+<p>Various monitoring, health check, and maintenance workflows that keep the system running and report anomalies.</p>
+<hr>
+<h2>IV. Webhook Architecture</h2>
+<p>Webhooks are the primary integration pattern between frankx.ai and n8n. The architecture is bidirectional: Next.js API routes call n8n webhooks, and n8n workflows call Next.js API routes.</p>
+<h3>Next.js to n8n</h3>
+<p>When a user action on the website needs to trigger an automation, the API route sends an HTTP POST to the n8n webhook URL:</p>
+<pre><code class="language-typescript">// app/api/content-studio/trigger/route.ts
+export async function POST(request: NextRequest) {
+  const { action, payload } = await request.json()
+
+  // Trigger n8n workflow
+  const response = await fetch(
+    `${process.env.N8N_WEBHOOK_URL}/atomize`,
+    {
+      method: &#39;POST&#39;,
+      headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ action, payload }),
+    }
+  )
+
+  return NextResponse.json({ triggered: true })
+}
+</code></pre>
+<p>The n8n webhook URL is stored as an environment variable. The API route fires and forgets -- it does not wait for the n8n workflow to complete. This is important because n8n workflows can take 10-30 seconds to execute (especially when calling AI APIs), and you do not want to hold the HTTP connection open that long.</p>
+<h3>n8n to Next.js</h3>
+<p>When an n8n workflow needs to interact with the website&#39;s data or APIs, it calls the Next.js API routes:</p>
+<pre><code>n8n HTTP Request Node:
+  URL: https://frankx.ai/api/welcome-sequence
+  Method: POST
+  Body: { email, step: 1, source: &quot;n8n-nurture&quot; }
+  Headers: { Authorization: &quot;Bearer ${ADMIN_SECRET}&quot; }
+</code></pre>
+<p>This bidirectional pattern means the website and the automation layer are loosely coupled. Either system can be updated independently. If you replace n8n with a different automation tool, the Next.js API routes do not change. If you rebuild the website on a different framework, the n8n workflows just need new webhook URLs.</p>
+<hr>
+<h2>V. The Content Atomizer in Detail</h2>
+<p>This is the most instructive workflow to examine in detail because it demonstrates the full pattern: webhook trigger, AI processing, multi-channel output, and human review.</p>
+<h3>Workflow Nodes (6 total)</h3>
+<ol>
+<li><strong>Webhook</strong> -- Receives POST request at <code>/atomize</code> with blog post content</li>
+<li><strong>Extract Content</strong> -- Parses the incoming payload, extracts title, body, URL</li>
+<li><strong>AI Atomize (Gemini Flash Lite)</strong> -- Sends content to Gemini with a structured prompt:<ul>
+<li>&quot;Create a 4-6 tweet thread summarizing this article. First tweet must hook. Last tweet must link.&quot;</li>
+<li>&quot;Create a LinkedIn post (150-250 words) with a professional angle.&quot;</li>
+<li>&quot;Create a newsletter snippet (2-3 sentences) with a read-more link.&quot;</li>
+</ul>
+</li>
+<li><strong>Format Output</strong> -- Structures the AI response into three separate outputs</li>
+<li><strong>Post to Slack</strong> -- Sends all three formats to the #content channel for review</li>
+<li><strong>Respond</strong> -- Returns 200 OK to the webhook caller</li>
+</ol>
+<h3>Why Gemini, Not Claude</h3>
+<p>The Content Atomizer uses Gemini Flash Lite for atomization, not Claude. This is a deliberate architectural decision. Claude Code handles the original content creation -- writing the blog post, editing it, optimizing for SEO. But the atomization step (breaking existing content into smaller formats) is a simpler task that does not require Claude&#39;s reasoning capabilities. Gemini Flash Lite is fast, cheap (fractions of a cent per call), and good enough for repurposing tasks.</p>
+<p>This principle -- use the right model for the right task -- applies throughout the stack. Claude for creation and reasoning. Gemini for transformation and image generation. The expensive model does the hard work. The cheap model does the routine work.</p>
+<h3>Why Slack Review</h3>
+<p>The workflow posts to Slack instead of automatically publishing to social media. This is intentional. AI-generated social content is good enough to save 90% of the writing time, but it is not good enough to publish without review. The human-in-the-loop step takes 30 seconds: read the thread, fix any awkward phrasing, approve or edit, then manually post.</p>
+<p>This is the correct automation boundary. Automate the generation. Keep the judgment human.</p>
+<hr>
+<h2>VI. Webhook Lessons Learned</h2>
+<p>These lessons cost hours of debugging each. They are documented here so they cost you minutes of reading instead.</p>
+<h3>Lesson 1: Always Set httpMethod Explicitly</h3>
+<p>When creating a Webhook node in n8n, always set the <code>httpMethod</code> property to <code>POST</code> explicitly. The default behavior can vary between n8n versions, and some webhook triggers silently accept GET requests but lose the POST body. This manifests as workflows that trigger but receive empty data.</p>
+<h3>Lesson 2: Always Include webhookId</h3>
+<p>Every Webhook node should have a <code>webhookId</code> property in its configuration. Without it, n8n generates a random ID on workflow activation, which changes every time the workflow is deactivated and reactivated. This means any external service calling the webhook URL will break after a reactivation.</p>
+<p>Set the <code>webhookId</code> to a stable value:</p>
+<pre><code class="language-json">{
+  &quot;webhookId&quot;: &quot;content-atomizer-main&quot;,
+  &quot;httpMethod&quot;: &quot;POST&quot;,
+  &quot;path&quot;: &quot;atomize&quot;
+}
+</code></pre>
+<h3>Lesson 3: Deactivate and Reactivate After Updates</h3>
+<p>When you modify a workflow that uses webhooks, you must deactivate and reactivate the workflow for the webhook to re-register with n8n&#39;s internal router. Simply saving the workflow is not sufficient. The webhook endpoint will continue serving the old version until the workflow is toggled.</p>
+<p>This is the single most common cause of &quot;I updated my workflow but nothing changed.&quot; The fix is always: deactivate, wait 2 seconds, reactivate.</p>
+<h3>Lesson 4: Railway URL Stability</h3>
+<p>Railway assigns a public URL to each service. This URL is stable as long as the service exists, but it changes if you delete and recreate the service. Store the n8n webhook base URL as an environment variable in Vercel:</p>
+<pre><code>N8N_WEBHOOK_URL=https://your-service.railway.app/webhook
+</code></pre>
+<p>If you ever need to migrate n8n to a different host, you update one environment variable instead of modifying every API route that calls n8n.</p>
+<hr>
+<h2>VII. The n8n MCP Server</h2>
+<p>Claude Code can create, modify, and manage n8n workflows through the n8n MCP server. This is how new workflows get built: instead of clicking through the n8n visual editor, you describe the workflow in natural language and Claude Code translates it into n8n&#39;s workflow JSON format.</p>
+<p>Available MCP tools:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n8n_list_workflows</code></td>
+<td>List all workflows with status</td>
+</tr>
+<tr>
+<td><code>n8n_get_workflow</code></td>
+<td>Get workflow definition and nodes</td>
+</tr>
+<tr>
+<td><code>n8n_create_workflow</code></td>
+<td>Create new workflow from JSON</td>
+</tr>
+<tr>
+<td><code>n8n_update_full_workflow</code></td>
+<td>Replace entire workflow definition</td>
+</tr>
+<tr>
+<td><code>n8n_update_partial_workflow</code></td>
+<td>Update specific nodes</td>
+</tr>
+<tr>
+<td><code>n8n_test_workflow</code></td>
+<td>Execute workflow with test data</td>
+</tr>
+<tr>
+<td><code>n8n_validate_workflow</code></td>
+<td>Check workflow for configuration errors</td>
+</tr>
+<tr>
+<td><code>n8n_executions</code></td>
+<td>View recent execution logs</td>
+</tr>
+<tr>
+<td><code>n8n_health_check</code></td>
+<td>Verify n8n instance is running</td>
+</tr>
+<tr>
+<td><code>n8n_autofix_workflow</code></td>
+<td>Attempt automatic error resolution</td>
+</tr>
+</tbody></table>
+<p>The typical workflow creation process:</p>
+<ol>
+<li>Describe the desired workflow in conversation: &quot;Create a workflow that triggers daily at 8 AM, fetches the latest blog posts from the RSS feed, and posts a summary to Slack.&quot;</li>
+<li>Claude Code generates the workflow JSON with the correct node types, connections, and configuration.</li>
+<li>The <code>n8n_create_workflow</code> tool uploads the workflow to the n8n instance.</li>
+<li>The <code>n8n_test_workflow</code> tool runs it with sample data to verify it works.</li>
+<li>The workflow is activated.</li>
+</ol>
+<p>This means the entire automation layer is managed from the same terminal where code is written and content is created. There is no context-switching to a separate automation platform UI.</p>
+<hr>
+<h2>VIII. Workflow Design Principles</h2>
+<p>After building and maintaining 25 workflows over six months, these principles have emerged:</p>
+<p><strong>One workflow, one responsibility.</strong> Each workflow does one thing. The Content Atomizer atomizes content. The Email Nurture sends emails. The Morning Brief delivers intelligence. This makes debugging straightforward: if social media content is wrong, you look at the Content Atomizer. If emails are not sending, you look at the Email Nurture.</p>
+<p><strong>Webhooks over polling.</strong> When possible, trigger workflows with webhooks instead of polling schedules. Webhooks execute immediately when an event occurs. Polling introduces latency (up to the full polling interval) and wastes compute on checks that find nothing new.</p>
+<p><strong>Slack as the review layer.</strong> Every workflow that generates content for external publication routes through Slack first. This provides a review opportunity, an audit trail, and a notification channel in one step.</p>
+<p><strong>Idempotent operations.</strong> Every workflow should be safe to run twice. If the Content Atomizer processes the same blog post twice, it should not create duplicate social media content. This is achieved by checking for existing content before creating new entries, or by designing outputs that naturally deduplicate (posting to Slack is harmless if duplicated; publishing to social media is not).</p>
+<p><strong>Error notifications.</strong> Every workflow has an error handler that posts to a dedicated Slack channel. Silent failures are the most dangerous failures. If a workflow breaks at 3 AM, you should know about it at 8 AM, not three weeks later when you notice the newsletter has not been sent.</p>
+<hr>
+<h2>IX. Cost Breakdown</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Monthly Cost</th>
+<th>Annual Cost</th>
+<th>Equivalent SaaS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Railway compute</td>
+<td>~$7</td>
+<td>~$84</td>
+<td>-</td>
+</tr>
+<tr>
+<td>n8n license</td>
+<td>$0 (open source)</td>
+<td>$0</td>
+<td>Zapier: $600-1,200/yr</td>
+</tr>
+<tr>
+<td>AI API calls</td>
+<td>~$2</td>
+<td>~$24</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Slack (free)</td>
+<td>$0</td>
+<td>$0</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~$9</strong></td>
+<td><strong>~$108</strong></td>
+<td><strong>$600-1,200</strong></td>
+</tr>
+</tbody></table>
+<p>The entire automation layer -- 25 workflows, daily intelligence reports, content atomization, email sequences, catalog synchronization -- costs less than two months of a basic Zapier plan.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

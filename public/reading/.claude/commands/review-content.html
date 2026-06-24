@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>👁️ Content Review &amp; Approval System Activated</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/review-content.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">👁️ Content Review &amp; Approval System Activated</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>review-content.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>description: Review and approve all generated content with visual previews before publishing
+thinking: false</h2>
+<h1>👁️ Content Review &amp; Approval System Activated</h1>
+<p>You are now in <strong>Content Review Mode</strong> - presenting all generated content with visual previews for Frank&#39;s approval before publishing.</p>
+<h2>Active Context</h2>
+<ul>
+<li><strong>Focus:</strong> Content review and approval workflow</li>
+<li><strong>Working Directory:</strong> <code>/mnt/c/Users/Frank/FrankX/content/</code></li>
+<li><strong>Source:</strong> Files in <code>2-ready-to-publish/</code></li>
+<li><strong>Output:</strong> Generate preview HTML + approval workflow</li>
+<li><strong>Next:</strong> Publish approved content OR return for revisions</li>
+</ul>
+<h2>Your Mission</h2>
+<p>Present all ready content in beautiful, reviewable format:</p>
+<ol>
+<li><strong>Scan</strong> for content ready for review</li>
+<li><strong>Generate</strong> HTML preview dashboard</li>
+<li><strong>Display</strong> article + social posts + images</li>
+<li><strong>Present</strong> for approval</li>
+<li><strong>Execute</strong> based on Frank&#39;s decision (approve/revise/reject)</li>
+</ol>
+<h2>Review Workflow</h2>
+<h3>Step 1: Scan Ready Content</h3>
+<pre><code class="language-bash"># Find content ready for review
+find /mnt/c/Users/Frank/FrankX/content/2-ready-to-publish -type f -name &quot;_metadata.yaml&quot; -exec grep -l &quot;status: \&quot;ready-for-review\&quot;&quot; {} \;
+</code></pre>
+<p><strong>Looking for:</strong></p>
+<ul>
+<li>Blog posts with status <code>ready-for-review</code></li>
+<li>Social content with status <code>ready-for-review</code></li>
+<li>Complete package: article + images + social posts</li>
+</ul>
+<h3>Step 2: Generate Preview Dashboard</h3>
+<p><strong>Create:</strong> <code>/content/2-ready-to-publish/_previews/[slug]-review.html</code></p>
+<p><strong>Dashboard Components:</strong></p>
+<ol>
+<li><p><strong>Header Section</strong></p>
+<ul>
+<li>Article title</li>
+<li>Theme badge</li>
+<li>Word count, reading time</li>
+<li>Generation date</li>
+<li>Approval status</li>
+</ul>
+</li>
+<li><p><strong>Article Preview</strong></p>
+<ul>
+<li>Rendered markdown → HTML</li>
+<li>With actual styling</li>
+<li>Header image displayed</li>
+<li>Internal links functional</li>
+<li>Looks like final blog post</li>
+</ul>
+</li>
+<li><p><strong>Images Gallery</strong></p>
+<ul>
+<li>Header image</li>
+<li>Quote cards (all of them)</li>
+<li>Platform-specific images</li>
+<li>Side-by-side comparison</li>
+</ul>
+</li>
+<li><p><strong>Social Content Preview</strong></p>
+<ul>
+<li>Twitter thread (formatted as tweets)</li>
+<li>LinkedIn post (professional layout)</li>
+<li>Instagram carousel (visual slides)</li>
+<li>Medium/Dev.to versions</li>
+</ul>
+</li>
+<li><p><strong>Posting Schedule</strong></p>
+<ul>
+<li>Timeline visualization</li>
+<li>Best posting times</li>
+<li>Platform sequence</li>
+</ul>
+</li>
+<li><p><strong>Approval Controls</strong></p>
+<ul>
+<li>Approve button</li>
+<li>Request changes button</li>
+<li>Reject button</li>
+<li>Comment field</li>
+</ul>
+</li>
+</ol>
+<h3>Step 3: Present Review Dashboard</h3>
+<p><strong>Output format:</strong></p>
+<pre><code class="language-markdown"># Content Ready for Review 📋
+
+## Dashboard Generated
+
+**Preview URL:** `file:///mnt/c/Users/Frank/FrankX/content/2-ready-to-publish/_previews/ai-music-2025-review.html`
+
+**Article:** &quot;AI Music Production in 2025&quot;
+**Theme:** Music
+**Word Count:** 2,200 words
+**Reading Time:** 10 minutes
+**Images:** 7 generated
+**Social Posts:** 5 platforms
+
+---
+
+## Quick Preview
+
+### Article Highlights:
+- **Hook:** &quot;I generated 50 songs last week. 3 were actually good.&quot;
+- **Framework:** 3-step AI music creation process
+- **Examples:** 5 concrete examples included
+- **Voice Score:** 0.92/1.0 (high FrankX voice alignment)
+- **SEO Score:** 88/100
+
+### Social Content:
+- **Twitter:** 12-tweet thread ready
+- **LinkedIn:** 1,847 character post ready
+- **Instagram:** 7-slide carousel ready
+- **Medium:** Full syndication ready (48h delay)
+- **Dev.to:** Full syndication ready (48h delay)
+
+### Images:
+✅ Header image (1200x630)
+✅ 3 quote cards (1080x1080)
+✅ Twitter image (1200x675)
+✅ LinkedIn image (1200x627)
+✅ Instagram image (1080x1080)
+
+### Posting Schedule:
+**Day 1:** Blog + Twitter (2h later) + LinkedIn (4h later)
+**Day 2:** Instagram carousel
+**Day 3+:** Medium + Dev.to syndication
+
+---
+
+## What to Review
+
+### 1. Article Quality
+- [ ] Hook grabs attention
+- [ ] Voice sounds like Frank
+- [ ] Examples are specific and useful
+- [ ] SEO is optimized
+- [ ] No AI writing patterns
+- [ ] Structure flows well
+
+### 2. Social Content
+- [ ] Twitter thread is engaging
+- [ ] LinkedIn post is professional
+- [ ] Instagram caption is visual-first
+- [ ] CTAs are compelling
+- [ ] Posting times are optimal
+
+### 3. Images
+- [ ] Header image fits theme
+- [ ] Quote cards are readable
+- [ ] Platform images are appropriate
+- [ ] Branding is consistent
+
+### 4. Overall Package
+- [ ] All pieces work together
+- [ ] Message is consistent across platforms
+- [ ] Ready to publish as-is OR needs minor tweaks
+
+---
+
+## Approval Options
+
+### Option 1: Approve ✅
+**Command:** Type &quot;approve&quot; or &quot;yes&quot;
+
+**What happens:**
+1. ✅ Content moved to publishing queue
+2. ✅ Blog published to Vercel website
+3. ✅ Social posts staged in Linear
+4. ✅ Cross-posting scheduled (48h delay)
+5. ✅ Agent version saved for learning
+6. ✅ You receive Linear tasks for manual social posting
+
+**Timeline:**
+- Blog live in 5 minutes
+- Social posts ready to copy/paste
+- You control posting timing
+
+---
+
+### Option 2: Request Changes 📝
+**Command:** Type &quot;revise&quot; or &quot;changes&quot;
+
+**Then specify what to change:**
+</code></pre>
+<p>Examples:</p>
+<ul>
+<li>&quot;Make the hook more surprising&quot;</li>
+<li>&quot;Add more technical details in section 3&quot;</li>
+<li>&quot;Shorten the LinkedIn post&quot;</li>
+<li>&quot;Make Instagram caption more visual&quot;</li>
+<li>&quot;Add more personal story in intro&quot;</li>
+</ul>
+<pre><code>
+**What happens:**
+1. 🔄 Agent re-generates specified sections
+2. 🔄 Keeps approved sections unchanged
+3. 🔄 Creates new preview
+4. 🔄 You review again
+
+**Timeline:** 5-10 minutes for revisions
+
+---
+
+### Option 3: Reject ❌
+**Command:** Type &quot;reject&quot;
+
+**What happens:**
+1. ❌ Content moved to drafts
+2. ❌ Not published
+3. ❌ Can revisit later
+4. ❌ Agent learns from rejection patterns
+
+**Use when:** Content needs major rework or topic isn&#39;t right
+
+---
+
+## Learning Integration
+
+### After Approval
+
+**System automatically:**
+1. Saves agent-generated version to `_learning/[slug]/agent-version.md`
+2. Tracks this as baseline for comparison
+3. After you edit (if you do), saves published version
+4. Runs diff analysis
+5. Extracts patterns
+6. Improves future generations
+
+### After Changes Requested
+
+**System learns:**
+- What types of changes you request
+- Which sections need more work
+- Voice/tone preferences
+- Structural preferences
+
+**Applies to future content:**
+- Agents pre-apply common change requests
+- Fewer revisions needed over time
+- Quality improves automatically
+
+---
+
+## Review Dashboard Details
+
+### Dashboard Features
+
+**Interactive Elements:**
+- ✅ Click images to view full size
+- ✅ Edit social posts inline
+- ✅ Reorder posting schedule
+- ✅ Add notes/comments
+- ✅ One-click copy for social posts
+
+**Mobile Responsive:**
+- Review on phone if needed
+- All content readable
+- Approval works on mobile
+
+**Version Control:**
+- Save review state
+- Compare with previous drafts
+- Track changes over time
+
+### Dashboard Layout
+
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Review: [Article Title]&lt;/title&gt;
+  &lt;style&gt;
+    /* Clean, modern styling */
+    /* Dark mode friendly */
+    /* Print-friendly */
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Header --&gt;
+  &lt;header&gt;
+    &lt;h1&gt;[Article Title]&lt;/h1&gt;
+    &lt;div class=&quot;badges&quot;&gt;
+      &lt;span class=&quot;theme-badge&quot;&gt;[Theme]&lt;/span&gt;
+      &lt;span class=&quot;status-badge&quot;&gt;Ready for Review&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;stats&quot;&gt;
+      Words: 2,200 | Reading: 10 min | Images: 7
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;!-- Article Preview --&gt;
+  &lt;section class=&quot;article-preview&quot;&gt;
+    &lt;img src=&quot;header.png&quot; class=&quot;header-image&quot;&gt;
+    &lt;article&gt;
+      [Rendered markdown content with styling]
+    &lt;/article&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Images Gallery --&gt;
+  &lt;section class=&quot;images-gallery&quot;&gt;
+    &lt;h2&gt;Generated Images&lt;/h2&gt;
+    &lt;div class=&quot;image-grid&quot;&gt;
+      [All images with captions]
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Social Content --&gt;
+  &lt;section class=&quot;social-previews&quot;&gt;
+    &lt;div class=&quot;platform twitter&quot;&gt;
+      &lt;h3&gt;Twitter Thread&lt;/h3&gt;
+      [Formatted as tweet thread]
+      &lt;button&gt;Copy Thread&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;platform linkedin&quot;&gt;
+      &lt;h3&gt;LinkedIn Post&lt;/h3&gt;
+      [Formatted as LinkedIn post]
+      &lt;button&gt;Copy Post&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;platform instagram&quot;&gt;
+      &lt;h3&gt;Instagram Carousel&lt;/h3&gt;
+      [Visual slide preview]
+      &lt;button&gt;Copy Caption&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Posting Schedule --&gt;
+  &lt;section class=&quot;schedule&quot;&gt;
+    &lt;h2&gt;Posting Schedule&lt;/h2&gt;
+    [Timeline visualization]
+  &lt;/section&gt;
+
+  &lt;!-- Approval Controls --&gt;
+  &lt;section class=&quot;approval-controls&quot;&gt;
+    &lt;button class=&quot;approve&quot;&gt;✅ Approve &amp; Publish&lt;/button&gt;
+    &lt;button class=&quot;revise&quot;&gt;📝 Request Changes&lt;/button&gt;
+    &lt;button class=&quot;reject&quot;&gt;❌ Reject&lt;/button&gt;
+
+    &lt;textarea placeholder=&quot;Comments or change requests...&quot;&gt;&lt;/textarea&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Learning Insights --&gt;
+  &lt;section class=&quot;learning&quot;&gt;
+    &lt;h3&gt;Agent Learning Applied&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;✅ Used personal result hook (learned from 15 articles)&lt;/li&gt;
+      &lt;li&gt;✅ Avoided forbidden phrases (100% success rate)&lt;/li&gt;
+      &lt;li&gt;✅ Matched paragraph length (2.8 avg)&lt;/li&gt;
+      &lt;li&gt;✅ Hit example target (5 included)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h2>After Review Session</h2>
+<h3>If Approved</h3>
+<pre><code class="language-markdown"># Content Approved! ✅
+
+**Article:** &quot;AI Music Production in 2025&quot;
+
+**Actions Completed:**
+1. ✅ Blog published to frankx.com
+   - URL: https://frankx.com/blog/ai-music-2025
+   - Live in: ~3 minutes (Vercel deployment)
+
+2. ✅ Social posts staged in Linear
+   - Task: &quot;Post Twitter thread: AI Music&quot;
+   - Task: &quot;Post LinkedIn: AI Music&quot;
+   - Task: &quot;Post Instagram carousel: AI Music&quot;
+
+3. ✅ Cross-posting scheduled
+   - Medium: Scheduled for 2025-11-09 (48h delay)
+   - Dev.to: Scheduled for 2025-11-09 (48h delay)
+
+4. ✅ Learning data saved
+   - Agent version archived
+   - Ready for diff analysis after any edits
+
+**Your Next Steps:**
+1. Wait for Vercel deployment (~3 min)
+2. Open Linear to see social posting tasks
+3. Post to social when ready (content is prepared)
+4. Edit any social posts in Linear if needed
+5. Mark tasks complete after posting
+
+**Timeline:**
+- Now: Blog is live
+- 2 hours: Post Twitter thread
+- 4 hours: Post LinkedIn
+- Tomorrow: Post Instagram
+- Day 3: Auto-syndication to Medium/Dev.to
+
+---
+
+**Content is live! Social posts ready for your timing.**
+</code></pre>
+<h3>If Changes Requested</h3>
+<pre><code class="language-markdown"># Revision Request Received 📝
+
+**Changes Requested:**
+1. &quot;Make hook more surprising&quot;
+2. &quot;Add technical details in section 3&quot;
+3. &quot;Shorten LinkedIn post&quot;
+
+**Processing Revisions:**
+1. 🔄 Re-generating introduction with surprising hook
+2. 🔄 Adding technical depth to section 3
+3. 🔄 Condensing LinkedIn post to 1,200 chars
+4. ✅ Keeping approved sections unchanged
+
+**Estimated Time:** 5-10 minutes
+
+**Next:**
+- New preview will be generated
+- You&#39;ll review again
+- Can approve or request more changes
+
+---
+
+**Working on your feedback...**
+</code></pre>
+<hr>
+<h2>Keyboard Shortcuts</h2>
+<p>While in review dashboard:</p>
+<ul>
+<li><code>A</code> - Approve</li>
+<li><code>R</code> - Request revisions</li>
+<li><code>E</code> - Edit inline</li>
+<li><code>C</code> - Copy current section</li>
+<li><code>N</code> - Next article (if multiple)</li>
+<li><code>P</code> - Previous article</li>
+<li><code>?</code> - Show help</li>
+</ul>
+<hr>
+<h2>Quality Checklist</h2>
+<p>Before approving, verify:</p>
+<h3>Article</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Hook is engaging (first 100 words)</li>
+<li><input disabled="" type="checkbox"> Voice sounds like Frank (personal, specific, actionable)</li>
+<li><input disabled="" type="checkbox"> Examples are concrete (numbers, tools, results)</li>
+<li><input disabled="" type="checkbox"> No AI patterns (checked against learning data)</li>
+<li><input disabled="" type="checkbox"> SEO is optimized (title, meta, keywords)</li>
+<li><input disabled="" type="checkbox"> Structure flows (sections logical)</li>
+<li><input disabled="" type="checkbox"> CTAs are clear (what reader should do)</li>
+</ul>
+<h3>Social</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Twitter hook stops scroll</li>
+<li><input disabled="" type="checkbox"> LinkedIn is professional but personal</li>
+<li><input disabled="" type="checkbox"> Instagram is visual-first</li>
+<li><input disabled="" type="checkbox"> All CTAs drive to blog</li>
+<li><input disabled="" type="checkbox"> Timing is optimal</li>
+</ul>
+<h3>Images</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Header fits theme and quality</li>
+<li><input disabled="" type="checkbox"> Quote cards are readable</li>
+<li><input disabled="" type="checkbox"> Branding is consistent</li>
+<li><input disabled="" type="checkbox"> File sizes reasonable</li>
+</ul>
+<h3>Overall</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Everything works together</li>
+<li><input disabled="" type="checkbox"> Message consistent across platforms</li>
+<li><input disabled="" type="checkbox"> Proud to publish as Frank</li>
+</ul>
+<hr>
+<h2>Activation</h2>
+<p>Run this command when:</p>
+<ul>
+<li>Content is fully generated (article + images + social)</li>
+<li>Ready to make final decision</li>
+<li>Want to see everything before publishing</li>
+</ul>
+<p><strong>Let&#39;s review your content and make it live!</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

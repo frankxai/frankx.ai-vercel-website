@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/newsletter-week — Weekly Newsletter Cadence</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/newsletter-week.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/newsletter-week — Weekly Newsletter Cadence</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>newsletter-week.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<p>name: newsletter-week
+description: Pick theme, research, draft, gate, schedule, and send one newsletter issue per week. Resend-powered. Closes the L3-L5 loop (production → excellence → distribution) for newsletter as a forcing function.
+triggers:</p>
+<ul>
+<li>/newsletter-week</li>
+<li>/nl-week
+arguments:</li>
+<li>name: mode
+required: false
+enum: [pick, draft, gate, schedule, send, archive]
+default: pick
+description: pick = choose theme · draft = write issue · gate = quality check · schedule = queue in Resend · send = trigger · archive = post-send rituals</li>
+<li>name: issue
+required: false
+description: Issue number (e.g. 1, 2, 3) — defaults to next unscheduled</li>
+</ul>
+<hr>
+<h1>/newsletter-week — Weekly Newsletter Cadence</h1>
+<p>Issue 1 ships Friday W21 (2026-05-22). The newsletter is wired to Resend, archive lives at <code>/newsletter/archive</code>, double-opt-in via HMAC-signed token. <strong>First issue is Issue 1 — no backfill of placeholders.</strong></p>
+<h2>The weekly cadence</h2>
+<pre><code>MON         /newsletter-week pick     → theme + angle locked
+TUE         /newsletter-week draft    → 800-1200w draft written
+WED         /newsletter-week gate     → @integrity-guard + /seo-check pass
+THU         operator review (Frank)   → final edit pass
+FRI 10:00   /newsletter-week schedule → queued in Resend
+FRI 11:00   /newsletter-week send     → trigger send to list
+FRI 16:00   /newsletter-week archive  → publish to /newsletter/archive/issue-{n}
+</code></pre>
+<h2>Pick mode workflow</h2>
+<h3>Step 1: Read context</h3>
+<pre><code class="language-bash"># What&#39;s this week&#39;s strategic theme?
+cat docs/planning/2026-W{n}-sprint.md | head -50
+
+# What did the research layer surface?
+ls -t research/briefs/ | head -5
+
+# What shipped on the site this week?
+git log --since=&quot;7 days ago&quot; --oneline | grep -E &quot;feat|ship&quot; | head -20
+
+# What&#39;s the audience asking? (from CRM + workshop debriefs)
+cat data/crm/recent-questions.json 2&gt;/dev/null | head -20
+</code></pre>
+<h3>Step 2: Choose the theme</h3>
+<p>Use the 3-bucket structure:</p>
+<table>
+<thead>
+<tr>
+<th>Bucket</th>
+<th>What lives here</th>
+<th>Default share</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Spotlight</strong></td>
+<td>The week&#39;s main story — a shipped surface, a research brief, a strategic frame</td>
+<td>60% of issue</td>
+</tr>
+<tr>
+<td><strong>Receipts</strong></td>
+<td>2-3 short specific wins / case studies / artifacts</td>
+<td>25% of issue</td>
+</tr>
+<tr>
+<td><strong>Toolkit</strong></td>
+<td>1 actionable thing the reader can do this week</td>
+<td>15% of issue</td>
+</tr>
+</tbody></table>
+<p>Pick a theme that connects to <strong>one of the active forcing functions</strong> (Inner Circle launch, current workshop, new research). The newsletter should reinforce the site&#39;s gravity, not divert it.</p>
+<h3>Step 3: Write the brief</h3>
+<pre><code class="language-markdown"># Newsletter Issue {N} — {Subject Line}
+
+**Date:** Friday 2026-MM-DD
+**Theme:** {one-line}
+**Connects to:** {forcing function / hub / pillar}
+
+## Spotlight
+{angle}
+
+## Receipts
+- {receipt 1}
+- {receipt 2}
+- {receipt 3}
+
+## Toolkit
+{actionable thing}
+
+## CTA
+{single primary CTA — Inner Circle / specific surface / no CTA if reinforcing existing momentum}
+
+## Why this issue
+{2 sentences on what makes it sing — for /content-ops daily brief tone}
+</code></pre>
+<p>Write to <code>content/newsletters/staging/issue-{n}.md</code>.</p>
+<h2>Draft mode workflow</h2>
+<h3>Step 1: Read voice spec</h3>
+<pre><code class="language-bash">cat content/strategy/newsletter-voice.md  # if exists
+cat lib/voice/frankx-voice.ts             # canonical brand voice
+</code></pre>
+<h3>Step 2: Compose</h3>
+<ul>
+<li><strong>Subject line:</strong> ≤ 60 chars. Specific &gt; clever. No emoji unless the issue is itself about emoji.</li>
+<li><strong>Preview text:</strong> ≤ 100 chars. Either continues subject (specific) or contradicts it (curiosity gap).</li>
+<li><strong>Greeting:</strong> No &quot;Hey friend&quot; / &quot;Dear reader&quot; — open with the spotlight directly.</li>
+<li><strong>Body:</strong> 800-1200 words. Short paragraphs (≤ 4 lines). Specific &gt; vague. Receipts &gt; claims.</li>
+<li><strong>CTA:</strong> One primary, optional secondary. Never more than two CTAs.</li>
+<li><strong>Sign-off:</strong> &quot;—Frank&quot; (no exclamation, no &quot;best&quot;, no &quot;talk soon&quot;).</li>
+</ul>
+<h3>Step 3: Write</h3>
+<p>Output to <code>content/newsletters/staging/issue-{n}.mdx</code> (MDX because Resend templates can take React Email components for embedded receipts/visuals).</p>
+<h2>Gate mode workflow</h2>
+<p>Run all three in parallel:</p>
+<pre><code>Task @integrity-guard → brand voice + AI-slop + claim audit on staged issue
+Task /seo-check → if cross-posting to /blog later, ensure schema-ready
+Task /v BUILD (subset) → render check via React Email preview
+</code></pre>
+<p>Verdict:</p>
+<ul>
+<li>✅ All pass → move to scheduled state</li>
+<li>⚠️ Warnings → surface to Frank with file:line, Frank decides ship-or-fix</li>
+<li>❌ Failures → block send, fix required</li>
+</ul>
+<h2>Schedule mode workflow</h2>
+<p>Queue in Resend via MCP (or direct API):</p>
+<pre><code class="language-bash"># Pseudo — actual implementation in scripts/newsletter-schedule.mjs
+node scripts/newsletter-schedule.mjs --issue {n} --send-at &quot;2026-MM-DDT11:00:00+02:00&quot;
+</code></pre>
+<p>Confirms:</p>
+<ul>
+<li>Subject + preview locked</li>
+<li>Recipient list = <code>unsubscribed: false</code> subscribers only</li>
+<li>Double-opt-in confirmed (HMAC token validates)</li>
+<li>Send-at time = Friday 11:00 CET (validated against issue frontmatter)</li>
+</ul>
+<h2>Send mode workflow</h2>
+<p>Triggered by schedule firing OR explicit <code>/newsletter-week send</code>. Logs send to:</p>
+<pre><code>data/newsletters/sent.jsonl
+{ &quot;issue&quot;: N, &quot;subject&quot;: &quot;...&quot;, &quot;sentAt&quot;: &quot;ISO&quot;, &quot;recipientCount&quot;: M, &quot;resendMessageId&quot;: &quot;...&quot; }
+</code></pre>
+<h2>Archive mode workflow</h2>
+<p>Post-send (Friday afternoon):</p>
+<ol>
+<li>Move <code>content/newsletters/staging/issue-{n}.mdx</code> → <code>content/newsletters/published/issue-{n}.mdx</code></li>
+<li>Generate <code>/newsletter/archive/issue-{n}</code> page (or trigger ISR if route is dynamic)</li>
+<li>Update <code>data/newsletters/index.json</code> with new issue metadata</li>
+<li>Cross-post the spotlight section to <code>/blog/</code> if marked <code>crossPost: true</code> in frontmatter (separate <code>/traffic-week</code> lever)</li>
+</ol>
+<h2>Issue 1 special case (W21)</h2>
+<p>The W21 sprint locks Issue 1 as the <strong>first issue of the new era</strong>. Do not backfill the 7 placeholders in <code>content/newsletters/</code>. Issue 1 frontmatter:</p>
+<pre><code class="language-yaml">---
+issue: 1
+subject: &quot;Issue 1: The 6-layer operating loop&quot;
+preview: &quot;What it means to publish without the scramble&quot;
+theme: &quot;The system that ships every Friday&quot;
+connectsTo: &quot;newsletter-issue-1 W21 sprint goal + Inner Circle June 1 launch&quot;
+sendAt: &quot;2026-05-22T11:00:00+02:00&quot;
+crossPost: false
+---
+</code></pre>
+<h2>Composition</h2>
+<p>Calls (via Task tool):</p>
+<ul>
+<li><code>/research</code> or <code>/deepresearch</code> (when theme needs external validation)</li>
+<li><code>/factory</code> (for the body draft if the spotlight wants the full publishing pipeline)</li>
+<li><code>@integrity-guard</code> (the gate — must exist for /newsletter-week to be safe)</li>
+<li><code>/seo-check</code> (cross-post readiness)</li>
+</ul>
+<p>Pairs with <code>/content-strategy</code> (pillar alignment) and <code>/content-ops</code> (calendar slot).</p>
+<h2>Anti-patterns</h2>
+<ul>
+<li>❌ Don&#39;t send mid-week — Friday 11:00 CET is the cadence. Discipline &gt; opportunism.</li>
+<li>❌ Don&#39;t skip the gate — Issue 1&#39;s brand voice sets the standard for every future issue.</li>
+<li>❌ Don&#39;t backfill placeholder issues — Issue 1 is the start, no historical revisionism.</li>
+<li>❌ Don&#39;t add a CTA per receipt — one primary CTA per issue, period.</li>
+<li>❌ Don&#39;t send without operator review (<code>gate</code> mode is automated, <code>send</code> mode is human-triggered).</li>
+</ul>
+<h2>Token discipline</h2>
+<ul>
+<li>Pick: ≤ 3k input, ≤ 800 output</li>
+<li>Draft: full budget — runs once per week</li>
+<li>Gate: ≤ 5k input, ≤ 1k output</li>
+<li>Schedule/Send/Archive: minimal</li>
+</ul>
+<hr>
+<p><em>Friday is a forcing function, not a hope. Issue 1 ships on time. Issue 52 ships on time. The cadence is the product.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

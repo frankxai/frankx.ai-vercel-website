@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Music Intelligence System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="lib/music-video/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Music Intelligence System</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#lib">lib</a> / <a href="index.html#lib%2Fmusic-video">music-video</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Music Intelligence System</h1>
+<blockquote>
+<p>Drop a song, get a cost-gated, design-thought, premium multi-format music video.</p>
+</blockquote>
+<p>A 3-layer AI music-video pipeline that separates the concerns most pipelines conflate — and gates every run on cost + design thinking before a dollar is spent. Built for <a href="https://claude.com/claude-code">Claude Code</a> agents but the <code>lib/</code> is plain TypeScript with no Claude dependency.</p>
+<h2>Why this exists</h2>
+<p>Most &quot;AI music video&quot; tools fuse generation and assembly into one opaque step, so you re-roll expensive video clips to fix a face, and cuts drift off the beat. This system keeps the three jobs distinct:</p>
+<pre><code>L1 KEYFRAMES (image)   lock identity, style, framing — cheap, editable
+   Nano Banana Pro · Nano Banana · Higgsfield Soul ID
+        ↓
+L2 MOTION (video)      animate each keyframe — where the money goes
+   Kling 3.0 · Veo 3.1 · Seedance 2.0 · Luma · Runway   (via Higgsfield / fal / Gemini)
+        ↓
+L3 ASSEMBLY (compositor)   time to the beat, caption, transition, 6 formats — $0 local
+   HyperFrames · Remotion · FFmpeg
+</code></pre>
+<p>Fix identity on a <strong>cent</strong> keyframe, never a <strong>dollar</strong> motion clip. Cut on real <strong>downbeats</strong>, not an approximate BPM. Render the 16:9 master <strong>once</strong>, derive all six platform formats.</p>
+<h2>The pipeline</h2>
+<pre><code>song → design brief → beat grid → shot plan → EDL → cost pre-flight (GATE)
+     → keyframes → motion → assembly → 6 formats → operator review
+</code></pre>
+<ul>
+<li><strong>Design brief first.</strong> No brief, no render. Audience, emotional arc, the 2-second hook.</li>
+<li><strong>Beat grid.</strong> <a href="https://github.com/CPJKU/beat_this">Beat This!</a> (ISMIR 2024 SOTA) sidecar emits real beat + downbeat timestamps; cuts land on bars. Falls back to BPM-derived bars when no grid.</li>
+<li><strong>EDL.</strong> An edit-decision-list decouples planning from rendering — swap HyperFrames ↔ Remotion freely.</li>
+<li><strong>Cost pre-flight gate.</strong> Exact $ + Higgsfield credits + ROI breakeven + resonance score, shown and approved before any spend.</li>
+<li><strong>Cost ledger.</strong> Reconciles estimate vs actual (<code>metrics.inference_time</code> × rate) so future quotes use history.</li>
+</ul>
+<h2>Surfaces (in this repo)</h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Library (the spine)</td>
+<td><code>lib/music-video/</code></td>
+</tr>
+<tr>
+<td>Producer skill</td>
+<td><code>.claude/skills/music-video-producer/</code></td>
+</tr>
+<tr>
+<td>Commands</td>
+<td><code>.claude/commands/{music-video,mv-render,mv-canvas,mv-artwork,mv-visualizer}.md</code></td>
+</tr>
+<tr>
+<td>Operator cockpit</td>
+<td><code>app/studio/music</code> → <code>/studio/music</code></td>
+</tr>
+<tr>
+<td>Catalog</td>
+<td><code>data/music/catalog.csv</code></td>
+</tr>
+<tr>
+<td>Suno prompt IP</td>
+<td><code>docs/music/suno/</code></td>
+</tr>
+<tr>
+<td>Beat-grid sidecar</td>
+<td><code>scripts/music-video/beatgrid.py</code></td>
+</tr>
+</tbody></table>
+<h2>Usage (library)</h2>
+<pre><code class="language-ts">import {
+  getSong, buildDefaultShotPlan, estimateCost,
+  buildPreflightCard, renderPreflightText,
+  edlFromPlan, validateEdl, FULL_RELEASE_FORMATS,
+} from &#39;@/lib/music-video&#39;
+
+const song = getSong(&#39;franks-vibes_20260529_the-awakening&#39;)!
+const plan = buildDefaultShotPlan({
+  songId: song.songId, songTitle: song.title, style: &#39;cinematic&#39;,
+  formats: FULL_RELEASE_FORMATS, durationSec: song.durationSeconds!, bpm: song.bpm,
+})
+const estimate = estimateCost(plan)
+const card = buildPreflightCard(plan, estimate, brief)
+console.log(renderPreflightText(card))   // ← show + approve before spending
+
+const edl = edlFromPlan(plan, &#39;bpm-fallback&#39;)   // hand to the compositor
+validateEdl(edl)                                 // { ok, issues[] }
+</code></pre>
+<h2>Usage (Claude Code)</h2>
+<pre><code>/music-video &lt;song&gt; --style=cinematic|character|anime|abstract|lyric --formats=full|social
+/mv-canvas &lt;song&gt;      # Spotify Canvas (8s loop, ≤8MB)
+/mv-artwork &lt;song&gt;     # Apple Music motion artwork (ProRes 1:1 + 3:4)
+/mv-visualizer &lt;song&gt;  # audio-reactive loop
+</code></pre>
+<h2>Requirements</h2>
+<ul>
+<li>Node 22+, FFmpeg, bundled Chrome (<code>npx hyperframes browser ensure</code>) for HyperFrames render.</li>
+<li><code>uv</code> for the Beat This! sidecar (first run downloads the checkpoint).</li>
+<li>A Higgsfield plan (default posture: Plus $49/mo, Kling 3.0 + Soul ID) and/or Gemini API key for Veo hero shots.</li>
+</ul>
+<h2>Engine posture (default)</h2>
+<p>Kling 3.0 via <strong>Higgsfield Plus</strong> as the workhorse (Soul ID locks the artist across every shot), <strong>Veo 3.1 Standard</strong> for the 2-3 hero shots that carry the video (native audio), <strong>Nano Banana Pro</strong> keyframes. Avoid Sora 2 — its API sunsets 2026-09-24. Rate card in <code>engines.ts</code>, verified June 2026.</p>
+<h2>License</h2>
+<p>Part of the FrankX Agentic Creator OS. The <code>lib/</code> is portable TypeScript.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>07 deploy</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/07-deploy.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">07 deploy</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>07-deploy.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 7
+subject: &quot;Primitive 6 — Deploy. Published is not deployed.&quot;
+preheader: &quot;Reading time: 5 min. Four parts of shipped.&quot;</h2>
+<p>An agent on your laptop is a demo. The deploy primitive turns it into a system.</p>
+<p>Deploy means <strong>four things</strong>, not one:</p>
+<ol>
+<li><strong>A public URL</strong> other systems can reach</li>
+<li><strong>Auth</strong> — not every endpoint should be open</li>
+<li><strong>Rate limits</strong> — at the network layer</li>
+<li><strong>Observability</strong> — logs, traces, cost tracking you can read</li>
+</ol>
+<p>Most beginners ship #1 and call it deployed. Then six weeks later they&#39;re surprised by an open agent endpoint, an API bill they can&#39;t explain, and a runaway loop they can&#39;t debug.</p>
+<p><strong>Published is not deployed.</strong></p>
+<h2>The four parts in code</h2>
+<pre><code class="language-ts">// 1. Public URL — vercel --prod gives you this
+
+// 2. Auth — protect tool-using endpoints with at least an API key
+import { NextRequest, NextResponse } from &#39;next/server&#39;
+
+export async function POST(req: NextRequest) {
+  const apiKey = req.headers.get(&#39;x-api-key&#39;)
+  if (apiKey !== process.env.AGENT_API_KEY) {
+    return NextResponse.json({ error: &#39;unauthorized&#39; }, { status: 401 })
+  }
+  // ... agent logic
+}
+
+// 3. Rate limit — Vercel KV + Upstash Ratelimit
+import { Ratelimit } from &#39;@upstash/ratelimit&#39;
+const ratelimit = new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(10, &#39;1 m&#39;) })
+
+// 4. Observability — onStepFinish callback in Vercel AI SDK
+await generateObject({
+  model,
+  system: SYSTEM_PROMPT,
+  messages,
+  schema: ResearchSchema,
+  tools: { web_search: webSearch },
+  maxSteps: 5,
+  onStepFinish: ({ toolCalls, usage }) =&gt; {
+    log.info({
+      timestamp: Date.now(),
+      toolCalls: toolCalls?.length ?? 0,
+      promptTokens: usage.promptTokens,
+      completionTokens: usage.completionTokens,
+      cost: estimateCost(usage),
+    })
+  },
+})
+</code></pre>
+<p>That&#39;s the whole deploy primitive. Four parts. None of them optional in production.</p>
+<h2>The architectural test</h2>
+<p>If your agent misbehaved right now, could you tell what it did from the logs?</p>
+<p>If yes — you deployed.</p>
+<p>If no — you published.</p>
+<h2>What &quot;observability&quot; actually means</h2>
+<p>You don&#39;t need a fancy tracing platform to start. The minimum is one log line per agent step:</p>
+<ul>
+<li>Timestamp</li>
+<li>Tool calls made</li>
+<li>Tokens used (input + output)</li>
+<li>Estimated cost in fractions of a cent</li>
+<li>Latency</li>
+</ul>
+<p>Vercel logs stream into the dashboard automatically. For anything more serious — replay, distributed tracing — look at:</p>
+<ul>
+<li><strong>Langfuse</strong> — best if you&#39;re standardizing on LangChain ecosystem</li>
+<li><strong>Helicone</strong> — drop-in proxy, easy to start</li>
+<li><strong>OpenTelemetry</strong> — open-source, integrates with Grafana / Datadog</li>
+</ul>
+<p>Pick one. Don&#39;t ship without it.</p>
+<h2>Today&#39;s exercise (10 minutes)</h2>
+<p>Two parts:</p>
+<p><strong>Part 1:</strong> Deploy the starter repo to Vercel. Set environment variables in the Vercel dashboard. Verify your agent is live at <code>https://your-name.vercel.app</code>.</p>
+<p><strong>Part 2:</strong> Add a log line to <code>src/agent/loop.ts</code>:</p>
+<pre><code class="language-ts">onStepFinish: ({ toolCalls, usage }) =&gt; {
+  console.log(JSON.stringify({
+    sessionId: &#39;demo&#39;,
+    toolCalls: toolCalls?.length ?? 0,
+    tokens: usage.totalTokens,
+  }))
+}
+</code></pre>
+<p>Redeploy. Send a query. Open Vercel dashboard → your project → logs. You should see the log line.</p>
+<p>That&#39;s observability working — the bare minimum, but better than nothing.</p>
+<h2>A short case</h2>
+<p>A FrankX customer&#39;s agent had a 30-day API bill that was 8x normal. They had no logs and no idea what happened. We added the <code>onStepFinish</code> log line. Within an hour they spotted the issue: a single query was triggering 47 tool calls because their <code>fetch_pricing_tier</code> tool returned ambiguous data and the model kept retrying.</p>
+<p>Without observability, that bill would have repeated next month. With observability, the fix was a 5-line tool change.</p>
+<h2>Tomorrow</h2>
+<p>Day 8 — putting it all together: shipping a research-assistant agent in 90 minutes (the actual workshop walkthrough, abbreviated).</p>
+<p>— Frank</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

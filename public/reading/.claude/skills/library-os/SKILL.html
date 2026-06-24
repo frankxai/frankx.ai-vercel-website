@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Library OS</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/library-os/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Library OS</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Flibrary-os">library-os</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: library-os
+description: Library OS — the persistent digital library system. Use when adding a book, deepening an existing review, extracting insights from handwritten notes / highlights / photos, or when the user wants to build their own library on their site. Handles the full workflow from capture to publish.</h2>
+<h1>Library OS</h1>
+<p><strong>The open-source Library Intelligence System.</strong> Captures everything you read into a permanent, intelligent, citation-ready knowledge library on your own website.</p>
+<h2>When to use this skill</h2>
+<ul>
+<li>User mentions adding a book, book review, reading list, library</li>
+<li>User shares handwritten notes, book highlights, Kindle exports, or a photo of notes</li>
+<li>User says &quot;I just finished [book]&quot; or &quot;let me capture this book&quot;</li>
+<li>User asks about the book system, /library/*, or wants to port it to another site</li>
+<li>User wants to deepen a shallow review into a hub page</li>
+</ul>
+<h2>Core philosophy</h2>
+<ol>
+<li><strong>Own your library.</strong> Kindle highlights die in Kindle. Notion docs scatter. A library on your own site, in git, becomes a permanent asset that compounds for decades.</li>
+<li><strong>Data schema is the spine.</strong> The template is interchangeable; the <code>BookReview</code> type + its sub-types are the interoperable core. Port to any Next.js, Astro, SvelteKit, or even static HTML.</li>
+<li><strong>Structured, not scraped.</strong> Every book is curated — quotes carry chapter references, chapter summaries carry key ideas, related reading carries a <em>reason</em>, not a category tag.</li>
+<li><strong>AEO-first.</strong> Every book page emits BreadcrumbList + Article + Review + FAQPage + Quotation schema. Citation surface is the product.</li>
+<li><strong>Repeatable, not bespoke.</strong> One data schema, one template, one command pipeline. Every new book follows the same path. No snowflakes.</li>
+</ol>
+<h2>The workflow (canonical)</h2>
+<pre><code>CAPTURE ──────► EXTRACT ──────► ENRICH ──────► PUBLISH
+   │                │                │              │
+   ▼                ▼                ▼              ▼
+Photo, notes,   quotes[]      continueReading[]   /library/{slug}
+Kindle export,  chapters[]    videos[]            (live, SEO+AEO)
+voice memo      tldr, faq     + schema
+</code></pre>
+<p><strong>Step 1 — CAPTURE</strong>
+The user provides the raw signal: a book title, a handwritten note photo, a highlights export, a voice memo. If a photo, extract text via vision. If a file, read it.</p>
+<p><strong>Step 2 — EXTRACT</strong>
+Run <code>/library-add</code> to create the baseline entry (title, author, categories, 5 key insights, best-for, FAQ, TL;DR, cover). Then run <code>/library-deepen</code> to populate <code>quotes</code> and <code>chapters</code> via the <code>book-distiller</code> subagent.</p>
+<p><strong>Step 3 — ENRICH</strong>
+Run <code>/library-research</code> to populate <code>continueReading</code> (external books with why-they-pair rationale) and <code>videos</code> (talks, interviews, lectures).</p>
+<p><strong>Step 4 — PUBLISH</strong>
+Commit, sync to production repo, ship. Page goes live at <code>/library/{slug}</code> with the full deep-dive hub: TL;DR, TOC, insights, quotes, chapters, FAQ, continue-reading, videos, related-own-book, Amazon CTA.</p>
+<h2>The three slash commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+<th>Writes to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/library-add</code></td>
+<td>Create a new entry from just a title</td>
+<td><code>data/book-reviews.ts</code>, <code>public/images/library/</code></td>
+</tr>
+<tr>
+<td><code>/library-deepen</code></td>
+<td>Add quotes + chapters to existing entry</td>
+<td><code>data/book-reviews.ts</code></td>
+</tr>
+<tr>
+<td><code>/library-research</code></td>
+<td>Add continueReading + videos</td>
+<td><code>data/book-reviews.ts</code></td>
+</tr>
+</tbody></table>
+<p>Run in order. Each is idempotent — running <code>/library-deepen</code> twice just refines the existing quotes/chapters, it does not duplicate.</p>
+<h2>The subagent</h2>
+<p><strong>book-distiller</strong> — the extraction specialist. Given a book + (optional) source text, returns structured <code>quotes[]</code> and <code>chapters[]</code> matching the exact type shape. Delegated to by <code>/library-deepen</code> so the main conversation stays thin.</p>
+<p>See <code>.claude/agents/book-distiller.md</code> for the agent prompt.</p>
+<h2>The data schema (always the source of truth)</h2>
+<p>Located at <code>app/books/types.ts</code>:</p>
+<pre><code class="language-ts">interface BookReview {
+  // Identity
+  slug, title, author, coverImage, rating, reviewDate, categories, readingTime
+
+  // Core content (required)
+  keyInsights: string[]  // exactly 5
+  bestFor: string[]      // 3-4
+
+  // AEO core (optional, strongly recommended)
+  tldr?: string
+  faq?: Array&lt;{q, a}&gt;
+  publicationYear?: number
+
+  // Deep-dive hub (optional — the progressive depth layer)
+  quotes?: BookQuote[]                // curated passages
+  chapters?: BookChapterSummary[]     // number, title, keyIdea, summary
+  continueReading?: RelatedReadingItem[]  // with reason, not algorithm
+  videos?: BookVideo[]                // kind, duration, description
+
+  // Wiring
+  amazonUrl?: string
+  relatedBook?: string     // slug from booksRegistry — links to our own books
+  hasCover?: boolean       // gates the next/image render
+}
+</code></pre>
+<p>Books without the deep-dive fields render as review-depth. Books with all fields render as full knowledge hubs. One template, progressive depth.</p>
+<h2>Cross-AI / cross-tool portability</h2>
+<p>The intelligence is in the <strong>schema + workflow</strong>, not in any specific AI tool. The same pattern works with:</p>
+<ul>
+<li><strong>Claude Code (native)</strong> — the three slash commands + subagent + skill are defined here</li>
+<li><strong>ChatGPT / Claude.ai (web)</strong> — paste the extraction prompt from the command file, paste the book details, get structured output, paste into <code>data/book-reviews.ts</code></li>
+<li><strong>Codex / Cursor / Gemini CLI</strong> — read <code>.claude/commands/library-*.md</code> as plain instructions, execute the steps</li>
+<li><strong>Hand-roll</strong> — the schema and template work without any AI. Manually curated libraries are valid.</li>
+</ul>
+<p>See <code>docs/cross-ai-guide.md</code> in the library-os repo for the prompt-paste versions.</p>
+<h2>Deployment targets</h2>
+<p>The template is Next.js App Router (frankx.ai uses this). Adaptations:</p>
+<ul>
+<li><strong>Astro</strong> — Port <code>app/library/</code> to <code>src/pages/library/</code>, use <code>.astro</code> for layout. Data schema unchanged.</li>
+<li><strong>SvelteKit</strong> — <code>routes/library/+page.svelte</code>, data unchanged.</li>
+<li><strong>Hugo</strong> — static generation, the <code>BookReview[]</code> becomes frontmatter YAML in <code>content/library/*.md</code>.</li>
+<li><strong>Plain HTML</strong> — a small build script renders the data to static pages.</li>
+</ul>
+<p>The spine — <code>data/book-reviews.ts</code> as a typed array + the JSON-LD schema — is portable.</p>
+<h2>Index page contract</h2>
+<p>The library index (<code>/library</code>) shows:</p>
+<ul>
+<li>All reviews sorted by <code>reviewDate</code> DESC (newest first)</li>
+<li>Cards with cover + title + author + star rating + top insight</li>
+<li>&quot;Deep-dive badge&quot; on cards that have quotes/chapters/videos (e.g. &quot;16 quotes · 14 chapters · 5 videos&quot;)</li>
+<li>Category filter (optional, client-side)</li>
+<li>CollectionPage + ItemList + BreadcrumbList JSON-LD</li>
+</ul>
+<h2>Detail page contract</h2>
+<p>The detail page (<code>/library/{slug}</code>) renders, in order:</p>
+<ol>
+<li>Back link → <code>/library</code></li>
+<li>Header: cover + title + author + stars + category chips</li>
+<li>TL;DR card (if <code>tldr</code>)</li>
+<li>Table of Contents (inline anchor nav, sections only shown when data present)</li>
+<li>Key Insights (5)</li>
+<li>Quotes Worth Remembering (if <code>quotes</code>)</li>
+<li>Chapter-by-Chapter accordion (if <code>chapters</code>)</li>
+<li>Best For</li>
+<li>FAQ accordion (if <code>faq</code>)</li>
+<li>Continue Reading grid (if <code>continueReading</code>)</li>
+<li>Go Deeper — Videos (if <code>videos</code>)</li>
+<li>&quot;If You Liked This, Read Ours&quot; (if <code>relatedBook</code> matches a slug in booksRegistry)</li>
+<li>Amazon CTA</li>
+<li>More from the Library (3 other reviews)</li>
+</ol>
+<p>All section IDs are anchor-linkable with <code>scroll-mt-24</code> for smooth jumps from the TOC.</p>
+<h2>Quality bar</h2>
+<ul>
+<li><strong>No AI-sounding phrases.</strong> Blacklist: delve, dive into, it&#39;s worth noting, certainly, absolutely, in conclusion, let&#39;s explore.</li>
+<li><strong>No fake URLs.</strong> If uncertain about a specific video URL, use a YouTube search URL. Better a search than a dead link.</li>
+<li><strong>No blurb-style recommendations.</strong> Every <code>continueReading.reason</code> must state a <em>connection</em>, not a summary.</li>
+<li><strong>No chapter fabrication.</strong> If the book&#39;s chapter list is uncertain, stop and ask for the table of contents. Never invent chapters.</li>
+<li><strong>Cover images from legitimate sources.</strong> OpenLibrary (<code>covers.openlibrary.org/b/isbn/{ISBN}-L.jpg</code>) is fair-use for review purposes. Never scrape Amazon product images.</li>
+</ul>
+<h2>Git workflow</h2>
+<p>Library changes live in the FrankX dev repo but deploy via the production repo (<code>frankxai/frankx.ai-vercel-website</code>). Standard pattern:</p>
+<ol>
+<li>Commit library changes in FrankX dev repo (scoped: <code>app/library/</code>, <code>app/books/types.ts</code>, <code>data/book-reviews.ts</code>, <code>public/images/library/</code>)</li>
+<li>Create isolated worktree from prod <code>origin/main</code></li>
+<li>Sync those exact files into the worktree</li>
+<li>Commit in worktree, push branch, open PR</li>
+<li>Admin-merge after Vercel preview passes (CI will show pre-existing tech debt — ignore per issue #31)</li>
+<li>Verify live on frankx.ai</li>
+</ol>
+<h2>Related</h2>
+<ul>
+<li><code>/library</code> → the live index</li>
+<li><code>/library/approach</code> → the showcase page explaining the system</li>
+<li>GitHub: <code>library-os</code> repo → open-source template + docs</li>
+<li>Companion skill: <code>book-publishing</code> (for authoring own books)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

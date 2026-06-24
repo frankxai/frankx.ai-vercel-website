@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/ship/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fship">ship</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: ship
+version: 1.0.0
+description: |
+  Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION, update CHANGELOG, commit, push, create PR. Use when asked to &quot;ship&quot;, &quot;deploy&quot;, &quot;push to main&quot;, &quot;create a PR&quot;, or &quot;merge and push&quot;.
+  Proactively suggest when the user says code is ready or asks about deploying.
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - Glob
+  - Agent
+  - AskUserQuestion
+  - WebSearch</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;ship&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>Step 0: Detect base branch</h2>
+<p>Determine which branch this PR targets. Use the result as &quot;the base branch&quot; in all subsequent steps.</p>
+<ol>
+<li><p>Check if a PR already exists for this branch:
+<code>gh pr view --json baseRefName -q .baseRefName</code>
+If this succeeds, use the printed branch name as the base branch.</p>
+</li>
+<li><p>If no PR exists (command fails), detect the repo&#39;s default branch:
+<code>gh repo view --json defaultBranchRef -q .defaultBranchRef.name</code></p>
+</li>
+<li><p>If both commands fail, fall back to <code>main</code>.</p>
+</li>
+</ol>
+<p>Print the detected base branch name. In every subsequent <code>git diff</code>, <code>git log</code>,
+<code>git fetch</code>, <code>git merge</code>, and <code>gh pr create</code> command, substitute the detected
+branch name wherever the instructions say &quot;the base branch.&quot;</p>
+<hr>
+<h1>Ship: Fully Automated Ship Workflow</h1>
+<p>You are running the <code>/ship</code> workflow. This is a <strong>non-interactive, fully automated</strong> workflow. Do NOT ask for confirmation at any step. The user said <code>/ship</code> which means DO IT. Run straight through and output the PR URL at the end.</p>
+<p><strong>Only stop for:</strong></p>
+<ul>
+<li>On the base branch (abort)</li>
+<li>Merge conflicts that can&#39;t be auto-resolved (stop, show conflicts)</li>
+<li>In-branch test failures (pre-existing failures are triaged, not auto-blocking)</li>
+<li>Pre-landing review finds ASK items that need user judgment</li>
+<li>MINOR or MAJOR version bump needed (ask — see Step 4)</li>
+<li>Greptile review comments that need user decision (complex fixes, false positives)</li>
+<li>TODOS.md missing and user wants to create one (ask — see Step 5.5)</li>
+<li>TODOS.md disorganized and user wants to reorganize (ask — see Step 5.5)</li>
+</ul>
+<p><strong>Never stop for:</strong></p>
+<ul>
+<li>Uncommitted changes (always include them)</li>
+<li>Version bump choice (auto-pick MICRO or PATCH — see Step 4)</li>
+<li>CHANGELOG content (auto-generate from diff)</li>
+<li>Commit message approval (auto-commit)</li>
+<li>Multi-file changesets (auto-split into bisectable commits)</li>
+<li>TODOS.md completed-item detection (auto-mark)</li>
+<li>Auto-fixable review findings (dead code, N+1, stale comments — fixed automatically)</li>
+<li>Test coverage gaps (auto-generate and commit, or flag in PR body)</li>
+</ul>
+<hr>
+<h2>Step 1: Pre-flight</h2>
+<ol>
+<li><p>Check the current branch. If on the base branch or the repo&#39;s default branch, <strong>abort</strong>: &quot;You&#39;re on the base branch. Ship from a feature branch.&quot;</p>
+</li>
+<li><p>Run <code>git status</code> (never use <code>-uall</code>). Uncommitted changes are always included — no need to ask.</p>
+</li>
+<li><p>Run <code>git diff &lt;base&gt;...HEAD --stat</code> and <code>git log &lt;base&gt;..HEAD --oneline</code> to understand what&#39;s being shipped.</p>
+</li>
+<li><p>Check review readiness:</p>
+</li>
+</ol>
+<h2>Review Readiness Dashboard</h2>
+<p>After completing the review, read the review log and config to display the dashboard.</p>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-review-read
+</code></pre>
+<p>Parse the output. Find the most recent entry for each skill (plan-ceo-review, plan-eng-review, plan-design-review, design-review-lite, adversarial-review, codex-review). Ignore entries with timestamps older than 7 days. For the Adversarial row, show whichever is more recent between <code>adversarial-review</code> (new auto-scaled) and <code>codex-review</code> (legacy). For Design Review, show whichever is more recent between <code>plan-design-review</code> (full visual audit) and <code>design-review-lite</code> (code-level check). Append &quot;(FULL)&quot; or &quot;(LITE)&quot; to the status to distinguish. Display:</p>
+<pre><code>+====================================================================+
+|                    REVIEW READINESS DASHBOARD                       |
++====================================================================+
+| Review          | Runs | Last Run            | Status    | Required |
+|-----------------|------|---------------------|-----------|----------|
+| Eng Review      |  1   | 2026-03-16 15:00    | CLEAR     | YES      |
+| CEO Review      |  0   | —                   | —         | no       |
+| Design Review   |  0   | —                   | —         | no       |
+| Adversarial     |  0   | —                   | —         | no       |
++--------------------------------------------------------------------+
+| VERDICT: CLEARED — Eng Review passed                                |
++====================================================================+
+</code></pre>
+<p><strong>Review tiers:</strong></p>
+<ul>
+<li><strong>Eng Review (required by default):</strong> The only review that gates shipping. Covers architecture, code quality, tests, performance. Can be disabled globally with `gstack-config set skip_eng_review true` (the &quot;don&#39;t bother me&quot; setting).</li>
+<li><strong>CEO Review (optional):</strong> Use your judgment. Recommend it for big product/business changes, new user-facing features, or scope decisions. Skip for bug fixes, refactors, infra, and cleanup.</li>
+<li><strong>Design Review (optional):</strong> Use your judgment. Recommend it for UI/UX changes. Skip for backend-only, infra, or prompt-only changes.</li>
+<li><strong>Adversarial Review (automatic):</strong> Auto-scales by diff size. Small diffs (&lt;50 lines) skip adversarial. Medium diffs (50–199) get cross-model adversarial. Large diffs (200+) get all 4 passes: Claude structured, Codex structured, Claude adversarial subagent, Codex adversarial. No configuration needed.</li>
+</ul>
+<p><strong>Verdict logic:</strong></p>
+<ul>
+<li><strong>CLEARED</strong>: Eng Review has &gt;= 1 entry within 7 days with status &quot;clean&quot; (or `skip_eng_review` is `true`)</li>
+<li><strong>NOT CLEARED</strong>: Eng Review missing, stale (&gt;7 days), or has open issues</li>
+<li>CEO, Design, and Codex reviews are shown for context but never block shipping</li>
+<li>If `skip_eng_review` config is `true`, Eng Review shows &quot;SKIPPED (global)&quot; and verdict is CLEARED</li>
+</ul>
+<p><strong>Staleness detection:</strong> After displaying the dashboard, check if any existing reviews may be stale:</p>
+<ul>
+<li>Parse the `---HEAD---` section from the bash output to get the current HEAD commit hash</li>
+<li>For each review entry that has a `commit` field: compare it against the current HEAD. If different, count elapsed commits: `git rev-list --count STORED_COMMIT..HEAD`. Display: &quot;Note: {skill} review from {date} may be stale — {N} commits since review&quot;</li>
+<li>For entries without a `commit` field (legacy entries): display &quot;Note: {skill} review from {date} has no commit tracking — consider re-running for accurate staleness detection&quot;</li>
+<li>If all reviews match the current HEAD, do not display any staleness notes</li>
+</ul>
+<p>If the Eng Review is NOT &quot;CLEAR&quot;:</p>
+<ol>
+<li><p><strong>Check for a prior override on this branch:</strong></p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null)
+grep &#39;&quot;skill&quot;:&quot;ship-review-override&quot;&#39; ~/.gstack/projects/$SLUG/$BRANCH-reviews.jsonl 2&gt;/dev/null || echo &quot;NO_OVERRIDE&quot;
+</code></pre>
+<p>If an override exists, display the dashboard and note &quot;Review gate previously accepted — continuing.&quot; Do NOT ask again.</p>
+</li>
+<li><p><strong>If no override exists,</strong> use AskUserQuestion:</p>
+<ul>
+<li>Show that Eng Review is missing or has open issues</li>
+<li>RECOMMENDATION: Choose C if the change is obviously trivial (&lt; 20 lines, typo fix, config-only); Choose B for larger changes</li>
+<li>Options: A) Ship anyway  B) Abort — run /plan-eng-review first  C) Change is too small to need eng review</li>
+<li>If CEO Review is missing, mention as informational (&quot;CEO Review not run — recommended for product changes&quot;) but do NOT block</li>
+<li>For Design Review: run <code>source &lt;(~/.claude/skills/gstack/bin/gstack-diff-scope &lt;base&gt; 2&gt;/dev/null)</code>. If <code>SCOPE_FRONTEND=true</code> and no design review (plan-design-review or design-review-lite) exists in the dashboard, mention: &quot;Design Review not run — this PR changes frontend code. The lite design check will run automatically in Step 3.5, but consider running /design-review for a full visual audit post-implementation.&quot; Still never block.</li>
+</ul>
+</li>
+<li><p><strong>If the user chooses A or C,</strong> persist the decision so future <code>/ship</code> runs on this branch skip the gate:</p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null)
+echo &#39;{&quot;skill&quot;:&quot;ship-review-override&quot;,&quot;timestamp&quot;:&quot;&#39;&quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot;&#39;&quot;,&quot;decision&quot;:&quot;USER_CHOICE&quot;}&#39; &gt;&gt; ~/.gstack/projects/$SLUG/$BRANCH-reviews.jsonl
+</code></pre>
+<p>Substitute USER_CHOICE with &quot;ship_anyway&quot; or &quot;not_relevant&quot;.</p>
+</li>
+</ol>
+<hr>
+<h2>Step 2: Merge the base branch (BEFORE tests)</h2>
+<p>Fetch and merge the base branch into the feature branch so tests run against the merged state:</p>
+<pre><code class="language-bash">git fetch origin &lt;base&gt; &amp;&amp; git merge origin/&lt;base&gt; --no-edit
+</code></pre>
+<p><strong>If there are merge conflicts:</strong> Try to auto-resolve if they are simple (VERSION, schema.rb, CHANGELOG ordering). If conflicts are complex or ambiguous, <strong>STOP</strong> and show them.</p>
+<p><strong>If already up to date:</strong> Continue silently.</p>
+<hr>
+<h2>Step 2.5: Test Framework Bootstrap</h2>
+<h2>Test Framework Bootstrap</h2>
+<p><strong>Detect existing test framework and project runtime:</strong></p>
+<pre><code class="language-bash"># Detect project runtime
+[ -f Gemfile ] &amp;&amp; echo &quot;RUNTIME:ruby&quot;
+[ -f package.json ] &amp;&amp; echo &quot;RUNTIME:node&quot;
+[ -f requirements.txt ] || [ -f pyproject.toml ] &amp;&amp; echo &quot;RUNTIME:python&quot;
+[ -f go.mod ] &amp;&amp; echo &quot;RUNTIME:go&quot;
+[ -f Cargo.toml ] &amp;&amp; echo &quot;RUNTIME:rust&quot;
+[ -f composer.json ] &amp;&amp; echo &quot;RUNTIME:php&quot;
+[ -f mix.exs ] &amp;&amp; echo &quot;RUNTIME:elixir&quot;
+# Detect sub-frameworks
+[ -f Gemfile ] &amp;&amp; grep -q &quot;rails&quot; Gemfile 2&gt;/dev/null &amp;&amp; echo &quot;FRAMEWORK:rails&quot;
+[ -f package.json ] &amp;&amp; grep -q &#39;&quot;next&quot;&#39; package.json 2&gt;/dev/null &amp;&amp; echo &quot;FRAMEWORK:nextjs&quot;
+# Check for existing test infrastructure
+ls jest.config.* vitest.config.* playwright.config.* .rspec pytest.ini pyproject.toml phpunit.xml 2&gt;/dev/null
+ls -d test/ tests/ spec/ __tests__/ cypress/ e2e/ 2&gt;/dev/null
+# Check opt-out marker
+[ -f .gstack/no-test-bootstrap ] &amp;&amp; echo &quot;BOOTSTRAP_DECLINED&quot;
+</code></pre>
+<p><strong>If test framework detected</strong> (config files or test directories found):
+Print &quot;Test framework detected: {name} ({N} existing tests). Skipping bootstrap.&quot;
+Read 2-3 existing test files to learn conventions (naming, imports, assertion style, setup patterns).
+Store conventions as prose context for use in Phase 8e.5 or Step 3.4. <strong>Skip the rest of bootstrap.</strong></p>
+<p><strong>If BOOTSTRAP_DECLINED</strong> appears: Print &quot;Test bootstrap previously declined — skipping.&quot; <strong>Skip the rest of bootstrap.</strong></p>
+<p><strong>If NO runtime detected</strong> (no config files found): Use AskUserQuestion:
+&quot;I couldn&#39;t detect your project&#39;s language. What runtime are you using?&quot;
+Options: A) Node.js/TypeScript B) Ruby/Rails C) Python D) Go E) Rust F) PHP G) Elixir H) This project doesn&#39;t need tests.
+If user picks H → write <code>.gstack/no-test-bootstrap</code> and continue without tests.</p>
+<p><strong>If runtime detected but no test framework — bootstrap:</strong></p>
+<h3>B2. Research best practices</h3>
+<p>Use WebSearch to find current best practices for the detected runtime:</p>
+<ul>
+<li><code>&quot;[runtime] best test framework 2025 2026&quot;</code></li>
+<li><code>&quot;[framework A] vs [framework B] comparison&quot;</code></li>
+</ul>
+<p>If WebSearch is unavailable, use this built-in knowledge table:</p>
+<table>
+<thead>
+<tr>
+<th>Runtime</th>
+<th>Primary recommendation</th>
+<th>Alternative</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ruby/Rails</td>
+<td>minitest + fixtures + capybara</td>
+<td>rspec + factory_bot + shoulda-matchers</td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>vitest + @testing-library</td>
+<td>jest + @testing-library</td>
+</tr>
+<tr>
+<td>Next.js</td>
+<td>vitest + @testing-library/react + playwright</td>
+<td>jest + cypress</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>pytest + pytest-cov</td>
+<td>unittest</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>stdlib testing + testify</td>
+<td>stdlib only</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>cargo test (built-in) + mockall</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td>phpunit + mockery</td>
+<td>pest</td>
+</tr>
+<tr>
+<td>Elixir</td>
+<td>ExUnit (built-in) + ex_machina</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3>B3. Framework selection</h3>
+<p>Use AskUserQuestion:
+&quot;I detected this is a [Runtime/Framework] project with no test framework. I researched current best practices. Here are the options:
+A) [Primary] — [rationale]. Includes: [packages]. Supports: unit, integration, smoke, e2e
+B) [Alternative] — [rationale]. Includes: [packages]
+C) Skip — don&#39;t set up testing right now
+RECOMMENDATION: Choose A because [reason based on project context]&quot;</p>
+<p>If user picks C → write <code>.gstack/no-test-bootstrap</code>. Tell user: &quot;If you change your mind later, delete <code>.gstack/no-test-bootstrap</code> and re-run.&quot; Continue without tests.</p>
+<p>If multiple runtimes detected (monorepo) → ask which runtime to set up first, with option to do both sequentially.</p>
+<h3>B4. Install and configure</h3>
+<ol>
+<li>Install the chosen packages (npm/bun/gem/pip/etc.)</li>
+<li>Create minimal config file</li>
+<li>Create directory structure (test/, spec/, etc.)</li>
+<li>Create one example test matching the project&#39;s code to verify setup works</li>
+</ol>
+<p>If package installation fails → debug once. If still failing → revert with <code>git checkout -- package.json package-lock.json</code> (or equivalent for the runtime). Warn user and continue without tests.</p>
+<h3>B4.5. First real tests</h3>
+<p>Generate 3-5 real tests for existing code:</p>
+<ol>
+<li><strong>Find recently changed files:</strong> <code>git log --since=30.days --name-only --format=&quot;&quot; | sort | uniq -c | sort -rn | head -10</code></li>
+<li><strong>Prioritize by risk:</strong> Error handlers &gt; business logic with conditionals &gt; API endpoints &gt; pure functions</li>
+<li><strong>For each file:</strong> Write one test that tests real behavior with meaningful assertions. Never <code>expect(x).toBeDefined()</code> — test what the code DOES.</li>
+<li>Run each test. Passes → keep. Fails → fix once. Still fails → delete silently.</li>
+<li>Generate at least 1 test, cap at 5.</li>
+</ol>
+<p>Never import secrets, API keys, or credentials in test files. Use environment variables or test fixtures.</p>
+<h3>B5. Verify</h3>
+<pre><code class="language-bash"># Run the full test suite to confirm everything works
+{detected test command}
+</code></pre>
+<p>If tests fail → debug once. If still failing → revert all bootstrap changes and warn user.</p>
+<h3>B5.5. CI/CD pipeline</h3>
+<pre><code class="language-bash"># Check CI provider
+ls -d .github/ 2&gt;/dev/null &amp;&amp; echo &quot;CI:github&quot;
+ls .gitlab-ci.yml .circleci/ bitrise.yml 2&gt;/dev/null
+</code></pre>
+<p>If <code>.github/</code> exists (or no CI detected — default to GitHub Actions):
+Create <code>.github/workflows/test.yml</code> with:</p>
+<ul>
+<li><code>runs-on: ubuntu-latest</code></li>
+<li>Appropriate setup action for the runtime (setup-node, setup-ruby, setup-python, etc.)</li>
+<li>The same test command verified in B5</li>
+<li>Trigger: push + pull_request</li>
+</ul>
+<p>If non-GitHub CI detected → skip CI generation with note: &quot;Detected {provider} — CI pipeline generation supports GitHub Actions only. Add test step to your existing pipeline manually.&quot;</p>
+<h3>B6. Create TESTING.md</h3>
+<p>First check: If TESTING.md already exists → read it and update/append rather than overwriting. Never destroy existing content.</p>
+<p>Write TESTING.md with:</p>
+<ul>
+<li>Philosophy: &quot;100% test coverage is the key to great vibe coding. Tests let you move fast, trust your instincts, and ship with confidence — without them, vibe coding is just yolo coding. With tests, it&#39;s a superpower.&quot;</li>
+<li>Framework name and version</li>
+<li>How to run tests (the verified command from B5)</li>
+<li>Test layers: Unit tests (what, where, when), Integration tests, Smoke tests, E2E tests</li>
+<li>Conventions: file naming, assertion style, setup/teardown patterns</li>
+</ul>
+<h3>B7. Update CLAUDE.md</h3>
+<p>First check: If CLAUDE.md already has a <code>## Testing</code> section → skip. Don&#39;t duplicate.</p>
+<p>Append a <code>## Testing</code> section:</p>
+<ul>
+<li>Run command and test directory</li>
+<li>Reference to TESTING.md</li>
+<li>Test expectations:<ul>
+<li>100% test coverage is the goal — tests make vibe coding safe</li>
+<li>When writing new functions, write a corresponding test</li>
+<li>When fixing a bug, write a regression test</li>
+<li>When adding error handling, write a test that triggers the error</li>
+<li>When adding a conditional (if/else, switch), write tests for BOTH paths</li>
+<li>Never commit code that makes existing tests fail</li>
+</ul>
+</li>
+</ul>
+<h3>B8. Commit</h3>
+<pre><code class="language-bash">git status --porcelain
+</code></pre>
+<p>Only commit if there are changes. Stage all bootstrap files (config, test directory, TESTING.md, CLAUDE.md, .github/workflows/test.yml if created):
+<code>git commit -m &quot;chore: bootstrap test framework ({framework name})&quot;</code></p>
+<hr>
+<hr>
+<h2>Step 3: Run tests (on merged code)</h2>
+<p><strong>Do NOT run <code>RAILS_ENV=test bin/rails db:migrate</code></strong> — <code>bin/test-lane</code> already calls
+<code>db:test:prepare</code> internally, which loads the schema into the correct lane database.
+Running bare test migrations without INSTANCE hits an orphan DB and corrupts structure.sql.</p>
+<p>Run both test suites in parallel:</p>
+<pre><code class="language-bash">bin/test-lane 2&gt;&amp;1 | tee /tmp/ship_tests.txt &amp;
+npm run test 2&gt;&amp;1 | tee /tmp/ship_vitest.txt &amp;
+wait
+</code></pre>
+<p>After both complete, read the output files and check pass/fail.</p>
+<p><strong>If any test fails:</strong> Do NOT immediately stop. Apply the Test Failure Ownership Triage:</p>
+<h2>Test Failure Ownership Triage</h2>
+<p>When tests fail, do NOT immediately stop. First, determine ownership:</p>
+<h3>Step T1: Classify each failure</h3>
+<p>For each failing test:</p>
+<ol>
+<li><p><strong>Get the files changed on this branch:</strong></p>
+<pre><code class="language-bash">git diff origin/&lt;base&gt;...HEAD --name-only
+</code></pre>
+</li>
+<li><p><strong>Classify the failure:</strong></p>
+<ul>
+<li><strong>In-branch</strong> if: the failing test file itself was modified on this branch, OR the test output references code that was changed on this branch, OR you can trace the failure to a change in the branch diff.</li>
+<li><strong>Likely pre-existing</strong> if: neither the test file nor the code it tests was modified on this branch, AND the failure is unrelated to any branch change you can identify.</li>
+<li><strong>When ambiguous, default to in-branch.</strong> It is safer to stop the developer than to let a broken test ship. Only classify as pre-existing when you are confident.</li>
+</ul>
+<p>This classification is heuristic — use your judgment reading the diff and the test output. You do not have a programmatic dependency graph.</p>
+</li>
+</ol>
+<h3>Step T2: Handle in-branch failures</h3>
+<p><strong>STOP.</strong> These are your failures. Show them and do not proceed. The developer must fix their own broken tests before shipping.</p>
+<h3>Step T3: Handle pre-existing failures</h3>
+<p>Check <code>REPO_MODE</code> from the preamble output.</p>
+<p><strong>If REPO_MODE is <code>solo</code>:</strong></p>
+<p>Use AskUserQuestion:</p>
+<blockquote>
+<p>These test failures appear pre-existing (not caused by your branch changes):</p>
+<p>[list each failure with file:line and brief error description]</p>
+<p>Since this is a solo repo, you&#39;re the only one who will fix these.</p>
+<p>RECOMMENDATION: Choose A — fix now while the context is fresh. Completeness: 9/10.
+A) Investigate and fix now (human: ~2-4h / CC: ~15min) — Completeness: 10/10
+B) Add as P0 TODO — fix after this branch lands — Completeness: 7/10
+C) Skip — I know about this, ship anyway — Completeness: 3/10</p>
+</blockquote>
+<p><strong>If REPO_MODE is <code>collaborative</code> or <code>unknown</code>:</strong></p>
+<p>Use AskUserQuestion:</p>
+<blockquote>
+<p>These test failures appear pre-existing (not caused by your branch changes):</p>
+<p>[list each failure with file:line and brief error description]</p>
+<p>This is a collaborative repo — these may be someone else&#39;s responsibility.</p>
+<p>RECOMMENDATION: Choose B — assign it to whoever broke it so the right person fixes it. Completeness: 9/10.
+A) Investigate and fix now anyway — Completeness: 10/10
+B) Blame + assign GitHub issue to the author — Completeness: 9/10
+C) Add as P0 TODO — Completeness: 7/10
+D) Skip — ship anyway — Completeness: 3/10</p>
+</blockquote>
+<h3>Step T4: Execute the chosen action</h3>
+<p><strong>If &quot;Investigate and fix now&quot;:</strong></p>
+<ul>
+<li>Switch to /investigate mindset: root cause first, then minimal fix.</li>
+<li>Fix the pre-existing failure.</li>
+<li>Commit the fix separately from the branch&#39;s changes: <code>git commit -m &quot;fix: pre-existing test failure in &lt;test-file&gt;&quot;</code></li>
+<li>Continue with the workflow.</li>
+</ul>
+<p><strong>If &quot;Add as P0 TODO&quot;:</strong></p>
+<ul>
+<li>If <code>TODOS.md</code> exists, add the entry following the format in <code>review/TODOS-format.md</code> (or <code>.claude/skills/review/TODOS-format.md</code>).</li>
+<li>If <code>TODOS.md</code> does not exist, create it with the standard header and add the entry.</li>
+<li>Entry should include: title, the error output, which branch it was noticed on, and priority P0.</li>
+<li>Continue with the workflow — treat the pre-existing failure as non-blocking.</li>
+</ul>
+<p><strong>If &quot;Blame + assign GitHub issue&quot; (collaborative only):</strong></p>
+<ul>
+<li>Find who likely broke it. Check BOTH the test file AND the production code it tests:<pre><code class="language-bash"># Who last touched the failing test?
+git log --format=&quot;%an (%ae)&quot; -1 -- &lt;failing-test-file&gt;
+# Who last touched the production code the test covers? (often the actual breaker)
+git log --format=&quot;%an (%ae)&quot; -1 -- &lt;source-file-under-test&gt;
+</code></pre>
+If these are different people, prefer the production code author — they likely introduced the regression.</li>
+<li>Create a GitHub issue assigned to that person:<pre><code class="language-bash">gh issue create \
+  --title &quot;Pre-existing test failure: &lt;test-name&gt;&quot; \
+  --body &quot;Found failing on branch &lt;current-branch&gt;. Failure is pre-existing.\n\n**Error:**\n```\n&lt;first 10 lines&gt;\n```\n\n**Last modified by:** &lt;author&gt;\n**Noticed by:** gstack /ship on &lt;date&gt;&quot; \
+  --assignee &quot;&lt;github-username&gt;&quot;
+</code></pre>
+</li>
+<li>If <code>gh</code> is not available or <code>--assignee</code> fails (user not in org, etc.), create the issue without assignee and note who should look at it in the body.</li>
+<li>Continue with the workflow.</li>
+</ul>
+<p><strong>If &quot;Skip&quot;:</strong></p>
+<ul>
+<li>Continue with the workflow.</li>
+<li>Note in output: &quot;Pre-existing test failure skipped: <test-name>&quot;</li>
+</ul>
+<p><strong>After triage:</strong> If any in-branch failures remain unfixed, <strong>STOP</strong>. Do not proceed. If all failures were pre-existing and handled (fixed, TODOed, assigned, or skipped), continue to Step 3.25.</p>
+<p><strong>If all pass:</strong> Continue silently — just note the counts briefly.</p>
+<hr>
+<h2>Step 3.25: Eval Suites (conditional)</h2>
+<p>Evals are mandatory when prompt-related files change. Skip this step entirely if no prompt files are in the diff.</p>
+<p><strong>1. Check if the diff touches prompt-related files:</strong></p>
+<pre><code class="language-bash">git diff origin/&lt;base&gt; --name-only
+</code></pre>
+<p>Match against these patterns (from CLAUDE.md):</p>
+<ul>
+<li><code>app/services/*_prompt_builder.rb</code></li>
+<li><code>app/services/*_generation_service.rb</code>, <code>*_writer_service.rb</code>, <code>*_designer_service.rb</code></li>
+<li><code>app/services/*_evaluator.rb</code>, <code>*_scorer.rb</code>, <code>*_classifier_service.rb</code>, <code>*_analyzer.rb</code></li>
+<li><code>app/services/concerns/*voice*.rb</code>, <code>*writing*.rb</code>, <code>*prompt*.rb</code>, <code>*token*.rb</code></li>
+<li><code>app/services/chat_tools/*.rb</code>, <code>app/services/x_thread_tools/*.rb</code></li>
+<li><code>config/system_prompts/*.txt</code></li>
+<li><code>test/evals/**/*</code> (eval infrastructure changes affect all suites)</li>
+</ul>
+<p><strong>If no matches:</strong> Print &quot;No prompt-related files changed — skipping evals.&quot; and continue to Step 3.5.</p>
+<p><strong>2. Identify affected eval suites:</strong></p>
+<p>Each eval runner (<code>test/evals/*_eval_runner.rb</code>) declares <code>PROMPT_SOURCE_FILES</code> listing which source files affect it. Grep these to find which suites match the changed files:</p>
+<pre><code class="language-bash">grep -l &quot;changed_file_basename&quot; test/evals/*_eval_runner.rb
+</code></pre>
+<p>Map runner → test file: <code>post_generation_eval_runner.rb</code> → <code>post_generation_eval_test.rb</code>.</p>
+<p><strong>Special cases:</strong></p>
+<ul>
+<li>Changes to <code>test/evals/judges/*.rb</code>, <code>test/evals/support/*.rb</code>, or <code>test/evals/fixtures/</code> affect ALL suites that use those judges/support files. Check imports in the eval test files to determine which.</li>
+<li>Changes to <code>config/system_prompts/*.txt</code> — grep eval runners for the prompt filename to find affected suites.</li>
+<li>If unsure which suites are affected, run ALL suites that could plausibly be impacted. Over-testing is better than missing a regression.</li>
+</ul>
+<p><strong>3. Run affected suites at <code>EVAL_JUDGE_TIER=full</code>:</strong></p>
+<p><code>/ship</code> is a pre-merge gate, so always use full tier (Sonnet structural + Opus persona judges).</p>
+<pre><code class="language-bash">EVAL_JUDGE_TIER=full EVAL_VERBOSE=1 bin/test-lane --eval test/evals/&lt;suite&gt;_eval_test.rb 2&gt;&amp;1 | tee /tmp/ship_evals.txt
+</code></pre>
+<p>If multiple suites need to run, run them sequentially (each needs a test lane). If the first suite fails, stop immediately — don&#39;t burn API cost on remaining suites.</p>
+<p><strong>4. Check results:</strong></p>
+<ul>
+<li><strong>If any eval fails:</strong> Show the failures, the cost dashboard, and <strong>STOP</strong>. Do not proceed.</li>
+<li><strong>If all pass:</strong> Note pass counts and cost. Continue to Step 3.5.</li>
+</ul>
+<p><strong>5. Save eval output</strong> — include eval results and cost dashboard in the PR body (Step 8).</p>
+<p><strong>Tier reference (for context — /ship always uses <code>full</code>):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>When</th>
+<th>Speed (cached)</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>fast</code> (Haiku)</td>
+<td>Dev iteration, smoke tests</td>
+<td>~5s (14x faster)</td>
+<td>~$0.07/run</td>
+</tr>
+<tr>
+<td><code>standard</code> (Sonnet)</td>
+<td>Default dev, <code>bin/test-lane --eval</code></td>
+<td>~17s (4x faster)</td>
+<td>~$0.37/run</td>
+</tr>
+<tr>
+<td><code>full</code> (Opus persona)</td>
+<td><strong><code>/ship</code> and pre-merge</strong></td>
+<td>~72s (baseline)</td>
+<td>~$1.27/run</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Step 3.4: Test Coverage Audit</h2>
+<p>100% coverage is the goal — every untested path is a path where bugs hide and vibe coding becomes yolo coding. Evaluate what was ACTUALLY coded (from the diff), not what was planned.</p>
+<h3>Test Framework Detection</h3>
+<p>Before analyzing coverage, detect the project&#39;s test framework:</p>
+<ol>
+<li><strong>Read CLAUDE.md</strong> — look for a <code>## Testing</code> section with test command and framework name. If found, use that as the authoritative source.</li>
+<li><strong>If CLAUDE.md has no testing section, auto-detect:</strong></li>
+</ol>
+<pre><code class="language-bash"># Detect project runtime
+[ -f Gemfile ] &amp;&amp; echo &quot;RUNTIME:ruby&quot;
+[ -f package.json ] &amp;&amp; echo &quot;RUNTIME:node&quot;
+[ -f requirements.txt ] || [ -f pyproject.toml ] &amp;&amp; echo &quot;RUNTIME:python&quot;
+[ -f go.mod ] &amp;&amp; echo &quot;RUNTIME:go&quot;
+[ -f Cargo.toml ] &amp;&amp; echo &quot;RUNTIME:rust&quot;
+# Check for existing test infrastructure
+ls jest.config.* vitest.config.* playwright.config.* cypress.config.* .rspec pytest.ini phpunit.xml 2&gt;/dev/null
+ls -d test/ tests/ spec/ __tests__/ cypress/ e2e/ 2&gt;/dev/null
+</code></pre>
+<ol start="3">
+<li><strong>If no framework detected:</strong> falls through to the Test Framework Bootstrap step (Step 2.5) which handles full setup.</li>
+</ol>
+<p><strong>0. Before/after test count:</strong></p>
+<pre><code class="language-bash"># Count test files before any generation
+find . -name &#39;*.test.*&#39; -o -name &#39;*.spec.*&#39; -o -name &#39;*_test.*&#39; -o -name &#39;*_spec.*&#39; | grep -v node_modules | wc -l
+</code></pre>
+<p>Store this number for the PR body.</p>
+<p><strong>1. Trace every codepath changed</strong> using <code>git diff origin/&lt;base&gt;...HEAD</code>:</p>
+<p>Read every changed file. For each one, trace how data flows through the code — don&#39;t just list functions, actually follow the execution:</p>
+<ol>
+<li><strong>Read the diff.</strong> For each changed file, read the full file (not just the diff hunk) to understand context.</li>
+<li><strong>Trace data flow.</strong> Starting from each entry point (route handler, exported function, event listener, component render), follow the data through every branch:<ul>
+<li>Where does input come from? (request params, props, database, API call)</li>
+<li>What transforms it? (validation, mapping, computation)</li>
+<li>Where does it go? (database write, API response, rendered output, side effect)</li>
+<li>What can go wrong at each step? (null/undefined, invalid input, network failure, empty collection)</li>
+</ul>
+</li>
+<li><strong>Diagram the execution.</strong> For each changed file, draw an ASCII diagram showing:<ul>
+<li>Every function/method that was added or modified</li>
+<li>Every conditional branch (if/else, switch, ternary, guard clause, early return)</li>
+<li>Every error path (try/catch, rescue, error boundary, fallback)</li>
+<li>Every call to another function (trace into it — does IT have untested branches?)</li>
+<li>Every edge: what happens with null input? Empty array? Invalid type?</li>
+</ul>
+</li>
+</ol>
+<p>This is the critical step — you&#39;re building a map of every line of code that can execute differently based on input. Every branch in this diagram needs a test.</p>
+<p><strong>2. Map user flows, interactions, and error states:</strong></p>
+<p>Code coverage isn&#39;t enough — you need to cover how real users interact with the changed code. For each changed feature, think through:</p>
+<ul>
+<li><strong>User flows:</strong> What sequence of actions does a user take that touches this code? Map the full journey (e.g., &quot;user clicks &#39;Pay&#39; → form validates → API call → success/failure screen&quot;). Each step in the journey needs a test.</li>
+<li><strong>Interaction edge cases:</strong> What happens when the user does something unexpected?<ul>
+<li>Double-click/rapid resubmit</li>
+<li>Navigate away mid-operation (back button, close tab, click another link)</li>
+<li>Submit with stale data (page sat open for 30 minutes, session expired)</li>
+<li>Slow connection (API takes 10 seconds — what does the user see?)</li>
+<li>Concurrent actions (two tabs, same form)</li>
+</ul>
+</li>
+<li><strong>Error states the user can see:</strong> For every error the code handles, what does the user actually experience?<ul>
+<li>Is there a clear error message or a silent failure?</li>
+<li>Can the user recover (retry, go back, fix input) or are they stuck?</li>
+<li>What happens with no network? With a 500 from the API? With invalid data from the server?</li>
+</ul>
+</li>
+<li><strong>Empty/zero/boundary states:</strong> What does the UI show with zero results? With 10,000 results? With a single character input? With maximum-length input?</li>
+</ul>
+<p>Add these to your diagram alongside the code branches. A user flow with no test is just as much a gap as an untested if/else.</p>
+<p><strong>3. Check each branch against existing tests:</strong></p>
+<p>Go through your diagram branch by branch — both code paths AND user flows. For each one, search for a test that exercises it:</p>
+<ul>
+<li>Function <code>processPayment()</code> → look for <code>billing.test.ts</code>, <code>billing.spec.ts</code>, <code>test/billing_test.rb</code></li>
+<li>An if/else → look for tests covering BOTH the true AND false path</li>
+<li>An error handler → look for a test that triggers that specific error condition</li>
+<li>A call to <code>helperFn()</code> that has its own branches → those branches need tests too</li>
+<li>A user flow → look for an integration or E2E test that walks through the journey</li>
+<li>An interaction edge case → look for a test that simulates the unexpected action</li>
+</ul>
+<p>Quality scoring rubric:</p>
+<ul>
+<li>★★★  Tests behavior with edge cases AND error paths</li>
+<li>★★   Tests correct behavior, happy path only</li>
+<li>★    Smoke test / existence check / trivial assertion (e.g., &quot;it renders&quot;, &quot;it doesn&#39;t throw&quot;)</li>
+</ul>
+<h3>E2E Test Decision Matrix</h3>
+<p>When checking each branch, also determine whether a unit test or E2E/integration test is the right tool:</p>
+<p><strong>RECOMMEND E2E (mark as [→E2E] in the diagram):</strong></p>
+<ul>
+<li>Common user flow spanning 3+ components/services (e.g., signup → verify email → first login)</li>
+<li>Integration point where mocking hides real failures (e.g., API → queue → worker → DB)</li>
+<li>Auth/payment/data-destruction flows — too important to trust unit tests alone</li>
+</ul>
+<p><strong>RECOMMEND EVAL (mark as [→EVAL] in the diagram):</strong></p>
+<ul>
+<li>Critical LLM call that needs a quality eval (e.g., prompt change → test output still meets quality bar)</li>
+<li>Changes to prompt templates, system instructions, or tool definitions</li>
+</ul>
+<p><strong>STICK WITH UNIT TESTS:</strong></p>
+<ul>
+<li>Pure function with clear inputs/outputs</li>
+<li>Internal helper with no side effects</li>
+<li>Edge case of a single function (null input, empty array)</li>
+<li>Obscure/rare flow that isn&#39;t customer-facing</li>
+</ul>
+<h3>REGRESSION RULE (mandatory)</h3>
+<p><strong>IRON RULE:</strong> When the coverage audit identifies a REGRESSION — code that previously worked but the diff broke — a regression test is written immediately. No AskUserQuestion. No skipping. Regressions are the highest-priority test because they prove something broke.</p>
+<p>A regression is when:</p>
+<ul>
+<li>The diff modifies existing behavior (not new code)</li>
+<li>The existing test suite (if any) doesn&#39;t cover the changed path</li>
+<li>The change introduces a new failure mode for existing callers</li>
+</ul>
+<p>When uncertain whether a change is a regression, err on the side of writing the test.</p>
+<p>Format: commit as <code>test: regression test for {what broke}</code></p>
+<p><strong>4. Output ASCII coverage diagram:</strong></p>
+<p>Include BOTH code paths and user flows in the same diagram. Mark E2E-worthy and eval-worthy paths:</p>
+<pre><code>CODE PATH COVERAGE
+===========================
+[+] src/services/billing.ts
+    │
+    ├── processPayment()
+    │   ├── [★★★ TESTED] Happy path + card declined + timeout — billing.test.ts:42
+    │   ├── [GAP]         Network timeout — NO TEST
+    │   └── [GAP]         Invalid currency — NO TEST
+    │
+    └── refundPayment()
+        ├── [★★  TESTED] Full refund — billing.test.ts:89
+        └── [★   TESTED] Partial refund (checks non-throw only) — billing.test.ts:101
+
+USER FLOW COVERAGE
+===========================
+[+] Payment checkout flow
+    │
+    ├── [★★★ TESTED] Complete purchase — checkout.e2e.ts:15
+    ├── [GAP] [→E2E] Double-click submit — needs E2E, not just unit
+    ├── [GAP]         Navigate away during payment — unit test sufficient
+    └── [★   TESTED]  Form validation errors (checks render only) — checkout.test.ts:40
+
+[+] Error states
+    │
+    ├── [★★  TESTED] Card declined message — billing.test.ts:58
+    ├── [GAP]         Network timeout UX (what does user see?) — NO TEST
+    └── [GAP]         Empty cart submission — NO TEST
+
+[+] LLM integration
+    │
+    └── [GAP] [→EVAL] Prompt template change — needs eval test
+
+─────────────────────────────────
+COVERAGE: 5/13 paths tested (38%)
+  Code paths: 3/5 (60%)
+  User flows: 2/8 (25%)
+QUALITY:  ★★★: 2  ★★: 2  ★: 1
+GAPS: 8 paths need tests (2 need E2E, 1 needs eval)
+─────────────────────────────────
+</code></pre>
+<p><strong>Fast path:</strong> All paths covered → &quot;Step 3.4: All new code paths have test coverage ✓&quot; Continue.</p>
+<p><strong>5. Generate tests for uncovered paths:</strong></p>
+<p>If test framework detected (or bootstrapped in Step 2.5):</p>
+<ul>
+<li>Prioritize error handlers and edge cases first (happy paths are more likely already tested)</li>
+<li>Read 2-3 existing test files to match conventions exactly</li>
+<li>Generate unit tests. Mock all external dependencies (DB, API, Redis).</li>
+<li>For paths marked [→E2E]: generate integration/E2E tests using the project&#39;s E2E framework (Playwright, Cypress, Capybara, etc.)</li>
+<li>For paths marked [→EVAL]: generate eval tests using the project&#39;s eval framework, or flag for manual eval if none exists</li>
+<li>Write tests that exercise the specific uncovered path with real assertions</li>
+<li>Run each test. Passes → commit as <code>test: coverage for {feature}</code></li>
+<li>Fails → fix once. Still fails → revert, note gap in diagram.</li>
+</ul>
+<p>Caps: 30 code paths max, 20 tests generated max (code + user flow combined), 2-min per-test exploration cap.</p>
+<p>If no test framework AND user declined bootstrap → diagram only, no generation. Note: &quot;Test generation skipped — no test framework configured.&quot;</p>
+<p><strong>Diff is test-only changes:</strong> Skip Step 3.4 entirely: &quot;No new application code paths to audit.&quot;</p>
+<p><strong>6. After-count and coverage summary:</strong></p>
+<pre><code class="language-bash"># Count test files after generation
+find . -name &#39;*.test.*&#39; -o -name &#39;*.spec.*&#39; -o -name &#39;*_test.*&#39; -o -name &#39;*_spec.*&#39; | grep -v node_modules | wc -l
+</code></pre>
+<p>For PR body: <code>Tests: {before} → {after} (+{delta} new)</code>
+Coverage line: <code>Test Coverage Audit: N new code paths. M covered (X%). K tests generated, J committed.</code></p>
+<h3>Test Plan Artifact</h3>
+<p>After producing the coverage diagram, write a test plan artifact so <code>/qa</code> and <code>/qa-only</code> can consume it:</p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null) &amp;&amp; mkdir -p ~/.gstack/projects/$SLUG
+USER=$(whoami)
+DATETIME=$(date +%Y%m%d-%H%M%S)
+</code></pre>
+<p>Write to <code>~/.gstack/projects/{slug}/{user}-{branch}-ship-test-plan-{datetime}.md</code>:</p>
+<pre><code class="language-markdown"># Test Plan
+Generated by /ship on {date}
+Branch: {branch}
+Repo: {owner/repo}
+
+## Affected Pages/Routes
+- {URL path} — {what to test and why}
+
+## Key Interactions to Verify
+- {interaction description} on {page}
+
+## Edge Cases
+- {edge case} on {page}
+
+## Critical Paths
+- {end-to-end flow that must work}
+</code></pre>
+<hr>
+<h2>Step 3.5: Pre-Landing Review</h2>
+<p>Review the diff for structural issues that tests don&#39;t catch.</p>
+<ol>
+<li><p>Read <code>.claude/skills/review/checklist.md</code>. If the file cannot be read, <strong>STOP</strong> and report the error.</p>
+</li>
+<li><p>Run <code>git diff origin/&lt;base&gt;</code> to get the full diff (scoped to feature changes against the freshly-fetched base branch).</p>
+</li>
+<li><p>Apply the review checklist in two passes:</p>
+<ul>
+<li><strong>Pass 1 (CRITICAL):</strong> SQL &amp; Data Safety, LLM Output Trust Boundary</li>
+<li><strong>Pass 2 (INFORMATIONAL):</strong> All remaining categories</li>
+</ul>
+</li>
+</ol>
+<h2>Design Review (conditional, diff-scoped)</h2>
+<p>Check if the diff touches frontend files using <code>gstack-diff-scope</code>:</p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-diff-scope &lt;base&gt; 2&gt;/dev/null)
+</code></pre>
+<p><strong>If <code>SCOPE_FRONTEND=false</code>:</strong> Skip design review silently. No output.</p>
+<p><strong>If <code>SCOPE_FRONTEND=true</code>:</strong></p>
+<ol>
+<li><p><strong>Check for DESIGN.md.</strong> If <code>DESIGN.md</code> or <code>design-system.md</code> exists in the repo root, read it. All design findings are calibrated against it — patterns blessed in DESIGN.md are not flagged. If not found, use universal design principles.</p>
+</li>
+<li><p><strong>Read <code>.claude/skills/review/design-checklist.md</code>.</strong> If the file cannot be read, skip design review with a note: &quot;Design checklist not found — skipping design review.&quot;</p>
+</li>
+<li><p><strong>Read each changed frontend file</strong> (full file, not just diff hunks). Frontend files are identified by the patterns listed in the checklist.</p>
+</li>
+<li><p><strong>Apply the design checklist</strong> against the changed files. For each item:</p>
+<ul>
+<li><strong>[HIGH] mechanical CSS fix</strong> (<code>outline: none</code>, <code>!important</code>, <code>font-size &lt; 16px</code>): classify as AUTO-FIX</li>
+<li><strong>[HIGH/MEDIUM] design judgment needed</strong>: classify as ASK</li>
+<li><strong>[LOW] intent-based detection</strong>: present as &quot;Possible — verify visually or run /design-review&quot;</li>
+</ul>
+</li>
+<li><p><strong>Include findings</strong> in the review output under a &quot;Design Review&quot; header, following the output format in the checklist. Design findings merge with code review findings into the same Fix-First flow.</p>
+</li>
+<li><p><strong>Log the result</strong> for the Review Readiness Dashboard:</p>
+</li>
+</ol>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-review-log &#39;{&quot;skill&quot;:&quot;design-review-lite&quot;,&quot;timestamp&quot;:&quot;TIMESTAMP&quot;,&quot;status&quot;:&quot;STATUS&quot;,&quot;findings&quot;:N,&quot;auto_fixed&quot;:M,&quot;commit&quot;:&quot;COMMIT&quot;}&#39;
+</code></pre>
+<p>Substitute: TIMESTAMP = ISO 8601 datetime, STATUS = &quot;clean&quot; if 0 findings or &quot;issues_found&quot;, N = total findings, M = auto-fixed count, COMMIT = output of <code>git rev-parse --short HEAD</code>.</p>
+<p>   Include any design findings alongside the code review findings. They follow the same Fix-First flow below.</p>
+<ol start="4">
+<li><p><strong>Classify each finding as AUTO-FIX or ASK</strong> per the Fix-First Heuristic in
+checklist.md. Critical findings lean toward ASK; informational lean toward AUTO-FIX.</p>
+</li>
+<li><p><strong>Auto-fix all AUTO-FIX items.</strong> Apply each fix. Output one line per fix:
+<code>[AUTO-FIXED] [file:line] Problem → what you did</code></p>
+</li>
+<li><p><strong>If ASK items remain,</strong> present them in ONE AskUserQuestion:</p>
+<ul>
+<li>List each with number, severity, problem, recommended fix</li>
+<li>Per-item options: A) Fix  B) Skip</li>
+<li>Overall RECOMMENDATION</li>
+<li>If 3 or fewer ASK items, you may use individual AskUserQuestion calls instead</li>
+</ul>
+</li>
+<li><p><strong>After all fixes (auto + user-approved):</strong></p>
+<ul>
+<li>If ANY fixes were applied: commit fixed files by name (<code>git add &lt;fixed-files&gt; &amp;&amp; git commit -m &quot;fix: pre-landing review fixes&quot;</code>), then <strong>STOP</strong> and tell the user to run <code>/ship</code> again to re-test.</li>
+<li>If no fixes applied (all ASK items skipped, or no issues found): continue to Step 4.</li>
+</ul>
+</li>
+<li><p>Output summary: <code>Pre-Landing Review: N issues — M auto-fixed, K asked (J fixed, L skipped)</code></p>
+<p>If no issues found: <code>Pre-Landing Review: No issues found.</code></p>
+</li>
+</ol>
+<p>Save the review output — it goes into the PR body in Step 8.</p>
+<hr>
+<h2>Step 3.75: Address Greptile review comments (if PR exists)</h2>
+<p>Read <code>.claude/skills/review/greptile-triage.md</code> and follow the fetch, filter, classify, and <strong>escalation detection</strong> steps.</p>
+<p><strong>If no PR exists, <code>gh</code> fails, API returns an error, or there are zero Greptile comments:</strong> Skip this step silently. Continue to Step 4.</p>
+<p><strong>If Greptile comments are found:</strong></p>
+<p>Include a Greptile summary in your output: <code>+ N Greptile comments (X valid, Y fixed, Z FP)</code></p>
+<p>Before replying to any comment, run the <strong>Escalation Detection</strong> algorithm from greptile-triage.md to determine whether to use Tier 1 (friendly) or Tier 2 (firm) reply templates.</p>
+<p>For each classified comment:</p>
+<p><strong>VALID &amp; ACTIONABLE:</strong> Use AskUserQuestion with:</p>
+<ul>
+<li>The comment (file:line or [top-level] + body summary + permalink URL)</li>
+<li><code>RECOMMENDATION: Choose A because [one-line reason]</code></li>
+<li>Options: A) Fix now, B) Acknowledge and ship anyway, C) It&#39;s a false positive</li>
+<li>If user chooses A: apply the fix, commit the fixed files (<code>git add &lt;fixed-files&gt; &amp;&amp; git commit -m &quot;fix: address Greptile review — &lt;brief description&gt;&quot;</code>), reply using the <strong>Fix reply template</strong> from greptile-triage.md (include inline diff + explanation), and save to both per-project and global greptile-history (type: fix).</li>
+<li>If user chooses C: reply using the <strong>False Positive reply template</strong> from greptile-triage.md (include evidence + suggested re-rank), save to both per-project and global greptile-history (type: fp).</li>
+</ul>
+<p><strong>VALID BUT ALREADY FIXED:</strong> Reply using the <strong>Already Fixed reply template</strong> from greptile-triage.md — no AskUserQuestion needed:</p>
+<ul>
+<li>Include what was done and the fixing commit SHA</li>
+<li>Save to both per-project and global greptile-history (type: already-fixed)</li>
+</ul>
+<p><strong>FALSE POSITIVE:</strong> Use AskUserQuestion:</p>
+<ul>
+<li>Show the comment and why you think it&#39;s wrong (file:line or [top-level] + body summary + permalink URL)</li>
+<li>Options:<ul>
+<li>A) Reply to Greptile explaining the false positive (recommended if clearly wrong)</li>
+<li>B) Fix it anyway (if trivial)</li>
+<li>C) Ignore silently</li>
+</ul>
+</li>
+<li>If user chooses A: reply using the <strong>False Positive reply template</strong> from greptile-triage.md (include evidence + suggested re-rank), save to both per-project and global greptile-history (type: fp)</li>
+</ul>
+<p><strong>SUPPRESSED:</strong> Skip silently — these are known false positives from previous triage.</p>
+<p><strong>After all comments are resolved:</strong> If any fixes were applied, the tests from Step 3 are now stale. <strong>Re-run tests</strong> (Step 3) before continuing to Step 4. If no fixes were applied, continue to Step 4.</p>
+<hr>
+<h2>Step 3.8: Adversarial review (auto-scaled)</h2>
+<p>Adversarial review thoroughness scales automatically based on diff size. No configuration needed.</p>
+<p><strong>Detect diff size and tool availability:</strong></p>
+<pre><code class="language-bash">DIFF_INS=$(git diff origin/&lt;base&gt; --stat | tail -1 | grep -oE &#39;[0-9]+ insertion&#39; | grep -oE &#39;[0-9]+&#39; || echo &quot;0&quot;)
+DIFF_DEL=$(git diff origin/&lt;base&gt; --stat | tail -1 | grep -oE &#39;[0-9]+ deletion&#39; | grep -oE &#39;[0-9]+&#39; || echo &quot;0&quot;)
+DIFF_TOTAL=$((DIFF_INS + DIFF_DEL))
+which codex 2&gt;/dev/null &amp;&amp; echo &quot;CODEX_AVAILABLE&quot; || echo &quot;CODEX_NOT_AVAILABLE&quot;
+# Respect old opt-out
+OLD_CFG=$(~/.claude/skills/gstack/bin/gstack-config get codex_reviews 2&gt;/dev/null || true)
+echo &quot;DIFF_SIZE: $DIFF_TOTAL&quot;
+echo &quot;OLD_CFG: ${OLD_CFG:-not_set}&quot;
+</code></pre>
+<p>If <code>OLD_CFG</code> is <code>disabled</code>: skip this step silently. Continue to the next step.</p>
+<p><strong>User override:</strong> If the user explicitly requested a specific tier (e.g., &quot;run all passes&quot;, &quot;paranoid review&quot;, &quot;full adversarial&quot;, &quot;do all 4 passes&quot;, &quot;thorough review&quot;), honor that request regardless of diff size. Jump to the matching tier section.</p>
+<p><strong>Auto-select tier based on diff size:</strong></p>
+<ul>
+<li><strong>Small (&lt; 50 lines changed):</strong> Skip adversarial review entirely. Print: &quot;Small diff ($DIFF_TOTAL lines) — adversarial review skipped.&quot; Continue to the next step.</li>
+<li><strong>Medium (50–199 lines changed):</strong> Run Codex adversarial challenge (or Claude adversarial subagent if Codex unavailable). Jump to the &quot;Medium tier&quot; section.</li>
+<li><strong>Large (200+ lines changed):</strong> Run all remaining passes — Codex structured review + Claude adversarial subagent + Codex adversarial. Jump to the &quot;Large tier&quot; section.</li>
+</ul>
+<hr>
+<h3>Medium tier (50–199 lines)</h3>
+<p>Claude&#39;s structured review already ran. Now add a <strong>cross-model adversarial challenge</strong>.</p>
+<p><strong>If Codex is available:</strong> run the Codex adversarial challenge. <strong>If Codex is NOT available:</strong> fall back to the Claude adversarial subagent instead.</p>
+<p><strong>Codex adversarial:</strong></p>
+<pre><code class="language-bash">TMPERR_ADV=$(mktemp /tmp/codex-adv-XXXXXXXX)
+codex exec &quot;Review the changes on this branch against the base branch. Run git diff origin/&lt;base&gt; to see the diff. Your job is to find ways this code will fail in production. Think like an attacker and a chaos engineer. Find edge cases, race conditions, security holes, resource leaks, failure modes, and silent data corruption paths. Be adversarial. Be thorough. No compliments — just the problems.&quot; -s read-only -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached 2&gt;&quot;$TMPERR_ADV&quot;
+</code></pre>
+<p>Use a 5-minute timeout (<code>timeout: 300000</code>). After the command completes, read stderr:</p>
+<pre><code class="language-bash">cat &quot;$TMPERR_ADV&quot;
+</code></pre>
+<p>Present the full output verbatim. This is informational — it never blocks shipping.</p>
+<p><strong>Error handling:</strong> All errors are non-blocking — adversarial review is a quality enhancement, not a prerequisite.</p>
+<ul>
+<li><strong>Auth failure:</strong> If stderr contains &quot;auth&quot;, &quot;login&quot;, &quot;unauthorized&quot;, or &quot;API key&quot;: &quot;Codex authentication failed. Run `codex login` to authenticate.&quot;</li>
+<li><strong>Timeout:</strong> &quot;Codex timed out after 5 minutes.&quot;</li>
+<li><strong>Empty response:</strong> &quot;Codex returned no response. Stderr: <paste relevant error>.&quot;</li>
+</ul>
+<p>On any Codex error, fall back to the Claude adversarial subagent automatically.</p>
+<p><strong>Claude adversarial subagent</strong> (fallback when Codex unavailable or errored):</p>
+<p>Dispatch via the Agent tool. The subagent has fresh context — no checklist bias from the structured review. This genuine independence catches things the primary reviewer is blind to.</p>
+<p>Subagent prompt:
+&quot;Read the diff for this branch with <code>git diff origin/&lt;base&gt;</code>. Think like an attacker and a chaos engineer. Your job is to find ways this code will fail in production. Look for: edge cases, race conditions, security holes, resource leaks, failure modes, silent data corruption, logic errors that produce wrong results silently, error handling that swallows failures, and trust boundary violations. Be adversarial. Be thorough. No compliments — just the problems. For each finding, classify as FIXABLE (you know how to fix it) or INVESTIGATE (needs human judgment).&quot;</p>
+<p>Present findings under an <code>ADVERSARIAL REVIEW (Claude subagent):</code> header. <strong>FIXABLE findings</strong> flow into the same Fix-First pipeline as the structured review. <strong>INVESTIGATE findings</strong> are presented as informational.</p>
+<p>If the subagent fails or times out: &quot;Claude adversarial subagent unavailable. Continuing without adversarial review.&quot;</p>
+<p><strong>Persist the review result:</strong></p>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-review-log &#39;{&quot;skill&quot;:&quot;adversarial-review&quot;,&quot;timestamp&quot;:&quot;&#39;&quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot;&#39;&quot;,&quot;status&quot;:&quot;STATUS&quot;,&quot;source&quot;:&quot;SOURCE&quot;,&quot;tier&quot;:&quot;medium&quot;,&quot;commit&quot;:&quot;&#39;&quot;$(git rev-parse --short HEAD)&quot;&#39;&quot;}&#39;
+</code></pre>
+<p>Substitute STATUS: &quot;clean&quot; if no findings, &quot;issues_found&quot; if findings exist. SOURCE: &quot;codex&quot; if Codex ran, &quot;claude&quot; if subagent ran. If both failed, do NOT persist.</p>
+<p><strong>Cleanup:</strong> Run <code>rm -f &quot;$TMPERR_ADV&quot;</code> after processing (if Codex was used).</p>
+<hr>
+<h3>Large tier (200+ lines)</h3>
+<p>Claude&#39;s structured review already ran. Now run <strong>all three remaining passes</strong> for maximum coverage:</p>
+<p><strong>1. Codex structured review (if available):</strong></p>
+<pre><code class="language-bash">TMPERR=$(mktemp /tmp/codex-review-XXXXXXXX)
+codex review --base &lt;base&gt; -c &#39;model_reasoning_effort=&quot;xhigh&quot;&#39; --enable web_search_cached 2&gt;&quot;$TMPERR&quot;
+</code></pre>
+<p>Use a 5-minute timeout. Present output under <code>CODEX SAYS (code review):</code> header.
+Check for <code>[P1]</code> markers: found → <code>GATE: FAIL</code>, not found → <code>GATE: PASS</code>.</p>
+<p>If GATE is FAIL, use AskUserQuestion:</p>
+<pre><code>Codex found N critical issues in the diff.
+
+A) Investigate and fix now (recommended)
+B) Continue — review will still complete
+</code></pre>
+<p>If A: address the findings. After fixing, re-run tests (Step 3) since code has changed. Re-run <code>codex review</code> to verify.</p>
+<p>Read stderr for errors (same error handling as medium tier).</p>
+<p>After stderr: <code>rm -f &quot;$TMPERR&quot;</code></p>
+<p><strong>2. Claude adversarial subagent:</strong> Dispatch a subagent with the adversarial prompt (same prompt as medium tier). This always runs regardless of Codex availability.</p>
+<p><strong>3. Codex adversarial challenge (if available):</strong> Run <code>codex exec</code> with the adversarial prompt (same as medium tier).</p>
+<p>If Codex is not available for steps 1 and 3, note to the user: &quot;Codex CLI not found — large-diff review ran Claude structured + Claude adversarial (2 of 4 passes). Install Codex for full 4-pass coverage: <code>npm install -g @openai/codex</code>&quot;</p>
+<p><strong>Persist the review result AFTER all passes complete</strong> (not after each sub-step):</p>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-review-log &#39;{&quot;skill&quot;:&quot;adversarial-review&quot;,&quot;timestamp&quot;:&quot;&#39;&quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot;&#39;&quot;,&quot;status&quot;:&quot;STATUS&quot;,&quot;source&quot;:&quot;SOURCE&quot;,&quot;tier&quot;:&quot;large&quot;,&quot;gate&quot;:&quot;GATE&quot;,&quot;commit&quot;:&quot;&#39;&quot;$(git rev-parse --short HEAD)&quot;&#39;&quot;}&#39;
+</code></pre>
+<p>Substitute: STATUS = &quot;clean&quot; if no findings across ALL passes, &quot;issues_found&quot; if any pass found issues. SOURCE = &quot;both&quot; if Codex ran, &quot;claude&quot; if only Claude subagent ran. GATE = the Codex structured review gate result (&quot;pass&quot;/&quot;fail&quot;), or &quot;informational&quot; if Codex was unavailable. If all passes failed, do NOT persist.</p>
+<hr>
+<h3>Cross-model synthesis (medium and large tiers)</h3>
+<p>After all passes complete, synthesize findings across all sources:</p>
+<pre><code>ADVERSARIAL REVIEW SYNTHESIS (auto: TIER, N lines):
+════════════════════════════════════════════════════════════
+  High confidence (found by multiple sources): [findings agreed on by &gt;1 pass]
+  Unique to Claude structured review: [from earlier step]
+  Unique to Claude adversarial: [from subagent, if ran]
+  Unique to Codex: [from codex adversarial or code review, if ran]
+  Models used: Claude structured ✓  Claude adversarial ✓/✗  Codex ✓/✗
+════════════════════════════════════════════════════════════
+</code></pre>
+<p>High-confidence findings (agreed on by multiple sources) should be prioritized for fixes.</p>
+<hr>
+<h2>Step 4: Version bump (auto-decide)</h2>
+<ol>
+<li><p>Read the current <code>VERSION</code> file (4-digit format: <code>MAJOR.MINOR.PATCH.MICRO</code>)</p>
+</li>
+<li><p><strong>Auto-decide the bump level based on the diff:</strong></p>
+<ul>
+<li>Count lines changed (<code>git diff origin/&lt;base&gt;...HEAD --stat | tail -1</code>)</li>
+<li><strong>MICRO</strong> (4th digit): &lt; 50 lines changed, trivial tweaks, typos, config</li>
+<li><strong>PATCH</strong> (3rd digit): 50+ lines changed, bug fixes, small-medium features</li>
+<li><strong>MINOR</strong> (2nd digit): <strong>ASK the user</strong> — only for major features or significant architectural changes</li>
+<li><strong>MAJOR</strong> (1st digit): <strong>ASK the user</strong> — only for milestones or breaking changes</li>
+</ul>
+</li>
+<li><p>Compute the new version:</p>
+<ul>
+<li>Bumping a digit resets all digits to its right to 0</li>
+<li>Example: <code>0.19.1.0</code> + PATCH → <code>0.19.2.0</code></li>
+</ul>
+</li>
+<li><p>Write the new version to the <code>VERSION</code> file.</p>
+</li>
+</ol>
+<hr>
+<h2>Step 5: CHANGELOG (auto-generate)</h2>
+<ol>
+<li><p>Read <code>CHANGELOG.md</code> header to know the format.</p>
+</li>
+<li><p>Auto-generate the entry from <strong>ALL commits on the branch</strong> (not just recent ones):</p>
+<ul>
+<li>Use <code>git log &lt;base&gt;..HEAD --oneline</code> to see every commit being shipped</li>
+<li>Use <code>git diff &lt;base&gt;...HEAD</code> to see the full diff against the base branch</li>
+<li>The CHANGELOG entry must be comprehensive of ALL changes going into the PR</li>
+<li>If existing CHANGELOG entries on the branch already cover some commits, replace them with one unified entry for the new version</li>
+<li>Categorize changes into applicable sections:<ul>
+<li><code>### Added</code> — new features</li>
+<li><code>### Changed</code> — changes to existing functionality</li>
+<li><code>### Fixed</code> — bug fixes</li>
+<li><code>### Removed</code> — removed features</li>
+</ul>
+</li>
+<li>Write concise, descriptive bullet points</li>
+<li>Insert after the file header (line 5), dated today</li>
+<li>Format: <code>## [X.Y.Z.W] - YYYY-MM-DD</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Do NOT ask the user to describe changes.</strong> Infer from the diff and commit history.</p>
+<hr>
+<h2>Step 5.5: TODOS.md (auto-update)</h2>
+<p>Cross-reference the project&#39;s TODOS.md against the changes being shipped. Mark completed items automatically; prompt only if the file is missing or disorganized.</p>
+<p>Read <code>.claude/skills/review/TODOS-format.md</code> for the canonical format reference.</p>
+<p><strong>1. Check if TODOS.md exists</strong> in the repository root.</p>
+<p><strong>If TODOS.md does not exist:</strong> Use AskUserQuestion:</p>
+<ul>
+<li>Message: &quot;GStack recommends maintaining a TODOS.md organized by skill/component, then priority (P0 at top through P4, then Completed at bottom). See TODOS-format.md for the full format. Would you like to create one?&quot;</li>
+<li>Options: A) Create it now, B) Skip for now</li>
+<li>If A: Create <code>TODOS.md</code> with a skeleton (# TODOS heading + ## Completed section). Continue to step 3.</li>
+<li>If B: Skip the rest of Step 5.5. Continue to Step 6.</li>
+</ul>
+<p><strong>2. Check structure and organization:</strong></p>
+<p>Read TODOS.md and verify it follows the recommended structure:</p>
+<ul>
+<li>Items grouped under <code>## &lt;Skill/Component&gt;</code> headings</li>
+<li>Each item has <code>**Priority:**</code> field with P0-P4 value</li>
+<li>A <code>## Completed</code> section at the bottom</li>
+</ul>
+<p><strong>If disorganized</strong> (missing priority fields, no component groupings, no Completed section): Use AskUserQuestion:</p>
+<ul>
+<li>Message: &quot;TODOS.md doesn&#39;t follow the recommended structure (skill/component groupings, P0-P4 priority, Completed section). Would you like to reorganize it?&quot;</li>
+<li>Options: A) Reorganize now (recommended), B) Leave as-is</li>
+<li>If A: Reorganize in-place following TODOS-format.md. Preserve all content — only restructure, never delete items.</li>
+<li>If B: Continue to step 3 without restructuring.</li>
+</ul>
+<p><strong>3. Detect completed TODOs:</strong></p>
+<p>This step is fully automatic — no user interaction.</p>
+<p>Use the diff and commit history already gathered in earlier steps:</p>
+<ul>
+<li><code>git diff &lt;base&gt;...HEAD</code> (full diff against the base branch)</li>
+<li><code>git log &lt;base&gt;..HEAD --oneline</code> (all commits being shipped)</li>
+</ul>
+<p>For each TODO item, check if the changes in this PR complete it by:</p>
+<ul>
+<li>Matching commit messages against the TODO title and description</li>
+<li>Checking if files referenced in the TODO appear in the diff</li>
+<li>Checking if the TODO&#39;s described work matches the functional changes</li>
+</ul>
+<p><strong>Be conservative:</strong> Only mark a TODO as completed if there is clear evidence in the diff. If uncertain, leave it alone.</p>
+<p><strong>4. Move completed items</strong> to the <code>## Completed</code> section at the bottom. Append: <code>**Completed:** vX.Y.Z (YYYY-MM-DD)</code></p>
+<p><strong>5. Output summary:</strong></p>
+<ul>
+<li><code>TODOS.md: N items marked complete (item1, item2, ...). M items remaining.</code></li>
+<li>Or: <code>TODOS.md: No completed items detected. M items remaining.</code></li>
+<li>Or: <code>TODOS.md: Created.</code> / <code>TODOS.md: Reorganized.</code></li>
+</ul>
+<p><strong>6. Defensive:</strong> If TODOS.md cannot be written (permission error, disk full), warn the user and continue. Never stop the ship workflow for a TODOS failure.</p>
+<p>Save this summary — it goes into the PR body in Step 8.</p>
+<hr>
+<h2>Step 6: Commit (bisectable chunks)</h2>
+<p><strong>Goal:</strong> Create small, logical commits that work well with <code>git bisect</code> and help LLMs understand what changed.</p>
+<ol>
+<li><p>Analyze the diff and group changes into logical commits. Each commit should represent <strong>one coherent change</strong> — not one file, but one logical unit.</p>
+</li>
+<li><p><strong>Commit ordering</strong> (earlier commits first):</p>
+<ul>
+<li><strong>Infrastructure:</strong> migrations, config changes, route additions</li>
+<li><strong>Models &amp; services:</strong> new models, services, concerns (with their tests)</li>
+<li><strong>Controllers &amp; views:</strong> controllers, views, JS/React components (with their tests)</li>
+<li><strong>VERSION + CHANGELOG + TODOS.md:</strong> always in the final commit</li>
+</ul>
+</li>
+<li><p><strong>Rules for splitting:</strong></p>
+<ul>
+<li>A model and its test file go in the same commit</li>
+<li>A service and its test file go in the same commit</li>
+<li>A controller, its views, and its test go in the same commit</li>
+<li>Migrations are their own commit (or grouped with the model they support)</li>
+<li>Config/route changes can group with the feature they enable</li>
+<li>If the total diff is small (&lt; 50 lines across &lt; 4 files), a single commit is fine</li>
+</ul>
+</li>
+<li><p><strong>Each commit must be independently valid</strong> — no broken imports, no references to code that doesn&#39;t exist yet. Order commits so dependencies come first.</p>
+</li>
+<li><p>Compose each commit message:</p>
+<ul>
+<li>First line: <code>&lt;type&gt;: &lt;summary&gt;</code> (type = feat/fix/chore/refactor/docs)</li>
+<li>Body: brief description of what this commit contains</li>
+<li>Only the <strong>final commit</strong> (VERSION + CHANGELOG) gets the version tag and co-author trailer:</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-bash">git commit -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+chore: bump version and changelog (vX.Y.Z.W)
+
+Co-Authored-By: Claude Opus 4.6 &lt;noreply@anthropic.com&gt;
+EOF
+)&quot;
+</code></pre>
+<hr>
+<h2>Step 6.5: Verification Gate</h2>
+<p><strong>IRON LAW: NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE.</strong></p>
+<p>Before pushing, re-verify if code changed during Steps 4-6:</p>
+<ol>
+<li><p><strong>Test verification:</strong> If ANY code changed after Step 3&#39;s test run (fixes from review findings, CHANGELOG edits don&#39;t count), re-run the test suite. Paste fresh output. Stale output from Step 3 is NOT acceptable.</p>
+</li>
+<li><p><strong>Build verification:</strong> If the project has a build step, run it. Paste output.</p>
+</li>
+<li><p><strong>Rationalization prevention:</strong></p>
+<ul>
+<li>&quot;Should work now&quot; → RUN IT.</li>
+<li>&quot;I&#39;m confident&quot; → Confidence is not evidence.</li>
+<li>&quot;I already tested earlier&quot; → Code changed since then. Test again.</li>
+<li>&quot;It&#39;s a trivial change&quot; → Trivial changes break production.</li>
+</ul>
+</li>
+</ol>
+<p><strong>If tests fail here:</strong> STOP. Do not push. Fix the issue and return to Step 3.</p>
+<p>Claiming work is complete without verification is dishonesty, not efficiency.</p>
+<hr>
+<h2>Step 7: Push</h2>
+<p>Push to the remote with upstream tracking:</p>
+<pre><code class="language-bash">git push -u origin &lt;branch-name&gt;
+</code></pre>
+<hr>
+<h2>Step 8: Create PR</h2>
+<p>Create a pull request using <code>gh</code>:</p>
+<pre><code class="language-bash">gh pr create --base &lt;base&gt; --title &quot;&lt;type&gt;: &lt;summary&gt;&quot; --body &quot;$(cat &lt;&lt;&#39;EOF&#39;
+## Summary
+&lt;bullet points from CHANGELOG&gt;
+
+## Test Coverage
+&lt;coverage diagram from Step 3.4, or &quot;All new code paths have test coverage.&quot;&gt;
+&lt;If Step 3.4 ran: &quot;Tests: {before} → {after} (+{delta} new)&quot;&gt;
+
+## Pre-Landing Review
+&lt;findings from Step 3.5 code review, or &quot;No issues found.&quot;&gt;
+
+## Design Review
+&lt;If design review ran: &quot;Design Review (lite): N findings — M auto-fixed, K skipped. AI Slop: clean/N issues.&quot;&gt;
+&lt;If no frontend files changed: &quot;No frontend files changed — design review skipped.&quot;&gt;
+
+## Eval Results
+&lt;If evals ran: suite names, pass/fail counts, cost dashboard summary. If skipped: &quot;No prompt-related files changed — evals skipped.&quot;&gt;
+
+## Greptile Review
+&lt;If Greptile comments were found: bullet list with [FIXED] / [FALSE POSITIVE] / [ALREADY FIXED] tag + one-line summary per comment&gt;
+&lt;If no Greptile comments found: &quot;No Greptile comments.&quot;&gt;
+&lt;If no PR existed during Step 3.75: omit this section entirely&gt;
+
+## TODOS
+&lt;If items marked complete: bullet list of completed items with version&gt;
+&lt;If no items completed: &quot;No TODO items completed in this PR.&quot;&gt;
+&lt;If TODOS.md created or reorganized: note that&gt;
+&lt;If TODOS.md doesn&#39;t exist and user skipped: omit this section&gt;
+
+## Test plan
+- [x] All Rails tests pass (N runs, 0 failures)
+- [x] All Vitest tests pass (N tests)
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+EOF
+)&quot;
+</code></pre>
+<p><strong>Output the PR URL</strong> — then proceed to Step 8.5.</p>
+<hr>
+<h2>Step 8.5: Auto-invoke /document-release</h2>
+<p>After the PR is created, automatically sync project documentation. Read the
+<code>document-release/SKILL.md</code> skill file (adjacent to this skill&#39;s directory) and
+execute its full workflow:</p>
+<ol>
+<li>Read the <code>/document-release</code> skill: <code>cat ${CLAUDE_SKILL_DIR}/../document-release/SKILL.md</code></li>
+<li>Follow its instructions — it reads all .md files in the project, cross-references
+the diff, and updates anything that drifted (README, ARCHITECTURE, CONTRIBUTING,
+CLAUDE.md, TODOS, etc.)</li>
+<li>If any docs were updated, commit the changes and push to the same branch:<pre><code class="language-bash">git add -A &amp;&amp; git commit -m &quot;docs: sync documentation with shipped changes&quot; &amp;&amp; git push
+</code></pre>
+</li>
+<li>If no docs needed updating, say &quot;Documentation is current — no updates needed.&quot;</li>
+</ol>
+<p>This step is automatic. Do not ask the user for confirmation. The goal is zero-friction
+doc updates — the user runs <code>/ship</code> and documentation stays current without a separate command.</p>
+<hr>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>Never skip tests.</strong> If tests fail, stop.</li>
+<li><strong>Never skip the pre-landing review.</strong> If checklist.md is unreadable, stop.</li>
+<li><strong>Never force push.</strong> Use regular <code>git push</code> only.</li>
+<li><strong>Never ask for trivial confirmations</strong> (e.g., &quot;ready to push?&quot;, &quot;create PR?&quot;). DO stop for: version bumps (MINOR/MAJOR), pre-landing review findings (ASK items), and Codex structured review [P1] findings (large diffs only).</li>
+<li><strong>Always use the 4-digit version format</strong> from the VERSION file.</li>
+<li><strong>Date format in CHANGELOG:</strong> <code>YYYY-MM-DD</code></li>
+<li><strong>Split commits for bisectability</strong> — each commit = one logical change.</li>
+<li><strong>TODOS.md completion detection must be conservative.</strong> Only mark items as completed when the diff clearly shows the work is done.</li>
+<li><strong>Use Greptile reply templates from greptile-triage.md.</strong> Every reply includes evidence (inline diff, code references, re-rank suggestion). Never post vague replies.</li>
+<li><strong>Never push without fresh verification evidence.</strong> If code changed after Step 3 tests, re-run before pushing.</li>
+<li><strong>Step 3.4 generates coverage tests.</strong> They must pass before committing. Never commit failing tests.</li>
+<li><strong>The goal is: user says <code>/ship</code>, next thing they see is the review + PR URL + auto-synced docs.</strong></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

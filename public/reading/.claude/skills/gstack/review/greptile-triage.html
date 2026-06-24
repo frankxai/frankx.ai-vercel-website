@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Greptile Comment Triage</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/review/greptile-triage.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Greptile Comment Triage</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Freview">review</a> / <span>greptile-triage.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Greptile Comment Triage</h1>
+<p>Shared reference for fetching, filtering, and classifying Greptile review comments on GitHub PRs. Both <code>/review</code> (Step 2.5) and <code>/ship</code> (Step 3.75) reference this document.</p>
+<hr>
+<h2>Fetch</h2>
+<p>Run these commands to detect the PR and fetch comments. Both API calls run in parallel.</p>
+<pre><code class="language-bash">REPO=$(gh repo view --json nameWithOwner --jq &#39;.nameWithOwner&#39; 2&gt;/dev/null)
+PR_NUMBER=$(gh pr view --json number --jq &#39;.number&#39; 2&gt;/dev/null)
+</code></pre>
+<p><strong>If either fails or is empty:</strong> Skip Greptile triage silently. This integration is additive — the workflow works without it.</p>
+<pre><code class="language-bash"># Fetch line-level review comments AND top-level PR comments in parallel
+gh api repos/$REPO/pulls/$PR_NUMBER/comments \
+  --jq &#39;.[] | select(.user.login == &quot;greptile-apps[bot]&quot;) | select(.position != null) | {id: .id, path: .path, line: .line, body: .body, html_url: .html_url, source: &quot;line-level&quot;}&#39; &gt; /tmp/greptile_line.json &amp;
+gh api repos/$REPO/issues/$PR_NUMBER/comments \
+  --jq &#39;.[] | select(.user.login == &quot;greptile-apps[bot]&quot;) | {id: .id, body: .body, html_url: .html_url, source: &quot;top-level&quot;}&#39; &gt; /tmp/greptile_top.json &amp;
+wait
+</code></pre>
+<p><strong>If API errors or zero Greptile comments across both endpoints:</strong> Skip silently.</p>
+<p>The <code>position != null</code> filter on line-level comments automatically skips outdated comments from force-pushed code.</p>
+<hr>
+<h2>Suppressions Check</h2>
+<p>Derive the project-specific history path:</p>
+<pre><code class="language-bash">REMOTE_SLUG=$(browse/bin/remote-slug 2&gt;/dev/null || ~/.claude/skills/gstack/browse/bin/remote-slug 2&gt;/dev/null || basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null || pwd)&quot;)
+PROJECT_HISTORY=&quot;$HOME/.gstack/projects/$REMOTE_SLUG/greptile-history.md&quot;
+</code></pre>
+<p>Read <code>$PROJECT_HISTORY</code> if it exists (per-project suppressions). Each line records a previous triage outcome:</p>
+<pre><code>&lt;date&gt; | &lt;repo&gt; | &lt;type:fp|fix|already-fixed&gt; | &lt;file-pattern&gt; | &lt;category&gt;
+</code></pre>
+<p><strong>Categories</strong> (fixed set): <code>race-condition</code>, <code>null-check</code>, <code>error-handling</code>, <code>style</code>, <code>type-safety</code>, <code>security</code>, <code>performance</code>, <code>correctness</code>, <code>other</code></p>
+<p>Match each fetched comment against entries where:</p>
+<ul>
+<li><code>type == fp</code> (only suppress known false positives, not previously fixed real issues)</li>
+<li><code>repo</code> matches the current repo</li>
+<li><code>file-pattern</code> matches the comment&#39;s file path</li>
+<li><code>category</code> matches the issue type in the comment</li>
+</ul>
+<p>Skip matched comments as <strong>SUPPRESSED</strong>.</p>
+<p>If the history file doesn&#39;t exist or has unparseable lines, skip those lines and continue — never fail on a malformed history file.</p>
+<hr>
+<h2>Classify</h2>
+<p>For each non-suppressed comment:</p>
+<ol>
+<li><strong>Line-level comments:</strong> Read the file at the indicated <code>path:line</code> and surrounding context (±10 lines)</li>
+<li><strong>Top-level comments:</strong> Read the full comment body</li>
+<li>Cross-reference the comment against the full diff (<code>git diff origin/main</code>) and the review checklist</li>
+<li>Classify:<ul>
+<li><strong>VALID &amp; ACTIONABLE</strong> — a real bug, race condition, security issue, or correctness problem that exists in the current code</li>
+<li><strong>VALID BUT ALREADY FIXED</strong> — a real issue that was addressed in a subsequent commit on the branch. Identify the fixing commit SHA.</li>
+<li><strong>FALSE POSITIVE</strong> — the comment misunderstands the code, flags something handled elsewhere, or is stylistic noise</li>
+<li><strong>SUPPRESSED</strong> — already filtered in the suppressions check above</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Reply APIs</h2>
+<p>When replying to Greptile comments, use the correct endpoint based on comment source:</p>
+<p><strong>Line-level comments</strong> (from <code>pulls/$PR/comments</code>):</p>
+<pre><code class="language-bash">gh api repos/$REPO/pulls/$PR_NUMBER/comments/$COMMENT_ID/replies \
+  -f body=&quot;&lt;reply text&gt;&quot;
+</code></pre>
+<p><strong>Top-level comments</strong> (from <code>issues/$PR/comments</code>):</p>
+<pre><code class="language-bash">gh api repos/$REPO/issues/$PR_NUMBER/comments \
+  -f body=&quot;&lt;reply text&gt;&quot;
+</code></pre>
+<p><strong>If a reply POST fails</strong> (e.g., PR was closed, no write permission): warn and continue. Do not stop the workflow for a failed reply.</p>
+<hr>
+<h2>Reply Templates</h2>
+<p>Use these templates for every Greptile reply. Always include concrete evidence — never post vague replies.</p>
+<h3>Tier 1 (First response) — Friendly, evidence-included</h3>
+<p><strong>For FIXES (user chose to fix the issue):</strong></p>
+<pre><code>**Fixed** in `&lt;commit-sha&gt;`.
+
+\`\`\`diff
+- &lt;old problematic line(s)&gt;
++ &lt;new fixed line(s)&gt;
+\`\`\`
+
+**Why:** &lt;1-sentence explanation of what was wrong and how the fix addresses it&gt;
+</code></pre>
+<p><strong>For ALREADY FIXED (issue addressed in a prior commit on the branch):</strong></p>
+<pre><code>**Already fixed** in `&lt;commit-sha&gt;`.
+
+**What was done:** &lt;1-2 sentences describing how the existing commit addresses this issue&gt;
+</code></pre>
+<p><strong>For FALSE POSITIVES (the comment is incorrect):</strong></p>
+<pre><code>**Not a bug.** &lt;1 sentence directly stating why this is incorrect&gt;
+
+**Evidence:**
+- &lt;specific code reference showing the pattern is safe/correct&gt;
+- &lt;e.g., &quot;The nil check is handled by `ActiveRecord::FinderMethods#find` which raises RecordNotFound, not nil&quot;&gt;
+
+**Suggested re-rank:** This appears to be a `&lt;style|noise|misread&gt;` issue, not a `&lt;what Greptile called it&gt;`. Consider lowering severity.
+</code></pre>
+<h3>Tier 2 (Greptile re-flags after prior reply) — Firm, overwhelming evidence</h3>
+<p>Use Tier 2 when escalation detection (below) identifies a prior GStack reply on the same thread. Include maximum evidence to close the discussion.</p>
+<pre><code>**This has been reviewed and confirmed as [intentional/already-fixed/not-a-bug].**
+
+\`\`\`diff
+&lt;full relevant diff showing the change or safe pattern&gt;
+\`\`\`
+
+**Evidence chain:**
+1. &lt;file:line permalink showing the safe pattern or fix&gt;
+2. &lt;commit SHA where it was addressed, if applicable&gt;
+3. &lt;architecture rationale or design decision, if applicable&gt;
+
+**Suggested re-rank:** Please recalibrate — this is a `&lt;actual category&gt;` issue, not `&lt;claimed category&gt;`. [Link to specific file change permalink if helpful]
+</code></pre>
+<hr>
+<h2>Escalation Detection</h2>
+<p>Before composing a reply, check if a prior GStack reply already exists on this comment thread:</p>
+<ol>
+<li><p><strong>For line-level comments:</strong> Fetch replies via <code>gh api repos/$REPO/pulls/$PR_NUMBER/comments/$COMMENT_ID/replies</code>. Check if any reply body contains GStack markers: <code>**Fixed**</code>, <code>**Not a bug.**</code>, <code>**Already fixed**</code>.</p>
+</li>
+<li><p><strong>For top-level comments:</strong> Scan the fetched issue comments for replies posted after the Greptile comment that contain GStack markers.</p>
+</li>
+<li><p><strong>If a prior GStack reply exists AND Greptile posted again on the same file+category:</strong> Use Tier 2 (firm) templates.</p>
+</li>
+<li><p><strong>If no prior GStack reply exists:</strong> Use Tier 1 (friendly) templates.</p>
+</li>
+</ol>
+<p>If escalation detection fails (API error, ambiguous thread): default to Tier 1. Never escalate on ambiguity.</p>
+<hr>
+<h2>Severity Assessment &amp; Re-ranking</h2>
+<p>When classifying comments, also assess whether Greptile&#39;s implied severity matches reality:</p>
+<ul>
+<li>If Greptile flags something as a <strong>security/correctness/race-condition</strong> issue but it&#39;s actually a <strong>style/performance</strong> nit: include <code>**Suggested re-rank:**</code> in the reply requesting the category be corrected.</li>
+<li>If Greptile flags a low-severity style issue as if it were critical: push back in the reply.</li>
+<li>Always be specific about why the re-ranking is warranted — cite code and line numbers, not opinions.</li>
+</ul>
+<hr>
+<h2>History File Writes</h2>
+<p>Before writing, ensure both directories exist:</p>
+<pre><code class="language-bash">REMOTE_SLUG=$(browse/bin/remote-slug 2&gt;/dev/null || ~/.claude/skills/gstack/browse/bin/remote-slug 2&gt;/dev/null || basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null || pwd)&quot;)
+mkdir -p &quot;$HOME/.gstack/projects/$REMOTE_SLUG&quot;
+mkdir -p ~/.gstack
+</code></pre>
+<p>Append one line per triage outcome to <strong>both</strong> files (per-project for suppressions, global for retro):</p>
+<ul>
+<li><code>~/.gstack/projects/$REMOTE_SLUG/greptile-history.md</code> (per-project)</li>
+<li><code>~/.gstack/greptile-history.md</code> (global aggregate)</li>
+</ul>
+<p>Format:</p>
+<pre><code>&lt;YYYY-MM-DD&gt; | &lt;owner/repo&gt; | &lt;type&gt; | &lt;file-pattern&gt; | &lt;category&gt;
+</code></pre>
+<p>Example entries:</p>
+<pre><code>2026-03-13 | garrytan/myapp | fp | app/services/auth_service.rb | race-condition
+2026-03-13 | garrytan/myapp | fix | app/models/user.rb | null-check
+2026-03-13 | garrytan/myapp | already-fixed | lib/payments.rb | error-handling
+</code></pre>
+<hr>
+<h2>Output Format</h2>
+<p>Include a Greptile summary in the output header:</p>
+<pre><code>+ N Greptile comments (X valid, Y fixed, Z FP)
+</code></pre>
+<p>For each classified comment, show:</p>
+<ul>
+<li>Classification tag: <code>[VALID]</code>, <code>[FIXED]</code>, <code>[FALSE POSITIVE]</code>, <code>[SUPPRESSED]</code></li>
+<li>File:line reference (for line-level) or <code>[top-level]</code> (for top-level)</li>
+<li>One-line body summary</li>
+<li>Permalink URL (the <code>html_url</code> field)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

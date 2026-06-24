@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Office Open XML Technical Reference for PowerPoint</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/anthropic/pptx/ooxml.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Office Open XML Technical Reference for PowerPoint</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fanthropic">anthropic</a> / <a href="index.html#.claude%2Fskills%2Fanthropic%2Fpptx">pptx</a> / <span>ooxml.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Office Open XML Technical Reference for PowerPoint</h1>
+<p><strong>Important: Read this entire document before starting.</strong> Critical XML schema rules and formatting requirements are covered throughout. Incorrect implementation can create invalid PPTX files that PowerPoint cannot open.</p>
+<h2>Technical Guidelines</h2>
+<h3>Schema Compliance</h3>
+<ul>
+<li><strong>Element ordering in <code>&lt;p:txBody&gt;</code></strong>: <code>&lt;a:bodyPr&gt;</code>, <code>&lt;a:lstStyle&gt;</code>, <code>&lt;a:p&gt;</code></li>
+<li><strong>Whitespace</strong>: Add <code>xml:space=&#39;preserve&#39;</code> to <code>&lt;a:t&gt;</code> elements with leading/trailing spaces</li>
+<li><strong>Unicode</strong>: Escape characters in ASCII content: <code>&quot;</code> becomes <code>&amp;#8220;</code></li>
+<li><strong>Images</strong>: Add to <code>ppt/media/</code>, reference in slide XML, set dimensions to fit slide bounds</li>
+<li><strong>Relationships</strong>: Update <code>ppt/slides/_rels/slideN.xml.rels</code> for each slide&#39;s resources</li>
+<li><strong>Dirty attribute</strong>: Add <code>dirty=&quot;0&quot;</code> to <code>&lt;a:rPr&gt;</code> and <code>&lt;a:endParaRPr&gt;</code> elements to indicate clean state</li>
+</ul>
+<h2>Presentation Structure</h2>
+<h3>Basic Slide Structure</h3>
+<pre><code class="language-xml">&lt;!-- ppt/slides/slide1.xml --&gt;
+&lt;p:sld&gt;
+  &lt;p:cSld&gt;
+    &lt;p:spTree&gt;
+      &lt;p:nvGrpSpPr&gt;...&lt;/p:nvGrpSpPr&gt;
+      &lt;p:grpSpPr&gt;...&lt;/p:grpSpPr&gt;
+      &lt;!-- Shapes go here --&gt;
+    &lt;/p:spTree&gt;
+  &lt;/p:cSld&gt;
+&lt;/p:sld&gt;
+</code></pre>
+<h3>Text Box / Shape with Text</h3>
+<pre><code class="language-xml">&lt;p:sp&gt;
+  &lt;p:nvSpPr&gt;
+    &lt;p:cNvPr id=&quot;2&quot; name=&quot;Title&quot;/&gt;
+    &lt;p:cNvSpPr&gt;
+      &lt;a:spLocks noGrp=&quot;1&quot;/&gt;
+    &lt;/p:cNvSpPr&gt;
+    &lt;p:nvPr&gt;
+      &lt;p:ph type=&quot;ctrTitle&quot;/&gt;
+    &lt;/p:nvPr&gt;
+  &lt;/p:nvSpPr&gt;
+  &lt;p:spPr&gt;
+    &lt;a:xfrm&gt;
+      &lt;a:off x=&quot;838200&quot; y=&quot;365125&quot;/&gt;
+      &lt;a:ext cx=&quot;7772400&quot; cy=&quot;1470025&quot;/&gt;
+    &lt;/a:xfrm&gt;
+  &lt;/p:spPr&gt;
+  &lt;p:txBody&gt;
+    &lt;a:bodyPr/&gt;
+    &lt;a:lstStyle/&gt;
+    &lt;a:p&gt;
+      &lt;a:r&gt;
+        &lt;a:t&gt;Slide Title&lt;/a:t&gt;
+      &lt;/a:r&gt;
+    &lt;/a:p&gt;
+  &lt;/p:txBody&gt;
+&lt;/p:sp&gt;
+</code></pre>
+<h3>Text Formatting</h3>
+<pre><code class="language-xml">&lt;!-- Bold --&gt;
+&lt;a:r&gt;
+  &lt;a:rPr b=&quot;1&quot;/&gt;
+  &lt;a:t&gt;Bold Text&lt;/a:t&gt;
+&lt;/a:r&gt;
+
+&lt;!-- Italic --&gt;
+&lt;a:r&gt;
+  &lt;a:rPr i=&quot;1&quot;/&gt;
+  &lt;a:t&gt;Italic Text&lt;/a:t&gt;
+&lt;/a:r&gt;
+
+&lt;!-- Underline --&gt;
+&lt;a:r&gt;
+  &lt;a:rPr u=&quot;sng&quot;/&gt;
+  &lt;a:t&gt;Underlined&lt;/a:t&gt;
+&lt;/a:r&gt;
+
+&lt;!-- Highlight --&gt;
+&lt;a:r&gt;
+  &lt;a:rPr&gt;
+    &lt;a:highlight&gt;
+      &lt;a:srgbClr val=&quot;FFFF00&quot;/&gt;
+    &lt;/a:highlight&gt;
+  &lt;/a:rPr&gt;
+  &lt;a:t&gt;Highlighted Text&lt;/a:t&gt;
+&lt;/a:r&gt;
+
+&lt;!-- Font and Size --&gt;
+&lt;a:r&gt;
+  &lt;a:rPr sz=&quot;2400&quot; typeface=&quot;Arial&quot;&gt;
+    &lt;a:solidFill&gt;
+      &lt;a:srgbClr val=&quot;FF0000&quot;/&gt;
+    &lt;/a:solidFill&gt;
+  &lt;/a:rPr&gt;
+  &lt;a:t&gt;Colored Arial 24pt&lt;/a:t&gt;
+&lt;/a:r&gt;
+
+&lt;!-- Complete formatting example --&gt;
+&lt;a:r&gt;
+  &lt;a:rPr lang=&quot;en-US&quot; sz=&quot;1400&quot; b=&quot;1&quot; dirty=&quot;0&quot;&gt;
+    &lt;a:solidFill&gt;
+      &lt;a:srgbClr val=&quot;FAFAFA&quot;/&gt;
+    &lt;/a:solidFill&gt;
+  &lt;/a:rPr&gt;
+  &lt;a:t&gt;Formatted text&lt;/a:t&gt;
+&lt;/a:r&gt;
+</code></pre>
+<h3>Lists</h3>
+<pre><code class="language-xml">&lt;!-- Bullet list --&gt;
+&lt;a:p&gt;
+  &lt;a:pPr lvl=&quot;0&quot;&gt;
+    &lt;a:buChar char=&quot;•&quot;/&gt;
+  &lt;/a:pPr&gt;
+  &lt;a:r&gt;
+    &lt;a:t&gt;First bullet point&lt;/a:t&gt;
+  &lt;/a:r&gt;
+&lt;/a:p&gt;
+
+&lt;!-- Numbered list --&gt;
+&lt;a:p&gt;
+  &lt;a:pPr lvl=&quot;0&quot;&gt;
+    &lt;a:buAutoNum type=&quot;arabicPeriod&quot;/&gt;
+  &lt;/a:pPr&gt;
+  &lt;a:r&gt;
+    &lt;a:t&gt;First numbered item&lt;/a:t&gt;
+  &lt;/a:r&gt;
+&lt;/a:p&gt;
+
+&lt;!-- Second level indent --&gt;
+&lt;a:p&gt;
+  &lt;a:pPr lvl=&quot;1&quot;&gt;
+    &lt;a:buChar char=&quot;•&quot;/&gt;
+  &lt;/a:pPr&gt;
+  &lt;a:r&gt;
+    &lt;a:t&gt;Indented bullet&lt;/a:t&gt;
+  &lt;/a:r&gt;
+&lt;/a:p&gt;
+</code></pre>
+<h3>Shapes</h3>
+<pre><code class="language-xml">&lt;!-- Rectangle --&gt;
+&lt;p:sp&gt;
+  &lt;p:nvSpPr&gt;
+    &lt;p:cNvPr id=&quot;3&quot; name=&quot;Rectangle&quot;/&gt;
+    &lt;p:cNvSpPr/&gt;
+    &lt;p:nvPr/&gt;
+  &lt;/p:nvSpPr&gt;
+  &lt;p:spPr&gt;
+    &lt;a:xfrm&gt;
+      &lt;a:off x=&quot;1000000&quot; y=&quot;1000000&quot;/&gt;
+      &lt;a:ext cx=&quot;3000000&quot; cy=&quot;2000000&quot;/&gt;
+    &lt;/a:xfrm&gt;
+    &lt;a:prstGeom prst=&quot;rect&quot;&gt;
+      &lt;a:avLst/&gt;
+    &lt;/a:prstGeom&gt;
+    &lt;a:solidFill&gt;
+      &lt;a:srgbClr val=&quot;FF0000&quot;/&gt;
+    &lt;/a:solidFill&gt;
+    &lt;a:ln w=&quot;25400&quot;&gt;
+      &lt;a:solidFill&gt;
+        &lt;a:srgbClr val=&quot;000000&quot;/&gt;
+      &lt;/a:solidFill&gt;
+    &lt;/a:ln&gt;
+  &lt;/p:spPr&gt;
+&lt;/p:sp&gt;
+
+&lt;!-- Rounded Rectangle --&gt;
+&lt;p:sp&gt;
+  &lt;p:spPr&gt;
+    &lt;a:prstGeom prst=&quot;roundRect&quot;&gt;
+      &lt;a:avLst/&gt;
+    &lt;/a:prstGeom&gt;
+  &lt;/p:spPr&gt;
+&lt;/p:sp&gt;
+
+&lt;!-- Circle/Ellipse --&gt;
+&lt;p:sp&gt;
+  &lt;p:spPr&gt;
+    &lt;a:prstGeom prst=&quot;ellipse&quot;&gt;
+      &lt;a:avLst/&gt;
+    &lt;/a:prstGeom&gt;
+  &lt;/p:spPr&gt;
+&lt;/p:sp&gt;
+</code></pre>
+<h3>Images</h3>
+<pre><code class="language-xml">&lt;p:pic&gt;
+  &lt;p:nvPicPr&gt;
+    &lt;p:cNvPr id=&quot;4&quot; name=&quot;Picture&quot;&gt;
+      &lt;a:hlinkClick r:id=&quot;&quot; action=&quot;ppaction://media&quot;/&gt;
+    &lt;/p:cNvPr&gt;
+    &lt;p:cNvPicPr&gt;
+      &lt;a:picLocks noChangeAspect=&quot;1&quot;/&gt;
+    &lt;/p:cNvPicPr&gt;
+    &lt;p:nvPr/&gt;
+  &lt;/p:nvPicPr&gt;
+  &lt;p:blipFill&gt;
+    &lt;a:blip r:embed=&quot;rId2&quot;/&gt;
+    &lt;a:stretch&gt;
+      &lt;a:fillRect/&gt;
+    &lt;/a:stretch&gt;
+  &lt;/p:blipFill&gt;
+  &lt;p:spPr&gt;
+    &lt;a:xfrm&gt;
+      &lt;a:off x=&quot;1000000&quot; y=&quot;1000000&quot;/&gt;
+      &lt;a:ext cx=&quot;3000000&quot; cy=&quot;2000000&quot;/&gt;
+    &lt;/a:xfrm&gt;
+    &lt;a:prstGeom prst=&quot;rect&quot;&gt;
+      &lt;a:avLst/&gt;
+    &lt;/a:prstGeom&gt;
+  &lt;/p:spPr&gt;
+&lt;/p:pic&gt;
+</code></pre>
+<h3>Tables</h3>
+<pre><code class="language-xml">&lt;p:graphicFrame&gt;
+  &lt;p:nvGraphicFramePr&gt;
+    &lt;p:cNvPr id=&quot;5&quot; name=&quot;Table&quot;/&gt;
+    &lt;p:cNvGraphicFramePr&gt;
+      &lt;a:graphicFrameLocks noGrp=&quot;1&quot;/&gt;
+    &lt;/p:cNvGraphicFramePr&gt;
+    &lt;p:nvPr/&gt;
+  &lt;/p:nvGraphicFramePr&gt;
+  &lt;p:xfrm&gt;
+    &lt;a:off x=&quot;1000000&quot; y=&quot;1000000&quot;/&gt;
+    &lt;a:ext cx=&quot;6000000&quot; cy=&quot;2000000&quot;/&gt;
+  &lt;/p:xfrm&gt;
+  &lt;a:graphic&gt;
+    &lt;a:graphicData uri=&quot;http://schemas.openxmlformats.org/drawingml/2006/table&quot;&gt;
+      &lt;a:tbl&gt;
+        &lt;a:tblGrid&gt;
+          &lt;a:gridCol w=&quot;3000000&quot;/&gt;
+          &lt;a:gridCol w=&quot;3000000&quot;/&gt;
+        &lt;/a:tblGrid&gt;
+        &lt;a:tr h=&quot;500000&quot;&gt;
+          &lt;a:tc&gt;
+            &lt;a:txBody&gt;
+              &lt;a:bodyPr/&gt;
+              &lt;a:lstStyle/&gt;
+              &lt;a:p&gt;
+                &lt;a:r&gt;
+                  &lt;a:t&gt;Cell 1&lt;/a:t&gt;
+                &lt;/a:r&gt;
+              &lt;/a:p&gt;
+            &lt;/a:txBody&gt;
+          &lt;/a:tc&gt;
+          &lt;a:tc&gt;
+            &lt;a:txBody&gt;
+              &lt;a:bodyPr/&gt;
+              &lt;a:lstStyle/&gt;
+              &lt;a:p&gt;
+                &lt;a:r&gt;
+                  &lt;a:t&gt;Cell 2&lt;/a:t&gt;
+                &lt;/a:r&gt;
+              &lt;/a:p&gt;
+            &lt;/a:txBody&gt;
+          &lt;/a:tc&gt;
+        &lt;/a:tr&gt;
+      &lt;/a:tbl&gt;
+    &lt;/a:graphicData&gt;
+  &lt;/a:graphic&gt;
+&lt;/p:graphicFrame&gt;
+</code></pre>
+<h3>Slide Layouts</h3>
+<pre><code class="language-xml">&lt;!-- Title Slide Layout --&gt;
+&lt;p:sp&gt;
+  &lt;p:nvSpPr&gt;
+    &lt;p:nvPr&gt;
+      &lt;p:ph type=&quot;ctrTitle&quot;/&gt;
+    &lt;/p:nvPr&gt;
+  &lt;/p:nvSpPr&gt;
+  &lt;!-- Title content --&gt;
+&lt;/p:sp&gt;
+
+&lt;p:sp&gt;
+  &lt;p:nvSpPr&gt;
+    &lt;p:nvPr&gt;
+      &lt;p:ph type=&quot;subTitle&quot; idx=&quot;1&quot;/&gt;
+    &lt;/p:nvPr&gt;
+  &lt;/p:nvSpPr&gt;
+  &lt;!-- Subtitle content --&gt;
+&lt;/p:sp&gt;
+
+&lt;!-- Content Slide Layout --&gt;
+&lt;p:sp&gt;
+  &lt;p:nvSpPr&gt;
+    &lt;p:nvPr&gt;
+      &lt;p:ph type=&quot;title&quot;/&gt;
+    &lt;/p:nvPr&gt;
+  &lt;/p:nvSpPr&gt;
+  &lt;!-- Slide title --&gt;
+&lt;/p:sp&gt;
+
+&lt;p:sp&gt;
+  &lt;p:nvSpPr&gt;
+    &lt;p:nvPr&gt;
+      &lt;p:ph type=&quot;body&quot; idx=&quot;1&quot;/&gt;
+    &lt;/p:nvPr&gt;
+  &lt;/p:nvSpPr&gt;
+  &lt;!-- Content body --&gt;
+&lt;/p:sp&gt;
+</code></pre>
+<h2>File Updates</h2>
+<p>When adding content, update these files:</p>
+<p><strong><code>ppt/_rels/presentation.xml.rels</code>:</strong></p>
+<pre><code class="language-xml">&lt;Relationship Id=&quot;rId1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide&quot; Target=&quot;slides/slide1.xml&quot;/&gt;
+&lt;Relationship Id=&quot;rId2&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster&quot; Target=&quot;slideMasters/slideMaster1.xml&quot;/&gt;
+</code></pre>
+<p><strong><code>ppt/slides/_rels/slide1.xml.rels</code>:</strong></p>
+<pre><code class="language-xml">&lt;Relationship Id=&quot;rId1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout&quot; Target=&quot;../slideLayouts/slideLayout1.xml&quot;/&gt;
+&lt;Relationship Id=&quot;rId2&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/image&quot; Target=&quot;../media/image1.png&quot;/&gt;
+</code></pre>
+<p><strong><code>[Content_Types].xml</code>:</strong></p>
+<pre><code class="language-xml">&lt;Default Extension=&quot;png&quot; ContentType=&quot;image/png&quot;/&gt;
+&lt;Default Extension=&quot;jpg&quot; ContentType=&quot;image/jpeg&quot;/&gt;
+&lt;Override PartName=&quot;/ppt/slides/slide1.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.presentationml.slide+xml&quot;/&gt;
+</code></pre>
+<p><strong><code>ppt/presentation.xml</code>:</strong></p>
+<pre><code class="language-xml">&lt;p:sldIdLst&gt;
+  &lt;p:sldId id=&quot;256&quot; r:id=&quot;rId1&quot;/&gt;
+  &lt;p:sldId id=&quot;257&quot; r:id=&quot;rId2&quot;/&gt;
+&lt;/p:sldIdLst&gt;
+</code></pre>
+<p><strong><code>docProps/app.xml</code>:</strong> Update slide count and statistics</p>
+<pre><code class="language-xml">&lt;Slides&gt;2&lt;/Slides&gt;
+&lt;Paragraphs&gt;10&lt;/Paragraphs&gt;
+&lt;Words&gt;50&lt;/Words&gt;
+</code></pre>
+<h2>Slide Operations</h2>
+<h3>Adding a New Slide</h3>
+<p>When adding a slide to the end of the presentation:</p>
+<ol>
+<li><strong>Create the slide file</strong> (<code>ppt/slides/slideN.xml</code>)</li>
+<li><strong>Update <code>[Content_Types].xml</code></strong>: Add Override for the new slide</li>
+<li><strong>Update <code>ppt/_rels/presentation.xml.rels</code></strong>: Add relationship for the new slide</li>
+<li><strong>Update <code>ppt/presentation.xml</code></strong>: Add slide ID to <code>&lt;p:sldIdLst&gt;</code></li>
+<li><strong>Create slide relationships</strong> (<code>ppt/slides/_rels/slideN.xml.rels</code>) if needed</li>
+<li><strong>Update <code>docProps/app.xml</code></strong>: Increment slide count and update statistics (if present)</li>
+</ol>
+<h3>Duplicating a Slide</h3>
+<ol>
+<li>Copy the source slide XML file with a new name</li>
+<li>Update all IDs in the new slide to be unique</li>
+<li>Follow the &quot;Adding a New Slide&quot; steps above</li>
+<li><strong>CRITICAL</strong>: Remove or update any notes slide references in <code>_rels</code> files</li>
+<li>Remove references to unused media files</li>
+</ol>
+<h3>Reordering Slides</h3>
+<ol>
+<li><strong>Update <code>ppt/presentation.xml</code></strong>: Reorder <code>&lt;p:sldId&gt;</code> elements in <code>&lt;p:sldIdLst&gt;</code></li>
+<li>The order of <code>&lt;p:sldId&gt;</code> elements determines slide order</li>
+<li>Keep slide IDs and relationship IDs unchanged</li>
+</ol>
+<p>Example:</p>
+<pre><code class="language-xml">&lt;!-- Original order --&gt;
+&lt;p:sldIdLst&gt;
+  &lt;p:sldId id=&quot;256&quot; r:id=&quot;rId2&quot;/&gt;
+  &lt;p:sldId id=&quot;257&quot; r:id=&quot;rId3&quot;/&gt;
+  &lt;p:sldId id=&quot;258&quot; r:id=&quot;rId4&quot;/&gt;
+&lt;/p:sldIdLst&gt;
+
+&lt;!-- After moving slide 3 to position 2 --&gt;
+&lt;p:sldIdLst&gt;
+  &lt;p:sldId id=&quot;256&quot; r:id=&quot;rId2&quot;/&gt;
+  &lt;p:sldId id=&quot;258&quot; r:id=&quot;rId4&quot;/&gt;
+  &lt;p:sldId id=&quot;257&quot; r:id=&quot;rId3&quot;/&gt;
+&lt;/p:sldIdLst&gt;
+</code></pre>
+<h3>Deleting a Slide</h3>
+<ol>
+<li><strong>Remove from <code>ppt/presentation.xml</code></strong>: Delete the <code>&lt;p:sldId&gt;</code> entry</li>
+<li><strong>Remove from <code>ppt/_rels/presentation.xml.rels</code></strong>: Delete the relationship</li>
+<li><strong>Remove from <code>[Content_Types].xml</code></strong>: Delete the Override entry</li>
+<li><strong>Delete files</strong>: Remove <code>ppt/slides/slideN.xml</code> and <code>ppt/slides/_rels/slideN.xml.rels</code></li>
+<li><strong>Update <code>docProps/app.xml</code></strong>: Decrement slide count and update statistics</li>
+<li><strong>Clean up unused media</strong>: Remove orphaned images from <code>ppt/media/</code></li>
+</ol>
+<p>Note: Don&#39;t renumber remaining slides - keep their original IDs and filenames.</p>
+<h2>Common Errors to Avoid</h2>
+<ul>
+<li><strong>Encodings</strong>: Escape unicode characters in ASCII content: <code>&quot;</code> becomes <code>&amp;#8220;</code></li>
+<li><strong>Images</strong>: Add to <code>ppt/media/</code> and update relationship files</li>
+<li><strong>Lists</strong>: Omit bullets from list headers</li>
+<li><strong>IDs</strong>: Use valid hexadecimal values for UUIDs</li>
+<li><strong>Themes</strong>: Check all themes in <code>theme</code> directory for colors</li>
+</ul>
+<h2>Validation Checklist for Template-Based Presentations</h2>
+<h3>Before Packing, Always:</h3>
+<ul>
+<li><strong>Clean unused resources</strong>: Remove unreferenced media, fonts, and notes directories</li>
+<li><strong>Fix Content_Types.xml</strong>: Declare ALL slides, layouts, and themes present in the package</li>
+<li><strong>Fix relationship IDs</strong>: <ul>
+<li>Remove font embed references if not using embedded fonts</li>
+</ul>
+</li>
+<li><strong>Remove broken references</strong>: Check all <code>_rels</code> files for references to deleted resources</li>
+</ul>
+<h3>Common Template Duplication Pitfalls:</h3>
+<ul>
+<li>Multiple slides referencing the same notes slide after duplication</li>
+<li>Image/media references from template slides that no longer exist</li>
+<li>Font embedding references when fonts aren&#39;t included</li>
+<li>Missing slideLayout declarations for layouts 12-25</li>
+<li>docProps directory may not unpack - this is optional</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

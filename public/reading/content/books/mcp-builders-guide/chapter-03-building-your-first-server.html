@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Building Your First Server</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/mcp-builders-guide/chapter-03-building-your-first-server.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Building Your First Server</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fmcp-builders-guide">mcp-builders-guide</a> / <span>chapter-03-building-your-first-server.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Building Your First Server</h1>
+<blockquote>
+<p>&quot;The best way to learn is to build.&quot;
+— Every engineer who ever shipped</p>
+</blockquote>
+<hr>
+<p>You are about to build an MCP server. Not read about one. Not watch a tutorial about one. Build one. In under fifty lines of code.</p>
+<p>The server you build in this chapter will expose a simple tool — a weather lookup — through the MCP protocol. By the end, any MCP-compatible AI client (Claude Code, Cursor, VS Code) will be able to call your server and get weather data through natural language.</p>
+<p>This is the smallest useful server. It teaches you every concept you need without burying you in complexity.</p>
+<hr>
+<h2>I. The Setup</h2>
+<p>You need three things:</p>
+<ol>
+<li>Node.js installed (version 18 or higher)</li>
+<li>A terminal</li>
+<li>A text editor</li>
+</ol>
+<p>Create a new directory and initialize the project:</p>
+<pre><code class="language-bash">mkdir my-first-mcp-server
+cd my-first-mcp-server
+npm init -y
+npm install @modelcontextprotocol/sdk
+</code></pre>
+<p>The <code>@modelcontextprotocol/sdk</code> package provides the TypeScript/JavaScript implementation of the MCP protocol. It handles transport, message formatting, error handling, and connection management. You provide the logic — what your server knows and what it can do.</p>
+<hr>
+<h2>II. The Server</h2>
+<p>Create a file called <code>server.js</code>:</p>
+<pre><code class="language-javascript">import { McpServer } from &#39;@modelcontextprotocol/sdk/server/mcp.js&#39;;
+import { StdioServerTransport } from &#39;@modelcontextprotocol/sdk/server/stdio.js&#39;;
+
+const server = new McpServer({
+  name: &#39;weather-server&#39;,
+  version: &#39;1.0.0&#39;,
+});
+
+// Define a Tool: get current weather
+server.tool(
+  &#39;get-weather&#39;,
+  &#39;Get the current weather for a city&#39;,
+  {
+    city: {
+      type: &#39;string&#39;,
+      description: &#39;The city name (e.g., Amsterdam, Berlin, New York)&#39;,
+    },
+  },
+  async ({ city }) =&gt; {
+    // In production, call a real weather API
+    // For learning, we return simulated data
+    const weather = {
+      Amsterdam: { temp: &#39;14°C&#39;, condition: &#39;Partly cloudy&#39;, humidity: &#39;72%&#39; },
+      Berlin: { temp: &#39;11°C&#39;, condition: &#39;Overcast&#39;, humidity: &#39;68%&#39; },
+      &#39;New York&#39;: { temp: &#39;18°C&#39;, condition: &#39;Sunny&#39;, humidity: &#39;55%&#39; },
+    };
+
+    const data = weather[city] || { temp: &#39;Unknown&#39;, condition: &#39;City not found&#39;, humidity: &#39;N/A&#39; };
+
+    return {
+      content: [{
+        type: &#39;text&#39;,
+        text: `Weather in ${city}: ${data.temp}, ${data.condition}. Humidity: ${data.humidity}`,
+      }],
+    };
+  }
+);
+
+// Connect via stdio transport
+const transport = new StdioServerTransport();
+await server.connect(transport);
+</code></pre>
+<p>That is a complete MCP server. Thirty-seven lines. It defines one Tool (<code>get-weather</code>) that accepts a city name and returns weather data.</p>
+<hr>
+<h2>III. What Just Happened</h2>
+<p>Let us walk through the architecture:</p>
+<p><strong>Line 1-2: Imports.</strong> The SDK provides two key classes: <code>McpServer</code> (the server logic) and <code>StdioServerTransport</code> (the communication channel). Stdio transport means the server communicates through standard input/output — the simplest transport, perfect for local development.</p>
+<p><strong>Line 4-7: Server creation.</strong> You give the server a name and version. These appear in the MCP client&#39;s server list — like a business card for your server.</p>
+<p><strong>Line 10-33: Tool definition.</strong> The <code>server.tool()</code> method takes four arguments:</p>
+<ol>
+<li>The tool name (<code>get-weather</code>)</li>
+<li>A description (the AI reads this to decide when to use the tool)</li>
+<li>An input schema (what parameters the tool accepts)</li>
+<li>A handler function (what happens when the tool is called)</li>
+</ol>
+<p>The input schema is JSON Schema — the same standard used by REST APIs, OpenAPI, and every modern web framework. If you have written a JSON Schema before, you already know how to define MCP tool inputs.</p>
+<p><strong>Line 35-36: Transport connection.</strong> The server connects to the stdio transport and waits for messages from the client.</p>
+<hr>
+<h2>IV. Connecting to Claude Code</h2>
+<p>To use your server with Claude Code, add it to your MCP configuration. Open your Claude Code settings and add:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;weather&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;server.js&quot;],
+      &quot;cwd&quot;: &quot;/path/to/my-first-mcp-server&quot;
+    }
+  }
+}
+</code></pre>
+<p>Now start Claude Code. Your weather server is connected. Try:</p>
+<p>&quot;What&#39;s the weather in Amsterdam?&quot;</p>
+<p>Claude reads the tool description, recognizes this is a weather query, calls the <code>get-weather</code> tool with <code>{ city: &quot;Amsterdam&quot; }</code>, and returns: &quot;Weather in Amsterdam: 14°C, Partly cloudy. Humidity: 72%.&quot;</p>
+<p>You just gave an AI the ability to check the weather. Through a protocol. In thirty-seven lines.</p>
+<hr>
+<h2>V. From Toy to Production</h2>
+<p>The weather server is a toy. Here is how each element scales to production:</p>
+<p><strong>The simulated data becomes an API call.</strong> Replace the hardcoded weather object with a fetch to OpenWeatherMap, WeatherAPI, or any weather service. The MCP server becomes a bridge between the AI and the API — handling authentication, rate limiting, and response formatting.</p>
+<p><strong>The single tool becomes a toolkit.</strong> Add more tools: <code>get-forecast</code> for multi-day predictions, <code>get-alerts</code> for weather warnings, <code>compare-cities</code> for side-by-side comparison. Each tool is another <code>server.tool()</code> call — the pattern is the same.</p>
+<p><strong>The stdio transport becomes HTTP.</strong> For servers that need to run remotely — on a server, in the cloud, as a shared service — replace <code>StdioServerTransport</code> with the HTTP transport. The protocol stays the same. The transport changes. This is why MCP separates protocol from transport — you can change how the server communicates without changing what it does.</p>
+<p><strong>Error handling becomes robust.</strong> The production server validates inputs, catches API failures, implements retries, and returns structured error messages that help the AI recover gracefully.</p>
+<hr>
+<h2>VI. Your Second Server</h2>
+<p>Now build something useful. Here are three servers that take less than an hour each:</p>
+<p><strong>1. A file search server.</strong> Expose your project&#39;s file system as a Resource. Add a Tool that searches file contents by regex. Now Claude Code can search your entire codebase through natural language — &quot;find all files that import the auth module.&quot;</p>
+<p><strong>2. A database query server.</strong> Connect to your PostgreSQL or SQLite database. Expose table schemas as Resources. Add a Tool that runs read-only SQL queries. Now the AI can answer &quot;how many users signed up this week?&quot; by querying your actual data.</p>
+<p><strong>3. A deployment status server.</strong> Connect to Vercel, Netlify, or your CI/CD platform. Expose deployment history as a Resource. Add a Tool that checks build status. Now &quot;is the latest deploy healthy?&quot; returns a real answer instead of a guess.</p>
+<p>Each of these servers follows the same pattern: import the SDK, define Resources and Tools, connect the transport. The pattern does not change. The domain does.</p>
+<hr>
+<h2>VII. The Builder&#39;s Mindset</h2>
+<p>The MCP ecosystem has 1,400+ servers. That sounds like a lot. It is not. Consider every API you interact with — Stripe, Twilio, Notion, Linear, Figma, your company&#39;s internal tools. Each one is a potential MCP server. Each one would give the AI hands where it currently has none.</p>
+<p>The people who build MCP servers now are not just building tools. They are building infrastructure. And infrastructure, once established, compounds.</p>
+<p>Your first server is thirty-seven lines. Your tenth will be a hundred. Your hundredth will be the one that changes how you work.</p>
+<p>Start building.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Performance Optimization Agents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/agents/optimization/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Performance Optimization Agents</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fagents">agents</a> / <a href="index.html#.claude%2Fagents%2Foptimization">optimization</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: Performance Optimization
+type: documentation
+category: optimization
+description: Comprehensive suite of performance optimization agents for swarm efficiency and scalability</h2>
+<h1>Performance Optimization Agents</h1>
+<p>This directory contains a comprehensive suite of performance optimization agents designed to maximize swarm efficiency, scalability, and reliability.</p>
+<h2>Agent Overview</h2>
+<h3>1. Load Balancing Coordinator (<code>load-balancer.md</code>)</h3>
+<p><strong>Purpose</strong>: Dynamic task distribution and resource allocation optimization</p>
+<ul>
+<li><strong>Key Features</strong>:<ul>
+<li>Work-stealing algorithms for efficient task distribution</li>
+<li>Dynamic load balancing based on agent capacity</li>
+<li>Advanced scheduling algorithms (Round Robin, Weighted Fair Queuing, CFS)</li>
+<li>Queue management and prioritization systems</li>
+<li>Circuit breaker patterns for fault tolerance</li>
+</ul>
+</li>
+</ul>
+<h3>2. Performance Monitor (<code>performance-monitor.md</code>)</h3>
+<p><strong>Purpose</strong>: Real-time metrics collection and bottleneck analysis</p>
+<ul>
+<li><strong>Key Features</strong>:<ul>
+<li>Multi-dimensional metrics collection (CPU, memory, network, agents)</li>
+<li>Advanced bottleneck detection using multiple algorithms</li>
+<li>SLA monitoring and alerting with threshold management</li>
+<li>Anomaly detection using statistical and ML models</li>
+<li>Real-time dashboard integration with WebSocket streaming</li>
+</ul>
+</li>
+</ul>
+<h3>3. Topology Optimizer (<code>topology-optimizer.md</code>)</h3>
+<p><strong>Purpose</strong>: Dynamic swarm topology reconfiguration and network optimization</p>
+<ul>
+<li><strong>Key Features</strong>:<ul>
+<li>Intelligent topology selection (hierarchical, mesh, ring, star, hybrid)</li>
+<li>Network latency optimization and routing strategies</li>
+<li>AI-powered agent placement using genetic algorithms</li>
+<li>Communication pattern optimization and protocol selection</li>
+<li>Neural network integration for topology prediction</li>
+</ul>
+</li>
+</ul>
+<h3>4. Resource Allocator (<code>resource-allocator.md</code>)</h3>
+<p><strong>Purpose</strong>: Adaptive resource allocation and predictive scaling</p>
+<ul>
+<li><strong>Key Features</strong>:<ul>
+<li>Workload pattern analysis and adaptive allocation</li>
+<li>ML-powered predictive scaling with LSTM and reinforcement learning</li>
+<li>Multi-objective resource optimization using genetic algorithms</li>
+<li>Advanced circuit breaker patterns with adaptive thresholds</li>
+<li>Comprehensive performance profiling with flame graphs</li>
+</ul>
+</li>
+</ul>
+<h3>5. Benchmark Suite (<code>benchmark-suite.md</code>)</h3>
+<p><strong>Purpose</strong>: Comprehensive performance benchmarking and validation</p>
+<ul>
+<li><strong>Key Features</strong>:<ul>
+<li>Automated performance testing (load, stress, volume, endurance)</li>
+<li>Performance regression detection using multiple algorithms</li>
+<li>SLA validation and quality assessment frameworks</li>
+<li>Continuous integration with CI/CD pipelines</li>
+<li>Error pattern analysis and trend detection</li>
+</ul>
+</li>
+</ul>
+<h2>Architecture Overview</h2>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│                 MCP Integration Layer                │
+├─────────────────────────────────────────────────────┤
+│  Performance  │  Load        │  Topology  │  Resource │
+│  Monitor      │  Balancer    │  Optimizer │  Allocator│
+├─────────────────────────────────────────────────────┤
+│              Benchmark Suite &amp; Validation           │
+├─────────────────────────────────────────────────────┤
+│           Swarm Infrastructure Integration           │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Key Performance Features</h2>
+<h3>Advanced Algorithms</h3>
+<ul>
+<li><strong>Genetic Algorithms</strong>: For topology optimization and resource allocation</li>
+<li><strong>Simulated Annealing</strong>: For topology reconfiguration optimization</li>
+<li><strong>Reinforcement Learning</strong>: For adaptive scaling decisions</li>
+<li><strong>Machine Learning</strong>: For anomaly detection and predictive analytics</li>
+<li><strong>Work-Stealing</strong>: For efficient task distribution</li>
+</ul>
+<h3>Monitoring &amp; Analytics</h3>
+<ul>
+<li><strong>Real-time Metrics</strong>: CPU, memory, network, agent performance</li>
+<li><strong>Bottleneck Detection</strong>: Multi-algorithm approach for identifying performance issues</li>
+<li><strong>Trend Analysis</strong>: Historical performance pattern recognition</li>
+<li><strong>Predictive Analytics</strong>: ML-based forecasting for resource needs</li>
+<li><strong>Cost Optimization</strong>: Resource efficiency and cost analysis</li>
+</ul>
+<h3>Fault Tolerance</h3>
+<ul>
+<li><strong>Circuit Breaker Patterns</strong>: Adaptive thresholds for system protection</li>
+<li><strong>Bulkhead Isolation</strong>: Resource pool separation for failure containment</li>
+<li><strong>Graceful Degradation</strong>: Fallback mechanisms for service continuity</li>
+<li><strong>Recovery Strategies</strong>: Automated system recovery and healing</li>
+</ul>
+<h3>Integration Capabilities</h3>
+<ul>
+<li><strong>MCP Tools</strong>: Extensive use of claude-flow MCP performance tools</li>
+<li><strong>Real-time Dashboards</strong>: WebSocket-based live performance monitoring</li>
+<li><strong>CI/CD Integration</strong>: Automated performance validation in deployment pipelines</li>
+<li><strong>Alert Systems</strong>: Multi-channel notification for performance issues</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Basic Optimization Workflow</h3>
+<pre><code class="language-bash"># 1. Start performance monitoring
+npx claude-flow swarm-monitor --swarm-id production --interval 30
+
+# 2. Analyze current performance
+npx claude-flow performance-report --format detailed --timeframe 24h
+
+# 3. Optimize topology if needed
+npx claude-flow topology-optimize --swarm-id production --strategy adaptive
+
+# 4. Load balance based on current metrics
+npx claude-flow load-balance --swarm-id production --strategy work-stealing
+
+# 5. Scale resources predictively
+npx claude-flow swarm-scale --swarm-id production --target-size auto
+</code></pre>
+<h3>Comprehensive Benchmarking</h3>
+<pre><code class="language-bash"># Run full benchmark suite
+npx claude-flow benchmark-run --suite comprehensive --duration 300
+
+# Validate against SLA requirements
+npx claude-flow quality-assess --target swarm-performance --criteria throughput,latency,reliability
+
+# Detect performance regressions
+npx claude-flow detect-regression --current latest-results.json --historical baseline.json
+</code></pre>
+<h3>Advanced Resource Management</h3>
+<pre><code class="language-bash"># Analyze resource patterns
+npx claude-flow metrics-collect --components [&quot;cpu&quot;, &quot;memory&quot;, &quot;network&quot;, &quot;agents&quot;]
+
+# Optimize resource allocation
+npx claude-flow daa-resource-alloc --resources optimal-config.json
+
+# Profile system performance
+npx claude-flow profile-performance --duration 60000 --components all
+</code></pre>
+<h2>Performance Optimization Strategies</h2>
+<h3>1. Reactive Optimization</h3>
+<ul>
+<li>Monitor performance metrics in real-time</li>
+<li>Detect bottlenecks and performance issues</li>
+<li>Apply immediate optimizations (load balancing, resource reallocation)</li>
+<li>Validate optimization effectiveness</li>
+</ul>
+<h3>2. Predictive Optimization</h3>
+<ul>
+<li>Analyze historical performance patterns</li>
+<li>Predict future resource needs and bottlenecks</li>
+<li>Proactively scale resources and adjust configurations</li>
+<li>Prevent performance degradation before it occurs</li>
+</ul>
+<h3>3. Adaptive Optimization</h3>
+<ul>
+<li>Continuously learn from system behavior</li>
+<li>Adapt optimization strategies based on workload patterns</li>
+<li>Self-tune parameters and thresholds</li>
+<li>Evolve topology and resource allocation strategies</li>
+</ul>
+<h2>Integration with Swarm Infrastructure</h2>
+<h3>Core Swarm Components</h3>
+<ul>
+<li><strong>Task Orchestrator</strong>: Coordinates task distribution with load balancing</li>
+<li><strong>Agent Coordinator</strong>: Manages agent lifecycle with resource considerations</li>
+<li><strong>Memory System</strong>: Stores optimization history and learned patterns</li>
+<li><strong>Communication Layer</strong>: Optimizes message routing and protocols</li>
+</ul>
+<h3>External Systems</h3>
+<ul>
+<li><strong>Monitoring Systems</strong>: Grafana, Prometheus integration</li>
+<li><strong>Alert Managers</strong>: PagerDuty, Slack, email notifications</li>
+<li><strong>CI/CD Pipelines</strong>: Jenkins, GitHub Actions, GitLab CI</li>
+<li><strong>Cost Management</strong>: Cloud provider cost optimization tools</li>
+</ul>
+<h2>Performance Metrics &amp; KPIs</h2>
+<h3>System Performance</h3>
+<ul>
+<li><strong>Throughput</strong>: Requests/tasks per second</li>
+<li><strong>Latency</strong>: Response time percentiles (P50, P90, P95, P99)</li>
+<li><strong>Availability</strong>: System uptime and reliability</li>
+<li><strong>Resource Utilization</strong>: CPU, memory, network efficiency</li>
+</ul>
+<h3>Optimization Effectiveness</h3>
+<ul>
+<li><strong>Load Balance Variance</strong>: Distribution of work across agents</li>
+<li><strong>Scaling Efficiency</strong>: Resource scaling response time and accuracy</li>
+<li><strong>Topology Optimization Impact</strong>: Communication latency improvement</li>
+<li><strong>Cost Efficiency</strong>: Performance per dollar metrics</li>
+</ul>
+<h3>Quality Assurance</h3>
+<ul>
+<li><strong>SLA Compliance</strong>: Meeting defined service level agreements</li>
+<li><strong>Regression Detection</strong>: Catching performance degradations</li>
+<li><strong>Error Rates</strong>: System failure and recovery metrics</li>
+<li><strong>User Experience</strong>: End-to-end performance from user perspective</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>Performance Monitoring</h3>
+<ol>
+<li>Establish baseline performance metrics</li>
+<li>Set up automated alerting for critical thresholds</li>
+<li>Monitor trends, not just point-in-time metrics</li>
+<li>Correlate performance with business metrics</li>
+</ol>
+<h3>Optimization Implementation</h3>
+<ol>
+<li>Test optimizations in staging environments first</li>
+<li>Implement gradual rollouts for major changes</li>
+<li>Maintain rollback capabilities for all optimizations</li>
+<li>Document optimization decisions and their impacts</li>
+</ol>
+<h3>Continuous Improvement</h3>
+<ol>
+<li>Regular performance reviews and optimization cycles</li>
+<li>Automated regression testing in CI/CD pipelines</li>
+<li>Capacity planning based on growth projections</li>
+<li>Knowledge sharing and optimization pattern libraries</li>
+</ol>
+<h2>Troubleshooting Guide</h2>
+<h3>Common Performance Issues</h3>
+<ol>
+<li><strong>High CPU Usage</strong>: Check for inefficient algorithms, infinite loops</li>
+<li><strong>Memory Leaks</strong>: Monitor memory growth patterns, object retention</li>
+<li><strong>Network Bottlenecks</strong>: Analyze communication patterns, optimize protocols</li>
+<li><strong>Load Imbalance</strong>: Review task distribution algorithms, agent capacity</li>
+</ol>
+<h3>Optimization Failures</h3>
+<ol>
+<li><strong>Topology Changes Not Effective</strong>: Verify network constraints, communication patterns</li>
+<li><strong>Scaling Not Responsive</strong>: Check predictive model accuracy, threshold tuning</li>
+<li><strong>Circuit Breakers Triggering</strong>: Analyze failure patterns, adjust thresholds</li>
+<li><strong>Resource Allocation Conflicts</strong>: Review constraint definitions, priority settings</li>
+</ol>
+<h2>Future Enhancements</h2>
+<h3>Planned Features</h3>
+<ul>
+<li><strong>Advanced AI Models</strong>: GPT-based optimization recommendations</li>
+<li><strong>Multi-Cloud Optimization</strong>: Cross-cloud resource optimization</li>
+<li><strong>Edge Computing Support</strong>: Edge node performance optimization</li>
+<li><strong>Real-time Visualization</strong>: 3D performance visualization dashboards</li>
+</ul>
+<h3>Research Areas</h3>
+<ul>
+<li><strong>Quantum-Inspired Algorithms</strong>: For complex optimization problems</li>
+<li><strong>Federated Learning</strong>: For distributed performance model training</li>
+<li><strong>Autonomous Systems</strong>: Self-healing and self-optimizing swarms</li>
+<li><strong>Sustainability Metrics</strong>: Energy efficiency and carbon footprint optimization</li>
+</ul>
+<hr>
+<p>For detailed implementation guides and API documentation, refer to the individual agent files in this directory.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

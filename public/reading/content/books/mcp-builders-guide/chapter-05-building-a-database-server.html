@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Building a Database Server</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/mcp-builders-guide/chapter-05-building-a-database-server.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Building a Database Server</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fmcp-builders-guide">mcp-builders-guide</a> / <span>chapter-05-building-a-database-server.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Building a Database Server</h1>
+<blockquote>
+<p>&quot;Data is not information. Information is not knowledge.&quot;
+— Clifford Stoll</p>
+</blockquote>
+<hr>
+<p>A database MCP server is the highest-leverage server most engineers will ever build. Every application has a database. Every database contains the ground truth about the system. An AI that can read and query that ground truth directly — not through reports, not through dashboards, not through APIs that were designed to limit what you can see — changes how you work with your own systems.</p>
+<p>This chapter builds a complete PostgreSQL MCP server from scratch. Resources for table schemas and query results. Tools for read-only queries and filtered searches. Real code you can deploy today. Then I will show how my Supabase connection works through exactly this pattern.</p>
+<hr>
+<h2>I. The Design Decisions</h2>
+<p>Before writing a line of code, make three decisions.</p>
+<p><strong>Read-only or read-write?</strong> Database servers that can write to production are powerful and dangerous. For a first server, read-only is the right choice. You can query anything, understand anything, and the worst possible bug is a slow query — not corrupted data. Once you trust the server&#39;s behavior, you can add write tools incrementally.</p>
+<p><strong>Which schema do you expose?</strong> Exposing every table in every schema to an AI is technically possible and practically overwhelming. Start with the tables that answer the questions you actually ask. You can always add more.</p>
+<p><strong>How do you handle credentials?</strong> The database URL contains a username and password. That credential goes into the server&#39;s environment, not into any file that gets committed to version control.</p>
+<p>With those decisions made, the architecture is clear: a stdio server (local, stateless), connected to PostgreSQL via a connection pool, exposing table schemas as Resources and a query tool for read-only SQL.</p>
+<hr>
+<h2>II. The Setup</h2>
+<pre><code class="language-bash">mkdir postgres-mcp-server
+cd postgres-mcp-server
+npm init -y
+npm install @modelcontextprotocol/sdk pg
+npm install --save-dev typescript @types/node @types/pg tsx
+</code></pre>
+<p>The <code>pg</code> package is the standard Node.js PostgreSQL client. <code>tsx</code> lets us run TypeScript directly without a separate compile step during development.</p>
+<p>Create <code>tsconfig.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2022&quot;,
+    &quot;module&quot;: &quot;Node16&quot;,
+    &quot;moduleResolution&quot;: &quot;Node16&quot;,
+    &quot;outDir&quot;: &quot;./dist&quot;,
+    &quot;rootDir&quot;: &quot;./src&quot;,
+    &quot;strict&quot;: true,
+    &quot;esModuleInterop&quot;: true
+  },
+  &quot;include&quot;: [&quot;src/**/*&quot;]
+}
+</code></pre>
+<p>Add to <code>package.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;tsx src/server.ts&quot;,
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;start&quot;: &quot;node dist/server.js&quot;
+  },
+  &quot;type&quot;: &quot;module&quot;
+}
+</code></pre>
+<hr>
+<h2>III. The Database Connection</h2>
+<p>Create <code>src/db.ts</code>:</p>
+<pre><code class="language-typescript">import pg from &#39;pg&#39;;
+
+const { Pool } = pg;
+
+if (!process.env.DATABASE_URL) {
+  throw new Error(&#39;DATABASE_URL environment variable is required&#39;);
+}
+
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  max: 5,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 5000,
+  ssl: process.env.DATABASE_SSL === &#39;true&#39; ? { rejectUnauthorized: false } : false,
+});
+
+pool.on(&#39;error&#39;, (err) =&gt; {
+  console.error(&#39;Unexpected database pool error:&#39;, err.message);
+});
+
+export async function query&lt;T extends pg.QueryResultRow&gt;(
+  sql: string,
+  params?: unknown[]
+): Promise&lt;T[]&gt; {
+  const client = await pool.connect();
+  try {
+    const result = await client.query&lt;T&gt;(sql, params);
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+export async function getTableSchema(tableName: string): Promise&lt;{
+  column_name: string;
+  data_type: string;
+  is_nullable: string;
+  column_default: string | null;
+}[]&gt; {
+  return query(
+    `SELECT column_name, data_type, is_nullable, column_default
+     FROM information_schema.columns
+     WHERE table_schema = &#39;public&#39;
+       AND table_name = $1
+     ORDER BY ordinal_position`,
+    [tableName]
+  );
+}
+
+export async function getPublicTables(): Promise&lt;{ table_name: string }[]&gt; {
+  return query(
+    `SELECT table_name
+     FROM information_schema.tables
+     WHERE table_schema = &#39;public&#39;
+       AND table_type = &#39;BASE TABLE&#39;
+     ORDER BY table_name`
+  );
+}
+</code></pre>
+<p>The connection pool uses <code>max: 5</code> because this is a stdio server — it starts fresh per session and does not need a large pool. The <code>ssl</code> handling accommodates both local databases (no SSL) and hosted databases like Supabase (SSL required).</p>
+<p>The <code>getTableSchema</code> and <code>getPublicTables</code> functions are the queries that power Resources. They read from <code>information_schema</code> — the database&#39;s own metadata layer — rather than querying application tables.</p>
+<hr>
+<h2>IV. The Resources</h2>
+<p>Resources expose what the database knows about itself. Table schemas are the most valuable resource: they tell the AI what data is available, what types it holds, and how to query it.</p>
+<p>Create <code>src/resources.ts</code>:</p>
+<pre><code class="language-typescript">import { McpServer } from &#39;@modelcontextprotocol/sdk/server/mcp.js&#39;;
+import { getPublicTables, getTableSchema, query } from &#39;./db.js&#39;;
+
+export function registerResources(server: McpServer): void {
+  // List all tables: tables://list
+  server.resource(
+    &#39;tables-list&#39;,
+    &#39;tables://list&#39;,
+    { mimeType: &#39;application/json&#39;, description: &#39;All tables in the public schema&#39; },
+    async () =&gt; {
+      const tables = await getPublicTables();
+      return {
+        contents: [{
+          uri: &#39;tables://list&#39;,
+          mimeType: &#39;application/json&#39;,
+          text: JSON.stringify(tables.map(t =&gt; t.table_name), null, 2)
+        }]
+      };
+    }
+  );
+
+  // Schema for a specific table: tables://schema/{tableName}
+  server.resource(
+    &#39;table-schema&#39;,
+    new RegExp(&#39;^tables://schema/([a-z_][a-z0-9_]*)$&#39;),
+    { mimeType: &#39;application/json&#39;, description: &#39;Column definitions for a table&#39; },
+    async (uri) =&gt; {
+      const match = uri.href.match(/^tables:\/\/schema\/([a-z_][a-z0-9_]*)$/);
+      if (!match) throw new Error(&#39;Invalid table URI&#39;);
+
+      const tableName = match[1];
+      const schema = await getTableSchema(tableName);
+
+      if (schema.length === 0) {
+        throw new Error(`Table &#39;${tableName}&#39; not found in public schema`);
+      }
+
+      return {
+        contents: [{
+          uri: uri.href,
+          mimeType: &#39;application/json&#39;,
+          text: JSON.stringify({
+            table: tableName,
+            columns: schema
+          }, null, 2)
+        }]
+      };
+    }
+  );
+
+  // Row count for a table: tables://count/{tableName}
+  server.resource(
+    &#39;table-count&#39;,
+    new RegExp(&#39;^tables://count/([a-z_][a-z0-9_]*)$&#39;),
+    { mimeType: &#39;application/json&#39;, description: &#39;Row count for a table&#39; },
+    async (uri) =&gt; {
+      const match = uri.href.match(/^tables:\/\/count\/([a-z_][a-z0-9_]*)$/);
+      if (!match) throw new Error(&#39;Invalid count URI&#39;);
+
+      const tableName = match[1];
+      // Validate table name exists before using in query
+      const tables = await getPublicTables();
+      const exists = tables.some(t =&gt; t.table_name === tableName);
+
+      if (!exists) {
+        throw new Error(`Table &#39;${tableName}&#39; not found`);
+      }
+
+      // Safe to interpolate because we validated against information_schema
+      const rows = await query(`SELECT COUNT(*) as count FROM &quot;${tableName}&quot;`);
+      const count = parseInt((rows[0] as { count: string }).count, 10);
+
+      return {
+        contents: [{
+          uri: uri.href,
+          mimeType: &#39;application/json&#39;,
+          text: JSON.stringify({ table: tableName, count }, null, 2)
+        }]
+      };
+    }
+  );
+}
+</code></pre>
+<p>Three resources. Tables list gives the AI an inventory. Table schema gives it the column definitions it needs to write correct queries. Row count gives it a sense of data volume before running expensive queries.</p>
+<p>The table name validation in the count resource deserves attention. Parameterized queries protect against SQL injection in <code>WHERE</code> clauses, but table names cannot be parameterized — they must appear directly in the SQL string. The pattern here: validate the name against <code>information_schema</code> first, then interpolate. The <code>information_schema</code> query uses a parameterized value; we only interpolate a name that has been confirmed to exist as a real table.</p>
+<hr>
+<h2>V. The Tools</h2>
+<p>Tools execute queries. Two tools cover most needs: a general SQL executor for read-only queries, and a filtered row search for looking up specific records.</p>
+<p>Create <code>src/tools.ts</code>:</p>
+<pre><code class="language-typescript">import { McpServer } from &#39;@modelcontextprotocol/sdk/server/mcp.js&#39;;
+import { z } from &#39;zod&#39;;
+import { query, getPublicTables } from &#39;./db.js&#39;;
+
+const QUERY_TIMEOUT_MS = 10000;
+const MAX_ROWS = 100;
+
+function isReadOnlyQuery(sql: string): boolean {
+  const normalized = sql.trim().toUpperCase();
+
+  const forbidden = [
+    &#39;INSERT&#39;, &#39;UPDATE&#39;, &#39;DELETE&#39;, &#39;DROP&#39;, &#39;CREATE&#39;, &#39;ALTER&#39;,
+    &#39;TRUNCATE&#39;, &#39;GRANT&#39;, &#39;REVOKE&#39;, &#39;COPY&#39;, &#39;VACUUM&#39;, &#39;ANALYZE&#39;
+  ];
+
+  return !forbidden.some(keyword =&gt;
+    normalized.startsWith(keyword) ||
+    new RegExp(`\\b${keyword}\\b`).test(normalized)
+  );
+}
+
+export function registerTools(server: McpServer): void {
+  // General read-only SQL query
+  server.tool(
+    &#39;query-database&#39;,
+    &#39;Execute a read-only SQL SELECT query against the database&#39;,
+    {
+      sql: z.string().describe(&#39;A SQL SELECT query to execute&#39;),
+      limit: z.number().int().min(1).max(MAX_ROWS).optional()
+        .describe(`Maximum rows to return (default: 20, max: ${MAX_ROWS})`),
+    },
+    async ({ sql, limit = 20 }) =&gt; {
+      if (!isReadOnlyQuery(sql)) {
+        return {
+          content: [{ type: &#39;text&#39;, text: &#39;Only SELECT queries are allowed. This server is read-only.&#39; }],
+          isError: true
+        };
+      }
+
+      // Wrap the query with a limit and timeout
+      const limitedSql = sql.trim().replace(/;$/, &#39;&#39;);
+      const safeSql = `
+        SET statement_timeout = ${QUERY_TIMEOUT_MS};
+        SELECT * FROM (${limitedSql}) AS __results LIMIT ${limit};
+      `;
+
+      try {
+        const rows = await query(safeSql);
+        const resultRows = rows.slice(rows.length &gt; 1 ? 1 : 0);
+
+        return {
+          content: [{
+            type: &#39;text&#39;,
+            text: JSON.stringify({
+              rows: resultRows,
+              count: resultRows.length,
+              truncated: resultRows.length === limit
+            }, null, 2)
+          }]
+        };
+      } catch (error) {
+        return {
+          content: [{ type: &#39;text&#39;, text: `Query error: ${(error as Error).message}` }],
+          isError: true
+        };
+      }
+    }
+  );
+
+  // Filtered row search in a specific table
+  server.tool(
+    &#39;search-table&#39;,
+    &#39;Search rows in a specific table with optional column filters&#39;,
+    {
+      table: z.string().describe(&#39;Table name to search&#39;),
+      filters: z.record(z.string(), z.unknown()).optional()
+        .describe(&#39;Column-value pairs to filter by (exact match)&#39;),
+      columns: z.array(z.string()).optional()
+        .describe(&#39;Specific columns to return (default: all)&#39;),
+      limit: z.number().int().min(1).max(MAX_ROWS).optional()
+        .describe(&#39;Maximum rows to return (default: 20)&#39;),
+    },
+    async ({ table, filters = {}, columns, limit = 20 }) =&gt; {
+      // Validate table exists
+      const tables = await getPublicTables();
+      const tableExists = tables.some(t =&gt; t.table_name === table);
+
+      if (!tableExists) {
+        return {
+          content: [{ type: &#39;text&#39;, text: `Table &#39;${table}&#39; not found` }],
+          isError: true
+        };
+      }
+
+      // Build the SELECT clause
+      const selectClause = columns &amp;&amp; columns.length &gt; 0
+        ? columns.map(c =&gt; `&quot;${c.replace(/&quot;/g, &#39;&#39;)}&quot;`).join(&#39;, &#39;)
+        : &#39;*&#39;;
+
+      // Build the WHERE clause with parameterized values
+      const filterEntries = Object.entries(filters);
+      const whereClause = filterEntries.length &gt; 0
+        ? &#39;WHERE &#39; + filterEntries
+            .map((_, i) =&gt; `&quot;${filterEntries[i][0].replace(/&quot;/g, &#39;&#39;)}&quot; = $${i + 1}`)
+            .join(&#39; AND &#39;)
+        : &#39;&#39;;
+      const filterValues = filterEntries.map(([, v]) =&gt; v);
+
+      const sql = `
+        SELECT ${selectClause}
+        FROM &quot;${table}&quot;
+        ${whereClause}
+        LIMIT ${limit}
+      `;
+
+      try {
+        const rows = await query(sql, filterValues.length &gt; 0 ? filterValues : undefined);
+        return {
+          content: [{
+            type: &#39;text&#39;,
+            text: JSON.stringify({
+              table,
+              filters,
+              rows,
+              count: rows.length,
+              truncated: rows.length === limit
+            }, null, 2)
+          }]
+        };
+      } catch (error) {
+        return {
+          content: [{ type: &#39;text&#39;, text: `Search error: ${(error as Error).message}` }],
+          isError: true
+        };
+      }
+    }
+  );
+}
+</code></pre>
+<p>The <code>isReadOnlyQuery</code> function is a first line of defense, not a complete security boundary. It catches obvious mistakes — an AI that tries to run a DELETE, a user who accidentally asks for destructive changes. The real security boundary is the PostgreSQL role. Create a read-only role for this server:</p>
+<pre><code class="language-sql">CREATE ROLE mcp_reader WITH LOGIN PASSWORD &#39;your-password&#39;;
+GRANT CONNECT ON DATABASE your_database TO mcp_reader;
+GRANT USAGE ON SCHEMA public TO mcp_reader;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO mcp_reader;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO mcp_reader;
+</code></pre>
+<p>Even if the <code>isReadOnlyQuery</code> check is bypassed, a <code>mcp_reader</code> role cannot write. Defense in depth.</p>
+<hr>
+<h2>VI. Assembling the Server</h2>
+<p>Create <code>src/server.ts</code>:</p>
+<pre><code class="language-typescript">import { McpServer } from &#39;@modelcontextprotocol/sdk/server/mcp.js&#39;;
+import { StdioServerTransport } from &#39;@modelcontextprotocol/sdk/server/stdio.js&#39;;
+import { pool } from &#39;./db.js&#39;;
+import { registerResources } from &#39;./resources.js&#39;;
+import { registerTools } from &#39;./tools.js&#39;;
+
+const server = new McpServer({
+  name: &#39;postgres-mcp-server&#39;,
+  version: &#39;1.0.0&#39;,
+});
+
+registerResources(server);
+registerTools(server);
+
+async function main(): Promise&lt;void&gt; {
+  // Verify database connection before accepting client connections
+  try {
+    const client = await pool.connect();
+    client.release();
+    console.error(&#39;Database connection verified&#39;);
+  } catch (error) {
+    console.error(&#39;Failed to connect to database:&#39;, (error as Error).message);
+    process.exit(1);
+  }
+
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error(&#39;PostgreSQL MCP server started&#39;);
+}
+
+process.on(&#39;SIGTERM&#39;, async () =&gt; {
+  await pool.end();
+  process.exit(0);
+});
+
+main().catch((error) =&gt; {
+  console.error(&#39;Server error:&#39;, error);
+  process.exit(1);
+});
+</code></pre>
+<p>The startup verification matters. A server that silently connects but has an invalid database URL will fail on the first tool call with a cryptic error. Fail fast at startup with a clear message.</p>
+<hr>
+<h2>VII. Testing with Claude Code</h2>
+<p>Build the server and add it to Claude Code&#39;s configuration:</p>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p>Add to <code>~/.claude/settings.json</code> (macOS/Linux) or the equivalent on your platform:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;postgres&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;/absolute/path/to/postgres-mcp-server/dist/server.js&quot;],
+      &quot;env&quot;: {
+        &quot;DATABASE_URL&quot;: &quot;postgresql://mcp_reader:password@localhost:5432/your_database&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p>Restart Claude Code. Open a new session. You can now ask:</p>
+<ul>
+<li>&quot;What tables are in my database?&quot; → AI reads <code>tables://list</code> Resource</li>
+<li>&quot;Show me the schema for the users table&quot; → AI reads <code>tables://schema/users</code> Resource</li>
+<li>&quot;How many active subscriptions are there?&quot; → AI calls <code>query-database</code> with a SELECT COUNT</li>
+<li>&quot;Find all users who signed up in the last 7 days&quot; → AI calls <code>search-table</code> or <code>query-database</code></li>
+</ul>
+<p>The AI does not guess at your schema. It reads it. The queries it writes are correct for your actual column names and data types.</p>
+<hr>
+<h2>VIII. How My Supabase Connection Works</h2>
+<p>Supabase is a hosted PostgreSQL service. The connection string looks like this:</p>
+<pre><code>postgresql://postgres.projectref:password@aws-0-eu-central-1.pooler.supabase.com:6543/postgres
+</code></pre>
+<p>That URL contains credentials and a regional endpoint. It goes in the environment, never in a committed file.</p>
+<p>My Supabase server runs as an HTTP/SSE server rather than stdio, for one reason: connection pooling. Supabase in Session mode limits connections. Opening and closing the pool on every Claude Code session consumes connection slots. As an HTTP/SSE server, the connection pool opens once and stays open.</p>
+<p>The server also uses Supabase&#39;s connection pooler (port 6543) rather than direct connection (port 5432). The pooler handles connection management at the infrastructure level, which means my application pool can stay small — three connections maximum — while Supabase handles the actual connection lifecycle.</p>
+<p>The SSL configuration for Supabase:</p>
+<pre><code class="language-typescript">export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  max: 3,
+  ssl: {
+    rejectUnauthorized: false  // Required for Supabase&#39;s certificate chain
+  }
+});
+</code></pre>
+<p><code>rejectUnauthorized: false</code> is acceptable here because the connection goes over TLS — the certificate is not verified against a local CA bundle, but the connection is still encrypted. For production environments where you control the CA, pin the certificate instead.</p>
+<p>Beyond the transport and SSL differences, the code is identical to the local server in this chapter. The protocol is the same. The Resources are the same. The Tools are the same. The transport layer is the only thing that changes.</p>
+<p>That is the value of a well-designed abstraction. Build it once. Connect it anywhere.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -64,7 +64,7 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
       </div>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
-        That's how I went from tech-overwhelmed musician to creating 500+ AI songs and building enterprise systems at Oracle.
+        That's how I went from tech-overwhelmed musician to creating 12,000+ AI songs and building tools for creators worldwide.
       </p>
 
       <h2 style="font-size: 20px; font-weight: 600; color: white; margin: 0 0 16px 0;">

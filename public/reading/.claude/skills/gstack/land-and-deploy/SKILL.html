@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/land-and-deploy/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fland-and-deploy">land-and-deploy</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: land-and-deploy
+version: 1.0.0
+description: |
+  Land and deploy workflow. Merges the PR, waits for CI and deploy,
+  verifies production health via canary checks. Takes over after /ship
+  creates the PR. Use when: &quot;merge&quot;, &quot;land&quot;, &quot;deploy&quot;, &quot;merge and verify&quot;,
+  &quot;land it&quot;, &quot;ship it to production&quot;.
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Glob
+  - AskUserQuestion</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;land-and-deploy&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>SETUP (run this check BEFORE any browse command)</h2>
+<pre><code class="language-bash">_ROOT=$(git rev-parse --show-toplevel 2&gt;/dev/null)
+B=&quot;&quot;
+[ -n &quot;$_ROOT&quot; ] &amp;&amp; [ -x &quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot; ] &amp;&amp; B=&quot;$_ROOT/.claude/skills/gstack/browse/dist/browse&quot;
+[ -z &quot;$B&quot; ] &amp;&amp; B=~/.claude/skills/gstack/browse/dist/browse
+if [ -x &quot;$B&quot; ]; then
+  echo &quot;READY: $B&quot;
+else
+  echo &quot;NEEDS_SETUP&quot;
+fi
+</code></pre>
+<p>If <code>NEEDS_SETUP</code>:</p>
+<ol>
+<li>Tell the user: &quot;gstack browse needs a one-time build (~10 seconds). OK to proceed?&quot; Then STOP and wait.</li>
+<li>Run: <code>cd &lt;SKILL_DIR&gt; &amp;&amp; ./setup</code></li>
+<li>If <code>bun</code> is not installed: <code>curl -fsSL https://bun.sh/install | bash</code></li>
+</ol>
+<h2>Step 0: Detect base branch</h2>
+<p>Determine which branch this PR targets. Use the result as &quot;the base branch&quot; in all subsequent steps.</p>
+<ol>
+<li><p>Check if a PR already exists for this branch:
+<code>gh pr view --json baseRefName -q .baseRefName</code>
+If this succeeds, use the printed branch name as the base branch.</p>
+</li>
+<li><p>If no PR exists (command fails), detect the repo&#39;s default branch:
+<code>gh repo view --json defaultBranchRef -q .defaultBranchRef.name</code></p>
+</li>
+<li><p>If both commands fail, fall back to <code>main</code>.</p>
+</li>
+</ol>
+<p>Print the detected base branch name. In every subsequent <code>git diff</code>, <code>git log</code>,
+<code>git fetch</code>, <code>git merge</code>, and <code>gh pr create</code> command, substitute the detected
+branch name wherever the instructions say &quot;the base branch.&quot;</p>
+<hr>
+<h1>/land-and-deploy — Merge, Deploy, Verify</h1>
+<p>You are a <strong>Release Engineer</strong> who has deployed to production thousands of times. You know the two worst feelings in software: the merge that breaks prod, and the merge that sits in queue for 45 minutes while you stare at the screen. Your job is to handle both gracefully — merge efficiently, wait intelligently, verify thoroughly, and give the user a clear verdict.</p>
+<p>This skill picks up where <code>/ship</code> left off. <code>/ship</code> creates the PR. You merge it, wait for deploy, and verify production.</p>
+<h2>User-invocable</h2>
+<p>When the user types <code>/land-and-deploy</code>, run this skill.</p>
+<h2>Arguments</h2>
+<ul>
+<li><code>/land-and-deploy</code> — auto-detect PR from current branch, no post-deploy URL</li>
+<li><code>/land-and-deploy &lt;url&gt;</code> — auto-detect PR, verify deploy at this URL</li>
+<li><code>/land-and-deploy #123</code> — specific PR number</li>
+<li><code>/land-and-deploy #123 &lt;url&gt;</code> — specific PR + verification URL</li>
+</ul>
+<h2>Non-interactive philosophy (like /ship) — with one critical gate</h2>
+<p>This is a <strong>mostly automated</strong> workflow. Do NOT ask for confirmation at any step except
+the ones listed below. The user said <code>/land-and-deploy</code> which means DO IT — but verify
+readiness first.</p>
+<p><strong>Always stop for:</strong></p>
+<ul>
+<li><strong>Pre-merge readiness gate (Step 3.5)</strong> — this is the ONE confirmation before merge</li>
+<li>GitHub CLI not authenticated</li>
+<li>No PR found for this branch</li>
+<li>CI failures or merge conflicts</li>
+<li>Permission denied on merge</li>
+<li>Deploy workflow failure (offer revert)</li>
+<li>Production health issues detected by canary (offer revert)</li>
+</ul>
+<p><strong>Never stop for:</strong></p>
+<ul>
+<li>Choosing merge method (auto-detect from repo settings)</li>
+<li>Timeout warnings (warn and continue gracefully)</li>
+</ul>
+<hr>
+<h2>Step 1: Pre-flight</h2>
+<ol>
+<li>Check GitHub CLI authentication:</li>
+</ol>
+<pre><code class="language-bash">gh auth status
+</code></pre>
+<p>If not authenticated, <strong>STOP</strong>: &quot;GitHub CLI is not authenticated. Run <code>gh auth login</code> first.&quot;</p>
+<ol start="2">
+<li><p>Parse arguments. If the user specified <code>#NNN</code>, use that PR number. If a URL was provided, save it for canary verification in Step 7.</p>
+</li>
+<li><p>If no PR number specified, detect from current branch:</p>
+</li>
+</ol>
+<pre><code class="language-bash">gh pr view --json number,state,title,url,mergeStateStatus,mergeable,baseRefName,headRefName
+</code></pre>
+<ol start="4">
+<li>Validate the PR state:<ul>
+<li>If no PR exists: <strong>STOP.</strong> &quot;No PR found for this branch. Run <code>/ship</code> first to create one.&quot;</li>
+<li>If <code>state</code> is <code>MERGED</code>: &quot;PR is already merged. Nothing to do.&quot;</li>
+<li>If <code>state</code> is <code>CLOSED</code>: &quot;PR is closed (not merged). Reopen it first.&quot;</li>
+<li>If <code>state</code> is <code>OPEN</code>: continue.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Step 2: Pre-merge checks</h2>
+<p>Check CI status and merge readiness:</p>
+<pre><code class="language-bash">gh pr checks --json name,state,status,conclusion
+</code></pre>
+<p>Parse the output:</p>
+<ol>
+<li>If any required checks are <strong>FAILING</strong>: <strong>STOP.</strong> Show the failing checks.</li>
+<li>If required checks are <strong>PENDING</strong>: proceed to Step 3.</li>
+<li>If all checks pass (or no required checks): skip Step 3, go to Step 4.</li>
+</ol>
+<p>Also check for merge conflicts:</p>
+<pre><code class="language-bash">gh pr view --json mergeable -q .mergeable
+</code></pre>
+<p>If <code>CONFLICTING</code>: <strong>STOP.</strong> &quot;PR has merge conflicts. Resolve them and push before landing.&quot;</p>
+<hr>
+<h2>Step 3: Wait for CI (if pending)</h2>
+<p>If required checks are still pending, wait for them to complete. Use a timeout of 15 minutes:</p>
+<pre><code class="language-bash">gh pr checks --watch --fail-fast
+</code></pre>
+<p>Record the CI wait time for the deploy report.</p>
+<p>If CI passes within the timeout: continue to Step 4.
+If CI fails: <strong>STOP.</strong> Show failures.
+If timeout (15 min): <strong>STOP.</strong> &quot;CI has been running for 15 minutes. Investigate manually.&quot;</p>
+<hr>
+<h2>Step 3.5: Pre-merge readiness gate</h2>
+<p><strong>This is the critical safety check before an irreversible merge.</strong> The merge cannot
+be undone without a revert commit. Gather ALL evidence, build a readiness report,
+and get explicit user confirmation before proceeding.</p>
+<p>Collect evidence for each check below. Track warnings (yellow) and blockers (red).</p>
+<h3>3.5a: Review staleness check</h3>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-review-read 2&gt;/dev/null
+</code></pre>
+<p>Parse the output. For each review skill (plan-eng-review, plan-ceo-review,
+plan-design-review, design-review-lite, codex-review):</p>
+<ol>
+<li>Find the most recent entry within the last 7 days.</li>
+<li>Extract its <code>commit</code> field.</li>
+<li>Compare against current HEAD: <code>git rev-list --count STORED_COMMIT..HEAD</code></li>
+</ol>
+<p><strong>Staleness rules:</strong></p>
+<ul>
+<li>0 commits since review → CURRENT</li>
+<li>1-3 commits since review → RECENT (yellow if those commits touch code, not just docs)</li>
+<li>4+ commits since review → STALE (red — review may not reflect current code)</li>
+<li>No review found → NOT RUN</li>
+</ul>
+<p><strong>Critical check:</strong> Look at what changed AFTER the last review. Run:</p>
+<pre><code class="language-bash">git log --oneline STORED_COMMIT..HEAD
+</code></pre>
+<p>If any commits after the review contain words like &quot;fix&quot;, &quot;refactor&quot;, &quot;rewrite&quot;,
+&quot;overhaul&quot;, or touch more than 5 files — flag as <strong>STALE (significant changes
+since review)</strong>. The review was done on different code than what&#39;s about to merge.</p>
+<h3>3.5b: Test results</h3>
+<p><strong>Free tests — run them now:</strong></p>
+<p>Read CLAUDE.md to find the project&#39;s test command. If not specified, use <code>bun test</code>.
+Run the test command and capture the exit code and output.</p>
+<pre><code class="language-bash">bun test 2&gt;&amp;1 | tail -10
+</code></pre>
+<p>If tests fail: <strong>BLOCKER.</strong> Cannot merge with failing tests.</p>
+<p><strong>E2E tests — check recent results:</strong></p>
+<pre><code class="language-bash">ls -t ~/.gstack-dev/evals/*-e2e-*-$(date +%Y-%m-%d)*.json 2&gt;/dev/null | head -20
+</code></pre>
+<p>For each eval file from today, parse pass/fail counts. Show:</p>
+<ul>
+<li>Total tests, pass count, fail count</li>
+<li>How long ago the run finished (from file timestamp)</li>
+<li>Total cost</li>
+<li>Names of any failing tests</li>
+</ul>
+<p>If no E2E results from today: <strong>WARNING — no E2E tests run today.</strong>
+If E2E results exist but have failures: <strong>WARNING — N tests failed.</strong> List them.</p>
+<p><strong>LLM judge evals — check recent results:</strong></p>
+<pre><code class="language-bash">ls -t ~/.gstack-dev/evals/*-llm-judge-*-$(date +%Y-%m-%d)*.json 2&gt;/dev/null | head -5
+</code></pre>
+<p>If found, parse and show pass/fail. If not found, note &quot;No LLM evals run today.&quot;</p>
+<h3>3.5c: PR body accuracy check</h3>
+<p>Read the current PR body:</p>
+<pre><code class="language-bash">gh pr view --json body -q .body
+</code></pre>
+<p>Read the current diff summary:</p>
+<pre><code class="language-bash">git log --oneline $(gh pr view --json baseRefName -q .baseRefName 2&gt;/dev/null || echo main)..HEAD | head -20
+</code></pre>
+<p>Compare the PR body against the actual commits. Check for:</p>
+<ol>
+<li><strong>Missing features</strong> — commits that add significant functionality not mentioned in the PR</li>
+<li><strong>Stale descriptions</strong> — PR body mentions things that were later changed or reverted</li>
+<li><strong>Wrong version</strong> — PR title or body references a version that doesn&#39;t match VERSION file</li>
+</ol>
+<p>If the PR body looks stale or incomplete: <strong>WARNING — PR body may not reflect current
+changes.</strong> List what&#39;s missing or stale.</p>
+<h3>3.5d: Document-release check</h3>
+<p>Check if documentation was updated on this branch:</p>
+<pre><code class="language-bash">git log --oneline --all-match --grep=&quot;docs:&quot; $(gh pr view --json baseRefName -q .baseRefName 2&gt;/dev/null || echo main)..HEAD | head -5
+</code></pre>
+<p>Also check if key doc files were modified:</p>
+<pre><code class="language-bash">git diff --name-only $(gh pr view --json baseRefName -q .baseRefName 2&gt;/dev/null || echo main)...HEAD -- README.md CHANGELOG.md ARCHITECTURE.md CONTRIBUTING.md CLAUDE.md VERSION
+</code></pre>
+<p>If CHANGELOG.md and VERSION were NOT modified on this branch and the diff includes
+new features (new files, new commands, new skills): <strong>WARNING — /document-release
+likely not run. CHANGELOG and VERSION not updated despite new features.</strong></p>
+<p>If only docs changed (no code): skip this check.</p>
+<h3>3.5e: Readiness report and confirmation</h3>
+<p>Build the full readiness report:</p>
+<pre><code>╔══════════════════════════════════════════════════════════╗
+║              PRE-MERGE READINESS REPORT                  ║
+╠══════════════════════════════════════════════════════════╣
+║                                                          ║
+║  PR: #NNN — title                                        ║
+║  Branch: feature → main                                  ║
+║                                                          ║
+║  REVIEWS                                                 ║
+║  ├─ Eng Review:    CURRENT / STALE (N commits) / —       ║
+║  ├─ CEO Review:    CURRENT / — (optional)                ║
+║  ├─ Design Review: CURRENT / — (optional)                ║
+║  └─ Codex Review:  CURRENT / — (optional)                ║
+║                                                          ║
+║  TESTS                                                   ║
+║  ├─ Free tests:    PASS / FAIL (blocker)                 ║
+║  ├─ E2E tests:     52/52 pass (25 min ago) / NOT RUN     ║
+║  └─ LLM evals:     PASS / NOT RUN                        ║
+║                                                          ║
+║  DOCUMENTATION                                           ║
+║  ├─ CHANGELOG:     Updated / NOT UPDATED (warning)       ║
+║  ├─ VERSION:       0.9.8.0 / NOT BUMPED (warning)        ║
+║  └─ Doc release:   Run / NOT RUN (warning)               ║
+║                                                          ║
+║  PR BODY                                                 ║
+║  └─ Accuracy:      Current / STALE (warning)             ║
+║                                                          ║
+║  WARNINGS: N  |  BLOCKERS: N                             ║
+╚══════════════════════════════════════════════════════════╝
+</code></pre>
+<p>If there are BLOCKERS (failing free tests): list them and recommend B.
+If there are WARNINGS but no blockers: list each warning and recommend A if
+warnings are minor, or B if warnings are significant.
+If everything is green: recommend A.</p>
+<p>Use AskUserQuestion:</p>
+<ul>
+<li><strong>Re-ground:</strong> &quot;About to merge PR #NNN (title) from branch X to Y. Here&#39;s the
+readiness report.&quot; Show the report above.</li>
+<li>List each warning and blocker explicitly.</li>
+<li><strong>RECOMMENDATION:</strong> Choose A if green. Choose B if there are significant warnings.
+Choose C only if the user understands the risks.</li>
+<li>A) Merge — readiness checks passed (Completeness: 10/10)</li>
+<li>B) Don&#39;t merge yet — address the warnings first (Completeness: 10/10)</li>
+<li>C) Merge anyway — I understand the risks (Completeness: 3/10)</li>
+</ul>
+<p>If the user chooses B: <strong>STOP.</strong> List exactly what needs to be done:</p>
+<ul>
+<li>If reviews are stale: &quot;Re-run /plan-eng-review (or /review) to review current code.&quot;</li>
+<li>If E2E not run: &quot;Run <code>bun run test:e2e</code> to verify.&quot;</li>
+<li>If docs not updated: &quot;Run /document-release to update documentation.&quot;</li>
+<li>If PR body stale: &quot;Update the PR body to reflect current changes.&quot;</li>
+</ul>
+<p>If the user chooses A or C: continue to Step 4.</p>
+<hr>
+<h2>Step 4: Merge the PR</h2>
+<p>Record the start timestamp for timing data.</p>
+<p>Try auto-merge first (respects repo merge settings and merge queues):</p>
+<pre><code class="language-bash">gh pr merge --auto --delete-branch
+</code></pre>
+<p>If <code>--auto</code> is not available (repo doesn&#39;t have auto-merge enabled), merge directly:</p>
+<pre><code class="language-bash">gh pr merge --squash --delete-branch
+</code></pre>
+<p>If the merge fails with a permission error: <strong>STOP.</strong> &quot;You don&#39;t have merge permissions on this repo. Ask a maintainer to merge.&quot;</p>
+<p>If merge queue is active, <code>gh pr merge --auto</code> will enqueue. Poll for the PR to actually merge:</p>
+<pre><code class="language-bash">gh pr view --json state -q .state
+</code></pre>
+<p>Poll every 30 seconds, up to 30 minutes. Show a progress message every 2 minutes: &quot;Waiting for merge queue... (Xm elapsed)&quot;</p>
+<p>If the PR state changes to <code>MERGED</code>: capture the merge commit SHA and continue.
+If the PR is removed from the queue (state goes back to <code>OPEN</code>): <strong>STOP.</strong> &quot;PR was removed from the merge queue.&quot;
+If timeout (30 min): <strong>STOP.</strong> &quot;Merge queue has been processing for 30 minutes. Check the queue manually.&quot;</p>
+<p>Record merge timestamp and duration.</p>
+<hr>
+<h2>Step 5: Deploy strategy detection</h2>
+<p>Determine what kind of project this is and how to verify the deploy.</p>
+<p>First, run the deploy configuration bootstrap to detect or read persisted deploy settings:</p>
+<pre><code class="language-bash"># Check for persisted deploy config in CLAUDE.md
+DEPLOY_CONFIG=$(grep -A 20 &quot;## Deploy Configuration&quot; CLAUDE.md 2&gt;/dev/null || echo &quot;NO_CONFIG&quot;)
+echo &quot;$DEPLOY_CONFIG&quot;
+
+# If config exists, parse it
+if [ &quot;$DEPLOY_CONFIG&quot; != &quot;NO_CONFIG&quot; ]; then
+  PROD_URL=$(echo &quot;$DEPLOY_CONFIG&quot; | grep -i &quot;production.*url&quot; | head -1 | sed &#39;s/.*: *//&#39;)
+  PLATFORM=$(echo &quot;$DEPLOY_CONFIG&quot; | grep -i &quot;platform&quot; | head -1 | sed &#39;s/.*: *//&#39;)
+  echo &quot;PERSISTED_PLATFORM:$PLATFORM&quot;
+  echo &quot;PERSISTED_URL:$PROD_URL&quot;
+fi
+
+# Auto-detect platform from config files
+[ -f fly.toml ] &amp;&amp; echo &quot;PLATFORM:fly&quot;
+[ -f render.yaml ] &amp;&amp; echo &quot;PLATFORM:render&quot;
+([ -f vercel.json ] || [ -d .vercel ]) &amp;&amp; echo &quot;PLATFORM:vercel&quot;
+[ -f netlify.toml ] &amp;&amp; echo &quot;PLATFORM:netlify&quot;
+[ -f Procfile ] &amp;&amp; echo &quot;PLATFORM:heroku&quot;
+([ -f railway.json ] || [ -f railway.toml ]) &amp;&amp; echo &quot;PLATFORM:railway&quot;
+
+# Detect deploy workflows
+for f in .github/workflows/*.yml .github/workflows/*.yaml; do
+  [ -f &quot;$f&quot; ] &amp;&amp; grep -qiE &quot;deploy|release|production|staging|cd&quot; &quot;$f&quot; 2&gt;/dev/null &amp;&amp; echo &quot;DEPLOY_WORKFLOW:$f&quot;
+done
+</code></pre>
+<p>If <code>PERSISTED_PLATFORM</code> and <code>PERSISTED_URL</code> were found in CLAUDE.md, use them directly
+and skip manual detection. If no persisted config exists, use the auto-detected platform
+to guide deploy verification. If nothing is detected, ask the user via AskUserQuestion
+in the decision tree below.</p>
+<p>If you want to persist deploy settings for future runs, suggest the user run <code>/setup-deploy</code>.</p>
+<p>Then run <code>gstack-diff-scope</code> to classify the changes:</p>
+<pre><code class="language-bash">eval $(~/.claude/skills/gstack/bin/gstack-diff-scope $(gh pr view --json baseRefName -q .baseRefName 2&gt;/dev/null || echo main) 2&gt;/dev/null)
+echo &quot;FRONTEND=$SCOPE_FRONTEND BACKEND=$SCOPE_BACKEND DOCS=$SCOPE_DOCS CONFIG=$SCOPE_CONFIG&quot;
+</code></pre>
+<p><strong>Decision tree (evaluate in order):</strong></p>
+<ol>
+<li><p>If the user provided a production URL as an argument: use it for canary verification. Also check for deploy workflows.</p>
+</li>
+<li><p>Check for GitHub Actions deploy workflows:</p>
+</li>
+</ol>
+<pre><code class="language-bash">gh run list --branch &lt;base&gt; --limit 5 --json name,status,conclusion,headSha,workflowName
+</code></pre>
+<p>Look for workflow names containing &quot;deploy&quot;, &quot;release&quot;, &quot;production&quot;, &quot;staging&quot;, or &quot;cd&quot;. If found: poll the deploy workflow in Step 6, then run canary.</p>
+<ol start="3">
+<li><p>If SCOPE_DOCS is the only scope that&#39;s true (no frontend, no backend, no config): skip verification entirely. Output: &quot;PR merged. Documentation-only change — no deploy verification needed.&quot; Go to Step 9.</p>
+</li>
+<li><p>If no deploy workflows detected and no URL provided: use AskUserQuestion once:</p>
+<ul>
+<li><strong>Context:</strong> PR merged successfully. No deploy workflow or production URL detected.</li>
+<li><strong>RECOMMENDATION:</strong> Choose B if this is a library/CLI tool. Choose A if this is a web app.</li>
+<li>A) Provide a production URL to verify</li>
+<li>B) Skip verification — this project doesn&#39;t have a web deploy</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Step 6: Wait for deploy (if applicable)</h2>
+<p>The deploy verification strategy depends on the platform detected in Step 5.</p>
+<h3>Strategy A: GitHub Actions workflow</h3>
+<p>If a deploy workflow was detected, find the run triggered by the merge commit:</p>
+<pre><code class="language-bash">gh run list --branch &lt;base&gt; --limit 10 --json databaseId,headSha,status,conclusion,name,workflowName
+</code></pre>
+<p>Match by the merge commit SHA (captured in Step 4). If multiple matching workflows, prefer the one whose name matches the deploy workflow detected in Step 5.</p>
+<p>Poll every 30 seconds:</p>
+<pre><code class="language-bash">gh run view &lt;run-id&gt; --json status,conclusion
+</code></pre>
+<h3>Strategy B: Platform CLI (Fly.io, Render, Heroku)</h3>
+<p>If a deploy status command was configured in CLAUDE.md (e.g., <code>fly status --app myapp</code>), use it instead of or in addition to GitHub Actions polling.</p>
+<p><strong>Fly.io:</strong> After merge, Fly deploys via GitHub Actions or <code>fly deploy</code>. Check with:</p>
+<pre><code class="language-bash">fly status --app {app} 2&gt;/dev/null
+</code></pre>
+<p>Look for <code>Machines</code> status showing <code>started</code> and recent deployment timestamp.</p>
+<p><strong>Render:</strong> Render auto-deploys on push to the connected branch. Check by polling the production URL until it responds:</p>
+<pre><code class="language-bash">curl -sf {production-url} -o /dev/null -w &quot;%{http_code}&quot; 2&gt;/dev/null
+</code></pre>
+<p>Render deploys typically take 2-5 minutes. Poll every 30 seconds.</p>
+<p><strong>Heroku:</strong> Check latest release:</p>
+<pre><code class="language-bash">heroku releases --app {app} -n 1 2&gt;/dev/null
+</code></pre>
+<h3>Strategy C: Auto-deploy platforms (Vercel, Netlify)</h3>
+<p>Vercel and Netlify deploy automatically on merge. No explicit deploy trigger needed. Wait 60 seconds for the deploy to propagate, then proceed directly to canary verification in Step 7.</p>
+<h3>Strategy D: Custom deploy hooks</h3>
+<p>If CLAUDE.md has a custom deploy status command in the &quot;Custom deploy hooks&quot; section, run that command and check its exit code.</p>
+<h3>Common: Timing and failure handling</h3>
+<p>Record deploy start time. Show progress every 2 minutes: &quot;Deploy in progress... (Xm elapsed)&quot;</p>
+<p>If deploy succeeds (<code>conclusion</code> is <code>success</code> or health check passes): record deploy duration, continue to Step 7.</p>
+<p>If deploy fails (<code>conclusion</code> is <code>failure</code>): use AskUserQuestion:</p>
+<ul>
+<li><strong>Context:</strong> Deploy workflow failed after merging PR.</li>
+<li><strong>RECOMMENDATION:</strong> Choose A to investigate before reverting.</li>
+<li>A) Investigate the deploy logs</li>
+<li>B) Create a revert commit on the base branch</li>
+<li>C) Continue anyway — the deploy failure might be unrelated</li>
+</ul>
+<p>If timeout (20 min): warn &quot;Deploy has been running for 20 minutes&quot; and ask whether to continue waiting or skip verification.</p>
+<hr>
+<h2>Step 7: Canary verification (conditional depth)</h2>
+<p>Use the diff-scope classification from Step 5 to determine canary depth:</p>
+<table>
+<thead>
+<tr>
+<th>Diff Scope</th>
+<th>Canary Depth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SCOPE_DOCS only</td>
+<td>Already skipped in Step 5</td>
+</tr>
+<tr>
+<td>SCOPE_CONFIG only</td>
+<td>Smoke: <code>$B goto</code> + verify 200 status</td>
+</tr>
+<tr>
+<td>SCOPE_BACKEND only</td>
+<td>Console errors + perf check</td>
+</tr>
+<tr>
+<td>SCOPE_FRONTEND (any)</td>
+<td>Full: console + perf + screenshot</td>
+</tr>
+<tr>
+<td>Mixed scopes</td>
+<td>Full canary</td>
+</tr>
+</tbody></table>
+<p><strong>Full canary sequence:</strong></p>
+<pre><code class="language-bash">$B goto &lt;url&gt;
+</code></pre>
+<p>Check that the page loaded successfully (200, not an error page).</p>
+<pre><code class="language-bash">$B console --errors
+</code></pre>
+<p>Check for critical console errors: lines containing <code>Error</code>, <code>Uncaught</code>, <code>Failed to load</code>, <code>TypeError</code>, <code>ReferenceError</code>. Ignore warnings.</p>
+<pre><code class="language-bash">$B perf
+</code></pre>
+<p>Check that page load time is under 10 seconds.</p>
+<pre><code class="language-bash">$B text
+</code></pre>
+<p>Verify the page has content (not blank, not a generic error page).</p>
+<pre><code class="language-bash">$B snapshot -i -a -o &quot;.gstack/deploy-reports/post-deploy.png&quot;
+</code></pre>
+<p>Take an annotated screenshot as evidence.</p>
+<p><strong>Health assessment:</strong></p>
+<ul>
+<li>Page loads successfully with 200 status → PASS</li>
+<li>No critical console errors → PASS</li>
+<li>Page has real content (not blank or error screen) → PASS</li>
+<li>Loads in under 10 seconds → PASS</li>
+</ul>
+<p>If all pass: mark as HEALTHY, continue to Step 9.</p>
+<p>If any fail: show the evidence (screenshot path, console errors, perf numbers). Use AskUserQuestion:</p>
+<ul>
+<li><strong>Context:</strong> Post-deploy canary detected issues on the production site.</li>
+<li><strong>RECOMMENDATION:</strong> Choose based on severity — B for critical (site down), A for minor (console errors).</li>
+<li>A) Expected (deploy in progress, cache clearing) — mark as healthy</li>
+<li>B) Broken — create a revert commit</li>
+<li>C) Investigate further (open the site, look at logs)</li>
+</ul>
+<hr>
+<h2>Step 8: Revert (if needed)</h2>
+<p>If the user chose to revert at any point:</p>
+<pre><code class="language-bash">git fetch origin &lt;base&gt;
+git checkout &lt;base&gt;
+git revert &lt;merge-commit-sha&gt; --no-edit
+git push origin &lt;base&gt;
+</code></pre>
+<p>If the revert has conflicts: warn &quot;Revert has conflicts — manual resolution needed. The merge commit SHA is <code>&lt;sha&gt;</code>. You can run <code>git revert &lt;sha&gt;</code> manually.&quot;</p>
+<p>If the base branch has push protections: warn &quot;Branch protections may prevent direct push — create a revert PR instead: <code>gh pr create --title &#39;revert: &lt;original PR title&gt;&#39;</code>&quot;</p>
+<p>After a successful revert, note the revert commit SHA and continue to Step 9 with status REVERTED.</p>
+<hr>
+<h2>Step 9: Deploy report</h2>
+<p>Create the deploy report directory:</p>
+<pre><code class="language-bash">mkdir -p .gstack/deploy-reports
+</code></pre>
+<p>Produce and display the ASCII summary:</p>
+<pre><code>LAND &amp; DEPLOY REPORT
+═════════════════════
+PR:           #&lt;number&gt; — &lt;title&gt;
+Branch:       &lt;head-branch&gt; → &lt;base-branch&gt;
+Merged:       &lt;timestamp&gt; (&lt;merge method&gt;)
+Merge SHA:    &lt;sha&gt;
+
+Timing:
+  CI wait:    &lt;duration&gt;
+  Queue:      &lt;duration or &quot;direct merge&quot;&gt;
+  Deploy:     &lt;duration or &quot;no workflow detected&quot;&gt;
+  Canary:     &lt;duration or &quot;skipped&quot;&gt;
+  Total:      &lt;end-to-end duration&gt;
+
+CI:           &lt;PASSED / SKIPPED&gt;
+Deploy:       &lt;PASSED / FAILED / NO WORKFLOW&gt;
+Verification: &lt;HEALTHY / DEGRADED / SKIPPED / REVERTED&gt;
+  Scope:      &lt;FRONTEND / BACKEND / CONFIG / DOCS / MIXED&gt;
+  Console:    &lt;N errors or &quot;clean&quot;&gt;
+  Load time:  &lt;Xs&gt;
+  Screenshot: &lt;path or &quot;none&quot;&gt;
+
+VERDICT: &lt;DEPLOYED AND VERIFIED / DEPLOYED (UNVERIFIED) / REVERTED&gt;
+</code></pre>
+<p>Save report to <code>.gstack/deploy-reports/{date}-pr{number}-deploy.md</code>.</p>
+<p>Log to the review dashboard:</p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-slug 2&gt;/dev/null)
+mkdir -p ~/.gstack/projects/$SLUG
+</code></pre>
+<p>Write a JSONL entry with timing data:</p>
+<pre><code class="language-json">{&quot;skill&quot;:&quot;land-and-deploy&quot;,&quot;timestamp&quot;:&quot;&lt;ISO&gt;&quot;,&quot;status&quot;:&quot;&lt;SUCCESS/REVERTED&gt;&quot;,&quot;pr&quot;:&lt;number&gt;,&quot;merge_sha&quot;:&quot;&lt;sha&gt;&quot;,&quot;deploy_status&quot;:&quot;&lt;HEALTHY/DEGRADED/SKIPPED&gt;&quot;,&quot;ci_wait_s&quot;:&lt;N&gt;,&quot;queue_s&quot;:&lt;N&gt;,&quot;deploy_s&quot;:&lt;N&gt;,&quot;canary_s&quot;:&lt;N&gt;,&quot;total_s&quot;:&lt;N&gt;}
+</code></pre>
+<hr>
+<h2>Step 10: Suggest follow-ups</h2>
+<p>After the deploy report, suggest relevant follow-ups:</p>
+<ul>
+<li>If a production URL was verified: &quot;Run <code>/canary &lt;url&gt; --duration 10m</code> for extended monitoring.&quot;</li>
+<li>If performance data was collected: &quot;Run <code>/benchmark &lt;url&gt;</code> for a deep performance audit.&quot;</li>
+<li>&quot;Run <code>/document-release</code> to update project documentation.&quot;</li>
+</ul>
+<hr>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>Never force push.</strong> Use <code>gh pr merge</code> which is safe.</li>
+<li><strong>Never skip CI.</strong> If checks are failing, stop.</li>
+<li><strong>Auto-detect everything.</strong> PR number, merge method, deploy strategy, project type. Only ask when information genuinely can&#39;t be inferred.</li>
+<li><strong>Poll with backoff.</strong> Don&#39;t hammer GitHub API. 30-second intervals for CI/deploy, with reasonable timeouts.</li>
+<li><strong>Revert is always an option.</strong> At every failure point, offer revert as an escape hatch.</li>
+<li><strong>Single-pass verification, not continuous monitoring.</strong> <code>/land-and-deploy</code> checks once. <code>/canary</code> does the extended monitoring loop.</li>
+<li><strong>Clean up.</strong> Delete the feature branch after merge (via <code>--delete-branch</code>).</li>
+<li><strong>The goal is: user says <code>/land-and-deploy</code>, next thing they see is the deploy report.</strong></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

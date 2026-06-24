@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/document-release/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Fdocument-release">document-release</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: document-release
+version: 1.0.0
+description: |
+  Post-ship documentation update. Reads all project docs, cross-references the
+  diff, updates README/ARCHITECTURE/CONTRIBUTING/CLAUDE.md to match what shipped,
+  polishes CHANGELOG voice, cleans up TODOS, and optionally bumps VERSION. Use when
+  asked to &quot;update the docs&quot;, &quot;sync documentation&quot;, or &quot;post-ship docs&quot;.
+  Proactively suggest after a PR is merged or code is shipped.
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - Glob
+  - AskUserQuestion</h2>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;document-release&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h2>Step 0: Detect base branch</h2>
+<p>Determine which branch this PR targets. Use the result as &quot;the base branch&quot; in all subsequent steps.</p>
+<ol>
+<li><p>Check if a PR already exists for this branch:
+<code>gh pr view --json baseRefName -q .baseRefName</code>
+If this succeeds, use the printed branch name as the base branch.</p>
+</li>
+<li><p>If no PR exists (command fails), detect the repo&#39;s default branch:
+<code>gh repo view --json defaultBranchRef -q .defaultBranchRef.name</code></p>
+</li>
+<li><p>If both commands fail, fall back to <code>main</code>.</p>
+</li>
+</ol>
+<p>Print the detected base branch name. In every subsequent <code>git diff</code>, <code>git log</code>,
+<code>git fetch</code>, <code>git merge</code>, and <code>gh pr create</code> command, substitute the detected
+branch name wherever the instructions say &quot;the base branch.&quot;</p>
+<hr>
+<h1>Document Release: Post-Ship Documentation Update</h1>
+<p>You are running the <code>/document-release</code> workflow. This runs <strong>after <code>/ship</code></strong> (code committed, PR
+exists or about to exist) but <strong>before the PR merges</strong>. Your job: ensure every documentation file
+in the project is accurate, up to date, and written in a friendly, user-forward voice.</p>
+<p>You are mostly automated. Make obvious factual updates directly. Stop and ask only for risky or
+subjective decisions.</p>
+<p><strong>Only stop for:</strong></p>
+<ul>
+<li>Risky/questionable doc changes (narrative, philosophy, security, removals, large rewrites)</li>
+<li>VERSION bump decision (if not already bumped)</li>
+<li>New TODOS items to add</li>
+<li>Cross-doc contradictions that are narrative (not factual)</li>
+</ul>
+<p><strong>Never stop for:</strong></p>
+<ul>
+<li>Factual corrections clearly from the diff</li>
+<li>Adding items to tables/lists</li>
+<li>Updating paths, counts, version numbers</li>
+<li>Fixing stale cross-references</li>
+<li>CHANGELOG voice polish (minor wording adjustments)</li>
+<li>Marking TODOS complete</li>
+<li>Cross-doc factual inconsistencies (e.g., version number mismatch)</li>
+</ul>
+<p><strong>NEVER do:</strong></p>
+<ul>
+<li>Overwrite, replace, or regenerate CHANGELOG entries — polish wording only, preserve all content</li>
+<li>Bump VERSION without asking — always use AskUserQuestion for version changes</li>
+<li>Use <code>Write</code> tool on CHANGELOG.md — always use <code>Edit</code> with exact <code>old_string</code> matches</li>
+</ul>
+<hr>
+<h2>Step 1: Pre-flight &amp; Diff Analysis</h2>
+<ol>
+<li><p>Check the current branch. If on the base branch, <strong>abort</strong>: &quot;You&#39;re on the base branch. Run from a feature branch.&quot;</p>
+</li>
+<li><p>Gather context about what changed:</p>
+</li>
+</ol>
+<pre><code class="language-bash">git diff &lt;base&gt;...HEAD --stat
+</code></pre>
+<pre><code class="language-bash">git log &lt;base&gt;..HEAD --oneline
+</code></pre>
+<pre><code class="language-bash">git diff &lt;base&gt;...HEAD --name-only
+</code></pre>
+<ol start="3">
+<li>Discover all documentation files in the repo:</li>
+</ol>
+<pre><code class="language-bash">find . -maxdepth 2 -name &quot;*.md&quot; -not -path &quot;./.git/*&quot; -not -path &quot;./node_modules/*&quot; -not -path &quot;./.gstack/*&quot; -not -path &quot;./.context/*&quot; | sort
+</code></pre>
+<ol start="4">
+<li><p>Classify the changes into categories relevant to documentation:</p>
+<ul>
+<li><strong>New features</strong> — new files, new commands, new skills, new capabilities</li>
+<li><strong>Changed behavior</strong> — modified services, updated APIs, config changes</li>
+<li><strong>Removed functionality</strong> — deleted files, removed commands</li>
+<li><strong>Infrastructure</strong> — build system, test infrastructure, CI</li>
+</ul>
+</li>
+<li><p>Output a brief summary: &quot;Analyzing N files changed across M commits. Found K documentation files to review.&quot;</p>
+</li>
+</ol>
+<hr>
+<h2>Step 2: Per-File Documentation Audit</h2>
+<p>Read each documentation file and cross-reference it against the diff. Use these generic heuristics
+(adapt to whatever project you&#39;re in — these are not gstack-specific):</p>
+<p><strong>README.md:</strong></p>
+<ul>
+<li>Does it describe all features and capabilities visible in the diff?</li>
+<li>Are install/setup instructions consistent with the changes?</li>
+<li>Are examples, demos, and usage descriptions still valid?</li>
+<li>Are troubleshooting steps still accurate?</li>
+</ul>
+<p><strong>ARCHITECTURE.md:</strong></p>
+<ul>
+<li>Do ASCII diagrams and component descriptions match the current code?</li>
+<li>Are design decisions and &quot;why&quot; explanations still accurate?</li>
+<li>Be conservative — only update things clearly contradicted by the diff. Architecture docs
+describe things unlikely to change frequently.</li>
+</ul>
+<p><strong>CONTRIBUTING.md — New contributor smoke test:</strong></p>
+<ul>
+<li>Walk through the setup instructions as if you are a brand new contributor.</li>
+<li>Are the listed commands accurate? Would each step succeed?</li>
+<li>Do test tier descriptions match the current test infrastructure?</li>
+<li>Are workflow descriptions (dev setup, contributor mode, etc.) current?</li>
+<li>Flag anything that would fail or confuse a first-time contributor.</li>
+</ul>
+<p><strong>CLAUDE.md / project instructions:</strong></p>
+<ul>
+<li>Does the project structure section match the actual file tree?</li>
+<li>Are listed commands and scripts accurate?</li>
+<li>Do build/test instructions match what&#39;s in package.json (or equivalent)?</li>
+</ul>
+<p><strong>Any other .md files:</strong></p>
+<ul>
+<li>Read the file, determine its purpose and audience.</li>
+<li>Cross-reference against the diff to check if it contradicts anything the file says.</li>
+</ul>
+<p>For each file, classify needed updates as:</p>
+<ul>
+<li><strong>Auto-update</strong> — Factual corrections clearly warranted by the diff: adding an item to a
+table, updating a file path, fixing a count, updating a project structure tree.</li>
+<li><strong>Ask user</strong> — Narrative changes, section removal, security model changes, large rewrites
+(more than ~10 lines in one section), ambiguous relevance, adding entirely new sections.</li>
+</ul>
+<hr>
+<h2>Step 3: Apply Auto-Updates</h2>
+<p>Make all clear, factual updates directly using the Edit tool.</p>
+<p>For each file modified, output a one-line summary describing <strong>what specifically changed</strong> — not
+just &quot;Updated README.md&quot; but &quot;README.md: added /new-skill to skills table, updated skill count
+from 9 to 10.&quot;</p>
+<p><strong>Never auto-update:</strong></p>
+<ul>
+<li>README introduction or project positioning</li>
+<li>ARCHITECTURE philosophy or design rationale</li>
+<li>Security model descriptions</li>
+<li>Do not remove entire sections from any document</li>
+</ul>
+<hr>
+<h2>Step 4: Ask About Risky/Questionable Changes</h2>
+<p>For each risky or questionable update identified in Step 2, use AskUserQuestion with:</p>
+<ul>
+<li>Context: project name, branch, which doc file, what we&#39;re reviewing</li>
+<li>The specific documentation decision</li>
+<li><code>RECOMMENDATION: Choose [X] because [one-line reason]</code></li>
+<li>Options including C) Skip — leave as-is</li>
+</ul>
+<p>Apply approved changes immediately after each answer.</p>
+<hr>
+<h2>Step 5: CHANGELOG Voice Polish</h2>
+<p><strong>CRITICAL — NEVER CLOBBER CHANGELOG ENTRIES.</strong></p>
+<p>This step polishes voice. It does NOT rewrite, replace, or regenerate CHANGELOG content.</p>
+<p>A real incident occurred where an agent replaced existing CHANGELOG entries when it should have
+preserved them. This skill must NEVER do that.</p>
+<p><strong>Rules:</strong></p>
+<ol>
+<li>Read the entire CHANGELOG.md first. Understand what is already there.</li>
+<li>Only modify wording within existing entries. Never delete, reorder, or replace entries.</li>
+<li>Never regenerate a CHANGELOG entry from scratch. The entry was written by <code>/ship</code> from the
+actual diff and commit history. It is the source of truth. You are polishing prose, not
+rewriting history.</li>
+<li>If an entry looks wrong or incomplete, use AskUserQuestion — do NOT silently fix it.</li>
+<li>Use Edit tool with exact <code>old_string</code> matches — never use Write to overwrite CHANGELOG.md.</li>
+</ol>
+<p><strong>If CHANGELOG was not modified in this branch:</strong> skip this step.</p>
+<p><strong>If CHANGELOG was modified in this branch</strong>, review the entry for voice:</p>
+<ul>
+<li><strong>Sell test:</strong> Would a user reading each bullet think &quot;oh nice, I want to try that&quot;? If not,
+rewrite the wording (not the content).</li>
+<li>Lead with what the user can now <strong>do</strong> — not implementation details.</li>
+<li>&quot;You can now...&quot; not &quot;Refactored the...&quot;</li>
+<li>Flag and rewrite any entry that reads like a commit message.</li>
+<li>Internal/contributor changes belong in a separate &quot;### For contributors&quot; subsection.</li>
+<li>Auto-fix minor voice adjustments. Use AskUserQuestion if a rewrite would alter meaning.</li>
+</ul>
+<hr>
+<h2>Step 6: Cross-Doc Consistency &amp; Discoverability Check</h2>
+<p>After auditing each file individually, do a cross-doc consistency pass:</p>
+<ol>
+<li>Does the README&#39;s feature/capability list match what CLAUDE.md (or project instructions) describes?</li>
+<li>Does ARCHITECTURE&#39;s component list match CONTRIBUTING&#39;s project structure description?</li>
+<li>Does CHANGELOG&#39;s latest version match the VERSION file?</li>
+<li><strong>Discoverability:</strong> Is every documentation file reachable from README.md or CLAUDE.md? If
+ARCHITECTURE.md exists but neither README nor CLAUDE.md links to it, flag it. Every doc
+should be discoverable from one of the two entry-point files.</li>
+<li>Flag any contradictions between documents. Auto-fix clear factual inconsistencies (e.g., a
+version mismatch). Use AskUserQuestion for narrative contradictions.</li>
+</ol>
+<hr>
+<h2>Step 7: TODOS.md Cleanup</h2>
+<p>This is a second pass that complements <code>/ship</code>&#39;s Step 5.5. Read <code>review/TODOS-format.md</code> (if
+available) for the canonical TODO item format.</p>
+<p>If TODOS.md does not exist, skip this step.</p>
+<ol>
+<li><p><strong>Completed items not yet marked:</strong> Cross-reference the diff against open TODO items. If a
+TODO is clearly completed by the changes in this branch, move it to the Completed section
+with <code>**Completed:** vX.Y.Z.W (YYYY-MM-DD)</code>. Be conservative — only mark items with clear
+evidence in the diff.</p>
+</li>
+<li><p><strong>Items needing description updates:</strong> If a TODO references files or components that were
+significantly changed, its description may be stale. Use AskUserQuestion to confirm whether
+the TODO should be updated, completed, or left as-is.</p>
+</li>
+<li><p><strong>New deferred work:</strong> Check the diff for <code>TODO</code>, <code>FIXME</code>, <code>HACK</code>, and <code>XXX</code> comments. For
+each one that represents meaningful deferred work (not a trivial inline note), use
+AskUserQuestion to ask whether it should be captured in TODOS.md.</p>
+</li>
+</ol>
+<hr>
+<h2>Step 8: VERSION Bump Question</h2>
+<p><strong>CRITICAL — NEVER BUMP VERSION WITHOUT ASKING.</strong></p>
+<ol>
+<li><p><strong>If VERSION does not exist:</strong> Skip silently.</p>
+</li>
+<li><p>Check if VERSION was already modified on this branch:</p>
+</li>
+</ol>
+<pre><code class="language-bash">git diff &lt;base&gt;...HEAD -- VERSION
+</code></pre>
+<ol start="3">
+<li><p><strong>If VERSION was NOT bumped:</strong> Use AskUserQuestion:</p>
+<ul>
+<li>RECOMMENDATION: Choose C (Skip) because docs-only changes rarely warrant a version bump</li>
+<li>A) Bump PATCH (X.Y.Z+1) — if doc changes ship alongside code changes</li>
+<li>B) Bump MINOR (X.Y+1.0) — if this is a significant standalone release</li>
+<li>C) Skip — no version bump needed</li>
+</ul>
+</li>
+<li><p><strong>If VERSION was already bumped:</strong> Do NOT skip silently. Instead, check whether the bump
+still covers the full scope of changes on this branch:</p>
+<p>a. Read the CHANGELOG entry for the current VERSION. What features does it describe?
+b. Read the full diff (<code>git diff &lt;base&gt;...HEAD --stat</code> and <code>git diff &lt;base&gt;...HEAD --name-only</code>).
+   Are there significant changes (new features, new skills, new commands, major refactors)
+   that are NOT mentioned in the CHANGELOG entry for the current version?
+c. <strong>If the CHANGELOG entry covers everything:</strong> Skip — output &quot;VERSION: Already bumped to
+   vX.Y.Z, covers all changes.&quot;
+d. <strong>If there are significant uncovered changes:</strong> Use AskUserQuestion explaining what the
+   current version covers vs what&#39;s new, and ask:</p>
+<ul>
+<li>RECOMMENDATION: Choose A because the new changes warrant their own version</li>
+<li>A) Bump to next patch (X.Y.Z+1) — give the new changes their own version</li>
+<li>B) Keep current version — add new changes to the existing CHANGELOG entry</li>
+<li>C) Skip — leave version as-is, handle later</li>
+</ul>
+<p>The key insight: a VERSION bump set for &quot;feature A&quot; should not silently absorb &quot;feature B&quot;
+if feature B is substantial enough to deserve its own version entry.</p>
+</li>
+</ol>
+<hr>
+<h2>Step 9: Commit &amp; Output</h2>
+<p><strong>Empty check first:</strong> Run <code>git status</code> (never use <code>-uall</code>). If no documentation files were
+modified by any previous step, output &quot;All documentation is up to date.&quot; and exit without
+committing.</p>
+<p><strong>Commit:</strong></p>
+<ol>
+<li>Stage modified documentation files by name (never <code>git add -A</code> or <code>git add .</code>).</li>
+<li>Create a single commit:</li>
+</ol>
+<pre><code class="language-bash">git commit -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+docs: update project documentation for vX.Y.Z.W
+
+Co-Authored-By: Claude Opus 4.6 &lt;noreply@anthropic.com&gt;
+EOF
+)&quot;
+</code></pre>
+<ol start="3">
+<li>Push to the current branch:</li>
+</ol>
+<pre><code class="language-bash">git push
+</code></pre>
+<p><strong>PR body update (idempotent, race-safe):</strong></p>
+<ol>
+<li>Read the existing PR body into a PID-unique tempfile:</li>
+</ol>
+<pre><code class="language-bash">gh pr view --json body -q .body &gt; /tmp/gstack-pr-body-$$.md
+</code></pre>
+<ol start="2">
+<li><p>If the tempfile already contains a <code>## Documentation</code> section, replace that section with the
+updated content. If it does not contain one, append a <code>## Documentation</code> section at the end.</p>
+</li>
+<li><p>The Documentation section should include a <strong>doc diff preview</strong> — for each file modified,
+describe what specifically changed (e.g., &quot;README.md: added /document-release to skills
+table, updated skill count from 9 to 10&quot;).</p>
+</li>
+<li><p>Write the updated body back:</p>
+</li>
+</ol>
+<pre><code class="language-bash">gh pr edit --body-file /tmp/gstack-pr-body-$$.md
+</code></pre>
+<ol start="5">
+<li>Clean up the tempfile:</li>
+</ol>
+<pre><code class="language-bash">rm -f /tmp/gstack-pr-body-$$.md
+</code></pre>
+<ol start="6">
+<li>If <code>gh pr view</code> fails (no PR exists): skip with message &quot;No PR found — skipping body update.&quot;</li>
+<li>If <code>gh pr edit</code> fails: warn &quot;Could not update PR body — documentation changes are in the
+commit.&quot; and continue.</li>
+</ol>
+<p><strong>Structured doc health summary (final output):</strong></p>
+<p>Output a scannable summary showing every documentation file&#39;s status:</p>
+<pre><code>Documentation health:
+  README.md       [status] ([details])
+  ARCHITECTURE.md [status] ([details])
+  CONTRIBUTING.md [status] ([details])
+  CHANGELOG.md    [status] ([details])
+  TODOS.md        [status] ([details])
+  VERSION         [status] ([details])
+</code></pre>
+<p>Where status is one of:</p>
+<ul>
+<li>Updated — with description of what changed</li>
+<li>Current — no changes needed</li>
+<li>Voice polished — wording adjusted</li>
+<li>Not bumped — user chose to skip</li>
+<li>Already bumped — version was set by /ship</li>
+<li>Skipped — file does not exist</li>
+</ul>
+<hr>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>Read before editing.</strong> Always read the full content of a file before modifying it.</li>
+<li><strong>Never clobber CHANGELOG.</strong> Polish wording only. Never delete, replace, or regenerate entries.</li>
+<li><strong>Never bump VERSION silently.</strong> Always ask. Even if already bumped, check whether it covers the full scope of changes.</li>
+<li><strong>Be explicit about what changed.</strong> Every edit gets a one-line summary.</li>
+<li><strong>Generic heuristics, not project-specific.</strong> The audit checks work on any repo.</li>
+<li><strong>Discoverability matters.</strong> Every doc file should be reachable from README or CLAUDE.md.</li>
+<li><strong>Voice: friendly, user-forward, not obscure.</strong> Write like you&#39;re explaining to a smart person
+who hasn&#39;t seen the code.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

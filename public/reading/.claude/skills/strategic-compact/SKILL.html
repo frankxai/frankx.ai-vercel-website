@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Strategic Compact Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/strategic-compact/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Strategic Compact Skill</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fstrategic-compact">strategic-compact</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: strategic-compact
+description: Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary auto-compaction.
+origin: ECC</h2>
+<h1>Strategic Compact Skill</h1>
+<p>Suggests manual <code>/compact</code> at strategic points in your workflow rather than relying on arbitrary auto-compaction.</p>
+<h2>When to Activate</h2>
+<ul>
+<li>Running long sessions that approach context limits (200K+ tokens)</li>
+<li>Working on multi-phase tasks (research → plan → implement → test)</li>
+<li>Switching between unrelated tasks within the same session</li>
+<li>After completing a major milestone and starting new work</li>
+<li>When responses slow down or become less coherent (context pressure)</li>
+</ul>
+<h2>Why Strategic Compaction?</h2>
+<p>Auto-compaction triggers at arbitrary points:</p>
+<ul>
+<li>Often mid-task, losing important context</li>
+<li>No awareness of logical task boundaries</li>
+<li>Can interrupt complex multi-step operations</li>
+</ul>
+<p>Strategic compaction at logical boundaries:</p>
+<ul>
+<li><strong>After exploration, before execution</strong> — Compact research context, keep implementation plan</li>
+<li><strong>After completing a milestone</strong> — Fresh start for next phase</li>
+<li><strong>Before major context shifts</strong> — Clear exploration context before different task</li>
+</ul>
+<h2>How It Works</h2>
+<p>The <code>suggest-compact.js</code> script runs on PreToolUse (Edit/Write) and:</p>
+<ol>
+<li><strong>Tracks tool calls</strong> — Counts tool invocations in session</li>
+<li><strong>Threshold detection</strong> — Suggests at configurable threshold (default: 50 calls)</li>
+<li><strong>Periodic reminders</strong> — Reminds every 25 calls after threshold</li>
+</ol>
+<h2>Hook Setup</h2>
+<p>Add to your <code>~/.claude/settings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Edit&quot;,
+        &quot;hooks&quot;: [{ &quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;node ~/.claude/skills/strategic-compact/suggest-compact.js&quot; }]
+      },
+      {
+        &quot;matcher&quot;: &quot;Write&quot;,
+        &quot;hooks&quot;: [{ &quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;node ~/.claude/skills/strategic-compact/suggest-compact.js&quot; }]
+      }
+    ]
+  }
+}
+</code></pre>
+<h2>Configuration</h2>
+<p>Environment variables:</p>
+<ul>
+<li><code>COMPACT_THRESHOLD</code> — Tool calls before first suggestion (default: 50)</li>
+</ul>
+<h2>Compaction Decision Guide</h2>
+<p>Use this table to decide when to compact:</p>
+<table>
+<thead>
+<tr>
+<th>Phase Transition</th>
+<th>Compact?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Research → Planning</td>
+<td>Yes</td>
+<td>Research context is bulky; plan is the distilled output</td>
+</tr>
+<tr>
+<td>Planning → Implementation</td>
+<td>Yes</td>
+<td>Plan is in TodoWrite or a file; free up context for code</td>
+</tr>
+<tr>
+<td>Implementation → Testing</td>
+<td>Maybe</td>
+<td>Keep if tests reference recent code; compact if switching focus</td>
+</tr>
+<tr>
+<td>Debugging → Next feature</td>
+<td>Yes</td>
+<td>Debug traces pollute context for unrelated work</td>
+</tr>
+<tr>
+<td>Mid-implementation</td>
+<td>No</td>
+<td>Losing variable names, file paths, and partial state is costly</td>
+</tr>
+<tr>
+<td>After a failed approach</td>
+<td>Yes</td>
+<td>Clear the dead-end reasoning before trying a new approach</td>
+</tr>
+</tbody></table>
+<h2>What Survives Compaction</h2>
+<p>Understanding what persists helps you compact with confidence:</p>
+<table>
+<thead>
+<tr>
+<th>Persists</th>
+<th>Lost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLAUDE.md instructions</td>
+<td>Intermediate reasoning and analysis</td>
+</tr>
+<tr>
+<td>TodoWrite task list</td>
+<td>File contents you previously read</td>
+</tr>
+<tr>
+<td>Memory files (<code>~/.claude/memory/</code>)</td>
+<td>Multi-step conversation context</td>
+</tr>
+<tr>
+<td>Git state (commits, branches)</td>
+<td>Tool call history and counts</td>
+</tr>
+<tr>
+<td>Files on disk</td>
+<td>Nuanced user preferences stated verbally</td>
+</tr>
+</tbody></table>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Compact after planning</strong> — Once plan is finalized in TodoWrite, compact to start fresh</li>
+<li><strong>Compact after debugging</strong> — Clear error-resolution context before continuing</li>
+<li><strong>Don&#39;t compact mid-implementation</strong> — Preserve context for related changes</li>
+<li><strong>Read the suggestion</strong> — The hook tells you <em>when</em>, you decide <em>if</em></li>
+<li><strong>Write before compacting</strong> — Save important context to files or memory before compacting</li>
+<li><strong>Use <code>/compact</code> with a summary</strong> — Add a custom message: <code>/compact Focus on implementing auth middleware next</code></li>
+</ol>
+<h2>Token Optimization Patterns</h2>
+<h3>Trigger-Table Lazy Loading</h3>
+<p>Instead of loading full skill content at session start, use a trigger table that maps keywords to skill paths. Skills load only when triggered, reducing baseline context by 50%+:</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Skill</th>
+<th>Load When</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;test&quot;, &quot;tdd&quot;, &quot;coverage&quot;</td>
+<td>tdd-workflow</td>
+<td>User mentions testing</td>
+</tr>
+<tr>
+<td>&quot;security&quot;, &quot;auth&quot;, &quot;xss&quot;</td>
+<td>security-review</td>
+<td>Security-related work</td>
+</tr>
+<tr>
+<td>&quot;deploy&quot;, &quot;ci/cd&quot;</td>
+<td>deployment-patterns</td>
+<td>Deployment context</td>
+</tr>
+</tbody></table>
+<h3>Context Composition Awareness</h3>
+<p>Monitor what&#39;s consuming your context window:</p>
+<ul>
+<li><strong>CLAUDE.md files</strong> — Always loaded, keep lean</li>
+<li><strong>Loaded skills</strong> — Each skill adds 1-5K tokens</li>
+<li><strong>Conversation history</strong> — Grows with each exchange</li>
+<li><strong>Tool results</strong> — File reads, search results add bulk</li>
+</ul>
+<h3>Duplicate Instruction Detection</h3>
+<p>Common sources of duplicate context:</p>
+<ul>
+<li>Same rules in both <code>~/.claude/rules/</code> and project <code>.claude/rules/</code></li>
+<li>Skills that repeat CLAUDE.md instructions</li>
+<li>Multiple skills covering overlapping domains</li>
+</ul>
+<h3>Context Optimization Tools</h3>
+<ul>
+<li><code>token-optimizer</code> MCP — Automated 95%+ token reduction via content deduplication</li>
+<li><code>context-mode</code> — Context virtualization (315KB to 5.4KB demonstrated)</li>
+</ul>
+<h2>Related</h2>
+<ul>
+<li><a href="https://x.com/affaanmustafa/status/2014040193557471352">The Longform Guide</a> — Token optimization section</li>
+<li>Memory persistence hooks — For state that survives compaction</li>
+<li><code>continuous-learning</code> skill — Extracts patterns before session ends</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

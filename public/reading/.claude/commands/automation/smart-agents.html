@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Smart Agent Auto-Spawning</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/automation/smart-agents.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Smart Agent Auto-Spawning</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fcommands">commands</a> / <a href="index.html#.claude%2Fcommands%2Fautomation">automation</a> / <span>smart-agents.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Smart Agent Auto-Spawning</h1>
+<h2>Purpose</h2>
+<p>Automatically spawn the right agents at the right time without manual intervention.</p>
+<h2>Auto-Spawning Triggers</h2>
+<h3>1. File Type Detection</h3>
+<p>When editing files, agents auto-spawn:</p>
+<ul>
+<li><strong>JavaScript/TypeScript</strong>: Coder agent</li>
+<li><strong>Markdown</strong>: Researcher agent</li>
+<li><strong>JSON/YAML</strong>: Analyst agent</li>
+<li><strong>Multiple files</strong>: Coordinator agent</li>
+</ul>
+<h3>2. Task Complexity</h3>
+<pre><code>Simple task: &quot;Fix typo&quot;
+→ Single coordinator agent
+
+Complex task: &quot;Implement OAuth with Google&quot;
+→ Architect + Coder + Tester + Researcher
+</code></pre>
+<h3>3. Dynamic Scaling</h3>
+<p>The system monitors workload and spawns additional agents when:</p>
+<ul>
+<li>Task queue grows</li>
+<li>Complexity increases</li>
+<li>Parallel opportunities exist</li>
+</ul>
+<p><strong>Status Monitoring:</strong></p>
+<pre><code class="language-javascript">// Check swarm health
+mcp__claude-flow__swarm_status({
+  &quot;swarmId&quot;: &quot;current&quot;
+})
+
+// Monitor agent performance
+mcp__claude-flow__agent_metrics({
+  &quot;agentId&quot;: &quot;agent-123&quot;
+})
+</code></pre>
+<h2>Configuration</h2>
+<h3>MCP Tool Integration</h3>
+<p>Uses Claude Flow MCP tools for agent coordination:</p>
+<pre><code class="language-javascript">// Initialize swarm with appropriate topology
+mcp__claude-flow__swarm_init({
+  &quot;topology&quot;: &quot;mesh&quot;,
+  &quot;maxAgents&quot;: 8,
+  &quot;strategy&quot;: &quot;auto&quot;
+})
+
+// Spawn agents based on file type
+mcp__claude-flow__agent_spawn({
+  &quot;type&quot;: &quot;coder&quot;,
+  &quot;name&quot;: &quot;JavaScript Handler&quot;,
+  &quot;capabilities&quot;: [&quot;javascript&quot;, &quot;typescript&quot;]
+})
+</code></pre>
+<h3>Fallback Configuration</h3>
+<p>If MCP tools are unavailable:</p>
+<pre><code class="language-bash">npx claude-flow hook pre-task --auto-spawn-agents
+</code></pre>
+<h2>Benefits</h2>
+<ul>
+<li>🤖 Zero manual agent management</li>
+<li>🎯 Perfect agent selection</li>
+<li>📈 Dynamic scaling</li>
+<li>💾 Resource efficiency</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

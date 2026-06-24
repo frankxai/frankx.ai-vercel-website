@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Newsletter Cadence — 2026</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/strategy/newsletter-cadence-2026.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Newsletter Cadence — 2026</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#content">content</a> / <a href="index.html#content%2Fstrategy">strategy</a> / <span>newsletter-cadence-2026.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Newsletter Cadence — 2026</h1>
+<p><strong>Last reviewed:</strong> 2026-05-20
+<strong>Owner:</strong> Frank Riemer
+<strong>Substrate:</strong> <code>lib/newsletter.ts</code> (streams) + <code>content/newsletters/issues/</code> (single weekly issue)
+<strong>Runtime:</strong> <code>/newsletter-week</code> command + <code>@integrity-guard</code> gate + Resend MCP</p>
+<hr>
+<h2>The model</h2>
+<p>One newsletter issue ships every Friday at 11:00 CET. Issue 1 is the first issue of the new era (2026-05-22). The prior 6-stream architecture in <code>content/newsletters/{daily,inspiration,themes}/</code> remains live as a separate substrate; the weekly issue lives at <code>content/newsletters/issues/</code>.</p>
+<h2>The structure</h2>
+<p>Every issue has three sections in fixed proportion:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Share</th>
+<th>What goes here</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Spotlight</strong></td>
+<td>60%</td>
+<td>One story — a shipped surface, a research brief, a strategic frame. Connects to an active forcing function.</td>
+</tr>
+<tr>
+<td><strong>Receipts</strong></td>
+<td>25%</td>
+<td>2-3 short specific wins, case studies, or artifacts from the week.</td>
+</tr>
+<tr>
+<td><strong>Toolkit</strong></td>
+<td>15%</td>
+<td>One actionable thing the reader can do this week.</td>
+</tr>
+</tbody></table>
+<h2>The week</h2>
+<pre><code>MON   /newsletter-week pick     → theme + angle locked
+TUE   /newsletter-week draft    → 800-1200w
+WED   /newsletter-week gate     → @integrity-guard + /seo-check
+THU   Frank review              → final edit pass
+FRI   /newsletter-week schedule + send
+      Resend triggers 11:00 CET
+      /newsletter-week archive  → /newsletter/archive/issue-{n}
+</code></pre>
+<h2>The voice</h2>
+<p>Inherits canonical brand voice from <code>lib/voice/frankx-voice.ts</code>. Newsletter-specific overlays:</p>
+<ol>
+<li><strong>Greeting</strong> — none. No &quot;Hey friend&quot; / &quot;Dear reader&quot;. Open with the spotlight directly.</li>
+<li><strong>Tense</strong> — past tense for receipts (what happened), present for strategic frames (what&#39;s true), future for forcing functions (what&#39;s coming).</li>
+<li><strong>Sign-off</strong> — &quot;—Frank&quot; on its own line. No best, no exclamation, no talk-soon.</li>
+<li><strong>P.S.</strong> — Allowed when the postscript adds a specific receipt, CTA, or invitation. Disallowed as a generic close.</li>
+<li><strong>Links</strong> — Prefer markdown link <code>[anchor text](url)</code> over bare URLs. Anchor text describes destination (&quot;Inner Circle waitlist&quot;) not &quot;click here&quot;.</li>
+</ol>
+<h2>The CTA</h2>
+<p>One primary CTA per issue. Optional secondary if it&#39;s complementary (e.g. primary = Inner Circle, secondary = newsletter-related OSS). Never more than two. CTAs route to one of:</p>
+<ul>
+<li><code>/inner-circle</code> (June 1 launch — primary gravity)</li>
+<li><code>/newsletter</code> (subscription growth)</li>
+<li><code>/waitlist?ref={issue}</code> (catch-all)</li>
+<li>One of the hubs (<code>/library</code>, <code>/studio</code>, <code>/research</code>, <code>/workshops</code>)</li>
+<li>An OSS repo</li>
+</ul>
+<h2>The cross-post discipline</h2>
+<p>Each issue&#39;s frontmatter declares <code>crossPost: true|false</code>. When true:</p>
+<ul>
+<li>The Spotlight section becomes a standalone <code>/blog/</code> post 7 days after send.</li>
+<li>Frontmatter <code>connectsTo:</code> field becomes internal links in the blog post.</li>
+<li>This is <code>/traffic-week</code> lever 5 (&quot;newsletter cross-post&quot;) executed automatically.</li>
+</ul>
+<p>When false (default for first 4 issues), the issue lives only at <code>/newsletter/archive/issue-{n}</code>. Decide cross-post on issue-by-issue basis.</p>
+<h2>The metrics that matter</h2>
+<p>Reviewed every Sunday <code>/palace</code>:</p>
+<ol>
+<li><strong>Open rate</strong> — target &gt;40% (Resend dashboard). 30% triggers review.</li>
+<li><strong>CTA click rate</strong> — target &gt;5% on primary CTA. &lt;2% triggers CTA rewrite.</li>
+<li><strong>Unsubscribe rate</strong> — target &lt;0.5% per issue. &gt;1% triggers voice + frequency audit.</li>
+<li><strong>Reply rate</strong> — target &gt;1% (any reply is a high-signal event for solo creator). Each reply gets a personal answer within 48h.</li>
+</ol>
+<h2>What doesn&#39;t go in the newsletter</h2>
+<ul>
+<li>AI news roundups (Substacks do this already, and better)</li>
+<li>Generic productivity advice</li>
+<li>Tutorials (those live on <code>/blog/</code>)</li>
+<li>Cross-posts of social content (that&#39;s <code>/content-ops</code>&#39;s job)</li>
+<li>Anything that wasn&#39;t gated by <code>@integrity-guard</code></li>
+</ul>
+<h2>The cancellation discipline</h2>
+<p>If two consecutive issues miss the Friday send, the cadence is broken. Recovery sequence:</p>
+<ol>
+<li><strong>Issue N+1</strong> — explicit acknowledgment in spotlight (&quot;I missed the last two Fridays — here&#39;s why and what changed&quot;)</li>
+<li><strong>Pause the cadence</strong> for 1-2 weeks while the underlying loop issue is fixed</li>
+<li><strong>Restart</strong> with renumbered issue tagged &quot;restart&quot; in frontmatter — never silent retroactive renumbering</li>
+</ol>
+<p>The cadence is the product. Missing it is signal, not noise.</p>
+<hr>
+<p><em>Friday is a forcing function, not a hope. Issue 1 ships on time. Issue 52 ships on time. The cadence is the product.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

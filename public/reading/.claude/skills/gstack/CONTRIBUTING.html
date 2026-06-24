@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Contributing to gstack</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/CONTRIBUTING.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Contributing to gstack</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgstack">gstack</a> / <span>CONTRIBUTING.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Contributing to gstack</h1>
+<p>Thanks for wanting to make gstack better. Whether you&#39;re fixing a typo in a skill prompt or building an entirely new workflow, this guide will get you up and running fast.</p>
+<h2>Quick start</h2>
+<p>gstack skills are Markdown files that Claude Code discovers from a <code>skills/</code> directory. Normally they live at <code>~/.claude/skills/gstack/</code> (your global install). But when you&#39;re developing gstack itself, you want Claude Code to use the skills <em>in your working tree</em> — so edits take effect instantly without copying or deploying anything.</p>
+<p>That&#39;s what dev mode does. It symlinks your repo into the local <code>.claude/skills/</code> directory so Claude Code reads skills straight from your checkout.</p>
+<pre><code class="language-bash">git clone &lt;repo&gt; &amp;&amp; cd gstack
+bun install                    # install dependencies
+bin/dev-setup                  # activate dev mode
+</code></pre>
+<p>Now edit any <code>SKILL.md</code>, invoke it in Claude Code (e.g. <code>/review</code>), and see your changes live. When you&#39;re done developing:</p>
+<pre><code class="language-bash">bin/dev-teardown               # deactivate — back to your global install
+</code></pre>
+<h2>Contributor mode</h2>
+<p>Contributor mode turns gstack into a self-improving tool. Enable it and Claude Code
+will periodically reflect on its gstack experience — rating it 0-10 at the end of
+each major workflow step. When something isn&#39;t a 10, it thinks about why and files
+a report to <code>~/.gstack/contributor-logs/</code> with what happened, repro steps, and what
+would make it better.</p>
+<pre><code class="language-bash">~/.claude/skills/gstack/bin/gstack-config set gstack_contributor true
+</code></pre>
+<p>The logs are for <strong>you</strong>. When something bugs you enough to fix, the report is
+already written. Fork gstack, symlink your fork into the project where you hit
+the issue, fix it, and open a PR.</p>
+<h3>The contributor workflow</h3>
+<ol>
+<li><strong>Use gstack normally</strong> — contributor mode reflects and logs issues automatically</li>
+<li><strong>Check your logs:</strong> <code>ls ~/.gstack/contributor-logs/</code></li>
+<li><strong>Fork and clone gstack</strong> (if you haven&#39;t already)</li>
+<li><strong>Symlink your fork into the project where you hit the bug:</strong><pre><code class="language-bash"># In your core project (the one where gstack annoyed you)
+ln -sfn /path/to/your/gstack-fork .claude/skills/gstack
+cd .claude/skills/gstack &amp;&amp; bun install &amp;&amp; bun run build
+</code></pre>
+</li>
+<li><strong>Fix the issue</strong> — your changes are live immediately in this project</li>
+<li><strong>Test by actually using gstack</strong> — do the thing that annoyed you, verify it&#39;s fixed</li>
+<li><strong>Open a PR from your fork</strong></li>
+</ol>
+<p>This is the best way to contribute: fix gstack while doing your real work, in the
+project where you actually felt the pain.</p>
+<h3>Session awareness</h3>
+<p>When you have 3+ gstack sessions open simultaneously, every question tells you which project, which branch, and what&#39;s happening. No more staring at a question thinking &quot;wait, which window is this?&quot; The format is consistent across all skills.</p>
+<h2>Working on gstack inside the gstack repo</h2>
+<p>When you&#39;re editing gstack skills and want to test them by actually using gstack
+in the same repo, <code>bin/dev-setup</code> wires this up. It creates <code>.claude/skills/</code>
+symlinks (gitignored) pointing back to your working tree, so Claude Code uses
+your local edits instead of the global install.</p>
+<pre><code>gstack/                          &lt;- your working tree
+├── .claude/skills/              &lt;- created by dev-setup (gitignored)
+│   ├── gstack -&gt; ../../         &lt;- symlink back to repo root
+│   ├── review -&gt; gstack/review
+│   ├── ship -&gt; gstack/ship
+│   └── ...                      &lt;- one symlink per skill
+├── review/
+│   └── SKILL.md                 &lt;- edit this, test with /review
+├── ship/
+│   └── SKILL.md
+├── browse/
+│   ├── src/                     &lt;- TypeScript source
+│   └── dist/                    &lt;- compiled binary (gitignored)
+└── ...
+</code></pre>
+<h2>Day-to-day workflow</h2>
+<pre><code class="language-bash"># 1. Enter dev mode
+bin/dev-setup
+
+# 2. Edit a skill
+vim review/SKILL.md
+
+# 3. Test it in Claude Code — changes are live
+#    &gt; /review
+
+# 4. Editing browse source? Rebuild the binary
+bun run build
+
+# 5. Done for the day? Tear down
+bin/dev-teardown
+</code></pre>
+<h2>Testing &amp; evals</h2>
+<h3>Setup</h3>
+<pre><code class="language-bash"># 1. Copy .env.example and add your API key
+cp .env.example .env
+# Edit .env → set ANTHROPIC_API_KEY=sk-ant-...
+
+# 2. Install deps (if you haven&#39;t already)
+bun install
+</code></pre>
+<p>Bun auto-loads <code>.env</code> — no extra config. Conductor workspaces inherit <code>.env</code> from the main worktree automatically (see &quot;Conductor workspaces&quot; below).</p>
+<h3>Test tiers</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Command</th>
+<th>Cost</th>
+<th>What it tests</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 — Static</td>
+<td><code>bun test</code></td>
+<td>Free</td>
+<td>Command validation, snapshot flags, SKILL.md correctness, TODOS-format.md refs, observability unit tests</td>
+</tr>
+<tr>
+<td>2 — E2E</td>
+<td><code>bun run test:e2e</code></td>
+<td>~$3.85</td>
+<td>Full skill execution via <code>claude -p</code> subprocess</td>
+</tr>
+<tr>
+<td>3 — LLM eval</td>
+<td><code>bun run test:evals</code></td>
+<td>~$0.15 standalone</td>
+<td>LLM-as-judge scoring of generated SKILL.md docs</td>
+</tr>
+<tr>
+<td>2+3</td>
+<td><code>bun run test:evals</code></td>
+<td>~$4 combined</td>
+<td>E2E + LLM-as-judge (runs both)</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash">bun test                     # Tier 1 only (runs on every commit, &lt;5s)
+bun run test:e2e             # Tier 2: E2E only (needs EVALS=1, can&#39;t run inside Claude Code)
+bun run test:evals           # Tier 2 + 3 combined (~$4/run)
+</code></pre>
+<h3>Tier 1: Static validation (free)</h3>
+<p>Runs automatically with <code>bun test</code>. No API keys needed.</p>
+<ul>
+<li><strong>Skill parser tests</strong> (<code>test/skill-parser.test.ts</code>) — Extracts every <code>$B</code> command from SKILL.md bash code blocks and validates against the command registry in <code>browse/src/commands.ts</code>. Catches typos, removed commands, and invalid snapshot flags.</li>
+<li><strong>Skill validation tests</strong> (<code>test/skill-validation.test.ts</code>) — Validates that SKILL.md files reference only real commands and flags, and that command descriptions meet quality thresholds.</li>
+<li><strong>Generator tests</strong> (<code>test/gen-skill-docs.test.ts</code>) — Tests the template system: verifies placeholders resolve correctly, output includes value hints for flags (e.g. <code>-d &lt;N&gt;</code> not just <code>-d</code>), enriched descriptions for key commands (e.g. <code>is</code> lists valid states, <code>press</code> lists key examples).</li>
+</ul>
+<h3>Tier 2: E2E via <code>claude -p</code> (~$3.85/run)</h3>
+<p>Spawns <code>claude -p</code> as a subprocess with <code>--output-format stream-json --verbose</code>, streams NDJSON for real-time progress, and scans for browse errors. This is the closest thing to &quot;does this skill actually work end-to-end?&quot;</p>
+<pre><code class="language-bash"># Must run from a plain terminal — can&#39;t nest inside Claude Code or Conductor
+EVALS=1 bun test test/skill-e2e-*.test.ts
+</code></pre>
+<ul>
+<li>Gated by <code>EVALS=1</code> env var (prevents accidental expensive runs)</li>
+<li>Auto-skips if running inside Claude Code (<code>claude -p</code> can&#39;t nest)</li>
+<li>API connectivity pre-check — fails fast on ConnectionRefused before burning budget</li>
+<li>Real-time progress to stderr: <code>[Ns] turn T tool #C: Name(...)</code></li>
+<li>Saves full NDJSON transcripts and failure JSON for debugging</li>
+<li>Tests live in <code>test/skill-e2e-*.test.ts</code> (split by category), runner logic in <code>test/helpers/session-runner.ts</code></li>
+</ul>
+<h3>E2E observability</h3>
+<p>When E2E tests run, they produce machine-readable artifacts in <code>~/.gstack-dev/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Heartbeat</td>
+<td><code>e2e-live.json</code></td>
+<td>Current test status (updated per tool call)</td>
+</tr>
+<tr>
+<td>Partial results</td>
+<td><code>evals/_partial-e2e.json</code></td>
+<td>Completed tests (survives kills)</td>
+</tr>
+<tr>
+<td>Progress log</td>
+<td><code>e2e-runs/{runId}/progress.log</code></td>
+<td>Append-only text log</td>
+</tr>
+<tr>
+<td>NDJSON transcripts</td>
+<td><code>e2e-runs/{runId}/{test}.ndjson</code></td>
+<td>Raw <code>claude -p</code> output per test</td>
+</tr>
+<tr>
+<td>Failure JSON</td>
+<td><code>e2e-runs/{runId}/{test}-failure.json</code></td>
+<td>Diagnostic data on failure</td>
+</tr>
+</tbody></table>
+<p><strong>Live dashboard:</strong> Run <code>bun run eval:watch</code> in a second terminal to see a live dashboard showing completed tests, the currently running test, and cost. Use <code>--tail</code> to also show the last 10 lines of progress.log.</p>
+<p><strong>Eval history tools:</strong></p>
+<pre><code class="language-bash">bun run eval:list            # list all eval runs (turns, duration, cost per run)
+bun run eval:compare         # compare two runs — shows per-test deltas + Takeaway commentary
+bun run eval:summary         # aggregate stats + per-test efficiency averages across runs
+</code></pre>
+<p><strong>Eval comparison commentary:</strong> <code>eval:compare</code> generates natural-language Takeaway sections interpreting what changed between runs — flagging regressions, noting improvements, calling out efficiency gains (fewer turns, faster, cheaper), and producing an overall summary. This is driven by <code>generateCommentary()</code> in <code>eval-store.ts</code>.</p>
+<p>Artifacts are never cleaned up — they accumulate in <code>~/.gstack-dev/</code> for post-mortem debugging and trend analysis.</p>
+<h3>Tier 3: LLM-as-judge (~$0.15/run)</h3>
+<p>Uses Claude Sonnet to score generated SKILL.md docs on three dimensions:</p>
+<ul>
+<li><strong>Clarity</strong> — Can an AI agent understand the instructions without ambiguity?</li>
+<li><strong>Completeness</strong> — Are all commands, flags, and usage patterns documented?</li>
+<li><strong>Actionability</strong> — Can the agent execute tasks using only the information in the doc?</li>
+</ul>
+<p>Each dimension is scored 1-5. Threshold: every dimension must score <strong>≥ 4</strong>. There&#39;s also a regression test that compares generated docs against the hand-maintained baseline from <code>origin/main</code> — generated must score equal or higher.</p>
+<pre><code class="language-bash"># Needs ANTHROPIC_API_KEY in .env — included in bun run test:evals
+</code></pre>
+<ul>
+<li>Uses <code>claude-sonnet-4-6</code> for scoring stability</li>
+<li>Tests live in <code>test/skill-llm-eval.test.ts</code></li>
+<li>Calls the Anthropic API directly (not <code>claude -p</code>), so it works from anywhere including inside Claude Code</li>
+</ul>
+<h3>CI</h3>
+<p>A GitHub Action (<code>.github/workflows/skill-docs.yml</code>) runs <code>bun run gen:skill-docs --dry-run</code> on every push and PR. If the generated SKILL.md files differ from what&#39;s committed, CI fails. This catches stale docs before they merge.</p>
+<p>Tests run against the browse binary directly — they don&#39;t require dev mode.</p>
+<h2>Editing SKILL.md files</h2>
+<p>SKILL.md files are <strong>generated</strong> from <code>.tmpl</code> templates. Don&#39;t edit the <code>.md</code> directly — your changes will be overwritten on the next build.</p>
+<pre><code class="language-bash"># 1. Edit the template
+vim SKILL.md.tmpl              # or browse/SKILL.md.tmpl
+
+# 2. Regenerate for both hosts
+bun run gen:skill-docs
+bun run gen:skill-docs --host codex
+
+# 3. Check health (reports both Claude and Codex)
+bun run skill:check
+
+# Or use watch mode — auto-regenerates on save
+bun run dev:skill
+</code></pre>
+<p>For template authoring best practices (natural language over bash-isms, dynamic branch detection, <code>{{BASE_BRANCH_DETECT}}</code> usage), see CLAUDE.md&#39;s &quot;Writing SKILL templates&quot; section.</p>
+<p>To add a browse command, add it to <code>browse/src/commands.ts</code>. To add a snapshot flag, add it to <code>SNAPSHOT_FLAGS</code> in <code>browse/src/snapshot.ts</code>. Then rebuild.</p>
+<h2>Dual-host development (Claude + Codex)</h2>
+<p>gstack generates SKILL.md files for two hosts: <strong>Claude</strong> (<code>.claude/skills/</code>) and <strong>Codex</strong> (<code>.agents/skills/</code>). Every template change needs to be generated for both.</p>
+<h3>Generating for both hosts</h3>
+<pre><code class="language-bash"># Generate Claude output (default)
+bun run gen:skill-docs
+
+# Generate Codex output
+bun run gen:skill-docs --host codex
+# --host agents is an alias for --host codex
+
+# Or use build, which does both + compiles binaries
+bun run build
+</code></pre>
+<h3>What changes between hosts</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Claude</th>
+<th>Codex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Output directory</td>
+<td><code>{skill}/SKILL.md</code></td>
+<td><code>.agents/skills/gstack-{skill}/SKILL.md</code></td>
+</tr>
+<tr>
+<td>Frontmatter</td>
+<td>Full (name, description, allowed-tools, hooks, version)</td>
+<td>Minimal (name + description only)</td>
+</tr>
+<tr>
+<td>Paths</td>
+<td><code>~/.claude/skills/gstack</code></td>
+<td><code>~/.codex/skills/gstack</code></td>
+</tr>
+<tr>
+<td>Hook skills</td>
+<td><code>hooks:</code> frontmatter (enforced by Claude)</td>
+<td>Inline safety advisory prose (advisory only)</td>
+</tr>
+<tr>
+<td><code>/codex</code> skill</td>
+<td>Included (Claude wraps codex exec)</td>
+<td>Excluded (self-referential)</td>
+</tr>
+</tbody></table>
+<h3>Testing Codex output</h3>
+<pre><code class="language-bash"># Run all static tests (includes Codex validation)
+bun test
+
+# Check freshness for both hosts
+bun run gen:skill-docs --dry-run
+bun run gen:skill-docs --host codex --dry-run
+
+# Health dashboard covers both hosts
+bun run skill:check
+</code></pre>
+<h3>Dev setup for .agents/</h3>
+<p>When you run <code>bin/dev-setup</code>, it creates symlinks in both <code>.claude/skills/</code> and <code>.agents/skills/</code> (if applicable), so Codex-compatible agents can discover your dev skills too.</p>
+<h3>Adding a new skill</h3>
+<p>When you add a new skill template, both hosts get it automatically:</p>
+<ol>
+<li>Create <code>{skill}/SKILL.md.tmpl</code></li>
+<li>Run <code>bun run gen:skill-docs</code> (Claude output) and <code>bun run gen:skill-docs --host codex</code> (Codex output)</li>
+<li>The dynamic template discovery picks it up — no static list to update</li>
+<li>Commit both <code>{skill}/SKILL.md</code> and <code>.agents/skills/gstack-{skill}/SKILL.md</code></li>
+</ol>
+<h2>Conductor workspaces</h2>
+<p>If you&#39;re using <a href="https://conductor.build">Conductor</a> to run multiple Claude Code sessions in parallel, <code>conductor.json</code> wires up workspace lifecycle automatically:</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Script</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>setup</code></td>
+<td><code>bin/dev-setup</code></td>
+<td>Copies <code>.env</code> from main worktree, installs deps, symlinks skills</td>
+</tr>
+<tr>
+<td><code>archive</code></td>
+<td><code>bin/dev-teardown</code></td>
+<td>Removes skill symlinks, cleans up <code>.claude/</code> directory</td>
+</tr>
+</tbody></table>
+<p>When Conductor creates a new workspace, <code>bin/dev-setup</code> runs automatically. It detects the main worktree (via <code>git worktree list</code>), copies your <code>.env</code> so API keys carry over, and sets up dev mode — no manual steps needed.</p>
+<p><strong>First-time setup:</strong> Put your <code>ANTHROPIC_API_KEY</code> in <code>.env</code> in the main repo (see <code>.env.example</code>). Every Conductor workspace inherits it automatically.</p>
+<h2>Things to know</h2>
+<ul>
+<li><strong>SKILL.md files are generated.</strong> Edit the <code>.tmpl</code> template, not the <code>.md</code>. Run <code>bun run gen:skill-docs</code> to regenerate.</li>
+<li><strong>TODOS.md is the unified backlog.</strong> Organized by skill/component with P0-P4 priorities. <code>/ship</code> auto-detects completed items. All planning/review/retro skills read it for context.</li>
+<li><strong>Browse source changes need a rebuild.</strong> If you touch <code>browse/src/*.ts</code>, run <code>bun run build</code>.</li>
+<li><strong>Dev mode shadows your global install.</strong> Project-local skills take priority over <code>~/.claude/skills/gstack</code>. <code>bin/dev-teardown</code> restores the global one.</li>
+<li><strong>Conductor workspaces are independent.</strong> Each workspace is its own git worktree. <code>bin/dev-setup</code> runs automatically via <code>conductor.json</code>.</li>
+<li><strong><code>.env</code> propagates across worktrees.</strong> Set it once in the main repo, all Conductor workspaces get it.</li>
+<li><strong><code>.claude/skills/</code> is gitignored.</strong> The symlinks never get committed.</li>
+</ul>
+<h2>Testing your changes in a real project</h2>
+<p><strong>This is the recommended way to develop gstack.</strong> Symlink your gstack checkout
+into the project where you actually use it, so your changes are live while you
+do real work:</p>
+<pre><code class="language-bash"># In your core project
+ln -sfn /path/to/your/gstack-checkout .claude/skills/gstack
+cd .claude/skills/gstack &amp;&amp; bun install &amp;&amp; bun run build
+</code></pre>
+<p>Now every gstack skill invocation in this project uses your working tree. Edit a
+template, run <code>bun run gen:skill-docs</code>, and the next <code>/review</code> or <code>/qa</code> call picks
+it up immediately.</p>
+<p><strong>To go back to the stable global install</strong>, just remove the symlink:</p>
+<pre><code class="language-bash">rm .claude/skills/gstack
+</code></pre>
+<p>Claude Code falls back to <code>~/.claude/skills/gstack/</code> automatically.</p>
+<h3>Alternative: point your global install at a branch</h3>
+<p>If you don&#39;t want per-project symlinks, you can switch the global install:</p>
+<pre><code class="language-bash">cd ~/.claude/skills/gstack
+git fetch origin
+git checkout origin/&lt;branch&gt;
+bun install &amp;&amp; bun run build
+</code></pre>
+<p>This affects all projects. To revert: <code>git checkout main &amp;&amp; git pull &amp;&amp; bun run build</code>.</p>
+<h2>Community PR triage (wave process)</h2>
+<p>When community PRs accumulate, batch them into themed waves:</p>
+<ol>
+<li><strong>Categorize</strong> — group by theme (security, features, infra, docs)</li>
+<li><strong>Deduplicate</strong> — if two PRs fix the same thing, pick the one that
+changes fewer lines. Close the other with a note pointing to the winner.</li>
+<li><strong>Collector branch</strong> — create <code>pr-wave-N</code>, merge clean PRs, resolve
+conflicts for dirty ones, verify with <code>bun test &amp;&amp; bun run build</code></li>
+<li><strong>Close with context</strong> — every closed PR gets a comment explaining
+why and what (if anything) supersedes it. Contributors did real work;
+respect that with clear communication.</li>
+<li><strong>Ship as one PR</strong> — single PR to main with all attributions preserved
+in merge commits. Include a summary table of what merged and what closed.</li>
+</ol>
+<p>See <a href="../../pull/205">PR #205</a> (v0.8.3) for the first wave as an example.</p>
+<h2>Shipping your changes</h2>
+<p>When you&#39;re happy with your skill edits:</p>
+<pre><code class="language-bash">/ship
+</code></pre>
+<p>This runs tests, reviews the diff, triages Greptile comments (with 2-tier escalation), manages TODOS.md, bumps the version, and opens a PR. See <code>ship/SKILL.md</code> for the full workflow.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Publishing to the Ecosystem</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/mcp-builders-guide/chapter-10-publishing-to-the-ecosystem.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Publishing to the Ecosystem</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fmcp-builders-guide">mcp-builders-guide</a> / <span>chapter-10-publishing-to-the-ecosystem.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Publishing to the Ecosystem</h1>
+<blockquote>
+<p>&quot;If you want to go fast, go alone. If you want to go far, go together.&quot;
+— African proverb</p>
+</blockquote>
+<hr>
+<p>You have built an MCP server. It works. It is tested. It handles errors gracefully, validates inputs rigorously, and produces structured output that AI clients can parse reliably.</p>
+<p>Now the question: do you keep it to yourself, or do you publish it to the ecosystem?</p>
+<p>The MCP ecosystem has grown to over 1,400 servers. Each one extends what AI can do. A weather server gives AI access to forecasts. A database server gives AI access to data. A deployment server gives AI the ability to ship code to production. Each published server expands the frontier of AI capability by one node.</p>
+<p>This chapter covers how to package, document, publish, and maintain an MCP server for the ecosystem.</p>
+<hr>
+<h2>I. Packaging for Distribution</h2>
+<p>An MCP server that runs on your machine is a tool. An MCP server that runs on anyone&#39;s machine is a product. The gap between the two is packaging.</p>
+<p><strong>npm is the standard distribution channel for MCP servers.</strong> The ecosystem convention is to publish servers as npm packages that users install with <code>npx</code>:</p>
+<pre><code class="language-bash">npx -y @your-org/mcp-server-weather
+</code></pre>
+<p>To make this work, your <code>package.json</code> needs specific configuration:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;@your-org/mcp-server-weather&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;MCP server providing real-time weather data from OpenWeatherMap&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;bin&quot;: {
+    &quot;mcp-server-weather&quot;: &quot;./dist/index.js&quot;
+  },
+  &quot;files&quot;: [
+    &quot;dist/&quot;
+  ],
+  &quot;keywords&quot;: [
+    &quot;mcp&quot;,
+    &quot;model-context-protocol&quot;,
+    &quot;weather&quot;,
+    &quot;ai-tools&quot;
+  ],
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=18.0.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;prepare&quot;: &quot;npm run build&quot;
+  }
+}
+</code></pre>
+<p>Key decisions in this configuration:</p>
+<p><strong>The <code>bin</code> field.</strong> This makes your server executable via <code>npx</code>. Without it, users cannot start the server with a single command. The binary should point to your compiled entry point.</p>
+<p><strong>The <code>files</code> field.</strong> Only ship the compiled output. Do not ship your source code, test files, or development configuration. Users need the server, not your development environment.</p>
+<p><strong>The <code>keywords</code> field.</strong> Always include <code>mcp</code> and <code>model-context-protocol</code>. These are how users discover your server when searching npm. Add domain-specific keywords: <code>weather</code>, <code>database</code>, <code>deployment</code>, <code>email</code>.</p>
+<p><strong>The <code>engines</code> field.</strong> MCP SDK requires Node 18 or later. Declaring this prevents confusing errors on older Node versions.</p>
+<hr>
+<h2>II. The README That Gets Adopted</h2>
+<p>Your README is your server&#39;s sales pitch, installation guide, and troubleshooting manual in one document. A poorly documented server does not get adopted — regardless of how well it works.</p>
+<p>The ecosystem has converged on a standard README structure:</p>
+<pre><code class="language-markdown"># MCP Server: Weather
+
+Real-time weather data via OpenWeatherMap for AI assistants.
+
+## Quick Start
+
+```json
+{
+  &quot;mcpServers&quot;: {
+    &quot;weather&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@your-org/mcp-server-weather&quot;],
+      &quot;env&quot;: {
+        &quot;OPENWEATHER_API_KEY&quot;: &quot;your-key-here&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h2>Tools</h2>
+<h3>get-weather</h3>
+<p>Get current weather for a city.</p>
+<ul>
+<li><strong>city</strong> (string, required): City name</li>
+<li><strong>units</strong> (string, optional): &quot;metric&quot; or &quot;imperial&quot; (default: &quot;metric&quot;)</li>
+</ul>
+<h3>get-forecast</h3>
+<p>Get 5-day forecast for a city.</p>
+<ul>
+<li><strong>city</strong> (string, required): City name</li>
+<li><strong>days</strong> (number, optional): Number of days, 1-5 (default: 3)</li>
+</ul>
+<h2>Resources</h2>
+<h3>weather://cities</h3>
+<p>List of supported cities with country codes.</p>
+<h2>Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OPENWEATHER_API_KEY</td>
+<td>Yes</td>
+<td>API key from openweathermap.org</td>
+</tr>
+<tr>
+<td>DEFAULT_UNITS</td>
+<td>No</td>
+<td>Default unit system (metric/imperial)</td>
+</tr>
+</tbody></table>
+<h2>Development</h2>
+<pre><code class="language-bash">git clone https://github.com/your-org/mcp-server-weather
+cd mcp-server-weather
+npm install
+npm run build
+npm test
+</code></pre>
+<pre><code>
+Three elements make this README effective:
+
+**The Quick Start block comes first.** Users want to run your server, not read your architecture decisions. The configuration JSON is copy-pasteable — they can have your server running in under a minute.
+
+**Every Tool and Resource is documented.** Each parameter has a type, a description, and whether it is required. This is not optional documentation — it is the contract between your server and its users.
+
+**Environment variables are tabulated.** Users need to know exactly which secrets to configure and which are optional. A table is faster to scan than prose.
+
+---
+
+## III. Publishing to mcp.so
+
+The MCP ecosystem directory at mcp.so is where builders and users discover servers. Listing your server here puts it in front of the community.
+
+The submission process:
+
+1. **Ensure your server is published on npm** (or available via a public GitHub repository)
+2. **Visit mcp.so** and submit your server through the listing form
+3. **Provide**: name, description, category, npm package name or GitHub URL, and a link to documentation
+4. **Wait for review.** The maintainers verify that the server follows MCP protocol conventions and that the documentation is adequate
+
+Categories on mcp.so include: databases, APIs, developer tools, productivity, communication, and more. Select the category that best describes your server&#39;s primary function — not the one with the fewest entries.
+
+**Discoverability tips:**
+- A clear, specific server name: `mcp-server-postgres` not `mcp-db-tool`
+- A one-sentence description that states what the server does, not what technology it uses
+- A complete README with Quick Start configuration
+- At least one working example showing the server in action
+
+---
+
+## IV. Versioning and Maintenance
+
+A published server has users. Users depend on your server&#39;s behavior. Changing that behavior without warning breaks their workflows.
+
+**Semantic versioning is non-negotiable:**
+- **Patch** (1.0.1): Bug fixes, documentation updates. No behavior changes.
+- **Minor** (1.1.0): New Tools, new Resources, new optional parameters. Existing behavior unchanged.
+- **Major** (2.0.0): Breaking changes — renamed Tools, removed parameters, changed response formats.
+
+```javascript
+// BAD — breaking change in a minor version
+// v1.1.0: renamed &quot;get-weather&quot; to &quot;fetch-weather&quot;
+// Every user&#39;s configuration now breaks silently
+
+// GOOD — deprecation in minor, removal in major
+// v1.1.0: add &quot;fetch-weather&quot; as alias for &quot;get-weather&quot;
+//         log deprecation warning when &quot;get-weather&quot; is called
+// v2.0.0: remove &quot;get-weather&quot;, only &quot;fetch-weather&quot; remains
+</code></pre>
+<p><strong>The deprecation pattern:</strong></p>
+<p>When you need to rename or remove a Tool, follow a two-step process:</p>
+<ol>
+<li>In a minor version, add the new Tool and mark the old one as deprecated. When the old Tool is called, it should still work but log a warning.</li>
+<li>In the next major version, remove the deprecated Tool.</li>
+</ol>
+<p>This gives users time to update their configurations. A server that breaks without warning loses trust — and trust is the only currency in an open-source ecosystem.</p>
+<hr>
+<h2>V. The CHANGELOG</h2>
+<p>Every version gets a changelog entry. Not because it is a best practice — because it is a survival practice.</p>
+<pre><code class="language-markdown"># Changelog
+
+## [1.2.0] - 2026-03-15
+### Added
+- `get-air-quality` tool for pollution data
+- `units` parameter to `get-forecast` (metric/imperial)
+
+### Fixed
+- Temperature rounding error for sub-zero values
+- Timeout handling for slow API responses
+
+## [1.1.0] - 2026-02-28
+### Added
+- `get-forecast` tool with 1-5 day range
+- `weather://cities` resource listing supported cities
+
+### Changed
+- Improved error messages for invalid city names
+</code></pre>
+<p>Format follows Keep a Changelog conventions. Each entry answers: what changed, and what does the user need to do about it?</p>
+<hr>
+<h2>VI. Contributing to Existing Servers</h2>
+<p>Not every contribution to the ecosystem is a new server. Some of the most valuable contributions are improvements to existing ones.</p>
+<p>The open-source MCP ecosystem accepts contributions across several dimensions:</p>
+<p><strong>New Tools for existing servers.</strong> The Postgres MCP server handles queries — but does it handle schema visualization? Adding a <code>get-schema-diagram</code> Tool to an existing database server is often more valuable than building a new server from scratch.</p>
+<p><strong>Better error messages.</strong> Most servers ship with minimal error handling. Replacing &quot;Error: invalid input&quot; with &quot;Error: city name must be a non-empty string (received: null)&quot; is a contribution that every user benefits from.</p>
+<p><strong>Documentation improvements.</strong> Many servers have incomplete READMEs. Adding a Quick Start configuration block, documenting undocumented parameters, or adding usage examples are high-impact contributions that require no server code changes.</p>
+<p><strong>Security fixes.</strong> If you find a vulnerability — input injection, credential exposure, missing validation — report it responsibly and submit a fix. Security contributions are the highest-impact work in any ecosystem.</p>
+<p>The contribution workflow:</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Make your changes with tests</li>
+<li>Submit a pull request with a clear description of what changed and why</li>
+<li>Respond to review feedback</li>
+</ol>
+<p>Most MCP server repositories are actively maintained. A well-described pull request with tests typically gets reviewed within days.</p>
+<hr>
+<h2>VII. Building a Server Organization</h2>
+<p>As you publish more servers, consider organizing them under a single npm scope:</p>
+<pre><code>@your-org/mcp-server-weather
+@your-org/mcp-server-postgres
+@your-org/mcp-server-github
+@your-org/mcp-server-deploy
+</code></pre>
+<p>A consistent naming convention — <code>@scope/mcp-server-{domain}</code> — makes your servers discoverable as a family. Users who trust one of your servers will try others.</p>
+<p>Beyond npm, maintain a GitHub organization with:</p>
+<ul>
+<li>A monorepo or linked repositories for your servers</li>
+<li>Issue templates for bug reports and feature requests</li>
+<li>A CONTRIBUTING.md that explains how to set up the development environment</li>
+<li>CI/CD that runs tests on every pull request</li>
+</ul>
+<p>The organizational structure signals professionalism. A server from an organization with consistent naming, automated tests, and responsive maintainers gets adopted faster than an identical server from an anonymous repository with no CI and no documentation.</p>
+<hr>
+<h2>VIII. The Economics of Open Source MCP</h2>
+<p>Why publish a server for free?</p>
+<p>The economics are not obvious — but they are real.</p>
+<p><strong>Adoption creates feedback.</strong> Users find bugs you missed. They request features you did not imagine. They submit pull requests that improve your code. A published server gets better faster than a private one.</p>
+<p><strong>Reputation compounds.</strong> In the AI tooling ecosystem, builders with published, well-maintained MCP servers are recognized. This recognition opens doors: consulting opportunities, speaking invitations, job offers, partnership proposals. The server is free. The reputation it builds is not.</p>
+<p><strong>The ecosystem grows.</strong> Every server you publish makes MCP more valuable as a protocol. More servers mean more capability. More capability means more adoption. More adoption means more developers building servers. This flywheel benefits everyone — including you.</p>
+<p><strong>Standards emerge from practice.</strong> By publishing servers, you participate in defining what good MCP servers look like. Your patterns — error handling, documentation structure, testing approach — influence how others build. The ecosystem&#39;s conventions are set by those who ship.</p>
+<hr>
+<h2>IX. The Full Journey</h2>
+<p>This book has covered the complete path from protocol understanding to ecosystem contribution.</p>
+<p>Chapter 1 established what MCP is and why it matters — the USB-C of AI integration, the standard protocol that replaced a thousand custom integrations.</p>
+<p>Chapters 2 and 3 taught the fundamentals: the three primitives (Resources, Tools, Prompts) and the process of building a working server from zero.</p>
+<p>Chapter 4 explained the transport layer — how messages flow between client and server, and why this plumbing matters for reliability.</p>
+<p>Chapters 5 and 6 built real-world servers: a database server that gives AI access to PostgreSQL, and an API wrapper that connects AI to any external service.</p>
+<p>Chapter 7 addressed security — the practices that prevent your server from becoming a vulnerability.</p>
+<p>Chapter 8 showed how individual servers compose into constellations — the multi-server architecture that transforms MCP from a protocol into a platform.</p>
+<p>Chapter 9 covered testing — the discipline that separates demos from products.</p>
+<p>And this chapter described how to share your work with the ecosystem — packaging, documentation, publishing, versioning, and the economics of building in public.</p>
+<hr>
+<h2>X. The Builder&#39;s Invitation</h2>
+<p>The MCP ecosystem is early. Fourteen hundred servers is impressive — but it is a fraction of what is needed. Every API without an MCP server is an integration waiting to be built. Every database without an MCP server is data locked away from AI. Every workflow without an MCP server is a manual process that could be automated.</p>
+<p>The tools are available. The protocol is stable. The SDK is well-documented. The ecosystem is welcoming.</p>
+<p>What remains is the builder.</p>
+<p>Build the server. Test it. Document it. Publish it. Maintain it. Watch as others use your work to accomplish things you did not anticipate. Watch as the ecosystem grows around the node you contributed.</p>
+<p>This is how protocols become platforms. This is how tools become infrastructure. This is how individual builders shape the future of how humans and AI work together.</p>
+<p>Build it. Ship it. The ecosystem is waiting.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

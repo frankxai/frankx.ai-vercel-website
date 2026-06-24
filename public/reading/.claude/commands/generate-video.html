@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>🎥 /generate-video — Video Generation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/generate-video.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">🎥 /generate-video — Video Generation</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>generate-video.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: generate-video
+description: Generate short-form / cinematic video from a still or a text prompt via the Multimodal Studio (Higgsfield MCP) — Kling, Hailuo, Veo, Sora-class, DoP.</h2>
+<h1>🎥 /generate-video — Video Generation</h1>
+<p><strong>Turn a still or a prompt into motion. Image→video first (cheaper, keeps your composition); text→video for hero scenes.</strong></p>
+<p>Activates the <code>multimodal-studio</code> skill and the <strong>Multimodal Director</strong>. Read the skill&#39;s <code>resources/model-matrix.md</code> for routing and the async lifecycle.</p>
+<h2>Step 0 — Connector check</h2>
+<p>Confirm higgsfield tools are available. If not:</p>
+<pre><code class="language-bash">claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp
+</code></pre>
+<h2>Step 1 — Source &amp; intent</h2>
+<ul>
+<li><strong>Source:</strong> existing still (preferred — image→video) or text-only (text→video)</li>
+<li><strong>Placement &amp; ratio:</strong> Reels/Shorts/TikTok → 9:16; YouTube/landing → 16:9</li>
+<li><strong>Length:</strong> default short (≤10s); state the target</li>
+<li><strong>Character?:</strong> reference an existing character ID for consistency</li>
+</ul>
+<h2>Step 2 — Route the model</h2>
+<ul>
+<li>Image→video, cinematic motion/physics → <strong>Kling</strong></li>
+<li>Image→video, expressive character action → <strong>Hailuo</strong></li>
+<li>Text→video, complex scene → <strong>Veo / Sora-class</strong></li>
+<li>Fast still→motion (~5s) → <strong>DoP</strong>
+State the choice in one line.</li>
+</ul>
+<h2>Step 3 — Craft the motion prompt</h2>
+<p>Describe <strong>camera move + subject motion + pacing</strong> explicitly — models default to near-static otherwise. Include lighting and mood. Example:</p>
+<blockquote>
+<p>&quot;Slow push-in on the subject, hair drifting in a gentle breeze, volumetric backlight, cinematic teal-and-amber grade, 24fps filmic motion, 9:16.&quot;</p>
+</blockquote>
+<h2>Step 4 — Generate (async)</h2>
+<p>Submit, capture the job ID, poll <code>get_generation_status</code>. Video takes longer than stills — poll, don&#39;t assume. Download to the canonical asset path. Inspect for motion artifacts; regenerate once if needed.</p>
+<h2>Step 5 — Deliver</h2>
+<ul>
+<li>Provide the clip + a poster frame (still export).</li>
+<li>Note model, prompt, seed/job ID.</li>
+<li>Offer to score it with <code>/create-music</code>.</li>
+</ul>
+<h2>Usage</h2>
+<pre><code class="language-text">/generate-video animate this hero still into a 5s cinematic loop, 16:9
+/generate-video 9:16 teaser: neon city flythrough, fast cuts, 8s
+/generate-video lesson intro featuring character &lt;id&gt;, slow push-in, warm light
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

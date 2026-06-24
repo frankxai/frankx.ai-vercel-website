@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>The Model Landscape</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/architects-playbook/chapter-03b-the-model-landscape.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">The Model Landscape</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Farchitects-playbook">architects-playbook</a> / <span>chapter-03b-the-model-landscape.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>The Model Landscape</h1>
+<blockquote>
+<p>&quot;The map is not the territory.&quot;
+— Alfred Korzybski</p>
+</blockquote>
+<hr>
+<p>There are six frontier AI models that matter in 2026. Not six hundred. Not sixty. Six. Everything else is either a fine-tune of one of these six, or a model that is good enough for specific tasks but not competitive at the frontier.</p>
+<p>This chapter is the honest evaluation. Not marketing copy. Not benchmarks designed to flatter. The assessment of someone who uses all six daily, in production, for real work — and who has opinions about each that are grounded in thousands of hours of applied use.</p>
+<hr>
+<h2>I. Claude Opus 4.6 (Anthropic)</h2>
+<p><strong>What it does best:</strong> Complex reasoning, code generation, long-form writing, agentic tool use.</p>
+<p>Claude is the model I reach for when the task requires <em>thinking</em>. Not retrieval — thinking. When I need an agent that can plan a multi-step workflow, write code that compiles on the first try, produce a 2,000-word chapter that sounds like it was written by a human with a specific voice, or analyze a complex system architecture and identify the structural weakness — Claude is the instrument.</p>
+<p>The 1-million-token context window is not just a number. It means I can load an entire codebase, a complete book manuscript, or a month&#39;s worth of research into a single conversation. The model holds context better than any competitor at this scale. Other models claim similar context lengths but lose coherence past 100K tokens. Claude maintains it.</p>
+<p>Claude Code — the terminal-based agentic interface — is where the real power lives. It transforms Claude from a chat partner into an autonomous engineering team. I have shipped 250+ production pages, 15 books, and an open-source operating system through Claude Code. No other model has an agentic interface this capable.</p>
+<p><strong>Where it falls short:</strong> No native image generation. No real-time web access (without MCP). No voice interface. The ecosystem is smaller than OpenAI&#39;s — fewer integrations, fewer third-party tools, fewer tutorials.</p>
+<p><strong>Cost:</strong> $15 per million input tokens, $75 per million output tokens (API). Subscription: $20/month for Claude Pro, includes Claude Code access.</p>
+<hr>
+<h2>II. GPT-5 (OpenAI)</h2>
+<p><strong>What it does best:</strong> Multimodal tasks, ecosystem breadth, image generation, voice interaction.</p>
+<p>GPT-5 is the Swiss Army knife. It generates text, images, and code. It understands voice. It has Canvas for collaborative editing. It has Advanced Data Analysis for working with spreadsheets and datasets. It has DALL-E for image generation. It has Operator for web-based task automation. It has memory that persists across conversations.</p>
+<p>The ecosystem advantage is real. Two hundred million users means two hundred million data points of refinement. Every plugin, every integration, every workflow that someone builds on the OpenAI platform makes the ecosystem stickier. ChatGPT is not just a model — it is a platform.</p>
+<p><strong>Where it falls short:</strong> Reasoning depth. On complex multi-step problems, GPT-5 produces confident but sometimes shallow analysis. It is optimized for breadth — doing many things well — rather than depth on any single dimension. The code generation is good but not as reliable as Claude&#39;s for complex, multi-file projects. The voice interface is impressive but the transcription occasionally loses nuance.</p>
+<p><strong>Cost:</strong> $5 per million input tokens, $15 per million output tokens (API). Subscription: $20/month for ChatGPT Plus.</p>
+<hr>
+<h2>III. Gemini 2.5 Pro (Google)</h2>
+<p><strong>What it does best:</strong> Long-context analysis, Google Search grounding, multimodal understanding.</p>
+<p>Gemini&#39;s context window exceeds one million tokens, and it uses them better than almost any competitor for document analysis tasks. When I need to analyze a 300-page PDF, compare two legal contracts, or synthesize findings from fifty research papers — Gemini is the tool.</p>
+<p>Google Search grounding is the unique capability. Gemini can fact-check its own responses against live search results, reducing hallucination on factual queries. NotebookLM — built on Gemini — turns uploaded documents into interactive knowledge bases with AI-generated audio summaries.</p>
+<p>Deep Think mode enables extended reasoning on complex problems, producing more thorough analysis at the cost of longer response times.</p>
+<p><strong>Where it falls short:</strong> The agentic capabilities lag behind Claude Code and Cursor. Gemini does not have a production-grade coding agent. The API is less developer-friendly than Anthropic&#39;s or OpenAI&#39;s. The model sometimes produces verbose output that prioritizes comprehensiveness over precision.</p>
+<p><strong>Cost:</strong> Free tier available. $0 for prompts under 128K context. Paid tiers for higher usage.</p>
+<hr>
+<h2>IV. Llama 4 (Meta)</h2>
+<p><strong>What it does best:</strong> Open weights, local deployment, cost-free inference, customization.</p>
+<p>Llama 4 Scout has a 10-million-token context window. Llama 4 Maverick competes with closed frontier models on reasoning benchmarks. Both run locally on consumer hardware with quantization, meaning you pay zero for inference after the initial setup.</p>
+<p>For organizations that cannot send data to cloud APIs — healthcare, finance, defense, legal — Llama is the answer. The model runs on your hardware, behind your firewall, with your data never leaving your control.</p>
+<p>The open-weights model also enables fine-tuning. If you have domain-specific data — medical records, legal precedent, proprietary code — you can train Llama to understand your domain better than any general-purpose model.</p>
+<p><strong>Where it falls short:</strong> Setting up local inference requires technical expertise. The out-of-the-box experience is worse than Claude or GPT-5 because there is no polished interface. The instruction-following quality is lower than the closed models on complex tasks. No built-in tool use or agentic capabilities without significant additional infrastructure.</p>
+<p><strong>Cost:</strong> Free (open weights). Infrastructure costs for GPU hosting vary.</p>
+<hr>
+<h2>V. DeepSeek V3 (DeepSeek)</h2>
+<p><strong>What it does best:</strong> Cost-efficient inference, Mixture of Experts architecture, competitive quality at a fraction of the price.</p>
+<p>DeepSeek&#39;s MoE architecture means only a fraction of the model&#39;s parameters activate for each query, reducing compute costs dramatically. The result: frontier-competitive quality at 5-10x lower cost than Claude or GPT-5 API pricing.</p>
+<p>For high-volume applications — customer support bots, content generation pipelines, batch processing — DeepSeek offers the best economics in the market. The reasoning quality is genuinely competitive on most tasks, though it falls behind Claude on complex agentic workflows.</p>
+<p><strong>Where it falls short:</strong> No production-grade agentic interface. Limited ecosystem integrations. The model is primarily accessible through API, with fewer consumer-facing products. Geopolitical considerations may affect adoption in some markets.</p>
+<p><strong>Cost:</strong> Approximately $0.27 per million input tokens, $1.10 per million output tokens. Dramatically cheaper than Western frontier models.</p>
+<hr>
+<h2>VI. Grok 3 (xAI)</h2>
+<p><strong>What it does best:</strong> Real-time data access, reasoning with current information, X platform integration.</p>
+<p>Grok has something no other frontier model has: access to real-time information through the X (Twitter) platform. When you need analysis of something that happened today — a market movement, a breaking news event, a viral discussion — Grok can incorporate information that other models do not have because their training data is months old.</p>
+<p>The reasoning capabilities are competitive with GPT-5, with particular strength in scientific and mathematical domains.</p>
+<p><strong>Where it falls short:</strong> The ecosystem is nascent. No coding agent. Limited MCP support. The X platform integration is both its strength and its limitation — useful for current events, less useful for deep technical work.</p>
+<p><strong>Cost:</strong> Available through X Premium subscription.</p>
+<hr>
+<h2>VII. The Model Council Pattern</h2>
+<p>The most sophisticated approach is not choosing one model. It is using multiple models strategically — a pattern I call the Model Council.</p>
+<p>Here is how it works in my practice:</p>
+<ol>
+<li><strong>Primary reasoning:</strong> Claude Opus 4.6 for complex analysis, code generation, and writing</li>
+<li><strong>Research and fact-checking:</strong> Perplexity (built on multiple models) for cited research</li>
+<li><strong>Long-document analysis:</strong> Gemini 2.5 Pro for massive context windows</li>
+<li><strong>Image generation:</strong> Gemini 3 Pro Image (via Nano Banana MCP) for visual content</li>
+<li><strong>Quick queries and multimodal:</strong> GPT-5 for voice, images, and rapid iteration</li>
+<li><strong>Cost-sensitive batch jobs:</strong> DeepSeek V3 for high-volume, lower-stakes processing</li>
+</ol>
+<p>The Council pattern recognizes that no single model is best at everything. The architect&#39;s job is to route each task to the model best suited for it — the same way an enterprise routes workloads to the cloud provider that handles them most efficiently.</p>
+<p>This is not about loyalty to a vendor. It is about using the best tool for each job. The models are instruments. The architect chooses which instrument to play.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

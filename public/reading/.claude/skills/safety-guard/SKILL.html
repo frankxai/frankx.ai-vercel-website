@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Safety Guard — Prevent Destructive Operations</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/safety-guard/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Safety Guard — Prevent Destructive Operations</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fsafety-guard">safety-guard</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Safety Guard — Prevent Destructive Operations</h1>
+<h2>When to Use</h2>
+<ul>
+<li>When working on production systems</li>
+<li>When agents are running autonomously (full-auto mode)</li>
+<li>When you want to restrict edits to a specific directory</li>
+<li>During sensitive operations (migrations, deploys, data changes)</li>
+</ul>
+<h2>How It Works</h2>
+<p>Three modes of protection:</p>
+<h3>Mode 1: Careful Mode</h3>
+<p>Intercepts destructive commands before execution and warns:</p>
+<pre><code>Watched patterns:
+- rm -rf (especially /, ~, or project root)
+- git push --force
+- git reset --hard
+- git checkout . (discard all changes)
+- DROP TABLE / DROP DATABASE
+- docker system prune
+- kubectl delete
+- chmod 777
+- sudo rm
+- npm publish (accidental publishes)
+- Any command with --no-verify
+</code></pre>
+<p>When detected: shows what the command does, asks for confirmation, suggests safer alternative.</p>
+<h3>Mode 2: Freeze Mode</h3>
+<p>Locks file edits to a specific directory tree:</p>
+<pre><code>/safety-guard freeze src/components/
+</code></pre>
+<p>Any Write/Edit outside <code>src/components/</code> is blocked with an explanation. Useful when you want an agent to focus on one area without touching unrelated code.</p>
+<h3>Mode 3: Guard Mode (Careful + Freeze combined)</h3>
+<p>Both protections active. Maximum safety for autonomous agents.</p>
+<pre><code>/safety-guard guard --dir src/api/ --allow-read-all
+</code></pre>
+<p>Agents can read anything but only write to <code>src/api/</code>. Destructive commands are blocked everywhere.</p>
+<h3>Unlock</h3>
+<pre><code>/safety-guard off
+</code></pre>
+<h2>Implementation</h2>
+<p>Uses PreToolUse hooks to intercept Bash, Write, Edit, and MultiEdit tool calls. Checks the command/path against the active rules before allowing execution.</p>
+<h2>Integration</h2>
+<ul>
+<li>Enable by default for <code>codex -a never</code> sessions</li>
+<li>Pair with observability risk scoring in ECC 2.0</li>
+<li>Logs all blocked actions to <code>~/.claude/safety-guard.log</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

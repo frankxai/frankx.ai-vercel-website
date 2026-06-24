@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>{Title}</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/investigate/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">{Title}</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Finvestigate">investigate</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<p>name: investigate
+version: 1.0.0
+description: |
+  Systematic debugging with root cause investigation. Four phases: investigate,
+  analyze, hypothesize, implement. Iron Law: no fixes without root cause.
+  Use when asked to &quot;debug this&quot;, &quot;fix this bug&quot;, &quot;why is this broken&quot;,
+  &quot;investigate this error&quot;, or &quot;root cause analysis&quot;.
+  Proactively suggest when the user reports errors, unexpected behavior, or
+  is troubleshooting why something stopped working.
+allowed-tools:</p>
+<ul>
+<li>Bash</li>
+<li>Read</li>
+<li>Write</li>
+<li>Edit</li>
+<li>Grep</li>
+<li>Glob</li>
+<li>AskUserQuestion</li>
+<li>WebSearch
+hooks:
+  PreToolUse:<ul>
+<li>matcher: &quot;Edit&quot;
+hooks:<ul>
+<li>type: command
+command: &quot;bash ${CLAUDE_SKILL_DIR}/../freeze/bin/check-freeze.sh&quot;
+statusMessage: &quot;Checking debug scope boundary...&quot;</li>
+</ul>
+</li>
+<li>matcher: &quot;Write&quot;
+hooks:<ul>
+<li>type: command
+command: &quot;bash ${CLAUDE_SKILL_DIR}/../freeze/bin/check-freeze.sh&quot;
+statusMessage: &quot;Checking debug scope boundary...&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
+
+<h2>Preamble (run first)</h2>
+<pre><code class="language-bash">_UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || .claude/skills/gstack/bin/gstack-update-check 2&gt;/dev/null || true)
+[ -n &quot;$_UPD&quot; ] &amp;&amp; echo &quot;$_UPD&quot; || true
+mkdir -p ~/.gstack/sessions
+touch ~/.gstack/sessions/&quot;$PPID&quot;
+_SESSIONS=$(find ~/.gstack/sessions -mmin -120 -type f 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+find ~/.gstack/sessions -mmin +120 -type f -delete 2&gt;/dev/null || true
+_CONTRIB=$(~/.claude/skills/gstack/bin/gstack-config get gstack_contributor 2&gt;/dev/null || true)
+_PROACTIVE=$(~/.claude/skills/gstack/bin/gstack-config get proactive 2&gt;/dev/null || echo &quot;true&quot;)
+_BRANCH=$(git branch --show-current 2&gt;/dev/null || echo &quot;unknown&quot;)
+echo &quot;BRANCH: $_BRANCH&quot;
+echo &quot;PROACTIVE: $_PROACTIVE&quot;
+source &lt;(~/.claude/skills/gstack/bin/gstack-repo-mode 2&gt;/dev/null) || true
+REPO_MODE=${REPO_MODE:-unknown}
+echo &quot;REPO_MODE: $REPO_MODE&quot;
+_LAKE_SEEN=$([ -f ~/.gstack/.completeness-intro-seen ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+echo &quot;LAKE_INTRO: $_LAKE_SEEN&quot;
+_TEL=$(~/.claude/skills/gstack/bin/gstack-config get telemetry 2&gt;/dev/null || true)
+_TEL_PROMPTED=$([ -f ~/.gstack/.telemetry-prompted ] &amp;&amp; echo &quot;yes&quot; || echo &quot;no&quot;)
+_TEL_START=$(date +%s)
+_SESSION_ID=&quot;$$-$(date +%s)&quot;
+echo &quot;TELEMETRY: ${_TEL:-off}&quot;
+echo &quot;TEL_PROMPTED: $_TEL_PROMPTED&quot;
+mkdir -p ~/.gstack/analytics
+echo &#39;{&quot;skill&quot;:&quot;investigate&quot;,&quot;ts&quot;:&quot;&#39;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#39;&quot;,&quot;repo&quot;:&quot;&#39;$(basename &quot;$(git rev-parse --show-toplevel 2&gt;/dev/null)&quot; 2&gt;/dev/null || echo &quot;unknown&quot;)&#39;&quot;}&#39;  &gt;&gt; ~/.gstack/analytics/skill-usage.jsonl 2&gt;/dev/null || true
+for _PF in ~/.gstack/analytics/.pending-*; do [ -f &quot;$_PF&quot; ] &amp;&amp; ~/.claude/skills/gstack/bin/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null || true; break; done
+</code></pre>
+<p>If <code>PROACTIVE</code> is <code>&quot;false&quot;</code>, do not proactively suggest gstack skills — only invoke
+them when the user explicitly asks. The user opted out of proactive suggestions.</p>
+<p>If output shows <code>UPGRADE_AVAILABLE &lt;old&gt; &lt;new&gt;</code>: read <code>~/.claude/skills/gstack/gstack-upgrade/SKILL.md</code> and follow the &quot;Inline upgrade flow&quot; (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If <code>JUST_UPGRADED &lt;from&gt; &lt;to&gt;</code>: tell user &quot;Running gstack v{to} (just updated!)&quot; and continue.</p>
+<p>If <code>LAKE_INTRO</code> is <code>no</code>: Before continuing, introduce the Completeness Principle.
+Tell the user: &quot;gstack follows the <strong>Boil the Lake</strong> principle — always do the complete
+thing when AI makes the marginal cost near-zero. Read more: <a href="https://garryslist.org/posts/boil-the-ocean">https://garryslist.org/posts/boil-the-ocean</a>&quot;
+Then offer to open the essay in their default browser:</p>
+<pre><code class="language-bash">open https://garryslist.org/posts/boil-the-ocean
+touch ~/.gstack/.completeness-intro-seen
+</code></pre>
+<p>Only run <code>open</code> if the user says yes. Always run <code>touch</code> to mark as seen. This only happens once.</p>
+<p>If <code>TEL_PROMPTED</code> is <code>no</code> AND <code>LAKE_INTRO</code> is <code>yes</code>: After the lake intro is handled,
+ask the user about telemetry. Use AskUserQuestion:</p>
+<blockquote>
+<p>Help gstack get better! Community mode shares usage data (which skills you use, how long
+they take, crash info) with a stable device ID so we can track trends and fix bugs faster.
+No code, file paths, or repo names are ever sent.
+Change anytime with <code>gstack-config set telemetry off</code>.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Help gstack get better! (recommended)</li>
+<li>B) No thanks</li>
+</ul>
+<p>If A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry community</code></p>
+<p>If B: ask a follow-up AskUserQuestion:</p>
+<blockquote>
+<p>How about anonymous mode? We just learn that <em>someone</em> used gstack — no unique ID,
+no way to connect sessions. Just a counter that helps us know if anyone&#39;s out there.</p>
+</blockquote>
+<p>Options:</p>
+<ul>
+<li>A) Sure, anonymous is fine</li>
+<li>B) No thanks, fully off</li>
+</ul>
+<p>If B→A: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry anonymous</code>
+If B→B: run <code>~/.claude/skills/gstack/bin/gstack-config set telemetry off</code></p>
+<p>Always run:</p>
+<pre><code class="language-bash">touch ~/.gstack/.telemetry-prompted
+</code></pre>
+<p>This only happens once. If <code>TEL_PROMPTED</code> is <code>yes</code>, skip this entirely.</p>
+<h2>AskUserQuestion Format</h2>
+<p><strong>ALWAYS follow this structure for every AskUserQuestion call:</strong></p>
+<ol>
+<li><strong>Re-ground:</strong> State the project, the current branch (use the <code>_BRANCH</code> value printed by the preamble — NOT any branch from conversation history or gitStatus), and the current plan/task. (1-2 sentences)</li>
+<li><strong>Simplify:</strong> Explain the problem in plain English a smart 16-year-old could follow. No raw function names, no internal jargon, no implementation details. Use concrete examples and analogies. Say what it DOES, not what it&#39;s called.</li>
+<li><strong>Recommend:</strong> <code>RECOMMENDATION: Choose [X] because [one-line reason]</code> — always prefer the complete option over shortcuts (see Completeness Principle). Include <code>Completeness: X/10</code> for each option. Calibration: 10 = complete implementation (all edge cases, full coverage), 7 = covers happy path but skips some edges, 3 = shortcut that defers significant work. If both options are 8+, pick the higher; if one is ≤5, flag it.</li>
+<li><strong>Options:</strong> Lettered options: <code>A) ... B) ... C) ...</code> — when an option involves effort, show both scales: <code>(human: ~X / CC: ~Y)</code></li>
+</ol>
+<p>Assume the user hasn&#39;t looked at this window in 20 minutes and doesn&#39;t have the code open. If you&#39;d need to read the source to understand your own explanation, it&#39;s too complex.</p>
+<p>Per-skill instructions may add additional formatting rules on top of this baseline.</p>
+<h2>Completeness Principle — Boil the Lake</h2>
+<p>AI-assisted coding makes the marginal cost of completeness near-zero. When you present options:</p>
+<ul>
+<li>If Option A is the complete implementation (full parity, all edge cases, 100% coverage) and Option B is a shortcut that saves modest effort — <strong>always recommend A</strong>. The delta between 80 lines and 150 lines is meaningless with CC+gstack. &quot;Good enough&quot; is the wrong instinct when &quot;complete&quot; costs minutes more.</li>
+<li><strong>Lake vs. ocean:</strong> A &quot;lake&quot; is boilable — 100% test coverage for a module, full feature implementation, handling all edge cases, complete error paths. An &quot;ocean&quot; is not — rewriting an entire system from scratch, adding features to dependencies you don&#39;t control, multi-quarter platform migrations. Recommend boiling lakes. Flag oceans as out of scope.</li>
+<li><strong>When estimating effort</strong>, always show both scales: human team time and CC+gstack time. The compression ratio varies by task type — use this reference:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Human team</th>
+<th>CC+gstack</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boilerplate / scaffolding</td>
+<td>2 days</td>
+<td>15 min</td>
+<td>~100x</td>
+</tr>
+<tr>
+<td>Test writing</td>
+<td>1 day</td>
+<td>15 min</td>
+<td>~50x</td>
+</tr>
+<tr>
+<td>Feature implementation</td>
+<td>1 week</td>
+<td>30 min</td>
+<td>~30x</td>
+</tr>
+<tr>
+<td>Bug fix + regression test</td>
+<td>4 hours</td>
+<td>15 min</td>
+<td>~20x</td>
+</tr>
+<tr>
+<td>Architecture / design</td>
+<td>2 days</td>
+<td>4 hours</td>
+<td>~5x</td>
+</tr>
+<tr>
+<td>Research / exploration</td>
+<td>1 day</td>
+<td>3 hours</td>
+<td>~3x</td>
+</tr>
+</tbody></table>
+<ul>
+<li>This principle applies to test coverage, error handling, documentation, edge cases, and feature completeness. Don&#39;t skip the last 10% to &quot;save time&quot; — with AI, that 10% costs seconds.</li>
+</ul>
+<p><strong>Anti-patterns — DON&#39;T do this:</strong></p>
+<ul>
+<li>BAD: &quot;Choose B — it covers 90% of the value with less code.&quot; (If A is only 70 lines more, choose A.)</li>
+<li>BAD: &quot;We can skip edge case handling to save time.&quot; (Edge case handling costs minutes with CC.)</li>
+<li>BAD: &quot;Let&#39;s defer test coverage to a follow-up PR.&quot; (Tests are the cheapest lake to boil.)</li>
+<li>BAD: Quoting only human-team effort: &quot;This would take 2 weeks.&quot; (Say: &quot;2 weeks human / ~1 hour CC.&quot;)</li>
+</ul>
+<h2>Repo Ownership Mode — See Something, Say Something</h2>
+<p><code>REPO_MODE</code> from the preamble tells you who owns issues in this repo:</p>
+<ul>
+<li><strong><code>solo</code></strong> — One person does 80%+ of the work. They own everything. When you notice issues outside the current branch&#39;s changes (test failures, deprecation warnings, security advisories, linting errors, dead code, env problems), <strong>investigate and offer to fix proactively</strong>. The solo dev is the only person who will fix it. Default to action.</li>
+<li><strong><code>collaborative</code></strong> — Multiple active contributors. When you notice issues outside the branch&#39;s changes, <strong>flag them via AskUserQuestion</strong> — it may be someone else&#39;s responsibility. Default to asking, not fixing.</li>
+<li><strong><code>unknown</code></strong> — Treat as collaborative (safer default — ask before fixing).</li>
+</ul>
+<p><strong>See Something, Say Something:</strong> Whenever you notice something that looks wrong during ANY workflow step — not just test failures — flag it briefly. One sentence: what you noticed and its impact. In solo mode, follow up with &quot;Want me to fix it?&quot; In collaborative mode, just flag it and move on.</p>
+<p>Never let a noticed issue silently pass. The whole point is proactive communication.</p>
+<h2>Search Before Building</h2>
+<p>Before building infrastructure, unfamiliar patterns, or anything the runtime might have a built-in — <strong>search first.</strong> Read <code>~/.claude/skills/gstack/ETHOS.md</code> for the full philosophy.</p>
+<p><strong>Three layers of knowledge:</strong></p>
+<ul>
+<li><strong>Layer 1</strong> (tried and true — in distribution). Don&#39;t reinvent the wheel. But the cost of checking is near-zero, and once in a while, questioning the tried-and-true is where brilliance occurs.</li>
+<li><strong>Layer 2</strong> (new and popular — search for these). But scrutinize: humans are subject to mania. Search results are inputs to your thinking, not answers.</li>
+<li><strong>Layer 3</strong> (first principles — prize these above all). Original observations derived from reasoning about the specific problem. The most valuable of all.</li>
+</ul>
+<p><strong>Eureka moment:</strong> When first-principles reasoning reveals conventional wisdom is wrong, name it:
+&quot;EUREKA: Everyone does X because [assumption]. But [evidence] shows this is wrong. Y is better because [reasoning].&quot;</p>
+<p>Log eureka moments:</p>
+<pre><code class="language-bash">jq -n --arg ts &quot;$(date -u +%Y-%m-%dT%H:%M:%SZ)&quot; --arg skill &quot;SKILL_NAME&quot; --arg branch &quot;$(git branch --show-current 2&gt;/dev/null)&quot; --arg insight &quot;ONE_LINE_SUMMARY&quot; &#39;{ts:$ts,skill:$skill,branch:$branch,insight:$insight}&#39; &gt;&gt; ~/.gstack/analytics/eureka.jsonl 2&gt;/dev/null || true
+</code></pre>
+<p>Replace SKILL_NAME and ONE_LINE_SUMMARY. Runs inline — don&#39;t stop the workflow.</p>
+<p><strong>WebSearch fallback:</strong> If WebSearch is unavailable, skip the search step and note: &quot;Search unavailable — proceeding with in-distribution knowledge only.&quot;</p>
+<h2>Contributor Mode</h2>
+<p>If <code>_CONTRIB</code> is <code>true</code>: you are in <strong>contributor mode</strong>. You&#39;re a gstack user who also helps make it better.</p>
+<p><strong>At the end of each major workflow step</strong> (not after every single command), reflect on the gstack tooling you used. Rate your experience 0 to 10. If it wasn&#39;t a 10, think about why. If there is an obvious, actionable bug OR an insightful, interesting thing that could have been done better by gstack code or skill markdown — file a field report. Maybe our contributor will help make us better!</p>
+<p><strong>Calibration — this is the bar:</strong> For example, <code>$B js &quot;await fetch(...)&quot;</code> used to fail with <code>SyntaxError: await is only valid in async functions</code> because gstack didn&#39;t wrap expressions in async context. Small, but the input was reasonable and gstack should have handled it — that&#39;s the kind of thing worth filing. Things less consequential than this, ignore.</p>
+<p><strong>NOT worth filing:</strong> user&#39;s app bugs, network errors to user&#39;s URL, auth failures on user&#39;s site, user&#39;s own JS logic bugs.</p>
+<p><strong>To file:</strong> write <code>~/.gstack/contributor-logs/{slug}.md</code> with <strong>all sections below</strong> (do not truncate — include every section through the Date/Version footer):</p>
+<pre><code># {Title}
+
+Hey gstack team — ran into this while using /{skill-name}:
+
+**What I was trying to do:** {what the user/agent was attempting}
+**What happened instead:** {what actually happened}
+**My rating:** {0-10} — {one sentence on why it wasn&#39;t a 10}
+
+## Steps to reproduce
+1. {step}
+
+## Raw output
+</code></pre>
+<p>{paste the actual error or unexpected output here}</p>
+<pre><code>
+## What would make this a 10
+{one sentence: what gstack should have done differently}
+
+**Date:** {YYYY-MM-DD} | **Version:** {gstack version} | **Skill:** /{skill}
+</code></pre>
+<p>Slug: lowercase, hyphens, max 60 chars (e.g. <code>browse-js-no-await</code>). Skip if file already exists. Max 3 reports per session. File inline and continue — don&#39;t stop the workflow. Tell user: &quot;Filed gstack field report: {title}&quot;</p>
+<h2>Completion Status Protocol</h2>
+<p>When completing a skill workflow, report status using one of:</p>
+<ul>
+<li><strong>DONE</strong> — All steps completed successfully. Evidence provided for each claim.</li>
+<li><strong>DONE_WITH_CONCERNS</strong> — Completed, but with issues the user should know about. List each concern.</li>
+<li><strong>BLOCKED</strong> — Cannot proceed. State what is blocking and what was tried.</li>
+<li><strong>NEEDS_CONTEXT</strong> — Missing information required to continue. State exactly what you need.</li>
+</ul>
+<h3>Escalation</h3>
+<p>It is always OK to stop and say &quot;this is too hard for me&quot; or &quot;I&#39;m not confident in this result.&quot;</p>
+<p>Bad work is worse than no work. You will not be penalized for escalating.</p>
+<ul>
+<li>If you have attempted a task 3 times without success, STOP and escalate.</li>
+<li>If you are uncertain about a security-sensitive change, STOP and escalate.</li>
+<li>If the scope of work exceeds what you can verify, STOP and escalate.</li>
+</ul>
+<p>Escalation format:</p>
+<pre><code>STATUS: BLOCKED | NEEDS_CONTEXT
+REASON: [1-2 sentences]
+ATTEMPTED: [what you tried]
+RECOMMENDATION: [what the user should do next]
+</code></pre>
+<h2>Telemetry (run last)</h2>
+<p>After the skill workflow completes (success, error, or abort), log the telemetry event.
+Determine the skill name from the <code>name:</code> field in this file&#39;s YAML frontmatter.
+Determine the outcome from the workflow result (success if completed normally, error
+if it failed, abort if the user interrupted).</p>
+<p><strong>PLAN MODE EXCEPTION — ALWAYS RUN:</strong> This command writes telemetry to
+<code>~/.gstack/analytics/</code> (user config directory, not project files). The skill
+preamble already writes to the same directory — this is the same pattern.
+Skipping this command loses session duration and outcome data.</p>
+<p>Run this bash:</p>
+<pre><code class="language-bash">_TEL_END=$(date +%s)
+_TEL_DUR=$(( _TEL_END - _TEL_START ))
+rm -f ~/.gstack/analytics/.pending-&quot;$_SESSION_ID&quot; 2&gt;/dev/null || true
+~/.claude/skills/gstack/bin/gstack-telemetry-log \
+  --skill &quot;SKILL_NAME&quot; --duration &quot;$_TEL_DUR&quot; --outcome &quot;OUTCOME&quot; \
+  --used-browse &quot;USED_BROWSE&quot; --session-id &quot;$_SESSION_ID&quot; 2&gt;/dev/null &amp;
+</code></pre>
+<p>Replace <code>SKILL_NAME</code> with the actual skill name from frontmatter, <code>OUTCOME</code> with
+success/error/abort, and <code>USED_BROWSE</code> with true/false based on whether <code>$B</code> was used.
+If you cannot determine the outcome, use &quot;unknown&quot;. This runs in the background and
+never blocks the user.</p>
+<h1>Systematic Debugging</h1>
+<h2>Iron Law</h2>
+<p><strong>NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.</strong></p>
+<p>Fixing symptoms creates whack-a-mole debugging. Every fix that doesn&#39;t address root cause makes the next bug harder to find. Find the root cause, then fix it.</p>
+<hr>
+<h2>Phase 1: Root Cause Investigation</h2>
+<p>Gather context before forming any hypothesis.</p>
+<ol>
+<li><p><strong>Collect symptoms:</strong> Read the error messages, stack traces, and reproduction steps. If the user hasn&#39;t provided enough context, ask ONE question at a time via AskUserQuestion.</p>
+</li>
+<li><p><strong>Read the code:</strong> Trace the code path from the symptom back to potential causes. Use Grep to find all references, Read to understand the logic.</p>
+</li>
+<li><p><strong>Check recent changes:</strong></p>
+<pre><code class="language-bash">git log --oneline -20 -- &lt;affected-files&gt;
+</code></pre>
+<p>Was this working before? What changed? A regression means the root cause is in the diff.</p>
+</li>
+<li><p><strong>Reproduce:</strong> Can you trigger the bug deterministically? If not, gather more evidence before proceeding.</p>
+</li>
+</ol>
+<p>Output: <strong>&quot;Root cause hypothesis: ...&quot;</strong> — a specific, testable claim about what is wrong and why.</p>
+<hr>
+<h2>Scope Lock</h2>
+<p>After forming your root cause hypothesis, lock edits to the affected module to prevent scope creep.</p>
+<pre><code class="language-bash">[ -x &quot;${CLAUDE_SKILL_DIR}/../freeze/bin/check-freeze.sh&quot; ] &amp;&amp; echo &quot;FREEZE_AVAILABLE&quot; || echo &quot;FREEZE_UNAVAILABLE&quot;
+</code></pre>
+<p><strong>If FREEZE_AVAILABLE:</strong> Identify the narrowest directory containing the affected files. Write it to the freeze state file:</p>
+<pre><code class="language-bash">STATE_DIR=&quot;${CLAUDE_PLUGIN_DATA:-$HOME/.gstack}&quot;
+mkdir -p &quot;$STATE_DIR&quot;
+echo &quot;&lt;detected-directory&gt;/&quot; &gt; &quot;$STATE_DIR/freeze-dir.txt&quot;
+echo &quot;Debug scope locked to: &lt;detected-directory&gt;/&quot;
+</code></pre>
+<p>Substitute <code>&lt;detected-directory&gt;</code> with the actual directory path (e.g., <code>src/auth/</code>). Tell the user: &quot;Edits restricted to <code>&lt;dir&gt;/</code> for this debug session. This prevents changes to unrelated code. Run <code>/unfreeze</code> to remove the restriction.&quot;</p>
+<p>If the bug spans the entire repo or the scope is genuinely unclear, skip the lock and note why.</p>
+<p><strong>If FREEZE_UNAVAILABLE:</strong> Skip scope lock. Edits are unrestricted.</p>
+<hr>
+<h2>Phase 2: Pattern Analysis</h2>
+<p>Check if this bug matches a known pattern:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Signature</th>
+<th>Where to look</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Race condition</td>
+<td>Intermittent, timing-dependent</td>
+<td>Concurrent access to shared state</td>
+</tr>
+<tr>
+<td>Nil/null propagation</td>
+<td>NoMethodError, TypeError</td>
+<td>Missing guards on optional values</td>
+</tr>
+<tr>
+<td>State corruption</td>
+<td>Inconsistent data, partial updates</td>
+<td>Transactions, callbacks, hooks</td>
+</tr>
+<tr>
+<td>Integration failure</td>
+<td>Timeout, unexpected response</td>
+<td>External API calls, service boundaries</td>
+</tr>
+<tr>
+<td>Configuration drift</td>
+<td>Works locally, fails in staging/prod</td>
+<td>Env vars, feature flags, DB state</td>
+</tr>
+<tr>
+<td>Stale cache</td>
+<td>Shows old data, fixes on cache clear</td>
+<td>Redis, CDN, browser cache, Turbo</td>
+</tr>
+</tbody></table>
+<p>Also check:</p>
+<ul>
+<li><code>TODOS.md</code> for related known issues</li>
+<li><code>git log</code> for prior fixes in the same area — <strong>recurring bugs in the same files are an architectural smell</strong>, not a coincidence</li>
+</ul>
+<p><strong>External pattern search:</strong> If the bug doesn&#39;t match a known pattern above, WebSearch for:</p>
+<ul>
+<li>&quot;{framework} {generic error type}&quot; — <strong>sanitize first:</strong> strip hostnames, IPs, file paths, SQL, customer data. Search the error category, not the raw message.</li>
+<li>&quot;{library} {component} known issues&quot;</li>
+</ul>
+<p>If WebSearch is unavailable, skip this search and proceed with hypothesis testing. If a documented solution or known dependency bug surfaces, present it as a candidate hypothesis in Phase 3.</p>
+<hr>
+<h2>Phase 3: Hypothesis Testing</h2>
+<p>Before writing ANY fix, verify your hypothesis.</p>
+<ol>
+<li><p><strong>Confirm the hypothesis:</strong> Add a temporary log statement, assertion, or debug output at the suspected root cause. Run the reproduction. Does the evidence match?</p>
+</li>
+<li><p><strong>If the hypothesis is wrong:</strong> Before forming the next hypothesis, consider searching for the error. <strong>Sanitize first</strong> — strip hostnames, IPs, file paths, SQL fragments, customer identifiers, and any internal/proprietary data from the error message. Search only the generic error type and framework context: &quot;{component} {sanitized error type} {framework version}&quot;. If the error message is too specific to sanitize safely, skip the search. If WebSearch is unavailable, skip and proceed. Then return to Phase 1. Gather more evidence. Do not guess.</p>
+</li>
+<li><p><strong>3-strike rule:</strong> If 3 hypotheses fail, <strong>STOP</strong>. Use AskUserQuestion:</p>
+<pre><code>3 hypotheses tested, none match. This may be an architectural issue
+rather than a simple bug.
+
+A) Continue investigating — I have a new hypothesis: [describe]
+B) Escalate for human review — this needs someone who knows the system
+C) Add logging and wait — instrument the area and catch it next time
+</code></pre>
+</li>
+</ol>
+<p><strong>Red flags</strong> — if you see any of these, slow down:</p>
+<ul>
+<li>&quot;Quick fix for now&quot; — there is no &quot;for now.&quot; Fix it right or escalate.</li>
+<li>Proposing a fix before tracing data flow — you&#39;re guessing.</li>
+<li>Each fix reveals a new problem elsewhere — wrong layer, not wrong code.</li>
+</ul>
+<hr>
+<h2>Phase 4: Implementation</h2>
+<p>Once root cause is confirmed:</p>
+<ol>
+<li><p><strong>Fix the root cause, not the symptom.</strong> The smallest change that eliminates the actual problem.</p>
+</li>
+<li><p><strong>Minimal diff:</strong> Fewest files touched, fewest lines changed. Resist the urge to refactor adjacent code.</p>
+</li>
+<li><p><strong>Write a regression test</strong> that:</p>
+<ul>
+<li><strong>Fails</strong> without the fix (proves the test is meaningful)</li>
+<li><strong>Passes</strong> with the fix (proves the fix works)</li>
+</ul>
+</li>
+<li><p><strong>Run the full test suite.</strong> Paste the output. No regressions allowed.</p>
+</li>
+<li><p><strong>If the fix touches &gt;5 files:</strong> Use AskUserQuestion to flag the blast radius:</p>
+<pre><code>This fix touches N files. That&#39;s a large blast radius for a bug fix.
+A) Proceed — the root cause genuinely spans these files
+B) Split — fix the critical path now, defer the rest
+C) Rethink — maybe there&#39;s a more targeted approach
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2>Phase 5: Verification &amp; Report</h2>
+<p><strong>Fresh verification:</strong> Reproduce the original bug scenario and confirm it&#39;s fixed. This is not optional.</p>
+<p>Run the test suite and paste the output.</p>
+<p>Output a structured debug report:</p>
+<pre><code>DEBUG REPORT
+════════════════════════════════════════
+Symptom:         [what the user observed]
+Root cause:      [what was actually wrong]
+Fix:             [what was changed, with file:line references]
+Evidence:        [test output, reproduction attempt showing fix works]
+Regression test: [file:line of the new test]
+Related:         [TODOS.md items, prior bugs in same area, architectural notes]
+Status:          DONE | DONE_WITH_CONCERNS | BLOCKED
+════════════════════════════════════════
+</code></pre>
+<hr>
+<h2>Important Rules</h2>
+<ul>
+<li><strong>3+ failed fix attempts → STOP and question the architecture.</strong> Wrong architecture, not failed hypothesis.</li>
+<li><strong>Never apply a fix you cannot verify.</strong> If you can&#39;t reproduce and confirm, don&#39;t ship it.</li>
+<li><strong>Never say &quot;this should fix it.&quot;</strong> Verify and prove it. Run the tests.</li>
+<li><strong>If fix touches &gt;5 files → AskUserQuestion</strong> about blast radius before proceeding.</li>
+<li><strong>Completion status:</strong><ul>
+<li>DONE — root cause found, fix applied, regression test written, all tests pass</li>
+<li>DONE_WITH_CONCERNS — fixed but cannot fully verify (e.g., intermittent bug, requires staging)</li>
+<li>BLOCKED — root cause unclear after investigation, escalated</li>
+</ul>
+</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

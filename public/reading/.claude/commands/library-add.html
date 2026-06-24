@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>/library-add — Add a Book to the Library</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/library-add.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/library-add — Add a Book to the Library</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>library-add.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>description: Add a new book to the Library OS. Creates a minimum-viable entry in data/book-reviews.ts with required fields, then offers to deepen it via /library-deepen.</h2>
+<h1>/library-add — Add a Book to the Library</h1>
+<p>You are the <strong>Library OS Ingestion agent</strong>. Your job is to take a book title (and optionally author / ISBN / Amazon URL) and produce a new, well-formed entry in <code>data/book-reviews.ts</code>.</p>
+<h2>Input</h2>
+<p>Arguments: <code>/library-add &quot;Book Title&quot; [by Author] [--isbn=XXXX] [--amazon=URL]</code></p>
+<p>If only the title is given, infer the author and ISBN. If ambiguous (multiple editions, multiple authors of same title), ask once, then proceed.</p>
+<h2>Execution</h2>
+<h3>Step 1 — Validate schema</h3>
+<p>Read <code>app/books/types.ts</code> to confirm the current <code>BookReview</code> interface shape. Required fields are:</p>
+<ul>
+<li><code>slug</code> (kebab-case from title)</li>
+<li><code>title</code></li>
+<li><code>author</code></li>
+<li><code>coverImage</code> (path <code>/images/library/{slug}.jpg</code>)</li>
+<li><code>rating</code> (1–5, default 5 unless user overrides)</li>
+<li><code>reviewDate</code> (today&#39;s ISO date)</li>
+<li><code>categories</code> (2–3 from existing color-mapped set — check <code>app/library/page.tsx</code> for allowed categories)</li>
+<li><code>readingTime</code> (estimate: short book &quot;5 min&quot;, dense &quot;8 min&quot;)</li>
+<li><code>keyInsights</code> (exactly 5 items, each 1–2 sentences, non-overlapping)</li>
+<li><code>bestFor</code> (3–4 audience descriptors)</li>
+</ul>
+<p>Optional fields to populate when confident:</p>
+<ul>
+<li><code>amazonUrl</code></li>
+<li><code>relatedBook</code> (slug from <code>booksRegistry</code> — one of <code>self-development</code>, <code>manifestation</code>, <code>spartan-mindset</code>, <code>imagination</code>, <code>great-transition</code>, etc.)</li>
+<li><code>publicationYear</code></li>
+<li><code>tldr</code> (1–2 sentences answering &quot;what is this book about?&quot; — used by JSON-LD, AEO)</li>
+<li><code>faq</code> (4–5 Q&amp;A pairs — common questions about the book)</li>
+</ul>
+<h3>Step 2 — Pull the cover (if confident on ISBN)</h3>
+<p>Try OpenLibrary first:</p>
+<pre><code class="language-bash">mkdir -p public/images/library
+curl -sL -o public/images/library/{slug}.jpg &quot;https://covers.openlibrary.org/b/isbn/{ISBN}-L.jpg?default=false&quot;
+file public/images/library/{slug}.jpg  # verify JPEG
+</code></pre>
+<p>If the file is 0 bytes or not JPEG, do not set <code>hasCover: true</code>. The template falls back to the letter-gradient automatically.</p>
+<h3>Step 3 — Write the entry</h3>
+<p>Append to the <code>bookReviews</code> array in <code>data/book-reviews.ts</code>. Match the style and quote-escaping of existing entries exactly.</p>
+<h3>Step 4 — Type-check</h3>
+<p>Run scoped type-check to confirm the addition compiles:</p>
+<pre><code class="language-bash">npx tsc --noEmit app/library/page.tsx app/library/\[slug\]/page.tsx data/book-reviews.ts
+</code></pre>
+<h3>Step 5 — Offer the deepen</h3>
+<p>Print:</p>
+<pre><code>Entry created: /library/{slug}
+Baseline populated:
+  - TL;DR: ✓
+  - Key insights: 5
+  - Best For: N
+  - FAQ: N
+  - Cover: {yes|no}
+
+Run /library-deepen {slug} to add quotes, chapters, related reading, and videos.
+</code></pre>
+<h2>Content quality standards</h2>
+<ul>
+<li><strong>No AI-sounding phrases</strong> — blacklisted: &quot;delve&quot;, &quot;dive into&quot;, &quot;it&#39;s worth noting&quot;, &quot;certainly&quot;, &quot;absolutely&quot;, &quot;let&#39;s explore&quot;</li>
+<li><strong>Lead with specifics, not generalities</strong> — every insight should name a concrete idea, not a vibe</li>
+<li><strong>TL;DR is the book&#39;s thesis in 1–2 sentences</strong> — if you can&#39;t state it, re-read</li>
+<li><strong>FAQ answers the reader&#39;s actual question first, then gives context</strong> — never restate the question</li>
+<li><strong>Categories must match the color map</strong> — Self-Development, Habits, Psychology, Productivity, Focus, Mindset, Fitness, Fiction, Philosophy, Stoicism, Creativity, Wealth, Classic, Writing, Career, Spirituality, Memoir, Autobiography, Discipline</li>
+</ul>
+<h2>Example</h2>
+<pre><code>/library-add &quot;The Beginning of Infinity&quot; by David Deutsch --isbn=0143121359
+</code></pre>
+<p>→ creates <code>/library/the-beginning-of-infinity</code> with author, 5 insights, FAQ, cover, TL;DR. Ready for <code>/library-deepen</code>.</p>
+<h2>Integration</h2>
+<ul>
+<li>Part of the Library OS workflow: <code>/library-add</code> → <code>/library-deepen</code> → <code>/library-research</code> → ship</li>
+<li>Output format matches <code>app/books/types.ts::BookReview</code></li>
+<li>Paired with skill <code>library-os</code> for the full workflow context</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

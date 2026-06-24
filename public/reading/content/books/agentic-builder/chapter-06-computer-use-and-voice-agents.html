@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Computer Use and Voice Agents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-06-computer-use-and-voice-agents.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Computer Use and Voice Agents</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-06-computer-use-and-voice-agents.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Computer Use and Voice Agents</h1>
+<blockquote>
+<p>&quot;Any sufficiently advanced technology is indistinguishable from magic.&quot;
+— Arthur C. Clarke</p>
+</blockquote>
+<hr>
+<h2>I. Beyond Text</h2>
+<p>The first five chapters of this book treated agents as text-in, text-out systems. A user types a prompt. The agent reasons. The agent calls tools. The agent returns text.</p>
+<p>This is the 2024 model of agentic AI. It is already obsolete.</p>
+<p>The 2026 model has two additional modalities: computer use (the agent sees and controls a screen) and voice (the agent hears and speaks). These modalities do not replace text — they extend it. A text-only agent can call an API. A computer-use agent can operate any software that has a screen, whether or not it has an API. A voice agent can conduct a conversation in real time, with the latency and naturalism of a human phone call.</p>
+<p>This chapter covers both modalities — the architecture, the implementation patterns, and the failure modes.</p>
+<hr>
+<h2>II. Computer Use Architecture</h2>
+<p>Computer use gives an agent eyes and hands. The agent sees the screen (via screenshots), interprets what it sees (via vision models), decides what to do (via reasoning), and executes actions (via mouse clicks, keyboard inputs, and scroll commands).</p>
+<p>The architecture has four components:</p>
+<p><strong>Screen capture.</strong> The system takes screenshots at defined intervals or after each action. Each screenshot is a complete representation of the current screen state — the agent&#39;s &quot;perception&quot; of the environment.</p>
+<p><strong>Vision interpretation.</strong> The screenshot is processed by a vision-language model (VLM) that extracts semantic understanding: what elements are on screen, where they are positioned, what text they contain, what state the application is in.</p>
+<p><strong>Action planning.</strong> Based on the interpreted screen state and the goal, the agent plans the next action: click this button, type this text, scroll to this section, switch to this tab.</p>
+<p><strong>Action execution.</strong> The planned action is executed through a controlled interface — typically a browser automation framework (Playwright) or a system-level input controller.</p>
+<pre><code class="language-typescript">// Simplified computer use loop
+async function computerUseLoop(agent: Agent, goal: string) {
+  let done = false
+  while (!done) {
+    const screenshot = await captureScreen()
+    const understanding = await agent.interpret(screenshot, goal)
+
+    if (understanding.goalAchieved) {
+      done = true
+      continue
+    }
+
+    const action = await agent.planAction(understanding)
+    await executeAction(action) // click, type, scroll
+    await wait(500) // allow screen to update
+  }
+}
+</code></pre>
+<p>The loop is deceptively simple. The complexity lives in the interpretation and planning steps — where the agent must understand what it sees well enough to determine the correct next action.</p>
+<hr>
+<h2>III. When to Use Computer Use</h2>
+<p>Computer use is the right choice when:</p>
+<p><strong>No API exists.</strong> Many internal tools, legacy applications, and proprietary platforms have no API. The only interface is the GUI. Computer use lets an agent operate these tools the way a human would — by looking at the screen and clicking.</p>
+<p><strong>The API is too complex.</strong> Some platforms have APIs that are so complex, poorly documented, or rate-limited that it is more practical to operate the GUI. An agent that navigates a web dashboard can accomplish in 30 seconds what an API integration would require hours to build.</p>
+<p><strong>The workflow is visual.</strong> Design tools (Figma, Canva), spreadsheets (Google Sheets), and presentation tools (Google Slides) are inherently visual. The GUI is the natural interface for operations that involve spatial reasoning, visual layout, and design decisions.</p>
+<p>Computer use is the wrong choice when:</p>
+<p><strong>A reliable API exists.</strong> API calls are faster, more reliable, and more precise than screen-based automation. If the platform offers an API, use it. Computer use is a fallback, not a default.</p>
+<p><strong>The task requires high precision.</strong> Computer use is probabilistic — the agent may misidentify a button, misread text, or click the wrong element. For tasks where a single error has high cost (financial transactions, production deployments, data deletion), prefer API-based tool calls with explicit confirmation.</p>
+<p><strong>The task is latency-sensitive.</strong> Each computer use step takes 1-3 seconds (screenshot, interpretation, action, wait). A 10-step workflow takes 10-30 seconds. An API call accomplishes the same result in milliseconds.</p>
+<hr>
+<h2>IV. Voice Agent Architecture</h2>
+<p>Voice agents add real-time speech to the agentic stack. The user speaks; the agent listens, reasons, and responds with speech — all in under a second.</p>
+<p>The voice architecture has five components:</p>
+<p><strong>Speech-to-text (STT).</strong> The user&#39;s audio is transcribed to text. Modern STT engines (Whisper, Deepgram, AssemblyAI) operate at near-human accuracy with latencies under 200ms.</p>
+<p><strong>Intent understanding.</strong> The transcribed text is processed by the language model to understand what the user wants. This is the same reasoning step as in text-based agents, but with additional challenges: spoken language is less structured than written language, contains filler words, and often includes corrections mid-sentence.</p>
+<p><strong>Reasoning and tool use.</strong> The agent reasons about the intent, optionally calls tools, and generates a text response. This step is identical to text-based agents.</p>
+<p><strong>Text-to-speech (TTS).</strong> The text response is converted to natural-sounding speech. Modern TTS systems (ElevenLabs, OpenAI TTS, Cartesia) produce speech that is nearly indistinguishable from human voice.</p>
+<p><strong>Conversation management.</strong> The system manages turn-taking, interruption handling, and conversation state. This is the most complex component — because spoken conversation is fundamentally different from text chat.</p>
+<hr>
+<h2>V. The Voice Agent Challenge: Latency</h2>
+<p>Voice agents have a constraint that text agents do not: latency is perceived differently.</p>
+<p>In text, a 3-second delay between prompt and response is acceptable — users expect AI to &quot;think.&quot; In voice, a 3-second delay is perceived as a system failure. Human conversation has a natural response latency of 200-400ms. Any delay beyond 1 second is experienced as awkward. Beyond 2 seconds, the user assumes the system is broken.</p>
+<p>This latency constraint shapes the entire voice agent architecture:</p>
+<p><strong>Streaming responses.</strong> Instead of waiting for the complete response before speaking, the agent begins speaking as soon as the first sentence is generated. This requires streaming both the LLM output and the TTS synthesis.</p>
+<p><strong>Speculative processing.</strong> While the user is still speaking, the agent begins processing the likely intent based on the partial transcript. When the user finishes, the agent has already started reasoning — reducing perceived latency by 500-1000ms.</p>
+<p><strong>Response chunking.</strong> Long responses are broken into conversational chunks. Instead of delivering a 200-word answer in one breath, the agent delivers 2-3 sentences, pauses for acknowledgment, and continues. This mirrors human conversation patterns and reduces the perception of monologue.</p>
+<p><strong>Fallback responses.</strong> When the agent needs more time to reason (complex tool calls, multi-step reasoning), it uses a filler response: &quot;Let me check that for you&quot; or &quot;One moment while I look that up.&quot; These fillers are pre-generated and delivered instantly, buying time for the reasoning step.</p>
+<hr>
+<h2>VI. Combining Modalities</h2>
+<p>The most powerful agents combine all three modalities: text, computer use, and voice.</p>
+<p>Consider a real-world scenario: an AI assistant that helps a user navigate a complex enterprise application.</p>
+<p><strong>Voice:</strong> &quot;Can you show me last month&#39;s sales by region?&quot;</p>
+<p><strong>Text reasoning:</strong> The agent interprets the request, identifies the relevant application (Salesforce), and plans the navigation steps.</p>
+<p><strong>Computer use:</strong> The agent opens Salesforce, navigates to Reports, selects the Regional Sales report, applies the date filter for last month, and captures a screenshot of the results.</p>
+<p><strong>Voice response:</strong> &quot;Here are last month&#39;s regional sales. North America led with $2.3M, followed by EMEA at $1.8M. Would you like me to drill into any specific region?&quot;</p>
+<p>Three modalities. One workflow. The user never types, never clicks, never navigates. They speak a question and receive an answer — with the agent handling all the intermediate complexity.</p>
+<p>This is the vision of agentic AI in 2026: systems that perceive (see the screen, hear the voice), reason (understand the intent, plan the actions), and act (click, type, speak) — operating across all the modalities that humans use to interact with computers.</p>
+<hr>
+<h2>VII. Building Responsibly</h2>
+<p>Multimodal agents are powerful — and power requires responsibility.</p>
+<p><strong>Computer use safety:</strong> An agent with computer use capabilities can do anything a human can do on a computer — including destructive actions. Always implement confirmation gates before destructive operations (deleting data, sending messages, making purchases). Never give a computer use agent unsupervised access to production systems.</p>
+<p><strong>Voice privacy:</strong> Voice agents process spoken language, which may contain sensitive information spoken casually. Implement clear data handling policies: what is recorded, what is transcribed, what is stored, and what is deleted. Give users explicit control over recording.</p>
+<p><strong>Deepfake prevention:</strong> Voice synthesis technology can clone voices with minimal sample audio. Never use voice cloning to impersonate individuals without explicit consent. The trust cost of voice deepfakes far exceeds any efficiency gain.</p>
+<p><strong>Graceful degradation:</strong> Multimodal systems fail in multimodal ways. The screen capture may fail. The voice may be unintelligible. The TTS may sound unnatural. Design every multimodal agent with graceful fallbacks: if voice fails, fall back to text. If computer use fails, fall back to API calls. If all else fails, ask the human for help.</p>
+<p>The agentic builder&#39;s responsibility is not just to build systems that work. It is to build systems that fail safely, operate transparently, and respect the humans they serve.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

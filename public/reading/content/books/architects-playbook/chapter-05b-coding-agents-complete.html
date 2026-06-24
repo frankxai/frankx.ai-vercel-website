@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Coding Agents: The Complete Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/architects-playbook/chapter-05b-coding-agents-complete.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Coding Agents: The Complete Guide</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Farchitects-playbook">architects-playbook</a> / <span>chapter-05b-coding-agents-complete.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Coding Agents: The Complete Guide</h1>
+<blockquote>
+<p>&quot;Give me a lever long enough and a fulcrum on which to place it, and I shall move the world.&quot;
+— Archimedes</p>
+</blockquote>
+<hr>
+<p>A coding agent is not an autocomplete tool. Autocomplete predicts the next token. A coding agent plans, executes, verifies, and iterates — autonomously. The difference is the difference between a calculator and an engineer. Both work with numbers. One of them can design a bridge.</p>
+<p>In 2026, there are six coding agents worth knowing. Each occupies a different position on the spectrum from &quot;helpful assistant&quot; to &quot;autonomous engineer.&quot; Understanding where each sits — and when to use which — is the skill that separates developers who use AI from developers who are amplified by it.</p>
+<hr>
+<h2>I. The Spectrum</h2>
+<p>Coding agents exist on a capability spectrum:</p>
+<pre><code>Autocomplete ──→ Assistant ──→ Paired Agent ──→ Autonomous Agent
+   │                │              │                │
+Copilot Tab    Copilot Chat    Claude Code       Devin
+completion     &quot;explain this&quot;  plans + builds    full projects
+</code></pre>
+<p>Moving right on this spectrum increases capability but also increases the need for clear instructions, quality gates, and verification. An autocomplete tool cannot go wrong — it suggests, you accept or reject. An autonomous agent can go very wrong if the instructions are vague, the guardrails are missing, or the verification step is skipped.</p>
+<p>The architect&#39;s job is to choose the right position on the spectrum for each task.</p>
+<hr>
+<h2>II. Claude Code (Anthropic)</h2>
+<p><strong>Position:</strong> Paired Agent — the most capable tool I use daily.</p>
+<p>Claude Code operates in your terminal. It reads your file system, understands your codebase, writes code across multiple files, runs tests, manages git, and deploys to production. Through MCP, it connects to external services — Vercel, GitHub, databases, image generators, email providers.</p>
+<p>What makes Claude Code unique is the <strong>skill system</strong>. You can load domain-specific expertise — seventy-five markdown files in my case — that transform Claude from a generalist into a specialist for whatever you are building. Writing a Suno music prompt? The music skill loads. Deploying to Vercel? The deployment skill loads. Writing a book chapter? The publishing skill loads with the voice profile for that specific book.</p>
+<p><strong>Best for:</strong> Complex multi-file projects, full-stack development, creative production, agentic workflows with MCP.
+<strong>Token consumption:</strong> ~50K-200K tokens per session depending on codebase size and task complexity.
+<strong>Cost:</strong> Included with Claude Pro ($20/month). API usage billed separately.</p>
+<hr>
+<h2>III. Cursor (Anysphere)</h2>
+<p><strong>Position:</strong> IDE-native Paired Agent — best for developers who live in their editor.</p>
+<p>Cursor is VS Code rebuilt with AI at every layer. Tab completion predicts your next edit. Chat understands your entire codebase. Agent mode makes multi-file changes based on natural language instructions. Composer mode orchestrates changes across your project.</p>
+<p>The key advantage: <strong>codebase awareness.</strong> Cursor indexes your entire project — every file, every symbol, every import chain — and uses this context when generating code. When you ask &quot;add error handling to the API routes,&quot; Cursor knows what your API routes look like, what error patterns your codebase uses, and what libraries are available.</p>
+<p><strong>Best for:</strong> Day-to-day coding in a familiar IDE, rapid iteration, developers who prefer visual interfaces over terminals.
+<strong>Token consumption:</strong> Varies by plan. Pro plan includes 500 fast requests/month + unlimited slow requests.
+<strong>Cost:</strong> Free tier available. Pro: $20/month. Business: $40/month.</p>
+<hr>
+<h2>IV. GitHub Copilot (GitHub/Microsoft)</h2>
+<p><strong>Position:</strong> Enterprise standard — the default choice for organizations.</p>
+<p>Copilot has the largest installed base of any coding assistant. It integrates with VS Code, JetBrains, Neovim, and the GitHub web interface. Copilot Workspace enables planning and prototyping directly from GitHub issues. Agent mode (in preview) handles multi-step tasks.</p>
+<p>The enterprise advantage: <strong>organizational context.</strong> Copilot Business and Enterprise plans can index private repositories across an organization, meaning suggestions are informed by the company&#39;s own codebase, patterns, and conventions. For teams, this creates consistency that individual tools cannot match.</p>
+<p><strong>Best for:</strong> Teams and organizations, developers already in the GitHub ecosystem, enterprise environments requiring compliance and audit trails.
+<strong>Token consumption:</strong> Abstracted behind subscription pricing. No per-token billing.
+<strong>Cost:</strong> Individual: $10/month. Business: $19/user/month. Enterprise: $39/user/month.</p>
+<hr>
+<h2>V. Windsurf / Codeium</h2>
+<p><strong>Position:</strong> Rising challenger — strong context retrieval, competitive free tier.</p>
+<p>Windsurf (formerly Codeium) differentiates through its <strong>Cascade</strong> agent — a multi-step workflow engine that handles complex, multi-file edits with strong context awareness. The context retrieval engine is particularly good at understanding large codebases and suggesting changes that are consistent with existing patterns.</p>
+<p>The free tier is genuinely useful — not a crippled trial but a capable tool for individual developers. This makes Windsurf the default recommendation for developers who are budget-conscious or evaluating AI coding tools for the first time.</p>
+<p><strong>Best for:</strong> Developers evaluating AI coding tools, budget-conscious teams, multi-file refactoring tasks.
+<strong>Cost:</strong> Free tier available. Pro: $15/month.</p>
+<hr>
+<h2>VI. OpenAI Codex</h2>
+<p><strong>Position:</strong> Cloud-based autonomous agent — runs tasks without your IDE open.</p>
+<p>Codex (the 2026 version, not the legacy model) operates as a cloud-hosted agent that clones your repository, works in an isolated environment, and submits pull requests when tasks are complete. You describe what you want, Codex works asynchronously, and you review the output.</p>
+<p>The key difference from Claude Code and Cursor: <strong>you do not need to be present.</strong> You assign a task, close your laptop, and check back later. This async model works well for well-defined tasks — fixing a bug, implementing a feature from a spec, migrating a dependency — but poorly for exploratory or creative work where real-time iteration matters.</p>
+<p><strong>Best for:</strong> Well-defined tasks that can be described in a spec, async development, teams that want to parallelize development work.
+<strong>Cost:</strong> Included with ChatGPT Pro ($200/month) or Team ($30/user/month).</p>
+<hr>
+<h2>VII. Devin / OpenHands</h2>
+<p><strong>Position:</strong> Fully autonomous — the frontier of what coding agents can do.</p>
+<p>Devin (by Cognition) is the commercial autonomous agent. OpenHands is the open-source alternative. Both attempt to handle entire software projects from specification to deployment — reading documentation, setting up environments, writing code, debugging failures, and iterating until the task is complete.</p>
+<p>The honest assessment: autonomous agents in 2026 are impressive for demos and limited for production. They excel at well-scoped tasks in familiar frameworks (build a React component, add a REST endpoint, fix a CSS layout). They struggle with ambiguous requirements, novel architectures, and the kind of creative problem-solving that distinguishes engineering from coding.</p>
+<p>The trajectory is clear — these agents will get better. But in 2026, they are best used as force multipliers for experienced developers, not as replacements for them.</p>
+<p><strong>Best for:</strong> Well-scoped tasks in standard frameworks, developers who want to delegate routine work.
+<strong>Devin cost:</strong> Subscription required. <strong>OpenHands cost:</strong> Free (self-hosted).</p>
+<hr>
+<h2>VIII. Choosing Your Stack</h2>
+<p>Here is my recommendation for different contexts:</p>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Primary Agent</th>
+<th>Secondary</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Solo developer, full-stack</strong></td>
+<td>Claude Code</td>
+<td>Cursor</td>
+<td>Claude Code for complex agentic work, Cursor for rapid iteration</td>
+</tr>
+<tr>
+<td><strong>Team, enterprise</strong></td>
+<td>GitHub Copilot</td>
+<td>Claude Code</td>
+<td>Copilot for team consistency, Claude Code for individual power</td>
+</tr>
+<tr>
+<td><strong>Budget-conscious</strong></td>
+<td>Windsurf (free)</td>
+<td>—</td>
+<td>Best free tier available</td>
+</tr>
+<tr>
+<td><strong>Async/parallel development</strong></td>
+<td>OpenAI Codex</td>
+<td>Claude Code</td>
+<td>Codex for defined tasks, Claude Code for creative work</td>
+</tr>
+<tr>
+<td><strong>Open-source enthusiast</strong></td>
+<td>OpenHands</td>
+<td>Cursor</td>
+<td>Self-hosted autonomy + IDE comfort</td>
+</tr>
+</tbody></table>
+<p>Most developers should use <strong>two agents</strong>: one for heavy lifting (Claude Code or Codex) and one for quick iteration (Cursor or Windsurf). Using only one agent leaves capability on the table. Using three or more creates context-switching overhead that exceeds the benefit.</p>
+<hr>
+<h2>IX. The Future of Coding Agents</h2>
+<p>The trend line is unmistakable: coding agents are moving from &quot;assistant&quot; to &quot;colleague&quot; to &quot;team.&quot; Within two years, the standard development workflow will involve multiple agents working in parallel — one researching, one coding, one testing, one reviewing — coordinated by an orchestrator that the developer supervises rather than operates.</p>
+<p>This does not eliminate the developer. It elevates the developer into an architect. The coding is delegated. The judgment — what to build, how it should work, what standards it should meet — remains human.</p>
+<p>That judgment, combined with the ability to orchestrate agents effectively, is the skill set that will define software development for the next decade.</p>
+<p>The people who learn it now — while the tools are new and the competition is still watching — will have an advantage that compounds every month.</p>
+<p>The architecture has been laid out. The tools are available. The question is whether you will design the system or be replaced by it.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

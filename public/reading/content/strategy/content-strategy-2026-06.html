@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>FrankX Content Strategy — June 2026 (current source of truth)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/strategy/content-strategy-2026-06.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX Content Strategy — June 2026 (current source of truth)</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#content">content</a> / <a href="index.html#content%2Fstrategy">strategy</a> / <span>content-strategy-2026-06.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>FrankX Content Strategy — June 2026 (current source of truth)</h1>
+<p>Supersedes earlier strategy notes. This is data-proven, not aspirational — it&#39;s built on the first real traffic capture (2026-W23) and the systems shipped since.</p>
+<h2>The thesis (proven, not guessed)</h2>
+<p><strong>Search-intent, year-dated, comparison / &quot;what-works-now&quot; posts on the hottest AI tooling are the entire traffic engine.</strong> Ten of the top thirteen pages by traffic are this exact shape (video-gen comparison #1 at 9%, prompt-engineering, frontier-models, Suno). Hub-polish and brand pages drew ~zero traffic. Attention comes from a <em>content library</em>, not from chrome.</p>
+<p>Corollary: <strong>the research hub punches above its weight</strong> (<code>/research/agent-benchmarks</code> is #3). Benchmark/data content ranks.</p>
+<h2>The flywheel</h2>
+<pre><code>Comparison/AEO post ranks → captures frontier-name search traffic
+   → refresh-queue keeps it factually current (facts decay fast)
+   → affiliate layer monetizes via the recurring payers it recommends
+   → traffic + revenue fund the next post
+</code></pre>
+<p>Three systems automate the loop, all sharing one traffic input (<code>docs/ops/analytics/traffic-latest.json</code>):</p>
+<ul>
+<li><strong><code>/refresh-queue</code></strong> — ranks posts by <code>traffic × staleness</code> → fix the highest-traffic decaying post first.</li>
+<li><strong><code>/affiliate-audit</code></strong> — ranks which programs to join + which posts to link (frontier LLMs pay nothing; monetize the adjacent recurring payers — Higgsfield first).</li>
+<li><strong><code>/article-excellence</code></strong> — the 7-pass pipeline (research → architect → draft → multi-perspective critic panel → revise → gate → ship) for every flagship post.</li>
+</ul>
+<h2>The AEO playbook (the quality bar)</h2>
+<p>The June 2026 <code>/seo-check</code> found the #1 systematic gap: <strong>question-based H2s were missing sitewide.</strong> Answer engines (ChatGPT, Perplexity, Gemini) extract question-headers + the direct answer beneath them. So every new article ships with:</p>
+<ol>
+<li><strong>TL;DR answer box</strong> in the first 100 words — a direct, citable answer.</li>
+<li><strong>Every H2 is a real search query</strong> (&quot;What&#39;s the best X for Y?&quot;).</li>
+<li><strong>One comparison/spec table</strong> — the citation + conversion unit.</li>
+<li><strong>FAQ, 5+ Q&amp;A</strong> with FAQPage schema.</li>
+<li><code>schema: [&quot;Article&quot;, &quot;FAQPage&quot;]</code> + 3+ internal links + a defined reading goal.</li>
+</ol>
+<p>This is enforced by <code>/article-excellence</code> and checked at the gate. It&#39;s not optional.</p>
+<h2>The five pillars (topical authority)</h2>
+<p>Each pillar is a hub + 4-6 cluster posts that interlink. Backlog detail: <code>docs/ops/affiliate/CONTENT-BACKLOG.md</code>.</p>
+<ul>
+<li><strong>A. The Complete AI Coding Stack</strong> — Cursor-vs-Claude-vs-Windsurf, Claude Code pricing, is-it-worth-it, beginners, local-LLM-for-coding → links to build-your-own-Jarvis.</li>
+<li><strong>B. The Faceless Creator AI Stack</strong> — faceless-YouTube, ElevenLabs alternatives, HeyGen-vs-Synthesia, Shorts tools, cheap AI music. <strong>Highest affiliate density.</strong></li>
+<li><strong>C. Run AI Privately on Your Machine</strong> — local LLM by RAM, Ollama-vs-LMStudio, hardware, local-vs-cloud breakeven. Frank&#39;s 32GB-rig authority; low competition.</li>
+<li><strong>D. Get Cited by AI (the AEO Playbook)</strong> — best AEO tools, AEO-vs-GEO-vs-SEO, structure-for-citation, schema, AI-visibility tracking. Compounds the whole blog&#39;s own citability.</li>
+<li><strong>E. Build a Personal AI CoE Under $100/mo</strong> — the exact stack, cheapest frontier access, no-code agents, AI writer, presentation maker. <strong>Strongest brand fit</strong> — maps to the ACOS / Personal-AI-CoE narrative; affiliate links read as service, not promotion.</li>
+</ul>
+<h2>Tonight&#39;s sprint (2026-06-06) — 10 articles</h2>
+<p>Built via parallel <code>/article-excellence</code> agents, AEO-structured, image needs documented for Grok/agy (<code>data/tools/image-needs.json</code>), validate heroes later:</p>
+<ol>
+<li>faceless-youtube-ai-tools-2026 (Pillar B)</li>
+<li>cursor-vs-claude-code-vs-windsurf-2026 (A)</li>
+<li>claude-code-pricing-explained-2026 (A, AEO-citable)</li>
+<li>best-elevenlabs-alternatives-2026 (B, AEO-citable)</li>
+<li>suno-vs-udio-2026 (B)</li>
+<li>best-no-code-ai-agent-builders-2026 (E)</li>
+<li>heygen-vs-synthesia-vs-argil-2026 (B)</li>
+<li>best-local-llm-2026 (C, AEO-citable)</li>
+<li>cheapest-frontier-model-access-2026 (E, AEO-citable)</li>
+<li>best-ai-presentation-maker-2026 (E, AEO-citable)</li>
+</ol>
+<p>Plus the already-shipped flagship <code>best-ai-superpowers-stack-2026</code> (the tools+MCP directory) and the 4 fact-refreshed winners.</p>
+<h2>The cadence</h2>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>Do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sunday</td>
+<td><code>/refresh-queue</code> + <code>/affiliate-audit</code> (paste week&#39;s traffic first) → fix the top 🔴, link the top gap</td>
+</tr>
+<tr>
+<td>Tue–Thu</td>
+<td><code>/article-excellence &lt;backlog item&gt;</code> — 2-3 flagship posts/week</td>
+</tr>
+<tr>
+<td>Continuous</td>
+<td>Pre-stage newsjack stubs (Claude Mythos, GPT-5.6, Veo 4) → publish day-of</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>Newsletter spotlights the week&#39;s best post</td>
+</tr>
+</tbody></table>
+<h2>Metrics that matter</h2>
+<ul>
+<li>Traffic share by post TYPE (comparison vs hub vs research) — confirm the pattern holds.</li>
+<li>AEO citations — does ChatGPT/Perplexity cite the post? (manual spot-check on the 5 AEO-citable ones).</li>
+<li>Affiliate: programs joined → <code>ourLink</code> set → links placed → first conversions.</li>
+<li>Refresh latency — days a 🔴 post sits stale before fix (target: same week).</li>
+</ul>
+<h2>Anti-patterns</h2>
+<ul>
+<li>❌ Polishing hubs/chrome — proven zero-traffic. Spend nights on comparison content + refreshes.</li>
+<li>❌ Question-less H2s — kills AEO. Every header is a query.</li>
+<li>❌ Linking a tool you can&#39;t vouch for, or letting an affiliate link override the honest pick.</li>
+<li>❌ Chasing frontier-LLM affiliate revenue — they pay nothing; capture their traffic, monetize the adjacents.</li>
+<li>❌ Shipping a stale comparison post — facts decay in weeks; the refresh-queue is the guard.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

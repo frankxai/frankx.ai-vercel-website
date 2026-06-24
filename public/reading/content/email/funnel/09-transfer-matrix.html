@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>09 transfer matrix</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/email/funnel/09-transfer-matrix.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">09 transfer matrix</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Femail">email</a> / <a href="index.html#content%2Femail%2Ffunnel">funnel</a> / <span>09-transfer-matrix.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>day: 9
+subject: &quot;Day 9 — The transfer matrix (and where you go from here)&quot;
+preheader: &quot;Reading time: 5 min. The honest map of what changes between stacks.&quot;</h2>
+<p>Last day. Let&#39;s close the loop.</p>
+<p>You&#39;ve built one agent on Vercel AI SDK. The question that comes next is: what about Claude Agent SDK? OpenAI Agents SDK? Google ADK? n8n? Oracle?</p>
+<p>The honest answer is the <strong>transfer matrix</strong> — what changes between stacks and what doesn&#39;t.</p>
+<h2>What stays the same across all six paths</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Changes per path?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Agent Card</strong></td>
+<td>No — identical across all six</td>
+</tr>
+<tr>
+<td><strong>Agent behavior</strong></td>
+<td>No — same research assistant</td>
+</tr>
+<tr>
+<td><strong>Tool definition (the contract)</strong></td>
+<td>Minor — schema same, call site differs</td>
+</tr>
+<tr>
+<td><strong>Eval cases</strong></td>
+<td>No — judge templates port directly</td>
+</tr>
+<tr>
+<td><strong>Architectural mental model</strong></td>
+<td>No — six primitives apply to every stack</td>
+</tr>
+</tbody></table>
+<p>The Agent Card is the headline. <strong>The same Card works whether you implemented the agent on Vercel AI SDK, Claude Agent SDK, OpenAI Agents, Google ADK, n8n, or Oracle ADK.</strong> That&#39;s the portability contract you ship as part of every agent.</p>
+<h2>What changes per path</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Changes per path?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Model</strong></td>
+<td>Sometimes — each path has a default</td>
+</tr>
+<tr>
+<td><strong>Memory implementation</strong></td>
+<td>Sometimes — KV / vector / managed</td>
+</tr>
+<tr>
+<td><strong>Loop orchestration syntax</strong></td>
+<td>Yes — framework-specific idioms</td>
+</tr>
+<tr>
+<td><strong>Deploy target</strong></td>
+<td>Yes — path-specific infrastructure</td>
+</tr>
+<tr>
+<td><strong>Observability</strong></td>
+<td>Sometimes — provider-specific</td>
+</tr>
+</tbody></table>
+<p>Loop orchestration is the biggest framework-specific surface. <code>generateObject</code> in Vercel AI SDK, <code>Anthropic.messages.create</code> with tool-use in Claude Agent SDK, <code>Runner</code> in OpenAI Agents — they&#39;re all the same primitive in different syntax.</p>
+<h2>When to pick which path</h2>
+<p>Quick map (the workshop has six branches if you want depth):</p>
+<ul>
+<li><strong>Vercel AI SDK</strong> — TypeScript-first, provider-agnostic, easiest first agent. Default for web builders.</li>
+<li><strong>Claude Agent SDK + MCP</strong> — Best reasoning, growing tool ecosystem, MCP integration. Default if you&#39;re Claude-committed.</li>
+<li><strong>OpenAI Agents SDK + AgentKit</strong> — Largest install base, visual workflow layer. Default if you&#39;re OpenAI-committed.</li>
+<li><strong>Google ADK + A2A</strong> — Multi-agent first-class, long context, GCP-native. Default for multi-agent or GCP environments.</li>
+<li><strong>No-code (n8n / Notion AI / Dify)</strong> — Workflow mental model, self-host options. Default for non-coding teams or workflow-heavy use cases.</li>
+<li><strong>Oracle ADK + OAS</strong> — Enterprise compliance, portable spec, regulated environments. Default for Fortune 500 / regulated scale.</li>
+</ul>
+<p>You don&#39;t need to pick today. Most builders use Vercel AI SDK as the learning stack and graduate to a model-specific SDK later when they have a reason.</p>
+<h2>Where you go from here</h2>
+<p>You&#39;ve finished the email course. You have the mental model and (if you did the exercises) a working artifact. Three honest paths forward:</p>
+<h3>Path 1: keep the free version, build on what you have</h3>
+<p>The starter repo is yours forever. The handout is yours. The mental model is yours. Many builders ship real production agents on just this. <strong>Pay nothing else.</strong> That&#39;s a fine outcome.</p>
+<h3>Path 2: get the polished bundle (€7 — Six Primitives Pack)</h3>
+<p>If you want:</p>
+<ul>
+<li>The 60-page polished pocket book (PDF + EPUB)</li>
+<li>A 5-card Agent Card library (research / triage / scheduling / sales qual / code review)</li>
+<li>A 15-case eval harness with judge templates</li>
+<li>The Vercel deploy checklist</li>
+</ul>
+<p>→ <a href="https://frankx.ai/build/six-primitives-pack">frankx.ai/build/six-primitives-pack</a></p>
+<p>€7. Lifetime. 30-day no-questions refund. Most readers buy it just for the polished pocket book.</p>
+<h3>Path 3: go deeper with the Toolkit (€197 — most chosen)</h3>
+<p>If you ship agents in your work and want:</p>
+<ul>
+<li>Six branch deep-dive videos (Claude / OpenAI / Google / no-code / AI-builds-AI / Oracle)</li>
+<li>30+ Agent Card library</li>
+<li>A 50-pattern production cookbook</li>
+<li>A 100-case eval cookbook</li>
+<li>Observability templates</li>
+<li>Discord community (90 days, then €19/mo)</li>
+</ul>
+<p>→ <a href="https://frankx.ai/build/six-primitives-toolkit">frankx.ai/build/six-primitives-toolkit</a></p>
+<p>€197. Lifetime. 30-day refund. This is where most working builders settle.</p>
+<h3>Path 4: enterprise / advisory</h3>
+<p>If you&#39;re building agents inside a company with governance / compliance / multi-stakeholder needs:</p>
+<ul>
+<li>The €497 <strong>Mastery</strong> tier adds a structured 6-week cohort + AI-assisted code review queue.</li>
+<li>The €997 <strong>Architect</strong> tier adds Frank&#39;s day-job AI Center of Excellence framework + Oracle ADK + compliance templates.</li>
+<li>The €2,997 <strong>Founder&#39;s Circle</strong> adds 4 hours of Frank&#39;s actual time per quarter, by application only.</li>
+</ul>
+<p>→ <a href="https://frankx.ai/build">frankx.ai/build</a></p>
+<h2>Whatever you do next, you have the map</h2>
+<p>The point of the six primitives is that they&#39;re <strong>transferable</strong>. Any framework you encounter for the rest of the year, you can evaluate in 30 minutes by asking: &quot;How does it spell each of the six?&quot;</p>
+<p>That&#39;s the win. The frameworks come and go; the primitives stay.</p>
+<p>Thanks for reading the course. Reply to this email if you have a question — I read every reply, and I write back.</p>
+<p>— Frank</p>
+<p>P.S. If you&#39;d rather build live, the 90-minute workshop runs monthly: <a href="https://frankx.ai/workshops/build-first-ai-agent">frankx.ai/workshops/build-first-ai-agent</a>. It&#39;s free.</p>
+<p>P.P.S. If you&#39;d rather just ship a paid agent on someone else&#39;s stack and skip building your own — Founder&#39;s Circle exists for that. By application only. <a href="https://frankx.ai/founders-circle">frankx.ai/founders-circle</a>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

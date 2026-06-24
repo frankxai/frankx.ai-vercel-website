@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Restore NB / InfoGenius MCP Server</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="scripts/restore-nb-mcp.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Restore NB / InfoGenius MCP Server</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#scripts">scripts</a> / <span>restore-nb-mcp.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Restore NB / InfoGenius MCP Server</h1>
+<p>The NB MCP server source is intact at:</p>
+<pre><code>C:\Users\frank\Arcanea\arcanea-infogenius\mcp-server\dist\index.js
+</code></pre>
+<p>It&#39;s <code>arcanea-infogenius-mcp</code> v2.0.0 — &quot;Gemini 3 Pro visual generation with Guardian AI routing&quot; — built and ready. Claude Desktop just isn&#39;t pointing at it anymore (the <code>mcpServers</code> block in <code>claude_desktop_config.json</code> got wiped during a reinstall).</p>
+<h2>To re-register (optional — the library works without it)</h2>
+<p><strong>File:</strong> <code>C:\Users\frank\AppData\Roaming\Claude\claude_desktop_config.json</code></p>
+<p><strong>Current state:</strong> preferences only, no <code>mcpServers</code> block.</p>
+<p><strong>Add this top-level block:</strong></p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;nanobanana&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;C:\\Users\\frank\\Arcanea\\arcanea-infogenius\\mcp-server\\dist\\index.js&quot;],
+      &quot;env&quot;: {
+        &quot;GOOGLE_GENERATIVE_AI_API_KEY&quot;: &quot;&lt;paste from Arcanea/.env.local&gt;&quot;
+      }
+    },
+    &quot;infogenius&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;C:\\Users\\frank\\Arcanea\\arcanea-infogenius\\mcp-server\\dist\\index.js&quot;],
+      &quot;env&quot;: {
+        &quot;GOOGLE_GENERATIVE_AI_API_KEY&quot;: &quot;&lt;paste from Arcanea/.env.local&gt;&quot;
+      }
+    }
+  },
+  &quot;preferences&quot;: { ...keep existing preferences... }
+}
+</code></pre>
+<p>(Both names point at the same binary because some FrankX commands reference <code>mcp__nanobanana__generate_image</code> and others reference <code>mcp__infogenius__*</code>. Registering under both aliases means every existing command works.)</p>
+<h2>After adding the block</h2>
+<ol>
+<li>Quit Claude Desktop completely</li>
+<li>Restart it</li>
+<li>The MCP tool <code>mcp__nanobanana__generate_image</code> will reappear in tool lists for new sessions</li>
+<li>Restart Claude Code (or open a new project session) — the agent will have access to the tool again</li>
+</ol>
+<h2>Whether to bother</h2>
+<p>The direct-API library (<code>scripts/lib/nb-image.mjs</code> + <code>scripts/nb-generate.mjs</code>) renders the same Nano Banana 2 / Pro / 1 output without the MCP. It&#39;s more durable across reinstalls. The MCP is convenience — useful when you want to generate inline during a Claude Desktop chat without dropping to a shell.</p>
+<p>If you re-register: rotate the expired key in <code>Arcanea/arcanea-claw/.env</code> first so the env block has a current value. The library already finds the live <code>GOOGLE_GENERATIVE_AI_API_KEY</code> in <code>Arcanea/.env.local</code> automatically.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

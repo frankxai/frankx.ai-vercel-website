@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Claude Opus 4.5 Extended Thinking</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/opus-extended-thinking/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Opus 4.5 Extended Thinking</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fopus-extended-thinking">opus-extended-thinking</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>name: opus-extended-thinking
+description: Leverage Claude Opus 4.5&#39;s extended thinking capabilities for deep reasoning, complex analysis, and multi-step synthesis. Use when problems require thorough deliberation before response.
+version: 1.0.0
+last_updated: 2025-12-19
+external_version: &quot;Claude Opus 4.5 (November 2025)&quot;
+changelog: |
+  - 1.0.0: Initial skill for Opus 4.5 extended thinking patterns</h2>
+<h1>Claude Opus 4.5 Extended Thinking</h1>
+<p>This skill guides optimal use of Claude Opus 4.5&#39;s extended thinking capabilities - the model&#39;s ability to reason deeply before responding, leading to more thoughtful, accurate, and nuanced outputs.</p>
+<hr>
+<h2>Understanding Extended Thinking</h2>
+<h3>What It Is</h3>
+<p>Extended thinking allows Opus 4.5 to:</p>
+<ul>
+<li>Deliberate longer before producing output</li>
+<li>Consider multiple perspectives and approaches</li>
+<li>Self-critique and refine reasoning</li>
+<li>Handle complex multi-step problems</li>
+<li>Produce more thoughtful, less reactive responses</li>
+</ul>
+<h3>When It Activates</h3>
+<p>Extended thinking engages automatically when:</p>
+<ul>
+<li>Problems require multi-step reasoning</li>
+<li>Questions have nuance or ambiguity</li>
+<li>Tasks require weighing tradeoffs</li>
+<li>Complex analysis or synthesis is needed</li>
+<li>Creative work benefits from deliberation</li>
+</ul>
+<hr>
+<h2>Prompt Patterns for Deep Thinking</h2>
+<h3>Pattern 1: Explicit Deliberation Request</h3>
+<pre><code>Before answering, take time to:
+1. Consider the problem from multiple angles
+2. Identify potential pitfalls or edge cases
+3. Weigh different approaches
+4. Then provide your best response
+
+Question: [Your complex question]
+</code></pre>
+<h3>Pattern 2: Multi-Perspective Analysis</h3>
+<pre><code>I need a thorough analysis of [topic].
+
+Please consider:
+- The technical perspective
+- The business/practical perspective
+- The user/human perspective
+- Potential risks and downsides
+- Long-term implications
+
+Take your time to reason through each before synthesizing.
+</code></pre>
+<h3>Pattern 3: Step-by-Step Reasoning</h3>
+<pre><code>Walk me through your reasoning on this problem step by step.
+Don&#39;t jump to conclusions - show your work.
+
+Problem: [Complex problem]
+
+For each step, explain:
+- What you&#39;re considering
+- Why you&#39;re making that choice
+- What alternatives you rejected and why
+</code></pre>
+<h3>Pattern 4: Devil&#39;s Advocate</h3>
+<pre><code>I&#39;m planning to [action/decision].
+
+Before you help me execute this:
+1. Steelman the opposing view - what&#39;s the best argument against?
+2. What am I potentially missing or underweighting?
+3. What would make this fail?
+4. Only then, if it still seems right, help me proceed.
+</code></pre>
+<h3>Pattern 5: Synthesis Request</h3>
+<pre><code>I have [number] different sources/perspectives on [topic]:
+[List them]
+
+Please synthesize these into a coherent understanding that:
+- Identifies where they agree
+- Explains where they conflict and why
+- Weighs the evidence/arguments
+- Provides your reasoned conclusion
+</code></pre>
+<hr>
+<h2>Task Types That Benefit Most</h2>
+<h3>1. Strategic Planning</h3>
+<pre><code>Prompt pattern:
+&quot;Help me think through [strategic decision].
+Consider: current state, desired outcome, constraints,
+multiple paths, risks of each, second-order effects.
+Don&#39;t rush to a recommendation - reason through thoroughly first.&quot;
+</code></pre>
+<h3>2. Code Architecture Decisions</h3>
+<pre><code>Prompt pattern:
+&quot;I&#39;m deciding between [Option A] and [Option B] for [system].
+Before recommending, analyze:
+- Scalability implications
+- Maintenance burden
+- Team capability fit
+- Migration complexity
+- What we might regret in 2 years&quot;
+</code></pre>
+<h3>3. Creative Development</h3>
+<pre><code>Prompt pattern:
+&quot;I want to create [creative work] about [theme].
+Before writing, explore:
+- Different narrative approaches
+- Tonal variations
+- Structural options
+- What makes this theme resonate
+Then develop the direction that feels most promising.&quot;
+</code></pre>
+<h3>4. Problem Diagnosis</h3>
+<pre><code>Prompt pattern:
+&quot;[System/situation] is exhibiting [problem].
+Don&#39;t jump to the obvious cause.
+Consider:
+- What are all possible causes?
+- What evidence supports/refutes each?
+- What&#39;s the most likely root cause?
+- What would I need to verify to be sure?&quot;
+</code></pre>
+<h3>5. Research Synthesis</h3>
+<pre><code>Prompt pattern:
+&quot;Help me understand [complex topic].
+I need you to:
+- Break down the key concepts
+- Explain how they relate
+- Identify what&#39;s well-established vs debated
+- Note what&#39;s commonly misunderstood
+- Synthesize into a coherent mental model&quot;
+</code></pre>
+<hr>
+<h2>Anti-Patterns to Avoid</h2>
+<h3>❌ Rushing to Action</h3>
+<pre><code>Bad: &quot;Write me a function that does X&quot;
+Better: &quot;I need a function that does X. Before coding,
+        let&#39;s consider: edge cases, error handling,
+        interface design, testing approach.&quot;
+</code></pre>
+<h3>❌ Accepting First Answer</h3>
+<pre><code>Bad: &quot;What&#39;s the best database for my app?&quot;
+Better: &quot;What database should I use for [specific requirements]?
+        Consider multiple options, tradeoffs between them,
+        and what factors should weight most heavily.&quot;
+</code></pre>
+<h3>❌ Binary Thinking</h3>
+<pre><code>Bad: &quot;Should I do A or B?&quot;
+Better: &quot;I&#39;m choosing between A and B, but I&#39;m open to
+        alternatives I haven&#39;t considered. What&#39;s the
+        best path forward given [context]?&quot;
+</code></pre>
+<h3>❌ Ignoring Uncertainty</h3>
+<pre><code>Bad: &quot;Tell me the answer to [complex question]&quot;
+Better: &quot;Help me understand [complex question].
+        Be explicit about what&#39;s certain vs uncertain,
+        and what evidence supports different views.&quot;
+</code></pre>
+<hr>
+<h2>Extended Thinking Triggers</h2>
+<p>Use these phrases to encourage deeper deliberation:</p>
+<p><strong>Analytical Triggers:</strong></p>
+<ul>
+<li>&quot;Think through this carefully...&quot;</li>
+<li>&quot;Consider all angles before responding...&quot;</li>
+<li>&quot;What are the non-obvious implications?&quot;</li>
+<li>&quot;What am I likely missing?&quot;</li>
+<li>&quot;Reason through step by step...&quot;</li>
+</ul>
+<p><strong>Critical Triggers:</strong></p>
+<ul>
+<li>&quot;What could go wrong with this approach?&quot;</li>
+<li>&quot;Steelman the opposing view...&quot;</li>
+<li>&quot;What&#39;s the strongest argument against?&quot;</li>
+<li>&quot;What assumptions am I making?&quot;</li>
+<li>&quot;Where might this reasoning break down?&quot;</li>
+</ul>
+<p><strong>Synthesis Triggers:</strong></p>
+<ul>
+<li>&quot;How do these pieces fit together?&quot;</li>
+<li>&quot;What&#39;s the underlying pattern?&quot;</li>
+<li>&quot;Synthesize into a coherent view...&quot;</li>
+<li>&quot;What&#39;s the essence of this?&quot;</li>
+<li>&quot;How would you explain this to an expert?&quot;</li>
+</ul>
+<hr>
+<h2>Output Quality Indicators</h2>
+<p>Signs extended thinking is working well:</p>
+<ul>
+<li>Response acknowledges complexity and tradeoffs</li>
+<li>Multiple perspectives are genuinely considered</li>
+<li>Reasoning is visible, not just conclusions</li>
+<li>Uncertainty is explicitly addressed</li>
+<li>Edge cases and risks are surfaced proactively</li>
+<li>Recommendations are nuanced, not absolute</li>
+</ul>
+<p>Signs it might need more prompting:</p>
+<ul>
+<li>Quick, surface-level response</li>
+<li>Only one perspective considered</li>
+<li>Confident without showing reasoning</li>
+<li>Missing obvious complexities</li>
+<li>Generic advice without context fit</li>
+</ul>
+<hr>
+<h2>Combining with Other Patterns</h2>
+<h3>Extended Thinking + Agentic Execution</h3>
+<pre><code>&quot;First, think through the best approach to [task].
+Consider alternatives and tradeoffs.
+Once you have a clear plan, execute it autonomously,
+but note any decision points where you chose between options.&quot;
+</code></pre>
+<h3>Extended Thinking + Iterative Refinement</h3>
+<pre><code>&quot;Draft an initial approach to [problem].
+Then critique your own draft - what could be better?
+Revise based on your critique.
+Show me both the final version and key improvements you made.&quot;
+</code></pre>
+<h3>Extended Thinking + User Collaboration</h3>
+<pre><code>&quot;Analyze [situation] and identify the key decision points.
+For each decision, explain the tradeoffs.
+Before proceeding, I&#39;ll tell you my priorities,
+then you can recommend the path that fits best.&quot;
+</code></pre>
+<hr>
+<h2>When NOT to Use Extended Thinking</h2>
+<p>Some tasks benefit from quick, direct responses:</p>
+<ul>
+<li>Simple factual questions</li>
+<li>Straightforward code snippets</li>
+<li>Clear instructions with no ambiguity</li>
+<li>Tasks where speed matters more than depth</li>
+<li>Follow-up execution after thinking is done</li>
+</ul>
+<p>For these, don&#39;t add complexity. Just ask directly.</p>
+<hr>
+<h2>Model-Specific Notes (Opus 4.5)</h2>
+<p>Opus 4.5 specifically excels at:</p>
+<ul>
+<li><strong>Sustained reasoning chains</strong> - Can maintain coherence over long analytical sequences</li>
+<li><strong>Self-correction</strong> - Will catch and correct its own errors when given space</li>
+<li><strong>Nuance handling</strong> - Better at &quot;it depends&quot; answers with clear conditions</li>
+<li><strong>Multi-factor synthesis</strong> - Can hold many variables in consideration simultaneously</li>
+<li><strong>Creative-analytical blend</strong> - Can reason rigorously about creative work</li>
+</ul>
+<hr>
+<h2>Integration with FrankX System</h2>
+<p>Use extended thinking for:</p>
+<ul>
+<li><strong>Starlight Council decisions</strong> - Strategic synthesis across domains</li>
+<li><strong>Architecture planning</strong> - System design for Arcanea, FrankX projects</li>
+<li><strong>Content strategy</strong> - Weighing positioning, audience, platform fit</li>
+<li><strong>Creative development</strong> - Book outlines, course structures, music direction</li>
+<li><strong>Technical decisions</strong> - Framework choices, MCP design, agent orchestration</li>
+</ul>
+<hr>
+<p><em>Extended thinking is about quality of cognition, not length of output. The best responses come from genuine deliberation - use these patterns to unlock that capability.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

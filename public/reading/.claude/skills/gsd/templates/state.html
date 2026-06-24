@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>State Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gsd/templates/state.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">State Template</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgsd">gsd</a> / <a href="index.html#.claude%2Fskills%2Fgsd%2Ftemplates">templates</a> / <span>state.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>State Template</h1>
+<p>Template for <code>.planning/STATE.md</code> — the project&#39;s living memory.</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown"># Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated [date])
+
+**Core value:** [One-liner from PROJECT.md Core Value section]
+**Current focus:** [Current phase name]
+
+## Current Position
+
+Phase: [X] of [Y] ([Phase name])
+Plan: [A] of [B] in current phase
+Status: [Ready to plan / Planning / Ready to execute / In progress / Phase complete]
+Last activity: [YYYY-MM-DD] — [What happened]
+
+Progress: [░░░░░░░░░░] 0%
+
+## Performance Metrics
+
+**Velocity:**
+- Total plans completed: [N]
+- Average duration: [X] min
+- Total execution time: [X.X] hours
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| - | - | - | - |
+
+**Recent Trend:**
+- Last 5 plans: [durations]
+- Trend: [Improving / Stable / Degrading]
+
+*Updated after each plan completion*
+
+## Accumulated Context
+
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
+
+- [Phase X]: [Decision summary]
+- [Phase Y]: [Decision summary]
+
+### Pending Todos
+
+[Pending ideas captured during sessions]
+
+None yet.
+
+### Blockers/Concerns
+
+[Issues that affect future work]
+
+None yet.
+
+## Session Continuity
+
+Last session: [YYYY-MM-DD HH:MM]
+Stopped at: [Description of last completed action]
+Resume file: [Path to .continue-here*.md if exists, otherwise &quot;None&quot;]
+</code></pre>
+<purpose>
+
+<p>STATE.md is the project&#39;s short-term memory spanning all phases and sessions.</p>
+<p><strong>Problem it solves:</strong> Information is captured in summaries, issues, and decisions but not systematically consumed. Sessions start without context.</p>
+<p><strong>Solution:</strong> A single, small file that&#39;s:</p>
+<ul>
+<li>Read first in every workflow</li>
+<li>Updated after every significant action</li>
+<li>Contains digest of accumulated context</li>
+<li>Enables instant session restoration</li>
+</ul>
+</purpose>
+
+<lifecycle>
+
+<p><strong>Creation:</strong> After ROADMAP.md is created (during init)</p>
+<ul>
+<li>Reference PROJECT.md (read it for current context)</li>
+<li>Initialize empty accumulated context sections</li>
+<li>Set position to &quot;Phase 1 ready to plan&quot;</li>
+</ul>
+<p><strong>Reading:</strong> First step of every workflow</p>
+<ul>
+<li>progress: Present status to user</li>
+<li>plan: Inform planning decisions</li>
+<li>execute: Know current position</li>
+<li>transition: Know what&#39;s complete</li>
+</ul>
+<p><strong>Writing:</strong> After every significant action</p>
+<ul>
+<li>execute: After SUMMARY.md created<ul>
+<li>Update position (phase, plan, status)</li>
+<li>Note new decisions (detail in PROJECT.md)</li>
+<li>Add blockers/concerns</li>
+</ul>
+</li>
+<li>transition: After phase marked complete<ul>
+<li>Update progress bar</li>
+<li>Clear resolved blockers</li>
+<li>Refresh Project Reference date</li>
+</ul>
+</li>
+</ul>
+</lifecycle>
+
+<sections>
+
+<h3>Project Reference</h3>
+<p>Points to PROJECT.md for full context. Includes:</p>
+<ul>
+<li>Core value (the ONE thing that matters)</li>
+<li>Current focus (which phase)</li>
+<li>Last update date (triggers re-read if stale)</li>
+</ul>
+<p>Claude reads PROJECT.md directly for requirements, constraints, and decisions.</p>
+<h3>Current Position</h3>
+<p>Where we are right now:</p>
+<ul>
+<li>Phase X of Y — which phase</li>
+<li>Plan A of B — which plan within phase</li>
+<li>Status — current state</li>
+<li>Last activity — what happened most recently</li>
+<li>Progress bar — visual indicator of overall completion</li>
+</ul>
+<p>Progress calculation: (completed plans) / (total plans across all phases) × 100%</p>
+<h3>Performance Metrics</h3>
+<p>Track velocity to understand execution patterns:</p>
+<ul>
+<li>Total plans completed</li>
+<li>Average duration per plan</li>
+<li>Per-phase breakdown</li>
+<li>Recent trend (improving/stable/degrading)</li>
+</ul>
+<p>Updated after each plan completion.</p>
+<h3>Accumulated Context</h3>
+<p><strong>Decisions:</strong> Reference to PROJECT.md Key Decisions table, plus recent decisions summary for quick access. Full decision log lives in PROJECT.md.</p>
+<p><strong>Pending Todos:</strong> Ideas captured during sessions.</p>
+<ul>
+<li>Count of pending todos</li>
+<li>Brief list if few, count if many</li>
+</ul>
+<p><strong>Blockers/Concerns:</strong> From &quot;Next Phase Readiness&quot; sections</p>
+<ul>
+<li>Issues that affect future work</li>
+<li>Prefix with originating phase</li>
+<li>Cleared when addressed</li>
+</ul>
+<h3>Session Continuity</h3>
+<p>Enables instant resumption:</p>
+<ul>
+<li>When was last session</li>
+<li>What was last completed</li>
+<li>Is there a .continue-here file to resume from</li>
+</ul>
+</sections>
+
+<size_constraint>
+
+<p>Keep STATE.md under 100 lines.</p>
+<p>It&#39;s a DIGEST, not an archive. If accumulated context grows too large:</p>
+<ul>
+<li>Keep only 3-5 recent decisions in summary (full log in PROJECT.md)</li>
+<li>Keep only active blockers, remove resolved ones</li>
+</ul>
+<p>The goal is &quot;read once, know where we are&quot; — if it&#39;s too long, that fails.</p>
+</size_constraint>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

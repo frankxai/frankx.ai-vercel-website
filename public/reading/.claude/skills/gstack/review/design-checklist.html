@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Design Review Checklist (Lite)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/review/design-checklist.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Design Review Checklist (Lite)</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Freview">review</a> / <span>design-checklist.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Design Review Checklist (Lite)</h1>
+<blockquote>
+<p><strong>Subset of DESIGN_METHODOLOGY</strong> — when adding items here, also update <code>generateDesignMethodology()</code> in <code>scripts/gen-skill-docs.ts</code>, and vice versa.</p>
+</blockquote>
+<h2>Instructions</h2>
+<p>This checklist applies to <strong>source code in the diff</strong> — not rendered output. Read each changed frontend file (full file, not just diff hunks) and flag anti-patterns.</p>
+<p><strong>Trigger:</strong> Only run this checklist if the diff touches frontend files. Use <code>gstack-diff-scope</code> to detect:</p>
+<pre><code class="language-bash">source &lt;(~/.claude/skills/gstack/bin/gstack-diff-scope &lt;base&gt; 2&gt;/dev/null)
+</code></pre>
+<p>If <code>SCOPE_FRONTEND=false</code>, skip the entire design review silently.</p>
+<p><strong>DESIGN.md calibration:</strong> If <code>DESIGN.md</code> or <code>design-system.md</code> exists in the repo root, read it first. All findings are calibrated against the project&#39;s stated design system. Patterns explicitly blessed in DESIGN.md are NOT flagged. If no DESIGN.md exists, use universal design principles.</p>
+<hr>
+<h2>Confidence Tiers</h2>
+<p>Each item is tagged with a detection confidence level:</p>
+<ul>
+<li><strong>[HIGH]</strong> — Reliably detectable via grep/pattern match. Definitive findings.</li>
+<li><strong>[MEDIUM]</strong> — Detectable via pattern aggregation or heuristic. Flag as findings but expect some noise.</li>
+<li><strong>[LOW]</strong> — Requires understanding visual intent. Present as: &quot;Possible issue — verify visually or run /design-review.&quot;</li>
+</ul>
+<hr>
+<h2>Classification</h2>
+<p><strong>AUTO-FIX</strong> (mechanical CSS fixes only — HIGH confidence, no design judgment needed):</p>
+<ul>
+<li><code>outline: none</code> without replacement → add <code>outline: revert</code> or <code>&amp;:focus-visible { outline: 2px solid currentColor; }</code></li>
+<li><code>!important</code> in new CSS → remove and fix specificity</li>
+<li><code>font-size</code> &lt; 16px on body text → bump to 16px</li>
+</ul>
+<p><strong>ASK</strong> (everything else — requires design judgment):</p>
+<ul>
+<li>All AI slop findings, typography structure, spacing choices, interaction state gaps, DESIGN.md violations</li>
+</ul>
+<p><strong>LOW confidence items</strong> → present as &quot;Possible: [description]. Verify visually or run /design-review.&quot; Never AUTO-FIX.</p>
+<hr>
+<h2>Output Format</h2>
+<pre><code>Design Review: N issues (X auto-fixable, Y need input, Z possible)
+
+**AUTO-FIXED:**
+- [file:line] Problem → fix applied
+
+**NEEDS INPUT:**
+- [file:line] Problem description
+  Recommended fix: suggested fix
+
+**POSSIBLE (verify visually):**
+- [file:line] Possible issue — verify with /design-review
+</code></pre>
+<p>If no issues found: <code>Design Review: No issues found.</code></p>
+<p>If no frontend files changed: skip silently, no output.</p>
+<hr>
+<h2>Categories</h2>
+<h3>1. AI Slop Detection (6 items) — highest priority</h3>
+<p>These are the telltale signs of AI-generated UI that no designer at a respected studio would ship.</p>
+<ul>
+<li><p><strong>[MEDIUM]</strong> Purple/violet/indigo gradient backgrounds or blue-to-purple color schemes. Look for <code>linear-gradient</code> with values in the <code>#6366f1</code>–<code>#8b5cf6</code> range, or CSS custom properties resolving to purple/violet.</p>
+</li>
+<li><p><strong>[LOW]</strong> The 3-column feature grid: icon-in-colored-circle + bold title + 2-line description, repeated 3x symmetrically. Look for a grid/flex container with exactly 3 children that each contain a circular element + heading + paragraph.</p>
+</li>
+<li><p><strong>[LOW]</strong> Icons in colored circles as section decoration. Look for elements with <code>border-radius: 50%</code> + a background color used as decorative containers for icons.</p>
+</li>
+<li><p><strong>[HIGH]</strong> Centered everything: <code>text-align: center</code> on all headings, descriptions, and cards. Grep for <code>text-align: center</code> density — if &gt;60% of text containers use center alignment, flag it.</p>
+</li>
+<li><p><strong>[MEDIUM]</strong> Uniform bubbly border-radius on every element: same large radius (16px+) applied to cards, buttons, inputs, containers uniformly. Aggregate <code>border-radius</code> values — if &gt;80% use the same value ≥16px, flag it.</p>
+</li>
+<li><p><strong>[MEDIUM]</strong> Generic hero copy: &quot;Welcome to [X]&quot;, &quot;Unlock the power of...&quot;, &quot;Your all-in-one solution for...&quot;, &quot;Revolutionize your...&quot;, &quot;Streamline your workflow&quot;. Grep HTML/JSX content for these patterns.</p>
+</li>
+</ul>
+<h3>2. Typography (4 items)</h3>
+<ul>
+<li><p><strong>[HIGH]</strong> Body text <code>font-size</code> &lt; 16px. Grep for <code>font-size</code> declarations on <code>body</code>, <code>p</code>, <code>.text</code>, or base styles. Values below 16px (or 1rem when base is 16px) are flagged.</p>
+</li>
+<li><p><strong>[HIGH]</strong> More than 3 font families introduced in the diff. Count distinct <code>font-family</code> declarations. Flag if &gt;3 unique families appear across changed files.</p>
+</li>
+<li><p><strong>[HIGH]</strong> Heading hierarchy skipping levels: <code>h1</code> followed by <code>h3</code> without an <code>h2</code> in the same file/component. Check HTML/JSX for heading tags.</p>
+</li>
+<li><p><strong>[HIGH]</strong> Blacklisted fonts: Papyrus, Comic Sans, Lobster, Impact, Jokerman. Grep <code>font-family</code> for these names.</p>
+</li>
+</ul>
+<h3>3. Spacing &amp; Layout (4 items)</h3>
+<ul>
+<li><p><strong>[MEDIUM]</strong> Arbitrary spacing values not on a 4px or 8px scale, when DESIGN.md specifies a spacing scale. Check <code>margin</code>, <code>padding</code>, <code>gap</code> values against the stated scale. Only flag when DESIGN.md defines a scale.</p>
+</li>
+<li><p><strong>[MEDIUM]</strong> Fixed widths without responsive handling: <code>width: NNNpx</code> on containers without <code>max-width</code> or <code>@media</code> breakpoints. Risk of horizontal scroll on mobile.</p>
+</li>
+<li><p><strong>[MEDIUM]</strong> Missing <code>max-width</code> on text containers: body text or paragraph containers with no <code>max-width</code> set, allowing lines &gt;75 characters. Check for <code>max-width</code> on text wrappers.</p>
+</li>
+<li><p><strong>[HIGH]</strong> <code>!important</code> in new CSS rules. Grep for <code>!important</code> in added lines. Almost always a specificity escape hatch that should be fixed properly.</p>
+</li>
+</ul>
+<h3>4. Interaction States (3 items)</h3>
+<ul>
+<li><p><strong>[MEDIUM]</strong> Interactive elements (buttons, links, inputs) missing hover/focus states. Check if <code>:hover</code> and <code>:focus</code> or <code>:focus-visible</code> pseudo-classes exist for new interactive element styles.</p>
+</li>
+<li><p><strong>[HIGH]</strong> <code>outline: none</code> or <code>outline: 0</code> without a replacement focus indicator. Grep for <code>outline:\s*none</code> or <code>outline:\s*0</code>. This removes keyboard accessibility.</p>
+</li>
+<li><p><strong>[LOW]</strong> Touch targets &lt; 44px on interactive elements. Check <code>min-height</code>/<code>min-width</code>/<code>padding</code> on buttons and links. Requires computing effective size from multiple properties — low confidence from code alone.</p>
+</li>
+</ul>
+<h3>5. DESIGN.md Violations (3 items, conditional)</h3>
+<p>Only apply if <code>DESIGN.md</code> or <code>design-system.md</code> exists:</p>
+<ul>
+<li><p><strong>[MEDIUM]</strong> Colors not in the stated palette. Compare color values in changed CSS against the palette defined in DESIGN.md.</p>
+</li>
+<li><p><strong>[MEDIUM]</strong> Fonts not in the stated typography section. Compare <code>font-family</code> values against DESIGN.md&#39;s font list.</p>
+</li>
+<li><p><strong>[MEDIUM]</strong> Spacing values outside the stated scale. Compare <code>margin</code>/<code>padding</code>/<code>gap</code> values against DESIGN.md&#39;s spacing scale.</p>
+</li>
+</ul>
+<hr>
+<h2>Suppressions</h2>
+<p>Do NOT flag:</p>
+<ul>
+<li>Patterns explicitly documented in DESIGN.md as intentional choices</li>
+<li>Third-party/vendor CSS files (node_modules, vendor directories)</li>
+<li>CSS resets or normalize stylesheets</li>
+<li>Test fixture files</li>
+<li>Generated/minified CSS</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

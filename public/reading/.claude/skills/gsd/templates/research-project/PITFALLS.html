@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Pitfalls Research Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gsd/templates/research-project/PITFALLS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Pitfalls Research Template</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude">.claude</a> / <a href="../../../index.html#.claude%2Fskills">skills</a> / <a href="../../index.html#.claude%2Fskills%2Fgsd">gsd</a> / <a href="../index.html#.claude%2Fskills%2Fgsd%2Ftemplates">templates</a> / <a href="index.html#.claude%2Fskills%2Fgsd%2Ftemplates%2Fresearch-project">research-project</a> / <span>PITFALLS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Pitfalls Research Template</h1>
+<p>Template for <code>.planning/research/PITFALLS.md</code> — common mistakes to avoid in the project domain.</p>
+<template>
+
+<pre><code class="language-markdown"># Pitfalls Research
+
+**Domain:** [domain type]
+**Researched:** [date]
+**Confidence:** [HIGH/MEDIUM/LOW]
+
+## Critical Pitfalls
+
+### Pitfall 1: [Name]
+
+**What goes wrong:**
+[Description of the failure mode]
+
+**Why it happens:**
+[Root cause — why developers make this mistake]
+
+**How to avoid:**
+[Specific prevention strategy]
+
+**Warning signs:**
+[How to detect this early before it becomes a problem]
+
+**Phase to address:**
+[Which roadmap phase should prevent this]
+
+---
+
+### Pitfall 2: [Name]
+
+**What goes wrong:**
+[Description of the failure mode]
+
+**Why it happens:**
+[Root cause — why developers make this mistake]
+
+**How to avoid:**
+[Specific prevention strategy]
+
+**Warning signs:**
+[How to detect this early before it becomes a problem]
+
+**Phase to address:**
+[Which roadmap phase should prevent this]
+
+---
+
+### Pitfall 3: [Name]
+
+**What goes wrong:**
+[Description of the failure mode]
+
+**Why it happens:**
+[Root cause — why developers make this mistake]
+
+**How to avoid:**
+[Specific prevention strategy]
+
+**Warning signs:**
+[How to detect this early before it becomes a problem]
+
+**Phase to address:**
+[Which roadmap phase should prevent this]
+
+---
+
+[Continue for all critical pitfalls...]
+
+## Technical Debt Patterns
+
+Shortcuts that seem reasonable but create long-term problems.
+
+| Shortcut | Immediate Benefit | Long-term Cost | When Acceptable |
+|----------|-------------------|----------------|-----------------|
+| [shortcut] | [benefit] | [cost] | [conditions, or &quot;never&quot;] |
+| [shortcut] | [benefit] | [cost] | [conditions, or &quot;never&quot;] |
+| [shortcut] | [benefit] | [cost] | [conditions, or &quot;never&quot;] |
+
+## Integration Gotchas
+
+Common mistakes when connecting to external services.
+
+| Integration | Common Mistake | Correct Approach |
+|-------------|----------------|------------------|
+| [service] | [what people do wrong] | [what to do instead] |
+| [service] | [what people do wrong] | [what to do instead] |
+| [service] | [what people do wrong] | [what to do instead] |
+
+## Performance Traps
+
+Patterns that work at small scale but fail as usage grows.
+
+| Trap | Symptoms | Prevention | When It Breaks |
+|------|----------|------------|----------------|
+| [trap] | [how you notice] | [how to avoid] | [scale threshold] |
+| [trap] | [how you notice] | [how to avoid] | [scale threshold] |
+| [trap] | [how you notice] | [how to avoid] | [scale threshold] |
+
+## Security Mistakes
+
+Domain-specific security issues beyond general web security.
+
+| Mistake | Risk | Prevention |
+|---------|------|------------|
+| [mistake] | [what could happen] | [how to avoid] |
+| [mistake] | [what could happen] | [how to avoid] |
+| [mistake] | [what could happen] | [how to avoid] |
+
+## UX Pitfalls
+
+Common user experience mistakes in this domain.
+
+| Pitfall | User Impact | Better Approach |
+|---------|-------------|-----------------|
+| [pitfall] | [how users suffer] | [what to do instead] |
+| [pitfall] | [how users suffer] | [what to do instead] |
+| [pitfall] | [how users suffer] | [what to do instead] |
+
+## &quot;Looks Done But Isn&#39;t&quot; Checklist
+
+Things that appear complete but are missing critical pieces.
+
+- [ ] **[Feature]:** Often missing [thing] — verify [check]
+- [ ] **[Feature]:** Often missing [thing] — verify [check]
+- [ ] **[Feature]:** Often missing [thing] — verify [check]
+- [ ] **[Feature]:** Often missing [thing] — verify [check]
+
+## Recovery Strategies
+
+When pitfalls occur despite prevention, how to recover.
+
+| Pitfall | Recovery Cost | Recovery Steps |
+|---------|---------------|----------------|
+| [pitfall] | LOW/MEDIUM/HIGH | [what to do] |
+| [pitfall] | LOW/MEDIUM/HIGH | [what to do] |
+| [pitfall] | LOW/MEDIUM/HIGH | [what to do] |
+
+## Pitfall-to-Phase Mapping
+
+How roadmap phases should address these pitfalls.
+
+| Pitfall | Prevention Phase | Verification |
+|---------|------------------|--------------|
+| [pitfall] | Phase [X] | [how to verify prevention worked] |
+| [pitfall] | Phase [X] | [how to verify prevention worked] |
+| [pitfall] | Phase [X] | [how to verify prevention worked] |
+
+## Sources
+
+- [Post-mortems referenced]
+- [Community discussions]
+- [Official &quot;gotchas&quot; documentation]
+- [Personal experience / known issues]
+
+---
+*Pitfalls research for: [domain]*
+*Researched: [date]*
+</code></pre>
+</template>
+
+<guidelines>
+
+<p><strong>Critical Pitfalls:</strong></p>
+<ul>
+<li>Focus on domain-specific issues, not generic mistakes</li>
+<li>Include warning signs — early detection prevents disasters</li>
+<li>Link to specific phases — makes pitfalls actionable</li>
+</ul>
+<p><strong>Technical Debt:</strong></p>
+<ul>
+<li>Be realistic — some shortcuts are acceptable</li>
+<li>Note when shortcuts are &quot;never acceptable&quot; vs. &quot;only in MVP&quot;</li>
+<li>Include the long-term cost to inform tradeoff decisions</li>
+</ul>
+<p><strong>Performance Traps:</strong></p>
+<ul>
+<li>Include scale thresholds (&quot;breaks at 10k users&quot;)</li>
+<li>Focus on what&#39;s relevant for this project&#39;s expected scale</li>
+<li>Don&#39;t over-engineer for hypothetical scale</li>
+</ul>
+<p><strong>Security Mistakes:</strong></p>
+<ul>
+<li>Beyond OWASP basics — domain-specific issues</li>
+<li>Example: Community platforms have different security concerns than e-commerce</li>
+<li>Include risk level to prioritize</li>
+</ul>
+<p><strong>&quot;Looks Done But Isn&#39;t&quot;:</strong></p>
+<ul>
+<li>Checklist format for verification during execution</li>
+<li>Common in demos vs. production</li>
+<li>Prevents &quot;it works on my machine&quot; issues</li>
+</ul>
+<p><strong>Pitfall-to-Phase Mapping:</strong></p>
+<ul>
+<li>Critical for roadmap creation</li>
+<li>Each pitfall should map to a phase that prevents it</li>
+<li>Informs phase ordering and success criteria</li>
+</ul>
+</guidelines>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

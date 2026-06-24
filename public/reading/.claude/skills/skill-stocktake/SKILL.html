@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>skill-stocktake</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/skill-stocktake/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">skill-stocktake</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fskill-stocktake">skill-stocktake</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <hr>
+<h2>description: &quot;Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake modes with sequential subagent batch evaluation.&quot;
+origin: ECC</h2>
+<h1>skill-stocktake</h1>
+<p>Slash command (<code>/skill-stocktake</code>) that audits all Claude skills and commands using a quality checklist + AI holistic judgment. Supports two modes: Quick Scan for recently changed skills, and Full Stocktake for a complete review.</p>
+<h2>Scope</h2>
+<p>The command targets the following paths <strong>relative to the directory where it is invoked</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>~/.claude/skills/</code></td>
+<td>Global skills (all projects)</td>
+</tr>
+<tr>
+<td><code>{cwd}/.claude/skills/</code></td>
+<td>Project-level skills (if the directory exists)</td>
+</tr>
+</tbody></table>
+<p><strong>At the start of Phase 1, the command explicitly lists which paths were found and scanned.</strong></p>
+<h3>Targeting a specific project</h3>
+<p>To include project-level skills, run from that project&#39;s root directory:</p>
+<pre><code class="language-bash">cd ~/path/to/my-project
+/skill-stocktake
+</code></pre>
+<p>If the project has no <code>.claude/skills/</code> directory, only global skills and commands are evaluated.</p>
+<h2>Modes</h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Trigger</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quick Scan</td>
+<td><code>results.json</code> exists (default)</td>
+<td>5–10 min</td>
+</tr>
+<tr>
+<td>Full Stocktake</td>
+<td><code>results.json</code> absent, or <code>/skill-stocktake full</code></td>
+<td>20–30 min</td>
+</tr>
+</tbody></table>
+<p><strong>Results cache:</strong> <code>~/.claude/skills/skill-stocktake/results.json</code></p>
+<h2>Quick Scan Flow</h2>
+<p>Re-evaluate only skills that have changed since the last run (5–10 min).</p>
+<ol>
+<li>Read <code>~/.claude/skills/skill-stocktake/results.json</code></li>
+<li>Run: <code>bash ~/.claude/skills/skill-stocktake/scripts/quick-diff.sh \   ~/.claude/skills/skill-stocktake/results.json</code>
+(Project dir is auto-detected from <code>$PWD/.claude/skills</code>; pass it explicitly only if needed)</li>
+<li>If output is <code>[]</code>: report &quot;No changes since last run.&quot; and stop</li>
+<li>Re-evaluate only those changed files using the same Phase 2 criteria</li>
+<li>Carry forward unchanged skills from previous results</li>
+<li>Output only the diff</li>
+<li>Run: <code>bash ~/.claude/skills/skill-stocktake/scripts/save-results.sh \   ~/.claude/skills/skill-stocktake/results.json &lt;&lt;&lt; &quot;$EVAL_RESULTS&quot;</code></li>
+</ol>
+<h2>Full Stocktake Flow</h2>
+<h3>Phase 1 — Inventory</h3>
+<p>Run: <code>bash ~/.claude/skills/skill-stocktake/scripts/scan.sh</code></p>
+<p>The script enumerates skill files, extracts frontmatter, and collects UTC mtimes.
+Project dir is auto-detected from <code>$PWD/.claude/skills</code>; pass it explicitly only if needed.
+Present the scan summary and inventory table from the script output:</p>
+<pre><code>Scanning:
+  ✓ ~/.claude/skills/         (17 files)
+  ✗ {cwd}/.claude/skills/    (not found — global skills only)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>7d use</th>
+<th>30d use</th>
+<th>Description</th>
+</tr>
+</thead>
+</table>
+<h3>Phase 2 — Quality Evaluation</h3>
+<p>Launch an Agent tool subagent (<strong>general-purpose agent</strong>) with the full inventory and checklist:</p>
+<pre><code class="language-text">Agent(
+  subagent_type=&quot;general-purpose&quot;,
+  prompt=&quot;
+Evaluate the following skill inventory against the checklist.
+
+[INVENTORY]
+
+[CHECKLIST]
+
+Return JSON for each skill:
+{ \&quot;verdict\&quot;: \&quot;Keep\&quot;|\&quot;Improve\&quot;|\&quot;Update\&quot;|\&quot;Retire\&quot;|\&quot;Merge into [X]\&quot;, \&quot;reason\&quot;: \&quot;...\&quot; }
+&quot;
+)
+</code></pre>
+<p>The subagent reads each skill, applies the checklist, and returns per-skill JSON:</p>
+<p><code>{ &quot;verdict&quot;: &quot;Keep&quot;|&quot;Improve&quot;|&quot;Update&quot;|&quot;Retire&quot;|&quot;Merge into [X]&quot;, &quot;reason&quot;: &quot;...&quot; }</code></p>
+<p><strong>Chunk guidance:</strong> Process ~20 skills per subagent invocation to keep context manageable. Save intermediate results to <code>results.json</code> (<code>status: &quot;in_progress&quot;</code>) after each chunk.</p>
+<p>After all skills are evaluated: set <code>status: &quot;completed&quot;</code>, proceed to Phase 3.</p>
+<p><strong>Resume detection:</strong> If <code>status: &quot;in_progress&quot;</code> is found on startup, resume from the first unevaluated skill.</p>
+<p>Each skill is evaluated against this checklist:</p>
+<pre><code>- [ ] Content overlap with other skills checked
+- [ ] Overlap with MEMORY.md / CLAUDE.md checked
+- [ ] Freshness of technical references verified (use WebSearch if tool names / CLI flags / APIs are present)
+- [ ] Usage frequency considered
+</code></pre>
+<p>Verdict criteria:</p>
+<table>
+<thead>
+<tr>
+<th>Verdict</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Keep</td>
+<td>Useful and current</td>
+</tr>
+<tr>
+<td>Improve</td>
+<td>Worth keeping, but specific improvements needed</td>
+</tr>
+<tr>
+<td>Update</td>
+<td>Referenced technology is outdated (verify with WebSearch)</td>
+</tr>
+<tr>
+<td>Retire</td>
+<td>Low quality, stale, or cost-asymmetric</td>
+</tr>
+<tr>
+<td>Merge into [X]</td>
+<td>Substantial overlap with another skill; name the merge target</td>
+</tr>
+</tbody></table>
+<p>Evaluation is <strong>holistic AI judgment</strong> — not a numeric rubric. Guiding dimensions:</p>
+<ul>
+<li><strong>Actionability</strong>: code examples, commands, or steps that let you act immediately</li>
+<li><strong>Scope fit</strong>: name, trigger, and content are aligned; not too broad or narrow</li>
+<li><strong>Uniqueness</strong>: value not replaceable by MEMORY.md / CLAUDE.md / another skill</li>
+<li><strong>Currency</strong>: technical references work in the current environment</li>
+</ul>
+<p><strong>Reason quality requirements</strong> — the <code>reason</code> field must be self-contained and decision-enabling:</p>
+<ul>
+<li>Do NOT write &quot;unchanged&quot; alone — always restate the core evidence</li>
+<li>For <strong>Retire</strong>: state (1) what specific defect was found, (2) what covers the same need instead<ul>
+<li>Bad: <code>&quot;Superseded&quot;</code></li>
+<li>Good: <code>&quot;disable-model-invocation: true already set; superseded by continuous-learning-v2 which covers all the same patterns plus confidence scoring. No unique content remains.&quot;</code></li>
+</ul>
+</li>
+<li>For <strong>Merge</strong>: name the target and describe what content to integrate<ul>
+<li>Bad: <code>&quot;Overlaps with X&quot;</code></li>
+<li>Good: <code>&quot;42-line thin content; Step 4 of chatlog-to-article already covers the same workflow. Integrate the &#39;article angle&#39; tip as a note in that skill.&quot;</code></li>
+</ul>
+</li>
+<li>For <strong>Improve</strong>: describe the specific change needed (what section, what action, target size if relevant)<ul>
+<li>Bad: <code>&quot;Too long&quot;</code></li>
+<li>Good: <code>&quot;276 lines; Section &#39;Framework Comparison&#39; (L80–140) duplicates ai-era-architecture-principles; delete it to reach ~150 lines.&quot;</code></li>
+</ul>
+</li>
+<li>For <strong>Keep</strong> (mtime-only change in Quick Scan): restate the original verdict rationale, do not write &quot;unchanged&quot;<ul>
+<li>Bad: <code>&quot;Unchanged&quot;</code></li>
+<li>Good: <code>&quot;mtime updated but content unchanged. Unique Python reference explicitly imported by rules/python/; no overlap found.&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3>Phase 3 — Summary Table</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>7d use</th>
+<th>Verdict</th>
+<th>Reason</th>
+</tr>
+</thead>
+</table>
+<h3>Phase 4 — Consolidation</h3>
+<ol>
+<li><strong>Retire / Merge</strong>: present detailed justification per file before confirming with user:<ul>
+<li>What specific problem was found (overlap, staleness, broken references, etc.)</li>
+<li>What alternative covers the same functionality (for Retire: which existing skill/rule; for Merge: the target file and what content to integrate)</li>
+<li>Impact of removal (any dependent skills, MEMORY.md references, or workflows affected)</li>
+</ul>
+</li>
+<li><strong>Improve</strong>: present specific improvement suggestions with rationale:<ul>
+<li>What to change and why (e.g., &quot;trim 430→200 lines because sections X/Y duplicate python-patterns&quot;)</li>
+<li>User decides whether to act</li>
+</ul>
+</li>
+<li><strong>Update</strong>: present updated content with sources checked</li>
+<li>Check MEMORY.md line count; propose compression if &gt;100 lines</li>
+</ol>
+<h2>Results File Schema</h2>
+<p><code>~/.claude/skills/skill-stocktake/results.json</code>:</p>
+<p><strong><code>evaluated_at</code></strong>: Must be set to the actual UTC time of evaluation completion.
+Obtain via Bash: <code>date -u +%Y-%m-%dT%H:%M:%SZ</code>. Never use a date-only approximation like <code>T00:00:00Z</code>.</p>
+<pre><code class="language-json">{
+  &quot;evaluated_at&quot;: &quot;2026-02-21T10:00:00Z&quot;,
+  &quot;mode&quot;: &quot;full&quot;,
+  &quot;batch_progress&quot;: {
+    &quot;total&quot;: 80,
+    &quot;evaluated&quot;: 80,
+    &quot;status&quot;: &quot;completed&quot;
+  },
+  &quot;skills&quot;: {
+    &quot;skill-name&quot;: {
+      &quot;path&quot;: &quot;~/.claude/skills/skill-name/SKILL.md&quot;,
+      &quot;verdict&quot;: &quot;Keep&quot;,
+      &quot;reason&quot;: &quot;Concrete, actionable, unique value for X workflow&quot;,
+      &quot;mtime&quot;: &quot;2026-01-15T08:30:00Z&quot;
+    }
+  }
+}
+</code></pre>
+<h2>Notes</h2>
+<ul>
+<li>Evaluation is blind: the same checklist applies to all skills regardless of origin (ECC, self-authored, auto-extracted)</li>
+<li>Archive / delete operations always require explicit user confirmation</li>
+<li>No verdict branching by skill origin</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

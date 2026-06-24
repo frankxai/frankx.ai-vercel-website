@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Supabase — The Data Layer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/vibe-os/chapter-06-supabase-the-data-layer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Supabase — The Data Layer</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fvibe-os">vibe-os</a> / <span>chapter-06-supabase-the-data-layer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Supabase — The Data Layer</h1>
+<blockquote>
+<p>&quot;Data is a precious thing and will last longer than the systems themselves.&quot;
+— Tim Berners-Lee</p>
+</blockquote>
+<hr>
+<h2>I. Why You Need a Database</h2>
+<p>Most solo creators do not think they need a database. They store content in markdown files, track subscribers in their email provider, and manage products in their payment platform.</p>
+<p>This works until it doesn&#39;t.</p>
+<p>The moment you need to cross-reference data — which subscribers bought which products? Which blog posts drive the most signups? Which coaching applicants have the highest engagement scores? — you need a relational data layer. You need a database.</p>
+<p>Supabase provides this layer at a cost and complexity level appropriate for a one-person studio: free tier for development, $25/month for production, with PostgreSQL as the underlying engine — the most battle-tested relational database in the world.</p>
+<hr>
+<h2>II. Supabase Architecture</h2>
+<p>Supabase is not just a database. It is four services packaged together:</p>
+<p><strong>PostgreSQL database.</strong> Full SQL database with row-level security, real-time subscriptions, and automatic API generation. Every table you create is immediately accessible via a REST API and a real-time WebSocket API — no backend code required.</p>
+<p><strong>Authentication.</strong> Email/password auth, OAuth providers (Google, GitHub, Twitter), magic links, and phone auth. Supabase Auth integrates with Next.js middleware, enabling protected routes and role-based access with minimal code.</p>
+<p><strong>Storage.</strong> S3-compatible object storage for files, images, and media. Integrated with the auth system — you can create storage policies that restrict file access based on the authenticated user.</p>
+<p><strong>Edge Functions.</strong> Serverless functions (Deno runtime) for custom backend logic. Useful for webhooks, scheduled tasks, and complex data processing that doesn&#39;t fit in a Next.js API route.</p>
+<p>For the Vibe OS creator stack, the primary use is the database and auth layers. Storage is handled by Vercel Blob (simpler for the Next.js deployment model). Edge Functions are used sparingly — most backend logic lives in Next.js API routes.</p>
+<hr>
+<h2>III. Schema Design for Creators</h2>
+<p>The creator database schema centers on four entities:</p>
+<pre><code class="language-sql">-- Subscribers: people who have signed up
+CREATE TABLE subscribers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  name TEXT,
+  source TEXT, -- where they signed up (blog, landing page, etc.)
+  tags TEXT[] DEFAULT &#39;{}&#39;,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Products: digital products for sale
+CREATE TABLE products (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  slug TEXT UNIQUE NOT NULL,
+  title TEXT NOT NULL,
+  price_cents INTEGER NOT NULL,
+  stripe_price_id TEXT,
+  download_url TEXT, -- Vercel Blob URL
+  active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Purchases: who bought what
+CREATE TABLE purchases (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  subscriber_id UUID REFERENCES subscribers(id),
+  product_id UUID REFERENCES products(id),
+  stripe_session_id TEXT,
+  amount_cents INTEGER NOT NULL,
+  purchased_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Content analytics: what content drives engagement
+CREATE TABLE content_signals (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  slug TEXT NOT NULL,
+  event_type TEXT NOT NULL, -- &#39;pageview&#39;, &#39;signup&#39;, &#39;purchase&#39;
+  referrer TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+</code></pre>
+<p>Four tables. Each serving a clear purpose. The relationships between them answer the questions that matter:</p>
+<ul>
+<li>&quot;Which blog posts drive the most signups?&quot; → JOIN content_signals with subscribers on source.</li>
+<li>&quot;What is the lifetime value of subscribers from organic search?&quot; → JOIN subscribers with purchases, filtered by source.</li>
+<li>&quot;Which products are most popular?&quot; → GROUP BY product_id in purchases, ORDER BY count.</li>
+</ul>
+<p>This schema is intentionally minimal. Most creators overcomplicate their data model before they have enough data to justify the complexity. Start with four tables. Add more when the data demands it, not before.</p>
+<hr>
+<h2>IV. Row-Level Security</h2>
+<p>Supabase&#39;s killer feature for creator applications is Row-Level Security (RLS) — database-level access control that ensures users can only access data they are authorized to see.</p>
+<pre><code class="language-sql">-- Enable RLS on subscribers table
+ALTER TABLE subscribers ENABLE ROW LEVEL SECURITY;
+
+-- Only the service role can read subscriber data
+CREATE POLICY &quot;Service role reads subscribers&quot;
+  ON subscribers FOR SELECT
+  USING (auth.role() = &#39;service_role&#39;);
+
+-- Subscribers can read their own purchase history
+CREATE POLICY &quot;Users read own purchases&quot;
+  ON purchases FOR SELECT
+  USING (subscriber_id = auth.uid());
+</code></pre>
+<p>RLS eliminates an entire category of security vulnerabilities — the kind where a frontend bug accidentally exposes other users&#39; data. With RLS, the database itself enforces access control, regardless of what the application code does.</p>
+<p>For a solo creator, RLS provides enterprise-grade data security without enterprise-grade security engineering. The policies are written once and enforced on every query, automatically.</p>
+<hr>
+<h2>V. Real-Time Subscriptions</h2>
+<p>Supabase provides real-time data via WebSocket subscriptions. When a row is inserted, updated, or deleted, all subscribed clients receive the change instantly.</p>
+<p>For creator applications, real-time is useful for:</p>
+<p><strong>Live dashboards.</strong> Display real-time subscriber counts, purchase notifications, and engagement metrics on an admin dashboard. Each new signup appears on the dashboard within milliseconds.</p>
+<p><strong>Notification systems.</strong> Trigger notifications when specific events occur — a high-value purchase, a coaching application, a subscriber milestone.</p>
+<p><strong>Collaborative editing.</strong> If you build tools for your community (writing tools, project trackers, shared workspaces), real-time enables multi-user collaboration.</p>
+<pre><code class="language-typescript">// Subscribe to new purchases in real-time
+const channel = supabase
+  .channel(&#39;purchases&#39;)
+  .on(&#39;postgres_changes&#39;, {
+    event: &#39;INSERT&#39;,
+    schema: &#39;public&#39;,
+    table: &#39;purchases&#39;,
+  }, (payload) =&gt; {
+    console.log(&#39;New purchase:&#39;, payload.new)
+    // Trigger notification, update dashboard, etc.
+  })
+  .subscribe()
+</code></pre>
+<hr>
+<h2>VI. Integration with the Vibe OS Stack</h2>
+<p>Supabase integrates with every other layer of the Vibe OS stack:</p>
+<p><strong>Next.js.</strong> The <code>@supabase/ssr</code> package provides server-side Supabase access in Next.js App Router. Server Components can query the database directly. API routes handle mutations. Middleware manages authentication.</p>
+<p><strong>Vercel.</strong> Supabase environment variables (URL and anon key) are stored in Vercel&#39;s environment variable system. The connection is direct — Supabase runs on its own infrastructure, Vercel connects via HTTPS.</p>
+<p><strong>n8n.</strong> n8n has a native Supabase node for automated workflows. The Content Atomizer can write analytics data to Supabase after processing. The Email Nurture workflow can check subscriber status in Supabase before sending.</p>
+<p><strong>Stripe.</strong> After a successful Stripe checkout, the webhook handler writes the purchase to Supabase. This creates the revenue record that powers the financial analytics.</p>
+<p><strong>MCP.</strong> The Supabase MCP server (available in the MCP ecosystem) allows Claude Code to query and manage the database directly. This enables AI-assisted data operations: &quot;Show me the top 10 content pieces by signup conversion&quot; is a natural language query that the MCP server translates to SQL.</p>
+<p>The integration pattern: every layer of the stack reads from and writes to Supabase. The database is the single source of truth. The other layers are consumers and producers of data.</p>
+<hr>
+<h2>VII. Cost Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Cost</th>
+<th>Includes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Free</td>
+<td>$0</td>
+<td>500MB database, 1GB storage, 50K monthly active users</td>
+</tr>
+<tr>
+<td>Pro</td>
+<td>$25/month</td>
+<td>8GB database, 100GB storage, unlimited users, daily backups</td>
+</tr>
+<tr>
+<td>Team</td>
+<td>$599/month</td>
+<td>Everything in Pro + SOC2, SSO, priority support</td>
+</tr>
+</tbody></table>
+<p>For a creator with under 10,000 subscribers and under 100 products, the Free tier is sufficient. The moment you need daily backups or point-in-time recovery, upgrade to Pro.</p>
+<p>The Pro tier at $25/month provides more database capability than most startups need in their first year. For a solo creator, it is infrastructure that would have cost $50,000/year to build and maintain ten years ago.</p>
+<p>This is the Vibe OS thesis in action: enterprise-grade infrastructure at creator-scale pricing. Supabase gives you PostgreSQL — the same database that powers Instagram, Spotify, and the New York Times — for the price of a monthly streaming subscription.</p>
+<p>Use it. The data layer is the foundation that makes everything else measurable, optimizable, and compounding.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

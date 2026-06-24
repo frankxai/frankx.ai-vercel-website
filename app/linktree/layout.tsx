@@ -6,7 +6,7 @@ import Script from 'next/script'
 export const metadata: Metadata = createMetadata({
   title: 'Frank X. Riemer | AI Architect & Creator - All Links',
   description:
-    'Connect with Frank X. Riemer — AI Architect at Oracle, creator of 12K+ AI songs, builder of the Agentic Creator OS. Products, resources, and community links.',
+    'Connect with Frank X. Riemer — AI Architect & Creator, 12K+ AI songs, builder of the Agentic Creator OS. Products, resources, and community links.',
   path: '/linktree',
   keywords: [
     'frank x riemer',

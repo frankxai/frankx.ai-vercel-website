@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Chapter 3: Building Your First Agent</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/books/agentic-builder/chapter-03-building-your-first-agent.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Chapter 3: Building Your First Agent</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#content">content</a> / <a href="../index.html#content%2Fbooks">books</a> / <a href="index.html#content%2Fbooks%2Fagentic-builder">agentic-builder</a> / <span>chapter-03-building-your-first-agent.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Chapter 3: Building Your First Agent</h1>
+<blockquote>
+<p>&quot;The best way to predict the future is to implement it.&quot;
+-- David Heinemeier Hansson</p>
+</blockquote>
+<hr>
+<h2>I. From Theory to Running Code</h2>
+<p>You understand what an agent is. You understand how tools work. Now we build one.</p>
+<p>This chapter constructs a complete agent from scratch using TypeScript and Anthropic&#39;s Claude API. Not a framework. Not an abstraction layer. Raw API calls, a tool execution loop, and explicit state management. When you understand the mechanics at this level, every framework becomes transparent -- you will see the loop underneath LangChain, CrewAI, and the Claude Agent SDK because you will have written it yourself.</p>
+<p>The agent we build will:</p>
+<ol>
+<li>Accept a goal in natural language</li>
+<li>Break the goal into steps</li>
+<li>Execute each step using available tools</li>
+<li>Handle errors and adapt its plan</li>
+<li>Maintain conversation state across iterations</li>
+<li>Report results when the goal is achieved</li>
+</ol>
+<p>The complete implementation is approximately 200 lines. Every line earns its place.</p>
+<hr>
+<h2>II. The Agent Loop</h2>
+<p>Every agent, regardless of framework or complexity, runs the same fundamental loop:</p>
+<pre><code>1. Observe: Gather context (user input, tool results, state)
+2. Think: Reason about the current situation and decide what to do
+3. Act: Execute a tool or produce a final response
+4. Loop: If the task is not complete, return to step 1
+</code></pre>
+<p>This is the sense-think-act cycle from robotics, adapted for LLM-based agents. The implementation is a <code>while</code> loop that sends messages to the model, checks if the model wants to use tools, executes those tools, feeds results back, and repeats until the model produces a final text response.</p>
+<pre><code class="language-typescript">while (true) {
+  const response = await callModel(messages, tools);
+
+  if (response.stopReason === &#39;end_turn&#39;) {
+    // Model produced a final response -- task complete
+    return response.content;
+  }
+
+  if (response.stopReason === &#39;tool_use&#39;) {
+    // Model wants to use tools -- execute and continue
+    const toolResults = await executeTools(response.toolCalls);
+    messages.push({ role: &#39;assistant&#39;, content: response.content });
+    messages.push({ role: &#39;user&#39;, content: toolResults });
+  }
+}
+</code></pre>
+<p>That is the entire skeleton. Everything else is detail around this loop.</p>
+<hr>
+<h2>III. The Full Implementation</h2>
+<p>Here is the complete agent. Read it top to bottom, then we will walk through each section.</p>
+<pre><code class="language-typescript">import Anthropic from &#39;@anthropic-ai/sdk&#39;;
+
+// --- Types ---
+
+interface Tool {
+  name: string;
+  description: string;
+  input_schema: object;
+  execute: (input: Record&lt;string, unknown&gt;) =&gt; Promise&lt;string&gt;;
+}
+
+interface AgentConfig {
+  model: string;
+  maxIterations: number;
+  systemPrompt: string;
+  tools: Tool[];
+  verbose: boolean;
+}
+
+interface AgentResult {
+  success: boolean;
+  output: string;
+  iterations: number;
+  toolCalls: { tool: string; input: unknown; output: string }[];
+}
+
+// --- Tools ---
+
+const tools: Tool[] = [
+  {
+    name: &quot;read_file&quot;,
+    description:
+      &quot;Read the contents of a file at the given path. Returns the file &quot; +
+      &quot;content as a string. Use this to examine existing files before &quot; +
+      &quot;modifying them. Returns an error if the file does not exist.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        path: {
+          type: &quot;string&quot;,
+          description: &quot;Absolute or relative file path to read.&quot;
+        }
+      },
+      required: [&quot;path&quot;]
+    },
+    execute: async (input) =&gt; {
+      const fs = await import(&#39;fs/promises&#39;);
+      try {
+        const content = await fs.readFile(input.path as string, &#39;utf-8&#39;);
+        return content;
+      } catch (error) {
+        const err = error as NodeJS.ErrnoException;
+        if (err.code === &#39;ENOENT&#39;) {
+          return `Error: File not found at &#39;${input.path}&#39;. Check the path and try again.`;
+        }
+        return `Error reading file: ${err.message}`;
+      }
+    }
+  },
+  {
+    name: &quot;write_file&quot;,
+    description:
+      &quot;Write content to a file at the given path. Creates the file if it &quot; +
+      &quot;does not exist. Overwrites existing content. Use read_file first &quot; +
+      &quot;to check existing content before overwriting. Creates parent &quot; +
+      &quot;directories automatically.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        path: {
+          type: &quot;string&quot;,
+          description: &quot;File path to write to.&quot;
+        },
+        content: {
+          type: &quot;string&quot;,
+          description: &quot;Content to write to the file.&quot;
+        }
+      },
+      required: [&quot;path&quot;, &quot;content&quot;]
+    },
+    execute: async (input) =&gt; {
+      const fs = await import(&#39;fs/promises&#39;);
+      const path = await import(&#39;path&#39;);
+      try {
+        const dir = path.dirname(input.path as string);
+        await fs.mkdir(dir, { recursive: true });
+        await fs.writeFile(input.path as string, input.content as string, &#39;utf-8&#39;);
+        return `Successfully wrote ${(input.content as string).length} characters to ${input.path}`;
+      } catch (error) {
+        return `Error writing file: ${(error as Error).message}`;
+      }
+    }
+  },
+  {
+    name: &quot;list_directory&quot;,
+    description:
+      &quot;List files and directories at the given path. Returns names with &quot; +
+      &quot;type indicators: &#39;/&#39; suffix for directories, no suffix for files. &quot; +
+      &quot;Does not recurse into subdirectories.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        path: {
+          type: &quot;string&quot;,
+          description: &quot;Directory path to list. Default: current directory.&quot;
+        }
+      },
+      required: []
+    },
+    execute: async (input) =&gt; {
+      const fs = await import(&#39;fs/promises&#39;);
+      try {
+        const dirPath = (input.path as string) || &#39;.&#39;;
+        const entries = await fs.readdir(dirPath, { withFileTypes: true });
+        const listing = entries.map(e =&gt;
+          e.isDirectory() ? `${e.name}/` : e.name
+        );
+        return listing.join(&#39;\n&#39;) || &#39;(empty directory)&#39;;
+      } catch (error) {
+        return `Error listing directory: ${(error as Error).message}`;
+      }
+    }
+  },
+  {
+    name: &quot;run_command&quot;,
+    description:
+      &quot;Execute a shell command and return its stdout and stderr. Use for &quot; +
+      &quot;running tests, installing packages, checking system state, or any &quot; +
+      &quot;operation that requires a shell. Commands time out after 30 seconds. &quot; +
+      &quot;Do NOT use for long-running processes or interactive commands.&quot;,
+    input_schema: {
+      type: &quot;object&quot;,
+      properties: {
+        command: {
+          type: &quot;string&quot;,
+          description: &quot;The shell command to execute.&quot;
+        }
+      },
+      required: [&quot;command&quot;]
+    },
+    execute: async (input) =&gt; {
+      const { exec } = await import(&#39;child_process&#39;);
+      const { promisify } = await import(&#39;util&#39;);
+      const execAsync = promisify(exec);
+      try {
+        const { stdout, stderr } = await execAsync(input.command as string, {
+          timeout: 30000,
+          maxBuffer: 1024 * 1024
+        });
+        let result = &#39;&#39;;
+        if (stdout) result += stdout;
+        if (stderr) result += `\nSTDERR:\n${stderr}`;
+        return result || &#39;(command produced no output)&#39;;
+      } catch (error) {
+        const err = error as { message: string; stdout?: string; stderr?: string; killed?: boolean };
+        if (err.killed) {
+          return &#39;Error: Command timed out after 30 seconds.&#39;;
+        }
+        return `Command failed:\n${err.stderr || err.message}`;
+      }
+    }
+  }
+];
+
+// --- Agent Core ---
+
+async function runAgent(goal: string, config?: Partial&lt;AgentConfig&gt;): Promise&lt;AgentResult&gt; {
+  const client = new Anthropic();
+
+  const defaults: AgentConfig = {
+    model: &#39;claude-sonnet-4-20250514&#39;,
+    maxIterations: 25,
+    systemPrompt:
+      &quot;You are a skilled software agent. You accomplish goals by breaking them &quot; +
+      &quot;into steps and using the available tools. Work methodically: understand &quot; +
+      &quot;the current state before making changes, verify your work after each step, &quot; +
+      &quot;and report clearly when done. If you encounter an error, analyze it and &quot; +
+      &quot;try a different approach rather than repeating the same action.&quot;,
+    tools,
+    verbose: true
+  };
+
+  const cfg = { ...defaults, ...config };
+  const toolLog: AgentResult[&#39;toolCalls&#39;] = [];
+
+  // Build the messages array -- this is the agent&#39;s working memory
+  const messages: Anthropic.MessageParam[] = [
+    { role: &#39;user&#39;, content: goal }
+  ];
+
+  // Build tool definitions for the API (without execute functions)
+  const apiTools: Anthropic.Tool[] = cfg.tools.map(t =&gt; ({
+    name: t.name,
+    description: t.description,
+    input_schema: t.input_schema as Anthropic.Tool.InputSchema
+  }));
+
+  // The agent loop
+  let iteration = 0;
+  while (iteration &lt; cfg.maxIterations) {
+    iteration++;
+
+    if (cfg.verbose) {
+      console.log(`\n--- Iteration ${iteration} ---`);
+    }
+
+    // Call the model
+    const response = await client.messages.create({
+      model: cfg.model,
+      max_tokens: 4096,
+      system: cfg.systemPrompt,
+      tools: apiTools,
+      messages
+    });
+
+    // Check stop reason
+    if (response.stop_reason === &#39;end_turn&#39;) {
+      // Model produced a final response
+      const textBlocks = response.content.filter(
+        (b): b is Anthropic.TextBlock =&gt; b.type === &#39;text&#39;
+      );
+      const output = textBlocks.map(b =&gt; b.text).join(&#39;\n&#39;);
+
+      if (cfg.verbose) {
+        console.log(`\nAgent completed in ${iteration} iterations.`);
+      }
+
+      return {
+        success: true,
+        output,
+        iterations: iteration,
+        toolCalls: toolLog
+      };
+    }
+
+    if (response.stop_reason === &#39;tool_use&#39;) {
+      // Extract tool use blocks
+      const toolUseBlocks = response.content.filter(
+        (b): b is Anthropic.ToolUseBlock =&gt; b.type === &#39;tool_use&#39;
+      );
+
+      // Add assistant message with all content (text + tool use)
+      messages.push({ role: &#39;assistant&#39;, content: response.content });
+
+      // Execute each tool call and collect results
+      const toolResults: Anthropic.ToolResultBlockParam[] = [];
+
+      for (const toolUse of toolUseBlocks) {
+        if (cfg.verbose) {
+          console.log(`  Tool: ${toolUse.name}`);
+          console.log(`  Input: ${JSON.stringify(toolUse.input).slice(0, 200)}`);
+        }
+
+        // Find the tool implementation
+        const tool = cfg.tools.find(t =&gt; t.name === toolUse.name);
+        let output: string;
+
+        if (!tool) {
+          output = `Error: Unknown tool &#39;${toolUse.name}&#39;. Available: ${cfg.tools.map(t =&gt; t.name).join(&#39;, &#39;)}`;
+        } else {
+          try {
+            output = await tool.execute(toolUse.input as Record&lt;string, unknown&gt;);
+          } catch (error) {
+            output = `Tool execution error: ${(error as Error).message}`;
+          }
+        }
+
+        if (cfg.verbose) {
+          console.log(`  Output: ${output.slice(0, 200)}${output.length &gt; 200 ? &#39;...&#39; : &#39;&#39;}`);
+        }
+
+        toolLog.push({
+          tool: toolUse.name,
+          input: toolUse.input,
+          output
+        });
+
+        toolResults.push({
+          type: &#39;tool_result&#39;,
+          tool_use_id: toolUse.id,
+          content: output
+        });
+      }
+
+      // Add tool results as user message
+      messages.push({ role: &#39;user&#39;, content: toolResults });
+    }
+  }
+
+  // Max iterations exceeded
+  return {
+    success: false,
+    output: `Agent did not complete within ${cfg.maxIterations} iterations.`,
+    iterations: cfg.maxIterations,
+    toolCalls: toolLog
+  };
+}
+
+// --- Entry Point ---
+
+async function main() {
+  const goal = process.argv[2];
+  if (!goal) {
+    console.error(&#39;Usage: npx tsx agent.ts &quot;Your goal here&quot;&#39;);
+    process.exit(1);
+  }
+
+  console.log(`Goal: ${goal}\n`);
+
+  const result = await runAgent(goal);
+
+  console.log(&#39;\n=== Result ===&#39;);
+  console.log(`Success: ${result.success}`);
+  console.log(`Iterations: ${result.iterations}`);
+  console.log(`Tool calls: ${result.toolCalls.length}`);
+  console.log(`\n${result.output}`);
+}
+
+main().catch(console.error);
+</code></pre>
+<hr>
+<h2>IV. Walking Through the Mechanics</h2>
+<h3>The Message Array Is Working Memory</h3>
+<p>The <code>messages</code> array is the agent&#39;s working memory. Every observation (user input, tool results) and every action (assistant responses with tool calls) accumulates in this array. The model sees the complete history on every iteration, which allows it to reason about what it has tried, what worked, what failed, and what to do next.</p>
+<p>This is simultaneously the mechanism&#39;s strength and its weakness. The strength: the model has full context for decision-making. The weakness: the context window is finite. After enough iterations, the messages array will exceed the model&#39;s context limit. Chapter 4 addresses memory management strategies for long-running agents.</p>
+<h3>Tool Execution Is Synchronous and Explicit</h3>
+<p>Each tool call follows the same pattern: extract the tool use block from the model&#39;s response, find the matching tool implementation, execute it, capture the output, and package it as a tool result. The results are added to the messages array as a user message (this is the API contract -- tool results come from the &quot;user&quot; role).</p>
+<p>Notice that tool execution is synchronous within an iteration but multiple tools can be called per iteration. When the model emits multiple tool use blocks in a single response, all are executed before the results are returned. In the current implementation, they execute sequentially. A production agent might execute independent tool calls in parallel.</p>
+<h3>The Stop Condition Is the Model&#39;s Decision</h3>
+<p>The agent loop continues until one of two conditions is met: the model responds with <code>stop_reason: &#39;end_turn&#39;</code> (meaning it has produced a final text response without requesting tool use) or the iteration limit is reached.</p>
+<p>The model decides when the task is complete. This is a deliberate design choice. The model has the context to judge whether the goal has been achieved. The iteration limit is a safety net, not a primary control mechanism.</p>
+<h3>Error Handling Is Information, Not Failure</h3>
+<p>When a tool fails, the error message is returned to the model as the tool result. The model sees the error, reasons about it, and decides what to do. Maybe it retries with different arguments. Maybe it uses a different tool. Maybe it abandons that approach and tries something else entirely.</p>
+<p>This is why the error messages in Chapter 2 included <code>suggestion</code> fields. The model reads those suggestions and incorporates them into its next action. Good error messages make agents resilient. Bad error messages make agents stuck.</p>
+<hr>
+<h2>V. Running the Agent</h2>
+<p>Save the code as <code>agent.ts</code> and run it:</p>
+<pre><code class="language-bash"># Install dependencies
+npm install @anthropic-ai/sdk tsx
+
+# Set your API key
+export ANTHROPIC_API_KEY=sk-ant-...
+
+# Run with a goal
+npx tsx agent.ts &quot;Create a TypeScript utility module called math-utils.ts with functions for mean, median, mode, and standard deviation. Include JSDoc comments and write a test file that verifies each function.&quot;
+</code></pre>
+<p>The agent will:</p>
+<ol>
+<li>Plan the implementation (what functions, what signatures, what edge cases)</li>
+<li>Write <code>math-utils.ts</code> using the <code>write_file</code> tool</li>
+<li>Write <code>math-utils.test.ts</code> using the <code>write_file</code> tool</li>
+<li>Run the tests using <code>run_command</code> to execute <code>npx tsx math-utils.test.ts</code></li>
+<li>If tests fail, read the error output, fix the code, and re-run</li>
+<li>Report the results when all tests pass</li>
+</ol>
+<p>A typical run takes 4-8 iterations and 6-12 tool calls. The agent does not just write code -- it verifies its own work.</p>
+<hr>
+<h2>VI. Testing Strategies</h2>
+<p>Testing agents is fundamentally different from testing functions. A function is deterministic: same input, same output. An agent is stochastic: same goal, different execution paths, equivalent outcomes. You test agents on outcomes, not on traces.</p>
+<h3>Outcome Tests</h3>
+<p>Define what success looks like, run the agent, and verify the outcome.</p>
+<pre><code class="language-typescript">async function testAgent() {
+  const result = await runAgent(
+    &quot;Create a file called hello.txt containing &#39;Hello, World!&#39;&quot;
+  );
+
+  // Verify outcome, not process
+  const fs = await import(&#39;fs/promises&#39;);
+  const content = await fs.readFile(&#39;hello.txt&#39;, &#39;utf-8&#39;);
+  assert(content.trim() === &#39;Hello, World!&#39;);
+  assert(result.success === true);
+  assert(result.iterations &lt;= 5); // Should not take many iterations
+}
+</code></pre>
+<h3>Boundary Tests</h3>
+<p>Push the agent to its limits to find failure modes.</p>
+<pre><code class="language-typescript">// Test: Can the agent handle a tool failure and recover?
+const brokenTools = tools.map(t =&gt;
+  t.name === &#39;write_file&#39;
+    ? { ...t, execute: async () =&gt; { throw new Error(&#39;Disk full&#39;); } }
+    : t
+);
+const result = await runAgent(&quot;Create a file called test.txt&quot;, {
+  tools: brokenTools
+});
+// Agent should report the failure, not crash
+assert(result.output.includes(&#39;disk&#39;) || result.output.includes(&#39;error&#39;));
+
+// Test: Does the agent respect iteration limits?
+const result2 = await runAgent(
+  &quot;Count to infinity by listing every integer&quot;,
+  { maxIterations: 3 }
+);
+assert(result2.success === false);
+assert(result2.iterations === 3);
+</code></pre>
+<h3>Cost Tests</h3>
+<p>Agents consume API tokens. Track token usage per run and set budgets.</p>
+<pre><code class="language-typescript">async function runAgentWithBudget(goal: string, maxTokens: number) {
+  let totalTokens = 0;
+  // Wrap the client to track usage
+  // ... (implementation tracks response.usage on each call)
+
+  if (totalTokens &gt; maxTokens) {
+    return { success: false, output: `Budget exceeded: ${totalTokens} tokens used.` };
+  }
+}
+</code></pre>
+<hr>
+<h2>VII. Common Pitfalls</h2>
+<h3>1. Infinite Loops</h3>
+<p>The agent gets stuck in a cycle: try action A, fail, try action A again, fail again. This happens when error messages do not provide enough information for the agent to try something different.</p>
+<p><strong>Fix</strong>: Improve error messages with specific suggestions. Add loop detection: if the agent calls the same tool with the same arguments three times, inject a meta-prompt: &quot;You have tried this approach three times without success. Please try a different approach.&quot;</p>
+<h3>2. Context Window Overflow</h3>
+<p>Long-running agents accumulate messages until the context window is exceeded. The API returns an error, and the agent crashes.</p>
+<p><strong>Fix</strong>: Monitor the token count of the messages array. When it approaches the context limit, summarize older messages: keep the goal, the current state, and recent interactions; compress everything else into a summary. Chapter 4 covers this in detail.</p>
+<h3>3. Tool Selection Failures</h3>
+<p>The agent picks the wrong tool because tool descriptions are ambiguous. It uses <code>run_command</code> to read a file (by running <code>cat</code>) instead of using <code>read_file</code>.</p>
+<p><strong>Fix</strong>: Make tool descriptions explicit about when to use each tool and when NOT to use it. Add negative guidance: &quot;Do NOT use run_command to read files -- use read_file instead.&quot;</p>
+<h3>4. Over-Planning, Under-Acting</h3>
+<p>The agent spends iterations thinking about what to do without actually doing it. It produces long reasoning text but never calls a tool.</p>
+<p><strong>Fix</strong>: Include in the system prompt: &quot;After assessing the situation, take action immediately. Do not spend multiple turns planning without executing. Use tools to gather information rather than speculating.&quot;</p>
+<h3>5. Premature Completion</h3>
+<p>The agent declares success before verifying its work. It writes code but does not run the tests. It creates a file but does not confirm the content.</p>
+<p><strong>Fix</strong>: Include in the system prompt: &quot;Always verify your work before reporting completion. If you created a file, read it back. If you wrote code, run the tests. If you configured a system, check that it works.&quot;</p>
+<hr>
+<h2>VIII. From Script to System</h2>
+<p>You now have a working agent. It can accept goals, plan, use tools, handle errors, and verify results. It runs from the command line and costs a few cents per invocation.</p>
+<p>This is a script. A useful script, but a script nonetheless. It has no memory across invocations. It runs a single goal and exits. It cannot coordinate with other agents. It has no authentication, no rate limiting, no observability.</p>
+<p>The rest of this book transforms this script into a production system.</p>
+<p>Chapter 4 adds memory -- the ability to learn from past interactions and maintain knowledge across sessions. Chapter 5 adds orchestration -- the ability to coordinate multiple agents working on related tasks. Later chapters add security, evaluation, voice interfaces, computer use, and deployment infrastructure.</p>
+<p>But all of it builds on the loop you now understand: observe, think, act, repeat. Every agent framework, every orchestration system, every autonomous coding tool runs this loop at its core. The abstractions vary. The loop does not.</p>
+<p>You now have a working agent. The rest of this book is about making it production-grade.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

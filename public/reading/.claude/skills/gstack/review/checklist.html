@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-06-22" />
+  <title>Pre-Landing Review Checklist</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/gstack/review/checklist.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Pre-Landing Review Checklist</div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fgstack">gstack</a> / <a href="index.html#.claude%2Fskills%2Fgstack%2Freview">review</a> / <span>checklist.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
+      <h1>Pre-Landing Review Checklist</h1>
+<h2>Instructions</h2>
+<p>Review the <code>git diff origin/main</code> output for the issues listed below. Be specific — cite <code>file:line</code> and suggest fixes. Skip anything that&#39;s fine. Only flag real problems.</p>
+<p><strong>Two-pass review:</strong></p>
+<ul>
+<li><strong>Pass 1 (CRITICAL):</strong> Run SQL &amp; Data Safety and LLM Output Trust Boundary first. Highest severity.</li>
+<li><strong>Pass 2 (INFORMATIONAL):</strong> Run all remaining categories. Lower severity but still actioned.</li>
+</ul>
+<p>All findings get action via Fix-First Review: obvious mechanical fixes are applied automatically,
+genuinely ambiguous issues are batched into a single user question.</p>
+<p><strong>Output format:</strong></p>
+<pre><code>Pre-Landing Review: N issues (X critical, Y informational)
+
+**AUTO-FIXED:**
+- [file:line] Problem → fix applied
+
+**NEEDS INPUT:**
+- [file:line] Problem description
+  Recommended fix: suggested fix
+</code></pre>
+<p>If no issues found: <code>Pre-Landing Review: No issues found.</code></p>
+<p>Be terse. For each issue: one line describing the problem, one line with the fix. No preamble, no summaries, no &quot;looks good overall.&quot;</p>
+<hr>
+<h2>Review Categories</h2>
+<h3>Pass 1 — CRITICAL</h3>
+<h4>SQL &amp; Data Safety</h4>
+<ul>
+<li>String interpolation in SQL (even if values are <code>.to_i</code>/<code>.to_f</code> — use parameterized queries (Rails: sanitize_sql_array/Arel; Node: prepared statements; Python: parameterized queries))</li>
+<li>TOCTOU races: check-then-set patterns that should be atomic <code>WHERE</code> + <code>update_all</code></li>
+<li>Bypassing model validations for direct DB writes (Rails: update_column; Django: QuerySet.update(); Prisma: raw queries)</li>
+<li>N+1 queries: Missing eager loading (Rails: .includes(); SQLAlchemy: joinedload(); Prisma: include) for associations used in loops/views</li>
+</ul>
+<h4>Race Conditions &amp; Concurrency</h4>
+<ul>
+<li>Read-check-write without uniqueness constraint or catch duplicate key error and retry (e.g., <code>where(hash:).first</code> then <code>save!</code> without handling concurrent insert)</li>
+<li>find-or-create without unique DB index — concurrent calls can create duplicates</li>
+<li>Status transitions that don&#39;t use atomic <code>WHERE old_status = ? UPDATE SET new_status</code> — concurrent updates can skip or double-apply transitions</li>
+<li>Unsafe HTML rendering (Rails: .html_safe/raw(); React: dangerouslySetInnerHTML; Vue: v-html; Django: |safe/mark_safe) on user-controlled data (XSS)</li>
+</ul>
+<h4>LLM Output Trust Boundary</h4>
+<ul>
+<li>LLM-generated values (emails, URLs, names) written to DB or passed to mailers without format validation. Add lightweight guards (<code>EMAIL_REGEXP</code>, <code>URI.parse</code>, <code>.strip</code>) before persisting.</li>
+<li>Structured tool output (arrays, hashes) accepted without type/shape checks before database writes.</li>
+</ul>
+<h4>Enum &amp; Value Completeness</h4>
+<p>When the diff introduces a new enum value, status string, tier name, or type constant:</p>
+<ul>
+<li><strong>Trace it through every consumer.</strong> Read (don&#39;t just grep — READ) each file that switches on, filters by, or displays that value. If any consumer doesn&#39;t handle the new value, flag it. Common miss: adding a value to the frontend dropdown but the backend model/compute method doesn&#39;t persist it.</li>
+<li><strong>Check allowlists/filter arrays.</strong> Search for arrays or <code>%w[]</code> lists containing sibling values (e.g., if adding &quot;revise&quot; to tiers, find every <code>%w[quick lfg mega]</code> and verify &quot;revise&quot; is included where needed).</li>
+<li><strong>Check <code>case</code>/<code>if-elsif</code> chains.</strong> If existing code branches on the enum, does the new value fall through to a wrong default?
+To do this: use Grep to find all references to the sibling values (e.g., grep for &quot;lfg&quot; or &quot;mega&quot; to find all tier consumers). Read each match. This step requires reading code OUTSIDE the diff.</li>
+</ul>
+<h3>Pass 2 — INFORMATIONAL</h3>
+<h4>Conditional Side Effects</h4>
+<ul>
+<li>Code paths that branch on a condition but forget to apply a side effect on one branch. Example: item promoted to verified but URL only attached when a secondary condition is true — the other branch promotes without the URL, creating an inconsistent record.</li>
+<li>Log messages that claim an action happened but the action was conditionally skipped. The log should reflect what actually occurred.</li>
+</ul>
+<h4>Magic Numbers &amp; String Coupling</h4>
+<ul>
+<li>Bare numeric literals used in multiple files — should be named constants documented together</li>
+<li>Error message strings used as query filters elsewhere (grep for the string — is anything matching on it?)</li>
+</ul>
+<h4>Dead Code &amp; Consistency</h4>
+<ul>
+<li>Variables assigned but never read</li>
+<li>Version mismatch between PR title and VERSION/CHANGELOG files</li>
+<li>CHANGELOG entries that describe changes inaccurately (e.g., &quot;changed from X to Y&quot; when X never existed)</li>
+<li>Comments/docstrings that describe old behavior after the code changed</li>
+</ul>
+<h4>LLM Prompt Issues</h4>
+<ul>
+<li>0-indexed lists in prompts (LLMs reliably return 1-indexed)</li>
+<li>Prompt text listing available tools/capabilities that don&#39;t match what&#39;s actually wired up in the <code>tool_classes</code>/<code>tools</code> array</li>
+<li>Word/token limits stated in multiple places that could drift</li>
+</ul>
+<h4>Test Gaps</h4>
+<ul>
+<li>Negative-path tests that assert type/status but not the side effects (URL attached? field populated? callback fired?)</li>
+<li>Assertions on string content without checking format (e.g., asserting title present but not URL format)</li>
+<li><code>.expects(:something).never</code> missing when a code path should explicitly NOT call an external service</li>
+<li>Security enforcement features (blocking, rate limiting, auth) without integration tests verifying the enforcement path works end-to-end</li>
+</ul>
+<h4>Completeness Gaps</h4>
+<ul>
+<li>Shortcut implementations where the complete version would cost &lt;30 minutes CC time (e.g., partial enum handling, incomplete error paths, missing edge cases that are straightforward to add)</li>
+<li>Options presented with only human-team effort estimates — should show both human and CC+gstack time</li>
+<li>Test coverage gaps where adding the missing tests is a &quot;lake&quot; not an &quot;ocean&quot; (e.g., missing negative-path tests, missing edge case tests that mirror happy-path structure)</li>
+<li>Features implemented at 80-90% when 100% is achievable with modest additional code</li>
+</ul>
+<h4>Crypto &amp; Entropy</h4>
+<ul>
+<li>Truncation of data instead of hashing (last N chars instead of SHA-256) — less entropy, easier collisions</li>
+<li><code>rand()</code> / <code>Random.rand</code> for security-sensitive values — use <code>SecureRandom</code> instead</li>
+<li>Non-constant-time comparisons (<code>==</code>) on secrets or tokens — vulnerable to timing attacks</li>
+</ul>
+<h4>Time Window Safety</h4>
+<ul>
+<li>Date-key lookups that assume &quot;today&quot; covers 24h — report at 8am PT only sees midnight→8am under today&#39;s key</li>
+<li>Mismatched time windows between related features — one uses hourly buckets, another uses daily keys for the same data</li>
+</ul>
+<h4>Type Coercion at Boundaries</h4>
+<ul>
+<li>Values crossing Ruby→JSON→JS boundaries where type could change (numeric vs string) — hash/digest inputs must normalize types</li>
+<li>Hash/digest inputs that don&#39;t call <code>.to_s</code> or equivalent before serialization — <code>{ cores: 8 }</code> vs <code>{ cores: &quot;8&quot; }</code> produce different hashes</li>
+</ul>
+<h4>View/Frontend</h4>
+<ul>
+<li>Inline <code>&lt;style&gt;</code> blocks in partials (re-parsed every render)</li>
+<li>O(n*m) lookups in views (<code>Array#find</code> in a loop instead of <code>index_by</code> hash)</li>
+<li>Ruby-side <code>.select{}</code> filtering on DB results that could be a <code>WHERE</code> clause (unless intentionally avoiding leading-wildcard <code>LIKE</code>)</li>
+</ul>
+<h4>Performance &amp; Bundle Impact</h4>
+<ul>
+<li>New <code>dependencies</code> entries in package.json that are known-heavy: moment.js (→ date-fns, 330KB→22KB), lodash full (→ lodash-es or per-function imports), jquery, core-js full polyfill</li>
+<li>Significant lockfile growth (many new transitive dependencies from a single addition)</li>
+<li>Images added without <code>loading=&quot;lazy&quot;</code> or explicit width/height attributes (causes layout shift / CLS)</li>
+<li>Large static assets committed to repo (&gt;500KB per file)</li>
+<li>Synchronous <code>&lt;script&gt;</code> tags without async/defer</li>
+<li>CSS <code>@import</code> in stylesheets (blocks parallel loading — use bundler imports instead)</li>
+<li><code>useEffect</code> with fetch that depends on another fetch result (request waterfall — combine or parallelize)</li>
+<li>Named → default import switches on tree-shakeable libraries (breaks tree-shaking)</li>
+<li>New <code>require()</code> calls in ESM codebases</li>
+</ul>
+<p><strong>DO NOT flag:</strong></p>
+<ul>
+<li>devDependencies additions (don&#39;t affect production bundle)</li>
+<li>Dynamic <code>import()</code> calls (code splitting — these are good)</li>
+<li>Small utility additions (&lt;5KB gzipped)</li>
+<li>Server-side-only dependencies</li>
+</ul>
+<hr>
+<h2>Severity Classification</h2>
+<pre><code>CRITICAL (highest severity):      INFORMATIONAL (lower severity):
+├─ SQL &amp; Data Safety              ├─ Conditional Side Effects
+├─ Race Conditions &amp; Concurrency  ├─ Magic Numbers &amp; String Coupling
+├─ LLM Output Trust Boundary      ├─ Dead Code &amp; Consistency
+└─ Enum &amp; Value Completeness      ├─ LLM Prompt Issues
+                                   ├─ Test Gaps
+                                   ├─ Completeness Gaps
+                                   ├─ Crypto &amp; Entropy
+                                   ├─ Time Window Safety
+                                   ├─ Type Coercion at Boundaries
+                                   ├─ View/Frontend
+                                   └─ Performance &amp; Bundle Impact
+
+All findings are actioned via Fix-First Review. Severity determines
+presentation order and classification of AUTO-FIX vs ASK — critical
+findings lean toward ASK (they&#39;re riskier), informational findings
+lean toward AUTO-FIX (they&#39;re more mechanical).
+</code></pre>
+<hr>
+<h2>Fix-First Heuristic</h2>
+<p>This heuristic is referenced by both <code>/review</code> and <code>/ship</code>. It determines whether
+the agent auto-fixes a finding or asks the user.</p>
+<pre><code>AUTO-FIX (agent fixes without asking):     ASK (needs human judgment):
+├─ Dead code / unused variables            ├─ Security (auth, XSS, injection)
+├─ N+1 queries (missing eager loading)      ├─ Race conditions
+├─ Stale comments contradicting code       ├─ Design decisions
+├─ Magic numbers → named constants         ├─ Large fixes (&gt;20 lines)
+├─ Missing LLM output validation           ├─ Enum completeness
+├─ Version/path mismatches                 ├─ Removing functionality
+├─ Variables assigned but never read       └─ Anything changing user-visible
+└─ Inline styles, O(n*m) view lookups        behavior
+</code></pre>
+<p><strong>Rule of thumb:</strong> If the fix is mechanical and a senior engineer would apply it
+without discussion, it&#39;s AUTO-FIX. If reasonable engineers could disagree about
+the fix, it&#39;s ASK.</p>
+<p><strong>Critical findings default toward ASK</strong> (they&#39;re inherently riskier).
+<strong>Informational findings default toward AUTO-FIX</strong> (they&#39;re more mechanical).</p>
+<hr>
+<h2>Suppressions — DO NOT flag these</h2>
+<ul>
+<li>&quot;X is redundant with Y&quot; when the redundancy is harmless and aids readability (e.g., <code>present?</code> redundant with <code>length &gt; 20</code>)</li>
+<li>&quot;Add a comment explaining why this threshold/constant was chosen&quot; — thresholds change during tuning, comments rot</li>
+<li>&quot;This assertion could be tighter&quot; when the assertion already covers the behavior</li>
+<li>Suggesting consistency-only changes (wrapping a value in a conditional to match how another constant is guarded)</li>
+<li>&quot;Regex doesn&#39;t handle edge case X&quot; when the input is constrained and X never occurs in practice</li>
+<li>&quot;Test exercises multiple guards simultaneously&quot; — that&#39;s fine, tests don&#39;t need to isolate every guard</li>
+<li>Eval threshold changes (max_actionable, min scores) — these are tuned empirically and change constantly</li>
+<li>Harmless no-ops (e.g., <code>.reject</code> on an element that&#39;s never in the array)</li>
+<li>ANYTHING already addressed in the diff you&#39;re reviewing — read the FULL diff before commenting</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>
