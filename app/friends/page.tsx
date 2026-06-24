@@ -60,11 +60,17 @@ export default function FriendsPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/friends/estefania"
+                href="/friends/ana"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black shadow-[0_18px_60px_rgba(255,255,255,0.16)] transition hover:bg-amber-100"
               >
-                Open Estefania
+                Open Ana
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/friends/estefania"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 backdrop-blur-xl transition hover:border-amber-100/55 hover:bg-amber-200/15"
+              >
+                Open Estefania
               </Link>
               <Link
                 href="/allies"
@@ -115,10 +121,10 @@ export default function FriendsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
-              First Friend
+              Friend Nodes
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-              Start small. Make it real.
+              Start warm. Make it useful.
             </h2>
           </div>
 
@@ -178,6 +184,65 @@ export default function FriendsPage() {
               </div>
             </div>
           </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(212,165,116,0.20),rgba(22,101,52,0.18),rgba(255,255,255,0.04))] p-7 md:p-9">
+              <div className="flex h-full min-h-[320px] flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-100" />
+                    People Systems
+                  </div>
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                    Ana Cecilia Cancino
+                  </h3>
+                  <p className="mt-4 text-lg leading-8 text-white/76">
+                    A public-safe bridge from Ana's HR, psychology,
+                    self-knowledge, faith, embodiment, and AI companion work
+                    into a practical business kit she can test, refine, and
+                    travel with.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/friends/ana"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                  >
+                    Open profile
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/allies/ana-cancino"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                  >
+                    Business kit
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-7 md:p-9">
+              <div className="grid gap-4">
+                {[
+                  ["Public-safe", "Use verified public material first; keep deeper biography, quotes, and testimonials private until approved."],
+                  ["Offer-led", "Anchor the system in clarity sessions, reflection circles, workshops, and a proposed team path."],
+                  ["Installable", "Give her a ZIP with agent briefs, offer maps, aftercare, content loops, and ACOS guidance."],
+                ].map(([title, copy]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Shield className="mt-1 h-5 w-5 shrink-0 text-emerald-100" />
+                    <div>
+                      <h4 className="font-black text-white">{title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {copy}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -197,10 +262,10 @@ export default function FriendsPage() {
             </p>
           </div>
           <Link
-            href="/allies/epic-ways"
+            href="/allies/ana-cancino"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open TheEpicWays ally page
+            Open Ana ally page
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

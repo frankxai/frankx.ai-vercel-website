@@ -47,6 +47,15 @@ const activeNodes = [
       "Estefania Badra's leadership, communication, training, consulting, and event-experience company, now framed as a client-intelligence system for better service before, during, and after the room.",
     tags: ["Leadership", "Communication", "Workshops", "Events"],
   },
+  {
+    title: "Ana AI Business Kit",
+    status: "Noindex draft",
+    href: "/allies/ana-cancino",
+    friendHref: "/friends/ana",
+    description:
+      "Ana Cecilia Cancino's HR, psychology, self-knowledge, research, and AI companion work framed as a practical offer system, client loop, and travel-friendly business engine.",
+    tags: ["HR", "Psychology", "Self-knowledge", "Offers"],
+  },
 ];
 
 const operatingLayers = [
@@ -87,6 +96,12 @@ export default function AlliesPage() {
               >
                 Open TheEpicWays
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/allies/ana-cancino"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-200/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/55 hover:bg-emerald-200/15"
+              >
+                Open Ana kit
               </Link>
               <Link
                 href="/friends"
@@ -139,7 +154,7 @@ export default function AlliesPage() {
                 Active Nodes
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-                The first ally portal starts here.
+                The first ally portals start here.
               </h2>
             </div>
             <Link
@@ -253,14 +268,15 @@ export default function AlliesPage() {
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-white/66">
               The ally layer carries public collaboration. The friends layer
-              carries the warmer personal map. TheEpicWays gets both.
+              carries the warmer personal map. TheEpicWays and Ana both get
+              careful public doors before deeper material is approved.
             </p>
           </div>
           <Link
-            href="/friends/estefania"
+            href="/friends/ana"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open Estefania
+            Open Ana friend page
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
