@@ -6,6 +6,8 @@ export function GET() {
     version: "0.1.0",
     releaseDate: "2026-06-24",
     publicPage: "https://frankx.ai/downloads/ana-ai-business-kit",
+    checksumSha256:
+      "1a32030bb99f90f5b2a7c2d5dd82822ab7b686a59c105524dfcee5e52d0f979d",
     assets: [
       {
         name: "ana-ai-business-kit-v0.1.0.zip",
