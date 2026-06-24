@@ -212,10 +212,11 @@ function MarkdownBody({ content }: { content: string }) {
 
 function InlineMarkdown({ text }: { text: string }) {
   // Handle bold, italic, inline code, and links
-  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|\[([^\]]+)\]\(([^)]+)\))/g)
+  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|\[(?:[^\]]+)\]\((?:[^)]+)\))/g)
   return (
     <>
       {parts.map((part, i) => {
+        if (!part) return null
         if (part.startsWith('**') && part.endsWith('**')) {
           return <strong key={i} className="font-semibold text-white">{part.slice(2, -2)}</strong>
         }
@@ -295,7 +296,7 @@ export default async function AskSlugPage({ params }: { params: Promise<{ slug: 
           </span>
           <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-500">
             <Calendar className="h-3 w-3" />
-            {new Date(q.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {new Date(q.date).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' })}
           </span>
         </div>
 
