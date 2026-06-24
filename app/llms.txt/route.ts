@@ -3,6 +3,7 @@ import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
+import { askQuestions } from '@/data/ask-questions'
 
 const SITE_URL = siteConfig.url
 
@@ -30,6 +31,10 @@ export async function GET() {
 
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  const askLinks = askQuestions
+    .map((q) => `- [${q.question}](${SITE_URL}/ask/${q.slug}): ${q.tldr}`)
     .join('\n')
 
   const content = `# FrankX
@@ -66,6 +71,10 @@ ${researchLinks}
 - [Ikigai Branding](${SITE_URL}/workshops/ikigai-branding): Brand discovery wizard with Coach GPT
 - [AI 2026 Graduates](${SITE_URL}/workshops/ai-2026-graduates): Career path workshop
 - [AI Music Masterclass](${SITE_URL}/workshops/ai-music-masterclass): Suno-grade music production
+
+## Ask FrankX (Q&A)
+- [Ask FrankX Hub](${SITE_URL}/ask): Practical answers on AI architecture, music production, and creator workflows
+${askLinks}
 
 ## Tools
 - [ROI Calculator](${SITE_URL}/tools/roi-calculator): AI ROI estimator for enterprise
