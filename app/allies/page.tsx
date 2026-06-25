@@ -63,6 +63,17 @@ const activeNodes = [
       "Download a starter kit and see how her existing offers can become a gentle AI-assisted business system.",
     tags: ["HR", "Psychology", "Self-knowledge", "Offers"],
   },
+  {
+    title: "Harzfenster Hospitality Intelligence",
+    status: "Hospitality pilot",
+    href: "/allies/harzfenster",
+    friendHref: "/friends/jojo",
+    description:
+      "Jojo Steingrüber's Harzfenster and Hotel Görtler context framed as a human-approved hospitality intelligence pilot for bookings, service briefings, hotel handoffs, review learning, and team enablement.",
+    visitorUse:
+      "See how a real owner-led restaurant and hotel moment can become an installable operating kit and a reusable FrankX hospitality vertical.",
+    tags: ["Hospitality", "Restaurant", "Hotel", "Service"],
+  },
 ];
 
 const operatingLayers = [
@@ -128,10 +139,10 @@ export default function AlliesPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/allies/ana-cancino"
+                href="/allies/harzfenster"
                 className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-200/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/55 hover:bg-emerald-200/15"
               >
-                Open Ana kit
+                Open Harzfenster
               </Link>
               <Link
                 href="/friends"
@@ -337,15 +348,15 @@ export default function AlliesPage() {
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-white/66">
               The ally layer carries public collaboration. The friends layer
-              carries the warmer personal map. TheEpicWays and Ana both get
-              careful public doors before deeper material is approved.
+              carries the warmer personal map. TheEpicWays, Ana, and Jojo each
+              get careful public doors before deeper material is approved.
             </p>
           </div>
           <Link
-            href="/friends/ana"
+            href="/hospitality-intelligence"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open Ana friend page
+            Open hospitality vertical
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

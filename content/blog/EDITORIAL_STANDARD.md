@@ -9,7 +9,7 @@ The operating standard for every article. Goal: writing that is **credible, huma
 Frank Riemer is a **former Oracle AI architect** who **helped build Oracle's EMEA AI Center of Excellence**. He is now independent, building agentic AI systems and creating music with AI.
 
 - ✅ "Ex-Oracle AI architect", "former Oracle AI architect", "helped build Oracle's AI Center of Excellence", "the frameworks I built at Oracle"
-- ❌ "I work at Oracle", "my day job at Oracle", "I'm an AI Architect at Oracle" (present tense = inaccurate)
+- ❌ Present-tense Oracle employment claims (inaccurate)
 - Oracle Cloud / OCI **expertise** is still fair to cite — it's the credibility, not a current employer.
 
 Canonical bio (short): *Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Now builds agentic systems independently and makes music with AI.*

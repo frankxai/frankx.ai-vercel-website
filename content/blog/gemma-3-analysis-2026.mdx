@@ -1,10 +1,10 @@
 ---
-title: 'Gemma 4: Google''s Open-Weight Family Now Runs a 31B Frontier Model on One GPU'
-description: 'Google''s current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4. Self-host specifics, verified benchmarks, license analysis, and which size for which job.'
-date: '2026-06-05'
-lastUpdated: '2026-06-05'
-author: Frank
-category: Intelligence Dispatches
+title: "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU"
+description: "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4. Self-host specifics, verified benchmarks, license analysis, and which size for which job."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
 tags:
   - google
   - gemma
@@ -23,42 +23,21 @@ keywords:
   - gemma 4 12b multimodal
   - best open weight model 2026
   - gemma 4 model sizes
-image: /images/blog/generated/gemma-3-analysis-2026-premium-hero.png
+image: "/images/blog/gemma-3-analysis-2026-hero.png"
 featured: true
-schema:
-  - Article
-  - FAQPage
+schema: ["Article", "FAQPage"]
 architectNote:
-  recommendation: 'Gemma 4 is the self-hosted tier of your AI Center of Excellence: the 31B is the strongest open model that fits on a single 24GB GPU (~18GB at Q4), now under plain Apache 2.0, which removes the legal review that stalled prior Gemma adoptions. Route privacy-bound work and high-volume agent loops here — the 26B A4B MoE plus vLLM batching is a fundamentally different cost curve than per-call API billing. Do not make it compete at the frontier; Fable 5 ($10/$50, the current agentic ceiling) or DeepSeek V4 carry the hardest work. Before committing, run your own eval against Qwen 3.5, which narrowly out-reasons it — Gemma 4 wins on package, not on every score.'
-  coePillar: Technology · model routing + Governance · data sovereignty
+  recommendation: "Gemma 4 is the self-hosted tier of your AI Center of Excellence: the 31B is the strongest open model that fits on a single 24GB GPU (~18GB at Q4), now under plain Apache 2.0, which removes the legal review that stalled prior Gemma adoptions. Route privacy-bound work and high-volume agent loops here — the 26B A4B MoE plus vLLM batching is a fundamentally different cost curve than per-call API billing. Do not make it compete at the frontier; Fable 5 ($10/$50, the current agentic ceiling) or DeepSeek V4 carry the hardest work. Before committing, run your own eval against Qwen 3.5, which narrowly out-reasons it — Gemma 4 wins on package, not on every score."
+  coePillar: "Technology · model routing + Governance · data sovereignty"
   personas:
-    - persona: Sovereign / self-hosted stacks
-      pick: 'Gemma 4 31B — max open quality on one GPU, Apache 2.0'
-    - persona: Agentic mid-tier / tool-use fleets
-      pick: Gemma 4 26B A4B (~4B active) — MoE throughput at $0 per token
-    - persona: Multimodal ingest agents
-      pick: Gemma 4 12B — encoder-free vision + native audio on a 16GB laptop
-    - persona: Fine-tuned domain agents
-      pick: 'Gemma 4 (base + it checkpoints, Unsloth tooling, no disclosure obligation)'
-visualSystem:
-  hero: /images/blog/generated/gemma-3-analysis-2026-premium-hero.png
-  fallbackHero: /images/blog/gemma-3-analysis-2026-hero.svg
-  generatedMode: built-in-image-gen
-  generationMode: built-in-image-gen
-  assetType: hero
-  spectrum: tech
-  socialAngle: developer
-  qualityScore: 8
-  qualityTier: premium
-  reviewStatus: accepted
-  deploymentStatus: ready
-  sourceGeneratedFile: 'C:/Users/frank/.codex/generated_images/019ecfea-ab22-78d1-867e-585f3c5a941f/ig_088bc8e402edd512016a32ce6349d48191b054bc3964d83d9a.png'
-  notes: 'Accepted: strong single-GPU/local-model hardware metaphor with clean negative space.'
-  social:
-    wide: /images/social/blog/gemma-3-analysis-2026/wide.png
-    square: /images/social/blog/gemma-3-analysis-2026/square.png
-    portrait: /images/social/blog/gemma-3-analysis-2026/portrait.png
-    vertical: /images/social/blog/gemma-3-analysis-2026/portrait.png
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "Gemma 4 31B — max open quality on one GPU, Apache 2.0"
+    - persona: "Agentic mid-tier / tool-use fleets"
+      pick: "Gemma 4 26B A4B (~4B active) — MoE throughput at $0 per token"
+    - persona: "Multimodal ingest agents"
+      pick: "Gemma 4 12B — encoder-free vision + native audio on a 16GB laptop"
+    - persona: "Fine-tuned domain agents"
+      pick: "Gemma 4 (base + it checkpoints, Unsloth tooling, no disclosure obligation)"
 ---
 
 # Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU

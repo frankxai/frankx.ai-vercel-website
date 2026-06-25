@@ -88,8 +88,14 @@ export default function FriendsPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/friends/estefania"
+                href="/friends/jojo"
                 className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 backdrop-blur-xl transition hover:border-amber-100/55 hover:bg-amber-200/15"
+              >
+                Open Jojo
+              </Link>
+              <Link
+                href="/friends/estefania"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white backdrop-blur-xl transition hover:border-white/45 hover:bg-white/10"
               >
                 Open Estefania
               </Link>
@@ -207,6 +213,65 @@ export default function FriendsPage() {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(215,178,122,0.22),rgba(22,101,52,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
+              <div className="flex h-full min-h-[320px] flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-100" />
+                    Hospitality Friend
+                  </div>
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                    Jojo Steingrüber
+                  </h3>
+                  <p className="mt-4 text-lg leading-8 text-white/76">
+                    Frank's friend, publicly Johannes Steingrüber of
+                    Harzfenster and Hotel Görtler in Seesen. The friend page is
+                    a careful doorway into a hospitality intelligence pilot
+                    built around service, trust, and owner-led craft.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/friends/jojo"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                  >
+                    Open profile
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/allies/harzfenster"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                  >
+                    Hospitality system
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-7 md:p-9">
+              <div className="grid gap-4">
+                {[
+                  ["Public facts first", "Use sourced material around Harzfenster, Hotel Görtler, and Michelin, with no private details until approved."],
+                  ["Operational gift", "Give the house useful workflows for bookings, service briefings, guest follow-up, and team learning."],
+                  ["Reusable vertical", "Turn what works into a serious Hospitality Intelligence offer for other restaurants and hotels."],
+                ].map(([title, copy]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Shield className="mt-1 h-5 w-5 shrink-0 text-amber-100" />
+                    <div>
+                      <h4 className="font-black text-white">{title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {copy}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </article>
@@ -332,10 +397,10 @@ export default function FriendsPage() {
             </p>
           </div>
           <Link
-            href="/allies/ana-cancino"
+            href="/allies/harzfenster"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open Ana ally page
+            Open Jojo ally page
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

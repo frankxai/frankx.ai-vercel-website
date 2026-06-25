@@ -4,19 +4,35 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, Filter, Layers3 } from 'lucide-react'
+import { ArrowRight, Sparkles, Filter } from 'lucide-react'
 
 import BlogCard from '@/components/blog/BlogCard'
 import CategoryDropdown from '@/components/blog/CategoryDropdown'
-import type { BlogPostSummary } from '@/lib/blog'
+import PremiumVisualCarousel from '@/components/blog/PremiumVisualCarousel'
+import { cn } from '@/lib/utils'
 
 // ============================================================================
 // TYPES
 // ============================================================================
 
+interface BlogPost {
+  slug: string
+  title: string
+  description: string
+  date: string
+  author: string
+  category: string
+  tags: string[]
+  image?: string
+  readingTime: string
+  content?: string
+  featured?: boolean
+}
+
 interface BlogPageClientProps {
-  posts: BlogPostSummary[]
+  posts: BlogPost[]
   categories: string[]
+  tags: string[]
 }
 
 // ============================================================================
@@ -46,34 +62,49 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Editorial Hero */}
-      <section className="relative overflow-hidden px-6 pb-10 pt-28">
+      <section className="relative pt-28 pb-10 px-6 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
-          <div className="absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.12),rgba(6,182,212,0.05)_38%,transparent_72%)]" />
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full blur-[128px]" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[128px]" style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)' }} />
         </div>
 
         <div className="max-w-6xl mx-auto relative">
+          {/* Axi — blog mascot accent */}
+          <div className="pointer-events-none absolute -right-4 top-0 hidden w-44 opacity-12 lg:block xl:w-52">
+            <Image
+              src="/images/mascot/mascot-v06-prowling-action.png"
+              alt=""
+              width={208}
+              height={208}
+              className="object-contain"
+              aria-hidden="true"
+            />
+          </div>
+
           {/* Blog Identity Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-10 flex items-end justify-between"
+            className="flex items-end justify-between mb-10"
           >
             <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5">
-                <Layers3 className="h-4 w-4 text-emerald-400" />
-                <span className="text-xs font-medium text-emerald-300">FrankX Intelligence Journal</span>
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" sizes="40px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+                </div>
               </div>
-              <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
-                Systems for the builders of the agent era.
+              <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                Inside the build.
               </h1>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/55 md:text-lg">
-                Field notes on AI architecture, creator leverage, market signal, and the tools that turn experiments into operating systems.
+              <p className="mt-2 text-base text-white/40">
+                AI systems, creative workflows, and what&apos;s actually shipping.
               </p>
             </div>
-            <div className="hidden items-center gap-6 border-l border-white/10 pl-6 text-sm text-white/45 md:flex">
-              <span><span className="font-semibold text-white">{posts.length}</span> briefs</span>
-              <span><span className="font-semibold text-white">{categories.length}</span> systems</span>
+            <div className="hidden md:flex items-center gap-5 text-sm text-white/40">
+              <span><span className="font-semibold text-white">{posts.length}</span> articles</span>
+              <span><span className="font-semibold text-white">{categories.length}</span> topics</span>
             </div>
           </motion.div>
 
@@ -85,23 +116,23 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               transition={{ delay: 0.12, duration: 0.6 }}
             >
               <Link href={`/blog/${latestPost.slug}`} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-white/[0.10] bg-[#101216] transition-all duration-300 hover:border-emerald-500/35">
+                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
                   {latestPost.image ? (
                     <div className="grid md:grid-cols-2 gap-0">
-                      <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden">
+                      <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[280px] overflow-hidden p-1">
                         <Image
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
-                          className="object-cover object-left transition-transform duration-500 group-hover:scale-[1.03]"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>
-                      <div className="flex flex-col justify-center p-6 md:p-8">
+                      <div className="p-6 md:p-8 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-4">
                           <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
                           <span className="text-xs text-white/30">{latestPost.readingTime}</span>
                         </div>
-                        <h2 className="mb-3 text-2xl font-bold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight leading-tight">
                           {latestPost.title}
                         </h2>
                         <p className="text-sm text-white/50 leading-relaxed line-clamp-3">
@@ -138,6 +169,11 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         </div>
       </section>
 
+      {/* Premium Visual Carousel — Ultra experience with new architectural headers + motion */}
+      <div className="max-w-6xl mx-auto px-6">
+        <PremiumVisualCarousel />
+      </div>
+
       {/* Category Dropdown & Filter Section */}
       <section className="pb-8 px-6 sticky top-20 z-40 bg-[#0a0a0b]/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -151,20 +187,20 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             />
 
             <div className="hidden md:flex items-center gap-2 border-l border-white/10 pl-4 ml-4">
-              <span className="text-xs font-medium text-white/40 uppercase tracking-wider">Operating layers:</span>
+              <span className="text-xs font-medium text-white/40 uppercase tracking-wider">Frameworks:</span>
               <Link 
                 href="/youtube" 
                 className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 transition-colors flex items-center gap-1.5"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                Video systems
+                Video Intelligence
               </Link>
               <Link 
                 href="/opus-pro" 
                 className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 transition-colors flex items-center gap-1.5"
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                Distribution
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                Short-Form Nexus
               </Link>
             </div>
 
@@ -188,7 +224,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             <div className="flex items-center gap-2 mb-8">
               <Sparkles className="w-4 h-4 text-amber-400" />
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-                Strategic reads
+                Featured Articles
               </h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
@@ -224,7 +260,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           {!selectedCategory && regularPosts.length > 0 && (
             <div className="flex items-center gap-2 mb-8">
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-                Intelligence archive
+                All Articles
               </h2>
               <span className="text-xs text-white/30">
                 • {regularPosts.length} {regularPosts.length === 1 ? 'article' : 'articles'}
@@ -277,13 +313,13 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         <div className="max-w-xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
             <Sparkles className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm text-emerald-400">Weekly field notes</span>
+            <span className="text-sm text-emerald-400">Weekly Insights</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Build with sharper signal
+            Join Creation Chronicles
           </h2>
           <p className="text-white/50 mb-8">
-            Weekly analysis on agent stacks, creative systems, and founder-grade AI leverage.
+            Get weekly insights on AI, creativity, and building in public.
           </p>
           <Link
             href="/newsletter"

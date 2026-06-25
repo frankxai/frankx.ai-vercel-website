@@ -11,7 +11,7 @@ const stats = [
   {
     label: 'Enterprise AI',
     value: '4+ years',
-    sublabel: 'Oracle AI Architect',
+    sublabel: 'Former AI Architect',
     icon: Brain,
     element: 'water' as const,
   },

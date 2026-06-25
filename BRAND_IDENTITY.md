@@ -1,7 +1,7 @@
 # FrankX Brand Identity - Ground Truth
 **🔒 IMMUTABLE SOURCE OF TRUTH - DO NOT MODIFY WITHOUT FRANK'S EXPLICIT APPROVAL**
 
-*Last Updated: 2026-01-13*
+*Last Updated: 2026-06-25*
 *Managed By: Frank X. Riemer*
 
 ---
@@ -25,23 +25,29 @@
 
 ### Professional Titles
 - AI Architect (primary — never "AI Systems Architect" per CLAUDE.md mandate)
+- Former AI Architect at Oracle
 - Musician-Technologist
 - Creator Transformation Guide
 
 ### Bio (Short - 160 chars for Twitter)
-Musician-technologist building AI systems that amplify human creativity. Founder @FrankX_AI • Vibe OS • Suno • Oracle
+Former AI architect at Oracle helping creators build practical AI systems. Founder @FrankX_AI • 12,000+ AI songs • human-first systems
 
 ### Bio (Medium - 1 paragraph)
-Frank X. Riemer is a musician-technologist who bridges consciousness, creativity, and cutting-edge AI. As founder of FrankX.AI, he helps creators build operating systems for their studios using Claude, Suno, and agentic workflows. His work spans AI music production, enterprise intelligence systems, and transformation-focused content that turns overwhelmed creators into confident, AI-empowered artists.
+Frank X. Riemer is a musician-technologist, founder of FrankX.AI, and former AI architect at Oracle. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
 
 ### Bio (Long - Full Background)
-Frank X. Riemer is a musician, technologist, and creator transformation guide who spent the first half of his career as a professional violinist before discovering his calling at the intersection of consciousness, creativity, and artificial intelligence.
+Frank X. Riemer is a musician, technologist, and creator transformation guide who spent the first half of his career as a professional violinist before discovering his calling at the intersection of creativity, business, and artificial intelligence.
 
-Today, he architects AI systems that amplify human creativity rather than replace it. As the founder of FrankX.AI, he's built Vibe OS (an AI-powered music creation system), the Agentic Creator OS framework, and the Creation Chronicles—a weekly dispatch on conscious AI integration for independent creators.
+Today, he builds AI systems that amplify human creativity rather than replace it. As the founder of FrankX.AI, he's built Vibe OS (an AI-powered music creation system), the Agentic Creator OS framework, and the Creation Chronicles—a weekly dispatch on practical AI integration for independent creators.
 
-His work combines deep technical expertise (Oracle, Claude, LangGraph, MCP) with a musician's understanding of flow, ritual, and creative practice. Frank believes we're entering a Golden Age where AI becomes a creative partner, not a replacement, and his mission is to help creators navigate this transformation with confidence and soul intact.
+His work combines enterprise-scale AI/cloud pattern recognition from his former AI architect role at Oracle, the operator experience of helping build a seven-figure business with his brother, and a musician's understanding of flow, ritual, and creative practice. Frank believes AI becomes most valuable when it is connected to real workflows, strong taste, and human judgment.
 
-When he's not building systems or writing essays, you'll find him in the studio creating transformative soundscapes with Suno, or exploring the intersection of ancient wisdom and modern technology through his Soulbook framework.
+FrankX is his independent studio for human-first AI systems: creator operating systems, prompt libraries, AI music workflows, automation playbooks, and founder-grade execution frameworks. The work is based on public knowledge, personal experience, and independent experimentation, not Oracle endorsement, confidential Oracle material, or private customer information.
+
+When he's not building systems or writing essays, you'll find him in the studio creating transformative soundscapes with Suno, or exploring the intersection of personal meaning and modern technology through his Soulbook framework.
+
+### Oracle / OCI Disclaimer
+Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. Oracle and OCI references are used only to describe Frank's former employment or public technology topics. No Oracle logos, confidential material, internal roadmaps, customer examples, nonpublic pricing, partner information, or deal specifics are used.
 
 ---
 
@@ -158,7 +164,7 @@ linktr.ee/frankx.ai              ✅ CORRECT
 ## Brand Voice & Messaging
 
 ### Core Mission
-Translate Frank's musician-technologist journey into language, prompts, and experiences that turn overwhelmed creators into confident, AI-empowered artists.
+Translate Frank's musician-technologist and enterprise AI experience into language, prompts, and experiences that turn overwhelmed creators, entrepreneurs, and operators into confident AI-enabled builders.
 
 ### Brand Pillars
 1. **Creator-First** - Empower independent creators, not corporations
@@ -213,7 +219,7 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 - **LangGraph**: Multi-agent orchestration
 - **MCP**: Model Context Protocol servers
 - **Suno**: AI music generation
-- **Oracle**: Enterprise AI solutions
+- **Enterprise Cloud**: Public patterns from large-scale AI/cloud environments
 
 ---
 
