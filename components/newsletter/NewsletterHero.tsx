@@ -45,7 +45,7 @@ export default function NewsletterHero({
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: allEmail, listType: 'all' }),
+        body: JSON.stringify({ email: allEmail, listType: 'creation-chronicles' }),
       })
       if (res.ok) {
         setAllStatus('success')
@@ -99,7 +99,7 @@ export default function NewsletterHero({
         >
           <Mail className="h-4 w-4 text-violet-400" />
           <span className="text-sm font-medium text-violet-400">
-            6 Streams. Pick Your Signal.
+            Signal Loop by Frank Riemer
           </span>
         </motion.div>
 
@@ -110,12 +110,12 @@ export default function NewsletterHero({
           className="mb-6 flex justify-center"
         >
           <Image
-            src="/images/mascot/mascot-v25-crystal-familiar.png"
-            alt="Axi — FrankX.AI mascot"
-            width={80}
-            height={80}
-            className="rounded-2xl"
-            style={{ boxShadow: '0 0 40px -8px rgba(139,92,246,0.4)' }}
+            src="/images/portraits/frank-presenting-oracle-2025.jpg"
+            alt="Frank Riemer presenting AI architecture"
+            width={96}
+            height={96}
+            className="h-24 w-24 rounded-full object-cover object-[33%_48%]"
+            style={{ boxShadow: '0 0 44px -10px rgba(16,185,129,0.45)' }}
           />
         </motion.div>
 
@@ -125,9 +125,9 @@ export default function NewsletterHero({
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
         >
-          Subscribe to what
-          <span className="mt-2 block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-            you actually care about
+          A weekly letter for
+          <span className="mt-2 block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+            clearer thinking in the age of AI
           </span>
         </motion.h1>
 
@@ -137,8 +137,8 @@ export default function NewsletterHero({
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-400"
         >
-          AI architecture, music production, investing, worldbuilding — each
-          stream has its own voice, cadence, and depth. Subscribe to one or all.
+          One grounded note on AI systems, creative output, music experiments, and
+          the mental habits behind the work. No tricks, no pressure, unsubscribe anytime.
         </motion.p>
 
         {/* Subscribe to all */}
@@ -158,7 +158,7 @@ export default function NewsletterHero({
               >
                 <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                 <span className="font-medium text-emerald-300">
-                  Subscribed to all streams
+                  You&apos;re in the Signal Loop
                 </span>
               </motion.div>
             ) : (
@@ -180,25 +180,28 @@ export default function NewsletterHero({
                   disabled={allStatus === 'loading'}
                   className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-violet-500 hover:to-cyan-500 disabled:opacity-50"
                 >
-                  {allStatus === 'loading' ? '...' : 'Get All'}
+                  {allStatus === 'loading' ? '...' : 'Join'}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.form>
             )}
           </AnimatePresence>
           <p className="mt-3 text-xs text-slate-500">
-            One click, all 6 streams. Unsubscribe from any individually.
+            One email most weeks. Leave anytime.
           </p>
         </motion.div>
       </div>
 
-      {/* Stream nav pills */}
+      {/* Optional stream nav pills */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
         className="mx-auto mt-12 max-w-5xl border-y border-white/5 px-6 py-6"
       >
+        <p className="mb-4 text-center text-xs uppercase tracking-[0.22em] text-white/30">
+          Optional deeper streams
+        </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           {streams.map((s) => {
             const Icon = iconMap[s.icon] || Mail

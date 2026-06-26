@@ -7,11 +7,16 @@ import { getAllBlogPosts } from '@/lib/blog'
 import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
-  title: 'GenCreator by FrankX — Build Your AI Creator OS',
+  title: 'Frank Riemer | FrankX AI Creator Systems',
   description:
-    'GenCreator helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'Frank Riemer builds FrankX: AI creator systems, music experiments, and evidence-led performance notes for creators who want to ship with clarity.',
   keywords: [
+    'Frank Riemer',
+    'FrankX',
     'ai architect',
+    'personal AI operating system',
+    'AI creator systems',
+    'peak mental performance',
     'ai music creation',
     'suno ai',
     'ai architecture',
@@ -28,10 +33,18 @@ export const metadata = createMetadata({
 })
 
 const websiteSchema = {
-  name: 'FrankX.AI',
+  '@id': 'https://frankx.ai/#website',
+  name: 'FrankX',
+  alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: 'https://frankx.ai',
   description:
-    'GenCreator by FrankX helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'FrankX is Frank Riemer\'s home for AI creator systems, agentic workflows, music experiments, and evidence-led performance notes.',
+  publisher: {
+    '@id': 'https://frankx.ai/#organization',
+  },
+  about: {
+    '@id': 'https://frankx.ai/#frank-riemer',
+  },
   potentialAction: {
     '@type': 'SearchAction',
     target: 'https://frankx.ai/search?q={search_term_string}',
@@ -40,9 +53,21 @@ const websiteSchema = {
 }
 
 const personSchema = {
+  '@id': 'https://frankx.ai/#frank-riemer',
   name: 'Frank Riemer',
-  jobTitle: 'AI Architect',
-  url: 'https://frankx.ai/about',
+  jobTitle: 'AI Architect and Creator',
+  url: 'https://frankx.ai/frank-riemer',
+  image: 'https://frankx.ai/images/portraits/frank-presenting-oracle-2025.jpg',
+  mainEntityOfPage: {
+    '@id': 'https://frankx.ai/frank-riemer',
+  },
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Oracle',
+  },
+  brand: {
+    '@id': 'https://frankx.ai/#organization',
+  },
   sameAs: [
     socialLinks.linkedin,
     socialLinks.github,
@@ -51,8 +76,11 @@ const personSchema = {
   ],
   knowsAbout: [
     'AI Architecture',
+    'Personal AI Operating Systems',
+    'AI Creator Systems',
     'AI Music Creation',
     'Suno AI',
+    'Peak Mental Performance',
     'Enterprise AI Strategy',
     'Cloud Infrastructure',
     'Agentic Workflows',
@@ -60,43 +88,48 @@ const personSchema = {
 }
 
 const organizationSchema = {
-  name: 'FrankX.AI',
+  '@id': 'https://frankx.ai/#organization',
+  name: 'FrankX',
+  alternateName: 'FrankX.AI',
   url: 'https://frankx.ai',
   logo: 'https://frankx.ai/images/brand/logo-full.png',
+  founder: {
+    '@id': 'https://frankx.ai/#frank-riemer',
+  },
   sameAs: [
     socialLinks.linkedin,
     socialLinks.github,
     socialLinks.suno,
   ],
   description:
-    'GenCreator systems, AI creator tools, and implementation labs for creators who ship.',
+    'FrankX publishes AI creator systems, agentic workflow labs, music experiments, and practical performance notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the home of GenCreator by FrankX: a creator operating system for turning ideas into shipped work, audience, products, and revenue. It is built from Frank Riemer\'s work as an AI Architect and creator.',
+      'FrankX.AI is the public home of Frank Riemer: AI architect, creator, and builder of systems that turn ideas into shipped work, music, products, and better daily practice.',
   },
   {
     question: 'What is GenCreator?',
     answer:
-      'GenCreator is the public launch identity for FrankX. It combines creator strategy, AI workflows, music/content systems, templates, and agentic builder patterns into one personal AI operating system.',
+      'GenCreator is the creator operating framework inside FrankX. It combines strategy, AI workflows, content systems, templates, and agentic builder patterns into one practical system.',
   },
   {
     question: 'What should I start with?',
     answer:
-      'Start at /start and choose Create, Build, or Sell. The flagship path is Build Your AI Creator OS, with free material first and paid cohort access only when delivery is verified.',
+      'Start with the Signal Loop newsletter for the weekly field note, then choose a path at /start: create, build, or sell. If you want the human story first, read /frank-riemer.',
+  },
+  {
+    question: 'Where does peak performance fit?',
+    answer:
+      'FrankX treats performance as an evidence-led creator system: attention, energy, recovery, and emotional steadiness. It is not medical advice or miracle biohacking.',
   },
   {
     question: 'Where does Agentic Creator OS fit?',
     answer:
       'Agentic Creator OS is the advanced builder track inside GenCreator. It is for creators ready to build their own agent systems with Claude Code, MCP, n8n, Vercel, and production workflows.',
-  },
-  {
-    question: 'What is the flagship paid offer?',
-    answer:
-      'The flagship offer is Build Your AI Creator OS: an implementation lab for building a personal AI operating system and shipping one public asset. Until checkout and delivery are verified, the public CTA is waitlist/application rather than direct purchase.',
   },
 ]
 

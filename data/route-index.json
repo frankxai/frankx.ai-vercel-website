@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 685,
+    "total": 687,
     "aliases": 25,
     "byType": {
       "core": 22,
-      "section": 359,
+      "section": 361,
       "community": 12,
       "tool": 10,
       "static": 15,
@@ -4335,6 +4335,15 @@
       "type": "section"
     },
     {
+      "href": "/frank-riemer",
+      "title": "Frank Riemer",
+      "tags": [
+        "frank",
+        "riemer"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/frankx",
       "title": "Frankx",
       "tags": [
@@ -5426,6 +5435,15 @@
         "partnerships",
         "van",
         "ede"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/peak-performance",
+      "title": "Peak Performance",
+      "tags": [
+        "peak",
+        "performance"
       ],
       "type": "section"
     },
