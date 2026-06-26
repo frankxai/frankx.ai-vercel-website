@@ -233,6 +233,9 @@ test.describe('/engagements/strategic-advisor — passcode gate', () => {
 
     // Scope to the passcode form — Next's route announcer is also role=alert.
     await expect(gate.getByRole('alert')).toContainText(/access denied/i)
+    // Fail-closed: gated copy must not leak alongside the error. A regression
+    // that renders the protected page next to the alert must fail here.
+    await expect(page.getByText(/Frank operates as a fractional/i)).toHaveCount(0)
   })
 
   test('passcode submit is a real button with adequate touch target', async ({ page }) => {

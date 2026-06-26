@@ -69,7 +69,15 @@ export function PasscodeGate() {
           inputMode="text"
           enterKeyHint="go"
           aria-invalid={status === 'error' ? 'true' : 'false'}
-          onChange={() => status === 'error' && setStatus('idle')}
+          // Reset both status AND error message on edit. Without resetting
+          // `error`, the visible alert keeps rendering while aria-invalid
+          // flips back to false — alert text out of sync with field state.
+          onChange={() => {
+            if (status === 'error') {
+              setStatus('idle')
+              setError(null)
+            }
+          }}
           className={`w-full border-0 border-b bg-transparent px-0 py-3 text-base font-serif text-[#111] placeholder:text-[#bbb] focus:outline-none transition-colors ${
             status === 'error'
               ? 'border-[#a33] focus:border-[#a33]'

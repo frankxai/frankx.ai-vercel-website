@@ -38,9 +38,10 @@ npx playwright test --project=chromium
 
 ## Browsers
 
-`playwright.config.ts` runs Chromium, Firefox, and WebKit. Locally the
-pre-installed Chromium at `/opt/pw-browsers/chromium` is picked up via
-`PLAYWRIGHT_BROWSERS_PATH` — no `playwright install` needed in this env.
+`playwright.config.ts` runs Chromium by default. Firefox and WebKit are only
+added to the project matrix when `PLAYWRIGHT_FULL_MATRIX` is set. In the
+remote execution env, Chromium falls back to `/opt/pw-browsers/chromium`;
+locally override that with `PLAYWRIGHT_CHROMIUM_PATH=/path/to/chromium`.
 
 ## Add a flow
 

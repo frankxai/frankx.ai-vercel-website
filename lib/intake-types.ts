@@ -58,6 +58,6 @@ export const INTENT_24H_ARTIFACT: Record<Intent, string> = {
   advisory:
     'a 30-minute voice-memo on the question you raised, in office-hours format',
   executive:
-    'a one-page strategic brief on the problem you named, plus a private call slot',
+    'a concierge reply naming a private call window; the one-page strategic brief follows within seven days',
   general: 'a real reply from Frank, with whatever is most useful to your question',
 }
