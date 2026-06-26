@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AnimatePresence, motion } from 'framer-motion'
 import {
   BookOpen,
   CheckCircle2,
@@ -448,16 +447,18 @@ export default function DownloadsClient() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {filteredDownloads.length > 0 ? (
-          <motion.div layout className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+      {filteredDownloads.length > 0 ? (
+        <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
             {filteredDownloads.map((item) => {
               const targetHref = item.previewUrl ?? item.href ?? '#'
               const directDownload = item.href?.startsWith('/downloads/')
               const external = Boolean(item.external)
 
               return (
-                <motion.div key={item.id} layout>
+                <div
+                  key={item.id}
+                  className="animate-in fade-in-0 slide-in-from-bottom-2 duration-300"
+                >
                   <GlowCard color={item.glow} className="flex h-full flex-col overflow-hidden p-0">
                     <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/8 bg-slate-950">
                       <Image
@@ -556,24 +557,19 @@ export default function DownloadsClient() {
                       </div>
                     </div>
                   </GlowCard>
-                </motion.div>
+                </div>
               )
             })}
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="rounded-[2rem] border border-white/8 bg-white/[0.035] px-6 py-20 text-center backdrop-blur-xl"
-          >
-            <Cpu className="mx-auto mb-4 h-12 w-12 text-white/20" />
-            <h3 className="mb-1 text-lg font-bold text-white">No live assets found</h3>
-            <p className="mx-auto max-w-xs text-sm leading-6 text-white/42">
-              Try another search or clear the selected category.
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      ) : (
+        <div className="animate-in fade-in-0 duration-300 rounded-[2rem] border border-white/8 bg-white/[0.035] px-6 py-20 text-center backdrop-blur-xl">
+          <Cpu className="mx-auto mb-4 h-12 w-12 text-white/20" />
+          <h3 className="mb-1 text-lg font-bold text-white">No live assets found</h3>
+          <p className="mx-auto max-w-xs text-sm leading-6 text-white/42">
+            Try another search or clear the selected category.
+          </p>
+        </div>
+      )}
     </div>
   )
 }
