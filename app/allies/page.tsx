@@ -14,6 +14,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { createMetadata } from "@/lib/seo";
+import { GlowCard, type GlowColor } from "@/components/ui/glow-card";
 
 export const metadata = createMetadata({
   title: "Allies",
@@ -44,8 +45,10 @@ const activeNodes = [
   {
     title: "TheEpicWays",
     status: "Active first node",
+    color: "emerald" as GlowColor,
     href: "/allies/epic-ways",
     friendHref: "/friends/estefania",
+    downloadHref: "/downloads/epicways-intelligence",
     description:
       "Estefania Badra's leadership, communication, training, consulting, and event-experience company, now framed as a client-intelligence system for better service before, during, and after the room.",
     visitorUse:
@@ -55,8 +58,10 @@ const activeNodes = [
   {
     title: "Trinity AI Founder System",
     status: "Founder kit",
+    color: "amber" as GlowColor,
     href: "/allies/trinity-ai",
     friendHref: "/friends/ahmad",
+    downloadHref: "/downloads/ahmad-founder-creator-kit",
     description:
       "Ahmad Hashem's Trinity AI and creator-founder context framed as a practical startup system with local AI lab guidance, ACOS/OpenClaw install paths, media loops, and agent roles.",
     visitorUse:
@@ -66,8 +71,10 @@ const activeNodes = [
   {
     title: "Ana AI Business Kit",
     status: "Noindex draft",
+    color: "amber" as GlowColor,
     href: "/allies/ana-cancino",
     friendHref: "/friends/ana",
+    downloadHref: "/downloads/ana-ai-business-kit",
     description:
       "Ana Cecilia Cancino's HR, psychology, self-knowledge, research, and AI companion work framed as a practical offer system, client loop, and travel-friendly business engine.",
     visitorUse:
@@ -77,8 +84,10 @@ const activeNodes = [
   {
     title: "Harzfenster Hospitality Intelligence",
     status: "Hospitality pilot",
+    color: "teal" as GlowColor,
     href: "/allies/harzfenster",
     friendHref: "/friends/jojo",
+    downloadHref: "/downloads/jojo-hospitality-intelligence-kit",
     description:
       "Jojo Steingrüber's Harzfenster and Hotel Görtler context framed as a human-approved hospitality intelligence pilot for bookings, service briefings, hotel handoffs, review learning, and team enablement.",
     visitorUse:
@@ -231,9 +240,10 @@ export default function AlliesPage() {
 
           <div className="grid gap-5 lg:grid-cols-2">
             {activeNodes.map((node) => (
-              <article
+              <GlowCard
                 key={node.title}
-                className="rounded-[2.2rem] border border-white/12 bg-[linear-gradient(145deg,rgba(255,255,255,0.065),rgba(255,255,255,0.025))] p-6 shadow-[0_26px_90px_rgba(0,0,0,0.30)] backdrop-blur-2xl transition hover:-translate-y-1 hover:border-emerald-200/35"
+                color={node.color}
+                className="rounded-[2.2rem] p-6 transition hover:-translate-y-1"
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/25 bg-emerald-200/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-100">
@@ -277,11 +287,17 @@ export default function AlliesPage() {
                   >
                     Friend page
                   </Link>
+                  <Link
+                    href={node.downloadHref}
+                    className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-200/10 px-4 py-2.5 text-sm font-bold text-emerald-50 transition hover:border-emerald-100/40 hover:bg-emerald-200/15"
+                  >
+                    Download kit
+                  </Link>
                 </div>
-              </article>
+              </GlowCard>
             ))}
 
-            <article className="rounded-[2.2rem] border border-white/12 bg-gradient-to-br from-white/[0.06] to-amber-200/[0.04] p-6 shadow-[0_26px_90px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+            <GlowCard color="amber" className="rounded-[2.2rem] p-6">
               <div className="flex h-full flex-col justify-between gap-8">
                 <div>
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200/25 bg-amber-200/10 text-amber-100">
@@ -304,7 +320,7 @@ export default function AlliesPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-            </article>
+            </GlowCard>
           </div>
         </div>
       </section>
@@ -322,14 +338,15 @@ export default function AlliesPage() {
           {allianceContract.map((item) => {
             const Icon = item.icon;
             return (
-              <div
+              <GlowCard
                 key={item.title}
-                className="rounded-[2rem] border border-white/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl"
+                color="emerald"
+                className="rounded-[2rem] p-6"
               >
                 <Icon className="h-6 w-6 text-emerald-200" />
                 <h3 className="mt-4 text-lg font-black">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-white/62">{item.copy}</p>
-              </div>
+              </GlowCard>
             );
           })}
         </div>
@@ -340,14 +357,15 @@ export default function AlliesPage() {
           {principles.map((principle) => {
             const Icon = principle.icon;
             return (
-              <div
+              <GlowCard
                 key={principle.label}
-                className="rounded-[2rem] border border-white/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl"
+                color="teal"
+                className="rounded-[2rem] p-6"
               >
                 <Icon className="h-6 w-6 text-emerald-200" />
                 <h3 className="mt-4 text-lg font-black">{principle.label}</h3>
                 <p className="mt-2 text-sm leading-6 text-white/62">{principle.copy}</p>
-              </div>
+              </GlowCard>
             );
           })}
         </div>

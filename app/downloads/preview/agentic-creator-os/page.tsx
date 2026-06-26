@@ -64,28 +64,28 @@ export default function AgenticCreatorOSPreviewPage() {
     {
       name: 'Complete OS Bundle',
       file: 'acos-complete.zip',
-      size: '30.1 MB',
+      size: '23.2 MB',
       description: 'The full Agentic Creator OS workspace including all core skills, agent profiles, workflows, daemon scripts, and setup hooks.',
       url: '/downloads/acos-complete.zip'
     },
     {
       name: 'Skills Pack',
       file: 'acos-skills-pack.zip',
-      size: '8.4 MB',
+      size: '23.7 MB',
       description: 'The standalone library of 90+ auto-activating domain knowledge modules (e.g. SEO, suno-ai, framer, and react-expert).',
       url: '/downloads/acos-skills-pack.zip'
     },
     {
       name: 'Agent Pack',
       file: 'acos-agents-pack.zip',
-      size: '516 KB',
+      size: '1.5 MB',
       description: 'Complete collection of 38 specialized agent profiles, prompt schemas, and multi-agent swarm orchestration graphs.',
       url: '/downloads/acos-agents-pack.zip'
     },
     {
       name: 'Hooks Pack',
       file: 'acos-hooks-pack.zip',
-      size: '24 KB',
+      size: '82 KB',
       description: 'Pre-commit, post-commit, and safety gates including directory isolation rules, role policies, and self-modify locks.',
       url: '/downloads/acos-hooks-pack.zip'
     }
