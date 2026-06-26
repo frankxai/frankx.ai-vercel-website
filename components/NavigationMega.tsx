@@ -160,6 +160,7 @@ const navigation = {
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
       { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
@@ -173,7 +174,7 @@ const navigation = {
       },
       {
         label: 'Connect',
-        items: ['About', 'Bio', 'Contact'],
+        items: ['About', 'Bio', 'Media Kit', 'Contact'],
       },
     ],
   },
