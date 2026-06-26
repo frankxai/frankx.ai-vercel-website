@@ -1,7 +1,11 @@
-import type { Metadata } from 'next'
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink } from 'lucide-react'
+import { ArrowLeft, ExternalLink, ShieldCheck, Activity, Award, HelpCircle, AlertTriangle, Code2 } from 'lucide-react'
 import JsonLd from '@/components/seo/JsonLd'
+import { ThreeArenaScene } from '@/components/research/ThreeArenaScene'
+import { TaskRoutingPlayground } from '@/components/research/TaskRoutingPlayground'
 import {
   ROUNDS,
   METHODOLOGY_STEPS,
@@ -12,34 +16,35 @@ import {
   RUNS_DIR_URL,
 } from './data'
 
-export const metadata: Metadata = {
-  title: 'Starlight Model Arena — Live Eval Receipts | FrankX Research',
-  description:
-    'Head-to-head LLM evals run natively inside Claude Code: Fable 5 vs Opus 4.8 (and the full Anthropic lineup) across five receipted rounds. Mechanical verification, blind judging, open JSON receipts. Which model to route where.',
-  keywords: [
-    'model arena',
-    'LLM evals',
-    'Fable 5 vs Opus 4.8',
-    'Claude model comparison',
-    'model routing',
-    'AI eval harness',
-    'Anthropic lineup benchmark',
-  ],
-  alternates: {
-    canonical: 'https://frankx.ai/research/model-arena',
-  },
-  openGraph: {
-    title: 'Starlight Model Arena — Live Eval Receipts',
-    description:
-      'Fable 5 vs Opus 4.8 and the full Anthropic lineup across five receipted rounds, run inside Claude Code. Mechanical verification, blind judging, open receipts.',
-    type: 'article',
-    url: 'https://frankx.ai/research/model-arena',
-  },
-}
-
 export default function ModelArenaPage() {
+  const [selectedRoundId, setSelectedRoundId] = useState(ROUNDS[0].id)
+  const activeRound = ROUNDS.find((r) => r.id === selectedRoundId) || ROUNDS[0]
+
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Starlight Model Arena Rounds',
+    description: 'Head-to-head LLM evals run natively inside Claude Code across multiple rounds.',
+    itemListElement: ROUNDS.map((r, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: r.title,
+      description: r.headline
+    }))
+  }
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
-    <main className="min-h-screen bg-[#09090b] text-white">
+    <main className="min-h-screen bg-[#020617] text-white selection:bg-[#a855f7]/30">
       <JsonLd
         type="Article"
         data={{
@@ -55,109 +60,201 @@ export default function ModelArenaPage() {
           },
         }}
       />
-      <JsonLd
-        type="FAQPage"
-        data={{
-          mainEntity: FAQS.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-          })),
-        }}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
-        {/* Back link */}
-        <Link
-          href="/research"
-          className="mb-12 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Research Hub
-        </Link>
+      {/* Grid Background Effect */}
+      <div className="absolute inset-0 bg-[#020617] pointer-events-none" />
+      <div 
+        className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)`, 
+          backgroundSize: '45px 45px' 
+        }} 
+      />
+      <div className="absolute top-0 right-0 w-[50%] h-[40%] bg-gradient-to-br from-indigo-500/5 to-transparent filter blur-[120px] pointer-events-none" />
 
-        {/* Header */}
-        <header className="mb-16">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            Research · Proving Ground
-          </p>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
+        {/* Navigation */}
+        <nav className="mb-10">
+          <Link
+            href="/research"
+            className="group inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            Research Hub
+          </Link>
+        </nav>
+
+        {/* Title Header */}
+        <header className="mb-14 max-w-3xl">
+          <div className="inline-flex items-center gap-2 mb-3.5 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/20 text-[#a855f7] text-xs font-mono tracking-wider uppercase">
+            <span>6-Pillar CoE • Proving Ground</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
             Starlight Model Arena
           </h1>
-          <p className="text-sm text-zinc-500">
-            Five receipted rounds · June 9–10, 2026 · model-in-harness
+          <p className="text-base md:text-lg text-zinc-400 leading-relaxed">
+            Head-to-head LLM evaluations run natively inside the Claude Code agent harness. Fable 5, Opus 4.8, and the Anthropic lineup tested on real-world engineering constraints. <strong>Mechanical verification, blind judging, open JSON receipts.</strong>
           </p>
         </header>
 
-        {/* TL;DR */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            TL;DR
-          </h2>
-          <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>
-              You do not need an eval platform to know which model to route
-              where. The Claude Code <code className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[0.85em] text-zinc-200">Agent</code> tool
-              accepts a per-spawn <code className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[0.85em] text-zinc-200">model</code> override
-              — which makes the CLI itself a head-to-head harness. We dispatched
-              the same tasks to each model as parallel subagents, verified
-              objective work mechanically, judged subjective work blind, and
-              wrote a JSON receipt for every run.
-            </p>
-            <p>
-              The headline across five rounds: <strong className="font-semibold text-white">capability is
-              largely saturated</strong> — the whole Anthropic lineup, Haiku
-              included, solves the coding, reasoning, and grounding tasks. The
-              models separate on two different axes. <strong className="font-semibold text-white">Fable 5</strong> owns
-              output-constraint discipline; <strong className="font-semibold text-white">Opus 4.8</strong> owns
-              situational judgment. Route to the axis your task needs — the full
-              routing table is below.
-            </p>
-            <p>
-              The companion guides are{' '}
-              <Link
-                href="/blog/llm-evals-claude-code-guide"
-                className="text-zinc-100 underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-400"
-              >
-                the eval-harness walkthrough
-              </Link>{' '}
-              and{' '}
-              <Link
-                href="/blog/ai-model-routing-guide"
-                className="text-zinc-100 underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-400"
-              >
-                the model-routing guide
-              </Link>
-              . This page is the live scoreboard they cite.
-            </p>
+        {/* 3D Visual Scene */}
+        <section className="mb-14">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7]">
+              Performance Visualization
+            </h2>
+            <span className="text-[10px] text-zinc-500 font-mono">Interactive WebGL Canvas</span>
           </div>
+          <ThreeArenaScene />
         </section>
 
-        {/* Methodology */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            How it works
-          </h2>
-          <ol className="space-y-6">
-            {METHODOLOGY_STEPS.map((step, i) => (
-              <li key={step.name} className="flex gap-4">
-                <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/40 text-xs font-semibold text-[#D4AF37]">
-                  {i + 1}
+        {/* Dynamic Router Playground */}
+        <section className="mb-14 border-t border-white/5 pt-14">
+          <div className="mb-6">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7] mb-2">
+              Dynamic Routing Playground
+            </h2>
+            <p className="text-sm text-zinc-400">See how developer pipelines and agents utilize the Arena Hub to dynamically choose target models based on constraints.</p>
+          </div>
+          <TaskRoutingPlayground />
+        </section>
+
+        {/* The Scoreboard Tab System */}
+        <section className="mb-14 border-t border-white/5 pt-14">
+          <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7] mb-2">
+                Evaluation Rounds Standings
+              </h2>
+              <p className="text-sm text-zinc-400">Detailed receipt logs from head-to-head runs. Select a round to inspect metrics.</p>
+            </div>
+            <a
+              href={RUNS_DIR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-[#a855f7] hover:underline"
+            >
+              Browse Open JSON Receipts
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+
+          {/* Round selectors */}
+          <div className="flex flex-wrap gap-2 mb-6 border-b border-white/5 pb-4">
+            {ROUNDS.map((round) => (
+              <button
+                key={round.id}
+                onClick={() => setSelectedRoundId(round.id)}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                  selectedRoundId === round.id
+                    ? 'bg-white text-black border-white shadow-lg'
+                    : 'bg-white/[0.02] border-white/5 text-zinc-400 hover:text-white hover:border-white/10'
+                }`}
+              >
+                {round.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Active Round card */}
+          {activeRound && (
+            <div className="bg-slate-950/50 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm animate-fade-in">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h3 className="text-xl font-bold text-white">{activeRound.card}</h3>
+                <span className="text-xs text-zinc-500 font-mono">Executed: {activeRound.date}</span>
+              </div>
+
+              <div className="mb-6 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#a855f7]/30 bg-[#a855f7]/[0.06] px-3.5 py-1 text-xs font-semibold text-[#a855f7]">
+                  <Award className="w-3.5 h-3.5" />
+                  {activeRound.tally}
+                </span>
+                <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs text-zinc-400 font-mono">
+                  {activeRound.judged ? 'Blind LLM Judge + Mechanical Tests' : 'Fully Mechanical assertions'}
+                </span>
+                <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs text-zinc-400 font-mono">
+                  Contestants: {activeRound.contestants.join(' vs ')}
+                </span>
+              </div>
+
+              <div className="mb-6 p-4 rounded-xl bg-white/[0.02] border border-white/5 text-sm leading-relaxed text-zinc-300">
+                <span className="font-semibold text-white">Headline: </span>
+                {activeRound.headline}
+              </div>
+
+              {/* Task Breakdown list */}
+              <div className="space-y-3">
+                <div className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">TASK SPECIFICS</div>
+                {activeRound.tasks.map((task) => (
+                  <div 
+                    key={task.id}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-xl bg-[#020617] border border-white/5 hover:border-white/10 transition-all text-xs"
+                  >
+                    <span className="text-zinc-400 font-medium mb-1 sm:mb-0">{task.category}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-500 font-mono text-[10px]">{task.id}</span>
+                      <span className="font-semibold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">
+                        {task.winner}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
+                <a
+                  href={activeRound.receiptUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white transition-colors"
+                >
+                  <Code2 className="w-4 h-4 text-zinc-400" />
+                  View canonical JSON receipt mapping this round
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* Methodology List */}
+        <section className="mb-14 border-t border-white/5 pt-14">
+          <div className="mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7] mb-2">
+              The Proving Ground Methodology
+            </h2>
+            <p className="text-sm text-zinc-400">How the harness executes evaluations to eliminate cherry-picking bias.</p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {METHODOLOGY_STEPS.map((step, idx) => (
+              <div key={step.name} className="flex gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.01]">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#a855f7]/5 text-xs font-bold text-[#a855f7]">
+                  {idx + 1}
                 </span>
                 <div>
-                  <h3 className="mb-1 text-base font-semibold text-white">{step.name}</h3>
-                  <p className="text-sm leading-relaxed text-zinc-400">{step.text}</p>
+                  <h3 className="mb-1 text-sm font-semibold text-white">{step.name}</h3>
+                  <p className="text-xs leading-relaxed text-zinc-400">{step.text}</p>
                 </div>
-              </li>
+              </div>
             ))}
-          </ol>
-          <p className="mt-6 text-sm text-zinc-500">
-            Full harness docs:{' '}
+          </div>
+
+          <p className="mt-6 text-xs text-zinc-500">
+            Read complete verification rules in{' '}
             <a
               href={METHODOLOGY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+              className="inline-flex items-center gap-0.5 text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
             >
               tools/arena/README.md
               <ExternalLink className="h-3 w-3" />
@@ -165,174 +262,72 @@ export default function ModelArenaPage() {
           </p>
         </section>
 
-        {/* Rounds */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            The rounds
-          </h2>
-          <div className="space-y-6">
-            {ROUNDS.map((round) => (
-              <article
-                key={round.id}
-                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6"
-              >
-                <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="text-lg font-semibold text-white">{round.title}</h3>
-                  <span className="text-xs text-zinc-500">{round.date}</span>
-                </div>
-
-                <p className="mb-4 text-sm leading-relaxed text-zinc-400">{round.card}</p>
-
-                <div className="mb-4 flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/[0.06] px-2.5 py-0.5 text-xs font-medium text-[#D4AF37]">
-                    {round.tally}
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-0.5 text-xs text-zinc-400">
-                    {round.judged ? 'blind judge + mechanical' : 'fully mechanical'}
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-0.5 text-xs text-zinc-400">
-                    {round.contestants.join(' · ')}
-                  </span>
-                </div>
-
-                <p className="mb-4 text-sm leading-relaxed text-zinc-300">{round.headline}</p>
-
-                <ul className="mb-4 space-y-2 border-t border-white/[0.06] pt-4">
-                  {round.tasks.map((task) => (
-                    <li
-                      key={task.id}
-                      className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
-                    >
-                      <span className="text-sm text-zinc-400">{task.category}</span>
-                      <span className="text-xs font-medium text-zinc-300">{task.winner}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href={round.receiptUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-zinc-500 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-zinc-300"
-                >
-                  Open the JSON receipt
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </article>
-            ))}
+        {/* Routing Implications Summary */}
+        <section className="mb-14 border-t border-white/5 pt-14">
+          <div className="mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7] mb-2">
+              Tactical Routing Guidelines
+            </h2>
+            <p className="text-sm text-zinc-400">Core operational logic derived directly from the scorecard receipts.</p>
           </div>
-        </section>
 
-        {/* Routing implications */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            Routing implications
-          </h2>
-          <div className="space-y-6">
-            {ROUTING_IMPLICATIONS.map((r) => (
-              <div key={r.lane}>
-                <div className="mb-1 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-                  <h3 className="text-base font-semibold text-white">{r.lane}</h3>
-                  <span className="text-sm font-semibold text-[#D4AF37]">{r.call}</span>
+          <div className="grid gap-4 md:grid-cols-2">
+            {ROUTING_IMPLICATIONS.map((impl) => (
+              <div key={impl.lane} className="p-5 rounded-2xl border border-white/5 bg-[#020617]">
+                <div className="flex justify-between items-baseline gap-2 mb-2">
+                  <h3 className="font-semibold text-sm text-white">{impl.lane}</h3>
+                  <span className="text-[10px] font-mono text-[#a855f7] bg-[#a855f7]/5 px-2 py-0.5 rounded border border-[#a855f7]/10 shrink-0">
+                    {impl.call}
+                  </span>
                 </div>
-                <p className="text-sm leading-relaxed text-zinc-400">{r.why}</p>
+                <p className="text-xs leading-relaxed text-zinc-400">{impl.why}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Caveats */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            Caveats (part of the result)
-          </h2>
-          <ul className="space-y-3">
-            {CAVEATS.map((c) => (
-              <li key={c} className="flex items-start gap-3 text-sm text-zinc-400">
-                <span className="mt-2 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-zinc-600" />
-                <span className="leading-relaxed">{c}</span>
-              </li>
-            ))}
-          </ul>
+        {/* Caveats Accordion */}
+        <section className="mb-14 border-t border-white/5 pt-14">
+          <div className="p-5 rounded-2xl border border-amber-500/10 bg-amber-500/[0.02] flex items-start gap-4">
+            <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-sm font-semibold text-amber-400 mb-1">Caveats & Safety Guardrails</h3>
+              <ul className="space-y-1.5 text-xs text-zinc-400 list-disc pl-4 leading-relaxed">
+                {CAVEATS.map((caveat, idx) => (
+                  <li key={idx}>{caveat}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </section>
 
-        {/* FAQ */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            FAQ
-          </h2>
-          <div className="space-y-8">
+        {/* FAQ Section */}
+        <section className="mb-14 border-t border-white/5 pt-14">
+          <div className="mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7] mb-2">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="space-y-4">
             {FAQS.map((faq) => (
-              <div key={faq.question}>
-                <h3 className="mb-2 text-base font-semibold text-white">{faq.question}</h3>
-                <p className="text-sm leading-relaxed text-zinc-400">{faq.answer}</p>
-              </div>
+              <details
+                key={faq.question}
+                className="group rounded-2xl border border-white/5 bg-white/[0.01] p-5 transition-colors open:border-white/10"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-white/90 group-open:text-white">
+                  {faq.question}
+                  <span className="text-zinc-500 transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-xs leading-relaxed text-zinc-400">{faq.answer}</p>
+              </details>
             ))}
           </div>
         </section>
 
-        {/* Related Work */}
-        <section className="mb-16">
-          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-            Related Work
-          </h2>
-          <ul className="space-y-3">
-            {[
-              {
-                href: '/blog/llm-evals-claude-code-guide',
-                label: 'How to Run LLM Evals Inside Claude Code (the harness)',
-                external: false,
-              },
-              {
-                href: '/blog/ai-model-routing-guide',
-                label: 'The AI Model Routing Guide (which model, which task)',
-                external: false,
-              },
-              {
-                href: '/blog/claude-fable-5-analysis-2026',
-                label: 'Claude Fable 5 — Launch-Day Analysis',
-                external: false,
-              },
-              {
-                href: '/blog/claude-fable-5-prompting-guide',
-                label: 'Claude Fable 5 — Prompting Guide',
-                external: false,
-              },
-              {
-                href: RUNS_DIR_URL,
-                label: 'All five JSON receipts (open repository)',
-                external: true,
-              },
-            ].map((item) => (
-              <li key={item.href}>
-                {item.external ? (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-300 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-white hover:decoration-zinc-500"
-                  >
-                    {item.label}
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-white hover:decoration-zinc-500"
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Status */}
-        <footer className="border-t border-zinc-800 pt-8">
-          <p className="text-sm text-zinc-500">
-            Active Research · Starlight Model Arena · Built on SIP · 2026
-          </p>
+        {/* Page Footer */}
+        <footer className="border-t border-white/5 pt-8 text-center text-xs text-zinc-500">
+          <p>Starlight Model Arena • Built on Starlight Intelligence Protocol (SIP) • 2026</p>
         </footer>
       </div>
     </main>

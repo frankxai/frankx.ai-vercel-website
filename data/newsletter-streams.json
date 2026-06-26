@@ -3,8 +3,8 @@
     {
       "id": "creation-chronicles",
       "name": "Creation Chronicles",
-      "tagline": "The free GenCreator signal.",
-      "description": "The primary free relationship layer: what shipped, what broke, what's next, and how the GenCreator operating system is being built.",
+      "tagline": "Inside the build. Every week.",
+      "description": "What shipped, what broke, what's next. Behind-the-scenes of building an AI-powered creator business.",
       "cadence": "Weekly (Sunday)",
       "audience": "Builders, creators, anyone following the journey",
       "voice": "Personal, behind-the-scenes, studio energy",
@@ -128,8 +128,8 @@
     {
       "id": "inner-circle",
       "name": "Inner Circle",
-      "tagline": "Future paid layer.",
-      "description": "A future paid layer for revenue breakdowns, system architecture deep-dives, early access, and the unfiltered building story after the free newsletter proves cadence.",
+      "tagline": "The signal behind the signal.",
+      "description": "Revenue breakdowns, system architecture deep-dives, early access, and the unfiltered building story.",
       "cadence": "Weekly (Wednesday)",
       "audience": "Highest-engagement subscribers, potential customers",
       "voice": "Exclusive, direct, high-signal",

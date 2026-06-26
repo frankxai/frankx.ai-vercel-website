@@ -25,7 +25,7 @@ FrankX.AI (Home)
 │
 ├── About Frank
 │   ├── Bio & Story
-│   ├── Oracle AI Architect Background
+│   ├── Former AI Architect at Oracle Background
 │   └── AI Music Creator Journey
 │
 ├── Blog
@@ -252,7 +252,7 @@ FrankX.AI (Home)
 │  tools, enterprise expertise,     │                              │
 │  and conscious community.         │                              │
 │                                   │                              │
-│  Oracle AI Architect turned       │                              │
+│  Former AI architect at Oracle turned       │                              │
 │  AI Music Creator                 │                              │
 │                                   │                              │
 │  [Start Creating →]               │                              │
@@ -279,7 +279,7 @@ FrankX.AI (Home)
 - Color: Charcoal (60% opacity)
 - Max width: 560px
 
-**Tagline (Oracle AI Architect...):**
+**Tagline (former AI architect at Oracle...):**
 - Font: Playfair Display Italic
 - Size: 18px
 - Color: Gold
@@ -950,7 +950,7 @@ frankx.ai/contact
 **Homepage:**
 ```html
 <title>FrankX.AI | Soul-Aligned AI for Generative Creators</title>
-<meta name="description" content="Transform your creative journey with AI-powered tools, enterprise expertise, and conscious community. Oracle AI Architect turned AI Music Creator empowering 10,000+ creators.">
+<meta name="description" content="Transform your creative journey with AI-powered tools, enterprise expertise, and conscious community. Former AI architect at Oracle turned AI Music Creator empowering 10,000+ creators.">
 <meta name="keywords" content="AI tools, generative AI, AI music creation, AI architecture, Oracle AI, creative AI, soul-aligned technology">
 
 <!-- Open Graph -->
@@ -986,7 +986,7 @@ frankx.ai/contact
   "founder": {
     "@type": "Person",
     "name": "Frank [Last Name]",
-    "jobTitle": "Oracle AI Architect & AI Music Creator"
+    "jobTitle": "Former AI architect at Oracle & AI Music Creator"
   },
   "sameAs": [
     "https://linkedin.com/in/frankx",

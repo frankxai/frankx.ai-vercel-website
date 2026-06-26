@@ -612,6 +612,27 @@ export default function InnerCirclePage() {
             ))}
           </div>
 
+          {/* Foundry cross-link — the install path for founders */}
+          <div className="mx-auto mb-12 max-w-3xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 sm:p-8">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-2">
+              Building a business?
+            </p>
+            <h3 className="text-xl font-bold text-white mb-2">
+              The Foundry installs an operating system instead.
+            </h3>
+            <p className="text-sm text-white/60 mb-4">
+              Alliance-grade depth for one company: a complete agentic business OS — site, harness,
+              gates, memory — derived for your brand and owned by your team. Evaluated
+              applications only.
+            </p>
+            <Link
+              href="/foundry"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              Learn about the Foundry <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
           {/* Founding Member callout — first 100 only */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

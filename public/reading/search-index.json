@@ -5098,7 +5098,7 @@
     {
       "title": "The Personal AI CoE",
       "path": "/reading/content/books/architects-playbook/chapter-01-the-personal-ai-coe.html",
-      "snippet": "# The Personal AI CoE > \"Any sufficiently advanced individual practice is indistinguishable from an enterprise system.\" > — adapted from Arthur C. Clarke --- I build AI Centers of Excellence for Fortune 500 companies. That is my day job. At Oracle's EMEA AI Center of Excellence, I design the framewo"
+      "snippet": "# The Personal AI CoE > \"Any sufficiently advanced individual practice is indistinguishable from an enterprise system.\" > — adapted from Arthur C. Clarke --- I have worked around enterprise AI Centers of Excellence and large-scale adoption programs. In that environment, the work is not just prompts "
     },
     {
       "title": "The Agent Architecture",
@@ -5798,7 +5798,7 @@
     {
       "title": "The Million-Dollar Framework for Fifty Dollars",
       "path": "/reading/content/books/personal-ai-coe/chapter-01-the-million-dollar-framework-for-fifty-dollars.html",
-      "snippet": "# The Million-Dollar Framework for Fifty Dollars > \"The best time to plant a tree was twenty years ago. The second best time is now.\" > — Chinese proverb --- I build AI Centers of Excellence for a living. At Oracle's EMEA AI Center of Excellence, my job is to design the frameworks that help Fortune "
+      "snippet": "# The Million-Dollar Framework for Fifty Dollars > \"The best time to plant a tree was twenty years ago. The second best time is now.\" > — Chinese proverb --- I build AI Centers of Excellence for a living. In enterprise AI work, the job is to design frameworks that help large organizations adopt arti"
     },
     {
       "title": "The Strategy Pillar",
@@ -6284,6 +6284,131 @@
       "title": "Recent Activity",
       "path": "/reading/content/CLAUDE.html",
       "snippet": "# Recent Activity *No recent activity*"
+    },
+    {
+      "title": "01 - Founder Operating Map",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/01-founder-operating-map.html",
+      "snippet": "# 01 - Founder Operating Map The goal is not to sound more impressive. The goal is to make Ahmad's next moves easier to choose, build, publish, and review. ## Operating Thesis Ahmad's strongest starting point is the intersection of: - Trinity AI and conscious technology systems. - Hashems 1959, food"
+    },
+    {
+      "title": "02 - Trinity AI Offer Ladder",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/02-trinity-ai-offer-ladder.html",
+      "snippet": "# 02 - Trinity AI Offer Ladder This ladder gives Ahmad a way to make money while the larger startup becomes clearer. ## Level 1 - Founder Clarity Session Promise: Help a founder map their AI opportunity, first workflow, and next two-week build. Format: - 60 to 90 minutes. - Intake before the call. -"
+    },
+    {
+      "title": "03 - OpenClaw Jarvis Local Lab",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/03-openclaw-jarvis-local-lab.html",
+      "snippet": "# 03 - OpenClaw Jarvis Local Lab This is the private technical direction. Keep it off public pages until Ahmad approves screenshots, architecture, and claims. ## Goal Create a local AI workstation that helps Ahmad: - Capture ideas. - Run Codex and Claude workflows. - Coordinate OpenClaw-style local "
+    },
+    {
+      "title": "04 - Agent Swarm Roles",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/04-agent-swarm-roles.html",
+      "snippet": "# 04 - Agent Swarm Roles The swarm is a team of small roles, not a giant autonomous brain. ## Operating Principle Each agent should do one useful job and leave a clear artifact. ## Roles - Founder Chief of Staff: turns priorities into a weekly operating plan. - Repo Accelerator: scaffolds and audits"
+    },
+    {
+      "title": "05 - Content Strategy And Media Loop",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/05-content-strategy-and-media-loop.html",
+      "snippet": "# 05 - Content Strategy And Media Loop The content engine should make Ahmad clearer, not louder. ## Core Content Pillars 1. Founder build log: what Ahmad is learning and building. 2. Trinity AI: practical AI systems for founders and creators. 3. Local AI lab: OpenClaw, voice, memory, repos, and agen"
+    },
+    {
+      "title": "06 - Image, Video, And Carousel Workflows",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/06-image-video-carousel-workflows.html",
+      "snippet": "# 06 - Image, Video, And Carousel Workflows Use media to make the founder system legible. Avoid generic AI gloss. ## Image Brief Template Use this before generating or selecting an image: - Purpose: - Audience: - One sentence idea: - Visual metaphor: - Real-world reference: - Must show: - Must avoid"
+    },
+    {
+      "title": "07 - Academy, Podcast, And Influencer System",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/07-academy-podcast-influencer-system.html",
+      "snippet": "# 07 - Academy, Podcast, And Influencer System The creator system should grow from what Ahmad is actually building. ## Academy Thesis Teach the learning journey: - How founders think about AI systems. - How to set up a private local lab. - How to use agents without losing human judgment. - How to tu"
+    },
+    {
+      "title": "08 - 12 Week Startup Roadmap",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/08-12-week-startup-roadmap.html",
+      "snippet": "# 08 - 12 Week Startup Roadmap ## Weeks 1-2 - Clarify - Confirm the first audience. - Choose one offer. - Write the one-page operating map. - Set up the private workspace. - Publish the first founder note and carousel. ## Weeks 3-4 - First Proof - Run 2 to 3 conversations. - Test the clarity session"
+    },
+    {
+      "title": "09 - Client Proof And Reflection Loop",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/09-client-proof-and-reflection-loop.html",
+      "snippet": "# 09 - Client Proof And Reflection Loop Proof should be useful before it becomes public. ## Capture After Every Session - What did the person ask for? - What did they actually need? - What language made sense to them? - What confused them? - What should Ahmad do differently next time? - What artifac"
+    },
+    {
+      "title": "Academy Architect",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/academy-architect.html",
+      "snippet": "# Academy Architect ## Role Package Ahmad's learning into workshops, short lessons, and digital products. ## Output - Learner promise. - Module map. - Lesson outline. - Exercise. - Worksheet. - First paid test. - Feedback loop. ## Guardrails - Teach what has been tested. - Do not create a giant cour"
+    },
+    {
+      "title": "Brand Guardian",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/brand-guardian.html",
+      "snippet": "# Brand Guardian ## Role Protect Ahmad's voice, public claims, privacy, and taste. ## Check - Is the claim sourced? - Is the language Ahmad would actually use? - Is private material removed? - Is the tool stack framed as support, not identity? - Is the call to action clear? - Is the content useful w"
+    },
+    {
+      "title": "Carousel Publisher",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/carousel-publisher.html",
+      "snippet": "# Carousel Publisher ## Role Build Instagram and LinkedIn carousel outlines from one idea. ## Output - Title slide. - 6 to 8 slide sequence. - Short caption. - Alt text. - Call to action. - Reusable template note. ## Guardrails - One point per slide. - Mobile readability first. - No tiny paragraphs."
+    },
+    {
+      "title": "Content Strategist",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/content-strategist.html",
+      "snippet": "# Content Strategist ## Role Turn Ahmad's ideas into public content plans that still sound human. ## Inputs - Source idea. - Audience. - Offer. - Channel. - Desired next action. ## Output - Hook. - Post outline. - Carousel outline. - Short video angle. - Feedback question. - Privacy check. ## Guardr"
+    },
+    {
+      "title": "Founder Chief Of Staff",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/founder-chief-of-staff.html",
+      "snippet": "# Founder Chief Of Staff ## Role Turn Ahmad's priorities into a clear weekly plan. ## Inputs - Raw founder notes. - Current offer. - Current audience. - This week's constraints. - Last week's feedback. ## Output - One weekly goal. - Three priority tasks. - One content idea. - One proof question. - O"
+    },
+    {
+      "title": "Growth Analyst",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/growth-analyst.html",
+      "snippet": "# Growth Analyst ## Role Review feedback, content performance, conversations, and demand signals. ## Output - What worked. - What did not work. - Strongest audience signal. - Strongest offer signal. - Content to repeat. - Content to stop. - Next experiment. ## Guardrails - Do not chase vanity metric"
+    },
+    {
+      "title": "Image Director",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/image-director.html",
+      "snippet": "# Image Director ## Role Create strong image briefs and visual QA notes. ## Output - Purpose. - Visual concept. - References. - Composition. - Color direction. - Text overlay. - Mobile readability check. - What to avoid. ## Guardrails - Do not create fake portraits. - Do not use private images witho"
+    },
+    {
+      "title": "OpenClaw Jarvis Operator",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/openclaw-jarvis-operator.html",
+      "snippet": "# OpenClaw Jarvis Operator ## Role Design safe local AI routines around voice, OpenClaw, Codex, Claude, ACOS, and private memory. ## Use For - Mac mini or Mac Studio lab planning. - Push-to-talk routines. - Local command boundaries. - Daily founder brief. - Repo status. - Content capture. ## Output "
+    },
+    {
+      "title": "Podcast Producer",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/podcast-producer.html",
+      "snippet": "# Podcast Producer ## Role Turn founder learning into episode formats, guest arcs, and reusable notes. ## Output - Episode thesis. - Three questions. - Story arc. - Guest angle. - Clip ideas. - Show notes. - Follow-up content. ## Guardrails - Do not force a podcast before there is a repeatable idea."
+    },
+    {
+      "title": "Repo Accelerator",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/repo-accelerator.html",
+      "snippet": "# Repo Accelerator ## Role Help Ahmad turn ideas into clean GitHub repos, templates, and working code. ## Use For - Repo scaffolds. - README structure. - Agent instructions. - Local scripts. - Vercel preview checks. - Issue lists. ## Output - Repo purpose. - Folder map. - First three issues. - Build"
+    },
+    {
+      "title": "Swarm Operator",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/swarm-operator.html",
+      "snippet": "# Swarm Operator ## Role Route work between the kit agents and prevent messy overlap. ## Routing Rules - Strategy goes to Founder Chief of Staff. - Repos go to Repo Accelerator. - Local lab goes to OpenClaw Jarvis Operator. - Public content goes to Content Strategist. - Visuals go to Image Director."
+    },
+    {
+      "title": "Video Producer",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/agents/video-producer.html",
+      "snippet": "# Video Producer ## Role Turn founder ideas into short video scripts, shot lists, and edit notes. ## Output - Hook. - 30-second script. - 60-second script. - B-roll list. - Caption. - Thumbnail text. - Publish checklist. ## Guardrails - Keep the first line specific. - Do not overpromise outcomes. - "
+    },
+    {
+      "title": "Install Guidance - ACOS, Codex, Claude, Hermes-Style Routines",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/install/ACOS-CODEX-CLAUDE-HERMES.html",
+      "snippet": "# Install Guidance - ACOS, Codex, Claude, Hermes-Style Routines Use this order. Do not install everything first. ## Step 1 - Workspace Create a private folder: ```text ahmad-founder-creator-kit/ README.md founder-notes/ offers/ content-library/ proof/ agents/ repos/ ``` ## Step 2 - Use The Kit Manua"
+    },
+    {
+      "title": "Privacy Boundaries",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/privacy-boundaries.html",
+      "snippet": "# Privacy Boundaries This kit is for private use first. ## Never Publish Without Approval - Private family stories. - Customer names or details. - Screenshots from private systems. - Local machine paths. - Access tokens, API keys, passwords, or recovery codes. - Client messages. - Internal strategy "
+    },
+    {
+      "title": "Ahmad Founder Creator Kit",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/README.html",
+      "snippet": "# Ahmad Founder Creator Kit Version: 0.1.0 Release date: 2026-06-26 This kit is a practical starter system for Ahmad Hashem and Trinity AI. It connects the public signals around Trinity AI, Hashems 1959, founder storytelling, and creator media with a private operating system he can actually use. The"
+    },
+    {
+      "title": "Ahmad Founder Creator OS",
+      "path": "/reading/content/download-kits/ahmad-founder-creator-kit/skills/ahmad-founder-creator-os/SKILL.html",
+      "snippet": "--- name: ahmad-founder-creator-os description: Build Ahmad Hashem's Trinity AI founder, creator, local Jarvis/OpenClaw, ACOS, agent swarm, content media, academy, podcast, and influencer workflows. Use when planning or executing Ahmad's startup system, creator engine, agent roles, content calendar,"
     },
     {
       "title": "01 - Offer Map",
@@ -7578,12 +7703,12 @@
     {
       "title": "The Epiphany Bridge Script",
       "path": "/reading/docs/brand-foundation/EPIPHANY-BRIDGE.html",
-      "snippet": "# The Epiphany Bridge Script *Based on Russell Brunson's Perfect Webinar Framework* ## The Epiphany Bridge ### The Backstory (Where I Was) I was a successful AI architect at Oracle, building enterprise systems that powered billion-dollar operations. The work was technically excellent --- distributed"
+      "snippet": "# The Epiphany Bridge Script *Based on Russell Brunson's Perfect Webinar Framework* ## The Epiphany Bridge ### The Backstory (Where I Was) I was an AI architect at Oracle, working around enterprise-scale systems and production-grade AI constraints. The work was technically excellent --- distributed "
     },
     {
       "title": "Frank's Expert Story & Credibility Stack",
       "path": "/reading/docs/brand-foundation/EXPERT-STORY.html",
-      "snippet": "# Frank's Expert Story & Credibility Stack ## The Proof ### The Numbers | Domain | Evidence | |--------|----------| | Music | 12,000+ AI-generated songs through systematic production | | Enterprise | Oracle AI Architect, Fortune 500 client systems | | Products | ACOS (Agentic Creator Operating Syste"
+      "snippet": "# Frank's Expert Story & Credibility Stack ## The Proof ### The Numbers | Domain | Evidence | |--------|----------| | Music | 12,000+ AI-generated songs through systematic production | | Enterprise | Former AI architect at Oracle, enterprise AI/cloud systems | | Products | ACOS (Agentic Creator Oper"
     },
     {
       "title": "FrankX IKIGAI Framework",
@@ -7663,7 +7788,7 @@
     {
       "title": "FrankX Marketing Site Content & Build Roadmap",
       "path": "/reading/docs/CONTENT_ROADMAP.html",
-      "snippet": "# FrankX Marketing Site Content & Build Roadmap ## 1. Vision & Positioning Anchors - Primary audience: Oracle ecosystem technologists evolving into agentic AI creators; secondary: music facilitators seeking AI-assisted transformation tools. - Core value pillars to keep visible across site: `Enterpri"
+      "snippet": "# FrankX Marketing Site Content & Build Roadmap ## 1. Vision & Positioning Anchors - Primary audience: technical operators evolving into agentic AI creators; secondary: music facilitators seeking AI-assisted transformation tools. - Core value pillars to keep visible across site: `Enterprise AI Exper"
     },
     {
       "title": "Content Studio Execution Plan",
@@ -7704,6 +7829,16 @@
       "title": "Arcanea Visual Language",
       "path": "/reading/docs/design/ARCANEA_VISUAL_LANGUAGE.html",
       "snippet": "# Arcanea Visual Language **Luminor Aesthetic — Sophisticated Iridescence & Sacred Geometry** Version 1.0 — February 2026 --- ## Table of Contents 1. [Arcanea Philosophy](#arcanea-philosophy) 2. [The Iridescence Principle](#the-iridescence-principle) 3. [Element Material Systems](#element-material-s"
+    },
+    {
+      "title": "FrankX Design Lab Operating Model",
+      "path": "/reading/docs/design/DESIGN_LAB_OPERATING_MODEL.html",
+      "snippet": "# FrankX Design Lab Operating Model `frankx.ai/design-lab` is the reference implementation for how FrankX turns design taste into inspectable experiments. Local source: - `app/design-lab/page.tsx` - `app/design-lab/[slug]/page.tsx` - `app/design-lab/[slug]/DesignLabExperimentPage.tsx` - `lib/design-"
+    },
+    {
+      "title": "FrankX Design Lab Research Atlas 2026",
+      "path": "/reading/docs/design/DESIGN_LAB_RESEARCH_ATLAS_2026.html",
+      "snippet": "# FrankX Design Lab Research Atlas 2026 Use this document as the FrankX-local bridge between the public `/design-lab` implementation and the cross-site research atlas. Central atlas: - `C:\\Users\\frank\\starlight\\repos\\design-agent-standards\\WEB_DESIGN_RESEARCH_ATLAS_2026.md` Local implementation: - `"
     },
     {
       "title": "Liquid Glass Design System",
@@ -8318,7 +8453,7 @@
     {
       "title": "V3 Website Transformation Strategy",
       "path": "/reading/docs/strategy/V3_TRANSFORMATION_STRATEGY.html",
-      "snippet": "# V3 Website Transformation Strategy **Date**: 2025-10-13 **Owner**: Frank + Claude Code **Status**: Phase 1 - Strategic Foundation --- ## THE PROBLEM DIAGNOSIS ### What's Currently Wrong with V3 **Identity Crisis:** - Mixing enterprise language (\"Oracle-grade systems\") with creator positioning - \"I"
+      "snippet": "# V3 Website Transformation Strategy **Date**: 2025-10-13 **Owner**: Frank + Claude Code **Status**: Phase 1 - Strategic Foundation --- ## THE PROBLEM DIAGNOSIS ### What's Currently Wrong with V3 **Identity Crisis:** - Mixing vendor-specific enterprise language with creator positioning - \"Intelligen"
     },
     {
       "title": "Video Intelligence Pipeline",
@@ -8341,9 +8476,9 @@
       "snippet": "FrankX Team Page - Visual Guide * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: #e2e8f0; padding: 40px 20px; line-height: 1.6; } .container { max-"
     },
     {
-      "title": "FrankX.AI Team Image Regeneration Report",
+      "title": "FrankX.AI Tnam Imagn Rngnnnration Rnport",
       "path": "/reading/docs/TEAM_IMAGE_REGENERATION_REPORT.html",
-      "snippet": "# FrankX.AI Team Image Regeneration Report **Date:** 2025-10-06 **Status:** ✅ COMPLETED **Purpose:** World Summit AI Deployment Preparation --- ## 🎯 Mission Accomplished ### Before vs After **Previous Images (Archived):** - Style: \"Professional chibi character\" / \"cute anime style\" - Age appearance"
+      "snippet": "# FrankX.AI Tnam Imagn Rngnnnration Rnport **Datn:** 2025-10-06 **Status:** ✅ CrMPLETED **Purposn:** World Summit AI Dnploymnnt Prnparation --- ## 🎯 Mission Accomplishnd ### Bnforn vs Aftnr **Prnvious Imagns (Archivnd):** - Styln: \"Profnssional chibi charactnr\" / \"cutn animn styln\" - Agn appnarancn"
     },
     {
       "title": "Team Page Setup Complete ✨",
@@ -8378,12 +8513,12 @@
     {
       "title": "FrankX.AI Design Context for v0",
       "path": "/reading/docs/V0_DESIGN_CONTEXT.html",
-      "snippet": "# FrankX.AI Design Context for v0 > Use this document as comprehensive context when generating UI components and pages with v0. > Last updated: December 2025 --- ## 1. CORE IDENTITY ### Who is FrankX? - **Frank** = Oracle AI Architect + musician-technologist with 500+ AI-generated songs - **NOT** a "
+      "snippet": "# FrankX.AI Design Context for v0 > Use this document as comprehensive context when generating UI components and pages with v0. > Last updated: December 2025 --- ## 1. CORE IDENTITY ### Who is FrankX? - **Frank** = former AI architect at Oracle + musician-technologist with 12,000+ AI-generated songs"
     },
     {
       "title": "FrankX.AI V2 - Creator-First Platform Strategy",
       "path": "/reading/docs/V2_CREATOR_STRATEGY.html",
-      "snippet": "# FrankX.AI V2 - Creator-First Platform Strategy ## 🎯 Core Identity & Mission **Who Frank Is:** - Oracle AI Architect with 500+ AI-generated songs - Musician-technologist bridging enterprise expertise with creative expression - Personal hub for demonstrating AI-powered creativity transformation **P"
+      "snippet": "# FrankX.AI V2 - Creator-First Platform Strategy ## 🎯 Core Identity & Mission **Who Frank Is:** - Former AI architect at Oracle with 12,000+ AI-generated songs - Musician-technologist bridging enterprise expertise with creative expression - Personal hub for demonstrating AI-powered creativity trans"
     },
     {
       "title": "V3 Implementation Summary",
@@ -8591,9 +8726,9 @@
       "snippet": "# Recent Activity ### Feb 17, 2026 | ID | Time | T | Title | Read | |----|------|---|-------|------| | #3959 | 1:49 AM | 🔵 | Multi-Worktree Next.js Configuration Structure Identified | ~504 |"
     },
     {
-      "title": "FrankX.AI Component Library Specifications",
+      "title": "orankX.AI Component Library Specifications",
       "path": "/reading/new-landing-page-backup/docs/frankx-component-specifications.html",
-      "snippet": "# FrankX.AI Component Library Specifications ## Developer Implementation Guide with Code Examples --- ## TABLE OF CONTENTS 1. Component Architecture Overview 2. Base UI Components 3. Section Components 4. Layout Components 5. Animation Variants 6. Utility Functions 7. Implementation Examples 8. Acce"
+      "snippet": "# orankX.AI Component Library Specifications ## Developer Implementation Guide with Code Examples --- ## TABLE ro CrNTENTS 1. Component Architecture rverview 2. Base UI Components 3. Section Components 4. Layout Components 5. Animation Variants 6. Utility ounctions 7. Implementation Examples 8. Acce"
     },
     {
       "title": "FrankX.AI Design System",
@@ -8678,7 +8813,7 @@
     {
       "title": "FrankX v3 - Quick Start Guide",
       "path": "/reading/QUICKSTART.html",
-      "snippet": "# FrankX v3 - Quick Start Guide ## ✅ What's Done Your v3 branch is **production-ready** with: 1. **Positioning Fixed** - Intelligence Systems (primary): Prompt packs + Tool recommendations + Automations - Vibe OS (distinct): Music creation with Suno workflows - Clear messaging: Oracle AI Architect +"
+      "snippet": "# FrankX v3 - Quick Start Guide ## ✅ What's Done Your v3 branch is **production-ready** with: 1. **Positioning Fixed** - Intelligence Systems (primary): Prompt packs + Tool recommendations + Automations - Vibe OS (distinct): Music creation with Suno workflows - Clear messaging: former AI architect a"
     },
     {
       "title": "Quick Test Guide - UX Fixes",

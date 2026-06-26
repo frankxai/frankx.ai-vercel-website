@@ -190,7 +190,6 @@ export const UNSPOKEN_DOUBTS: UnspokenDoubt[] = [
     acknowledgment: 'Most people do. The Day-7 check-in is how this workshop is different.',
   },
 ]
-
 /** Identity helper for authoring a typed, const-checked citation set. */
 export function defineCitations<const T extends readonly Citation[]>(citations: T): T {
   return citations

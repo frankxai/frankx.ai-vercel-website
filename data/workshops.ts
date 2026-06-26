@@ -481,7 +481,7 @@ export const workshops: Workshop[] = [
           'Open with two short, anonymized case studies — one where a CEO owned the framing, one where it was outsourced to a vendor. Contrast the 18-month outcomes. Keep it concrete and operational, never philosophical.',
         resources: [
           { label: 'ACOS — the personal CoE', href: '/acos' },
-          { label: 'For Founders', href: '/for/creators' },
+          { label: 'For Founders', href: '/for/founders' },
         ],
       },
       {
@@ -503,7 +503,7 @@ export const workshops: Workshop[] = [
         instructorNotes:
           'Keep scoring private. Loudly name the lowest score in the room only with permission. The point is self-honesty, not peer comparison. Have printed assessment cards ready — paper outperforms a laptop here.',
         resources: [
-          { label: 'For Founders', href: '/for/creators' },
+          { label: 'For Founders', href: '/for/founders' },
         ],
       },
       {
@@ -515,7 +515,7 @@ export const workshops: Workshop[] = [
           'Public commitment doubles follow-through. Write every commitment on a shared flipchart. Note the dates. Send a templated 30-day check-in email the day after the workshop with the commitments attached.',
         resources: [
           { label: 'ACOS — the personal CoE', href: '/acos' },
-          { label: 'For Founders', href: '/for/creators' },
+          { label: 'For Founders', href: '/for/founders' },
         ],
       },
     ],

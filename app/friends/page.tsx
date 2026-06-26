@@ -88,6 +88,12 @@ export default function FriendsPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
+                href="/friends/ahmad"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-200/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/55 hover:bg-emerald-200/15"
+              >
+                Open Ahmad
+              </Link>
+              <Link
                 href="/friends/jojo"
                 className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 backdrop-blur-xl transition hover:border-amber-100/55 hover:bg-amber-200/15"
               >
@@ -213,6 +219,64 @@ export default function FriendsPage() {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(212,176,110,0.22),rgba(18,94,76,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
+              <div className="flex h-full min-h-[320px] flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-100" />
+                    Founder Friend
+                  </div>
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                    Ahmad Hashem
+                  </h3>
+                  <p className="mt-4 text-lg leading-8 text-white/76">
+                    A public-safe bridge for Ahmad's Trinity AI founder work,
+                    Hashems 1959 context, creator media, and the practical
+                    startup system FrankX can help him install and run.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/friends/ahmad"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                  >
+                    Open profile
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/allies/trinity-ai"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                  >
+                    Founder system
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-7 md:p-9">
+              <div className="grid gap-4">
+                {[
+                  ["Public facts first", "Use public profiles plus Hashems 1959 city and chamber material as grounding, with no private startup claims until approved."],
+                  ["Builder gift", "Give Ahmad a kit for Trinity AI, local AI lab setup, agent roles, content loops, and startup execution."],
+                  ["Creator engine", "Help one source idea become Instagram, LinkedIn, podcast, academy, and feedback assets without losing his voice."],
+                ].map(([title, copy]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Shield className="mt-1 h-5 w-5 shrink-0 text-amber-100" />
+                    <div>
+                      <h4 className="font-black text-white">{title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {copy}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </article>
@@ -397,10 +461,10 @@ export default function FriendsPage() {
             </p>
           </div>
           <Link
-            href="/allies/harzfenster"
+            href="/allies/trinity-ai"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open Jojo ally page
+            Open Ahmad ally page
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

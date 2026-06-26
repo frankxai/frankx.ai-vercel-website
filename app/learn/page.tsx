@@ -14,7 +14,6 @@ import {
   BookOpen,
   Play,
   ExternalLink,
-  Flame,
   GraduationCap,
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
@@ -201,28 +200,6 @@ export default function LearnPage() {
             </p>
           </motion.div>
         </div>
-      </section>
-
-      {/* Daily Dare banner */}
-      <section className="max-w-6xl mx-auto px-6 pb-12">
-        <Link
-          href="/dare"
-          className="group relative block rounded-2xl border border-amber-500/[0.16] bg-amber-500/[0.03] p-6 hover:border-amber-500/30 transition-all"
-        >
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
-              <Flame className="w-5 h-5" />
-            </div>
-            <div className="min-w-0">
-              <h2 className="font-bold text-white">One dare a day</h2>
-              <p className="text-sm text-white/50">
-                Learn something that stretches your mind, run a prompt, train one principle of the
-                mind, do one good thing for the world.
-              </p>
-            </div>
-            <ArrowRight className="ml-auto w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all shrink-0" />
-          </div>
-        </Link>
       </section>
 
       {/* Learning Paths Grid */}

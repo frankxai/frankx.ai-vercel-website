@@ -6,6 +6,7 @@ import { AgenticPlatformPill } from '@/components/llm-hub/AgenticPlatformPill'
 import { ModelExplorer } from '@/components/llm-hub/ModelExplorer'
 import { DecisionMatrix } from '@/components/llm-hub/DecisionMatrix'
 import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
+import { TaskRoutingPlayground } from '@/components/research/TaskRoutingPlayground'
 import { getAllPlatforms, getProviders } from '@/lib/llm-hub/registry'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
@@ -179,7 +180,13 @@ export default async function LlmHubPage() {
                 The fastest path from “which model?” to an answer. One dominant constraint → a recommendation.
               </p>
             </div>
-            <DecisionMatrix />
+            <div className="grid gap-8">
+              <TaskRoutingPlayground />
+              <div className="mt-6">
+                <h3 className="text-base font-semibold text-white/80 mb-3">Curated Routing Table</h3>
+                <DecisionMatrix />
+              </div>
+            </div>
           </div>
         </section>
 

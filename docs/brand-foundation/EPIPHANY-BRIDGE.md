@@ -5,7 +5,7 @@
 
 ### The Backstory (Where I Was)
 
-I was a successful AI architect at Oracle, building enterprise systems that powered billion-dollar operations. The work was technically excellent --- distributed systems, multi-agent orchestration, production-grade AI at scale. I was good at finding patterns in complex problems and turning them into clean architecture.
+I was an AI architect at Oracle, working around enterprise-scale systems and production-grade AI constraints. The work was technically excellent --- distributed systems, multi-agent orchestration, production-grade AI at scale. I was good at finding patterns in complex problems and turning them into clean architecture.
 
 But I had this other thing. I made music. A lot of music. And I kept noticing something I couldn't ignore.
 
@@ -28,7 +28,7 @@ I kept seeing the same structure everywhere. Chaos to pattern. Pattern to system
 
 It was late. I was deep in a Suno session, and I realized I'd produced 50 songs that week. Not because I was "inspired" 50 times. Because I had built a system --- prompt architecture, genre templates, production pipelines, feedback loops --- that made creation the default state.
 
-And then I looked at my day job. Same thing. I'd built systems at Oracle that processed millions of transactions not because anyone manually handled each one, but because the architecture handled scale.
+And then I looked at my enterprise architecture work. Same thing. The systems handled scale because the architecture absorbed complexity instead of pushing it onto people.
 
 **Same pattern. Same skill. Different output.**
 

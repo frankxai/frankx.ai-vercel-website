@@ -58,6 +58,15 @@ export function PlaceholderState({ partner }: PlaceholderStateProps) {
             </Link>
           </div>
         </div>
+
+        {partner.lastUpdated ? (
+          <p className="mt-12 text-center text-xs text-white/30">
+            Last updated{' '}
+            <time dateTime={partner.lastUpdated}>
+              {new Date(partner.lastUpdated + 'T00:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
+            </time>
+          </p>
+        ) : null}
       </div>
     </section>
   )

@@ -28,118 +28,6 @@
     ]
   },
   "videoToWatchlist": {
-    "aircAruvnKk": [
-      "beautiful-mind-quest",
-      "learning"
-    ],
-    "eMlx5fFNoYc": [
-      "beautiful-mind-quest"
-    ],
-    "MlJdMr3O5J4": [
-      "beautiful-mind-quest",
-      "learning"
-    ],
-    "U_nzqnXWvSo": [
-      "beautiful-mind-quest",
-      "mindset"
-    ],
-    "sal78ACtGTc": [
-      "beautiful-mind-quest",
-      "ai-agents"
-    ],
-    "XNbaR54Gpj4": [
-      "beautiful-mind-quest",
-      "mindset"
-    ],
-    "vA50EK70whE": [
-      "beautiful-mind-quest"
-    ],
-    "QmOF0crdyRU": [
-      "beautiful-mind-quest"
-    ],
-    "yb5zpo5WDG4": [
-      "beautiful-mind-quest",
-      "mindset"
-    ],
-    "heh5XLwZVOY": [
-      "beautiful-mind-quest",
-      "mindset"
-    ],
-    "sE1teB5bN-w": [
-      "beautiful-mind-quest",
-      "creative-ai"
-    ],
-    "nbPbK1xYSNY": [
-      "beautiful-mind-quest"
-    ],
-    "VUDjpOY3YeE": [
-      "beautiful-mind-quest",
-      "creative-ai"
-    ],
-    "sIx3LNV51bQ": [
-      "beautiful-mind-quest",
-      "music-production",
-      "creative-ai"
-    ],
-    "kCc8FmEb1nY": [
-      "beautiful-mind-quest",
-      "learning"
-    ],
-    "IHZwWFHWa-w": [
-      "beautiful-mind-quest"
-    ],
-    "hq8J-nj_Sr0": [
-      "beautiful-mind-quest"
-    ],
-    "uRuLgar5XZw": [
-      "beautiful-mind-quest",
-      "ai-engineering"
-    ],
-    "tQSKyvjsUuI": [
-      "beautiful-mind-quest",
-      "creator-economy"
-    ],
-    "3E7hkPZ-HTk": [
-      "beautiful-mind-quest",
-      "learning"
-    ],
-    "arj7oStGLkU": [
-      "beautiful-mind-quest",
-      "mindset"
-    ],
-    "o0Fc5_zHvzo": [
-      "beautiful-mind-quest",
-      "ai-agents"
-    ],
-    "7xTGNNLPyMI": [
-      "beautiful-mind-quest"
-    ],
-    "KyxYdicOzTg": [
-      "beautiful-mind-quest",
-      "top-shorts"
-    ],
-    "_osKgFwKoDQ": [
-      "beautiful-mind-quest",
-      "strategy"
-    ],
-    "KrRD7r7y7NY": [
-      "beautiful-mind-quest",
-      "ai-agents"
-    ],
-    "Gfr50f6ZBvo": [
-      "beautiful-mind-quest"
-    ],
-    "BZ2nSULolKI": [
-      "beautiful-mind-quest",
-      "creator-economy"
-    ],
-    "cdiD-9MMpb0": [
-      "beautiful-mind-quest"
-    ],
-    "jvqFAi7vkBc": [
-      "beautiful-mind-quest",
-      "strategy"
-    ],
     "VMj-3S1tku0": [
       "ai-engineering"
     ],
@@ -149,14 +37,34 @@
     "eTTMUWP5B0s": [
       "ai-engineering"
     ],
+    "uRuLgar5XZw": [
+      "ai-engineering"
+    ],
     "QUXQNi6jQ30": [
       "ai-engineering"
     ],
     "ORMx45xqWkA": [
       "ai-engineering"
     ],
-    "sPzc6hMg7So": [
+    "sal78ACtGTc": [
       "ai-agents"
+    ],
+    "KrRD7r7y7NY": [
+      "ai-agents"
+    ],
+    "5-2W--zGO0Y": [
+      "ai-agents"
+    ],
+    "o0Fc5_zHvzo": [
+      "ai-agents"
+    ],
+    "EIi5k9TJUvY": [
+      "music-production",
+      "creative-ai"
+    ],
+    "jDHMPSSgaMw": [
+      "music-production",
+      "creative-ai"
     ],
     "u2pYNRNdcNc": [
       "music-production"
@@ -164,17 +72,74 @@
     "1bZ0OSEViyo": [
       "music-production"
     ],
+    "9WVZbitXbck": [
+      "creative-ai"
+    ],
+    "n9iv24yI04nI": [
+      "creative-ai"
+    ],
+    "5MUvJv_sB64": [
+      "strategy"
+    ],
+    "BSjQk-7j3X0": [
+      "strategy"
+    ],
+    "jvqFAi7vkBc": [
+      "strategy"
+    ],
     "CBYhVcO4WgI": [
       "strategy"
     ],
     "0wIUK0nsyUg": [
       "strategy"
     ],
+    "tqfPCE_gfuc": [
+      "strategy"
+    ],
+    "BZ2nSULolKI": [
+      "creator-economy"
+    ],
+    "cNGpxfcDKms": [
+      "creator-economy"
+    ],
+    "H_lZr0BAWhM": [
+      "creator-economy"
+    ],
     "BBAuhqvT_ds": [
       "creator-economy"
     ],
     "RKXZ7t_RiOE": [
       "creator-economy"
+    ],
+    "Cqbleas1mmo": [
+      "mindset"
+    ],
+    "arj7oStGLkU": [
+      "mindset"
+    ],
+    "yb5zpo5WDG4": [
+      "mindset"
+    ],
+    "mNeXuCYiE0U": [
+      "mindset"
+    ],
+    "heh5XLwZVOY": [
+      "mindset"
+    ],
+    "aircAruvnKk": [
+      "learning"
+    ],
+    "zdkGXDq1jqM": [
+      "learning"
+    ],
+    "kCc8FmEb1nY": [
+      "learning"
+    ],
+    "3E7hkPZ-HTk": [
+      "learning"
+    ],
+    "1Edv43k15cY": [
+      "top-shorts"
     ]
   }
 }

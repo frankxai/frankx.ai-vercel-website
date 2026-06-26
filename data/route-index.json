@@ -1,16 +1,16 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 775,
-    "aliases": 25,
+    "total": 706,
+    "aliases": 15,
     "byType": {
       "core": 22,
-      "section": 376,
+      "section": 322,
       "community": 17,
-      "tool": 56,
+      "tool": 54,
       "static": 15,
-      "blog": 202,
-      "guide": 20,
+      "blog": 190,
+      "guide": 19,
       "library": 4,
       "newsletter": 1,
       "os": 9,
@@ -76,28 +76,8 @@
       "type": "section"
     },
     {
-      "href": "/agentic-builder-lab",
-      "title": "Agentic Builder Lab",
-      "tags": [
-        "agentic",
-        "builder",
-        "lab"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/agentic-creator-os",
       "title": "Agentic Creator OS",
-      "type": "section"
-    },
-    {
-      "href": "/agentic-life-os",
-      "title": "Agentic Life OS",
-      "tags": [
-        "agentic",
-        "life",
-        "os"
-      ],
       "type": "section"
     },
     {
@@ -469,15 +449,6 @@
       "type": "tool"
     },
     {
-      "href": "/ai-coe",
-      "title": "AI Coe",
-      "tags": [
-        "ai",
-        "coe"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/ai-evolution",
       "title": "AI Evolution",
       "type": "section"
@@ -573,43 +544,6 @@
         "alea",
         "musik",
         "klavier"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/allies",
-      "title": "Allies",
-      "tags": [
-        "allies"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/allies/ana-cancino",
-      "title": "Ana Cancino",
-      "tags": [
-        "allies",
-        "ana",
-        "cancino"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/allies/epic-ways",
-      "title": "Epic Ways",
-      "tags": [
-        "allies",
-        "epic",
-        "ways"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/allies/harzfenster",
-      "title": "Harzfenster",
-      "tags": [
-        "allies",
-        "harzfenster"
       ],
       "type": "section"
     },
@@ -802,19 +736,6 @@
         "autonomous intelligence",
         "ai operations",
         "creator systems"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/acos-v11-visual-intelligence-site-integrity",
-      "title": "ACOS v11: Visual Intelligence and Site Integrity — What Changed and Why",
-      "description": "How 8 broken AI-generated images led to a 5-layer quality enforcement system, a 302-page site integrity audit, and a better way to create at scale.",
-      "tags": [
-        "ACOS",
-        "Visual Intelligence",
-        "Quality Gates",
-        "Site Integrity",
-        "AI"
       ],
       "type": "blog"
     },
@@ -1114,19 +1035,6 @@
         "ai-architecture",
         "ai-2026",
         "ai-coe"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/ai-skills-operating-layer",
-      "title": "AI Skills Are the New Operating Layer",
-      "description": "Why AI skills are not prompt snippets, but reusable operating knowledge for founders, startups, and enterprise AI teams.",
-      "tags": [
-        "ai-skills",
-        "ai-coe",
-        "agentic-systems",
-        "operating-knowledge",
-        "founder-ai"
       ],
       "type": "blog"
     },
@@ -1460,19 +1368,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/best-open-local-llms-2026",
-      "title": "The Best Open & Local LLMs in 2026: A Self-Host Field Guide",
-      "description": "Which open-weight model for which hardware — Gemma 4, gpt-oss, Phi-4, Mistral Large 3, Llama 4, DeepSeek V4, and Kimi K2.6 compared by VRAM, license, and use case. When self-hosting beats an API, with verified benchmarks.",
-      "tags": [
-        "open-source",
-        "local-llm",
-        "self-hosting",
-        "frontier-models",
-        "ai-2026"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/brand-evolution-from-consciousness-to-systems",
       "title": "Brand Evolution: From Consciousness to Systems",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
@@ -1557,28 +1452,6 @@
         "Gemini 3.1",
         "OpenRouter",
         "API costs"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/CLAUDE",
-      "title": "CLAUDE",
-      "tags": [
-        "CLAUDE"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/claude-agent-sdk-credit-pause-agent-stack-2026",
-      "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
-      "description": "Anthropic paused the Claude Agent SDK credit change. What it means for claude -p, OpenClaw, OpenCode, Codex, and agent pricing.",
-      "tags": [
-        "Claude",
-        "Agent SDK",
-        "AI Agents",
-        "OpenClaw",
-        "OpenCode",
-        "AI Coding"
       ],
       "type": "blog"
     },
@@ -1830,14 +1703,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/EDITORIAL_STANDARD",
-      "title": "EDITORIAL_STANDARD",
-      "tags": [
-        "EDITORIAL_STANDARD"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/embodied-creator-os",
       "title": "Your Body Is Part of Your AI Stack",
       "description": "The disembodied AI ceiling and the embodied creator OS. Why training, sleep, breath, and environment are cognitive infrastructure — for humans and for the agents we build.",
@@ -1972,22 +1837,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/frontier-model-routing-without-fable-5",
-      "title": "You Don't Need Fable 5 to Work on the Frontier. You Need a Model Routing System.",
-      "description": "Kilo is right that model freedom matters after the Fable/Mythos shock. The next step is a routed frontier stack: Fable 5, Opus 4.8, GPT-5.5 in Kilo Code, Grok 4.3, Gemini 3.5 Flash in Antigravity, Kimi, MiniMax, and Nemotron with receipts.",
-      "tags": [
-        "model-routing",
-        "fable-5",
-        "kilo-code",
-        "grok-4-3",
-        "gemini-3-5",
-        "antigravity",
-        "llm-evals",
-        "frontier-models"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/gemini-3-5-pro-analysis-2026",
       "title": "Gemini 3.5 Pro: What We Actually Know Before GA",
       "description": "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 — no model card, no benchmarks, no pricing. Here's the verifiable picture: what Flash already proved, what Google has committed to, and what to wait for at GA.",
@@ -2088,20 +1937,6 @@
         "Content Strategy",
         "Automation",
         "Growth Systems"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/google-ai-pro-compute-limits-ai-credits-may-2026",
-      "title": "Compute-Aware AI: Inside Google AI Pro's 2026 Upgrade",
-      "description": "Google AI Pro got smarter on May 20, 2026 — compute-aware usage in Gemini, AI credits across Flow and Antigravity, and a cleaner base plan. Here's how to build with the new model.",
-      "tags": [
-        "Google Gemini",
-        "AI Pricing",
-        "AI Credits",
-        "Flow",
-        "Antigravity",
-        "AI Strategy"
       ],
       "type": "blog"
     },
@@ -2278,20 +2113,6 @@
         "benchmarks",
         "ai-2026",
         "anthropic"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/magnifica-humanitas-benevolent-future-arcanea",
-      "title": "Magnifica Humanitas: The Pope, Anthropic, and the Architecture of a Benevolent Future",
-      "description": "Pope Leo XIV's Magnifica Humanitas and Anthropic co-founder Chris Olah's Vatican remarks make one argument: a benevolent AI future has to be designed, not hoped for. Here's why I'm building Arcanea and Starlight.",
-      "tags": [
-        "AI Safety",
-        "Anthropic",
-        "Benevolent AI",
-        "Arcanea",
-        "Starlight Intelligence",
-        "Sovereignty"
       ],
       "type": "blog"
     },
@@ -2877,19 +2698,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/skill-libraries-ai-coe-governance",
-      "title": "How to Govern an AI Skill Library",
-      "description": "A practical operating model for skill registries, risk tiers, evaluations, and AI CoE ownership.",
-      "tags": [
-        "ai-coe",
-        "ai-skills",
-        "governance",
-        "enterprise-ai",
-        "evals"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/soul-frequency-framework",
       "title": "Soul Frequency Framework",
       "tags": [
@@ -3035,19 +2843,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/the-higher-self-protocol",
-      "title": "The Higher Self Protocol: What Happened When I Used AI to Get Closer to God",
-      "description": "A friend told me she wants to become a saint. So I started using AI the way you'd use a good study partner — to read scripture slowly, sit with hard questions, and show up for a practice. Here is what worked, what was cringe, and what I'd never hand a machine.",
-      "tags": [
-        "higher-self-protocol",
-        "spirituality",
-        "ai and faith",
-        "contemplative practice",
-        "personal"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
       "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
       "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
@@ -3058,21 +2853,6 @@
         "Hooks",
         "Content Strategy",
         "Creator Workflow"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/trinity-ai-conscious-operating-system",
-      "title": "Trinity AI — The Conscious Operating System for Human Potential",
-      "description": "Trinity AI is a 5-layer conscious operating system that remembers you, reads your body, and compounds intelligence daily. Built on Claude Agent SDK, Vercel, and sovereign data principles.",
-      "tags": [
-        "trinity ai",
-        "conscious os",
-        "agentic ai",
-        "personal ai",
-        "sovereign ai",
-        "ai architecture",
-        "mcp servers"
       ],
       "type": "blog"
     },
@@ -3584,16 +3364,6 @@
       "type": "section"
     },
     {
-      "href": "/build/template-pack",
-      "title": "Template Pack",
-      "tags": [
-        "build",
-        "template",
-        "pack"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/business-plan",
       "title": "Business Plan",
       "tags": [
@@ -3639,14 +3409,6 @@
       "type": "section"
     },
     {
-      "href": "/cloud",
-      "title": "Cloud",
-      "tags": [
-        "cloud"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/coaching",
       "title": "Coaching",
       "type": "community"
@@ -3686,23 +3448,6 @@
       "href": "/community",
       "title": "Community",
       "type": "community"
-    },
-    {
-      "href": "/connect",
-      "title": "Connect",
-      "tags": [
-        "connect"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/connect/qr",
-      "title": "QR",
-      "tags": [
-        "connect",
-        "qr"
-      ],
-      "type": "section"
     },
     {
       "href": "/consulting",
@@ -3781,14 +3526,6 @@
       "href": "/creators",
       "title": "For Creators",
       "type": "core"
-    },
-    {
-      "href": "/dare",
-      "title": "Dare",
-      "tags": [
-        "dare"
-      ],
-      "type": "section"
     },
     {
       "href": "/dashboard",
@@ -4182,63 +3919,6 @@
       "type": "section"
     },
     {
-      "href": "/downloads/ana-ai-business-kit",
-      "title": "Ana AI Business Kit",
-      "tags": [
-        "downloads",
-        "ana",
-        "ai",
-        "business",
-        "kit"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/downloads/epicways-intelligence",
-      "title": "Epicways Intelligence",
-      "tags": [
-        "downloads",
-        "epicways",
-        "intelligence"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/downloads/health-intelligence-system",
-      "title": "Health Intelligence System",
-      "tags": [
-        "downloads",
-        "health",
-        "intelligence",
-        "system"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/downloads/jojo-hospitality-intelligence-kit",
-      "title": "Jojo Hospitality Intelligence Kit",
-      "tags": [
-        "downloads",
-        "jojo",
-        "hospitality",
-        "intelligence",
-        "kit"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/downloads/preview/agentic-creator-os",
-      "title": "Agentic Creator OS",
-      "tags": [
-        "downloads",
-        "preview",
-        "agentic",
-        "creator",
-        "os"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/downloads/preview/soulbook",
       "title": "Soulbook",
       "tags": [
@@ -4294,33 +3974,6 @@
       "type": "section"
     },
     {
-      "href": "/familie",
-      "title": "Familie",
-      "tags": [
-        "familie"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/familie/forsche-selbst",
-      "title": "Forsche Selbst",
-      "tags": [
-        "familie",
-        "forsche",
-        "selbst"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/familie/geschichte",
-      "title": "Geschichte",
-      "tags": [
-        "familie",
-        "geschichte"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/familie/geschichte/gorte-linie",
       "title": "Gorte-Linie — Geschichte",
       "type": "community"
@@ -4329,17 +3982,6 @@
       "href": "/familie/geschichte/karaganda",
       "title": "Karaganda — Geschichte",
       "type": "community"
-    },
-    {
-      "href": "/familie/geschichte/offene-fragen",
-      "title": "Offene Fragen",
-      "tags": [
-        "familie",
-        "geschichte",
-        "offene",
-        "fragen"
-      ],
-      "type": "section"
     },
     {
       "href": "/familie/geschichte/riemer-linie",
@@ -4355,34 +3997,6 @@
       "href": "/familie/geschichte/wolgadeutsche",
       "title": "Wolgadeutsche — Geschichte",
       "type": "community"
-    },
-    {
-      "href": "/familie/interview-kit",
-      "title": "Interview Kit",
-      "tags": [
-        "familie",
-        "interview",
-        "kit"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/familie/mitmachen",
-      "title": "Mitmachen",
-      "tags": [
-        "familie",
-        "mitmachen"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/familie/stammbaum",
-      "title": "Stammbaum",
-      "tags": [
-        "familie",
-        "stammbaum"
-      ],
-      "type": "section"
     },
     {
       "href": "/family",
@@ -4481,41 +4095,6 @@
       "type": "static"
     },
     {
-      "href": "/friends",
-      "title": "Friends",
-      "tags": [
-        "friends"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/friends/ana",
-      "title": "Ana",
-      "tags": [
-        "friends",
-        "ana"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/friends/estefania",
-      "title": "Estefania",
-      "tags": [
-        "friends",
-        "estefania"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/friends/jojo",
-      "title": "Jojo",
-      "tags": [
-        "friends",
-        "jojo"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/gallery",
       "title": "Gallery",
       "type": "section"
@@ -4612,17 +4191,6 @@
     {
       "href": "/globe",
       "title": "Atlas Globe (EN)",
-      "type": "section"
-    },
-    {
-      "href": "/go/qr/ikigai-branding",
-      "title": "Ikigai Branding",
-      "tags": [
-        "go",
-        "qr",
-        "ikigai",
-        "branding"
-      ],
       "type": "section"
     },
     {
@@ -4760,19 +4328,6 @@
         "productivity",
         "automation",
         "lean-startup"
-      ],
-      "type": "guide"
-    },
-    {
-      "href": "/guides/frankx-skill-creation-methodology",
-      "title": "The FrankX Skill Creation Methodology",
-      "description": "A practical operating method for turning repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
-      "tags": [
-        "ai-skills",
-        "ai-coe",
-        "agentic-systems",
-        "skillforge",
-        "operating-knowledge"
       ],
       "type": "guide"
     },
@@ -4923,36 +4478,10 @@
       "type": "guide"
     },
     {
-      "href": "/harzfenster",
-      "title": "Harzfenster",
-      "tags": [
-        "harzfenster"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/hoffnung",
       "title": "Hoffnung",
       "tags": [
         "hoffnung"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/hospitality-intelligence",
-      "title": "Hospitality Intelligence",
-      "tags": [
-        "hospitality",
-        "intelligence"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/hospitality-os",
-      "title": "Hospitality OS",
-      "tags": [
-        "hospitality",
-        "os"
       ],
       "type": "section"
     },
@@ -5047,14 +4576,6 @@
       "tags": [
         "investor",
         "workflows"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/jojo",
-      "title": "Jojo",
-      "tags": [
-        "jojo"
       ],
       "type": "section"
     },
@@ -5392,15 +4913,6 @@
       "type": "tool"
     },
     {
-      "href": "/llm-hub/deepseek-v3-2",
-      "title": "DeepSeek V3.2 — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
       "href": "/llm-hub/deepseek-v4",
       "title": "DeepSeek V4 — Model Hub",
       "tags": [
@@ -5437,15 +4949,6 @@
       "type": "tool"
     },
     {
-      "href": "/llm-hub/gemini-omni",
-      "title": "Gemini Omni — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
       "href": "/llm-hub/gemma-4",
       "title": "Gemma 4 — Model Hub",
       "tags": [
@@ -5474,7 +4977,7 @@
     },
     {
       "href": "/llm-hub/gpt-oss",
-      "title": "gpt-oss — Model Hub",
+      "title": "gpt-oss (120b / 20b) — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -5509,15 +5012,6 @@
       "type": "tool"
     },
     {
-      "href": "/llm-hub/kimi-k2-7-code",
-      "title": "Kimi K2.7 Code — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
       "href": "/llm-hub/llama-4-maverick",
       "title": "Llama 4 Maverick — Model Hub",
       "tags": [
@@ -5527,8 +5021,26 @@
       "type": "tool"
     },
     {
-      "href": "/llm-hub/minimax-m3",
-      "title": "MiniMax M3 — Model Hub",
+      "href": "/llm-hub/mai-code-1-flash",
+      "title": "MAI-Code-1-Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-image-2-5",
+      "title": "MAI-Image-2.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-thinking-1",
+      "title": "MAI-Thinking-1 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -5545,17 +5057,8 @@
       "type": "tool"
     },
     {
-      "href": "/llm-hub/nemotron-3-ultra",
-      "title": "Nemotron 3 Ultra — Model Hub",
-      "tags": [
-        "llm-hub",
-        "model"
-      ],
-      "type": "tool"
-    },
-    {
       "href": "/llm-hub/phi-4",
-      "title": "Phi-4 — Model Hub",
+      "title": "Microsoft Phi-4 (open-weight family) — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -5649,15 +5152,6 @@
         "lab",
         "piano",
         "songs"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/music-os",
-      "title": "Music OS",
-      "tags": [
-        "music",
-        "os"
       ],
       "type": "section"
     },
@@ -5804,47 +5298,12 @@
       "type": "newsletter"
     },
     {
-      "href": "/newsletter/confirm",
-      "title": "Confirm",
-      "tags": [
-        "newsletter",
-        "confirm"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/newsletter/preferences",
-      "title": "Preferences",
-      "tags": [
-        "newsletter",
-        "preferences"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/newsletter/thank-you",
       "title": "Thank You",
       "tags": [
         "newsletter",
         "thank",
         "you"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/newsletter/unsubscribe",
-      "title": "Unsubscribe",
-      "tags": [
-        "newsletter",
-        "unsubscribe"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/observatory",
-      "title": "Observatory",
-      "tags": [
-        "observatory"
       ],
       "type": "section"
     },
@@ -5899,15 +5358,6 @@
         "opa",
         "und",
         "oma"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/open-source",
-      "title": "Open Source",
-      "tags": [
-        "open",
-        "source"
       ],
       "type": "section"
     },
@@ -6052,16 +5502,6 @@
         "kyndryl"
       ],
       "type": "partnership"
-    },
-    {
-      "href": "/partnerships/van-ede",
-      "title": "Van Ede",
-      "tags": [
-        "partnerships",
-        "van",
-        "ede"
-      ],
-      "type": "section"
     },
     {
       "href": "/plan",
@@ -6336,16 +5776,6 @@
       "type": "section"
     },
     {
-      "href": "/products/trinity-ai",
-      "title": "Trinity AI",
-      "tags": [
-        "products",
-        "trinity",
-        "ai"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/products/vibe-os",
       "title": "Vibe OS",
       "tags": [
@@ -6577,14 +6007,6 @@
       "type": "section"
     },
     {
-      "href": "/quest",
-      "title": "Quest",
-      "tags": [
-        "quest"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/realm",
       "title": "Realm",
       "type": "section"
@@ -6593,42 +6015,6 @@
       "href": "/research",
       "title": "Research",
       "type": "research"
-    },
-    {
-      "href": "/research/ai-contemplative-practice",
-      "title": "AI Contemplative Practice",
-      "tags": [
-        "research",
-        "ai",
-        "contemplative",
-        "practice"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/research/blue-zones-ikigai-ai-era",
-      "title": "Blue Zones Ikigai AI Era",
-      "tags": [
-        "research",
-        "blue",
-        "zones",
-        "ikigai",
-        "ai",
-        "era"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/research/conscious-ai-operating-systems",
-      "title": "Conscious AI Operating Systems",
-      "tags": [
-        "research",
-        "conscious",
-        "ai",
-        "operating",
-        "systems"
-      ],
-      "type": "section"
     },
     {
       "href": "/research/methodology",
@@ -6908,16 +6294,6 @@
       "type": "community"
     },
     {
-      "href": "/soul-frequency-assessment",
-      "title": "Soul Frequency Assessment",
-      "tags": [
-        "soul",
-        "frequency",
-        "assessment"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/soul-frequency-quiz",
       "title": "Soul Frequency Quiz",
       "type": "tool"
@@ -6966,14 +6342,6 @@
       "title": "Sprint",
       "tags": [
         "sprint"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/stack",
-      "title": "Stack",
-      "tags": [
-        "stack"
       ],
       "type": "section"
     },
@@ -7154,15 +6522,6 @@
       "type": "section"
     },
     {
-      "href": "/studio/social",
-      "title": "Social",
-      "tags": [
-        "studio",
-        "social"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/studio/travel",
       "title": "Travel",
       "tags": [
@@ -7259,22 +6618,6 @@
       "type": "tool"
     },
     {
-      "href": "/travel",
-      "title": "Travel",
-      "tags": [
-        "travel"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/tribe",
-      "title": "Tribe",
-      "tags": [
-        "tribe"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/unsubscribe",
       "title": "Unsubscribe",
       "type": "static"
@@ -7347,14 +6690,6 @@
       "type": "section"
     },
     {
-      "href": "/waitlist",
-      "title": "Waitlist",
-      "tags": [
-        "waitlist"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/watch",
       "title": "Watch",
       "type": "video"
@@ -7365,8 +6700,8 @@
       "type": "video"
     },
     {
-      "href": "/watch/shorts/KyxYdicOzTg",
-      "title": "Why You're Always Tired",
+      "href": "/watch/shorts/1Edv43k15cY",
+      "title": "The Real Reason You're Always Tired",
       "tags": [
         "short",
         "video",
@@ -7379,30 +6714,12 @@
       "type": "video"
     },
     {
-      "href": "/work",
-      "title": "Work",
-      "tags": [
-        "work"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/work-with-me",
       "title": "Work With ME",
       "tags": [
         "work",
         "with",
         "me"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/work/trinity-ai",
-      "title": "Trinity AI",
-      "tags": [
-        "work",
-        "trinity",
-        "ai"
       ],
       "type": "section"
     },
@@ -7456,18 +6773,6 @@
         "ikigai",
         "branding",
         "present"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/workshops/ikigai-branding/present/speaker",
-      "title": "Speaker",
-      "tags": [
-        "workshops",
-        "ikigai",
-        "branding",
-        "present",
-        "speaker"
       ],
       "type": "section"
     },
@@ -7545,25 +6850,15 @@
   ],
   "aliases": {
     "/aco": "/agents",
-    "/agentic-creator-os": "/products/agentic-creator-os",
     "/ai-coe": "/acos",
-    "/ai-music-academy": "/music/learn",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
-    "/for/founders": "/for/creators",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
-    "/learning-paths": "/learn",
-    "/llm": "/llm-hub",
-    "/LLM": "/llm-hub",
-    "/llms": "/llm-hub",
-    "/model-arena": "/research/model-arena",
-    "/music-school": "/music/learn",
+    "/llm-hub": "/ai-ops/models-2026",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
-    "/toolkit": "/products/creative-ai-toolkit",
-    "/vibe-os": "/products/vibe-os",
     "/workshops/ikigai": "/workshops/ikigai-branding",
     "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",

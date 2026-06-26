@@ -53,6 +53,17 @@ const activeNodes = [
     tags: ["Leadership", "Communication", "Workshops", "Events"],
   },
   {
+    title: "Trinity AI Founder System",
+    status: "Founder kit",
+    href: "/allies/trinity-ai",
+    friendHref: "/friends/ahmad",
+    description:
+      "Ahmad Hashem's Trinity AI and creator-founder context framed as a practical startup system with local AI lab guidance, ACOS/OpenClaw install paths, media loops, and agent roles.",
+    visitorUse:
+      "Download a founder creator kit and see how public story, private AI tools, content, offers, and feedback can become a working startup rhythm.",
+    tags: ["Trinity AI", "OpenClaw", "Creator OS", "Agent swarms"],
+  },
+  {
     title: "Ana AI Business Kit",
     status: "Noindex draft",
     href: "/allies/ana-cancino",
@@ -137,6 +148,12 @@ export default function AlliesPage() {
               >
                 Open TheEpicWays
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/allies/trinity-ai"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 backdrop-blur-xl transition hover:border-amber-100/55 hover:bg-amber-200/15"
+              >
+                Open Trinity AI
               </Link>
               <Link
                 href="/allies/harzfenster"
@@ -348,8 +365,9 @@ export default function AlliesPage() {
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-white/66">
               The ally layer carries public collaboration. The friends layer
-              carries the warmer personal map. TheEpicWays, Ana, and Jojo each
-              get careful public doors before deeper material is approved.
+              carries the warmer personal map. TheEpicWays, Ahmad, Ana, and
+              Jojo each get careful public doors before deeper material is
+              approved.
             </p>
           </div>
           <Link
