@@ -13,6 +13,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import { createMetadata } from "@/lib/seo";
+import { GlowCard } from "@/components/ui/glow-card";
 
 export const metadata = createMetadata({
   title: "Friends",
@@ -166,7 +167,7 @@ export default function FriendsPage() {
             </p>
           </div>
 
-          <article className="grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+          <GlowCard color="amber" className="grid overflow-hidden rounded-[2.5rem] p-0 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="bg-[linear-gradient(145deg,rgba(245,158,11,0.22),rgba(16,185,129,0.13),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
@@ -197,6 +198,12 @@ export default function FriendsPage() {
                   >
                     TheEpicWays
                   </Link>
+                  <Link
+                    href="/downloads/epicways-intelligence"
+                    className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2.5 text-sm font-bold text-amber-50 transition hover:border-amber-100/45 hover:bg-amber-200/15"
+                  >
+                    Download kit
+                  </Link>
                 </div>
               </div>
             </div>
@@ -221,9 +228,9 @@ export default function FriendsPage() {
                 })}
               </div>
             </div>
-          </article>
+          </GlowCard>
 
-          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+          <GlowCard color="amber" className="mt-5 grid overflow-hidden rounded-[2.5rem] p-0 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="bg-[linear-gradient(145deg,rgba(212,176,110,0.22),rgba(18,94,76,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
@@ -254,6 +261,12 @@ export default function FriendsPage() {
                   >
                     Founder system
                   </Link>
+                  <Link
+                    href="/downloads/ahmad-founder-creator-kit"
+                    className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2.5 text-sm font-bold text-amber-50 transition hover:border-amber-100/45 hover:bg-amber-200/15"
+                  >
+                    Download kit
+                  </Link>
                 </div>
               </div>
             </div>
@@ -279,9 +292,9 @@ export default function FriendsPage() {
                 ))}
               </div>
             </div>
-          </article>
+          </GlowCard>
 
-          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+          <GlowCard color="teal" className="mt-5 grid overflow-hidden rounded-[2.5rem] p-0 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="bg-[linear-gradient(145deg,rgba(215,178,122,0.22),rgba(22,101,52,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
@@ -313,6 +326,12 @@ export default function FriendsPage() {
                   >
                     Hospitality system
                   </Link>
+                  <Link
+                    href="/downloads/jojo-hospitality-intelligence-kit"
+                    className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2.5 text-sm font-bold text-amber-50 transition hover:border-amber-100/45 hover:bg-amber-200/15"
+                  >
+                    Download kit
+                  </Link>
                 </div>
               </div>
             </div>
@@ -338,9 +357,9 @@ export default function FriendsPage() {
                 ))}
               </div>
             </div>
-          </article>
+          </GlowCard>
 
-          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+          <GlowCard color="emerald" className="mt-5 grid overflow-hidden rounded-[2.5rem] p-0 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="bg-[linear-gradient(145deg,rgba(212,165,116,0.20),rgba(22,101,52,0.18),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
@@ -372,6 +391,12 @@ export default function FriendsPage() {
                   >
                     Business kit
                   </Link>
+                  <Link
+                    href="/downloads/ana-ai-business-kit"
+                    className="inline-flex items-center gap-2 rounded-full border border-emerald-200/25 bg-emerald-200/10 px-4 py-2.5 text-sm font-bold text-emerald-50 transition hover:border-emerald-100/45 hover:bg-emerald-200/15"
+                  >
+                    Download kit
+                  </Link>
                 </div>
               </div>
             </div>
@@ -397,14 +422,14 @@ export default function FriendsPage() {
                 ))}
               </div>
             </div>
-          </article>
+          </GlowCard>
         </div>
       </section>
 
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-stretch">
-            <div className="rounded-[2.5rem] border border-white/12 bg-[linear-gradient(145deg,rgba(245,158,11,0.12),rgba(255,255,255,0.045))] p-7 shadow-[0_30px_100px_rgba(0,0,0,0.32)] backdrop-blur-2xl md:p-9">
+            <GlowCard color="amber" className="rounded-[2.5rem] p-7 md:p-9">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
                 Why It Exists
               </p>
@@ -417,15 +442,16 @@ export default function FriendsPage() {
                 nuance, avoid strange overclaiming, and make one useful path
                 easy to follow.
               </p>
-            </div>
+            </GlowCard>
 
             <div className="grid gap-4 md:grid-cols-3">
               {visitorQuestions.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <GlowCard
                     key={item.title}
-                    className="rounded-[2rem] border border-white/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl"
+                    color="amber"
+                    className="rounded-[2rem] p-6"
                   >
                     <div className="grid h-12 w-12 place-items-center rounded-2xl border border-amber-200/20 bg-amber-200/10 text-amber-100">
                       <Icon className="h-5 w-5" />
@@ -436,7 +462,7 @@ export default function FriendsPage() {
                     <p className="mt-2 text-sm leading-6 text-white/62">
                       {item.copy}
                     </p>
-                  </div>
+                  </GlowCard>
                 );
               })}
             </div>
