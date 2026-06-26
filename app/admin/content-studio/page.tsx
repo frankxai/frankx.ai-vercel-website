@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import {
   Sparkles,
@@ -91,11 +91,7 @@ export default function ContentStudioPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [includeHashtags, setIncludeHashtags] = useState(true);
 
-  useEffect(() => {
-    loadContent();
-  }, []);
-
-  const loadContent = async () => {
+  const loadContent = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch('/api/content-studio/content');
@@ -108,7 +104,11 @@ export default function ContentStudioPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadContent();
+  }, [loadContent]);
 
   const copyToClipboard = async (text: string, id: string, label?: string) => {
     try {
