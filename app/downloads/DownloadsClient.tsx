@@ -448,7 +448,7 @@ export default function DownloadsClient() {
         </div>
       </div>
 
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence>
         {filteredDownloads.length > 0 ? (
           <motion.div layout className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
             {filteredDownloads.map((item) => {
