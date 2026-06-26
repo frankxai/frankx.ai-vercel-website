@@ -147,6 +147,7 @@ export default function CharacterAvatar({
           width={dims.width}
           height={dims.height}
           className="object-cover"
+          unoptimized
         />
       </div>
       {(showName || showRole) && (
