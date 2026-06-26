@@ -509,7 +509,7 @@ export function MidjourneyGallery({
       {/* Gallery */}
       {layout === 'masonry' && (
         <div className={`${gridClasses[columns]} gap-4`}>
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {filteredArtworks.map((artwork, index) => (
               <motion.div
                 key={artwork.id}
@@ -530,7 +530,7 @@ export function MidjourneyGallery({
 
       {layout === 'grid' && (
         <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${columns} gap-4`}>
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {filteredArtworks.map((artwork, index) => (
               <ArtworkCard
                 key={artwork.id}

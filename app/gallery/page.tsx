@@ -709,7 +709,7 @@ export default function GalleryPage() {
 
         {/* Masonry Grid */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {filteredArtworks.map((artwork, index) => (
               <ArtworkCard
                 key={artwork.id}

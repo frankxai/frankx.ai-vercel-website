@@ -177,7 +177,7 @@ export default function FeedPage() {
       {/* Feed */}
       <section className="max-w-4xl mx-auto px-6 pb-20">
         <div className="space-y-4">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {entries.map((entry, index) => {
               const agent = agents[entry.agent as keyof typeof agents]
               const AgentIcon = iconMap[agent?.icon] || Activity
