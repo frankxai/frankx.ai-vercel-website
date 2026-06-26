@@ -67,7 +67,7 @@ const personSchema = {
     name: 'FrankX',
     url: siteUrl,
   },
-  worksFor: {
+  alumniOf: {
     '@type': 'Organization',
     name: 'Oracle',
   },

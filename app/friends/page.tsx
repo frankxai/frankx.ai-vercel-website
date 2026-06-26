@@ -1,6 +1,8 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  BookOpen,
+  Gift,
   Heart,
   Handshake,
   MessageCircle,
@@ -8,31 +10,50 @@ import {
   Shield,
   Sparkles,
   Users,
+  UserCheck,
 } from "lucide-react";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: "Friends",
   description:
-    "Friends of FrankX, a warmer public portal for people, builders, and allies around the FrankX network.",
+    "Friends of FrankX, a warmer public portal for trusted people, useful public context, and practical collaboration bridges.",
   path: "/friends",
 });
 
 const portalRoles = [
   {
     icon: Heart,
-    title: "Human Map",
-    copy: "Friends pages can be warmer, lighter, and closer to the person than a formal project page.",
+    title: "Person First",
+    copy: "A friend page starts with who the person is, what they care about, and what should be handled with care.",
   },
   {
-    icon: Handshake,
-    title: "Ally Bridge",
-    copy: "When a friendship becomes serious work, the companion ally page carries the business structure.",
+    icon: Gift,
+    title: "Useful Gift",
+    copy: "Every page should leave the visitor with something practical: an offer, a kit, a clear intro, or a way to support the work.",
   },
   {
     icon: Shield,
-    title: "Approved Public Signal",
-    copy: "Profiles stay intentionally careful until the person approves deeper biography and public claims.",
+    title: "Consent Boundary",
+    copy: "Public pages stay careful until the person approves deeper biography, testimonials, screenshots, and personal details.",
+  },
+];
+
+const visitorQuestions = [
+  {
+    icon: UserCheck,
+    title: "Who is this person?",
+    copy: "A short, human read that does not flatten someone into a role, resume, or hype phrase.",
+  },
+  {
+    icon: BookOpen,
+    title: "What are they building?",
+    copy: "The current offer, practice, company, or body of work, explained in language a real visitor can understand.",
+  },
+  {
+    icon: Handshake,
+    title: "What can I do next?",
+    copy: "Open their site, read the ally page, download a kit, make an introduction, or start a thoughtful conversation.",
   },
 ];
 
@@ -51,20 +72,38 @@ export default function FriendsPage() {
               Friends
             </div>
             <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
-              The warmer map around FrankX.
+              A warmer map for real people.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl">
-              Friends is a public portal for the people and founder
-              relationships behind the work. Allies carries the formal company,
-              business, and intelligence-system layer.
+              Friends is not a badge wall. It is the human layer for people
+              FrankX knows, respects, and wants to help in public without
+              turning their story into marketing noise.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/friends/estefania"
+                href="/friends/ana"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black shadow-[0_18px_60px_rgba(255,255,255,0.16)] transition hover:bg-amber-100"
               >
-                Open Estefania
+                Open Ana
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/friends/ahmad"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-200/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/55 hover:bg-emerald-200/15"
+              >
+                Open Ahmad
+              </Link>
+              <Link
+                href="/friends/jojo"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 backdrop-blur-xl transition hover:border-amber-100/55 hover:bg-amber-200/15"
+              >
+                Open Jojo
+              </Link>
+              <Link
+                href="/friends/estefania"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white backdrop-blur-xl transition hover:border-white/45 hover:bg-white/10"
+              >
+                Open Estefania
               </Link>
               <Link
                 href="/allies"
@@ -89,9 +128,9 @@ export default function FriendsPage() {
             </div>
             <div className="mt-5 grid grid-cols-1 gap-3">
               {[
-                ["Friend profile", "Human, warm, careful, and approval-aware."],
-                ["Ally page", "Offers, delivery loops, business architecture, and public strategy."],
-                ["Operating system", "Skills, repos, prompts, routines, launches, and durable assets."],
+                ["Friend profile", "Warm context, public-safe story, and a real next step."],
+                ["Ally page", "Offers, delivery loops, downloads, and business architecture."],
+                ["Useful system", "Skills, prompts, routines, repos, launches, and durable assets."],
               ].map(([title, copy], index) => (
                 <div
                   key={title}
@@ -115,11 +154,16 @@ export default function FriendsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
-              First Friend
+              Friend Nodes
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-              Start small. Make it real.
+              Start warm. Make it useful.
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/64">
+              The point is not to collect names. The point is to give each
+              person a respectful public doorway that helps visitors understand
+              their work and find the right next action.
+            </p>
           </div>
 
           <article className="grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
@@ -178,6 +222,225 @@ export default function FriendsPage() {
               </div>
             </div>
           </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(212,176,110,0.22),rgba(18,94,76,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
+              <div className="flex h-full min-h-[320px] flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-100" />
+                    Founder Friend
+                  </div>
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                    Ahmad Hashem
+                  </h3>
+                  <p className="mt-4 text-lg leading-8 text-white/76">
+                    A public-safe bridge for Ahmad's Trinity AI founder work,
+                    Hashems 1959 context, creator media, and the practical
+                    startup system FrankX can help him install and run.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/friends/ahmad"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                  >
+                    Open profile
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/allies/trinity-ai"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                  >
+                    Founder system
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-7 md:p-9">
+              <div className="grid gap-4">
+                {[
+                  ["Public facts first", "Use public profiles plus Hashems 1959 city and chamber material as grounding, with no private startup claims until approved."],
+                  ["Builder gift", "Give Ahmad a kit for Trinity AI, local AI lab setup, agent roles, content loops, and startup execution."],
+                  ["Creator engine", "Help one source idea become Instagram, LinkedIn, podcast, academy, and feedback assets without losing his voice."],
+                ].map(([title, copy]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Shield className="mt-1 h-5 w-5 shrink-0 text-amber-100" />
+                    <div>
+                      <h4 className="font-black text-white">{title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {copy}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(215,178,122,0.22),rgba(22,101,52,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
+              <div className="flex h-full min-h-[320px] flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-100" />
+                    Hospitality Friend
+                  </div>
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                    Jojo Steingrüber
+                  </h3>
+                  <p className="mt-4 text-lg leading-8 text-white/76">
+                    Frank's friend, publicly Johannes Steingrüber of
+                    Harzfenster and Hotel Görtler in Seesen. The friend page is
+                    a careful doorway into a hospitality intelligence pilot
+                    built around service, trust, and owner-led craft.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/friends/jojo"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                  >
+                    Open profile
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/allies/harzfenster"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                  >
+                    Hospitality system
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-7 md:p-9">
+              <div className="grid gap-4">
+                {[
+                  ["Public facts first", "Use sourced material around Harzfenster, Hotel Görtler, and Michelin, with no private details until approved."],
+                  ["Operational gift", "Give the house useful workflows for bookings, service briefings, guest follow-up, and team learning."],
+                  ["Reusable vertical", "Turn what works into a serious Hospitality Intelligence offer for other restaurants and hotels."],
+                ].map(([title, copy]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Shield className="mt-1 h-5 w-5 shrink-0 text-amber-100" />
+                    <div>
+                      <h4 className="font-black text-white">{title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {copy}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.055] shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="bg-[linear-gradient(145deg,rgba(212,165,116,0.20),rgba(22,101,52,0.18),rgba(255,255,255,0.04))] p-7 md:p-9">
+              <div className="flex h-full min-h-[320px] flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-100" />
+                    People Systems
+                  </div>
+                  <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
+                    Ana Cecilia Cancino
+                  </h3>
+                  <p className="mt-4 text-lg leading-8 text-white/76">
+                    A public-safe bridge from Ana's HR, psychology,
+                    self-knowledge, faith, embodiment, and AI companion work
+                    into a practical business kit she can test, refine, and
+                    travel with.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/friends/ana"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-black transition hover:bg-amber-100"
+                  >
+                    Open profile
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/allies/ana-cancino"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
+                  >
+                    Business kit
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-7 md:p-9">
+              <div className="grid gap-4">
+                {[
+                  ["Public-safe", "Use verified public material first; keep deeper biography, quotes, and testimonials private until approved."],
+                  ["Offer-led", "Anchor the system in clarity sessions, reflection circles, workshops, and a proposed team path."],
+                  ["Installable", "Give her a ZIP with agent briefs, offer maps, aftercare, content loops, and ACOS guidance."],
+                ].map(([title, copy]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Shield className="mt-1 h-5 w-5 shrink-0 text-emerald-100" />
+                    <div>
+                      <h4 className="font-black text-white">{title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {copy}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="px-5 py-14 md:px-10 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-stretch">
+            <div className="rounded-[2.5rem] border border-white/12 bg-[linear-gradient(145deg,rgba(245,158,11,0.12),rgba(255,255,255,0.045))] p-7 shadow-[0_30px_100px_rgba(0,0,0,0.32)] backdrop-blur-2xl md:p-9">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
+                Why It Exists
+              </p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+                Friendship becomes visible when it helps someone.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-white/68">
+                A good public friend page should feel like an introduction made
+                by someone who actually knows the person. It should protect
+                nuance, avoid strange overclaiming, and make one useful path
+                easy to follow.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {visitorQuestions.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-[2rem] border border-white/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl"
+                  >
+                    <div className="grid h-12 w-12 place-items-center rounded-2xl border border-amber-200/20 bg-amber-200/10 text-amber-100">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-5 text-lg font-black text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-white/62">
+                      {item.copy}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -193,14 +456,15 @@ export default function FriendsPage() {
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-white/66">
               Friends carries the human relationship. Allies carries the
-              serious work, company system, and public business architecture.
+              serious work, company system, public business architecture, and
+              installable tools.
             </p>
           </div>
           <Link
-            href="/allies/epic-ways"
+            href="/allies/trinity-ai"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open TheEpicWays ally page
+            Open Ahmad ally page
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

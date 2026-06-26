@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   FileText,
@@ -275,7 +275,11 @@ export default function ContentCommandCenter() {
   const [view, setView] = useState<'feed' | 'list'>('feed')
   const [copied, setCopied] = useState<string | null>(null)
 
-  const loadData = useCallback(async () => {
+  useEffect(() => {
+    loadData()
+  }, [])
+
+  const loadData = async () => {
     setLoading(true)
     try {
       const res = await fetch('/api/admin/content/inventory')
@@ -289,11 +293,7 @@ export default function ContentCommandCenter() {
     } finally {
       setLoading(false)
     }
-  }, [])
-
-  useEffect(() => {
-    loadData()
-  }, [loadData])
+  }
 
   const copyText = async (text: string) => {
     try {

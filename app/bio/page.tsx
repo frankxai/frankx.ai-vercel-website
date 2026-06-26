@@ -20,15 +20,15 @@ import CopyableBio from './CopyableBio';
 // or copy the length that fits.
 
 const ONE_LINE =
-  'Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence and the creator of 12,000+ AI songs.';
+  'Frank Riemer is a former AI architect at Oracle, founder of FrankX, and creator of 12,000+ AI songs.';
 
-const SHORT_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs enterprise AI systems. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is a former AI architect at Oracle, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
 
-const LONG_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs Center-of-Excellence frameworks and agentic systems for enterprise teams across Europe. The same six-pillar architecture he works with in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he scales down for individuals at frankx.ai, the personal AI Center of Excellence.
+const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and former AI architect at Oracle. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
-By night, he is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a visionary manifesto on the convergence of human and artificial intelligence.
+He is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a manifesto on the convergence of human and artificial intelligence.
 
-His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and the contemplative traditions that, three thousand years before neuroscience, mapped the operation of the human brain. He writes, ships, and creates daily.
+His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and practical systems for human creativity. He writes, ships, and creates daily. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.
 
 Originally from a Volga German family that rebuilt itself across three displaced generations, Frank lives in Amsterdam, on the water.`;
 
@@ -38,7 +38,7 @@ const SPEAKER_TOPICS = [
   {
     title: 'The Personal AI Center of Excellence',
     summary:
-      'How the same six-pillar architecture I use in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
+      'How enterprise AI architecture patterns — Strategy / Governance / Talent / Technology / Data / Ethics — translate to one human life.',
   },
   {
     title: 'Enterprise Agentic Systems in 2026',
@@ -112,7 +112,7 @@ const SELECTED_WORK = [
 // ─── Press / Quick facts ────────────────────────────────────────────────
 
 const QUICK_FACTS = [
-  ['Role', 'AI Architect, Oracle EMEA AI Center of Excellence'],
+  ['Role', 'Former AI architect at Oracle'],
   ['Based', 'Amsterdam, Netherlands'],
   ['Languages', 'English, German, Russian'],
   ['Songs released', '12,000+ via Suno'],
@@ -123,7 +123,7 @@ const QUICK_FACTS = [
 export const metadata = createMetadata({
   title: 'Bio · Frank Riemer | FrankX',
   description:
-    'Press bio, speaker topics, and media kit for Frank Riemer — AI Architect at Oracle EMEA, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+    'Press bio, speaker topics, and media kit for Frank Riemer — former AI architect at Oracle, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
   path: '/bio',
   keywords: [
     'Frank Riemer bio',
@@ -146,10 +146,6 @@ export default function BioPage() {
           name: 'Frank Riemer',
           alternateName: 'FrankX',
           jobTitle: 'AI Architect',
-          worksFor: {
-            '@type': 'Organization',
-            name: 'Oracle EMEA AI Center of Excellence',
-          },
           description: ONE_LINE,
           url: `${siteConfig.url}/bio`,
           image: `${siteConfig.url}/images/portraits/frank-presenting-oracle-2025.jpg`,

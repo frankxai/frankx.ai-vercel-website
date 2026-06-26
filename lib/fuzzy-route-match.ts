@@ -42,7 +42,6 @@ export interface Route {
     | 'section'
     | 'video'
     | 'static'
-    | 'travel'
     | 'legacy'
 }
 

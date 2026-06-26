@@ -541,10 +541,7 @@ export default function DrumMachinePage() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const stepRef = useRef(-1)
   const patternRef = useRef(pattern)
-
-  useEffect(() => {
-    patternRef.current = pattern
-  }, [pattern])
+  patternRef.current = pattern
 
   const getEngine = useCallback(async () => {
     if (!engineRef.current) {
@@ -564,6 +561,26 @@ export default function DrumMachinePage() {
       setActivePads(prev => { const n = new Set(prev); n.delete(id); return n })
     }, 120)
   }, [getEngine])
+
+  // Keyboard mapping
+  useEffect(() => {
+    const keyMap: Record<string, number> = {}
+    for (const pad of PADS) keyMap[pad.key.toLowerCase()] = pad.id
+
+    function down(e: KeyboardEvent) {
+      if (e.repeat || e.metaKey || e.ctrlKey) return
+      const k = e.key.toLowerCase()
+      if (k in keyMap) { e.preventDefault(); triggerPad(keyMap[k]) }
+      if (k === ' ') { e.preventDefault() } // space handled in onKeyUp for toggle
+    }
+    function up(e: KeyboardEvent) {
+      if (e.key === ' ') { e.preventDefault(); togglePlay() }
+    }
+    window.addEventListener('keydown', down)
+    window.addEventListener('keyup', up)
+    return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [triggerPad])
 
   // Sequencer playback
   const stopSequencer = useCallback(() => {
@@ -613,25 +630,6 @@ export default function DrumMachinePage() {
     if (playing) stopSequencer()
     else startSequencer()
   }, [playing, startSequencer, stopSequencer])
-
-  // Keyboard mapping
-  useEffect(() => {
-    const keyMap: Record<string, number> = {}
-    for (const pad of PADS) keyMap[pad.key.toLowerCase()] = pad.id
-
-    function down(e: KeyboardEvent) {
-      if (e.repeat || e.metaKey || e.ctrlKey) return
-      const k = e.key.toLowerCase()
-      if (k in keyMap) { e.preventDefault(); triggerPad(keyMap[k]) }
-      if (k === ' ') { e.preventDefault() } // space handled in onKeyUp for toggle
-    }
-    function up(e: KeyboardEvent) {
-      if (e.key === ' ') { e.preventDefault(); togglePlay() }
-    }
-    window.addEventListener('keydown', down)
-    window.addEventListener('keyup', up)
-    return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up) }
-  }, [togglePlay, triggerPad])
 
   const toggleCell = (padId: number, step: number) => {
     setPattern(prev => {

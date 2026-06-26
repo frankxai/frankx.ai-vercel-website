@@ -7,9 +7,9 @@ import { getAllBlogPosts } from '@/lib/blog'
 import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
-  title: 'Frank Riemer | FrankX AI Creator Systems',
+  title: 'FrankX - AI Architect & Creator Systems',
   description:
-    'Frank Riemer builds FrankX: AI creator systems, music experiments, and evidence-led performance notes for creators who want to ship with clarity.',
+    'Former AI architect at Oracle. Creator of 12,000+ songs with Suno. Practical AI systems, music experiments, and evidence-led performance notes for creators who ship with clarity.',
   keywords: [
     'Frank Riemer',
     'FrankX',
@@ -63,7 +63,7 @@ const personSchema = {
   mainEntityOfPage: {
     '@id': `${siteUrl}/frank-riemer`,
   },
-  worksFor: {
+  alumniOf: {
     '@type': 'Organization',
     name: 'Oracle',
   },
@@ -111,17 +111,22 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the public home of Frank Riemer: AI architect, creator, and builder of systems that turn ideas into shipped work, music, products, and better daily practice.',
+      'FrankX.AI is the independent personal hub of Frank Riemer, a former AI architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
-    question: 'What is GenCreator?',
+    question: 'What kind of content does FrankX publish?',
     answer:
-      'GenCreator is the creator operating framework inside FrankX. It combines strategy, AI workflows, content systems, templates, and agentic builder patterns into one practical system.',
+      'FrankX publishes technical tutorials on AI coding agents, enterprise AI architecture patterns, Suno AI music production guides, prompt engineering frameworks, multi-agent orchestration, and the Signal Loop field notes.',
   },
   {
-    question: 'What should I start with?',
+    question: 'How can I learn AI music production with Suno?',
     answer:
-      'Start with the Signal Loop newsletter for the weekly field note, then choose a path at /start: create, build, or sell. If you want the human story first, read /frank-riemer.',
+      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
+  },
+  {
+    question: 'What is the Agentic Creator OS (ACOS)?',
+    answer:
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Where does peak performance fit?',
@@ -129,9 +134,9 @@ const homepageFAQs = [
       'FrankX treats performance as an evidence-led creator system: attention, energy, recovery, and emotional steadiness. It is not medical advice or miracle biohacking.',
   },
   {
-    question: 'Where does Agentic Creator OS fit?',
+    question: 'Does FrankX offer courses or coaching?',
     answer:
-      'Agentic Creator OS is the advanced builder track inside GenCreator. It is for creators ready to build their own agent systems with Claude Code, MCP, n8n, Vercel, and production workflows.',
+      'FrankX offers free guides and tutorials on the blog, with premium coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
   },
 ]
 

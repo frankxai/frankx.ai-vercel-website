@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { marked } from 'marked';
@@ -34,63 +34,6 @@ export default function BookReader({
   const isPoetry = chapter.type === 'poetry' || chapter.type === 'quotes';
   const fontClass = theme.headingFont === 'serif' ? 'font-serif' : 'font-sans';
   const bodyFontClass = theme.bodyFont === 'serif' ? 'font-serif' : 'font-sans';
-
-  // ── Reader display preferences (font size + line spacing), persisted across books.
-  // SSR-safe: deterministic defaults render on both server and client; localStorage
-  // hydration happens in an effect, so there is no hydration mismatch.
-  const PROSE_SIZES = ['prose-base', 'prose-lg', 'prose-xl'] as const;
-  const [fontLevel, setFontLevel] = useState(1); // 0 small · 1 default · 2 large
-  const [spacious, setSpacious] = useState(false);
-  const [prefsLoaded, setPrefsLoaded] = useState(false);
-
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem('frankx:reader-prefs');
-      if (raw) {
-        const p = JSON.parse(raw) as { fontLevel?: number; spacious?: boolean };
-        if (typeof p.fontLevel === 'number') setFontLevel(Math.max(0, Math.min(2, p.fontLevel)));
-        if (typeof p.spacious === 'boolean') setSpacious(p.spacious);
-      }
-    } catch { /* blocked/corrupt storage — keep defaults */ }
-    setPrefsLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    if (!prefsLoaded) return; // don't overwrite stored prefs with defaults before load
-    try {
-      window.localStorage.setItem('frankx:reader-prefs', JSON.stringify({ fontLevel, spacious }));
-    } catch { /* ignore */ }
-  }, [fontLevel, spacious, prefsLoaded]);
-
-  // ── Reading progress: record this chapter + scroll position so the book's landing
-  // page can offer "continue where you left off". Throttled with requestAnimationFrame.
-  useEffect(() => {
-    const key = `frankx:reading:${bookSlug}`;
-    let ticking = false;
-    const write = () => {
-      ticking = false;
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const scrollPct = max > 0 ? (window.scrollY / max) * 100 : 0;
-      try {
-        window.localStorage.setItem(key, JSON.stringify({
-          chapterSlug: chapter.slug,
-          chapterNumber: chapter.number,
-          chapterTitle: chapter.title,
-          scrollPct,
-          updatedAt: Date.now(),
-        }));
-      } catch { /* ignore */ }
-    };
-    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(write); } };
-    write(); // record on open, even without scrolling
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [bookSlug, chapter.slug, chapter.number, chapter.title]);
-
-  const cycleFont = useCallback(() => setFontLevel((l) => (l + 1) % 3), []);
-  const proseSizeClass = PROSE_SIZES[fontLevel];
-  const readerLeading = spacious ? '2.05' : '1.75';
 
   const tocItems = useMemo(() => {
     const items: TOCItem[] = [];
@@ -194,32 +137,9 @@ export default function BookReader({
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                 <span className="font-medium text-sm">{bookTitle}</span>
               </Link>
-              <div className="flex items-center gap-3 sm:gap-4 text-sm text-white/40">
-                {/* Reader display controls */}
-                <div className="flex items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={cycleFont}
-                    aria-label={`Text size: ${['small', 'default', 'large'][fontLevel]} (click to change)`}
-                    title="Text size"
-                    className="px-2 py-1 rounded-md hover:bg-white/10 hover:text-white/80 transition-colors leading-none"
-                  >
-                    <span className="text-xs">A</span><span className="text-base">A</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSpacious((s) => !s)}
-                    aria-pressed={spacious}
-                    aria-label={`Line spacing: ${spacious ? 'spacious' : 'normal'} (click to toggle)`}
-                    title="Line spacing"
-                    className={`px-2 py-1 rounded-md hover:bg-white/10 hover:text-white/80 transition-colors ${spacious ? 'text-white/80' : ''}`}
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-                  </button>
-                </div>
-                <span className="hidden sm:inline w-px h-4 bg-white/10" aria-hidden />
+              <div className="flex items-center gap-4 text-sm text-white/40">
                 <span>Ch. {chapter.number}</span>
-                <span className="hidden sm:inline">{chapter.readingTime}</span>
+                <span>{chapter.readingTime}</span>
               </div>
             </div>
           </div>
@@ -281,8 +201,7 @@ export default function BookReader({
               {/* Chapter Content */}
               {/* Content is sanitized by DOMPurify above — safe to render */}
               <div
-                style={{ ['--reader-leading' as string]: readerLeading }}
-                className={`${bodyFontClass} prose ${proseSizeClass} prose-invert max-w-none book-reader-content
+                className={`${bodyFontClass} prose prose-lg prose-invert max-w-none book-reader-content
                   ${isPoetry ? 'text-center leading-loose' : ''}
                   prose-headings:font-serif prose-headings:font-bold prose-headings:text-white
                   prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pt-8 prose-h2:border-t prose-h2:border-white/10
@@ -306,11 +225,6 @@ export default function BookReader({
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
               <style jsx global>{`
-                /* Reader line-spacing preference — wins over prose's :where()-based leading */
-                .book-reader-content p,
-                .book-reader-content li {
-                  line-height: var(--reader-leading, 1.75);
-                }
                 .book-reader-content > h1 + p:first-letter,
                 .book-reader-content > h2 + p:first-letter {
                   float: left;

@@ -31,7 +31,7 @@ The GenCreator Quality Architecture applies the same pattern to creative output:
 
 **Gate 4: Does it pass the value check?** After reading this piece, will the reader know something they did not know before? Will they be able to do something they could not do before? Will they see something they could not see before? If the answer is no — if the piece is content for content's sake — it fails the value gate.
 
-**Gate 5: Does it pass the brand check?** Author name: Frank Riemer (not Frank, not FrankX, not AI-generated placeholder). Title: AI Architect (not AI Systems Architect). Voice: positive-only language (no "this is NOT for" framing). Visual identity: consistent with the design system. These are the brand standards that maintain consistency across a high-volume output system.
+**Gate 5: Does it pass the brand check?** Author name: Frank Riemer (not Frank, not FrankX, not AI-generated placeholder). Title: AI Architect. Voice: positive-only language (no "this is NOT for" framing). Visual identity: consistent with the design system. These are the brand standards that maintain consistency across a high-volume output system.
 
 Five gates. Each takes two minutes to evaluate. Total quality gate time: ten minutes per piece. The ten-minute investment prevents the reputation damage of publishing a single substandard piece.
 

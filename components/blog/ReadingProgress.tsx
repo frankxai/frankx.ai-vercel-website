@@ -2,32 +2,36 @@
 
 import { useEffect, useState } from 'react'
 
-/**
- * Thin scroll-progress bar fixed to the top of the viewport.
- * Pure client, no layout impact — reflects how far through the page the reader is.
- */
 export default function ReadingProgress() {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const onScroll = () => {
-      const el = document.documentElement
-      const height = el.scrollHeight - el.clientHeight
-      setProgress(height > 0 ? Math.min(100, (el.scrollTop / height) * 100) : 0)
+    const update = () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0
+      setProgress(pct)
     }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
     return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
     }
   }, [])
 
   return (
-    <div className="fixed left-0 top-0 z-[60] h-0.5 w-full bg-transparent" aria-hidden="true">
+    <div
+      className="fixed inset-x-0 top-0 z-50 h-0.5 bg-transparent"
+      role="progressbar"
+      aria-label="Reading progress"
+      aria-valuenow={Math.round(progress)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+    >
       <div
-        className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 transition-[width] duration-150 ease-out"
+        className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-sky-400 transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

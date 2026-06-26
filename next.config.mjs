@@ -247,8 +247,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/ai-architect/:path*',
-        destination: '/ai-architecture/:path*',
+        source: '/ai-architect/:path((?!ai-coe-hub).*)',
+        destination: '/ai-architecture/:path',
         permanent: true,
       },
       // Product page redirects to main pages
@@ -301,35 +301,6 @@ const nextConfig = {
       'v1-enterprise-backup/**',
       'public/images/**',
       'public/videos/**',
-      // Build/working artifacts that no serverless function reads at runtime
-      // (verified: zero references under app/ or lib/). generated_audio alone is
-      // ~535MB; leaving these traced was the main reason the sitemap function
-      // blew past Vercel's 300MB function-size limit. 2026-06-14.
-      'generated_audio/**',
-      'generated_imgs/**',
-      'reading-site/**',
-      'playwright-report/**',
-    ],
-    // The /sitemap.xml route imports lib/route-enumeration.mjs, which does
-    // dynamic fs.readFileSync(path.join(ROOT, …)) calls. Next's file tracer
-    // can't resolve those statically, so it conservatively bundles the entire
-    // project root (incl. public/reading ~512MB) into the single sitemap
-    // function — 804MB, over the 300MB cap. The sitemap only reads content/
-    // frontmatter + data/ JSON, never public/, so excluding public/** here is
-    // safe. Scoped to this route (not '*') because API routes — content-studio,
-    // download/file, send-pdf — DO read public/ at runtime. 2026-06-14.
-    '/sitemap.xml': [
-      'public/**',
-      'generated_audio/**',
-      'generated_imgs/**',
-      'reading-site/**',
-      // content/ holds the MDX the sitemap walks for frontmatter, but these two
-      // subtrees are binary-only (content/images ~302MB, content/ingest ~27MB of
-      // mp4s) with zero .mdx — route-enumeration only walks blog/guides/
-      // newsletters/partnerships. Excluding them drops the function from 336MB
-      // to well under the 300MB cap. 2026-06-14.
-      'content/images/**',
-      'content/ingest/**',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.

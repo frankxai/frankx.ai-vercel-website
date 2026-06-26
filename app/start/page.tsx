@@ -5,13 +5,13 @@ import { motion } from 'framer-motion'
 import {
   Compass,
   Music,
+  BookOpen,
   Sparkles,
   ArrowRight,
   Code,
+  Lightbulb,
   Target,
   Zap,
-  Users,
-  Package,
   ChevronRight,
 } from 'lucide-react'
 import { ProductLadder } from '@/components/ui/ProductLadder'
@@ -51,64 +51,64 @@ function StartBackground() {
 
 const journeyPaths = [
   {
-    id: 'create',
+    id: 'music',
     icon: Music,
-    title: 'I create content or music',
-    subtitle: 'Create Track',
-    description: 'Turn prompts, taste, and tools into published songs, posts, books, and visible artifacts.',
+    title: 'Create AI Music',
+    subtitle: 'The Music Lab',
+    description: 'Learn how I create music with Suno AI. Prompts, workflows, and the creative process.',
     href: '/music-lab',
     color: 'emerald',
-    stats: 'Music + content',
+    stats: '12K+ songs',
+  },
+  {
+    id: 'learn',
+    icon: BookOpen,
+    title: 'Learn AI Skills',
+    subtitle: 'Curated Courses',
+    description: 'Free courses from Oracle, Google, and MIT. Hand-picked learning paths for AI mastery.',
+    href: '/students',
+    color: 'cyan',
+    stats: '20+ courses',
+  },
+  {
+    id: 'prompts',
+    icon: Sparkles,
+    title: 'Use My Prompts',
+    subtitle: 'Prompt Library',
+    description: 'Battle-tested prompts I actually use daily. Copy them, adapt them, make them yours.',
+    href: '/prompt-library',
+    color: 'violet',
+    stats: '22 prompts',
   },
   {
     id: 'build',
     icon: Code,
-    title: 'I build AI systems',
-    subtitle: 'Build Track',
-    description: 'Use Claude Code, agents, n8n, Vercel, and MCP to build a personal operating system.',
-    href: '/courses/build-your-ai-creator-os',
-    color: 'cyan',
-    stats: 'Flagship path',
-  },
-  {
-    id: 'sell',
-    icon: Package,
-    title: 'I want to sell my expertise',
-    subtitle: 'Sell Track',
-    description: 'Package your work into products, workshops, templates, newsletters, and systems people can buy.',
-    href: '/products',
-    color: 'violet',
-    stats: 'Offer ladder',
-  },
-  {
-    id: 'community',
-    icon: Users,
-    title: 'I want the community',
-    subtitle: 'Free Skool Bridge',
-    description: 'Join the free GenCreator invite list first. Paid channels unlock through cohorts and labs later.',
-    href: '/community',
+    title: 'Build with AI',
+    subtitle: 'Architecture Hub',
+    description: 'Blueprints, BYOK prototypes, and production templates for AI systems.',
+    href: '/ai-architecture',
     color: 'amber',
-    stats: 'Free first',
+    stats: 'Blueprints & Templates',
   },
 ]
 
 const quickWins = [
   {
-    title: 'Read the GenCreator framework',
-    description: 'Principles, handbook, blueprints, and manifesto',
-    href: '/gencreator',
-    icon: Sparkles,
+    title: 'Browse the blog',
+    description: 'Field notes on AI workflows and creative systems',
+    href: '/blog',
+    icon: Lightbulb,
   },
   {
-    title: 'Start the flagship course',
-    description: 'Build Your AI Creator OS beta path',
-    href: '/courses/build-your-ai-creator-os',
+    title: 'See my achievements',
+    description: 'Certifications, milestones, and what I\'ve built',
+    href: '/achievements',
     icon: Target,
   },
   {
     title: 'Get the newsletter',
-    description: 'Free relationship layer before paid Inner Circle',
-    href: '/newsletter',
+    description: 'Weekly insights on AI music and creative tech',
+    href: '/creation-chronicles',
     icon: Zap,
   },
 ]
@@ -141,9 +141,9 @@ export default function StartPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Build your AI Creator OS.
+              Welcome to the hub.
               <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                Pick your GenCreator path.
+                Pick your path.
               </span>
             </motion.h1>
 
@@ -153,8 +153,8 @@ export default function StartPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-white/40 sm:text-xl"
             >
-              GenCreator turns ideas into shipped work, audience, products, and revenue.
-              Choose Create, Build, or Sell, then follow the next action.
+              AI architect by day. Music creator by night.
+              Everything I learn and build—shared openly.
             </motion.p>
           </div>
         </section>

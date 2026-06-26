@@ -5,7 +5,8 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
-import routeIndex from '@/data/route-index.json'
+// lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
+import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
 
 const BASE_URL = siteConfig.url
 
@@ -113,6 +114,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Tool pages
@@ -121,6 +124,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/roi-calculator',
     '/tools/strategy-canvas',
     '/tools/builder',
+    '/superpowers',
   ]
 
   // Assessment pages
@@ -233,8 +237,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/watch', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/watch/shorts', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/rituals', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/dare', priority: 0.9, changeFrequency: 'daily' as const },
-    { url: '/quest', priority: 0.8, changeFrequency: 'weekly' as const },
   ]
 
   // Individual Short detail pages — SEO gold per Short
@@ -668,7 +670,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // settings are preserved.
   const seenUrls = new Set(entries.map((e) => e.url))
   try {
-    const discovered = (routeIndex as { routes?: Array<{ href: string; type: string }> }).routes ?? []
+    const discovered = enumerateRoutes() as Array<{ href: string; type: string }>
     // Heuristic priority + frequency by route type — only used for routes that
     // weren't already in the hand-curated arrays above.
     const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {

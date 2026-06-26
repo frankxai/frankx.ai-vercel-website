@@ -20,6 +20,7 @@ export const google: Partner = {
   shortName: 'Google',
   tier: 'cloud',
   status: 'strategic-alignment',
+  lastUpdated: '2026-06-10',
 
   title: 'AI Architect — Gemini + ADK enterprise AI CoE practice',
   tagline:

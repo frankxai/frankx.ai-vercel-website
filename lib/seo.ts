@@ -37,6 +37,11 @@ type CreateMetadataOptions = {
   updatedTime?: string
   authors?: string[]
   /**
+   * Override the auto-computed canonical URL (defaults to siteConfig.url + path).
+   * Use when a post lives at a non-standard URL or syndicates from elsewhere.
+   */
+  canonical?: string
+  /**
    * When true, emits robots: { index: false, follow: false }
    * — used for draft pages, unlisted proposals, internal-only surfaces.
    */
@@ -53,16 +58,18 @@ export function createMetadata({
   publishedTime,
   updatedTime,
   authors,
+  canonical,
   noindex = false,
 }: CreateMetadataOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString()
+  const canonicalUrl = canonical ?? url
 
   return {
     title,
     description,
     keywords,
     alternates: {
-      canonical: url,
+      canonical: canonicalUrl,
     },
     ...(noindex
       ? {
@@ -77,7 +84,7 @@ export function createMetadata({
       title,
       description,
       type,
-      url,
+      url: canonicalUrl,
       siteName: siteConfig.shortName,
       images: [
         {

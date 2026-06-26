@@ -182,8 +182,8 @@ export const homepageContent: HomepageContent = {
       href: "/products"
     },
     trustIndicators: [
-      { icon: "music", text: "AI Songs Created", value: "500+" },
-      { icon: "building", text: "Oracle AI Architect" },
+      { icon: "music", text: "AI Songs Created", value: "12,000+" },
+      { icon: "building", text: "Former AI architect at Oracle" },
       { icon: "users", text: "Creators Helped", value: "1000+" },
       { icon: "server", text: "Enterprise Systems" }
     ]

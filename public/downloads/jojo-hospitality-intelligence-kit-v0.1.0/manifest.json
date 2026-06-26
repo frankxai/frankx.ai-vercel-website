@@ -1,0 +1,29 @@
+{
+  "name": "jojo-hospitality-intelligence-kit",
+  "version": "0.1.0",
+  "releaseDate": "2026-06-25",
+  "publicPage": "https://frankx.ai/downloads/jojo-hospitality-intelligence-kit",
+  "description": "Starter kit for a human-approved hospitality intelligence pilot around Harzfenster, Hotel Goertler, and the FrankX hospitality vertical.",
+  "install": {
+    "start": "Read README.md and 01-owner-operating-map.md, then choose one pilot workflow.",
+    "acos": "Install ACOS later only after one workflow proves useful.",
+    "github": "Private source of truth: frankxai/hospitality-intelligence-system"
+  },
+  "agents": [
+    "booking-concierge-agent",
+    "guest-memory-agent",
+    "service-briefing-agent",
+    "review-reputation-agent",
+    "menu-story-agent",
+    "event-arrangement-agent",
+    "team-training-agent",
+    "hotel-ops-steward"
+  ],
+  "privacy": "Keep guest names, preferences, allergies, payment data, private notes, staff records, and internal operating details in private workspaces. Publish only approved, non-private patterns.",
+  "sources": [
+    "https://restaurant-harzfenster.de/",
+    "https://guide.michelin.com/en/niedersachsen/seesen_1340885/restaurant/harzfenster-by-johannes-steingruber",
+    "https://news.michelin.de/articles/michelin-guide-deutschland-2026-ein-neuzugang-bereichert-die-gastro-spitze-im-land",
+    "https://hotel-goertler.de/"
+  ]
+}

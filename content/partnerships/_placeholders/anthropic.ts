@@ -21,6 +21,7 @@ export const anthropic: Partner = {
   shortName: 'Anthropic',
   tier: 'model-provider',
   status: 'strategic-alignment',
+  lastUpdated: '2026-05-16',
 
   title: 'AI Architect — Claude-native AI CoE practice',
   tagline:
@@ -32,7 +33,7 @@ export const anthropic: Partner = {
 
 The pattern I see: enterprises and architects are moving toward agent-native workflows faster than the methodology to support that move has matured. Reference implementations, opinionated harnesses, and a curriculum that meets architects where they work are scarce. Claude Code is the strongest harness on the market for that shift, and a Claude-native AI CoE methodology — open, multi-cloud, with public reference implementations — is what closes the gap.
 
-That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, the workshop Claude branch I already teach, and a 7,000-person EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks.`,
+That is the layer I bring. Former Oracle AI architecture experience, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, the workshop Claude branch I already teach, and a 7,000-person EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks. This is an independent project, not affiliated with, endorsed by, or sponsored by Oracle.`,
 
   workingReality: [
     {
@@ -54,9 +55,9 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
       },
     },
     {
-      label: 'Oracle EMEA AI CoE practice',
+      label: 'Former enterprise AI architecture practice',
       detail:
-        'AI Architect at the Oracle EMEA AI Center of Excellence. CoE blueprints used by Oracle solution architects across the region — the same six-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translated into Claude-Code-native workflows.',
+        'Former AI architect at Oracle. Enterprise AI architecture patterns translated into Claude-Code-native workflows using public knowledge, personal experience, and non-confidential material.',
     },
     {
       label: 'Workshop Claude branch already taught',
@@ -84,7 +85,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
       href: 'https://github.com/frankxai/ai-architect-academy',
     },
     {
-      label: 'OCI Claude Code skill pack — published with the Oracle AI Architect org',
+      label: 'OCI Claude Code skill pack — public Oracle/OCI learning resource',
       href: 'https://github.com/oci-ai-architects/claude-code-oci-ai-architect-skills',
     },
     {
@@ -248,7 +249,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
   ],
 
   whatThisIsNot: [
-    'Not an Anthropic-employee-flavored relationship — Frank is an AI Architect at Oracle EMEA, operator-side.',
+    'Not an Anthropic-employee-flavored relationship — Frank is a former AI architect at Oracle, operator-side. Independent project. Not affiliated with Oracle.',
     'Not a model-reseller pitch — there is no API margin or reseller mechanic in scope.',
     'Not exclusive — Frank also ships in Codex, Gemini, and ADK where the workflow fits. The honest position is Claude-Code-native by default, not Claude-Code-only.',
     'Not a deck-building consulting role — every deliverable is a public artifact (repo, curriculum module, workshop cohort, deep-dive).',

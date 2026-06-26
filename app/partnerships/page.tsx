@@ -31,6 +31,7 @@ const TIER_LABEL: Record<Partner['tier'], string> = {
   'model-provider': 'Model + infra',
   silicon: 'Silicon',
   tooling: 'Tooling',
+  services: 'Services',
 }
 
 export default function PartnershipsHubPage() {
@@ -65,7 +66,7 @@ export default function PartnershipsHubPage() {
     description:
       'How Frank Riemer collaborates with strategic partners — active proposals, strategic alignments, and the infrastructure behind the practice.',
     url: `${SITE_URL}/partnerships`,
-    hasPart: all.map((p) => ({
+    hasPart: all.map((p: Partner) => ({
       '@type': 'WebPage',
       name: p.name,
       url: `${SITE_URL}/partnerships/${p.slug}`,
@@ -248,8 +249,8 @@ export default function PartnershipsHubPage() {
             </h2>
             <p className="text-base text-zinc-300 leading-[1.7]">
               The daily build stack. The models in delivery. The clouds and
-              silicon the practice ships on — today and across the Oracle EMEA
-              AI CoE work that anchors it.
+              silicon the practice ships on — today and through the former
+              Oracle EMEA AI CoE work that informs it.
             </p>
           </MotionItem>
 

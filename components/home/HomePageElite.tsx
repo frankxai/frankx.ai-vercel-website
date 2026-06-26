@@ -229,7 +229,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">Frank Riemer · AI Architect</span>
+                <span className="text-sm text-white/60">Frank Riemer - AI Architect & Creator</span>
               </div>
 
               <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
@@ -239,8 +239,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                Practical AI systems for clear thinking, creative output, music experiments,
-                and trustworthy execution. FrankX is where the work becomes useful to other builders.
+                Former AI architect at Oracle. 12,000+ songs with Suno. Practical systems for clear thinking,
+                creative output, and trustworthy execution.
+              </p>
+              <p className="text-xs text-white/30 max-w-xl leading-relaxed">
+                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
               </p>
 
               <div className="flex items-center gap-3">
@@ -308,7 +311,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                   </div>
                   <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10">
                     {[
-                      ['Oracle', 'AI architect'],
+                      ['Oracle', 'former AI architect'],
                       ['12,000+', 'AI songs'],
                       ['630+', 'skills shipped'],
                     ].map(([stat, label]) => (
@@ -349,7 +352,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
+  'Former AI architect at Oracle',
   '12,000+ AI Songs Created',
   '630+ AI Skills Shipped',
   'Everything Documented',
@@ -392,21 +395,21 @@ const products = [
     color: 'emerald' as const,
   },
   {
-    title: 'Frank Riemer',
-    description: 'The human authority page for Frank: AI architect, creator, father, explorer, and systems builder.',
-    href: '/frank-riemer',
+    title: 'Agentic Creator OS',
+    description: 'Open-source operating system for Claude Code. Skills, agents, and commands for creators who build.',
+    href: '/acos',
     color: 'violet' as const,
   },
   {
-    title: 'GenCreator Framework',
-    description: 'The creator operating framework: principles, blueprints, workflows, and repeatable shipping loops.',
-    href: '/gencreator',
+    title: 'Creator Kit',
+    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
+    href: '/products',
     color: 'cyan' as const,
   },
   {
-    title: 'Agentic Builder Track',
-    description: 'Advanced GenCreator path for Claude Code, MCP, n8n, Vercel, and production agent systems.',
-    href: '/products/agentic-creator-os',
+    title: 'AI Architecture Hub',
+    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
@@ -434,13 +437,13 @@ function ProductsTools() {
           className="text-center mb-12 md:mb-16"
         >
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
-            FrankX Operating System
+            Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             The public system behind the work
           </h2>
           <p className="text-base text-white/40 max-w-2xl mx-auto">
-            A human-first brand with clear entry points: read the signal, meet the builder, choose a path, then ship.
+            Open-source systems, premium resources, music experiments, and evidence-led creator practices for builders who ship.
           </p>
         </motion.div>
 
@@ -1422,9 +1425,9 @@ export default function HomePageElite({
 
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
-          eyebrow="Agentic Builder"
-          title="Advanced GenCreator Systems"
-          description="Advanced builder patterns for GenCreators ready to build agent systems. Multi-agent orchestration, MCP, Claude Code, Vercel, and production workflows."
+          eyebrow="Enterprise AI"
+          title="AI Architecture"
+          description="Enterprise AI patterns informed by former Oracle architecture work. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1432,8 +1435,8 @@ export default function HomePageElite({
             { label: 'MCP Server Architecture', href: '/blog/mcp-server-architecture-workshop' },
             { label: 'Agent Patterns & Pillars', href: '/blog/production-agent-patterns-7-pillars' },
           ]}
-          ctaLabel="Explore Agentic Builder Track"
-          ctaHref="/products/agentic-creator-os"
+          ctaLabel="Explore AI Architecture"
+          ctaHref="/ai-architecture"
           color="blue"
           imageFirst
         />

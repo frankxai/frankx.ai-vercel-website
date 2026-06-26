@@ -1,12 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { List } from 'lucide-react'
 
-interface Heading {
+type Heading = {
   id: string
   text: string
-  level: number
+  level: 2 | 3
 }
 
 function slugify(text: string): string {
@@ -15,72 +14,59 @@ function slugify(text: string): string {
     .trim()
     .replace(/[^\w\s-]/g, '')
     .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
 }
 
-/**
- * Auto-generated "On this page" table of contents.
- *
- * Reads the rendered article headings on mount (MDX headings have no ids by
- * default), assigns stable ids, tracks the active section with an
- * IntersectionObserver, and smooth-scrolls on click. Hidden for short posts.
- */
-export default function TableOfContents({ selector = '.article-prose' }: { selector?: string }) {
+export default function TableOfContents() {
   const [headings, setHeadings] = useState<Heading[]>([])
-  const [active, setActive] = useState<string>('')
+  const [activeId, setActiveId] = useState<string>('')
 
   useEffect(() => {
-    const root = document.querySelector(selector)
-    if (!root) return
+    const article = document.querySelector('.article-prose')
+    if (!article) return
 
-    const els = Array.from(root.querySelectorAll('h2, h3')) as HTMLElement[]
-    const used = new Set<string>()
-    const collected: Heading[] = els.map((el) => {
-      let id = el.id || slugify(el.textContent || '')
-      if (!id) id = 'section'
-      while (used.has(id)) id = `${id}-1`
-      used.add(id)
-      if (!el.id) el.id = id
-      el.style.scrollMarginTop = '96px'
-      return { id, text: el.textContent || '', level: el.tagName === 'H3' ? 3 : 2 }
+    const nodes = Array.from(article.querySelectorAll('h2, h3')) as HTMLElement[]
+    const collected: Heading[] = nodes.map((node) => {
+      if (!node.id) node.id = slugify(node.textContent ?? '')
+      return {
+        id: node.id,
+        text: node.textContent ?? '',
+        level: node.tagName === 'H2' ? 2 : 3,
+      }
     })
     setHeadings(collected)
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive((entry.target as HTMLElement).id)
-        }
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+        if (visible) setActiveId(visible.target.id)
       },
-      { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+      { rootMargin: '-80px 0px -70% 0px', threshold: 0 },
     )
-    els.forEach((el) => observer.observe(el))
+    nodes.forEach((node) => observer.observe(node))
     return () => observer.disconnect()
-  }, [selector])
+  }, [])
 
-  // Don't clutter short posts with a TOC.
   if (headings.length < 3) return null
 
   return (
     <nav
       aria-label="Table of contents"
-      className="mb-10 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm"
+      className="mb-10 rounded-xl border border-white/[0.08] bg-white/[0.02] p-5"
     >
-      <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-        <List className="h-3.5 w-3.5" /> On this page
+      <div className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+        On this page
       </div>
-      <ul className="space-y-1.5">
+      <ul className="space-y-1.5 text-sm">
         {headings.map((h) => (
-          <li key={h.id} className={h.level === 3 ? 'ml-3' : ''}>
+          <li key={h.id} className={h.level === 3 ? 'pl-4' : ''}>
             <a
               href={`#${h.id}`}
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' })
-                history.replaceState(null, '', `#${h.id}`)
-              }}
-              className={`block text-sm leading-snug transition-colors ${
-                active === h.id ? 'text-emerald-400' : 'text-white/55 hover:text-white/80'
+              className={`block leading-snug transition-colors ${
+                activeId === h.id
+                  ? 'text-emerald-300'
+                  : 'text-zinc-400 hover:text-zinc-100'
               }`}
             >
               {h.text}

@@ -1,39 +1,42 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  Blocks,
   Code2,
   Compass,
+  FileDown,
   Globe,
   Handshake,
   Network,
   Shield,
   Sparkles,
   Users,
+  Wrench,
 } from "lucide-react";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: "Allies",
   description:
-    "FrankX allies portal for sovereign builders, founder collaborators, agent systems, and public collaboration nodes.",
+    "FrankX allies portal for trusted collaborators, practical business systems, useful downloads, and public collaboration nodes.",
   path: "/allies",
 });
 
 const principles = [
   {
     icon: Shield,
-    label: "Public Safe",
-    copy: "Pages disclose only approved positioning, business intent, and collaboration surfaces.",
+    label: "Permissioned",
+    copy: "Pages disclose approved positioning, public material, business intent, and collaboration surfaces.",
   },
   {
     icon: Code2,
-    label: "Service Systems",
-    copy: "Every ally page should clarify offers, delivery loops, follow-up, client outcomes, and the operating system behind the work.",
+    label: "Useful",
+    copy: "Every ally page must clarify offers, delivery loops, downloads, client outcomes, or a concrete path to work together.",
   },
   {
     icon: Network,
-    label: "Composable",
-    copy: "The FrankX layer adds research, workflow design, content systems, and AI support without taking over the brand.",
+    label: "Their Voice First",
+    copy: "FrankX adds research, workflow design, content systems, and AI support without taking over the person's brand.",
   },
 ];
 
@@ -45,17 +48,75 @@ const activeNodes = [
     friendHref: "/friends/estefania",
     description:
       "Estefania Badra's leadership, communication, training, consulting, and event-experience company, now framed as a client-intelligence system for better service before, during, and after the room.",
+    visitorUse:
+      "See how leadership workshops become a client-service loop with preparation, live room design, aftercare, and reusable insight.",
     tags: ["Leadership", "Communication", "Workshops", "Events"],
+  },
+  {
+    title: "Trinity AI Founder System",
+    status: "Founder kit",
+    href: "/allies/trinity-ai",
+    friendHref: "/friends/ahmad",
+    description:
+      "Ahmad Hashem's Trinity AI and creator-founder context framed as a practical startup system with local AI lab guidance, ACOS/OpenClaw install paths, media loops, and agent roles.",
+    visitorUse:
+      "Download a founder creator kit and see how public story, private AI tools, content, offers, and feedback can become a working startup rhythm.",
+    tags: ["Trinity AI", "OpenClaw", "Creator OS", "Agent swarms"],
+  },
+  {
+    title: "Ana AI Business Kit",
+    status: "Noindex draft",
+    href: "/allies/ana-cancino",
+    friendHref: "/friends/ana",
+    description:
+      "Ana Cecilia Cancino's HR, psychology, self-knowledge, research, and AI companion work framed as a practical offer system, client loop, and travel-friendly business engine.",
+    visitorUse:
+      "Download a starter kit and see how her existing offers can become a gentle AI-assisted business system.",
+    tags: ["HR", "Psychology", "Self-knowledge", "Offers"],
+  },
+  {
+    title: "Harzfenster Hospitality Intelligence",
+    status: "Hospitality pilot",
+    href: "/allies/harzfenster",
+    friendHref: "/friends/jojo",
+    description:
+      "Jojo Steingrüber's Harzfenster and Hotel Görtler context framed as a human-approved hospitality intelligence pilot for bookings, service briefings, hotel handoffs, review learning, and team enablement.",
+    visitorUse:
+      "See how a real owner-led restaurant and hotel moment can become an installable operating kit and a reusable FrankX hospitality vertical.",
+    tags: ["Hospitality", "Restaurant", "Hotel", "Service"],
   },
 ];
 
 const operatingLayers = [
-  "Research public language",
-  "Clarify offer architecture",
-  "Map workshop and event loops",
-  "Package follow-up systems",
-  "Measure client outcomes",
-  "Keep the human voice intact",
+  "Understand the person",
+  "Name the current offer",
+  "Build a useful public page",
+  "Package a starter kit",
+  "Add optional AI workflows",
+  "Review with consent",
+];
+
+const allianceContract = [
+  {
+    icon: Users,
+    title: "For the visitor",
+    copy: "Understand the person, their work, and the clearest next action in under a minute.",
+  },
+  {
+    icon: FileDown,
+    title: "For the ally",
+    copy: "Leave with a page, kit, repo, workflow, or launch path that helps their actual business.",
+  },
+  {
+    icon: Blocks,
+    title: "For the ecosystem",
+    copy: "Create reusable patterns for friend pages, service systems, downloads, and agent-supported offers.",
+  },
+  {
+    icon: Wrench,
+    title: "For FrankX",
+    copy: "Show the work through real collaborations instead of abstract claims about what AI systems can do.",
+  },
 ];
 
 export default function AlliesPage() {
@@ -73,12 +134,12 @@ export default function AlliesPage() {
               Allies
             </div>
             <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
-              Human allies with intelligent operating systems.
+              Trusted people. Practical systems.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl">
-              Allies are serious collaborators: founders, companies, and
-              creative systems that can become clearer public assets, sharper
-              offers, better delivery loops, and durable client value.
+              Allies is where friendship turns into useful public work:
+              clearer offers, better client loops, downloadable kits, and
+              optional AI support that stays behind the human voice.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -87,6 +148,18 @@ export default function AlliesPage() {
               >
                 Open TheEpicWays
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/allies/trinity-ai"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 backdrop-blur-xl transition hover:border-amber-100/55 hover:bg-amber-200/15"
+              >
+                Open Trinity AI
+              </Link>
+              <Link
+                href="/allies/harzfenster"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-200/10 px-5 py-3 text-sm font-bold text-emerald-50 backdrop-blur-xl transition hover:border-emerald-100/55 hover:bg-emerald-200/15"
+              >
+                Open Harzfenster
               </Link>
               <Link
                 href="/friends"
@@ -106,7 +179,7 @@ export default function AlliesPage() {
                     Active Map
                   </p>
                   <p className="mt-1 text-lg font-bold text-white">
-                    Collaboration Stack
+                    Collaboration Contract
                   </p>
                 </div>
                 <div className="grid h-12 w-12 place-items-center rounded-2xl border border-emerald-200/20 bg-emerald-200/10">
@@ -139,8 +212,13 @@ export default function AlliesPage() {
                 Active Nodes
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-                The first ally portal starts here.
+                The first ally portals start here.
               </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/64">
+                Each node should make the collaboration legible: what the
+                person already does, how FrankX helps structure it, and what a
+                visitor can actually use today.
+              </p>
             </div>
             <Link
               href="/friends"
@@ -167,6 +245,14 @@ export default function AlliesPage() {
                 <p className="mt-4 max-w-2xl text-base leading-7 text-white/68">
                   {node.description}
                 </p>
+                <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/42">
+                    Why Visit
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-white/68">
+                    {node.visitorUse}
+                  </p>
+                </div>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {node.tags.map((tag) => (
                     <span
@@ -206,8 +292,8 @@ export default function AlliesPage() {
                   </h3>
                   <p className="mt-4 text-base leading-7 text-white/68">
                     The page is not a badge. Each serious ally gets a practical
-                    build path across brand, code, skills, offers, distribution,
-                    governance, and client delivery.
+                    build path across brand, code, offers, downloads,
+                    distribution, governance, and client delivery.
                   </p>
                 </div>
                 <Link
@@ -220,6 +306,32 @@ export default function AlliesPage() {
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-14 md:px-10 md:py-20">
+        <div className="mx-auto mb-8 max-w-7xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
+            Why Have This Hub
+          </p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-tight md:text-4xl">
+            It is the bridge between public trust and useful execution.
+          </h2>
+        </div>
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-4">
+          {allianceContract.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.title}
+                className="rounded-[2rem] border border-white/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl"
+              >
+                <Icon className="h-6 w-6 text-emerald-200" />
+                <h3 className="mt-4 text-lg font-black">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-white/62">{item.copy}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -253,14 +365,16 @@ export default function AlliesPage() {
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-white/66">
               The ally layer carries public collaboration. The friends layer
-              carries the warmer personal map. TheEpicWays gets both.
+              carries the warmer personal map. TheEpicWays, Ahmad, Ana, and
+              Jojo each get careful public doors before deeper material is
+              approved.
             </p>
           </div>
           <Link
-            href="/friends/estefania"
+            href="/hospitality-intelligence"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-100"
           >
-            Open Estefania
+            Open hospitality vertical
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

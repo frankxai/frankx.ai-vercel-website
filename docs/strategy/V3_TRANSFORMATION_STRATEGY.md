@@ -10,14 +10,14 @@
 ### What's Currently Wrong with V3
 
 **Identity Crisis:**
-- Mixing enterprise language ("Oracle-grade systems") with creator positioning
+- Mixing vendor-specific enterprise language with creator positioning
 - "Intelligence Systems for AI Architects" sounds corporate/intimidating
 - Three competing audiences with no clear hierarchy
-- Oracle job title used as brand positioning (alienates creators)
+- Former employer title used as primary brand positioning (alienates creators)
 
 **Strategic Disconnect:**
 - Strategy docs say "creator-first, no enterprise jargon"
-- V3 homepage uses "Oracle AI Architect," "Intelligence Systems," "Agentic"
+- V3 homepage uses title-heavy former-employer terms "Intelligence Systems," "Agentic"
 - Missing the flagship product (Generative Creator OS barely exists)
 - No clear single entry point or hero transformation
 
@@ -53,7 +53,7 @@ Alternative taglines:
 - "Learn How Frank Uses AI Across Every Domain of Life"
 
 **What We Are:**
-Frank's complete creative operating system - how he uses AI as an Oracle architect, musician, content creator, and entrepreneur, packaged into creator-friendly rituals and workflows.
+Frank's complete creative operating system - how he uses AI as a former enterprise AI architect, musician, content creator, and entrepreneur, packaged into creator-friendly rituals and workflows.
 
 **What We're NOT:**
 - Not an enterprise AI consultancy
@@ -66,7 +66,7 @@ Frank's complete creative operating system - how he uses AI as an Oracle archite
 **To:** AI-empowered creator with a complete operating system that supports your goals
 
 ### Unique Mechanism
-"Frank's Real-World AI Operating System" - The actual daily workflows, tool combinations, and rituals that an Oracle AI Architect uses to create music, produce content, and build business systems.
+"Frank's Real-World AI Operating System" - The actual daily workflows, tool combinations, and rituals that a former enterprise AI architect uses to create music, produce content, and build business systems.
 
 ---
 
@@ -108,7 +108,7 @@ Frank's complete creative operating system - how he uses AI as an Oracle archite
 **Why It's Unique**:
 - NOT just prompts - it's the complete system
 - Shows how to combine ALL the major AI tools strategically
-- Real workflows from an Oracle AI Architect
+- Real workflows from a former enterprise AI architect
 - Includes business building + content creation + productivity systems
 
 **Pricing**: $297-$997
@@ -169,7 +169,7 @@ Frank's complete creative operating system - how he uses AI as an Oracle archite
 ## BRAND VOICE CORRECTIONS
 
 ### ❌ STOP SAYING (Remove Everywhere):
-- "Oracle-grade systems"
+- "vendor-grade systems"
 - "Intelligence Systems for AI Architects"
 - "Enterprise governance"
 - "Stakeholder alignment"
@@ -201,19 +201,19 @@ Frank's complete creative operating system - how he uses AI as an Oracle archite
 ### NEW Hero Section Structure
 
 **Badge/Trust Signal:**
-"Built by Oracle AI Architect | 500+ Songs Created | Featured Creator"
+"Built by a former AI architect at Oracle | 12,000+ Songs Created | Featured Creator"
 
 **Headline (Option 1 - Recommended):**
 "Master AI-Powered Creation in 24 Hours"
 
 **Headline (Option 2):**
-"Co-Create with AI Like an Oracle Architect"
+"Co-Create with AI Like an Enterprise Architect"
 
 **Headline (Option 3):**
 "Your Complete AI Creator Operating System"
 
 **Subheadline:**
-Frank shares his complete AI operating system - from music creation to content production to business building. Everything he uses as an Oracle AI Architect, distilled into creator-friendly workflows you can use today.
+Frank shares his complete AI operating system - from music creation to content production to business building. His current independent workflows are distilled into creator-friendly systems you can use today.
 
 **ONE Primary CTA:**
 "Start Your AI Journey" → Assessment/Quiz that routes to right product
@@ -278,12 +278,12 @@ Ship faster, create better, and amplify your impact with AI as your creative co-
 
 ## CREDIBILITY FRAMEWORK
 
-### Where to Use "Oracle AI Architect":
+### Where to Use "Former AI Architect at Oracle":
 
 **✅ Use in:**
-- About section: "Frank's background as an Oracle AI Architect brings..."
-- Credibility callouts: "Built by an Oracle AI Architect with 500+ songs"
-- Team page: "Day job at Oracle, night passion for AI creativity"
+- About section: "Frank's background as a former AI architect at Oracle brings..."
+- Credibility callouts: "Built by a former AI architect at Oracle with 12,000+ songs"
+- Team page: "Former enterprise AI architect, now building independent creator systems"
 
 **❌ Don't Use in:**
 - Hero headline
@@ -473,7 +473,7 @@ Minimum Viable Product:
 - [ ] Conversion-optimized CTAs
 
 ### For Brand:
-- [ ] Feels like "billion dollar website"
+- [ ] Feels premium, credible, and conversion-ready
 - [ ] Premium but approachable
 - [ ] Cinematic and personal voice
 - [ ] Frank's personality shines through
@@ -510,7 +510,7 @@ Minimum Viable Product:
 
 **Homepage Headline - Choose One:**
 - [ ] "Master AI-Powered Creation in 24 Hours"
-- [ ] "Co-Create with AI Like an Oracle Architect"
+- [ ] "Co-Create with AI Like an Enterprise Architect"
 - [ ] "Your Complete AI Creator Operating System"
 - [ ] Other: _________________
 
@@ -533,10 +533,10 @@ Minimum Viable Product:
 ## BRAND VOICE EXAMPLES
 
 ### ❌ Before (V3 Current):
-"Intelligence Systems for AI Architects, Music Makers, and Generative Creators. Oracle-grade AI systems and consciousness-first creator operating systems."
+"Intelligence Systems for AI Architects, Music Makers, and Generative Creators. Enterprise-grade AI systems and consciousness-first creator operating systems."
 
 ### ✅ After (Proposed):
-"Master AI-powered creation with Frank's complete operating system. Learn how an Oracle AI Architect uses ChatGPT, Claude, Gemini, and Suno together to create music, build businesses, and amplify creative impact."
+"Master AI-powered creation with Frank's complete operating system. Learn how a former enterprise AI architect uses ChatGPT, Claude, Gemini, and Suno together to create music, build businesses, and amplify creative impact."
 
 ---
 

@@ -9,6 +9,7 @@ import {
   BookOpen,
   Bot,
   ExternalLink,
+  Github,
   GraduationCap,
   Heart,
   Layers,
@@ -161,6 +162,65 @@ const intelligenceItems = [
     description: 'AI music experiments and studio notes.',
     href: '/music',
     icon: Music,
+  },
+]
+
+const affiliateProgramItems = [
+  {
+    name: 'Affiliate Resource Hub',
+    description: 'See the full, transparent policy and all active partner recommendations.',
+    href: '/affiliates',
+    icon: Sparkles,
+  },
+  {
+    name: 'Vercel Partner Path',
+    description: 'Strong fit for Next.js teams shipping production AI apps.',
+    href: 'https://vercel.com',
+    icon: Layers,
+    external: true,
+  },
+  {
+    name: 'n8n Program',
+    description: 'Top no-code automation path for agent workflows and ops.',
+    href: 'https://n8n.io',
+    icon: Bot,
+    external: true,
+  },
+  {
+    name: 'Railway Program',
+    description: 'Fast infrastructure option for deploying full-stack AI systems.',
+    href: 'https://railway.app',
+    icon: Star,
+    external: true,
+  },
+]
+
+const githubRepoItems = [
+  {
+    name: 'GitHub Universe Map',
+    description: 'Live ecosystem map of active FrankX repositories and priorities.',
+    href: '/map',
+    icon: Github,
+  },
+  {
+    name: 'frankxai Organization',
+    description: 'Browse public repositories across websites, products, and research.',
+    href: 'https://github.com/frankxai',
+    icon: Github,
+    external: true,
+  },
+  {
+    name: 'FrankX Repo',
+    description: 'Private dev and content-authoring source repository.',
+    href: 'https://github.com/frankxai/FrankX',
+    icon: Layers,
+    external: true,
+  },
+  {
+    name: 'Agent Input Loop',
+    description: 'Route decisions through the agent stack before major implementation.',
+    href: '/agents',
+    icon: Bot,
   },
 ]
 
@@ -369,6 +429,8 @@ export default function ResourcesPage() {
         <ResourceGrid title="Start Here" subtitle="Free Resources" items={foundationItems} />
         <ResourceGrid title="Products" subtitle="Systems" items={productItems} />
         <ResourceGrid title="Intelligence" subtitle="Research + Hubs" items={intelligenceItems} />
+        <ResourceGrid title="Affiliate Programs" subtitle="Agent-Vetted Picks" items={affiliateProgramItems} />
+        <ResourceGrid title="GitHub Repos" subtitle="Build In Public" items={githubRepoItems} />
         <ResourceGrid title="Learning" subtitle="Guides" items={learningItems} />
         <ResourceGrid title="Arcanea" subtitle="Worldbuilding" items={arcaneaItems} />
       </main>

@@ -40,8 +40,11 @@ export interface BlogPost {
   readingTime: string
   keywords?: string[]
   readingGoal?: string
-  content: string
+  content?: string
   featured?: boolean
+  flagship?: boolean
+  flagshipOrder?: number
+  canonical?: string // Override canonical URL (point a duplicate at its primary)
 
   // AI-First Content Fields
   tldr?: string // 50-word summary for AI extraction
@@ -51,6 +54,17 @@ export interface BlogPost {
 
   // Series membership (optional) — drives SeriesNav prev/next
   series?: BlogSeries
+
+  /**
+   * AI Architect Recommendation box (rendered after the Reading Goal).
+   * The signature format: the routing call, which AI CoE pillar the decision
+   * lives in, and which agent personas should run what.
+   */
+  architectNote?: {
+    recommendation: string
+    coePillar?: string
+    personas?: Array<{ persona: string; pick: string }>
+  }
 }
 
 export type BlogPostSummary = Omit<BlogPost, 'content'>
@@ -145,6 +159,17 @@ export function getFeaturedPosts(): BlogPost[] {
   return getAllBlogPosts().filter(post => post.featured).slice(0, 3)
 }
 
+/**
+ * Curated flagship articles — the editorial best-of, shown first on the blog
+ * index with large visuals. Driven by `flagship: true` frontmatter and ordered
+ * by `flagshipOrder` (ascending). Distinct from the broad `featured` flag.
+ */
+export function getFlagshipPosts(): BlogPost[] {
+  return getAllBlogPosts()
+    .filter((post) => post.flagship)
+    .sort((a, b) => (a.flagshipOrder ?? 99) - (b.flagshipOrder ?? 99))
+}
+
 export function getPostsByCategory(category: string): BlogPost[] {
   return getAllBlogPosts().filter(post => 
     post.category.toLowerCase() === category.toLowerCase()
@@ -175,8 +200,12 @@ export function getSeriesPosts(seriesSlug: string): BlogPost[] {
  * Only looks within ## FAQ or ## Frequently Asked Questions sections.
  */
 export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
-  // Find the FAQ section
-  const faqMatch = content.match(/^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/m)
+  // Find the FAQ section.
+  // NOTE: no `m` flag on purpose — with `m`, `$` matches at every end-of-line,
+  // so the lazy capture stops at the first newline and the section comes back
+  // empty (zero FAQ pairs for every post). Anchor the heading with `(?:^|\n)`
+  // instead so `$` here means end-of-string.
+  const faqMatch = content.match(/(?:^|\n)## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/)
   if (!faqMatch) return []
 
   const faqSection = faqMatch[1]

@@ -11,15 +11,15 @@ export const platformPersonas: PlatformPersona[] = [
   {
     platform: 'linkedin',
     label: 'LinkedIn',
-    persona: 'AI Architect — the Oracle EMEA bridge story',
+    persona: 'AI Architect — the former Oracle architecture bridge story',
     voicePosture:
-      'First-person, technically precise, enterprise-fluent. The Oracle CoE framework translated to personal use, free.',
+      'First-person, technically precise, enterprise-fluent. Enterprise CoE frameworks translated to personal use, free.',
     visualTreatment:
       'Cinematic stills with negative space for thread overlay, system diagrams in JetBrains Mono, carousel-format teardowns of real architectures.',
     cadence: '3 posts per week — 1 long-form thread, 1 short insight, 1 carousel teardown.',
     primaryAssetSource: ['nb-image', 'higgsfield-generate', 'higgsfield-product-photoshoot'],
     hookPattern:
-      'Specific number + counterintuitive claim. "Oracle pays $2M for what costs €0 to deploy on a laptop." Lead with proof, never with adjectives.',
+      'Specific number + counterintuitive claim. "Enterprise CoE playbooks can be translated to a solo-builder system." Lead with proof, never with adjectives.',
     exampleSurfaces: [
       '/intelligence-system',
       '/ai-architect/ai-coe-hub',

@@ -11,7 +11,7 @@ Frank's full positioning is broader than enterprise AI. Shorts should reflect th
 
 | Pillar | Category field | Why it matters to Frank | Ambient color |
 |---|---|---|---|
-| **AI Architecture & Build** | `AI Foundations`, `AI Engineering`, `AI Agents` | Oracle AI CoE day job, ACOS, enterprise + personal frameworks | emerald / blue |
+| **AI Architecture & Build** | `AI Foundations`, `AI Engineering`, `AI Agents` | former enterprise AI architecture experience, ACOS, enterprise + personal frameworks | emerald / blue |
 | **Creative AI & Music** | `Creative AI & Music`, `AI Culture` | 12,000+ Suno tracks, art, memes, aesthetic | fuchsia / pink |
 | **Creator Economy & Strategy** | `Creator Economy`, `Strategy & Business` | GenCreator, solopreneur playbooks, income | amber / orange |
 | **Human Edge** | `Mindset & Growth` | Peak performance, longevity, family, philosophy | rose / pink |
@@ -142,7 +142,7 @@ The commentary is the moat. It's what separates a curated library from a YouTube
 
 **Good examples**:
 - _"Peak performance starts upstream of the prompt. Before you build the AI Architect's mind, fix the operator's body — energy is the substrate every great creator compounds from."_ (Mindset → links to Personal AI CoE narrative)
-- _"The best agents aren't smarter — they're better-constrained. This Short captures what enterprise teams learn after 6 months of production LLM work in 45 seconds."_ (AI Agents → Oracle CoE authority)
+- _"The best agents aren't smarter — they're better-constrained. This Short captures what enterprise teams learn after 6 months of production LLM work in 45 seconds."_ (AI Agents → enterprise AI authority)
 
 **Bad examples**:
 - _"Great video about AI!"_ — zero signal

@@ -142,8 +142,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN?.trim()
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim()
+  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -200,8 +199,8 @@ export default function RootLayout({
           <Footer />
           <Analytics />
           <SpeedInsights />
-          {gaMeasurementId && (
-            <GoogleAnalytics gaId={gaMeasurementId} />
+          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
           )}
         </SessionProvider>
       </body>

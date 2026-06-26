@@ -7,7 +7,7 @@
 
 I build AI Centers of Excellence for a living.
 
-At Oracle's EMEA AI Center of Excellence, my job is to design the frameworks that help Fortune 500 companies adopt artificial intelligence at enterprise scale. These frameworks are not simple. They have six pillars, each with sub-frameworks, maturity models, governance structures, technology assessments, talent programs, and ethical guidelines. The documentation runs to hundreds of pages. The consulting engagement runs to months. The budget runs to millions.
+In enterprise AI work, the job is to design frameworks that help large organizations adopt artificial intelligence at scale. These frameworks are not simple. They have pillars, sub-frameworks, maturity models, governance structures, technology assessments, talent programs, and ethical guidelines. The documentation runs to hundreds of pages. The consulting engagement can run for months. The investment is serious.
 
 The companies that invest in these frameworks get extraordinary returns. AI adoption accelerates. Governance prevents costly mistakes. Technology choices are informed rather than impulsive. Talent development compounds over time. Data strategies create competitive advantages that widen with each quarter.
 
@@ -29,7 +29,7 @@ Every enterprise AI CoE is built on six pillars. Every Personal AI CoE is built 
 
 **Personal:** A markdown file. One page. Updated weekly. It answers four questions: What am I building? What AI tools am I using? What outcomes am I tracking? What will I do this week? Cost: $0.
 
-My strategy file is called `MASTER_PLAN.md`. It tracks 250+ production pages, 90+ blog articles, 15 books, 12,000+ songs, and every active initiative across my creative practice. It takes fifteen minutes to review and five to update. It provides the same strategic clarity that a Fortune 500 company pays a consulting firm half a million dollars to create.
+My strategy file is called `MASTER_PLAN.md`. It tracks 250+ production pages, 90+ blog articles, 15 books, 12,000+ songs, and every active initiative across my creative practice. It takes fifteen minutes to review and five to update. It gives an individual creator the kind of strategic clarity usually reserved for much larger organizations.
 
 The difference is not the quality of the strategy. It is the scale of the operation it governs. A one-person operation needs a one-page strategy. A ten-thousand-person organization needs a hundred-page strategy. The principles are the same.
 

@@ -47,7 +47,7 @@ One command. Complete execution.
 The same system runs:
 - 12,000+ AI-generated songs (Suno production)
 - This website (50+ articles)
-- Enterprise consulting (Oracle AI architecture)
+- Enterprise AI architecture
 
 Everything compounds. Skills get smarter. Workflows improve.
 
