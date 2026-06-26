@@ -1,0 +1,137 @@
+{
+  "version": "2026-06-26",
+  "task": "Create a premium FrankX editorial article for the best audiophile wireless earbuds in 2026, including current research, ranked recommendations, first-principles hardware reasoning, user-review synthesis, AI-assistant prompts, and a local hero asset.",
+  "surface": "frankx.ai blog article",
+  "audience": "Frank, premium audio buyers, Android power users, AirPods switchers, and creator-operator readers who value practical engineering judgment.",
+  "first_read": "Frank should buy Sony WF-1000XM6 first unless his phone ecosystem makes Samsung, Huawei, or AirPods the stronger daily system.",
+  "standards": [
+    "C:/Users/frank/starlight/repos/DESIGN_TASTE.md",
+    "C:/Users/frank/starlight/repos/WEB_EXPERIENCE_STANDARD.md",
+    "C:/Users/frank/starlight/repos/VISUAL_QA_GATE.md",
+    "C:/Users/frank/starlight/repos/MULTI_AGENT_DESIGN_COUNCIL.md",
+    "C:/Users/frank/starlight/repos/design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "C:/Users/frank/starlight/repos/design-agent-standards/OUTCOMES.md",
+    "C:/Users/frank/starlight/repos/design-agent-standards/RED_TEAM_CHECKLIST.md"
+  ],
+  "references": [
+    {
+      "label": "Sony WF-1000XM6 specifications and reviews",
+      "source": "https://www.sony.com/electronics/support/wireless-headphones-bluetooth-headphones/wf-1000xm6/specifications",
+      "reason": "Baseline winner: codec support, driver data, battery, ANC, and broad Android-neutral feature set."
+    },
+    {
+      "label": "Technics EAH-AZ100 product and reviews",
+      "source": "https://us.technics.com/products/premium-hi-fi-true-wireless-earbuds-with-dolby-atmos-and-noise-cancelling-eah-az100",
+      "reason": "Engineering-value counterpick: magnetic fluid driver, LDAC, LC3, battery, multipoint."
+    },
+    {
+      "label": "Bowers & Wilkins Pi8 reviews",
+      "source": "https://www.soundguys.com/bowers-wilkins-pi8-review-124027/",
+      "reason": "Luxury-sound counterpick: carbon cone driver, aptX Lossless path, premium tuning trade-offs."
+    },
+    {
+      "label": "Samsung Galaxy Buds4 Pro",
+      "source": "https://www.samsung.com/us/audio-sound/galaxy-buds4-pro/",
+      "reason": "Galaxy ecosystem pick: two-way speaker, dual amps, UHQ codec constraints."
+    },
+    {
+      "label": "Huawei FreeBuds Pro 5",
+      "source": "https://consumer.huawei.com/en/headphones/freebuds-pro-5/",
+      "reason": "Most ambitious hardware/codec story and clearest ecosystem-lock caution."
+    },
+    {
+      "label": "OnePlus Buds 4",
+      "source": "https://www.oneplus.com/us/oneplus-buds-4",
+      "reason": "Price-performance benchmark with dual drivers, dual DACs, LHDC 5.0, and strong ANC specs."
+    },
+    {
+      "label": "AirPods Pro 3",
+      "source": "https://www.apple.com/airpods-pro/specs/",
+      "reason": "UX baseline for Frank because he liked AirPods; iPhone-first ecosystem comparison."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Direct FrankX voice: confident, technical, practical, not guru-coded.",
+      "Clear first-screen buying decision before detailed analysis.",
+      "Spec comparisons tied to actual phone compatibility, not marketing maximums.",
+      "A sense of gratitude for the hardware builders without vague spirituality."
+    ],
+    "avoid": [
+      "Generic product roundup structure.",
+      "Ranking by codec labels alone.",
+      "Unverified superlatives or present-tense claims without source links.",
+      "Custom UI code when existing MDX components already solve the surface."
+    ],
+    "signature": "A first-principles earbud system lens: driver plus chamber plus seal plus DSP plus codec plus app plus reliability.",
+    "system": [
+      "Existing FrankX MDX blog renderer, schema frontmatter, article hero image, tables, FAQ, and related internal links.",
+      "Hand-authored SVG hero with engineered earbuds, signal paths, and measurement rings.",
+      "No visible instructional UI text in the hero asset.",
+      "Source-linked article body with a prompt pack for future AI-assisted buying decisions."
+    ]
+  },
+  "artifacts": [
+    {
+      "path_or_url": "content/blog/best-audiophile-wireless-earbuds-2026.mdx",
+      "kind": "web",
+      "inspected": true,
+      "notes": "MDX frontmatter, article body, FAQ, internal links, sources, ranking tables, and prompts were inspected."
+    },
+    {
+      "path_or_url": "public/images/blog/best-audiophile-wireless-earbuds-2026-hero.svg",
+      "kind": "image",
+      "inspected": true,
+      "notes": "SVG source inspected for dimensions, accessible title/description, no visible copy, no external assets, and stable 16:9 composition."
+    },
+    {
+      "path_or_url": "data/audit/best-audiophile-wireless-earbuds-2026-design-evidence.json",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Evidence manifest conforms to validate_design_evidence.py requirements."
+    }
+  ],
+  "checks": [
+    {
+      "name": "research-currentness",
+      "status": "pass",
+      "evidence": "Used June 2026 official specs, current review pages, current best-of guides, and YouTube comparisons."
+    },
+    {
+      "name": "content-schema",
+      "status": "pass",
+      "evidence": "Article includes title, description, date, author, category, tags, image, keywords, tldr, schema, FAQ, and readingGoal."
+    },
+    {
+      "name": "first-principles-ranking",
+      "status": "pass",
+      "evidence": "Ranking model uses driver architecture, codec compatibility, seal, DSP, app, battery, call quality, and reliability."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "Hero source has stable viewBox, responsive 16:9 framing, no external dependencies, no overlapping text, and a premium technical visual direction."
+    },
+    {
+      "name": "frankx-voice",
+      "status": "pass",
+      "evidence": "Copy is direct, technical, buyer-useful, and avoids banned AI-slop phrases in the new article."
+    },
+    {
+      "name": "blast-radius",
+      "status": "pass",
+      "evidence": "Implementation adds only article, hero SVG, and evidence JSON; no app code or shared renderer changes."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "L99 scoring: high editorial/research quality, strong source traceability, scoped implementation, premium but intentionally restrained local SVG hero. Two points reserved for post-deploy browser inspection."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "Earbud releases and firmware change quickly; article is date-stamped June 26, 2026.",
+    "Ecosystem codec support depends on exact phone model, operating system version, region, and firmware.",
+    "Fit is personal; final recommendation requires Frank's 72-hour ear test."
+  ]
+}
