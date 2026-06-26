@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Mail, ExternalLink, Rss, Github } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
-import Image from 'next/image'
 import { socialLinks } from '@/lib/social-links'
 
 export default function Footer() {
@@ -18,14 +17,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
-              <Image
-                src="/images/mascot/axi-v3-icon_thumb.jpeg"
-                alt="Axi"
-                width={36}
-                height={36}
-                className="rounded-lg"
-                unoptimized
-              />
+              <span
+                aria-hidden="true"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.07] text-xs font-semibold text-white shadow-[0_0_28px_rgba(45,212,191,0.18)] ring-1 ring-cyan-300/10"
+              >
+                FX
+              </span>
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
                 <span className="block text-[10px] sm:text-xs text-white/55">AI Systems & Music</span>
