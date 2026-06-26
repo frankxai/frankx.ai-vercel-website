@@ -191,3 +191,9 @@ link-checker-report.txt
 # Starlight/ACOS temporary files
 .starlight/
 .gemini/
+
+# Playwright e2e test artifacts (regenerated on every run)
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

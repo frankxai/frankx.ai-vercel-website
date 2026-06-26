@@ -41,22 +41,30 @@ export default async function StrategicAdvisorPage() {
       }}
     >
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section className="px-6 pt-32 pb-24 sm:pt-40">
+      <section className="px-6 pt-28 pb-20 sm:pt-40 sm:pb-24">
         <div className="mx-auto max-w-2xl">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-[#999] mb-12">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-[#999] mb-10 sm:mb-12">
             Private Engagement
           </p>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl leading-[1.25] tracking-tight text-[#111]">
+          <h1 className="text-[28px] sm:text-4xl md:text-5xl leading-[1.2] sm:leading-[1.25] tracking-tight text-[#111]">
             Frank operates as a fractional Chief AI Architect for two to four
             organizations at a time.
           </h1>
 
-          <p className="mt-10 text-[17px] leading-[1.7] text-[#333] max-w-xl">
+          <p className="mt-8 sm:mt-10 text-[16px] sm:text-[17px] leading-[1.7] text-[#333] max-w-xl">
             Engagement begins with a written one-page architecture brief, produced
             within the first week, before any contract or call. Scope, success
             criteria, and price live on one page or the engagement does not start.
           </p>
+
+          <a
+            href="#engage"
+            className="mt-10 inline-flex items-center gap-3 text-xs uppercase tracking-[0.32em] text-[#666] underline-offset-[6px] hover:text-[#111] hover:underline"
+          >
+            Submit your brief
+            <span aria-hidden className="text-[#bbb]">↓</span>
+          </a>
         </div>
       </section>
 
@@ -130,23 +138,24 @@ export default async function StrategicAdvisorPage() {
       </section>
 
       {/* ── ENGAGE ────────────────────────────────────────────────────── */}
-      <section className="px-6 pb-32 border-t border-[#e8e6df]">
-        <div className="mx-auto max-w-2xl pt-16">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-[#999] mb-10">
+      <section id="engage" className="px-6 pb-24 sm:pb-32 border-t border-[#e8e6df] scroll-mt-24">
+        <div className="mx-auto max-w-2xl pt-14 sm:pt-16">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-[#999] mb-8 sm:mb-10">
             Engage
           </p>
-          <p className="mb-10 text-[16px] leading-[1.7] text-[#333]">
+          <p className="mb-8 sm:mb-10 text-[16px] leading-[1.7] text-[#333]">
             Tell Frank the shape of the problem and where you sit. A reply lands
             within one working day; a written brief follows within seven.
           </p>
 
-          <div className="bg-white border border-[#e8e6df] p-8 sm:p-10">
+          <div className="bg-white border border-[#e8e6df] p-6 sm:p-10">
             {/* Inherit the unified intake pipeline. The form's intent
-                taxonomy already includes 'executive'. */}
-            <ContactForm defaultIntent="executive" />
+                taxonomy already includes 'executive'. The cream palette
+                matches this surface — no jarring dark card. */}
+            <ContactForm defaultIntent="executive" palette="cream" />
           </div>
 
-          <p className="mt-12 text-xs text-[#999] leading-[1.7]">
+          <p className="mt-10 sm:mt-12 text-xs text-[#999] leading-[1.7]">
             Or write directly to{' '}
             <a
               href="mailto:frank@frankx.ai?subject=Private%20engagement"

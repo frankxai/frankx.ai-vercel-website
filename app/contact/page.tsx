@@ -135,22 +135,22 @@ export default async function ContactPage({
       />
 
       {/* ── HERO + FORM ───────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-b border-white/10 pt-28 pb-16 sm:pt-32">
+      <section className="relative overflow-hidden border-b border-white/10 pt-24 pb-12 sm:pt-32 sm:pb-16">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(6,182,212,0.15),transparent_40%),radial-gradient(circle_at_82%_24%,rgba(16,185,129,0.14),transparent_38%)]" />
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-6">
-          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
             {/* Left: pitch */}
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
                 Contact
               </p>
-              <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08]">
+              <h1 className="mt-4 text-[34px] sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08]">
                 Tell Frank what you're building.
               </h1>
-              <p className="mt-6 max-w-md text-[17px] md:text-lg leading-relaxed text-slate-300/90">
+              <p className="mt-5 max-w-md text-base sm:text-[17px] md:text-lg leading-relaxed text-slate-300/90">
                 One form, straight to{' '}
                 <a href={`mailto:${PRIMARY_EMAIL}`} className="text-cyan-300 underline-offset-4 hover:underline">
                   {PRIMARY_EMAIL}
@@ -159,25 +159,33 @@ export default async function ContactPage({
                 a real reply follows within 1–2 working days.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              {/* Anticipation strip — three concrete promises in row form. */}
+              <ol className="mt-7 grid gap-3 sm:gap-4 text-[13px] leading-5 text-slate-300/85">
+                {[
+                  ['Instant', 'A confirmation email naming the 24-hour artifact'],
+                  ['24 hours', 'The artifact lands — Loom, brief, or memo per intent'],
+                  ['1–2 days', 'A real reply from Frank — Madrid, CET/CEST'],
+                ].map(([when, what]) => (
+                  <li key={when} className="grid grid-cols-[64px_1fr] items-baseline gap-3 sm:gap-4">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/80">
+                      {when}
+                    </span>
+                    <span className="text-slate-300/90">{what}</span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href={MEET_AND_GROW_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
                 >
                   <Calendar className="h-4 w-4" />
                   Prefer to book a call?
                 </a>
               </div>
-
-              <p className="mt-6 text-[12px] text-slate-500">
-                Prefer plain email? Just write to{' '}
-                <a href={`mailto:${PRIMARY_EMAIL}`} className="text-slate-400 underline-offset-4 hover:text-white">
-                  {PRIMARY_EMAIL}
-                </a>
-                . Madrid time (CET/CEST).
-              </p>
 
               <p className="mt-6 max-w-md text-[12px] text-slate-500 leading-relaxed">
                 For organizations operating at significant scale, the{' '}
@@ -189,7 +197,7 @@ export default async function ContactPage({
             </div>
 
             {/* Right: form */}
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-7 md:p-8 backdrop-blur">
               <ContactForm defaultIntent={defaultIntent} />
             </div>
           </div>
