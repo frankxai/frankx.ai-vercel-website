@@ -7,22 +7,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
 const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
 
-const isCI = Boolean(process.env.VERCEL || process.env.CI || process.env.GITHUB_ACTIONS);
+const requireAIS = process.env.SYNC_AIS_REQUIRED === '1';
+
+function skipOptionalAIS(message) {
+  if (requireAIS) {
+    console.error(message);
+    process.exit(1);
+  }
+  console.warn(`${message} Skipping optional AIS emission. Set SYNC_AIS_REQUIRED=1 to make this fatal.`);
+  process.exit(0);
+}
 
 if (!existsSync(AIS_ROOT)) {
-  if (isCI) {
-    console.warn(
-      `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}; ` +
-      `skipping optional AIS emission during automated build.`
-    );
-    process.exit(0);
-  }
-
-  console.error(
+  skipOptionalAIS(
     `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}.\n` +
     `Clone it: git clone https://github.com/frankxai/agentic-intelligence-system ${AIS_ROOT}`
   );
-  process.exit(1);
 }
 
 const outDir = resolve(FRANKX_ROOT, 'public');
@@ -43,10 +43,9 @@ const emitPathsToTry = [
 const aisEmitPath = emitPathsToTry.find(p => existsSync(p)) || null;
 
 if (!aisCorePath || !aisEmitPath) {
-  console.error(
+  skipOptionalAIS(
     `[sync-ais] Required packages not built. Run build in Agent-Intelligence-System first.`
   );
-  process.exit(1);
 }
 
 // Find profile path
@@ -58,8 +57,7 @@ const profilePathsToTry = [
 const profilePath = profilePathsToTry.find(p => existsSync(p)) || null;
 
 if (!profilePath) {
-  console.error(`[sync-ais] Profile ais-profile.yaml not found in ${AIS_ROOT}`);
-  process.exit(1);
+  skipOptionalAIS(`[sync-ais] Profile ais-profile.yaml not found in ${AIS_ROOT}`);
 }
 
 // Dynamic import
@@ -91,4 +89,3 @@ try {
   console.error('❌ [sync-ais] Error syncing AIS assets:', error.message);
   process.exit(1);
 }
-

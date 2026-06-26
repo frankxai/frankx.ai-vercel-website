@@ -75,13 +75,13 @@ Numbers are cross-checked against vendor model cards and the neutral [Artificial
 ## Pick by your hardware
 
 ### A laptop (8–16GB)
-Run **Phi-4** (the 3.8B mini fits in ~3-4GB; the 14B at Q4 needs ~8-10GB), **gpt-oss-20b** (~16GB, and it reasons well above its size), or **Gemma 4's** 12B / E4B tiers. Phi-4 is the STEM and function-calling specialist; Gemma 4 12B adds native audio and vision; gpt-oss-20b is the strongest pure reasoner of the three. See the [Phi-4 deep dive](/blog/phi-analysis-2026) and the [Gemma 4 deep dive](/blog/gemma-3-analysis-2026).
+Run **Phi-4** (the 3.8B mini fits in ~3-4GB; the 14B at Q4 needs ~8-10GB), **gpt-oss-20b** (~16GB, and it reasons well above its size), or **Gemma 4's** 12B / E4B tiers. Phi-4 is the STEM and function-calling specialist; Gemma 4 12B adds native audio and vision; gpt-oss-20b is the strongest pure reasoner of the three. See the [Phi-4 analysis](/blog/phi-analysis-2026) and the [Gemma 4 analysis](/blog/gemma-3-analysis-2026).
 
 ### One consumer GPU (24GB — 4090/5090)
 **Gemma 4 31B** at Q4 (~18GB) is the sweet spot: frontier-tier quality, native multimodal, Apache 2.0, on a card you can buy. This is the single best "serious work on my own machine" option in 2026.
 
 ### One data-center GPU (80GB — H100/MI300X)
-**gpt-oss-120b** is purpose-built for this: MXFP4 quantization puts a near-o4-mini-class reasoner on a single 80GB card. **DeepSeek V4-Flash** (284B/13B) is the other strong single-node-ish option. Details in the [gpt-oss deep dive](/blog/gpt-oss-analysis-2026) and the [DeepSeek V4 deep dive](/blog/deepseek-v4-analysis-2026).
+**gpt-oss-120b** is purpose-built for this: MXFP4 quantization puts a near-o4-mini-class reasoner on a single 80GB card. **DeepSeek V4-Flash** (284B/13B) is the other strong single-node-ish option. Details in the [gpt-oss analysis](/blog/gpt-oss-analysis-2026) and the [DeepSeek V4 analysis](/blog/deepseek-v4-analysis-2026).
 
 ### A multi-GPU node (8×H100 / 8×H200)
 This unlocks the big MoEs: **Mistral Large 3** (Apache 2.0, FP8 on one 8×H200 node), **Llama 4 Maverick**, **DeepSeek V4-Pro** (1.6T/49B), and **Kimi K2.6** (1T/32B). These are the open models that get closest to the closed frontier — at the cost of a real infrastructure project.
@@ -155,4 +155,4 @@ Not on raw capability — the best open weights trail the closed frontier by a m
 ---
 
 *Analysis by Frank — AI Architect, builder of the Agentic Creator Operating System.
-Compiled June 5, 2026 from vendor model cards and independent sources (Artificial Analysis, llm-stats, LMArena, NIST/CAISI). Verified vs vendor-claimed figures are distinguished in each model's linked deep dive.*
+Compiled June 5, 2026 from vendor model cards and independent sources (Artificial Analysis, llm-stats, LMArena, NIST/CAISI). Verified vs vendor-claimed figures are distinguished in each linked model analysis.*

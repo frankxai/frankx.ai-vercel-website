@@ -482,7 +482,7 @@ export default function Models2026Page() {
               <Link href="/blog/claude-opus-4-6-analysis-2026" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#a855f7]/30 transition-colors">
                 <p className="text-xs text-[#a855f7] font-mono mb-2">Analysis</p>
                 <h3 className="font-medium text-sm mb-1 group-hover:text-[#a855f7] transition-colors">Claude Opus 4.6: What Actually Changed</h3>
-                <p className="text-xs text-white/40">Deep technical breakdown with migration guide</p>
+                <p className="text-xs text-white/40">Technical analysis with migration guide</p>
               </Link>
               <Link href="/research/enterprise-ai" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#10b981]/30 transition-colors">
                 <p className="text-xs text-[#10b981] font-mono mb-2">Research</p>

@@ -15,6 +15,16 @@ const ROOT = join(__dirname, '..')
 const WORKFLOWS_DIR = join(ROOT, '.claude', 'workflows')
 const FIXTURES_DIR = join(WORKFLOWS_DIR, '__fixtures__')
 
+if (!existsSync(WORKFLOWS_DIR)) {
+  const mode = process.argv[2] ?? 'human'
+  if (mode === 'json') {
+    console.log(JSON.stringify([], null, 2))
+  } else {
+    console.log('\nWorkflow smoke tests: skipped - .claude/workflows is not present in this checkout\n')
+  }
+  process.exit(0)
+}
+
 async function parseMeta(path) {
   const src = await readFile(path, 'utf8')
   const marker = 'export const meta = '

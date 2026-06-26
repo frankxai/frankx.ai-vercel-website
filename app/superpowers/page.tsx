@@ -430,7 +430,7 @@ export default function SuperpowersPage() {
                                 <div className="flex items-start gap-2.5 mb-3">
                                   <FileText className="w-4 h-4 text-purple-400 mt-0.5" />
                                   <div>
-                                    <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400 block">DEEP DIVE REPORT</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400 block">TECHNICAL REPORT</span>
                                     <p className="text-xs text-slate-300">Read our fully verified 2026 playbook on this cluster workflow.</p>
                                   </div>
                                 </div>

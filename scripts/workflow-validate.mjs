@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { readdir, readFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { join, dirname, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -10,6 +11,16 @@ const AGENTS_DIR = join(ROOT, '.claude', 'agents')
 
 const REQUIRED_META_FIELDS = ['name', 'description', 'phases', 'acos']
 const REQUIRED_ACOS_FIELDS = ['tier', 'cadence', 'portable', 'estimatedCost']
+
+if (!existsSync(WORKFLOWS_DIR)) {
+  const mode = process.argv[2] ?? 'human'
+  if (mode === 'json') {
+    console.log(JSON.stringify([], null, 2))
+  } else {
+    console.log('\nWorkflow validation: skipped - .claude/workflows is not present in this checkout\n')
+  }
+  process.exit(0)
+}
 
 async function parseMeta(path) {
   const src = await readFile(path, 'utf8')

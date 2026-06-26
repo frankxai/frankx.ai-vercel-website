@@ -1,712 +1,107 @@
-import { MetadataRoute } from 'next'
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { researchDomains } from '@/lib/research/domains'
-import { listPartners } from '@/content/partnerships'
-// lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
-import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
+import type { MetadataRoute } from 'next'
+import routeIndex from '@/data/route-index.json'
 
 const BASE_URL = 'https://frankx.ai'
 
-// Extract slug from MDX filename
-function getSlugFromFilename(filename: string): string {
-  // Preserve exact filename slug used by the /blog/[slug] route.
-  return filename.replace(/\.mdx$/, '')
+type RouteIndexEntry = (typeof routeIndex.routes)[number]
+type RouteType = RouteIndexEntry['type']
+type ChangeFrequency = NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']>
+
+const EXCLUDED_PREFIXES = [
+  '/admin',
+  '/api',
+  '/auth',
+  '/checkout',
+  '/dashboard',
+  '/design-lab',
+  '/downloads/preview',
+  '/go',
+  '/studio',
+] as const
+
+const EXCLUDED_EXACT = new Set([
+  '/llm-hub.json',
+  '/llms.txt',
+  '/llms-full.txt',
+  '/robots.txt',
+  '/rss.xml',
+  '/sitemap.xml',
+])
+
+const PRIORITY_BY_TYPE: Partial<Record<RouteType, number>> = {
+  core: 0.85,
+  blog: 0.8,
+  community: 0.6,
+  guide: 0.7,
+  library: 0.75,
+  newsletter: 0.7,
+  os: 0.75,
+  partnership: 0.7,
+  product: 0.85,
+  research: 0.75,
+  section: 0.6,
+  static: 0.4,
+  tool: 0.7,
+  video: 0.75,
+  workshop: 0.8,
 }
 
-// Get all blog slugs with dates from content/blog directory
-function getBlogEntries(): { slug: string; date: string }[] {
-  const blogDir = path.join(process.cwd(), 'content/blog')
-  try {
-    const files = fs.readdirSync(blogDir)
-    const seen = new Set<string>()
-    return files
-      .filter(file => file.endsWith('.mdx'))
-      .map(file => {
-        const slug = getSlugFromFilename(file)
-        if (seen.has(slug)) return null
-        seen.add(slug)
-        try {
-          const content = fs.readFileSync(path.join(blogDir, file), 'utf8')
-          const { data } = matter(content)
-          return { slug, date: data.lastUpdated || data.date || '' }
-        } catch {
-          return { slug, date: '' }
-        }
-      })
-      .filter((entry): entry is { slug: string; date: string } => entry !== null)
-  } catch {
-    return []
-  }
+const FREQUENCY_BY_TYPE: Partial<Record<RouteType, ChangeFrequency>> = {
+  blog: 'monthly',
+  core: 'weekly',
+  guide: 'monthly',
+  newsletter: 'monthly',
+  product: 'weekly',
+  research: 'weekly',
+  static: 'yearly',
+  video: 'weekly',
+  workshop: 'monthly',
 }
 
-// Get all guide slugs from content/guides directory
-function getGuideSlugs(): string[] {
-  const guidesDir = path.join(process.cwd(), 'content/guides')
-  try {
-    const files = fs.readdirSync(guidesDir)
-    const slugs = new Set(
-      files
-        .filter(file => file.endsWith('.mdx'))
-        .map(file => getSlugFromFilename(file))
-    )
-    return Array.from(slugs)
-  } catch {
-    return []
-  }
+function isPublicIndexableRoute(href: string): boolean {
+  if (!href.startsWith('/')) return false
+  if (href.includes('[') || href.includes('(')) return false
+  if (href.endsWith('.json') || href.endsWith('.xml') || href.endsWith('.txt')) return false
+  if (EXCLUDED_EXACT.has(href)) return false
+  return !EXCLUDED_PREFIXES.some((prefix) => href === prefix || href.startsWith(`${prefix}/`))
 }
 
-// Get product slugs from data/products.json
-function getProductSlugs(): string[] {
-  const productsPath = path.join(process.cwd(), 'data/products.json')
-  try {
-    const fileContent = fs.readFileSync(productsPath, 'utf8')
-    const products = JSON.parse(fileContent)
-    return products.map((p: any) => p.slug)
-  } catch {
-    return []
-  }
+function buildAbsoluteUrl(href: string): string {
+  return href === '/' ? BASE_URL : `${BASE_URL}${href}`
 }
 
-// Get all newsletter issue slugs (published only — drafts excluded from sitemap)
-function getNewsletterIssues(): { slug: string; date: string; status: string }[] {
-  const issuesDir = path.join(process.cwd(), 'content/newsletters/issues')
-  try {
-    const files = fs.readdirSync(issuesDir)
-    return files
-      .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
-      .map((file) => {
-        try {
-          const content = fs.readFileSync(path.join(issuesDir, file), 'utf8')
-          const { data } = matter(content)
-          if (!data.slug) return null
-          return {
-            slug: data.slug as string,
-            date: (data.date as string) || '',
-            status: (data.status as string) || 'draft',
-          }
-        } catch {
-          return null
-        }
-      })
-      .filter((e): e is { slug: string; date: string; status: string } => e !== null)
-      // Only published issues hit the sitemap; drafts are noindex'd at the page level
-      .filter((e) => e.status === 'sent' || e.status === 'archived')
-  } catch {
-    return []
-  }
+function getPriority(route: RouteIndexEntry): number {
+  if (route.href === '/') return 1
+  if (route.href === '/blog' || route.href === '/products' || route.href === '/prompt-library') return 0.9
+  if (route.href.startsWith('/blog/')) return 0.8
+  if (route.href.startsWith('/products/')) return 0.85
+  return PRIORITY_BY_TYPE[route.type] ?? 0.5
+}
+
+function getChangeFrequency(route: RouteIndexEntry): ChangeFrequency {
+  if (route.href === '/') return 'weekly'
+  if (route.href === '/privacy' || route.href === '/terms' || route.href === '/legal') return 'yearly'
+  if (route.href === '/blog') return 'daily'
+  if (route.href.startsWith('/blog/')) return 'monthly'
+  return FREQUENCY_BY_TYPE[route.type] ?? 'monthly'
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const currentDate = new Date().toISOString()
+  const currentDate = new Date()
+  const seenUrls = new Set<string>()
 
-  // Core pages (highest priority)
-  const corePages = [
-    { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
-    { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
-    { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
-    { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/guides', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
-  ]
-
-  // Tool pages
-  const toolPages = [
-    '/tools',
-    '/tools/roi-calculator',
-    '/tools/strategy-canvas',
-    '/tools/builder',
-    '/superpowers',
-  ]
-
-  // Assessment pages
-  const assessmentPages = [
-    '/assessment',
-    '/assessment/creative',
-    '/assessment/advanced',
-    '/ai-assessment',
-    '/soul-frequency-quiz',
-  ]
-
-  // Community and engagement pages
-  const communityPages = [
-    '/community',
-    '/coaching',
-    '/inner-circle',
-    '/vault',
-    '/labs',
-    '/drops',
-    '/skills',
-    '/skills/builder',
-    '/testimonials',
-    '/affiliates',
-    '/newsletter',
-    '/newsletter/archive',
-    '/workshops',
-    '/team',
-  ]
-
-  // Learning and courses
-  const learningPages = [
-    '/courses',
-    '/courses/conscious-ai-foundations',
-    '/courses/agent-architecture-systems',
-    '/courses/creator-business-systems',
-    '/workshops/ikigai-branding',
-    '/workshops/ai-2026-graduates',
-    '/workshops/build-first-ai-agent',
-    '/workshops/ai-music-masterclass',
-  ]
-
-  // Content and creation pages
-  const contentPages = [
-    '/content-studio',
-    '/creation-chronicles',
-    '/intelligence-atlas',
-    '/golden-age',
-    '/golden-age/chapter-01-when-creation-calls',
-    '/feed',
-    '/realm',
-    '/ai-art',
-  ]
-
-  // AI and agent pages
-  const aiPages = [
-    '/agents',
-    '/agent-team',
-    '/ai-architect',
-    '/developers',
-  ]
-
-  // Papa hub — public-indexed pages only.
-  // Personal archive (/papa/erinnerungen/, /papa/mitmachen/) is deliberately omitted
-  // from the sitemap — those pages set robots: noindex on the page itself.
-  // Slimmed 2026-05-05: removed /papa/ru (was performative without Russian audience).
-  const papaPages = [
-    '/papa',
-    '/papa/leben',
-    '/papa/en',
-    '/papa/en/life',
-  ]
-
-  // Audience landing pages
-  const audiencePages = [
-    { url: '/for/creators', priority: 0.9, changeFrequency: 'monthly' as const },
-    { url: '/for/architects', priority: 0.9, changeFrequency: 'monthly' as const },
-  ]
-
-  // Utility pages
-  const utilityPages = [
-    '/start',
-    '/search',
-    '/contact',
-    '/roadmap',
-    '/achievements',
-    '/goals',
-    '/templates',
-    '/resources/templates',
-    '/updates',
-    '/free-playbook',
-    '/gallery',
-    '/watch',
-  ]
-
-  // Legal pages
-  const legalPages = [
-    '/privacy',
-    '/terms',
-    '/legal',
-  ]
-
-  // Strategy and framework pages
-  const strategyPages = [
-    { url: '/youtube', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/opus-pro', priority: 0.8, changeFrequency: 'weekly' as const },
-  ]
-
-  // Video and Ritual pages
-  const videoPages = [
-    { url: '/watch', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/watch/shorts', priority: 0.85, changeFrequency: 'weekly' as const },
-    { url: '/rituals', priority: 0.8, changeFrequency: 'monthly' as const },
-  ]
-
-  // Individual Short detail pages — SEO gold per Short
-  let shortDetailPages: { url: string; priority: number; changeFrequency: 'weekly' }[] = []
-  try {
-    const vault = require('@/data/video-vault-100.json') as Array<{
-      id: string
-      format?: string
-    }>
-    shortDetailPages = vault
-      .filter((v) => v.format === 'short')
-      .map((v) => ({
-        url: `/watch/shorts/${v.id}`,
-        priority: 0.75,
-        changeFrequency: 'weekly' as const,
-      }))
-  } catch {
-    /* vault may not exist */
-  }
-
-  // Section pages (important navigation destinations)
-  const sectionPages = [
-    { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
-    { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/see-through-the-noise', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/ai-ops', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
-    { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
-    { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
-    { url: '/prototypes', priority: 0.5, changeFrequency: 'monthly' as const },
-  ]
-
-  // Sub-route pages (nested under parent sections)
-  const subRoutePages = [
-    // AI Ops sub-routes
-    { url: '/ai-ops/architecture', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/ai-ops/patterns', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/ai-ops/models-2026', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/ai-ops/maturity', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/ai-ops/accelerator-packs', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },
-    // AI Architect sub-routes
-    { url: '/ai-architect/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
-    // Soulbook sub-routes
-    { url: '/soulbook/7-pillars', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/soulbook/assessment', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/soulbook/golden-path', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/soulbook/life-symphony', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/soulbook/vault', priority: 0.7, changeFrequency: 'monthly' as const },
-    // Design Lab
-    { url: '/design-lab', priority: 0.6, changeFrequency: 'weekly' as const },
-    { url: '/design-lab/nature', priority: 0.6, changeFrequency: 'monthly' as const },
-    { url: '/design-lab/nature/variants', priority: 0.5, changeFrequency: 'monthly' as const },
-    { url: '/design-lab/v0', priority: 0.6, changeFrequency: 'monthly' as const },
-    { url: '/design-lab/acos', priority: 0.5, changeFrequency: 'monthly' as const },
-    // ACOS
-    { url: '/acos', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/acos/agents', priority: 0.8, changeFrequency: 'weekly' as const },
-    // Starlight Intelligence System
-    { url: '/starlight-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
-    // Investment Intelligence System (IIS) — public hub
-    { url: '/intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
-    // Plan
-    { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
-    // Inspiration
-    { url: '/inspiration', priority: 0.6, changeFrequency: 'monthly' as const },
-  ]
-
-  // Legacy pages (lower priority, may redirect)
-  const legacyPages = [
-    '/founder-playbook',
-    '/insights',
-    '/thank-you',
-    '/onboarding',
-    '/dashboard',
-  ]
-
-  // Research hub pages
-  const researchPages = [
-    { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
-  ]
-
-  // Library OS hub + manifesto/build/quotes funnels
-  const libraryPages = [
-    { url: '/library', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/library/approach', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/library/build', priority: 0.85, changeFrequency: 'monthly' as const },
-    { url: '/library/quotes', priority: 0.7, changeFrequency: 'weekly' as const },
-  ]
-
-  // Library OS — individual book deep-dives (dynamic from book-reviews registry)
-  let libraryDetailPages: { url: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = []
-  try {
-    const reviews = require('@/data/book-reviews').bookReviews as Array<{
-      slug: string
-      reviewDate?: string
-    }>
-    libraryDetailPages = reviews.map((r) => ({
-      url: `/library/${r.slug}`,
-      priority: 0.75,
-      changeFrequency: 'monthly' as const,
-    }))
-  } catch {
-    /* book-reviews may not exist in test envs */
-  }
-
-  // FrankX OS — meta-spine + per-module deep-dives (dynamic from os-modules registry)
-  const osHubPages = [
-    { url: '/os', priority: 0.9, changeFrequency: 'weekly' as const },
-  ]
-  let osDetailPages: { url: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = []
-  try {
-    const mods = require('@/data/os-modules').osModules as Array<{ slug: string }>
-    osDetailPages = mods.map((m) => ({
-      url: `/os/${m.slug}`,
-      priority: 0.8,
-      changeFrequency: 'monthly' as const,
-    }))
-  } catch {
-    /* os-modules may not exist */
-  }
-
-  // Get dynamic content
-  const blogEntries = getBlogEntries()
-  const guideSlugs = getGuideSlugs()
-  const productSlugs = getProductSlugs()
-
-  // Build sitemap entries
-  const entries: MetadataRoute.Sitemap = []
-
-  // Core pages
-  corePages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // Product pages (dynamic)
-  productSlugs.forEach(slug => {
-    entries.push({
-      url: `${BASE_URL}/products/${slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    })
-  })
-
-    // Research hub pages
-    researchPages.forEach(page => {
-      entries.push({
-        url: `${BASE_URL}${page.url}`,
-        lastModified: currentDate,
-        changeFrequency: page.changeFrequency,
-        priority: page.priority,
-      })
-    })
-  
-      // Strategy pages
-      strategyPages.forEach(page => {
-        entries.push({
-          url: `${BASE_URL}${page.url}`,
-          lastModified: currentDate,
-          changeFrequency: page.changeFrequency,
-          priority: page.priority,
-        })
-      })
-    
-      // Video pages
-      videoPages.forEach(page => {
-        entries.push({
-          url: `${BASE_URL}${page.url}`,
-          lastModified: currentDate,
-          changeFrequency: page.changeFrequency,
-          priority: page.priority,
-        })
-      })
-
-      // Individual Short detail pages
-      shortDetailPages.forEach(page => {
-        entries.push({
-          url: `${BASE_URL}${page.url}`,
-          lastModified: currentDate,
-          changeFrequency: page.changeFrequency,
-          priority: page.priority,
-        })
-      })
-  // Research domain pages (dynamic from registry)
-  researchDomains.forEach(domain => {
-    entries.push({
-      url: `${BASE_URL}/research/${domain.slug}`,
-      lastModified: domain.lastUpdated,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    })
-  })
-
-  // Tool pages
-  toolPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
-  // Assessment pages
-  assessmentPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
-  // Community pages
-  communityPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    })
-  })
-
-  // Learning pages
-  learningPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
-  // Papa hub (man-as-fact pages only — see papaPages comment above)
-  papaPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    })
-  })
-
-  // Content pages
-  contentPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    })
-  })
-
-  // AI pages
-  aiPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    })
-  })
-
-  // Utility pages
-  utilityPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    })
-  })
-
-  // Legal pages
-  legalPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    })
-  })
-
-  // Section pages
-  sectionPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // Audience landing pages
-  audiencePages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // Legacy pages
-  legacyPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.4,
-    })
-  })
-
-  // Sub-route pages
-  subRoutePages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // Blog posts (high priority - use actual post dates)
-  blogEntries.forEach(entry => {
-    entries.push({
-      url: `${BASE_URL}/blog/${entry.slug}`,
-      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    })
-  })
-
-  // Guide posts
-  guideSlugs.forEach(slug => {
-    entries.push({
-      url: `${BASE_URL}/guides/${slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
-  // Library OS — hub + manifesto + build + quotes
-  libraryPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // Library OS — individual book deep-dives
-  libraryDetailPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // FrankX OS — meta-spine hub
-  osHubPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // FrankX OS — per-module deep-dives
-  osDetailPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })
-  })
-
-  // Partnerships — strategic-partner hub + per-partner deep pages
-  entries.push({
-    url: `${BASE_URL}/partnerships`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  })
-  listPartners().forEach(partner => {
-    entries.push({
-      url: `${BASE_URL}/partnerships/${partner.slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: partner.status === 'active' ? 0.8 : 0.5,
-    })
-  })
-
-  // Newsletter issues — published only (drafts noindex'd at page level)
-  getNewsletterIssues().forEach((issue) => {
-    entries.push({
-      url: `${BASE_URL}/newsletter/archive/${issue.slug}`,
-      lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    })
-  })
-
-  // Auto-discovery safety net — pull every route from lib/route-enumeration.mjs
-  // (the single source of truth shared with data/route-index.json + the link
-  // checker) and add any that the hand-curated arrays above missed. The
-  // existing entry wins on collision, so manual priority/changeFrequency
-  // settings are preserved.
-  const seenUrls = new Set(entries.map((e) => e.url))
-  try {
-    const discovered = enumerateRoutes() as Array<{ href: string; type: string }>
-    // Heuristic priority + frequency by route type — only used for routes that
-    // weren't already in the hand-curated arrays above.
-    const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
-      core: { priority: 0.8, changeFrequency: 'weekly' },
-      blog: { priority: 0.7, changeFrequency: 'monthly' },
-      workshop: { priority: 0.8, changeFrequency: 'monthly' },
-      product: { priority: 0.8, changeFrequency: 'weekly' },
-      guide: { priority: 0.7, changeFrequency: 'monthly' },
-      library: { priority: 0.7, changeFrequency: 'monthly' },
-      os: { priority: 0.7, changeFrequency: 'monthly' },
-      research: { priority: 0.7, changeFrequency: 'weekly' },
-      newsletter: { priority: 0.75, changeFrequency: 'monthly' },
-      partnership: { priority: 0.6, changeFrequency: 'monthly' },
-      tool: { priority: 0.6, changeFrequency: 'monthly' },
-      community: { priority: 0.6, changeFrequency: 'monthly' },
-      section: { priority: 0.5, changeFrequency: 'monthly' },
-      video: { priority: 0.7, changeFrequency: 'weekly' },
-      static: { priority: 0.4, changeFrequency: 'yearly' },
-      legacy: { priority: 0.3, changeFrequency: 'yearly' },
-    }
-    for (const route of discovered) {
-      const url = `${BASE_URL}${route.href}`
-      if (seenUrls.has(url)) continue
+  return routeIndex.routes
+    .filter((route) => isPublicIndexableRoute(route.href))
+    .flatMap((route) => {
+      const url = buildAbsoluteUrl(route.href)
+      if (seenUrls.has(url)) return []
       seenUrls.add(url)
-      const def = defaults[route.type] ?? defaults.section
-      entries.push({
+
+      return {
         url,
         lastModified: currentDate,
-        changeFrequency: def.changeFrequency,
-        priority: def.priority,
-      })
-    }
-  } catch (err) {
-    // Don't fail sitemap generation if the enumerator can't load —
-    // the hand-curated arrays above still produce a valid sitemap.
-    console.warn('[sitemap] route-enumeration auto-discovery failed:', (err as Error).message)
-  }
-
-  return entries
+        changeFrequency: getChangeFrequency(route),
+        priority: getPriority(route),
+      }
+    })
 }

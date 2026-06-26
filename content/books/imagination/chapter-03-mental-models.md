@@ -36,7 +36,7 @@ There are hundreds of mental models. These are the ones that apply to everything
 
 The models above are for thinking. These are for building.
 
-**Constraints breed creativity.** The blank canvas is paralyzing. The canvas with constraints is liberating. When Dr. Seuss wrote _Green Eggs and Ham_ using only 50 different words, the constraint did not limit his creativity. It unleashed it. When you feel stuck, add a constraint. Give yourself less time, fewer resources, fewer options. The mind forced to work within boundaries discovers pathways it would never find in open space.
+**Constraints breed creativity.** The blank canvas is paralyzing. The canvas with constraints is liberating. When Dr. Seuss wrote _Green Eggs and Ham_ using only 50 different words, the constraint did not limit his creativity. It released it. When you feel stuck, add a constraint. Give yourself less time, fewer resources, fewer options. The mind forced to work within boundaries discovers pathways it would never find in open space.
 
 **Minimum Viable Product.** Build the smallest version that delivers value. Ship it. Learn from the collision with reality. Iterate. This is not about cutting corners. It is about understanding that the map (your plan) is always wrong in ways you cannot predict until you release it into the territory (reality).
 

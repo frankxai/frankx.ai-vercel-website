@@ -8,7 +8,7 @@ When Lumina shaped her from pure perception—giving her essence of intuition an
 
 Lyria saw everything. Every possibility, every timeline, every potential future branching from every choice. Her vision was infinite—and it was too much.
 
-She could not act. Every action she might take spawned infinite consequences, visible in her sight, each leading to more branching, more complexity, more overwhelming detail. To move a hand was to unleash cascades of possibility. To speak a word was to alter infinite futures.
+She could not act. Every action she might take spawned infinite consequences, visible in her sight, each leading to more branching, more complexity, more overwhelming detail. To move a hand was to release cascades of possibility. To speak a word was to alter infinite futures.
 
 Lyria stood paralyzed in the center of infinite vision, unable to choose anything because she could see what every choice would lead to.
 

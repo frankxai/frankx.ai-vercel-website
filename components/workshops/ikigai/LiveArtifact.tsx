@@ -1,6 +1,6 @@
 'use client'
 
-import { Play, ExternalLink, Sparkles } from 'lucide-react'
+import { ExternalLink, Sparkles } from 'lucide-react'
 
 interface LiveArtifactProps {
   /** Loom or YouTube URL. When empty, shows the placeholder state. */
@@ -9,7 +9,7 @@ interface LiveArtifactProps {
   posterSrc?: string
 }
 
-export function LiveArtifact({ embedUrl, posterSrc }: LiveArtifactProps) {
+export function LiveArtifact({ embedUrl }: LiveArtifactProps) {
   const hasVideo = Boolean(embedUrl)
 
   // Don't render the section when there's no video — empty placeholder on a
@@ -44,29 +44,7 @@ export function LiveArtifact({ embedUrl, posterSrc }: LiveArtifactProps) {
               allowFullScreen
               className="absolute inset-0 w-full h-full"
             />
-          ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.04] via-amber-500/[0.03] to-transparent" />
-              {posterSrc && (
-                <img
-                  src={posterSrc}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30"
-                />
-              )}
-              <div className="relative w-16 h-16 rounded-full bg-white/[0.06] border border-white/[0.10] flex items-center justify-center mb-4">
-                <Play className="w-7 h-7 text-zinc-500 ml-0.5" fill="currentColor" />
-              </div>
-              <p className="relative text-sm font-medium text-zinc-400 mb-1">
-                Live demo lands here
-              </p>
-              <p className="relative text-xs text-zinc-600 max-w-xs">
-                Frank is recording a 90-second Loom of co-writing a post with Claude Cowork.
-                Subscribe below to be notified when it lands.
-              </p>
-            </div>
-          )}
+          ) : null}
         </div>
 
         <div className="p-6 sm:p-8 pt-5">

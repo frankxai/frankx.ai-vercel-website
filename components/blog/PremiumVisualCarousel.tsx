@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
 
@@ -79,10 +80,12 @@ export default function PremiumVisualCarousel() {
               className="group relative block flex-shrink-0 w-[420px] rounded-3xl overflow-hidden border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+                  fill
+                  sizes="420px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.035]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent" />
                 

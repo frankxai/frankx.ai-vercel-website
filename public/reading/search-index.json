@@ -3356,11 +3356,6 @@
       "snippet": "# Progress Log ## Session: [DATE] ### Phase 1: [Title] - **Status:** in_progress - **Started:** [timestamp] - Actions taken: - - Files created/modified: - ### Phase 2: [Title] - **Status:** pending - Actions taken: - - Files created/modified: - ## Test Results | Test | Input | Expected | Actual | St"
     },
     {
-      "title": "Task Plan: [Brief Description]",
-      "path": "/reading/.claude/skills/planning-with-files/templates/task_plan.html",
-      "snippet": "# Task Plan: [Brief Description] ## Goal [One sentence describing the end state] ## Current Phase Phase 1 ## Phases ### Phase 1: Requirements & Discovery - [ ] Understand user intent - [ ] Identify constraints and requirements - [ ] Document findings in findings.md - **Status:** in_progress ### Phas"
-    },
-    {
       "title": "Postiz & Blotato Distributor",
       "path": "/reading/.claude/skills/postiz-distributor/SKILL.html",
       "snippet": "--- name: postiz-distributor description: Formats, schedules, and distributes creator assets across social platforms (X, LinkedIn, Threads, YouTube Shorts) via Postiz, Buffer, or Blotato. Activates on: distribute, schedule post, queue thread, postiz, blotato, buffer. --- # Postiz & Blotato Distribut"
@@ -4276,11 +4271,6 @@
       "snippet": "--- name: repo-mastery description: Master ACOS, FrankX, Starlight-Intelligence-System, arcanea, claude-code-config and full starlight/repos ecosystem. Architecture, skills/hooks/MCP map, harness integration points. Read CLAUDE.md/AGENTS.md/GROK.md first. Use MCPs (github, fs-starlight), gstack, sub"
     },
     {
-      "title": "README",
-      "path": "/reading/.vercel/README.html",
-      "snippet": "> Why do I have a folder named \".vercel\" in my project? The \".vercel\" folder is created when you link a directory to a Vercel project. > What does the \"project.json\" file contain? The \"project.json\" file contains: - The ID of the Vercel project that you linked (\"projectId\") - The ID of the user or t"
-    },
-    {
       "title": "Investment Analysis AI Agents - Detailed Specifications",
       "path": "/reading/001-FrankX-AI-Investment Team/agent.html",
       "snippet": "# Investment Analysis AI Agents - Detailed Specifications ## Table of Contents 1. [Agent Overview](#agent-overview) 2. [Core Analysis Agents](#core-analysis-agents) 3. [Specialized Agents](#specialized-agents) 4. [Strategic Agents](#strategic-agents) 5. [Agent Communication Protocol](#agent-communic"
@@ -4789,6 +4779,26 @@
       "title": "Twitter Thread: Spartan Mindset",
       "path": "/reading/content/2-ready-to-publish/social/books/spartan-mindset/twitter-thread.html",
       "snippet": "# Twitter Thread: Spartan Mindset ## Tweet 1 (Hook) One extra rep per set. Four sets per exercise. Five exercises per session. Three sessions per week. That is 3,120 additional reps per year. Over five years, 15,600 reps the person next to you did not do. I wrote a book about this math. ## Tweet 2 ("
+    },
+    {
+      "title": "LinkedIn Post: Doppelganger Files 01",
+      "path": "/reading/content/2-ready-to-publish/social/doppelganger-files/linkedin-post.html",
+      "snippet": "# LinkedIn Post: Doppelganger Files 01 I stopped thinking about \"future self\" as visualization. I turned it into an operating system. The shift was simple: Future Frank is not one person. He is a set of operators. - FrankX writes the frameworks. - Arcanea builds the worlds. - Starlight proves the ag"
+    },
+    {
+      "title": "Posting Schedule: Doppelganger Files 01",
+      "path": "/reading/content/2-ready-to-publish/social/doppelganger-files/posting-schedule.html",
+      "snippet": "# Posting Schedule: Doppelganger Files 01 Status: ready to stage, requires human approval before publishing ## Day 1 - LinkedIn: publish the main operator-board post. - X: publish thread 2 hours after LinkedIn. - YouTube Shorts: publish the 45-60 second short after the proof artifact is visible. ## "
+    },
+    {
+      "title": "X Thread: Doppelganger Files 01",
+      "path": "/reading/content/2-ready-to-publish/social/doppelganger-files/x-thread.html",
+      "snippet": "# X Thread: Doppelganger Files 01 1/ I built five future selves and made them run my brands. Not as visualization. As operators. 2/ Future self is too vague until it has: - a job - a KPI - a daily proof artifact - an audience - a capture point 3/ So I split the system into operators: FrankX = framew"
+    },
+    {
+      "title": "YouTube Short Script: Doppelganger Files 01",
+      "path": "/reading/content/2-ready-to-publish/social/doppelganger-files/youtube-short-script.html",
+      "snippet": "# YouTube Short Script: Doppelganger Files 01 Title: I Built Five Future Selves and Gave Them Jobs Duration: 45-60 seconds ## Shot List 1. Face camera: \"I built five future selves and made them run my brands.\" 2. Cut to operator board. 3. Screen/text overlay: \"Future self -> operator.\" 4. Show five "
     },
     {
       "title": "Instagram Carousel Post: Intelligence Ecosystem",
@@ -6816,6 +6826,11 @@
       "snippet": "--- date: 2026-05-03 status: draft intent: Launch the Architecture of Intelligence research series channels: - LinkedIn (primary) - X / Twitter (thread) - Email (Inner Circle) related: - /research/series/architecture-of-intelligence - /blog/no-bad-parts-sovereign-ai --- # Launch artifacts — Architec"
     },
     {
+      "title": "Agentic OS Family + Foundry launch — distribution drafts",
+      "path": "/reading/content/social/agentic-os-family-foundry-launch/drafts.html",
+      "snippet": "# Agentic OS Family + Foundry launch — distribution drafts > DRAFTS ONLY. Human posts manually. Source: /blog/agentic-os-family-foundry-launch + frankx.ai/foundry > Gate: banned-phrase scan clean · claims framed honestly · one dry line total across variants. --- ## LinkedIn Last week friends asked w"
+    },
+    {
       "title": "Social Pack: Agent Family Architecture vs Agent Swarms",
       "path": "/reading/content/social/blog/agent-family-architecture.html",
       "snippet": "# Social Pack: Agent Family Architecture vs Agent Swarms Source: https://frankx.ai/blog/agent-family-architecture Visuals: - Wide: /images/social/blog/agent-family-architecture/wide.svg - Square: /images/social/blog/agent-family-architecture/square.svg - Vertical: /images/social/blog/agent-family-ar"
@@ -7116,9 +7131,44 @@
       "snippet": "--- slug: why-everyone-needs-personal-ai-coe title: \"Why Everyone Needs Their Own AI Center of Excellence\" angle: founder hero: \"/images/blog/generated/why-everyone-needs-personal-ai-coe-premium-hero.png\" wide: \"/images/social/blog/why-everyone-needs-personal-ai-coe/wide.png\" square: \"/images/social"
     },
     {
+      "title": "ig",
+      "path": "/reading/content/social/claude-fable-5-analysis-2026/ig.html",
+      "snippet": "--- platform: ig slug: claude-fable-5-analysis-2026 char_count: 1089 char_ceiling: 2200 thesis_word: Fable 5 hook_source: fallback recalled_pattern_id: null created_at: 2026-06-10 status: draft --- Opus 4.8 answered a hard reasoning task confidently wrong in 2.7 seconds. That is the first correctnes"
+    },
+    {
+      "title": "linkedin",
+      "path": "/reading/content/social/claude-fable-5-analysis-2026/linkedin.html",
+      "snippet": "--- platform: linkedin slug: claude-fable-5-analysis-2026 char_count: 1421 char_ceiling: 3000 thesis_word: Fable 5 hook_source: fallback recalled_pattern_id: null created_at: 2026-06-10 status: draft --- Opus 4.8 answered a hard no-tools reasoning task confidently wrong in 2.7 seconds. That is the f"
+    },
+    {
+      "title": "threads",
+      "path": "/reading/content/social/claude-fable-5-analysis-2026/threads.html",
+      "snippet": "--- platform: threads slug: claude-fable-5-analysis-2026 char_count: 296 char_ceiling: 500 thesis_word: Fable 5 hook_source: fallback recalled_pattern_id: null created_at: 2026-06-10 status: draft --- Opus 4.8 answered a hard reasoning task confidently wrong in 2.7 seconds. Fable 5 went 7/7 on the c"
+    },
+    {
+      "title": "x",
+      "path": "/reading/content/social/claude-fable-5-analysis-2026/x.html",
+      "snippet": "--- platform: x slug: claude-fable-5-analysis-2026 char_count: 258 char_ceiling: 280 thesis_word: Fable 5 hook_source: fallback recalled_pattern_id: null created_at: 2026-06-10 status: draft --- Opus 4.8 answered a hard reasoning task confidently wrong in 2.7 seconds. Fable 5 went 7/7 on the constra"
+    },
+    {
       "title": "2026 05 01 departure announcement",
       "path": "/reading/content/social/linkedin/2026-05-01-departure-announcement.html",
       "snippet": "--- platform: linkedin status: draft scheduled_at: 2026-05-01T08:30:00+02:00 pillar: departure arc: 1 hook: \"The most demanding organizations in the world taught me how AI actually gets built.\" cta: \"→ frankx.ai\" visual: visuals/generated/2026-05-01-architect-window.png image_prompt: | Cinematic mid"
+    },
+    {
+      "title": "Social copy — faceless-youtube-ai-tools-2026",
+      "path": "/reading/content/staging/social/faceless-youtube-ai-tools-2026/copy.html",
+      "snippet": "# Social copy — faceless-youtube-ai-tools-2026 _Generated by /social-from-blog. STAGED — operator review + manual post. Source: /blog/faceless-youtube-ai-tools-2026_ Affiliate-aware CTA: link to the blog post (carries the ElevenLabs affiliate link + full stack), not a raw affiliate link in social. -"
+    },
+    {
+      "title": "Video brief — faceless-youtube-ai-tools-2026",
+      "path": "/reading/content/staging/social/faceless-youtube-ai-tools-2026/video-brief.html",
+      "snippet": "# Video brief — faceless-youtube-ai-tools-2026 _Generated by /social-from-blog. 6 scenes mapped to the voiceover. Brand lane: noir-tech / editorial (deep navy, cyan + amber, premium, no on-screen text artifacts). 9:16. Render with `--video` once the Higgsfield MCP is connected (currently brief-only "
+    },
+    {
+      "title": "Voiceover script — faceless-youtube-ai-tools-2026",
+      "path": "/reading/content/staging/social/faceless-youtube-ai-tools-2026/voiceover.html",
+      "snippet": "# Voiceover script — faceless-youtube-ai-tools-2026 _Generated by /social-from-blog. ~45 sec faceless-short narration. ElevenLabs v3 audio tags inline. Render with `--audio` once the ElevenLabs MCP key is set (currently script-only — MCP not connected)._ Suggested voice: a clear, confident mid-regis"
     },
     {
       "title": "Madrid Demo 3 — Pre-staged Visual Batch",
@@ -8693,7 +8743,7 @@
     {
       "title": "link checker report",
       "path": "/reading/link-checker-report.html",
-      "snippet": "FrankX.AI Link Checker Report ================================================================================ Generated: 2026-05-21T19:33:51.854Z Total Issues Found: 2 ================================================================================ === ISSUES BY TYPE === Other errors: 2 issues ----"
+      "snippet": "FrankX.AI Link Checker Report ================================================================================ Generated: 2026-06-26T20:16:26.887Z Total Issues Found: 0 ================================================================================ ✅ No issues found! All links are working correctly"
     },
     {
       "title": "FrankX.AI Link Testing Report",

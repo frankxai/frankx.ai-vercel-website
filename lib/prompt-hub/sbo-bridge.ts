@@ -61,7 +61,6 @@ let stubWarningEmitted = false;
 function emitStubWarningOnce(): void {
   if (stubWarningEmitted) return;
   stubWarningEmitted = true;
-  // eslint-disable-next-line no-console
   console.warn(STUB_WARNING);
 }
 

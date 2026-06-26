@@ -118,7 +118,10 @@ function isAllowed(relPath) {
 }
 
 function lineAllowed(line) {
-  return /\/\/\s*ai-slop-allow|<!--\s*ai-slop-allow\s*-->/.test(line)
+  if (/\/\/\s*ai-slop-allow|<!--\s*ai-slop-allow\s*-->/.test(line)) return true
+  // Negative examples inside prompt guardrails should stay explicit; they teach
+  // writers what to reject rather than shipping the phrase as product copy.
+  return /\b(Forbidden|Banned|Anti-slop|hard-cuts?|No generic|No deep dive|strip AI slop|Unverified)\b/i.test(line) || /\bno\s+["'`]/i.test(line)
 }
 
 async function* walk(dir) {
