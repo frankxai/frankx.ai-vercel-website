@@ -1,5 +1,5 @@
 import HomePageElite from '@/components/home/HomePageElite'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
@@ -32,41 +32,43 @@ export const metadata = createMetadata({
   path: '/',
 })
 
+const siteUrl = siteConfig.url
+
 const websiteSchema = {
-  '@id': 'https://frankx.ai/#website',
+  '@id': `${siteUrl}/#website`,
   name: 'FrankX',
   alternateName: ['FrankX.AI', 'Frank Riemer'],
-  url: 'https://frankx.ai',
+  url: siteUrl,
   description:
     'FrankX is Frank Riemer\'s home for AI creator systems, agentic workflows, music experiments, and evidence-led performance notes.',
   publisher: {
-    '@id': 'https://frankx.ai/#organization',
+    '@id': `${siteUrl}/#organization`,
   },
   about: {
-    '@id': 'https://frankx.ai/#frank-riemer',
+    '@id': `${siteUrl}/#frank-riemer`,
   },
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://frankx.ai/search?q={search_term_string}',
+    target: `${siteUrl}/search?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 }
 
 const personSchema = {
-  '@id': 'https://frankx.ai/#frank-riemer',
+  '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
   jobTitle: 'AI Architect and Creator',
-  url: 'https://frankx.ai/frank-riemer',
-  image: 'https://frankx.ai/images/portraits/frank-presenting-oracle-2025.jpg',
+  url: `${siteUrl}/frank-riemer`,
+  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
   mainEntityOfPage: {
-    '@id': 'https://frankx.ai/frank-riemer',
+    '@id': `${siteUrl}/frank-riemer`,
   },
   worksFor: {
     '@type': 'Organization',
     name: 'Oracle',
   },
   brand: {
-    '@id': 'https://frankx.ai/#organization',
+    '@id': `${siteUrl}/#organization`,
   },
   sameAs: [
     socialLinks.linkedin,
@@ -88,13 +90,13 @@ const personSchema = {
 }
 
 const organizationSchema = {
-  '@id': 'https://frankx.ai/#organization',
+  '@id': `${siteUrl}/#organization`,
   name: 'FrankX',
   alternateName: 'FrankX.AI',
-  url: 'https://frankx.ai',
-  logo: 'https://frankx.ai/images/brand/logo-full.png',
+  url: siteUrl,
+  logo: `${siteUrl}/images/brand/logo-full.png`,
   founder: {
-    '@id': 'https://frankx.ai/#frank-riemer',
+    '@id': `${siteUrl}/#frank-riemer`,
   },
   sameAs: [
     socialLinks.linkedin,

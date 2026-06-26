@@ -3,10 +3,11 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import routeIndex from '@/data/route-index.json'
 
-const BASE_URL = 'https://frankx.ai'
+const BASE_URL = siteConfig.url
 
 // Extract slug from MDX filename
 function getSlugFromFilename(filename: string): string {

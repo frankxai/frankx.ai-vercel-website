@@ -1,6 +1,6 @@
 import { getStreams } from '@/lib/newsletter'
 import { getLatestIssue } from '@/lib/newsletter-issues'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import NewsletterHero from '@/components/newsletter/NewsletterHero'
 import StreamShowcase from '@/components/newsletter/StreamShowcase'
 import StreamCompare from '@/components/newsletter/StreamCompare'
@@ -42,6 +42,8 @@ export const metadata = createMetadata({
   ],
 })
 
+const siteUrl = siteConfig.url
+
 export default function NewsletterPage() {
   const streams = getStreams()
   const latestIssue = getLatestIssue()
@@ -52,7 +54,7 @@ export default function NewsletterPage() {
       '@type': 'CreativeWork',
       name: s.name,
       description: s.description,
-      url: `https://frankx.ai/newsletter#${s.id}`,
+      url: `${siteUrl}/newsletter#${s.id}`,
     },
   }))
   const jsonLdGraph = {
@@ -60,23 +62,23 @@ export default function NewsletterPage() {
     '@graph': [
       {
         '@type': 'CollectionPage',
-        '@id': 'https://frankx.ai/newsletter#newsletter',
+        '@id': `${siteUrl}/newsletter#newsletter`,
         name: 'Signal Loop Newsletter by Frank Riemer',
         description:
           'A grounded weekly letter from Frank Riemer on AI architecture, creative systems, music experiments, peak mental performance, and trustworthy human-AI work.',
-        url: 'https://frankx.ai/newsletter',
+        url: `${siteUrl}/newsletter`,
         numberOfItems: streams.length,
         hasPart: streamItems.map((item) => item.item),
         publisher: {
           '@type': 'Person',
-          '@id': 'https://frankx.ai/#frank-riemer',
+          '@id': `${siteUrl}/#frank-riemer`,
           name: 'Frank Riemer',
-          url: 'https://frankx.ai/frank-riemer',
+          url: `${siteUrl}/frank-riemer`,
         },
       },
       {
         '@type': 'FAQPage',
-        '@id': 'https://frankx.ai/newsletter#faq',
+        '@id': `${siteUrl}/newsletter#faq`,
         mainEntity: faqItems.map((faq) => ({
           '@type': 'Question',
           name: faq.q,

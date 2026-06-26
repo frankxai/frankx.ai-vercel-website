@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Activity, ArrowRight, Brain, CheckCircle2, Moon, NotebookText, ShieldCheck } from 'lucide-react'
 
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'Peak State Systems | FrankX',
@@ -74,15 +74,17 @@ const faqs = [
   },
 ]
 
+const siteUrl = siteConfig.url
+
 const collectionSchema = {
-  '@id': 'https://frankx.ai/peak-performance#collection',
+  '@id': `${siteUrl}/peak-performance#collection`,
   name: 'Peak State Systems',
   description:
     'FrankX creator performance systems for attention, energy, recovery, environment, and evidence-led review loops.',
-  url: 'https://frankx.ai/peak-performance',
+  url: `${siteUrl}/peak-performance`,
   publisher: {
     '@type': 'Person',
-    '@id': 'https://frankx.ai/#frank-riemer',
+    '@id': `${siteUrl}/#frank-riemer`,
     name: 'Frank Riemer',
   },
 }

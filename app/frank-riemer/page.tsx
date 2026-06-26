@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Mail, Music, Network, Sparkles } from 'lucide-react'
 
 import JsonLd from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
@@ -55,15 +55,17 @@ const pillars = [
   },
 ]
 
+const siteUrl = siteConfig.url
+
 const personSchema = {
   name: 'Frank Riemer',
-  url: 'https://frankx.ai/frank-riemer',
-  image: 'https://frankx.ai/images/portraits/frank-presenting-oracle-2025.jpg',
+  url: `${siteUrl}/frank-riemer`,
+  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
   jobTitle: 'AI Architect and Creator',
   brand: {
     '@type': 'Brand',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteUrl,
   },
   worksFor: {
     '@type': 'Organization',

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { socialHandles } from './social-links'
 
-const siteUrl = 'https://frankx.ai'
+const siteUrl = 'https://www.frankx.ai'
 
 export const siteConfig = {
   name: 'FrankX Intelligence Hub',
