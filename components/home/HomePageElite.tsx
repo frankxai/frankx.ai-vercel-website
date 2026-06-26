@@ -279,7 +279,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 <span className="text-sm text-white/60">AI Architect & Creator</span>
               </div>
 
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
+              <h1
+                aria-label="Building intelligence that compounds."
+                className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white"
+              >
                 <RotatingWord /> intelligence
                 <br />
                 that compounds.
