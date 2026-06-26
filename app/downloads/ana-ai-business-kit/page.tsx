@@ -96,7 +96,7 @@ export default function AnaAIBusinessKitDownloadPage() {
         <div className="mx-auto max-w-7xl">
           <Link
             href="/downloads"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.055] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-white/35 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.055] px-4 py-2 text-xs font-bold text-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-white/35 hover:text-white"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Downloads
@@ -104,7 +104,7 @@ export default function AnaAIBusinessKitDownloadPage() {
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-start">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#d4a574]/28 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#f5edd8]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#d4a574]/28 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold text-[#f5edd8]">
                 <ShieldCheck className="h-4 w-4" />
                 Actual starter system - v{version}
               </div>
@@ -150,7 +150,7 @@ export default function AnaAIBusinessKitDownloadPage() {
               <div className="rounded-[2.2rem] border border-white/10 bg-black/25 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]">
                 <div className="flex items-start justify-between gap-5">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/48">
+                    <p className="text-xs font-bold text-white/48">
                       Public Asset
                     </p>
                     <h2 className="mt-2 text-2xl font-black">Download package</h2>
@@ -197,7 +197,7 @@ export default function AnaAIBusinessKitDownloadPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+            <p className="text-sm font-bold text-[#d4a574]">
               What she gets
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -232,7 +232,7 @@ export default function AnaAIBusinessKitDownloadPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="rounded-[2.6rem] border border-[#d4a574]/20 bg-[linear-gradient(145deg,rgba(212,165,116,0.12),rgba(255,255,255,0.04),rgba(31,95,74,0.08))] p-6 shadow-[0_28px_100px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4a574]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
               <Sparkles className="h-5 w-5" />
               Start here
             </div>
@@ -255,7 +255,7 @@ export default function AnaAIBusinessKitDownloadPage() {
           </article>
 
           <article className="rounded-[2.6rem] border border-white/12 bg-[#08120f]/72 p-6 shadow-[0_28px_100px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4a574]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
               <Lock className="h-5 w-5" />
               Honest boundary
             </div>
@@ -271,7 +271,7 @@ export default function AnaAIBusinessKitDownloadPage() {
               {agents.map((agent) => (
                 <span
                   key={agent}
-                  className="rounded-full border border-white/10 bg-black/25 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white/64"
+                  className="rounded-full border border-white/10 bg-black/25 px-3 py-1.5 text-xs font-bold text-white/64"
                 >
                   {agent}
                 </span>

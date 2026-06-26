@@ -18,24 +18,24 @@ import { GlowCard } from "@/components/ui/glow-card";
 export const metadata = createMetadata({
   title: "Friends",
   description:
-    "Friends of FrankX, a warmer public portal for trusted people, useful public context, and practical collaboration bridges.",
+    "Friends of FrankX, a public index of people Frank is actively helping with pages, starter kits, and system bridges.",
   path: "/friends",
 });
 
 const portalRoles = [
   {
     icon: Heart,
-    title: "Person First",
-    copy: "A friend page starts with who the person is, what they care about, and what should be handled with care.",
+    title: "Context before system",
+    copy: "A friend page explains why this person is here, what is verified, and which parts are still approval-only.",
   },
   {
     icon: Gift,
-    title: "Useful Gift",
-    copy: "Every page should leave the visitor with something practical: an offer, a kit, a clear intro, or a way to support the work.",
+    title: "A working asset",
+    copy: "Every page points to something real: an offer, a kit, an ally system, an official site, or a clear next step.",
   },
   {
     icon: Shield,
-    title: "Consent Boundary",
+    title: "Approval boundary",
     copy: "Public pages stay careful until the person approves deeper biography, testimonials, screenshots, and personal details.",
   },
 ];
@@ -44,7 +44,7 @@ const visitorQuestions = [
   {
     icon: UserCheck,
     title: "Who is this person?",
-    copy: "A short, human read that does not flatten someone into a role, resume, or hype phrase.",
+    copy: "A concise read based on public context and the relationship to the system being built.",
   },
   {
     icon: BookOpen,
@@ -68,17 +68,17 @@ export default function FriendsPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.78fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-semibold text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl">
               <Users className="h-4 w-4" />
               Friends
             </div>
             <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
-              A warmer map for real people.
+              Friend pages that explain the work.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl">
-              Friends is not a badge wall. It is the human layer for people
-              FrankX knows, respects, and wants to help in public without
-              turning their story into marketing noise.
+              This hub shows who FrankX is actively helping, what each person
+              can use today, and where a public profile connects to a business
+              system, download, or next build.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -118,10 +118,10 @@ export default function FriendsPage() {
           <aside className="relative rounded-[2.35rem] border border-white/12 bg-white/[0.055] p-5 shadow-[0_30px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/45">
-                  Portal Logic
+                <p className="text-xs font-semibold text-white/45">
+                  Route logic
                 </p>
-                <p className="mt-1 text-lg font-bold text-white">Friends to Allies</p>
+                <p className="mt-1 text-lg font-bold text-white">Profile to system</p>
               </div>
               <div className="grid h-12 w-12 place-items-center rounded-2xl border border-amber-100/20 bg-amber-100/10">
                 <Network className="h-6 w-6 text-amber-100" />
@@ -129,9 +129,9 @@ export default function FriendsPage() {
             </div>
             <div className="mt-5 grid grid-cols-1 gap-3">
               {[
-                ["Friend profile", "Warm context, public-safe story, and a real next step."],
-                ["Ally page", "Offers, delivery loops, downloads, and business architecture."],
-                ["Useful system", "Skills, prompts, routines, repos, launches, and durable assets."],
+                ["Profile", "Public context, verified links, and the reason this person is included."],
+                ["System page", "Offers, delivery loops, downloads, and business architecture."],
+                ["Kit", "Prompts, agent briefs, routines, repos, launch steps, and durable assets."],
               ].map(([title, copy], index) => (
                 <div
                   key={title}
@@ -154,16 +154,16 @@ export default function FriendsPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
-              Friend Nodes
+            <p className="text-sm font-semibold text-amber-100">
+              Current people
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-              Start warm. Make it useful.
+              Each profile should answer the visitor’s next question.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/64">
-              The point is not to collect names. The point is to give each
-              person a respectful public doorway that helps visitors understand
-              their work and find the right next action.
+              The point is not to collect names. It is to make each relationship
+              legible: what exists, what FrankX can help build, what can be
+              downloaded, and what still needs approval.
             </p>
           </div>
 
@@ -171,7 +171,7 @@ export default function FriendsPage() {
             <div className="bg-[linear-gradient(145deg,rgba(245,158,11,0.22),rgba(16,185,129,0.13),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold text-white/72 backdrop-blur-xl">
                     <Sparkles className="h-3.5 w-3.5 text-amber-100" />
                     Founder Friend
                   </div>
@@ -234,7 +234,7 @@ export default function FriendsPage() {
             <div className="bg-[linear-gradient(145deg,rgba(212,176,110,0.22),rgba(18,94,76,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold text-white/72 backdrop-blur-xl">
                     <Sparkles className="h-3.5 w-3.5 text-amber-100" />
                     Founder Friend
                   </div>
@@ -298,7 +298,7 @@ export default function FriendsPage() {
             <div className="bg-[linear-gradient(145deg,rgba(215,178,122,0.22),rgba(22,101,52,0.16),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold text-white/72 backdrop-blur-xl">
                     <Sparkles className="h-3.5 w-3.5 text-amber-100" />
                     Hospitality Friend
                   </div>
@@ -363,7 +363,7 @@ export default function FriendsPage() {
             <div className="bg-[linear-gradient(145deg,rgba(212,165,116,0.20),rgba(22,101,52,0.18),rgba(255,255,255,0.04))] p-7 md:p-9">
               <div className="flex h-full min-h-[320px] flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold text-white/72 backdrop-blur-xl">
                     <Sparkles className="h-3.5 w-3.5 text-amber-100" />
                     People Systems
                   </div>
@@ -430,17 +430,16 @@ export default function FriendsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-stretch">
             <GlowCard color="amber" className="rounded-[2.5rem] p-7 md:p-9">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
-                Why It Exists
+              <p className="text-sm font-semibold text-amber-100">
+                Why this hub exists
               </p>
               <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-                Friendship becomes visible when it helps someone.
+                A friend page is useful when it routes attention correctly.
               </h2>
               <p className="mt-5 text-base leading-7 text-white/68">
-                A good public friend page should feel like an introduction made
-                by someone who actually knows the person. It should protect
-                nuance, avoid strange overclaiming, and make one useful path
-                easy to follow.
+                A good public profile should protect what is not approved,
+                avoid overclaiming, and make one useful path obvious: read the
+                person, open the system, or download the starter kit.
               </p>
             </GlowCard>
 
@@ -473,17 +472,17 @@ export default function FriendsPage() {
       <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2.5rem] border border-white/12 bg-[#081111]/72 p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:flex-row md:items-center md:justify-between md:p-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-white/45">
+            <div className="flex items-center gap-2 text-sm font-bold text-white/45">
               <MessageCircle className="h-4 w-4" />
-              Portal Choice
+              Routing model
             </div>
             <h2 className="mt-3 text-3xl font-black tracking-tight">
               Two public layers.
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-white/66">
-              Friends carries the human relationship. Allies carries the
-              serious work, company system, public business architecture, and
-              installable tools.
+              Friends carries the public relationship context. Allies carries
+              the operating system, business architecture, and installable
+              tools.
             </p>
           </div>
           <Link

@@ -29,7 +29,7 @@ const pilotOffers = [
   {
     icon: CalendarCheck,
     title: "Booking Calm",
-    copy: "A human-approved system for reservation notes, waitlist replies, allergies, arrangements, and guest expectations.",
+    copy: "An approval-based system for reservation notes, waitlist replies, allergies, arrangements, and guest expectations.",
   },
   {
     icon: ChefHat,
@@ -87,7 +87,7 @@ export default function HarzfensterAllyPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.04fr_0.82fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d7b27a]/28 bg-[#d7b27a]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#f4dfb5] shadow-[inset_0_1px_0_rgba(255,255,255,0.13)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d7b27a]/28 bg-[#d7b27a]/10 px-4 py-2 text-xs font-bold text-[#f4dfb5] shadow-[inset_0_1px_0_rgba(255,255,255,0.13)] backdrop-blur-2xl">
               <Hotel className="h-4 w-4" />
               FrankX ally pilot
             </div>
@@ -101,9 +101,9 @@ export default function HarzfensterAllyPage() {
               automated.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/54">
-              This is the ally layer. The friend page is warmer and simpler.
-              This page is the operating idea: how FrankX can help the house
-              turn momentum into calm execution.
+              This is the operating layer: how FrankX can help the house turn
+              momentum into calmer reservations, service preparation,
+              follow-up, team learning, and owner decisions.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -135,7 +135,7 @@ export default function HarzfensterAllyPage() {
               <div className="grid h-24 w-24 place-items-center rounded-[2.2rem] border border-[#d7b27a]/28 bg-[linear-gradient(145deg,rgba(215,178,122,0.24),rgba(68,143,103,0.15),rgba(255,255,255,0.05))] text-3xl font-black text-[#f4dfb5]">
                 JS
               </div>
-              <p className="mt-7 text-xs font-bold uppercase tracking-[0.22em] text-[#f4dfb5]">
+              <p className="mt-7 text-xs font-bold text-[#f4dfb5]">
                 Public baseline
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight">
@@ -169,7 +169,7 @@ export default function HarzfensterAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#f4dfb5]">
+            <p className="text-sm font-bold text-[#f4dfb5]">
               The operating map
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -213,7 +213,7 @@ export default function HarzfensterAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.92fr_1.08fr]">
           <article className="rounded-[2.7rem] border border-[#d7b27a]/20 bg-[linear-gradient(145deg,rgba(215,178,122,0.12),rgba(255,255,255,0.04),rgba(68,143,103,0.08))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#f4dfb5]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#f4dfb5]">
               <Sparkles className="h-5 w-5" />
               Four week pilot
             </div>
@@ -237,7 +237,7 @@ export default function HarzfensterAllyPage() {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="text-sm font-black uppercase tracking-[0.16em] text-white/82">
+                  <h3 className="text-sm font-black text-white/82">
                     {label}
                   </h3>
                   <p className="mt-2 text-sm leading-6 text-white/66">{copy}</p>
@@ -251,12 +251,12 @@ export default function HarzfensterAllyPage() {
       <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-[2.7rem] border border-white/12 bg-[#08110f]/74 p-6 shadow-[0_34px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-emerald-100">
+            <div className="flex items-center gap-3 text-sm font-bold text-emerald-100">
               <ShieldCheck className="h-5 w-5" />
               Guest trust
             </div>
             <h2 className="mt-5 text-3xl font-black tracking-tight md:text-4xl">
-              The promise is human care with better preparation.
+              The promise is hospitality with better preparation.
             </h2>
             <div className="mt-7 grid gap-3">
               {trustRules.map((rule) => (
@@ -271,19 +271,19 @@ export default function HarzfensterAllyPage() {
           </article>
 
           <article className="rounded-[2.7rem] border border-[#d7b27a]/20 bg-[#120f08]/74 p-6 shadow-[0_34px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#f4dfb5]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#f4dfb5]">
               <Award className="h-5 w-5" />
               Why FrankX should have this
             </div>
             <h2 className="mt-5 text-3xl font-black tracking-tight md:text-4xl">
-              Real friends make the system believable.
+              Real operators make the system believable.
             </h2>
             <p className="mt-4 text-base leading-7 text-white/66">
-              The Friends and Allies hubs work when they show real care and
+              The Friends and Allies hubs work when they show real context and
               real usefulness. Jojo gives FrankX a hospitality pattern: a
-              respected owner-led house, a clear public moment, and a practical
-              AI support system that can later become a premium workshop for
-              other restaurants and hotels.
+              respected owner-led house, a clear public moment, and an AI
+              support system that can later become a premium workshop for other
+              restaurants and hotels.
             </p>
             <Link
               href="/hospitality-intelligence"

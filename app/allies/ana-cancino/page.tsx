@@ -44,7 +44,7 @@ const existingOffers = [
   {
     icon: BriefcaseBusiness,
     title: "HR and Soul Work for teams",
-    copy: "Proposed expansion only: use her people background to help teams with trust, hiring, role clarity, and humane communication.",
+    copy: "Proposed expansion only: use her people background to help teams with trust, hiring, role clarity, and clear communication.",
   },
 ];
 
@@ -86,7 +86,7 @@ export default function AnaAllyPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.84fr] lg:items-start">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4a574]/28 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#f5edd8] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4a574]/28 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold text-[#f5edd8] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
               <Sparkles className="h-4 w-4" />
               Ally system - noindex first
             </div>
@@ -100,8 +100,8 @@ export default function AnaAllyPage() {
               income.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-[#fff8ea]/52">
-              The site stays human. The agents stay backstage. The business gets
-              easier to run.
+              Her voice stays in front. The agents stay backstage. The business
+              gets easier to run.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -134,7 +134,7 @@ export default function AnaAllyPage() {
             <div className="rounded-[2.25rem] border border-[#f5edd8]/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]">
               <div className="flex items-start justify-between gap-5">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+                  <p className="text-xs font-bold text-[#d4a574]">
                     V1 source
                   </p>
                   <h2 className="mt-2 text-2xl font-black">FrankX download first</h2>
@@ -172,7 +172,7 @@ export default function AnaAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+            <p className="text-sm font-bold text-[#d4a574]">
               Offer ladder
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -208,7 +208,7 @@ export default function AnaAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+            <p className="text-sm font-bold text-[#d4a574]">
               System map
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -222,7 +222,7 @@ export default function AnaAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.88fr_1.12fr]">
           <article className="rounded-[2.6rem] border border-[#d4a574]/18 bg-[linear-gradient(145deg,rgba(212,165,116,0.12),rgba(255,255,255,0.04),rgba(31,95,74,0.08))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4a574]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
               <MessagesSquare className="h-5 w-5" />
               Client delivery loop
             </div>
@@ -232,7 +232,7 @@ export default function AnaAllyPage() {
             <p className="mt-4 text-base leading-7 text-[#fff8ea]/66">
               Every client interaction should leave behind a private artifact:
               the question, the pattern, the next step, and the aftercare. That
-              is how the work compounds without becoming cold.
+              is how the work improves without becoming generic.
             </p>
           </article>
 
@@ -256,7 +256,7 @@ export default function AnaAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-2">
           <article className="rounded-[2.6rem] border border-[#f5edd8]/12 bg-[#f5edd8]/[0.045] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4a574]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
               <Library className="h-5 w-5" />
               Agent pack
             </div>
@@ -267,7 +267,7 @@ export default function AnaAllyPage() {
               {agentPack.map((agent) => (
                 <span
                   key={agent}
-                  className="rounded-full border border-[#f5edd8]/10 bg-black/25 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#fff8ea]/66"
+                  className="rounded-full border border-[#f5edd8]/10 bg-black/25 px-3 py-1.5 text-xs font-bold text-[#fff8ea]/66"
                 >
                   {agent}
                 </span>
@@ -280,7 +280,7 @@ export default function AnaAllyPage() {
           </article>
 
           <article className="rounded-[2.6rem] border border-[#f5edd8]/12 bg-[#08120f]/74 p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4a574]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
               <Plane className="h-5 w-5" />
               Business model
             </div>

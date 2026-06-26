@@ -139,7 +139,7 @@ function HospitalityNode({
           <Icon className={cn("h-5 w-5", styles.iconClass)} />
         </div>
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/46">
+          <p className="text-[10px] font-bold text-white/46">
             {data.eyebrow}
           </p>
           <h3 className="mt-1 text-base font-black leading-5 text-white">
@@ -179,7 +179,7 @@ const mobileFlow = [
   {
     label: "Booking and pre-arrival",
     detail:
-      "Human-approved routines support reservations, allergies, celebration notes, and guest preparation.",
+      "Staff-approved routines support reservations, allergies, celebration notes, and guest preparation.",
     icon: CalendarCheck,
     tone: "text-emerald-100",
   },
@@ -200,7 +200,7 @@ const mobileFlow = [
   {
     label: "Trust boundary",
     detail:
-      "AI drafts and organizes. Humans decide, promise, serve, and protect guest data.",
+      "AI drafts and organizes. Staff decide, promise, serve, and protect guest data.",
     icon: ShieldCheck,
     tone: "text-emerald-100",
   },
@@ -309,10 +309,10 @@ const initialNodes: Node<HospitalityNodeData>[] = [
     position: { x: 1550, y: 212 },
     data: {
       eyebrow: "Rule",
-      label: "Human Trust Gate",
+      label: "Approval Gate",
       kind: "trust",
       description:
-        "AI can draft, search, summarize, and prepare. Humans approve commitments, guest decisions, and publication.",
+        "AI can draft, search, summarize, and prepare. Staff approve commitments, guest decisions, and publication.",
     },
   },
 ];
@@ -349,11 +349,11 @@ export default function HarzfensterHospitalityMap() {
   return (
     <div className="relative min-h-[590px] overflow-hidden rounded-[2.6rem] border border-white/12 bg-[#080b09]/76 shadow-[0_34px_140px_rgba(0,0,0,0.48)] backdrop-blur-2xl md:h-[720px] md:min-h-0">
       <div className="absolute inset-x-5 top-5 z-10 flex items-center justify-between gap-3 rounded-full border border-white/10 bg-black/35 px-4 py-2 backdrop-blur-xl">
-        <span className="text-xs font-bold uppercase tracking-[0.18em] text-white/58">
+        <span className="text-xs font-bold text-white/58">
           Hospitality Intelligence Loop
         </span>
         <span className="rounded-full bg-[#d7b27a]/12 px-3 py-1 text-xs font-bold text-[#f4dfb5]">
-          Human approved
+          Staff approved
         </span>
       </div>
 

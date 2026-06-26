@@ -41,9 +41,9 @@ const profileSignals = [
   },
 ];
 
-const humanNotes = [
-  "Use her existing language: human potential, leadership, communication, energy, clarity, courage, and community.",
-  "Keep the page warm and personal without inventing private biography.",
+const positioningNotes = [
+  "Use her existing language: potential, leadership, communication, energy, clarity, courage, and community.",
+  "Keep the page based on public context without inventing private biography.",
   "Let TheEpicWays carry the business architecture, offers, and delivery system.",
   "Use AI backstage for preparation, memory, follow-up, measurement, and content reuse.",
   "Make every public asset feel smooth, modern, confident, and easy for her to approve.",
@@ -93,29 +93,29 @@ export default function EstefaniaFriendPage() {
             <div className="mb-5 flex flex-wrap gap-3">
               <Link
                 href="/friends"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.055] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-white/35 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.055] px-4 py-2 text-xs font-bold text-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-white/35 hover:text-white"
               >
                 <ArrowRight className="h-3.5 w-3.5 rotate-180" />
                 Friends
               </Link>
               <Link
                 href="/allies/epic-ways"
-                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-amber-100/45"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-bold text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-amber-100/45"
               >
                 TheEpicWays
               </Link>
             </div>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-100">
+            <p className="text-sm font-semibold text-amber-100">
               Friend Of FrankX
             </p>
             <h1 className="mt-4 max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
               Estefanía Badra
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74 md:text-xl">
-              Founder of TheEpicWays. She brings warmth, speed, clarity, and
-              courage into rooms where people need to speak honestly, decide
-              faster, and lead with more energy.
+              Founder of TheEpicWays. Her work helps people speak clearly,
+              make better decisions, and carry stronger leadership energy into
+              the room after the session ends.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -148,7 +148,7 @@ export default function EstefaniaFriendPage() {
               <div className="rounded-[2.1rem] border border-white/10 bg-black/25 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/48">
+                    <p className="text-xs font-bold text-white/48">
                       Public Profile
                     </p>
                     <h2 className="mt-2 text-2xl font-black">Clarity. Energy. Action.</h2>
@@ -202,22 +202,21 @@ export default function EstefaniaFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div className="rounded-[2.2rem] border border-white/12 bg-white/[0.045] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.32)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-white/48">
+            <div className="flex items-center gap-2 text-sm font-bold text-white/48">
               <BookOpen className="h-4 w-4" />
-              Friend Lens
+              Profile role
             </div>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-              More human. The architecture serves the person.
+              The architecture should strengthen her delivery.
             </h2>
             <p className="mt-4 text-base leading-7 text-white/66">
-              This route should feel like the person people meet in a room:
-              high-energy, generous, clear, and direct. The system sits behind
-              her, helping TheEpicWays deliver more consistently without
-              replacing her voice.
+              This route should explain what visitors can do next: understand
+              Estefania, open the TheEpicWays system, or download the starter
+              kit. The technology stays behind the work and supports delivery.
             </p>
           </div>
           <div className="grid gap-3">
-            {humanNotes.map((note, index) => (
+            {positioningNotes.map((note, index) => (
               <div
                 key={note}
                 className="flex items-start gap-4 rounded-[1.5rem] border border-white/10 bg-black/30 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-xl"
@@ -235,7 +234,7 @@ export default function EstefaniaFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-100">
+            <p className="text-sm font-semibold text-emerald-100">
               How FrankX Helps
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -269,9 +268,9 @@ export default function EstefaniaFriendPage() {
         <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-white/12 bg-[#081111]/72 p-6 shadow-[0_36px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:p-9">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.92fr] lg:items-start">
             <article>
-              <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-amber-100">
+              <div className="flex items-center gap-2 text-sm font-bold text-amber-100">
                 <Sparkles className="h-4 w-4" />
-                Company Lens
+                Company system
               </div>
               <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
                 TheEpicWays

@@ -63,7 +63,7 @@ export default function JojoFriendPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.8fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.13)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-bold text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.13)] backdrop-blur-2xl">
               <Sparkles className="h-4 w-4" />
               Friend profile - public-safe draft
             </div>
@@ -73,12 +73,14 @@ export default function JojoFriendPage() {
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/76 md:text-xl">
               Jojo is Frank's friend. Publicly, the work is Johannes
               Steingrüber, Harzfenster in Seesen, and the family hospitality
-              house Hotel Görtler. This page is the warm doorway; the system
-              page turns the Michelin momentum into useful operating support.
+              house Hotel Görtler. This page explains the public context; the
+              system page turns the Michelin momentum into useful operating
+              support.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/52">
-              The tone should feel like a careful congratulations and a useful
-              gift, not a pitch pasted onto a chef's life.
+              The page should be careful and useful: clear public facts,
+              official links, and a starter kit without turning a chef's life
+              into a pitch.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -112,7 +114,7 @@ export default function JojoFriendPage() {
               <div className="grid h-24 w-24 place-items-center rounded-[2.2rem] border border-amber-200/28 bg-[linear-gradient(145deg,rgba(245,158,11,0.22),rgba(16,185,129,0.14),rgba(255,255,255,0.05))] text-3xl font-black text-amber-50">
                 JS
               </div>
-              <p className="mt-7 text-xs font-bold uppercase tracking-[0.22em] text-amber-100">
+              <p className="mt-7 text-xs font-bold text-amber-100">
                 Public baseline
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight">
@@ -151,7 +153,7 @@ export default function JojoFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-amber-100">
+            <p className="text-sm font-bold text-amber-100">
               What is already real
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -182,7 +184,7 @@ export default function JojoFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[2.6rem] border border-amber-200/18 bg-[linear-gradient(145deg,rgba(245,158,11,0.12),rgba(255,255,255,0.04),rgba(16,185,129,0.08))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-amber-100">
+            <div className="flex items-center gap-3 text-sm font-bold text-amber-100">
               <Handshake className="h-5 w-5" />
               FrankX role
             </div>
@@ -215,7 +217,7 @@ export default function JojoFriendPage() {
       <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2.6rem] border border-white/12 bg-[#081211]/74 p-6 shadow-[0_34px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:flex-row md:items-center md:justify-between md:p-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-white/45">
+            <div className="flex items-center gap-2 text-sm font-bold text-white/45">
               <Shield className="h-4 w-4" />
               Approval boundary
             </div>

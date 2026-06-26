@@ -88,7 +88,7 @@ export default function Footer() {
 
           {/* Create */}
           <nav aria-label="Create">
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Create</h3>
+            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Create</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
               <li><Link href="/prompt-library" className="hover:text-white transition-colors">Prompt Library</Link></li>
@@ -110,7 +110,7 @@ export default function Footer() {
 
           {/* Learn */}
           <nav aria-label="Learn">
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Learn</h3>
+            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Learn</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/courses" className="hover:text-white transition-colors">Courses</Link></li>
@@ -124,7 +124,7 @@ export default function Footer() {
 
           {/* Build */}
           <nav aria-label="Build">
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Build</h3>
+            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Build</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
@@ -136,7 +136,7 @@ export default function Footer() {
 
           {/* Work with me — commercial funnel */}
           <nav aria-label="Work with Frank">
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Work with me</h3>
+            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Work with me</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/foundry" className="text-emerald-400/70 hover:text-emerald-300 transition-colors">Foundry</Link></li>
               <li><Link href="/start" className="hover:text-white transition-colors">Start here</Link></li>

@@ -114,7 +114,7 @@ export default function TrinityAIAllyPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.84fr] lg:items-start">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4b06e]/28 bg-[#d4b06e]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#f7e7c0] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4b06e]/28 bg-[#d4b06e]/10 px-4 py-2 text-xs font-bold text-[#f7e7c0] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
               <Sparkles className="h-4 w-4" />
               Ally system - noindex first
             </div>
@@ -158,7 +158,7 @@ export default function TrinityAIAllyPage() {
             <div className="rounded-[2.25rem] border border-[#f7e7c0]/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]">
               <div className="flex items-start justify-between gap-5">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#d4b06e]">
+                  <p className="text-xs font-bold text-[#d4b06e]">
                     V1 source
                   </p>
                   <h2 className="mt-2 text-2xl font-black">FrankX download first</h2>
@@ -196,7 +196,7 @@ export default function TrinityAIAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4b06e]">
+            <p className="text-sm font-bold text-[#d4b06e]">
               Public baseline
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -232,7 +232,7 @@ export default function TrinityAIAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4b06e]">
+            <p className="text-sm font-bold text-[#d4b06e]">
               System map
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -246,7 +246,7 @@ export default function TrinityAIAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.88fr_1.12fr]">
           <article className="rounded-[2.6rem] border border-[#d4b06e]/18 bg-[linear-gradient(145deg,rgba(212,176,110,0.12),rgba(255,255,255,0.04),rgba(18,94,76,0.08))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4b06e]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4b06e]">
               <Network className="h-5 w-5" />
               Architecture
             </div>
@@ -286,7 +286,7 @@ export default function TrinityAIAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-2">
           <article className="rounded-[2.6rem] border border-[#f7e7c0]/12 bg-[#f7e7c0]/[0.045] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4b06e]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4b06e]">
               <BriefcaseBusiness className="h-5 w-5" />
               Offer lanes
             </div>
@@ -307,7 +307,7 @@ export default function TrinityAIAllyPage() {
           </article>
 
           <article className="rounded-[2.6rem] border border-[#f7e7c0]/12 bg-[#08120f]/74 p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4b06e]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4b06e]">
               <Code2 className="h-5 w-5" />
               Stack he can install
             </div>
@@ -318,7 +318,7 @@ export default function TrinityAIAllyPage() {
               {toolStack.map((tool) => (
                 <span
                   key={tool}
-                  className="rounded-full border border-[#f7e7c0]/10 bg-black/25 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#fff8ea]/66"
+                  className="rounded-full border border-[#f7e7c0]/10 bg-black/25 px-3 py-1.5 text-xs font-bold text-[#fff8ea]/66"
                 >
                   {tool}
                 </span>
@@ -334,7 +334,7 @@ export default function TrinityAIAllyPage() {
 
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto rounded-[2.6rem] border border-[#f7e7c0]/12 bg-[#f7e7c0]/[0.045] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:p-8 lg:max-w-7xl">
-          <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4b06e]">
+          <div className="flex items-center gap-3 text-sm font-bold text-[#d4b06e]">
             <ExternalLink className="h-5 w-5" />
             Source trail
           </div>

@@ -254,7 +254,7 @@ export default function AgenticCreatorOSPreviewPage() {
             {/* Code Command */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs text-gray-500 font-mono px-2">
-                <span>TERMINAL COMMANDS</span>
+                <span>Terminal commands</span>
                 <button
                   onClick={() => copyToClipboard(platforms[activeTab].command, `cmd-${activeTab}`)}
                   className="flex items-center gap-1.5 hover:text-white transition-all"
@@ -278,7 +278,7 @@ export default function AgenticCreatorOSPreviewPage() {
             {/* Verify Command */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs text-gray-500 font-mono px-2">
-                <span>VERIFY LAUNCH</span>
+                <span>Verify launch</span>
                 <button
                   onClick={() => copyToClipboard(platforms[activeTab].verify, `ver-${activeTab}`)}
                   className="flex items-center gap-1.5 hover:text-white transition-all"

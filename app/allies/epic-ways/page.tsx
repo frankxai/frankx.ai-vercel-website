@@ -28,15 +28,15 @@ import EpicWaysMotionLayer from "./EpicWaysMotionLayer";
 export const metadata = createMetadata({
   title: "TheEpicWays Intelligence System | Allies",
   description:
-    "A FrankX ally architecture for Estefania Badra and TheEpicWays: leadership workshops, events, client intelligence, agents, follow-up, and premium human-centered systems.",
+    "A FrankX ally architecture for Estefania Badra and TheEpicWays: leadership workshops, events, client intelligence, agents, follow-up, and delivery systems.",
   path: "/allies/epic-ways",
 });
 
 const foundations = [
   {
     icon: Users,
-    title: "Human First",
-    copy: "The live room stays hers: voice, warmth, courage, facilitation, and the trust people feel when she leads.",
+    title: "Room first",
+    copy: "The live room stays hers: voice, courage, facilitation, decisions, and the trust people feel when she leads.",
   },
   {
     icon: Brain,
@@ -132,7 +132,7 @@ const clientValue = [
   "Clients arrive understood before the room starts.",
   "Workshops feel bespoke without rebuilding from scratch every time.",
   "Follow-up becomes a product, not an afterthought.",
-  "TheEpicWays can prove progress without flattening human nuance.",
+  "TheEpicWays can prove progress without reducing the work to generic metrics.",
   "Approved insights compound into content and future offers.",
 ];
 
@@ -157,30 +157,30 @@ export default function EpicWaysAllyPage() {
             <div className="mb-5 flex flex-wrap gap-3">
               <Link
                 href="/allies"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.055] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-white/35 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.055] px-4 py-2 text-xs font-bold text-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-white/35 hover:text-white"
               >
                 <ArrowRight className="h-3.5 w-3.5 rotate-180" />
                 Allies
               </Link>
               <Link
                 href="/friends/estefania"
-                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-amber-100/45"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-4 py-2 text-xs font-bold text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition hover:border-amber-100/45"
               >
                 Estefania
               </Link>
             </div>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-100">
+            <p className="text-sm font-semibold text-emerald-100">
               TheEpicWays Intelligence System
             </p>
             <h1 className="mt-4 max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
-              Human rooms. Intelligent follow-through.
+              Better rooms. Stronger follow-through.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74 md:text-xl">
-              Estefania Badra already owns the human layer: leadership,
-              communication, workshops, events, and room energy. FrankX should
-              give her the backstage system that makes every client experience
-              sharper before, during, and after the room.
+              Estefania Badra already owns the leadership, communication,
+              workshops, events, and room energy. FrankX should give her the
+              backstage system that makes every client experience sharper
+              before, during, and after the room.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -208,10 +208,10 @@ export default function EpicWaysAllyPage() {
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {["Public-safe", "Agent-ready", "Client-useful"].map((item) => (
+              {["Approval-aware", "Agent-ready", "Client-ready"].map((item) => (
                 <div
                   key={item}
-                  className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-center text-xs font-bold uppercase tracking-[0.16em] text-white/62 backdrop-blur-xl"
+                  className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-center text-xs font-bold text-white/62 backdrop-blur-xl"
                 >
                   {item}
                 </div>
@@ -229,11 +229,11 @@ export default function EpicWaysAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-100">
+            <p className="text-sm font-semibold text-amber-100">
               Corrected Foundation
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
-              The tech should make her more herself.
+              The tech should improve delivery, not become the story.
             </h2>
             <p className="mt-4 text-base leading-7 text-white/66 md:text-lg md:leading-8">
               The system is not a crypto story, not a cold dashboard, and not a
@@ -270,7 +270,7 @@ export default function EpicWaysAllyPage() {
             <div className="grid h-12 w-12 place-items-center rounded-2xl border border-emerald-200/20 bg-emerald-200/10">
               <Orbit className="h-6 w-6 text-emerald-100" />
             </div>
-            <p className="mt-6 text-sm font-bold uppercase tracking-[0.22em] text-emerald-100">
+            <p className="mt-6 text-sm font-bold text-emerald-100">
               Service Loop
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
@@ -317,14 +317,14 @@ export default function EpicWaysAllyPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-100">
+              <p className="text-sm font-semibold text-cyan-100">
                 Agent Pack
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
                 Installable skills, not vague AI magic.
               </h2>
             </div>
-            <div className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white/58 backdrop-blur-xl">
+            <div className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs font-bold text-white/58 backdrop-blur-xl">
               Codex + Claude Ready
             </div>
           </div>
@@ -355,7 +355,7 @@ export default function EpicWaysAllyPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.92fr_1.08fr]">
           <article className="rounded-[2.2rem] border border-amber-100/20 bg-[linear-gradient(145deg,rgba(245,158,11,0.13),rgba(255,255,255,0.045),rgba(16,185,129,0.08))] p-6 shadow-[0_28px_100px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-amber-100">
+            <div className="flex items-center gap-3 text-sm font-bold text-amber-100">
               <PanelsTopLeft className="h-5 w-5" />
               Offer Ladder
             </div>
@@ -378,7 +378,7 @@ export default function EpicWaysAllyPage() {
           </article>
 
           <article className="rounded-[2.2rem] border border-emerald-100/20 bg-white/[0.045] p-6 shadow-[0_28px_100px_rgba(0,0,0,0.32)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-emerald-100">
+            <div className="flex items-center gap-3 text-sm font-bold text-emerald-100">
               <Fingerprint className="h-5 w-5" />
               FrankX Build Stack
             </div>
@@ -407,8 +407,8 @@ export default function EpicWaysAllyPage() {
               <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/12 bg-white/[0.055]">
                 <Handshake className="h-6 w-6 text-emerald-100" />
               </div>
-              <p className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-white/45">
-                Client Value
+              <p className="mt-6 text-sm font-semibold text-white/45">
+              Client value
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
                 Better service, not louder tech.

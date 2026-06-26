@@ -42,9 +42,9 @@ const downloadsList: DownloadItem[] = [
   {
     id: 'ana-ai-business-kit',
     title: 'Ana AI Business Kit',
-    subtitle: 'People, psychology, offers, and travel-friendly business',
+    subtitle: 'Offers, sessions, follow-up, and travel-friendly revenue',
     description:
-      'A practical starter kit for Ana: offer map, clarity session, reflection circle, workshop playbook, content library, aftercare, and eight agent briefs.',
+      'A starter kit for Ana: offer map, clarity session, reflection circle, workshop playbook, content library, aftercare, and eight agent briefs.',
     category: 'friend-kits',
     previewUrl: '/downloads/ana-ai-business-kit',
     friendHref: '/friends/ana',
@@ -78,7 +78,7 @@ const downloadsList: DownloadItem[] = [
     title: 'Jojo Hospitality Intelligence Kit',
     subtitle: 'Harzfenster and Hotel Gortler service workflows',
     description:
-      'A public-safe hospitality kit for bookings, guest memory, service briefings, hotel handoffs, review learning, and team enablement.',
+      'A hospitality kit for bookings, guest memory, service briefings, hotel handoffs, review learning, team enablement, and approval boundaries.',
     category: 'friend-kits',
     previewUrl: '/downloads/jojo-hospitality-intelligence-kit',
     friendHref: '/friends/jojo',
@@ -112,7 +112,7 @@ const downloadsList: DownloadItem[] = [
     title: 'Agentic Creator OS',
     subtitle: 'Optional power tooling for Codex, Claude, and local agents',
     description:
-      'The ACOS preview explains how to install the broader agent harness. For friend kits, start with the specific kit first, then add ACOS only when the workflow proves useful.',
+      'The ACOS preview explains how to install the broader agent harness. For friend kits, start with the specific kit first, then add ACOS only when automation is worth the overhead.',
     category: 'systems',
     previewUrl: '/downloads/preview/agentic-creator-os',
     cta: 'Open ACOS packs',
@@ -157,7 +157,7 @@ const downloadsList: DownloadItem[] = [
     title: "The Creator's Soulbook",
     subtitle: 'Life architecture framework',
     description:
-      'A live preview page backed by an HTML template. It is kept in the catalog as a working resource, not as a fake PDF download.',
+      'A live preview page backed by an HTML template. It stays in the catalog as a working route until a real downloadable file ships.',
     category: 'books',
     previewUrl: '/downloads/preview/soulbook',
     cta: 'Open preview',
@@ -326,14 +326,14 @@ const statusCards = [
   {
     label: 'Download integrity',
     value: 'Clean',
-    copy: 'The catalog now prioritizes working routes, live ZIPs, checksum files, and external releases instead of missing PDF links.',
+    copy: 'The catalog prioritizes working routes, live ZIPs, checksum files, and external releases instead of missing PDF links.',
     icon: ShieldCheck,
     color: 'emerald' as GlowColor,
   },
   {
     label: 'How to use it',
     value: 'Start small',
-    copy: 'Use the specific person kit first. ACOS, Codex, and Claude workflows are optional power tools after the service loop is clear.',
+    copy: 'Use the specific person kit first. ACOS, Codex, and Claude become useful only after the service loop is clear.',
     icon: CheckCircle2,
     color: 'cyan' as GlowColor,
   },
@@ -400,7 +400,7 @@ export default function DownloadsClient() {
             <GlowCard key={card.label} color={card.color} className="h-full p-5 sm:p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">
+                  <p className="text-xs font-bold text-white/45">
                     {card.label}
                   </p>
                   <p className="mt-2 text-2xl font-black tracking-tight text-white">{card.value}</p>
@@ -435,7 +435,7 @@ export default function DownloadsClient() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`rounded-[1.15rem] px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`rounded-[1.15rem] px-3.5 py-2 text-xs font-bold transition ${
                 selectedCategory === category.id
                   ? 'bg-white text-slate-950 shadow-[0_12px_36px_rgba(255,255,255,0.14)]'
                   : 'text-white/58 hover:bg-white/[0.07] hover:text-white'
@@ -470,10 +470,10 @@ export default function DownloadsClient() {
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_48%,rgba(0,0,0,0.60))]" />
-                      <span className="absolute right-4 top-4 z-10 rounded-full border border-white/12 bg-black/55 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white/88 backdrop-blur-xl">
+                      <span className="absolute right-4 top-4 z-10 rounded-full border border-white/12 bg-black/55 px-3 py-1 text-[10px] font-bold text-white/88 backdrop-blur-xl">
                         {categoryLabel(item.category)}
                       </span>
-                      <span className="absolute bottom-4 left-4 z-10 rounded-full border border-white/12 bg-white/[0.08] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white/78 backdrop-blur-xl">
+                      <span className="absolute bottom-4 left-4 z-10 rounded-full border border-white/12 bg-white/[0.08] px-3 py-1 text-[10px] font-bold text-white/78 backdrop-blur-xl">
                         {item.status}
                       </span>
                     </div>
@@ -497,7 +497,7 @@ export default function DownloadsClient() {
                         {item.features.map((feature) => (
                           <span
                             key={feature}
-                            className="rounded-full border border-white/8 bg-white/[0.045] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.13em] text-white/70"
+                            className="rounded-full border border-white/8 bg-white/[0.045] px-2.5 py-1 text-[10px] font-semibold text-white/70"
                           >
                             {feature}
                           </span>

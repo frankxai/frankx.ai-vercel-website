@@ -85,7 +85,7 @@ export default function AhmadFriendPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.82fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4b06e]/30 bg-[#d4b06e]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#f7e7c0] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4b06e]/30 bg-[#d4b06e]/10 px-4 py-2 text-xs font-bold text-[#f7e7c0] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
               <Sparkles className="h-4 w-4" />
               Friend profile - public-safe draft
             </div>
@@ -93,10 +93,10 @@ export default function AhmadFriendPage() {
               Ahmad Hashem
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-[#fff8ea]/76 md:text-xl">
-              This is the human doorway: Ahmad as founder, operator, creator,
-              and family-business builder. FrankX adds a practical bridge from
-              Trinity AI and Hashems 1959 into a startup system he can actually
-              install, use, and improve.
+              This page explains Ahmad as founder, operator, creator, and
+              family-business builder. FrankX adds a bridge from Trinity AI and
+              Hashems 1959 into a startup system he can install, use, and
+              improve.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-[#fff8ea]/52">
               The page stays careful on purpose. Public facts are public facts.
@@ -137,7 +137,7 @@ export default function AhmadFriendPage() {
                 AH
               </div>
               <div className="mt-7">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#d4b06e]">
+                <p className="text-xs font-bold text-[#d4b06e]">
                   Center of gravity
                 </p>
                 <h2 className="mt-3 text-3xl font-black tracking-tight">
@@ -170,7 +170,7 @@ export default function AhmadFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4b06e]">
+            <p className="text-sm font-bold text-[#d4b06e]">
               What is already visible
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -201,7 +201,7 @@ export default function AhmadFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[2.6rem] border border-[#d4b06e]/18 bg-[linear-gradient(145deg,rgba(212,176,110,0.13),rgba(255,255,255,0.04),rgba(18,94,76,0.10))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4b06e]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4b06e]">
               <Compass className="h-5 w-5" />
               FrankX role
             </div>
@@ -236,7 +236,7 @@ export default function AhmadFriendPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4b06e]">
+              <p className="text-sm font-bold text-[#d4b06e]">
                 First month
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -258,7 +258,7 @@ export default function AhmadFriendPage() {
                 key={time}
                 className="rounded-[2rem] border border-[#f7e7c0]/10 bg-[#f7e7c0]/[0.045] p-5 backdrop-blur-2xl"
               >
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[#d4b06e]">
+                <p className="font-mono text-xs font-bold text-[#d4b06e]">
                   {time}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-[#fff8ea]/70">{copy}</p>
@@ -270,7 +270,7 @@ export default function AhmadFriendPage() {
 
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl rounded-[2.6rem] border border-[#f7e7c0]/12 bg-[#f7e7c0]/[0.045] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:p-8">
-          <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4b06e]">
+          <div className="flex items-center gap-3 text-sm font-bold text-[#d4b06e]">
             <Factory className="h-5 w-5" />
             Public sources
           </div>
@@ -297,7 +297,7 @@ export default function AhmadFriendPage() {
       <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2.6rem] border border-[#f7e7c0]/12 bg-[#08120f]/74 p-6 shadow-[0_34px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:flex-row md:items-center md:justify-between md:p-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-[#fff8ea]/45">
+            <div className="flex items-center gap-2 text-sm font-bold text-[#fff8ea]/45">
               <Lock className="h-4 w-4" />
               Approval boundary
             </div>
