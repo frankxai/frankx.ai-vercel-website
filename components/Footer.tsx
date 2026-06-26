@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
               <Image
-                src="/images/mascot/axi-v3-icon.png"
+                src="/images/mascot/axi-v3-icon_thumb.jpeg"
                 alt="Axi"
                 width={36}
                 height={36}

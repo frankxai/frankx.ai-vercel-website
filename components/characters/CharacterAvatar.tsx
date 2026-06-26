@@ -93,7 +93,7 @@ const CHARACTER_DATA: Record<
 
 const CHARACTER_IMAGES: Record<CharacterName, Record<string, string>> = {
   axi: {
-    icon: '/images/mascot/axi-v3-icon.png',
+    icon: '/images/mascot/axi-v3-icon_thumb.jpeg',
     full: '/images/mascot/mascot-v25-crystal-familiar.png',
     hero: '/images/mascot/mascot-v19-hero-command-center.png',
     action: '/images/mascot/mascot-v06-prowling-action.png',
@@ -147,7 +147,6 @@ export default function CharacterAvatar({
           width={dims.width}
           height={dims.height}
           className="object-cover"
-          unoptimized
         />
       </div>
       {(showName || showRole) && (
