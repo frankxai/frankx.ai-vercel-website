@@ -188,7 +188,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/50">
-          <p>&copy; {new Date().getFullYear()} Frank van den Bergh. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <span className="text-white/30">·</span>
