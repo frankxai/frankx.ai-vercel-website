@@ -177,6 +177,7 @@
     "@nivo/sunburst": "^0.99.0",
     "@terrastruct/d2": "^0.1.33",
     "@types/bcryptjs": "^2.4.6",
+    "@types/d3": "^7.4.3",
     "@types/d3-geo": "^3.1.0",
     "@types/lunr": "^2.3.7",
     "@types/node": "^22.10.2",

@@ -18,14 +18,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
-              <Image
-                src="/images/mascot/axi-v3-icon_thumb.jpeg"
-                alt="Axi"
-                width={36}
-                height={36}
-                className="rounded-lg"
-                unoptimized
-              />
+              <Image src="/images/mascot/axi-v3-icon.png" alt="Axi" width={36} height={36} className="rounded-lg" />
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
                 <span className="block text-[10px] sm:text-xs text-white/55">AI Systems & Music</span>

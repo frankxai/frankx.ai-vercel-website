@@ -128,7 +128,7 @@ function TrinityNode({ data, selected }: NodeProps<Node<TrinityNodeData>>) {
           <Icon className={cn("h-5 w-5", styles.iconClass)} />
         </div>
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/46">
+          <p className="text-[10px] font-bold text-white/46">
             {data.eyebrow}
           </p>
           <h3 className="mt-1 text-base font-black leading-5 text-white">{data.label}</h3>
@@ -309,7 +309,7 @@ export default function TrinityFounderEngineMap() {
   return (
     <div className="relative min-h-[548px] overflow-hidden rounded-[2.4rem] border border-white/12 bg-[#090a08]/72 shadow-[0_32px_128px_rgba(0,0,0,0.46)] backdrop-blur-2xl md:h-[676px] md:min-h-0">
       <div className="absolute inset-x-5 top-5 z-10 flex items-center justify-between gap-3 rounded-full border border-white/10 bg-black/35 px-4 py-2 backdrop-blur-xl">
-        <span className="text-xs font-bold uppercase tracking-[0.18em] text-white/58">
+        <span className="text-xs font-bold text-white/58">
           Trinity Founder Engine
         </span>
         <span className="rounded-full bg-[#d4b06e]/12 px-3 py-1 text-xs font-bold text-[#f7e7c0]">

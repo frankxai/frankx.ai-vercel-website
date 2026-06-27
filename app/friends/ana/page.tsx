@@ -64,7 +64,7 @@ export default function AnaFriendPage() {
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.82fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4a574]/30 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#f5edd8] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4a574]/30 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold text-[#f5edd8] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
               <Sparkles className="h-4 w-4" />
               Friend profile - public-safe draft
             </div>
@@ -72,15 +72,15 @@ export default function AnaFriendPage() {
               Ana Cecilia Cancino
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-[#fff8ea]/76 md:text-xl">
-              This is the human page. Ana's own site stays the center of her
-              voice. FrankX adds the practical bridge: a way to turn HR,
-              psychology, faith, embodiment, and self-knowledge work into a
+              Ana's own site stays the center of her voice. FrankX adds the
+              bridge: a way to turn HR, psychology, faith, embodiment, and
+              self-knowledge work into offers, follow-up, content, and a
               travel-friendly AI-assisted business.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-[#fff8ea]/52">
-              Para Ana: sencillo, util, humano. No hype. No fake quotes. Just a
-              clear path from what she already does to offers she can repeat,
-              improve, and carry with her.
+              Para Ana: sencillo, util, sin hype. No fake quotes. Just a clear
+              path from what she already does to offers she can repeat, improve,
+              and carry with her.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -115,7 +115,7 @@ export default function AnaFriendPage() {
                 Ana
               </div>
               <div className="mt-7">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+                <p className="text-xs font-bold text-[#d4a574]">
                   Existing center
                 </p>
                 <h2 className="mt-3 text-3xl font-black tracking-tight">
@@ -148,7 +148,7 @@ export default function AnaFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+            <p className="text-sm font-bold text-[#d4a574]">
               What is already real
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -179,12 +179,12 @@ export default function AnaFriendPage() {
       <section className="px-5 py-14 md:px-10 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[2.6rem] border border-[#d4a574]/18 bg-[linear-gradient(145deg,rgba(212,165,116,0.13),rgba(255,255,255,0.04),rgba(31,95,74,0.10))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#d4a574]">
+            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
               <Compass className="h-5 w-5" />
               FrankX role
             </div>
             <h2 className="mt-5 text-3xl font-black tracking-tight md:text-4xl">
-              Make the work easier to repeat without making it less human.
+              Make the work easier to repeat without flattening the work.
             </h2>
             <p className="mt-4 text-base leading-7 text-[#fff8ea]/66">
               The goal is not to turn Ana into a software company. The goal is
@@ -214,7 +214,7 @@ export default function AnaFriendPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-9 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#d4a574]">
+              <p className="text-sm font-bold text-[#d4a574]">
                 Next year
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
@@ -236,7 +236,7 @@ export default function AnaFriendPage() {
                 key={time}
                 className="rounded-[2rem] border border-[#f5edd8]/10 bg-[#f5edd8]/[0.045] p-5 backdrop-blur-2xl"
               >
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[#d4a574]">
+                <p className="font-mono text-xs font-bold text-[#d4a574]">
                   {time}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-[#fff8ea]/70">{copy}</p>
@@ -249,7 +249,7 @@ export default function AnaFriendPage() {
       <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2.6rem] border border-[#f5edd8]/12 bg-[#08120f]/74 p-6 shadow-[0_34px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:flex-row md:items-center md:justify-between md:p-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-[#fff8ea]/45">
+            <div className="flex items-center gap-2 text-sm font-bold text-[#fff8ea]/45">
               <Lock className="h-4 w-4" />
               Approval boundary
             </div>

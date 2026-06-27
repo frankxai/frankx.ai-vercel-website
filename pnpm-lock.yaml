@@ -228,6 +228,9 @@ importers:
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
+      '@types/d3':
+        specifier: ^7.4.3
+        version: 7.4.3
       '@types/d3-geo':
         specifier: ^3.1.0
         version: 3.1.0
@@ -7866,7 +7869,7 @@ snapshots:
   '@google/design.md@0.1.1(@types/react@18.3.28)':
     dependencies:
       '@json-render/core': 0.16.0(zod@3.25.76)
-      '@json-render/ink': 0.16.0(ink@7.0.2(@types/react@18.3.28)(react@19.2.6))(react@19.2.6)(zod@3.25.76)
+      '@json-render/ink': 0.16.0(ink@7.0.2(@types/react@18.3.28)(react@18.3.1))(react@19.2.6)(zod@3.25.76)
       citty: 0.1.6
       ink: 7.0.2(@types/react@18.3.28)(react@19.2.6)
       mdast: 3.0.0
@@ -8114,7 +8117,7 @@ snapshots:
     dependencies:
       zod: 3.25.76
 
-  '@json-render/ink@0.16.0(ink@7.0.2(@types/react@18.3.28)(react@19.2.6))(react@19.2.6)(zod@3.25.76)':
+  '@json-render/ink@0.16.0(ink@7.0.2(@types/react@18.3.28)(react@18.3.1))(react@19.2.6)(zod@3.25.76)':
     dependencies:
       '@json-render/core': 0.16.0(zod@3.25.76)
       ink: 7.0.2(@types/react@18.3.28)(react@19.2.6)

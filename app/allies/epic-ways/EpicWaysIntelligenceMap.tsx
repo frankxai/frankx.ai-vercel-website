@@ -118,7 +118,7 @@ function EpicNode({ data, selected }: NodeProps<Node<EpicNodeData>>) {
           <Icon className={cn("h-5 w-5", styles.iconClass)} />
         </div>
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/46">
+          <p className="text-[10px] font-bold text-white/46">
             {data.eyebrow}
           </p>
           <h3 className="mt-1 text-sm font-black leading-5 text-white">{data.label}</h3>
@@ -148,7 +148,7 @@ const nodeTypes = {
 const mobileFlow = [
   {
     label: "Estefania leads the room",
-    detail: "Voice, trust, warmth, and live facilitation stay visible.",
+    detail: "Voice, trust, facilitation, and live room judgment stay visible.",
     icon: Users,
     tone: "text-amber-100",
   },
@@ -184,7 +184,7 @@ const initialNodes: Node<EpicNodeData>[] = [
     type: "epic",
     position: { x: 0, y: 150 },
     data: {
-      eyebrow: "Human lead",
+      eyebrow: "Facilitator lead",
       label: "Estefania",
       kind: "human",
       description: "Voice, trust, room energy, and leadership presence stay in front.",
@@ -287,11 +287,11 @@ export default function EpicWaysIntelligenceMap() {
   return (
     <div className="relative min-h-[520px] overflow-hidden rounded-[2rem] border border-white/12 bg-[#071010]/70 shadow-[0_30px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:h-[560px] md:min-h-0">
       <div className="absolute inset-x-5 top-5 z-10 flex items-center justify-between gap-3 rounded-full border border-white/10 bg-black/35 px-4 py-2 backdrop-blur-xl">
-        <span className="text-xs font-bold uppercase tracking-[0.18em] text-white/58">
+        <span className="text-xs font-bold text-white/58">
           Client Intelligence Map
         </span>
         <span className="rounded-full bg-emerald-200/12 px-3 py-1 text-xs font-bold text-emerald-100">
-          Human-led
+          Facilitator-led
         </span>
       </div>
 
