@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
 
 interface VisualItem {
