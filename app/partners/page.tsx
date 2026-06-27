@@ -92,7 +92,7 @@ const partners: Partner[] = [
     url: 'https://oracle.com',
     kind: 'strategic',
     description:
-      'Oracle is Frank\'s employer. Oracle Agent Development Kit and Open Agent Specification are taught in the enterprise branch of the First AI Agent workshop. Not a revshare relationship — this is strategic positioning that flows through Frank\'s AI Architect role.',
+      'Oracle Agent Development Kit and Open Agent Specification are covered in the enterprise branch of the First AI Agent workshop as public learning material. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.',
     usedIn: [
       '/workshops/build-first-ai-agent (enterprise branch)',
       '/ai-architecture',

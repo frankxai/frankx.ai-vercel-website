@@ -10,7 +10,7 @@ import WeeklyIssueCallout from '@/components/newsletter/WeeklyIssueCallout'
 const faqItems = [
   {
     q: 'What is Signal Loop?',
-    a: 'Signal Loop is Frank Riemer\'s main weekly letter on AI architecture, creative systems, music experiments, peak mental performance, and trustworthy human-AI work.',
+    a: 'Signal Loop is Frank Riemer\'s main weekly letter on AI architecture, creative systems, music experiments, attention, recovery, and trustworthy human-AI work.',
   },
   {
     q: 'Can I subscribe to deeper streams?',
@@ -29,7 +29,7 @@ const faqItems = [
 export const metadata = createMetadata({
   title: 'Signal Loop Newsletter by Frank Riemer | FrankX.AI',
   description:
-    'A grounded weekly letter from Frank Riemer on AI architecture, creative systems, peak mental performance, and trustworthy human-AI work.',
+    'A grounded weekly letter from Frank Riemer on AI architecture, creative systems, attention, recovery, and trustworthy human-AI work.',
   path: '/newsletter',
   keywords: [
     'Frank Riemer newsletter',
@@ -37,7 +37,7 @@ export const metadata = createMetadata({
     'Signal Loop',
     'AI architecture newsletter',
     'creative systems',
-    'peak mental performance',
+    'attention and recovery systems',
     'human AI work',
   ],
 })
@@ -65,7 +65,7 @@ export default function NewsletterPage() {
         '@id': `${siteUrl}/newsletter#newsletter`,
         name: 'Signal Loop Newsletter by Frank Riemer',
         description:
-          'A grounded weekly letter from Frank Riemer on AI architecture, creative systems, music experiments, peak mental performance, and trustworthy human-AI work.',
+          'A grounded weekly letter from Frank Riemer on AI architecture, creative systems, music experiments, attention, recovery, and trustworthy human-AI work.',
         url: `${siteUrl}/newsletter`,
         numberOfItems: streams.length,
         hasPart: streamItems.map((item) => item.item),

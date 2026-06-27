@@ -169,7 +169,7 @@ But those who find their voice—who speak that one true thing that has been wai
 
 "Your voice creates reality," Alera teaches. "What you speak, you make real. Speak truth, and truth manifests. Speak love, and love multiplies. Guard your words, for they are the most powerful magic you possess."
 
-**Frequency: 528 Hz** — The DNA repair frequency, the frequency of miracles, the sound that heals at the deepest level.
+**Frequency: 528 Hz** — A warm Solfeggio-style reference for tenderness, wonder, and meditative atmosphere.
 
 ---
 
@@ -347,4 +347,3 @@ Are you ready?
 
 *"The Guardians do not judge. They reveal. What you are, they show you. What you might become, they teach you. What you must transcend, they embody. Approach with humility, and they will raise you. Approach with arrogance, and they will humble you. Either way, you will grow."*
 — From the Teachings of the Path
-

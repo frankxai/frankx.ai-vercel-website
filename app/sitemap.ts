@@ -322,8 +322,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/founder-playbook',
     '/insights',
     '/thank-you',
-    '/onboarding',
-    '/dashboard',
   ]
 
   // Research hub pages

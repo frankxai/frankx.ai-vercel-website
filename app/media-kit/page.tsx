@@ -29,7 +29,7 @@ export const metadata = createMetadata({
     'AI Architect speaker',
     'AI creator systems',
     'AI music creator',
-    'peak mental performance',
+    'attention and recovery systems',
   ],
   image: '/images/portraits/frank-presenting-oracle-2025.jpg',
 })
@@ -133,7 +133,7 @@ const personSchema = {
     'agentic workflows',
     'AI creator systems',
     'AI music creation',
-    'peak mental performance',
+    'attention and recovery systems',
     'personal AI operating systems',
   ],
 }

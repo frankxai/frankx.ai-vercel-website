@@ -12,7 +12,7 @@ export const metadata = createMetadata({
   path: '/peak-performance',
   keywords: [
     'peak state systems',
-    'peak mental performance',
+    'attention and recovery systems',
     'creator performance system',
     'attention systems',
     'recovery for creators',

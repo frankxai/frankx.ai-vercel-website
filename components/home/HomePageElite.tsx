@@ -233,7 +233,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </div>
 
               <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                Frank Riemer builds
+                Frank Riemer builds{' '}
                 <br />
                 sharper human work.
               </h1>
@@ -408,7 +408,7 @@ const products = [
   },
   {
     title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    description: 'Enterprise AI patterns, agent orchestration, and system design informed by former Oracle architecture work.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },

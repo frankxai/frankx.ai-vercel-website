@@ -78,7 +78,7 @@ const personSchema = {
     'AI music creation',
     'personal AI operating systems',
     'creator systems',
-    'peak mental performance',
+    'attention and recovery systems',
   ],
 }
 

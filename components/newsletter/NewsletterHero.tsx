@@ -125,7 +125,7 @@ export default function NewsletterHero({
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
         >
-          A weekly letter for
+          A weekly letter for{' '}
           <span className="mt-2 block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
             clearer thinking in the age of AI
           </span>

@@ -345,9 +345,9 @@ export default function AboutShell() {
                   </h3>
                   <p className="text-[17px] text-white/80 leading-relaxed">
                     4+ years architecting production AI systems for global
-                    organizations. 500+ customer implementations. Multi-cloud
-                    infrastructure, RAG architectures, agentic workflows, multi-agent
-                    orchestration. The systems I build handle real scale.
+                    organizations. Public, non-confidential patterns across multi-cloud
+                    infrastructure, RAG architectures, agentic workflows, and multi-agent
+                    orchestration. The work translates that judgment into independent creator systems.
                   </p>
                 </GlowCard>
               </motion.div>

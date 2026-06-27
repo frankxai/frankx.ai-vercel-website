@@ -16,7 +16,7 @@ export const metadata = createMetadata({
     'ai architect',
     'personal AI operating system',
     'AI creator systems',
-    'peak mental performance',
+    'attention and recovery systems',
     'ai music creation',
     'suno ai',
     'ai architecture',
@@ -82,7 +82,7 @@ const personSchema = {
     'AI Creator Systems',
     'AI Music Creation',
     'Suno AI',
-    'Peak Mental Performance',
+    'Attention and Recovery Systems',
     'Enterprise AI Strategy',
     'Cloud Infrastructure',
     'Agentic Workflows',
@@ -121,7 +121,7 @@ const homepageFAQs = [
   {
     question: 'How can I learn AI music production with Suno?',
     answer:
-      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
+      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and tuning and texture choices. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
   },
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
