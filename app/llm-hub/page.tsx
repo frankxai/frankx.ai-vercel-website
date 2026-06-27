@@ -154,6 +154,12 @@ export default async function LlmHubPage() {
               >
                 <Code2 className="h-4 w-4" /> Model Arena receipts
               </Link>
+              <Link
+                href="/research/visual-catalog"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
+              >
+                <Compass className="h-4 w-4" /> Visual Catalog
+              </Link>
               <a
                 href="/llm-hub.json"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"

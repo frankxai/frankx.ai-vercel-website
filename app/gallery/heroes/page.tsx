@@ -561,7 +561,7 @@ export default function HeroGalleryPage() {
       {/* Grid */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <AnimatePresence>
+          <AnimatePresence mode="popLayout">
             {filtered.map((hero) => {
               const globalIndex = heroes.findIndex((h) => h.id === hero.id)
               const isScored = hero.score !== null

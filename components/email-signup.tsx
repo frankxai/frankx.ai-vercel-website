@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
@@ -97,16 +98,28 @@ export function EmailSignup({
           </button>
         </div>
 
-        {status === 'error' && errorMessage && (
-          <div className="mt-2 animate-in fade-in-0 slide-in-from-top-1 text-sm text-red-400 duration-200">
-            {errorMessage}
-          </div>
-        )}
-        {status === 'success' && (
-          <div className="mt-2 animate-in fade-in-0 slide-in-from-top-1 text-sm text-emerald-400 duration-200">
-            Successfully subscribed! Check your email.
-          </div>
-        )}
+        <AnimatePresence>
+          {status === 'error' && errorMessage && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="text-red-400 text-sm mt-2"
+            >
+              {errorMessage}
+            </motion.div>
+          )}
+          {status === 'success' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="text-emerald-400 text-sm mt-2"
+            >
+              Successfully subscribed! Check your email.
+            </motion.div>
+          )}
+        </AnimatePresence>
       </form>
     )
   }
@@ -163,17 +176,29 @@ export function EmailSignup({
           {status === 'error' && 'Try Again'}
         </button>
 
-        {status === 'error' && errorMessage && (
-          <div className="animate-in fade-in-0 slide-in-from-top-1 rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400 duration-200">
-            {errorMessage}
-          </div>
-        )}
-        {status === 'success' && (
-          <div className="animate-in fade-in-0 slide-in-from-top-1 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm text-emerald-400 duration-200">
-            Successfully subscribed! Check your email for confirmation.
-            {redirectTo && <span className="block mt-1">Redirecting...</span>}
-          </div>
-        )}
+        <AnimatePresence>
+          {status === 'error' && errorMessage && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm"
+            >
+              {errorMessage}
+            </motion.div>
+          )}
+          {status === 'success' && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm"
+            >
+              Successfully subscribed! Check your email for confirmation.
+              {redirectTo && <span className="block mt-1">Redirecting...</span>}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </form>
 
       <p className="mt-4 text-xs text-slate-500 text-center">

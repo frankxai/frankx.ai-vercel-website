@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Mail, ExternalLink, Rss, Github } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import Image from 'next/image'
 import { socialLinks } from '@/lib/social-links'
 
 export default function Footer() {
@@ -17,12 +18,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
-              <span
-                aria-hidden="true"
-                className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.07] text-xs font-semibold text-white shadow-[0_0_28px_rgba(45,212,191,0.18)] ring-1 ring-cyan-300/10"
-              >
-                FX
-              </span>
+              <Image src="/images/mascot/axi-v3-icon.png" alt="Axi" width={36} height={36} className="rounded-lg" />
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
                 <span className="block text-[10px] sm:text-xs text-white/55">AI Systems & Music</span>
@@ -85,7 +81,7 @@ export default function Footer() {
 
           {/* Create */}
           <nav aria-label="Create">
-            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Create</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Create</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
               <li><Link href="/prompt-library" className="hover:text-white transition-colors">Prompt Library</Link></li>
@@ -107,7 +103,7 @@ export default function Footer() {
 
           {/* Learn */}
           <nav aria-label="Learn">
-            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Learn</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Learn</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/courses" className="hover:text-white transition-colors">Courses</Link></li>
@@ -121,7 +117,7 @@ export default function Footer() {
 
           {/* Build */}
           <nav aria-label="Build">
-            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Build</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Build</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
@@ -133,7 +129,7 @@ export default function Footer() {
 
           {/* Work with me — commercial funnel */}
           <nav aria-label="Work with Frank">
-            <h3 className="text-xs sm:text-sm font-semibold text-white/60 mb-3 sm:mb-4">Work with me</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Work with me</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/foundry" className="text-emerald-400/70 hover:text-emerald-300 transition-colors">Foundry</Link></li>
               <li><Link href="/start" className="hover:text-white transition-colors">Start here</Link></li>
