@@ -14,15 +14,15 @@ interface VisualItem {
 }
 
 const visuals: VisualItem[] = [
-  { slug: 'agent-family-architecture', title: 'Agent Family Architecture vs Swarms', image: '/images/blog/agent-family-architecture-hero-v3.jpg', category: 'AI Architecture' },
-  { slug: 'multi-agent-orchestration-patterns-2026', title: 'Multi-Agent Orchestration Patterns', image: '/images/blog/multi-agent-orchestration-patterns-2026-hero-v3.jpg', category: 'Production AI', hasVideo: true },
-  { slug: 'acos-enterprise-deployment-guide', title: 'ACOS for Enterprise', image: '/images/blog/acos-enterprise-deployment-guide-hero-v3.jpg', category: 'ACOS' },
-  { slug: 'aeo-playbook-get-cited-by-ai-2026', title: 'AEO Playbook 2026', image: '/images/blog/aeo-playbook-get-cited-by-ai-2026-hero-v3.jpg', category: 'Intelligence', hasVideo: true },
-  { slug: 'agentic-ai-roadmap-2026', title: 'Agentic AI Roadmap 2026', image: '/images/blog/agentic-ai-roadmap-2026-hero-v3.jpg', category: 'Strategy' },
-  { slug: 'prompt-engineering-mastery-workshop', title: 'Prompt Engineering Mastery', image: '/images/blog/prompt-engineering-mastery-2026-hero-v3.jpg', category: 'Prompts' },
-  { slug: 'gemma-3-analysis-2026', title: 'Gemma 3 Analysis 2026', image: '/images/blog/gemma-3-analysis-2026-hero-v5.jpg', category: 'Model Intelligence' },
-  { slug: 'llama-4-analysis-2026', title: 'Llama 4 Analysis 2026', image: '/images/blog/llama-4-analysis-2026-hero-v5.jpg', category: 'Model Intelligence' },
-  { slug: 'mistral-large-3-analysis-2026', title: 'Mistral Large 3 Analysis 2026', image: '/images/blog/mistral-large-3-analysis-2026-hero-v5.jpg', category: 'Model Intelligence' },
+  { slug: 'agent-family-architecture', title: 'Agent Family Architecture vs Swarms', image: '/images/blog/editorial/headers/agent-family-architecture-hero.webp', category: 'AI Architecture' },
+  { slug: 'multi-agent-orchestration-patterns-2026', title: 'Multi-Agent Orchestration Patterns', image: '/images/blog/multi-agent-orchestration-v2.png', category: 'Production AI', hasVideo: true },
+  { slug: 'acos-enterprise-deployment-guide', title: 'ACOS for Enterprise', image: '/images/blog/acos-enterprise-deployment-guide-hero-v8.jpg', category: 'ACOS' },
+  { slug: 'aeo-playbook-get-cited-by-ai-2026', title: 'AEO Playbook 2026', image: '/images/blog/editorial/headers/aeo-playbook-get-cited-by-ai-2026-hero.webp', category: 'Intelligence', hasVideo: true },
+  { slug: 'agentic-ai-roadmap-2026', title: 'Agentic AI Roadmap 2026', image: '/images/blog/agentic-ai-roadmap-2026-hero-v2.png', category: 'Strategy' },
+  { slug: 'prompt-engineering-mastery-workshop', title: 'Prompt Engineering Mastery', image: '/images/blog/editorial/headers/prompt-engineering-mastery-workshop-hero.webp', category: 'Prompts' },
+  { slug: 'gemma-3-analysis-2026', title: 'Gemma 3 Analysis 2026', image: '/images/blog/gemma-3-analysis-2026-hero-v8.jpg', category: 'Model Intelligence' },
+  { slug: 'llama-4-analysis-2026', title: 'Llama 4 Analysis 2026', image: '/images/blog/llama-4-analysis-2026-hero-premium.png', category: 'Model Intelligence' },
+  { slug: 'mistral-large-3-analysis-2026', title: 'Mistral Large 3 Analysis 2026', image: '/images/blog/editorial/headers/mistral-large-3-analysis-2026-hero.webp', category: 'Model Intelligence' },
 ]
 
 export default function PremiumVisualCarousel() {
