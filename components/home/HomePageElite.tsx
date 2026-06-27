@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -156,6 +156,74 @@ function ScrollProgress() {
 }
 
 // ============================================================================
+// ROTATING WORD
+// ============================================================================
+
+const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+
+function useHeroReducedMotion() {
+  const [shouldReduceMotion, setShouldReduceMotion] = useState(true)
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updatePreference = () => setShouldReduceMotion(mediaQuery.matches)
+
+    updatePreference()
+    mediaQuery.addEventListener('change', updatePreference)
+
+    return () => mediaQuery.removeEventListener('change', updatePreference)
+  }, [])
+
+  return shouldReduceMotion
+}
+
+function RotatingWord() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const shouldReduceMotion = useHeroReducedMotion()
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [shouldReduceMotion])
+
+  if (shouldReduceMotion) {
+    return (
+      <span
+        className="inline-block text-emerald-400"
+        aria-hidden="true"
+      >
+        {heroWords[0]}
+      </span>
+    )
+  }
+
+  return (
+    <span className="inline-block relative" aria-hidden="true">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={currentIndex}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
+          style={{ lineHeight: 1.3 }}
+        >
+          {heroWords[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
+// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
@@ -232,10 +300,13 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 <span className="text-sm text-white/60">Frank Riemer - AI Architect & Creator</span>
               </div>
 
-              <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                Frank Riemer builds{' '}
+              <h1
+                className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white"
+                aria-label="Building intelligence that compounds."
+              >
+                <RotatingWord /> intelligence
                 <br />
-                sharper human work.
+                that compounds.
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
