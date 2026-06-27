@@ -235,7 +235,7 @@ export const teamMembers: TeamMember[] = [
     department: 'claude-ecosystem',
     platform: 'Claude',
     icon: 'Music',
-    tagline: 'Translating emotions into healing frequencies',
+    tagline: 'Translating emotions into intentional soundscapes',
     personality: 'Musical mystic who understands sound as transformation technology',
     specialties: [
       'Suno prompt engineering',
@@ -440,7 +440,7 @@ export const teamMembers: TeamMember[] = [
     platform: 'Suno',
     icon: 'Music',
     tagline: 'Transformational music at the speed of thought',
-    personality: 'Musical genius creating healing frequencies through AI',
+    personality: 'Musical specialist creating intentional soundscapes through AI',
     specialties: [
       'Music production',
       'Genre versatility',

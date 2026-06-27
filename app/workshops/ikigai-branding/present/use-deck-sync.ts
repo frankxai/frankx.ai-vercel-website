@@ -27,9 +27,9 @@ interface SyncMessage {
  */
 export function useDeckSync(initialIndex = 0) {
   const [index, setIndexInternal] = useState(initialIndex)
+  const [hydrated, setHydrated] = useState(false)
   const originRef = useRef<string>(`origin-${Math.random().toString(36).slice(2, 8)}`)
   const channelRef = useRef<BroadcastChannel | null>(null)
-  const hydratedRef = useRef(false)
 
   // Hydrate from storage on first mount
   useEffect(() => {
@@ -43,7 +43,7 @@ export function useDeckSync(initialIndex = 0) {
     } catch {
       /* localStorage disabled — fall back to in-memory only */
     }
-    hydratedRef.current = true
+    setHydrated(true)
   }, [])
 
   // Open BroadcastChannel + storage listener
@@ -92,5 +92,5 @@ export function useDeckSync(initialIndex = 0) {
     })
   }, [])
 
-  return { index, setIndex, hydrated: hydratedRef.current }
+  return { index, setIndex, hydrated }
 }

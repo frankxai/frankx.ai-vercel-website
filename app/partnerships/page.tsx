@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   listActivePartners,
   listStrategicAlignment,
@@ -23,7 +23,7 @@ export const metadata = createMetadata({
   path: '/partnerships',
 })
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 const TIER_LABEL: Record<Partner['tier'], string> = {
   distribution: 'Distribution',
@@ -249,8 +249,8 @@ export default function PartnershipsHubPage() {
             </h2>
             <p className="text-base text-zinc-300 leading-[1.7]">
               The daily build stack. The models in delivery. The clouds and
-              silicon the practice ships on — today and across the Oracle EMEA
-              AI CoE work that anchors it.
+              silicon the practice ships on — today and through the former
+              Oracle EMEA AI CoE work that informs it.
             </p>
           </MotionItem>
 

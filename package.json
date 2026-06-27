@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --config eslint.config.js 'app/**/*.{ts,tsx}' 'components/**/*.{ts,tsx}' 'lib/**/*.{ts,tsx}' --ignore-pattern 'app/design-lab/**' --ignore-pattern 'components/v0-variants/**'",
+    "lint": "eslint --config eslint.config.js \"app/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" --ignore-pattern \"app/design-lab/**\" --ignore-pattern \"components/v0-variants/**\"",
     "type-check": "tsc --noEmit",
     "smoke": "node scripts/run-smoke-evals.mjs",
     "smoke:json": "node scripts/run-smoke-evals.mjs --json",

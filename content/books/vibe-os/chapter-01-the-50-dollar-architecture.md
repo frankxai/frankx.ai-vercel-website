@@ -40,7 +40,7 @@ The problem is never the tools. The problem is the absence of architecture.
 
 Architecture is the deliberate design of how components interact. It is the decision about what connects to what, and why. It is the reason one creator can ship a book in a weekend while another spends six months setting up their "system." Architecture answers the question: when I press publish, what happens next?
 
-In enterprise AI consulting at Oracle, I see the same pattern at every scale. A Fortune 500 company does not fail because it chose the wrong database. It fails because nobody designed how the database connects to the application layer, which connects to the analytics pipeline, which connects to the decision-making process. The architecture is the product.
+In enterprise AI consulting, I see the same pattern at every scale. A Fortune 500 company does not fail because it chose the wrong database. It fails because nobody designed how the database connects to the application layer, which connects to the analytics pipeline, which connects to the decision-making process. The architecture is the product.
 
 The same principle applies to a one-person studio. Your architecture is the invisible infrastructure that determines whether you ship or stall. Get it right, and every new piece of content flows through the system automatically -- published, distributed, measured, improved. Get it wrong, and every new piece of content requires manual stitching across disconnected tools, draining the very creative energy that produced the content in the first place.
 

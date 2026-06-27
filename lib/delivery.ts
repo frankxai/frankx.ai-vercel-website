@@ -69,7 +69,7 @@ export function generateAccessCode(productId: string): string {
  * Get product download URL (stored in /public/products/)
  */
 export function getProductDownloadUrl(filename: string): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://frankx.ai'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.frankx.ai'
   // Files would be stored in a protected location or CDN
   // For now, using a signed URL pattern
   const token = generateAccessCode('download')

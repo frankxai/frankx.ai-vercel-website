@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+import { siteConfig } from '@/lib/seo'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -18,6 +20,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://frankx.ai/sitemap.xml',
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   }
 }

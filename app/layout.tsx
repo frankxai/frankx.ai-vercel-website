@@ -147,8 +147,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        <link rel="alternate" hrefLang="en" href="https://frankx.ai" />
-        <link rel="alternate" hrefLang="x-default" href="https://frankx.ai" />
+        <link rel="alternate" hrefLang="en" href={siteConfig.url} />
+        <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
         {aisSchemaGraph && (
           <Script
             id="ais-schema-graph"

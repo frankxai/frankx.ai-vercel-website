@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import { Check, Loader2, Mail, ArrowLeft } from 'lucide-react'
 
 const TOPICS = [
-  { id: 'newsletter', label: 'Weekly Newsletter', description: 'Creation Chronicles — behind-the-scenes of building with AI' },
+  { id: 'newsletter', label: 'Signal Loop', description: 'The weekly note on AI systems, creative output, and clearer work' },
   { id: 'music-suno', label: 'Music Lab', description: 'New releases, Suno prompts, production techniques' },
   { id: 'product-updates', label: 'Product Updates', description: 'New tools, courses, and digital products' },
 ]

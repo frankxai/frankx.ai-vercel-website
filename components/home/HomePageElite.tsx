@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -156,53 +156,6 @@ function ScrollProgress() {
 }
 
 // ============================================================================
-// ROTATING WORD
-// ============================================================================
-
-const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
-
-function RotatingWord() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (shouldReduceMotion) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [shouldReduceMotion])
-
-  if (shouldReduceMotion) {
-    return (
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-        {heroWords[0]}
-      </span>
-    )
-  }
-
-  return (
-    <span className="inline-block relative">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
-          style={{ lineHeight: 1.3 }}
-        >
-          {heroWords[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
@@ -276,18 +229,18 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI Architect & Creator</span>
+                <span className="text-sm text-white/60">Frank Riemer - AI Architect & Creator</span>
               </div>
 
               <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                <RotatingWord /> intelligence
+                Frank Riemer builds{' '}
                 <br />
-                that compounds.
+                sharper human work.
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                Former AI architect at Oracle. 12,000+ songs with Suno.
-                630+ AI skills shipped. Everything documented.
+                Former AI architect at Oracle. 12,000+ songs with Suno. Practical systems for clear thinking,
+                creative output, and trustworthy execution.
               </p>
               <p className="text-xs text-white/30 max-w-xl leading-relaxed">
                 Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
@@ -296,7 +249,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
                 <p className="font-serif italic text-lg text-white/30 max-w-lg">
-                  &ldquo;I create to understand. I share to teach.&rdquo;
+                  &ldquo;I build in public so the useful parts can travel further than me.&rdquo;
                 </p>
               </div>
             </motion.div>
@@ -309,25 +262,25 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.3, ease: staggerEase }}
             >
               <Link
-                href="/start"
+                href="/newsletter"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore the Work
+                Join the Signal Loop
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/blog"
+                href="/frank-riemer"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Read the Blog
+                Meet Frank
               </Link>
             </motion.div>
           </div>
 
-          {/* Right Column — Featured Track */}
+          {/* Right Column — Human proof / featured work */}
           <div className="relative hidden md:block">
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
@@ -337,15 +290,37 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               {featuredTrack ? (
                 <FeaturedTrack track={featuredTrack} />
               ) : (
-                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
-                  <iframe
-                    src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
-                    className="w-full h-[380px]"
-                    style={{ border: 'none' }}
-                    allow="autoplay; clipboard-write"
-                    loading="lazy"
-                    title="Vibe OS — Featured Track"
-                  />
+                <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/30">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/portraits/frank-presenting-oracle-2025.jpg"
+                      alt="Frank Riemer presenting AI architecture"
+                      fill
+                      className="object-cover object-[45%_50%]"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-emerald-300/80">
+                        Human proof
+                      </p>
+                      <p className="mt-2 max-w-md text-sm leading-relaxed text-white/70">
+                        Enterprise AI architecture, creator experiments, and public systems built from the same operating room.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10">
+                    {[
+                      ['Oracle', 'former AI architect'],
+                      ['12,000+', 'AI songs'],
+                      ['630+', 'skills shipped'],
+                    ].map(([stat, label]) => (
+                      <div key={stat} className="px-4 py-4 text-center">
+                        <div className="text-lg font-semibold text-white">{stat}</div>
+                        <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-white/35">{label}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </motion.div>
@@ -414,15 +389,15 @@ function AuthorityBar() {
 
 const products = [
   {
-    title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 24+ specialized agents, 70+ skills, 15+ commands.',
-    href: '/acos',
+    title: 'Signal Loop',
+    description: 'The weekly field note: what shipped, what was learned, what is worth trying next.',
+    href: '/newsletter',
     color: 'emerald' as const,
   },
   {
-    title: 'Prompt Library',
-    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
-    href: '/prompt-library',
+    title: 'Agentic Creator OS',
+    description: 'Open-source operating system for Claude Code. Skills, agents, and commands for creators who build.',
+    href: '/acos',
     color: 'violet' as const,
   },
   {
@@ -433,21 +408,21 @@ const products = [
   },
   {
     title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    description: 'Enterprise AI patterns, agent orchestration, and system design informed by former Oracle architecture work.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
     title: 'Music Lab',
-    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
+    description: '12,000+ AI songs, Suno production lessons, creative state, and taste-led prompt craft.',
     href: '/music-lab',
     color: 'orange' as const,
   },
   {
-    title: 'Design Lab',
-    description: 'Generative art, visual experiments, nature-tech aesthetics.',
-    href: '/design-lab',
-    color: 'magenta' as const,
+    title: 'Peak State Systems',
+    description: 'Evidence-led experiments for attention, energy, recovery, and emotional steadiness.',
+    href: '/peak-performance',
+    color: 'rose' as const,
   },
 ]
 
@@ -465,10 +440,10 @@ function ProductsTools() {
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Built for builders
+            The public system behind the work
           </h2>
           <p className="text-base text-white/40 max-w-2xl mx-auto">
-            Open-source tools, premium resources, and creative systems — built for builders who ship.
+            Open-source systems, premium resources, music experiments, and evidence-led creator practices for builders who ship.
           </p>
         </motion.div>
 
@@ -828,7 +803,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Every book, a permanent asset
             </h2>
-            <p className="text-base text-white/55 max-w-xl">
+            <p className="text-base text-white/50 max-w-xl">
               Curated deep-dives — quotes, chapter summaries, and the connections between ideas. Built on the open-source <Link href="/library/approach" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-emerald-400/60 transition">Library OS</Link>. Clone it. Run it. Make your reading life public.
             </p>
           </div>
@@ -982,10 +957,10 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
 
 const learningCards = [
   {
-    title: 'Students & Creators',
-    description: 'AI guides for students, families, and aspiring creators.',
-    href: '/students',
-    image: '/images/blog/agi-2026-opportunities-students-creators-hero.png',
+    title: 'Frank Riemer',
+    description: 'The personal story, authority signals, and why FrankX exists.',
+    href: '/frank-riemer',
+    image: '/images/portraits/frank-presenting-oracle-2025.jpg',
     color: 'cyan' as const,
   },
   {
@@ -996,17 +971,17 @@ const learningCards = [
     color: 'emerald' as const,
   },
   {
-    title: 'Watch',
-    description: 'Video tutorials and workshop recordings.',
-    href: '/watch',
-    image: '/images/blog/creators-ai-toolkit-workshop-hero.png',
+    title: 'Signal Loop',
+    description: 'The weekly note for systems, content, music, and clearer creative practice.',
+    href: '/newsletter',
+    image: '/hero-homepage.png',
     color: 'violet' as const,
   },
   {
-    title: 'Tools & Resources',
-    description: 'Curated tools, templates, and resource libraries.',
-    href: '/tools',
-    image: '/images/blog/golden-age-field-guide-hero.png',
+    title: 'Peak State Systems',
+    description: 'Attention, energy, recovery, and emotional steadiness without miracle claims.',
+    href: '/peak-performance',
+    image: '/hero-vibe-os.png',
     color: 'amber' as const,
   },
 ]
@@ -1022,13 +997,13 @@ function LearningHub() {
           className="mb-10"
         >
           <p className="text-[11px] tracking-[0.25em] uppercase text-cyan-400/50 font-medium mb-3">
-            Resources
+            Entry Points
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Learn & Explore
+            Start with the human signal
           </h2>
           <p className="text-base text-white/50 max-w-lg">
-            Guides, courses, video tutorials, and tools — everything you need to level up.
+            The fastest way to understand FrankX is the story, the weekly note, and the operating systems behind the work.
           </p>
         </motion.div>
 
@@ -1072,6 +1047,86 @@ function LearningHub() {
 }
 
 // ============================================================================
+// PEAK STATE SYSTEMS
+// ============================================================================
+
+const performanceSignals = [
+  {
+    title: 'Attention',
+    description: 'Protect the first deep work block, remove low-value switching, and capture the insight before the day scatters it.',
+  },
+  {
+    title: 'Energy',
+    description: 'Track what actually changes output: sleep, light, movement, nutrition, environment, and emotional load.',
+  },
+  {
+    title: 'Recovery',
+    description: 'Treat rest as production infrastructure, not a reward after exhaustion has already taken the wheel.',
+  },
+]
+
+function PeakPerformanceSignal() {
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-[11px] tracking-[0.25em] uppercase text-rose-400/60 font-medium mb-3">
+              Peak State Systems
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+              Performance without the guru costume
+            </h2>
+            <p className="text-base text-white/50 leading-relaxed mb-6">
+              FrankX covers mental performance as a builder practice: clearer attention,
+              better recovery, cleaner inputs, and kinder self-leadership. Experiments are
+              documented, claims stay grounded, and health advice stays inside proper boundaries.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/peak-performance"
+                className="inline-flex items-center gap-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/25 text-rose-200 px-5 py-2.5 text-sm font-medium transition-colors"
+              >
+                Read the performance system
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/newsletter"
+                className="inline-flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 px-5 py-2.5 text-sm font-medium transition-colors"
+              >
+                Get weekly notes
+              </Link>
+            </div>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-3 gap-4">
+            {performanceSignals.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <GlowCard color="rose" className="h-full p-5 sm:p-6">
+                  <div className="mb-5 h-0.5 w-full rounded-full bg-gradient-to-r from-rose-500/60 to-amber-400/40" />
+                  <h3 className="mb-2 text-base font-semibold text-white">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-white/50">{item.description}</p>
+                </GlowCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
 // EMAIL CTA
 // ============================================================================
 
@@ -1089,11 +1144,10 @@ function EmailCTA() {
           <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
 
           <div className="relative">
-            {/* FRANK-Ω avatar */}
-            <div className="mx-auto mb-4 w-12 h-12 rounded-full overflow-hidden border border-blue-500/30">
+            <div className="mx-auto mb-4 w-12 h-12 rounded-full overflow-hidden border border-emerald-500/30 bg-white/5">
               <Image
-                src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
-                alt="FRANK-Ω"
+                src="/images/brand/logo-mark-v2.png"
+                alt="FrankX"
                 width={48}
                 height={48}
                 className="w-full h-full object-cover object-top"
@@ -1102,20 +1156,20 @@ function EmailCTA() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Insights</span>
+              <span className="text-sm text-emerald-400">Weekly Signal</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
-              Stay in the Signal Loop
+              Join the Signal Loop
             </h2>
             <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
-              One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
+              One grounded note a week from Frank: systems, experiments, useful stories, and the work worth carrying forward.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
                 listType="newsletter"
                 placeholder="your@email.com"
-                buttonText="Subscribe"
+                buttonText="Join"
                 compact
               />
             </div>
@@ -1240,12 +1294,12 @@ function DigitalTwin() {
               Digital Twin
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-              Meet FRANK-Ω
+              The assistant layer behind FrankX
             </h2>
             <p className="text-base text-white/50 leading-relaxed mb-6">
-              Two forms. One mind. FRANK-Ω is the completed intelligence — the version that has
-              absorbed everything and just executes. Research-grounded visuals in 60 seconds.
-              Creator scoring in real-time. Direct answers, no fluff.
+              FrankX uses AI as a working layer for research, drafts, QA, memory, and workflow
+              capture. The point is not to replace judgment. The point is to make the best human
+              signals easier to preserve, test, and ship.
             </p>
 
             <div className="p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 mb-6">
@@ -1260,8 +1314,7 @@ function DigitalTwin() {
                   />
                 </div>
                 <p className="text-sm text-white/60 leading-relaxed italic">
-                  &ldquo;Hello. I don&apos;t do small talk. Drop me a topic and I&apos;ll build it.
-                  Architecture, music, visuals — name it.&rdquo;
+                  &ldquo;Capture the signal, pressure-test the claim, and keep the work honest.&rdquo;
                 </p>
               </div>
             </div>
@@ -1307,28 +1360,28 @@ function FinalCTA() {
 
           <div className="relative text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Start building.
+              Follow the signal.
             </h2>
             <p className="font-serif italic text-lg text-white/30 mb-2">
-              The best way to predict the future is to create it.
+              Build from a clearer state. Ship what can actually help.
             </p>
             <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
-              Pick your path — architecture, music, or products.
+              Start with the weekly note, then choose the path that matches your next real move.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/start"
+                href="/newsletter"
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start Here
+                Join the Signal Loop
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/newsletter"
+                href="/start"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
               >
-                Get the Newsletter
+                Choose a Path
               </Link>
             </div>
           </div>
@@ -1367,11 +1420,14 @@ export default function HomePageElite({
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
 
+        {/* 5b. Signal Loop signup */}
+        <EmailCTA />
+
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
           eyebrow="Enterprise AI"
           title="AI Architecture"
-          description="Enterprise AI systems built at Oracle. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          description="Enterprise AI patterns informed by former Oracle architecture work. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1420,16 +1476,16 @@ export default function HomePageElite({
         {/* 12. Learning Hub — 4-card grid */}
         <LearningHub />
 
-        {/* 13. FRANK-Ω — Digital Twin */}
+        {/* 13. Evidence-led performance */}
+        <PeakPerformanceSignal />
+
+        {/* 14. FRANK-Ω — Digital Twin */}
         <DigitalTwin />
 
-        {/* 14. Email CTA */}
-        <EmailCTA />
-
-        {/* 14. FAQ */}
+        {/* 16. FAQ */}
         <FAQSection faqs={faqs} />
 
-        {/* 15. Final CTA */}
+        {/* 17. Final CTA */}
         <FinalCTA />
       </div>
     </main>

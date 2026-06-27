@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { existsSync } from 'node:fs'
 import { readdir, readFile } from 'node:fs/promises'
 import { join, dirname, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -7,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const WORKFLOWS_DIR = join(ROOT, '.claude', 'workflows')
 const AGENTS_DIR = join(ROOT, '.claude', 'agents')
+const mode = process.argv[2] ?? 'human'
 
 const REQUIRED_META_FIELDS = ['name', 'description', 'phases', 'acos']
 const REQUIRED_ACOS_FIELDS = ['tier', 'cadence', 'portable', 'estimatedCost']
@@ -69,6 +71,16 @@ function validateMeta(meta) {
     issues.push(`meta.name "${meta.name}" should match filename ${meta._file}`)
   }
   return issues
+}
+
+if (!existsSync(WORKFLOWS_DIR)) {
+  if (mode === 'json') {
+    console.log(JSON.stringify([], null, 2))
+  } else {
+    console.log(`\nWorkflow validation: 0/0 ok · 0 with issues`)
+    console.log('[workflow-validate] No .claude/workflows directory found; skipping workflow validation for this checkout.\n')
+  }
+  process.exit(0)
 }
 
 const workflowFiles = (await readdir(WORKFLOWS_DIR)).filter(f => f.endsWith('.js')).sort()
@@ -158,8 +170,6 @@ for (const r of results) {
 }
 
 // Report
-const mode = process.argv[2] ?? 'human'
-
 if (mode === 'json') {
   console.log(JSON.stringify(results, null, 2))
 } else {

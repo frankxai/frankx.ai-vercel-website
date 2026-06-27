@@ -26,9 +26,9 @@ const sections = [
     title: 'The Current State of AI Adoption',
     content: 'Most organizations are approaching AI adoption tactically rather than strategically. While individual teams experiment with ChatGPT and AI tools, leadership lacks a coherent vision for how these technologies will transform their business model, operations, and competitive positioning.',
     insights: [
-      'Only 23% of enterprises have a comprehensive AI strategy',
-      '67% of AI initiatives fail to reach production',
-      'Strategic AI implementations deliver 5x higher ROI than tactical approaches'
+      'Many organizations have scattered AI experiments but no clear operating model',
+      'Pilots stall when ownership, data boundaries, and review gates are undefined',
+      'Strategic AI implementations perform better when they connect use cases to governance and measurement'
     ]
   },
   {

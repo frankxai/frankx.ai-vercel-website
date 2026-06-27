@@ -87,11 +87,11 @@ export default async function BlogPostPage({
     description: post.description,
   }
 
-  const canonicalUrl = `https://frankx.ai/blog/${post.slug}`
+  const canonicalUrl = `${siteConfig.url}/blog/${post.slug}`
   const wordCount = post.content.split(/\s+/).filter(Boolean).length
   const imageUrl = post.image
-    ? new URL(post.image, 'https://frankx.ai').toString()
-    : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
+    ? new URL(post.image, siteConfig.url).toString()
+    : new URL(siteConfig.ogImage, siteConfig.url).toString()
 
   // Article Schema
   const articleSchema = {
@@ -101,10 +101,10 @@ export default async function BlogPostPage({
     author: {
       '@type': 'Person',
       name: post.author,
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
       description:
-        "Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Independent builder of agentic AI systems and creator of 500+ AI-assisted songs.",
+        'Former Oracle AI architect and independent FrankX builder focused on agentic AI systems, creator operating systems, and 12,000+ AI music experiments.',
       alumniOf: {
         '@type': 'Organization',
         name: 'Oracle',
@@ -119,10 +119,10 @@ export default async function BlogPostPage({
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       logo: {
         '@type': 'ImageObject',
-        url: new URL(siteConfig.ogImage, 'https://frankx.ai').toString(),
+        url: new URL(siteConfig.ogImage, siteConfig.url).toString(),
       },
     },
     datePublished: post.date,
@@ -213,7 +213,7 @@ export default async function BlogPostPage({
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-sm text-white/50">AI Architect & Creator</div>
-                    <div className="text-xs text-white/35">Former Oracle AI architect · helped build Oracle&apos;s AI CoE</div>
+                    <div className="text-xs text-white/35">Former Oracle AI architect · independent FrankX builder</div>
                   </div>
                 </div>
 
@@ -377,7 +377,6 @@ export default async function BlogPostPage({
     </main>
   )
 }
-
 
 
 

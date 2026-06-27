@@ -5,7 +5,7 @@
 
 ---
 
-I build AI Centers of Excellence for a living.
+I have built AI Centers of Excellence in enterprise settings.
 
 In enterprise AI work, the job is to design frameworks that help large organizations adopt artificial intelligence at scale. These frameworks are not simple. They have pillars, sub-frameworks, maturity models, governance structures, technology assessments, talent programs, and ethical guidelines. The documentation runs to hundreds of pages. The consulting engagement can run for months. The investment is serious.
 

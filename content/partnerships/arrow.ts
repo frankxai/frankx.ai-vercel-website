@@ -17,7 +17,7 @@ export const arrow: Partner = {
   status: 'active',
   lastUpdated: '2026-05-16',
 
-  title: 'AI Architect — EMEA AI CoE Partner',
+  title: 'AI Architect — EMEA distribution alignment proposal',
   tagline:
     'A coding-agent-native AI CoE practice for EMEA distribution.',
   subTagline:
@@ -27,13 +27,13 @@ export const arrow: Partner = {
 
 The gap I see: a coding-agent-native AI CoE methodology that lets Arrow's solution architects and partner resellers compress the reference-architecture and PoC build cycle from weeks to days using Claude Code, Codex, Gemini, and the agentic patterns now standard at frontier AI labs.
 
-That is the layer I bring. Oracle EMEA AI CoE pedigree, AI Architect Academy curriculum, a working coding-agent toolkit (oci-ai-architect Claude Code skill pack), 7,000+ AI / cloud / founder audience, and the NVIDIA Munich EBC bridge.`,
+That is the layer FrankX brings: former enterprise AI architecture experience, AI Architect Academy curriculum, a working coding-agent toolkit, and public reference implementations that partner teams can inspect before any conversation becomes formal.`,
 
   workingReality: [
     {
-      label: 'Oracle EMEA AI CoE practice',
+      label: 'Former enterprise AI architecture practice',
       detail:
-        'Strategic architect role at the Oracle EMEA AI Center of Excellence — building CoE blueprints used by Oracle solution architects across the region. The methodology travels.',
+        'Public, non-confidential enterprise AI architecture patterns translated into creator and partner enablement systems. The methodology travels without requiring private employer material.',
     },
     {
       label: 'Open coding-agent toolkit',
@@ -45,14 +45,14 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, AI Architect Academy cur
       },
     },
     {
-      label: 'NVIDIA Munich EBC bridge',
+      label: 'GPU and accelerator learning track',
       detail:
-        'NIM hands-on exposure and Munich EBC contacts from co-architecting the Oracle x NVIDIA partner event 2025. Real signal, not a logo on a slide.',
+        'GPU-aware AI architecture patterns are included as public learning material for partners exploring agent and accelerator workloads.',
     },
     {
-      label: 'Audience funnel',
+      label: 'Public distribution surface',
       detail:
-        'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. Posts about AI CoE patterns regularly land 100+ engagements among that audience.',
+        'FrankX publishes AI CoE patterns, workshops, and reference systems through the public site, newsletter, GitHub, and LinkedIn.',
     },
   ],
 
@@ -91,7 +91,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, AI Architect Academy cur
   asymmetricValue: [
     {
       title: 'Coding-Agent AI CoE practice',
-      body: 'Proven inside Oracle EMEA, productized as the AI Architect Academy curriculum and the oci-ai-architect Claude Code skill pack. The methodology travels with the toolkit.',
+      body: 'Built from former enterprise AI architecture experience and productized as the AI Architect Academy curriculum plus public coding-agent skill packs. The methodology travels with the toolkit.',
       metric: 'Practice',
     },
     {
@@ -100,14 +100,14 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, AI Architect Academy cur
       metric: 'Coached cohort',
     },
     {
-      title: 'Audience funnel',
-      body: 'Followers across Oracle, NVIDIA, Anthropic, and founder networks. Posts about coding-agent AI CoE patterns regularly clear 100+ engagements.',
-      metric: '7,000+ followers',
+      title: 'Public distribution surface',
+      body: 'FrankX publishes coding-agent AI CoE patterns through the public site, GitHub, newsletter, and LinkedIn.',
+      metric: 'Public channels',
     },
     {
-      title: 'NVIDIA bridge',
-      body: 'NIM hands-on exposure, Munich EBC contacts, and Oracle x NVIDIA AI accelerator pack expertise from the CoE work. The bridge is warm.',
-      metric: 'EBC access',
+      title: 'GPU-aware architecture lane',
+      body: 'NIM and accelerated-infrastructure patterns are treated as public learning references for partner education and agent workloads.',
+      metric: 'GPU-aware lane',
     },
     {
       title: 'Live agentic body of work',

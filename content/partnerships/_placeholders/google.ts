@@ -30,7 +30,7 @@ export const google: Partner = {
 
   contextWindow: `Gemini is part of my daily multimodal delivery — text (Gemini 3 Pro for long-context grounding), image (Nano Banana 2 / Imagen via Higgsfield MCP), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. Antigravity is the multi-model agentic dev surface where Gemini 3 Pro and Claude Sonnet refactor side-by-side — multi-model parallel comparison as daily practice, not benchmark theater. The Google Agent Development Kit and the A2A protocol are not a slide — they are the enterprise lane of the Build First AI Agent workshop and the explicit enterprise lane of the Starlight Agent Lab three-lane portfolio (Vercel AI SDK / Claude Agent SDK / Google ADK).
 
-The strategic alignment here is about a Google-native AI CoE practice with workshop and curriculum distribution. Pursuing Google Cloud Partner Advantage status. The currency that matters more than commission is attendee credits for the workshop cohort and reference-architecture surfaces with Deploy-to-GCP CTAs. EMEA AI Architect audience already funnels into the topic.`,
+The strategic alignment here is about a Google-native AI CoE practice with workshop and curriculum distribution. Pursuing Google Cloud Partner Advantage status. The currency that matters more than commission is attendee credits for the workshop cohort and reference-architecture surfaces with Deploy-to-GCP CTAs. FrankX already has public builder channels where the topic fits naturally.`,
 
   workingReality: [
     {
@@ -120,9 +120,9 @@ The strategic alignment here is about a Google-native AI CoE practice with works
       metric: 'Public reference',
     },
     {
-      title: 'EMEA AI Architect audience funnel',
-      body: 'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. EMEA-weighted, architect-weighted. The Google Cloud Partner Advantage credit channel meets a real audience.',
-      metric: '7,000+ followers',
+      title: 'Public builder distribution',
+      body: 'FrankX publishes Gemini, ADK, A2A, and multi-cloud architecture material through the public site, GitHub, newsletter, and LinkedIn.',
+      metric: 'Public channels',
     },
     {
       title: 'Open-source body of work running multi-cloud incl. GCP',
@@ -285,7 +285,7 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     'Public /guides/agent-card-a2a-spec documentation written from operator-grade use of the protocol.',
     'Starlight Agent Lab three-lane portfolio explicitly positions ADK as the enterprise lane alongside Vercel AI SDK and Claude Agent SDK.',
     'Multi-cloud AI CoE methodology with Google as a first-class enterprise lane across reference architectures.',
-    '7,000+ EMEA AI architect audience overlapping the GCP developer community across Oracle, NVIDIA, Anthropic, and founder networks.',
+    'Public builder channels across the site, newsletter, GitHub, and LinkedIn overlap naturally with the GCP developer community.',
   ],
 
   formalizationAsk:

@@ -83,8 +83,12 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 
 ## Foundations
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
+- [Frank Riemer](${SITE_URL}/frank-riemer): Canonical founder/entity page for Frank Riemer and FrankX
 - [About Frank](${SITE_URL}/about): Story, identity, work patterns
-- [Start Here](${SITE_URL}/start): Guided entry point for new visitors
+- [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, public proof, editorial boundaries, and contact
+- [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
+- [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, peak-state notes, and trustworthy human-AI work
+- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, environment, and review loops; educational, not medical advice
 - [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer / €7 Pack / €197 Toolkit / €497 Mastery / €997 Architect / €2,997 Founder's Circle)
 - [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort, 10 seats
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production

@@ -127,7 +127,7 @@ You do not rise to the level of your goals. You fall to the level of your enviro
 
 A personal example of attention allocation in practice, because theory without application is architecture without buildings.
 
-My compute budget divides across three domains: enterprise architecture at Oracle, creative work on frankx.ai, and family. Each domain requires deep attention. None can be served with scraps.
+My compute budget divides across three domains: enterprise architecture, creative work on frankx.ai, and family. Each domain requires deep attention. None can be served with scraps.
 
 The allocation looks like this:
 

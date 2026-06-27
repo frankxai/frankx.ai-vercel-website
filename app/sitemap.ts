@@ -3,11 +3,12 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 // lib/route-enumeration.mjs is plain ESM JS, intentional for cross-runtime sharing with scripts/
 import { enumerateRoutes } from '@/lib/route-enumeration.mjs'
 
-const BASE_URL = 'https://frankx.ai'
+const BASE_URL = siteConfig.url
 
 // Extract slug from MDX filename
 function getSlugFromFilename(filename: string): string {
@@ -105,7 +106,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -318,8 +322,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/founder-playbook',
     '/insights',
     '/thank-you',
-    '/onboarding',
-    '/dashboard',
   ]
 
   // Research hub pages

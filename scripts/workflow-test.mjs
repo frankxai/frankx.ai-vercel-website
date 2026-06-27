@@ -14,6 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const WORKFLOWS_DIR = join(ROOT, '.claude', 'workflows')
 const FIXTURES_DIR = join(WORKFLOWS_DIR, '__fixtures__')
+const mode = process.argv[2] ?? 'human'
 
 async function parseMeta(path) {
   const src = await readFile(path, 'utf8')
@@ -130,11 +131,19 @@ async function testWorkflow(workflowFile) {
   }
 }
 
+if (!existsSync(WORKFLOWS_DIR)) {
+  if (mode === 'json') {
+    console.log(JSON.stringify([], null, 2))
+  } else {
+    console.log(`\nWorkflow smoke tests: 0 pass · 0 fail · 0 no-fixture (0 portable)\n`)
+    console.log('[workflow-test] No .claude/workflows directory found; skipping workflow smoke tests for this checkout.\n')
+  }
+  process.exit(0)
+}
+
 const workflowFiles = (await readdir(WORKFLOWS_DIR)).filter(f => f.endsWith('.js')).sort()
 const results = []
 for (const f of workflowFiles) results.push(await testWorkflow(f))
-
-const mode = process.argv[2] ?? 'human'
 
 if (mode === 'json') {
   console.log(JSON.stringify(results, null, 2))

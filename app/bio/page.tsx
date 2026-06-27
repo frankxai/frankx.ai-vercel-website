@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Metadata } from 'next';
 import { socialLinks } from '@/lib/social-links';
+import { createMetadata, siteConfig } from '@/lib/seo';
 import {
   Linkedin,
   Github,
@@ -26,7 +26,7 @@ const SHORT_BIO = `Frank Riemer is a former AI architect at Oracle, founder of F
 
 const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and former AI architect at Oracle. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
-He is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a manifesto on the convergence of human and artificial intelligence.
+He is a prolific AI music creator — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
 
 His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and practical systems for human creativity. He writes, ships, and creates daily. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.
 
@@ -120,11 +120,22 @@ const QUICK_FACTS = [
   ['Open source', 'github.com/frankxai'],
 ];
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Bio · Frank Riemer | FrankX',
   description:
     'Press bio, speaker topics, and media kit for Frank Riemer — former AI architect at Oracle, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
-};
+  path: '/bio',
+  keywords: [
+    'Frank Riemer bio',
+    'Frank Riemer media kit',
+    'FrankX media kit',
+    'AI Architect',
+    'AI keynote speaker',
+    'AI creator systems',
+    'Suno AI creator',
+  ],
+  image: '/images/portraits/frank-presenting-oracle-2025.jpg',
+});
 
 export default function BioPage() {
   return (
@@ -136,11 +147,14 @@ export default function BioPage() {
           alternateName: 'FrankX',
           jobTitle: 'AI Architect',
           description: ONE_LINE,
-          url: 'https://frankx.ai/bio',
+          url: `${siteConfig.url}/bio`,
+          image: `${siteConfig.url}/images/portraits/frank-presenting-oracle-2025.jpg`,
           sameAs: [
             socialLinks.linkedin,
-            'https://github.com/frankxai',
-            'https://suno.com/@frankx',
+            socialLinks.github,
+            socialLinks.suno,
+            socialLinks.youtube,
+            socialLinks.instagram,
           ],
           knowsAbout: [
             'Artificial Intelligence',
@@ -236,11 +250,11 @@ export default function BioPage() {
           <div className="mx-auto max-w-7xl">
             <div className="relative aspect-[16/9] w-full overflow-hidden">
               <Image
-                src="/images/bio/dawn-studio.jpg"
-                alt="A working studio at dawn — empty chair, open laptop, single warm desk lamp, the first cobalt light of pre-dawn through the window"
+                src="/images/portraits/frank-presenting-oracle-2025.jpg"
+                alt="Frank Riemer presenting AI architecture"
                 fill
                 priority
-                className="object-cover"
+                className="object-cover object-[36%_50%]"
                 sizes="(min-width: 1280px) 1280px, 100vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
@@ -404,7 +418,7 @@ export default function BioPage() {
               For press use
             </h2>
             <p className="text-base text-white/60 max-w-xl mb-10">
-              The hero atmosphere image above is licensed for editorial use with attribution. For headshot or commissioned portraiture, get in touch.
+              The public speaking portrait above is available for editorial use with attribution. For headshots, commissioned portraiture, or event-specific assets, get in touch.
             </p>
 
             <div className="rounded-xl bg-[#111113] border border-white/5 p-6">
@@ -412,16 +426,16 @@ export default function BioPage() {
                 <Download className="h-4 w-4 text-emerald-400 mt-1 shrink-0" />
                 <div>
                   <p className="text-sm text-white/85 mb-1">
-                    <strong className="text-white">Hero image:</strong>{' '}
+                    <strong className="text-white">Speaking portrait:</strong>{' '}
                     <a
-                      href="/images/bio/dawn-studio.jpg"
+                      href="/images/portraits/frank-presenting-oracle-2025.jpg"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-emerald-400 hover:text-emerald-300 transition-colors"
                     >
-                      dawn-studio.jpg
+                      frank-presenting-oracle-2025.jpg
                     </a>{' '}
-                    — 16:9, 4K render
+                    — editorial web use
                   </p>
                   <p className="text-xs text-white/45">
                     Credit: <em>Frank Riemer / FrankX.AI</em>. Editorial use only.
@@ -446,7 +460,7 @@ export default function BioPage() {
                 I come from a Volga German family — three generations displaced, each one rebuilding from nothing. My father built houses; my brother builds solar businesses. My medium is different — AI systems and music — but the instinct is the same.
               </p>
               <p>
-                I spend my days at Oracle, designing AI Center-of-Excellence frameworks for large companies in Europe. I spend my evenings at frankx.ai, where the same six-pillar architecture is freely available to any individual who wants to operate at that level.
+                I spent part of my career around enterprise AI architecture at Oracle, where rigorous systems thinking mattered because the stakes were real. I now build frankx.ai as an independent public workshop where those public, non-confidential patterns become practical systems for individuals.
               </p>
               <p>
                 The bridge is the work. The full version of how I got here lives in <Link href="/about" className="text-emerald-400 hover:text-emerald-300 transition-colors">/about</Link> — including the family story, the music, the books that shaped the books I now write.
