@@ -152,11 +152,11 @@ export default function Footer() {
             </p>
             {/* Email — direct contact signal */}
             <a
-              href="mailto:hello@frankx.ai"
+              href="mailto:frank@frankx.ai"
               className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white transition-colors"
             >
               <Mail className="w-3 h-3" />
-              hello@frankx.ai
+              frank@frankx.ai
             </a>
             {/* Social links */}
             <nav aria-label="Social profiles" className="mt-4 sm:mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5">

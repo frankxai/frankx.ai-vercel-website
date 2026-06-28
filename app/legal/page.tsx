@@ -61,8 +61,8 @@ export default function LegalPage() {
               <p><strong className="text-white">Location:</strong> Amsterdam, Netherlands</p>
               <p><strong className="text-white">KvK:</strong> <span className="text-amber-400/70 italic">Registration pending</span></p>
               <p><strong className="text-white">Contact:</strong>{' '}
-                <a href="mailto:hello@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
-                  hello@frankx.ai
+                <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
+                  frank@frankx.ai
                 </a>
               </p>
               <p><strong className="text-white">Website:</strong>{' '}

@@ -4,9 +4,9 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
 // frank@mail.frankx.ai is the Resend SEND-ONLY subdomain — does NOT receive mail.
-// Notifications must land at the IONOS-hosted root domain inbox (hello@frankx.ai)
+// Notifications must land at the IONOS-hosted root domain inbox (frank@frankx.ai)
 // or whatever OPERATOR_EMAIL env var points at (e.g., a Gmail). Fixed 2026-05-22.
-const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || process.env.RESEND_FROM_EMAIL || 'hello@frankx.ai'
+const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || process.env.RESEND_FROM_EMAIL || 'frank@frankx.ai'
 
 const VALID_TRACKS = ['portfolio', 'product', 'creator']
 

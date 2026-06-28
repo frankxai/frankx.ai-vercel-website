@@ -29,7 +29,7 @@ export default function FinalCTA() {
             <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
           </Link>
           <Link
-            href="mailto:hello@frankx.ai?subject=Strategy%20Session"
+            href="mailto:frank@frankx.ai?subject=Strategy%20Session"
             className="inline-flex items-center justify-center rounded-xl border border-white/30 px-8 py-4 text-sm font-semibold text-white/85 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/30"
           >
             Work with Frank

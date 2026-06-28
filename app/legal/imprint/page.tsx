@@ -30,7 +30,7 @@ export default function ImprintPage() {
           <h2 className="text-xl font-semibold text-zinc-200">Contact</h2>
           <table className="w-full text-sm mt-3">
             <tbody className="divide-y divide-zinc-800">
-              <Row label="Email" value="hello@frankx.ai" />
+              <Row label="Email" value="frank@frankx.ai" />
               <Row label="Website" value="https://frankx.ai" />
             </tbody>
           </table>

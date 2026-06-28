@@ -367,14 +367,14 @@
         "id": "partnership-email",
         "label": "Partnership Email",
         "kind": "mailto",
-        "url": "mailto:hello@frankx.ai?subject=Partnership%20inquiry",
+        "url": "mailto:frank@frankx.ai?subject=Partnership%20inquiry",
         "status": "verified"
       },
       {
         "id": "contact-email",
         "label": "Primary Email",
         "kind": "mailto",
-        "url": "mailto:hello@frankx.ai",
+        "url": "mailto:frank@frankx.ai",
         "status": "verified"
       }
     ],
