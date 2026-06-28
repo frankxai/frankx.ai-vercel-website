@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 type Provider =
   | 'vercel'
+  | 'railway'
   | 'n8n'
   | 'anthropic'
   | 'openai'
@@ -13,6 +14,7 @@ type Provider =
 
 const PROVIDER_LABEL: Record<Provider, string> = {
   vercel: 'Vercel',
+  railway: 'Railway',
   n8n: 'n8n',
   anthropic: 'Anthropic (Claude)',
   openai: 'OpenAI',
