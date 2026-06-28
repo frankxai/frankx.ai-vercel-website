@@ -1017,27 +1017,141 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "user-app", "name": "User Application", "type": "gateway", "description": "Next.js frontend with real-time SSE streaming. Each user authenticates and gets their personal agent UI.", "cloudService": "Vercel Edge Runtime" },
-        { "id": "agent-router", "name": "Agent Router", "type": "compute", "description": "Routes requests to the correct user agent instance. Handles session management, rate limiting, and tier-based access.", "cloudService": "Vercel Serverless" },
-        { "id": "claude-sdk", "name": "Claude Agent SDK", "type": "ai-service", "description": "Core intelligence layer. Managed agent runtime with subagent orchestration, tool calling, and 200K context window.", "cloudService": "Anthropic API" },
-        { "id": "guardian-protocol", "name": "Guardian Protocol", "type": "ai-service", "description": "Ethical guardrails engine. Personality persistence, emotional awareness, trust scoring, and harmful pattern detection.", "cloudService": "Custom middleware" },
-        { "id": "openclaw", "name": "OpenClaw Subagents", "type": "compute", "description": "4 specialized agents — Wellness, Strategy, Creative, Legacy — each with distinct personality and expertise domain.", "cloudService": "Claude Agent SDK Subagents" },
-        { "id": "living-memory", "name": "Living Memory Vault", "type": "database", "description": "Per-user sovereign vector store. Captures conversations, decisions, patterns. Row-level security ensures isolation.", "cloudService": "Supabase pgvector + RLS" },
-        { "id": "collective-wisdom", "name": "Collective Wisdom Layer", "type": "database", "description": "Shared knowledge graph across family/organization. Queryable institutional memory (Hashems 1959 model).", "cloudService": "Supabase shared schema" },
-        { "id": "vital-intel", "name": "Vital Intelligence", "type": "external", "description": "Biometric data integration — sleep, HRV, stress markers. Adapts agent behavior to user's physiological state.", "cloudService": "Apple Health / Oura / Whoop API" },
-        { "id": "mcp-hub", "name": "MCP Server Hub", "type": "gateway", "description": "Model Context Protocol servers for Notion, Linear, Slack, Calendar, and custom integrations.", "cloudService": "Remote MCP Servers" },
-        { "id": "stripe", "name": "Stripe Billing", "type": "external", "description": "Subscription management (Core/Pro/Sovereign tiers), usage-based billing, marketplace payouts.", "cloudService": "Stripe Billing + Connect" }
+        {
+          "id": "user-app",
+          "name": "User Application",
+          "type": "gateway",
+          "description": "Next.js frontend with real-time SSE streaming. Each user authenticates and gets their personal agent UI.",
+          "cloudService": "Vercel Edge Runtime"
+        },
+        {
+          "id": "agent-router",
+          "name": "Agent Router",
+          "type": "compute",
+          "description": "Routes requests to the correct user agent instance. Handles session management, rate limiting, and tier-based access.",
+          "cloudService": "Vercel Serverless"
+        },
+        {
+          "id": "claude-sdk",
+          "name": "Claude Agent SDK",
+          "type": "ai-service",
+          "description": "Core intelligence layer. Managed agent runtime with subagent orchestration, tool calling, and 200K context window.",
+          "cloudService": "Anthropic API"
+        },
+        {
+          "id": "guardian-protocol",
+          "name": "Guardian Protocol",
+          "type": "ai-service",
+          "description": "Ethical guardrails engine. Personality persistence, emotional awareness, trust scoring, and harmful pattern detection.",
+          "cloudService": "Custom middleware"
+        },
+        {
+          "id": "openclaw",
+          "name": "OpenClaw Subagents",
+          "type": "compute",
+          "description": "4 specialized agents — Wellness, Strategy, Creative, Legacy — each with distinct personality and expertise domain.",
+          "cloudService": "Claude Agent SDK Subagents"
+        },
+        {
+          "id": "living-memory",
+          "name": "Living Memory Vault",
+          "type": "database",
+          "description": "Per-user sovereign vector store. Captures conversations, decisions, patterns. Row-level security ensures isolation.",
+          "cloudService": "Supabase pgvector + RLS"
+        },
+        {
+          "id": "collective-wisdom",
+          "name": "Collective Wisdom Layer",
+          "type": "database",
+          "description": "Shared knowledge graph across family/organization. Queryable institutional memory (Hashems 1959 model).",
+          "cloudService": "Supabase shared schema"
+        },
+        {
+          "id": "vital-intel",
+          "name": "Vital Intelligence",
+          "type": "external",
+          "description": "Biometric data integration — sleep, HRV, stress markers. Adapts agent behavior to user's physiological state.",
+          "cloudService": "Apple Health / Oura / Whoop API"
+        },
+        {
+          "id": "mcp-hub",
+          "name": "MCP Server Hub",
+          "type": "gateway",
+          "description": "Model Context Protocol servers for Notion, Linear, Slack, Calendar, and custom integrations.",
+          "cloudService": "Remote MCP Servers"
+        },
+        {
+          "id": "stripe",
+          "name": "Stripe Billing",
+          "type": "external",
+          "description": "Subscription management (Core/Pro/Sovereign tiers), usage-based billing, marketplace payouts.",
+          "cloudService": "Stripe Billing + Connect"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "user-app", "to": "agent-router", "label": "User request", "dataType": "SSE" },
-        { "id": "f2", "from": "agent-router", "to": "claude-sdk", "label": "Routed to agent", "dataType": "JSON" },
-        { "id": "f3", "from": "claude-sdk", "to": "guardian-protocol", "label": "Ethics check", "dataType": "Pre/post filter" },
-        { "id": "f4", "from": "claude-sdk", "to": "openclaw", "label": "Delegate to specialist", "dataType": "Subagent call" },
-        { "id": "f5", "from": "claude-sdk", "to": "living-memory", "label": "Store + retrieve", "dataType": "Vectors" },
-        { "id": "f6", "from": "claude-sdk", "to": "collective-wisdom", "label": "Query shared knowledge", "dataType": "SQL + vectors" },
-        { "id": "f7", "from": "vital-intel", "to": "claude-sdk", "label": "Biometric context", "dataType": "Health API" },
-        { "id": "f8", "from": "claude-sdk", "to": "mcp-hub", "label": "Tool calls", "dataType": "MCP protocol" },
-        { "id": "f9", "from": "agent-router", "to": "stripe", "label": "Usage tracking", "dataType": "Events" }
+        {
+          "id": "f1",
+          "from": "user-app",
+          "to": "agent-router",
+          "label": "User request",
+          "dataType": "SSE"
+        },
+        {
+          "id": "f2",
+          "from": "agent-router",
+          "to": "claude-sdk",
+          "label": "Routed to agent",
+          "dataType": "JSON"
+        },
+        {
+          "id": "f3",
+          "from": "claude-sdk",
+          "to": "guardian-protocol",
+          "label": "Ethics check",
+          "dataType": "Pre/post filter"
+        },
+        {
+          "id": "f4",
+          "from": "claude-sdk",
+          "to": "openclaw",
+          "label": "Delegate to specialist",
+          "dataType": "Subagent call"
+        },
+        {
+          "id": "f5",
+          "from": "claude-sdk",
+          "to": "living-memory",
+          "label": "Store + retrieve",
+          "dataType": "Vectors"
+        },
+        {
+          "id": "f6",
+          "from": "claude-sdk",
+          "to": "collective-wisdom",
+          "label": "Query shared knowledge",
+          "dataType": "SQL + vectors"
+        },
+        {
+          "id": "f7",
+          "from": "vital-intel",
+          "to": "claude-sdk",
+          "label": "Biometric context",
+          "dataType": "Health API"
+        },
+        {
+          "id": "f8",
+          "from": "claude-sdk",
+          "to": "mcp-hub",
+          "label": "Tool calls",
+          "dataType": "MCP protocol"
+        },
+        {
+          "id": "f9",
+          "from": "agent-router",
+          "to": "stripe",
+          "label": "Usage tracking",
+          "dataType": "Events"
+        }
       ]
     },
     "implementationSteps": [
@@ -1052,7 +1166,10 @@
           "Implement basic agent router with session management",
           "Create OpenClaw subagent framework (4 specialist agents)"
         ],
-        "deliverables": ["Working multi-user agent with streaming", "Authenticated per-user sessions"],
+        "deliverables": [
+          "Working multi-user agent with streaming",
+          "Authenticated per-user sessions"
+        ],
         "estimatedDuration": "3 weeks"
       },
       {
@@ -1066,7 +1183,10 @@
           "Create shared knowledge schema for family/org vaults",
           "Encode Hashems 1959 knowledge as proof case"
         ],
-        "deliverables": ["Per-user vector store with RLS", "Queryable collective wisdom vault"],
+        "deliverables": [
+          "Per-user vector store with RLS",
+          "Queryable collective wisdom vault"
+        ],
         "estimatedDuration": "3 weeks"
       },
       {
@@ -1080,7 +1200,10 @@
           "Create cognitive state model (sleep → energy → task routing)",
           "Add trust score system"
         ],
-        "deliverables": ["Guardian protocol middleware", "Biometric-aware agent behavior"],
+        "deliverables": [
+          "Guardian protocol middleware",
+          "Biometric-aware agent behavior"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1094,7 +1217,11 @@
           "Build marketplace foundation for community agents",
           "Add Stripe Connect for contributor payouts"
         ],
-        "deliverables": ["Full MCP connectivity", "Working subscription system", "Marketplace MVP"],
+        "deliverables": [
+          "Full MCP connectivity",
+          "Working subscription system",
+          "Marketplace MVP"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -1115,21 +1242,55 @@
       }
     ],
     "technologies": [
-      "Claude Agent SDK", "Next.js 16", "Vercel Edge", "Supabase", "pgvector",
-      "Stripe", "MCP Protocol", "OpenClaw", "TypeScript", "Framer Motion"
+      "Claude Agent SDK",
+      "Next.js 16",
+      "Vercel Edge",
+      "Supabase",
+      "pgvector",
+      "Stripe",
+      "MCP Protocol",
+      "OpenClaw",
+      "TypeScript",
+      "Framer Motion"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 2400,
       "annual": 28800,
       "breakdown": [
-        { "category": "Claude API (100 users)", "amount": "1200", "percentage": 50 },
-        { "category": "Supabase Pro", "amount": "300", "percentage": 12 },
-        { "category": "Vercel Pro", "amount": "200", "percentage": 8 },
-        { "category": "Stripe fees (3%)", "amount": "400", "percentage": 17 },
-        { "category": "MCP hosting + misc", "amount": "300", "percentage": 13 }
+        {
+          "category": "Claude API (100 users)",
+          "amount": "1200",
+          "percentage": 50
+        },
+        {
+          "category": "Supabase Pro",
+          "amount": "300",
+          "percentage": 12
+        },
+        {
+          "category": "Vercel Pro",
+          "amount": "200",
+          "percentage": 8
+        },
+        {
+          "category": "Stripe fees (3%)",
+          "amount": "400",
+          "percentage": 17
+        },
+        {
+          "category": "MCP hosting + misc",
+          "amount": "300",
+          "percentage": 13
+        }
       ],
-      "assumptions": ["100 active users", "Pro plan average", "~500 agent calls/user/month"]
+      "assumptions": [
+        "100 active users",
+        "Pro plan average",
+        "~500 agent calls/user/month"
+      ]
     },
     "timeToImplement": "10 weeks",
     "useCases": [
@@ -1143,7 +1304,15 @@
     "updatedAt": "2026-04-09T00:00:00Z",
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Deploy a multi-tenant conscious AI platform with Claude Agent SDK, per-user sovereign memory, biometric intelligence, and OpenClaw subagent orchestration.",
-    "keywords": ["claude agent sdk", "multi-agent", "conscious ai", "sovereign data", "mcp servers", "supabase", "openClaw"]
+    "keywords": [
+      "claude agent sdk",
+      "multi-agent",
+      "conscious ai",
+      "sovereign data",
+      "mcp servers",
+      "supabase",
+      "openClaw"
+    ]
   },
   {
     "id": "sovereign-knowledge-vault",
@@ -1159,25 +1328,127 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "capture-api", "name": "Knowledge Capture API", "type": "gateway", "description": "Ingestion endpoint for voice recordings, documents, conversations, and structured data.", "cloudService": "Vercel API Routes" },
-        { "id": "encoder", "name": "Knowledge Encoder", "type": "compute", "description": "Processes raw input into structured knowledge: entity extraction, relationship mapping, embedding generation.", "cloudService": "Claude API + custom pipeline" },
-        { "id": "personal-vault", "name": "Personal Vault", "type": "database", "description": "Private per-user memory store. Conversations, decisions, insights. RLS-enforced — only the owner can access.", "cloudService": "Supabase pgvector (user schema)" },
-        { "id": "family-vault", "name": "Family Vault", "type": "database", "description": "Shared family knowledge. Recipes, stories, business wisdom, ancestral history. Read-all, write-own policy.", "cloudService": "Supabase pgvector (family schema)" },
-        { "id": "business-vault", "name": "Business Intelligence Vault", "type": "database", "description": "Structured business knowledge — supplier relationships, negotiation patterns, market intelligence, financial history.", "cloudService": "Supabase pgvector (org schema)" },
-        { "id": "query-engine", "name": "Semantic Query Engine", "type": "ai-service", "description": "Natural language queries across vaults with automatic scope resolution. Knows which vaults the user can access.", "cloudService": "Claude + pgvector RPC" },
-        { "id": "access-control", "name": "Access Control Layer", "type": "gateway", "description": "Row-level security policies. Personal = owner only. Family = family members. Business = role-based (admin/member/viewer).", "cloudService": "Supabase RLS policies" },
-        { "id": "export-engine", "name": "Sovereignty Export", "type": "storage", "description": "Full data portability. Export all vaults as encrypted packages. Delete on request. Your data, your control.", "cloudService": "Supabase Storage + encryption" }
+        {
+          "id": "capture-api",
+          "name": "Knowledge Capture API",
+          "type": "gateway",
+          "description": "Ingestion endpoint for voice recordings, documents, conversations, and structured data.",
+          "cloudService": "Vercel API Routes"
+        },
+        {
+          "id": "encoder",
+          "name": "Knowledge Encoder",
+          "type": "compute",
+          "description": "Processes raw input into structured knowledge: entity extraction, relationship mapping, embedding generation.",
+          "cloudService": "Claude API + custom pipeline"
+        },
+        {
+          "id": "personal-vault",
+          "name": "Personal Vault",
+          "type": "database",
+          "description": "Private per-user memory store. Conversations, decisions, insights. RLS-enforced — only the owner can access.",
+          "cloudService": "Supabase pgvector (user schema)"
+        },
+        {
+          "id": "family-vault",
+          "name": "Family Vault",
+          "type": "database",
+          "description": "Shared family knowledge. Recipes, stories, business wisdom, ancestral history. Read-all, write-own policy.",
+          "cloudService": "Supabase pgvector (family schema)"
+        },
+        {
+          "id": "business-vault",
+          "name": "Business Intelligence Vault",
+          "type": "database",
+          "description": "Structured business knowledge — supplier relationships, negotiation patterns, market intelligence, financial history.",
+          "cloudService": "Supabase pgvector (org schema)"
+        },
+        {
+          "id": "query-engine",
+          "name": "Semantic Query Engine",
+          "type": "ai-service",
+          "description": "Natural language queries across vaults with automatic scope resolution. Knows which vaults the user can access.",
+          "cloudService": "Claude + pgvector RPC"
+        },
+        {
+          "id": "access-control",
+          "name": "Access Control Layer",
+          "type": "gateway",
+          "description": "Row-level security policies. Personal = owner only. Family = family members. Business = role-based (admin/member/viewer).",
+          "cloudService": "Supabase RLS policies"
+        },
+        {
+          "id": "export-engine",
+          "name": "Sovereignty Export",
+          "type": "storage",
+          "description": "Full data portability. Export all vaults as encrypted packages. Delete on request. Your data, your control.",
+          "cloudService": "Supabase Storage + encryption"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "capture-api", "to": "encoder", "label": "Raw knowledge", "dataType": "Voice/text/docs" },
-        { "id": "f2", "from": "encoder", "to": "personal-vault", "label": "Personal memories", "dataType": "Embeddings + metadata" },
-        { "id": "f3", "from": "encoder", "to": "family-vault", "label": "Family wisdom", "dataType": "Embeddings + metadata" },
-        { "id": "f4", "from": "encoder", "to": "business-vault", "label": "Business intel", "dataType": "Structured + vectors" },
-        { "id": "f5", "from": "query-engine", "to": "personal-vault", "label": "Personal search", "dataType": "Vector similarity" },
-        { "id": "f6", "from": "query-engine", "to": "family-vault", "label": "Family search", "dataType": "Vector similarity" },
-        { "id": "f7", "from": "query-engine", "to": "business-vault", "label": "Business search", "dataType": "Vector similarity" },
-        { "id": "f8", "from": "access-control", "to": "query-engine", "label": "Scope resolution", "dataType": "RLS policies" },
-        { "id": "f9", "from": "personal-vault", "to": "export-engine", "label": "Data export", "dataType": "Encrypted backup" }
+        {
+          "id": "f1",
+          "from": "capture-api",
+          "to": "encoder",
+          "label": "Raw knowledge",
+          "dataType": "Voice/text/docs"
+        },
+        {
+          "id": "f2",
+          "from": "encoder",
+          "to": "personal-vault",
+          "label": "Personal memories",
+          "dataType": "Embeddings + metadata"
+        },
+        {
+          "id": "f3",
+          "from": "encoder",
+          "to": "family-vault",
+          "label": "Family wisdom",
+          "dataType": "Embeddings + metadata"
+        },
+        {
+          "id": "f4",
+          "from": "encoder",
+          "to": "business-vault",
+          "label": "Business intel",
+          "dataType": "Structured + vectors"
+        },
+        {
+          "id": "f5",
+          "from": "query-engine",
+          "to": "personal-vault",
+          "label": "Personal search",
+          "dataType": "Vector similarity"
+        },
+        {
+          "id": "f6",
+          "from": "query-engine",
+          "to": "family-vault",
+          "label": "Family search",
+          "dataType": "Vector similarity"
+        },
+        {
+          "id": "f7",
+          "from": "query-engine",
+          "to": "business-vault",
+          "label": "Business search",
+          "dataType": "Vector similarity"
+        },
+        {
+          "id": "f8",
+          "from": "access-control",
+          "to": "query-engine",
+          "label": "Scope resolution",
+          "dataType": "RLS policies"
+        },
+        {
+          "id": "f9",
+          "from": "personal-vault",
+          "to": "export-engine",
+          "label": "Data export",
+          "dataType": "Encrypted backup"
+        }
       ]
     },
     "implementationSteps": [
@@ -1192,7 +1463,10 @@
           "Build auth integration with user/family/org membership",
           "Deploy Knowledge Capture API endpoints"
         ],
-        "deliverables": ["Three-tier vault with RLS", "Capture API with auth"],
+        "deliverables": [
+          "Three-tier vault with RLS",
+          "Capture API with auth"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1206,7 +1480,10 @@
           "Generate embeddings for semantic search",
           "Implement auto-categorization (personal/family/business)"
         ],
-        "deliverables": ["Working encoding pipeline", "Auto-categorized knowledge entries"],
+        "deliverables": [
+          "Working encoding pipeline",
+          "Auto-categorized knowledge entries"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1220,7 +1497,10 @@
           "Add temporal queries (what happened in 1990?)",
           "Build export engine with encryption"
         ],
-        "deliverables": ["Cross-vault query engine", "Data export with full portability"],
+        "deliverables": [
+          "Cross-vault query engine",
+          "Data export with full portability"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -1234,20 +1514,49 @@
       }
     ],
     "technologies": [
-      "Supabase", "pgvector", "PostgreSQL", "Claude API", "Whisper",
-      "Next.js", "Vercel", "TypeScript", "Row-Level Security"
+      "Supabase",
+      "pgvector",
+      "PostgreSQL",
+      "Claude API",
+      "Whisper",
+      "Next.js",
+      "Vercel",
+      "TypeScript",
+      "Row-Level Security"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 800,
       "annual": 9600,
       "breakdown": [
-        { "category": "Supabase Pro (pgvector)", "amount": "300", "percentage": 37 },
-        { "category": "Claude API (encoding)", "amount": "250", "percentage": 31 },
-        { "category": "Whisper API (voice)", "amount": "100", "percentage": 13 },
-        { "category": "Vercel + storage", "amount": "150", "percentage": 19 }
+        {
+          "category": "Supabase Pro (pgvector)",
+          "amount": "300",
+          "percentage": 37
+        },
+        {
+          "category": "Claude API (encoding)",
+          "amount": "250",
+          "percentage": 31
+        },
+        {
+          "category": "Whisper API (voice)",
+          "amount": "100",
+          "percentage": 13
+        },
+        {
+          "category": "Vercel + storage",
+          "amount": "150",
+          "percentage": 19
+        }
       ],
-      "assumptions": ["50 family members", "~200 knowledge entries/month", "10GB vault storage"]
+      "assumptions": [
+        "50 family members",
+        "~200 knowledge entries/month",
+        "10GB vault storage"
+      ]
     },
     "timeToImplement": "6 weeks",
     "useCases": [
@@ -1261,7 +1570,14 @@
     "updatedAt": "2026-04-09T00:00:00Z",
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Build a sovereign knowledge vault with personal, family, and business tiers — pgvector semantic search, row-level security, and full data portability.",
-    "keywords": ["sovereign data", "knowledge vault", "pgvector", "family intelligence", "supabase rls", "institutional knowledge"]
+    "keywords": [
+      "sovereign data",
+      "knowledge vault",
+      "pgvector",
+      "family intelligence",
+      "supabase rls",
+      "institutional knowledge"
+    ]
   },
   {
     "id": "mcp-agent-marketplace",
@@ -1277,22 +1593,106 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "marketplace-ui", "name": "Marketplace Frontend", "type": "gateway", "description": "Browse, search, preview, and purchase agents and MCP servers. Glassmorphic design, real-time search.", "cloudService": "Next.js on Vercel" },
-        { "id": "submission-api", "name": "Submission Pipeline", "type": "compute", "description": "GitHub webhook-triggered pipeline. Validates package structure, runs automated tests, checks for security issues.", "cloudService": "Vercel Serverless + GitHub Actions" },
-        { "id": "quality-engine", "name": "Quality & Review Engine", "type": "ai-service", "description": "Claude-powered code review and quality scoring. Checks for best practices, security vulnerabilities, and documentation quality.", "cloudService": "Claude API" },
-        { "id": "package-registry", "name": "Package Registry", "type": "database", "description": "Catalog of all published agents, MCP servers, skills, and automations with metadata, ratings, and version history.", "cloudService": "Supabase PostgreSQL" },
-        { "id": "deploy-engine", "name": "One-Click Deploy", "type": "compute", "description": "Deploys purchased packages to buyer's agent constellation. Handles environment setup, MCP server registration, and agent configuration.", "cloudService": "Vercel Sandbox" },
-        { "id": "stripe-connect", "name": "Stripe Connect", "type": "external", "description": "Handles marketplace payments with automatic 70/30 split. Contributor payouts, refunds, and usage-based billing.", "cloudService": "Stripe Connect + Billing" },
-        { "id": "analytics", "name": "Marketplace Analytics", "type": "compute", "description": "Download counts, revenue tracking, user reviews, trending packages. Powers the recommendation engine.", "cloudService": "Supabase + Vercel Analytics" }
+        {
+          "id": "marketplace-ui",
+          "name": "Marketplace Frontend",
+          "type": "gateway",
+          "description": "Browse, search, preview, and purchase agents and MCP servers. Glassmorphic design, real-time search.",
+          "cloudService": "Next.js on Vercel"
+        },
+        {
+          "id": "submission-api",
+          "name": "Submission Pipeline",
+          "type": "compute",
+          "description": "GitHub webhook-triggered pipeline. Validates package structure, runs automated tests, checks for security issues.",
+          "cloudService": "Vercel Serverless + GitHub Actions"
+        },
+        {
+          "id": "quality-engine",
+          "name": "Quality & Review Engine",
+          "type": "ai-service",
+          "description": "Claude-powered code review and quality scoring. Checks for best practices, security vulnerabilities, and documentation quality.",
+          "cloudService": "Claude API"
+        },
+        {
+          "id": "package-registry",
+          "name": "Package Registry",
+          "type": "database",
+          "description": "Catalog of all published agents, MCP servers, skills, and automations with metadata, ratings, and version history.",
+          "cloudService": "Supabase PostgreSQL"
+        },
+        {
+          "id": "deploy-engine",
+          "name": "One-Click Deploy",
+          "type": "compute",
+          "description": "Deploys purchased packages to buyer's agent constellation. Handles environment setup, MCP server registration, and agent configuration.",
+          "cloudService": "Vercel Sandbox"
+        },
+        {
+          "id": "stripe-connect",
+          "name": "Stripe Connect",
+          "type": "external",
+          "description": "Handles marketplace payments with automatic 70/30 split. Contributor payouts, refunds, and usage-based billing.",
+          "cloudService": "Stripe Connect + Billing"
+        },
+        {
+          "id": "analytics",
+          "name": "Marketplace Analytics",
+          "type": "compute",
+          "description": "Download counts, revenue tracking, user reviews, trending packages. Powers the recommendation engine.",
+          "cloudService": "Supabase + Vercel Analytics"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "submission-api", "to": "quality-engine", "label": "Review package", "dataType": "Code + manifest" },
-        { "id": "f2", "from": "quality-engine", "to": "package-registry", "label": "Approved listing", "dataType": "Package metadata" },
-        { "id": "f3", "from": "marketplace-ui", "to": "package-registry", "label": "Browse & search", "dataType": "API queries" },
-        { "id": "f4", "from": "marketplace-ui", "to": "stripe-connect", "label": "Purchase", "dataType": "Payment intent" },
-        { "id": "f5", "from": "stripe-connect", "to": "deploy-engine", "label": "License granted", "dataType": "Webhook" },
-        { "id": "f6", "from": "deploy-engine", "to": "marketplace-ui", "label": "Deployed", "dataType": "Agent config" },
-        { "id": "f7", "from": "marketplace-ui", "to": "analytics", "label": "Usage events", "dataType": "Telemetry" }
+        {
+          "id": "f1",
+          "from": "submission-api",
+          "to": "quality-engine",
+          "label": "Review package",
+          "dataType": "Code + manifest"
+        },
+        {
+          "id": "f2",
+          "from": "quality-engine",
+          "to": "package-registry",
+          "label": "Approved listing",
+          "dataType": "Package metadata"
+        },
+        {
+          "id": "f3",
+          "from": "marketplace-ui",
+          "to": "package-registry",
+          "label": "Browse & search",
+          "dataType": "API queries"
+        },
+        {
+          "id": "f4",
+          "from": "marketplace-ui",
+          "to": "stripe-connect",
+          "label": "Purchase",
+          "dataType": "Payment intent"
+        },
+        {
+          "id": "f5",
+          "from": "stripe-connect",
+          "to": "deploy-engine",
+          "label": "License granted",
+          "dataType": "Webhook"
+        },
+        {
+          "id": "f6",
+          "from": "deploy-engine",
+          "to": "marketplace-ui",
+          "label": "Deployed",
+          "dataType": "Agent config"
+        },
+        {
+          "id": "f7",
+          "from": "marketplace-ui",
+          "to": "analytics",
+          "label": "Usage events",
+          "dataType": "Telemetry"
+        }
       ]
     },
     "implementationSteps": [
@@ -1307,7 +1707,10 @@
           "Implement package detail pages with architecture diagrams",
           "Add rating and review system"
         ],
-        "deliverables": ["Package registry", "Marketplace UI with search"],
+        "deliverables": [
+          "Package registry",
+          "Marketplace UI with search"
+        ],
         "estimatedDuration": "3 weeks"
       },
       {
@@ -1321,7 +1724,10 @@
           "Add security scanning for MCP servers",
           "Create contributor dashboard"
         ],
-        "deliverables": ["Automated quality pipeline", "Contributor portal"],
+        "deliverables": [
+          "Automated quality pipeline",
+          "Contributor portal"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1335,7 +1741,10 @@
           "Add usage-based billing for premium packages",
           "Create payout dashboard for contributors"
         ],
-        "deliverables": ["Working marketplace with payments", "One-click deploy"],
+        "deliverables": [
+          "Working marketplace with payments",
+          "One-click deploy"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -1349,20 +1758,48 @@
       }
     ],
     "technologies": [
-      "Next.js 16", "Vercel", "Supabase", "Stripe Connect",
-      "GitHub Actions", "Claude API", "MCP Protocol", "TypeScript"
+      "Next.js 16",
+      "Vercel",
+      "Supabase",
+      "Stripe Connect",
+      "GitHub Actions",
+      "Claude API",
+      "MCP Protocol",
+      "TypeScript"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 600,
       "annual": 7200,
       "breakdown": [
-        { "category": "Supabase Pro", "amount": "200", "percentage": 33 },
-        { "category": "Vercel Pro", "amount": "200", "percentage": 33 },
-        { "category": "Claude API (reviews)", "amount": "100", "percentage": 17 },
-        { "category": "GitHub Actions + misc", "amount": "100", "percentage": 17 }
+        {
+          "category": "Supabase Pro",
+          "amount": "200",
+          "percentage": 33
+        },
+        {
+          "category": "Vercel Pro",
+          "amount": "200",
+          "percentage": 33
+        },
+        {
+          "category": "Claude API (reviews)",
+          "amount": "100",
+          "percentage": 17
+        },
+        {
+          "category": "GitHub Actions + misc",
+          "amount": "100",
+          "percentage": 17
+        }
       ],
-      "assumptions": ["50 packages listed", "200 monthly purchases", "10 active contributors"]
+      "assumptions": [
+        "50 packages listed",
+        "200 monthly purchases",
+        "10 active contributors"
+      ]
     },
     "timeToImplement": "7 weeks",
     "useCases": [
@@ -1376,7 +1813,14 @@
     "updatedAt": "2026-04-09T00:00:00Z",
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Build a community-driven marketplace for AI agents, MCP servers, and workflow automations with Stripe Connect payouts and one-click deployment.",
-    "keywords": ["mcp marketplace", "agent marketplace", "stripe connect", "mcp servers", "ai agents", "community platform"]
+    "keywords": [
+      "mcp marketplace",
+      "agent marketplace",
+      "stripe connect",
+      "mcp servers",
+      "ai agents",
+      "community platform"
+    ]
   },
   {
     "id": "starlight-intelligence-system",
@@ -1392,28 +1836,148 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "sis-gateway", "name": "SIS Gateway", "type": "gateway", "description": "Unified API endpoint for all intelligence requests. Classifies intent, determines complexity, and routes to optimal processing path.", "cloudService": "Vercel Edge Functions" },
-        { "id": "intent-classifier", "name": "Intent Classifier", "type": "ai-service", "description": "16-category intent classification. Maps requests to domains: code, research, creative, strategy, health, communication, analysis, etc.", "cloudService": "Claude Haiku (fast)" },
-        { "id": "model-router", "name": "Model Router", "type": "compute", "description": "Selects optimal model based on task complexity, budget tier, and historical performance. Routes between Claude Opus, Sonnet, Haiku, Gemini, GPT, and local LLMs.", "cloudService": "Custom routing engine" },
-        { "id": "claude-pool", "name": "Claude Models", "type": "ai-service", "description": "Opus 4.6 for complex reasoning, Sonnet 4.6 for balanced tasks, Haiku 4.5 for fast classification and routing.", "cloudService": "Anthropic API" },
-        { "id": "gemini-pool", "name": "Gemini Models", "type": "ai-service", "description": "Gemini 3 Pro for multimodal tasks, image generation, and visual understanding.", "cloudService": "Google AI API" },
-        { "id": "local-llm", "name": "Local LLM Pool", "type": "ai-service", "description": "Llama 4 / Mistral for private queries that shouldn't leave the network. Sovereignty-first option.", "cloudService": "Ollama / vLLM" },
-        { "id": "reasoning-bank", "name": "Reasoning Bank", "type": "database", "description": "Stores decision trajectories, success/failure patterns, and strategy outcomes. Each trajectory includes context, action, result, and quality score.", "cloudService": "Supabase + pgvector" },
-        { "id": "agent-coordinator", "name": "Agent Coordinator", "type": "compute", "description": "Manages multi-agent workflows. Handles task decomposition, parallel execution, context handoffs, and result aggregation.", "cloudService": "Claude Agent SDK" },
-        { "id": "starlight-vault", "name": "Starlight Vault", "type": "storage", "description": "Strategic memory — long-term patterns, organizational priorities, decision history, and learned preferences. The system's institutional wisdom.", "cloudService": "Supabase encrypted storage" },
-        { "id": "telemetry", "name": "Intelligence Telemetry", "type": "compute", "description": "Cost tracking, latency monitoring, quality scoring, and model performance comparison across all routes.", "cloudService": "Vercel Analytics + custom" }
+        {
+          "id": "sis-gateway",
+          "name": "SIS Gateway",
+          "type": "gateway",
+          "description": "Unified API endpoint for all intelligence requests. Classifies intent, determines complexity, and routes to optimal processing path.",
+          "cloudService": "Vercel Edge Functions"
+        },
+        {
+          "id": "intent-classifier",
+          "name": "Intent Classifier",
+          "type": "ai-service",
+          "description": "16-category intent classification. Maps requests to domains: code, research, creative, strategy, health, communication, analysis, etc.",
+          "cloudService": "Claude Haiku (fast)"
+        },
+        {
+          "id": "model-router",
+          "name": "Model Router",
+          "type": "compute",
+          "description": "Selects optimal model based on task complexity, budget tier, and historical performance. Routes between Claude Opus, Sonnet, Haiku, Gemini, GPT, and local LLMs.",
+          "cloudService": "Custom routing engine"
+        },
+        {
+          "id": "claude-pool",
+          "name": "Claude Models",
+          "type": "ai-service",
+          "description": "Opus 4.6 for complex reasoning, Sonnet 4.6 for balanced tasks, Haiku 4.5 for fast classification and routing.",
+          "cloudService": "Anthropic API"
+        },
+        {
+          "id": "gemini-pool",
+          "name": "Gemini Models",
+          "type": "ai-service",
+          "description": "Gemini 3 Pro for multimodal tasks, image generation, and visual understanding.",
+          "cloudService": "Google AI API"
+        },
+        {
+          "id": "local-llm",
+          "name": "Local LLM Pool",
+          "type": "ai-service",
+          "description": "Llama 4 / Mistral for private queries that shouldn't leave the network. Sovereignty-first option.",
+          "cloudService": "Ollama / vLLM"
+        },
+        {
+          "id": "reasoning-bank",
+          "name": "Reasoning Bank",
+          "type": "database",
+          "description": "Stores decision trajectories, success/failure patterns, and strategy outcomes. Each trajectory includes context, action, result, and quality score.",
+          "cloudService": "Supabase + pgvector"
+        },
+        {
+          "id": "agent-coordinator",
+          "name": "Agent Coordinator",
+          "type": "compute",
+          "description": "Manages multi-agent workflows. Handles task decomposition, parallel execution, context handoffs, and result aggregation.",
+          "cloudService": "Claude Agent SDK"
+        },
+        {
+          "id": "starlight-vault",
+          "name": "Starlight Vault",
+          "type": "storage",
+          "description": "Strategic memory — long-term patterns, organizational priorities, decision history, and learned preferences. The system's institutional wisdom.",
+          "cloudService": "Supabase encrypted storage"
+        },
+        {
+          "id": "telemetry",
+          "name": "Intelligence Telemetry",
+          "type": "compute",
+          "description": "Cost tracking, latency monitoring, quality scoring, and model performance comparison across all routes.",
+          "cloudService": "Vercel Analytics + custom"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "sis-gateway", "to": "intent-classifier", "label": "Classify request", "dataType": "Text" },
-        { "id": "f2", "from": "intent-classifier", "to": "model-router", "label": "Intent + complexity", "dataType": "Classification" },
-        { "id": "f3", "from": "model-router", "to": "claude-pool", "label": "Complex tasks", "dataType": "API call" },
-        { "id": "f4", "from": "model-router", "to": "gemini-pool", "label": "Multimodal tasks", "dataType": "API call" },
-        { "id": "f5", "from": "model-router", "to": "local-llm", "label": "Private queries", "dataType": "Local inference" },
-        { "id": "f6", "from": "model-router", "to": "agent-coordinator", "label": "Multi-step tasks", "dataType": "Task graph" },
-        { "id": "f7", "from": "agent-coordinator", "to": "reasoning-bank", "label": "Store trajectory", "dataType": "Decision log" },
-        { "id": "f8", "from": "reasoning-bank", "to": "model-router", "label": "Historical patterns", "dataType": "Learned routes" },
-        { "id": "f9", "from": "agent-coordinator", "to": "starlight-vault", "label": "Strategic memory", "dataType": "Long-term patterns" },
-        { "id": "f10", "from": "telemetry", "to": "model-router", "label": "Performance data", "dataType": "Metrics" }
+        {
+          "id": "f1",
+          "from": "sis-gateway",
+          "to": "intent-classifier",
+          "label": "Classify request",
+          "dataType": "Text"
+        },
+        {
+          "id": "f2",
+          "from": "intent-classifier",
+          "to": "model-router",
+          "label": "Intent + complexity",
+          "dataType": "Classification"
+        },
+        {
+          "id": "f3",
+          "from": "model-router",
+          "to": "claude-pool",
+          "label": "Complex tasks",
+          "dataType": "API call"
+        },
+        {
+          "id": "f4",
+          "from": "model-router",
+          "to": "gemini-pool",
+          "label": "Multimodal tasks",
+          "dataType": "API call"
+        },
+        {
+          "id": "f5",
+          "from": "model-router",
+          "to": "local-llm",
+          "label": "Private queries",
+          "dataType": "Local inference"
+        },
+        {
+          "id": "f6",
+          "from": "model-router",
+          "to": "agent-coordinator",
+          "label": "Multi-step tasks",
+          "dataType": "Task graph"
+        },
+        {
+          "id": "f7",
+          "from": "agent-coordinator",
+          "to": "reasoning-bank",
+          "label": "Store trajectory",
+          "dataType": "Decision log"
+        },
+        {
+          "id": "f8",
+          "from": "reasoning-bank",
+          "to": "model-router",
+          "label": "Historical patterns",
+          "dataType": "Learned routes"
+        },
+        {
+          "id": "f9",
+          "from": "agent-coordinator",
+          "to": "starlight-vault",
+          "label": "Strategic memory",
+          "dataType": "Long-term patterns"
+        },
+        {
+          "id": "f10",
+          "from": "telemetry",
+          "to": "model-router",
+          "label": "Performance data",
+          "dataType": "Metrics"
+        }
       ]
     },
     "implementationSteps": [
@@ -1428,7 +1992,10 @@
           "Build request normalization pipeline",
           "Add authentication and rate limiting per tier"
         ],
-        "deliverables": ["Working gateway with intent classification", "Complexity scoring"],
+        "deliverables": [
+          "Working gateway with intent classification",
+          "Complexity scoring"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1442,7 +2009,10 @@
           "Build routing algorithm (complexity × budget × history)",
           "Implement fallback chains (primary → secondary → tertiary)"
         ],
-        "deliverables": ["Multi-provider model router", "Automatic fallback chains"],
+        "deliverables": [
+          "Multi-provider model router",
+          "Automatic fallback chains"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1456,7 +2026,10 @@
           "Create feedback loop: trajectory → router weights",
           "Deploy Starlight Vault for long-term strategic memory"
         ],
-        "deliverables": ["Learning reasoning bank", "Self-improving routing"],
+        "deliverables": [
+          "Learning reasoning bank",
+          "Self-improving routing"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1470,7 +2043,10 @@
           "Deploy telemetry dashboard (cost, latency, quality)",
           "Create model performance comparison reports"
         ],
-        "deliverables": ["Agent coordination layer", "Full observability dashboard"],
+        "deliverables": [
+          "Agent coordination layer",
+          "Full observability dashboard"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -1484,21 +2060,54 @@
       }
     ],
     "technologies": [
-      "Claude Agent SDK", "Anthropic API", "Google Gemini API", "Ollama",
-      "Vercel Edge Functions", "Supabase", "pgvector", "TypeScript", "Next.js"
+      "Claude Agent SDK",
+      "Anthropic API",
+      "Google Gemini API",
+      "Ollama",
+      "Vercel Edge Functions",
+      "Supabase",
+      "pgvector",
+      "TypeScript",
+      "Next.js"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 1800,
       "annual": 21600,
       "breakdown": [
-        { "category": "Claude API (multi-tier)", "amount": "800", "percentage": 44 },
-        { "category": "Gemini API", "amount": "300", "percentage": 17 },
-        { "category": "Supabase Pro", "amount": "300", "percentage": 17 },
-        { "category": "Vercel Pro", "amount": "200", "percentage": 11 },
-        { "category": "Local GPU (Ollama)", "amount": "200", "percentage": 11 }
+        {
+          "category": "Claude API (multi-tier)",
+          "amount": "800",
+          "percentage": 44
+        },
+        {
+          "category": "Gemini API",
+          "amount": "300",
+          "percentage": 17
+        },
+        {
+          "category": "Supabase Pro",
+          "amount": "300",
+          "percentage": 17
+        },
+        {
+          "category": "Vercel Pro",
+          "amount": "200",
+          "percentage": 11
+        },
+        {
+          "category": "Local GPU (Ollama)",
+          "amount": "200",
+          "percentage": 11
+        }
       ],
-      "assumptions": ["200 active users", "~1000 routed requests/day", "30% Opus, 50% Sonnet, 20% Haiku"]
+      "assumptions": [
+        "200 active users",
+        "~1000 routed requests/day",
+        "30% Opus, 50% Sonnet, 20% Haiku"
+      ]
     },
     "timeToImplement": "8 weeks",
     "useCases": [
@@ -1512,7 +2121,14 @@
     "updatedAt": "2026-04-09T00:00:00Z",
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Build a strategic AI orchestration layer with multi-model routing, reasoning bank learning, and agent coordination across Claude, Gemini, and local LLMs.",
-    "keywords": ["ai orchestration", "model routing", "multi-agent", "reasoning bank", "starlight intelligence", "claude agent sdk"]
+    "keywords": [
+      "ai orchestration",
+      "model routing",
+      "multi-agent",
+      "reasoning bank",
+      "starlight intelligence",
+      "claude agent sdk"
+    ]
   },
   {
     "id": "vital-intelligence-health-system",
@@ -1528,24 +2144,120 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "wearable-api", "name": "Wearable Data Ingest", "type": "external", "description": "Connects to Apple HealthKit, Oura API, Whoop API, and Garmin Connect. Pulls sleep, HRV, resting HR, activity, and recovery data.", "cloudService": "OAuth2 integrations" },
-        { "id": "vitals-processor", "name": "Vitals Processor", "type": "compute", "description": "Normalizes biometric data from multiple sources. Computes rolling averages, trend detection, and anomaly flags.", "cloudService": "Railway (Node.js)" },
-        { "id": "cognitive-model", "name": "Wellness Context Model", "type": "ai-service", "description": "Summarizes wearable and self-reported signals into planning context: recent sleep, subjective energy, activity trend, and user-noted recovery needs. Uses Claude for plain-language summaries, not diagnosis.", "cloudService": "Claude Haiku + custom model" },
-        { "id": "vitals-store", "name": "Vitals Time-Series DB", "type": "database", "description": "Stores biometric history with per-user isolation. Time-series optimized for trend queries and pattern detection.", "cloudService": "Supabase (TimescaleDB extension)" },
-        { "id": "mcp-server", "name": "Vital Intelligence MCP", "type": "gateway", "description": "MCP server exposing wellness-context tools to any Claude agent. Tools: get_energy_context, suggest_task_timing, summarize_stress_notes, log_recovery_notes, get_sleep_summary.", "cloudService": "Railway (MCP SDK)" },
-        { "id": "scheduler", "name": "Adaptive Scheduler", "type": "compute", "description": "Reorders task queue based on cognitive state. Moves deep work to high-energy windows, admin to low-energy periods.", "cloudService": "Vercel Cron + Calendar API" },
-        { "id": "intervention", "name": "Wellness Notes", "type": "ai-service", "description": "Generates educational prompts and self-reflection notes: breathing practice reminders, movement-break ideas, hydration check-ins, and user-authored recovery logs.", "cloudService": "Claude Sonnet" },
-        { "id": "dashboard", "name": "Health Dashboard", "type": "gateway", "description": "Real-time vitals dashboard showing energy levels, sleep trends, stress patterns, and AI adaptation history.", "cloudService": "Next.js on Vercel" }
+        {
+          "id": "wearable-api",
+          "name": "Wearable Data Ingest",
+          "type": "external",
+          "description": "Connects to Apple HealthKit, Oura API, Whoop API, and Garmin Connect. Pulls sleep, HRV, resting HR, activity, and recovery data.",
+          "cloudService": "OAuth2 integrations"
+        },
+        {
+          "id": "vitals-processor",
+          "name": "Vitals Processor",
+          "type": "compute",
+          "description": "Normalizes biometric data from multiple sources. Computes rolling averages, trend detection, and anomaly flags.",
+          "cloudService": "Railway (Node.js)"
+        },
+        {
+          "id": "cognitive-model",
+          "name": "Wellness Context Model",
+          "type": "ai-service",
+          "description": "Summarizes wearable and self-reported signals into planning context: recent sleep, subjective energy, activity trend, and user-noted recovery needs. Uses Claude for plain-language summaries, not diagnosis.",
+          "cloudService": "Claude Haiku + custom model"
+        },
+        {
+          "id": "vitals-store",
+          "name": "Vitals Time-Series DB",
+          "type": "database",
+          "description": "Stores biometric history with per-user isolation. Time-series optimized for trend queries and pattern detection.",
+          "cloudService": "Supabase (TimescaleDB extension)"
+        },
+        {
+          "id": "mcp-server",
+          "name": "Vital Intelligence MCP",
+          "type": "gateway",
+          "description": "MCP server exposing wellness-context tools to any Claude agent. Tools: get_energy_context, suggest_task_timing, summarize_stress_notes, log_recovery_notes, get_sleep_summary.",
+          "cloudService": "Railway (MCP SDK)"
+        },
+        {
+          "id": "scheduler",
+          "name": "Adaptive Scheduler",
+          "type": "compute",
+          "description": "Reorders task queue based on cognitive state. Moves deep work to high-energy windows, admin to low-energy periods.",
+          "cloudService": "Vercel Cron + Calendar API"
+        },
+        {
+          "id": "intervention",
+          "name": "Wellness Notes",
+          "type": "ai-service",
+          "description": "Generates educational prompts and self-reflection notes: breathing practice reminders, movement-break ideas, hydration check-ins, and user-authored recovery logs.",
+          "cloudService": "Claude Sonnet"
+        },
+        {
+          "id": "dashboard",
+          "name": "Health Dashboard",
+          "type": "gateway",
+          "description": "Real-time vitals dashboard showing energy levels, sleep trends, stress patterns, and AI adaptation history.",
+          "cloudService": "Next.js on Vercel"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "wearable-api", "to": "vitals-processor", "label": "Raw biometrics", "dataType": "HealthKit/Oura/Whoop" },
-        { "id": "f2", "from": "vitals-processor", "to": "vitals-store", "label": "Normalized data", "dataType": "Time-series" },
-        { "id": "f3", "from": "vitals-processor", "to": "cognitive-model", "label": "Current state", "dataType": "Biometric snapshot" },
-        { "id": "f4", "from": "cognitive-model", "to": "mcp-server", "label": "Cognitive state", "dataType": "Energy/stress/focus" },
-        { "id": "f5", "from": "mcp-server", "to": "scheduler", "label": "Task reordering", "dataType": "Priority updates" },
-        { "id": "f6", "from": "cognitive-model", "to": "intervention", "label": "Low state detected", "dataType": "Alert trigger" },
-        { "id": "f7", "from": "intervention", "to": "mcp-server", "label": "Recovery suggestion", "dataType": "Guided exercise" },
-        { "id": "f8", "from": "vitals-store", "to": "dashboard", "label": "Trends & history", "dataType": "Charts" }
+        {
+          "id": "f1",
+          "from": "wearable-api",
+          "to": "vitals-processor",
+          "label": "Raw biometrics",
+          "dataType": "HealthKit/Oura/Whoop"
+        },
+        {
+          "id": "f2",
+          "from": "vitals-processor",
+          "to": "vitals-store",
+          "label": "Normalized data",
+          "dataType": "Time-series"
+        },
+        {
+          "id": "f3",
+          "from": "vitals-processor",
+          "to": "cognitive-model",
+          "label": "Current state",
+          "dataType": "Biometric snapshot"
+        },
+        {
+          "id": "f4",
+          "from": "cognitive-model",
+          "to": "mcp-server",
+          "label": "Cognitive state",
+          "dataType": "Energy/stress/focus"
+        },
+        {
+          "id": "f5",
+          "from": "mcp-server",
+          "to": "scheduler",
+          "label": "Task reordering",
+          "dataType": "Priority updates"
+        },
+        {
+          "id": "f6",
+          "from": "cognitive-model",
+          "to": "intervention",
+          "label": "Low state detected",
+          "dataType": "Alert trigger"
+        },
+        {
+          "id": "f7",
+          "from": "intervention",
+          "to": "mcp-server",
+          "label": "Recovery suggestion",
+          "dataType": "Guided exercise"
+        },
+        {
+          "id": "f8",
+          "from": "vitals-store",
+          "to": "dashboard",
+          "label": "Trends & history",
+          "dataType": "Charts"
+        }
       ]
     },
     "implementationSteps": [
@@ -1560,7 +2272,10 @@
           "Build data normalization layer (unified schema)",
           "Deploy time-series storage on Supabase"
         ],
-        "deliverables": ["Multi-wearable data pipeline", "Unified biometric schema"],
+        "deliverables": [
+          "Multi-wearable data pipeline",
+          "Unified biometric schema"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1574,7 +2289,10 @@
           "Implement anomaly detection (unusual HRV, poor sleep)",
           "Create adaptive thresholds per user"
         ],
-        "deliverables": ["Cognitive state scoring engine", "Personal baseline calibration"],
+        "deliverables": [
+          "Cognitive state scoring engine",
+          "Personal baseline calibration"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -1588,7 +2306,11 @@
           "Create wellness intervention library (breathing, movement, hydration)",
           "Build health dashboard with real-time charts"
         ],
-        "deliverables": ["Production MCP server on Railway", "Health dashboard", "Intervention system"],
+        "deliverables": [
+          "Production MCP server on Railway",
+          "Health dashboard",
+          "Intervention system"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -1602,21 +2324,51 @@
       }
     ],
     "technologies": [
-      "MCP SDK", "Apple HealthKit", "Oura API", "Whoop API",
-      "Railway", "Supabase", "TimescaleDB", "Claude API",
-      "Next.js", "Chart.js", "TypeScript"
+      "MCP SDK",
+      "Apple HealthKit",
+      "Oura API",
+      "Whoop API",
+      "Railway",
+      "Supabase",
+      "TimescaleDB",
+      "Claude API",
+      "Next.js",
+      "Chart.js",
+      "TypeScript"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 400,
       "annual": 4800,
       "breakdown": [
-        { "category": "Railway (MCP server)", "amount": "100", "percentage": 25 },
-        { "category": "Supabase Pro", "amount": "100", "percentage": 25 },
-        { "category": "Claude API (scoring)", "amount": "100", "percentage": 25 },
-        { "category": "Vercel (dashboard)", "amount": "100", "percentage": 25 }
+        {
+          "category": "Railway (MCP server)",
+          "amount": "100",
+          "percentage": 25
+        },
+        {
+          "category": "Supabase Pro",
+          "amount": "100",
+          "percentage": 25
+        },
+        {
+          "category": "Claude API (scoring)",
+          "amount": "100",
+          "percentage": 25
+        },
+        {
+          "category": "Vercel (dashboard)",
+          "amount": "100",
+          "percentage": 25
+        }
       ],
-      "assumptions": ["1 user (personal)", "~100 biometric syncs/day", "5 MCP tool calls/hour"]
+      "assumptions": [
+        "1 user (personal)",
+        "~100 biometric syncs/day",
+        "5 MCP tool calls/hour"
+      ]
     },
     "timeToImplement": "6 weeks",
     "useCases": [
@@ -1630,7 +2382,15 @@
     "updatedAt": "2026-04-09T00:00:00Z",
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Build a biometric-aware AI system with wearable integration, cognitive state modeling, and MCP server deployment on Railway.",
-    "keywords": ["health ai", "biometric integration", "mcp server", "apple health", "oura ring", "cognitive state", "vital intelligence"]
+    "keywords": [
+      "health ai",
+      "biometric integration",
+      "mcp server",
+      "apple health",
+      "oura ring",
+      "cognitive state",
+      "vital intelligence"
+    ]
   },
   {
     "id": "ollama-openwebui-railway",
@@ -1646,22 +2406,106 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "openwebui", "name": "OpenWebUI Chat Interface", "type": "gateway", "description": "React/Svelte frontend with multi-user auth, conversation history, model switching, RAG support, and prompt library.", "cloudService": "Railway (Docker)" },
-        { "id": "ollama", "name": "Ollama Runtime", "type": "ai-service", "description": "LLM inference server supporting Llama 3.3, Mistral, Qwen, Phi, Gemma, and any GGUF model. Exposes OpenAI-compatible API.", "cloudService": "Railway (Docker)" },
-        { "id": "postgres", "name": "PostgreSQL", "type": "database", "description": "User accounts, conversation history, settings, and RBAC. Managed Postgres with automated backups.", "cloudService": "Railway Postgres" },
-        { "id": "model-volume", "name": "Model Volume", "type": "storage", "description": "Persistent disk for downloaded GGUF models (10-80GB). Survives container restarts and redeploys.", "cloudService": "Railway Volume" },
-        { "id": "cloudflare", "name": "Cloudflare Tunnel", "type": "gateway", "description": "Optional SSL + custom domain with zero config. Zero-trust access and DDoS protection.", "cloudService": "Cloudflare" },
-        { "id": "runpod-gpu", "name": "RunPod Serverless GPU", "type": "external", "description": "Optional: offload heavy models (70B+) to serverless GPU. Pay per second, auto-scale to zero.", "cloudService": "RunPod Serverless" },
-        { "id": "backup", "name": "Automated Backups", "type": "storage", "description": "Daily snapshots of conversations, users, and settings. S3-compatible storage with retention policy.", "cloudService": "Railway Scheduled Jobs" }
+        {
+          "id": "openwebui",
+          "name": "OpenWebUI Chat Interface",
+          "type": "gateway",
+          "description": "React/Svelte frontend with multi-user auth, conversation history, model switching, RAG support, and prompt library.",
+          "cloudService": "Railway (Docker)"
+        },
+        {
+          "id": "ollama",
+          "name": "Ollama Runtime",
+          "type": "ai-service",
+          "description": "LLM inference server supporting Llama 3.3, Mistral, Qwen, Phi, Gemma, and any GGUF model. Exposes OpenAI-compatible API.",
+          "cloudService": "Railway (Docker)"
+        },
+        {
+          "id": "postgres",
+          "name": "PostgreSQL",
+          "type": "database",
+          "description": "User accounts, conversation history, settings, and RBAC. Managed Postgres with automated backups.",
+          "cloudService": "Railway Postgres"
+        },
+        {
+          "id": "model-volume",
+          "name": "Model Volume",
+          "type": "storage",
+          "description": "Persistent disk for downloaded GGUF models (10-80GB). Survives container restarts and redeploys.",
+          "cloudService": "Railway Volume"
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare Tunnel",
+          "type": "gateway",
+          "description": "Optional SSL + custom domain with zero config. Zero-trust access and DDoS protection.",
+          "cloudService": "Cloudflare"
+        },
+        {
+          "id": "runpod-gpu",
+          "name": "RunPod Serverless GPU",
+          "type": "external",
+          "description": "Optional: offload heavy models (70B+) to serverless GPU. Pay per second, auto-scale to zero.",
+          "cloudService": "RunPod Serverless"
+        },
+        {
+          "id": "backup",
+          "name": "Automated Backups",
+          "type": "storage",
+          "description": "Daily snapshots of conversations, users, and settings. S3-compatible storage with retention policy.",
+          "cloudService": "Railway Scheduled Jobs"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "openwebui", "to": "ollama", "label": "User → chat UI", "dataType": "HTTPS" },
-        { "id": "f2", "from": "cloudflare", "to": "openwebui", "label": "SSL termination", "dataType": "TLS tunnel" },
-        { "id": "f3", "from": "openwebui", "to": "ollama", "label": "Inference requests", "dataType": "OpenAI API" },
-        { "id": "f4", "from": "openwebui", "to": "postgres", "label": "Auth + history", "dataType": "SQL" },
-        { "id": "f5", "from": "ollama", "to": "model-volume", "label": "Load models", "dataType": "GGUF files" },
-        { "id": "f6", "from": "ollama", "to": "runpod-gpu", "label": "Heavy inference overflow", "dataType": "GPU requests" },
-        { "id": "f7", "from": "postgres", "to": "backup", "label": "Daily snapshot", "dataType": "pg_dump" }
+        {
+          "id": "f1",
+          "from": "openwebui",
+          "to": "ollama",
+          "label": "User → chat UI",
+          "dataType": "HTTPS"
+        },
+        {
+          "id": "f2",
+          "from": "cloudflare",
+          "to": "openwebui",
+          "label": "SSL termination",
+          "dataType": "TLS tunnel"
+        },
+        {
+          "id": "f3",
+          "from": "openwebui",
+          "to": "ollama",
+          "label": "Inference requests",
+          "dataType": "OpenAI API"
+        },
+        {
+          "id": "f4",
+          "from": "openwebui",
+          "to": "postgres",
+          "label": "Auth + history",
+          "dataType": "SQL"
+        },
+        {
+          "id": "f5",
+          "from": "ollama",
+          "to": "model-volume",
+          "label": "Load models",
+          "dataType": "GGUF files"
+        },
+        {
+          "id": "f6",
+          "from": "ollama",
+          "to": "runpod-gpu",
+          "label": "Heavy inference overflow",
+          "dataType": "GPU requests"
+        },
+        {
+          "id": "f7",
+          "from": "postgres",
+          "to": "backup",
+          "label": "Daily snapshot",
+          "dataType": "pg_dump"
+        }
       ]
     },
     "implementationSteps": [
@@ -1676,7 +2520,11 @@
           "Pull first model via OpenWebUI (llama3.3:8b or mistral:7b)",
           "Verify chat works with default admin user"
         ],
-        "deliverables": ["Running OpenWebUI instance", "First model loaded", "Admin access"],
+        "deliverables": [
+          "Running OpenWebUI instance",
+          "First model loaded",
+          "Admin access"
+        ],
         "estimatedDuration": "15 minutes"
       },
       {
@@ -1690,7 +2538,11 @@
           "Add conversation sharing and workspace features",
           "Connect PostgreSQL for persistent user state"
         ],
-        "deliverables": ["Multi-user auth", "Permission system", "Persistent history"],
+        "deliverables": [
+          "Multi-user auth",
+          "Permission system",
+          "Persistent history"
+        ],
         "estimatedDuration": "30 minutes"
       },
       {
@@ -1704,7 +2556,12 @@
           "Optional: configure RunPod serverless GPU for 70B models",
           "Load test with concurrent users and verify performance"
         ],
-        "deliverables": ["Custom domain", "Daily backups", "GPU overflow", "Monitoring"],
+        "deliverables": [
+          "Custom domain",
+          "Daily backups",
+          "GPU overflow",
+          "Monitoring"
+        ],
         "estimatedDuration": "1 hour"
       }
     ],
@@ -1725,21 +2582,55 @@
       }
     ],
     "technologies": [
-      "Ollama", "OpenWebUI", "Railway", "PostgreSQL",
-      "Cloudflare", "RunPod", "Docker", "Llama 3.3", "Mistral"
+      "Ollama",
+      "OpenWebUI",
+      "Railway",
+      "PostgreSQL",
+      "Cloudflare",
+      "RunPod",
+      "Docker",
+      "Llama 3.3",
+      "Mistral"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 80,
       "annual": 960,
       "breakdown": [
-        { "category": "Railway (Ollama + OpenWebUI)", "amount": "40", "percentage": 50 },
-        { "category": "Railway Postgres", "amount": "10", "percentage": 12 },
-        { "category": "Railway Volume (50GB)", "amount": "5", "percentage": 6 },
-        { "category": "Cloudflare (custom domain)", "amount": "0", "percentage": 0 },
-        { "category": "RunPod GPU (optional overflow)", "amount": "25", "percentage": 32 }
+        {
+          "category": "Railway (Ollama + OpenWebUI)",
+          "amount": "40",
+          "percentage": 50
+        },
+        {
+          "category": "Railway Postgres",
+          "amount": "10",
+          "percentage": 12
+        },
+        {
+          "category": "Railway Volume (50GB)",
+          "amount": "5",
+          "percentage": 6
+        },
+        {
+          "category": "Cloudflare (custom domain)",
+          "amount": "0",
+          "percentage": 0
+        },
+        {
+          "category": "RunPod GPU (optional overflow)",
+          "amount": "25",
+          "percentage": 32
+        }
       ],
-      "assumptions": ["Small team (5-10 users)", "7B-8B models on CPU", "Occasional GPU overflow for 70B models", "~500 chats/day"]
+      "assumptions": [
+        "Small team (5-10 users)",
+        "7B-8B models on CPU",
+        "Occasional GPU overflow for 70B models",
+        "~500 chats/day"
+      ]
     },
     "timeToImplement": "1 hour",
     "useCases": [
@@ -1753,7 +2644,16 @@
     "updatedAt": "2026-04-10T00:00:00Z",
     "publishedAt": "2026-04-10T00:00:00Z",
     "metaDescription": "Deploy a self-hosted ChatGPT alternative with Ollama and OpenWebUI on Railway in 10 minutes. Zero per-token costs, full data sovereignty.",
-    "keywords": ["ollama", "openwebui", "self-hosted ai", "llama 3.3", "railway deployment", "chatgpt alternative", "llm ops", "private ai"]
+    "keywords": [
+      "ollama",
+      "openwebui",
+      "self-hosted ai",
+      "llama 3.3",
+      "railway deployment",
+      "chatgpt alternative",
+      "llm ops",
+      "private ai"
+    ]
   },
   {
     "id": "claude-agent-sdk-vercel",
@@ -1769,24 +2669,120 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "nextjs-app", "name": "Next.js App", "type": "gateway", "description": "Vercel-hosted frontend with SSE streaming, chat UI, and real-time agent updates.", "cloudService": "Vercel Edge" },
-        { "id": "agent-route", "name": "Agent API Route", "type": "compute", "description": "Next.js route handler that spawns sandboxes, manages sessions, and streams responses.", "cloudService": "Vercel Serverless" },
-        { "id": "vercel-sandbox", "name": "Vercel Sandbox", "type": "compute", "description": "Ephemeral isolated execution environment with filesystem, shell, and network access. Spawns in milliseconds.", "cloudService": "Vercel Sandbox" },
-        { "id": "claude-sdk", "name": "Claude Agent SDK", "type": "ai-service", "description": "Running inside sandbox with tool access: read/write files, run bash, web search, MCP connections.", "cloudService": "Anthropic API" },
-        { "id": "mcp-servers", "name": "MCP Servers", "type": "gateway", "description": "Remote MCP servers for tool connectivity: GitHub, Linear, Supabase, custom tools.", "cloudService": "Various" },
-        { "id": "supabase-state", "name": "Supabase State", "type": "database", "description": "Persistent state, user sessions, conversation history, and agent memory.", "cloudService": "Supabase" },
-        { "id": "blob-storage", "name": "Vercel Blob", "type": "storage", "description": "File uploads and generated artifacts (reports, code, images).", "cloudService": "Vercel Blob" },
-        { "id": "stream-client", "name": "SSE Client", "type": "gateway", "description": "Real-time streaming to browser via EventSource for token-level updates.", "cloudService": "EventSource API" }
+        {
+          "id": "nextjs-app",
+          "name": "Next.js App",
+          "type": "gateway",
+          "description": "Vercel-hosted frontend with SSE streaming, chat UI, and real-time agent updates.",
+          "cloudService": "Vercel Edge"
+        },
+        {
+          "id": "agent-route",
+          "name": "Agent API Route",
+          "type": "compute",
+          "description": "Next.js route handler that spawns sandboxes, manages sessions, and streams responses.",
+          "cloudService": "Vercel Serverless"
+        },
+        {
+          "id": "vercel-sandbox",
+          "name": "Vercel Sandbox",
+          "type": "compute",
+          "description": "Ephemeral isolated execution environment with filesystem, shell, and network access. Spawns in milliseconds.",
+          "cloudService": "Vercel Sandbox"
+        },
+        {
+          "id": "claude-sdk",
+          "name": "Claude Agent SDK",
+          "type": "ai-service",
+          "description": "Running inside sandbox with tool access: read/write files, run bash, web search, MCP connections.",
+          "cloudService": "Anthropic API"
+        },
+        {
+          "id": "mcp-servers",
+          "name": "MCP Servers",
+          "type": "gateway",
+          "description": "Remote MCP servers for tool connectivity: GitHub, Linear, Supabase, custom tools.",
+          "cloudService": "Various"
+        },
+        {
+          "id": "supabase-state",
+          "name": "Supabase State",
+          "type": "database",
+          "description": "Persistent state, user sessions, conversation history, and agent memory.",
+          "cloudService": "Supabase"
+        },
+        {
+          "id": "blob-storage",
+          "name": "Vercel Blob",
+          "type": "storage",
+          "description": "File uploads and generated artifacts (reports, code, images).",
+          "cloudService": "Vercel Blob"
+        },
+        {
+          "id": "stream-client",
+          "name": "SSE Client",
+          "type": "gateway",
+          "description": "Real-time streaming to browser via EventSource for token-level updates.",
+          "cloudService": "EventSource API"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "stream-client", "to": "nextjs-app", "label": "User request", "dataType": "HTTPS POST" },
-        { "id": "f2", "from": "nextjs-app", "to": "agent-route", "label": "API call", "dataType": "Internal" },
-        { "id": "f3", "from": "agent-route", "to": "vercel-sandbox", "label": "Spawn sandbox", "dataType": "Sandbox API" },
-        { "id": "f4", "from": "vercel-sandbox", "to": "claude-sdk", "label": "Initialize agent", "dataType": "SDK init" },
-        { "id": "f5", "from": "claude-sdk", "to": "mcp-servers", "label": "Tool calls", "dataType": "MCP protocol" },
-        { "id": "f6", "from": "claude-sdk", "to": "supabase-state", "label": "Load context", "dataType": "SQL" },
-        { "id": "f7", "from": "vercel-sandbox", "to": "blob-storage", "label": "Save artifacts", "dataType": "Files" },
-        { "id": "f8", "from": "claude-sdk", "to": "stream-client", "label": "SSE response", "dataType": "Server-Sent Events" }
+        {
+          "id": "f1",
+          "from": "stream-client",
+          "to": "nextjs-app",
+          "label": "User request",
+          "dataType": "HTTPS POST"
+        },
+        {
+          "id": "f2",
+          "from": "nextjs-app",
+          "to": "agent-route",
+          "label": "API call",
+          "dataType": "Internal"
+        },
+        {
+          "id": "f3",
+          "from": "agent-route",
+          "to": "vercel-sandbox",
+          "label": "Spawn sandbox",
+          "dataType": "Sandbox API"
+        },
+        {
+          "id": "f4",
+          "from": "vercel-sandbox",
+          "to": "claude-sdk",
+          "label": "Initialize agent",
+          "dataType": "SDK init"
+        },
+        {
+          "id": "f5",
+          "from": "claude-sdk",
+          "to": "mcp-servers",
+          "label": "Tool calls",
+          "dataType": "MCP protocol"
+        },
+        {
+          "id": "f6",
+          "from": "claude-sdk",
+          "to": "supabase-state",
+          "label": "Load context",
+          "dataType": "SQL"
+        },
+        {
+          "id": "f7",
+          "from": "vercel-sandbox",
+          "to": "blob-storage",
+          "label": "Save artifacts",
+          "dataType": "Files"
+        },
+        {
+          "id": "f8",
+          "from": "claude-sdk",
+          "to": "stream-client",
+          "label": "SSE response",
+          "dataType": "Server-Sent Events"
+        }
       ]
     },
     "implementationSteps": [
@@ -1801,7 +2797,11 @@
           "Initialize sandbox and run 'hello world' agent",
           "Verify sandbox isolation and cleanup"
         ],
-        "deliverables": ["Next.js app", "Working sandbox", "Basic agent execution"],
+        "deliverables": [
+          "Next.js app",
+          "Working sandbox",
+          "Basic agent execution"
+        ],
         "estimatedDuration": "2 hours"
       },
       {
@@ -1815,7 +2815,11 @@
           "Handle tool call events and stream progress",
           "Test multi-turn conversations with tool use"
         ],
-        "deliverables": ["SSE streaming", "MCP tool calls", "Multi-turn agent"],
+        "deliverables": [
+          "SSE streaming",
+          "MCP tool calls",
+          "Multi-turn agent"
+        ],
         "estimatedDuration": "4 hours"
       },
       {
@@ -1829,7 +2833,12 @@
           "Configure OpenTelemetry for agent observability",
           "Deploy to production and load test"
         ],
-        "deliverables": ["Auth system", "Rate limiting", "Persistence", "Observability"],
+        "deliverables": [
+          "Auth system",
+          "Rate limiting",
+          "Persistence",
+          "Observability"
+        ],
         "estimatedDuration": "4 hours"
       }
     ],
@@ -1843,20 +2852,50 @@
       }
     ],
     "technologies": [
-      "Claude Agent SDK", "Vercel Sandbox", "Next.js 16", "Vercel Edge",
-      "MCP", "Supabase", "TypeScript", "Server-Sent Events", "Upstash Redis"
+      "Claude Agent SDK",
+      "Vercel Sandbox",
+      "Next.js 16",
+      "Vercel Edge",
+      "MCP",
+      "Supabase",
+      "TypeScript",
+      "Server-Sent Events",
+      "Upstash Redis"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 200,
       "annual": 2400,
       "breakdown": [
-        { "category": "Vercel Pro", "amount": "20", "percentage": 10 },
-        { "category": "Vercel Sandbox usage", "amount": "80", "percentage": 40 },
-        { "category": "Anthropic API", "amount": "80", "percentage": 40 },
-        { "category": "Supabase Pro", "amount": "20", "percentage": 10 }
+        {
+          "category": "Vercel Pro",
+          "amount": "20",
+          "percentage": 10
+        },
+        {
+          "category": "Vercel Sandbox usage",
+          "amount": "80",
+          "percentage": 40
+        },
+        {
+          "category": "Anthropic API",
+          "amount": "80",
+          "percentage": 40
+        },
+        {
+          "category": "Supabase Pro",
+          "amount": "20",
+          "percentage": 10
+        }
       ],
-      "assumptions": ["~1000 agent sessions/month", "Average 5 tool calls per session", "Sonnet model", "Small-medium production workload"]
+      "assumptions": [
+        "~1000 agent sessions/month",
+        "Average 5 tool calls per session",
+        "Sonnet model",
+        "Small-medium production workload"
+      ]
     },
     "timeToImplement": "1 day",
     "useCases": [
@@ -1870,7 +2909,15 @@
     "updatedAt": "2026-04-10T00:00:00Z",
     "publishedAt": "2026-04-10T00:00:00Z",
     "metaDescription": "Deploy Claude Agent SDK agents to production on Vercel with Sandbox for secure code execution. Stream via SSE, scale on Edge.",
-    "keywords": ["claude agent sdk", "vercel sandbox", "production agents", "next.js agents", "mcp", "sse streaming", "anthropic api"]
+    "keywords": [
+      "claude agent sdk",
+      "vercel sandbox",
+      "production agents",
+      "next.js agents",
+      "mcp",
+      "sse streaming",
+      "anthropic api"
+    ]
   },
   {
     "id": "claude-code-multi-agent-team-railway",
@@ -1886,25 +2933,127 @@
     "architecture": {
       "diagramType": "xyflow",
       "components": [
-        { "id": "orchestrator", "name": "Orchestrator Agent", "type": "compute", "description": "Main Claude Agent SDK process that decomposes tasks, assigns to specialists, and manages coordination.", "cloudService": "Railway (Node.js)" },
-        { "id": "redis-queue", "name": "Redis Task Queue", "type": "queue", "description": "Bull queue for task distribution with priorities, retries, and dead letter handling.", "cloudService": "Railway Redis" },
-        { "id": "frontend-agent", "name": "Frontend Specialist", "type": "compute", "description": "Claude Code agent for UI/UX tasks: components, styling, accessibility, and frontend testing.", "cloudService": "Railway (Docker)" },
-        { "id": "backend-agent", "name": "Backend Specialist", "type": "compute", "description": "Claude Code agent for API/database tasks: endpoints, migrations, business logic, and integrations.", "cloudService": "Railway (Docker)" },
-        { "id": "test-agent", "name": "Test Specialist", "type": "compute", "description": "Claude Code agent for test coverage: unit tests, integration tests, E2E, and regression suites.", "cloudService": "Railway (Docker)" },
-        { "id": "docs-agent", "name": "Documentation Specialist", "type": "compute", "description": "Claude Code agent for docs/README: API docs, architecture diagrams, changelogs, and guides.", "cloudService": "Railway (Docker)" },
-        { "id": "git-worktrees", "name": "Git Worktrees", "type": "storage", "description": "Isolated working directories per agent — one worktree per specialist to avoid merge conflicts.", "cloudService": "Railway Volume" },
-        { "id": "shared-state", "name": "Shared State", "type": "database", "description": "Supabase for cross-agent coordination: task status, handoffs, decisions log, and conflict resolution.", "cloudService": "Supabase" },
-        { "id": "github-actions", "name": "GitHub Actions", "type": "external", "description": "CI/CD pipeline for agent PRs: linting, tests, type checks, and auto-merge on green.", "cloudService": "GitHub" }
+        {
+          "id": "orchestrator",
+          "name": "Orchestrator Agent",
+          "type": "compute",
+          "description": "Main Claude Agent SDK process that decomposes tasks, assigns to specialists, and manages coordination.",
+          "cloudService": "Railway (Node.js)"
+        },
+        {
+          "id": "redis-queue",
+          "name": "Redis Task Queue",
+          "type": "queue",
+          "description": "Bull queue for task distribution with priorities, retries, and dead letter handling.",
+          "cloudService": "Railway Redis"
+        },
+        {
+          "id": "frontend-agent",
+          "name": "Frontend Specialist",
+          "type": "compute",
+          "description": "Claude Code agent for UI/UX tasks: components, styling, accessibility, and frontend testing.",
+          "cloudService": "Railway (Docker)"
+        },
+        {
+          "id": "backend-agent",
+          "name": "Backend Specialist",
+          "type": "compute",
+          "description": "Claude Code agent for API/database tasks: endpoints, migrations, business logic, and integrations.",
+          "cloudService": "Railway (Docker)"
+        },
+        {
+          "id": "test-agent",
+          "name": "Test Specialist",
+          "type": "compute",
+          "description": "Claude Code agent for test coverage: unit tests, integration tests, E2E, and regression suites.",
+          "cloudService": "Railway (Docker)"
+        },
+        {
+          "id": "docs-agent",
+          "name": "Documentation Specialist",
+          "type": "compute",
+          "description": "Claude Code agent for docs/README: API docs, architecture diagrams, changelogs, and guides.",
+          "cloudService": "Railway (Docker)"
+        },
+        {
+          "id": "git-worktrees",
+          "name": "Git Worktrees",
+          "type": "storage",
+          "description": "Isolated working directories per agent — one worktree per specialist to avoid merge conflicts.",
+          "cloudService": "Railway Volume"
+        },
+        {
+          "id": "shared-state",
+          "name": "Shared State",
+          "type": "database",
+          "description": "Supabase for cross-agent coordination: task status, handoffs, decisions log, and conflict resolution.",
+          "cloudService": "Supabase"
+        },
+        {
+          "id": "github-actions",
+          "name": "GitHub Actions",
+          "type": "external",
+          "description": "CI/CD pipeline for agent PRs: linting, tests, type checks, and auto-merge on green.",
+          "cloudService": "GitHub"
+        }
       ],
       "flows": [
-        { "id": "f1", "from": "orchestrator", "to": "redis-queue", "label": "Decomposed tasks", "dataType": "Task objects" },
-        { "id": "f2", "from": "redis-queue", "to": "frontend-agent", "label": "UI tasks", "dataType": "Task claims" },
-        { "id": "f3", "from": "redis-queue", "to": "backend-agent", "label": "API tasks", "dataType": "Task claims" },
-        { "id": "f4", "from": "redis-queue", "to": "test-agent", "label": "Test tasks", "dataType": "Task claims" },
-        { "id": "f5", "from": "redis-queue", "to": "docs-agent", "label": "Doc tasks", "dataType": "Task claims" },
-        { "id": "f6", "from": "frontend-agent", "to": "git-worktrees", "label": "Isolated work", "dataType": "Git commits" },
-        { "id": "f7", "from": "backend-agent", "to": "shared-state", "label": "Coordination", "dataType": "State updates" },
-        { "id": "f8", "from": "orchestrator", "to": "github-actions", "label": "Trigger CI", "dataType": "Pull requests" }
+        {
+          "id": "f1",
+          "from": "orchestrator",
+          "to": "redis-queue",
+          "label": "Decomposed tasks",
+          "dataType": "Task objects"
+        },
+        {
+          "id": "f2",
+          "from": "redis-queue",
+          "to": "frontend-agent",
+          "label": "UI tasks",
+          "dataType": "Task claims"
+        },
+        {
+          "id": "f3",
+          "from": "redis-queue",
+          "to": "backend-agent",
+          "label": "API tasks",
+          "dataType": "Task claims"
+        },
+        {
+          "id": "f4",
+          "from": "redis-queue",
+          "to": "test-agent",
+          "label": "Test tasks",
+          "dataType": "Task claims"
+        },
+        {
+          "id": "f5",
+          "from": "redis-queue",
+          "to": "docs-agent",
+          "label": "Doc tasks",
+          "dataType": "Task claims"
+        },
+        {
+          "id": "f6",
+          "from": "frontend-agent",
+          "to": "git-worktrees",
+          "label": "Isolated work",
+          "dataType": "Git commits"
+        },
+        {
+          "id": "f7",
+          "from": "backend-agent",
+          "to": "shared-state",
+          "label": "Coordination",
+          "dataType": "State updates"
+        },
+        {
+          "id": "f8",
+          "from": "orchestrator",
+          "to": "github-actions",
+          "label": "Trigger CI",
+          "dataType": "Pull requests"
+        }
       ]
     },
     "implementationSteps": [
@@ -1919,7 +3068,11 @@
           "Build task routing logic (which specialist handles which type)",
           "Add task status tracking in Supabase"
         ],
-        "deliverables": ["Orchestrator service", "Redis queue", "Task decomposition"],
+        "deliverables": [
+          "Orchestrator service",
+          "Redis queue",
+          "Task decomposition"
+        ],
         "estimatedDuration": "1 day"
       },
       {
@@ -1933,7 +3086,11 @@
           "Build docs specialist with mermaid, typedoc, and markdown linters",
           "Deploy all 4 specialists on Railway with queue consumers"
         ],
-        "deliverables": ["4 specialist agents", "Domain prompts", "Queue consumers"],
+        "deliverables": [
+          "4 specialist agents",
+          "Domain prompts",
+          "Queue consumers"
+        ],
         "estimatedDuration": "1 day"
       },
       {
@@ -1947,7 +3104,11 @@
           "Set up GitHub Actions for agent PR validation",
           "Add auto-merge on green CI with human override"
         ],
-        "deliverables": ["Git worktree isolation", "Handoff protocol", "CI/CD integration"],
+        "deliverables": [
+          "Git worktree isolation",
+          "Handoff protocol",
+          "CI/CD integration"
+        ],
         "estimatedDuration": "1 day"
       }
     ],
@@ -1968,21 +3129,51 @@
       }
     ],
     "technologies": [
-      "Claude Agent SDK", "Claude Code", "Railway", "Redis",
-      "BullMQ", "Supabase", "Git Worktrees", "GitHub Actions",
-      "Docker", "TypeScript"
+      "Claude Agent SDK",
+      "Claude Code",
+      "Railway",
+      "Redis",
+      "BullMQ",
+      "Supabase",
+      "Git Worktrees",
+      "GitHub Actions",
+      "Docker",
+      "TypeScript"
     ],
-    "cloudProviders": ["multi-cloud"],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
     "estimatedCost": {
       "monthly": 180,
       "annual": 2160,
       "breakdown": [
-        { "category": "Railway (orchestrator + 4 specialists)", "amount": "100", "percentage": 56 },
-        { "category": "Railway Redis", "amount": "15", "percentage": 8 },
-        { "category": "Supabase Pro", "amount": "25", "percentage": 14 },
-        { "category": "Anthropic API (Claude Sonnet)", "amount": "40", "percentage": 22 }
+        {
+          "category": "Railway (orchestrator + 4 specialists)",
+          "amount": "100",
+          "percentage": 56
+        },
+        {
+          "category": "Railway Redis",
+          "amount": "15",
+          "percentage": 8
+        },
+        {
+          "category": "Supabase Pro",
+          "amount": "25",
+          "percentage": 14
+        },
+        {
+          "category": "Anthropic API (Claude Sonnet)",
+          "amount": "40",
+          "percentage": 22
+        }
       ],
-      "assumptions": ["Moderate workload (~20 sessions/day)", "Average 10 tasks per session", "Sonnet model for all agents", "Small team codebase"]
+      "assumptions": [
+        "Moderate workload (~20 sessions/day)",
+        "Average 10 tasks per session",
+        "Sonnet model for all agents",
+        "Small team codebase"
+      ]
     },
     "timeToImplement": "2-3 days",
     "useCases": [
@@ -1996,6 +3187,1254 @@
     "updatedAt": "2026-04-10T00:00:00Z",
     "publishedAt": "2026-04-10T00:00:00Z",
     "metaDescription": "Deploy a coordinated team of Claude Code agents on Railway. Orchestrator, Redis queue, git worktrees, and specialist subagents working in parallel.",
-    "keywords": ["claude code", "multi-agent", "agent orchestration", "railway deployment", "git worktrees", "bullmq", "autonomous development", "claude agent sdk"]
+    "keywords": [
+      "claude code",
+      "multi-agent",
+      "agent orchestration",
+      "railway deployment",
+      "git worktrees",
+      "bullmq",
+      "autonomous development",
+      "claude agent sdk"
+    ]
+  },
+  {
+    "id": "agentic-rag",
+    "slug": "agentic-rag",
+    "title": "Agentic RAG",
+    "subtitle": "Retrieval that reasons about whether, what, and when to retrieve",
+    "category": "rag-production",
+    "status": "published",
+    "difficulty": "advanced",
+    "maturity": "production",
+    "overview": "Agentic RAG replaces one-shot retrieve-then-generate with a loop: the agent decides whether to retrieve, what to retrieve, evaluates the result, and refines or stops. It is the default mental model for production retrieval as of mid-2026.",
+    "problem": "Naive RAG retrieves once and answers, even when the question needs decomposition, multiple passes, or no retrieval at all. It hallucinates on multi-hop questions and wastes context on irrelevant chunks.",
+    "solution": "Wrap retrieval as a tool the model calls inside a reason→act→observe loop. The agent plans sub-queries, retrieves per step, grades relevance, and only answers when it has enough grounding — with citations.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "planner",
+          "name": "Query Planner",
+          "type": "ai-service",
+          "description": "Decomposes the question and decides whether retrieval is needed",
+          "cloudService": "Claude / GPT / Gemini",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "retriever",
+          "name": "Hybrid Retriever + Reranker",
+          "type": "ai-service",
+          "description": "Dense + keyword retrieval, then a cross-encoder rerank",
+          "cloudService": "Pinecone / Turbopuffer / pgvector"
+        },
+        {
+          "id": "grader",
+          "name": "Relevance Grader",
+          "type": "ai-service",
+          "description": "Scores retrieved chunks; triggers a re-query when weak"
+        },
+        {
+          "id": "generator",
+          "name": "Answer Generator",
+          "type": "ai-service",
+          "description": "Synthesizes a cited answer from graded context"
+        },
+        {
+          "id": "trace",
+          "name": "Eval + Trace",
+          "type": "monitoring",
+          "description": "Logs each loop step for evaluation",
+          "cloudService": "Langfuse / Braintrust"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "planner",
+          "to": "retriever",
+          "label": "sub-query",
+          "dataType": "text"
+        },
+        {
+          "id": "f2",
+          "from": "retriever",
+          "to": "grader",
+          "label": "candidates",
+          "dataType": "chunks"
+        },
+        {
+          "id": "f3",
+          "from": "grader",
+          "to": "planner",
+          "label": "re-query if weak",
+          "dataType": "signal"
+        },
+        {
+          "id": "f4",
+          "from": "grader",
+          "to": "generator",
+          "label": "graded context",
+          "dataType": "chunks"
+        },
+        {
+          "id": "f5",
+          "from": "generator",
+          "to": "trace",
+          "label": "steps",
+          "dataType": "spans"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Hybrid baseline",
+        "description": "Stand up dense + keyword retrieval with a reranker before adding any agent loop.",
+        "tasks": [
+          "Pick a vector store",
+          "Index with chunk overlap",
+          "Add a cross-encoder reranker"
+        ],
+        "deliverables": [
+          "Hybrid retrieval endpoint"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 2,
+        "title": "Retrieval-as-tool",
+        "description": "Expose retrieval as a tool and let the model decide when to call it.",
+        "tasks": [
+          "Define the retrieve tool",
+          "Add a relevance grader",
+          "Cap loop iterations"
+        ],
+        "deliverables": [
+          "Agentic loop with stop condition"
+        ],
+        "estimatedDuration": "1-2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Evaluate + guard",
+        "description": "Add tracing and an eval set so regressions are caught before ship.",
+        "tasks": [
+          "Wire Langfuse/Braintrust",
+          "Build a golden eval set",
+          "Add citation enforcement"
+        ],
+        "deliverables": [
+          "Eval dashboard",
+          "Citation guardrail"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "agentic-rag-ts",
+        "title": "Retrieval as a tool (Vercel AI SDK 6)",
+        "language": "typescript",
+        "filename": "app/api/chat/route.ts",
+        "description": "The model decides when to retrieve; the loop stops when grounded.",
+        "code": "import { streamText, tool, stepCountIs } from 'ai'\nimport { anthropic } from '@ai-sdk/anthropic'\nimport { z } from 'zod'\nimport { hybridSearch } from '@/lib/rag'\n\nexport async function POST(req: Request) {\n  const { messages } = await req.json()\n  const result = streamText({\n    model: anthropic('claude-sonnet-4-5'),\n    messages,\n    stopWhen: stepCountIs(6),\n    tools: {\n      search: tool({\n        description: 'Retrieve grounding passages. Call only when the answer needs sources.',\n        inputSchema: z.object({ query: z.string(), k: z.number().default(8) }),\n        execute: async ({ query, k }) => hybridSearch(query, k),\n      }),\n    },\n  })\n  return result.toUIMessageStreamResponse()\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "graphrag-knowledge-graph",
+      "context-engineering-mvc",
+      "enterprise-rag-platform"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Vercel AI SDK 6",
+      "Pinecone",
+      "Turbopuffer",
+      "pgvector",
+      "Langfuse",
+      "Cohere Rerank"
+    ],
+    "estimatedCost": {
+      "monthly": 900,
+      "annual": 10800,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "LLM inference",
+          "amount": 500,
+          "percentage": 56
+        },
+        {
+          "category": "Vector store",
+          "amount": 250,
+          "percentage": 28
+        },
+        {
+          "category": "Reranker + embeddings",
+          "amount": 150,
+          "percentage": 16
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of mid-2026",
+        "~100k queries/month",
+        "Mid-size model for generation",
+        "Costs vary with volume and model choice"
+      ]
+    },
+    "timeToImplement": "3-4 weeks",
+    "useCases": [
+      "Internal knowledge Q&A",
+      "Support copilots",
+      "Research assistants",
+      "Multi-hop document questions"
+    ],
+    "whenToUse": [
+      "Questions need decomposition or multiple retrieval passes",
+      "Hallucination on multi-hop queries is unacceptable",
+      "You can afford a few extra model calls per answer"
+    ],
+    "whenNotToUse": [
+      "Single-fact lookups where one retrieval suffices",
+      "Hard latency budgets that cannot absorb a loop",
+      "You have not yet shipped a hybrid+rerank baseline"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Far better on multi-hop and ambiguous questions",
+        "Retrieves only when needed",
+        "Citations come naturally from the loop"
+      ],
+      "cons": [
+        "More model calls = higher latency and cost",
+        "Loop needs a stop condition and eval harness",
+        "Harder to debug than one-shot RAG"
+      ]
+    },
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "publishedAt": "2026-06-27T00:00:00.000Z",
+    "metaDescription": "Agentic RAG: retrieval that reasons about whether, what, and when to retrieve — the 2026 production default. Architecture, code, and when to use it.",
+    "keywords": [
+      "agentic rag",
+      "rag 2026",
+      "retrieval augmented generation",
+      "vercel ai sdk",
+      "reranking"
+    ]
+  },
+  {
+    "id": "graphrag-knowledge-graph",
+    "slug": "graphrag-knowledge-graph",
+    "title": "GraphRAG (Knowledge Graph Retrieval)",
+    "subtitle": "An earned upgrade for connected-entity domains — not a default",
+    "category": "vector-databases",
+    "status": "published",
+    "difficulty": "expert",
+    "maturity": "emerging",
+    "overview": "GraphRAG builds a knowledge graph at ingestion and traverses connected entities at query time. It wins specifically where the answer depends on relationships — contracts, case law, org and supply graphs — and is overkill almost everywhere else.",
+    "problem": "Vector retrieval finds similar chunks but loses relationships. \"Which suppliers are two hops from a sanctioned entity?\" is invisible to similarity search.",
+    "solution": "Extract entities and relationships into a graph during ingestion, then combine graph traversal with vector retrieval so the model can answer relationship-shaped questions with provenance.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "extract",
+          "name": "Entity + Relation Extractor",
+          "type": "ai-service",
+          "description": "LLM extracts a typed graph from documents at ingestion"
+        },
+        {
+          "id": "graph",
+          "name": "Graph Store",
+          "type": "database",
+          "description": "Stores entities and relationships",
+          "cloudService": "Neo4j / Memgraph / AGE"
+        },
+        {
+          "id": "vector",
+          "name": "Vector Store",
+          "type": "database",
+          "description": "Stores chunk embeddings for hybrid recall",
+          "cloudService": "Qdrant / pgvector"
+        },
+        {
+          "id": "traverse",
+          "name": "Graph + Vector Retriever",
+          "type": "compute",
+          "description": "Traverses N hops, then grounds with vector chunks"
+        },
+        {
+          "id": "gen",
+          "name": "Answer Generator",
+          "type": "ai-service",
+          "description": "Synthesizes answer with entity-level citations"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "extract",
+          "to": "graph",
+          "label": "entities + edges",
+          "dataType": "graph"
+        },
+        {
+          "id": "f2",
+          "from": "extract",
+          "to": "vector",
+          "label": "chunks",
+          "dataType": "vectors"
+        },
+        {
+          "id": "f3",
+          "from": "traverse",
+          "to": "graph",
+          "label": "N-hop query",
+          "dataType": "cypher"
+        },
+        {
+          "id": "f4",
+          "from": "traverse",
+          "to": "vector",
+          "label": "grounding",
+          "dataType": "chunks"
+        },
+        {
+          "id": "f5",
+          "from": "traverse",
+          "to": "gen",
+          "label": "subgraph + chunks",
+          "dataType": "context"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Prove the need",
+        "description": "Confirm your failing questions are relationship-shaped before building a graph.",
+        "tasks": [
+          "Collect multi-hop failures from your current RAG",
+          "Decide entity + relation schema"
+        ],
+        "deliverables": [
+          "Schema + failing-question set"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 2,
+        "title": "Extraction pipeline",
+        "description": "Extract a typed graph at ingestion and store alongside vectors.",
+        "tasks": [
+          "Build LLM extractor with schema",
+          "Load graph + vector stores",
+          "Validate extraction quality"
+        ],
+        "deliverables": [
+          "Populated graph + vector index"
+        ],
+        "estimatedDuration": "2-3 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Hybrid retrieval",
+        "description": "Combine traversal with vector grounding and evaluate against the baseline.",
+        "tasks": [
+          "Implement N-hop + vector retriever",
+          "Compare vs hybrid RAG on the eval set"
+        ],
+        "deliverables": [
+          "Hybrid retriever",
+          "A/B eval report"
+        ],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "graphrag-cypher",
+        "title": "N-hop traversal grounding (sketch)",
+        "language": "python",
+        "filename": "graphrag/retrieve.py",
+        "description": "Find entities within N hops, then ground with vector chunks.",
+        "code": "def graph_retrieve(question, graph, vectors, hops=2, k=8):\n    seeds = extract_entities(question)            # LLM or NER\n    subgraph = graph.neighbors(seeds, hops=hops)  # Cypher under the hood\n    chunks = vectors.search(question, k=k)\n    return {\"subgraph\": subgraph, \"chunks\": chunks}"
+      }
+    ],
+    "relatedPatterns": [
+      "agentic-rag",
+      "enterprise-rag-platform",
+      "sovereign-knowledge-vault"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Neo4j",
+      "Memgraph",
+      "Qdrant",
+      "pgvector",
+      "Vercel AI SDK 6"
+    ],
+    "timeToImplement": "5-6 weeks",
+    "useCases": [
+      "Contract and legal analysis",
+      "Supply-chain and risk graphs",
+      "Org knowledge and people graphs",
+      "Compliance investigations"
+    ],
+    "whenToUse": [
+      "Answers depend on relationships and multi-hop traversal",
+      "Your domain has dense, typed connections (legal, finance, org)",
+      "Provenance at the entity level matters"
+    ],
+    "whenNotToUse": [
+      "Questions are answered by similarity alone",
+      "You have not exhausted hybrid + agentic RAG",
+      "Ingestion volume makes graph extraction cost-prohibitive"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Answers relationship-shaped questions vector search cannot",
+        "Entity-level provenance",
+        "Strong on connected domains"
+      ],
+      "cons": [
+        "Heavy ingestion cost (graph extraction per document)",
+        "Operational complexity of a graph store",
+        "Rarely needed — easy to over-build"
+      ]
+    },
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "publishedAt": "2026-06-27T00:00:00.000Z",
+    "metaDescription": "GraphRAG in 2026: when knowledge-graph retrieval actually beats vector search, and when it is over-engineering. Architecture, code, and an honest verdict.",
+    "keywords": [
+      "graphrag",
+      "knowledge graph rag",
+      "neo4j rag",
+      "multi-hop retrieval",
+      "graph retrieval"
+    ]
+  },
+  {
+    "id": "mcp-as-architecture",
+    "slug": "mcp-as-architecture",
+    "title": "MCP as Architecture",
+    "subtitle": "Every external system as an MCP server, so a failing tool degrades gracefully",
+    "category": "mcp-servers",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "production",
+    "overview": "The Model Context Protocol is now a foundational architectural pattern, not a curiosity. Running each external system as its own MCP server isolates failures, standardizes tool access, and lets any MCP-aware client (Claude, Cursor, AI SDK 6) compose them.",
+    "problem": "Hand-wired tool integrations couple the agent to every API. One broken integration cascades, and each new client re-implements the same glue.",
+    "solution": "Expose each system behind a standard MCP server (tools + resources). A failing server returns a typed error instead of crashing the agent, and every client speaks the same protocol. \"GraphRAG is the map; MCP is the universal port.\"",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "client",
+          "name": "MCP-aware Client",
+          "type": "compute",
+          "description": "Claude Code, Cursor, or an AI SDK 6 agent",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "gateway",
+          "name": "MCP Host / Router",
+          "type": "networking",
+          "description": "Discovers servers and routes tool calls"
+        },
+        {
+          "id": "srv-db",
+          "name": "Database MCP Server",
+          "type": "ai-service",
+          "description": "Read-scoped queries as tools"
+        },
+        {
+          "id": "srv-api",
+          "name": "SaaS MCP Server",
+          "type": "ai-service",
+          "description": "Wraps a third-party API; isolates its failures"
+        },
+        {
+          "id": "srv-files",
+          "name": "Files MCP Server",
+          "type": "storage",
+          "description": "Resources for documents and artifacts"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "client",
+          "to": "gateway",
+          "label": "tool call",
+          "protocol": "MCP"
+        },
+        {
+          "id": "f2",
+          "from": "gateway",
+          "to": "srv-db",
+          "label": "query",
+          "protocol": "MCP"
+        },
+        {
+          "id": "f3",
+          "from": "gateway",
+          "to": "srv-api",
+          "label": "action",
+          "protocol": "MCP"
+        },
+        {
+          "id": "f4",
+          "from": "gateway",
+          "to": "srv-files",
+          "label": "read resource",
+          "protocol": "MCP"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Wrap one system",
+        "description": "Pick the noisiest integration and put it behind an MCP server.",
+        "tasks": [
+          "Scaffold with @modelcontextprotocol/sdk",
+          "Expose 2-3 tools",
+          "Return typed errors, never throw"
+        ],
+        "deliverables": [
+          "One MCP server"
+        ],
+        "estimatedDuration": "3-5 days"
+      },
+      {
+        "phase": 2,
+        "title": "Compose from a client",
+        "description": "Connect the server to an MCP-aware client and an AI SDK 6 agent.",
+        "tasks": [
+          "Register server in client config",
+          "Call tools from an agent",
+          "Add auth scoping"
+        ],
+        "deliverables": [
+          "Agent using MCP tools"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 3,
+        "title": "Harden + observe",
+        "description": "Add timeouts, graceful degradation, and tracing per server.",
+        "tasks": [
+          "Per-server timeouts",
+          "Fallback on tool failure",
+          "Trace tool spans"
+        ],
+        "deliverables": [
+          "Resilient multi-server setup"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "mcp-server-ts",
+        "title": "Minimal MCP server with graceful errors",
+        "language": "typescript",
+        "filename": "src/index.ts",
+        "description": "A failing tool returns isError instead of cascading.",
+        "code": "import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'\nimport { z } from 'zod'\n\nconst server = new McpServer({ name: 'orders', version: '1.0.0' })\n\nserver.registerTool('get_order', {\n  description: 'Fetch an order by id',\n  inputSchema: { id: z.string() },\n}, async ({ id }) => {\n  try {\n    const order = await db.orders.find(id)\n    return { content: [{ type: 'text', text: JSON.stringify(order) }] }\n  } catch (e) {\n    return { isError: true, content: [{ type: 'text', text: `lookup failed: ${e}` }] }\n  }\n})"
+      }
+    ],
+    "relatedPatterns": [
+      "mcp-agent-marketplace",
+      "vercel-ai-sdk6-agent",
+      "frankx-ai-platform"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Model Context Protocol",
+      "@modelcontextprotocol/sdk",
+      "Vercel AI SDK 6",
+      "TypeScript"
+    ],
+    "timeToImplement": "2-3 weeks",
+    "useCases": [
+      "Standardizing tool access across agents",
+      "Isolating flaky third-party APIs",
+      "Reusing one integration across Claude, Cursor, and custom agents"
+    ],
+    "whenToUse": [
+      "Multiple agents/clients need the same tools",
+      "You want one integration to degrade gracefully",
+      "You are already in the MCP ecosystem (Claude Code, Cursor, AI SDK 6)"
+    ],
+    "whenNotToUse": [
+      "A single app with one or two private tools",
+      "Latency-critical inner loops where the extra hop hurts",
+      "No MCP-aware client in your stack"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Failure isolation per system",
+        "Write the integration once, reuse everywhere",
+        "Standard protocol across clients"
+      ],
+      "cons": [
+        "An extra process/hop to operate",
+        "Auth scoping must be designed per server",
+        "Young ecosystem — conventions still settling"
+      ]
+    },
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "publishedAt": "2026-06-27T00:00:00.000Z",
+    "metaDescription": "MCP as architecture in 2026: run each external system as an MCP server for failure isolation and reuse. Pattern, code, and when to use it.",
+    "keywords": [
+      "mcp",
+      "model context protocol",
+      "mcp server",
+      "agent tools",
+      "ai architecture"
+    ]
+  },
+  {
+    "id": "context-engineering-mvc",
+    "slug": "context-engineering-mvc",
+    "title": "Context Engineering (Minimum Viable Context)",
+    "subtitle": "Dose the agent with exactly what the step needs — not the whole prompt",
+    "category": "llm-ops",
+    "status": "published",
+    "difficulty": "advanced",
+    "maturity": "emerging",
+    "overview": "Context engineering crystallized as a discipline in 2026 around one principle: Minimum Viable Context. Instead of stuffing the prompt, you assemble exactly the context the current step needs, then compact aggressively as the loop runs.",
+    "problem": "Long contexts rot: the more you stuff in, the worse retrieval and reasoning get, and cost climbs. Naive \"put everything in the prompt\" agents degrade over multi-step runs.",
+    "solution": "Treat context as a budget. Retrieve-as-dosing per step, tier memory (session vs durable), compact tool results before they re-enter the window, and measure what each token buys.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "assembler",
+          "name": "Context Assembler",
+          "type": "compute",
+          "description": "Builds the per-step window from sources under a token budget"
+        },
+        {
+          "id": "session",
+          "name": "Session Memory",
+          "type": "storage",
+          "description": "Short-term working state for the current run"
+        },
+        {
+          "id": "durable",
+          "name": "Durable Memory",
+          "type": "database",
+          "description": "Long-term facts retrieved on demand",
+          "cloudService": "pgvector / Turbopuffer"
+        },
+        {
+          "id": "compactor",
+          "name": "Result Compactor",
+          "type": "ai-service",
+          "description": "Summarizes tool outputs before they re-enter context"
+        },
+        {
+          "id": "model",
+          "name": "Model",
+          "type": "ai-service",
+          "description": "Runs the step with the minimum viable window"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "session",
+          "to": "assembler",
+          "label": "working state",
+          "dataType": "text"
+        },
+        {
+          "id": "f2",
+          "from": "durable",
+          "to": "assembler",
+          "label": "retrieved facts",
+          "dataType": "chunks"
+        },
+        {
+          "id": "f3",
+          "from": "assembler",
+          "to": "model",
+          "label": "MVC window",
+          "dataType": "prompt"
+        },
+        {
+          "id": "f4",
+          "from": "model",
+          "to": "compactor",
+          "label": "tool result",
+          "dataType": "text"
+        },
+        {
+          "id": "f5",
+          "from": "compactor",
+          "to": "session",
+          "label": "compacted",
+          "dataType": "text"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Budget the window",
+        "description": "Measure what each section of context contributes before optimizing.",
+        "tasks": [
+          "Instrument token usage per section",
+          "Set a per-step budget",
+          "Identify dead weight"
+        ],
+        "deliverables": [
+          "Context budget report"
+        ],
+        "estimatedDuration": "3-5 days"
+      },
+      {
+        "phase": 2,
+        "title": "Dose + compact",
+        "description": "Retrieve per step and compact tool results before they re-enter.",
+        "tasks": [
+          "Move static context to retrieval",
+          "Add a result compactor",
+          "Tier session vs durable memory"
+        ],
+        "deliverables": [
+          "MVC assembler"
+        ],
+        "estimatedDuration": "1-2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Measure the loop",
+        "description": "Evaluate quality and cost across multi-step runs.",
+        "tasks": [
+          "Add eval for long runs",
+          "Track cost per resolved task"
+        ],
+        "deliverables": [
+          "Long-run eval dashboard"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "mvc-compact",
+        "title": "Compact a tool result before it re-enters context",
+        "language": "typescript",
+        "filename": "lib/context.ts",
+        "description": "Keep the window small by summarizing large tool outputs.",
+        "code": "import { generateText } from 'ai'\nimport { anthropic } from '@ai-sdk/anthropic'\n\nexport async function compact(result: string, goal: string) {\n  if (result.length < 2000) return result\n  const { text } = await generateText({\n    model: anthropic('claude-haiku-4-5'),\n    prompt: `Goal: ${goal}\\nCompress the following to only what advances the goal:\\n${result}`,\n  })\n  return text\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "agentic-rag",
+      "vercel-ai-sdk6-agent",
+      "mcp-as-architecture"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Vercel AI SDK 6",
+      "pgvector",
+      "Turbopuffer",
+      "Langfuse"
+    ],
+    "timeToImplement": "2-3 weeks",
+    "useCases": [
+      "Long-running agents",
+      "Cost reduction on multi-step workflows",
+      "Improving reliability over many turns"
+    ],
+    "whenToUse": [
+      "Agents degrade or get expensive over multi-step runs",
+      "Context windows are filling with low-value tokens",
+      "You can measure cost per resolved task"
+    ],
+    "whenNotToUse": [
+      "Single-shot prompts that already fit comfortably",
+      "Prototypes where the loop is short and cheap",
+      "No instrumentation to measure what context buys"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Better reasoning and lower cost on long runs",
+        "Predictable token budgets",
+        "Compaction reduces context rot"
+      ],
+      "cons": [
+        "Compaction adds latency and a small accuracy risk",
+        "Needs instrumentation to do well",
+        "More moving parts than a static prompt"
+      ]
+    },
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "publishedAt": "2026-06-27T00:00:00.000Z",
+    "metaDescription": "Context engineering and Minimum Viable Context: dose the agent with exactly what each step needs. The 2026 discipline, with architecture and code.",
+    "keywords": [
+      "context engineering",
+      "minimum viable context",
+      "agent memory",
+      "context window",
+      "llmops"
+    ]
+  },
+  {
+    "id": "vercel-ai-sdk6-agent",
+    "slug": "vercel-ai-sdk6-agent",
+    "title": "Agent on Vercel AI SDK 6 + AI Gateway",
+    "subtitle": "A first-class Agent with tool approval, on Fluid compute and a durable workflow",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "production",
+    "overview": "Vercel AI SDK 6 (GA late 2025) ships a first-class Agent abstraction with tool-execution approval, MCP support, and DevTools. Paired with AI Gateway (one endpoint across providers) on Fluid compute and the Workflow SDK for durable steps, it is the fastest path to a production web-native agent.",
+    "problem": "Web agents hit serverless timeouts on multi-step loops, lock you to one model provider, and ship tool calls with no human gate on risky actions.",
+    "solution": "Use the SDK 6 Agent for the loop, route models through AI Gateway for failover and observability, run on Fluid compute for long timeouts, and make each step a durable Workflow step so completed work never re-runs.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "ui",
+          "name": "Streaming UI",
+          "type": "compute",
+          "description": "React UI streaming agent steps",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "agent",
+          "name": "AI SDK 6 Agent",
+          "type": "ai-service",
+          "description": "Tool loop with human-in-the-loop approval",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "gateway",
+          "name": "AI Gateway",
+          "type": "networking",
+          "description": "One endpoint across providers — routing, retries, caching",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "workflow",
+          "name": "Workflow SDK",
+          "type": "compute",
+          "description": "Durable steps; completed steps never re-run",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "tools",
+          "name": "MCP Tools",
+          "type": "ai-service",
+          "description": "External systems exposed via MCP"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "ui",
+          "to": "agent",
+          "label": "prompt",
+          "dataType": "messages"
+        },
+        {
+          "id": "f2",
+          "from": "agent",
+          "to": "gateway",
+          "label": "model call",
+          "protocol": "HTTPS"
+        },
+        {
+          "id": "f3",
+          "from": "agent",
+          "to": "tools",
+          "label": "tool call",
+          "protocol": "MCP"
+        },
+        {
+          "id": "f4",
+          "from": "agent",
+          "to": "workflow",
+          "label": "durable step",
+          "dataType": "state"
+        },
+        {
+          "id": "f5",
+          "from": "agent",
+          "to": "ui",
+          "label": "streamed steps",
+          "dataType": "tokens"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Agent + streaming UI",
+        "description": "Stand up the SDK 6 Agent with a streaming UI and one tool.",
+        "tasks": [
+          "Create the Agent",
+          "Stream steps to the UI",
+          "Add one tool"
+        ],
+        "deliverables": [
+          "Working single-tool agent"
+        ],
+        "estimatedDuration": "3-5 days"
+      },
+      {
+        "phase": 2,
+        "title": "Gateway + approval",
+        "description": "Route models through AI Gateway and gate risky tools.",
+        "tasks": [
+          "Move calls to AI Gateway",
+          "Add tool-execution approval",
+          "Configure provider fallback"
+        ],
+        "deliverables": [
+          "Multi-provider agent with approvals"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 3,
+        "title": "Durable + observable",
+        "description": "Make steps durable and add tracing.",
+        "tasks": [
+          "Wrap steps with Workflow SDK",
+          "Run on Fluid compute",
+          "Add tracing"
+        ],
+        "deliverables": [
+          "Durable, traced agent"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "sdk6-agent",
+        "title": "Agent with a gated tool (AI SDK 6)",
+        "language": "typescript",
+        "filename": "app/api/agent/route.ts",
+        "description": "Risky tools require approval before they execute.",
+        "code": "import { Experimental_Agent as Agent, tool, stepCountIs } from 'ai'\nimport { gateway } from '@ai-sdk/gateway'\nimport { z } from 'zod'\n\nconst agent = new Agent({\n  model: gateway('anthropic/claude-sonnet-4-5'),\n  stopWhen: stepCountIs(10),\n  tools: {\n    refund: tool({\n      description: 'Issue a refund (requires approval)',\n      inputSchema: z.object({ orderId: z.string(), amount: z.number() }),\n      needsApproval: true,\n      execute: async ({ orderId, amount }) => issueRefund(orderId, amount),\n    }),\n  },\n})\n\nexport async function POST(req: Request) {\n  const { messages } = await req.json()\n  return agent.respond({ messages })\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "mcp-as-architecture",
+      "context-engineering-mvc",
+      "claude-agent-sdk-vercel"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Vercel AI SDK 6",
+      "AI Gateway",
+      "Fluid compute",
+      "Workflow SDK",
+      "MCP"
+    ],
+    "estimatedCost": {
+      "monthly": 350,
+      "annual": 4200,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "LLM inference (via Gateway)",
+          "amount": 250,
+          "percentage": 71
+        },
+        {
+          "category": "Compute (Fluid)",
+          "amount": 70,
+          "percentage": 20
+        },
+        {
+          "category": "Observability",
+          "amount": 30,
+          "percentage": 9
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of mid-2026",
+        "Low-to-mid traffic web agent",
+        "Varies with model and usage"
+      ]
+    },
+    "timeToImplement": "2-3 weeks",
+    "useCases": [
+      "Customer-facing web agents",
+      "Internal ops copilots",
+      "Multi-step workflow automation",
+      "Human-in-the-loop actions"
+    ],
+    "whenToUse": [
+      "You are already on Vercel / Next.js",
+      "You want provider failover without rewrites",
+      "Risky actions need a human gate"
+    ],
+    "whenNotToUse": [
+      "A pure Python/data-science stack (use a Python framework)",
+      "No web UI and no need for streaming",
+      "You require a self-hosted-only control plane"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Fastest path to a web-native agent",
+        "Provider-agnostic via Gateway",
+        "Durable steps survive timeouts"
+      ],
+      "cons": [
+        "TypeScript-centric",
+        "Some features tie you to Vercel primitives",
+        "Newer APIs still evolving"
+      ]
+    },
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "publishedAt": "2026-06-27T00:00:00.000Z",
+    "metaDescription": "Build a production web agent on Vercel AI SDK 6 with tool approval, AI Gateway failover, Fluid compute, and durable Workflow steps. Architecture and code.",
+    "keywords": [
+      "vercel ai sdk 6",
+      "ai gateway",
+      "ai agent",
+      "fluid compute",
+      "workflow sdk"
+    ]
+  },
+  {
+    "id": "llm-gateway-routing",
+    "slug": "llm-gateway-routing",
+    "title": "LLM Gateway & Multi-Provider Routing",
+    "subtitle": "One endpoint across providers — routing, retries, caching, observability",
+    "category": "ai-gateway",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "production",
+    "overview": "An LLM gateway puts a single, provider-agnostic endpoint in front of every model. It centralizes auth, rate limiting, caching, failover, and spend observability — so swapping or load-balancing models is a config change, not a rewrite.",
+    "problem": "Calling providers directly scatters keys, gives no unified spend view, and means an outage or price change in one provider breaks the app.",
+    "solution": "Route all model traffic through a gateway (Vercel AI Gateway, Cloudflare AI Gateway, or self-hosted) with fallback chains, response caching, and per-route budgets, plus tracing into an observability tool.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "app",
+          "name": "Application",
+          "type": "compute",
+          "description": "Calls one gateway endpoint, not N providers"
+        },
+        {
+          "id": "gateway",
+          "name": "LLM Gateway",
+          "type": "networking",
+          "description": "Routing, retries, caching, budgets",
+          "cloudService": "Vercel AI Gateway / Cloudflare AI Gateway",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "p1",
+          "name": "Primary Provider",
+          "type": "ai-service",
+          "description": "Default model"
+        },
+        {
+          "id": "p2",
+          "name": "Fallback Provider",
+          "type": "ai-service",
+          "description": "Used on error or budget breach"
+        },
+        {
+          "id": "obs",
+          "name": "Observability",
+          "type": "monitoring",
+          "description": "Spend + latency + traces",
+          "cloudService": "Langfuse / Helicone"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "app",
+          "to": "gateway",
+          "label": "model call",
+          "protocol": "HTTPS"
+        },
+        {
+          "id": "f2",
+          "from": "gateway",
+          "to": "p1",
+          "label": "route",
+          "protocol": "HTTPS"
+        },
+        {
+          "id": "f3",
+          "from": "gateway",
+          "to": "p2",
+          "label": "failover",
+          "protocol": "HTTPS"
+        },
+        {
+          "id": "f4",
+          "from": "gateway",
+          "to": "obs",
+          "label": "traces + spend",
+          "dataType": "spans"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Front all traffic",
+        "description": "Point the app at one gateway endpoint.",
+        "tasks": [
+          "Choose a gateway",
+          "Move calls behind it",
+          "Centralize keys"
+        ],
+        "deliverables": [
+          "Single endpoint in use"
+        ],
+        "estimatedDuration": "3-5 days"
+      },
+      {
+        "phase": 2,
+        "title": "Failover + cache",
+        "description": "Add fallback chains and response caching.",
+        "tasks": [
+          "Define fallback order",
+          "Enable caching for idempotent calls",
+          "Set per-route budgets"
+        ],
+        "deliverables": [
+          "Resilient routing config"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 3,
+        "title": "Observe spend",
+        "description": "Wire tracing and spend dashboards.",
+        "tasks": [
+          "Connect observability",
+          "Alert on budget breach"
+        ],
+        "deliverables": [
+          "Spend + latency dashboard"
+        ],
+        "estimatedDuration": "3-5 days"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "gateway-ts",
+        "title": "Call any model through one gateway (AI SDK 6)",
+        "language": "typescript",
+        "filename": "lib/model.ts",
+        "description": "Switch providers by string id; the gateway handles routing.",
+        "code": "import { streamText } from 'ai'\nimport { gateway } from '@ai-sdk/gateway'\n\nexport function answer(messages: any[], model = 'anthropic/claude-sonnet-4-5') {\n  return streamText({ model: gateway(model), messages })\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "vercel-ai-sdk6-agent",
+      "frankx-ai-platform",
+      "agentic-rag"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Vercel AI Gateway",
+      "Cloudflare AI Gateway",
+      "Vercel AI SDK 6",
+      "Langfuse",
+      "Helicone"
+    ],
+    "timeToImplement": "1-2 weeks",
+    "useCases": [
+      "Provider failover",
+      "Centralized spend control",
+      "A/B testing models",
+      "Caching to cut cost"
+    ],
+    "whenToUse": [
+      "You call more than one provider or model",
+      "You need unified spend and latency visibility",
+      "Provider outages must not take you down"
+    ],
+    "whenNotToUse": [
+      "A single model with trivial volume",
+      "Ultra-low-latency needs where the extra hop hurts",
+      "Strict data-residency that the gateway cannot meet"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Swap models without code changes",
+        "Failover and caching out of the box",
+        "One place for spend and traces"
+      ],
+      "cons": [
+        "An extra hop in the request path",
+        "Gateway becomes a dependency to operate",
+        "Caching needs care for correctness"
+      ]
+    },
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "publishedAt": "2026-06-27T00:00:00.000Z",
+    "metaDescription": "LLM gateway and multi-provider routing in 2026: one endpoint for failover, caching, budgets, and spend observability. Architecture, code, and verdict.",
+    "keywords": [
+      "llm gateway",
+      "ai gateway",
+      "model routing",
+      "multi-provider llm",
+      "llmops"
+    ]
   }
 ]

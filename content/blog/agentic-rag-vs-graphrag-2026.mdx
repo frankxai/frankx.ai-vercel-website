@@ -1,0 +1,177 @@
+---
+title: "Naive RAG, Hybrid+Rerank, Agentic RAG, or GraphRAG: The 2026 Production Ladder"
+description: "Four retrieval architectures, one decision. The production ladder says earn each layer of complexity with a failure you have actually seen. Most systems land at hybrid+rerank or agentic RAG. Few need GraphRAG. Here is how to tell which rung is yours."
+publishedAt: "2026-06-27"
+updatedAt: "2026-06-27"
+author: "Frank"
+category: "AI Architecture"
+tags: ["RAG", "GraphRAG", "Retrieval", "AI Architecture", "Vector Search"]
+image: "/images/blog/agentic-rag-vs-graphrag-2026-hero.png"
+featured: true
+tldr: "Treat retrieval as a ladder. Start naive, climb to hybrid+rerank when recall hurts, climb to agentic RAG when one query cannot answer the question, and only reach GraphRAG when answers require traversing connected entities. Most production systems stop at hybrid+rerank or agentic. Earn each rung with a real failure."
+schema: ["Article", "FAQPage"]
+lastUpdated: "2026-06-27"
+faq:
+  - q: "Is GraphRAG always better than vector RAG?"
+    a: "No. GraphRAG wins only when the answer requires traversing relationships between entities — contracts referencing clauses, case law citing precedent, org charts, supply chains. For most question-answering over documents, hybrid search plus a reranker matches or beats GraphRAG at a fraction of the build and maintenance cost."
+  - q: "What is agentic RAG?"
+    a: "Agentic RAG lets the model decide whether to retrieve, what to retrieve, and whether one retrieval pass was enough. Instead of a fixed retrieve-then-generate pipeline, an agent loops: query, inspect results, refine or query a different source, then answer. It earns its place when a single query cannot answer the question."
+  - q: "When should I just use naive RAG?"
+    a: "When your corpus is small, your queries map cleanly to dense embeddings, and you have not yet seen a recall failure. Naive RAG is the right default for a prototype. Ship it, watch it fail, then climb the ladder against the specific failure you observed."
+  - q: "Do I need a graph database for GraphRAG?"
+    a: "Often, but not always. GraphRAG needs an entity-and-relationship structure to traverse. A property graph (Neo4j, Kuzu) is the natural home, but you can build lighter graphs on top of a relational store or even precompute community summaries offline. The cost is in extraction and maintenance, not the storage engine."
+---
+
+**TL;DR**: Treat retrieval as a ladder, not a menu. Start with naive RAG. Climb to hybrid+rerank when recall hurts. Climb to agentic RAG when a single query cannot answer the question. Only reach GraphRAG when the answer requires traversing connected entities — contracts, case law, org graphs. Most production systems stop at hybrid+rerank or agentic. The discipline is simple: earn each rung with a failure you have actually seen.
+
+---
+
+## The mistake that wastes a quarter
+
+A team reads a GraphRAG paper, sees the lift on multi-hop benchmarks, and decides their support-bot needs a knowledge graph. Three months later they have an entity-extraction pipeline that drifts, a graph that goes stale every time the docs change, and a bot that answers slightly worse than the hybrid search they skipped.
+
+The error is not technical. It is sequencing. They reached for the top rung before they had felt the failure that justifies it.
+
+The fix is a **production ladder**: four retrieval architectures ordered by complexity, where you only climb when the rung below you breaks against a real query you can name. Complexity you cannot trace to a specific failure is complexity you are paying for and not using.
+
+---
+
+## The four rungs
+
+| Pattern | Use when | Skip when | Cost / complexity |
+| --- | --- | --- | --- |
+| **Naive RAG** (dense embed + top-k) | Prototype, small corpus, queries map cleanly to semantics | Recall is missing exact terms, acronyms, IDs | Low — a few hours |
+| **Hybrid + rerank** (BM25 + dense, cross-encoder rerank) | Recall failures on keywords; mixed natural-language and exact-match queries | Single query already returns everything needed and ranks well | Medium — days |
+| **Agentic RAG** (model decides what/whether to retrieve, loops) | One query cannot answer; needs decomposition, multiple sources, or self-correction | Question is answerable by one good retrieval | Medium-high — agent loop, eval harness, latency budget |
+| **GraphRAG** (entity graph + traversal / community summaries) | Answer requires following relationships across many documents | Answers live inside single documents | High — extraction pipeline, graph store, ongoing maintenance |
+
+Read this top to bottom. The default for a new system is the top row. You move down only when you can write the sentence: *"Query X fails because Y, and the rung below cannot fix it."*
+
+---
+
+## Rung 1: Naive RAG — the honest starting point
+
+Embed the chunks, embed the query, return the top-k by cosine similarity, stuff them in the prompt. This is not a strawman. For a focused corpus where questions are semantic ("how do I reset my password"), naive RAG is correct, fast, and cheap.
+
+Ship it first. It gives you the thing you actually need: a stream of real failures. Without that stream you are guessing at which rung to climb.
+
+**The failure that pushes you up:** a user asks for "error 0x80070057" or "the Q3 SOC2 clause" and dense embeddings return semantically-adjacent fluff because they smear exact tokens. That is your signal.
+
+---
+
+## Rung 2: Hybrid + rerank — where most systems should live
+
+This is the workhorse of production retrieval as of mid-2026, and the rung most teams underrate. Two changes:
+
+1. **Hybrid retrieval** — run a lexical search (BM25 / sparse) and a dense search in parallel, then fuse the result sets (reciprocal rank fusion is the boring, reliable choice). Lexical catches the exact IDs, acronyms, and rare terms that embeddings blur. Dense catches the paraphrase. Together they cover each other's blind spots.
+2. **Reranking** — take the fused top-50 and pass them through a cross-encoder reranker that scores each (query, chunk) pair jointly. This is slower per item but you only run it on a shortlist, and it dramatically sharpens what lands in the context window.
+
+The combined effect is the single biggest recall-and-precision jump per unit of effort in the whole ladder. If you are on naive RAG and feeling pain, **this is almost always the right next move — not GraphRAG.**
+
+**Verdict: use hybrid+rerank as your production default.** Reach past it only when the failure is no longer about *finding* the right chunk but about *needing more than one* retrieval to answer at all.
+
+---
+
+## Rung 3: Agentic RAG — when one query is not enough
+
+Naive and hybrid both assume a fixed shape: one query in, one set of chunks out, one answer. Agentic RAG drops that assumption. The model decides:
+
+- **Whether** to retrieve at all (some questions are answerable from the conversation).
+- **What** to retrieve, possibly decomposing "compare our 2024 and 2025 refund policies" into two targeted queries.
+- **Whether** the first pass was enough, looping to retrieve again from the same or a different source.
+
+This is the rung to climb when questions are compositional or span sources — "find the contract for Acme, then tell me if its termination clause conflicts with our standard SLA." No single query returns that; the agent has to fetch, read, then fetch again.
+
+With Vercel AI SDK 6, retrieval is just a tool the model can call inside `streamText`. The loop comes for free — the model calls the tool, sees results, and decides whether to call it again before composing the answer:
+
+```ts
+import { streamText, tool } from 'ai'
+import { openai } from '@ai-sdk/openai'
+import { z } from 'zod'
+import { hybridSearch } from './retrieval' // BM25 + dense + rerank from rung 2
+
+const result = streamText({
+  model: openai('gpt-5.1'),
+  // The agent loops over tool calls until it has enough to answer.
+  stopWhen: ({ steps }) => steps.length >= 5,
+  tools: {
+    searchDocs: tool({
+      description:
+        'Search the document corpus. Call multiple times with refined ' +
+        'queries if the first results are insufficient.',
+      inputSchema: z.object({
+        query: z.string().describe('A focused, single-intent search query'),
+        source: z.enum(['contracts', 'policies', 'support']).optional(),
+      }),
+      execute: async ({ query, source }) => {
+        const hits = await hybridSearch(query, { source, topK: 8 })
+        return hits.map((h) => ({ id: h.id, text: h.text, score: h.score }))
+      },
+    }),
+  },
+  system:
+    'Answer only from retrieved documents. If the first search is thin, ' +
+    'refine the query and search again before answering. Cite chunk ids.',
+  prompt: userQuestion,
+})
+```
+
+The cost is real: more tokens, higher latency, and a harder evaluation surface (you now grade the *trajectory*, not just the answer). Budget for an eval harness before you ship this rung — an agent that silently loops five times on every query is a cost incident waiting to happen.
+
+**Verdict: use agentic RAG when questions decompose or span sources — and pair it with the rung-2 retriever as its tool, not in place of it.**
+
+---
+
+## Rung 4: GraphRAG — when the answer is in the connections
+
+Everything above retrieves *chunks*. GraphRAG retrieves *relationships*. You extract entities and the edges between them into a graph, then answer by traversing that structure — either walking the graph at query time or precomputing community summaries offline and retrieving those.
+
+GraphRAG earns its cost only when the answer genuinely lives across many documents linked by entities, where no single chunk holds it. Three places it actually wins:
+
+- **Contracts.** "Which of our active agreements reference the indemnification standard we deprecated?" The answer is a traversal: standard → clauses that cite it → contracts containing those clauses. A chunk search cannot assemble that chain; a graph walk does it directly.
+- **Case law.** Precedent is a citation graph. "Trace how this ruling's reasoning propagated" is a multi-hop walk over which case cited which, for what holding. This is GraphRAG's home turf.
+- **Org and supply graphs.** "If this vendor fails, which products are exposed?" is reachability over a dependency graph, not a similarity search over descriptions.
+
+The pattern: **the question names a relationship and asks you to follow it across entities.** If you can phrase the real query as a graph traversal and a chunk search demonstrably fails it, you have found the failure that justifies the rung.
+
+The cost you sign up for: an entity-and-relationship extraction pipeline (itself an LLM workload that drifts), a graph store to maintain, and a re-extraction story every time the source corpus changes. That maintenance tax is why GraphRAG is the top of the ladder, not a default.
+
+**Verdict: use GraphRAG when answers require connected-entity traversal — contracts, case law, org/supply graphs — and a hybrid+rerank baseline has measurably failed the multi-hop query.** Build that baseline first so you can prove the lift.
+
+---
+
+## The map and the territory
+
+A useful mental model: hybrid+rerank gives you the best *single location* for an answer. GraphRAG gives you a *route* between locations. Agentic RAG gives you a *driver* who can take several trips. Most questions only need a good location. Some need a route. A few need a driver who knows when to ask for the route.
+
+Build in that order. Each rung is cheaper to add after you have felt the failure it solves than to rip out after you guessed wrong.
+
+For the broader picture of how retrieval sits inside a production agent stack — orchestration, memory, guardrails, observability — see the [AI Architecture hub](/ai-architecture). When you are ready to assemble a stack rather than reason about one rung, the [blueprints](/ai-architecture/blueprints) cover the reference wiring.
+
+---
+
+## FAQ
+
+### Is GraphRAG always better than vector RAG?
+
+No. GraphRAG wins only when the answer requires traversing relationships between entities — contracts referencing clauses, case law citing precedent, org charts, supply chains. For most question-answering over documents, hybrid search plus a reranker matches or beats GraphRAG at a fraction of the build and maintenance cost.
+
+### What is agentic RAG?
+
+Agentic RAG lets the model decide whether to retrieve, what to retrieve, and whether one retrieval pass was enough. Instead of a fixed retrieve-then-generate pipeline, an agent loops: query, inspect results, refine or query a different source, then answer. It earns its place when a single query cannot answer the question.
+
+### When should I just use naive RAG?
+
+When your corpus is small, your queries map cleanly to dense embeddings, and you have not yet seen a recall failure. Naive RAG is the right default for a prototype. Ship it, watch it fail, then climb the ladder against the specific failure you observed.
+
+### Do I need a graph database for GraphRAG?
+
+Often, but not always. GraphRAG needs an entity-and-relationship structure to traverse. A property graph (Neo4j, Kuzu) is the natural home, but you can build lighter graphs on top of a relational store or even precompute community summaries offline. The cost is in extraction and maintenance, not the storage engine.
+
+---
+
+## Related Articles
+
+- [The 7 Pillars of Production Agent Systems](/blog/production-agent-patterns-7-pillars) — where retrieval fits in the full stack
+- [MCP as an Architectural Pattern](/blog/mcp-as-architecture) — the universal port for tools and data sources
+- [Context Engineering and Minimum Viable Context](/blog/context-engineering-mvc) — how to dose retrieved context without rotting the window

@@ -38,6 +38,7 @@ export interface ArchitectureComponent {
   description: string
   cloudService?: string // e.g., "AWS Lambda", "OCI Functions"
   configuration?: Record<string, unknown>
+  affiliateId?: string // maps to lib/affiliates/affiliate-manager.ts id for a tracked deep-link
 }
 
 export interface DataFlow {
@@ -124,6 +125,12 @@ export interface ArchitecturePrototype {
   // Social proof
   useCases: string[]
   caseStudies?: CaseStudy[]
+
+  // Decisiveness (the "use when / skip when" verdict — mirrors ArchitecturePattern)
+  whenToUse?: string[]
+  whenNotToUse?: string[]
+  tradeoffs?: PatternTradeoffs
+  maturity?: 'emerging' | 'production' | 'mature'
 
   // Timestamps
   createdAt: string

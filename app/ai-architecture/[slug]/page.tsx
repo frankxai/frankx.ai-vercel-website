@@ -12,9 +12,17 @@ import {
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
+import { buildHowToSchema, buildBreadcrumbSchema, SITE_CONFIG } from '@/lib/schema-builders'
+import { ldJson } from '@/lib/seo/jsonld'
 import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
 
 const blueprints = prototypesData as ArchitecturePrototype[]
+
+const MATURITY_META: Record<string, { label: string; className: string }> = {
+  emerging: { label: 'Emerging', className: 'border-violet-500/30 text-violet-300' },
+  production: { label: 'Production-ready', className: 'border-emerald-500/30 text-emerald-300' },
+  mature: { label: 'Mature', className: 'border-cyan-500/30 text-cyan-300' },
+}
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -43,8 +51,60 @@ export default async function BlueprintPage({ params }: Props) {
     notFound()
   }
 
+  const canonical = `${SITE_CONFIG.url}/ai-architecture/${blueprint.slug}`
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'TechArticle',
+        headline: blueprint.title,
+        description: blueprint.metaDescription || blueprint.subtitle,
+        url: canonical,
+        datePublished: blueprint.publishedAt || blueprint.createdAt,
+        dateModified: blueprint.updatedAt,
+        author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_CONFIG.author.url },
+        publisher: {
+          '@type': 'Organization',
+          name: SITE_CONFIG.organization.name,
+          logo: { '@type': 'ImageObject', url: SITE_CONFIG.organization.logo },
+        },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+        ...(blueprint.keywords && { keywords: blueprint.keywords.join(', ') }),
+        proficiencyLevel: DIFFICULTY_META[blueprint.difficulty].name,
+      },
+      buildBreadcrumbSchema([
+        { name: 'AI Architecture', url: '/ai-architecture' },
+        { name: 'Blueprints', url: '/ai-architecture/blueprints' },
+        { name: blueprint.title, url: `/ai-architecture/${blueprint.slug}` },
+      ]),
+      ...(blueprint.implementationSteps.length > 0
+        ? [
+            buildHowToSchema({
+              name: `How to build: ${blueprint.title}`,
+              description: blueprint.solution,
+              difficulty:
+                blueprint.difficulty === 'beginner'
+                  ? 'Beginner'
+                  : blueprint.difficulty === 'expert' || blueprint.difficulty === 'advanced'
+                    ? 'Advanced'
+                    : 'Intermediate',
+              totalTime: blueprint.timeToImplement,
+              tools: blueprint.technologies,
+              steps: blueprint.implementationSteps.map((s) => ({
+                name: s.title,
+                text: s.description,
+              })),
+            }),
+          ]
+        : []),
+    ],
+  }
+
+  const maturity = blueprint.maturity ? MATURITY_META[blueprint.maturity] : null
+
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       {/* Header */}
       <section className="pt-32 pb-12 border-b border-white/5">
         <div className="mx-auto max-w-4xl px-6">
@@ -78,6 +138,11 @@ export default async function BlueprintPage({ params }: Props) {
             }`}>
               {DIFFICULTY_META[blueprint.difficulty].name}
             </span>
+            {maturity && (
+              <span className={`rounded-full border px-3 py-1 ${maturity.className}`}>
+                {maturity.label}
+              </span>
+            )}
             {blueprint.timeToImplement && (
               <span className="flex items-center gap-1 text-slate-400">
                 <Clock className="h-4 w-4" />
@@ -157,6 +222,65 @@ export default async function BlueprintPage({ params }: Props) {
             <h2 className="mb-4 text-2xl font-bold text-white">Overview</h2>
             <p className="text-slate-400 leading-relaxed">{blueprint.overview}</p>
           </div>
+
+          {/* The verdict — use when / skip when */}
+          {(blueprint.whenToUse?.length || blueprint.whenNotToUse?.length) && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-2xl font-bold text-white">The verdict</h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {blueprint.whenToUse?.length ? (
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-6">
+                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-emerald-400">
+                      Use this when
+                    </h3>
+                    <ul className="space-y-2">
+                      {blueprint.whenToUse.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {blueprint.whenNotToUse?.length ? (
+                  <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6">
+                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-amber-400">
+                      Skip it when
+                    </h3>
+                    <ul className="space-y-2">
+                      {blueprint.whenNotToUse.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+              {blueprint.tradeoffs && (
+                <div className="mt-6 grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Pros</h4>
+                    <ul className="space-y-1">
+                      {blueprint.tradeoffs.pros.map((p, i) => (
+                        <li key={i} className="text-sm text-slate-400">+ {p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Cons</h4>
+                    <ul className="space-y-1">
+                      {blueprint.tradeoffs.cons.map((c, i) => (
+                        <li key={i} className="text-sm text-slate-400">− {c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Interactive Architecture Diagram */}
           {blueprint.architecture.components.length > 0 && (
