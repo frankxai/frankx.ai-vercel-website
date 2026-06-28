@@ -203,7 +203,7 @@ export default function TemplatesPage() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
-                href="mailto:hello@frankx.ai?subject=Custom Template Request"
+                href="mailto:frank@frankx.ai?subject=Custom Template Request"
                 className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
               >
                 <ExternalLink className="h-4 w-4" />

@@ -140,6 +140,19 @@ const homepageFAQs = [
   },
 ]
 
+// Hero featured track — "Vibe O S", Frank's signature Suno track.
+// Restores the hero music player (was replaced by a portrait in #205).
+const featuredTrack = {
+  id: 'vibe-os-track',
+  title: 'Vibe O S',
+  sunoId: '9cbad174-9276-427f-9aed-1ba00c7db3db',
+  audioUrl:
+    'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9cbad174-9276-427f-9aed-1ba00c7db3db/9cbad174-9276-427f-9aed-1ba00c7db3db.mp3',
+  genre: ['female hip hop', 'bass-heavy', 'lyrical'],
+  plays: 128,
+  duration: '4:00',
+}
+
 export default function Page() {
   const latestPosts = getAllBlogPosts()
     .slice(0, 3)
@@ -167,7 +180,7 @@ export default function Page() {
 
   return (
     <>
-      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} libraryBooks={libraryBooks} />
+      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} libraryBooks={libraryBooks} featuredTrack={featuredTrack} />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />

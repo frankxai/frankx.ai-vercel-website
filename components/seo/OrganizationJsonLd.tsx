@@ -13,7 +13,7 @@ export default function OrganizationJsonLd() {
         sameAs: SCHEMA_SAME_AS,
         contactPoint: {
             '@type': 'ContactPoint',
-            email: 'hello@frankx.ai',
+            email: 'frank@frankx.ai',
             contactType: 'customer support',
         },
     }
