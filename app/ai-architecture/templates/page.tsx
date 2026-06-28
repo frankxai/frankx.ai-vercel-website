@@ -10,147 +10,91 @@ import {
   ArrowRight,
   Database,
   Users,
-  MessageSquare,
   Server,
-  Zap,
-  Shield,
-  ExternalLink,
+  Github,
 } from 'lucide-react'
 
-// Template products — status drives button state.
-// Set status to 'active' + add lemonSqueezyVariantId when ready to sell.
-const templates = [
+import { AffiliateDisclosure } from '@/components/affiliate-disclosure'
+
+// Free, MIT-licensed starter templates. Source lives in this repo under
+// templates/<dir>; each ships with a one-click Deploy-to-Vercel button.
+const REPO = 'https://github.com/frankxai/frankx.ai-vercel-website'
+
+function deployUrl(dir: string) {
+  const repoParam = encodeURIComponent(`${REPO}/tree/main/templates/${dir}`)
+  return `https://vercel.com/new/clone?repository-url=${repoParam}&project-name=${dir}&repository-name=${dir}`
+}
+
+type Template = {
+  id: string
+  dir: string
+  title: string
+  subtitle: string
+  icon: typeof Database
+  color: string
+  features: string[]
+  techStack: string[]
+  includesOCI: boolean
+  deployable: boolean // false for the MCP server (no web deploy target)
+}
+
+const templates: Template[] = [
   {
-    id: 'rag-starter-kit',
-    title: 'RAG Starter Kit',
-    subtitle: 'Production-ready document Q&A',
-    price: 49,
-    originalPrice: 79,
+    id: 'rag-starter',
+    dir: 'rag-starter',
+    title: 'RAG Starter',
+    subtitle: 'Production RAG on Vercel AI SDK 6',
     icon: Database,
     color: 'emerald',
     features: [
-      'Next.js 15 + TypeScript',
-      'Pinecone vector database',
-      'Multi-provider (Claude, GPT, OCI)',
-      'PDF/DOCX ingestion',
-      'Source citations',
-      'One-click deploy (Vercel + Railway)',
+      'Next.js + AI SDK 6 + Supabase pgvector',
+      'Chunk → embed → retrieve → rerank',
+      'Streaming answers with source citations',
+      'BYOK (key via header, never persisted)',
+      'OCI GenAI variant note',
+      'One-click Deploy to Vercel',
     ],
-    techStack: ['Next.js', 'Pinecone', 'Vercel AI SDK', 'TypeScript'],
+    techStack: ['Next.js', 'AI SDK 6', 'Supabase', 'pgvector'],
     includesOCI: true,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',  // Set when Lemon Squeezy product is created
-    deployPlatforms: ['vercel', 'railway'],
+    deployable: true,
   },
   {
-    id: 'multi-agent-framework',
-    title: 'Multi-Agent Framework',
-    subtitle: 'Coordinated agent workflows',
-    price: 99,
-    originalPrice: 149,
+    id: 'multi-agent',
+    dir: 'multi-agent',
+    title: 'Multi-Agent Orchestration',
+    subtitle: 'Orchestrator → workers on AI SDK 6',
     icon: Users,
     color: 'violet',
     features: [
-      'LangGraph orchestration',
-      '5 agent patterns included',
-      'Tool calling & handoffs',
-      'Execution tracing',
-      'State persistence',
-      'OCI GenAI variant',
+      'AI SDK 6 Agent with tool calling',
+      'Orchestrator delegates to worker tools',
+      'Visible step streaming',
+      'Bounded loop with stop condition',
+      'BYOK multi-provider',
+      'One-click Deploy to Vercel',
     ],
-    techStack: ['LangGraph', 'Python', 'Claude/GPT', 'Redis'],
-    includesOCI: true,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['railway'],
-  },
-  {
-    id: 'ai-chat-widget',
-    title: 'AI Chat Widget',
-    subtitle: 'Embeddable chat component',
-    price: 29,
-    originalPrice: 49,
-    icon: MessageSquare,
-    color: 'cyan',
-    features: [
-      'React component',
-      'Streaming responses',
-      'Customizable styling',
-      'Conversation history',
-      'Embed anywhere',
-      'TypeScript types',
-    ],
-    techStack: ['React', 'Vercel AI SDK', 'Tailwind CSS'],
+    techStack: ['Next.js', 'AI SDK 6', 'zod'],
     includesOCI: false,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['vercel'],
+    deployable: true,
   },
   {
-    id: 'mcp-server-starter',
-    title: 'MCP Server Starter',
-    subtitle: 'Custom tool integrations',
-    price: 49,
-    originalPrice: 69,
+    id: 'mcp-server-kit',
+    dir: 'mcp-server-kit',
+    title: 'MCP Server Kit',
+    subtitle: 'TypeScript MCP server starter',
     icon: Server,
     color: 'orange',
     features: [
-      'MCP server boilerplate',
-      'Tool & resource patterns',
-      'Claude Code integration',
-      'Testing utilities',
-      'Documentation',
-      'Example tools',
+      'stdio + streamable-HTTP transports',
+      'Two example tools + one resource',
+      'Add to Claude Code / Cursor in minutes',
+      'Typed with the MCP TypeScript SDK',
+      'Graceful, typed tool errors',
+      'Clone and extend',
     ],
     techStack: ['TypeScript', 'MCP SDK', 'Node.js'],
     includesOCI: false,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['railway'],
-  },
-  {
-    id: 'enterprise-rag-platform',
-    title: 'Enterprise RAG Platform',
-    subtitle: 'Full production system',
-    price: 199,
-    originalPrice: 299,
-    icon: Shield,
-    color: 'blue',
-    features: [
-      'Everything in Starter Kit',
-      'Auth (NextAuth.js)',
-      'Admin dashboard',
-      'Usage analytics',
-      'Team permissions',
-      'Terraform for OCI',
-    ],
-    techStack: ['Next.js', 'PostgreSQL', 'NextAuth', 'Terraform'],
-    includesOCI: true,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['vercel', 'railway'],
-  },
-  {
-    id: 'llmops-pipeline',
-    title: 'LLMOps Pipeline',
-    subtitle: 'Evaluation & monitoring',
-    price: 79,
-    originalPrice: 119,
-    icon: Zap,
-    color: 'amber',
-    features: [
-      'Prompt versioning',
-      'A/B testing framework',
-      'Evaluation metrics',
-      'Cost tracking',
-      'Logging & traces',
-      'Dashboard UI',
-    ],
-    techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Langfuse'],
-    includesOCI: true,
-    status: 'coming-soon' as 'coming-soon' | 'active',
-    lemonSqueezyVariantId: '',
-    deployPlatforms: ['railway'],
+    deployable: false,
   },
 ]
 
@@ -197,11 +141,12 @@ function TemplateCard({
   template,
   index,
 }: {
-  template: (typeof templates)[0]
+  template: Template
   index: number
 }) {
   const Icon = template.icon
   const colors = colorMap[template.color]
+  const githubUrl = `${REPO}/tree/main/templates/${template.dir}`
 
   return (
     <motion.div
@@ -212,11 +157,11 @@ function TemplateCard({
       className="group"
     >
       <div
-        className={`relative h-full rounded-2xl border ${colors.border} ${colors.bg} p-6 transition-all duration-300`}
+        className={`relative flex h-full flex-col rounded-2xl border ${colors.border} ${colors.bg} p-6 transition-all duration-300`}
       >
-        {/* Coming soon badge */}
+        {/* Free badge */}
         <div className={`absolute -right-2 -top-2 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase ${colors.badge}`}>
-          Coming Soon
+          Free · MIT
         </div>
 
         {/* OCI badge */}
@@ -227,24 +172,13 @@ function TemplateCard({
         )}
 
         {/* Header */}
-        <div className="mb-4 flex items-start justify-between">
-          <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${colors.icon}`}>
+        <div className="mb-4">
+          <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${colors.icon}`}>
             <Icon className="h-6 w-6" />
           </div>
-          <div className="text-right">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-white">${template.price}</span>
-              <span className="text-sm text-slate-500 line-through">${template.originalPrice}</span>
-            </div>
-            <span className="text-xs text-emerald-400">
-              Save ${template.originalPrice - template.price}
-            </span>
-          </div>
+          <h3 className="mb-1 text-lg font-bold text-white">{template.title}</h3>
+          <p className="text-sm text-slate-400">{template.subtitle}</p>
         </div>
-
-        {/* Title */}
-        <h3 className="mb-1 text-lg font-bold text-white">{template.title}</h3>
-        <p className="mb-4 text-sm text-slate-400">{template.subtitle}</p>
 
         {/* Features */}
         <ul className="mb-4 space-y-2">
@@ -268,25 +202,29 @@ function TemplateCard({
           ))}
         </div>
 
-        {/* Purchase / Coming Soon Button */}
-        {template.status === 'active' && template.lemonSqueezyVariantId ? (
+        {/* Actions */}
+        <div className="mt-auto flex flex-col gap-2">
+          {template.deployable && (
+            <a
+              href={deployUrl(template.dir)}
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-black transition-all hover:-translate-y-0.5"
+            >
+              Deploy to Vercel
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          )}
           <a
-            href={`https://frankx.lemonsqueezy.com/checkout/buy/${template.lemonSqueezyVariantId}?checkout[custom][template_id]=${template.id}`}
+            href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/25"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
           >
-            Get Template — ${template.price}
-            <ExternalLink className="h-3.5 w-3.5" />
+            <Github className="h-4 w-4" />
+            View Source
           </a>
-        ) : (
-          <button
-            disabled
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 font-semibold text-slate-400 cursor-not-allowed"
-          >
-            Coming Soon
-          </button>
-        )}
+        </div>
       </div>
     </motion.div>
   )
@@ -329,7 +267,7 @@ export default function TemplatesPage() {
             <div>
               <h1 className="text-3xl font-bold text-white">Starter Templates</h1>
               <p className="text-slate-400">
-                Production-ready code • <span className="text-emerald-400">$29-199</span>
+                Free, open-source • <span className="text-emerald-400">Deploy to Vercel in one click</span>
               </p>
             </div>
           </motion.div>
@@ -340,8 +278,8 @@ export default function TemplatesPage() {
             transition={{ delay: 0.1 }}
             className="mt-6 max-w-2xl text-slate-400"
           >
-            Skip weeks of boilerplate. Each template includes full source code, one-click deploy
-            buttons, and OCI GenAI variants where applicable. Buy once, use forever.
+            Skip weeks of boilerplate. Each starter is MIT-licensed, runnable, and built on the 2026
+            stack — clone it, read it, deploy it. Bring your own keys; you control costs.
           </motion.p>
         </div>
       </section>
@@ -351,10 +289,10 @@ export default function TemplatesPage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { label: 'Full Source Code', desc: 'No obfuscation, yours forever' },
-              { label: 'One-Click Deploy', desc: 'Vercel, Railway, n8n' },
-              { label: 'Video Walkthrough', desc: 'Setup & customization guide' },
-              { label: 'Discord Support', desc: 'Community help channel' },
+              { label: 'Full Source Code', desc: 'MIT-licensed, yours to fork' },
+              { label: 'One-Click Deploy', desc: 'Deploy to Vercel from the repo' },
+              { label: '2026 Stack', desc: 'AI SDK 6, MCP, pgvector' },
+              { label: 'BYOK', desc: 'Your keys, your costs' },
             ].map((item) => (
               <div key={item.label} className="flex items-start gap-3">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
@@ -376,6 +314,9 @@ export default function TemplatesPage() {
               <TemplateCard key={template.id} template={template} index={index} />
             ))}
           </div>
+          <div className="mx-auto mt-10 max-w-2xl">
+            <AffiliateDisclosure providers={['vercel']} />
+          </div>
         </div>
       </section>
 
@@ -386,24 +327,24 @@ export default function TemplatesPage() {
           <div className="space-y-6">
             {[
               {
-                q: 'What do I get when I purchase?',
-                a: 'You get access to a private GitHub repository with full source code, deploy buttons for Vercel/Railway/Render, a video walkthrough, and access to our Discord support channel.',
+                q: 'What do these cost?',
+                a: 'Nothing. Every starter is free and MIT-licensed. View the source on GitHub or deploy your own copy to Vercel in one click.',
               },
               {
-                q: 'Can I use templates for commercial projects?',
-                a: 'Yes! All templates include a commercial license. Use them for client projects, SaaS products, or internal tools.',
+                q: 'Can I use them for commercial projects?',
+                a: 'Yes. MIT means you can use, modify, and ship them in client projects, SaaS products, or internal tools.',
               },
               {
-                q: 'Do templates work with OCI GenAI?',
-                a: 'Templates marked "OCI Ready" include OCI GenAI provider variants and Terraform deployment scripts for Oracle Cloud Infrastructure.',
+                q: 'Do they work with OCI GenAI?',
+                a: 'Starters marked "OCI Ready" include notes for swapping in an OCI GenAI provider variant alongside Anthropic / OpenAI / Google.',
               },
               {
                 q: 'Do I need my own API keys?',
-                a: 'Yes, templates require your own API keys for the AI providers you want to use (Anthropic, OpenAI, Google, or OCI). This gives you full control over costs.',
+                a: 'Yes. Each starter is BYOK — you supply keys for the providers you use (Anthropic, OpenAI, Google, or OCI), so you control costs.',
               },
               {
-                q: 'Are there refunds?',
-                a: 'Due to the digital nature of templates (you receive source code immediately), we cannot offer refunds. Please review the features carefully before purchasing.',
+                q: 'Are these turnkey production systems?',
+                a: 'No — they are honest starting points. Core logic is implemented and runnable; you still add auth, evals, and hardening for production.',
               },
             ].map((faq) => (
               <div key={faq.q} className="rounded-xl border border-white/10 bg-white/5 p-6">
@@ -418,15 +359,16 @@ export default function TemplatesPage() {
       {/* Notify */}
       <section className="py-16 border-t border-white/5">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-4 text-2xl font-bold text-white">Get Notified at Launch</h2>
+          <h2 className="mb-4 text-2xl font-bold text-white">New starters land in the AI Architect Dispatch</h2>
           <p className="mb-6 text-slate-400">
-            Be the first to know when templates are available. Early subscribers get 20% off.
+            Get new blueprints, starters, and the patterns behind them in the bi-weekly AI Architect
+            Dispatch.
           </p>
           <Link
             href="/newsletter"
             className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
-            Join Newsletter
+            Join the Dispatch
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
