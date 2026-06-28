@@ -16,13 +16,17 @@ export async function POST(req: Request) {
     return new Response('Invalid JSON body.', { status: 400 });
   }
 
-  // The last user message is the retrieval query.
+  // The last user message is the retrieval query. AI SDK clients send `parts`;
+  // simpler clients may send a plain `content` string — handle both.
   const last = [...messages].reverse().find((m) => m.role === 'user');
-  const query = last?.parts
+  const fromParts = last?.parts
     ?.filter((p) => p.type === 'text')
     .map((p) => (p as { text: string }).text)
     .join(' ')
     .trim();
+  const rawContent = (last as { content?: unknown } | undefined)?.content;
+  const fromContent = typeof rawContent === 'string' ? rawContent.trim() : '';
+  const query = fromParts || fromContent;
 
   if (!query) {
     return new Response('No user message to answer.', { status: 400 });

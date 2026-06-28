@@ -15,12 +15,11 @@ create table if not exists documents (
 );
 
 -- 3. Approximate-nearest-neighbour index for fast retrieval.
---    ivfflat needs at least a few rows before it helps; for tiny corpora a
---    sequential scan is fine and this index is simply ignored.
+--    hnsw (pgvector >= 0.5.0) gives better recall and query speed than ivfflat
+--    and needs no training or minimum row count.
 create index if not exists documents_embedding_idx
   on documents
-  using ivfflat (embedding vector_cosine_ops)
-  with (lists = 100);
+  using hnsw (embedding vector_cosine_ops);
 
 -- 4. Similarity search function. Returns the top `match_count` chunks by cosine
 --    similarity, filtered to those above `match_threshold` (0..1).

@@ -64,6 +64,9 @@ export default function AgentSimulatorPage() {
         { role: 'user', content: task.trim() },
       ])
       const planList = parsePlan(planText)
+      if (planList.length === 0) {
+        throw new Error('The orchestrator did not return a usable plan. Try rephrasing the task.')
+      }
       setPlan(planList)
 
       // 2. Execute each step (worker handoff)

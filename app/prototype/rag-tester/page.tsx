@@ -52,9 +52,15 @@ export default function RagTesterPage() {
     const top = lexicalRetrieve(question, chunks)
     setRetrieved(top)
 
-    const context = top.length
-      ? top.map((c, i) => `[${i + 1}] ${c.text}`).join('\n\n')
-      : 'No relevant passages found in the provided document.'
+    // No retrieval hit → skip the model call and say so. Saves a request and
+    // demonstrates the grounding guard.
+    if (top.length === 0) {
+      setAnswer('No relevant passages found in the document for that question. Try rephrasing, or add the relevant text to the document.')
+      setIsLoading(false)
+      return
+    }
+
+    const context = top.map((c, i) => `[${i + 1}] ${c.text}`).join('\n\n')
 
     const system =
       'You answer strictly from the provided context. Cite sources inline using [n] markers that map to the numbered passages. If the context does not contain the answer, say so plainly — do not invent facts.'
