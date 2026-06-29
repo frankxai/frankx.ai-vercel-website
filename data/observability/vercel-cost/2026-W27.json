@@ -1,0 +1,38 @@
+{
+  "week": "2026-W27",
+  "generatedAt": "2026-06-29T18:00:00Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-06-22T00:00:00Z",
+  "windowEnd": "2026-06-29T00:00:00Z",
+  "metrics": {
+    "count_total": 107,
+    "count_production": 32,
+    "count_preview": 75,
+    "count_skipped": 3,
+    "count_error": 16,
+    "count_ready": 88,
+    "duration_p50_seconds": 553,
+    "duration_p95_seconds": 693,
+    "duration_max_seconds": 717,
+    "total_build_minutes": 824,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 15,
+    "ready_deploys_total": 88,
+    "duration_note": "15/88 READY deploys sampled via get_deployment; total_build_minutes extrapolated as avg(562.1s) × 88 = 824 min"
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "+27",
+    "count_total": "+69",
+    "total_build_minutes": "+532.5",
+    "prior_week": "2026-W26",
+    "note": "W26 snapshot not found on disk; W26 metrics sourced from commit message of dpl_78xDponxMD4FcaEd5Stc5HUAC27t (PR #189, observability/vercel-cost-2026-W26 branch): count_total=38, count_error=3, p50=526s, total_build_minutes=291.5"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=16 (threshold ≥2 → RED): 16 build failures across week. PR #200 (8 errors: book-reviews.ts data corruption loop — base64 push, unescaped apostrophes, schema mismatches on claude/ocean-intelligence-repo-depth-z5491l branch); PR #201 ops-system middleware.ts/proxy.ts conflict in Next.js 16; PR #202 premium-ops/intake UX @playwright dep lockfile; 1 production ERROR dpl_CRBdWNQUgr1z1U4MDsqW5EQAwszy arena-hub lockfile/dep issue; ~3 further mixed errors across other PRs.",
+    "duration_p50=553s (>360s → RED, was 526s W26): Build times remain elevated. 15/88 READY deploys sampled; individual range 481–717s, avg 562s. All turbopack + nodejs lambdas (4–7 nodes). p50 +27s vs W26.",
+    "count_total=107 (+182% vs W26=38, >+30% → RED): High-volume week — Oracle rebrand PR #190 (80+ files), music-intelligence PR #197, book-reviews PR #200, premium-ops PR #202, AI architecture templates PR #210, plus frequent main pushes.",
+    "total_build_minutes=824 (+183% vs W26=291.5, >+30% → RED): 2.8× more READY deploys (88 vs ~34 in W26) plus 9% higher avg build time (562s vs ~514s). Volume is the main driver, not any single burst."
+  ]
+}
