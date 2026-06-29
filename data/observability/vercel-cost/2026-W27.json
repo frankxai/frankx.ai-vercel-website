@@ -24,6 +24,7 @@
   "deltas_vs_prior_week": {
     "duration_p50_seconds": "+27",
     "count_total": "+69",
+    "count_error": "+13",
     "total_build_minutes": "+532.5",
     "prior_week": "2026-W26",
     "note": "W26 snapshot not found on disk; W26 metrics sourced from commit message of dpl_78xDponxMD4FcaEd5Stc5HUAC27t (PR #189, observability/vercel-cost-2026-W26 branch): count_total=38, count_error=3, p50=526s, total_build_minutes=291.5"
