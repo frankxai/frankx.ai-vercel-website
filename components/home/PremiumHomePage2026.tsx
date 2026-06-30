@@ -313,6 +313,8 @@ function SoundtrackPanel({
         </div>
         <a
           href={featuredTrack.audioUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex min-h-9 shrink-0 items-center justify-center gap-2 rounded-[8px] border border-white/12 px-3 text-xs font-medium text-white/78 transition hover:border-emerald-300/45 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300"
         >
           <ExternalLink className="h-3.5 w-3.5" aria-hidden />
@@ -704,7 +706,7 @@ function FinalCTA() {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link
-                href="/agentic-creator-os"
+                href="/products/agentic-creator-os"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-white"
               >
                 <BrainCircuit className="h-4 w-4" aria-hidden />
