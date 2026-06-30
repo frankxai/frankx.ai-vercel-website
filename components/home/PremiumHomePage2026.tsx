@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
+import { GlowCard } from '@/components/ui/glow-card'
+import { trackEvent } from '@/lib/analytics'
 import {
   ArrowRight,
   BookOpen,
@@ -166,6 +168,31 @@ const designOptions = [
   },
 ]
 
+function trackSoundtrackClick(
+  action: 'hero_open' | 'panel_mp3' | 'sonic_open' | 'sonic_mp3',
+  featuredTrack: FeaturedTrackData,
+) {
+  const destination =
+    action === 'panel_mp3' || action === 'sonic_mp3'
+      ? featuredTrack.audioUrl
+      : '#mission-soundtrack'
+
+  trackEvent('creator_funnel_step', {
+    page: 'home_2026',
+    step: action,
+    destination,
+    track_id: featuredTrack.id,
+    track_title: featuredTrack.title,
+  })
+
+  trackEvent('music_session_play', {
+    source: 'frankx_homepage',
+    action,
+    title: featuredTrack.title,
+    url: destination,
+  })
+}
+
 function CommandCoreFallback() {
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -239,6 +266,13 @@ function HeroSection({ featuredTrack }: { featuredTrack: FeaturedTrackData }) {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/start"
+              onClick={() =>
+                trackEvent('creator_funnel_step', {
+                  page: 'home_2026',
+                  step: 'start_here',
+                  destination: '/start',
+                })
+              }
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-300"
             >
               <Sparkles className="h-4 w-4" aria-hidden />
@@ -246,6 +280,7 @@ function HeroSection({ featuredTrack }: { featuredTrack: FeaturedTrackData }) {
             </Link>
             <Link
               href="#mission-soundtrack"
+              onClick={() => trackSoundtrackClick('hero_open', featuredTrack)}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-white/15 bg-white/6 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/45 hover:bg-cyan-300/10 focus:outline-none focus:ring-2 focus:ring-cyan-300"
             >
               <PlayCircle className="h-4 w-4" aria-hidden />
@@ -315,6 +350,7 @@ function SoundtrackPanel({
           href={featuredTrack.audioUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackSoundtrackClick('panel_mp3', featuredTrack)}
           className="inline-flex min-h-9 shrink-0 items-center justify-center gap-2 rounded-[8px] border border-white/12 px-3 text-xs font-medium text-white/78 transition hover:border-emerald-300/45 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300"
         >
           <ExternalLink className="h-3.5 w-3.5" aria-hidden />
@@ -334,6 +370,7 @@ function SoundtrackPanel({
 
 function SonicSystemPanel({ featuredTrack }: { featuredTrack: FeaturedTrackData }) {
   const waveform = [38, 72, 46, 84, 58, 92, 48, 76, 42, 88, 62, 95, 54, 80, 44, 68]
+  const cueGlowColors = ['cyan', 'emerald', 'amber'] as const
   const cueCards = [
     {
       label: 'Prompt grain',
@@ -393,18 +430,23 @@ function SonicSystemPanel({ featuredTrack }: { featuredTrack: FeaturedTrackData 
         </div>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
-          {cueCards.map((cue) => (
-            <div key={cue.label} className="rounded-[8px] border border-white/10 bg-white/[0.035] p-4">
+          {cueCards.map((cue, index) => (
+            <GlowCard
+              key={cue.label}
+              color={cueGlowColors[index]}
+              className="h-full !rounded-[8px] p-4"
+            >
               <cue.icon className="h-4 w-4 text-cyan-200" aria-hidden />
               <p className="mt-5 text-xs text-white/45">{cue.label}</p>
               <p className="mt-1 text-sm font-semibold leading-5 text-white/86">{cue.value}</p>
-            </div>
+            </GlowCard>
           ))}
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="#mission-soundtrack"
+            onClick={() => trackSoundtrackClick('sonic_open', featuredTrack)}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-300"
           >
             <PlayCircle className="h-4 w-4" aria-hidden />
@@ -414,6 +456,7 @@ function SonicSystemPanel({ featuredTrack }: { featuredTrack: FeaturedTrackData 
             href={featuredTrack.audioUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackSoundtrackClick('sonic_mp3', featuredTrack)}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] border border-white/12 px-4 py-2.5 text-sm font-semibold text-white/78 transition hover:border-emerald-300/45 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300"
           >
             <ExternalLink className="h-4 w-4" aria-hidden />
@@ -654,6 +697,14 @@ function DesignLabSection() {
             <Link
               key={option.href}
               href={option.href}
+              onClick={() =>
+                trackEvent('creator_funnel_step', {
+                  page: 'home_2026',
+                  step: 'design_lab_option',
+                  destination: option.href,
+                  option: option.title,
+                })
+              }
               className="group rounded-[8px] border border-white/10 bg-white/[0.035] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/35 hover:bg-cyan-300/[0.055] focus:outline-none focus:ring-2 focus:ring-cyan-300"
             >
               <p className="text-sm font-semibold text-white/48">{option.label}</p>
