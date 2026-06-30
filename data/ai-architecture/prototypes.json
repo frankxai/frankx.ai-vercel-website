@@ -4036,16 +4036,16 @@
     ],
     "keyStats": [
       {
-        "value": ">20 pts",
-        "label": "accuracy drop when the answer sits mid-context vs at the edges (lost-in-the-middle)"
+        "value": "13.9–85%",
+        "label": "accuracy drop from input length alone, even with perfect retrieval (controlled study)"
       },
       {
         "value": "~half",
-        "label": "of models actually sustain their claimed 32K context (RULER, 17 models)"
+        "label": "of models actually sustain their claimed 32K context (long-context eval)"
       },
       {
         "value": "30–60%",
-        "label": "performance gap between a focused ~300-token prompt and a 113K-token one (context rot)"
+        "label": "gap between a focused ~300-token prompt and a 113K-token one (context rot)"
       }
     ]
   },
