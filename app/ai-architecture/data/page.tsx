@@ -26,7 +26,23 @@ interface LedgerRow {
   notes?: string
 }
 
-const rows = (ledger.rows as LedgerRow[]) || []
+const CONFIDENCE_RANK: Record<string, number> = { high: 0, medium: 1, low: 2 }
+const SOURCE_RANK: Record<string, number> = { primary: 0, survey: 1, secondary: 2, vendor: 3, unknown: 4 }
+
+const rows = ((ledger.rows as LedgerRow[]) || [])
+  .slice()
+  .sort(
+    (a, b) =>
+      (SOURCE_RANK[a.source_type ?? 'unknown'] ?? 4) - (SOURCE_RANK[b.source_type ?? 'unknown'] ?? 4) ||
+      (CONFIDENCE_RANK[a.confidence] ?? 3) - (CONFIDENCE_RANK[b.confidence] ?? 3)
+  )
+
+const sourceCounts = rows.reduce<Record<string, number>>((acc, r) => {
+  const k = r.source_type ?? 'unknown'
+  acc[k] = (acc[k] || 0) + 1
+  return acc
+}, {})
+const flaggedCount = rows.filter((r) => r.contested).length
 
 const CONFIDENCE_STYLE: Record<string, string> = {
   high: 'text-emerald-300 border-emerald-500/30',
@@ -91,6 +107,25 @@ export default function DataLedgerPage() {
               <GitPullRequest className="h-3.5 w-3.5" /> correct a row
             </a>
           </div>
+          {rows.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {(['primary', 'survey', 'secondary', 'vendor'] as const).map((t) =>
+                sourceCounts[t] ? (
+                  <span
+                    key={t}
+                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] text-slate-400"
+                  >
+                    {sourceCounts[t]} {t}
+                  </span>
+                ) : null
+              )}
+              {flaggedCount > 0 && (
+                <span className="rounded-full border border-rose-500/25 bg-rose-500/[0.04] px-3 py-1 text-[11px] text-rose-300">
+                  {flaggedCount} flagged
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
