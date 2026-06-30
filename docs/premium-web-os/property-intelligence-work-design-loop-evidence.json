@@ -91,7 +91,35 @@
         "no horizontal overflow on 1440px desktop or 390px mobile"
       ]
     },
-    "deployment": null,
-    "status": "local_verified_pending_deployment"
+    "live_qa": {
+      "url": "https://frankx.ai/work",
+      "captured_at": "2026-06-30T15:38:11.890Z",
+      "screenshots": [
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/live-desktop-top.png",
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/live-mobile-top.png"
+      ],
+      "checks": [
+        "HTTP 200 on https://frankx.ai/work",
+        "hero present",
+        "Property Intelligence OS present",
+        "related FrankX surfaces present",
+        "Kleinanzeigen, ImmoScout24, and Immowelt present",
+        "no horizontal overflow on 1440px desktop or 390px mobile"
+      ]
+    },
+    "deployment": {
+      "commit": "cb583d1238eb673db0558153100466245be9b0de",
+      "preview": {
+        "id": "dpl_FoWRNzf3zAALLNBFvX6iq7W8g3qT",
+        "state": "READY",
+        "url": "https://frankx-ai-vercel-website-9v3zf094y-starlight-intelligence.vercel.app"
+      },
+      "production": {
+        "id": "dpl_3ceNcx8hcp6Y3uTTQkHR1Z9VLR2x",
+        "state": "READY",
+        "url": "https://frankx.ai/work"
+      }
+    },
+    "status": "live_verified"
   }
 }
