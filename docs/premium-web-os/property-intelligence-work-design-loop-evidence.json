@@ -1,6 +1,6 @@
 {
-  "task": "Build a premium FrankX /work showcase for Property Intelligence OS",
-  "route": "/work",
+  "task": "Build a premium FrankX work subpage for Property Intelligence OS",
+  "route": "/work/property-intelligence-os",
   "brand": "FrankX",
   "skills": [
     "premium-web-os",
@@ -44,6 +44,7 @@
   },
   "phase_3_generate": {
     "artifacts": [
+      "app/work/property-intelligence-os/page.tsx",
       "app/work/page.tsx",
       "components/work/PropertyExperiencePreview.tsx",
       "docs/premium-web-os/property-intelligence-work-scene-brief.md"
@@ -63,11 +64,15 @@
     {
       "change": "Renamed the link-map eyebrow to Related FrankX surfaces to make the cross-site relationship explicit.",
       "reason": "The user asked for the page to link to the broader FrankX estate and example experience."
+    },
+    {
+      "change": "Moved the full Property Intelligence OS experience from /work to /work/property-intelligence-os and restored /work as the engagement hub with a featured-system entry link.",
+      "reason": "The work hub should index systems and engagements; the full property OS experience needs its own canonical subpage."
     }
   ],
   "phase_6_verification": {
     "commands": [
-      "npx eslint app/work/page.tsx components/work/PropertyExperiencePreview.tsx --max-warnings=0",
+      "npx eslint app/work/page.tsx app/work/property-intelligence-os/page.tsx components/work/PropertyExperiencePreview.tsx --max-warnings=0",
       "npm run type-check",
       "CI=1 PUPPETEER_SKIP_DOWNLOAD=1 npm run build",
       "gitleaks dir app/work --redact --no-banner --exit-code 1",
@@ -81,7 +86,7 @@
       "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/mobile-full.png"
     ],
     "local_qa": {
-      "url": "http://127.0.0.1:3290/work",
+      "url": "http://127.0.0.1:3290/work/property-intelligence-os",
       "captured_at": "2026-06-30T15:14:44.586Z",
       "checks": [
         "hero present",
@@ -92,14 +97,14 @@
       ]
     },
     "live_qa": {
-      "url": "https://frankx.ai/work",
+      "url": "https://frankx.ai/work/property-intelligence-os",
       "captured_at": "2026-06-30T15:38:11.890Z",
       "screenshots": [
         "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/live-desktop-top.png",
         "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/live-mobile-top.png"
       ],
       "checks": [
-        "HTTP 200 on https://frankx.ai/work",
+        "HTTP 200 on https://frankx.ai/work/property-intelligence-os",
         "hero present",
         "Property Intelligence OS present",
         "related FrankX surfaces present",
@@ -117,9 +122,9 @@
       "production": {
         "id": "dpl_3ceNcx8hcp6Y3uTTQkHR1Z9VLR2x",
         "state": "READY",
-        "url": "https://frankx.ai/work"
+        "url": "https://frankx.ai/work/property-intelligence-os"
       }
     },
-    "status": "live_verified"
+    "status": "route_move_pending_verification"
   }
 }

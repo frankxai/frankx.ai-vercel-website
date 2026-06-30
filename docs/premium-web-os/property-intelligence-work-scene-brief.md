@@ -2,7 +2,10 @@
 
 ## Surface
 
-Route: `/work`
+Route: `/work/property-intelligence-os`
+
+Hub entry: `/work` keeps the general FrankX work index and links into this
+subpage as a featured system.
 
 Brand: FrankX. Executive AI command layer, practical, sharp, commercially literate.
 
@@ -39,7 +42,7 @@ No generated or external imagery in this pass. The visual is built from typed, i
 
 ## Related Links
 
-The page links the property OS to existing FrankX surfaces:
+The subpage links the property OS to existing FrankX surfaces:
 
 - `/hospitality-intelligence`
 - `/hospitality-os`
@@ -56,3 +59,4 @@ The page links the property OS to existing FrankX surfaces:
 - Reduced-motion path in interactive preview.
 - Build and type-check pass.
 - Vercel preview or production deployment verified before calling live.
+- `/work` remains the broader engagement hub, not the property OS landing page.
