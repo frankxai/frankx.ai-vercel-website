@@ -332,6 +332,99 @@ function SoundtrackPanel({
   )
 }
 
+function SonicSystemPanel({ featuredTrack }: { featuredTrack: FeaturedTrackData }) {
+  const waveform = [38, 72, 46, 84, 58, 92, 48, 76, 42, 88, 62, 95, 54, 80, 44, 68]
+  const cueCards = [
+    {
+      label: 'Prompt grain',
+      value: featuredTrack.genre.slice(0, 2).join(' / '),
+      icon: Radio,
+    },
+    {
+      label: 'Runtime',
+      value: featuredTrack.duration,
+      icon: Orbit,
+    },
+    {
+      label: 'Catalog signal',
+      value: `${featuredTrack.plays.toLocaleString()} plays`,
+      icon: Zap,
+    },
+  ]
+
+  return (
+    <div className="relative overflow-hidden rounded-[8px] border border-cyan-300/16 bg-[#061011] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.42)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(34,211,238,0.2),transparent_28%),radial-gradient(circle_at_82%_8%,rgba(52,211,153,0.14),transparent_30%)]" />
+      <div className="relative">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100/70">
+              Canonical soundtrack
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold leading-tight text-white">
+              One player, scored across the page.
+            </h3>
+          </div>
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] border border-white/12 bg-white/8">
+            <Disc3 className="h-5 w-5 text-emerald-200" aria-hidden />
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-[8px] border border-white/10 bg-black/38 p-5">
+          <div className="flex h-28 items-end gap-1.5" aria-hidden>
+            {waveform.map((height, index) => (
+              <span
+                key={`${height}-${index}`}
+                className="flex-1 rounded-t-[4px] bg-gradient-to-t from-emerald-300/35 via-cyan-200/72 to-white"
+                style={{ height: `${height}%` }}
+              />
+            ))}
+          </div>
+          <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-white/58">
+            <span className="rounded-[6px] border border-white/10 bg-white/8 px-2.5 py-1 text-white/78">
+              {featuredTrack.title}
+            </span>
+            {featuredTrack.genre.map((genre) => (
+              <span key={genre} className="rounded-[6px] border border-white/8 px-2.5 py-1">
+                {genre}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          {cueCards.map((cue) => (
+            <div key={cue.label} className="rounded-[8px] border border-white/10 bg-white/[0.035] p-4">
+              <cue.icon className="h-4 w-4 text-cyan-200" aria-hidden />
+              <p className="mt-5 text-xs text-white/45">{cue.label}</p>
+              <p className="mt-1 text-sm font-semibold leading-5 text-white/86">{cue.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="#mission-soundtrack"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+          >
+            <PlayCircle className="h-4 w-4" aria-hidden />
+            Open soundtrack
+          </Link>
+          <a
+            href={featuredTrack.audioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] border border-white/12 px-4 py-2.5 text-sm font-semibold text-white/78 transition hover:border-emerald-300/45 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300"
+          >
+            <ExternalLink className="h-4 w-4" aria-hidden />
+            MP3 fallback
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function OperatingLayersSection() {
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8">
@@ -496,7 +589,7 @@ function SonicLayerSection({ featuredTrack }: { featuredTrack: FeaturedTrackData
         </Reveal>
 
         <Reveal delay={0.08}>
-          <SoundtrackPanel featuredTrack={featuredTrack} />
+          <SonicSystemPanel featuredTrack={featuredTrack} />
         </Reveal>
       </div>
     </section>
