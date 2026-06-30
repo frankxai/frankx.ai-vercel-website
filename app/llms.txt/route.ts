@@ -79,6 +79,9 @@ ${researchLinks}
 - [Templates](${SITE_URL}/ai-architecture/templates): Free, MIT, one-click Deploy-to-Vercel starter kits
 - [Tools](${SITE_URL}/ai-architecture/tools): Curated 2026 stack — agent frameworks, vector DBs, eval/observability, cloud agent runtimes
 - [Multi-Cloud Comparison](${SITE_URL}/ai-architecture/multi-cloud-comparison): Same pattern across AWS, Azure, GCP, OCI
+- [Methodology](${SITE_URL}/ai-architecture/methodology): How every number is sourced, dated, verified, and retired; how to challenge one; what this reference does not cover
+- [Cost & Reliability Dataset](${SITE_URL}/ai-architecture/data): Forkable, denominator-tagged dataset of production-AI statistics — each row carries its N, definition, source, date, and confidence; corrections by PR
+- [Benchmark Spine](https://github.com/frankxai/frankx.ai-vercel-website/tree/main/benchmarks): First-party reproducible benchmarks (retrieval miss rate across lexical/dense/hybrid) with harness, corpus, and raw logs — run it yourself
 ${blueprintLinks}
 
 ## Workshops (live, application or open)

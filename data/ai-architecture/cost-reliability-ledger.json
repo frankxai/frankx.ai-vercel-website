@@ -1,0 +1,6 @@
+{
+  "version": "0.1.0",
+  "lastUpdated": "2026-06",
+  "note": "Borrowed third-party statistics about production AI cost and reliability. Each row resolves to a primary source with a stated denominator and definition. Deliberately small and growing — a thin, checkable dataset beats a large, un-auditable one. First-party numbers live in the benchmark spine, not here. Corrections welcome via PR against this file.",
+  "rows": []
+}

@@ -47,6 +47,7 @@
     "node_modules",
     ".next",
     "templates/**",
+    "benchmarks/**",
     ".worktrees/**",
     ".agent/**",
     ".claude/worktrees/**",

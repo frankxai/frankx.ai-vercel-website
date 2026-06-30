@@ -300,6 +300,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },
     // AI Architect sub-routes
     { url: '/ai-architect/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
+    // AI Architecture hub sub-routes
+    { url: '/ai-architecture/blueprints', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/ai-architecture/prototypes', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/templates', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/tools', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/methodology', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/data', priority: 0.8, changeFrequency: 'weekly' as const },
     // Soulbook sub-routes
     { url: '/soulbook/7-pillars', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/assessment', priority: 0.7, changeFrequency: 'monthly' as const },
