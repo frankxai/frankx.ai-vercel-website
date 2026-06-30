@@ -98,33 +98,38 @@
     },
     "live_qa": {
       "url": "https://frankx.ai/work/property-intelligence-os",
-      "captured_at": "2026-06-30T15:38:11.890Z",
+      "captured_at": "2026-06-30T19:26:06.898Z",
       "screenshots": [
-        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/live-desktop-top.png",
-        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/live-mobile-top.png"
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-route-fix/live-hub-desktop.png",
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-route-fix/live-subpage-desktop.png",
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-route-fix/live-subpage-mobile.png"
       ],
       "checks": [
+        "HTTP 200 on https://frankx.ai/work",
+        "/work keeps the original work hub headline",
+        "/work links to /work/property-intelligence-os",
+        "/work does not contain the Property Intelligence OS hero",
         "HTTP 200 on https://frankx.ai/work/property-intelligence-os",
-        "hero present",
-        "Property Intelligence OS present",
-        "related FrankX surfaces present",
+        "/work/property-intelligence-os contains the Property Intelligence OS hero",
         "Kleinanzeigen, ImmoScout24, and Immowelt present",
-        "no horizontal overflow on 1440px desktop or 390px mobile"
+        "Renter portal copy present",
+        "no horizontal overflow on 1440px desktop or 390px mobile",
+        "no browser console issues on checked live routes"
       ]
     },
     "deployment": {
-      "commit": "cb583d1238eb673db0558153100466245be9b0de",
+      "commit": "46f8e8173f7a4afc97585b39ed14675feae02c57",
       "preview": {
-        "id": "dpl_FoWRNzf3zAALLNBFvX6iq7W8g3qT",
+        "id": "dpl_BVQPQSPqrPNMZ2vGQWokdFYF6RG4",
         "state": "READY",
-        "url": "https://frankx-ai-vercel-website-9v3zf094y-starlight-intelligence.vercel.app"
+        "url": "https://frankx-ai-vercel-website-6djkpbrc3-starlight-intelligence.vercel.app"
       },
       "production": {
-        "id": "dpl_3ceNcx8hcp6Y3uTTQkHR1Z9VLR2x",
+        "id": "dpl_xEkVyRrMWUkpPEAuu2e6RrYdnaAy",
         "state": "READY",
         "url": "https://frankx.ai/work/property-intelligence-os"
       }
     },
-    "status": "route_move_pending_verification"
+    "status": "live_verified"
   }
 }
