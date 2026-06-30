@@ -369,10 +369,13 @@ function SignalStackSection() {
     if (shouldReduceMotion || !sectionRef.current) return
 
     let context: { revert: () => void } | undefined
+    let isMounted = true
 
     async function initScrollMotion() {
       const { gsap } = await import('gsap')
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+
+      if (!isMounted || !sectionRef.current) return
 
       gsap.registerPlugin(ScrollTrigger)
       context = gsap.context(() => {
@@ -415,6 +418,7 @@ function SignalStackSection() {
     void initScrollMotion()
 
     return () => {
+      isMounted = false
       context?.revert()
     }
   }, [shouldReduceMotion])
@@ -623,13 +627,19 @@ function ContentSection({
                   className="grid grid-cols-[56px_1fr] gap-4 rounded-[8px] border border-white/8 bg-black/24 p-3 transition hover:border-white/16 hover:bg-white/[0.045]"
                 >
                   <div className="relative h-20 overflow-hidden rounded-[8px] bg-white/5">
-                    <Image
-                      src={book.coverImage}
-                      alt=""
-                      fill
-                      sizes="56px"
-                      className="object-cover"
-                    />
+                    {book.coverImage ? (
+                      <Image
+                        src={book.coverImage}
+                        alt={`${book.title} cover`}
+                        fill
+                        sizes="56px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center">
+                        <BookOpen className="h-5 w-5 text-white/42" aria-hidden />
+                      </div>
+                    )}
                   </div>
                   <div className="min-w-0">
                     <h3 className="line-clamp-2 text-sm font-semibold leading-5 text-white">{book.title}</h3>

@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import {
   AdditiveBlending,
   BufferGeometry,
@@ -35,6 +35,12 @@ function SignalRays() {
     lineGeometry.setAttribute('position', new Float32BufferAttribute(positions, 3))
     return lineGeometry
   }, [])
+
+  useEffect(() => {
+    return () => {
+      geometry.dispose()
+    }
+  }, [geometry])
 
   return (
     <lineSegments geometry={geometry}>
