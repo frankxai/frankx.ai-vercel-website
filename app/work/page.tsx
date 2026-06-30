@@ -1,5 +1,20 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Bot,
+  CheckCircle2,
+  ClipboardList,
+  ExternalLink,
+  FileText,
+  Gauge,
+  GitBranch,
+  Home,
+  KeyRound,
+  Layers3,
+  LifeBuoy,
+  LockKeyhole,
+  Route,
+} from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import {
   listEngagements,
@@ -8,15 +23,121 @@ import {
   listPast,
 } from '@/content/work'
 import { EngagementCard } from '@/components/work/EngagementCard'
+import { PropertyExperiencePreview } from '@/components/work/PropertyExperiencePreview'
 
 export const metadata = createMetadata({
-  title: 'Work — Substrate-provider engagements | FrankX',
+  title: 'Work - Property Intelligence OS | FrankX',
   description:
-    'Where Frank Riemer builds with creators and companies. Open-source substrate underneath a bounded consulting layer. Sovereign on both sides — not employee, not on the deck.',
+    'A premium rental-property operating system: repo-native owner workspace, renter portal, listing studio, support triage, and agent-assisted workflows.',
   path: '/work',
 })
 
 const SITE_URL = 'https://frankx.ai'
+
+const proof = [
+  {
+    label: 'Operating spine',
+    value: '4 repos',
+    detail: 'strategy source, owner template, brother install, Vercel portal',
+  },
+  {
+    label: 'Agent team',
+    value: '9 roles',
+    detail: 'steward, concierge, listing ops, maintenance, privacy, visual QA',
+  },
+  {
+    label: 'Listing flow',
+    value: '4 channels',
+    detail: 'own website, Kleinanzeigen, ImmoScout24, Immowelt',
+  },
+  {
+    label: 'V1 trust rule',
+    value: 'Human gate',
+    detail: 'no pricing, lease, availability, or urgent commitments without owner approval',
+  },
+]
+
+const repoStack = [
+  {
+    name: 'property-intelligence-system',
+    role: 'Private product source',
+    detail: 'Research, operating manual, schemas, governance, release gates, and commercial roadmap.',
+    icon: GitBranch,
+  },
+  {
+    name: 'property-os-template',
+    role: 'Public-safe owner template',
+    detail: 'Codex and Claude-ready workspace with runbooks, issue templates, approval gates, and privacy scans.',
+    icon: FileText,
+  },
+  {
+    name: 'brother-property-os',
+    role: 'First private install',
+    detail: 'Placeholder-safe German pilot workspace ready for approved real property facts and owner workflows.',
+    icon: Home,
+  },
+  {
+    name: 'property-portal-template',
+    role: 'Vercel renter portal',
+    detail: 'Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, and listing admin.',
+    icon: Gauge,
+  },
+]
+
+const operatingLoop = [
+  'Capture approved property facts once.',
+  'Publish a premium renter-facing self-service layer.',
+  'Draft channel-ready listings under owner review.',
+  'Route inquiries and maintenance into a clean owner queue.',
+  'Review vacancy, pricing proof, support risk, and next actions weekly.',
+]
+
+const successCriteria = [
+  'A renter can answer common stay, support, and suitability questions without messaging the owner.',
+  'The owner sees only the decisions that matter: availability, price, legal terms, urgent issues, and publication.',
+  'Every listing draft carries its missing-fact checklist before it reaches a public channel.',
+  'No renter names, access secrets, payment details, or private owner facts enter public/template artifacts.',
+  'The visual experience feels like a premium property operator, not a generic AI SaaS dashboard.',
+]
+
+const relatedLinks = [
+  {
+    title: 'Hospitality Intelligence',
+    href: '/hospitality-intelligence',
+    detail: 'The neighboring hospitality operating-system surface already live in the FrankX ecosystem.',
+    external: false,
+  },
+  {
+    title: 'Hospitality OS',
+    href: '/hospitality-os',
+    detail: 'Related owner/operator workflow thinking for stays, guest care, and property experience.',
+    external: false,
+  },
+  {
+    title: 'Jojo Hospitality Kit',
+    href: '/downloads/jojo-hospitality-intelligence-kit',
+    detail: 'Download-kit pattern for turning a private operator system into a repeatable public asset.',
+    external: false,
+  },
+  {
+    title: 'AI Architecture Templates',
+    href: '/ai-architecture/templates',
+    detail: 'Where the reusable template and install offer can sit once the pilot proof is packaged.',
+    external: false,
+  },
+  {
+    title: 'Agent Team',
+    href: '/agent-team',
+    detail: 'The broader FrankX agent-team pattern this property OS specializes for real estate operations.',
+    external: false,
+  },
+  {
+    title: 'GitHub source universe',
+    href: 'https://github.com/frankxai',
+    detail: 'Public FrankX repositories and open-source substrate when a repo is ready to publish.',
+    external: true,
+  },
+]
 
 export default function WorkHubPage() {
   const liveSubstrate = listLiveSubstrate()
@@ -24,42 +145,34 @@ export default function WorkHubPage() {
   const past = listPast()
   const all = listEngagements()
 
-  const isEmpty =
-    liveSubstrate.length === 0 &&
-    liveWhitelabelOrCreator.length === 0 &&
-    past.length === 0
-
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: SITE_URL,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Work',
-        item: `${SITE_URL}/work`,
-      },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Work', item: `${SITE_URL}/work` },
     ],
   }
 
   const collectionLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'FrankX work — substrate-provider engagements',
+    name: 'FrankX work - Property Intelligence OS and substrate-provider engagements',
     description:
-      'How Frank Riemer collaborates with creators and companies — substrate-provider engagements, whitelabel and creator builds, past work.',
+      'A premium work surface for FrankX systems: property intelligence, renter portals, owner operating systems, and substrate-provider engagements.',
     url: `${SITE_URL}/work`,
-    hasPart: all.map((e) => ({
-      '@type': 'WebPage',
-      name: e.name,
-      url: `${SITE_URL}/work/${e.slug}`,
-    })),
+    hasPart: [
+      {
+        '@type': 'CreativeWork',
+        name: 'Property Intelligence OS',
+        url: `${SITE_URL}/work#property-intelligence-os`,
+      },
+      ...all.map((e) => ({
+        '@type': 'WebPage',
+        name: e.name,
+        url: `${SITE_URL}/work/${e.slug}`,
+      })),
+    ],
   }
 
   return (
@@ -73,129 +186,218 @@ export default function WorkHubPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
       />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.06] via-transparent to-transparent"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(6,182,212,0.06),_transparent_60%)]"
-        />
-        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-            Work
-          </p>
-          <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.05] mb-5 max-w-3xl"
-            style={{
-              fontFamily: 'var(--font-poppins, Poppins), Inter, sans-serif',
-            }}
-          >
-            Where I build with creators and companies.
-          </h1>
-          <p className="text-lg text-zinc-400 leading-relaxed max-w-2xl">
-            Substrate provider. Not employee. Not on the deck. Frank ships
-            open-source substrate underneath the engagement; the client builds
-            their business on top. Both stay sovereign.
-          </p>
+      <section
+        id="property-intelligence-os"
+        className="relative min-h-[calc(100vh-4rem)] overflow-hidden border-b border-white/10 pt-28 sm:pt-32"
+      >
+        <HeroAtmosphere />
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 pb-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:pb-20">
+          <div className="flex min-h-[68vh] flex-col justify-center">
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/70">
+              FrankX Work / Property Intelligence OS
+            </p>
+            <h1
+              className="max-w-4xl text-5xl font-bold leading-[0.96] tracking-tight text-white sm:text-6xl lg:text-7xl"
+              style={{
+                fontFamily: 'var(--font-poppins, Poppins), Inter, sans-serif',
+              }}
+            >
+              A premium operating system for rental properties.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+              Built brother-first for German rental operations, then packaged as a repeatable GitHub and Vercel template: owner workspace, renter portal, listing studio, support triage, and Codex/Claude-ready workflows.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="#example"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#04110f] transition-colors hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-300/70 focus:ring-offset-2 focus:ring-offset-[#0a0a0b]"
+              >
+                Explore the example
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href="#related"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/25 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-white/35"
+              >
+                Link map
+              </Link>
+            </div>
+          </div>
+
+          <HeroCommandSurface />
         </div>
       </section>
 
-      {/* Empty state — first substrate engagement is private until consent */}
-      {isEmpty ? (
-        <EmptyHubExplainer />
-      ) : (
-        <>
-          {/* Substrate engagements */}
-          {liveSubstrate.length > 0 ? (
-            <SectionShell
-              eyebrow="Substrate engagements"
-              heading="Open substrate underneath the build."
-              intro="The client keeps the brand, the clients, and the equity. Frank keeps the substrate open. Both stay sovereign."
-              id="substrate"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
-                {liveSubstrate.map((e) => (
-                  <EngagementCard key={e.slug} engagement={e} />
-                ))}
+      <section className="border-b border-white/10 bg-[#080b0d] py-10">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 px-0 sm:grid-cols-2 lg:grid-cols-4">
+          {proof.map((item) => (
+            <article key={item.label} className="bg-[#0a0d10] p-6 sm:p-7">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                {item.label}
+              </p>
+              <strong className="mt-3 block text-2xl font-semibold tracking-tight text-white">
+                {item.value}
+              </strong>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="example" className="border-b border-white/10 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Example experience"
+            title="One property, four calm surfaces."
+            copy="The premium move is not a louder dashboard. It is a renter page that answers questions, an owner cockpit that preserves decisions, and agents that draft without overstepping."
+          />
+          <PropertyExperiencePreview />
+        </div>
+      </section>
+
+      <section id="operating-system" className="border-b border-white/10 py-20 lg:py-28">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-[0.84fr_1.16fr] lg:px-8">
+          <div>
+            <SectionHeader
+              eyebrow="Operating system"
+              title="The repo is the source of approved truth."
+              copy="Small owners do not need a heavy property-management suite first. They need a premium front desk, a clean renter answer layer, and a disciplined work queue."
+            />
+          </div>
+          <div className="grid gap-3">
+            {repoStack.map((repo) => {
+              const Icon = repo.icon
+              return (
+                <article
+                  key={repo.name}
+                  className="grid grid-cols-[auto_1fr] gap-4 rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-5 shadow-[0_1px_0_rgba(255,255,255,0.05)_inset]"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-300/20 bg-emerald-300/10 text-emerald-200">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="font-mono text-sm font-semibold text-white">
+                        {repo.name}
+                      </h3>
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-slate-400">
+                        {repo.role}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{repo.detail}</p>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 py-20 lg:py-28">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="rounded-[2rem] border border-white/10 bg-[#0d1116] p-7 sm:p-8">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-300/10 text-emerald-200">
+                <Route className="h-5 w-5" aria-hidden />
               </div>
-            </SectionShell>
-          ) : (
-            <SectionShell
-              eyebrow="Substrate engagements"
-              heading="First substrate engagement publishes once consent is granted."
-              intro="A boutique coaching company is currently in the substrate-provider conversation. The page goes live the moment they ratify the framing."
-              id="substrate"
-            >
-              <EmptyRowCard
-                title="In private intake"
-                body="An engagement is being shaped under NDA. When the client consents to public substrate-provider framing, the card and detail page publish here."
-              />
-            </SectionShell>
-          )}
-
-          {/* Whitelabel + creator builds */}
-          {liveWhitelabelOrCreator.length > 0 ? (
-            <SectionShell
-              eyebrow="Whitelabel and creator builds"
-              heading="Frank's tech under the client's brand, or a single-creator hub built end-to-end."
-              intro="Same engineering bar as the substrate work — different commercial shape."
-              id="whitelabel"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
-                {liveWhitelabelOrCreator.map((e) => (
-                  <EngagementCard key={e.slug} engagement={e} />
-                ))}
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                  Weekly loop
+                </p>
+                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                  How the owner runs it.
+                </h2>
               </div>
-            </SectionShell>
-          ) : null}
+            </div>
+            <ol className="grid gap-3">
+              {operatingLoop.map((item, index) => (
+                <li
+                  key={item}
+                  className="grid grid-cols-[2rem_1fr] gap-3 rounded-2xl border border-white/8 bg-white/[0.025] p-4"
+                >
+                  <span className="font-mono text-sm text-emerald-200">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-sm leading-6 text-slate-300">{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
 
-          {/* Past work */}
-          {past.length > 0 ? (
-            <SectionShell
-              eyebrow="Past work"
-              heading="Shipped and done."
-              intro="Engagements that closed cleanly. Case studies link below."
-              id="past"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-                {past.map((e) => (
-                  <EngagementCard key={e.slug} engagement={e} />
-                ))}
+          <div className="rounded-[2rem] border border-white/10 bg-[#0d1116] p-7 sm:p-8">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-300/10 text-amber-200">
+                <CheckCircle2 className="h-5 w-5" aria-hidden />
               </div>
-            </SectionShell>
-          ) : null}
-        </>
-      )}
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-200/60">
+                  Success criteria
+                </p>
+                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                  The bar is operational proof.
+                </h2>
+              </div>
+            </div>
+            <ul className="grid gap-3">
+              {successCriteria.map((item) => (
+                <li
+                  key={item}
+                  className="grid grid-cols-[auto_1fr] gap-3 rounded-2xl border border-white/8 bg-white/[0.025] p-4"
+                >
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-200" aria-hidden />
+                  <span className="text-sm leading-6 text-slate-300">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      {/* Cross-link to partnerships + substrate */}
-      <CrossLinkRow />
+      <section id="related" className="border-b border-white/10 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Related FrankX surfaces"
+            title="The property work sits inside the larger FrankX system."
+            copy="This launch page points into the existing hospitality, template, agent, and architecture surfaces so the property OS does not live as an isolated demo."
+          />
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {relatedLinks.map((link) => (
+              <RelatedLinkCard key={link.href} {...link} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* Closing CTA */}
-      <section className="border-t border-white/5 py-20 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-emerald-500/[0.08] via-white/[0.02] to-transparent border border-emerald-500/20 p-8 sm:p-12 text-center">
-            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/70 font-medium mb-4">
-              Substrate-provider conversation
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3 leading-snug">
-              If a substrate-first engagement maps to where you&apos;re going.
-            </h2>
-            <p className="text-sm text-zinc-400 mb-6 max-w-md mx-auto leading-relaxed">
-              30 minutes. Peer-architect. We walk through where the open
-              substrate fits, what the bounded consulting layer would cover,
-              and whether both sides stay sovereign through it.
-            </p>
+      <EngagementRegistry
+        liveSubstrate={liveSubstrate}
+        liveWhitelabelOrCreator={liveWhitelabelOrCreator}
+        past={past}
+      />
+
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-4xl px-5 text-center sm:px-6 lg:px-8">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/60">
+            Private install path
+          </p>
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            First prove it for one real owner. Then package the template.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-400">
+            The brother pilot becomes the evidence. The template becomes the product. The premium web experience becomes the reason owners can charge more and answer less.
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
-              href="https://calendar.app.google/xS56zYpYw69R9vQj6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-medium text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-[#0a0a0b]"
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-[#0a0a0b]"
             >
-              Open the conversation
-              <ArrowUpRight className="w-4 h-4" aria-hidden />
+              Plan an install
+              <ArrowUpRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link
+              href="/ai-architecture/templates"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/25 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-white/35"
+            >
+              Template lane
             </Link>
           </div>
         </div>
@@ -204,176 +406,224 @@ export default function WorkHubPage() {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/* Section shell — eyebrow + heading + intro + children                        */
-/* -------------------------------------------------------------------------- */
+function HeroAtmosphere() {
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:56px_56px] opacity-30" />
+      <div className="absolute left-1/2 top-0 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-emerald-400/[0.09] blur-[140px]" />
+      <div className="absolute right-[-12rem] top-28 h-[34rem] w-[34rem] rounded-full bg-cyan-400/[0.08] blur-[130px]" />
+      <div className="absolute bottom-[-12rem] left-[-10rem] h-[28rem] w-[28rem] rounded-full bg-amber-300/[0.05] blur-[120px]" />
+    </div>
+  )
+}
 
-function SectionShell({
+function HeroCommandSurface() {
+  return (
+    <div className="relative flex min-h-[68vh] items-center lg:pl-4">
+      <div className="relative w-full overflow-hidden rounded-[2.4rem] border border-white/12 bg-[#0b0f14]/85 p-4 shadow-[0_40px_140px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:p-5">
+        <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" aria-hidden />
+        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.035] p-5">
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                  Owner cockpit
+                </p>
+                <h2 className="mt-1 text-xl font-semibold tracking-tight text-white">
+                  Urban Haven Sample
+                </h2>
+              </div>
+              <span className="rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs text-amber-100">
+                approval gates active
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                ['Listings', '4 drafts'],
+                ['Support', '2 queued'],
+                ['Vacancy', 'owner review'],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-2xl border border-white/8 bg-black/20 p-3">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">{label}</p>
+                  <p className="mt-2 text-sm font-semibold text-white">{value}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 grid gap-3">
+              {[
+                {
+                  label: 'Inquiry Concierge',
+                  value: 'Draft reply from approved facts only',
+                  icon: Bot,
+                },
+                {
+                  label: 'Maintenance Triage',
+                  value: 'Urgent path requires owner confirmation',
+                  icon: LifeBuoy,
+                },
+                {
+                  label: 'Listing Ops',
+                  value: 'Kleinanzeigen copy ready for review',
+                  icon: ClipboardList,
+                },
+              ].map(({ label, value, icon: Icon }) => (
+                <div
+                  key={label}
+                  className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] p-3"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-300/10 text-emerald-200">
+                    <Icon className="h-4 w-4" aria-hidden />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-white">{label}</p>
+                    <p className="text-xs text-slate-500">{value}</p>
+                  </div>
+                  <div className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.8)]" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-5">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-300/10 text-cyan-200">
+                  <KeyRound className="h-5 w-5" aria-hidden />
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-200/60">
+                    Renter portal
+                  </p>
+                  <p className="text-sm text-white">Move-in information without access secrets in Git.</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                {['Wi-Fi policy', 'Trash schedule', 'Urgent escalation'].map((item) => (
+                  <div key={item} className="flex items-center justify-between rounded-xl bg-black/20 px-3 py-2">
+                    <span className="text-xs text-slate-300">{item}</span>
+                    <LockKeyhole className="h-3.5 w-3.5 text-emerald-200" aria-hidden />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                Channel studio
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {['Own site', 'Kleinanzeigen', 'ImmoScout24', 'Immowelt'].map((channel) => (
+                  <div key={channel} className="rounded-xl border border-white/8 bg-black/20 px-3 py-2 text-xs text-slate-300">
+                    {channel}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-emerald-300 to-cyan-300" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SectionHeader({
   eyebrow,
-  heading,
-  intro,
-  id,
-  children,
+  title,
+  copy,
 }: {
   eyebrow: string
-  heading: string
-  intro: string
-  id: string
-  children: React.ReactNode
+  title: string
+  copy: string
 }) {
-  const headingId = `${id}-heading`
   return (
-    <section
-      aria-labelledby={headingId}
-      className="border-t border-white/5 py-20 lg:py-24"
-    >
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="mb-10 max-w-2xl">
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-            {eyebrow}
-          </p>
-          <h2
-            id={headingId}
-            className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3"
-          >
-            {heading}
-          </h2>
-          <p className="text-base text-zinc-400 leading-relaxed">{intro}</p>
-        </div>
-        {children}
-      </div>
-    </section>
-  )
-}
-
-/* -------------------------------------------------------------------------- */
-/* Empty-state explainer — renders when no live or past engagements public    */
-/* -------------------------------------------------------------------------- */
-
-function EmptyHubExplainer() {
-  return (
-    <section
-      aria-labelledby="empty-hub-heading"
-      className="border-t border-white/5 py-20 lg:py-24"
-    >
-      <div className="max-w-3xl mx-auto px-6 lg:px-8">
-        <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-          What this hub is for
-        </p>
-        <h2
-          id="empty-hub-heading"
-          className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-5"
-        >
-          The substrate-provider model, made public.
-        </h2>
-        <div className="space-y-5 text-base text-zinc-300 leading-relaxed">
-          <p>
-            Frank builds open-source substrate — Starlight Intelligence
-            System, ACOS, Library OS — under MIT licenses at{' '}
-            <Link
-              href="https://github.com/frankxai"
-              className="text-emerald-300 hover:text-emerald-200 underline decoration-emerald-300/30 underline-offset-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              github.com/frankxai
-            </Link>
-            . When a creator or company wants to build on top, the engagement
-            is a bounded consulting layer over the open spine. The client keeps
-            the brand, the clients, and the equity. Frank keeps the substrate
-            open. Both stay sovereign.
-          </p>
-          <p>
-            First engagements are currently in private intake. The cards
-            publish here when the client consents to the substrate-provider
-            framing. Past work will land in the lower section as it clears.
-          </p>
-          <p>
-            The shape: no equity, no exclusive licensing, no salary, no deck
-            slot. Quarterly architecture review plus a bounded async window.
-            Renewable, ratified each quarter.
-          </p>
-        </div>
-
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <SidebarLink
-            href="/partnerships"
-            eyebrow="Partnerships"
-            label="Model and platform provider conversations"
-          />
-          <SidebarLink
-            href="/research"
-            eyebrow="Research"
-            label="What the practice is publishing publicly"
-          />
-          <SidebarLink
-            href="/starlight-intelligence-system"
-            eyebrow="Substrate"
-            label="Starlight Intelligence System — the open spine"
-          />
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function EmptyRowCard({ title, body }: { title: string; body: string }) {
-  return (
-    <article className="rounded-2xl bg-white/[0.025] border border-white/[0.08] border-dashed p-6">
-      <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium mb-3">
-        {title}
+    <div className="max-w-3xl">
+      <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/60">
+        {eyebrow}
       </p>
-      <p className="text-sm text-zinc-400 leading-relaxed">{body}</p>
-    </article>
+      <h2 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+        {title}
+      </h2>
+      <p className="mt-4 text-base leading-7 text-slate-400 sm:text-lg">{copy}</p>
+    </div>
   )
 }
 
-function SidebarLink({
+function RelatedLinkCard({
+  title,
   href,
-  eyebrow,
-  label,
+  detail,
+  external,
 }: {
+  title: string
   href: string
-  eyebrow: string
-  label: string
+  detail: string
+  external: boolean
 }) {
   return (
     <Link
       href={href}
-      className="group block rounded-2xl bg-white/[0.025] border border-white/[0.08] p-4 transition-colors hover:bg-white/[0.04] hover:border-emerald-500/20 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      className="group rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6 transition-colors hover:border-emerald-300/25 hover:bg-white/[0.055] focus:outline-none focus:ring-2 focus:ring-emerald-300/50"
     >
-      <div className="flex items-center justify-between mb-1.5">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium">
-          {eyebrow}
-        </p>
-        <ArrowUpRight
-          className="w-3.5 h-3.5 text-zinc-500 group-hover:text-emerald-300 transition-colors"
-          aria-hidden
-        />
+      <div className="mb-5 flex items-center justify-between">
+        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/[0.05] text-emerald-200">
+          {external ? <ExternalLink className="h-5 w-5" aria-hidden /> : <Layers3 className="h-5 w-5" aria-hidden />}
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-slate-500 transition-colors group-hover:text-emerald-200" aria-hidden />
       </div>
-      <p className="text-sm text-zinc-300 leading-relaxed">{label}</p>
+      <h3 className="text-lg font-semibold tracking-tight text-white">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-400">{detail}</p>
     </Link>
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/* Cross-link row — quiet jump to /partnerships                                */
-/* -------------------------------------------------------------------------- */
+function EngagementRegistry({
+  liveSubstrate,
+  liveWhitelabelOrCreator,
+  past,
+}: {
+  liveSubstrate: ReturnType<typeof listLiveSubstrate>
+  liveWhitelabelOrCreator: ReturnType<typeof listLiveWhitelabelOrCreator>
+  past: ReturnType<typeof listPast>
+}) {
+  const hasPublicEngagements =
+    liveSubstrate.length > 0 || liveWhitelabelOrCreator.length > 0 || past.length > 0
 
-function CrossLinkRow() {
   return (
-    <section className="border-t border-white/5 py-16 lg:py-20">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-        <p className="text-sm text-zinc-500 mb-3">
-          Looking for the model, cloud, and silicon provider conversations?
-        </p>
-        <Link
-          href="/partnerships"
-          className="inline-flex items-center gap-1.5 text-sm text-emerald-300 hover:text-emerald-200 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400/60 rounded"
-        >
-          Partnerships hub
-          <ArrowUpRight className="w-3.5 h-3.5" aria-hidden />
-        </Link>
+    <section className="border-b border-white/10 py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Work registry"
+          title="Public engagements publish only after consent."
+          copy="The property OS can be shown because it uses template-safe sample facts. Client engagements stay private until the framing is approved."
+        />
+
+        {hasPublicEngagements ? (
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {[...liveSubstrate, ...liveWhitelabelOrCreator, ...past].map((engagement) => (
+              <EngagementCard key={engagement.slug} engagement={engagement} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              ['Private intake', 'Client work remains off the public route until consent is explicit.'],
+              ['Template-safe proof', 'The property OS example uses approved sample facts and no renter data.'],
+              ['Production path', 'The next public artifacts are install notes, template downloads, and a Vercel preview.'],
+            ].map(([title, body]) => (
+              <article key={title} className="rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                  {title}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{body}</p>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
