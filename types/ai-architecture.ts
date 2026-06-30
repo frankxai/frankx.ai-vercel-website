@@ -132,6 +132,10 @@ export interface ArchitecturePrototype {
   tradeoffs?: PatternTradeoffs
   maturity?: 'emerging' | 'production' | 'mature'
 
+  // "By the numbers" — verified figures cross-referenced from the cost &
+  // reliability dataset (/ai-architecture/data). Values must match a dataset row.
+  keyStats?: { value: string; label: string }[]
+
   // Timestamps
   createdAt: string
   updatedAt: string

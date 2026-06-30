@@ -287,6 +287,28 @@ export default async function BlueprintPage({ params }: Props) {
             </div>
           )}
 
+          {/* By the numbers — verified figures cross-referenced from the dataset */}
+          {blueprint.keyStats && blueprint.keyStats.length > 0 && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-2xl font-bold text-white">By the numbers</h2>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {blueprint.keyStats.map((s, i) => (
+                  <div key={i} className="rounded-xl border border-cyan-500/15 bg-cyan-500/[0.04] p-5">
+                    <p className="text-2xl font-bold text-cyan-300">{s.value}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs text-slate-500">
+                Sourced, denominator-tagged figures from the{' '}
+                <Link href="/ai-architecture/data" className="text-cyan-400 hover:underline">
+                  cost &amp; reliability dataset
+                </Link>
+                . Numbers vary by stack and date — see each row for N and method.
+              </p>
+            </div>
+          )}
+
           {/* Interactive Architecture Diagram */}
           {blueprint.architecture.components.length > 0 && (
             <div className="mb-12">

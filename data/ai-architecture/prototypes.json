@@ -3428,6 +3428,16 @@
       "retrieval augmented generation",
       "vercel ai sdk",
       "reranking"
+    ],
+    "keyStats": [
+      {
+        "value": "13.7–65.9%",
+        "label": "of RAG answers carried ≥1 hallucinated span across six models — RAGTruth (ACL 2024)"
+      },
+      {
+        "value": "4–12%",
+        "label": "hallucination rate even on clean single-doc grounded summaries, 2025–26 models (Vectara HHEM)"
+      }
     ]
   },
   {
@@ -3627,6 +3637,16 @@
       "neo4j rag",
       "multi-hop retrieval",
       "graph retrieval"
+    ],
+    "keyStats": [
+      {
+        "value": "0.82 vs 0.70",
+        "label": "Recall@5 with hybrid retrieval + reranker vs hybrid alone (+17%) on financial table/text QA"
+      },
+      {
+        "value": "18 datasets",
+        "label": "BM25 stays a robust zero-shot retrieval baseline across BEIR — earn neural complexity"
+      }
     ]
   },
   {
@@ -4013,6 +4033,20 @@
       "agent memory",
       "context window",
       "llmops"
+    ],
+    "keyStats": [
+      {
+        "value": ">20 pts",
+        "label": "accuracy drop when the answer sits mid-context vs at the edges (lost-in-the-middle)"
+      },
+      {
+        "value": "~half",
+        "label": "of models actually sustain their claimed 32K context (RULER, 17 models)"
+      },
+      {
+        "value": "30–60%",
+        "label": "performance gap between a focused ~300-token prompt and a 113K-token one (context rot)"
+      }
     ]
   },
   {
@@ -4242,6 +4276,16 @@
       "ai agent",
       "fluid compute",
       "workflow sdk"
+    ],
+    "keyStats": [
+      {
+        "value": "15% vs 92%",
+        "label": "GPT-4 (+plugins) vs human task success on GAIA"
+      },
+      {
+        "value": "~25% vs 60%",
+        "label": "GPT-4o pass^8 vs pass^1 on τ-bench-retail — reliability collapses across repeated trials"
+      }
     ]
   },
   {
@@ -4435,6 +4479,16 @@
       "model routing",
       "multi-provider llm",
       "llmops"
+    ],
+    "keyStats": [
+      {
+        "value": "90% / 85%",
+        "label": "cost / latency cut from prompt caching on long stable prompts (Anthropic)"
+      },
+      {
+        "value": "50%",
+        "label": "discount on cached input tokens — OpenAI automatic prompt caching"
+      }
     ]
   }
 ]
