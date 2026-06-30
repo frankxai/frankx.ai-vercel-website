@@ -7,7 +7,10 @@ import {
   Clock,
   DollarSign,
   ExternalLink,
+  ArrowRight,
+  Share2,
 } from 'lucide-react'
+import { SHARE_URLS } from '@/lib/social-links'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
@@ -17,6 +20,7 @@ import { ldJson } from '@/lib/seo/jsonld'
 import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
 
 const blueprints = prototypesData as ArchitecturePrototype[]
+const bySlug = new Map(blueprints.map((b) => [b.slug, b]))
 
 const MATURITY_META: Record<string, { label: string; className: string }> = {
   emerging: { label: 'Emerging', className: 'border-violet-500/30 text-violet-300' },
@@ -468,6 +472,34 @@ export default async function BlueprintPage({ params }: Props) {
               ))}
             </div>
           </div>
+
+          {/* Related patterns */}
+          {(() => {
+            const related = (blueprint.relatedPatterns || [])
+              .map((slug) => bySlug.get(slug))
+              .filter((b): b is ArchitecturePrototype => Boolean(b) && b!.slug !== blueprint.slug)
+            if (related.length === 0) return null
+            return (
+              <div className="mb-4">
+                <h2 className="mb-4 text-2xl font-bold text-white">Related patterns</h2>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {related.map((r) => (
+                    <Link
+                      key={r.slug}
+                      href={`/ai-architecture/${r.slug}`}
+                      className="group flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/20 hover:bg-white/[0.06]"
+                    >
+                      <div className="min-w-0">
+                        <p className="font-semibold text-white">{r.title}</p>
+                        <p className="mt-0.5 text-sm text-slate-400 line-clamp-1">{r.subtitle}</p>
+                      </div>
+                      <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-600 transition-transform group-hover:translate-x-0.5 group-hover:text-cyan-400" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </section>
 
@@ -478,6 +510,27 @@ export default async function BlueprintPage({ params }: Props) {
           <p className="mb-6 text-slate-400">
             Try the interactive prototype or get the production-ready template.
           </p>
+          <div className="mb-8 flex items-center justify-center gap-3">
+            <span className="inline-flex items-center gap-1.5 text-xs text-slate-500">
+              <Share2 className="h-3.5 w-3.5" /> Share
+            </span>
+            <a
+              href={SHARE_URLS.twitter(`${blueprint.title} — AI architecture blueprint`, canonical)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400 transition-colors hover:border-white/25 hover:text-white"
+            >
+              X
+            </a>
+            <a
+              href={SHARE_URLS.linkedin(canonical)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400 transition-colors hover:border-white/25 hover:text-white"
+            >
+              LinkedIn
+            </a>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/ai-architecture/prototypes"
