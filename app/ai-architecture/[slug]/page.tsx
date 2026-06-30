@@ -11,6 +11,7 @@ import {
   Share2,
 } from 'lucide-react'
 import { SHARE_URLS } from '@/lib/social-links'
+import { EmailSignup } from '@/components/email-signup'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
@@ -546,6 +547,14 @@ export default async function BlueprintPage({ params }: Props) {
               <Package className="h-5 w-5" />
               Get Template
             </Link>
+          </div>
+
+          <div className="mx-auto mt-12 max-w-md border-t border-white/5 pt-8">
+            <p className="mb-3 text-sm text-slate-400">
+              New blueprints, first-party benchmarks, and the data behind them — in the AI Architect
+              Dispatch.
+            </p>
+            <EmailSignup listType="ai-architect" compact buttonText="Subscribe" />
           </div>
         </div>
       </section>
