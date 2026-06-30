@@ -52,12 +52,12 @@ const hubSections = [
   {
     id: 'templates',
     title: 'Templates',
-    description: 'Production-ready starter kits with one-click deploy to Vercel, Railway, or OCI.',
+    description: 'Free, MIT-licensed starter kits with one-click Deploy to Vercel. Clone, read, ship.',
     icon: Package,
     href: '/ai-architecture/templates',
     color: 'emerald',
-    badge: '$29+',
-    stat: 'Ship faster',
+    badge: 'FREE',
+    stat: 'Deploy in one click',
   },
   {
     id: 'tools',
@@ -403,6 +403,82 @@ export default function AIArchitectureHubPage() {
           </div>
         </section>
 
+        {/* Built to be checked — credibility surfaces */}
+        <section className="py-8">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8"
+            >
+              <div className="mb-5 flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06] text-emerald-400">
+                  <Shield className="h-5 w-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-white">Built to be checked, not trusted</h2>
+                  <p className="text-sm text-slate-500">
+                    Reproducible numbers, sourced statistics, and a stated method — fork it and prove it wrong.
+                  </p>
+                </div>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {[
+                  {
+                    title: 'Methodology',
+                    desc: 'How every number is sourced, dated, verified, and retired.',
+                    href: '/ai-architecture/methodology',
+                    external: false,
+                    icon: Shield,
+                  },
+                  {
+                    title: 'Cost & Reliability Dataset',
+                    desc: 'Forkable, denominator-tagged stats. Corrections by PR.',
+                    href: '/ai-architecture/data',
+                    external: false,
+                    icon: Database,
+                  },
+                  {
+                    title: 'Benchmark Spine',
+                    desc: 'First-party reproducible benchmarks — run them yourself.',
+                    href: 'https://github.com/frankxai/frankx.ai-vercel-website/tree/main/benchmarks',
+                    external: true,
+                    icon: Zap,
+                  },
+                ].map((item) => {
+                  const ItemIcon = item.icon
+                  const inner = (
+                    <div className="group flex h-full items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 transition-all hover:border-white/15 hover:bg-white/[0.04]">
+                      <ItemIcon className="mt-0.5 h-4 w-4 shrink-0 text-slate-400 group-hover:text-white" />
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 text-sm font-semibold text-white">
+                          {item.title}
+                          {item.external ? (
+                            <ExternalLink className="h-3 w-3 opacity-40" />
+                          ) : (
+                            <ArrowRight className="h-3.5 w-3.5 text-slate-600 transition-transform group-hover:translate-x-0.5" />
+                          )}
+                        </div>
+                        <p className="mt-1 text-xs leading-relaxed text-slate-500">{item.desc}</p>
+                      </div>
+                    </div>
+                  )
+                  return item.external ? (
+                    <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer">
+                      {inner}
+                    </a>
+                  ) : (
+                    <Link key={item.title} href={item.href}>
+                      {inner}
+                    </Link>
+                  )
+                })}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* BYOK Section */}
         <section className="py-12 border-y border-white/[0.04]">
           <div className="mx-auto max-w-6xl px-6">
@@ -519,21 +595,20 @@ export default function AIArchitectureHubPage() {
                 </div>
                 <h3 className="mb-3 text-2xl font-bold text-white">Starter Templates</h3>
                 <p className="mx-auto mb-8 max-w-lg text-slate-400 leading-relaxed">
-                  Production-ready starter kits with one-click deploy. From RAG pipelines
-                  to multi-agent frameworks — ship in hours, not weeks.
+                  Free, MIT-licensed starter kits with one-click Deploy to Vercel. From a RAG
+                  pipeline to a multi-agent loop to an MCP server — clone it, read it, ship it.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3 mb-8">
                   {[
-                    { name: 'RAG Starter Kit', price: '$49' },
-                    { name: 'Multi-Agent Framework', price: '$99' },
-                    { name: 'AI Chat Widget', price: '$29' },
-                    { name: 'MCP Server Kit', price: '$39' },
-                  ].map((template) => (
+                    'RAG Starter',
+                    'Multi-Agent Orchestration',
+                    'MCP Server Kit',
+                  ].map((name) => (
                     <span
-                      key={template.name}
+                      key={name}
                       className="rounded-full border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-2 text-sm text-emerald-400"
                     >
-                      {template.name} <span className="text-emerald-500/60">•</span> {template.price}
+                      {name} <span className="text-emerald-500/60">•</span> Free
                     </span>
                   ))}
                 </div>

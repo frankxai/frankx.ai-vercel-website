@@ -1,0 +1,13 @@
+{
+  "name": "ai-architecture-retrieval-miss-benchmark",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "First-party, reproducible benchmark for retrieval miss rate (lexical vs dense vs hybrid).",
+  "license": "MIT",
+  "author": "Frank Riemer (https://frankx.ai)",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "bench": "node src/bench.mjs"
+  }
+}

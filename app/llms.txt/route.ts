@@ -3,6 +3,8 @@ import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
+import prototypesData from '@/data/ai-architecture/prototypes.json'
+import type { ArchitecturePrototype } from '@/types/ai-architecture'
 
 const SITE_URL = siteConfig.url
 
@@ -30,6 +32,11 @@ export async function GET() {
 
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  const blueprintLinks = (prototypesData as ArchitecturePrototype[])
+    .filter((b) => b.status === 'published')
+    .map((b) => `- [${b.title}](${SITE_URL}/ai-architecture/${b.slug}): ${b.subtitle}`)
     .join('\n')
 
   const content = `# FrankX
@@ -64,6 +71,18 @@ ${libraryLinks}
 - [Research Sources](${SITE_URL}/research/sources): How research is sourced
 - [Research Methodology](${SITE_URL}/research/methodology): Validation rigor
 ${researchLinks}
+
+## AI Architecture Hub (reference patterns, decisive verdicts, deployable starters)
+- [AI Architecture Hub](${SITE_URL}/ai-architecture): Production AI system design — blueprints, live BYOK prototypes, free Deploy-to-Vercel templates, and a curated tool directory
+- [Blueprints](${SITE_URL}/ai-architecture/blueprints): Reference architectures with interactive diagrams, "use when / skip when" verdicts, and current cloud-agent-runtime mapping (AWS Bedrock AgentCore, Azure AI Foundry, Google Vertex ADK, Oracle OCI Enterprise AI)
+- [Prototypes](${SITE_URL}/ai-architecture/prototypes): Live in-browser BYOK demos — chat playground, RAG tester, agent simulator (bring your own Anthropic/OpenAI/Google/OCI key)
+- [Templates](${SITE_URL}/ai-architecture/templates): Free, MIT, one-click Deploy-to-Vercel starter kits
+- [Tools](${SITE_URL}/ai-architecture/tools): Curated 2026 stack — agent frameworks, vector DBs, eval/observability, cloud agent runtimes
+- [Multi-Cloud Comparison](${SITE_URL}/ai-architecture/multi-cloud-comparison): Same pattern across AWS, Azure, GCP, OCI
+- [Methodology](${SITE_URL}/ai-architecture/methodology): How every number is sourced, dated, verified, and retired; how to challenge one; what this reference does not cover
+- [Cost & Reliability Dataset](${SITE_URL}/ai-architecture/data): Forkable, denominator-tagged dataset of production-AI statistics — each row carries its N, definition, source, date, and confidence; corrections by PR
+- [Benchmark Spine](https://github.com/frankxai/frankx.ai-vercel-website/tree/main/benchmarks): First-party reproducible benchmarks (retrieval miss rate across lexical/dense/hybrid) with harness, corpus, and raw logs — run it yourself
+${blueprintLinks}
 
 ## Workshops (live, application or open)
 - [Build First AI Agent](${SITE_URL}/workshops/build-first-ai-agent): Multi-path workshop with Vercel AI SDK + 6 branches
