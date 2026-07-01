@@ -5,6 +5,7 @@ import { getToken } from 'next-auth/jwt'
 // Pages that have a /de/ version available
 const deAvailablePages = ['/valentines-day']
 
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
