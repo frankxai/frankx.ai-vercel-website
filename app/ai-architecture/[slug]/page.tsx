@@ -18,6 +18,7 @@ import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
 import { buildHowToSchema, buildBreadcrumbSchema, SITE_CONFIG } from '@/lib/schema-builders'
 import { ldJson } from '@/lib/seo/jsonld'
+import { createMetadata } from '@/lib/seo'
 import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
 
 const blueprints = prototypesData as ArchitecturePrototype[]
@@ -40,12 +41,27 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const blueprint = blueprints.find((b) => b.slug === slug)
-  if (!blueprint) return { title: 'Blueprint Not Found' }
+  if (!blueprint) {
+    return createMetadata({
+      title: 'Blueprint Not Found | AI Architecture',
+      description: 'The requested AI architecture blueprint could not be located.',
+      path: `/ai-architecture/${slug}`,
+      noindex: true,
+    })
+  }
 
-  return {
+  // Image is intentionally omitted — the co-located opengraph-image.tsx in
+  // this route segment supplies the OG image automatically (Next.js file
+  // convention), so a manual `image` here would just be overridden.
+  return createMetadata({
     title: `${blueprint.title} | AI Architecture Blueprint`,
     description: blueprint.metaDescription || blueprint.subtitle,
-  }
+    path: `/ai-architecture/${blueprint.slug}`,
+    type: 'article',
+    keywords: blueprint.keywords,
+    updatedTime: blueprint.updatedAt,
+    publishedTime: blueprint.publishedAt || blueprint.createdAt,
+  })
 }
 
 export default async function BlueprintPage({ params }: Props) {
@@ -213,11 +229,11 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Problem & Solution */}
           <div className="mb-12 grid gap-8 md:grid-cols-2">
             <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-red-400">The Problem</h3>
+              <h2 className="mb-3 text-lg font-semibold text-red-400">The Problem</h2>
               <p className="text-slate-400">{blueprint.problem}</p>
             </div>
             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-emerald-400">The Solution</h3>
+              <h2 className="mb-3 text-lg font-semibold text-emerald-400">The Solution</h2>
               <p className="text-slate-400">{blueprint.solution}</p>
             </div>
           </div>
@@ -332,7 +348,7 @@ export default async function BlueprintPage({ params }: Props) {
                     className="rounded-xl border border-white/10 bg-white/5 p-4"
                   >
                     <div className="mb-2 flex items-center justify-between">
-                      <h4 className="font-semibold text-white">{component.name}</h4>
+                      <h3 className="font-semibold text-white">{component.name}</h3>
                       <span className="rounded bg-white/10 px-2 py-0.5 text-xs text-slate-400">
                         {component.type}
                       </span>
@@ -361,7 +377,7 @@ export default async function BlueprintPage({ params }: Props) {
                         {step.phase}
                       </span>
                       <div>
-                        <h4 className="font-semibold text-white">{step.title}</h4>
+                        <h3 className="font-semibold text-white">{step.title}</h3>
                         {step.estimatedDuration && (
                           <p className="text-xs text-slate-500">{step.estimatedDuration}</p>
                         )}
@@ -369,7 +385,7 @@ export default async function BlueprintPage({ params }: Props) {
                     </div>
                     <p className="mb-4 text-sm text-slate-400">{step.description}</p>
                     <div className="mb-4">
-                      <h5 className="mb-2 text-xs font-semibold uppercase text-slate-500">Tasks</h5>
+                      <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Tasks</h4>
                       <ul className="space-y-1">
                         {step.tasks.map((task, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
@@ -380,7 +396,7 @@ export default async function BlueprintPage({ params }: Props) {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="mb-2 text-xs font-semibold uppercase text-slate-500">Deliverables</h5>
+                      <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Deliverables</h4>
                       <div className="flex flex-wrap gap-2">
                         {step.deliverables.map((d, i) => (
                           <span key={i} className="rounded bg-white/5 px-2 py-1 text-xs text-slate-400">
@@ -402,7 +418,7 @@ export default async function BlueprintPage({ params }: Props) {
               <div className="space-y-6">
                 {blueprint.codeExamples.map((example) => (
                   <div key={example.id} className="rounded-xl border border-white/10 bg-white/5 p-6">
-                    <h4 className="mb-2 font-semibold text-white">{example.title}</h4>
+                    <h3 className="mb-2 font-semibold text-white">{example.title}</h3>
                     {example.description && (
                       <p className="mb-4 text-sm text-slate-400">{example.description}</p>
                     )}
