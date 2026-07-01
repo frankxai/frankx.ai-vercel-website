@@ -45,9 +45,10 @@ export function RecommendationDeck({ groups }: RecommendationDeckProps) {
               <ul className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {group.items.map((item) => {
                   const isExternal = item.href.startsWith('http')
+                  const Component = isExternal ? 'a' : Link
                   return (
                     <li key={item.href}>
-                      <Link
+                      <Component
                         href={item.href}
                         target={isExternal ? '_blank' : undefined}
                         rel={isExternal ? 'noopener noreferrer' : undefined}
@@ -63,7 +64,7 @@ export function RecommendationDeck({ groups }: RecommendationDeckProps) {
                           />
                         </div>
                         <p className="mt-3 text-sm leading-6 text-white/60">{item.why}</p>
-                      </Link>
+                      </Component>
                     </li>
                   )
                 })}

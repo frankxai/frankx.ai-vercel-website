@@ -24,9 +24,10 @@ export function PortalCrossLinks({ links }: PortalCrossLinksProps) {
         <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {links.map((link) => {
             const isExternal = link.href.startsWith('http')
+            const Component = isExternal ? 'a' : Link
             return (
               <li key={link.surface}>
-                <Link
+                <Component
                   href={link.href}
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
@@ -45,7 +46,7 @@ export function PortalCrossLinks({ links }: PortalCrossLinksProps) {
                     {link.label}
                   </h3>
                   <p className="text-sm leading-relaxed text-zinc-400">{link.rationale}</p>
-                </Link>
+                </Component>
               </li>
             )
           })}

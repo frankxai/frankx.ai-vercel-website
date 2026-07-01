@@ -44,15 +44,14 @@ export default async function PortalPartnerPage({
   const partner = getPortalPartner(slug)
   if (!partner) notFound()
 
-  // Fail loud in dev on a dead recommendation slug; never let a broken
-  // reference reach production silently.
-  if (process.env.NODE_ENV !== 'production') {
-    const errors = validateRecommendations(partner.recommendations)
-    if (errors.length > 0) {
-      throw new Error(
-        `Portal partner "${partner.slug}" has unresolvable recommendations:\n${errors.join('\n')}`
-      )
-    }
+  // This page is statically generated, so there's no request-time cost to
+  // validating here — fail the build with a descriptive error on any dead
+  // recommendation slug rather than let it reach production silently.
+  const errors = validateRecommendations(partner.recommendations)
+  if (errors.length > 0) {
+    throw new Error(
+      `Portal partner "${partner.slug}" has unresolvable recommendations:\n${errors.join('\n')}`
+    )
   }
   const recommendationGroups = toRecommendationGroups(partner.recommendations)
 
