@@ -24,6 +24,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }
     'idle',
   )
   const [error, setError] = useState<string | null>(null)
+  const [ackSent, setAckSent] = useState(false)
   const [emailHint, setEmailHint] = useState<string | null>(null)
   const [messageLength, setMessageLength] = useState(0)
   const formRef = useRef<HTMLFormElement>(null)
@@ -75,6 +76,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }
       const json = await res.json().catch(() => ({}))
       if (res.ok && json.ok) {
         setStatus('done')
+        setAckSent(Boolean(json.ackSent))
         form.reset()
         setMessageLength(0)
         // Scroll the success surface into view — important on mobile where
@@ -111,8 +113,9 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }
           Got it. Your message is in.
         </h3>
         <p className={`mx-auto mt-3 max-w-md text-sm leading-6 ${t.successBody}`}>
-          A confirmation just hit your inbox naming the 24-hour artifact you'll
-          receive next:{' '}
+          {ackSent
+            ? "A confirmation just hit your inbox naming the 24-hour artifact you'll receive next: "
+            : "Within 24 hours you'll receive "}
           <span className={t.successAccent}>{INTENT_24H_ARTIFACT[intent]}</span>.
           A real reply from Frank follows within 1–2 working days.
         </p>
@@ -152,19 +155,27 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }
       data-testid="contact-form"
       className="space-y-5"
     >
-      {/* Intent selector */}
+      {/* Intent selector — a single-choice group. Styled as buttons but
+          exposed to assistive tech as a real radiogroup: aria-pressed models
+          independent toggles (any subset could be true), which is the wrong
+          semantics for "pick exactly one". */}
       <fieldset>
         <legend className={t.legend}>What's this about?</legend>
-        <div className="mt-2 grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          role="radiogroup"
+          aria-label="What's this about?"
+          className="mt-2 grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {INTENTS.map((i) => (
             <button
               key={i}
               type="button"
+              role="radio"
+              aria-checked={intent === i}
               onClick={() => setIntent(i)}
               className={`min-h-[44px] rounded-lg border px-3 py-3 text-left text-[13px] font-medium leading-tight transition ${
                 intent === i ? t.intentActive : t.intentInactive
               }`}
-              aria-pressed={intent === i}
             >
               {INTENT_LABEL[i]}
             </button>

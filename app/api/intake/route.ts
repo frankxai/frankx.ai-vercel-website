@@ -75,8 +75,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // result.ok only guarantees ONE of {notify, notion, JSONL} succeeded —
+    // not that the requester's own confirmation email (entry.ack) sent. Don't
+    // claim "check your inbox" unless it actually did.
+    const ackSent = result.entry.ack === 'sent'
     return NextResponse.json(
-      { ok: true, message: "Got it — you'll hear back within 1–2 working days." },
+      {
+        ok: true,
+        ackSent,
+        message: ackSent
+          ? "Got it — check your inbox for the confirmation. You'll hear back within 1–2 working days."
+          : "Got it — your message is in. You'll hear back within 1–2 working days.",
+      },
       { status: 200 },
     )
   } catch (err) {
@@ -120,7 +130,17 @@ export async function GET(request: NextRequest) {
       .reverse()
       .slice(0, 200)
     return NextResponse.json({ ok: true, count: entries.length, entries })
-  } catch {
-    return NextResponse.json({ ok: true, count: 0, entries: [] })
+  } catch (err) {
+    // ENOENT means no submissions yet — a genuinely empty inbox. Any other
+    // error (permissions, disk, corrupt path) is a real outage; surfacing it
+    // as "0 entries" would hide the fact that /admin/intake is broken.
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      return NextResponse.json({ ok: true, count: 0, entries: [] })
+    }
+    console.error('[intake] failed to read intake log', err)
+    return NextResponse.json(
+      { ok: false, error: 'Failed to read intake log.' },
+      { status: 500 },
+    )
   }
 }

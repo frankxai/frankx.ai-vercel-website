@@ -77,7 +77,7 @@ test.describe('/contact — happy path', () => {
 
     await expect(page.getByRole('heading', { name: /tell frank what you/i })).toBeVisible()
     await expect(
-      contactForm(page).getByRole('button', { name: /general inquiry/i }),
+      contactForm(page).getByRole('radio', { name: /general inquiry/i }),
     ).toBeVisible()
 
     await fillContactForm(page)
@@ -96,7 +96,7 @@ test.describe('/contact — happy path', () => {
     await page.goto('/contact')
 
     await contactForm(page)
-      .getByRole('button', { name: /implementation sprint/i })
+      .getByRole('radio', { name: /implementation sprint/i })
       .click()
     await fillContactForm(page, { message: 'Need to ship in 8 days.' })
     await contactForm(page).getByRole('button', { name: /send to frank/i }).click()
@@ -108,10 +108,10 @@ test.describe('/contact — happy path', () => {
   test('deep-links to an intent via ?intent=', async ({ page }) => {
     await page.goto('/contact?intent=workshop')
 
-    const pill = contactForm(page).getByRole('button', {
+    const pill = contactForm(page).getByRole('radio', {
       name: /workshop \(1-day team build\)/i,
     })
-    await expect(pill).toHaveAttribute('aria-pressed', 'true')
+    await expect(pill).toHaveAttribute('aria-checked', 'true')
 
     await expect(page.getByText(/15-minute Loom critiquing your current stack/i)).toBeVisible()
   })
@@ -119,8 +119,8 @@ test.describe('/contact — happy path', () => {
   test('ignores garbage ?intent= values and falls back to general', async ({ page }) => {
     await page.goto('/contact?intent=not-a-real-intent')
 
-    const general = contactForm(page).getByRole('button', { name: /general inquiry/i })
-    await expect(general).toHaveAttribute('aria-pressed', 'true')
+    const general = contactForm(page).getByRole('radio', { name: /general inquiry/i })
+    await expect(general).toHaveAttribute('aria-checked', 'true')
   })
 })
 
