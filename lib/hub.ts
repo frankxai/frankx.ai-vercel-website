@@ -495,7 +495,7 @@ export const agentProtocols: AgentProtocol[] = [
     icon: Sparkles,
     link: { href: '/prompt-library', label: 'Browse Prompts' },
     bullets: [
-      '200+ prompts across multiple categories',
+      '98+ prompts across multiple categories',
       'Each prompt designed to be customized',
       'New prompts added regularly from the community'
     ]
