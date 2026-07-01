@@ -14,12 +14,32 @@ import { getDomainBySlug } from '@/lib/research/domains'
 import { getReviewBySlug } from '@/data/book-reviews'
 import { getBlogPost } from '@/lib/blog'
 import { getProductBySlug } from '@/data/products'
-import { downloadsList } from '@/app/downloads/DownloadsClient'
+import { downloadsList } from '@/data/downloads'
 
 export type ResolvedRecommendation = Recommendation & {
   title: string
   href: string
   image?: string
+}
+
+/**
+ * Ally-specific download kits that have a real page under app/downloads/<id>/
+ * but aren't in `downloadsList` (the site-wide /downloads grid registry).
+ * Titles copied verbatim from each page's own metadata.
+ */
+const ALLY_KIT_FALLBACK: Record<string, { title: string; href: string }> = {
+  'ahmad-founder-creator-kit': {
+    title: 'Ahmad Founder Creator Kit',
+    href: '/downloads/ahmad-founder-creator-kit',
+  },
+  'ana-ai-business-kit': {
+    title: 'Ana AI Business Kit',
+    href: '/downloads/ana-ai-business-kit',
+  },
+  'jojo-hospitality-intelligence-kit': {
+    title: 'Jojo Hospitality Intelligence Kit',
+    href: '/downloads/jojo-hospitality-intelligence-kit',
+  },
 }
 
 function resolveOne(rec: Recommendation): ResolvedRecommendation | undefined {
@@ -46,8 +66,12 @@ function resolveOne(rec: Recommendation): ResolvedRecommendation | undefined {
     }
     case 'download': {
       const item = downloadsList.find((d) => d.id === rec.slug)
-      if (!item) return undefined
-      return { ...rec, title: item.title, href: item.href ?? item.previewUrl ?? `/downloads/${rec.slug}`, image: item.image }
+      if (item) {
+        return { ...rec, title: item.title, href: item.href ?? item.previewUrl ?? `/downloads/${rec.slug}`, image: item.image }
+      }
+      const fallback = ALLY_KIT_FALLBACK[rec.slug]
+      if (!fallback) return undefined
+      return { ...rec, title: fallback.title, href: fallback.href }
     }
   }
 }
@@ -94,4 +118,39 @@ export function groupRecommendationsByKind(
     }
   }
   return groups
+}
+
+const KIND_LABELS: Record<Recommendation['kind'], string> = {
+  research: 'Research',
+  library: 'Library',
+  blog: 'Field notes',
+  product: 'Products',
+  download: 'Downloads',
+}
+
+const KIND_ORDER: Recommendation['kind'][] = ['download', 'research', 'blog', 'library', 'product']
+
+export type RecommendationDeckGroup = {
+  kind: Recommendation['kind']
+  label: string
+  items: { title: string; href: string; why: string; image?: string }[]
+}
+
+/**
+ * Adapts `groupRecommendationsByKind`'s Record shape into the labeled-array
+ * shape `components/portal/RecommendationDeck.tsx` renders.
+ */
+export function toRecommendationGroups(recs: Recommendation[]): RecommendationDeckGroup[] {
+  const resolved = resolveRecommendations(recs)
+  const grouped = groupRecommendationsByKind(resolved)
+  return KIND_ORDER.filter((kind) => grouped[kind]?.length).map((kind) => ({
+    kind,
+    label: KIND_LABELS[kind],
+    items: (grouped[kind] ?? []).map((r) => ({
+      title: r.title,
+      href: r.href,
+      why: r.why,
+      image: r.image,
+    })),
+  }))
 }
