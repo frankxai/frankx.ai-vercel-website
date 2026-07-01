@@ -21,12 +21,12 @@ export const INNER_CIRCLE_FAQS: InnerCircleFAQ[] = [
   {
     question: 'When does the Inner Circle launch?',
     answer:
-      "Inner Circle opens Monday June 1, 2026 at 09:00 CET. Pricing publishes Wednesday May 27 to everyone on the waitlist. Between now and then: no marketing emails — just three: a pricing reveal (May 27), a 30-day preview (May 30), and the launch email (June 1 09:00 CET).",
+      "The Inner Circle opens to the waitlist first, as a founding-member cohort capped at 100. Join the waitlist and you'll be first to get the pricing and the launch date — no marketing emails in between, just the pricing reveal, a short preview, and the launch note.",
   },
   {
     question: "What's the founding-member bonus?",
     answer:
-      "The first 100 to join during launch week (June 1-7) lock the founding rate for life, get a founders-only Slack channel that closes after June 7, and an exclusive July masterclass not available to later joiners. After 100, standard renewal pricing applies.",
+      "The first 100 to join during launch week lock the founding rate for life, get a founders-only Slack channel that closes at the end of that week, and an exclusive masterclass not available to later joiners. After 100, standard renewal pricing applies.",
   },
   {
     question: 'When are the first masterclasses?',

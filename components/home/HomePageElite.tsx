@@ -320,9 +320,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/inner-circle"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="group inline-flex items-center justify-center gap-1.5 rounded-full px-4 h-14 text-base font-medium text-white/70 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
-                Get the playbook
+                Join the Inner Circle
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </motion.div>
           </div>
