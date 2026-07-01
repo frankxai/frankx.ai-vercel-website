@@ -78,7 +78,7 @@ const journeyPaths = [
     description: 'Battle-tested prompts I actually use daily. Copy them, adapt them, make them yours.',
     href: '/prompt-library',
     color: 'violet',
-    stats: '22 prompts',
+    stats: '98+ prompts',
   },
   {
     id: 'build',
