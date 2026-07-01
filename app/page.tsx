@@ -1,4 +1,4 @@
-import PremiumHomePage2026 from '@/components/home/PremiumHomePage2026'
+import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
@@ -178,7 +178,7 @@ export default function Page() {
 
   return (
     <>
-      <PremiumHomePage2026
+      <HomePageElite
         latestPosts={latestPosts}
         faqs={homepageFAQs}
         libraryBooks={libraryBooks}
