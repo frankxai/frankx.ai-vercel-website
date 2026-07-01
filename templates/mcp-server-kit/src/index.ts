@@ -2,7 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
-import express, { type Request, type Response } from 'express';
+import express, { type Request, type Response, type NextFunction } from 'express';
 import { randomUUID } from 'node:crypto';
 import { registerCapabilities } from './tools.js';
 
@@ -30,9 +30,30 @@ async function runStdio(): Promise<void> {
 // Streamable HTTP transport — for remote / networked clients. One server +
 // transport per session, keyed by the `mcp-session-id` header.
 // ---------------------------------------------------------------------------
+// Origins allowed to reach the HTTP transport. A browser tab open on the same
+// machine (or another host on the local network) can otherwise reach this
+// server — a known MCP local-exposure / DNS-rebinding risk. Override via
+// ALLOWED_ORIGINS (comma-separated) for a real deployment.
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? 'http://localhost,http://127.0.0.1')
+  .split(',')
+  .map((o) => o.trim());
+
+function originAllowed(req: Request): boolean {
+  const origin = req.headers.origin;
+  if (!origin) return true; // non-browser clients (curl, MCP CLI) send no Origin header
+  return ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed));
+}
+
 async function runHttp(): Promise<void> {
   const app = express();
   app.use(express.json());
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    if (!originAllowed(req)) {
+      res.status(403).send('Origin not allowed. Set ALLOWED_ORIGINS to permit it.');
+      return;
+    }
+    next();
+  });
 
   const transports: Record<string, StreamableHTTPServerTransport> = {};
 
@@ -80,8 +101,12 @@ async function runHttp(): Promise<void> {
   app.delete('/mcp', sessionRequest);
 
   const port = Number(process.env.PORT) || 3000;
-  app.listen(port, () => {
-    console.error(`mcp-server-kit running on http://localhost:${port}/mcp`);
+  // Bind to loopback by default — 0.0.0.0 would expose this to the local
+  // network. Set HOST=0.0.0.0 explicitly for a real networked deployment
+  // (and keep ALLOWED_ORIGINS tight if you do).
+  const host = process.env.HOST || '127.0.0.1';
+  app.listen(port, host, () => {
+    console.error(`mcp-server-kit running on http://${host}:${port}/mcp`);
   });
 }
 

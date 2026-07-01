@@ -3642,10 +3642,6 @@
       {
         "value": "0.82 vs 0.70",
         "label": "Recall@5 with hybrid retrieval + reranker vs hybrid alone (+17%) on financial table/text QA"
-      },
-      {
-        "value": "18 datasets",
-        "label": "BM25 stays a robust zero-shot retrieval baseline across BEIR — earn neural complexity"
       }
     ]
   },
