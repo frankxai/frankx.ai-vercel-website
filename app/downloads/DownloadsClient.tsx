@@ -9,7 +9,7 @@ import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 
 type Category = 'all' | 'systems' | 'books' | 'dev'
 
-type DownloadItem = {
+export type DownloadItem = {
   id: string
   title: string
   subtitle: string
@@ -25,7 +25,11 @@ type DownloadItem = {
   cta?: string
 }
 
-const downloadsList: DownloadItem[] = [
+/**
+ * Exported so lib/portal/recommend.ts can resolve + link-check download
+ * recommendations against the real registry instead of duplicating data.
+ */
+export const downloadsList: DownloadItem[] = [
   {
     id: 'agentic-creator-os',
     title: 'Agentic Creator OS',
