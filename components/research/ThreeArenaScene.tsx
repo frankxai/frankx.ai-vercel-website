@@ -55,11 +55,29 @@ export const MODEL_DATA: ModelNode[] = [
     latency: 0.30,
     color: '#f59e0b', // Amber
     size: 1.4,
-    description: 'Flagship judgment instrument. Best at flagging contradictory specs, governance gates, and complex long-context reasoning.',
+    description: 'Flagship judgment instrument. Best at flagging contradictory specs, unauthorized actions, and complex long-context reasoning.',
     stats: {
       pricing: '$5.00 / $25.00 (1M tokens)',
       benchmark: '88.6% SWE-bench Verified',
       verdict: 'Best for complex architecture reviews & spec validation'
+    }
+  },
+  {
+    id: 'claude-sonnet-5',
+    name: 'Claude Sonnet 5',
+    org: 'Anthropic',
+    constraint: 0.78,
+    judgment: 0.80,
+    reasoning: 0.90,
+    cost: 0.90,
+    latency: 0.85,
+    color: '#22d3ee', // Cyan
+    size: 1.15,
+    description: 'Shipped 2026-06-30. Closes most of the gap to Opus 4.8 on agentic and knowledge work at roughly 40% of the price — the default worth trying first for cost-sensitive production work.',
+    stats: {
+      pricing: '$2.00 / $10.00 (1M tokens, promo through Aug 31 2026)',
+      benchmark: '63.2% agentic coding · 81.2% OSWorld-Verified · edges Opus 4.8 on GDPval-AA v2',
+      verdict: 'Best default for production agent loops — near-Opus quality, budget-tier price'
     }
   },
   {
@@ -73,11 +91,11 @@ export const MODEL_DATA: ModelNode[] = [
     latency: 0.82,
     color: '#3b82f6', // Blue
     size: 1.1,
-    description: 'Optimal balance of reasoning and efficiency. Excellent general driver for production agent loops and general coding.',
+    description: 'Predecessor to Sonnet 5 (superseded 2026-06-30). Solid balance of reasoning and efficiency, kept here for comparison.',
     stats: {
       pricing: '$3.00 / $15.00 (1M tokens)',
       benchmark: '82.4% SWE-bench Verified',
-      verdict: 'Best for general coding & multi-agent loops'
+      verdict: 'Superseded by Sonnet 5 — kept for historical comparison'
     }
   },
   {
