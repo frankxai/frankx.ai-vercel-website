@@ -600,6 +600,15 @@ function FlagshipArticles() {
       readingTime: '12 min',
     },
     {
+      kanji: '光',
+      label: 'mind · breath · the inner light',
+      title: 'The Light Within',
+      href: '/research/the-light-within',
+      blurb:
+        'What the traditions called the inner light, and what brain science can actually confirm about visualization, breath, and gamma states. Every claim graded A–D.',
+      readingTime: '14 min',
+    },
+    {
       kanji: '識',
       label: 'sovereign ai · architecture',
       title: 'Conscious AI Operating Systems',
