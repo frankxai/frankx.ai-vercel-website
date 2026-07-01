@@ -484,14 +484,11 @@ export default function NavigationMega() {
               type="button"
               onClick={openCommandPalette}
               className="flex h-8 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
-              aria-label="Open search (Ctrl+K)"
-              title="Search (Ctrl+K)"
+              aria-label="Open search"
+              title="Search"
             >
               <Search className="h-3.5 w-3.5" />
               <span className="hidden xl:inline text-[11px] font-medium">Search</span>
-              <kbd className="hidden xl:inline-flex items-center gap-0.5 rounded border border-white/10 bg-black/30 px-1 py-0.5 text-[10px] font-mono text-slate-500">
-                <span>⌘</span>K
-              </kbd>
             </button>
             <Link
               href="/start"
@@ -501,15 +498,26 @@ export default function NavigationMega() {
             </Link>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 lg:hidden"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label="Open search"
+              title="Search"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </nav>
       </header>
 
