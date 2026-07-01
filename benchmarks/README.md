@@ -12,7 +12,7 @@ denominators and sources, never dressed up as first-party rigor.
 | benchmark | failure mode | status |
 |---|---|---|
 | [`retrieval-miss/`](./retrieval-miss) | the retriever doesn't return the passage that holds the answer | live |
-| `runaway-loop/` | an agent loops without converging and the cost runs away | planned |
+| [`runaway-loop/`](./runaway-loop) | an agent loops without converging and cost scales with steps, not task complexity | live |
 | `context-rot/` | accuracy degrades as the context window fills | planned |
 
 Method, dating, and how to challenge a number: see the
