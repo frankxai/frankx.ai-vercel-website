@@ -7,6 +7,7 @@ import {
   getLogPath,
   type IntakeLogEntry,
 } from '@/lib/contact-intake'
+import { clientKey, rateLimited } from '@/lib/rate-limit'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -15,48 +16,14 @@ export const dynamic = 'force-dynamic'
  * Unified intake endpoint — the single front door.
  *
  * POST: validate → run the five-stage pipeline (notify · auto-ack · Notion ·
- *       JSONL · Slack) → honest response. Rate-limited per IP.
+ *       JSONL · Slack) → honest response. Rate-limited per IP via lib/rate-limit.
  * GET:  operator endpoint for /admin/intake. Fail-closed: if ADMIN_TOKEN is
  *       not configured server-side, every request is denied.
  */
 
-// ── Rate limit ──────────────────────────────────────────────────────────────
-// In-memory token bucket per IP. Per-Vercel-instance, so the effective limit
-// is N × instances under load; still meaningful against simple abuse loops.
-// For production-grade limiting across all instances, swap for Vercel KV +
-// Upstash rate-limiter, or enable Vercel WAF rate-limiting on the route.
-const RATE_LIMIT_WINDOW_MS = 60_000
-const RATE_LIMIT_MAX = 5
-const RATE_LIMIT_BUCKET_CAP = 1024
-const rateBuckets = new Map<string, { count: number; reset: number }>()
-
-function clientKey(request: NextRequest): string {
-  // x-forwarded-for can be comma-separated (proxy chain); take the leftmost
-  // (the originating client per the RFC). Spoofable behind hostile proxies;
-  // good enough for abuse-prevention bucketing.
-  const xff = request.headers.get('x-forwarded-for') || ''
-  return xff.split(',')[0]?.trim() || 'unknown'
-}
-
-function rateLimited(key: string): boolean {
-  const now = Date.now()
-  if (rateBuckets.size > RATE_LIMIT_BUCKET_CAP) {
-    // Prevent unbounded growth: evict expired entries on overflow.
-    for (const [k, v] of rateBuckets) if (v.reset < now) rateBuckets.delete(k)
-  }
-  const bucket = rateBuckets.get(key)
-  if (!bucket || bucket.reset < now) {
-    rateBuckets.set(key, { count: 1, reset: now + RATE_LIMIT_WINDOW_MS })
-    return false
-  }
-  if (bucket.count >= RATE_LIMIT_MAX) return true
-  bucket.count++
-  return false
-}
-
 export async function POST(request: NextRequest) {
   try {
-    if (rateLimited(clientKey(request))) {
+    if (rateLimited('intake', clientKey(request))) {
       return NextResponse.json(
         { ok: false, error: 'Too many requests. Please try again shortly.' },
         { status: 429, headers: { 'Retry-After': '60' } },
@@ -123,10 +90,14 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   // Deny-by-default: if ADMIN_TOKEN is unset, no one reads PII.
+  //
+  // Secret comes from the HttpOnly `admin-token` cookie or the
+  // `Authorization: Bearer <token>` header. Never from a query param —
+  // that puts the secret into browser history, copied URLs, access
+  // logs, and `Referer` propagation. PII handler == cookie/header only.
   const adminToken = process.env.ADMIN_TOKEN
-  const requestToken =
-    request.nextUrl.searchParams.get('token') ||
-    request.cookies.get('admin-token')?.value
+  const bearer = request.headers.get('authorization')?.match(/^Bearer\s+(.+)$/i)?.[1]
+  const requestToken = bearer || request.cookies.get('admin-token')?.value
 
   if (!adminToken || requestToken !== adminToken) {
     return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 })
