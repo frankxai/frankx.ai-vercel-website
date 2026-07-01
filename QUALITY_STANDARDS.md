@@ -190,7 +190,7 @@ All social links MUST match `BRAND_IDENTITY.md`:
 | LinkedIn | `https://linkedin.com/in/frank-x-riemer/` | `linkedin.com/in/frankxai` |
 | Instagram | `https://www.instagram.com/frank_riemer/` | - |
 | Suno | `https://suno.com/@frankx` | `suno.com/@frankxai` |
-| Email | `hello@frankx.ai` | - |
+| Email | `frank@frankx.ai` | - |
 
 ### Automated Verification
 

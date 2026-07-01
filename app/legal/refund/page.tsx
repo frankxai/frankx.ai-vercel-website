@@ -37,7 +37,7 @@ export default function RefundPage() {
       <Section title="How to Request a Refund">
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-5 mt-3">
           <p className="text-zinc-300 font-medium mb-2">Contact us at:</p>
-          <p><a href="mailto:hello@frankx.ai" className="text-violet-400">hello@frankx.ai</a></p>
+          <p><a href="mailto:frank@frankx.ai" className="text-violet-400">frank@frankx.ai</a></p>
           <p className="mt-3 text-zinc-500 text-xs">Please include your order number, the product purchased, and the reason for your refund request. We aim to respond within 2 business days.</p>
         </div>
       </Section>

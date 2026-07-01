@@ -85,8 +85,8 @@ export default function TermsPage() {
             <h2 className="text-2xl font-semibold mb-4">Contact</h2>
             <p className="text-white/70 leading-relaxed">
               Questions about these terms? Contact us at{' '}
-              <a href="mailto:hello@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
-                hello@frankx.ai
+              <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
+                frank@frankx.ai
               </a>
             </p>
           </section>

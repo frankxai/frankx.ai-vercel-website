@@ -319,7 +319,7 @@ Daily lessons delivered to your inbox:
 
 ## 💬 Support & Community
 
-**Email Support**: toolkit@frankx.ai
+**Email Support**: frank@frankx.ai
 **Community Forum**: [Access with your member code]
 **Live Calls**: Wednesdays 2 PM EST
 **Resource Updates**: Monthly additions to the toolkit
