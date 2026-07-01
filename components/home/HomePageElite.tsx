@@ -177,14 +177,17 @@ function RotatingWord() {
 
   if (shouldReduceMotion) {
     return (
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+      <span
+        className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
+        aria-hidden="true"
+      >
         {heroWords[0]}
       </span>
     )
   }
 
   return (
-    <span className="inline-block relative">
+    <span className="inline-block relative" aria-hidden="true">
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
@@ -218,6 +221,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
           allow="autoplay; clipboard-write"
           loading="lazy"
           title={track.title}
+          sandbox="allow-scripts allow-same-origin"
         />
       </div>
 
@@ -279,7 +283,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 <span className="text-sm text-white/60">AI Architect & Creator</span>
               </div>
 
-              <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
+              <h1
+                className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white"
+                aria-label="Building intelligence that compounds."
+              >
                 <RotatingWord /> intelligence
                 <br />
                 that compounds.
@@ -345,6 +352,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                     allow="autoplay; clipboard-write"
                     loading="lazy"
                     title="Vibe OS — Featured Track"
+                    sandbox="allow-scripts allow-same-origin"
                   />
                 </div>
               )}
@@ -1339,7 +1347,7 @@ function FinalCTA() {
 }
 
 // ============================================================================
-// MAIN COMPONENT — 15 sections
+// MAIN COMPONENT — 16 sections
 // ============================================================================
 
 export default function HomePageElite({
@@ -1426,10 +1434,10 @@ export default function HomePageElite({
         {/* 14. Email CTA */}
         <EmailCTA />
 
-        {/* 14. FAQ */}
+        {/* 15. FAQ */}
         <FAQSection faqs={faqs} />
 
-        {/* 15. Final CTA */}
+        {/* 16. Final CTA */}
         <FinalCTA />
       </div>
     </main>
