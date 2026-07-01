@@ -45,6 +45,10 @@ export function SmoothScroll({ children, lerp = 0.1 }: SmoothScrollProps): React
     return () => {
       gsap.ticker.remove(onTick)
       lenis.destroy()
+      // SmoothScroll is scoped to a page/layout and can unmount — restore GSAP's
+      // default lag smoothing so other pages' GSAP animations aren't left with it
+      // permanently disabled.
+      gsap.ticker.lagSmoothing(500, 33)
     }
   }, [lerp])
 

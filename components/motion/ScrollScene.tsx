@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import type { ReactNode, ReactElement } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -49,8 +49,11 @@ export function ScrollScene({
 }: ScrollSceneProps): ReactElement {
   const ref = useRef<HTMLDivElement>(null)
   // Keep the latest timeline callback without re-running the scene when only it changes.
+  // Assigned in an effect, not during render — refs can't be written while rendering.
   const timelineRef = useRef(timeline)
-  timelineRef.current = timeline
+  useEffect(() => {
+    timelineRef.current = timeline
+  })
 
   useGSAP(
     () => {
