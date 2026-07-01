@@ -18,6 +18,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
     'idle',
   )
   const [error, setError] = useState<string | null>(null)
+  const [ackSent, setAckSent] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -47,6 +48,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
       const json = await res.json().catch(() => ({}))
       if (res.ok && json.ok) {
         setStatus('done')
+        setAckSent(Boolean(json.ackSent))
         form.reset()
       } else {
         setStatus('error')
@@ -60,12 +62,18 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
 
   if (status === 'done') {
     return (
-      <div className="rounded-2xl border border-emerald-400/30 bg-emerald-500/[0.06] p-8 text-center">
+      <div
+        role="status"
+        aria-live="polite"
+        className="rounded-2xl border border-emerald-400/30 bg-emerald-500/[0.06] p-8 text-center"
+      >
         <CheckCircle2 className="mx-auto h-8 w-8 text-emerald-300" />
         <h3 className="mt-4 text-xl font-semibold text-white">Got it.</h3>
         <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-slate-300/90">
-          Your message reached Frank directly, and a confirmation just hit your
-          inbox. A real reply follows within 1–2 working days.
+          {ackSent
+            ? 'Your message reached Frank directly, and a confirmation just hit your inbox.'
+            : 'Your message reached Frank directly.'}{' '}
+          A real reply follows within 1–2 working days.
         </p>
         <button
           type="button"
@@ -80,29 +88,33 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Intent selector */}
-      <div>
-        <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+      {/* Intent selector — a single-choice group. Styled as buttons but
+          exposed to assistive tech as a real radiogroup: aria-pressed models
+          independent toggles (any subset could be true), which is the wrong
+          semantics for "pick exactly one". */}
+      <fieldset>
+        <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
           What's this about?
-        </label>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+        </legend>
+        <div role="radiogroup" aria-label="What's this about?" className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {INTENTS.map((i) => (
             <button
               key={i}
               type="button"
+              role="radio"
+              aria-checked={intent === i}
               onClick={() => setIntent(i)}
               className={`rounded-lg border px-3 py-2.5 text-left text-[13px] font-medium leading-tight transition ${
                 intent === i
                   ? 'border-cyan-300/60 bg-cyan-300/10 text-white'
                   : 'border-white/10 bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-slate-200'
               }`}
-              aria-pressed={intent === i}
             >
               {INTENT_LABEL[i]}
             </button>
           ))}
         </div>
-      </div>
+      </fieldset>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -187,7 +199,10 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
       </label>
 
       {status === 'error' && error && (
-        <p className="rounded-lg border border-rose-400/30 bg-rose-500/[0.06] px-4 py-3 text-sm text-rose-200">
+        <p
+          role="alert"
+          className="rounded-lg border border-rose-400/30 bg-rose-500/[0.06] px-4 py-3 text-sm text-rose-200"
+        >
           {error}
         </p>
       )}

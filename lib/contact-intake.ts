@@ -21,7 +21,11 @@
  *   - NOTION_TOKEN              durable CRM record
  *   - NOTION_INQUIRIES_DB_ID    the Inquiries database id
  *   - SLACK_WEBHOOK_URL         #leads ping
- *   - INTAKE_AUDIENCE_ID        add lead to a Resend audience for nurture
+ *
+ * Resend audience (nurture) enrollment is disabled — see addToAudience()
+ * below. IntakePayload has no marketing opt-in field yet, and auto-
+ * subscribing every requester would contradict the ContactForm's explicit
+ * "No marketing without opt-in" copy.
  */
 
 import { promises as fs } from 'node:fs'
@@ -50,8 +54,13 @@ export const IntakeSchema = z.object({
   email: z.string().trim().email('A valid email is required').max(200),
   company: z.string().trim().max(200).optional().or(z.literal('')),
   message: z.string().trim().min(1, 'A short message is required').max(4000),
-  // Honeypot — bots fill this, humans never see it. Must be empty.
-  website: z.string().max(0).optional().or(z.literal('')),
+  // Honeypot — bots fill this, humans never see it. Deliberately NOT
+  // constrained to empty here: the route checks `parsed.data.website`
+  // truthiness AFTER validation and pretends success without processing the
+  // submission. If this field rejected non-empty values, a filled honeypot
+  // would fail safeParse() and return a 400 instead — tipping the bot off
+  // and defeating the whole point of a silent drop.
+  website: z.string().trim().max(200).optional().or(z.literal('')),
   // Source page (auto-filled by the form) for attribution.
   source: z.string().trim().max(300).optional().or(z.literal('')),
   consent: z.literal(true, {
@@ -95,7 +104,6 @@ const FROM_FRANK = 'Frank <frank@mail.frankx.ai>'
 const NOTION_TOKEN = process.env.NOTION_TOKEN
 const NOTION_DB = process.env.NOTION_INQUIRIES_DB_ID
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL
-const INTAKE_AUDIENCE_ID = process.env.INTAKE_AUDIENCE_ID
 const BOOKING_URL =
   process.env.NEXT_PUBLIC_BOOKING_URL || 'https://frankx.ai/contact'
 
@@ -111,6 +119,28 @@ export function resolvePrivatePath(name: string): string {
 
 export function getLogPath() {
   return resolvePrivatePath('intake.jsonl')
+}
+
+/**
+ * `fetch` with a bounded abort deadline. Every external call in this pipeline
+ * (Resend, Notion, Slack) uses this instead of bare `fetch` — a hung upstream
+ * request would otherwise block the `Promise.all` fan-out indefinitely,
+ * tying up the user-facing /api/intake route until the platform's own
+ * function timeout kills it. 5s is generous for a JSON POST to any of these
+ * providers; each stage already treats a failure as non-fatal.
+ */
+async function fetchWithTimeout(
+  input: string,
+  init: RequestInit,
+  timeoutMs = 5_000,
+): Promise<Response> {
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    return await fetch(input, { ...init, signal: controller.signal })
+  } finally {
+    clearTimeout(timeout)
+  }
 }
 
 // ── Stage 1: operator notification ───────────────────────────────────────────
@@ -143,7 +173,7 @@ async function sendOperatorNotification(
   ]
 
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetchWithTimeout('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -227,7 +257,7 @@ async function sendRequesterAck(payload: IntakePayload): Promise<StageStatus> {
 
   const { text, html } = buildAckBody(payload)
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetchWithTimeout('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -257,7 +287,7 @@ async function writeToNotion(
   if (!NOTION_TOKEN || !NOTION_DB) return 'skipped'
 
   try {
-    const res = await fetch('https://api.notion.com/v1/pages', {
+    const res = await fetchWithTimeout('https://api.notion.com/v1/pages', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${NOTION_TOKEN}`,
@@ -320,7 +350,7 @@ async function pingSlack(payload: IntakePayload): Promise<StageStatus> {
   if (!SLACK_WEBHOOK_URL) return 'skipped'
 
   try {
-    const res = await fetch(SLACK_WEBHOOK_URL, {
+    const res = await fetchWithTimeout(SLACK_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -337,32 +367,14 @@ async function pingSlack(payload: IntakePayload): Promise<StageStatus> {
 
 // ── Resend audience (nurture) ────────────────────────────────────────────────
 
-async function addToAudience(payload: IntakePayload): Promise<StageStatus> {
-  if (!RESEND_API_KEY || !INTAKE_AUDIENCE_ID) return 'skipped'
-
-  try {
-    const res = await fetch(
-      `https://api.resend.com/audiences/${INTAKE_AUDIENCE_ID}/contacts`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: payload.email,
-          first_name: payload.name.split(' ')[0],
-          last_name: payload.name.split(' ').slice(1).join(' ') || undefined,
-          unsubscribed: false,
-        }),
-      },
-    )
-    if (res.ok) return 'added'
-    if (res.status === 409) return 'duplicate'
-    return 'failed'
-  } catch {
-    return 'failed'
-  }
+// Disabled: IntakePayload's `consent` field covers storage-to-respond only —
+// the ContactForm copy is explicit ("No marketing without opt-in"). There's
+// no separate marketing opt-in in the schema, so subscribing every requester
+// here would contradict that promise. Re-enable once IntakePayload carries a
+// real opt-in flag and gate on it; see git history for the prior
+// implementation (Resend audience POST, 409-as-duplicate handling).
+async function addToAudience(_payload: IntakePayload): Promise<StageStatus> {
+  return 'skipped'
 }
 
 // ── Orchestrator ─────────────────────────────────────────────────────────────
@@ -415,7 +427,13 @@ export async function processIntake(
   }
 
   const logged = await appendIntakeLog(entry)
-  console.log('[intake]', JSON.stringify(entry))
+  // Stage outcomes only — never log name/email/message/referrer/userAgent to
+  // stdout. The full entry (PII included) lives in the private JSONL sink
+  // via appendIntakeLog, which is the only sanctioned durable copy.
+  console.log(
+    '[intake]',
+    JSON.stringify({ ts: entry.ts, intent: entry.intent, notify, ack, notion, slack, audience, logged }),
+  )
 
   // The inquiry is "lost" only if it neither notified Frank, reached the CRM,
   // nor wrote to the local log. Any one durable sink = success.

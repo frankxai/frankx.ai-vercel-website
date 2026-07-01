@@ -213,9 +213,9 @@ export default async function InquiryInboxPage() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-1.5">
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] font-medium rounded border ${INTENT_COLOR[row.intent]}`}
+                          className={`inline-flex items-center px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] font-medium rounded border ${INTENT_COLOR[row.intent] || INTENT_COLOR.general}`}
                         >
-                          {INTENT_LABEL[row.intent]}
+                          {INTENT_LABEL[row.intent] || row.intent}
                         </span>
                         <span className="inline-flex items-center gap-1 text-xs text-white/40">
                           <Clock className="w-3 h-3" />
