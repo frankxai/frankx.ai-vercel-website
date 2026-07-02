@@ -1,0 +1,162 @@
+[
+  {
+    "id": "c01",
+    "name": "short-session-fits-window",
+    "total_turns": 15,
+    "avg_tokens_per_turn": 300,
+    "context_budget_tokens": 8000,
+    "window_size_turns": 26,
+    "window_covers_full_session": true,
+    "per_depth": [
+      {
+        "depth": 0.1,
+        "turn_index": 1,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.5,
+        "turn_index": 7,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.9,
+        "turn_index": 12,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      }
+    ]
+  },
+  {
+    "id": "c02",
+    "name": "long-session-small-window",
+    "total_turns": 200,
+    "avg_tokens_per_turn": 350,
+    "context_budget_tokens": 8000,
+    "window_size_turns": 22,
+    "window_covers_full_session": false,
+    "per_depth": [
+      {
+        "depth": 0.1,
+        "turn_index": 19,
+        "fifo": false,
+        "keep-first-and-last": false,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.5,
+        "turn_index": 99,
+        "fifo": false,
+        "keep-first-and-last": false,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.9,
+        "turn_index": 179,
+        "fifo": true,
+        "keep-first-and-last": false,
+        "retrieval-augmented": true
+      }
+    ]
+  },
+  {
+    "id": "c03",
+    "name": "same-session-wide-window",
+    "total_turns": 200,
+    "avg_tokens_per_turn": 350,
+    "context_budget_tokens": 128000,
+    "window_size_turns": 365,
+    "window_covers_full_session": true,
+    "per_depth": [
+      {
+        "depth": 0.1,
+        "turn_index": 19,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.5,
+        "turn_index": 99,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.9,
+        "turn_index": 179,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      }
+    ]
+  },
+  {
+    "id": "c04",
+    "name": "document-ingestion-stream",
+    "total_turns": 500,
+    "avg_tokens_per_turn": 220,
+    "context_budget_tokens": 32000,
+    "window_size_turns": 145,
+    "window_covers_full_session": false,
+    "per_depth": [
+      {
+        "depth": 0.1,
+        "turn_index": 49,
+        "fifo": false,
+        "keep-first-and-last": false,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.5,
+        "turn_index": 249,
+        "fifo": false,
+        "keep-first-and-last": false,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.9,
+        "turn_index": 449,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      }
+    ]
+  },
+  {
+    "id": "c05",
+    "name": "code-review-session",
+    "total_turns": 60,
+    "avg_tokens_per_turn": 600,
+    "context_budget_tokens": 16000,
+    "window_size_turns": 26,
+    "window_covers_full_session": false,
+    "per_depth": [
+      {
+        "depth": 0.1,
+        "turn_index": 5,
+        "fifo": false,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.5,
+        "turn_index": 29,
+        "fifo": false,
+        "keep-first-and-last": false,
+        "retrieval-augmented": true
+      },
+      {
+        "depth": 0.9,
+        "turn_index": 53,
+        "fifo": true,
+        "keep-first-and-last": true,
+        "retrieval-augmented": true
+      }
+    ]
+  }
+]

@@ -13,7 +13,7 @@ denominators and sources, never dressed up as first-party rigor.
 |---|---|---|
 | [`retrieval-miss/`](./retrieval-miss) | the retriever doesn't return the passage that holds the answer | live |
 | [`runaway-loop/`](./runaway-loop) | an agent loops without converging and cost scales with steps, not task complexity | live |
-| `context-rot/` | accuracy degrades as the context window fills | planned |
+| [`context-rot/`](./context-rot) | a fact planted earlier in a growing conversation gets evicted before the model ever sees it | live |
 
 Method, dating, and how to challenge a number: see the
 [methodology page](https://frankx.ai/ai-architecture/methodology).

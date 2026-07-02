@@ -1,0 +1,13 @@
+{
+  "name": "ai-architecture-context-rot-benchmark",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "First-party, reproducible benchmark for context-window eviction under naive FIFO truncation vs smarter strategies (needle-survival), plus an optional live needle-in-haystack sanity leg.",
+  "license": "MIT",
+  "author": "Frank Riemer (https://frankx.ai)",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "bench": "node src/bench.mjs"
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "c01",
+    "name": "short-session-fits-window",
+    "description": "A 15-turn support chat against an 8K-token context window. The whole transcript fits, so no eviction ever triggers — the control.",
+    "total_turns": 15,
+    "avg_tokens_per_turn": 300,
+    "context_budget_tokens": 8000
+  },
+  {
+    "id": "c02",
+    "name": "long-session-small-window",
+    "description": "A 200-turn agent session against an 8K-token context window — the transcript is roughly 9x larger than the window can hold.",
+    "total_turns": 200,
+    "avg_tokens_per_turn": 350,
+    "context_budget_tokens": 8000
+  },
+  {
+    "id": "c03",
+    "name": "same-session-wide-window",
+    "description": "The identical 200-turn session as c02, replayed against a 128K-token window — isolates the effect of budget alone, holding the conversation fixed.",
+    "total_turns": 200,
+    "avg_tokens_per_turn": 350,
+    "context_budget_tokens": 128000
+  },
+  {
+    "id": "c04",
+    "name": "document-ingestion-stream",
+    "description": "A 500-turn document-chunk ingestion stream against a 32K-token window.",
+    "total_turns": 500,
+    "avg_tokens_per_turn": 220,
+    "context_budget_tokens": 32000
+  },
+  {
+    "id": "c05",
+    "name": "code-review-session",
+    "description": "A 60-turn multi-file code review conversation against a 16K-token window.",
+    "total_turns": 60,
+    "avg_tokens_per_turn": 600,
+    "context_budget_tokens": 16000
+  }
+]
