@@ -205,7 +205,8 @@ async function fetchRaw(relPath: string): Promise<string | null> {
  * Returns `null` if frontmatter is missing required fields.
  */
 function parsePatternMd(source: string, fallbackId: string): Pattern | null {
-  const parsed = matter(source)
+  const parsed = parseFrontmatter(source)
+  if (!parsed) return null
   const data = (parsed.data ?? {}) as Record<string, unknown>
 
   // Required fields — bail if any are missing.
@@ -254,14 +255,59 @@ function parsePatternMd(source: string, fallbackId: string): Pattern | null {
     eval: normalizeEval(data.eval),
     red_team: normalizeRedTeam(data.red_team),
     psyche,
-    created: (data.created ?? '') as string,
-    updated: (data.updated ?? data.created ?? '') as string,
+    created: toDateString(data.created),
+    updated: toDateString(data.updated ?? data.created),
   }
 
   return {
     frontmatter,
     body: parsed.content.trim(),
   }
+}
+
+/**
+ * gray-matter's YAML engine (js-yaml) throws on duplicated mapping keys, and
+ * much of the live corpus carries an accidental duplicate (`probes_static`
+ * appears twice in most pattern.md files). On a duplicate-key error we drop
+ * repeated identical `key: value` lines from the frontmatter block (keeping
+ * the first occurrence) and retry once, so one sloppy key doesn't evict the
+ * pattern from the library.
+ */
+function parseFrontmatter(source: string): matter.GrayMatterFile<string> | null {
+  try {
+    return matter(source)
+  } catch {
+    const fm = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+    if (!fm) return null
+    const seen = new Set<string>()
+    const deduped = fm[1]
+      .split(/\r?\n/)
+      .filter((line) => {
+        if (!/^\s*[\w-]+:/.test(line)) return true
+        if (seen.has(line)) return false
+        seen.add(line)
+        return true
+      })
+      .join('\n')
+    try {
+      return matter(source.replace(fm[0], `---\n${deduped}\n---`))
+    } catch {
+      return null
+    }
+  }
+}
+
+/**
+ * YAML parses unquoted dates (`created: 2026-05-14`) into JS Date objects.
+ * Rendering those directly is a React error ("Objects are not valid as a
+ * React child") — always coerce to a YYYY-MM-DD string.
+ */
+function toDateString(value: unknown): string {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().slice(0, 10)
+  }
+  if (typeof value === 'string') return value
+  return ''
 }
 
 function normalizeLane(value: unknown): Lane | null {
@@ -308,7 +354,9 @@ function normalizeEval(raw: unknown): EvalScore | undefined {
   const obj = raw as Record<string, unknown>
   if (obj.score === null || obj.score === undefined) return undefined
   const score = Number(obj.score)
-  if (!Number.isFinite(score)) return undefined
+  // score 0 means "never run" in the corpus — treat as unscored so the UI
+  // shows "Not yet evaluated" instead of a misleading "0.0 / 5".
+  if (!Number.isFinite(score) || score <= 0) return undefined
   const verdictRaw = String(obj.verdict ?? '').toLowerCase()
   const verdict: EvalScore['verdict'] =
     verdictRaw === 'pass' || verdictRaw === 'warn' || verdictRaw === 'fail'
@@ -320,7 +368,7 @@ function normalizeEval(raw: unknown): EvalScore | undefined {
       : 'fail'
   return {
     score,
-    last_run: String(obj.last_run ?? ''),
+    last_run: toDateString(obj.last_run),
     test_count: Number(obj.test_count ?? 0),
     verdict,
   }
@@ -339,7 +387,7 @@ function normalizeRedTeam(raw: unknown): RedTeamReport | undefined {
       : 'warn'
   return {
     status,
-    audited: String(obj.audited ?? ''),
+    audited: toDateString(obj.audited),
     notes:
       typeof obj.notes === 'string'
         ? obj.notes
