@@ -18,6 +18,39 @@ interface Props {
 const isValidEmail = (s: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim()) && s.length <= 200
 
+/**
+ * Roving-tabindex arrow navigation for the intent radiogroup. The WAI-ARIA
+ * APG radio pattern requires Left/Up → previous, Right/Down → next (with
+ * wraparound), selection following focus — role="radiogroup"/"radio" without
+ * this leaves the group correctly announced but not actually operable the
+ * way a screen-reader user expects (Tab still visits every option instead
+ * of one stop with arrow-key selection).
+ */
+function handleIntentKeyDown(
+  e: React.KeyboardEvent<HTMLDivElement>,
+  setIntent: (i: Intent) => void,
+) {
+  const { key } = e
+  if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(key)) return
+  e.preventDefault()
+
+  const currentIndex = INTENTS.indexOf(
+    (e.target as HTMLElement).dataset.intent as Intent,
+  )
+  if (currentIndex === -1) return
+
+  const delta = key === 'ArrowLeft' || key === 'ArrowUp' ? -1 : 1
+  const nextIndex = (currentIndex + delta + INTENTS.length) % INTENTS.length
+  const nextIntent = INTENTS[nextIndex]
+  setIntent(nextIntent)
+
+  const group = (e.target as HTMLElement).closest('[role="radiogroup"]')
+  const nextButton = group?.querySelector<HTMLButtonElement>(
+    `[data-intent="${nextIntent}"]`,
+  )
+  nextButton?.focus()
+}
+
 export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }: Props) {
   const [intent, setIntent] = useState<Intent>(defaultIntent)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>(
@@ -164,6 +197,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }
         <div
           role="radiogroup"
           aria-label="What's this about?"
+          onKeyDown={(e) => handleIntentKeyDown(e, setIntent)}
           className="mt-2 grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3"
         >
           {INTENTS.map((i) => (
@@ -172,6 +206,8 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT, palette = 'dark' }
               type="button"
               role="radio"
               aria-checked={intent === i}
+              data-intent={i}
+              tabIndex={intent === i ? 0 : -1}
               onClick={() => setIntent(i)}
               className={`min-h-[44px] rounded-lg border px-3 py-3 text-left text-[13px] font-medium leading-tight transition ${
                 intent === i ? t.intentActive : t.intentInactive

@@ -74,7 +74,6 @@ additional var lights up another layer. Set in Vercel → Project → Settings �
 | `NOTION_TOKEN` | durable CRM | **provision to enable** | Notion internal integration token. **Must be shared with the Inquiries DB** (see below). |
 | `NOTION_INQUIRIES_DB_ID` | durable CRM | **provision to enable** | `e41dda59e77549a68623f3fec88269f7` |
 | `SLACK_WEBHOOK_URL` | #leads ping | optional | Incoming-webhook URL for your leads channel. |
-| `INTAKE_AUDIENCE_ID` | nurture | optional | Resend audience id to add leads to. |
 | `NEXT_PUBLIC_BOOKING_URL` | auto-ack CTA | optional | Defaults to `/contact`; set to your Cal.com link to surface booking in the confirmation email. |
 | `ADMIN_TOKEN` | dashboard auth | recommended | Gates `GET /api/intake` and `/admin/intake`. |
 
