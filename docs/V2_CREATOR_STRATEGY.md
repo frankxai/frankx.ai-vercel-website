@@ -3,7 +3,7 @@
 ## 🎯 Core Identity & Mission
 
 **Who Frank Is:**
-- Oracle AI Architect with 500+ AI-generated songs
+- Former AI architect at Oracle with 12,000+ AI-generated songs
 - Musician-technologist bridging enterprise expertise with creative expression
 - Personal hub for demonstrating AI-powered creativity transformation
 
@@ -18,7 +18,7 @@ Transform creators from Tech-Overwhelmed to AI-Empowered through practical tools
 - Live music creation process and behind-the-scenes
 - Music as gateway to AI creativity for all creators
 
-### 2. **Oracle-Level Technical Guidance**
+### 2. **Enterprise-Level Technical Guidance**
 - Enterprise AI expertise made accessible to creators
 - Practical AI tools and prompt libraries
 - Systems thinking for creative workflows
@@ -38,7 +38,7 @@ Transform creators from Tech-Overwhelmed to AI-Empowered through practical tools
 
 ## 🌟 Target Creator Personas
 
-### Primary: **Oracle Technologists → Conscious Creators**
+### Primary: **Technical Operators → Creators**
 - Technical professionals exploring creative AI applications
 - Want to bridge analytical skills with artistic expression
 - Seeking systematic approaches to creative AI integration
@@ -59,7 +59,7 @@ Transform creators from Tech-Overwhelmed to AI-Empowered through practical tools
 ## 🎨 Platform Experience Design
 
 ### **Landing Experience**
-- Frank's personal story: Oracle architect + 500 songs
+- Frank's personal story: former Oracle architect + 12,000 songs
 - Immediate value: "See what's possible when you partner with AI"
 - Live examples: Latest songs, latest creations, latest insights
 - Clear journey: Explore → Learn → Create → Transform

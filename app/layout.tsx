@@ -11,7 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
-// import CommandPalette from '@/components/CommandPalette'
+import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
@@ -142,14 +142,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN?.trim()
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim()
+  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        <link rel="alternate" hrefLang="en" href="https://frankx.ai" />
-        <link rel="alternate" hrefLang="x-default" href="https://frankx.ai" />
+        <link rel="alternate" hrefLang="en" href={siteConfig.url} />
+        <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
         {aisSchemaGraph && (
           <Script
             id="ais-schema-graph"
@@ -194,14 +193,15 @@ export default function RootLayout({
             <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
           </div>
           <NavigationMega />
+          <CommandPaletteProvider />
           <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>
           <Footer />
           <Analytics />
           <SpeedInsights />
-          {gaMeasurementId && (
-            <GoogleAnalytics gaId={gaMeasurementId} />
+          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
           )}
         </SessionProvider>
       </body>

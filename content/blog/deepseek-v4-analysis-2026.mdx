@@ -1,10 +1,10 @@
 ---
-title: 'DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price'
-description: 'DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.6%, AA Intelligence Index 52, V4-Pro API at $1.74/$3.48 per 1M. Technical breakdown with verified benchmarks, what changed vs V3.2, and the self-host vs API math.'
-date: '2026-06-05'
-lastUpdated: '2026-06-05'
-author: Frank
-category: Intelligence Dispatches
+title: "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price"
+description: "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.6%, AA Intelligence Index 52, V4-Pro API at $1.74/$3.48 per 1M. Technical breakdown with verified benchmarks, what changed vs V3.2, and the self-host vs API math."
+date: "2026-06-05"
+lastUpdated: "2026-06-05"
+author: "Frank"
+category: "Intelligence Dispatches"
 tags:
   - deepseek
   - open-weights
@@ -23,43 +23,21 @@ keywords:
   - deepseek v4 mit license
   - open weight frontier model 2026
   - deepseek v4 self host
+image: "/images/blog/deepseek-v4-analysis-2026-hero-v7.jpg"
 featured: true
-schema:
-  - Article
-  - FAQPage
+schema: ["Article", "FAQPage"]
 architectNote:
-  recommendation: 'Slot V4 in as the price floor of your model portfolio, not its ceiling: V4-Pro as the default coding agent (80.6% SWE-bench Verified at $1.74/$3.48, with near-free cached input for agentic loops), escalating to Fable 5 — the current agentic-coding ceiling at $10/$50 — only on tasks V4 demonstrably fails. The CAISI evaluation is the governance input: V4 lags badly on agentic security and abstract reasoning, so keep it supervised there. V4 supersedes the V3.2 and R1 lines — retire any routing entries still pointing at them.'
-  coePillar: Technology · model routing + Strategy · cost-of-error budgeting + Governance · data sovereignty
+  recommendation: "Slot V4 in as the price floor of your model portfolio, not its ceiling: V4-Pro as the default coding agent (80.6% SWE-bench Verified at $1.74/$3.48, with near-free cached input for agentic loops), escalating to Fable 5 — the current agentic-coding ceiling at $10/$50 — only on tasks V4 demonstrably fails. The CAISI evaluation is the governance input: V4 lags badly on agentic security and abstract reasoning, so keep it supervised there. V4 supersedes the V3.2 and R1 lines — retire any routing entries still pointing at them."
+  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting + Governance · data sovereignty"
   personas:
-    - persona: Pipeline & coding agents
-      pick: V4-Pro via API — escalate hard failures to Fable 5
-    - persona: Bulk fan-out workers
-      pick: 'V4-Flash ($0.14/$0.28, cached input $0.0028/M)'
-    - persona: Sovereign / self-hosted stacks
-      pick: V4-Flash self-hosted (MIT license; Pro needs a cluster)
-    - persona: Reviewer / judgment agents
-      pick: Opus 4.8 — V4 trails the frontier on the hardest reasoning
-image: /images/blog/generated/deepseek-v4-analysis-2026-premium-hero.png
-visualSystem:
-  version: 2026-06-frankx-vos
-  hero: /images/blog/generated/deepseek-v4-analysis-2026-premium-hero.png
-  generatedMode: built-in-image-gen
-  fallbackHero: /images/blog/visual-system/deepseek-v4-analysis-2026-hero.svg
-  generationMode: built-in-image-gen
-  assetType: hero
-  spectrum: tech
-  socialAngle: developer
-  qualityScore: 8
-  qualityTier: premium
-  reviewStatus: accepted
-  deploymentStatus: ready
-  sourceGeneratedFile: 'C:/Users/frank/.codex/generated_images/019ecfea-ab22-78d1-867e-585f3c5a941f/ig_088bc8e402edd512016a32cffee7f48191ad7a28e930ea69d1.png'
-  notes: 'Accepted: reasoning engine and open-weight vault composition is clear; no readable artifacts at hero scale.'
-  social:
-    wide: /images/social/blog/deepseek-v4-analysis-2026/wide.png
-    square: /images/social/blog/deepseek-v4-analysis-2026/square.png
-    portrait: /images/social/blog/deepseek-v4-analysis-2026/portrait.png
-    vertical: /images/social/blog/deepseek-v4-analysis-2026/portrait.png
+    - persona: "Pipeline & coding agents"
+      pick: "V4-Pro via API — escalate hard failures to Fable 5"
+    - persona: "Bulk fan-out workers"
+      pick: "V4-Flash ($0.14/$0.28, cached input $0.0028/M)"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "V4-Flash self-hosted (MIT license; Pro needs a cluster)"
+    - persona: "Reviewer / judgment agents"
+      pick: "Opus 4.8 — V4 trails the frontier on the hardest reasoning"
 ---
 
 # DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price
@@ -249,5 +227,5 @@ SWE-bench Verified (80.6%) and the Artificial Analysis Intelligence Index (52) a
 
 ---
 
-*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+*Analysis by Frank — former Oracle AI architect building agentic systems independently and making music with AI.
 Published June 5, 2026 with benchmarks validated against Artificial Analysis, the NIST/CAISI evaluation, DeepSeek's official model card, and independent launch coverage. Vendor-claimed figures are marked as such.*

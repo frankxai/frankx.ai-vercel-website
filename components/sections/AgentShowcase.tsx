@@ -34,7 +34,7 @@ const agents: Agent[] = [
     name: 'Frequency Alchemist',
     title: 'Vibrational Music Producer',
     specialty: 'AI music creation for consciousness transformation',
-    description: 'Translates emotions into healing frequencies. Master of Suno prompt engineering who bridges commercial success with spiritual impact.',
+    description: 'Translates emotions into intentional soundscapes. Master of Suno prompt engineering who bridges commercial clarity with emotional resonance.',
     capabilities: ['Suno AI Prompts', 'Music Production', 'Frequency Mapping', 'Audio Editing'],
     imagePath: '/images/agents/frequency-alchemist.svg',
     variant: 'purple',

@@ -13,18 +13,18 @@ interface CategoryDropdownProps {
   getCategoryCount: (category: string) => number
 }
 
-// Category tone mapping with FrankX domain colors
-const categoryIcons: Record<string, { color: string; dot: string }> = {
-  'AI & Technology': { color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400', dot: 'bg-cyan-400' },
-  'AI & Consciousness': { color: 'from-cyan-500/20 to-emerald-600/10 border-cyan-500/30 text-cyan-300', dot: 'bg-cyan-300' },
-  'Music Production': { color: 'from-emerald-500/20 to-cyan-600/10 border-emerald-500/30 text-emerald-400', dot: 'bg-emerald-400' },
-  'Creator Systems': { color: 'from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400', dot: 'bg-emerald-400' },
-  'Personal Development': { color: 'from-emerald-500/20 to-cyan-600/10 border-emerald-500/30 text-emerald-300', dot: 'bg-emerald-300' },
-  'Enterprise AI': { color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400', dot: 'bg-cyan-400' },
+// Category icon mapping with FrankX domain colors
+const categoryIcons: Record<string, { icon: string; color: string }> = {
+  'AI & Technology': { icon: '🤖', color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400' },
+  'AI & Consciousness': { icon: '🧠', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400' },
+  'Music Production': { icon: '🎵', color: 'from-orange-500/20 to-orange-600/10 border-orange-500/30 text-orange-400' },
+  'Creator Systems': { icon: '⚡', color: 'from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400' },
+  'Personal Development': { icon: '🌱', color: 'from-green-500/20 to-green-600/10 border-green-500/30 text-green-400' },
+  'Enterprise AI': { icon: '🏢', color: 'from-blue-500/20 to-blue-600/10 border-blue-500/30 text-blue-400' },
 }
 
 const getCategoryStyle = (category: string) => {
-  return categoryIcons[category] || { color: 'from-white/10 to-white/5 border-white/20 text-white', dot: 'bg-white/60' }
+  return categoryIcons[category] || { icon: '📝', color: 'from-white/10 to-white/5 border-white/20 text-white' }
 }
 
 export default function CategoryDropdown({
@@ -53,6 +53,10 @@ export default function CategoryDropdown({
     ? `${selectedCategory} (${getCategoryCount(selectedCategory)})`
     : `All Categories (${totalPosts})`
 
+  const selectedIcon = selectedCategory
+    ? getCategoryStyle(selectedCategory).icon
+    : '✨'
+
   return (
     <div ref={dropdownRef} className="relative inline-block">
       {/* Trigger Button */}
@@ -71,7 +75,7 @@ export default function CategoryDropdown({
         aria-haspopup="listbox"
       >
         <div className="flex items-center gap-2.5">
-          <Sparkles className="h-4 w-4 text-emerald-400" />
+          <span className="text-lg">{selectedIcon}</span>
           <span className="text-sm font-medium text-white">
             {selectedCategoryLabel}
           </span>
@@ -117,7 +121,7 @@ export default function CategoryDropdown({
               aria-selected={!selectedCategory}
             >
               <div className="flex items-center gap-3">
-                <Sparkles className="h-4 w-4 text-emerald-400" />
+                <span className="text-base">✨</span>
                 <div className="text-left">
                   <span className="text-sm font-medium text-white block">
                     All Categories
@@ -141,7 +145,7 @@ export default function CategoryDropdown({
             {categories.map((category, index) => {
               const count = getCategoryCount(category)
               const isSelected = selectedCategory === category
-              const { color, dot } = getCategoryStyle(category)
+              const { icon, color } = getCategoryStyle(category)
 
               return (
                 <motion.button
@@ -164,7 +168,7 @@ export default function CategoryDropdown({
                   aria-selected={isSelected}
                 >
                   <div className="flex items-center gap-3">
-                    <span className={cn('h-2.5 w-2.5 rounded-full', dot)} />
+                    <span className="text-base">{icon}</span>
                     <div className="text-left">
                       <span className="text-sm font-medium text-white block">
                         {category}

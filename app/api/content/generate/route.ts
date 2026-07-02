@@ -33,7 +33,7 @@ const AGENT_PROFILES = {
   'frequency-alchemist': {
     voice: 'Emotional resonance through vibrational mastery',
     expertise: 'AI music creation using Suno for consciousness transformation',
-    style: 'Translates emotions into healing frequencies'
+    style: 'Translates emotions into intentional soundscapes'
   },
   'creation-engine': {
     voice: 'Transformative content that creates profitable experiences',

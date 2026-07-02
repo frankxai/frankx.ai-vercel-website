@@ -1,0 +1,33 @@
+{
+  "name": "ahmad-founder-creator-kit",
+  "version": "0.1.0",
+  "releaseDate": "2026-06-26",
+  "publicPage": "https://frankx.ai/downloads/ahmad-founder-creator-kit",
+  "checksumSha256": null,
+  "assets": [
+    {
+      "name": "ahmad-founder-creator-kit-v0.1.0.zip",
+      "url": "https://frankx.ai/downloads/ahmad-founder-creator-kit-v0.1.0.zip",
+      "checksumSha256": null,
+      "checksumUrl": "https://frankx.ai/downloads/ahmad-founder-creator-kit-v0.1.0.sha256"
+    }
+  ],
+  "agents": [
+    "founder-chief-of-staff",
+    "repo-accelerator",
+    "openclaw-jarvis-operator",
+    "swarm-operator",
+    "content-strategist",
+    "image-director",
+    "video-producer",
+    "carousel-publisher",
+    "podcast-producer",
+    "academy-architect",
+    "growth-analyst",
+    "brand-guardian"
+  ],
+  "skills": [
+    "ahmad-founder-creator-os"
+  ],
+  "privacy": "Keep private notes, credentials, client details, internal strategy, and local agent logs out of public pages. Publish only approved patterns and public-safe language."
+}

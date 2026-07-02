@@ -37,9 +37,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  const offer = product.offer
-  const primaryPrice = offer?.primaryPrice ?? 0
-
   // Structured Data for Product
   const productSchema = {
     name: product.name,
@@ -53,8 +50,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     offers: {
       '@type': 'Offer',
       url: `${siteConfig.url}/products/${product.slug}`,
-      priceCurrency: offer?.currency || 'USD',
-      price: primaryPrice,
+      priceCurrency: product.offer.currency || 'USD',
+      price: product.offer.primaryPrice,
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
       seller: {
@@ -141,43 +138,39 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               
               <div className="mt-6 flex items-baseline gap-2">
                 <span className="text-5xl font-bold text-white">
-                  ${primaryPrice}
+                  ${product.offer.primaryPrice}
                 </span>
-                {offer?.originalPrice && (
+                {product.offer.originalPrice && (
                   <span className="text-xl text-gray-500 line-through">
-                    ${offer.originalPrice}
+                    ${product.offer.originalPrice}
                   </span>
                 )}
               </div>
 
               <div className="mt-8 space-y-4">
-                {offer ? (
-                  <BuyButton
-                    href={offer.ctaPrimaryHref}
-                    label={offer.ctaPrimary}
-                    trackingId={offer.ctaPrimaryTracking}
-                  />
-                ) : (
-                  <BuyButton href="/contact" label="Contact FrankX" trackingId="contact-product-fallback" />
-                )}
+                <BuyButton
+                  href={product.offer.ctaPrimaryHref}
+                  label={product.offer.ctaPrimary}
+                  trackingId={product.offer.ctaPrimaryTracking}
+                />
                 
-                {offer?.ctaSecondary && offer.ctaSecondaryHref && (
+                {product.offer.ctaSecondary && product.offer.ctaSecondaryHref && (
                   <Link
-                    href={offer.ctaSecondaryHref}
+                    href={product.offer.ctaSecondaryHref}
                     className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
                   >
-                    {offer.ctaSecondary}
+                    {product.offer.ctaSecondary}
                   </Link>
                 )}
               </div>
 
-              {offer?.guarantee && (
+              {product.offer.guarantee && (
                 <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
                   <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
-                    {offer.guarantee.label}
+                    {product.offer.guarantee.label}
                   </p>
                   <p className="mt-1 text-xs text-gray-400">
-                    {offer.guarantee.description}
+                    {product.offer.guarantee.description}
                   </p>
                 </div>
               )}

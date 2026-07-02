@@ -1,5 +1,5 @@
 import HomePageElite from '@/components/home/HomePageElite'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
@@ -7,11 +7,16 @@ import { getAllBlogPosts } from '@/lib/blog'
 import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
-  title: 'GenCreator by FrankX — Build Your AI Creator OS',
+  title: 'FrankX - AI Architect & Creator Systems',
   description:
-    'GenCreator helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'Former AI architect at Oracle. Creator of 12,000+ songs with Suno. Practical AI systems, music experiments, and evidence-led performance notes for creators who ship with clarity.',
   keywords: [
+    'Frank Riemer',
+    'FrankX',
     'ai architect',
+    'personal AI operating system',
+    'AI creator systems',
+    'attention and recovery systems',
     'ai music creation',
     'suno ai',
     'ai architecture',
@@ -27,22 +32,44 @@ export const metadata = createMetadata({
   path: '/',
 })
 
+const siteUrl = siteConfig.url
+
 const websiteSchema = {
-  name: 'FrankX.AI',
-  url: 'https://frankx.ai',
+  '@id': `${siteUrl}/#website`,
+  name: 'FrankX',
+  alternateName: ['FrankX.AI', 'Frank Riemer'],
+  url: siteUrl,
   description:
-    'GenCreator by FrankX helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'FrankX is Frank Riemer\'s home for AI creator systems, agentic workflows, music experiments, and evidence-led performance notes.',
+  publisher: {
+    '@id': `${siteUrl}/#organization`,
+  },
+  about: {
+    '@id': `${siteUrl}/#frank-riemer`,
+  },
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://frankx.ai/search?q={search_term_string}',
+    target: `${siteUrl}/search?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 }
 
 const personSchema = {
+  '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
-  jobTitle: 'AI Architect',
-  url: 'https://frankx.ai/about',
+  jobTitle: 'AI Architect and Creator',
+  url: `${siteUrl}/frank-riemer`,
+  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
+  mainEntityOfPage: {
+    '@id': `${siteUrl}/frank-riemer`,
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Oracle',
+  },
+  brand: {
+    '@id': `${siteUrl}/#organization`,
+  },
   sameAs: [
     socialLinks.linkedin,
     socialLinks.github,
@@ -51,8 +78,11 @@ const personSchema = {
   ],
   knowsAbout: [
     'AI Architecture',
+    'Personal AI Operating Systems',
+    'AI Creator Systems',
     'AI Music Creation',
     'Suno AI',
+    'Attention and Recovery Systems',
     'Enterprise AI Strategy',
     'Cloud Infrastructure',
     'Agentic Workflows',
@@ -60,45 +90,66 @@ const personSchema = {
 }
 
 const organizationSchema = {
-  name: 'FrankX.AI',
-  url: 'https://frankx.ai',
-  logo: 'https://frankx.ai/images/brand/logo-full.png',
+  '@id': `${siteUrl}/#organization`,
+  name: 'FrankX',
+  alternateName: 'FrankX.AI',
+  url: siteUrl,
+  logo: `${siteUrl}/images/brand/logo-full.png`,
+  founder: {
+    '@id': `${siteUrl}/#frank-riemer`,
+  },
   sameAs: [
     socialLinks.linkedin,
     socialLinks.github,
     socialLinks.suno,
   ],
   description:
-    'GenCreator systems, AI creator tools, and implementation labs for creators who ship.',
+    'FrankX publishes AI creator systems, agentic workflow labs, music experiments, and practical performance notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the home of GenCreator by FrankX: a creator operating system for turning ideas into shipped work, audience, products, and revenue. It is built from Frank Riemer\'s work as an AI Architect and creator.',
+      'FrankX.AI is the independent personal hub of Frank Riemer, a former AI architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
-    question: 'What is GenCreator?',
+    question: 'What kind of content does FrankX publish?',
     answer:
-      'GenCreator is the public launch identity for FrankX. It combines creator strategy, AI workflows, music/content systems, templates, and agentic builder patterns into one personal AI operating system.',
+      'FrankX publishes technical tutorials on AI coding agents, enterprise AI architecture patterns, Suno AI music production guides, prompt engineering frameworks, multi-agent orchestration, and the Signal Loop field notes.',
   },
   {
-    question: 'What should I start with?',
+    question: 'How can I learn AI music production with Suno?',
     answer:
-      'Start at /start and choose Create, Build, or Sell. The flagship path is Build Your AI Creator OS, with free material first and paid cohort access only when delivery is verified.',
+      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and tuning and texture choices. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
   },
   {
-    question: 'Where does Agentic Creator OS fit?',
+    question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'Agentic Creator OS is the advanced builder track inside GenCreator. It is for creators ready to build their own agent systems with Claude Code, MCP, n8n, Vercel, and production workflows.',
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
-    question: 'What is the flagship paid offer?',
+    question: 'Where does peak performance fit?',
     answer:
-      'The flagship offer is Build Your AI Creator OS: an implementation lab for building a personal AI operating system and shipping one public asset. Until checkout and delivery are verified, the public CTA is waitlist/application rather than direct purchase.',
+      'FrankX treats performance as an evidence-led creator system: attention, energy, recovery, and emotional steadiness. It is not medical advice or miracle biohacking.',
+  },
+  {
+    question: 'Does FrankX offer courses or coaching?',
+    answer:
+      'FrankX offers free guides and tutorials on the blog, with premium coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
   },
 ]
+
+const featuredTrack = {
+  id: 'vibe-os-track',
+  title: 'Vibe O S',
+  sunoId: '9cbad174-9276-427f-9aed-1ba00c7db3db',
+  audioUrl:
+    'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9cbad174-9276-427f-9aed-1ba00c7db3db/9cbad174-9276-427f-9aed-1ba00c7db3db.mp3',
+  genre: ['female hip hop', 'bass-heavy', 'lyrical'],
+  plays: 128,
+  duration: '4:00',
+}
 
 export default function Page() {
   const latestPosts = getAllBlogPosts()
@@ -127,7 +178,12 @@ export default function Page() {
 
   return (
     <>
-      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} libraryBooks={libraryBooks} />
+      <HomePageElite
+        latestPosts={latestPosts}
+        faqs={homepageFAQs}
+        libraryBooks={libraryBooks}
+        featuredTrack={featuredTrack}
+      />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />

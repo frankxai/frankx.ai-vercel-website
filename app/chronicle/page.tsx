@@ -86,7 +86,7 @@ const pillars = [
     n: '02',
     title: 'ACOS — 99 Agents',
     role: 'Personal AI CoE',
-    body: 'The implementation of the same six-pillar AI Center of Excellence framework Frank works with in enterprise settings at Oracle, translated to personal scale.',
+    body: 'The implementation of a six-pillar AI Center of Excellence framework from enterprise AI practice, translated to personal scale.',
     href: '/acos/agents',
   },
   {

@@ -136,8 +136,9 @@ export const genBackends: GenBackend[] = [
       'Programmatic batches outside Antigravity → the Gemini API (per-image pricing) via the infogenius script.',
     install: [
       {
-        label: 'Native in Antigravity',
-        detail: 'Ask the Antigravity agent to generate — it invokes Nano Banana Pro in-conversation. NB2 is the free default.',
+        label: 'Native in the Antigravity IDE (interactive only)',
+        detail:
+          'Image gen works in the interactive Antigravity TUI (GENERATE_IMAGE tool fires, status DONE, file saved to brain/<session-id>/). Verified 2026-06-12: headless `agy --print` / `agy -p` hangs indefinitely and produces no file — confirmed across 3 independent stalls. GEMINI_API_KEY is also unset on this machine, which would block any out-of-TUI Imagen call. For no-cost headless terminal image gen, use the Grok Imagine CLI instead: `grok -p "<prompt>" --permission-mode bypassPermissions`.',
       },
     ],
     docsUrl: 'https://blog.google/innovation-and-ai/products/nano-banana-pro/',
@@ -170,9 +171,10 @@ export const genBackends: GenBackend[] = [
       'Batches of >250 images, or to avoid eating Codex coding quota → set OPENAI_API_KEY for gpt-image-2 API pricing.',
     install: [
       {
-        label: 'Native in Codex CLI',
+        label: 'Native in Codex CLI — interactive ($imagegen) or headless exec',
         command: '$imagegen',
-        detail: 'Built in since Apr 2026. Uses the ChatGPT plan by default; API key only for paid/volume.',
+        detail:
+          'Built in since Apr 2026. Interactive `$imagegen` calls GPT Image 2 on your ChatGPT plan. Headless: `codex exec --dangerously-bypass-approvals-and-sandbox "<prompt>"` also works — verified 2026-06-12 (generated a 2636-byte PNG via Python/Pillow subprocess; no quota touch on that path).',
       },
     ],
     docsUrl: 'https://developers.openai.com/codex/cli/features',
@@ -385,5 +387,5 @@ export function paidBackends(): GenBackend[] {
 
 export const GEN_VERSION = '0.2.0'
 export const GEN_SHIPPED = '2026-06-03'
-export const GEN_UPDATED = '2026-06-06'
+export const GEN_UPDATED = '2026-06-12'
 export const GEN_ROUTE = '/studio/engines'

@@ -156,7 +156,9 @@ export default function Error({ error, reset }: ErrorProps) {
                   Get direct help from our agent team
                 </p>
                 <Link
-                  href={`mailto:frank@frankx.ai?subject=Error Report&body=Error ID: ${error.digest || 'Unknown'}%0A%0AError Message: ${encodeURIComponent(error.message || 'Unknown error')}%0A%0APlease describe what you were trying to do when this error occurred:`}
+                  href={`mailto:frank@frankx.ai?subject=${encodeURIComponent('Error Report')}&body=${encodeURIComponent(
+                    `Error ID: ${error.digest || 'Unknown'}\n\nError Message: ${error.message || 'Unknown error'}\n\nPlease describe what you were trying to do when this error occurred:`,
+                  )}`}
                   className="text-purple-400 hover:text-purple-300 transition-colors text-sm inline-flex items-center"
                 >
                   <Mail className="w-4 h-4 mr-1" />

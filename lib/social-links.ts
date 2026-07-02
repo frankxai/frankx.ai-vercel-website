@@ -118,7 +118,7 @@ export const socialHandles = {
   linkedin: SOCIAL_PROFILES.linkedin.username,
   github: SOCIAL_PROFILES.github.username,
   youtube: SOCIAL_PROFILES.youtube.username,
-  instagram: SOCIAL_PROFILES.instagram.username,
+  instagram: SOCIAL_PROFILES.instagram.handle ?? '@frank_riemer',
 } as const
 
 /**

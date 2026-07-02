@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -156,6 +156,56 @@ function ScrollProgress() {
 }
 
 // ============================================================================
+// ROTATING WORD
+// ============================================================================
+
+const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+
+function RotatingWord() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [shouldReduceMotion])
+
+  if (shouldReduceMotion) {
+    return (
+      <span
+        className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
+        aria-hidden="true"
+      >
+        {heroWords[0]}
+      </span>
+    )
+  }
+
+  return (
+    <span className="inline-block relative" aria-hidden="true">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
+          style={{ lineHeight: 1.3 }}
+        >
+          {heroWords[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
+// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
@@ -171,6 +221,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
           allow="autoplay; clipboard-write"
           loading="lazy"
           title={track.title}
+          sandbox="allow-scripts allow-same-origin"
         />
       </div>
 
@@ -229,18 +280,24 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">GenCreator by FrankX</span>
+                <span className="text-sm text-white/60">AI Architect & Creator</span>
               </div>
 
-              <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                Build your AI
+              <h1
+                className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white"
+                aria-label="Building intelligence that compounds."
+              >
+                <RotatingWord /> intelligence
                 <br />
-                Creator OS.
+                that compounds.
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                GenCreator helps creators build personal AI operating systems that turn ideas
-                into shipped work, audience, products, and revenue.
+                Former AI architect at Oracle. 12,000+ songs with Suno.
+                630+ AI skills shipped. Everything documented.
+              </p>
+              <p className="text-xs text-white/30 max-w-xl leading-relaxed">
+                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
               </p>
 
               <div className="flex items-center gap-3">
@@ -263,16 +320,16 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Choose Your GenCreator Path
+                Explore the Work
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/courses/build-your-ai-creator-os"
+                href="/blog"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Build Your AI Creator OS
+                Read the Blog
               </Link>
             </motion.div>
           </div>
@@ -295,6 +352,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                     allow="autoplay; clipboard-write"
                     loading="lazy"
                     title="Vibe OS — Featured Track"
+                    sandbox="allow-scripts allow-same-origin"
                   />
                 </div>
               )}
@@ -327,7 +385,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
+  'Former AI architect at Oracle',
   '12,000+ AI Songs Created',
   '630+ AI Skills Shipped',
   'Everything Documented',
@@ -364,39 +422,39 @@ function AuthorityBar() {
 
 const products = [
   {
-    title: 'GenCreator Framework',
-    description: 'The movement and operating framework: principles, handbook, blueprints, and soul.md.',
-    href: '/gencreator',
+    title: 'Agentic Creator OS',
+    description: 'Open-source operating system for Claude Code. 24+ specialized agents, 70+ skills, 15+ commands.',
+    href: '/acos',
     color: 'emerald' as const,
   },
   {
-    title: 'Build Your AI Creator OS',
-    description: 'Flagship implementation lab: Claude Code, agents, n8n, Vercel, templates, and one shipped asset.',
-    href: '/courses/build-your-ai-creator-os',
+    title: 'Prompt Library',
+    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
+    href: '/prompt-library',
     color: 'violet' as const,
   },
   {
-    title: 'Offer Ladder',
-    description: 'Free starters, low-ticket packs, flagship cohort, advanced lab, and done-with-you systems.',
+    title: 'Creator Kit',
+    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
     href: '/products',
     color: 'cyan' as const,
   },
   {
-    title: 'Agentic Builder Track',
-    description: 'Advanced GenCreator path for Claude Code, MCP, n8n, Vercel, and production agent systems.',
-    href: '/products/agentic-creator-os',
+    title: 'AI Architecture Hub',
+    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
-    title: 'Create Track',
-    description: 'Music, content, prompts, state management, and visible artifacts shipped from taste plus tools.',
+    title: 'Music Lab',
+    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
   {
-    title: 'Free Community',
-    description: 'One GenCreator community first: Start Here, Wins, AI Creator OS, Music Lab, Agentic Builder, Office Hours.',
-    href: '/community',
+    title: 'Design Lab',
+    description: 'Generative art, visual experiments, nature-tech aesthetics.',
+    href: '/design-lab',
     color: 'magenta' as const,
   },
 ]
@@ -412,13 +470,13 @@ function ProductsTools() {
           className="text-center mb-12 md:mb-16"
         >
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
-            GenCreator System
+            Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Create, build, sell
+            Built for builders
           </h2>
           <p className="text-base text-white/40 max-w-2xl mx-auto">
-            One public identity, three paths, and a ladder from free trust to high-value implementation.
+            Open-source tools, premium resources, and creative systems — built for builders who ship.
           </p>
         </motion.div>
 
@@ -1263,7 +1321,7 @@ function FinalCTA() {
               The best way to predict the future is to create it.
             </p>
             <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
-              Pick your path: create, build, or sell.
+              Pick your path — architecture, music, or products.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1289,7 +1347,7 @@ function FinalCTA() {
 }
 
 // ============================================================================
-// MAIN COMPONENT — 15 sections
+// MAIN COMPONENT — 16 sections
 // ============================================================================
 
 export default function HomePageElite({
@@ -1319,9 +1377,9 @@ export default function HomePageElite({
 
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
-          eyebrow="Agentic Builder"
-          title="Advanced GenCreator Systems"
-          description="Advanced builder patterns for GenCreators ready to build agent systems. Multi-agent orchestration, MCP, Claude Code, Vercel, and production workflows."
+          eyebrow="Enterprise AI"
+          title="AI Architecture"
+          description="Enterprise AI systems built at Oracle. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1329,8 +1387,8 @@ export default function HomePageElite({
             { label: 'MCP Server Architecture', href: '/blog/mcp-server-architecture-workshop' },
             { label: 'Agent Patterns & Pillars', href: '/blog/production-agent-patterns-7-pillars' },
           ]}
-          ctaLabel="Explore Agentic Builder Track"
-          ctaHref="/products/agentic-creator-os"
+          ctaLabel="Explore AI Architecture"
+          ctaHref="/ai-architecture"
           color="blue"
           imageFirst
         />
@@ -1376,10 +1434,10 @@ export default function HomePageElite({
         {/* 14. Email CTA */}
         <EmailCTA />
 
-        {/* 14. FAQ */}
+        {/* 15. FAQ */}
         <FAQSection faqs={faqs} />
 
-        {/* 15. Final CTA */}
+        {/* 16. Final CTA */}
         <FinalCTA />
       </div>
     </main>
