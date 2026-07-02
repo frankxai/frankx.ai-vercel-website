@@ -19,6 +19,15 @@ import { testEmail, newsletterWelcomeEmail, communityBroadcastEmail } from '@/li
 
 export async function POST(request: NextRequest) {
   try {
+    // In production this endpoint would otherwise relay arbitrary email from
+    // our sending domain — require a shared secret header outside dev.
+    if (process.env.NODE_ENV === 'production') {
+      const secret = process.env.TEST_EMAIL_SECRET
+      if (!secret || request.headers.get('x-test-email-secret') !== secret) {
+        return NextResponse.json({ error: 'Not found' }, { status: 404 })
+      }
+    }
+
     // Check if RESEND_API_KEY is configured
     if (!process.env.RESEND_API_KEY) {
       return NextResponse.json(
