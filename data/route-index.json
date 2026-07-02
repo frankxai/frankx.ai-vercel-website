@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 798,
+    "total": 799,
     "aliases": 15,
     "byType": {
       "core": 21,
-      "section": 384,
+      "section": 385,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -6440,6 +6440,14 @@
     {
       "href": "/plan",
       "title": "Plan",
+      "type": "section"
+    },
+    {
+      "href": "/portal",
+      "title": "Portal",
+      "tags": [
+        "portal"
+      ],
       "type": "section"
     },
     {
