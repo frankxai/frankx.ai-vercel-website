@@ -46,7 +46,7 @@ const SOLFEGGIO_FREQUENCIES = [
   { hz: '396 Hz', label: 'Fear Release', desc: 'Liberates guilt and fear. Turns grief into joy.', color: 'text-amber-400' },
   { hz: '417 Hz', label: 'Facilitating Change', desc: 'Clears traumatic experiences. Facilitates change.', color: 'text-yellow-400' },
   { hz: '432 Hz', label: 'Natural Tuning', desc: 'Verdi tuning. Said to resonate with nature itself.', color: 'text-lime-400' },
-  { hz: '528 Hz', label: 'DNA Repair & Love', desc: 'The "miracle tone." Associated with transformation and DNA repair.', color: 'text-emerald-400' },
+  { hz: '528 Hz', label: 'Warmth & Openness', desc: 'A Solfeggio-style reference many listeners associate with warm, open meditation music.', color: 'text-emerald-400' },
   { hz: '639 Hz', label: 'Connection', desc: 'Enhances communication, understanding, and relationships.', color: 'text-cyan-400' },
   { hz: '741 Hz', label: 'Intuition', desc: 'Awakens intuition. Leads to a purer, more stable life.', color: 'text-blue-400' },
   { hz: '852 Hz', label: 'Spiritual Order', desc: 'Returns to spiritual order. Raises awareness.', color: 'text-indigo-400' },

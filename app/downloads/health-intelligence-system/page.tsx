@@ -100,7 +100,7 @@ export default function HealthIntelligenceDownloadPage() {
               ))}
             </ul>
             <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/40">Canonical source</p>
+              <p className="text-xs text-white/40">Canonical source</p>
               <a href={repoUrl} className="mt-2 inline-flex items-center gap-2 text-sm text-emerald-200 hover:text-emerald-100">
                 frankxai/health-intelligence-system
                 <ExternalLink className="h-3.5 w-3.5" />

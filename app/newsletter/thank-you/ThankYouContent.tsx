@@ -23,17 +23,17 @@ const STREAM_RECOMMENDATIONS: Record<
   }
 > = {
   'creation-chronicles': {
-    streamName: 'Creation Chronicles',
-    character: { src: '/images/team/arion-mamoru.png', name: 'Arion & Mamoru' },
+    streamName: 'Signal Loop',
+    character: { src: '/images/portraits/frank-presenting-oracle-2025.jpg', name: 'Frank Riemer' },
     resources: [
-      { href: '/vibe', label: 'Vibe OS', desc: 'State management for creators', gradient: 'from-purple-500/10 to-purple-600/10', border: 'border-purple-500/30' },
+      { href: '/peak-performance', label: 'Peak State Systems', desc: 'Attention and recovery for creators', gradient: 'from-purple-500/10 to-purple-600/10', border: 'border-purple-500/30' },
       { href: '/blog', label: 'Read the Blog', desc: 'Field notes on AI creation', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
-      { href: '/shop', label: 'Shop Templates', desc: 'Premium AI blueprints', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },
+      { href: '/frank-riemer', label: 'Meet Frank', desc: 'The human story behind FrankX', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },
     ],
   },
   'ai-architect': {
     streamName: 'AI Architect Dispatch',
-    character: { src: '/images/team/codex-falcon.png', name: 'Codex & Talon' },
+    character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
     resources: [
       { href: '/acos', label: 'ACOS v10.1', desc: '75+ skills, 38 agents', gradient: 'from-indigo-500/10 to-indigo-600/10', border: 'border-indigo-500/30' },
       { href: '/ai-architecture', label: 'AI Architecture', desc: 'Blueprints & patterns', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
@@ -42,7 +42,7 @@ const STREAM_RECOMMENDATIONS: Record<
   },
   'music-lab': {
     streamName: 'FrankX Music Letters',
-    character: { src: '/images/team/echo-leopard.png', name: 'Echo & Kira' },
+    character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
     resources: [
       { href: '/music', label: 'Music Hub', desc: '12,000+ AI-crafted songs', gradient: 'from-pink-500/10 to-pink-600/10', border: 'border-pink-500/30' },
       { href: '/music-lab', label: 'Music Lab', desc: 'Interactive production tools', gradient: 'from-rose-500/10 to-rose-600/10', border: 'border-rose-500/30' },
@@ -50,17 +50,17 @@ const STREAM_RECOMMENDATIONS: Record<
     ],
   },
   arcanea: {
-    streamName: 'Arcanea Transmissions',
-    character: { src: '/images/team/nero-umbra.png', name: 'Nero & Umbra' },
+    streamName: 'Creative Systems Research',
+    character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
     resources: [
-      { href: '/soulbook', label: 'Soulbook', desc: 'The 7 Pillars framework', gradient: 'from-purple-500/10 to-purple-600/10', border: 'border-purple-500/30' },
-      { href: '/golden-age', label: 'Golden Age', desc: 'The vision for humanity', gradient: 'from-amber-500/10 to-amber-600/10', border: 'border-amber-500/30' },
-      { href: '/inner-circle', label: 'Inner Circle', desc: 'Exclusive access', gradient: 'from-violet-500/10 to-violet-600/10', border: 'border-violet-500/30' },
+      { href: '/design-lab', label: 'Design Lab', desc: 'Visual systems and experiments', gradient: 'from-purple-500/10 to-purple-600/10', border: 'border-purple-500/30' },
+      { href: '/studio', label: 'Studio', desc: 'Creative production systems', gradient: 'from-amber-500/10 to-amber-600/10', border: 'border-amber-500/30' },
+      { href: '/blog', label: 'Research', desc: 'Notes from public experiments', gradient: 'from-violet-500/10 to-violet-600/10', border: 'border-violet-500/30' },
     ],
   },
   investor: {
     streamName: 'Investor Intelligence Brief',
-    character: { src: '/images/team/draconia-tiger.png', name: 'Draconia & Draconis' },
+    character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
     resources: [
       { href: '/investor', label: 'Investor Hub', desc: 'AI-powered investment tools', gradient: 'from-amber-500/10 to-amber-600/10', border: 'border-amber-500/30' },
       { href: '/tools/roi-calculator', label: 'ROI Calculator', desc: 'Measure AI impact', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },
@@ -69,9 +69,9 @@ const STREAM_RECOMMENDATIONS: Record<
   },
   'inner-circle': {
     streamName: 'Inner Circle',
-    character: { src: '/images/team/shinkami.png', name: 'Shinkami' },
+    character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
     resources: [
-      { href: '/inner-circle', label: 'Inner Circle', desc: 'Full access details', gradient: 'from-violet-500/10 to-violet-600/10', border: 'border-violet-500/30' },
+      { href: '/inner-circle', label: 'Inner Circle', desc: 'Private notes layer', gradient: 'from-violet-500/10 to-violet-600/10', border: 'border-violet-500/30' },
       { href: '/vision', label: 'The Vision', desc: 'Where we\'re heading', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
       { href: '/products', label: 'All Products', desc: 'The complete ecosystem', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },
     ],
@@ -80,7 +80,7 @@ const STREAM_RECOMMENDATIONS: Record<
 
 const DEFAULT_RECS = {
   streamName: 'FrankX Newsletter',
-  character: { src: '/images/mascot/mascot-v25-crystal-familiar.png', name: 'Axi' },
+  character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
   resources: [
     { href: '/blog', label: 'Read the Blog', desc: 'AI creation field notes', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
     { href: '/shop', label: 'Shop Templates', desc: 'Premium AI blueprints', gradient: 'from-emerald-500/10 to-emerald-600/10', border: 'border-emerald-500/30' },

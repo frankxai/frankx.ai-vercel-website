@@ -40,3 +40,4 @@ export function listOpenConversations(): Partner[] {
     (p) => p.status === 'placeholder' || p.status === 'in-conversation'
   )
 }
+

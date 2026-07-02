@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import { Resend } from 'resend'
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://frankx.ai'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://www.frankx.ai'
 export const NEWSLETTER_AUDIENCE_ID =
   process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 

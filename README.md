@@ -214,7 +214,7 @@ git add -A && git commit -m "sync: update from dev repo" && git push
 **Frank = Elite Creator + AI Architect**
 
 - 12,000+ AI songs created
-- Oracle AI Architect certified
+- Former AI architect at Oracle
 - Enterprise-grade systems
 - Humble excellence in execution
 

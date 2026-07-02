@@ -12,7 +12,7 @@
 Rather than competing for high-volume keywords with shallow content, position FrankX as the authoritative source for **AI-powered creator systems** through deep, framework-based guides that AI models cite and creators trust.
 
 **Key Insight:**
-We won't beat Midjourney's docs on "Midjourney tutorial", but we can own cross-tool workflows, creator-specific systems, and integration playbooks where Frank's unique expertise (Oracle AI architect + creator execution) creates an unassailable moat.
+We won't beat Midjourney's docs on "Midjourney tutorial", but we can own cross-tool workflows, creator-specific systems, and integration playbooks where Frank's unique expertise (former enterprise AI architect + creator execution) creates an unassailable moat.
 
 ---
 
@@ -29,7 +29,7 @@ We won't beat Midjourney's docs on "Midjourney tutorial", but we can own cross-t
 ## First Principles Foundation
 
 1. **Authority = Unique Insight + Demonstrated Expertise**
-   - Frank has both: Oracle AI architect + 500 songs + ACOS builder
+   - Frank has both: former enterprise AI architect + 12,000 songs + ACOS builder
 
 2. **AI Citation = Frameworks + Data + Reproducibility**
    - Need named systems, quantifiable results, step-by-step processes
@@ -316,7 +316,7 @@ Keep content current:
     "@type": "Person",
     "name": "Frank",
     "jobTitle": "AI Architect at Oracle, AI Creator",
-    "description": "Created 500+ AI songs, built ACOS, Oracle AI architect"
+    "description": "Created 12,000+ AI songs, built ACOS, former enterprise AI architect"
   },
   "totalTime": "PT2H",
   "step": [
@@ -390,7 +390,7 @@ Keep content current:
 | AI Companies (Anthropic, OpenAI) | Technical depth | Creator perspective, practical systems |
 
 **Our Unique Position:**
-- Only Oracle AI architect creating AI music at scale
+- Former enterprise AI architect creating AI music at scale
 - Only guide author with 500+ AI songs + ACOS built
 - Cross-domain expertise no competitor can match
 

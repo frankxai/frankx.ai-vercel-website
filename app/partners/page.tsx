@@ -61,7 +61,7 @@ const partners: Partner[] = [
       'Claude is Frank\'s recommended model for reasoning, coding, and agent workloads. Claude Code is part of the FrankX daily workflow. We are pursuing Claude for Work Partner Program status — no direct consumer affiliate today.',
     usedIn: [
       '/workshops/build-first-ai-agent (Claude branch)',
-      '/acos',
+      '/acos and FrankX agent workflows',
       'Every content generation pipeline on frankx.ai',
     ],
   },
@@ -92,7 +92,7 @@ const partners: Partner[] = [
     url: 'https://oracle.com',
     kind: 'strategic',
     description:
-      'Oracle is Frank\'s employer. Oracle Agent Development Kit and Open Agent Specification are taught in the enterprise branch of the First AI Agent workshop. Not a revshare relationship — this is strategic positioning that flows through Frank\'s AI Architect role.',
+      'Oracle Agent Development Kit and Open Agent Specification are covered in the enterprise branch of the First AI Agent workshop as public learning material. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.',
     usedIn: [
       '/workshops/build-first-ai-agent (enterprise branch)',
       '/ai-architecture',

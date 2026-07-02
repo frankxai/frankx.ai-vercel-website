@@ -1,17 +1,17 @@
-# FrankX — AGENTS.md
+﻿# FrankX â€” AGENTS.md
 
 **Repo:** `frankxai/FrankX` (private dev + content authoring)
-**Branch (default):** `main` · **Active feature:** `feature/prompt-hub`
-**Live site:** https://frankx.ai (deploys from a *different* repo — see "Deploy" below)
-**Stack:** Next.js 16 App Router · React 18.3 · TypeScript 5.7 · Tailwind 3.4 · Vercel · pnpm/npm
-**Last touched:** 2026-06-02
+**Branch (default):** `main` Â· **Active feature:** `feature/prompt-hub`
+**Live site:** https://frankx.ai (deploys from a *different* repo â€” see "Deploy" below)
+**Stack:** Next.js 16 App Router Â· React 18.3 Â· TypeScript 5.7 Â· Tailwind 3.4 Â· Vercel Â· pnpm/npm
+**Last touched:** 2026-05-20
 
-## Current sprint (W21, 2026-05-18 → 24)
+## Current sprint (W21, 2026-05-18 â†’ 24)
 
 - **Theme:** Deliver NLDigital. Ship Newsletter Issue 1. Lock June 1 launch.
 - **Authoritative doc:** `docs/planning/2026-W21-sprint.md`
 - **Machine shadow:** `data/sprint-current.json` (backs `/sprint`)
-- **Forcing functions:** NLDigital delivered Tue 5/19 · Newsletter Issue 1 ships Fri 5/22 · Inner Circle launches Mon 6/1 · Madrid trip Wed 5/27 → Mon 6/2
+- **Forcing functions:** NLDigital delivered Tue 5/19 Â· Newsletter Issue 1 ships Fri 5/22 Â· Inner Circle launches Mon 6/1 Â· Madrid trip Wed 5/27 â†’ Mon 6/2
 - **In-flight foundations:** `/hub-audit` `/traffic-week` `/newsletter-week` commands + `@integrity-guard` agent shipped 2026-05-20
 
 This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, OpenCode, Cursor, etc.) entering this repo. **Read it first. Read it before AGENTS.md elsewhere.** It overrides general-purpose agent assumptions and points you at the specific files that govern behavior.
@@ -20,13 +20,13 @@ This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, O
 
 ## 1. Read in this order
 
-1. **This file** — orientation
-2. **`CLAUDE.md`** — project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)
-3. **`.codex/instructions.md`** — Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)
-4. **`OPS-INDEX.md`** — single front-door pointer index (read for "where does X live?")
-5. **`design.md` + `taste.md`** — visual contract (tokens + judgment). Required before any UI work.
-6. **`.frankx/identity.md` + `.frankx/brand.md` + `.frankx/stack.md`** — who Frank is, brand voice, tech reference
-7. **Memory index** at `~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md` (Claude Code) — 50+ topic files
+1. **This file** â€” orientation
+2. **`CLAUDE.md`** â€” project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)
+3. **`.codex/instructions.md`** â€” Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)
+4. **`OPS-INDEX.md`** â€” single front-door pointer index (read for "where does X live?")
+5. **`design.md` + `taste.md`** â€” visual contract (tokens + judgment). Required before any UI work.
+6. **`.frankx/identity.md` + `.frankx/brand.md` + `.frankx/stack.md`** â€” who Frank is, brand voice, tech reference
+7. **Memory index** at `~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md` (Claude Code) â€” 50+ topic files
 
 ---
 
@@ -39,13 +39,13 @@ This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, O
 | `frankxai/FrankX` (this)            | Private dev + content authoring | (not deployed)             |
 | `frankxai/frankx.ai-vercel-website` | **PRODUCTION**                  | `frankx-ai-vercel-website` |
 
-To ship: sync the relevant files to the production repo and push there. See `CLAUDE.md` § "Production Deployment" for the full sync workflow. There is also a sibling worktree at `C:\Users\frank\frankx-prod-sync\` cloned from production.
+To ship: sync the relevant files to the production repo and push there. See `CLAUDE.md` Â§ "Production Deployment" for the full sync workflow. There is also a sibling worktree at `C:\Users\frank\frankx-prod-sync\` cloned from production.
 
 **Do not** add an `origin` for `frankx.ai-vercel-website` to this repo and force-push. They are intentionally separate.
 
 ---
 
-## 3. Health + diagnostics — single command
+## 3. Health + diagnostics â€” single command
 
 ```bash
 # Process + port + memory snapshot (PowerShell)
@@ -69,18 +69,23 @@ If `npm run health` reports orphan Codex sessions, see `docs/ops/SESSION-CAPTURE
 
 ---
 
-## 4. Branch hygiene
+## 4. Branch hygiene + parallel-agent coordination
 
-- **Default branch:** `main`
-- **Working branch right now:** `feature/papa-hub` (Witali Riemer hub work, shipped to production via Trees-API on 2026-05-05)
-- **Worktrees** at `.worktrees/` — `draft`, `memory-abstraction`, `preview`. Use these for parallel work; do not switch branches in the main checkout.
-- **Stale branch policy:** any branch unmerged + untouched > 30 days is candidate for archival. Always inspect with `git log --left-right` before deleting.
+Multiple agents (Claude, Grok, Gemini, Codex, Cursor, Cline) work this repo in parallel. Git is the coordination layer â€” these rules keep them from colliding. Don't trust a hardcoded "current branch" anywhere; run `git branch --show-current` and `git worktree list` for live state.
 
-`.gitattributes` enforces LF on all source files. If `git status` shows mass "modified" on files you didn't touch, run `git checkout -- .` once after pulling — that's a one-time CRLF re-normalization.
+- **Default branch:** `main`. Never two agents committing in the same working tree.
+- **One agent = one branch.** Name it `agent/<harness>/<short-scope>` (e.g. `agent/grok/seo-pass`, `agent/claude/404-radar`). This makes `git branch -a` the live ownership map.
+- **Claim before you touch.** Read + append a row to `.agent/active-agents.md` (the live board) and pick a scope that doesn't overlap an active row. Remove your row when you push/merge.
+- **Heavy or risky parallel work â†’ your own worktree:** `git worktree add .worktrees/<name> -b agent/<harness>/<scope>`. Isolates the filesystem too, so a failed build in one agent can't corrupt another's checkout. Don't switch branches in the main checkout while another agent is mid-edit there.
+- **Integrate through the gate, one at a time.** `npm run merge:gate` clean â†’ push your branch â†’ PR or fast-forward to `main`. Never two agents merging to `main` in the same moment.
+- **Foreign state = another agent's work.** Untracked files, dirty branches, or worktrees you didn't create: investigate (`git log -1 <branch>`, check the board) before deleting or overwriting. Treat a board row as abandoned only if its branch has no commits in >24h.
+- **Stale branch policy:** unmerged + untouched > 30 days is archival-candidate. Inspect with `git log --left-right` before deleting.
+
+`.gitattributes` enforces LF on all source files. If `git status` shows mass "modified" on files you didn't touch, run `git checkout -- .` once after pulling â€” that's a one-time CRLF re-normalization.
 
 ---
 
-## 5. The merge gate — what must pass before `main`
+## 5. The merge gate â€” what must pass before `main`
 
 ```bash
 npm run merge:gate
@@ -103,7 +108,7 @@ Plus, before any content publish (newsletter, blog post, social):
 ```
 @integrity-guard <file-or-surface>
 # 5-gate quality check: brand voice + AI-slop + claim audit + schema + conversion
-# PASS → publish. WARN → ship with corrections. FAIL → block.
+# PASS â†’ publish. WARN â†’ ship with corrections. FAIL â†’ block.
 ```
 
 See `.claude/agents/integrity-guard.md`. Shipped 2026-05-20.
@@ -112,7 +117,7 @@ See `.claude/agents/integrity-guard.md`. Shipped 2026-05-20.
 
 ## 5b. The 6-layer operating loop (added 2026-05-20)
 
-Every operating decision composes into one of six layers. Full doctrine in `CLAUDE.md` § "The 6-layer Operating Loop". Quick reference:
+Every operating decision composes into one of six layers. Full doctrine in `CLAUDE.md` Â§ "The 6-layer Operating Loop". Quick reference:
 
 | Layer | Question | Tier-1 commands |
 |---|---|---|
@@ -140,12 +145,12 @@ For full guidelines and trigger mappings, read `.antigravity/instructions.md`.
 
 ---
 
-## 6. Brand discipline — non-negotiable
+## 6. Brand discipline â€” non-negotiable
 
-- **Voice:** "Elite Creator. AI Architect. Humble Excellence." — direct, technical, results-first, never spiritual or guru. See `.frankx/brand.md`.
+- **Voice:** "Elite Creator. AI Architect. Humble Excellence." â€” direct, technical, results-first, never spiritual or guru. See `.frankx/brand.md`.
 - **Title:** "AI Architect" (never "AI Systems Architect", never "Senior AI Architect").
 - **No Arcanean mythology in FrankX copy.** Guardians, Gates, Realms, Seekers belong in `/ultraworld` and the `Arcanea` repo. FrankX is brand-clean.
-- **No Canva.** All visuals use Nano Banana 2 (Gemini 3.1 Flash Image) via `scripts/lib/nb-image.mjs` or the `scripts/nb-generate.mjs` CLI. See the `nb-image` skill.
+- **No Canva.** Use your harness's native image generation if it has one (Grok Build does); otherwise Nano Banana 2 (Gemini 3.1 Flash Image) via `scripts/lib/nb-image.mjs` or the `scripts/nb-generate.mjs` CLI. Either way hold the active `lib/gen/lanes.ts` lane â€” never mix lanes on one asset. See the `nb-image` and `gen` skills.
 - **No emoji in user-facing copy** unless the user explicitly asked. (System prompts may use them.)
 - **No AI-slop tells:** `delve`, `dive into`, `it's worth noting`, `certainly`, `absolutely`, `unleash`, `unlock the power of`, `revolutionary`, `game-changing`. Refusal list in `taste.md`.
 
@@ -155,8 +160,8 @@ For full guidelines and trigger mappings, read `.antigravity/instructions.md`.
 
 Two files at repo root govern visual decisions. **Read both before any UI work.**
 
-- **`design.md`** — Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do's/Don'ts. Source of truth: `tailwind.config.js` and `lib/design-system.ts` — `design.md` mirrors them in agent-readable form.
-- **`taste.md`** — companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google's spec deliberately doesn't capture.
+- **`design.md`** â€” Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do's/Don'ts. Source of truth: `tailwind.config.js` and `lib/design-system.ts` â€” `design.md` mirrors them in agent-readable form.
+- **`taste.md`** â€” companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google's spec deliberately doesn't capture.
 
 The answer is usually less.
 
@@ -179,10 +184,11 @@ The answer is usually less.
 | Recent decisions / handovers                               | `docs/ops/HANDOVER-*.md` (newest first)            |
 | Architecture + strategy (Personal Data Mesh, SIS-MCP plan) | `docs/PERSONAL_DATA_MESH.md`, `docs/ops/SIS-MCP-PROPAGATION-PLAN.md` |
 | Audit log (overnight excellence audit, 2026-05-06)         | `docs/ops/2026-05-06-MASTER-EXCELLENCE-AUDIT.md`   |
+| Creator Ecosystem & Sovereign Wealth Blueprint             | `docs/strategy/creator-ecosystem-blueprint.md`     |
 
 ---
 
-## 9. Anti-patterns — never
+## 9. Anti-patterns â€” never
 
 - **Never rename working URLs.** `/library/{slug}` is `/library/{slug}` forever. SEO history matters more than aesthetics.
 - **Never delete pages with traffic.** Unlink from nav, keep page noindex'd at most.
@@ -220,3 +226,16 @@ These shape priority. Confirm in `docs/planning/2026-W19-sprint.md` for the late
 ---
 
 _End of AGENTS.md. If something here is wrong or missing, the rule is: edit the source-of-truth file (CLAUDE.md, .frankx/*, OPS-INDEX.md) and update the pointer here. Don't duplicate content._
+
+## Design Taste Kernel
+
+For any site, app, landing page, dashboard, visual identity, brand, motion, media, social, or frontend task, apply the shared Design Taste Kernel before handoff:
+
+- C:\Users\frank\starlight\repos\DESIGN_TASTE.md
+- C:\Users\frank\starlight\repos\WEB_EXPERIENCE_STANDARD.md
+- C:\Users\frank\starlight\repos\MOTION_TASTE_RUBRIC.md
+- C:\Users\frank\starlight\repos\MULTI_AGENT_DESIGN_COUNCIL.md
+- C:\Users\frank\starlight\repos\VISUAL_QA_GATE.md
+
+When motion, scroll, generated media, GIF/video, or premium polish matters, route through the Motion Design Studio plugin/skills and verify the result visually.
+

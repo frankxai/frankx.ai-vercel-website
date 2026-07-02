@@ -1,36 +1,32 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'GenCreator by FrankX - Build Your AI Creator OS',
+  title: 'The GenCreator Framework — Principles, Handbook, Blueprints & Soul',
   description:
-    'GenCreator helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'The complete operating system for generative creators. 12 principles, 8 handbook chapters, 12 actionable blueprints, 7 soul dimensions, and a manifesto.',
   openGraph: {
-    title: 'GenCreator by FrankX',
-    description: 'Create, build, and sell with a personal AI Creator OS.',
+    title: 'The GenCreator Framework',
+    description: 'Principles. Handbook. Blueprints. Soul. The complete creator operating system.',
     url: 'https://frankx.ai/gencreator',
   },
 }
 import {
   ArrowRight,
   BookOpen,
-  Boxes,
   Compass,
   Flame,
   Heart,
   Map,
-  Package,
-  Rocket,
   Scroll,
-  Users,
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
 import PremiumButton from '@/components/ui/PremiumButton'
 import GenCreatorNav from '@/components/gencreator/GenCreatorNav'
 import { hubStats } from '@/lib/gencreator/gencreator-data'
-import { communityLaunch, flagshipOffer, genCreatorPaths, offerLadder } from '@/data/gencreator-launch-readiness'
 
 const sections = [
   {
@@ -78,8 +74,8 @@ const sections = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'GenCreator by FrankX',
-  description: 'A personal AI operating system for creators who want to ship work, audience, products, and revenue.',
+  name: 'The GenCreator Framework',
+  description: 'The complete framework for generative creators. 12 principles, 8 handbook chapters, 12 blueprints, 7 soul dimensions, and a manifesto.',
   url: 'https://frankx.ai/gencreator',
   author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   mainEntity: {
@@ -120,19 +116,19 @@ export default function GenCreatorHubPage() {
             />
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200">
               <Flame className="h-4 w-4" />
-              Launch Identity
+              Framework
             </div>
           </div>
 
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent">
-              GenCreator by FrankX
+              The GenCreator Framework
             </span>
           </h1>
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
-            Build your personal AI operating system.
+            The complete operating system for generative creators.
             <br className="hidden sm:block" />
-            Create, build, sell, and compound.
+            Principles. Handbook. Blueprints. Soul. Manifesto.
           </p>
 
           {/* Terminal teaser */}
@@ -149,7 +145,7 @@ export default function GenCreatorHubPage() {
               <p className="text-white/40">## Stack: Claude, Suno, n8n, Next.js, Vercel</p>
               <p className="text-white/40">## Principle: Ship daily. Compound relentlessly.</p>
               <p className="mt-2 text-emerald-300/60">
-                &gt; Create track online. Build track flagship. Sell track packaged.
+                &gt; 12 principles loaded. 8 chapters ready. 12 blueprints active.
               </p>
             </div>
           </div>
@@ -167,12 +163,12 @@ export default function GenCreatorHubPage() {
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <PremiumButton variant="luxury" size="lg" href={flagshipOffer.route}>
-              {flagshipOffer.name}
+            <PremiumButton variant="luxury" size="lg" href="/gencreator/principles">
+              Start with Principles
               <ArrowRight className="h-5 w-5" />
             </PremiumButton>
-            <PremiumButton variant="ghost" size="lg" href="/community">
-              Free Community Invite
+            <PremiumButton variant="ghost" size="lg" href="/gencreator/manifesto">
+              Read the Manifesto
             </PremiumButton>
           </div>
         </div>
@@ -190,48 +186,6 @@ export default function GenCreatorHubPage() {
               <div className="mt-1 text-sm text-white/50">{stat.label}</div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ─── Launch Tracks ─── */}
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/60">
-              Launch Paths
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              One identity. Three ways to move.
-            </h2>
-            <p className="mt-4 text-white/55">
-              GenCreator is the public movement. Agentic Creator is the advanced builder track inside it.
-              AI Architect Academy waits until this funnel is proven.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {genCreatorPaths.map((path) => {
-              const Icon = path.id === 'create' ? Flame : path.id === 'build' ? Boxes : Package
-              const color = path.id === 'create' ? 'emerald' : path.id === 'build' ? 'cyan' : 'violet'
-
-              return (
-                <GlowCard key={path.id} color={color} href={path.route} className="p-6">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05]">
-                    <Icon className="h-6 w-6 text-emerald-300" />
-                  </div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/35">
-                    {path.label}
-                  </p>
-                  <h3 className="mt-2 text-xl font-bold text-white">{path.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/55">{path.description}</p>
-                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300">
-                    {path.cta}
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                </GlowCard>
-              )
-            })}
-          </div>
         </div>
       </section>
 
@@ -291,94 +245,6 @@ export default function GenCreatorHubPage() {
         </div>
       </section>
 
-      {/* ─── Flagship Offer ─── */}
-      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/60">
-              Flagship Paid Offer
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {flagshipOffer.name}
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/60">
-              {flagshipOffer.promise}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <PremiumButton variant="luxury" size="lg" href={flagshipOffer.ctaHref}>
-                {flagshipOffer.ctaLabel}
-                <ArrowRight className="h-5 w-5" />
-              </PremiumButton>
-              <PremiumButton variant="ghost" size="lg" href="/products/agentic-creator-os">
-                Advanced Builder Track
-              </PremiumButton>
-            </div>
-            <p className="mt-4 text-sm text-white/35">
-              Beta framing: {flagshipOffer.betaPrice}. Full program target: {flagshipOffer.fullPrice}.
-              Checkout stays off until delivery and onboarding are verified.
-            </p>
-          </div>
-
-          <GlowCard color="emerald" className="p-6">
-            <div className="mb-5 flex items-center gap-3">
-              <Rocket className="h-6 w-6 text-emerald-300" />
-              <h3 className="text-xl font-bold text-white">What members build</h3>
-            </div>
-            <ul className="space-y-3">
-              {flagshipOffer.includes.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-white/60">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-300" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </GlowCard>
-        </div>
-      </section>
-
-      {/* ─── Offer Ladder ─── */}
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/60">
-              Offer Ladder
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              Free trust first. Paid implementation second.
-            </h2>
-          </div>
-          <div className="mt-10 overflow-hidden rounded-3xl border border-white/10">
-            {offerLadder.map((tier) => (
-              <div key={tier.tier} className="grid gap-3 border-b border-white/10 bg-white/[0.03] p-5 last:border-b-0 md:grid-cols-[0.8fr_0.8fr_1fr_2fr]">
-                <div className="font-semibold text-white">{tier.tier}</div>
-                <div className="text-emerald-300">{tier.price}</div>
-                <div className="text-white/55">{tier.role}</div>
-                <div className="text-white/45">{tier.offers}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Community Bridge ─── */}
-      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <Users className="mx-auto h-10 w-10 text-emerald-300" />
-          <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
-            One free community first.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-white/55">
-            {communityLaunch.model} Channels: {communityLaunch.freeChannels.join(', ')}.
-          </p>
-          <div className="mt-8">
-            <PremiumButton variant="primary" size="lg" href={communityLaunch.ctaHref}>
-              {communityLaunch.ctaLabel}
-              <ArrowRight className="h-5 w-5" />
-            </PremiumButton>
-          </div>
-        </div>
-      </section>
-
       {/* ─── CTA ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
@@ -386,16 +252,16 @@ export default function GenCreatorHubPage() {
             Start Your GenCreator Journey
           </h2>
           <p className="mt-4 text-lg text-white/50">
-            Choose a path, join the free community invite list, and build toward your AI Creator OS.
+            Begin with the principles. Read the handbook. Execute the blueprints. Build your soul.md.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <PremiumButton variant="luxury" size="lg" href={flagshipOffer.route}>
-              <Rocket className="h-5 w-5" />
-              Build Your AI Creator OS
-            </PremiumButton>
-            <PremiumButton variant="ghost" size="lg" href="/gencreator/handbook">
+            <PremiumButton variant="luxury" size="lg" href="/gencreator/handbook">
               <BookOpen className="h-5 w-5" />
               Open the Handbook
+            </PremiumButton>
+            <PremiumButton variant="ghost" size="lg" href="/gencreator/blueprints">
+              <Map className="h-5 w-5" />
+              Browse Blueprints
             </PremiumButton>
           </div>
         </div>

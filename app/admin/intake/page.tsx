@@ -137,6 +137,9 @@ function relativeTime(iso: string): string {
 }
 
 export default async function InquiryInboxPage() {
+  // Auth: /admin/* is gated upstream by proxy.ts (the Next 16 successor
+  // to middleware.ts), which redirects unauthenticated requests to
+  // /auth/signin via NextAuth getToken(). See proxy.ts § "Auth protection".
   const { rows, readError } = await loadRows()
 
   const total = rows.length

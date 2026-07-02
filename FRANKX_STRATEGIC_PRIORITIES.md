@@ -446,7 +446,7 @@ Music Academy success → Showcase in Arcanea
 
 ### **Your Unfair Advantages:**
 
-- **Oracle AI CoE background** (enterprise credibility when needed)
+- **Former enterprise AI architecture background** (enterprise credibility when needed)
 - **Multiple successful projects** (proof of execution)
 - **Technical depth** (can build what you design)
 - **Creator mindset** (understand the audience deeply)
