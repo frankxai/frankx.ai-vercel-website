@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
 import imageNeeds from '@/data/tools/image-needs.json'
+import blogHeroManifest from '@/data/blog-hero-manifest.json'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
@@ -88,14 +89,22 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
 }
 
 // Frontmatter frequently references hero files that were never generated
-// (~60 posts as of 2026-07-02). A missing local file must never reach the
+// (~114 posts as of 2026-07-02). A missing local file must never reach the
 // client as a broken <img> — fall back to an existing category hero instead.
+//
+// Existence comes from data/blog-hero-manifest.json (written by
+// scripts/build-route-index.mjs in the prebuild slot), NOT a runtime
+// fs.existsSync: a dynamic path under public/ defeats Next's output file
+// tracing, which then bundles the whole public/images subtree into every
+// serverless function importing this module (api/md exceeded Vercel's
+// 250 MB function limit). A static JSON import traces to one small file.
+const blogHeroFiles = new Set<string>(blogHeroManifest as string[])
+
 function localImageExists(image: string): boolean {
-  try {
-    return fs.existsSync(path.join(process.cwd(), 'public', image))
-  } catch {
-    return false
-  }
+  // Only /images/blog/** is manifest-tracked; other local paths are trusted
+  // (pre-fallback behavior — nothing outside the blog tree was reported broken).
+  if (!image.startsWith('/images/blog/')) return true
+  return blogHeroFiles.has(image)
 }
 
 function resolveBlogImage(image: unknown, slug: string): string | undefined {
