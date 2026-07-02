@@ -30,6 +30,7 @@ function ageDays(ms, nowMs) {
 const now = Date.now()
 const stale = []
 const checked = []
+let readError = null
 
 // 1. Cost & reliability ledger: lastUpdated + every row's retrieval_date.
 try {
@@ -48,7 +49,15 @@ try {
     }
   }
 } catch (e) {
+  readError = e.message
   console.error('[freshness] could not read ledger:', e.message)
+}
+
+// A ledger the gate can't even read is a harder failure than a stale row —
+// it must never be indistinguishable from "0 stale rows found".
+if (readError) {
+  console.log('[freshness] FAILED: ledger unreadable, freshness cannot be verified')
+  process.exit(1)
 }
 
 console.log(`[freshness] checked ${checked.length} surfaces; max age ${MAX_AGE_DAYS}d`)

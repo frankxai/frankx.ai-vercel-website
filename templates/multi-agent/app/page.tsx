@@ -66,7 +66,7 @@ export default function Home() {
                     const name = part.type.replace('tool-', '');
                     return (
                       <div key={i} style={step}>
-                        <span style={{ color: '#fbbf24' }}>⚙ {name}</span>
+                        <span style={{ color: '#fbbf24' }}>tool: {name}</span>
                         {p.input != null && (
                           <pre style={pre}>{JSON.stringify(p.input, null, 2)}</pre>
                         )}
