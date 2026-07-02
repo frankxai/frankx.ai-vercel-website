@@ -71,3 +71,59 @@ Pitch the **benchmark repo** (the first-party result), not the curation, to read
 primary work: EthicalML/awesome-agentic-engineering, chiphuyen/aie-book, DataExpert-io, and
 newsletters (Latent Space, TLDR, The Batch). One line: "I ran a reproducible retrieval-miss
 benchmark — harness, corpus, raw logs. Here's the number and how to reproduce it."
+
+---
+
+## D. Benchmark-as-result — `runaway-loop` (Phase 1, second post)
+
+**Purpose:** spend the second first-party result — same "here's the harness, here's the raw
+output" pattern as the retrieval-miss table, on a different failure mode. Post 1–2 weeks after A,
+not simultaneously (avoid diluting either).
+
+**The number** (from `benchmarks/runaway-loop/results/results.json`, N=5 scripted scenarios, 4
+non-convergent traps + 1 control): uncapped cost totals **$8.1081** (81.65× the optimal-step cost)
+vs. capped cost **$0.2817** (2.84× optimal) — a `stepCountIs(N)` cap contains **96.5%** of the
+uncapped cost across the scenario set.
+
+> Scope discipline for the post itself: the traps are *scripted* to be non-convergent — this
+> demonstrates the mechanism (unbounded steps → unbounded cost; a cap bounds it), not a measured
+> real-world runaway rate. Don't let the post imply otherwise.
+
+### X / thread variant
+1/ An agent that loops without converging doesn't fail loudly — it fails expensively. I built 4 scripted non-convergent traps + 1 control and measured the cost with and without a step cap.
+2/ Uncapped: $8.11 total across 5 scenarios (81.65× the optimal-step cost). Capped at 3× each task's known-optimal step count: $0.28 (2.84× optimal). The cap contains 96.5% of the uncapped cost.
+3/ The mechanism is simple and it's the whole point: without a stop condition, cost is bounded only by how long you let the loop run — linear in steps, not task complexity. `stepCountIs(N)` bounds it at N × cost-per-step, full stop.
+4/ Harness, scenarios, and raw output are public — reproduce it or point it at your own step/token data: [link to benchmarks/runaway-loop]
+
+### LinkedIn variant
+Lead with the totals line as the hook: "An uncapped agent loop cost 29× more than the same loop with a hard step cap, across 5 scripted scenarios." One paragraph on the mechanism (cost tracks steps, not task complexity), link to the harness + raw output, close with "the fix is one line: `stepCountIs(N)`."
+
+**Measure:** same as section A — saves/shares vs. baseline, "what's N?" replies, referral clicks.
+
+---
+
+## E. Benchmark-as-result — `context-rot` (Phase 1, third post)
+
+**Purpose:** third first-party result. This one needs the most care in the post copy — the
+underlying benchmark is explicit that it measures a *structural precondition* (does a fact
+survive context eviction), not real LLM recall accuracy. Do not let the post copy blur that line;
+it's the exact overclaim this hub's credibility depends on avoiding.
+
+**The number** (from `benchmarks/context-rot/results/results.json`, N=5 scenarios × 3 needle
+depths = 15 cells/strategy): naive FIFO context truncation and a "keep-first-and-last" anchoring
+strategy both land at **60% overall needle survival**; a retrieval-augmented strategy holds
+**100%** by construction. The interesting finding: "smarter" anchoring isn't a strict win — it
+only pulls ahead of FIFO at the earliest needle depth (60% vs 40% at 10%), and loses ground in a
+small-budget/long-session scenario where the reserved anchor budget shrinks the recency window.
+
+### X / thread variant
+1/ Before an LLM can "forget" something in a long conversation, that something has to survive being evicted from context at all. I measured that — not accuracy, just survival.
+2/ Naive FIFO truncation and a "keep first + last turns" strategy both land at 60% needle-survival across 5 sessions × 3 depths. Retrieval-augmented (never evicted by window size) holds 100%, by construction.
+3/ The counter-intuitive part: "keep first + last" isn't a strict upgrade over FIFO. It wins at shallow depth, but reserving anchor budget shrinks the recency window — and in one long-session scenario it actually *loses* a needle FIFO would've kept. Both land at the same 60% overall.
+4/ This measures whether the fact is even still in the prompt — upstream of the harder question of whether the model recalls it correctly (that's the real "context rot" literature — Databricks, NVIDIA RULER, Adobe NoLiMa, Chroma all measure that directly; I cite their numbers, not my own, for the accuracy question).
+5/ Harness + raw output: [link to benchmarks/context-rot]
+
+### LinkedIn variant
+Lead with the counter-intuitive finding, not the survival numbers: "The 'smarter' context strategy I tested wasn't actually better than naive truncation — same 60% survival rate, just a different failure pattern." One paragraph on why (anchor budget trades off against recency window), explicit line that this measures eviction not recall accuracy, link to harness, close with the four real accuracy-degradation citations (Databricks / RULER / NoLiMa / Chroma) for readers who want the measured phenomenon, not the structural proxy.
+
+**Measure:** same as section A. **Extra care:** if any reply reads the post as claiming an LLM-accuracy number, that's a real problem with the copy — fix it before the next post, don't just let it stand.
