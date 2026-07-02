@@ -13,6 +13,9 @@ export const arrow: PortalPartner = {
   relationship: 'enterprise',
   status: 'building',
   accent: 'tech',
+  // Proposal, not a live signed engagement — see PARTNER_PORTAL_ECONOMICS.md.
+  // Matches the noindex treatment already applied to ahmad/jojo at the same status.
+  noindex: true,
   lastUpdated: '2026-05-16',
 
   title: 'AI Architect — EMEA distribution alignment proposal',

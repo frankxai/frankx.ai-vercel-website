@@ -91,13 +91,21 @@ export function PortalHero({ partner }: PortalHeroProps) {
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href={partner.cta.href}
-            className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-[0_18px_60px_rgba(255,255,255,0.16)] transition ${accent.cta}`}
-          >
-            {partner.cta.label}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          {(() => {
+            const isExternal = partner.cta.href.startsWith('http')
+            const Component = isExternal ? 'a' : Link
+            return (
+              <Component
+                href={partner.cta.href}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-[0_18px_60px_rgba(255,255,255,0.16)] transition ${accent.cta}`}
+              >
+                {partner.cta.label}
+                <ArrowRight className="h-4 w-4" />
+              </Component>
+            )
+          })()}
         </div>
       </div>
     </section>

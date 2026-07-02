@@ -93,12 +93,18 @@ export async function GET(
     lines.push('')
   }
 
-  lines.push('## Related surfaces')
-  if (partner.alliesHref) lines.push(`- Allies page: ${SITE_URL}${partner.alliesHref}`)
-  if (partner.friendsHref) lines.push(`- Friend page: ${SITE_URL}${partner.friendsHref}`)
-  if (partner.partnershipsHref) lines.push(`- Partnership proposal: ${SITE_URL}${partner.partnershipsHref}`)
-  if (partner.downloadHref) lines.push(`- Download kit: ${SITE_URL}${partner.downloadHref}`)
-  lines.push('')
+  const relatedSurfaces = [
+    partner.alliesHref ? `- Allies page: ${SITE_URL}${partner.alliesHref}` : null,
+    partner.friendsHref ? `- Friend page: ${SITE_URL}${partner.friendsHref}` : null,
+    partner.partnershipsHref ? `- Partnership proposal: ${SITE_URL}${partner.partnershipsHref}` : null,
+    partner.downloadHref ? `- Download kit: ${SITE_URL}${partner.downloadHref}` : null,
+  ].filter((line): line is string => line !== null)
+
+  if (relatedSurfaces.length > 0) {
+    lines.push('## Related surfaces')
+    lines.push(...relatedSurfaces)
+    lines.push('')
+  }
 
   lines.push('## Engage')
   lines.push(`${partner.cta.label}: ${partner.cta.href.startsWith('http') ? partner.cta.href : `${SITE_URL}${partner.cta.href}`}`)

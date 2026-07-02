@@ -18,6 +18,9 @@ export const anthropic: PortalPartner = {
   relationship: 'enterprise',
   status: 'building',
   accent: 'tech',
+  // Pursuing, no formal agreement — see PARTNER_PORTAL_ECONOMICS.md.
+  // Matches the noindex treatment already applied to ahmad/jojo at the same status.
+  noindex: true,
   lastUpdated: '2026-05-16',
 
   title: 'AI Architect — Claude-native AI CoE practice',

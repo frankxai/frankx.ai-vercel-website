@@ -24,7 +24,14 @@ export type ResolvedRecommendation = Recommendation & {
 
 /**
  * Ally-specific download kits that have a real page under app/downloads/<id>/
- * but aren't in `downloadsList` (the site-wide /downloads grid registry).
+ * but are deliberately absent from `downloadsList` (the site-wide /downloads
+ * grid): each page's own metadata sets `robots: { index: false }` because
+ * the kit isn't ready for general discovery yet — it's reachable only by
+ * direct link (e.g. from the ally's /allies or /portal page). Do NOT "fix"
+ * this by adding them to downloadsList; that would surface them in the
+ * public grid, contradicting their own noindex intent. This map exists so
+ * the recommendation engine can still reference them by direct link. Add a
+ * new ally kit here (not to downloadsList) if it follows the same pattern.
  * Titles copied verbatim from each page's own metadata.
  */
 const ALLY_KIT_FALLBACK: Record<string, { title: string; href: string }> = {

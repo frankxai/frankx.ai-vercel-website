@@ -1,18 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-
-type RecommendationDeckItem = {
-  title: string
-  href: string
-  why: string
-  image?: string
-}
-
-type RecommendationDeckGroup = {
-  kind: string
-  label: string
-  items: RecommendationDeckItem[]
-}
+import type { RecommendationDeckGroup } from '@/lib/portal/recommend'
 
 type RecommendationDeckProps = {
   groups: RecommendationDeckGroup[]
