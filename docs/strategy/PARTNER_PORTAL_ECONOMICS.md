@@ -1,5 +1,8 @@
 # Partner Portal Economics
-**PRIVATE — Do Not Publish. Not synced to production (see `docs/` in the two-repo split table in root `CLAUDE.md`).**
+**PRIVATE — Do Not Publish. Committed to this repo (`frankx.ai-vercel-website`) but not
+rendered by any route — no page serves `docs/**`. Visible to anyone with repository read
+access, which is broader than "just Frank," so treat it accordingly: real figures here,
+never in anything that ships to a page.**
 **Last Updated:** 2026-07-01
 
 ---

@@ -9,8 +9,9 @@ type RecommendationDeckProps = {
 /**
  * Curated recommendations, grouped by kind (Research / Library / Blog /
  * Products / Downloads). Shape matches lib/portal/recommend.ts's
- * groupRecommendationsByKind output exactly. Each card links out to the real
- * content surface — no duplicated content, just the `why` rationale line.
+ * toRecommendationGroups() output (RecommendationDeckGroup[]) exactly. Each
+ * card links out to the real content surface — no duplicated content, just
+ * the `why` rationale line.
  */
 export function RecommendationDeck({ groups }: RecommendationDeckProps) {
   const nonEmpty = groups.filter((group) => group.items.length > 0)
