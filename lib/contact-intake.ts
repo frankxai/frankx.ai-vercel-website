@@ -60,7 +60,12 @@ export const IntakeSchema = z.object({
   // submission. If this field rejected non-empty values, a filled honeypot
   // would fail safeParse() and return a 400 instead — tipping the bot off
   // and defeating the whole point of a silent drop.
-  website: z.string().trim().max(200).optional().or(z.literal('')),
+  //
+  // Deliberately NO `.trim()`: trimming would normalize a whitespace-only
+  // fill (a single space, a tab) to `''`, which is falsy — the honeypot
+  // check downstream would then treat it as untripped and let the
+  // submission through the full pipeline instead of silently dropping it.
+  website: z.string().max(200).optional().or(z.literal('')),
   // Source page (auto-filled by the form) for attribution.
   source: z.string().trim().max(300).optional().or(z.literal('')),
   consent: z.literal(true, {

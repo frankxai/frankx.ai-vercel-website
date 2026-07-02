@@ -43,10 +43,10 @@ const INTENT_COLOR: Record<Intent, string> = {
 // Path resolution lives in lib/contact-intake.ts → resolvePrivatePath, kept
 // in one place so the API route writer and the dashboard reader stay aligned.
 
-async function readJsonl<T>(file: string): Promise<T[]> {
+async function readJsonl<T>(file: string): Promise<{ rows: T[]; readError: boolean }> {
   try {
     const content = await fs.readFile(file, 'utf8')
-    return content
+    const rows = content
       .trim()
       .split('\n')
       .filter(Boolean)
@@ -58,12 +58,20 @@ async function readJsonl<T>(file: string): Promise<T[]> {
         }
       })
       .filter((e): e is T => e !== null)
-  } catch {
-    return []
+    return { rows, readError: false }
+  } catch (err) {
+    // ENOENT means no submissions yet — a genuinely empty inbox. Any other
+    // error (permissions, disk, corrupt path) is a real outage; the caller
+    // surfaces it as a banner instead of silently rendering "No inquiries".
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      return { rows: [], readError: false }
+    }
+    console.error('[admin/intake] failed to read', file, err)
+    return { rows: [], readError: true }
   }
 }
 
-async function loadRows(): Promise<Row[]> {
+async function loadRows(): Promise<{ rows: Row[]; readError: boolean }> {
   // New unified intake log
   const unified = await readJsonl<{
     ts: string
@@ -88,7 +96,7 @@ async function loadRows(): Promise<Row[]> {
   }>(resolvePrivatePath('workshop-intake.jsonl'))
 
   const rows: Row[] = [
-    ...unified.map((e) => ({
+    ...unified.rows.map((e) => ({
       ts: e.ts,
       intent: e.intent,
       name: e.name,
@@ -98,7 +106,7 @@ async function loadRows(): Promise<Row[]> {
       source: e.source,
       notify: e.notify,
     })),
-    ...legacy.map((e) => ({
+    ...legacy.rows.map((e) => ({
       ts: e.ts,
       intent: 'workshop' as Intent,
       name: e.fullName,
@@ -110,7 +118,10 @@ async function loadRows(): Promise<Row[]> {
     })),
   ]
 
-  return rows.sort((a, b) => b.ts.localeCompare(a.ts)).slice(0, 300)
+  return {
+    rows: rows.sort((a, b) => b.ts.localeCompare(a.ts)).slice(0, 300),
+    readError: unified.readError || legacy.readError,
+  }
 }
 
 function relativeTime(iso: string): string {
@@ -126,7 +137,7 @@ export default async function InquiryInboxPage() {
   // Auth: /admin/* is gated upstream by proxy.ts (the Next 16 successor
   // to middleware.ts), which redirects unauthenticated requests to
   // /auth/signin via NextAuth getToken(). See proxy.ts § "Auth protection".
-  const rows = await loadRows()
+  const { rows, readError } = await loadRows()
 
   const total = rows.length
   const last24h = rows.filter((r) => Date.now() - new Date(r.ts).getTime() < 24 * 3600 * 1000).length
@@ -158,6 +169,18 @@ export default async function InquiryInboxPage() {
           </p>
         </div>
       </section>
+
+      {readError && (
+        <section className="border-b border-rose-500/20 bg-rose-500/[0.06]">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <p className="text-sm text-rose-200">
+              One or both intake logs failed to read (not a missing-file case — a
+              real filesystem error). The counts below may be incomplete. Check
+              server logs for <code className="text-rose-100">[admin/intake]</code>.
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-4">

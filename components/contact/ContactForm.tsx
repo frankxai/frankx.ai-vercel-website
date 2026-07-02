@@ -7,6 +7,39 @@ import { INTENTS, INTENT_LABEL, type Intent } from '@/lib/intake-types'
 
 const INITIAL_INTENT: Intent = 'general'
 
+/**
+ * Roving-tabindex arrow navigation for the intent radiogroup. The WAI-ARIA
+ * APG radio pattern requires Left/Up → previous, Right/Down → next (with
+ * wraparound), selection following focus — role="radiogroup"/"radio" without
+ * this leaves the group correctly announced but not actually operable the
+ * way a screen-reader user expects (Tab still visits every option instead
+ * of one stop with arrow-key selection).
+ */
+function handleIntentKeyDown(
+  e: React.KeyboardEvent<HTMLDivElement>,
+  setIntent: (i: Intent) => void,
+) {
+  const { key } = e
+  if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(key)) return
+  e.preventDefault()
+
+  const currentIndex = INTENTS.indexOf(
+    (e.target as HTMLElement).dataset.intent as Intent,
+  )
+  if (currentIndex === -1) return
+
+  const delta = key === 'ArrowLeft' || key === 'ArrowUp' ? -1 : 1
+  const nextIndex = (currentIndex + delta + INTENTS.length) % INTENTS.length
+  const nextIntent = INTENTS[nextIndex]
+  setIntent(nextIntent)
+
+  const group = (e.target as HTMLElement).closest('[role="radiogroup"]')
+  const nextButton = group?.querySelector<HTMLButtonElement>(
+    `[data-intent="${nextIntent}"]`,
+  )
+  nextButton?.focus()
+}
+
 interface Props {
   /** Pre-select an intent (e.g. when linked from /build with ?intent=sprint). */
   defaultIntent?: Intent
@@ -96,13 +129,20 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
         <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
           What's this about?
         </legend>
-        <div role="radiogroup" aria-label="What's this about?" className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+        <div
+          role="radiogroup"
+          aria-label="What's this about?"
+          onKeyDown={(e) => handleIntentKeyDown(e, setIntent)}
+          className="grid grid-cols-2 gap-2 sm:grid-cols-3"
+        >
           {INTENTS.map((i) => (
             <button
               key={i}
               type="button"
               role="radio"
               aria-checked={intent === i}
+              data-intent={i}
+              tabIndex={intent === i ? 0 : -1}
               onClick={() => setIntent(i)}
               className={`rounded-lg border px-3 py-2.5 text-left text-[13px] font-medium leading-tight transition ${
                 intent === i
