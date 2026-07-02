@@ -283,14 +283,19 @@ function parseFrontmatter(source: string): matter.GrayMatterFile<string> | null 
     const deduped = fm[1]
       .split(/\r?\n/)
       .filter((line) => {
-        if (!/^\s*[\w-]+:/.test(line)) return true
-        if (seen.has(line)) return false
-        seen.add(line)
+        // top-level keys only: deduping indented keys by name would merge
+        // legitimately repeated nested fields across different parents
+        const key = line.match(/^([\w-]+):/)
+        if (!key) return true
+        if (seen.has(key[1])) return false
+        seen.add(key[1])
         return true
       })
       .join('\n')
     try {
-      return matter(source.replace(fm[0], `---\n${deduped}\n---`))
+      // replacer fn: literal $&, $$, $' in frontmatter must not be treated
+      // as String.replace special replacement patterns
+      return matter(source.replace(fm[0], () => `---\n${deduped}\n---`))
     } catch {
       return null
     }
