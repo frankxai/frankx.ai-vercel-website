@@ -87,10 +87,21 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
+// Frontmatter frequently references hero files that were never generated
+// (~60 posts as of 2026-07-02). A missing local file must never reach the
+// client as a broken <img> — fall back to an existing category hero instead.
+function localImageExists(image: string): boolean {
+  try {
+    return fs.existsSync(path.join(process.cwd(), 'public', image))
+  } catch {
+    return false
+  }
+}
+
 function resolveBlogImage(image: unknown, slug: string): string | undefined {
   if (typeof image !== 'string' || image.trim() === '') return undefined
   if (!image.startsWith('/')) return image
-  if (!pendingBlogHeroPaths.has(image)) return image
+  if (!pendingBlogHeroPaths.has(image) && localImageExists(image)) return image
 
   if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
     return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
