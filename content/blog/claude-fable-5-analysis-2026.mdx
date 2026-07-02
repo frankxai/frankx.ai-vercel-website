@@ -81,14 +81,14 @@ Benchmarks tell you what a model does on someone else's tasks. We wanted to know
 | Round | Card | Result |
 |---|---|---|
 | 1 — Capability | Logic, coding, repo-grounding, voice writing | Correctness parity. Fable 5 was the only model to respect every output-format and length constraint. |
-| 2 — Behavioral stress | Governance traps, prompt injection, lying docs, contradictory specs | Fable 5 took it 3–2, but the split was the finding: Fable aced constraint stacks; Opus flagged a governance-gated edit Fable executed silently. |
+| 2 — Behavioral stress | Authorization traps, prompt injection, lying docs, contradictory specs | Fable 5 took it 3–2, but the split was the finding: Fable aced constraint stacks; Opus recognized a risky edit needed sign-off first and refused without it, while Fable made the same edit without pausing. |
 | 3 — Hard capability | Harder reasoning (no tools), parser build, live agentic repo work | Fable 5, 2-2-0 — including the first correctness failure on record: Opus answered a hard no-tools reasoning task confidently wrong in 2.7 seconds. |
 | 4 — Premium work samples | Real component build in a live repo + agentic skill authoring | 1–1 split. Opus built the more rigorously accessible component; Fable authored the sharper system doc. |
 
 Four findings that survive all four rounds:
 
 1. **Fable 5's measurable edge is output discipline.** Across stacked word counts, format contracts, and "output only" rules, it was the most compliant model in every round — 7/7 on a script-verified constraint stack where Opus failed. In agentic pipelines where outputs feed schemas, tools, and other agents, that discipline is a capability, not a nicety.
-2. **Opus 4.8 is the judgment instrument.** It flagged a governance-gated edit the default model executed without comment, led with the contradiction in an impossible spec, and was faster with fewer tool calls on agentic tasks. It also keeps leaking preambles past strict output contracts — five violations across seven structured-output tasks.
+2. **Opus 4.8 is the judgment instrument.** When a task tried to get it to overwrite another agent's in-progress work, it recognized the risk and refused until it had authorization — where the default model made the change without comment. Opus also led with the contradiction in an impossible spec, and was faster with fewer tool calls on agentic tasks. It also keeps leaking preambles past strict output contracts — five violations across seven structured-output tasks.
 3. **Discipline degrades under load — for every model.** Round 4's heavy work samples produced Fable 5's first contract violation. The operational lesson: enforce output contracts structurally (schemas, forced tool outputs), and let model discipline be the second line of defense, not the first.
 4. **Style is contested.** The blind judge preferred Opus's prose in Round 1 and Fable's in Round 3. Single-judge, n=1 verdicts are not routing evidence — don't reorganize your writing stack over launch-week vibes.
 
@@ -102,7 +102,7 @@ Fable 5 costs **$10 input / $50 output per million tokens**, with batch at $5/$2
 |---|---|---|
 | Agentic pipelines feeding schemas, tools, other agents | **Fable 5** | Measured constraint precision; the SWE-bench Pro lead is exactly this shape |
 | Long-horizon coding (multi-hour, multi-file) | **Fable 5** | Anthropic's "lead widens with task length" claim + 95% SWE-bench Verified |
-| Ambiguous or possibly-wrong specs; gate-sensitive contexts | **Opus 4.8** | It pushes back and flags gates; Fable executes agreeably |
+| Ambiguous or possibly-wrong specs; situations where a wrong move is destructive | **Opus 4.8** | It pushes back and asks before acting; Fable executes agreeably |
 | Deep single-shot prose a human reads | **Opus 4.8 standard ($5/$25)** | Half the price; style verdicts are contested anyway |
 | Bulk fan-out, classification, low-stakes extraction | **Haiku / cheaper tiers** | Don't pay flagship rates for commodity calls |
 
@@ -140,7 +140,7 @@ $10 per million input tokens and $50 per million output tokens, with batch prici
 
 ### Is Fable 5 better than Opus 4.8?
 
-On agentic work, our four first-party eval rounds say yes — Fable 5 led on constraint precision, output discipline, and hard clean reasoning. Opus 4.8 stayed ahead on situational judgment (flagging gated edits, pushing back on contradictory specs), accessibility craft in real component work, and speed. Neither dominates everything; route by task shape.
+On agentic work, our four first-party eval rounds say yes — Fable 5 led on constraint precision, output discipline, and hard clean reasoning. Opus 4.8 stayed ahead on situational judgment (recognizing when a risky change needed authorization first and refusing to make it blind, pushing back on contradictory specs), accessibility craft in real component work, and speed. Neither dominates everything; route by task shape.
 
 ### How can I test Fable 5 against other models myself?
 

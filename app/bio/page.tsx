@@ -212,7 +212,7 @@ export default function BioPage() {
             {/* Primary CTA + secondary links — one primary max */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="mailto:hello@frankx.ai"
+                href="mailto:frank@frankx.ai"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90"
               >
                 <Mail className="h-4 w-4" /> Invite to speak
@@ -317,7 +317,7 @@ export default function BioPage() {
 
             <div className="mt-10">
               <a
-                href="mailto:hello@frankx.ai?subject=Speaking%20invitation"
+                href="mailto:frank@frankx.ai?subject=Speaking%20invitation"
                 className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
               >
                 Invite me to speak <ArrowRight className="h-4 w-4" />
@@ -488,10 +488,10 @@ export default function BioPage() {
               For speaking, advisory, press, partnerships, or anything else that deserves a real reply.
             </p>
             <a
-              href="mailto:hello@frankx.ai"
+              href="mailto:frank@frankx.ai"
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90"
             >
-              <Mail className="h-4 w-4" /> hello@frankx.ai
+              <Mail className="h-4 w-4" /> frank@frankx.ai
             </a>
           </div>
         </section>

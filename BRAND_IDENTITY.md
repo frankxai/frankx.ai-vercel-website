@@ -77,7 +77,7 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. O
 | Type | Value | Purpose |
 |------|-------|---------|
 | **Primary Website** | `https://frankx.ai` | Main hub for all FrankX content & products |
-| **Email (Primary)** | `hello@frankx.ai` | General inquiries & collaboration |
+| **Email (Primary)** | `frank@frankx.ai` | General inquiries & collaboration |
 | **Email (Personal)** | *(Keep private if preferred)* | Personal communication only |
 
 ---
@@ -232,7 +232,7 @@ Translate Frank's musician-technologist and enterprise AI experience into langua
 - LinkedIn: `https://www.linkedin.com/in/frank-x-riemer/`
 - Instagram: `https://www.instagram.com/frank_riemer/`
 - Suno: `https://suno.com/@frankx`
-- Email: `hello@frankx.ai`
+- Email: `frank@frankx.ai`
 
 **About Page**
 - All social links + full bio
@@ -341,7 +341,7 @@ To make this even better, please provide:
    - Should we include GitHub in social footer?
 
 2. **Email Preferences**
-   - Is `hello@frankx.ai` the only public email?
+   - Is `frank@frankx.ai` the only public email?
    - Any other contact methods to include?
 
 3. **Profile Photos**

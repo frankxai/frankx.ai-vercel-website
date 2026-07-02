@@ -21,7 +21,7 @@ export const dynamic = 'force-dynamic'
  *
  * Environment variables:
  *   - RESEND_API_KEY (required for email + audience write)
- *   - OPERATOR_EMAIL (defaults to "hello@frankx.ai") — where notifications land
+ *   - OPERATOR_EMAIL (defaults to "frank@frankx.ai") — where notifications land
  *   - WORKSHOP_INTAKE_AUDIENCE_ID (optional) — if set, leads are also added to
  *     a Resend audience for future cohort communication
  *
@@ -60,7 +60,7 @@ const IntakeSchema = z.object({
 export type IntakePayload = z.infer<typeof IntakeSchema>
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const OPERATOR_EMAIL = process.env.OPERATOR_EMAIL || 'hello@frankx.ai'
+const OPERATOR_EMAIL = process.env.OPERATOR_EMAIL || 'frank@frankx.ai'
 const FROM_EMAIL = 'FrankX Intake <notify@mail.frankx.ai>'
 const WORKSHOP_INTAKE_AUDIENCE_ID = process.env.WORKSHOP_INTAKE_AUDIENCE_ID
 
@@ -255,7 +255,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           ok: false,
-          error: 'We hit a delivery hiccup. Please try again or email hello@frankx.ai.',
+          error: 'We hit a delivery hiccup. Please try again or email frank@frankx.ai.',
         },
         { status: 500 },
       )

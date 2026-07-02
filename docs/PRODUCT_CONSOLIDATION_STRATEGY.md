@@ -372,7 +372,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 SUPABASE_SERVICE_KEY=your_service_key
 
 RESEND_API_KEY=your_resend_key
-RESEND_FROM_EMAIL=hello@frankx.ai
+RESEND_FROM_EMAIL=frank@frankx.ai
 
 STRIPE_SECRET_KEY=your_stripe_secret
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_public

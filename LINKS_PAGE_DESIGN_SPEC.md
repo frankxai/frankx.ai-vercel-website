@@ -2433,7 +2433,7 @@ export const CANONICAL_SOCIAL_LINKS = {
   suno: 'https://suno.com/@frankx',
   github: 'https://github.com/frankxai',
   linktree: 'https://linktr.ee/frankx.ai',
-  email: 'hello@frankx.ai',
+  email: 'frank@frankx.ai',
   website: 'https://frankx.ai',
 };
 ```

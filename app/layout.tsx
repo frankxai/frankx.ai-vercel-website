@@ -11,7 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
-// import CommandPalette from '@/components/CommandPalette'
+import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
@@ -193,6 +193,7 @@ export default function RootLayout({
             <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
           </div>
           <NavigationMega />
+          <CommandPaletteProvider />
           <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>

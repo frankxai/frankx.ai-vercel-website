@@ -17,8 +17,8 @@ const CONSTRAINTS: ConstraintOption[] = [
   },
   {
     id: 'governance-pushback',
-    label: 'Governance & Pushback',
-    description: 'Task involves checking security boundaries, governance gates, or flagging self-contradictory specifications.'
+    label: 'Policy Boundaries & Pushback',
+    description: 'Task involves checking permission boundaries, safety policies, or flagging self-contradictory specifications.'
   },
   {
     id: 'complex-code',
@@ -79,7 +79,7 @@ export function TaskRoutingPlayground() {
     if (hasPushback) {
       return {
         model: 'Claude Opus 4.8',
-        reason: 'Flagged workspace governance edits and pointed out contradiction bugs in Round 2. High situational judgment.',
+        reason: 'Flagged an unauthorized workspace edit and pointed out contradiction bugs in Round 2. High situational judgment.',
         tier: 'Opus (Highest Reasoning)',
         color: 'text-amber-400',
         borderColor: 'border-amber-500/20',
@@ -103,13 +103,13 @@ export function TaskRoutingPlayground() {
 
     // Default complex task without specific formatting or pushback requirements
     return {
-      model: 'Claude Sonnet 4.6',
-      reason: 'Optimal balance of reasoning and efficiency. Excellent general driver for production agent loops.',
-      tier: 'Sonnet (Balanced Production Driver)',
-      color: 'text-blue-400',
-      borderColor: 'border-blue-500/20',
-      bg: 'bg-blue-500/5',
-      modelId: 'claude-sonnet-4-6'
+      model: 'Claude Sonnet 5',
+      reason: 'Shipped 2026-06-30. Closes most of the gap to Opus 4.8 on agentic and knowledge work at roughly 40% of the price — the default worth trying first for production agent loops.',
+      tier: 'Sonnet 5 (Balanced Production Driver)',
+      color: 'text-cyan-400',
+      borderColor: 'border-cyan-500/20',
+      bg: 'bg-cyan-500/5',
+      modelId: 'claude-sonnet-5'
     }
   }
 
@@ -136,7 +136,7 @@ const task = {
 const result = await router.execute({
   task,
   // Dynamic resolver picks ${recommendation.model} based on constraints
-  fallbackModel: 'claude-sonnet-4-6'
+  fallbackModel: 'claude-sonnet-5'
 });
 
 console.log(\`Routed to \${result.model} | Status: \${result.status}\`);`
@@ -168,7 +168,7 @@ print(f"Dynamically routed to: {response.model_name}")`
   "resolution": {
     "target_model": "${model}",
     "reasoning": "${recommendation.reason}",
-    "fallback_model": "claude-sonnet-4-6"
+    "fallback_model": "claude-sonnet-5"
   }
 }`
 
