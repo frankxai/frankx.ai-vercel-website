@@ -11,6 +11,8 @@ import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import MidPageCapture from '@/components/home/MidPageCapture'
+import ProductLadderSection from '@/components/home/ProductLadderSection'
 
 // ============================================================================
 // TYPES
@@ -159,7 +161,7 @@ function ScrollProgress() {
 // ROTATING WORD
 // ============================================================================
 
-const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+const heroWords = ['Building', 'Composing', 'Shipping', 'Creating', 'Designing']
 
 function RotatingWord() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -280,7 +282,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI Architect & Creator</span>
+                <span className="text-sm text-white/60">Agentic Founder · Building in public</span>
               </div>
 
               <h1
@@ -293,11 +295,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                Former AI architect at Oracle. 12,000+ songs with Suno.
-                630+ AI skills shipped. Everything documented.
+                I build intelligence systems, music, and an ecosystem of brands
+                in public — and document everything so you can build your own.
               </p>
               <p className="text-xs text-white/30 max-w-xl leading-relaxed">
-                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+                Previously AI Architect at Oracle. Independent project, not affiliated with Oracle.
               </p>
 
               <div className="flex items-center gap-3">
@@ -385,10 +387,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'Former AI architect at Oracle',
-  '12,000+ AI Songs Created',
+  'Agentic Founder — building in public',
+  '12,000+ AI Songs Produced',
   '630+ AI Skills Shipped',
-  'Everything Documented',
+  'Former AI Architect, Oracle',
 ]
 
 function AuthorityBar() {
@@ -440,8 +442,8 @@ const products = [
     color: 'cyan' as const,
   },
   {
-    title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    title: 'Intelligence Systems',
+    description: 'Agent orchestration, multi-model routing, production patterns. Everything I build, documented.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
@@ -650,20 +652,28 @@ function CreativeWorlds() {
           {/* Overlay text */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
             <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/70 font-medium mb-2">
-              Creative Worlds
+              Building in public
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
-              Creative Systems Lab
+              Arcanea &amp; the Ecosystem
             </h2>
             <p className="text-sm sm:text-base text-white/50 max-w-lg mb-6">
-              Experiments in AI-native storytelling, design systems, media pipelines, and autonomous creative infrastructure.
+              An ecosystem of brands being built in public — Arcanea, Starlight Intelligence, GenCreator and more.
+              Watch the architecture take shape in real time.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/map"
+                href="/universe"
                 className="inline-flex items-center gap-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-200 px-5 py-2.5 text-sm font-medium transition-colors"
               >
-                Explore the System
+                Explore the Universe
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/ecosystem"
+                className="inline-flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/60 px-5 py-2.5 text-sm font-medium transition-colors"
+              >
+                View all systems
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -906,6 +916,80 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> SEO + JSON-LD per book</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> 3 commands, 1 schema</span>
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// UNIVERSE TEASER — Brands being built in public
+// ============================================================================
+
+const featuredDomains = [
+  { name: 'Arcanea', domain: 'arcanea.ai', status: 'Stealth', color: 'text-fuchsia-400', bg: 'bg-fuchsia-500/5', border: 'border-fuchsia-500/20', tagline: 'The mythology brand. AI-native storytelling.' },
+  { name: 'Starlight Intelligence', domain: 'starlightintelligence.org', status: 'Building', color: 'text-blue-400', bg: 'bg-blue-500/5', border: 'border-blue-500/20', tagline: 'Enterprise agentic intelligence systems.' },
+  { name: 'GenCreator', domain: 'gencreator.ai', status: 'Launching', color: 'text-cyan-400', bg: 'bg-cyan-500/5', border: 'border-cyan-500/20', tagline: 'The generative creator platform.' },
+  { name: 'Agentic Income', domain: 'agenticincome.ai', status: 'Building', color: 'text-amber-400', bg: 'bg-amber-500/5', border: 'border-amber-500/20', tagline: 'Build passive income with agentic systems.' },
+]
+
+function UniverseTeaser() {
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
+        >
+          <div>
+            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/50 font-medium mb-3">
+              Building in public
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+              The Universe
+            </h2>
+            <p className="text-base text-white/45 max-w-xl">
+              An ecosystem of brands being built in public — every domain, system, and brand
+              documented as it ships.
+            </p>
+          </div>
+          <Link
+            href="/universe"
+            className="inline-flex items-center gap-2 text-sm text-amber-400 hover:text-amber-300 transition-colors flex-shrink-0"
+          >
+            View all 7 domains
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {featuredDomains.map((d, i) => (
+            <motion.div
+              key={d.domain}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.07 }}
+              className={`rounded-2xl border p-5 ${d.bg} ${d.border}`}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className={`text-xs font-mono ${d.color}`}>{d.domain}</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/40">{d.status}</span>
+              </div>
+              <h3 className="text-sm font-semibold text-white mb-1">{d.name}</h3>
+              <p className="text-xs text-white/40 leading-snug">{d.tagline}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <Link
+          href="/universe"
+          className="inline-flex items-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/60 hover:text-white px-6 h-12 text-sm font-medium transition-all"
+        >
+          Explore the full Universe
+          <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
     </section>
   )
@@ -1315,13 +1399,13 @@ function FinalCTA() {
 
           <div className="relative text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Start building.
+              Build your own.
             </h2>
             <p className="font-serif italic text-lg text-white/30 mb-2">
-              The best way to predict the future is to create it.
+              &ldquo;I create to understand. I share to teach.&rdquo;
             </p>
             <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
-              Pick your path — architecture, music, or products.
+              Intelligence systems, music, brands — everything documented so you can replicate the architecture.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1375,11 +1459,14 @@ export default function HomePageElite({
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
 
+        {/* 5b. Mid-page newsletter capture */}
+        <MidPageCapture />
+
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
-          eyebrow="Enterprise AI"
-          title="AI Architecture"
-          description="Enterprise AI systems built at Oracle. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          eyebrow="Intelligence Systems"
+          title="Agentic AI Architecture"
+          description="Multi-agent orchestration, agentic founder workflows, and production patterns — built, tested, and documented in technical depth. The systems that power Arcanea and Creator OS."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1422,11 +1509,17 @@ export default function HomePageElite({
         {/* 10b. Library OS — open-source book deep-dives */}
         <LibraryShowcase libraryBooks={libraryBooks} />
 
+        {/* 10c. Universe teaser — 3 domains + see all */}
+        <UniverseTeaser />
+
         {/* 11. Latest Articles — expanded to 6 */}
         <LatestArticles posts={latestPosts} />
 
         {/* 12. Learning Hub — 4-card grid */}
         <LearningHub />
+
+        {/* 12b. Product Ladder — full revenue spine */}
+        <ProductLadderSection />
 
         {/* 13. FRANK-Ω — Digital Twin */}
         <DigitalTwin />
