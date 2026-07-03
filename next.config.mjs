@@ -59,6 +59,15 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
+      // Suno track covers and playlist art (music inventory imageUrl fields)
+      {
+        protocol: 'https',
+        hostname: 'cdn1.suno.ai',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn2.suno.ai',
+      },
     ],
   },
   compiler: {
