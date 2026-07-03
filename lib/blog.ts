@@ -87,97 +87,44 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
-const publicDir = path.join(process.cwd(), 'public')
-
-// Index of files in the blog image directories, built once, used to recover
-// heroes whose frontmatter points at a stale/renamed filename (e.g. a bumped
-// "-hero-v7.jpg" that was later replaced by "-hero-premium.png").
-const blogImageDirs = [
-  'images/blog',
-  'images/blog/generated',
-  'images/blog/editorial/headers',
-  'images/blog/native-premium/headers',
-  'images/models',
-]
-
-let blogImageIndex: Map<string, string[]> | null = null
-function getBlogImageIndex(): Map<string, string[]> {
-  if (blogImageIndex) return blogImageIndex
-  const index = new Map<string, string[]>()
-  for (const dir of blogImageDirs) {
-    const abs = path.join(publicDir, dir)
-    try {
-      for (const file of fs.readdirSync(abs)) {
-        if (!/\.(webp|png|jpg|jpeg|avif)$/i.test(file)) continue
-        const list = index.get(dir) ?? []
-        list.push(file)
-        index.set(dir, list)
-      }
-    } catch {
-      // directory may not exist — skip
-    }
+// Themed fallback: pick the most relevant hero based on slug keywords.
+// No filesystem access — pure string matching so Turbopack can tree-shake safely.
+function themedImageFallback(slug: string): string {
+  if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
+    return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
   }
-  blogImageIndex = index
-  return index
-}
-
-function fileExists(publicPath: string): boolean {
-  try {
-    return fs.existsSync(path.join(publicDir, publicPath.replace(/^\//, '')))
-  } catch {
-    return false
+  if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
+    return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
   }
-}
-
-// Given a slug, find the best matching hero image that actually exists on disk.
-function findHeroBySlug(slug: string): string | undefined {
-  const index = getBlogImageIndex()
-  for (const dir of blogImageDirs) {
-    const files = index.get(dir)
-    if (!files) continue
-    // Prefer files that start with the slug and mention "hero"
-    const heroMatch = files.find((f) => f.startsWith(slug) && /hero/i.test(f))
-    if (heroMatch) return `/${dir}/${heroMatch}`
+  if (/agent|workflow|automation|n8n|builder|production|acos|creator-os/.test(slug)) {
+    return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
   }
-  for (const dir of blogImageDirs) {
-    const files = index.get(dir)
-    if (!files) continue
-    const slugMatch = files.find((f) => f.startsWith(slug))
-    if (slugMatch) return `/${dir}/${slugMatch}`
+  if (/code|coding|cursor|windsurf|claude-code/.test(slug)) {
+    return '/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png'
   }
-  return undefined
+  if (/soul|conscious|higher-self|frequency|music|spiritual/.test(slug)) {
+    return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
+  }
+  if (/creator|golden-age|independent|solopreneur/.test(slug)) {
+    return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
+  }
+  return blogImageFallback
 }
 
 function resolveBlogImage(image: unknown, slug: string): string | undefined {
-  const themedFallback = (): string => {
-    if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
-      return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
-    }
-    if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
-      return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
-    }
-    if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
-      return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
-    }
-    if (/code|coding|cursor|windsurf/.test(slug)) {
-      return '/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png'
-    }
-    if (/skill|coe|note|knowledge/.test(slug)) {
-      return '/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp'
-    }
-    return blogImageFallback
-  }
-
+  // No image in frontmatter — use themed fallback based on slug
   if (typeof image !== 'string' || image.trim() === '') {
-    // No image in frontmatter — try to recover one by slug, else themed fallback
-    return findHeroBySlug(slug) ?? themedFallback()
+    return themedImageFallback(slug)
   }
+  // External or relative — use as-is
   if (!image.startsWith('/')) return image
 
-  // Frontmatter points at a local path. If it exists, use it. Otherwise (missing
-  // or flagged pending) recover the real hero for this slug, then a themed image.
-  if (fileExists(image) && !pendingBlogHeroPaths.has(image)) return image
-  return findHeroBySlug(slug) ?? themedFallback()
+  // If the frontmatter image path is flagged as a pending/placeholder, use themed fallback
+  if (pendingBlogHeroPaths.has(image)) return themedImageFallback(slug)
+
+  // Otherwise trust the frontmatter path — it will resolve to a 404 image at runtime
+  // only if the file was renamed, but that is preferable to Turbopack bundling all of /public
+  return image
 }
 
 function buildBlogPost(slug: string, data: Record<string, any>, content: string): BlogPost {
