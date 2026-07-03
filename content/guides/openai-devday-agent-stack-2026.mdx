@@ -1,0 +1,125 @@
+---
+title: "OpenAI DevDay Agent Stack 2026"
+description: "A current, source-grounded OpenAI DevDay guide for choosing Codex, Agents SDK, Apps SDK, Workspace Agents, ChatGPT agent mode, and legacy Agent Builder migration paths."
+date: "2026-07-03"
+author: "Frank"
+category: "AI Development"
+tags: ["openai", "devday", "codex", "agents sdk", "chatgpt", "apps sdk", "ai agents"]
+image: "/hero-intelligence-atlas.png"
+---
+
+# OpenAI DevDay Agent Stack 2026
+
+OpenAI DevDay 2025 was not just a launch event. For builders, it was the clearest map of how OpenAI wants software, agents, apps, and media workflows to fit together.
+
+The important July 2026 update is simple: do not start a new production workflow on hosted Agent Builder or hosted Evals. OpenAI has said those products are winding down and will be unavailable after November 30, 2026. Treat them as migration references, then route new work toward Codex, Agents SDK, Apps SDK, Workspace Agents, or ChatGPT agent mode.
+
+<Callout type="warning">
+This guide is updated for July 3, 2026. Always check OpenAI's current docs before committing to a production architecture.
+</Callout>
+
+## The Current OpenAI Builder Map
+
+Use this stack as the practical decision layer:
+
+| Surface | Best use | Avoid when |
+| --- | --- | --- |
+| Codex | Software engineering, code review, repo tasks, local/IDE/cloud delegation | The workflow is not primarily code or repository work |
+| Agents SDK | Code-first agents with owned orchestration, tools, state, approvals, and observability | You only need one model call plus simple tools |
+| Apps SDK | Interactive apps inside ChatGPT | The product needs to live mostly outside ChatGPT |
+| Workspace Agents | Repeatable team workflows in ChatGPT | You need deep custom app orchestration |
+| ChatGPT agent mode | Operator tasks across browser, files, connectors, and analysis | You need deterministic backend execution |
+| Agent Builder and hosted Evals | Migration reference for existing workflows | Any fresh production foundation |
+
+## Watch These First
+
+Start with the official sessions that give the highest leverage per minute.
+
+<YouTubeEmbed id="hS1YqcewH0c" title="OpenAI DevDay 2025 Opening Keynote" />
+
+<YouTubeEmbed id="r1R3RDPvPeg" title="OpenAI Developer State Of The Union" />
+
+<YouTubeEmbed id="Gr41tYOzE20" title="Shipping with Codex" />
+
+<YouTubeEmbed id="KplSDxYv9xU" title="Orchestrating Agents at Scale" />
+
+<YouTubeEmbed id="ER9Hqly28Qw" title="Model Behavior: The Science of AI Style" />
+
+For the full curated playlist, use the [OpenAI DevDay Agent Stack learning path](/learn/openai-devday-agent-stack).
+
+## How To Choose Your First Build
+
+Pick one workflow with all five of these properties:
+
+1. It recurs weekly.
+2. It has clear inputs.
+3. It needs judgment, not just automation.
+4. It has a visible output.
+5. Failure can be caught before it reaches a customer or public channel.
+
+Good first builds include:
+
+- A support triage brief that drafts next actions but waits for approval.
+- A content research assistant that turns official sources into a cited outline.
+- A repo maintenance agent that updates docs and opens a reviewed pull request.
+- A creator production assistant that converts one idea into scripts, briefs, and publishing tasks.
+- A data QA assistant that compares spreadsheets, flags anomalies, and writes a human-readable report.
+
+## The FrankX Decision Rule
+
+If the work ends in code, start with Codex.
+
+If the work becomes a product feature, start with Agents SDK.
+
+If the work belongs inside ChatGPT, start with Apps SDK or Workspace Agents.
+
+If the work is personal or operator-style, start with ChatGPT agent mode.
+
+If the work is in Agent Builder already, export and migrate it.
+
+## Why This Matters For Creators
+
+The best creators are becoming systems designers. They do not just ask ChatGPT for isolated outputs. They design repeatable workflows: source intake, prompt contracts, review gates, media generation, publishing, feedback, and community learning.
+
+That is why the free resource pack exists:
+
+- [OpenAI Agent Builder Workbook](/resources/openai-agent-builder-workbook)
+- [Codex mastery path](/learn/codex-mastery)
+- [ChatGPT mastery path](/learn/chatgpt-mastery)
+- [GenCreator community path](/gencreator)
+
+The goal is not to make everyone an API engineer. The goal is to help creators and builders know when a workflow should be a prompt, a custom GPT, a Codex task, an app, an agent, or a community operating ritual.
+
+## Official Sources
+
+Use these as primary references:
+
+- [OpenAI DevDay](https://openai.com/devday/)
+- [Codex developer docs](https://developers.openai.com/codex)
+- [Agents SDK guide](https://developers.openai.com/api/docs/guides/agents)
+- [Apps SDK docs](https://developers.openai.com/apps-sdk)
+- [Workspace Agents docs](https://developers.openai.com/workspace-agents)
+- [Agent Builder migration guide](https://developers.openai.com/api/docs/guides/agent-builder/migrate-from-agent-builder)
+- [ChatGPT Workspace Agents help](https://help.openai.com/en/articles/11752874-chatgpt-workspace-agents)
+
+## FAQ
+
+### Should I use Agent Builder in 2026?
+
+Not for new production work. OpenAI has announced Agent Builder and hosted Evals are winding down. Use Agents SDK for code-first workflows or Workspace Agents for natural-language team workflows.
+
+### What is the best first OpenAI DevDay video?
+
+Watch Developer State Of The Union first if you need the platform map. Watch Shipping with Codex first if you are a developer. Watch Orchestrating Agents at Scale first if you are designing production workflows.
+
+### Where does ChatGPT fit now?
+
+ChatGPT remains the fastest operator and thinking surface. Use it for exploratory work, files, browsing, connectors, and agent mode tasks. Move to Codex or Agents SDK when the workflow becomes repeatable, code-shaped, or production-critical.
+
+### What should creators do with this?
+
+Pick one creator workflow, write the agent contract, build a small demo, then bring the useful pattern into the GenCreator community path so others can learn, remix, and improve it.
+
+## Next Step
+
+Download the [OpenAI Agent Builder Workbook](/resources/openai-agent-builder-workbook), then work through one real build. Small, scoped, useful, and reviewed beats a giant abstract agent every time.

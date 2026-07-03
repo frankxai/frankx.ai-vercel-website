@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "task": "OpenAI DevDay learning path and workbook funnel",
+  "surface": "frankx.ai learning, guide, resources, downloads, and lead magnet pages",
+  "audience": "Creators, AI architects, operators, and founders choosing the current OpenAI builder surface",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "Premium Intelligence Web OS",
+    "PREMIUM_ASSET_STANDARD.md"
+  ],
+  "references": [
+    "https://openai.com/devday/",
+    "https://developers.openai.com/codex",
+    "https://developers.openai.com/api/docs/guides/agents",
+    "https://developers.openai.com/apps-sdk",
+    "https://developers.openai.com/workspace-agents"
+  ],
+  "direction": {
+    "keep": "Utility-first, source-grounded, technical, creator-friendly",
+    "avoid": "Fake product UI, inflated claims, abstract decorative filler, stale Agent Builder guidance",
+    "signature": "FrankX dark intelligence surface with emerald/cyan emphasis and artifact-led conversion",
+    "system": "Learning path, AEO guide, lead magnet resource page, downloadable Markdown pack, sitemap wiring"
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "browser-capture",
+    "provenance": "owned",
+    "why_premium": "The premium asset is the exact usable resource system: source-backed curriculum, workbook, cheat sheet, and Notion companion.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "/learn/openai-devday-agent-stack",
+      "kind": "learning path",
+      "inspected": true
+    },
+    {
+      "path_or_url": "/guides/openai-devday-agent-stack-2026",
+      "kind": "seo guide",
+      "inspected": true
+    },
+    {
+      "path_or_url": "/resources/openai-agent-builder-workbook",
+      "kind": "lead magnet page",
+      "inspected": true
+    },
+    {
+      "path_or_url": "/downloads/openai-agent-builder-workbook-2026.md",
+      "kind": "downloadable workbook",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "notes": "Tier C is intentional for an exact resource/system asset."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "notes": "Desktop and mobile screenshots inspected for the learning path, guide, resource page, and direct download fallback."
+    },
+    {
+      "name": "source-currency",
+      "status": "pass",
+      "notes": "Current official OpenAI sources were used."
+    },
+    {
+      "name": "implementation-gates",
+      "status": "pass",
+      "notes": "Content check, static link check, scoped lint, type check, and CI production build passed."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "Ship-ready after local visual QA, source review, direct-download verification, and implementation gates."
+  },
+  "decision": "ship"
+}

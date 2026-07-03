@@ -89,7 +89,7 @@ const GUIDE_CATEGORIES = [
     icon: Code,
     color: 'from-rose-500/20 to-red-500/20',
     iconColor: 'text-rose-400',
-    slugs: ['claude-code-getting-started', 'multi-agent-orchestration', 'ai-automation-patterns']
+    slugs: ['openai-devday-agent-stack-2026', 'claude-code-getting-started', 'multi-agent-orchestration', 'ai-automation-patterns']
   }
 ]
 

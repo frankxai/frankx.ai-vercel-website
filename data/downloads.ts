@@ -28,6 +28,19 @@ export type DownloadItem = {
 
 export const downloadsList: DownloadItem[] = [
   {
+    id: 'openai-agent-builder-workbook',
+    title: 'OpenAI Agent Builder Workbook',
+    subtitle: 'DevDay-to-production field guide',
+    description: 'A current 2026 pack for choosing Codex, Agents SDK, Apps SDK, Workspace Agents, or ChatGPT agent mode, with migration notes for legacy Agent Builder and Evals.',
+    category: 'dev',
+    previewUrl: '/resources/openai-agent-builder-workbook',
+    features: ['Official DevDay Map', 'Agent Surface Matrix', 'Notion Companion', 'Cheat Sheets'],
+    variant: 'emerald',
+    icon: 'terminal',
+    image: '/hero-intelligence-atlas.png',
+    cta: 'Get the Free Pack',
+  },
+  {
     id: 'agentic-creator-os',
     title: 'Agentic Creator OS',
     subtitle: 'Universal AI Agent Operating System',

@@ -121,6 +121,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/resources/openai-agent-builder-workbook', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/guides', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
@@ -167,6 +168,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Learning and courses
   const learningPages = [
+    '/learn/openai-devday-agent-stack',
+    '/learn/codex-mastery',
+    '/learn/chatgpt-mastery',
+    '/learn/claude-mastery',
     '/courses',
     '/courses/conscious-ai-foundations',
     '/courses/agent-architecture-systems',

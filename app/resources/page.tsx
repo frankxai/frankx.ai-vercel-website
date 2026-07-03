@@ -17,6 +17,7 @@ import {
   Sparkles,
   Star,
   Wand2,
+  Zap,
 } from 'lucide-react'
 
 function ResourcesBackground() {
@@ -112,6 +113,12 @@ const productItems = [
 ]
 
 const foundationItems = [
+  {
+    name: 'OpenAI Agent Workbook',
+    description: 'DevDay videos, agent stack cheat sheets, and a Notion-ready build guide.',
+    href: '/resources/openai-agent-builder-workbook',
+    icon: Bot,
+  },
   {
     name: 'Free Playbooks',
     description: 'Downloadable AI playbooks to get started fast.',
@@ -279,6 +286,12 @@ const learningItems = [
     description: 'Essays, experiments, and launch notes.',
     href: '/blog',
     icon: BookOpen,
+  },
+  {
+    name: 'OpenAI DevDay Path',
+    description: 'Official OpenAI sessions translated into a practical builder curriculum.',
+    href: '/learn/openai-devday-agent-stack',
+    icon: Zap,
   },
   {
     name: 'Music Lab',

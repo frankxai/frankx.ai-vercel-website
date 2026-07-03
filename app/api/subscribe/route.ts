@@ -43,6 +43,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'ikigai-branding': {
     topics: [TOPICS.newsletter],
   },
+  'openai-agent-workbook': {
+    topics: [TOPICS.newsletter, TOPICS['product-updates']],
+  },
   all: {
     topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']],
   },
@@ -75,6 +78,44 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
         // Resend accepts `text` for plain-text only emails — exactly what the
         // founders-tier waitlist confirmation should be.
         text: innerCircle.plainText,
+      }),
+    })
+    return
+  }
+
+  if (listType === 'openai-agent-workbook') {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Frank <frank@mail.frankx.ai>',
+        to: email,
+        subject: 'Your OpenAI Agent Builder Workbook',
+        text: `Hey ${name || 'Creator'},
+
+Here is the OpenAI Agent Builder Workbook pack:
+
+Workbook:
+https://frankx.ai/downloads/openai-agent-builder-workbook-2026.md
+
+Cheat sheet:
+https://frankx.ai/downloads/openai-agent-builder-cheatsheet-2026.md
+
+Notion-ready guide:
+https://frankx.ai/downloads/openai-agent-notion-template.md
+
+Start with the official OpenAI DevDay path:
+https://frankx.ai/learn/openai-devday-agent-stack
+
+Then bring your best build plan into the GenCreator community path:
+https://frankx.ai/gencreator
+
+Small but important 2026 note: OpenAI has announced Agent Builder and hosted Evals are winding down, so the workbook frames those as migration references and routes new production work toward Codex, Agents SDK, Apps SDK, Workspace Agents, and ChatGPT agent mode.
+
+- Frank`,
       }),
     })
     return
@@ -175,6 +216,8 @@ export async function POST(request: NextRequest) {
       success: true,
       message: listType === 'music-lab'
         ? 'Check your email for your free prompts!'
+        : listType === 'openai-agent-workbook'
+        ? 'Check your email for the workbook pack.'
         : 'Successfully subscribed!',
       subscriber: data.id,
     })
