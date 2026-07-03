@@ -17,13 +17,13 @@ AI is not only a tool stack. It is a family operating system: agents, assets, le
 - Keep: dark FrankX editorial field-guide feel, exact diagrams, emerald/cyan tech spectrum with restrained amber risk signal.
 - Avoid: generated text artifacts, logos, stock people, generic AI brains, decorative node-cloud filler, crypto hype, and financial-advice framing.
 - Signature: one governed family AI core surrounded by learning, agents, assets, and protection.
-- Asset tier: Tier C exact vector/system diagrams, because the article needs labels, maps, and source-grounded clarity more than cinematic generated imagery.
+- Asset tier: Tier B raster package. Use a premium built-in imagegen hero for the emotional/header layer, then composite exact production typography. Use exact PNG diagrams for source-grounded labels and maps.
 
 ## Production Notes
 
-- Hero and social cards are repo-native SVGs.
-- Four article graphics are exact SVG diagrams.
-- No external media or third-party art was used.
+- Hero and social cards are imagegen-derived PNGs with exact rendered typography.
+- Four article graphics are exact PNG diagrams.
+- No stock media or third-party art was used.
 - No motion or 3D is required for this article surface.
 - Financial and crypto areas stay educational and link to regulator/investor education sources.
 

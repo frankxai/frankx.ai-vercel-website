@@ -2,10 +2,10 @@
 slug: family-ai-operating-system-agents-assets-agi
 title: "Family AI Operating System: Agents, Assets, AGI"
 angle: family-founder
-hero: "/images/blog/visual-system/family-ai-operating-system-agents-assets-agi-hero.svg"
-wide: "/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.svg"
-square: "/images/social/blog/family-ai-operating-system-agents-assets-agi/square.svg"
-vertical: "/images/social/blog/family-ai-operating-system-agents-assets-agi/vertical.svg"
+hero: "/images/blog/visual-system/family-ai-operating-system-agents-assets-agi-hero.png"
+wide: "/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.png"
+square: "/images/social/blog/family-ai-operating-system-agents-assets-agi/square.png"
+vertical: "/images/social/blog/family-ai-operating-system-agents-assets-agi/vertical.png"
 qualityScore: 27
 qualityTier: flagship
 reviewStatus: draft

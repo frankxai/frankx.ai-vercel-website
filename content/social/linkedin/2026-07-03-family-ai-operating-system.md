@@ -6,9 +6,9 @@ pillar: agentic-ai
 arc: family-operating-system
 hook: "AI is not just a tool decision. It is a family operating system decision."
 cta: "Read the guide on frankx.ai"
-visual: "/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.svg"
-image_prompt: "Code-rendered FrankX editorial social card, obsidian background, emerald and cyan signal lines, exact text overlay: Family AI Operating System."
-generator: repo-native-svg
+visual: "/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.png"
+image_prompt: "Built-in imagegen cinematic family AI command-table scene, with exact Chromium-rendered FrankX headline typography composited into the final PNG."
+generator: imagegen-plus-production-type
 tags:
   - agentic-ai
   - family-ai
@@ -32,7 +32,7 @@ I wrote a new FrankX guide mapping:
 - the practical agent stack: ChatGPT, OpenAI, Codex, Claude Code, Grok Build, Antigravity, Hermes Agent, Base, GitHub, and Vercel
 - the asset stack: property, business assets, cash, stocks, bonds, ETFs, crypto, NFTs, apps, dapps, and IP
 - the human safety layer: children, privacy, custody, passwords, synthetic media, regulated claims, and human review
-- the honest production process behind the article: source review, exact graphics, visual evidence, audits, and editorial responsibility
+- the honest production process behind the article: source review, imagegen hero, exact PNG graphics, visual evidence, audits, and editorial responsibility
 
 The thesis is simple:
 
