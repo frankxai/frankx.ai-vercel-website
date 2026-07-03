@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Family AI Operating System: Agents, Assets, AGI</title>
+  <desc id="desc">A dark FrankX editorial hero showing a family and founder AI operating system with learning, assets, agents, safety, and community layers.</desc>
+  <defs>
+    <radialGradient id="emeraldGlow" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/>
+      <stop offset="45%" stop-color="#06b6d4" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0a0a0b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#17201f" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#111827" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#0a0a0b" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .bg { fill: #0a0a0b; }
+      .grid { stroke: #ffffff; stroke-opacity: 0.045; stroke-width: 1; }
+      .panel { fill: url(#panel); stroke: #ffffff; stroke-opacity: 0.12; stroke-width: 1.2; }
+      .hair { stroke: #ffffff; stroke-opacity: 0.14; stroke-width: 1; }
+      .signal { stroke: url(#signal); stroke-width: 3; fill: none; stroke-linecap: round; }
+      .muted { fill: #94a3b8; font: 500 22px Inter, Arial, sans-serif; letter-spacing: 2px; }
+      .title { fill: #f8fafc; font: 700 62px Poppins, Inter, Arial, sans-serif; letter-spacing: 0; }
+      .deck { fill: #cbd5e1; font: 400 26px Inter, Arial, sans-serif; }
+      .label { fill: #e2e8f0; font: 700 20px Inter, Arial, sans-serif; }
+      .small { fill: #94a3b8; font: 500 15px Inter, Arial, sans-serif; }
+      .mono { fill: #6ee7b7; font: 700 14px "JetBrains Mono", Consolas, monospace; letter-spacing: 1px; }
+      .amber { fill: #f59e0b; }
+      .cyan { fill: #06b6d4; }
+      .emerald { fill: #10b981; }
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+  <rect width="1600" height="900" fill="url(#emeraldGlow)"/>
+  <g opacity="0.8">
+    <path class="grid" d="M120 0v900M280 0v900M440 0v900M600 0v900M760 0v900M920 0v900M1080 0v900M1240 0v900M1400 0v900"/>
+    <path class="grid" d="M0 110h1600M0 230h1600M0 350h1600M0 470h1600M0 590h1600M0 710h1600M0 830h1600"/>
+  </g>
+
+  <g transform="translate(110 102)">
+    <text class="muted" x="0" y="0">FRANKX FIELD GUIDE</text>
+    <text class="title" x="0" y="82">Family AI Operating System</text>
+    <text class="deck" x="2" y="132">Agents, assets, safety, and AGI-ready culture for families and founders.</text>
+  </g>
+
+  <g transform="translate(980 96)">
+    <rect class="panel" x="0" y="0" width="430" height="126" rx="24"/>
+    <text class="mono" x="34" y="42">PUBLISH PIPELINE</text>
+    <text class="small" x="34" y="76">Sources -> diagrams -> audits -> preview</text>
+    <text class="small" x="34" y="102">Human editorial responsibility stays in front.</text>
+  </g>
+
+  <g transform="translate(220 274)">
+    <rect class="panel" x="0" y="0" width="1160" height="468" rx="34"/>
+    <circle cx="580" cy="234" r="126" fill="#0f1f1a" stroke="#10b981" stroke-opacity="0.55" stroke-width="2"/>
+    <circle cx="580" cy="234" r="74" fill="#111827" stroke="#06b6d4" stroke-opacity="0.5" stroke-width="2"/>
+    <text class="label" x="510" y="222">FAMILY</text>
+    <text class="label" x="496" y="250">AI CORE</text>
+    <text class="small" x="498" y="283">rules + memory</text>
+
+    <path class="signal" d="M580 108 C470 118 377 164 306 245"/>
+    <path class="signal" d="M580 108 C705 116 802 171 865 260"/>
+    <path class="signal" d="M465 290 C368 337 286 356 195 332"/>
+    <path class="signal" d="M696 291 C785 344 887 364 986 334"/>
+    <path class="signal" d="M580 360 C512 418 456 434 380 422"/>
+    <path class="signal" d="M580 360 C665 420 743 438 830 420"/>
+
+    <g transform="translate(120 70)">
+      <rect class="panel" x="0" y="0" width="260" height="126" rx="22"/>
+      <text class="label" x="28" y="42">Learning</text>
+      <text class="small" x="28" y="72">weekly labs</text>
+      <text class="small" x="28" y="96">source checks</text>
+    </g>
+    <g transform="translate(780 70)">
+      <rect class="panel" x="0" y="0" width="260" height="126" rx="22"/>
+      <text class="label" x="28" y="42">Agents</text>
+      <text class="small" x="28" y="72">Codex, Claude, Grok</text>
+      <text class="small" x="28" y="96">workflows with review</text>
+    </g>
+    <g transform="translate(40 272)">
+      <rect class="panel" x="0" y="0" width="300" height="126" rx="22"/>
+      <text class="label" x="28" y="42">Assets</text>
+      <text class="small" x="28" y="72">property, business, IP</text>
+      <text class="small" x="28" y="96">cash, ETFs, crypto literacy</text>
+    </g>
+    <g transform="translate(820 272)">
+      <rect class="panel" x="0" y="0" width="300" height="126" rx="22"/>
+      <text class="label" x="28" y="42">Protection</text>
+      <text class="small" x="28" y="72">privacy, custody, claims</text>
+      <text class="small" x="28" y="96">children, keys, records</text>
+    </g>
+  </g>
+
+  <g transform="translate(110 794)">
+    <rect x="0" y="0" width="1380" height="46" rx="23" fill="#ffffff" fill-opacity="0.055" stroke="#ffffff" stroke-opacity="0.1"/>
+    <circle cx="33" cy="23" r="7" class="emerald"/>
+    <text class="small" x="58" y="29">Learn -> build -> verify -> protect -> teach -> compound.</text>
+    <text class="small" x="1110" y="29">Educational, not financial advice.</text>
+  </g>
+</svg>

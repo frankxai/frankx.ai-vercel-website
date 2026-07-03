@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">Platform and Agent Harness Interconnect Map</title>
+  <desc id="desc">A diagram showing how major AI, code, onchain, and publishing platforms connect through Frank's agent harness and public evidence layer.</desc>
+  <defs>
+    <linearGradient id="signal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="44%" r="72%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0a0a0b" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .bg { fill: #0a0a0b; }
+      .panel { fill: #111827; stroke: #ffffff; stroke-opacity: 0.12; stroke-width: 1.2; }
+      .hub { fill: #0f1f1a; stroke: #10b981; stroke-opacity: 0.6; stroke-width: 2; }
+      .edge { stroke: url(#signal); stroke-width: 2.6; stroke-linecap: round; fill: none; opacity: 0.72; }
+      .grid { stroke: #ffffff; stroke-opacity: 0.045; stroke-width: 1; }
+      .eyebrow { fill: #6ee7b7; font: 700 16px "JetBrains Mono", Consolas, monospace; letter-spacing: 2px; }
+      .title { fill: #f8fafc; font: 700 48px Poppins, Inter, Arial, sans-serif; }
+      .deck { fill: #cbd5e1; font: 400 22px Inter, Arial, sans-serif; }
+      .h { fill: #f8fafc; font: 700 22px Inter, Arial, sans-serif; }
+      .body { fill: #94a3b8; font: 500 16px Inter, Arial, sans-serif; }
+      .tiny { fill: #64748b; font: 600 12px "JetBrains Mono", Consolas, monospace; letter-spacing: 1px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1400" height="980"/>
+  <rect width="1400" height="980" fill="url(#glow)"/>
+  <path class="grid" d="M96 0v980M256 0v980M416 0v980M576 0v980M736 0v980M896 0v980M1056 0v980M1216 0v980"/>
+  <path class="grid" d="M0 120h1400M0 260h1400M0 400h1400M0 540h1400M0 680h1400M0 820h1400"/>
+
+  <text class="eyebrow" x="90" y="82">INFOGENIUS GRAPHIC 02</text>
+  <text class="title" x="90" y="145">Platform Interconnect</text>
+  <text class="deck" x="92" y="190">Each tool gets a job, a data boundary, and a verification route.</text>
+
+  <g transform="translate(498 366)">
+    <rect class="hub" width="404" height="214" rx="30"/>
+    <text class="tiny" x="42" y="50">CONTROL LAYER</text>
+    <text class="h" x="42" y="90">Frank's Agent Harness</text>
+    <text class="body" x="42" y="126">AGENTS.md, skills, prompts,</text>
+    <text class="body" x="42" y="153">tests, source review, publish gates</text>
+    <text class="body" x="42" y="181">and a public evidence trail.</text>
+  </g>
+
+  <path class="edge" d="M498 428 C396 350 284 315 170 322"/>
+  <path class="edge" d="M498 456 C390 438 285 436 170 452"/>
+  <path class="edge" d="M498 502 C394 574 280 616 170 622"/>
+  <path class="edge" d="M902 428 C1004 350 1116 315 1230 322"/>
+  <path class="edge" d="M902 456 C1010 438 1115 436 1230 452"/>
+  <path class="edge" d="M902 502 C1006 574 1120 616 1230 622"/>
+  <path class="edge" d="M700 580 C700 662 700 722 700 790"/>
+
+  <g transform="translate(84 254)">
+    <rect class="panel" width="306" height="132" rx="22"/>
+    <text class="tiny" x="26" y="34">REASONING + WRITING</text>
+    <text class="h" x="26" y="70">ChatGPT / OpenAI</text>
+    <text class="body" x="26" y="100">strategy, synthesis, drafting</text>
+  </g>
+  <g transform="translate(84 414)">
+    <rect class="panel" width="306" height="132" rx="22"/>
+    <text class="tiny" x="26" y="34">CODEBASE WORK</text>
+    <text class="h" x="26" y="70">Codex + Claude Code</text>
+    <text class="body" x="26" y="100">edits, tests, review, PRs</text>
+  </g>
+  <g transform="translate(84 584)">
+    <rect class="panel" width="306" height="132" rx="22"/>
+    <text class="tiny" x="26" y="34">ALT AGENT LANES</text>
+    <text class="h" x="26" y="70">Grok Build / Antigravity</text>
+    <text class="body" x="26" y="100">terminal agents and orchestration</text>
+  </g>
+
+  <g transform="translate(1010 254)">
+    <rect class="panel" width="306" height="132" rx="22"/>
+    <text class="tiny" x="26" y="34">CONTINUITY</text>
+    <text class="h" x="26" y="70">Hermes Agent</text>
+    <text class="body" x="26" y="100">message and terminal bridge</text>
+  </g>
+  <g transform="translate(1010 414)">
+    <rect class="panel" width="306" height="132" rx="22"/>
+    <text class="tiny" x="26" y="34">ONCHAIN LITERACY</text>
+    <text class="h" x="26" y="70">Base + dapps</text>
+    <text class="body" x="26" y="100">payments, wallets, tokens, apps</text>
+  </g>
+  <g transform="translate(1010 584)">
+    <rect class="panel" width="306" height="132" rx="22"/>
+    <text class="tiny" x="26" y="34">PUBLISHING</text>
+    <text class="h" x="26" y="70">GitHub + Vercel</text>
+    <text class="body" x="26" y="100">history, previews, live site</text>
+  </g>
+
+  <g transform="translate(470 790)">
+    <rect class="panel" width="460" height="104" rx="24"/>
+    <text class="tiny" x="34" y="36">PUBLIC PROOF</text>
+    <text class="h" x="34" y="70">Starlight + agentic OS repos</text>
+  </g>
+</svg>

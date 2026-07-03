@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">Human Capability and Safety Loop</title>
+  <desc id="desc">A FrankX diagram showing the loop learn, build, verify, protect, teach, and compound with safety controls around it.</desc>
+  <defs>
+    <linearGradient id="loop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="72%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0a0a0b" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .bg { fill: #0a0a0b; }
+      .panel { fill: #111827; stroke: #ffffff; stroke-opacity: 0.12; stroke-width: 1.2; }
+      .node { fill: #0f172a; stroke: #ffffff; stroke-opacity: 0.16; stroke-width: 1.2; }
+      .ring { fill: none; stroke: url(#loop); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 250 46; }
+      .grid { stroke: #ffffff; stroke-opacity: 0.045; stroke-width: 1; }
+      .eyebrow { fill: #6ee7b7; font: 700 16px "JetBrains Mono", Consolas, monospace; letter-spacing: 2px; }
+      .title { fill: #f8fafc; font: 700 48px Poppins, Inter, Arial, sans-serif; }
+      .deck { fill: #cbd5e1; font: 400 22px Inter, Arial, sans-serif; }
+      .h { fill: #f8fafc; font: 700 22px Inter, Arial, sans-serif; }
+      .body { fill: #94a3b8; font: 500 16px Inter, Arial, sans-serif; }
+      .tiny { fill: #64748b; font: 600 12px "JetBrains Mono", Consolas, monospace; letter-spacing: 1px; }
+      .mono { fill: #6ee7b7; font: 700 13px "JetBrains Mono", Consolas, monospace; letter-spacing: 1px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1400" height="980"/>
+  <rect width="1400" height="980" fill="url(#glow)"/>
+  <path class="grid" d="M96 0v980M256 0v980M416 0v980M576 0v980M736 0v980M896 0v980M1056 0v980M1216 0v980"/>
+  <path class="grid" d="M0 120h1400M0 260h1400M0 400h1400M0 540h1400M0 680h1400M0 820h1400"/>
+
+  <text class="eyebrow" x="90" y="82">INFOGENIUS GRAPHIC 04</text>
+  <text class="title" x="90" y="145">Human Capability Safety Loop</text>
+  <text class="deck" x="92" y="190">The more capable the tools become, the more disciplined the humans need to be.</text>
+
+  <g transform="translate(360 250)">
+    <circle class="ring" cx="340" cy="340" r="254"/>
+    <circle cx="340" cy="340" r="138" fill="#111827" stroke="#06b6d4" stroke-opacity="0.48" stroke-width="2"/>
+    <text class="mono" x="264" y="314">HUMAN FLOOR</text>
+    <text class="h" x="244" y="350">judgment, ethics,</text>
+    <text class="h" x="252" y="382">taste, security</text>
+  </g>
+
+  <g transform="translate(598 226)">
+    <rect class="node" width="204" height="92" rx="20"/>
+    <text class="h" x="32" y="38">Learn</text>
+    <text class="body" x="32" y="66">ask better questions</text>
+  </g>
+  <g transform="translate(922 406)">
+    <rect class="node" width="204" height="92" rx="20"/>
+    <text class="h" x="32" y="38">Build</text>
+    <text class="body" x="32" y="66">turn work into assets</text>
+  </g>
+  <g transform="translate(922 676)">
+    <rect class="node" width="204" height="92" rx="20"/>
+    <text class="h" x="32" y="38">Verify</text>
+    <text class="body" x="32" y="66">source before trust</text>
+  </g>
+  <g transform="translate(598 804)">
+    <rect class="node" width="204" height="92" rx="20"/>
+    <text class="h" x="32" y="38">Protect</text>
+    <text class="body" x="32" y="66">privacy, keys, people</text>
+  </g>
+  <g transform="translate(274 676)">
+    <rect class="node" width="204" height="92" rx="20"/>
+    <text class="h" x="32" y="38">Teach</text>
+    <text class="body" x="32" y="66">share the lesson</text>
+  </g>
+  <g transform="translate(274 406)">
+    <rect class="node" width="204" height="92" rx="20"/>
+    <text class="h" x="32" y="38">Compound</text>
+    <text class="body" x="32" y="66">write the playbook</text>
+  </g>
+
+  <g transform="translate(92 270)">
+    <rect class="panel" width="240" height="94" rx="22"/>
+    <text class="tiny" x="26" y="34">CONTROL</text>
+    <text class="body" x="26" y="62">No private docs in</text>
+    <text class="body" x="26" y="82">random tools.</text>
+  </g>
+  <g transform="translate(1068 270)">
+    <rect class="panel" width="240" height="94" rx="22"/>
+    <text class="tiny" x="26" y="34">CONTROL</text>
+    <text class="body" x="26" y="62">No money movement</text>
+    <text class="body" x="26" y="82">without review.</text>
+  </g>
+  <g transform="translate(92 820)">
+    <rect class="panel" width="240" height="94" rx="22"/>
+    <text class="tiny" x="26" y="34">CONTROL</text>
+    <text class="body" x="26" y="62">Synthetic media gets</text>
+    <text class="body" x="26" y="82">verified before action.</text>
+  </g>
+  <g transform="translate(1068 820)">
+    <rect class="panel" width="240" height="94" rx="22"/>
+    <text class="tiny" x="26" y="34">CONTROL</text>
+    <text class="body" x="26" y="62">Children get rules,</text>
+    <text class="body" x="26" y="82">not unsupervised tools.</text>
+  </g>
+</svg>

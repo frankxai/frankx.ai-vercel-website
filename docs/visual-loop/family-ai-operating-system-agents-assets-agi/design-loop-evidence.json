@@ -1,0 +1,149 @@
+{
+  "version": "2026-06-23",
+  "task": "Publish the Family AI Operating System flagship article with a hero, four graphics, social cards, and announcement drafts.",
+  "surface": "FrankX blog article, blog listing card, Open Graph/social visual package, and draft announcement copy.",
+  "audience": "Family stewards, founder/operators, builders, and younger learners who need a practical map for AI tools, assets, and safety habits.",
+  "first_read": "AI should become a governed family operating system: learn, build, verify, protect, teach, and compound.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "frankx.ai-vercel-website/design.md",
+    "frankx.ai-vercel-website/taste.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX brand pack",
+      "source": "C:/Users/frank/starlight/repos/starlight-design-intelligence/brand-packs/frankx",
+      "reason": "Sets direct founder-facing voice, dark editorial material language, emerald/cyan tech spectrum, and restrained amber signals."
+    },
+    {
+      "label": "Premium Web OS",
+      "source": "C:/Users/frank/starlight/repos/_intelligence",
+      "reason": "Requires scene brief, static composition, asset provenance, visual QA, and release checks."
+    },
+    {
+      "label": "Official platform documentation",
+      "source": "OpenAI, Anthropic, xAI, Google Antigravity, Base, Hermes Agent, Investor.gov, FINRA, SEC, IRS",
+      "reason": "Grounds fast-changing AI platform and asset-risk claims in current primary sources."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Exact readable text in diagrams",
+      "Dark FrankX editorial command-layer feel",
+      "Clear platform, asset, and safety maps",
+      "Educational financial framing"
+    ],
+    "avoid": [
+      "Generated text artifacts",
+      "Stock-like AI visuals",
+      "Unverified investment claims",
+      "Decorative node-cloud filler",
+      "Crypto hype or implied advice"
+    ],
+    "signature": "A governed family AI core connects agents, assets, protection, and teaching into one compounding operating loop.",
+    "system": [
+      "Repo-native SVG hero and diagrams",
+      "Obsidian background with emerald/cyan signal lines and restrained amber risk notes",
+      "Exact text overlays for social cards",
+      "No external asset rights dependency",
+      "No motion or 3D because the article needs clarity over spectacle"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "vector-diagram",
+    "provenance": "owned",
+    "why_premium": "The article needs exact labeled maps, social text, and source-grounded diagrams. Vector diagrams are the correct premium medium because they avoid AI text artifacts and remain inspectable across article and social crops.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "public/images/blog/visual-system/family-ai-operating-system-agents-assets-agi-hero.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Hero is owned SVG with exact FrankX title and system-map visual."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-family-map.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Family audience and operating-system map."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-platform-map.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Platform interconnect map with verification layers."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-asset-stack.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Educational asset stack and risk/liquidity map."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-safety-loop.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Human capability and safety loop."
+    },
+    {
+      "path_or_url": "public/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Wide social crop with exact text."
+    },
+    {
+      "path_or_url": "public/images/social/blog/family-ai-operating-system-agents-assets-agi/square.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Square social crop with exact text."
+    },
+    {
+      "path_or_url": "public/images/social/blog/family-ai-operating-system-agents-assets-agi/vertical.svg",
+      "kind": "vector-diagram",
+      "inspected": true,
+      "notes": "Vertical social crop with exact text."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C vector diagrams are the correct medium for exact labels, article graphics, and social overlays."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "SVG exports are local, exact, and inspectable in the browser or image viewer."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "Static SVG package uses stable dimensions, high contrast text, no generated artifacts, and no external media."
+    },
+    {
+      "name": "motion-reduced-motion",
+      "status": "not_applicable",
+      "evidence": "No motion, video, or audio assets are used."
+    },
+    {
+      "name": "rights-provenance",
+      "status": "pass",
+      "evidence": "All assets are repo-native authored SVGs with owned provenance."
+    }
+  ],
+  "score": {
+    "total": 27,
+    "max": 30,
+    "notes": "5 first read, 5 brand fit, 4 craft, 4 accessibility/responsive pending live crop check, 5 provenance/accuracy, 4 usefulness across article/social."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "External platform facts can age quickly and should be rechecked during future revisions.",
+    "SVG social cards should be converted to PNG if a downstream channel rejects SVG uploads."
+  ]
+}

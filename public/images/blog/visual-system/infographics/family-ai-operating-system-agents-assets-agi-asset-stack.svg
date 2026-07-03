@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">Asset Stack and Risk Ladder</title>
+  <desc id="desc">An educational FrankX diagram mapping physical assets, business assets, liquid markets, digital products, crypto, NFTs, apps, and dapps across liquidity, control, and risk.</desc>
+  <defs>
+    <linearGradient id="bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="48%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="46%" cy="44%" r="72%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#0a0a0b" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .bg { fill: #0a0a0b; }
+      .panel { fill: #111827; stroke: #ffffff; stroke-opacity: 0.12; stroke-width: 1.2; }
+      .row { fill: #0f172a; stroke: #ffffff; stroke-opacity: 0.1; stroke-width: 1; }
+      .grid { stroke: #ffffff; stroke-opacity: 0.045; stroke-width: 1; }
+      .axis { stroke: #64748b; stroke-width: 1.5; stroke-linecap: round; }
+      .fill { fill: url(#bar); }
+      .eyebrow { fill: #6ee7b7; font: 700 16px "JetBrains Mono", Consolas, monospace; letter-spacing: 2px; }
+      .title { fill: #f8fafc; font: 700 48px Poppins, Inter, Arial, sans-serif; }
+      .deck { fill: #cbd5e1; font: 400 22px Inter, Arial, sans-serif; }
+      .h { fill: #f8fafc; font: 700 22px Inter, Arial, sans-serif; }
+      .body { fill: #94a3b8; font: 500 16px Inter, Arial, sans-serif; }
+      .small { fill: #cbd5e1; font: 600 14px Inter, Arial, sans-serif; }
+      .tiny { fill: #64748b; font: 600 12px "JetBrains Mono", Consolas, monospace; letter-spacing: 1px; }
+      .warning { fill: #f59e0b; font: 700 16px Inter, Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect class="bg" width="1400" height="980"/>
+  <rect width="1400" height="980" fill="url(#glow)"/>
+  <path class="grid" d="M96 0v980M256 0v980M416 0v980M576 0v980M736 0v980M896 0v980M1056 0v980M1216 0v980"/>
+  <path class="grid" d="M0 120h1400M0 260h1400M0 400h1400M0 540h1400M0 680h1400M0 820h1400"/>
+
+  <text class="eyebrow" x="90" y="82">INFOGENIUS GRAPHIC 03</text>
+  <text class="title" x="90" y="145">Assets, Liquidity, and Control</text>
+  <text class="deck" x="92" y="190">Use AI for research and records. Keep human responsibility on money, law, tax, and custody.</text>
+
+  <g transform="translate(92 252)">
+    <rect class="panel" width="1216" height="568" rx="28"/>
+    <text class="tiny" x="48" y="48">ASSET LAYER</text>
+    <text class="tiny" x="542" y="48">LIQUIDITY</text>
+    <text class="tiny" x="740" y="48">CONTROL</text>
+    <text class="tiny" x="928" y="48">RISK QUESTIONS</text>
+
+    <g transform="translate(34 78)">
+      <rect class="row" width="1148" height="74" rx="16"/>
+      <text class="h" x="24" y="32">Physical assets</text>
+      <text class="body" x="24" y="56">homes, rentals, vehicles, equipment</text>
+      <rect class="fill" x="448" y="24" width="86" height="14" rx="7"/>
+      <rect class="fill" x="650" y="24" width="210" height="14" rx="7"/>
+      <text class="body" x="906" y="32">title, insurance, repairs, local law</text>
+    </g>
+    <g transform="translate(34 166)">
+      <rect class="row" width="1148" height="74" rx="16"/>
+      <text class="h" x="24" y="32">Business assets</text>
+      <text class="body" x="24" y="56">customers, supplier terms, sales flows</text>
+      <rect class="fill" x="448" y="24" width="132" height="14" rx="7"/>
+      <rect class="fill" x="650" y="24" width="184" height="14" rx="7"/>
+      <text class="body" x="906" y="32">claims, contracts, delivery, trust</text>
+    </g>
+    <g transform="translate(34 254)">
+      <rect class="row" width="1148" height="74" rx="16"/>
+      <text class="h" x="24" y="32">Liquid markets</text>
+      <text class="body" x="24" y="56">cash, stocks, bonds, ETFs, funds</text>
+      <rect class="fill" x="448" y="24" width="260" height="14" rx="7"/>
+      <rect class="fill" x="650" y="24" width="112" height="14" rx="7" opacity="0.62"/>
+      <text class="body" x="906" y="32">suitability, fees, taxes, volatility</text>
+    </g>
+    <g transform="translate(34 342)">
+      <rect class="row" width="1148" height="74" rx="16"/>
+      <text class="h" x="24" y="32">Digital products</text>
+      <text class="body" x="24" y="56">courses, apps, content, music, code</text>
+      <rect class="fill" x="448" y="24" width="158" height="14" rx="7"/>
+      <rect class="fill" x="650" y="24" width="230" height="14" rx="7"/>
+      <text class="body" x="906" y="32">rights, support, quality, distribution</text>
+    </g>
+    <g transform="translate(34 430)">
+      <rect class="row" width="1148" height="74" rx="16"/>
+      <text class="h" x="24" y="32">Onchain assets</text>
+      <text class="body" x="24" y="56">crypto, stablecoins, NFTs, dapps</text>
+      <rect class="fill" x="448" y="24" width="214" height="14" rx="7"/>
+      <rect class="fill" x="650" y="24" width="92" height="14" rx="7" opacity="0.62"/>
+      <text class="body" x="906" y="32">custody, scams, smart contracts, loss</text>
+    </g>
+  </g>
+
+  <g transform="translate(132 866)">
+    <rect class="panel" width="1136" height="62" rx="24"/>
+    <text class="warning" x="34" y="39">Educational map only.</text>
+    <text class="body" x="224" y="39">Agents can organize research. They do not replace licensed financial, legal, or tax advice.</text>
+  </g>
+</svg>
