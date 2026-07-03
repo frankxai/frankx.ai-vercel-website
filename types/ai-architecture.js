@@ -6,7 +6,7 @@
  * prototypes, patterns, learning paths, and skills.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DIFFICULTY_META = exports.CLOUD_PROVIDER_META = exports.CATEGORY_META = void 0;
+exports.AI_PROVIDER_META = exports.DIFFICULTY_META = exports.CLOUD_PROVIDER_META = exports.CATEGORY_META = void 0;
 exports.CATEGORY_META = {
     'ai-gateway': {
         id: 'ai-gateway',
@@ -134,6 +134,40 @@ exports.DIFFICULTY_META = {
         id: 'expert',
         name: 'Expert',
         description: 'Deep expertise in distributed systems and ML',
+        color: 'red',
+    },
+};
+exports.AI_PROVIDER_META = {
+    anthropic: {
+        id: 'anthropic',
+        name: 'Anthropic',
+        shortName: 'Claude',
+        keyUrl: 'https://console.anthropic.com/settings/keys',
+        freeTier: '$5 credit',
+        color: 'orange',
+    },
+    openai: {
+        id: 'openai',
+        name: 'OpenAI',
+        shortName: 'GPT',
+        keyUrl: 'https://platform.openai.com/api-keys',
+        freeTier: '$5 credit',
+        color: 'emerald',
+    },
+    google: {
+        id: 'google',
+        name: 'Google AI',
+        shortName: 'Gemini',
+        keyUrl: 'https://aistudio.google.com/apikey',
+        freeTier: 'Generous free tier',
+        color: 'blue',
+    },
+    oci: {
+        id: 'oci',
+        name: 'OCI GenAI',
+        shortName: 'OCI',
+        keyUrl: 'https://cloud.oracle.com/generative-ai',
+        freeTier: 'Free tier available',
         color: 'red',
     },
 };
