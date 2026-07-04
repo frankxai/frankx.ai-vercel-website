@@ -165,6 +165,27 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverRing: 'focus:ring-amber-400/50',
     gradientText: 'bg-gradient-to-r from-amber-200 via-yellow-100 to-purple-300 bg-clip-text text-transparent',
   },
+  'fable': {
+    progressGradient: 'bg-gradient-to-r from-amber-500 via-amber-300 to-stone-400',
+    textPrimary: 'text-amber-300',
+    textAccent: 'text-stone-300',
+    borderPrimary: 'border-amber-500/60',
+    borderAccent: 'border-stone-500/40',
+    bgPrimary: 'bg-amber-500/10',
+    bgAccent: 'bg-stone-500/10',
+    bgPage: 'bg-[#0b0a08]',
+    blockquoteBorder: 'border-amber-500/60',
+    blockquoteBg: 'bg-amber-900/10',
+    blockquoteText: 'text-amber-100/80',
+    linkColor: 'text-amber-300',
+    badgeBg: 'bg-amber-500/15',
+    badgeText: 'text-amber-200',
+    badgeBorder: 'border-amber-400/30',
+    tocActive: 'bg-amber-500/15 text-amber-200',
+    hoverBorder: 'hover:border-amber-500/60',
+    hoverRing: 'focus:ring-amber-500/40',
+    gradientText: 'bg-gradient-to-r from-amber-200 via-stone-100 to-amber-300 bg-clip-text text-transparent',
+  },
 };
 
 export function getThemeClasses(themeId: string): ThemeClasses {
