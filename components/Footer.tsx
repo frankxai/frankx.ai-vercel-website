@@ -70,6 +70,7 @@ const NAV_COLUMNS = [
       { label: 'Foundry', href: '/foundry', accent: 'emerald' },
       { label: "Founder's Circle", href: '/founders-circle', accent: 'rose' },
       { label: 'Coaching', href: '/coaching' },
+      { label: 'Licensing', href: '/licensing' },
       { label: 'Newsletter', href: '/newsletter' },
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/contact' },
@@ -226,6 +227,8 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             <span className="text-white/20" aria-hidden>·</span>
             <Link href="/legal" className="hover:text-white transition-colors">Legal</Link>
+            <span className="text-white/20" aria-hidden>·</span>
+            <Link href="/licensing" className="hover:text-white transition-colors">Licensing</Link>
             <span className="text-white/20" aria-hidden>·</span>
             <a href="/rss.xml" className="hover:text-white transition-colors" aria-label="RSS feed">RSS</a>
           </nav>

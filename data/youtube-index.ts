@@ -4,6 +4,22 @@ export const youtubeChannels = {
     name: 'Anthropic',
     url: 'https://www.youtube.com/@anthropic-ai',
   },
+  openai: {
+    name: 'OpenAI',
+    url: 'https://www.youtube.com/@OpenAI',
+  },
+  deepLearningAI: {
+    name: 'DeepLearning.AI',
+    url: 'https://www.youtube.com/@Deeplearningai',
+  },
+  freeCodeCamp: {
+    name: 'freeCodeCamp.org',
+    url: 'https://www.youtube.com/@freecodecamp',
+  },
+  examPro: {
+    name: 'ExamPro',
+    url: 'https://www.youtube.com/@ExamProChannel',
+  },
   netNinja: {
     name: 'Net Ninja',
     url: 'https://www.youtube.com/@NetNinja',
@@ -39,6 +55,26 @@ export const youtubeChannels = {
   theNeuron: {
     name: 'The Neuron',
     url: 'https://www.youtube.com/@theneurondaily',
+  },
+  figma: {
+    name: 'Figma',
+    url: 'https://www.youtube.com/@Figma',
+  },
+  peterYang: {
+    name: 'Peter Yang',
+    url: 'https://www.youtube.com/@peteryangyt',
+  },
+  aiEngineer: {
+    name: 'AI Engineer',
+    url: 'https://www.youtube.com/@AIEngineer',
+  },
+  sequoia: {
+    name: 'Sequoia Capital',
+    url: 'https://www.youtube.com/@SequoiaCapital',
+  },
+  acquired: {
+    name: 'Acquired',
+    url: 'https://www.youtube.com/@AcquiredFM',
   },
 } as const
 

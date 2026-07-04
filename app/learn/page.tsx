@@ -10,6 +10,7 @@ import {
   Music2,
   Zap,
   ImageIcon,
+  Sparkles,
   Clock,
   BookOpen,
   Play,
@@ -24,6 +25,7 @@ const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   music: Music2,
   zap: Zap,
   image: ImageIcon,
+  sparkles: Sparkles,
 }
 
 const colorMap: Record<string, string> = {
@@ -31,6 +33,7 @@ const colorMap: Record<string, string> = {
   cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
   amber: 'from-amber-500/20 to-amber-500/5 border-amber-500/20 text-amber-400',
   violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
+  sky: 'from-sky-500/20 to-blue-500/5 border-sky-500/20 text-sky-400',
 }
 
 const playButtonBgMap: Record<string, string> = {
@@ -38,6 +41,7 @@ const playButtonBgMap: Record<string, string> = {
   cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
   amber: 'bg-amber-500/80 group-hover:bg-amber-500',
   violet: 'bg-violet-500/80 group-hover:bg-violet-500',
+  sky: 'bg-sky-500/80 group-hover:bg-sky-500',
 }
 
 function PathCard({ path }: { path: LearningPath }) {

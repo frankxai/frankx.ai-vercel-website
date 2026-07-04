@@ -9,7 +9,7 @@ export default function TermsPage() {
   return (
     <article className="prose prose-invert prose-zinc max-w-none">
       <h1 className="text-3xl font-bold text-white mb-2">Terms of Service</h1>
-      <p className="text-zinc-500 text-sm mb-8">Effective: [DATE] &bull; Last updated: March 2026</p>
+      <p className="text-zinc-500 text-sm mb-8">Effective: June 27, 2026 &bull; Last updated: June 27, 2026</p>
 
       <Section title="1. Introduction">
         <p>These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the website frankx.ai and all products and services offered by Arcanea Labs BV (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), registered in Amsterdam, Netherlands.</p>
@@ -65,7 +65,22 @@ export default function TermsPage() {
         <p>The trademarks FrankX, Arcanea, and GenCreator are owned by Arcanea Labs BV.</p>
       </Section>
 
-      <Section title="8. User Conduct">
+      <Section title="8. AI, Scraping, And Training Restrictions">
+        <p>Public pages may be viewed and indexed by ordinary search engines where allowed by robots policy. Unless we provide written permission, you may not use paid, gated, partner-only, private, downloadable, or product materials for model training, dataset creation, scraping, resale, redistribution, or competing products.</p>
+        <p>We reserve text-and-data-mining rights for protected content under EU law where applicable.</p>
+      </Section>
+
+      <Section title="9. Music, Creative Works, And Licensing">
+        <p>Music, lyrics, stems, cover art, videos, books, prompt packs, templates, and Arcanea canon are not licensed for reuse unless a product page, release page, or signed agreement says so.</p>
+        <p>Commercial, sync, publishing, education, agency, enterprise, and partner licenses require explicit written terms. Public access to a page is not a reuse license.</p>
+      </Section>
+
+      <Section title="10. Collectibles, Tokens, And Smart Contracts">
+        <p>Any collectible, NFT, token, smart contract, or programmable-IP reference connected to FrankX, Arcanea, or Starlight is for access, provenance, collection, or license-record purposes only unless explicit written off-chain terms say otherwise.</p>
+        <p>Collectibles and tokens are not offered as investments and do not grant copyright, trademark, revenue, royalty, governance, or ownership rights unless those rights are stated in separate written terms.</p>
+      </Section>
+
+      <Section title="11. User Conduct">
         <p>You agree not to:</p>
         <ul>
           <li>Use our services for any unlawful purpose</li>
@@ -75,7 +90,7 @@ export default function TermsPage() {
         </ul>
       </Section>
 
-      <Section title="9. Limitation of Liability">
+      <Section title="12. Limitation of Liability">
         <p>To the maximum extent permitted by Dutch law:</p>
         <ul>
           <li>Our digital products are provided &ldquo;as is&rdquo; without warranty of any kind</li>
@@ -85,7 +100,7 @@ export default function TermsPage() {
         <p>This does not affect your statutory rights as a consumer under Dutch and EU law.</p>
       </Section>
 
-      <Section title="10. Governing Law">
+      <Section title="13. Governing Law">
         <p>These Terms are governed by the laws of the Netherlands. Any disputes arising from these Terms shall be submitted to the competent court in Amsterdam, Netherlands.</p>
         <p>For EU consumers: You may also use the Online Dispute Resolution platform at{' '}
           <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-violet-400">
@@ -94,17 +109,17 @@ export default function TermsPage() {
         </p>
       </Section>
 
-      <Section title="11. Changes to These Terms">
+      <Section title="14. Changes to These Terms">
         <p>We reserve the right to modify these Terms at any time. Changes take effect upon posting to this page. Continued use of our services after changes constitutes acceptance of the updated Terms.</p>
       </Section>
 
-      <Section title="12. Contact">
+      <Section title="15. Contact">
         <p>For questions about these Terms, contact us at{' '}
           <a href="mailto:frank@frankx.ai" className="text-violet-400">frank@frankx.ai</a>
         </p>
       </Section>
 
-      <p className="text-zinc-600 text-xs mt-12">Last updated: March 2026</p>
+      <p className="text-zinc-600 text-xs mt-12">Last updated: June 27, 2026</p>
     </article>
   )
 }

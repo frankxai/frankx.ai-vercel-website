@@ -12,6 +12,7 @@ import {
   Music2,
   Zap,
   ImageIcon,
+  Sparkles,
   Clock,
   BookOpen,
   Play,
@@ -27,6 +28,7 @@ const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   music: Music2,
   zap: Zap,
   image: ImageIcon,
+  sparkles: Sparkles,
 }
 
 const colorMap: Record<string, { bg: string; text: string; border: string; gradientFrom: string }> = {
@@ -34,6 +36,7 @@ const colorMap: Record<string, { bg: string; text: string; border: string; gradi
   cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20', gradientFrom: 'from-cyan-500/10' },
   amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20', gradientFrom: 'from-amber-500/10' },
   violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20', gradientFrom: 'from-violet-500/10' },
+  sky: { bg: 'bg-sky-500', text: 'text-sky-400', border: 'border-sky-500/20', gradientFrom: 'from-sky-500/10' },
 }
 
 const playButtonBgMap: Record<string, string> = {
@@ -41,6 +44,7 @@ const playButtonBgMap: Record<string, string> = {
   cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
   amber: 'bg-amber-500/80 group-hover:bg-amber-500',
   violet: 'bg-violet-500/80 group-hover:bg-violet-500',
+  sky: 'bg-sky-500/80 group-hover:bg-sky-500',
 }
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
