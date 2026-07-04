@@ -958,7 +958,7 @@ export const booksRegistry: BookConfig[] = [
     description:
       'An instrument maker loses the top of his hearing and builds a machine to listen for him. What it becomes teaches him — and the reader — how minds actually work: prediction, memory, attention, compression, error, taste, and what a mind is for. A story about intelligence, human and machine, with not one word of jargon.',
     keywords: ['AI parable', 'how AI works', 'machine intelligence', 'predictive processing', 'sovereignty', 'human and machine minds'],
-    coverImage: '/images/books/fable-cover.png',
+    coverImage: '/images/books/fable-cover.jpg',
     theme: {
       id: 'fable',
       name: 'Fable',
