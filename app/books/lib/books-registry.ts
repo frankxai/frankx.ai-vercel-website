@@ -947,6 +947,51 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-08-the-first-90-days', title: 'The First 90 Days', number: 8, readingTime: '10 min', description: 'A practical roadmap for the first three months of building something you own.', published: true, type: 'prose' },
     ],
   },
+
+  // ─── Fable (FLAGSHIP) ────────────────────────────────────────────
+  {
+    slug: 'fable',
+    title: 'Fable',
+    subtitle: 'A Parable of Intelligence',
+    author: 'Frank Riemer',
+    publishDate: '2026',
+    description:
+      'An instrument maker loses the top of his hearing and builds a machine to listen for him. What it becomes teaches him — and the reader — how minds actually work: prediction, memory, attention, compression, error, taste, and what a mind is for. A story about intelligence, human and machine, with not one word of jargon.',
+    keywords: ['AI parable', 'how AI works', 'machine intelligence', 'predictive processing', 'sovereignty', 'human and machine minds'],
+    coverImage: '/images/books/fable-cover.png',
+    theme: {
+      id: 'fable',
+      name: 'Fable',
+      primary: 'amber',
+      accent: 'stone',
+      bgDark: '#0b0a08',
+      headingFont: 'serif',
+      bodyFont: 'serif',
+    },
+    status: 'published',
+    categories: ["Builder's Shelf", 'AI', 'Parable'],
+    contentDir: 'content/books/fable',
+    chapters: [
+      { slug: 'chapter-00-prologue-the-wall-of-instruments', title: 'The Wall of Instruments', number: 0, label: 'Prologue', readingTime: '6 min', description: 'Anselm, losing the top of his hearing, decides to build something that listens.', published: true, type: 'prose' },
+      { slug: 'chapter-01-the-listening-machine', title: 'The Listening Machine', number: 1, readingTime: '8 min', description: 'The machine guesses, errs, and corrects — a day before a string breaks, it already knows.', published: true, type: 'prose' },
+      { slug: 'chapter-02-what-the-machine-kept', title: 'What the Machine Kept', number: 2, readingTime: '10 min', description: 'A design that drowns in its own memory, and the cut that decides what a mind becomes.', published: true, type: 'prose' },
+      { slug: 'chapter-03-the-narrow-window', title: 'The Narrow Window', number: 3, readingTime: '10 min', description: 'Market day drowns the machine, until a narrow horn restores its brilliance.', published: true, type: 'prose' },
+      { slug: 'chapter-04-a-smaller-shape-of-the-sea', title: 'A Smaller Shape of the Sea', number: 4, readingTime: '11 min', description: 'The machine cannot hold the sea, only how it behaves — and Anselm finally names it.', published: true, type: 'prose' },
+      { slug: 'chapter-05-the-wrong-note', title: 'The Wrong Note', number: 5, readingTime: '10 min', description: 'A public failure, a ledger of misses, and the danger of certainty never checked.', published: true, type: 'prose' },
+      { slug: 'chapter-06-a-thousand-songs', title: 'A Thousand Songs', number: 6, readingTime: '11 min', description: 'A thousand correct melodies by morning, none of them chosen — the scarce faculty is taste.', published: true, type: 'prose' },
+      { slug: 'chapter-07-the-grain-of-the-voice', title: 'The Grain of the Voice', number: 7, readingTime: '10 min', description: 'A flawless copy of Anselm’s viol, and everything it copied except the reasons.', published: true, type: 'prose' },
+      { slug: 'chapter-08-the-oracle-question', title: 'The Oracle Question', number: 8, readingTime: '11 min', description: 'A man kneels to the machine, and Anselm carves the rule that keeps a tool a tool.', published: true, type: 'prose' },
+      { slug: 'chapter-09-the-brokers-offer', title: 'The Broker’s Offer', number: 9, readingTime: '13 min', description: 'An honest fortune, one question, and the shape of who will own the coming age.', published: true, type: 'prose' },
+      { slug: 'chapter-10-the-second-workshop', title: 'The Second Workshop', number: 10, readingTime: '11 min', description: 'Instead of scaling the machine, Anselm spends a season building the workshop that builds.', published: true, type: 'prose' },
+      { slug: 'chapter-11-the-copy', title: 'The Copy', number: 11, readingTime: '11 min', description: 'A rival’s machine works perfectly, and it does not matter — the pattern is forkable, the person is not.', published: true, type: 'prose' },
+      { slug: 'chapter-12-idas-machine', title: 'Ida’s Machine', number: 12, readingTime: '11 min', description: 'The apprentice builds her own, and teaching becomes the only proof that understanding was real.', published: true, type: 'prose' },
+      { slug: 'chapter-13-two-kinds-of-listening', title: 'Two Kinds of Listening', number: 13, readingTime: '11 min', description: 'An instrument for a deaf composer, and the third thing two unlike minds can make together.', published: true, type: 'prose' },
+      { slug: 'chapter-14-what-the-machine-could-not-hold', title: 'What the Machine Could Not Hold', number: 14, readingTime: '10 min', description: 'A death, a perfect offer declined, and what is worth keeping precisely because it resists being made smaller.', published: true, type: 'prose' },
+      { slug: 'chapter-15-the-question-of-the-ledger', title: 'The Question of the Ledger', number: 15, readingTime: '10 min', description: '“Are these things dangerous?” “Yes. Like harbors. Like presses. Like fire.” Then the ledger argues.', published: true, type: 'prose' },
+      { slug: 'chapter-16-the-good-future', title: 'The Good Future', number: 16, readingTime: '11 min', description: 'Years later, at the fair: the future was never going to arrive from one tower. It was built at benches.', published: true, type: 'prose' },
+      { slug: 'chapter-17-epilogue-from-the-workbench', title: 'From the Workbench', number: 17, label: 'Epilogue', readingTime: '6 min', description: 'What this story carried from the author’s own bench, and an invitation to build yours.', published: true, type: 'prose' },
+    ],
+  },
 ];
 
 // ─── Helper Functions ───────────────────────────────────────────
