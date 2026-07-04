@@ -154,7 +154,7 @@ export default async function BookLandingPage({ params }: PageProps) {
                         <div className="text-center space-y-4">
                           <h2 className={`${fontClass} text-3xl font-bold ${tc.gradientText}`}>{book.title}</h2>
                           <p className="text-white/30 text-sm">{book.subtitle}</p>
-                          <p className="text-white/20 text-xs uppercase tracking-wider mt-8">{book.author}</p>
+                          <p className="text-white/20 text-xs tracking-wider mt-8">{book.author}</p>
                         </div>
                       </div>
                     )}
