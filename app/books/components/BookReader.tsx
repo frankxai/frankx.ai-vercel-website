@@ -46,8 +46,8 @@ export default function BookReader({
         text.toLowerCase().includes('chapter') ||
         text.toLowerCase().includes('source') ||
         text.toLowerCase().includes('end chapter') ||
-        text.toLowerCase().startsWith('prologue') ||
-        text.toLowerCase().startsWith('epilogue')
+        text.toLowerCase().startsWith('prolog') ||
+        text.toLowerCase().startsWith('epilog')
       ) continue;
       const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
       items.push({ id, text, level });

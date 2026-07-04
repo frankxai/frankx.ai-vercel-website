@@ -88,7 +88,7 @@ Ida turned her cup. The laughter from the fair was still in her somewhere; he co
 
 "Forty years."
 
-"Forty years, and it never cost me anything to be wrong, which is exactly why it lasted forty. Nothing I did ever put the rule where the world could answer it back." He looked at her, and asked his one question, in the place another man would have asked five. "So which do you actually fear, girl. Being wrong? Or being caught it?"
+"Forty years, and it never cost me anything to be wrong, which is exactly why it lasted forty. Nothing I did ever put the rule where the world could answer it back." He looked at her, and asked his one question, in the place another man would have asked five. "So which do you actually fear, girl. Being wrong? Or being caught at it?"
 
 She did not answer at the tavern, or on the walk home, and he did not press. But that night, while he banked the stove, she took her ledger of the machine's failures and ruled a second column down every page in it, and then, at the back, she ruled a fresh page that had nothing to do with the machine at all, and titled it in her plain quick hand, and made the first entry: the fair, the merchant, her own voice saying *never wrong*, and beside it, in the second column, what the miss had bought her. It took her a while to write that part. She wrote it anyway.
 
