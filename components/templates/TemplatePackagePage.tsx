@@ -17,6 +17,7 @@ import {
 
 import {
   getV0TemplatePath,
+  v0TemplateEntries,
   type V0TemplateEntry,
   type V0TemplateBrand,
   type V0TemplateChannel,
@@ -24,6 +25,7 @@ import {
 import { getV0TemplateBlueprint } from '@/data/v0-template-blueprints'
 import { getV0TemplateDemandPlan } from '@/data/v0-template-demand'
 import { getV0TemplateFactoryPack, v0TemplateFactoryPrinciples } from '@/data/v0-template-packaging'
+import { getV0TemplateMarketplaceShelvesForEntry } from '@/data/v0-template-marketplace'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplatePackagePageProps = {
@@ -246,6 +248,7 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
   const blueprint = getV0TemplateBlueprint(entry)
   const demand = getV0TemplateDemandPlan(entry)
   const factory = getV0TemplateFactoryPack(entry)
+  const marketplaceShelves = getV0TemplateMarketplaceShelvesForEntry(entry, v0TemplateEntries)
   const production = getV0TemplateProductionPlan(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
   const promptLines = factory.promptPack.brief
@@ -404,6 +407,50 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
           <ListPanel title="Quality gates" items={entry.qualityGates} Icon={ShieldCheck} />
         </div>
       </section>
+
+      {marketplaceShelves.length > 0 && (
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <SectionHeader
+            eyebrow="Marketplace shelf"
+            title="Where this package fits in the template business"
+            body="Templates are easier to sell and prioritize when they live inside a buyer shelf: who wants it, what job it finishes, what bundle it belongs to, and how success is judged."
+          />
+          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+            {marketplaceShelves.map((shelf) => (
+              <section key={shelf.id} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.16em] text-white/38">{shelf.entries.length} packages</p>
+                    <h3 className="mt-2 text-xl font-semibold text-white">{shelf.label}</h3>
+                  </div>
+                  {shelf.sprintEntry && (
+                    <Link
+                      href={getV0TemplatePath(shelf.sprintEntry)}
+                      className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition hover:text-white"
+                    >
+                      First sprint
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
+                <p className="mt-4 text-sm leading-6 text-white/64">{shelf.intent}</p>
+                <p className="mt-3 text-sm leading-6 text-white/52">{shelf.marketSignal}</p>
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <div>
+                    <p className="text-sm text-white/40">Buyer</p>
+                    <p className="mt-2 text-sm leading-6 text-white/66">{shelf.buyer}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/40">Bundle path</p>
+                    <p className="mt-2 text-sm leading-6 text-white/66">{shelf.bundlePath.join(' / ')}</p>
+                  </div>
+                </div>
+                <p className="mt-5 text-sm leading-6 text-emerald-100/72">{shelf.successMetric}</p>
+              </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-7xl px-6 py-16">
         <SectionHeader

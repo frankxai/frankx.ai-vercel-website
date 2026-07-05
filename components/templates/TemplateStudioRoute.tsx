@@ -30,6 +30,7 @@ import {
   getV0TemplateFactorySummary,
   v0TemplateFactoryFlow,
 } from '@/data/v0-template-packaging'
+import { getV0TemplateMarketplacePlan } from '@/data/v0-template-marketplace'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplateStudioRouteProps = {
@@ -264,6 +265,7 @@ export function TemplateStudioRoute({
     { label: 'Deployable', value: String(factorySummary.deployable) },
     { label: 'Motion/3D', value: String(factorySummary.motion) },
   ]
+  const marketplacePlan = getV0TemplateMarketplacePlan(entries)
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -402,6 +404,80 @@ export function TemplateStudioRoute({
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10">
+        <div className="mb-8 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm text-amber-200">Buyer shelves</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              Choose templates by the job they help a buyer finish.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-white/60">
+              This is the marketplace lens: each shelf has a buyer, commercial intent, premium difference,
+              bundle path, and first sprint package. It makes the library easier to sell, reuse, and prioritize.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {marketplacePlan.stats.map((stat) => (
+                <div key={stat.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                  <p className="mt-1 text-xs text-white/50">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {marketplacePlan.qualityBar.slice(0, 4).map((item) => (
+              <div key={item} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-sm leading-6 text-white/68">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+          {marketplacePlan.shelves.map((shelf) => (
+            <section key={shelf.id} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.16em] text-white/38">{shelf.entries.length} packages</p>
+                  <h3 className="mt-2 text-xl font-semibold text-white">{shelf.label}</h3>
+                </div>
+                {shelf.sprintEntry && (
+                  <Link
+                    href={getV0TemplatePath(shelf.sprintEntry)}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition hover:text-white"
+                  >
+                    First sprint
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                )}
+              </div>
+              <p className="mt-4 text-sm leading-6 text-white/62">{shelf.intent}</p>
+              <p className="mt-3 text-sm leading-6 text-white/50">{shelf.premiumDifference}</p>
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                <div>
+                  <p className="text-sm text-white/40">Buyer</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{shelf.buyer}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-white/40">Bundle path</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{shelf.bundlePath.join(' / ')}</p>
+                </div>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {shelf.priorityEntries.map((entry) => (
+                  <Link
+                    key={entry.id}
+                    href={getV0TemplatePath(entry)}
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/68 transition hover:border-white/25 hover:text-white"
+                  >
+                    {entry.title}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 
