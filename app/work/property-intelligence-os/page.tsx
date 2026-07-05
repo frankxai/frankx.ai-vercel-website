@@ -100,6 +100,37 @@ const downloadAssets = [
   },
 ]
 
+const liveTemplateLinks = [
+  {
+    title: 'Owner OS template',
+    href: 'https://github.com/frankxai/property-os-template',
+    detail: 'Public GitHub template with Codex/Claude instructions, agent profiles, MCP boundary, Railway architecture, and validation gates.',
+    icon: GitBranch,
+    cta: 'Fork template',
+  },
+  {
+    title: 'Portal template',
+    href: 'https://github.com/frankxai/property-portal-template',
+    detail: 'Public Next.js/Vercel template for property pages, renter portal, inquiry/support intake, owner dashboard, and listing studio.',
+    icon: Gauge,
+    cta: 'Fork portal',
+  },
+  {
+    title: 'Deploy on Vercel',
+    href: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/property-portal-template',
+    detail: 'Clone the public portal template into a Vercel project for owner preview, domain setup, and later production hardening.',
+    icon: Rocket,
+    cta: 'Deploy portal',
+  },
+  {
+    title: 'Stable releases',
+    href: 'https://github.com/frankxai/property-portal-template/releases/tag/v0.1.0',
+    detail: 'The v0.1.0 GitHub releases provide stable source ZIPs for both the owner OS and the Vercel portal template.',
+    icon: PackageOpen,
+    cta: 'Open release',
+  },
+]
+
 const proof = [
   {
     label: 'Operating spine',
@@ -752,6 +783,44 @@ function DownloadKitSection() {
                 </dd>
               </div>
             </dl>
+          </div>
+
+          <div className="mt-5 rounded-[1.45rem] border border-emerald-300/15 bg-emerald-300/[0.035] p-5">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-white">Live GitHub and Vercel templates</p>
+                <p className="mt-1 text-sm leading-6 text-slate-400">
+                  The free community path is now forkable, downloadable, and deployable from the public repositories.
+                </p>
+              </div>
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-100">v{version}</span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {liveTemplateLinks.map((template) => {
+                const Icon = template.icon
+                return (
+                  <a
+                    key={template.title}
+                    href={template.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group rounded-2xl border border-white/10 bg-black/20 p-4 transition-colors hover:border-emerald-300/25 hover:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-emerald-300/50"
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-300/10 text-emerald-200">
+                        <Icon className="h-4 w-4" aria-hidden />
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-100">
+                        {template.cta}
+                        <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                      </span>
+                    </div>
+                    <h3 className="text-base font-semibold tracking-tight text-white">{template.title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-slate-400">{template.detail}</p>
+                  </a>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
