@@ -476,6 +476,12 @@ export const learningPaths: LearningPath[] = [
     estimatedHours: 9,
     color: 'emerald',
     category: 'model-maker',
+    heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · CLI + Cloud + AGENTS.md',
+    longIntro:
+      "Codex is OpenAI's coding agent, and in 2026 it's a multi-surface one: a terminal CLI, a cloud task runner, and IDE extensions that all share the same brain. Since OpenAI retired the o-series and folded reasoning into a single line, that brain is GPT-5.5 — the recommended default in Codex, which uses roughly 40% fewer output tokens on coding tasks than GPT-5.4 at a ~258K effective context window.\n\nThe pieces fit together cleanly. The CLI (open source, built in Rust) reads your codebase and runs commands in an OS-level sandbox with an approval model you control via config.toml. Codex Cloud lets you hand a task to a remote environment and apply the resulting diff without leaving the terminal. AGENTS.md is the durable memory — a plain-Markdown file of repo instructions Codex injects into context, and the same file works in Cursor, Amp, and other agents. MCP servers extend what Codex can reach.\n\nStart with the official CLI overview and the AGENTS.md guide (videos 1 and 3), install the CLI, and add an AGENTS.md to a real repo. Then work up to the long-form agentic-development course. Every tool below links to its official OpenAI page.",
+    ctaTitle: 'Ready to ship with Codex?',
+    ctaBody:
+      'Pair this portal with our hands-on guides — set up AGENTS.md, wire Codex into a real repo, and compare it head-to-head with Claude Code.',
     outcomes: [
       'Install and run Codex locally from the terminal',
       'Scope coding tasks so agents can change, test, and review safely',
@@ -540,6 +546,222 @@ export const learningPaths: LearningPath[] = [
         tags: ['agentic-dev', 'course', 'advanced'],
       },
     ],
+    ecosystem: [
+      {
+        name: 'Codex CLI',
+        category: 'Builder Surface',
+        description:
+          'Open-source coding agent, built in Rust, that runs in your terminal. Reads your codebase, runs commands in an OS-level sandbox, and patches files with an approval model you control.',
+        href: 'https://developers.openai.com/codex/cli',
+        status: 'GA',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'Codex Cloud',
+        category: 'Agents',
+        description:
+          'Delegate a task to a remote environment and apply the resulting diff without leaving the terminal. Good for long-running refactors and running work in parallel.',
+        href: 'https://openai.com/codex/',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'AGENTS.md',
+        category: 'Protocol',
+        description:
+          'A plain-Markdown file of durable, repo-level instructions. Codex enumerates AGENTS.md files and injects them into context — and the same file works in Cursor, Amp, and other agents.',
+        href: 'https://developers.openai.com/codex/guides/agents-md',
+        status: 'GA',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'GPT-5.5 in Codex',
+        category: 'Reasoning',
+        description:
+          "OpenAI's flagship agentic model (id gpt-5.5) is the recommended Codex default — about 40% fewer output tokens than GPT-5.4 on coding tasks, at a ~258K effective context window.",
+        href: 'https://platform.openai.com/docs/models',
+        status: 'New',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'MCP in Codex',
+        category: 'Protocol',
+        description:
+          'Codex reaches external tools and data through Model Context Protocol servers — the cross-vendor standard also used by Claude and Gemini. Write one server, use it everywhere.',
+        href: 'https://modelcontextprotocol.io/',
+        status: 'GA',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'Codex Changelog',
+        category: 'Reference',
+        description:
+          'The official running log of Codex releases — CLI versions, model updates, sandbox and config.toml changes. The fastest way to see what shipped this week.',
+        href: 'https://developers.openai.com/codex/changelog',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'OpenAI Platform',
+        category: 'API',
+        description:
+          'The developer surface behind Codex — models, pricing, the API, and usage dashboards. Where you manage keys and see what a Codex run actually costs.',
+        href: 'https://platform.openai.com/',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'Codex on Azure (Microsoft Foundry)',
+        category: 'Cloud',
+        description:
+          'Run Codex against OpenAI models hosted in Microsoft Foundry — useful when procurement, data residency, or an existing Azure footprint rules out the direct API.',
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/codex',
+        status: 'GA',
+        lastVerified: '2026-07-05',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-04-23',
+        title: 'GPT-5.5 becomes the recommended model in Codex',
+        summary:
+          "OpenAI's new flagship (codename 'Spud', id gpt-5.5) lands as the default Codex model — roughly 40% fewer output tokens than GPT-5.4 on coding tasks, at a ~258K effective context window.",
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-04-23',
+        title: 'AGENTS.md as the cross-tool instruction standard',
+        summary:
+          'Codex enumerates AGENTS.md files and injects them into the conversation, and the model is trained to follow them closely. The same format now works across Cursor, Amp, and other agents.',
+        source: 'https://developers.openai.com/codex/guides/agents-md',
+        tag: 'Update',
+      },
+      {
+        date: '2026-05-07',
+        title: 'gpt-realtime-2 voice models ship',
+        summary:
+          'The realtime line gains GPT-5-class reasoning and a 128K context window (up from 32K) with parallel tool calls — relevant if you drive Codex or agents through a voice surface.',
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Update',
+      },
+      {
+        date: '2026-02-19',
+        title: 'MCP reaches general availability',
+        summary:
+          'Model Context Protocol exits preview with a stable spec and cross-vendor adoption. Codex, Claude, and Gemini can all reach your data through the same MCP servers.',
+        source: 'https://modelcontextprotocol.io/',
+        tag: 'Research',
+      },
+      {
+        date: '2025-12-11',
+        title: 'GPT-5.2 ships with a 400K context class',
+        summary:
+          'GPT-5.2 landed as the prior work model — 400K context (272K input + 128K output), text and image, no native audio. GPT-5.5 later replaced it as the Codex default.',
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Update',
+      },
+      {
+        date: '2025-08-05',
+        title: 'gpt-oss — OpenAI’s first open-weight models since GPT-2',
+        summary:
+          'gpt-oss-120b and gpt-oss-20b released under Apache 2.0 with a 128K context window. Useful when you need a self-hostable model alongside Codex for private or offline work.',
+        source: 'https://openai.com/index/introducing-gpt-oss/',
+        tag: 'Launch',
+      },
+    ],
+    experts: [
+      {
+        name: 'OpenAI',
+        role: 'Official channel — Codex and model launches',
+        channelUrl: youtubeChannels.openai.url,
+        why: 'First-party launch videos and demos for Codex and the GPT-5.x line. Highest-signal source for what actually shipped.',
+        isOfficial: true,
+      },
+      {
+        name: 'OpenAI Developers (Codex docs)',
+        role: 'Official docs — CLI, AGENTS.md, changelog',
+        channelUrl: 'https://developers.openai.com/codex',
+        why: 'The canonical reference: CLI setup, the sandbox/approval model, AGENTS.md, MCP, and the running changelog.',
+        isOfficial: true,
+      },
+      {
+        name: 'AI Engineer',
+        role: 'Conference talks — agentic coding in production',
+        channelUrl: youtubeChannels.aiEngineer.url,
+        why: 'Practitioner talks on agent architecture and production coding-agent patterns. Good for seeing how teams actually run Codex.',
+      },
+      {
+        name: 'ExamPro',
+        role: 'Long-form course — agentic development with Codex',
+        channelUrl: youtubeChannels.examPro.url,
+        why: 'Hosts the full Codex Essentials course in this portal. Best pick if you learn by building end-to-end.',
+      },
+      {
+        name: 'DeepLearning.AI',
+        role: 'Structured short courses — LLM app development',
+        channelUrl: youtubeChannels.deepLearningAI.url,
+        why: 'Rigorous short courses on prompting and building with the OpenAI API — the fundamentals under any Codex workflow.',
+      },
+      {
+        name: 'AI Explained',
+        role: 'Independent analysis — benchmarks and capability',
+        channelUrl: youtubeChannels.aiExplained.url,
+        why: 'Benchmark-driven, low-hype analysis of GPT-5.5 versus frontier models. Trust this for honest capability calibration.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What model does Codex use in 2026?',
+        answer:
+          'GPT-5.5 (id gpt-5.5) is the recommended default in Codex. It uses roughly 40% fewer output tokens than GPT-5.4 on coding tasks, at a ~258K effective context window. The old o-series is gone — reasoning is folded into the single GPT-5.5 line.',
+      },
+      {
+        question: 'Is Codex CLI free and open source?',
+        answer:
+          'The Codex CLI itself is open source and built in Rust. Usage runs against your OpenAI account, so you pay for the model tokens a run consumes — the [OpenAI Platform](https://platform.openai.com/) dashboard shows the cost.',
+      },
+      {
+        question: 'What is AGENTS.md and why does it matter?',
+        answer:
+          'AGENTS.md is a plain-Markdown file of durable, repo-level instructions. Codex enumerates these files and injects them into context, and the model is trained to follow them closely. The same format also works in Cursor, Amp, and other agents, so you write your repo’s conventions once.',
+      },
+      {
+        question: 'What is the difference between Codex CLI and Codex Cloud?',
+        answer:
+          'Codex CLI runs locally in your terminal inside an OS-level sandbox — it reads, edits, and runs code on your machine with an approval model you control. Codex Cloud hands a task to a remote environment and returns a diff you can apply from the CLI, which is better for long-running refactors and parallel work.',
+      },
+      {
+        question: 'Does Codex support MCP?',
+        answer:
+          'Yes. Codex reaches external tools and data through Model Context Protocol servers — the same cross-vendor standard Claude and Gemini use. Write one MCP server and every compliant agent can use it.',
+      },
+      {
+        question: 'How does Codex compare to Claude Code?',
+        answer:
+          'Both are terminal-first coding agents with a sandbox and repo-instruction files (AGENTS.md for Codex, CLAUDE.md for Claude Code). Codex runs GPT-5.5; Claude Code runs the Claude line. See the [Claude & Anthropic Mastery portal](/learn/claude-mastery) and our [Cursor vs Claude Code vs Windsurf](/blog/cursor-vs-claude-code-vs-windsurf-2026) breakdown for a head-to-head.',
+      },
+      {
+        question: 'What happened to the o-series (o3, o4-mini)?',
+        answer:
+          'OpenAI retired the entire o-series, along with GPT-4o and GPT-4.1, in early 2026. Reasoning was unified into the GPT-5.5 line — there is no o5. In Codex you just pick GPT-5.5.',
+      },
+      {
+        question: 'Can I run Codex on Azure?',
+        answer:
+          'Yes — Codex can run against OpenAI models hosted in [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/codex). That path is useful when procurement, data residency, or an existing Azure footprint rules out the direct API.',
+      },
+      {
+        question: 'How do the sandbox and approvals work?',
+        answer:
+          'A config.toml file controls the sandbox and approval model. Depending on your settings, Codex asks before running commands or editing files — so you can run it loose on a scratch repo and locked-down on production code.',
+      },
+      {
+        question: 'Where should I start if I’m new to Codex?',
+        answer:
+          'Watch video 1 (the official CLI overview) and video 3 (using AGENTS.md). Then install the CLI, add an AGENTS.md to a real repo, and give Codex a small, well-scoped task so you can watch the sandbox and approval flow before trusting it with more.',
+      },
+    ],
   },
   {
     id: 'chatgpt-mastery',
@@ -552,6 +774,12 @@ export const learningPaths: LearningPath[] = [
     estimatedHours: 10,
     color: 'cyan',
     category: 'model-maker',
+    heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · Everyday AI fluency',
+    longIntro:
+      "ChatGPT is where most people meet AI, and in 2026 it runs GPT-5.5 — OpenAI's flagship since it replaced the whole o-series in a single unified line. This portal is the practical path: how to prompt it well, turn repeat work into reusable Projects and Custom GPTs, analyze files without trusting them blindly, and know the moment to graduate to Codex or the API.\n\nThe surface is broader than a chat box now. Custom GPTs and the GPT Store let you package instructions and knowledge; Projects keep files and context together for ongoing work; Advanced Voice (powered by the gpt-realtime-2 line) turns it into a real-time spoken collaborator; and ChatGPT Images 2.0 handles visual generation. One thing to know going in: ChatGPT focuses on images, not video.\n\nStart with the beginner get-work-done walkthrough (video 1), then the two prompt-engineering courses (videos 2 and 3) to build the habit that makes everything else work. Each tool below links to its official OpenAI page.",
+    ctaTitle: 'Ready to get real work done with ChatGPT?',
+    ctaBody:
+      'Pair this portal with our written guides — a prompt library, the founder AI stack, and when to reach past ChatGPT for Codex or the API.',
     outcomes: [
       'Write clear prompts that include goal, context, constraints, and output format',
       'Use ChatGPT for writing, brainstorming, summarizing, learning, and decision support',
@@ -615,6 +843,221 @@ export const learningPaths: LearningPath[] = [
         description:
           'Practical data analysis workflow showing how ChatGPT can help inspect, reason about, and explain spreadsheets.',
         tags: ['data-analysis', 'excel', 'workflow'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'ChatGPT',
+        category: 'Surface',
+        description:
+          'The flagship consumer app at chatgpt.com — chat, file uploads, memory, and the launchpad for every feature below. Free, Plus ($20/mo), and Pro ($200/mo) tiers.',
+        href: 'https://chatgpt.com/',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'GPT-5.5',
+        category: 'Reasoning',
+        description:
+          "OpenAI's flagship model (id gpt-5.5), the default in ChatGPT since April 2026. The o-series is gone — reasoning is unified into this single line, so you no longer pick a separate reasoning model.",
+        href: 'https://platform.openai.com/docs/models',
+        status: 'New',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'Custom GPTs & the GPT Store',
+        category: 'Capability',
+        description:
+          'Package instructions, knowledge files, and actions into a tailored ChatGPT, then keep it private or publish it to the GPT Store. The fastest way to make a repeatable assistant.',
+        href: 'https://chatgpt.com/gpts',
+        status: 'GA',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'ChatGPT Projects',
+        category: 'Capability',
+        description:
+          'Group related chats and files under one workspace with shared context — the right home for an ongoing piece of work instead of a sprawl of one-off conversations.',
+        href: 'https://openai.com/chatgpt/',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'Advanced Voice',
+        category: 'Capability',
+        description:
+          'Real-time spoken conversation powered by the gpt-realtime-2 line — GPT-5-class reasoning, a 128K context window, tone detection, and natural interruptions.',
+        href: 'https://openai.com/chatgpt/',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'ChatGPT Images 2.0',
+        category: 'Image',
+        description:
+          "OpenAI's image generator (GPT Image 2), built into ChatGPT for text-to-image and edits. Note: ChatGPT focuses on images — it does not generate video.",
+        href: 'https://platform.openai.com/docs/models',
+        status: 'New',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'OpenAI Platform (API)',
+        category: 'API',
+        description:
+          'The developer surface behind ChatGPT — models, the API, pricing, and usage dashboards. Where interactive prompts graduate into production integrations.',
+        href: 'https://platform.openai.com/',
+        status: 'Updated',
+        lastVerified: '2026-07-05',
+      },
+      {
+        name: 'Codex',
+        category: 'Builder Surface',
+        description:
+          'When the task is agentic coding in a real repo rather than a chat, Codex is the tool — the same GPT-5.5 brain in a terminal CLI and cloud runner. See the Codex portal for the deep dive.',
+        href: 'https://openai.com/codex/',
+        status: 'GA',
+        lastVerified: '2026-07-05',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-04-23',
+        title: 'GPT-5.5 becomes the default in ChatGPT',
+        summary:
+          "OpenAI's new flagship (codename 'Spud', id gpt-5.5) ships as the ChatGPT default — stronger agentic behaviour and roughly 60% fewer hallucinations than GPT-5.4.",
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-05-07',
+        title: 'gpt-realtime-2 upgrades Advanced Voice',
+        summary:
+          'The realtime line gains GPT-5-class reasoning and a 128K context window (up from 32K) with parallel tool calls — the engine behind ChatGPT’s Advanced Voice.',
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Update',
+      },
+      {
+        date: '2026-03-01',
+        title: 'ChatGPT consolidates visual generation into Images 2.0',
+        summary:
+          'OpenAI folded its visual compute into ChatGPT Images 2.0 (GPT Image 2). ChatGPT focuses on high-quality image generation and editing — it no longer generates video.',
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Update',
+      },
+      {
+        date: '2026-02-19',
+        title: 'MCP reaches general availability',
+        summary:
+          'Model Context Protocol exits preview with cross-vendor adoption. The same MCP servers work across ChatGPT, Claude, and Gemini — write your integration once.',
+        source: 'https://modelcontextprotocol.io/',
+        tag: 'Research',
+      },
+      {
+        date: '2025-12-11',
+        title: 'GPT-5.2 ships with a 400K context class',
+        summary:
+          'GPT-5.2 landed as the prior work model — 400K context (272K input + 128K output), text and image, no native audio. GPT-5.5 has since replaced it as the default.',
+        source: 'https://platform.openai.com/docs/models',
+        tag: 'Update',
+      },
+      {
+        date: '2025-08-05',
+        title: 'gpt-oss — OpenAI’s first open-weight models since GPT-2',
+        summary:
+          'gpt-oss-120b and gpt-oss-20b released under Apache 2.0 with a 128K context window — a self-hostable option alongside ChatGPT for private or offline work.',
+        source: 'https://openai.com/index/introducing-gpt-oss/',
+        tag: 'Launch',
+      },
+    ],
+    experts: [
+      {
+        name: 'OpenAI',
+        role: 'Official channel — model and product launches',
+        channelUrl: youtubeChannels.openai.url,
+        why: 'First-party launches and demos for ChatGPT and the GPT-5.x line. The source of record for what actually shipped.',
+        isOfficial: true,
+      },
+      {
+        name: 'Kevin Stratvert',
+        role: 'Productivity educator — ChatGPT for real work',
+        channelUrl: youtubeChannels.kevinStratvert.url,
+        why: 'Clear, approachable walkthroughs for using ChatGPT on everyday work. Hosts the beginner and data-analyst videos in this portal.',
+      },
+      {
+        name: 'DeepLearning.AI',
+        role: 'Short courses — prompting and OpenAI development',
+        channelUrl: youtubeChannels.deepLearningAI.url,
+        why: 'Andrew Ng and team teach prompt structure and reliable LLM patterns — the fundamentals that make every other ChatGPT workflow work.',
+      },
+      {
+        name: 'freeCodeCamp.org',
+        role: 'Full-length free courses — prompt engineering',
+        channelUrl: youtubeChannels.freeCodeCamp.url,
+        why: 'Long-form, no-cost courses covering prompting patterns that transfer across ChatGPT and other frontier models.',
+      },
+      {
+        name: 'AI Explained',
+        role: 'Independent analysis — benchmarks and capability',
+        channelUrl: youtubeChannels.aiExplained.url,
+        why: 'Honest, benchmark-driven analysis of GPT-5.5 versus the field. Trust this over launch-day hype for real capability calibration.',
+      },
+      {
+        name: 'The Neuron',
+        role: 'Daily AI newsletter + companion videos',
+        channelUrl: youtubeChannels.theNeuron.url,
+        why: 'Fast daily signal on OpenAI releases and practical workflows — good for staying current between official launches.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What model does ChatGPT use in 2026?',
+        answer:
+          'ChatGPT runs GPT-5.5 (id gpt-5.5), OpenAI’s flagship since April 23, 2026. The old o-series (o3, o4-mini) and GPT-4o were retired in early 2026 and reasoning was unified into GPT-5.5 — there is no separate reasoning model to pick anymore.',
+      },
+      {
+        question: 'Is ChatGPT free?',
+        answer:
+          'There is a free tier, plus ChatGPT Plus ($20/month) and ChatGPT Pro ($200/month) for higher limits and the strongest models. For programmatic use you pay per token through the [OpenAI Platform](https://platform.openai.com/) instead.',
+      },
+      {
+        question: 'What are Custom GPTs and the GPT Store?',
+        answer:
+          'A Custom GPT is a tailored version of ChatGPT with your own instructions, knowledge files, and actions. Build one for a repeat task, keep it private, or publish it to the GPT Store for others to use.',
+      },
+      {
+        question: 'What are ChatGPT Projects?',
+        answer:
+          'Projects group related chats and files under one workspace with shared context. Use a Project when you have ongoing work — a launch, a book, a research thread — instead of scattering it across one-off conversations.',
+      },
+      {
+        question: 'Can ChatGPT generate video?',
+        answer:
+          'No. As of 2026 OpenAI consolidated its visual generation into ChatGPT Images 2.0 (GPT Image 2), which produces and edits images. ChatGPT does not generate video — for AI video, see our [AI video generation guide](/blog/ai-video-generation-2026-sora-runway-kling-veo).',
+      },
+      {
+        question: 'When should I switch from ChatGPT to Codex or the API?',
+        answer:
+          'Use ChatGPT for interactive thinking and everyday work. Reach for [Codex](/learn/codex-mastery) when the task is agentic coding inside a real repo, and the OpenAI API when you need to run something programmatically or in production.',
+      },
+      {
+        question: 'How does ChatGPT compare to Claude and Gemini?',
+        answer:
+          'ChatGPT is the broadest consumer surface and strongest at general everyday tasks; Claude leads on long-form writing and code refactoring; Gemini wins on multimodal and huge context. See our [ChatGPT vs Claude vs Gemini](/blog/chatgpt-vs-claude-vs-gemini-2026) breakdown and the sibling portals.',
+      },
+      {
+        question: 'What is Advanced Voice?',
+        answer:
+          'Advanced Voice is ChatGPT’s real-time spoken mode, powered by the gpt-realtime-2 line. It reasons at GPT-5-class quality, holds a 128K context window, detects tone, and handles interruptions — closer to a natural conversation than a walkie-talkie.',
+      },
+      {
+        question: 'How do I write better prompts?',
+        answer:
+          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate — treat the first answer as a draft, not a verdict. Videos 2 and 3 in this portal are full courses on exactly this.',
+      },
+      {
+        question: 'Where should I start if I’m new to ChatGPT?',
+        answer:
+          'Watch video 1 (getting real work done), then open a Project on a task you actually care about and run it end to end. The habit of using it for real work — not novelty prompts — is what turns ChatGPT into leverage.',
       },
     ],
   },
