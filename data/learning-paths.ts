@@ -1057,7 +1057,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'Where should I start if I’m new to ChatGPT?',
         answer:
-          'Watch video 1 (getting real work done), then open a Project on a task you actually care about and run it end to end. The habit of using it for real work — not novelty prompts — is what turns ChatGPT into leverage.',
+          'Watch video 1 (getting real work done), then open a Project on a task you actually care about and run it end to end. The habit of using it for real work — not novelty prompts — is what makes the difference.',
       },
     ],
   },
