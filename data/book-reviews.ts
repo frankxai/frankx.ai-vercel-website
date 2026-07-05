@@ -57,6 +57,7 @@ export const bookReviews: BookReview[] = [
         title: 'The Wordless Laws',
         author: 'Frank',
         reason: 'Grout names her forces openly; The Wordless Laws shows the same twelve forces in action while deliberately never naming them, so the reader excavates them the way Grout asks you to find your own evidence.',
+        url: '/books/the-wordless-laws',
       },
       {
         title: 'Think and Grow Rich',
@@ -150,6 +151,7 @@ export const bookReviews: BookReview[] = [
         title: 'The Wordless Laws',
         author: 'Frank',
         reason: 'Restores the depth The Secret strips out — it shows the forces working through a story rather than reducing them to a single slogan.',
+        url: '/books/the-wordless-laws',
       },
     ],
     videos: [
@@ -225,6 +227,7 @@ export const bookReviews: BookReview[] = [
         title: 'The Wordless Laws',
         author: 'Frank',
         reason: 'The breath practices in this series rest on Nestor\'s science — he supplies the physiology behind the calm, attentive state the forces are practiced from.',
+        url: '/books/the-wordless-laws',
       },
       {
         title: 'Atomic Habits',
@@ -261,6 +264,7 @@ export const bookReviews: BookReview[] = [
     categories: ['Self-Development', 'Wisdom', 'Manifestation'],
     readingTime: '6 min',
     publicationYear: 2026,
+    relatedBook: 'the-wordless-laws',
     tldr: 'The Wordless Laws shows twelve forces at work without ever naming them — they live in the story, the imagery, and the structure, so the reader discovers each law rather than being handed a list. The concealment is deliberate: a principle you excavate yourself sticks far harder than one you are told. It pairs with a forthcoming Book Two that finally names the forces, turning the pair into a discover-then-confirm sequence.',
     keyInsights: [
       'The twelve forces are demonstrated, never labeled — the book withholds the vocabulary so the reader builds the concept firsthand',
@@ -311,6 +315,12 @@ export const bookReviews: BookReview[] = [
         author: 'Pam Grout',
         reason: 'Grout has you prove the forces through experiments; The Wordless Laws has you discover them through story — two routes to the same firsthand conviction.',
         url: 'https://www.amazon.com/Squared-Yourself-Energy-Experiments-Reality/dp/1401938906',
+      },
+      {
+        title: 'The Book of Secrets',
+        author: 'Frank',
+        reason: 'The craft companion — the same care applied to how the work is made rather than how a life is made. Read both to have the whole shelf.',
+        url: '/books/the-book-of-secrets',
       },
     ],
   },
