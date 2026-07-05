@@ -16,6 +16,10 @@
     {
       "path": "/api/404/agent",
       "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/swarm/cron",
+      "schedule": "0 6 * * 0"
     }
   ]
 }
