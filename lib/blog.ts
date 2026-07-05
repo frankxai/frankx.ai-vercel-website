@@ -87,28 +87,44 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
-function resolveBlogImage(image: unknown, slug: string): string | undefined {
-  if (typeof image !== 'string' || image.trim() === '') return undefined
-  if (!image.startsWith('/')) return image
-  if (!pendingBlogHeroPaths.has(image)) return image
-
+// Themed fallback: pick the most relevant hero based on slug keywords.
+// No filesystem access — pure string matching so Turbopack can tree-shake safely.
+function themedImageFallback(slug: string): string {
   if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
     return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
   }
   if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
     return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
   }
-  if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
+  if (/agent|workflow|automation|n8n|builder|production|acos|creator-os/.test(slug)) {
     return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
   }
-  if (/code|coding|cursor|windsurf/.test(slug)) {
+  if (/code|coding|cursor|windsurf|claude-code/.test(slug)) {
     return '/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png'
   }
-  if (/skill|coe|note|knowledge/.test(slug)) {
-    return '/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp'
+  if (/soul|conscious|higher-self|frequency|music|spiritual/.test(slug)) {
+    return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
   }
-
+  if (/creator|golden-age|independent|solopreneur/.test(slug)) {
+    return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
+  }
   return blogImageFallback
+}
+
+function resolveBlogImage(image: unknown, slug: string): string | undefined {
+  // No image in frontmatter — use themed fallback based on slug
+  if (typeof image !== 'string' || image.trim() === '') {
+    return themedImageFallback(slug)
+  }
+  // External or relative — use as-is
+  if (!image.startsWith('/')) return image
+
+  // If the frontmatter image path is flagged as a pending/placeholder, use themed fallback
+  if (pendingBlogHeroPaths.has(image)) return themedImageFallback(slug)
+
+  // Otherwise trust the frontmatter path — it will resolve to a 404 image at runtime
+  // only if the file was renamed, but that is preferable to Turbopack bundling all of /public
+  return image
 }
 
 function buildBlogPost(slug: string, data: Record<string, any>, content: string): BlogPost {

@@ -7,27 +7,28 @@ import { getAllBlogPosts } from '@/lib/blog'
 import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
-  title: 'FrankX - AI Architect & Creator Systems',
+  title: 'FrankX — Agentic Founder. Building Intelligence Systems in Public.',
   description:
-    'Former AI architect at Oracle. Creator of 12,000+ songs with Suno. Practical AI systems, music experiments, and evidence-led performance notes for creators who ship with clarity.',
+    'Agentic Founder building intelligence systems, music, and an ecosystem of brands in public. Creator OS, 12,000+ AI songs, 630+ skills shipped. Everything documented so you can build your own.',
   keywords: [
     'Frank Riemer',
     'FrankX',
-    'ai architect',
-    'personal AI operating system',
-    'AI creator systems',
-    'attention and recovery systems',
-    'ai music creation',
+    'agentic founder',
+    'agentic creator OS',
+    'ACOS',
+    'intelligence systems',
+    'building in public',
+    'AI music creation',
     'suno ai',
-    'ai architecture',
+    'creator OS',
     'ai workflow automation',
-    'creator tools',
+    'Arcanea',
     'agentic workflows',
-    'enterprise ai',
     'claude code',
     'multi-agent systems',
     'ai coding agents',
     'prompt engineering',
+    'Starlight Intelligence',
   ],
   path: '/',
 })
@@ -57,7 +58,7 @@ const websiteSchema = {
 const personSchema = {
   '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
-  jobTitle: 'AI Architect and Creator',
+  jobTitle: 'Agentic Founder',
   url: `${siteUrl}/frank-riemer`,
   image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
   mainEntityOfPage: {
@@ -77,15 +78,16 @@ const personSchema = {
     socialLinks.twitter,
   ],
   knowsAbout: [
-    'AI Architecture',
-    'Personal AI Operating Systems',
-    'AI Creator Systems',
-    'AI Music Creation',
+    'Agentic AI Systems',
+    'Agentic Creator OS',
+    'Intelligence Systems',
+    'Building in Public',
+    'AI Music Production',
     'Suno AI',
-    'Attention and Recovery Systems',
-    'Enterprise AI Strategy',
-    'Cloud Infrastructure',
-    'Agentic Workflows',
+    'Multi-Agent Orchestration',
+    'Creator Economy',
+    'Arcanea',
+    'Enterprise AI Architecture',
   ],
 }
 
@@ -111,12 +113,12 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the independent personal hub of Frank Riemer, a former AI architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
+      'FrankX.AI is the public home of Frank Riemer — Agentic Founder building intelligence systems, music, and an ecosystem of brands in public. Former AI Architect at Oracle. The site covers the Agentic Creator OS, 12,000+ AI songs, 630+ shipped skills, and everything in between — all documented so you can replicate the architecture. Independent project, not affiliated with Oracle.',
   },
   {
     question: 'What kind of content does FrankX publish?',
     answer:
-      'FrankX publishes technical tutorials on AI coding agents, enterprise AI architecture patterns, Suno AI music production guides, prompt engineering frameworks, multi-agent orchestration, and the Signal Loop field notes.',
+      'FrankX publishes build-in-public dispatches, deep technical guides on agentic AI systems and Creator OS, Suno AI music production workflows, prompt engineering frameworks, multi-agent orchestration patterns, model intelligence analyses, and the Signal Loop weekly newsletter.',
   },
   {
     question: 'How can I learn AI music production with Suno?',

@@ -21,53 +21,38 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
-    name: 'AI Architecture',
-    href: '/ai-architecture',
+    name: 'Build',
+    href: '/acos',
     subItems: [
-      { name: 'Architecture Hub', href: '/ai-architecture' },
-      { name: 'Blueprints', href: '/ai-architecture/blueprints' },
-      { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes' },
-      { name: 'Templates', href: '/ai-architecture/templates' },
-      { name: 'Tools', href: '/ai-architecture/tools' },
+      { name: 'Agentic Creator OS (ACOS)', href: '/acos' },
+      { name: 'Intelligence Systems', href: '/ai-architecture' },
+      { name: 'Agent Family', href: '/agent-team' },
+      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Skills Library', href: '/skills' },
+      { name: 'Open Source', href: '/open-source' },
     ],
   },
   {
-    name: 'For Creators',
-    href: '/products/vibe-os',
+    name: 'Create',
+    href: '/music-lab',
     subItems: [
-      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
-      { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Music Lab', href: '/music-lab' },
-      { name: 'Templates', href: '/templates' },
+      { name: 'All Tracks', href: '/music' },
+      { name: 'Design Lab', href: '/design-lab' },
+      { name: 'Arcanea', href: '/universe' },
       { name: 'Creation Chronicles', href: '/creation-chronicles' },
     ],
   },
   {
-    name: 'For Students',
-    href: '/students',
+    name: 'Learn',
+    href: '/blog',
     subItems: [
-      { name: 'Student Hub', href: '/students' },
+      { name: 'Blog', href: '/blog' },
+      { name: 'Guides & Tutorials', href: '/guides' },
+      { name: 'Books', href: '/books' },
+      { name: 'Library OS', href: '/library' },
+      { name: 'Watch', href: '/watch' },
       { name: 'Workshops', href: '/workshops' },
-      { name: 'Courses', href: '/courses' },
-      { name: 'Guides', href: '/guides' },
-      { name: 'AI Assessment', href: '/ai-assessment' },
-    ],
-  },
-  {
-    name: 'Resources',
-    href: '/resources',
-    subItems: [
-      { name: "The Creator's Soulbook", href: '/soulbook' },
-      { name: 'Member Vault', href: '/vault' },
-      { name: 'Live Labs', href: '/labs' },
-      { name: 'Weekly Drops', href: '/drops' },
-      { name: 'Skill Builder', href: '/skills' },
-      { name: 'Workshops', href: '/workshops' },
-      { name: 'All Resources', href: '/resources' },
-      { name: 'Prompt Library', href: '/prompt-library' },
-      { name: 'Templates', href: '/templates' },
-      { name: 'Guides', href: '/guides' },
-      { name: 'Roadmap', href: '/roadmap' },
     ],
   },
   {
@@ -75,27 +60,23 @@ const navItems: NavItem[] = [
     href: '/products',
     subItems: [
       { name: 'All Products', href: '/products' },
-      { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
-      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
+      { name: 'Creator Kit — €47', href: '/products' },
+      { name: 'Pro System — €197', href: '/acos' },
+      { name: "Founder's Circle — €2,997", href: '/founders-circle' },
+      { name: 'Free Playbooks', href: '/free-playbook' },
+      { name: 'Newsletter', href: '/newsletter' },
     ],
   },
   {
-    name: 'Research',
-    href: '/research',
+    name: 'Universe',
+    href: '/universe',
     subItems: [
-      { name: 'Research Hub', href: '/research' },
-      { name: 'Source Browser', href: '/research/sources' },
-      { name: 'Methodology', href: '/research/methodology' },
-    ],
-  },
-  {
-    name: 'Foundry',
-    href: '/foundry',
-    subItems: [
-      { name: 'The Foundry', href: '/foundry' },
-      { name: 'Operating Guide', href: '/foundry/guide' },
-      { name: 'Apply', href: '/foundry#apply' },
+      { name: 'All Brands & Domains', href: '/universe' },
+      { name: 'Ecosystem Map', href: '/ecosystem' },
+      { name: 'Starlight Intelligence', href: 'https://starlightintelligence.org' },
+      { name: 'Reality Architect', href: 'https://realityarchitect.ai' },
+      { name: 'GenCreator', href: 'https://gencreator.ai' },
+      { name: 'Arcanea', href: 'https://arcanea.ai' },
     ],
   },
   { name: 'Blog', href: '/blog' },
@@ -204,26 +185,26 @@ export default function Navigation() {
 
             <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
               <Link
-                href="/free-playbook"
+                href="/newsletter"
                 className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-sm font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/20"
               >
-                Free Playbooks
+                Newsletter
               </Link>
               <Link
                 href="/start"
                 className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-full transition-all duration-300 border border-white/10"
               >
-                Explore
+                Start Here
               </Link>
             </div>
           </div>
 
           <div className="lg:hidden flex items-center space-x-3">
             <Link
-              href="/free-playbook"
+              href="/newsletter"
               className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white text-sm font-semibold rounded-full transition-all duration-300"
             >
-              Free
+              Newsletter
             </Link>
             <button
               onClick={() => setIsOpen((prev) => !prev)}
@@ -267,18 +248,18 @@ export default function Navigation() {
             ))}
 
             <Link
-              href="/free-playbook"
+              href="/newsletter"
               className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-cyan-600 text-center transition-all active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
             >
-              Get Free Playbooks
+              Subscribe to Newsletter
             </Link>
             <Link
-              href="/products"
+              href="/start"
               className="mt-2 px-6 py-3 rounded-xl text-sm font-medium text-slate-300 bg-white/5 border border-white/10 text-center transition-all active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
             >
-              View Products
+              Start Here
             </Link>
           </div>
         </div>
