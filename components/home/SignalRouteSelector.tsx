@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import { FRANKX_VOICE } from '@/lib/voice/frankx-voice'
 
 type Accent = 'emerald' | 'cyan' | 'amber'
 
@@ -66,6 +67,8 @@ const routeAccents: Record<
   },
 }
 
+const architectureProof = `${FRANKX_VOICE.identity.role}. ${FRANKX_VOICE.identity.disclaimer}`
+
 const signalRoutes: SignalRoute[] = [
   {
     id: 'creator-systems',
@@ -102,7 +105,7 @@ const signalRoutes: SignalRoute[] = [
     title: 'Design the workflow before the tooling spreads.',
     description:
       'Use the enterprise AI architecture lane for agent workflows, MCP patterns, governance, and production delivery notes.',
-    proof: 'Former AI architect at Oracle; independent project.',
+    proof: architectureProof,
     href: '/ai-architecture',
     cta: 'Review Architecture',
     icon: Building2,
@@ -159,7 +162,7 @@ export function SignalRouteSelector() {
             {proofSignals.map((signal) => (
               <div
                 key={signal.label}
-                className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 [backdrop-filter:blur(24px)_saturate(150%)]"
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 backdrop-blur-[24px] backdrop-saturate-[150%]"
               >
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/35">
                   {signal.label}
@@ -179,7 +182,7 @@ export function SignalRouteSelector() {
             return (
               <article
                 key={route.id}
-                className={`group relative flex min-h-[420px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] p-5 transition duration-300 [backdrop-filter:blur(28px)_saturate(155%)] [box-shadow:0_14px_50px_-30px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.055)] hover:-translate-y-0.5 ${accent.border}`}
+                className={`group relative flex min-h-[420px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] p-5 transition duration-300 backdrop-blur-[28px] backdrop-saturate-[155%] [box-shadow:0_14px_50px_-30px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.055)] hover:-translate-y-0.5 ${accent.border}`}
               >
                 <div
                   className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${accent.surface} opacity-90`}
