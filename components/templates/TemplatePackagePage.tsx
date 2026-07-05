@@ -22,6 +22,7 @@ import {
   type V0TemplateChannel,
 } from '@/data/v0-template-library'
 import { getV0TemplateBlueprint } from '@/data/v0-template-blueprints'
+import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplatePackagePageProps = {
   entry: V0TemplateEntry
@@ -227,6 +228,7 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
   const accent = accentClasses[entry.accent]
   const brandStrategy = brandStrategies[entry.brand]
   const blueprint = getV0TemplateBlueprint(entry)
+  const production = getV0TemplateProductionPlan(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
   const promptLines = buildV0Prompt(entry)
   const architecturePlan = [...getArchitecturePlan(entry), ...blueprint.architectureMoves]
@@ -276,6 +278,15 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
               )}
+              <a
+                href={production.issue.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white/78 transition hover:border-white/30 hover:text-white"
+              >
+                Issue #{production.issue.number}
+                <GitPullRequest className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
@@ -292,11 +303,12 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
                 />
               </div>
             </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid gap-3 sm:grid-cols-4">
               {[
                 { label: 'Asset tier', value: entry.assetTier },
                 { label: 'Status', value: entry.status },
-                { label: 'Package page', value: getV0TemplatePath(entry) },
+                { label: 'Priority', value: production.priority },
+                { label: 'Lane issue', value: `#${production.issue.number}` },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-[8px] border border-white/10 bg-black/35 p-4">
                   <p className="text-sm font-medium text-white">{stat.value}</p>
@@ -330,6 +342,32 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
             <p className="mt-4 text-sm leading-7 text-white/58">{blueprint.designThinking}</p>
           </section>
           <ListPanel title="Brand guardrails" items={brandStrategy.guardrails} Icon={ShieldCheck} />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <SectionHeader
+          eyebrow="Command Center lane"
+          title="Owner, trigger, guardrail, proof"
+          body="Every package is attached to a GitHub lane so v0 exploration, Codex hardening, assets, and public readiness move through one visible loop."
+        />
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <StrategyPanel
+            title="Issue owner"
+            body={`${production.laneLabel}. ${production.issue.title}.`}
+            Icon={GitPullRequest}
+          />
+          <StrategyPanel title="Market signal" body={production.communitySignal} Icon={Waypoints} />
+          <StrategyPanel title="Launch decision" body={production.launchDecision} Icon={ShieldCheck} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-3">
+          <StrategyPanel title="v0 trigger" body={production.v0Trigger} Icon={Code2} />
+          <StrategyPanel title="Codex trigger" body={production.codexTrigger} Icon={GitPullRequest} />
+          <StrategyPanel title="Next sprint move" body={production.nextSprintMove} Icon={Layers} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <ListPanel title="Do not give v0" items={production.doNotUseV0For} Icon={ShieldCheck} />
+          <ListPanel title="Proof still needed" items={production.proofNeeded} Icon={CheckCircle2} />
         </div>
       </section>
 

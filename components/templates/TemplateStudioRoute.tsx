@@ -24,6 +24,7 @@ import {
   type V0TemplateIcon,
   type V0TemplateStage,
 } from '@/data/v0-template-library'
+import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplateStudioRouteProps = {
   eyebrow: string
@@ -100,6 +101,7 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
   const accent = accentClasses[entry.accent]
   const detailHref = getV0TemplatePath(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
+  const production = getV0TemplateProductionPlan(entry)
 
   return (
     <article className="group overflow-hidden rounded-[8px] border border-white/10 bg-white/[0.035]">
@@ -139,6 +141,16 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
             <dt className="text-white/40">Status</dt>
             <dd className="mt-1 text-white/80">{entry.status}</dd>
           </div>
+          <div>
+            <dt className="text-white/40">Lane</dt>
+            <dd className="mt-1 text-white/80">{production.laneLabel}</dd>
+          </div>
+          <div>
+            <dt className="text-white/40">Priority</dt>
+            <dd className="mt-1 text-white/80">
+              {production.priority} · Issue #{production.issue.number}
+            </dd>
+          </div>
         </dl>
 
         <div>
@@ -157,9 +169,14 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
           <p className="mt-2 text-sm leading-6 text-white/70">{entry.packageWith.join(' / ')}</p>
         </div>
 
+        <div>
+          <p className="text-sm text-white/40">Production rule</p>
+          <p className="mt-2 text-sm leading-6 text-white/70">{production.publicReadiness}</p>
+        </div>
+
         <div className="space-y-2 border-t border-white/10 pt-4">
           <p className="text-sm text-white/40">Next action</p>
-          <p className="text-sm leading-6 text-white/75">{entry.nextAction}</p>
+          <p className="text-sm leading-6 text-white/75">{production.nextSprintMove}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -179,6 +196,15 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           )}
+          <a
+            href={production.issue.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/75 transition hover:border-white/30 hover:text-white"
+          >
+            Issue #{production.issue.number}
+            <GitPullRequest className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </article>
