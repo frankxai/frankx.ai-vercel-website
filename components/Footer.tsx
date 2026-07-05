@@ -120,13 +120,6 @@ export default function Footer() {
       className="relative border-t border-white/5 bg-[#0a0a0b] text-white overflow-hidden"
       aria-label="Site footer"
     >
-      {/* Aurora ambient glow */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute -top-32 left-1/4 h-64 w-96 rounded-full bg-cyan-500/[0.07] blur-[128px]" />
-        <div className="absolute top-1/2 right-1/4 h-48 w-80 rounded-full bg-violet-500/[0.05] blur-[120px]" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-40 w-72 rounded-full bg-emerald-500/[0.04] blur-[100px]" />
-      </div>
-
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
 
         {/* Main grid */}

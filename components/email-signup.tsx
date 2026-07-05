@@ -80,19 +80,19 @@ export function EmailSignup({
   if (compact) {
     return (
       <form onSubmit={handleSubmit} className={cn('relative', className)}>
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+            className="min-w-0 flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg transition-all hover:from-blue-500 hover:to-purple-500 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
           >
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
           </button>
