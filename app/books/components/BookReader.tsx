@@ -43,6 +43,7 @@ export default function BookReader({
       const level = match[1].length;
       const text = match[2].trim();
       if (
+        level === 1 ||
         text.toLowerCase().includes('chapter') ||
         text.toLowerCase().includes('source') ||
         text.toLowerCase().includes('end chapter') ||
