@@ -41,12 +41,14 @@ export const metadata = createMetadata({
 
 const SITE_URL = 'https://frankx.ai'
 const version = '0.1.0'
-const releaseDate = '2026-07-05'
+const templateReleaseVersion = '0.1.2'
 const assetName = `property-intelligence-starter-kit-v${version}.zip`
 const zipUrl = `/downloads/${assetName}`
 const checksumUrl = `/downloads/property-intelligence-starter-kit-v${version}.sha256`
 const checksumSha256 =
   '7a6c9b171be77a54e366796dc5f1997e8455680d8deeaa94c014c77782e8070e'
+const propertyOsReleaseUrl = `https://github.com/frankxai/property-os-template/releases/tag/v${templateReleaseVersion}`
+const propertyPortalReleaseUrl = `https://github.com/frankxai/property-portal-template/releases/tag/v${templateReleaseVersion}`
 
 const downloadAssets = [
   {
@@ -83,6 +85,20 @@ const downloadAssets = [
     detail: 'Railway-ready MCP boundary with resources, tools, prompts, environment variables, health checks, and safety rules.',
     icon: ServerCog,
     cta: 'Open MCP',
+  },
+  {
+    title: 'OS template release',
+    href: propertyOsReleaseUrl,
+    detail: `Latest v${templateReleaseVersion} Codex/Claude workspace with hosted runtime wiring, Railway/MCP readiness checks, and install docs.`,
+    icon: GitBranch,
+    cta: 'Open release',
+  },
+  {
+    title: 'Portal template release',
+    href: propertyPortalReleaseUrl,
+    detail: `Latest v${templateReleaseVersion} Vercel portal with runtime snapshot, Postgres adapter, owner notifications, and admin cockpit.`,
+    icon: Gauge,
+    cta: 'Open release',
   },
   {
     title: 'Install runbook',
@@ -123,8 +139,8 @@ const proof = [
   },
   {
     label: 'Public kit',
-    value: `v${version}`,
-    detail: 'downloadable ZIP, checksum, v0 prompt, partner guide, release manifest',
+    value: `v${version} + v${templateReleaseVersion}`,
+    detail: 'starter kit plus runtime-ready GitHub template releases',
   },
 ]
 
@@ -138,7 +154,7 @@ const repoStack = [
   {
     name: 'property-os-template',
     role: 'Public-safe owner template',
-    detail: 'Codex and Claude-ready workspace with runbooks, issue templates, approval gates, and privacy scans.',
+    detail: `Codex and Claude-ready workspace with runbooks, issue templates, approval gates, privacy scans, and v${templateReleaseVersion} hosted runtime wiring.`,
     icon: FileText,
   },
   {
@@ -150,7 +166,7 @@ const repoStack = [
   {
     name: 'property-portal-template',
     role: 'Vercel renter portal',
-    detail: 'Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, and listing admin.',
+    detail: `Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, listing admin, Postgres runtime adapter, and v${templateReleaseVersion} runtime snapshot.`,
     icon: Gauge,
   },
 ]
@@ -208,7 +224,7 @@ const platformLayers = [
   },
   {
     title: 'Runtime data layer',
-    detail: 'Secure database and object storage handle inquiries, tickets, renter sessions, documents, and sanitized issue summaries.',
+    detail: 'Secure database and object storage handle inquiries, tickets, renter sessions, documents, approvals, audit events, and sanitized owner notification handoffs.',
     icon: Database,
   },
   {
@@ -687,9 +703,9 @@ function DownloadKitSection() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
         <div>
           <SectionHeader
-            eyebrow="Public release candidate"
-            title="A real starter kit people can download, fork, and sell around."
-            copy="The free package is deliberately useful but bounded: it gives owners and implementers the operating model, the build prompt, and partner guide without leaking private install data."
+            eyebrow="Public release"
+            title="A real starter kit plus runtime-ready templates people can fork and sell around."
+            copy="The free package is deliberately useful but bounded. The GitHub template releases carry the current install surface: hosted runtime wiring, owner notifications, Postgres persistence, MCP readiness, and partner operations."
           />
           <div className="mt-7 rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-5">
             <div className="flex items-start gap-3">
@@ -710,10 +726,13 @@ function DownloadKitSection() {
           <div className="grid gap-3 sm:grid-cols-2">
             {downloadAssets.map((asset) => {
               const Icon = asset.icon
+              const isExternal = asset.href.startsWith('https://')
               return (
                 <a
                   key={asset.title}
                   href={asset.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
                   download={asset.href === zipUrl ? assetName : undefined}
                   className="group rounded-[1.45rem] border border-white/10 bg-white/[0.035] p-5 transition-colors hover:border-emerald-300/25 hover:bg-white/[0.055] focus:outline-none focus:ring-2 focus:ring-emerald-300/50"
                 >
@@ -736,12 +755,12 @@ function DownloadKitSection() {
           <div className="mt-5 rounded-[1.45rem] border border-white/10 bg-black/20 p-5">
             <dl className="grid gap-4 text-sm sm:grid-cols-3">
               <div>
-                <dt className="text-slate-500">Version</dt>
+                <dt className="text-slate-500">Starter kit</dt>
                 <dd className="mt-1 font-mono text-emerald-100">v{version}</dd>
               </div>
               <div>
-                <dt className="text-slate-500">Released</dt>
-                <dd className="mt-1 font-mono text-slate-300">{releaseDate}</dd>
+                <dt className="text-slate-500">Templates</dt>
+                <dd className="mt-1 font-mono text-slate-300">v{templateReleaseVersion}</dd>
               </div>
               <div>
                 <dt className="text-slate-500">Checksum</dt>
