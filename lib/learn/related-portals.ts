@@ -52,10 +52,12 @@ const RESEARCH_PORTALS: Record<string, string[]> = {
 
 /** Portals to surface at the bottom of a guide page. */
 export function portalsForGuide(slug: string): string[] {
-  return GUIDE_PORTALS[slug] ?? [...MODEL_MAKER_PORTALS]
+  // Spread so callers get a fresh array — never a reference into the shared map.
+  return [...(GUIDE_PORTALS[slug] ?? MODEL_MAKER_PORTALS)]
 }
 
 /** Portals to surface at the bottom of a research domain page. */
 export function portalsForResearch(slug: string): string[] {
-  return RESEARCH_PORTALS[slug] ?? [...MODEL_MAKER_PORTALS]
+  // Spread so callers get a fresh array — never a reference into the shared map.
+  return [...(RESEARCH_PORTALS[slug] ?? MODEL_MAKER_PORTALS)]
 }
