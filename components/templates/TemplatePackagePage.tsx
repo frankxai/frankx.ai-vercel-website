@@ -28,6 +28,7 @@ import { getV0TemplateExcellencePlan } from '@/data/v0-template-excellence'
 import { getV0TemplateFactoryPack, v0TemplateFactoryPrinciples } from '@/data/v0-template-packaging'
 import { getV0TemplateMarketplaceShelvesForEntry } from '@/data/v0-template-marketplace'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
+import { getV0TemplateSourcePack } from '@/data/v0-template-source-packs'
 
 type TemplatePackagePageProps = {
   entry: V0TemplateEntry
@@ -252,6 +253,7 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
   const factory = getV0TemplateFactoryPack(entry)
   const marketplaceShelves = getV0TemplateMarketplaceShelvesForEntry(entry, v0TemplateEntries)
   const production = getV0TemplateProductionPlan(entry)
+  const sourcePack = getV0TemplateSourcePack(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
   const promptLines = factory.promptPack.brief
   const architecturePlan = [...getArchitecturePlan(entry), ...blueprint.architectureMoves]
@@ -618,6 +620,30 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <SectionHeader
+          eyebrow="Source pack"
+          title="The concrete pack that turns the template into reusable product"
+          body="This is the implementation inventory for the package: buyer data, fixtures, README, screenshots, v0 handoff, Codex build tasks, proof receipts, and commercial packaging. It is the layer that keeps the library above prompt-only template shelves."
+        />
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <StrategyPanel title={sourcePack.label} body={sourcePack.readinessNote} Icon={FileText} />
+          <StrategyPanel title="Pack status" body={sourcePack.statusLabel} Icon={ShieldCheck} />
+          <StrategyPanel title="Benchmark position" body={sourcePack.benchmarkPosition} Icon={Sparkles} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-3">
+          <ListPanel title="Buyer dataset" items={sourcePack.buyerDataset} Icon={Waypoints} />
+          <ListPanel title="Route fixtures" items={sourcePack.routeFixtures} Icon={Layers} />
+          <ListPanel title="README outline" items={sourcePack.readmeOutline} Icon={FileText} />
+          <ListPanel title="Screenshot checklist" items={sourcePack.screenshotChecklist} Icon={ImageIcon} />
+          <ListPanel title="v0 handoff" items={sourcePack.v0Handoff} Icon={Code2} />
+          <ListPanel title="Codex build" items={sourcePack.codexBuild} Icon={GitPullRequest} />
+          <ListPanel title="GitHub and Vercel proof" items={sourcePack.vercelGithubProof} Icon={GitPullRequest} />
+          <ListPanel title="Commercial packaging" items={sourcePack.commercialPackaging} Icon={Boxes} />
+          <ListPanel title="Blocked until" items={sourcePack.blockedUntil} Icon={ShieldCheck} />
         </div>
       </section>
 

@@ -33,6 +33,10 @@ import {
 import { getV0TemplateExcellenceSummary } from '@/data/v0-template-excellence'
 import { getV0TemplateMarketplacePlan } from '@/data/v0-template-marketplace'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
+import {
+  getV0TemplateSourcePack,
+  getV0TemplateSourcePackSummary,
+} from '@/data/v0-template-source-packs'
 
 type TemplateStudioRouteProps = {
   eyebrow: string
@@ -112,6 +116,7 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
   const demand = getV0TemplateDemandPlan(entry)
   const factory = getV0TemplateFactoryPack(entry)
   const production = getV0TemplateProductionPlan(entry)
+  const sourcePack = getV0TemplateSourcePack(entry)
 
   return (
     <article className="group overflow-hidden rounded-[8px] border border-white/10 bg-white/[0.035]">
@@ -176,6 +181,10 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
           <div>
             <dt className="text-white/40">v0 use</dt>
             <dd className="mt-1 text-white/80">{factory.v0DecisionLabel}</dd>
+          </div>
+          <div>
+            <dt className="text-white/40">Source pack</dt>
+            <dd className="mt-1 text-white/80">{sourcePack.statusLabel}</dd>
           </div>
         </dl>
 
@@ -268,6 +277,7 @@ export function TemplateStudioRoute({
   ]
   const excellenceSummary = getV0TemplateExcellenceSummary(entries)
   const marketplacePlan = getV0TemplateMarketplacePlan(entries)
+  const sourcePackSummary = getV0TemplateSourcePackSummary(entries)
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -445,6 +455,67 @@ export function TemplateStudioRoute({
                 <span>{move}</span>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10">
+        <div className="mb-8 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm text-cyan-200">Source packs</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              The template becomes real when the source pack exists.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-white/60">
+              The benchmark is no longer just a cinematic prompt shelf. Every priority package needs buyer
+              data, route fixtures, README shape, screenshots, v0 handoff, Codex build tasks, and GitHub/Vercel
+              proof before it can graduate.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {sourcePackSummary.stats.map((stat) => (
+                <div key={stat.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                  <p className="mt-1 text-xs text-white/50">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {sourcePackSummary.standards.map((standard) => (
+              <div key={standard} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-sm leading-6 text-white/68">{standard}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+          {sourcePackSummary.nextPacks.slice(0, 6).map((pack) => (
+            <section key={pack.packageId} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.16em] text-white/38">{pack.statusLabel}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-white">{pack.label}</h3>
+                </div>
+                <Link
+                  href={`/v/${pack.packageId}`}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition hover:text-white"
+                >
+                  Open pack
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-white/62">{pack.readinessNote}</p>
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                <div>
+                  <p className="text-sm text-white/40">Buyer data</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{pack.buyerDataset[0]}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-white/40">Proof path</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{pack.vercelGithubProof[0]}</p>
+                </div>
+              </div>
+            </section>
           ))}
         </div>
       </section>
