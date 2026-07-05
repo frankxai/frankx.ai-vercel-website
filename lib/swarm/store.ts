@@ -95,7 +95,16 @@ export async function listPendingDecisions(limit = 20): Promise<PendingDecision[
   if (!kv) return []
   try {
     const raw = (await kv.lrange<string | PendingDecision>(PENDING_KEY, 0, limit - 1)) ?? []
-    return raw.map((r) => (typeof r === 'string' ? (JSON.parse(r) as PendingDecision) : r))
+    return raw
+      .map((r) => {
+        if (typeof r !== 'string') return r
+        try {
+          return JSON.parse(r) as PendingDecision
+        } catch {
+          return null
+        }
+      })
+      .filter((r): r is PendingDecision => r !== null)
   } catch {
     return []
   }

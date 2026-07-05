@@ -77,7 +77,7 @@ export const gatewayExecutor: Executor = {
         ok: true,
         output: result.object as T,
         usage,
-        costUsd: usdOf(agent.recommended_model, usage),
+        costUsd: usdOf(model, usage),
       }
     } catch (err) {
       return { id: agent.id, model, ok: false, output: null, usage: { inputTokens: 0, outputTokens: 0 }, costUsd: 0, error: (err as Error).message }

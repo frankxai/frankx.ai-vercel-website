@@ -70,7 +70,7 @@ export default async function SwarmDashboardPage() {
           <div className="mt-2 h-2 rounded-full bg-white/5 overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-indigo-500 to-sky-400"
-              style={{ width: `${Math.min(100, (spend / DAILY_CAP) * 100)}%` }}
+              style={{ width: `${DAILY_CAP > 0 ? Math.min(100, (spend / DAILY_CAP) * 100) : 0}%` }}
             />
           </div>
         </section>

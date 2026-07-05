@@ -19,7 +19,7 @@
 import type { z } from 'zod'
 import type { CatalogAgent, HostedCatalog } from './catalog'
 import { agentsByLayer } from './catalog'
-import { pricingFor } from './models'
+import { pricingFor, gatewayModelFor } from './models'
 import { AgentVerdict, SynthesisOutput, type AgentVerdictT, type SynthesisOutputT } from './schemas'
 import type { AgentRunResult, Executor } from './executor'
 
@@ -111,7 +111,7 @@ function digest(results: AgentRunResult<AgentVerdictT>[]): string {
 function estimateUsd(agents: CatalogAgent[], includeSynthesis: boolean): number {
   let total = 0
   for (const a of agents) {
-    const p = pricingFor(a.recommended_model)
+    const p = pricingFor(gatewayModelFor(a.id, a.recommended_model))
     const outCap = a.layer === 'synthesis' ? MAX_TOKENS.synthesis : MAX_TOKENS.analysis
     const inBudget = 1500 // catalog/system + context + digest, bounded
     total += (inBudget / 1_000_000) * p.input + (outCap / 1_000_000) * p.output

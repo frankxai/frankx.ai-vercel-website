@@ -28,9 +28,12 @@ export async function POST(request: NextRequest) {
 
   let body: { context?: string; agents?: string[]; includeChiefOfStaff?: boolean } = {}
   try {
-    body = await request.json()
+    const parsed = await request.json()
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+      body = parsed
+    }
   } catch {
-    // empty body is fine — a canned context is used below
+    // empty or non-object body is fine — a canned context is used below
   }
 
   const context =
@@ -48,7 +51,13 @@ export async function POST(request: NextRequest) {
 
   const record = await runHostedCouncil(
     { executor: gatewayExecutor, store: kvStore, now: () => new Date(), catalog },
-    { context, only: body.agents, includeChiefOfStaff: body.includeChiefOfStaff === true },
+    {
+      context,
+      only: Array.isArray(body.agents)
+        ? body.agents.filter((a): a is string => typeof a === 'string')
+        : undefined,
+      includeChiefOfStaff: body.includeChiefOfStaff === true,
+    },
   )
 
   // Cost gate refusal → 429 with the estimate.

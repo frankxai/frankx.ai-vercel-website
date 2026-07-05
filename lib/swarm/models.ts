@@ -44,18 +44,27 @@ export function gatewayModelFor(agentId: string, recommended?: string): string {
   return GATEWAY_STRING[model] ?? GATEWAY_STRING[DEFAULT_MODEL]
 }
 
-/** Pricing for an agent's model (falls back to the default tier). */
-export function pricingFor(recommended?: string): { input: number; output: number } {
-  const model = (recommended as CatalogModel) ?? DEFAULT_MODEL
+/**
+ * Pricing for a model (falls back to the default tier). Accepts either a
+ * catalog id (`claude-opus-4-7`) or a resolved gateway string
+ * (`anthropic/claude-opus-4-7`, including `SWARM_MODEL_*` overrides) so the
+ * price always tracks the model actually run, not the recommended one.
+ */
+export function pricingFor(modelStr?: string): { input: number; output: number } {
+  if (!modelStr) return PRICING[DEFAULT_MODEL]
+  if (modelStr.includes('opus')) return PRICING['claude-opus-4-7']
+  if (modelStr.includes('haiku')) return PRICING['claude-haiku-4-5']
+  if (modelStr.includes('sonnet')) return PRICING['claude-sonnet-4-6']
+  const model = modelStr as CatalogModel
   return PRICING[model] ?? PRICING[DEFAULT_MODEL]
 }
 
-/** USD cost of a completed call given token usage. */
+/** USD cost of a completed call given token usage. Pass the model actually run. */
 export function usdOf(
-  recommended: string | undefined,
+  modelStr: string | undefined,
   usage: { inputTokens?: number; outputTokens?: number },
 ): number {
-  const p = pricingFor(recommended)
+  const p = pricingFor(modelStr)
   const inTok = usage.inputTokens ?? 0
   const outTok = usage.outputTokens ?? 0
   return (inTok / 1_000_000) * p.input + (outTok / 1_000_000) * p.output
