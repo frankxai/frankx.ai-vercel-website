@@ -23,6 +23,7 @@ import {
 } from '@/data/v0-template-library'
 import { getV0TemplateBlueprint } from '@/data/v0-template-blueprints'
 import { getV0TemplateDemandPlan } from '@/data/v0-template-demand'
+import { getV0TemplateFactoryPack, v0TemplateFactoryPrinciples } from '@/data/v0-template-packaging'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplatePackagePageProps = {
@@ -157,6 +158,33 @@ function ListPanel({
   )
 }
 
+function InlineList({
+  title,
+  items,
+  Icon = CheckCircle2,
+}: {
+  title: string
+  items: string[]
+  Icon?: typeof CheckCircle2
+}) {
+  return (
+    <div>
+      <div className="mb-3 flex items-center gap-2 text-sm font-medium text-white">
+        <Icon className="h-4 w-4 text-emerald-200" />
+        {title}
+      </div>
+      <ul className="space-y-2">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3 text-sm leading-6 text-white/62">
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 function StrategyPanel({
   title,
   body,
@@ -175,19 +203,6 @@ function StrategyPanel({
       <p className="text-sm leading-7 text-white/66">{body}</p>
     </section>
   )
-}
-
-function buildV0Prompt(entry: V0TemplateEntry) {
-  return [
-    `Build one premium ${entry.family.toLowerCase()} surface for ${entry.brand}.`,
-    `Audience: ${entry.audience}.`,
-    `Use the available asset direction: ${entry.assetSource}.`,
-    `Include these sections only: ${entry.deliverables.join(', ')}.`,
-    `Package with: ${entry.packageWith.join(', ')}.`,
-    `Respect these gates: ${entry.qualityGates.join(', ')}.`,
-    'Do not invent metrics, client outcomes, auth, billing, secrets, production deploys, or final factual claims.',
-    'Return one focused page or component candidate with desktop and mobile states. Codex will harden it.',
-  ]
 }
 
 function getArchitecturePlan(entry: V0TemplateEntry) {
@@ -230,9 +245,10 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
   const brandStrategy = brandStrategies[entry.brand]
   const blueprint = getV0TemplateBlueprint(entry)
   const demand = getV0TemplateDemandPlan(entry)
+  const factory = getV0TemplateFactoryPack(entry)
   const production = getV0TemplateProductionPlan(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
-  const promptLines = buildV0Prompt(entry)
+  const promptLines = factory.promptPack.brief
   const architecturePlan = [...getArchitecturePlan(entry), ...blueprint.architectureMoves]
   const motionPlan = [...getMotionPlan(entry), ...blueprint.motionMoves]
 
@@ -308,8 +324,8 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
             <div className="mt-4 grid gap-3 sm:grid-cols-4">
               {[
                 { label: 'Asset tier', value: entry.assetTier },
-                { label: 'Priority', value: production.priority },
-                { label: 'Demand', value: demand.tierLabel },
+                { label: 'Factory', value: factory.modeLabel },
+                { label: 'v0 use', value: factory.v0DecisionLabel },
                 { label: 'Lane issue', value: `#${production.issue.number}` },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-[8px] border border-white/10 bg-black/35 p-4">
@@ -406,6 +422,96 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-16">
+        <SectionHeader
+          eyebrow="Package factory"
+          title="Prompt, source, asset, motion, sprint, and restart logic"
+          body="This is the production contract for the template. It decides when to use v0, what to keep in Codex, what assets need inspection, and when the idea should be restarted instead of polished."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            { label: 'Public index', value: factory.routePlan.publicIndex },
+            { label: 'Package route', value: factory.routePlan.packageRoute },
+            { label: 'Lane route', value: factory.routePlan.laneRoute },
+            { label: 'Command Center', value: factory.routePlan.commandCenterRecord },
+          ].map((item) => (
+            <section key={item.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <p className="text-sm font-medium text-white">{item.label}</p>
+              <p className="mt-3 text-sm leading-6 text-white/62">{item.value}</p>
+            </section>
+          ))}
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-3">
+          <ListPanel title="Factory principles" items={v0TemplateFactoryPrinciples} Icon={ShieldCheck} />
+          <ListPanel title="Source repo work" items={factory.sourcePack.repoWork} Icon={GitPullRequest} />
+          <ListPanel title="Factory checks" items={factory.sourcePack.checks} Icon={CheckCircle2} />
+          <ListPanel title="Docs to ship" items={factory.sourcePack.docs} Icon={FileText} />
+          <ListPanel title="Fixtures and states" items={factory.sourcePack.fixtures} Icon={Waypoints} />
+          <ListPanel title="Restart criteria" items={factory.killCriteria} Icon={ShieldCheck} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <section className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-white">
+              <ImageIcon className="h-4 w-4 text-cyan-200" />
+              Asset pack
+            </div>
+            <p className="text-sm leading-7 text-white/68">{factory.assetPack.primaryAssetJob}</p>
+            <p className="mt-4 text-sm leading-7 text-white/58">{factory.assetPack.sourceMethod}</p>
+            <div className="mt-5 grid gap-5 md:grid-cols-2">
+              <InlineList title="Required exports" items={factory.assetPack.requiredExports} Icon={ImageIcon} />
+              <InlineList title="Inspection" items={factory.assetPack.inspection} Icon={ShieldCheck} />
+            </div>
+          </section>
+          <section className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-white">
+              <Sparkles className="h-4 w-4 text-cyan-200" />
+              Motion pack
+            </div>
+            <p className="text-sm leading-7 text-white/68">{factory.motionPack.motionJob}</p>
+            <p className="mt-4 text-sm leading-7 text-white/58">{factory.motionPack.runtimeRoute}</p>
+            <div className="mt-5">
+              <InlineList title="Fallbacks" items={factory.motionPack.fallbacks} Icon={ShieldCheck} />
+            </div>
+          </section>
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <section className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-white">
+              <Layers className="h-4 w-4 text-cyan-200" />
+              Sprint sequence
+            </div>
+            <div className="space-y-4">
+              {factory.sprintActions.map((action) => (
+                <div key={`${action.owner}-${action.action}`} className="border-t border-white/10 pt-4 first:border-t-0 first:pt-0">
+                  <p className="text-sm font-medium text-white">{action.owner}</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{action.action}</p>
+                  <p className="mt-2 text-xs leading-5 text-white/45">{action.trigger}</p>
+                  <p className="mt-2 text-xs leading-5 text-emerald-100/70">{action.evidence}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+          <div className="grid gap-5">
+            <div className="grid gap-4 md:grid-cols-2">
+              {factory.skillStack.map((item) => (
+                <section key={item.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                  <p className="text-sm font-medium text-white">{item.label}</p>
+                  <p className="mt-3 text-sm leading-6 text-white/62">{item.value}</p>
+                </section>
+              ))}
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {factory.productization.map((item) => (
+                <section key={item.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                  <p className="text-sm font-medium text-white">{item.label}</p>
+                  <p className="mt-3 text-sm leading-6 text-white/62">{item.value}</p>
+                </section>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <SectionHeader
             eyebrow="v0 brief"
@@ -418,7 +524,7 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
               v0 prompt contract
             </div>
             <pre className="whitespace-pre-wrap rounded-[8px] border border-white/10 bg-white/[0.035] p-4 text-sm leading-7 text-white/72">
-              {promptLines.join('\n')}
+              {[...promptLines, '', 'Refinement pass:', ...factory.promptPack.refinement].join('\n')}
             </pre>
           </section>
         </div>
@@ -426,6 +532,8 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
 
       <section className="mx-auto max-w-7xl px-6 py-10">
         <div className="grid gap-5 lg:grid-cols-2">
+          <ListPanel title="Prompt acceptance" items={factory.promptPack.acceptance} Icon={CheckCircle2} />
+          <ListPanel title="Blocked v0 patterns" items={factory.promptPack.blockedPatterns} Icon={ShieldCheck} />
           <ListPanel title="v0 token budget" items={blueprint.v0Scope} Icon={Code2} />
           <ListPanel title="Codex production scope" items={blueprint.codexScope} Icon={GitPullRequest} />
           <ListPanel title="Asset production moves" items={blueprint.assetMoves} Icon={ImageIcon} />

@@ -25,6 +25,11 @@ import {
   type V0TemplateStage,
 } from '@/data/v0-template-library'
 import { getV0TemplateDemandPlan, v0TemplateDemandWaves } from '@/data/v0-template-demand'
+import {
+  getV0TemplateFactoryPack,
+  getV0TemplateFactorySummary,
+  v0TemplateFactoryFlow,
+} from '@/data/v0-template-packaging'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplateStudioRouteProps = {
@@ -103,6 +108,7 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
   const detailHref = getV0TemplatePath(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
   const demand = getV0TemplateDemandPlan(entry)
+  const factory = getV0TemplateFactoryPack(entry)
   const production = getV0TemplateProductionPlan(entry)
 
   return (
@@ -160,6 +166,14 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
             <dd className="mt-1 text-white/80">
               {production.priority} · Issue #{production.issue.number}
             </dd>
+          </div>
+          <div>
+            <dt className="text-white/40">Factory</dt>
+            <dd className="mt-1 text-white/80">{factory.modeLabel}</dd>
+          </div>
+          <div>
+            <dt className="text-white/40">v0 use</dt>
+            <dd className="mt-1 text-white/80">{factory.v0DecisionLabel}</dd>
           </div>
         </dl>
 
@@ -243,6 +257,13 @@ export function TemplateStudioRoute({
   const visibleDemandWaves = v0TemplateDemandWaves.filter((wave) =>
     entries.some((entry) => getV0TemplateDemandPlan(entry).wave === wave.id),
   )
+  const factorySummary = getV0TemplateFactorySummary(entries)
+  const factoryStats = [
+    { label: 'v0 usable now', value: String(factorySummary.v0Usable) },
+    { label: 'Codex first', value: String(factorySummary.codexFirst) },
+    { label: 'Deployable', value: String(factorySummary.deployable) },
+    { label: 'Motion/3D', value: String(factorySummary.motion) },
+  ]
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -347,6 +368,37 @@ export function TemplateStudioRoute({
                 <p className="text-sm font-medium text-white">{wave.label}</p>
                 <p className="mt-3 text-sm leading-6 text-white/62">{wave.signal}</p>
                 <p className="mt-3 text-sm leading-6 text-white/52">{wave.winningAngle}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm text-emerald-200">Package factory</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              Every template becomes a product system, not a token burn.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-white/60">
+              The factory splits each package into prompt, source, asset, motion, deploy, issue, and preview loops.
+              That keeps v0 focused on visual acceleration while Codex owns proof and release quality.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              {factoryStats.map((stat) => (
+                <div key={stat.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                  <p className="mt-1 text-xs text-white/50">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {v0TemplateFactoryFlow.map((step) => (
+              <div key={step.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-sm font-medium text-white">{step.label}</p>
+                <p className="mt-3 text-sm leading-6 text-white/62">{step.value}</p>
               </div>
             ))}
           </div>
