@@ -11,6 +11,7 @@ import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 
 // ============================================================================
 // TYPES
@@ -1371,6 +1372,9 @@ export default function HomePageElite({
 
         {/* 4b. AI Stack — tool logos with guide links */}
         <TrustedByBlock />
+
+        {/* 4c. Signal route selector — homepage decision layer */}
+        <SignalRouteSelector />
 
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
