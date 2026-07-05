@@ -41,7 +41,7 @@ export const metadata = createMetadata({
 
 const SITE_URL = 'https://frankx.ai'
 const version = '0.1.0'
-const templateReleaseVersion = '0.1.2'
+const templateReleaseVersion = '0.1.3'
 const assetName = `property-intelligence-starter-kit-v${version}.zip`
 const zipUrl = `/downloads/${assetName}`
 const checksumUrl = `/downloads/property-intelligence-starter-kit-v${version}.sha256`
@@ -89,14 +89,14 @@ const downloadAssets = [
   {
     title: 'OS template release',
     href: propertyOsReleaseUrl,
-    detail: `Latest v${templateReleaseVersion} Codex/Claude workspace with hosted runtime wiring, Railway/MCP readiness checks, and install docs.`,
+    detail: `Latest v${templateReleaseVersion} Codex/Claude workspace with tenant-safe hosted runtime wiring, Railway/MCP readiness checks, and install support workflows.`,
     icon: GitBranch,
     cta: 'Open release',
   },
   {
     title: 'Portal template release',
     href: propertyPortalReleaseUrl,
-    detail: `Latest v${templateReleaseVersion} Vercel portal with runtime snapshot, Postgres adapter, owner notifications, and admin cockpit.`,
+    detail: `Latest v${templateReleaseVersion} Vercel portal with tenant RLS SQL, sample seed, Postgres adapter, owner notifications, and admin cockpit.`,
     icon: Gauge,
     cta: 'Open release',
   },
@@ -154,7 +154,7 @@ const repoStack = [
   {
     name: 'property-os-template',
     role: 'Public-safe owner template',
-    detail: `Codex and Claude-ready workspace with runbooks, issue templates, approval gates, privacy scans, and v${templateReleaseVersion} hosted runtime wiring.`,
+    detail: `Codex and Claude-ready workspace with runbooks, issue templates, approval gates, privacy scans, and v${templateReleaseVersion} tenant-safe hosted runtime wiring.`,
     icon: FileText,
   },
   {
@@ -166,7 +166,7 @@ const repoStack = [
   {
     name: 'property-portal-template',
     role: 'Vercel renter portal',
-    detail: `Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, listing admin, Postgres runtime adapter, and v${templateReleaseVersion} runtime snapshot.`,
+    detail: `Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, listing admin, Postgres runtime adapter, tenant RLS SQL, and v${templateReleaseVersion} runtime snapshot.`,
     icon: Gauge,
   },
 ]
@@ -705,7 +705,7 @@ function DownloadKitSection() {
           <SectionHeader
             eyebrow="Public release"
             title="A real starter kit plus runtime-ready templates people can fork and sell around."
-            copy="The free package is deliberately useful but bounded. The GitHub template releases carry the current install surface: hosted runtime wiring, owner notifications, Postgres persistence, MCP readiness, and partner operations."
+            copy="The free package is deliberately useful but bounded. The GitHub template releases carry the current install surface: tenant-safe hosted runtime wiring, owner notifications, Postgres persistence, MCP readiness, and partner operations."
           />
           <div className="mt-7 rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-5">
             <div className="flex items-start gap-3">
