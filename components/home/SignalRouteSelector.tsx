@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { trackEvent } from '@/lib/analytics'
 import { FRANKX_VOICE } from '@/lib/voice/frankx-voice'
 
@@ -39,6 +40,7 @@ const routeAccents: Record<
     surface: string
     rail: string
     focus: string
+    glow: GlowColor
   }
 > = {
   emerald: {
@@ -48,6 +50,7 @@ const routeAccents: Record<
     surface: 'from-emerald-500/10 via-transparent to-cyan-500/5',
     rail: 'from-emerald-400 to-cyan-400',
     focus: 'focus-visible:ring-emerald-400/50',
+    glow: 'emerald',
   },
   cyan: {
     icon: 'bg-cyan-500/10 text-cyan-300 border-cyan-400/20',
@@ -56,6 +59,7 @@ const routeAccents: Record<
     surface: 'from-cyan-500/10 via-transparent to-emerald-500/5',
     rail: 'from-cyan-400 to-emerald-400',
     focus: 'focus-visible:ring-cyan-400/50',
+    glow: 'cyan',
   },
   amber: {
     icon: 'bg-amber-500/10 text-amber-300 border-amber-400/20',
@@ -64,6 +68,7 @@ const routeAccents: Record<
     surface: 'from-amber-500/10 via-transparent to-emerald-500/5',
     rail: 'from-amber-300 to-emerald-400',
     focus: 'focus-visible:ring-amber-300/50',
+    glow: 'amber',
   },
 }
 
@@ -180,9 +185,10 @@ export function SignalRouteSelector() {
             const accent = routeAccents[route.accent]
 
             return (
-              <article
+              <GlowCard
                 key={route.id}
-                className={`group relative flex min-h-[420px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] p-5 transition duration-300 backdrop-blur-[28px] backdrop-saturate-[155%] [box-shadow:0_14px_50px_-30px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.055)] hover:-translate-y-0.5 ${accent.border}`}
+                color={accent.glow}
+                className={`min-h-[420px] p-5 hover:-translate-y-0.5 ${accent.border}`}
               >
                 <div
                   className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${accent.surface} opacity-90`}
@@ -193,7 +199,7 @@ export function SignalRouteSelector() {
                   aria-hidden="true"
                 />
 
-                <div className="relative flex flex-1 flex-col">
+                <div className="relative flex min-h-[380px] flex-col">
                   <div className="flex items-start justify-between gap-4">
                     <div
                       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border ${accent.icon}`}
@@ -248,7 +254,7 @@ export function SignalRouteSelector() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </Link>
                 </div>
-              </article>
+              </GlowCard>
             )
           })}
         </div>
