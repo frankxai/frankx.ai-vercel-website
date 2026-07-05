@@ -24,6 +24,7 @@ import {
   type V0TemplateIcon,
   type V0TemplateStage,
 } from '@/data/v0-template-library'
+import { getV0TemplateDemandPlan, v0TemplateDemandWaves } from '@/data/v0-template-demand'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplateStudioRouteProps = {
@@ -101,6 +102,7 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
   const accent = accentClasses[entry.accent]
   const detailHref = getV0TemplatePath(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
+  const demand = getV0TemplateDemandPlan(entry)
   const production = getV0TemplateProductionPlan(entry)
 
   return (
@@ -140,6 +142,14 @@ function TemplateCard({ entry }: { entry: V0TemplateEntry }) {
           <div>
             <dt className="text-white/40">Status</dt>
             <dd className="mt-1 text-white/80">{entry.status}</dd>
+          </div>
+          <div>
+            <dt className="text-white/40">Demand</dt>
+            <dd className="mt-1 text-white/80">{demand.tierLabel}</dd>
+          </div>
+          <div>
+            <dt className="text-white/40">Wave</dt>
+            <dd className="mt-1 text-white/80">{demand.waveLabel}</dd>
           </div>
           <div>
             <dt className="text-white/40">Lane</dt>
@@ -230,6 +240,9 @@ export function TemplateStudioRoute({
     { label: 'Visible here', value: String(entries.length) },
     ...v0TemplateStats.slice(1),
   ]
+  const visibleDemandWaves = v0TemplateDemandWaves.filter((wave) =>
+    entries.some((entry) => getV0TemplateDemandPlan(entry).wave === wave.id),
+  )
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -310,6 +323,30 @@ export function TemplateStudioRoute({
             {v0TemplatePrinciples.map((principle) => (
               <div key={principle} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
                 <p className="text-sm leading-6 text-white/72">{principle}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm text-cyan-200">Demand waves</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              Build where v0 speed meets a real buyer pull.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-white/60">
+              These waves turn the public v0, Vercel, and GetLayers benchmark into sprint lanes: what to create,
+              what proof to collect, and where Codex should take over.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {visibleDemandWaves.map((wave) => (
+              <div key={wave.id} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-sm font-medium text-white">{wave.label}</p>
+                <p className="mt-3 text-sm leading-6 text-white/62">{wave.signal}</p>
+                <p className="mt-3 text-sm leading-6 text-white/52">{wave.winningAngle}</p>
               </div>
             ))}
           </div>

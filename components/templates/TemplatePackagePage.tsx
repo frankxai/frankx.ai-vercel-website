@@ -22,6 +22,7 @@ import {
   type V0TemplateChannel,
 } from '@/data/v0-template-library'
 import { getV0TemplateBlueprint } from '@/data/v0-template-blueprints'
+import { getV0TemplateDemandPlan } from '@/data/v0-template-demand'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
 type TemplatePackagePageProps = {
@@ -228,6 +229,7 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
   const accent = accentClasses[entry.accent]
   const brandStrategy = brandStrategies[entry.brand]
   const blueprint = getV0TemplateBlueprint(entry)
+  const demand = getV0TemplateDemandPlan(entry)
   const production = getV0TemplateProductionPlan(entry)
   const liveHref = entry.publicPreviewUrl ?? (entry.route && entry.route !== '/v' ? entry.route : undefined)
   const promptLines = buildV0Prompt(entry)
@@ -306,8 +308,8 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
             <div className="mt-4 grid gap-3 sm:grid-cols-4">
               {[
                 { label: 'Asset tier', value: entry.assetTier },
-                { label: 'Status', value: entry.status },
                 { label: 'Priority', value: production.priority },
+                { label: 'Demand', value: demand.tierLabel },
                 { label: 'Lane issue', value: `#${production.issue.number}` },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-[8px] border border-white/10 bg-black/35 p-4">
@@ -330,6 +332,10 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
           <StrategyPanel title="Market need" body={blueprint.marketNeed} Icon={Waypoints} />
           <StrategyPanel title="Buyer promise" body={blueprint.buyerPromise} Icon={ArrowUpRight} />
           <StrategyPanel title="Product strategy" body={blueprint.productStrategy} Icon={Layers} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <StrategyPanel title="Demand wave" body={`${demand.waveLabel}. ${demand.communityNeed}`} Icon={Waypoints} />
+          <StrategyPanel title="Winning angle" body={demand.winningAngle} Icon={Sparkles} />
         </div>
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
           <section className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5 lg:col-span-2">
@@ -368,6 +374,10 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
           <ListPanel title="Do not give v0" items={production.doNotUseV0For} Icon={ShieldCheck} />
           <ListPanel title="Proof still needed" items={production.proofNeeded} Icon={CheckCircle2} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <ListPanel title="Demand evidence" items={demand.evidenceToCollect} Icon={CheckCircle2} />
+          <ListPanel title="Success criteria" items={demand.successCriteria} Icon={ShieldCheck} />
         </div>
       </section>
 
