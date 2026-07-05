@@ -30,6 +30,7 @@ import {
   getV0TemplateFactorySummary,
   v0TemplateFactoryFlow,
 } from '@/data/v0-template-packaging'
+import { getV0TemplateExcellenceSummary } from '@/data/v0-template-excellence'
 import { getV0TemplateMarketplacePlan } from '@/data/v0-template-marketplace'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 
@@ -265,6 +266,7 @@ export function TemplateStudioRoute({
     { label: 'Deployable', value: String(factorySummary.deployable) },
     { label: 'Motion/3D', value: String(factorySummary.motion) },
   ]
+  const excellenceSummary = getV0TemplateExcellenceSummary(entries)
   const marketplacePlan = getV0TemplateMarketplacePlan(entries)
 
   return (
@@ -404,6 +406,46 @@ export function TemplateStudioRoute({
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm text-rose-200">Premium execution spec</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              Every package gets an agency brief before it gets another prompt.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-white/60">
+              This matrix keeps the template system above AI slop: first read, art direction, asset tier,
+              v0 budget, motion job, QA role, and route proof are decided before visual acceleration starts.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {excellenceSummary.stats.map((stat) => (
+                <div key={stat.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                  <p className="mt-1 text-xs text-white/50">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {excellenceSummary.standards.slice(0, 4).map((standard) => (
+              <div key={standard} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-sm leading-6 text-white/68">{standard}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3 md:grid-cols-2">
+          {excellenceSummary.nextMoves.map((move) => (
+            <div key={move} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex gap-3 text-sm leading-6 text-white/66">
+                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-rose-200" />
+                <span>{move}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

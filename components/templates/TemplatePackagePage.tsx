@@ -24,6 +24,7 @@ import {
 } from '@/data/v0-template-library'
 import { getV0TemplateBlueprint } from '@/data/v0-template-blueprints'
 import { getV0TemplateDemandPlan } from '@/data/v0-template-demand'
+import { getV0TemplateExcellencePlan } from '@/data/v0-template-excellence'
 import { getV0TemplateFactoryPack, v0TemplateFactoryPrinciples } from '@/data/v0-template-packaging'
 import { getV0TemplateMarketplaceShelvesForEntry } from '@/data/v0-template-marketplace'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
@@ -247,6 +248,7 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
   const brandStrategy = brandStrategies[entry.brand]
   const blueprint = getV0TemplateBlueprint(entry)
   const demand = getV0TemplateDemandPlan(entry)
+  const excellence = getV0TemplateExcellencePlan(entry)
   const factory = getV0TemplateFactoryPack(entry)
   const marketplaceShelves = getV0TemplateMarketplaceShelvesForEntry(entry, v0TemplateEntries)
   const production = getV0TemplateProductionPlan(entry)
@@ -367,6 +369,67 @@ export function TemplatePackagePage({ entry, relatedEntries }: TemplatePackagePa
             <p className="mt-4 text-sm leading-7 text-white/58">{blueprint.designThinking}</p>
           </section>
           <ListPanel title="Brand guardrails" items={brandStrategy.guardrails} Icon={ShieldCheck} />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <SectionHeader
+          eyebrow="Premium execution spec"
+          title="The agency brief before v0 spends a token"
+          body="This layer translates premium taste into concrete constraints: first read, art direction, assets, motion, v0 budget, review roles, and the next artifact that must be built."
+        />
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <StrategyPanel title="Design archetype" body={excellence.label} Icon={Sparkles} />
+          <StrategyPanel title="First read" body={excellence.firstRead} Icon={ArrowUpRight} />
+          <StrategyPanel title="Premium standard" body={excellence.premiumStandard} Icon={ShieldCheck} />
+        </div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {[
+            { label: 'Composition', value: excellence.artDirection.composition },
+            { label: 'Material', value: excellence.artDirection.material },
+            { label: 'Typography', value: excellence.artDirection.typography },
+            { label: 'Palette', value: excellence.artDirection.palette },
+            { label: 'Proof object', value: excellence.artDirection.proofObject },
+          ].map((item) => (
+            <section key={item.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <p className="text-sm font-medium text-white">{item.label}</p>
+              <p className="mt-3 text-sm leading-6 text-white/62">{item.value}</p>
+            </section>
+          ))}
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <ListPanel title="Required assets" items={excellence.assetProduction.requiredAssets} Icon={ImageIcon} />
+          <ListPanel title="Blocked assets" items={excellence.assetProduction.blockedAssets} Icon={ShieldCheck} />
+          <ListPanel title="Anti-slop rejects" items={excellence.antiSlop} Icon={ShieldCheck} />
+          <ListPanel title="Agency council" items={excellence.agencyPass.council} Icon={Sparkles} />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-3">
+          <StrategyPanel title="Asset source method" body={excellence.assetProduction.sourceMethod} Icon={ImageIcon} />
+          <StrategyPanel
+            title="Motion job"
+            body={`${excellence.motion.job} Runtime: ${excellence.motion.runtime}`}
+            Icon={Sparkles}
+          />
+          <StrategyPanel
+            title="v0 budget"
+            body={`${excellence.v0Use.budget}. ${excellence.v0Use.stopRule}`}
+            Icon={Code2}
+          />
+        </div>
+        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <ListPanel title="Execution QA" items={excellence.agencyPass.qa} Icon={CheckCircle2} />
+          <section className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-white">
+              <GitPullRequest className="h-4 w-4 text-cyan-200" />
+              Route to build
+            </div>
+            <div className="space-y-4 text-sm leading-6 text-white/66">
+              <p>{excellence.routeToBuild.nextArtifact}</p>
+              <p>{excellence.routeToBuild.trigger}</p>
+              <p className="text-emerald-100/72">{excellence.routeToBuild.doneProof}</p>
+              <p className="text-white/45">{excellence.agencyPass.scoreTarget}</p>
+            </div>
+          </section>
         </div>
       </section>
 
