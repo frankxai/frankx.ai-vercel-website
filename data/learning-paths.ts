@@ -112,6 +112,8 @@ export const learningPaths: LearningPath[] = [
       '/guides/claude-anthropic-guide',
       '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
       '/learn/gemini-mastery',
+      '/learn/codex-mastery',
+      '/learn/chatgpt-mastery',
     ],
     videos: [
       {
@@ -485,6 +487,8 @@ export const learningPaths: LearningPath[] = [
       '/guides/claude-code-getting-started',
       '/blog/ultimate-guide-ai-coding-agents-2026',
       '/learn/claude-mastery',
+      '/learn/chatgpt-mastery',
+      '/learn/gemini-mastery',
     ],
     videos: [
       {
@@ -560,6 +564,8 @@ export const learningPaths: LearningPath[] = [
       '/guides/top-50-ai-prompts',
       '/guides/founder-ai-stack-2026',
       '/learn/codex-mastery',
+      '/learn/claude-mastery',
+      '/learn/gemini-mastery',
     ],
     videos: [
       {
@@ -646,6 +652,8 @@ export const learningPaths: LearningPath[] = [
       '/blog/best-ai-tools-for-creators-2026',
       '/blog/vibe-os-platform-introduction',
       '/learn/claude-mastery',
+      '/learn/codex-mastery',
+      '/learn/chatgpt-mastery',
     ],
     videos: [
       {
