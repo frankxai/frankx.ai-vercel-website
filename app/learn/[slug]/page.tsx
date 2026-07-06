@@ -164,11 +164,15 @@ export default function LearningPathPage() {
 
   const path = learningPaths.find((p) => p.slug === slug)
 
+  // Unknown slug → real 404 (matches the /learn/[slug] hardening in #219),
+  // not an inline error page.
   if (!path) {
     notFound()
   }
 
   const Icon = iconMap[path.icon] || BookOpen
+  // Fallback color guards against a portal declaring a color not in colorMap —
+  // otherwise `colors.gradientFrom` throws (the 500 #219 fixed).
   const colors = colorMap[path.color] || defaultColors
 
   const courseSchema = {
@@ -191,6 +195,9 @@ export default function LearningPathPage() {
     itemListElement: path.videos.map((video, index) => ({
       '@type': 'ListItem',
       position: index + 1,
+      // uploadDate intentionally omitted — we don't know each video's real
+      // publish date, and a fabricated one is worse SEO than its absence
+      // (Google tolerates a missing recommended field, not a wrong one).
       item: {
         '@type': 'VideoObject',
         name: video.title,
@@ -198,7 +205,6 @@ export default function LearningPathPage() {
         thumbnailUrl: `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`,
         contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
         embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
-        uploadDate: '2026-01-01',
       },
     })),
   }
