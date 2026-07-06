@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 781,
+    "total": 799,
     "aliases": 15,
     "byType": {
-      "core": 22,
-      "section": 384,
+      "core": 21,
+      "section": 385,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 202,
       "guide": 20,
-      "library": 4,
+      "library": 31,
       "newsletter": 1,
-      "os": 9,
-      "partnership": 4,
-      "product": 36,
+      "os": 11,
+      "partnership": 7,
+      "product": 21,
       "research": 3,
       "video": 3,
-      "workshop": 7
+      "workshop": 8
     }
   },
   "routes": [
@@ -83,11 +83,6 @@
         "builder",
         "lab"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/agentic-creator-os",
-      "title": "Agentic Creator OS",
       "type": "section"
     },
     {
@@ -444,7 +439,7 @@
     {
       "href": "/ai-architecture/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -2946,7 +2941,7 @@
     {
       "href": "/blog/suno-ai-music-creation-workshop",
       "title": "Create Music Without Musical Training: The Suno AI Music Creation Workshop",
-      "description": "Transform your ideas into cinematic soundscapes, meditation music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and frequency science for transformative audio.",
+      "description": "Transform your ideas into cinematic soundscapes, meditation-inspired music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and aesthetic tuning choices for expressive audio.",
       "tags": [
         "Suno AI",
         "AI Music",
@@ -3265,7 +3260,7 @@
     },
     {
       "href": "/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
-      "title": "The Ultimate Guide: Using [ElevenLabs](https://try.elevenlabs.io/7x6qh6upgry8) for faceless Youtube channels and [Higgsfield](https://go.agenticincome.ai/higgsfield) for B-roll",
+      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsfield for B-Roll",
       "description": "How to combine modern AI voice models with responsive video tools for high-retention faceless production.",
       "tags": [
         "using",
@@ -3534,7 +3529,7 @@
     {
       "href": "/blueprint/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -3589,11 +3584,6 @@
     {
       "href": "/books/arcanea-creator-principles/chapter-07-advanced-partnership",
       "title": "Ch 7 — Advanced Partnership",
-      "type": "section"
-    },
-    {
-      "href": "/books/arcanea-creator-principles/chapter-08-the-living-practice",
-      "title": "Ch 8 — The Living Practice",
       "type": "section"
     },
     {
@@ -5125,11 +5115,6 @@
       "type": "core"
     },
     {
-      "href": "/learning-paths",
-      "title": "Learning Paths",
-      "type": "core"
-    },
-    {
       "href": "/lebensbaum",
       "title": "Lebensbaum",
       "tags": [
@@ -5190,13 +5175,283 @@
       "type": "library"
     },
     {
+      "href": "/library/atomic-habits",
+      "title": "Atomic Habits",
+      "tags": [
+        "atomic",
+        "habits"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/awaken-the-giant-within",
+      "title": "Awaken the Giant Within",
+      "tags": [
+        "awaken",
+        "the",
+        "giant",
+        "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/becoming-supernatural",
+      "title": "Becoming Supernatural",
+      "tags": [
+        "becoming",
+        "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/blue-zones",
+      "title": "The Blue Zones: Lessons for Living Longer From the People Who\\",
+      "tags": [
+        "blue",
+        "zones"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breaking-the-habit-of-being-yourself",
+      "title": "Breaking the Habit of Being Yourself",
+      "tags": [
+        "breaking",
+        "the",
+        "habit",
+        "of",
+        "being",
+        "yourself"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/build",
       "title": "Library — Build",
       "type": "library"
     },
     {
+      "href": "/library/cant-hurt-me",
+      "title": "Can",
+      "tags": [
+        "cant",
+        "hurt",
+        "me"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/deep-work",
+      "title": "Deep Work",
+      "tags": [
+        "deep",
+        "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/fabric-of-reality",
+      "title": "The Fabric of Reality",
+      "tags": [
+        "fabric",
+        "of",
+        "reality"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-japanese-secret",
+      "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
+      "tags": [
+        "ikigai",
+        "japanese",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-ni-tsuite",
+      "title": "Ikigai-ni-Tsuite (生きがいについて)",
+      "tags": [
+        "ikigai",
+        "ni",
+        "tsuite"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/mans-search-for-meaning",
+      "title": "Man",
+      "tags": [
+        "mans",
+        "search",
+        "for",
+        "meaning"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/meditations",
+      "title": "Meditations",
+      "tags": [
+        "meditations"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/money-master-the-game",
+      "title": "Money: Master the Game",
+      "tags": [
+        "money",
+        "master",
+        "the",
+        "game"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/no-bad-parts",
+      "title": "No Bad Parts",
+      "tags": [
+        "no",
+        "bad",
+        "parts"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/profit-first",
+      "title": "Profit First",
+      "tags": [
+        "profit",
+        "first"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/quotes",
       "title": "Library — Quotes",
+      "type": "library"
+    },
+    {
+      "href": "/library/superfans",
+      "title": "Superfans",
+      "tags": [
+        "superfans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-body",
+      "title": "The 4-Hour Body",
+      "tags": [
+        "the",
+        "hour",
+        "body"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-workweek",
+      "title": "The 4-Hour Workweek",
+      "tags": [
+        "the",
+        "hour",
+        "workweek"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-alchemist",
+      "title": "The Alchemist",
+      "tags": [
+        "the",
+        "alchemist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-little-book-of-ikigai",
+      "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
+      "tags": [
+        "the",
+        "little",
+        "book",
+        "of",
+        "ikigai"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-war-of-art",
+      "title": "The War of Art",
+      "tags": [
+        "the",
+        "war",
+        "of",
+        "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/think-and-grow-rich",
+      "title": "Think and Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tools-of-titans",
+      "title": "Tools of Titans",
+      "tags": [
+        "tools",
+        "of",
+        "titans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tribe-of-mentors",
+      "title": "Tribe of Mentors",
+      "tags": [
+        "tribe",
+        "of",
+        "mentors"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/unlimited-power",
+      "title": "Unlimited Power",
+      "tags": [
+        "unlimited",
+        "power"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/will-it-fly",
+      "title": "Will It Fly?",
+      "tags": [
+        "will",
+        "it",
+        "fly"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/you-are-the-placebo",
+      "title": "You Are the Placebo",
+      "tags": [
+        "you",
+        "are",
+        "the",
+        "placebo"
+      ],
       "type": "library"
     },
     {
@@ -5988,42 +6243,86 @@
     },
     {
       "href": "/os/aco",
-      "title": "OS — ACO",
+      "title": "Agentic Content Officer",
+      "tags": [
+        "aco"
+      ],
       "type": "os"
     },
     {
       "href": "/os/acos",
-      "title": "OS — ACOS",
+      "title": "ACOS",
+      "tags": [
+        "acos"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/build-first-funnel",
+      "title": "Build First AI Agent Funnel",
+      "tags": [
+        "build",
+        "first",
+        "funnel"
+      ],
       "type": "os"
     },
     {
       "href": "/os/coe-hub",
-      "title": "OS — CoE Hub",
+      "title": "AI CoE Hub",
+      "tags": [
+        "coe",
+        "hub"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/library",
-      "title": "OS — Library",
+      "href": "/os/foundry",
+      "title": "FrankX Foundry",
+      "tags": [
+        "foundry"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/sis",
-      "title": "OS — Starlight Intelligence",
+      "href": "/os/iis",
+      "title": "Investment Intelligence System",
+      "tags": [
+        "iis"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/visual-intelligence",
-      "title": "OS — Visual Intelligence",
+      "href": "/os/library-os",
+      "title": "Library OS",
+      "tags": [
+        "library",
+        "os"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/vis",
+      "title": "Visual Intelligence System",
+      "tags": [
+        "vis"
+      ],
       "type": "os"
     },
     {
       "href": "/os/watch",
-      "title": "OS — Watch",
+      "title": "Watch OS",
+      "tags": [
+        "watch"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/workshop",
-      "title": "OS — Workshop",
+      "href": "/os/workshops",
+      "title": "Workshop OS",
+      "tags": [
+        "workshops"
+      ],
       "type": "os"
     },
     {
@@ -6075,6 +6374,15 @@
       "type": "partnership"
     },
     {
+      "href": "/partnerships/anthropic",
+      "title": "Anthropic",
+      "tags": [
+        "partnership",
+        "anthropic"
+      ],
+      "type": "partnership"
+    },
+    {
       "href": "/partnerships/arrow",
       "title": "Arrow",
       "tags": [
@@ -6084,11 +6392,20 @@
       "type": "partnership"
     },
     {
-      "href": "/partnerships/kyndryl",
-      "title": "Kyndryl",
+      "href": "/partnerships/google",
+      "title": "Google",
       "tags": [
         "partnership",
-        "kyndryl"
+        "google"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/nvidia",
+      "title": "Nvidia",
+      "tags": [
+        "partnership",
+        "nvidia"
       ],
       "type": "partnership"
     },
@@ -6103,6 +6420,15 @@
       "type": "section"
     },
     {
+      "href": "/partnerships/vercel",
+      "title": "Vercel",
+      "tags": [
+        "partnership",
+        "vercel"
+      ],
+      "type": "partnership"
+    },
+    {
       "href": "/peak-performance",
       "title": "Peak Performance",
       "tags": [
@@ -6114,6 +6440,14 @@
     {
       "href": "/plan",
       "title": "Plan",
+      "type": "section"
+    },
+    {
+      "href": "/portal",
+      "title": "Portal",
+      "tags": [
+        "portal"
+      ],
       "type": "section"
     },
     {
@@ -6607,7 +6941,7 @@
     {
       "href": "/prototype/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -6711,6 +7045,16 @@
       "type": "research"
     },
     {
+      "href": "/research/visual-catalog",
+      "title": "Visual Catalog",
+      "tags": [
+        "research",
+        "visual",
+        "catalog"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/resources",
       "title": "Resources",
       "type": "core"
@@ -6762,178 +7106,6 @@
         "templates"
       ],
       "type": "section"
-    },
-    {
-      "href": "/shop/templates/claude-code-agent-orchestration",
-      "title": "Agent Orchestration Skill Pack",
-      "tags": [
-        "agents",
-        "mcp",
-        "orchestration",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-content-engine",
-      "title": "Content Engine Skill Pack",
-      "tags": [
-        "content",
-        "seo",
-        "blog",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-dev-tools",
-      "title": "Developer Tools Skill Pack",
-      "tags": [
-        "react",
-        "nextjs",
-        "typescript",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-seo-intelligence",
-      "title": "SEO Intelligence Skill Pack",
-      "tags": [
-        "seo",
-        "schema",
-        "keywords",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-suno-mastery",
-      "title": "Suno Mastery Skill Pack",
-      "tags": [
-        "music",
-        "suno",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-custom-tools",
-      "title": "MCP Custom Tools Starter",
-      "tags": [
-        "mcp",
-        "tools",
-        "typescript",
-        "config"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-multi-server",
-      "title": "Multi-Server MCP Setup",
-      "tags": [
-        "mcp",
-        "config",
-        "multi-server",
-        "production"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/multi-agent-blueprint",
-      "title": "Multi-Agent Framework",
-      "tags": [
-        "agents",
-        "blueprint",
-        "orchestration",
-        "enterprise",
-        "acos"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-content-pipeline",
-      "title": "AI Content Pipeline",
-      "tags": [
-        "n8n",
-        "workflow",
-        "content",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-customer-support",
-      "title": "AI Support Automation",
-      "tags": [
-        "n8n",
-        "workflow",
-        "support",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-lead-enrichment",
-      "title": "Lead Enrichment Engine",
-      "tags": [
-        "n8n",
-        "workflow",
-        "leads",
-        "crm",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-ai-chat",
-      "title": "AI Chat Application",
-      "tags": [
-        "nextjs",
-        "ai",
-        "chat",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-blog-cms",
-      "title": "Blog + CMS Starter",
-      "tags": [
-        "nextjs",
-        "blog",
-        "mdx",
-        "seo",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-saas-boilerplate",
-      "title": "Next.js SaaS Boilerplate",
-      "tags": [
-        "nextjs",
-        "saas",
-        "boilerplate",
-        "fullstack"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/rag-system-blueprint",
-      "title": "RAG System Blueprint",
-      "tags": [
-        "rag",
-        "blueprint",
-        "architecture",
-        "enterprise"
-      ],
-      "type": "product"
     },
     {
       "href": "/showcase",
@@ -7454,6 +7626,17 @@
       "type": "section"
     },
     {
+      "href": "/work/property-intelligence-os",
+      "title": "Property Intelligence OS",
+      "tags": [
+        "work",
+        "property",
+        "intelligence",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/work/trinity-ai",
       "title": "Trinity AI",
       "tags": [
@@ -7481,6 +7664,15 @@
     {
       "href": "/workshops/build-first-ai-agent",
       "title": "Build Your First AI Agent",
+      "type": "workshop"
+    },
+    {
+      "href": "/workshops/build-hackathon",
+      "title": "Build Hackathon: Ship an AI Agent in 4 Hours",
+      "tags": [
+        "build",
+        "hackathon"
+      ],
       "type": "workshop"
     },
     {

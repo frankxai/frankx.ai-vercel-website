@@ -288,20 +288,29 @@ export default function PartnersPage() {
                       Where you\'ll see it
                     </p>
                     <ul className="flex flex-wrap gap-2">
-                      {p.usedIn.map((u, i) => (
-                        <li
-                          key={i}
-                          className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs text-zinc-400 bg-white/[0.03] border border-white/[0.06]"
-                        >
-                          {u.startsWith('/') ? (
-                            <Link href={u} className="hover:text-cyan-400">
-                              {u}
-                            </Link>
-                          ) : (
-                            u
-                          )}
-                        </li>
-                      ))}
+                      {p.usedIn.map((u, i) => {
+                        // Entries like "/workshops/build-first-ai-agent (no-code branch)"
+                        // carry an annotation after the path — link only the path,
+                        // render the rest as plain text.
+                        const pathMatch = u.startsWith('/') ? u.match(/^(\/\S+)(.*)$/) : null
+                        return (
+                          <li
+                            key={i}
+                            className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs text-zinc-400 bg-white/[0.03] border border-white/[0.06]"
+                          >
+                            {pathMatch ? (
+                              <>
+                                <Link href={pathMatch[1]} className="hover:text-cyan-400">
+                                  {pathMatch[1]}
+                                </Link>
+                                {pathMatch[2] && <span>&nbsp;{pathMatch[2].trim()}</span>}
+                              </>
+                            ) : (
+                              u
+                            )}
+                          </li>
+                        )
+                      })}
                     </ul>
                   </div>
                 </div>

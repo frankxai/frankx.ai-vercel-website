@@ -115,7 +115,8 @@ export default async function PromptLibraryPage(props: {
         {/* Header */}
         <header className="mb-12">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400/80">
-            Live corpus · {snapshot.patterns.length} patterns · cached 1h
+            Live corpus · {snapshot.patterns.length}{' '}
+            {snapshot.patterns.length === 1 ? 'pattern' : 'patterns'} · cached 1h
           </p>
           <h1 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl">
             The Prompt Library

@@ -45,9 +45,7 @@ export default function PremiumVisualCarousel() {
     <div className="relative my-12 overflow-hidden">
       <div className="flex items-center justify-between mb-6 px-1">
         <div>
-          <div className="text-xs uppercase tracking-[3px] text-emerald-400 font-medium mb-1">NEW VISUAL SYSTEM</div>
-          <h3 className="text-2xl font-semibold tracking-tight">Premium Architectural Headers</h3>
-          <p className="text-white/50 text-sm mt-1">From flat SVGs to cinematic, human-crafted visuals. GSAP-inspired motion test.</p>
+          <h3 className="text-2xl font-semibold tracking-tight">Featured Articles</h3>
         </div>
         <div className="flex gap-2">
           <button onClick={prev} className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition" aria-label="Previous">
@@ -116,7 +114,7 @@ export default function PremiumVisualCarousel() {
         ))}
       </div>
 
-      <div className="text-center mt-3 text-[10px] text-white/30 tracking-widest">DRAG OR USE ARROWS • PREMIUM MOTION (FRAMER + GSAP-INSPIRED PHYSICS)</div>
+      <div className="text-center mt-3 text-[10px] text-white/30 tracking-widest">Drag to browse</div>
     </div>
   )
 }

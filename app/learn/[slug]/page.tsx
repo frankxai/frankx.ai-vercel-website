@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { notFound, useParams } from 'next/navigation'
 import { useState } from 'react'
 import {
   ArrowLeft,
@@ -39,6 +39,8 @@ const colorMap: Record<string, { bg: string; text: string; border: string; gradi
   sky: { bg: 'bg-sky-500', text: 'text-sky-400', border: 'border-sky-500/20', gradientFrom: 'from-sky-500/10' },
 }
 
+const defaultColors = colorMap.emerald
+
 const playButtonBgMap: Record<string, string> = {
   emerald: 'bg-emerald-500/80 group-hover:bg-emerald-500',
   cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
@@ -49,7 +51,7 @@ const playButtonBgMap: Record<string, string> = {
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const colors = colorMap[color]
+  const colors = colorMap[color] || defaultColors
   const playBtnClasses = playButtonBgMap[color] || playButtonBgMap.emerald
 
   return (
@@ -132,20 +134,11 @@ export default function LearningPathPage() {
   const path = learningPaths.find((p) => p.slug === slug)
 
   if (!path) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0b] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Path not found</h1>
-          <Link href="/learn" className="text-emerald-400 hover:text-emerald-300">
-            Back to Learning Paths
-          </Link>
-        </div>
-      </div>
-    )
+    notFound()
   }
 
   const Icon = iconMap[path.icon] || BookOpen
-  const colors = colorMap[path.color]
+  const colors = colorMap[path.color] || defaultColors
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
