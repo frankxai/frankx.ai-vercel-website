@@ -1410,9 +1410,763 @@ export const learningPaths: LearningPath[] = [
       },
     ],
   },
-  // 6 additional portals queued for follow-up PRs (tracked in the /learn
-  // expansion plan): AWS Bedrock, Azure AI Foundry, Oracle OCI GenAI,
-  // Suno AI Music, Midjourney, and NotebookLM Deep Work.
+  {
+    id: 'aws-bedrock-mastery',
+    title: 'AWS Bedrock Mastery',
+    slug: 'aws-bedrock-mastery',
+    description:
+      "Master Amazon Bedrock — the managed model gateway for AWS: Claude, Nova, Knowledge Bases, AgentCore, and Guardrails — from first API call to production agents.",
+    icon: 'zap',
+    difficulty: 'intermediate',
+    estimatedHours: 10,
+    color: 'amber',
+    category: 'cloud',
+    heroEyebrow: 'Updated July 6, 2026 · AgentCore + Managed Knowledge Base GA',
+    longIntro:
+      "Bedrock is AWS's managed model gateway — one API surface for Anthropic, Meta, Mistral, Cohere, AI21, Amazon's own Nova family, DeepSeek, and 100+ Marketplace models, plus Knowledge Bases and Agents for orchestration. Pricing is per-token like the model APIs directly, but IAM, VPC, and CloudWatch come for free if you already live in AWS — no separate proxy or vendor relationship to stand up.\n\nTwo capabilities matured to general availability in June 2026 and change what \"production-ready\" means here: AgentCore is a code-first platform for building, deploying, and operating agents with a real runtime, identity, memory, and observability layer — its SDK passed 2 million downloads within 5 months of preview. Managed Knowledge Base now runs the entire RAG pipeline (chunking, embeddings, re-ranking, retrieval) as AWS-operated infrastructure, with native AgentCore integration and MCP compatibility.\n\nStart with the beginner walkthrough (video 1) to get a model responding, then AgentCore (video 2) once you're ready to operationalize an agent, Guardrails (video 3) before anything touches real users, and the Nova model tour (video 4) to see what AWS's own models are for. This is the right portal if your team already runs on AWS and needs SOC 2 / procurement alignment without standing up a separate model vendor.",
+    ctaTitle: 'Ready to ship on Bedrock?',
+    ctaBody:
+      'Pair this portal with our production architecture writeups — the six-plane enterprise pattern and real agent deployment playbooks translate directly from OCI to Bedrock.',
+    outcomes: [
+      'Call Claude, Nova, and Marketplace models through one Bedrock API',
+      'Stand up a Managed Knowledge Base for RAG without operating vector infrastructure',
+      'Build and deploy a production agent with AgentCore (runtime, memory, observability)',
+      'Apply Guardrails — content filters, denied topics, PII redaction — before shipping to users',
+      'Decide when Bedrock is the right call vs. a direct model API',
+    ],
+    relatedGuides: [
+      '/blog/production-agent-patterns-aws-bedrock',
+      '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
+      '/learn/claude-mastery',
+      '/learn/azure-ai-foundry-mastery',
+      '/learn/oracle-oci-genai-mastery',
+    ],
+    videos: [
+      {
+        id: 'bedrock-beginners-full-tutorial',
+        youtubeId: 'FAgmR9VV0GQ',
+        title: 'Amazon Bedrock for Beginners – From First Prompt to AI Agent (Full Tutorial)',
+        creator: youtubeChannels.amazonWebServices.name,
+        creatorChannel: youtubeChannels.amazonWebServices.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          'End-to-end walkthrough from a first Bedrock API call to a working AI agent — the fastest path to your first working call.',
+        tags: ['bedrock', 'getting-started', 'beginner'],
+      },
+      {
+        id: 'bedrock-agentcore-tutorial',
+        youtubeId: 'cTBGIKAckKE',
+        title: 'Amazon Bedrock AgentCore Tutorial | Build, Deploy, Operate AI Agents using AgentCore',
+        creator: youtubeChannels.amazonWebServices.name,
+        creatorChannel: youtubeChannels.amazonWebServices.url,
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          'Hands-on AgentCore build: runtime, identity, memory, and observability for a production agent — the GA platform behind 2M+ SDK downloads.',
+        tags: ['agentcore', 'agents', 'production'],
+      },
+      {
+        id: 'bedrock-guardrails',
+        youtubeId: 'gp6bGpid62E',
+        title: 'Amazon Bedrock Guardrails',
+        creator: youtubeChannels.amazonWebServices.name,
+        creatorChannel: youtubeChannels.amazonWebServices.url,
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          'The safety layer for production GenAI on Bedrock — content filters, denied topics, PII redaction, and contextual grounding checks.',
+        tags: ['guardrails', 'safety', 'production'],
+      },
+      {
+        id: 'bedrock-nova-models',
+        youtubeId: '07w2Kc556u4',
+        title: 'AWS Cloud Coach: Exploring Amazon Nova models using Amazon Bedrock',
+        creator: youtubeChannels.amazonWebServices.name,
+        creatorChannel: youtubeChannels.amazonWebServices.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          "Tour of Amazon's own Nova model family (Premier, Pro, Lite, Micro) — where they fit alongside Claude and the rest of the Bedrock catalog.",
+        tags: ['nova', 'models', 'amazon'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'Amazon Bedrock',
+        category: 'Surface',
+        description:
+          'The managed gateway itself — one API for Anthropic, Meta, Mistral, Cohere, AI21, Amazon Nova, DeepSeek, and 100+ Marketplace models.',
+        href: 'https://aws.amazon.com/bedrock/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Amazon Nova',
+        category: 'Reasoning',
+        description:
+          "Amazon's own model family: Premier (1M context), Pro and Lite (300K), and Micro (128K, text-only, $0.035/M input) — the in-house option inside Bedrock.",
+        href: 'https://aws.amazon.com/bedrock/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Bedrock Knowledge Bases',
+        category: 'RAG',
+        description:
+          'Managed RAG pipeline — ingestion, chunking, embeddings, storage, retrieval. Managed Knowledge Base (GA June 2026) runs the vector infrastructure for you.',
+        href: 'https://aws.amazon.com/bedrock/knowledge-bases/',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Bedrock AgentCore',
+        category: 'Agents',
+        description:
+          'Code-first agent platform (GA June 2026): runtime, identity, tools, memory, and observability. Works with CrewAI, LangGraph, LlamaIndex, and Strands Agents.',
+        href: 'https://aws.amazon.com/bedrock/agentcore/',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Bedrock Guardrails',
+        category: 'Safety',
+        description:
+          'Policy layer independent of any single model call — content filters, denied topics, word filters, PII detection, and contextual grounding. Standalone API available.',
+        href: 'https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Claude on Amazon Bedrock',
+        category: 'Cloud',
+        description:
+          'Claude as a fully-managed Bedrock model — the same IAM, VPC, and CloudWatch boundaries as every other AWS service, no separate Anthropic account required.',
+        href: 'https://docs.claude.com/en/api/claude-on-amazon-bedrock',
+        status: 'GA',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Bedrock Marketplace',
+        category: 'Models',
+        description:
+          '100+ specialized models beyond the core catalog — from Hugging Face and independent labs — deployable through the same Bedrock API and billing.',
+        href: 'https://aws.amazon.com/bedrock/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'AWS Documentation — Bedrock',
+        category: 'Reference',
+        description:
+          'The official reference for models, pricing, API shapes, and IAM policy examples. Where you look up the exact request/response contract.',
+        href: 'https://docs.aws.amazon.com/bedrock/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-06-01',
+        title: 'Bedrock AgentCore reaches general availability',
+        summary:
+          'Code-first agent platform GA — runtime, identity, tools, memory, and observability. The SDK passed 2 million downloads within 5 months of preview.',
+        source: 'https://aws.amazon.com/bedrock/agentcore/',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-06-01',
+        title: 'Managed Knowledge Base reaches general availability',
+        summary:
+          'AWS now operates the full RAG pipeline — vector storage, embeddings, re-ranking, retrieval — as managed infrastructure, with native AgentCore integration.',
+        source: 'https://aws.amazon.com/blogs/aws/introducing-amazon-bedrock-managed-knowledge-base-for-faster-more-accurate-enterprise-ai-applications/',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-05-01',
+        title: 'AgentCore Knowledge Base integration adds continuous learning',
+        summary:
+          'Agents built on AgentCore gain broader knowledge access and continuous-learning patterns via direct Knowledge Base integration as a pre-built target type.',
+        source: 'https://aws.amazon.com/blogs/machine-learning/new-in-amazon-bedrock-agentcore-build-agents-with-broader-knowledge-and-continuous-learning/',
+        tag: 'Update',
+      },
+      {
+        date: '2026-02-19',
+        title: 'MCP reaches general availability',
+        summary:
+          'Model Context Protocol exits preview with cross-vendor adoption. Bedrock Knowledge Bases now carry native MCP compatibility.',
+        source: 'https://modelcontextprotocol.io/',
+        tag: 'Research',
+      },
+    ],
+    experts: [
+      {
+        name: 'Amazon Web Services',
+        role: 'Official channel — Bedrock launches and tutorials',
+        channelUrl: youtubeChannels.amazonWebServices.url,
+        why: 'First-party walkthroughs for every Bedrock feature — AgentCore, Guardrails, Knowledge Bases, and the Nova model family.',
+        isOfficial: true,
+      },
+      {
+        name: 'AI Engineer',
+        role: 'Conference talks — production agent patterns',
+        channelUrl: youtubeChannels.aiEngineer.url,
+        why: 'Practitioner talks on agent architecture that translate directly to AgentCore and Bedrock production patterns.',
+      },
+      {
+        name: 'freeCodeCamp.org',
+        role: 'Long-form courses — Bedrock, RAG, agents, guardrails',
+        channelUrl: youtubeChannels.freeCodeCamp.url,
+        why: 'Full-length, no-cost courses covering the complete Bedrock stack from tokenization through guardrails.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is Amazon Bedrock?',
+        answer:
+          "AWS's managed model gateway — one API for Anthropic Claude, Meta Llama, Mistral, Cohere, AI21, Amazon's own Nova family, DeepSeek, and 100+ Marketplace models, plus Knowledge Bases and Agents for orchestration.",
+      },
+      {
+        question: 'Should I use Bedrock or call Claude directly?',
+        answer:
+          "If you already live in AWS — IAM, VPC, CloudWatch, existing procurement — Bedrock saves you a separate model-vendor relationship and gets you SOC 2 alignment for free. If you don't, the direct API is simpler and gets new Claude models first. Watch cross-region inference billing if you go Bedrock; it has surprised more than one team.",
+      },
+      {
+        question: 'What is Bedrock AgentCore?',
+        answer:
+          'A code-first agent platform (GA June 2026) providing production-grade runtime, identity, tools, memory, and observability. It works with open frameworks like CrewAI, LangGraph, LlamaIndex, and Strands Agents — not a replacement for them, the infrastructure underneath them.',
+      },
+      {
+        question: 'What is a Managed Knowledge Base?',
+        answer:
+          'A fully AWS-operated RAG pipeline (GA June 2026) — ingestion, chunking, embeddings, vector storage, retrieval, and re-ranking — so you stop operating vector infrastructure yourself. It integrates natively with AgentCore and supports MCP.',
+      },
+      {
+        question: 'What are Bedrock Guardrails?',
+        answer:
+          'A policy layer independent of any single model call: content filters (hate, violence, prompt attack), denied-topic definitions in plain language, word filters, PII detection with block-or-mask actions, and contextual grounding checks. A standalone API applies them to any text, even from non-Bedrock sources.',
+      },
+      {
+        question: 'What is Amazon Nova?',
+        answer:
+          "Amazon's own model family inside Bedrock: Nova Premier (1M context), Nova Pro and Nova Lite (300K context), and Nova Micro (128K, text-only, $0.035 per million input tokens) — the cheapest tier in the catalog.",
+      },
+      {
+        question: 'Is Claude available on Bedrock?',
+        answer:
+          "Yes — Claude runs as a fully-managed Bedrock model with the same IAM, VPC, and CloudWatch boundaries as any other AWS service. See the [Claude & Anthropic Mastery portal](/learn/claude-mastery) for the model line itself.",
+      },
+      {
+        question: 'How does Bedrock compare to Azure AI Foundry and Oracle OCI GenAI?',
+        answer:
+          "All three are managed-cloud gateways to third-party models with agent and RAG tooling layered on top. Bedrock leans on IAM/VPC-native AWS integration; [Azure AI Foundry](/learn/azure-ai-foundry-mastery) leans on Microsoft 365 and Fabric connectivity; [Oracle OCI GenAI](/learn/oracle-oci-genai-mastery) leans on Autonomous Database and Select AI. Pick by where your data and compliance boundary already live.",
+      },
+      {
+        question: "Where do I start if I'm new to Bedrock?",
+        answer:
+          'Watch video 1 (the beginner full tutorial) to get a model responding, then video 3 (Guardrails) before anything touches real users. AgentCore (video 2) comes once you actually need a production agent, not before.',
+      },
+    ],
+  },
+  {
+    id: 'azure-ai-foundry-mastery',
+    title: 'Azure AI Foundry Mastery',
+    slug: 'azure-ai-foundry-mastery',
+    description:
+      'Master Microsoft Foundry (formerly Azure AI Foundry) — 11,000+ models, the Foundry Agent Service, and MCP-connected agents — from your first deployment to production.',
+    icon: 'zap',
+    difficulty: 'intermediate',
+    estimatedHours: 10,
+    color: 'sky',
+    category: 'cloud',
+    heroEyebrow: 'Updated July 6, 2026 · Microsoft Foundry GA + Hosted Agents',
+    longIntro:
+      "Microsoft renamed Azure AI Foundry to Microsoft Foundry in 2026 and shipped the Foundry Agent Service to general availability in March. The pitch: one catalog of 11,000+ models — OpenAI, Anthropic, Meta, Google, xAI, Hugging Face, and Microsoft's own MAI multimodal family — plus an agent runtime that plugs directly into Microsoft 365 (Work IQ) and Microsoft Fabric (Fabric IQ). If your organization already runs on Microsoft's stack, that connective tissue is the actual product, not the model catalog.\n\nTwo agent types matter here. Prompt Agents are config-only — instructions, model, tools, defined in the portal or via SDK/REST for CI/CD. Hosted Agents (reaching GA in early July 2026) add a managed runtime where every session gets its own sandboxed compute, memory, and filesystem — the difference between a demo and something you'd trust with real data. May 2026 also added Model Context Protocol support, so a Foundry agent can reach the same MCP servers a Claude Code or Codex session uses.\n\nStart with the GA breakdown (video 1) to see what's actually production-ready today, then the from-scratch agent build (video 2). If your models of choice are Claude rather than OpenAI's own line, video 3 shows exactly that path. Video 4 covers the MAI model family Microsoft ships as its in-house alternative.",
+    ctaTitle: 'Ready to ship on Microsoft Foundry?',
+    ctaBody:
+      'Pair this portal with our multi-cloud architecture comparison to see where Foundry fits next to Bedrock and OCI GenAI for your specific compliance and data-residency needs.',
+    outcomes: [
+      'Pick the right model from the 11,000+ catalog for a given task',
+      'Build a Prompt Agent (config-only) and know when you need a Hosted Agent instead',
+      'Connect a Foundry agent to an MCP server for external tools and data',
+      'Deploy Claude models inside Foundry when that is the better model fit',
+      'Decide when Microsoft 365 / Fabric connectivity makes Foundry the right cloud',
+    ],
+    relatedGuides: [
+      '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
+      '/learn/claude-mastery',
+      '/learn/aws-bedrock-mastery',
+      '/learn/oracle-oci-genai-mastery',
+    ],
+    videos: [
+      {
+        id: 'foundry-ga-breakdown',
+        youtubeId: 'o1tcdlLf2Eo',
+        title: 'Microsoft Foundry is GA Now | What You Can Use in Production (Full Breakdown)',
+        creator: youtubeChannels.microsoftReactor.name,
+        creatorChannel: youtubeChannels.microsoftReactor.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          'Honest breakdown of what actually shipped to general availability versus what is still preview — the right first video before building anything.',
+        tags: ['foundry', 'ga', 'overview'],
+      },
+      {
+        id: 'foundry-build-agent-scratch',
+        youtubeId: 'B4VXrhiZaSg',
+        title: 'Build An AI Agent From Scratch Using Microsoft Foundry in 2026',
+        creator: youtubeChannels.microsoftReactor.name,
+        creatorChannel: youtubeChannels.microsoftReactor.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          'End-to-end first agent build in the Foundry portal — the fastest path from zero to a working Prompt Agent.',
+        tags: ['agents', 'getting-started', 'foundry-agent-service'],
+      },
+      {
+        id: 'foundry-claude-agents',
+        youtubeId: 'zRU-98XldGo',
+        title: 'Build AI Agents Using Claude Models in Microsoft Foundry (Step-by-Step)',
+        creator: youtubeChannels.microsoftReactor.name,
+        creatorChannel: youtubeChannels.microsoftReactor.url,
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          'Deploys Anthropic Claude models inside Foundry Agent Service — for teams whose model of choice is Claude rather than OpenAI.',
+        tags: ['claude', 'foundry-agent-service', 'anthropic'],
+      },
+      {
+        id: 'foundry-mai-models',
+        youtubeId: 'XI4H8NmPXgA',
+        title: 'Microsoft Build 2026: MAI models in Microsoft Foundry across text, image, voice, and speech',
+        creator: youtubeChannels.microsoftReactor.name,
+        creatorChannel: youtubeChannels.microsoftReactor.url,
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          "Tour of Microsoft's in-house MAI multimodal family — text, image, voice, and speech models shipping directly inside Foundry.",
+        tags: ['mai-models', 'microsoft', 'multimodal'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'Microsoft Foundry',
+        category: 'Surface',
+        description:
+          "The renamed, unified platform (formerly Azure AI Foundry) — 11,000+ models across OpenAI, Anthropic, Meta, Google, xAI, Hugging Face, and Microsoft's own MAI family.",
+        href: 'https://azure.microsoft.com/en-us/products/ai-foundry',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Foundry Agent Service',
+        category: 'Agents',
+        description:
+          'Managed agent platform, GA since March 2026. Prompt Agents (config-only) for quick starts; Hosted Agents (GA early July 2026) add sandboxed runtime, memory, and filesystem per session.',
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/agents/overview',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Foundry Models',
+        category: 'Reasoning',
+        description:
+          'The model catalog itself — over 11,000 foundational, open, reasoning, and multimodal models spanning every major lab plus Microsoft MAI.',
+        href: 'https://azure.microsoft.com/en-us/products/ai-foundry/models',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'MCP in Foundry',
+        category: 'Protocol',
+        description:
+          'Connect Foundry agents to Model Context Protocol servers (added May 2026) — the same cross-vendor standard used by Claude, Codex, and Gemini.',
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Fabric IQ',
+        category: 'Data',
+        description:
+          "Connects Foundry agents to Microsoft Fabric — the analytics/data-platform integration that's the real differentiator for organizations already on Microsoft's stack.",
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/whats-new-foundry',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Work IQ',
+        category: 'Data',
+        description:
+          'Connects Foundry agents to Microsoft 365 — email, documents, calendar context available to an agent without a custom integration.',
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/whats-new-foundry',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Claude on Foundry',
+        category: 'Cloud',
+        description:
+          'Deploy Anthropic Claude models inside Foundry Agent Service when Claude is the better model fit than Microsoft or OpenAI options.',
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Microsoft Learn — Foundry',
+        category: 'Reference',
+        description:
+          'The official documentation hub — SDKs, REST API, training paths, and the running "what\'s new" log for every Foundry release.',
+        href: 'https://learn.microsoft.com/en-us/azure/foundry/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-03-19',
+        title: 'Microsoft Foundry (formerly Azure AI Foundry) reaches general availability',
+        summary:
+          'The renamed, unified platform and its Foundry Agent Service ship to GA — though several capabilities remain preview-only at launch.',
+        source: 'https://learn.microsoft.com/en-us/azure/foundry/whats-new-foundry',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-06-03',
+        title: 'MAI multimodal models launch at Microsoft Build 2026',
+        summary:
+          "Microsoft's in-house MAI family ships across text, image, voice, and speech — a first-party alternative alongside the 11,000+ third-party catalog.",
+        source: 'https://learn.microsoft.com/en-us/azure/foundry/whats-new-foundry',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-05-01',
+        title: 'MCP support and Hosted Agents preview',
+        summary:
+          'May 2026 updates: Model Context Protocol tool support, Hosted Agents (managed sandboxed runtime), voice agents, Fabric IQ, and Work IQ — several still in preview.',
+        source: 'https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol',
+        tag: 'Update',
+      },
+      {
+        date: '2026-07-01',
+        title: 'Hosted Agents expected to reach general availability',
+        summary:
+          'Hosted Agents — the managed runtime with per-session sandboxed compute, memory, and filesystem — move from preview to GA in early July 2026.',
+        source: 'https://learn.microsoft.com/en-us/azure/foundry/agents/overview',
+        tag: 'Update',
+      },
+    ],
+    experts: [
+      {
+        name: 'Microsoft Reactor',
+        role: 'Official community channel — Foundry tutorials and demos',
+        channelUrl: youtubeChannels.microsoftReactor.url,
+        why: 'Feature-by-feature Foundry coverage direct from Microsoft — GA breakdowns, agent builds, and model deep-dives, all in this portal.',
+        isOfficial: true,
+      },
+      {
+        name: 'AI Engineer',
+        role: 'Conference talks — agent architecture',
+        channelUrl: youtubeChannels.aiEngineer.url,
+        why: 'Practitioner talks on production agent patterns that translate directly to Foundry Agent Service design decisions.',
+      },
+      {
+        name: 'freeCodeCamp.org',
+        role: 'Long-form courses — cloud AI platforms',
+        channelUrl: youtubeChannels.freeCodeCamp.url,
+        why: 'Full-length, no-cost courses that regularly cover Azure/Foundry alongside the other major cloud AI platforms.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is Microsoft Foundry?',
+        answer:
+          'The renamed, unified successor to Azure AI Foundry — a catalog of 11,000+ models (OpenAI, Anthropic, Meta, Google, xAI, Hugging Face, and Microsoft\'s own MAI family) plus the Foundry Agent Service for building and running agents.',
+      },
+      {
+        question: 'What is the Foundry Agent Service?',
+        answer:
+          'A managed platform for building AI agents, GA since March 2026. Prompt Agents are config-only (instructions, model, tools) for a fast start. Hosted Agents add a managed runtime with per-session sandboxed compute, memory, and filesystem — reaching GA in early July 2026.',
+      },
+      {
+        question: 'Does Foundry support Model Context Protocol (MCP)?',
+        answer:
+          'Yes, added May 2026. A Foundry agent can connect to MCP server endpoints for external tools and data — the same cross-vendor standard used by Claude, Codex, and Gemini agents.',
+      },
+      {
+        question: 'Can I run Claude models in Microsoft Foundry?',
+        answer:
+          'Yes — Anthropic Claude models are deployable directly inside Foundry Agent Service, alongside OpenAI, Meta, Google, and Microsoft\'s own MAI models.',
+      },
+      {
+        question: 'What is Fabric IQ and Work IQ?',
+        answer:
+          'Fabric IQ connects Foundry agents to Microsoft Fabric (your analytics/data platform); Work IQ connects them to Microsoft 365 (email, documents, calendar). Both are the real differentiator for organizations already standardized on Microsoft — an agent gets that context without a custom integration.',
+      },
+      {
+        question: 'What are MAI models?',
+        answer:
+          "Microsoft's own in-house multimodal model family — text, image, voice, and speech — launched at Microsoft Build 2026 as a first-party alternative inside the broader Foundry catalog.",
+      },
+      {
+        question: 'Prompt Agent vs Hosted Agent — which do I need?',
+        answer:
+          'Start with a Prompt Agent if your logic is instructions + tools + a model — it is config-only and fastest to ship. Move to a Hosted Agent when you need a dedicated, sandboxed runtime per session with its own compute, memory, and filesystem access — that is a production concern, not a prototyping one.',
+      },
+      {
+        question: 'How does Microsoft Foundry compare to AWS Bedrock and Oracle OCI GenAI?',
+        answer:
+          'All three are managed gateways to third-party models with agent and RAG tooling on top. Foundry\'s edge is Microsoft 365 / Fabric connectivity via Work IQ and Fabric IQ; [AWS Bedrock](/learn/aws-bedrock-mastery) leans on native IAM/VPC integration; [Oracle OCI GenAI](/learn/oracle-oci-genai-mastery) leans on Autonomous Database and Select AI. Pick by where your organization\'s data already lives.',
+      },
+      {
+        question: "Where do I start if I'm new to Microsoft Foundry?",
+        answer:
+          'Watch video 1 (the GA breakdown) to see what is actually production-ready today, then video 2 to build your first Prompt Agent end to end. Come back for MCP and Hosted Agents once you have that basic loop working.',
+      },
+    ],
+  },
+  {
+    id: 'oracle-oci-genai-mastery',
+    title: 'Oracle OCI Generative AI Mastery',
+    slug: 'oracle-oci-genai-mastery',
+    description:
+      'Master OCI Generative AI — Cohere Command A, Agent Hub, and Select AI natural-language database queries — from your first model call to production agents on OCI.',
+    icon: 'zap',
+    difficulty: 'intermediate',
+    estimatedHours: 10,
+    color: 'violet',
+    category: 'cloud',
+    heroEyebrow: 'Updated July 6, 2026 · Cohere Command A + Agent Hub',
+    longIntro:
+      "OCI Generative AI is Oracle's managed model service, and its differentiator isn't the model catalog — it's Select AI, which lets an Autonomous Database answer natural-language questions directly in SQL, and Agent Hub, which combines the generative models with native Oracle and third-party system integration plus out-of-the-box support for open-source agent frameworks. If your data already lives in an Oracle database, that's the actual advantage over a generic model API.\n\nThe current model line runs on Cohere: Command A is a 111-billion-parameter model delivering 150% the throughput of its predecessor on just two GPUs, with a 256K context window and native multi-step tool use — the engine behind most of what Agent Hub does. Command A Vision adds multimodal (text + image) support, and Command A Reasoning is tuned specifically for agentic tool-use workflows. The Cohere Python SDK is now natively integrated, so code written for Cohere directly runs against OCI with minimal changes.\n\nStart with the enterprise overview (video 1) for the full Oracle AI landscape, then Select AI (video 2) if your data lives in an Autonomous Database — it's the standout feature here. Video 3 covers the Agent Framework for building agentic systems, and video 4 is the deepest end-to-end build. This portal draws on real production OCI deployment experience — see the related architecture series below for the enterprise patterns that don't show up in a product tour.",
+    ctaTitle: 'Ready to ship on OCI?',
+    ctaBody:
+      'Go deeper with the full production series — the six-plane enterprise architecture, six agent orchestration patterns, and the operating model that gets an OCI deployment through a 3am incident.',
+    outcomes: [
+      'Call Cohere Command A, Command A Vision, and Command A Reasoning through OCI Generative AI',
+      'Query an Autonomous Database in natural language with Select AI',
+      'Build an agent with Agent Hub using an open-source framework (LangGraph, CrewAI) on OCI',
+      'Judge when OCI is the right call — specifically, when your data already lives in Oracle',
+      'Apply the six-plane enterprise architecture pattern to a real OCI GenAI deployment',
+    ],
+    relatedGuides: [
+      '/blog/production-llm-agents-oci-part-1-architecture',
+      '/blog/production-llm-agents-oci-part-2-agent-patterns',
+      '/blog/production-llm-agents-oci-part-3-operating-model',
+      '/blog/oracle-genai-agents-vs-langgraph-crewai-2026',
+      '/learn/aws-bedrock-mastery',
+      '/learn/azure-ai-foundry-mastery',
+    ],
+    videos: [
+      {
+        id: 'oci-genai-day-one-beyond',
+        youtubeId: 'jV4hI2-eHHw',
+        title: 'Day One and Beyond: Getting Started with Oracle Enterprise AI',
+        creator: youtubeChannels.oracleDevelopers.name,
+        creatorChannel: youtubeChannels.oracleDevelopers.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          "Entry point into Oracle's enterprise AI ecosystem — overview of the offerings and real-world use cases for OCI Generative AI deployments.",
+        tags: ['oci', 'enterprise-ai', 'overview'],
+      },
+      {
+        id: 'oci-select-ai-getting-started',
+        youtubeId: 'rnsnIYYZzr4',
+        title: 'Getting Started with Oracle Select AI - generative AI and your database',
+        creator: youtubeChannels.oracleDevelopers.name,
+        creatorChannel: youtubeChannels.oracleDevelopers.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          'Select AI lets an Autonomous Database answer natural-language questions in SQL directly — the standout feature covered in this portal.',
+        tags: ['select-ai', 'database', 'natural-language'],
+      },
+      {
+        id: 'oci-agent-framework-build',
+        youtubeId: 'eIkj4H-S_FQ',
+        title: "Build Agentic AI Solutions with Oracle Cloud Infrastructure's AI Agent Framework",
+        creator: youtubeChannels.oracleDevelopers.name,
+        creatorChannel: youtubeChannels.oracleDevelopers.url,
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          "Building intelligent, agentic solutions with OCI's AI Agent Framework — the foundation Agent Hub builds on.",
+        tags: ['agent-framework', 'agents', 'agentic-ai'],
+      },
+      {
+        id: 'oci-zero-to-hero-agentic',
+        youtubeId: 'HEXeBZIL4q4',
+        title: 'Day One & Beyond: Build Agentic AI apps, from Zero to Hero, on Oracle Cloud',
+        creator: youtubeChannels.oracleDevelopers.name,
+        creatorChannel: youtubeChannels.oracleDevelopers.url,
+        duration: 'See YouTube',
+        level: 'advanced',
+        description:
+          'The deepest end-to-end build in this portal — a full agentic app on OCI Generative AI with MCP, from a blank project to a working system.',
+        tags: ['agentic-ai', 'mcp', 'advanced'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'OCI Generative AI',
+        category: 'Surface',
+        description:
+          "Oracle's managed generative AI service — Cohere Command models today, with Select AI and Agent Hub layered on top for database and agent workflows.",
+        href: 'https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Cohere Command A',
+        category: 'Reasoning',
+        description:
+          '111-billion-parameter model, 150% the throughput of its predecessor on just 2 GPUs, 256K context window, native multi-step tool use.',
+        href: 'https://docs.oracle.com/en-us/iaas/Content/generative-ai/cohere-models.htm',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Cohere Command A Vision / Reasoning',
+        category: 'Capability',
+        description:
+          'Command A Vision adds multimodal text+image support. Command A Reasoning is tuned for advanced agentic tool-use — the pair Agent Hub builds on.',
+        href: 'https://blogs.oracle.com/ai-and-datascience/oci-generative-ai-adds-cohere-command-a-models',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'OCI Agent Hub',
+        category: 'Agents',
+        description:
+          'Build, deploy, and manage AI agents with native Oracle and third-party system integration, plus out-of-the-box support for open-source agent frameworks.',
+        href: 'https://www.oracle.com/artificial-intelligence/enterprise-ai/',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Select AI',
+        category: 'Database',
+        description:
+          'Query an Autonomous Database in natural language — Select AI converts the prompt to SQL using your chosen LLM provider, including OCI Generative AI itself.',
+        href: 'https://www.oracle.com/autonomous-database/select-ai/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Cohere SDK on OCI',
+        category: 'API',
+        description:
+          'Native integration means code written for the Cohere Python SDK runs against OCI Generative AI with minimal changes — no separate client library to learn.',
+        href: 'https://docs.cohere.com/docs/oracle-cloud-infrastructure-oci',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'OCI Documentation — Generative AI',
+        category: 'Reference',
+        description:
+          'The official reference for models, Select AI examples, Agent Hub setup, and release notes.',
+        href: 'https://docs.oracle.com/en-us/iaas/Content/generative-ai/pretrained-models.htm',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-05-01',
+        title: 'Cohere Command A Vision and Command A Reasoning launch on OCI',
+        summary:
+          'New multimodal (Vision) and agentic-tool-use-tuned (Reasoning) variants join Command A in the OCI Generative AI catalog.',
+        source: 'https://blogs.oracle.com/ai-and-datascience/oci-generative-ai-adds-cohere-command-a-models',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-04-01',
+        title: 'Cohere SDK natively integrated with OCI',
+        summary:
+          'Code written for the Cohere Python SDK now runs against OCI Generative AI Cohere models directly — no separate client library required.',
+        source: 'https://blogs.oracle.com/ai-and-datascience/cohere-sdk-is-now-natively-integrated-with-oci-ai',
+        tag: 'Update',
+      },
+      {
+        date: '2026-06-01',
+        title: "What's new in Oracle AI — June 2026 roundup",
+        summary:
+          'Oracle\'s running monthly roundup of Generative AI, Select AI, and Agent Hub updates — the fastest way to see what shipped this month.',
+        source: 'https://blogs.oracle.com/ai-and-datascience/whats-new-in-ai-june-2026',
+        tag: 'Update',
+      },
+    ],
+    experts: [
+      {
+        name: 'Oracle Developers',
+        role: 'Official channel — OCI Generative AI, Select AI, Agent Hub',
+        channelUrl: youtubeChannels.oracleDevelopers.url,
+        why: 'First-party technical content on OCI, Select AI, and Agent Hub — conference sessions, tutorials, and how-tos direct from Oracle.',
+        isOfficial: true,
+      },
+      {
+        name: 'AI Engineer',
+        role: 'Conference talks — production agent patterns',
+        channelUrl: youtubeChannels.aiEngineer.url,
+        why: 'Practitioner talks on agent architecture that apply directly to Agent Hub and OCI production deployments.',
+      },
+      {
+        name: 'freeCodeCamp.org',
+        role: 'Long-form courses — enterprise cloud AI',
+        channelUrl: youtubeChannels.freeCodeCamp.url,
+        why: 'Full-length, no-cost courses that put OCI Generative AI in context alongside the other major cloud AI platforms.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is OCI Generative AI?',
+        answer:
+          "Oracle's managed generative AI service, currently running on Cohere's Command model family, with Select AI (natural-language database queries) and Agent Hub (agent building and deployment) layered on top.",
+      },
+      {
+        question: 'What is Select AI?',
+        answer:
+          'A feature of Oracle Autonomous Database that converts natural-language questions into SQL using your chosen LLM provider — OCI Generative AI, Google Gemini, Azure OpenAI, Anthropic, and more. It is the standout feature for teams whose data already lives in Oracle.',
+      },
+      {
+        question: 'What is Cohere Command A?',
+        answer:
+          'A 111-billion-parameter model delivering 150% the throughput of its predecessor Command R+ on just two GPUs, with a 256K context window and native multi-step tool use — the model behind most OCI Agent Hub workflows.',
+      },
+      {
+        question: 'What is OCI Agent Hub?',
+        answer:
+          'A feature for building, deploying, and managing AI agents on OCI — combining Cohere Command models with native Oracle and third-party system integration, plus out-of-the-box support for open-source agent frameworks like LangGraph and CrewAI.',
+      },
+      {
+        question: 'Do I need to learn a new SDK for Cohere models on OCI?',
+        answer:
+          'No — the Cohere Python SDK is natively integrated with OCI Generative AI, so existing Cohere code runs against OCI with minimal changes.',
+      },
+      {
+        question: "What's the difference between Command A, Command A Vision, and Command A Reasoning?",
+        answer:
+          'Command A is the base 111B-parameter model with 256K context and native tool use. Command A Vision adds multimodal text+image support. Command A Reasoning is tuned specifically for advanced agentic tool-use workflows — the variant Agent Hub leans on most.',
+      },
+      {
+        question: 'When should I choose OCI over Bedrock or Foundry?',
+        answer:
+          "When your data already lives in an Oracle Autonomous Database — Select AI's natural-language-to-SQL is unique to this stack. See [AWS Bedrock](/learn/aws-bedrock-mastery) if you're IAM/VPC-native on AWS, or [Microsoft Foundry](/learn/azure-ai-foundry-mastery) if you need Microsoft 365 / Fabric connectivity instead.",
+      },
+      {
+        question: 'Where can I read about real production OCI deployments?',
+        answer:
+          'See the [six-plane enterprise architecture](/blog/production-llm-agents-oci-part-1-architecture), [agent orchestration patterns](/blog/production-llm-agents-oci-part-2-agent-patterns), and [operating model](/blog/production-llm-agents-oci-part-3-operating-model) series — independent analysis of what it actually takes to run production LLM agents on OCI, not a product tour.',
+      },
+      {
+        question: "Where do I start if I'm new to OCI Generative AI?",
+        answer:
+          'Watch video 1 (the enterprise overview) for the full landscape, then video 2 (Select AI) if your data lives in an Autonomous Database — it is the fastest path to a distinctly-Oracle win. Come back for Agent Hub once you need agents, not before.',
+      },
+    ],
+  },
 ]
 
 export const featuredCreators = [
