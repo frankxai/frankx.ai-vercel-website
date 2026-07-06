@@ -1097,6 +1097,7 @@ export const learningPaths: LearningPath[] = [
       '/learn/claude-mastery',
       '/learn/codex-mastery',
       '/learn/chatgpt-mastery',
+      '/learn/antigravity-mastery',
     ],
     videos: [
       {
@@ -1407,6 +1408,248 @@ export const learningPaths: LearningPath[] = [
         question: "Where do I start if I'm new to Google AI?",
         answer:
           'Watch video 1 (Gemini 3 launch) and video 5 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
+      },
+    ],
+  },
+  {
+    id: 'antigravity-mastery',
+    title: 'Antigravity Mastery',
+    slug: 'antigravity-mastery',
+    description:
+      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) that replaced Gemini CLI — from first install to production multi-agent workflows.",
+    icon: 'zap',
+    difficulty: 'intermediate',
+    estimatedHours: 8,
+    color: 'sky',
+    category: 'model-maker',
+    heroEyebrow: 'Updated July 6, 2026 · Antigravity 2.0, four pillars',
+    longIntro:
+      "Antigravity started as an agentic IDE feature in November 2025 alongside Gemini 3. By I/O 2026 (May 19) it had grown into something bigger: a standalone agent-first platform with four pillars — a desktop Agent Manager for orchestrating multiple agents at once, a CLI for server-side and terminal work, an SDK for custom Python workflows, and the IDE itself. It replaced Gemini CLI outright, and it runs Gemini 3.5 Flash by default while also supporting Claude and OpenAI models.\n\nThe core idea that sets it apart from a typical coding agent: Antigravity solves the trust problem by having agents produce Artifacts — task lists, implementation plans, screenshots, browser recordings — so you can verify what an agent actually did at a glance instead of re-reading a diff and hoping. You operate at the level of tasks and agents, not individual keystrokes.\n\nStart with the official hands-on tour (video 1) to see the Artifact-based workflow, then the developer guide (video 2) for the four-pillar architecture. Videos 3 and 4 are independent full walkthroughs for actually installing it and shipping something. If you're comparing this to Claude Code or Codex, that's the right instinct — see the FAQ below for the honest differences.",
+    ctaTitle: 'Ready to build with Antigravity?',
+    ctaBody:
+      'Pair this portal with the full Gemini & Google AI Mastery portal for the model layer underneath Antigravity, and our agent-tooling comparisons for how it stacks up against Claude Code and Codex.',
+    outcomes: [
+      'Install Antigravity and choose between the desktop app, CLI, and SDK for a given task',
+      'Read and verify agent Artifacts (task lists, plans, screenshots, browser recordings) before trusting a change',
+      'Orchestrate multiple agents at once from the desktop Agent Manager',
+      'Swap the underlying model (Gemini 3.5 Flash, Claude, OpenAI) for a given workflow',
+      'Judge when Antigravity is the right tool versus Claude Code or Codex',
+    ],
+    relatedGuides: [
+      '/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek',
+      '/blog/cursor-vs-claude-code-vs-windsurf-2026',
+      '/learn/gemini-mastery',
+      '/learn/claude-mastery',
+      '/learn/codex-mastery',
+    ],
+    videos: [
+      {
+        id: 'antigravity-hands-on-official',
+        youtubeId: 'uzFOhkORVfk',
+        title: 'Google Antigravity: Hands on with our new agentic development platform',
+        creator: youtubeChannels.googleAntigravity.name,
+        creatorChannel: youtubeChannels.googleAntigravity.url,
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          "Official hands-on tour of Antigravity's Artifact-based workflow — how agents produce verifiable task lists, plans, and recordings instead of asking you to trust a diff.",
+        tags: ['antigravity', 'official', 'artifacts'],
+      },
+      {
+        id: 'antigravity-2-developer-guide',
+        youtubeId: 'Dk4MD6TNiWE',
+        title: 'Inside Google Antigravity 2.0: The complete developer guide | The Agent Factory',
+        creator: youtubeChannels.googleCloudTech.name,
+        creatorChannel: youtubeChannels.googleCloudTech.url,
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          "Google Cloud's own deep-dive into Antigravity 2.0's four pillars — Agent Manager, CLI, SDK, and IDE — and how they fit together for real projects.",
+        tags: ['antigravity-2', 'developer-guide', 'architecture'],
+      },
+      {
+        id: 'antigravity-2-walkthrough',
+        youtubeId: 'Qmn8qET0o00',
+        title: "Google's NEW Antigravity 2.0 Is Here — Full Walkthrough for Beginners",
+        creator: 'Indie Builder',
+        creatorChannel: 'https://www.youtube.com/results?search_query=Antigravity+2.0+walkthrough',
+        duration: 'See YouTube',
+        level: 'beginner',
+        description:
+          'End-to-end walkthrough of Antigravity 2.0: install, set up the agent harness, and ship your first website.',
+        tags: ['antigravity', 'agents', 'builder'],
+      },
+      {
+        id: 'antigravity-cli',
+        youtubeId: 'am0lg5-ofvQ',
+        title: 'Google Antigravity CLI Full Walkthrough',
+        creator: 'Indie Builder',
+        creatorChannel: 'https://www.youtube.com/results?search_query=Antigravity+CLI+walkthrough',
+        duration: 'See YouTube',
+        level: 'intermediate',
+        description:
+          "Terminal-first tour of the Antigravity CLI — the successor to Gemini CLI, sharing the same agent harness as the desktop app.",
+        tags: ['antigravity-cli', 'terminal', 'agents'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'Antigravity Desktop (Agent Manager)',
+        category: 'Surface',
+        description:
+          'The standalone desktop app — orchestrate multiple agents across workspaces from a single Agent Manager, the command center for the whole platform.',
+        href: 'https://antigravity.google/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Antigravity CLI',
+        category: 'Builder Surface',
+        description:
+          'Terminal-first surface sharing the same agent harness as the desktop app — the direct successor to Gemini CLI, which it replaced outright.',
+        href: 'https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/',
+        status: 'GA',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Antigravity SDK',
+        category: 'Agents',
+        description:
+          'Python-based SDK for custom agent workflows — build your own orchestration on top of the same primitives the desktop app and CLI use.',
+        href: 'https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Artifacts',
+        category: 'Capability',
+        description:
+          "Agents produce tangible, reviewable deliverables — task lists, implementation plans, screenshots, browser recordings — so you verify logic at a glance instead of re-reading a diff.",
+        href: 'https://codelabs.developers.google.com/getting-started-google-antigravity',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Antigravity Skills',
+        category: 'Capability',
+        description:
+          'A lightweight, open format for extending agent capabilities with specialized knowledge and workflows — conceptually parallel to Claude Skills.',
+        href: 'https://codelabs.developers.google.com/getting-started-with-antigravity-skills',
+        status: 'New',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Model optionality',
+        category: 'Reasoning',
+        description:
+          'Gemini 3.5 Flash is the default, but Antigravity fully supports Anthropic Claude and OpenAI models too — pick the model per task, not per platform.',
+        href: 'https://antigravity.google/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+      {
+        name: 'Google Antigravity (official site)',
+        category: 'Reference',
+        description:
+          'The product homepage and download — available at no cost for individuals across macOS, Windows, and Linux.',
+        href: 'https://antigravity.google/',
+        status: 'Updated',
+        lastVerified: '2026-07-06',
+      },
+    ],
+    announcements: [
+      {
+        date: '2025-11-18',
+        title: 'Antigravity launches in public preview alongside Gemini 3',
+        summary:
+          'First release — an agentic development platform where agents autonomously plan, execute, and verify tasks across the editor, terminal, and browser. Free for individuals.',
+        source: 'https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-05-19',
+        title: 'Antigravity 2.0 launches as a standalone agentic platform',
+        summary:
+          'Major relaunch at Google I/O 2026 — four pillars (desktop Agent Manager, CLI, SDK, IDE), Gemini 3.5 Flash as the new default model, full Claude and OpenAI model support.',
+        source: 'https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/',
+        tag: 'Launch',
+      },
+      {
+        date: '2026-06-18',
+        title: 'Gemini CLI sunset — Antigravity CLI is the successor',
+        summary:
+          'Gemini CLI and Gemini Code Assist IDE extensions stop serving requests for AI Pro, Ultra, and Code Assist for individuals. The Antigravity CLI shares the same agent harness as Antigravity 2.0 desktop.',
+        source: 'https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/',
+        tag: 'Deprecation',
+      },
+    ],
+    experts: [
+      {
+        name: 'Google Antigravity',
+        role: 'Official channel — platform launches and hands-on demos',
+        channelUrl: youtubeChannels.googleAntigravity.url,
+        why: 'First-party Artifact-workflow demos and feature walkthroughs, straight from the team that ships the platform.',
+        isOfficial: true,
+      },
+      {
+        name: 'Google Cloud Tech',
+        role: 'Official channel — developer guides, The Agent Factory series',
+        channelUrl: youtubeChannels.googleCloudTech.url,
+        why: 'The Agent Factory series goes deep on Antigravity 2.0 architecture — the four-pillar model and how they compose in practice.',
+        isOfficial: true,
+      },
+      {
+        name: 'AI Engineer',
+        role: 'Conference talks — agentic development patterns',
+        channelUrl: youtubeChannels.aiEngineer.url,
+        why: 'Practitioner talks on multi-agent orchestration that apply directly to Antigravity\'s Agent Manager model.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is Google Antigravity?',
+        answer:
+          "Google's standalone agent-first development platform — a desktop Agent Manager, a CLI, an SDK, and an IDE, unified under one agent harness. It replaced Gemini CLI and runs Gemini 3.5 Flash by default, with full support for Claude and OpenAI models too.",
+      },
+      {
+        question: 'Is Gemini CLI still supported?',
+        answer:
+          'No — Gemini CLI and the Gemini Code Assist IDE extensions stopped serving requests for AI Pro, Ultra, and Code Assist for individuals on June 18, 2026. The Antigravity CLI is the direct successor and shares the same agent harness as the Antigravity 2.0 desktop app.',
+      },
+      {
+        question: 'What are Artifacts in Antigravity?',
+        answer:
+          "Tangible, reviewable outputs an agent produces alongside its work — task lists, implementation plans, screenshots, browser recordings. Instead of re-reading a diff to trust an agent's logic, you check the Artifact and leave feedback directly on it, similar to commenting on a doc.",
+      },
+      {
+        question: 'Can I use Claude or OpenAI models inside Antigravity?',
+        answer:
+          "Yes — Antigravity defaults to Gemini 3.5 Flash but fully supports Anthropic Claude and OpenAI models. Pick per task: Gemini for speed and cost, Claude for long-form refactoring, whichever fits.",
+      },
+      {
+        question: 'What are the four pillars of Antigravity 2.0?',
+        answer:
+          'The standalone desktop Agent Manager (orchestration), the CLI (terminal and server-side work), the SDK (custom Python workflows), and the IDE (the original agentic editor). All four share the same underlying agent harness.',
+      },
+      {
+        question: 'How is Antigravity different from Claude Code or Codex?',
+        answer:
+          "The core difference is Artifacts — Antigravity's agents produce reviewable task lists, plans, and recordings by design, where Claude Code and Codex hand you a diff and a chat transcript. Antigravity also natively orchestrates multiple agents from one desktop app; Claude Code and Codex are more single-session-first. Model choice is now moot for all three — each supports multiple model providers.",
+      },
+      {
+        question: 'What are Antigravity Skills?',
+        answer:
+          'A lightweight, open format for packaging specialized knowledge and workflows that an agent loads on demand — conceptually the same idea as Claude Skills, just under a different name on Google\'s platform.',
+      },
+      {
+        question: 'Is Antigravity free?',
+        answer:
+          'Yes, available at no cost for individuals, across macOS, Windows, and Linux. Enterprise support exists separately for organizations that need it.',
+      },
+      {
+        question: "Where do I start if I'm new to Antigravity?",
+        answer:
+          'Watch video 1 (the official hands-on tour) to see the Artifact workflow, then video 3 for a full beginner walkthrough of installing it and shipping a first project. Come back for the CLI (video 4) once you want to work from the terminal instead of the desktop app.',
       },
     ],
   },
