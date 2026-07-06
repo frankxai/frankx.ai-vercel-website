@@ -27,6 +27,7 @@ export default function V0TemplateFoundryPage() {
       secondaryLabel="Request a v0 build"
       libraryLabel="v0 build lanes"
       libraryTitle="Template families worth spending v0 tokens on"
+      executionSurface="v0"
     />
   )
 }

@@ -32,6 +32,10 @@ import {
 } from '@/data/v0-template-packaging'
 import { getV0TemplateExcellenceSummary } from '@/data/v0-template-excellence'
 import { getV0TemplateMarketplacePlan } from '@/data/v0-template-marketplace'
+import {
+  getV0TemplateOvernightExecutionPlan,
+  type V0TemplateExecutionSurface,
+} from '@/data/v0-template-overnight-execution'
 import { getV0TemplateProductionPlan } from '@/data/v0-template-production'
 import {
   getV0TemplateSourcePack,
@@ -51,6 +55,7 @@ type TemplateStudioRouteProps = {
   secondaryLabel: string
   libraryLabel: string
   libraryTitle: string
+  executionSurface?: V0TemplateExecutionSurface
   trackLinks?: Array<{
     label: string
     href: string
@@ -259,6 +264,7 @@ export function TemplateStudioRoute({
   secondaryLabel,
   libraryLabel,
   libraryTitle,
+  executionSurface = 'v',
   trackLinks,
 }: TemplateStudioRouteProps) {
   const pageStats = [
@@ -278,6 +284,7 @@ export function TemplateStudioRoute({
   const excellenceSummary = getV0TemplateExcellenceSummary(entries)
   const marketplacePlan = getV0TemplateMarketplacePlan(entries)
   const sourcePackSummary = getV0TemplateSourcePackSummary(entries)
+  const overnightPlan = getV0TemplateOvernightExecutionPlan(entries, executionSurface)
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -514,6 +521,106 @@ export function TemplateStudioRoute({
                   <p className="text-sm text-white/40">Proof path</p>
                   <p className="mt-2 text-sm leading-6 text-white/66">{pack.vercelGithubProof[0]}</p>
                 </div>
+              </div>
+            </section>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10">
+        <div className="mb-8 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm text-emerald-200">Overnight execution</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              {overnightPlan.surface.label}
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-white/60">{overnightPlan.surface.thesis}</p>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {overnightPlan.stats.map((stat) => (
+                <div key={stat.label} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                  <p className="mt-1 text-xs text-white/50">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <p className="text-sm font-medium text-white">Build now</p>
+              <ul className="mt-4 space-y-3">
+                {overnightPlan.surface.buildNow.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-6 text-white/66">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-200/70" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <p className="text-sm font-medium text-white">Do not send to v0</p>
+              <ul className="mt-4 space-y-3">
+                {overnightPlan.surface.doNotGiveV0.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-6 text-white/66">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-200/70" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {overnightPlan.surface.marketSignals.slice(0, 2).map((signal) => (
+              <div key={signal} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-sm leading-6 text-white/68">{signal}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-5">
+          {overnightPlan.phases.map((phase) => (
+            <div key={phase.id} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm font-medium text-white">{phase.label}</p>
+                <span className="rounded-full border border-white/10 px-2 py-0.5 text-xs text-white/55">
+                  {phase.count}
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-white/58">{phase.job}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {overnightPlan.queue.slice(0, 8).map((item) => (
+            <section key={item.id} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.16em] text-white/38">
+                    {item.priority} / {item.phaseLabel} / {item.demand}
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold text-white">{item.title}</h3>
+                </div>
+                <Link
+                  href={item.route}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition hover:text-white"
+                >
+                  Open
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-white/64">{item.ownerAction}</p>
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                <div>
+                  <p className="text-sm text-white/40">Next artifact</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{item.nextArtifact}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-white/40">v0 rule</p>
+                  <p className="mt-2 text-sm leading-6 text-white/66">{item.v0Use}</p>
+                </div>
+              </div>
+              <div className="mt-5 border-t border-white/10 pt-4">
+                <p className="text-sm text-white/40">Evidence to collect</p>
+                <p className="mt-2 text-sm leading-6 text-white/66">{item.evidence.join(' / ')}</p>
               </div>
             </section>
           ))}

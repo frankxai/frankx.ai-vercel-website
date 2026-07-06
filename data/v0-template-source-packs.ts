@@ -47,14 +47,27 @@ const statusLabels: Record<V0TemplateSourcePackStatus, string> = {
   'evidence-needed': 'Evidence needed',
 }
 
-const prioritySourcePackIds = new Set([
+const prioritySourcePackIds = [
   'frankx-ai-audit-intake-funnel',
   'vercel-ai-workflow-starter',
   'gencreator-course-sales-system',
   'animelegends-trailer-countdown-page',
   'ai-architecture-rag-blueprint',
   'motion-ai-product-launch-film',
-])
+  'frankx-personal-ai-coe-microsite',
+  'vercel-ai-saas-starter',
+  'gencreator-creator-os-landing',
+  'animelegends-world-portal',
+  'motion-command-room-3d-scene',
+  'frankx-executive-command-landing',
+]
+
+const prioritySourcePackIdSet = new Set(prioritySourcePackIds)
+
+export function getV0TemplateSourcePackPriorityRank(packageId: string) {
+  const index = prioritySourcePackIds.indexOf(packageId)
+  return index === -1 ? Number.POSITIVE_INFINITY : index
+}
 
 const explicitSourcePacks: Record<string, Partial<V0TemplateSourcePack>> = {
   'frankx-ai-audit-intake-funnel': {
@@ -189,6 +202,138 @@ const explicitSourcePacks: Record<string, Partial<V0TemplateSourcePack>> = {
       'Premium motion upsell for launch film, hero embed, and social cutdowns.',
     ],
   },
+  'frankx-personal-ai-coe-microsite': {
+    label: 'Personal AI CoE source pack',
+    status: 'source-pack-next',
+    readinessNote:
+      'First personal AI operating-system pack: make the tool stack, weekly loop, governance notes, and lead magnet real before any visual expansion.',
+    buyerDataset: [
+      'Executive, creator, and solo-operator profiles with different AI maturity levels.',
+      'Weekly operating loop fixture with capture, triage, build, publish, review, and archive states.',
+      'Tool stack table with role, risk, cost band, owner, and replacement notes.',
+    ],
+    routeFixtures: [
+      'Microsite hero with AI CoE map and one download CTA.',
+      'Tool stack comparison with caveated recommendations and no affiliate claims unless sourced.',
+      'Weekly loop board with empty, active, blocked, and reviewed states.',
+      'Implementation path that separates free checklist, source pack, and custom setup.',
+    ],
+    commercialPackaging: [
+      'Lead magnet checklist for a personal AI CoE.',
+      'Source pack with loop JSON, tool stack schema, README, and prompt library outline.',
+      'Consulting upsell for private AI operating-system setup.',
+    ],
+  },
+  'vercel-ai-saas-starter': {
+    label: 'Vercel AI SaaS starter source pack',
+    status: 'source-pack-next',
+    readinessNote:
+      'First AI SaaS deploy pack: freeze stack choices, env key names, auth/billing boundary, safe fixtures, and README before UI generation.',
+    buyerDataset: [
+      'Founder profile with app idea, plan tiers, user roles, and one AI feature boundary.',
+      'Safe demo data for dashboard, usage, billing status, and admin review states.',
+      'Environment key-name list with no values and clear server/client ownership.',
+    ],
+    routeFixtures: [
+      'Landing page, app dashboard, account/billing state, and admin shell preview.',
+      'Setup panel with local run, env keys, deploy path, and known limits.',
+      'Usage/cost state with empty, warning, capped, and paid-plan states.',
+      'README excerpt that proves a deployable starter path exists.',
+    ],
+    commercialPackaging: [
+      'Deployable Vercel starter prompt pack.',
+      'Source pack with safe fixtures, env guide, README, and test checklist.',
+      'Implementation upsell for auth, billing, AI SDK, and deployment hardening.',
+    ],
+  },
+  'gencreator-creator-os-landing': {
+    label: 'GenCreator OS launch source pack',
+    status: 'source-pack-next',
+    readinessNote:
+      'First GenCreator brand pack: define creator paths, proof-safe examples, waitlist states, and launch assets before expanding the product surface.',
+    buyerDataset: [
+      'Creator profile examples for educator, media creator, and productized-service creator.',
+      'Path fixtures for content engine, course/cohort, sponsorship, digital product, and community loop.',
+      'Waitlist and onboarding states with no fake creator outcomes.',
+    ],
+    routeFixtures: [
+      'Product landing route with creator paths, proof rail, join CTA, and workflow preview.',
+      'Creator-system cards that are fillable with user data.',
+      'Launch asset strip for social, email, and community announcement crops.',
+      'FAQ and support boundary copy for early access.',
+    ],
+    commercialPackaging: [
+      'GenCreator launch prompt pack.',
+      'Source pack with creator path JSON, launch email outline, social crop list, and README.',
+      'Implementation upsell for creator OS dashboard and cohort hub.',
+    ],
+  },
+  'animelegends-world-portal': {
+    label: 'AnimeLegends world portal source pack',
+    status: 'asset-needed',
+    readinessNote:
+      'First world portal pack: freeze canon structure, original visual direction, credits, rights notes, and public-safe labels before v0.',
+    buyerDataset: [
+      'Original-world fixture with factions, characters, places, episodes, timeline, and public labels.',
+      'Canon status fields for draft, approved, spoiler, archive, and public release.',
+      'Rights and credits note for every image, symbol, soundtrack, and public text block.',
+    ],
+    routeFixtures: [
+      'World portal hero with one original canon object and one exploration CTA.',
+      'Faction/character/lore navigation with deterministic text overlays.',
+      'Timeline and episode/chapter cards with spoiler-safe states.',
+      'Credits, rights, and community safety panel before sharing.',
+    ],
+    commercialPackaging: [
+      'Original-world portal prompt pack.',
+      'Source pack with canon JSON, rights notes, style-frame brief, and README.',
+      'Motion upsell for trailer, character reveals, and social cutdowns.',
+    ],
+  },
+  'motion-command-room-3d-scene': {
+    label: 'Command room 3D source pack',
+    status: 'asset-needed',
+    readinessNote:
+      'First 3D scene pack: create the metaphor, camera story, poster fallback, mobile simplification, and performance budget before code or generation.',
+    buyerDataset: [
+      'Scene brief with cockpit, deal room, agent swarm, growth engine, and signal radar metaphor choices.',
+      'Camera-state fixture for still, hover, focus, reveal, reduced-motion, and mobile fallback.',
+      'Asset manifest fields for source file, poster, texture, HDRI, rights, and inspection notes.',
+    ],
+    routeFixtures: [
+      'Poster-first hero with no-WebGL fallback and one proof/action rail.',
+      '3D scene card with runtime, budget, controls, and reduced-motion static story.',
+      'Crop matrix for desktop hero, mobile hero, OG, 1:1, 4:5, and 9:16.',
+      'Performance notes before the scene can appear on a public route.',
+    ],
+    commercialPackaging: [
+      '3D command-room scene brief template.',
+      'Source pack with scene JSON, poster requirements, crop matrix, and QA checklist.',
+      'Premium asset upsell for R3F scene, rendered poster, and launch video.',
+    ],
+  },
+  'frankx-executive-command-landing': {
+    label: 'Executive command landing source pack',
+    status: 'source-pack-next',
+    readinessNote:
+      'First FrankX authority pack: convert the existing public route into a reusable offer/proof/CTA source pack with no vague AI-service copy.',
+    buyerDataset: [
+      'Consultant, AI agency, and operator-founder buyer examples with proof expectation and next action.',
+      'Offer-stack fixture with scope, exclusions, proof object, qualification path, and follow-up note.',
+      'Case-study placeholder states that mark unknown proof instead of inventing metrics.',
+    ],
+    routeFixtures: [
+      'Hero with executive command claim, proof object, and one primary CTA.',
+      'Offer stack, proof ledger, architecture/process view, and qualification section.',
+      'Mobile first viewport and CTA reachability proof.',
+      'README snippet explaining how to adapt the page without breaking FrankX voice.',
+    ],
+    commercialPackaging: [
+      'Premium AI service landing prompt pack.',
+      'Source pack with offer schema, proof states, README, and v0 handoff.',
+      'Implementation upsell for consultants and agencies who need their own command landing page.',
+    ],
+  },
 }
 
 export const v0SourcePackStandards = [
@@ -201,7 +346,7 @@ export const v0SourcePackStandards = [
 function inferSourcePackStatus(entry: V0TemplateEntry): V0TemplateSourcePackStatus {
   const factory = getV0TemplateFactoryPack(entry)
 
-  if (prioritySourcePackIds.has(entry.id)) {
+  if (prioritySourcePackIdSet.has(entry.id)) {
     return 'source-pack-next'
   }
 
@@ -347,7 +492,11 @@ export function getV0TemplateSourcePackSummary(entries: V0TemplateEntry[]): V0Te
   const packs = entries.map(getV0TemplateSourcePack)
   const nextPacks = packs
     .filter((pack) => pack.status === 'source-pack-next')
-    .sort((a, b) => a.label.localeCompare(b.label))
+    .sort((a, b) => {
+      const rankDelta =
+        getV0TemplateSourcePackPriorityRank(a.packageId) - getV0TemplateSourcePackPriorityRank(b.packageId)
+      return rankDelta === 0 ? a.label.localeCompare(b.label) : rankDelta
+    })
   const assetNeeded = packs.filter((pack) => pack.status === 'asset-needed').length
   const v0Ready = packs.filter((pack) => pack.status === 'v0-brief-ready').length
   const codexFirst = packs.filter((pack) => pack.status === 'codex-first').length

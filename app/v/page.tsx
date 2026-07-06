@@ -32,6 +32,7 @@ export default function VTemplateStudioPage() {
       secondaryLabel="Browse Vercel templates"
       libraryLabel="Template library"
       libraryTitle="Families to build, refine, package, and ship"
+      executionSurface="v"
       trackLinks={[
         {
           label: 'GenCreator',

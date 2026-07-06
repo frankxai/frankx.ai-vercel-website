@@ -27,6 +27,7 @@ export default function VercelTemplateLibraryPage() {
       secondaryLabel="Browse commerce templates"
       libraryLabel="Vercel lanes"
       libraryTitle="Deployable template families with real release gates"
+      executionSurface="vercel"
     />
   )
 }
