@@ -41,7 +41,7 @@ export const metadata = createMetadata({
 
 const SITE_URL = 'https://frankx.ai'
 const version = '0.1.0'
-const templateReleaseVersion = '0.1.4'
+const templateReleaseVersion = '0.1.5'
 const assetName = `property-intelligence-starter-kit-v${version}.zip`
 const zipUrl = `/downloads/${assetName}`
 const checksumUrl = `/downloads/property-intelligence-starter-kit-v${version}.sha256`
@@ -89,14 +89,14 @@ const downloadAssets = [
   {
     title: 'OS template release',
     href: propertyOsReleaseUrl,
-    detail: `Latest v${templateReleaseVersion} Codex/Claude workspace with owner auth gates, protected API token guidance, tenant-safe runtime wiring, Railway/MCP readiness checks, and install support workflows.`,
+    detail: `Latest v${templateReleaseVersion} Codex/Claude workspace with portal install-proof gates, owner auth guidance, protected API token guidance, tenant-safe runtime wiring, Railway/MCP readiness checks, and install support workflows.`,
     icon: GitBranch,
     cta: 'Open release',
   },
   {
     title: 'Portal template release',
     href: propertyPortalReleaseUrl,
-    detail: `Latest v${templateReleaseVersion} Vercel portal with owner passcode auth, protected owner APIs, auth smoke CI, tenant RLS SQL, sample seed, Postgres adapter, and admin cockpit.`,
+    detail: `Latest v${templateReleaseVersion} Vercel portal with owner passcode auth, protected owner APIs, self-service install proof packet, proof API, install CLI, tenant RLS SQL, sample seed, Postgres adapter, and admin cockpit.`,
     icon: Gauge,
     cta: 'Open release',
   },
@@ -140,7 +140,7 @@ const proof = [
   {
     label: 'Public kit',
     value: `v${version} + v${templateReleaseVersion}`,
-    detail: 'starter kit plus auth-hardened GitHub template releases',
+    detail: 'starter kit plus install-proof GitHub template releases',
   },
 ]
 
@@ -154,7 +154,7 @@ const repoStack = [
   {
     name: 'property-os-template',
     role: 'Public-safe owner template',
-    detail: `Codex and Claude-ready workspace with runbooks, issue templates, approval gates, privacy scans, owner auth setup, and v${templateReleaseVersion} tenant-safe hosted runtime wiring.`,
+    detail: `Codex and Claude-ready workspace with runbooks, issue templates, approval gates, privacy scans, owner auth setup, portal install-proof gates, and v${templateReleaseVersion} tenant-safe hosted runtime wiring.`,
     icon: FileText,
   },
   {
@@ -166,7 +166,7 @@ const repoStack = [
   {
     name: 'property-portal-template',
     role: 'Vercel renter portal',
-    detail: `Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, listing admin, owner passcode auth, protected owner APIs, Postgres runtime adapter, tenant RLS SQL, and v${templateReleaseVersion} runtime snapshot.`,
+    detail: `Next.js App Router portal with property page, inquiry flow, renter support, owner cockpit, setup proof cockpit, listing admin, owner passcode auth, protected owner APIs, Postgres runtime adapter, tenant RLS SQL, and v${templateReleaseVersion} install proof packet.`,
     icon: Gauge,
   },
 ]
@@ -273,7 +273,7 @@ const businessModels = [
 
 const launchGates = [
   'Public repo release contains no renter data, access secrets, owner-private facts, or hidden credentials.',
-  'Portal passes lint, typecheck, build, portal smoke, auth-boundary smoke, mobile/desktop visual QA, and Vercel preview verification.',
+  'Portal passes lint, typecheck, build, portal smoke, auth-boundary smoke, install-proof export, mobile/desktop visual QA, and Vercel preview verification.',
   'Real installs run the live Postgres RLS smoke before real renter data or owner operations move into production.',
   'MCP server passes tool smoke tests and runs with least-privilege environment variables on Railway or equivalent.',
   'Human approval is mandatory for pricing, availability, lease terms, refunds, legal statements, urgent repairs, and personal data.',
@@ -706,7 +706,7 @@ function DownloadKitSection() {
           <SectionHeader
             eyebrow="Public release"
             title="A real starter kit plus runtime-ready templates people can fork and sell around."
-            copy="The free package is deliberately useful but bounded. The GitHub template releases carry the current install surface: owner auth, protected owner APIs, tenant-safe hosted runtime wiring, owner notifications, Postgres persistence, MCP readiness, and partner operations."
+            copy="The free package is deliberately useful but bounded. The GitHub template releases carry the current install surface: owner auth, protected owner APIs, self-service install proof, tenant-safe hosted runtime wiring, owner notifications, Postgres persistence, MCP readiness, and partner operations."
           />
           <div className="mt-7 rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-5">
             <div className="flex items-start gap-3">
