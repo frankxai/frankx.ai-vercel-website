@@ -6,6 +6,7 @@ import { getThemeClasses } from '../lib/theme-classes';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
 import BookDownloadGate from '../components/BookDownloadGate';
+import ResumeReading from '../components/ResumeReading';
 
 interface PageProps {
   params: Promise<{ bookSlug: string }>;
@@ -94,7 +95,7 @@ export default async function BookLandingPage({ params }: PageProps) {
                   <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${tc.badgeBg} ${tc.badgeText} text-xs font-medium border ${tc.badgeBorder} uppercase tracking-wider`}>
                     {book.status === 'published' ? 'Available Now' : 'In Progress'}
                   </div>
-                  <h1 className={`${fontClass} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]`}>
+                  <h1 className={`${fontClass} text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95]`}>
                     <span className={tc.gradientText}>{book.title}</span>
                   </h1>
                   <p className="text-xl sm:text-2xl text-white/40 font-light">
@@ -126,11 +127,16 @@ export default async function BookLandingPage({ params }: PageProps) {
                 {publishedChapters.length > 0 && (
                   <Link
                     href={`/books/${bookSlug}/${publishedChapters[0].slug}`}
-                    className={`inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-white/90 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
+                    className={`inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-semibold text-lg hover:bg-white/90 transition-all group`}
                   >
                     Start Reading
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                   </Link>
+                )}
+                {publishedChapters.length > 0 && (
+                  <div className="mt-4">
+                    <ResumeReading bookSlug={bookSlug} accentClass={tc.textPrimary} />
+                  </div>
                 )}
               </div>
 
@@ -146,7 +152,6 @@ export default async function BookLandingPage({ params }: PageProps) {
                         src={book.coverImage}
                         alt={book.title}
                         fill
-                        sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
                         className="object-cover"
                         priority
                       />

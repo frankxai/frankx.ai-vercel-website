@@ -63,7 +63,7 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold mb-4">Your Rights</h2>
             <p className="text-white/70 leading-relaxed">
               You have the right to access, correct, or delete your personal data.
-              Contact us at frank@frankx.ai for any privacy-related requests.
+              Contact us at hello@frankx.ai for any privacy-related requests.
             </p>
           </section>
 
@@ -71,8 +71,8 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold mb-4">Contact</h2>
             <p className="text-white/70 leading-relaxed">
               For questions about this privacy policy, email us at{' '}
-              <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
-                frank@frankx.ai
+              <a href="mailto:hello@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
+                hello@frankx.ai
               </a>
             </p>
           </section>

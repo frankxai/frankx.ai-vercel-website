@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, useId, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
-  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'ikigai-branding' | 'agentic-builder-lab' | 'all'
+  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'ikigai-branding' | 'agentic-builder-lab' | 'premium-packs' | 'all'
   placeholder?: string
   buttonText?: string
   className?: string
@@ -25,8 +25,14 @@ export function EmailSignup({
   compact = false,
 }: EmailSignupProps) {
   const router = useRouter()
+  const hpId = useId()
+  const emailId = useId()
+  const nameId = useId()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  // Honeypot — a hidden field real users never see. Bots that auto-fill inputs
+  // trip it, and the API silently discards those submissions.
+  const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -52,6 +58,7 @@ export function EmailSignup({
           email,
           name: showName ? name : undefined,
           listType,
+          website,
         }),
       })
 
@@ -77,30 +84,40 @@ export function EmailSignup({
     }
   }
 
+  const honeypotField = (
+    <div aria-hidden="true" className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <label htmlFor={hpId}>Leave this field blank</label>
+      <input
+        id={hpId}
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        value={website}
+        onChange={(e) => setWebsite(e.target.value)}
+      />
+    </div>
+  )
+
   if (compact) {
     return (
       <form onSubmit={handleSubmit} className={cn('relative', className)} aria-busy={status === 'loading'} noValidate>
-        <div className="flex gap-2">
-          <label htmlFor="email-compact" className="sr-only">Email address</label>
+        {honeypotField}
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <label htmlFor={emailId} className="sr-only">Email address</label>
           <input
-            id="email-compact"
+            id={emailId}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
-            autoComplete="email"
-            aria-label="Email address"
-            aria-invalid={status === 'error'}
-            aria-describedby={status === 'error' ? 'email-compact-error' : status === 'success' ? 'email-compact-success' : undefined}
-            required
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500/50 disabled:opacity-50"
+            className="min-w-0 flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            aria-busy={status === 'loading'}
-            className="px-6 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-cyan-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="w-full shrink-0 whitespace-nowrap px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto sm:px-6"
           >
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
           </button>
@@ -109,9 +126,6 @@ export function EmailSignup({
         <AnimatePresence>
           {status === 'error' && errorMessage && (
             <motion.div
-              id="email-compact-error"
-              role="alert"
-              aria-live="polite"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -122,15 +136,12 @@ export function EmailSignup({
           )}
           {status === 'success' && (
             <motion.div
-              id="email-compact-success"
-              role="status"
-              aria-live="polite"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               className="text-emerald-400 text-sm mt-2"
             >
-              You're in. Check your inbox to confirm.
+              Successfully subscribed! Check your email.
             </motion.div>
           )}
         </AnimatePresence>
@@ -141,18 +152,18 @@ export function EmailSignup({
   return (
     <div className={cn('w-full max-w-md', className)}>
       <form onSubmit={handleSubmit} className="space-y-4" aria-busy={status === 'loading'} noValidate>
+        {honeypotField}
         {showName && (
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+            <label htmlFor={nameId} className="block text-sm font-medium text-slate-300 mb-2">
               First Name (optional)
             </label>
             <input
               type="text"
-              id="name"
+              id={nameId}
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your first name"
-              autoComplete="given-name"
               disabled={status === 'loading' || status === 'success'}
               className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 transition-all"
             />
@@ -160,20 +171,17 @@ export function EmailSignup({
         )}
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+          <label htmlFor={emailId} className="block text-sm font-medium text-slate-300 mb-2">
             Email Address
           </label>
           <input
             type="email"
-            id="email"
+            id={emailId}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
-            autoComplete="email"
             disabled={status === 'loading' || status === 'success'}
             required
-            aria-invalid={status === 'error'}
-            aria-describedby={status === 'error' ? 'email-error' : status === 'success' ? 'email-success' : undefined}
             className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 transition-all"
           />
         </div>
@@ -181,12 +189,11 @@ export function EmailSignup({
         <button
           type="submit"
           disabled={status === 'loading' || status === 'success'}
-          aria-busy={status === 'loading'}
           className={cn(
-            "w-full px-6 py-3 font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]",
+            "w-full px-6 py-3 font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed",
             status === 'success'
-              ? "bg-emerald-600 text-white focus-visible:ring-emerald-400/70"
-              : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 focus-visible:ring-purple-400/70"
+              ? "bg-emerald-600 text-white"
+              : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500"
           )}
         >
           {status === 'loading' && 'Subscribing...'}
@@ -198,9 +205,6 @@ export function EmailSignup({
         <AnimatePresence>
           {status === 'error' && errorMessage && (
             <motion.div
-              id="email-error"
-              role="alert"
-              aria-live="polite"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -211,15 +215,12 @@ export function EmailSignup({
           )}
           {status === 'success' && (
             <motion.div
-              id="email-success"
-              role="status"
-              aria-live="polite"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm"
             >
-              You're in. Check your inbox to confirm.
+              Successfully subscribed! Check your email for confirmation.
               {redirectTo && <span className="block mt-1">Redirecting...</span>}
             </motion.div>
           )}

@@ -100,7 +100,7 @@ const archetypes = [
   {
     id: 'solution-engineer',
     label: 'Solution Engineer',
-    description: 'The enterprise-to-creator bridge story. GitHub, Newsletter, Podcast, LinkedIn, YouTube long-form.',
+    description: 'The Oracle EMEA bridge story. GitHub, Newsletter, Podcast, LinkedIn, YouTube long-form.',
     color: 'text-cyan-400',
     chip: 'bg-cyan-500/10 text-cyan-300 ring-cyan-500/30',
   },
@@ -124,12 +124,12 @@ export default function StudioIndexPage() {
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-6">
             Studio · v{INTAKE_VERSION} · {INTAKE_SHIPPED}
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6 max-w-4xl">
             One capture.
             <br />
             <span className="text-emerald-400">Many ships.</span>
           </h1>
-          <p className="text-[17px] md:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
+          <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-2xl mb-10">
             The Studio is the operating system behind frankx.ai content. Eight L4 producer
             specialists. Fourteen platform personas. Three operator archetypes. One Android-native
             inbox. Phone-to-publish in under two hours.
@@ -137,21 +137,21 @@ export default function StudioIndexPage() {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               href="#producers"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors"
             >
               See the producers
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
               href="#flow"
-              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"
             >
               See the flow
             </Link>
             {/* Gravity-surface CTA — added 2026-05-21 per /hub-audit studio P0 */}
             <Link
               href="/newsletter"
-              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full px-2 py-1"
+              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
             >
               Subscribe for producer launches
               <ArrowRight className="h-3 w-3" aria-hidden />
@@ -166,7 +166,7 @@ export default function StudioIndexPage() {
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             The single-capture pipeline
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
             Seven layers. One direction. No swivel-chair.
           </h2>
           <p className="text-base text-white/60 max-w-2xl mb-12">
@@ -201,7 +201,7 @@ L7  LEARN        hook-learn (live) · post-time-learn · thumbnail-learn (W22)`}
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             The L4 specialists
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
             Eight producers. Same substrate. Different specialties.
           </h2>
           <p className="text-base text-white/60 max-w-2xl mb-12">
@@ -256,7 +256,7 @@ L7  LEARN        hook-learn (live) · post-time-learn · thumbnail-learn (W22)`}
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             Three operator archetypes
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
             One operator. Three faces. One inbox.
           </h2>
           <p className="text-base text-white/60 max-w-2xl mb-12">
@@ -313,7 +313,7 @@ L7  LEARN        hook-learn (live) · post-time-learn · thumbnail-learn (W22)`}
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             13 capture types
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
             Anything dropped on the phone walks the same pipeline.
           </h2>
           <p className="text-base text-white/60 max-w-2xl mb-12">
@@ -345,7 +345,7 @@ L7  LEARN        hook-learn (live) · post-time-learn · thumbnail-learn (W22)`}
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
             The runtime
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
             Two agents. Two commands. One daemon.
           </h2>
           <p className="text-base text-white/60 max-w-2xl mb-12">
@@ -390,23 +390,23 @@ L7  LEARN        hook-learn (live) · post-time-learn · thumbnail-learn (W22)`}
       {/* CTA ------------------------------------------------------------- */}
       <section className="border-t border-white/5 px-6 py-24 lg:py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             See the architecture.
           </h2>
-          <p className="text-[17px] md:text-lg text-white/65 leading-relaxed mb-10">
+          <p className="text-lg text-white/60 leading-relaxed mb-10">
             Substrate, runtime, public face. Spec at <code className="font-mono text-emerald-400/80 text-base">docs/superpowers/specs/2026-05-13-content-ops-architecture.md</code>.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/studio/visual"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors"
             >
               vis-producer (live)
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
               href="/inner-circle"
-              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white transition-colors"
             >
               Inner Circle — June 1
               <ArrowRight className="h-4 w-4" aria-hidden />

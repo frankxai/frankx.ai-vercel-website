@@ -140,16 +140,16 @@ export default function BlueprintsPage() {
   const publishedBlueprints = blueprints.filter((b) => b.status === 'published')
 
   return (
-    <main className="min-h-screen bg-void">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
         <div className="relative aspect-[21/9]">
-          <Image src="/images/architectures/ai-coe.png" alt="AI Center of Excellence architecture diagram" fill sizes="(max-width: 1152px) 100vw, 1152px" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-transparent" />
+          <Image src="/images/architectures/ai-coe.png" alt="AI Center of Excellence architecture diagram" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         </div>
         <div className="absolute bottom-0 left-0 p-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Architecture Blueprints</h1>
+          <h1 className="text-2xl font-bold text-white">Architecture Blueprints</h1>
         </div>
       </div>
 
@@ -158,7 +158,7 @@ export default function BlueprintsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <Link
             href="/ai-architecture"
-            className="mb-6 inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void rounded"
+            className="mb-6 inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white"
           >
             <ChevronLeft className="h-4 w-4" />
             Back to Hub
@@ -173,7 +173,7 @@ export default function BlueprintsPage() {
               <BookOpen className="h-6 w-6" />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Architecture Blueprints</h2>
+              <h1 className="text-3xl font-bold text-white">Architecture Blueprints</h1>
               <p className="text-slate-400">
                 Diagrams, implementation guides & cost estimates • <span className="text-cyan-400">FREE</span>
               </p>
@@ -184,7 +184,7 @@ export default function BlueprintsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80"
+            className="mt-6 max-w-2xl text-slate-400"
           >
             Reference architectures for enterprise AI systems. Each blueprint includes Mermaid diagrams,
             component breakdowns, implementation steps, and realistic cost estimates. Cloud-agnostic
@@ -215,15 +215,15 @@ export default function BlueprintsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 border-t border-white/5">
+      <section className="py-16 border-t border-white/5">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Want to Try These Patterns?</h2>
-          <p className="mb-6 text-[17px] leading-relaxed text-white/80">
+          <h2 className="mb-4 text-2xl font-bold text-white">Want to Try These Patterns?</h2>
+          <p className="mb-6 text-slate-400">
             Use your own API keys to test blueprints interactively in our prototypes.
           </p>
           <Link
             href="/ai-architecture/prototypes"
-            className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+            className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
             Try Prototypes (BYOK)
             <ArrowRight className="h-4 w-4" />

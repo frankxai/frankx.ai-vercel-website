@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 const INSTRUMENTS = [
   {
-    slug: 'piano',
+    slug: 'klavier',
     name: 'Klavier / Piano',
     emoji: '🎹',
     gradient: 'from-rose-100 to-pink-50',
@@ -17,7 +17,7 @@ const INSTRUMENTS = [
     ageRange: 'Ab 4 Jahren',
   },
   {
-    slug: 'violin',
+    slug: 'geige',
     name: 'Geige / Violin',
     emoji: '🎻',
     gradient: 'from-violet-100 to-purple-50',

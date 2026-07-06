@@ -291,7 +291,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
             </h2>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto mb-6">
               The full stack is being packaged as an installable template. One command scaffolds a
-              working version of this osModule in your own project.
+              working version of this module in your own project.
             </p>
             <div className="inline-block rounded-lg border border-white/[0.08] bg-black/40 px-4 py-3 font-mono text-sm text-zinc-300">
               <span className="text-zinc-500">$</span> npx create-workshop-os my-ops

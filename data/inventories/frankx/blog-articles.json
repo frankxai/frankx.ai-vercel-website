@@ -148,7 +148,13 @@
       "description": "How to give AI agents memory that persists across sessions — CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["AI Memory", "Agent Architecture", "Claude Code", "RAG", "MCP"],
+      "tags": [
+        "AI Memory",
+        "Agent Architecture",
+        "Claude Code",
+        "RAG",
+        "MCP"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "ai-agent-memory-persistent-systems",
@@ -171,7 +177,13 @@
       "description": "The system design decisions that matter when one person builds what teams used to require — from monolith to agents.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Architecture", "Solo Builder", "AI Systems", "ACOS", "MCP"],
+      "tags": [
+        "Architecture",
+        "Solo Builder",
+        "AI Systems",
+        "ACOS",
+        "MCP"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "ai-architecture-patterns-solo-builders",
@@ -194,7 +206,13 @@
       "description": "How AI transforms training, nutrition, and recovery — and why fitness creators who adopt it first will define the next era of online coaching.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Health AI", "Fitness", "Athletes", "AI Tools", "Creators"],
+      "tags": [
+        "Health AI",
+        "Fitness",
+        "Athletes",
+        "AI Tools",
+        "Creators"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "ai-health-fitness-athletes-creators-2026",
@@ -236,7 +254,7 @@
       "featured": false,
       "seoTitle": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
       "seoDescription": "Every major AI video tool compared — quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
-      "ogImage": "/images/blog/blog-hero-aurora.svg",
+      "ogImage": "/images/blog/ai-video-generation-2026-hero.png",
       "author": "FrankX"
     },
     {
@@ -275,7 +293,13 @@
       "description": "How I built a fantasy civilization with 5 Eldrian characters, 10 Gates, and a living world-state — using Claude Code, Gemini, and agentic workflows.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Arcanea", "World Building", "AI Agents", "Creative AI", "ACOS"],
+      "tags": [
+        "Arcanea",
+        "World Building",
+        "AI Agents",
+        "Creative AI",
+        "ACOS"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "arcanea-building-worlds-ai-agents",
@@ -356,7 +380,13 @@
       "description": "The model that disrupted AI pricing. How DeepSeek R1 works, where it excels, and what it means for builders choosing between open and closed models.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["DeepSeek", "Open Source AI", "Reasoning", "AI Models", "MoE"],
+      "tags": [
+        "DeepSeek",
+        "Open Source AI",
+        "Reasoning",
+        "AI Models",
+        "MoE"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "deepseek-r1-open-weight-reasoning-analysis",
@@ -379,7 +409,13 @@
       "description": "Every major frontier model compared — architecture, capabilities, pricing, and which to use for coding, research, creative work, and enterprise deployment.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Frontier Models", "Claude", "GPT", "Gemini", "DeepSeek"],
+      "tags": [
+        "Frontier Models",
+        "Claude",
+        "GPT",
+        "Gemini",
+        "DeepSeek"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "frontier-model-landscape-2026-claude-gpt-gemini-deepseek",
@@ -489,7 +525,13 @@
       "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["AI Tools", "AI Stack", "Productivity", "Creator Tools", "Cost"],
+      "tags": [
+        "AI Tools",
+        "AI Stack",
+        "Productivity",
+        "Creator Tools",
+        "Cost"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "my-100-month-ai-stack-every-tool-i-actually-use",
@@ -502,7 +544,7 @@
       "featured": true,
       "seoTitle": "My $100/Month AI Stack: Every Tool I Actually Use",
       "seoDescription": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
-      "ogImage": "/images/blog/blog-hero-aurora.svg",
+      "ogImage": "/images/blog/my-100-month-ai-stack-hero.png",
       "author": "FrankX"
     },
     {
@@ -542,7 +584,13 @@
       "description": "How to run Llama 4, DeepSeek, and Mistral on your own hardware — no API keys, no data leaving your machine, full model control.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Ollama", "Local AI", "Privacy", "Llama", "Self-Hosted"],
+      "tags": [
+        "Ollama",
+        "Local AI",
+        "Privacy",
+        "Llama",
+        "Self-Hosted"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "ollama-local-ai-models-privacy-guide",
@@ -555,7 +603,7 @@
       "featured": false,
       "seoTitle": "Running Local AI Models with Ollama: The Privacy Guide",
       "seoDescription": "How to run Llama 4, DeepSeek, and Mistral on your own hardware — no API keys, no data leaving your machine, full model control.",
-      "ogImage": "/images/blog/blog-hero-aurora.svg",
+      "ogImage": "/images/blog/ollama-local-ai-privacy-hero.png",
       "author": "FrankX"
     },
     {
@@ -565,7 +613,13 @@
       "description": "The open-source AI agent with 247K GitHub stars. How it works, what NVIDIA added with NemoClaw, and what it means for personal AI agents in 2026.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["OpenClaw", "AI Agents", "NemoClaw", "Open Source", "NVIDIA"],
+      "tags": [
+        "OpenClaw",
+        "AI Agents",
+        "NemoClaw",
+        "Open Source",
+        "NVIDIA"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "openclaw-explained-ai-agent-everyone-talking-about",
@@ -617,7 +671,13 @@
       "description": "How to build a retrieval system over your own writing, research, and notes — so AI assistants can find and cite your past work.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["RAG", "Vector Search", "AI Memory", "ChromaDB", "Knowledge"],
+      "tags": [
+        "RAG",
+        "Vector Search",
+        "AI Memory",
+        "ChromaDB",
+        "Knowledge"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "rag-for-creators-search-your-own-content-with-ai",
@@ -630,7 +690,7 @@
       "featured": false,
       "seoTitle": "RAG for Creators: Search Your Own Content with AI",
       "seoDescription": "How to build a retrieval system over your own writing, research, and notes — so AI assistants can find and cite your past work.",
-      "ogImage": "/images/blog/blog-hero-aurora.svg",
+      "ogImage": "/images/blog/rag-for-creators-hero.png",
       "author": "FrankX"
     },
     {
@@ -669,7 +729,13 @@
       "description": "The architecture behind AI agents that get smarter every session — trajectory learning, pattern recognition, and compound intelligence.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["SIS", "AI Learning", "Agent Intelligence", "ACOS", "Memory"],
+      "tags": [
+        "SIS",
+        "AI Learning",
+        "Agent Intelligence",
+        "ACOS",
+        "Memory"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "sis-trajectory-learning-how-ai-agents-improve",
@@ -751,7 +817,13 @@
       "description": "The deployment pipeline I use daily — Claude Code builds, Vercel deploys, MCP monitors. From code to production in minutes.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Vercel", "Claude Code", "Next.js", "Deployment", "MCP"],
+      "tags": [
+        "Vercel",
+        "Claude Code",
+        "Next.js",
+        "Deployment",
+        "MCP"
+      ],
       "createdAt": "2026-03-21",
       "updatedAt": null,
       "slug": "vercel-claude-code-nextjs-deploy-one-session",
@@ -822,7 +894,7 @@
       "featured": false,
       "seoTitle": "Voice AI Agents in 2026: Build Audio-First Experiences",
       "seoDescription": "ElevenLabs, Hume, and the tools turning text into natural speech — for podcasts, products, and AI assistants that talk.",
-      "ogImage": "/images/blog/blog-hero-aurora.svg",
+      "ogImage": "/images/blog/voice-ai-agents-2026-hero.png",
       "author": "FrankX"
     },
     {
@@ -963,7 +1035,12 @@
       "description": "Inside the Starlight Intelligence System — a federated behavioral engine that turns raw session data into concrete instructions AI agents actually follow.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["ai-strategy", "automation", "creator-os", "agentic-systems"],
+      "tags": [
+        "ai-strategy",
+        "automation",
+        "creator-os",
+        "agentic-systems"
+      ],
       "createdAt": "2026-02-27",
       "updatedAt": null,
       "slug": "starlight-intelligence-system-how-ai-agents-learn",
@@ -1009,7 +1086,12 @@
       "description": "A deep dive into Simon Willison's pragmatic approach to building with LLMs, focusing on truth, transparency, and architectural rigor.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["AI Engineering", "LLMs", "Simon Willison", "Pragmatism"],
+      "tags": [
+        "AI Engineering",
+        "LLMs",
+        "Simon Willison",
+        "Pragmatism"
+      ],
       "createdAt": "2026-02-19",
       "updatedAt": null,
       "slug": "ai-engineering-without-hype-willison",
@@ -1119,7 +1201,7 @@
       "featured": false,
       "seoTitle": "Props to the Builders of This Era",
       "seoDescription": "A grounded thank-you to the ecosystems, teams, tools, and creators helping us build a more human AI future.",
-      "ogImage": "/images/blog/blog-hero-aurora.svg",
+      "ogImage": "/images/blog/props-to-the-builders-hero.png",
       "author": "FrankX"
     },
     {
@@ -1687,7 +1769,13 @@
       "description": "Scale Agentic Creator OS to teams with department structures, governance models, access control, and enterprise integration patterns.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["enterprise", "deployment", "governance", "teams", "acos"],
+      "tags": [
+        "enterprise",
+        "deployment",
+        "governance",
+        "teams",
+        "acos"
+      ],
       "createdAt": "2026-01-27",
       "updatedAt": null,
       "slug": "acos-enterprise-deployment-guide",
@@ -1710,7 +1798,13 @@
       "description": "Master ACOS hooks for automated quality enforcement. SessionStart, PreToolUse, PostToolUse, and Notification hooks that catch issues before they ship.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["hooks", "quality", "automation", "claude code", "acos"],
+      "tags": [
+        "hooks",
+        "quality",
+        "automation",
+        "claude code",
+        "acos"
+      ],
       "createdAt": "2026-01-27",
       "updatedAt": null,
       "slug": "acos-hooks-system-quality-gates",
@@ -1837,7 +1931,13 @@
       "description": "Create your own ACOS skills with auto-activation, progressive disclosure, and real examples. From skill anatomy to publishing—the full tutorial.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["tutorial", "claude code", "skills", "development", "acos"],
+      "tags": [
+        "tutorial",
+        "claude code",
+        "skills",
+        "development",
+        "acos"
+      ],
       "createdAt": "2026-01-27",
       "updatedAt": null,
       "slug": "building-custom-skills-acos",
@@ -1860,7 +1960,13 @@
       "description": "Master the Model Context Protocol. Learn how ACOS connects to browsers, databases, APIs, and external tools through 7 MCP servers. Build your own integrations.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["mcp", "claude code", "integration", "api", "tutorial"],
+      "tags": [
+        "mcp",
+        "claude code",
+        "integration",
+        "api",
+        "tutorial"
+      ],
       "createdAt": "2026-01-27",
       "updatedAt": null,
       "slug": "mcp-server-integration-guide",
@@ -2150,7 +2256,12 @@
       "description": "Production workflows I use daily: blog publishing, ops reports, client onboarding, content repurposing, code review. Copy these patterns and automate the grind.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["workflows", "automation", "productivity", "agentic ai"],
+      "tags": [
+        "workflows",
+        "automation",
+        "productivity",
+        "agentic ai"
+      ],
       "createdAt": "2026-01-22",
       "updatedAt": null,
       "slug": "agentic-workflows-save-hours",
@@ -2258,7 +2369,12 @@
       "description": "Set up your own AI operating system in 30 minutes. Step-by-step guide to installing departments, MCP servers, and running your first automated workflow.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["tutorial", "claude code", "agentic ai", "getting started"],
+      "tags": [
+        "tutorial",
+        "claude code",
+        "agentic ai",
+        "getting started"
+      ],
       "createdAt": "2026-01-21",
       "updatedAt": null,
       "slug": "getting-started-agentic-creator-os",
@@ -2803,7 +2919,12 @@
       "description": "Your 1,000-agent swarm is about to make a 1,000-agent mistake. Here is how you use Constitutional Identity and the Guardian Pattern to save your reputation.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["Agentic AI", "Governance", "Guardian Pattern", "Identity"],
+      "tags": [
+        "Agentic AI",
+        "Governance",
+        "Guardian Pattern",
+        "Identity"
+      ],
       "createdAt": "2025-01-06",
       "updatedAt": null,
       "slug": "conscious-ai-framework",
@@ -2826,7 +2947,13 @@
       "description": "How tempo, mode, and lyrics create predictable emotional outcomes—backed by peer-reviewed research",
       "brand": "frankx",
       "status": "published",
-      "tags": ["music", "psychology", "productivity", "creativity", "vibe-os"],
+      "tags": [
+        "music",
+        "psychology",
+        "productivity",
+        "creativity",
+        "vibe-os"
+      ],
       "createdAt": "2025-01-05",
       "updatedAt": null,
       "slug": "science-of-state-change-music",
@@ -2901,7 +3028,12 @@
       "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["AI", "Creativity", "Technology", "Personal Story"],
+      "tags": [
+        "AI",
+        "Creativity",
+        "Technology",
+        "Personal Story"
+      ],
       "createdAt": "2024-08-22",
       "updatedAt": null,
       "slug": "ai-doesnt-have-to-be-soulless",
@@ -2924,7 +3056,12 @@
       "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
       "brand": "frankx",
       "status": "published",
-      "tags": ["AI", "Creativity", "Technology", "Personal Story"],
+      "tags": [
+        "AI",
+        "Creativity",
+        "Technology",
+        "Personal Story"
+      ],
       "createdAt": "2024-08-22",
       "updatedAt": null,
       "slug": "ai-doesnt-have-to-be-soulless",

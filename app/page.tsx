@@ -7,9 +7,9 @@ import { getAllBlogPosts } from '@/lib/blog'
 import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
-  title: 'FrankX — AI Architect & Creator',
+  title: 'GenCreator by FrankX — Build Your AI Creator OS',
   description:
-    'Ex-Oracle AI Architect. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows for creators who ship.',
+    'GenCreator helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -31,7 +31,7 @@ const websiteSchema = {
   name: 'FrankX.AI',
   url: 'https://frankx.ai',
   description:
-    'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
+    'GenCreator by FrankX helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
   potentialAction: {
     '@type': 'SearchAction',
     target: 'https://frankx.ai/search?q={search_term_string}',
@@ -69,34 +69,34 @@ const organizationSchema = {
     socialLinks.suno,
   ],
   description:
-    'AI systems and creator tools. Building practical workflows for the Golden Age of Intelligence.',
+    'GenCreator systems, AI creator tools, and implementation labs for creators who ship.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an Ex-Oracle AI Architect who helped build the EMEA AI Center of Excellence, and the creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the home of GenCreator by FrankX: a creator operating system for turning ideas into shipped work, audience, products, and revenue. It is built from Frank Riemer\'s work as an AI Architect and creator.',
   },
   {
-    question: 'What kind of content does FrankX publish?',
+    question: 'What is GenCreator?',
     answer:
-      'FrankX publishes in-depth technical tutorials on AI coding agents (Claude Code, Cline, OpenCode), enterprise AI architecture patterns, Suno AI music production guides, prompt engineering frameworks, and multi-agent orchestration patterns.',
+      'GenCreator is the public launch identity for FrankX. It combines creator strategy, AI workflows, music/content systems, templates, and agentic builder patterns into one personal AI operating system.',
   },
   {
-    question: 'How can I learn AI music production with Suno?',
+    question: 'What should I start with?',
     answer:
-      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
+      'Start at /start and choose Create, Build, or Sell. The flagship path is Build Your AI Creator OS, with free material first and paid cohort access only when delivery is verified.',
   },
   {
-    question: 'What is the Agentic Creator OS (ACOS)?',
+    question: 'Where does Agentic Creator OS fit?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 90+ skills, 60+ specialized agents, and 80+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
+      'Agentic Creator OS is the advanced builder track inside GenCreator. It is for creators ready to build their own agent systems with Claude Code, MCP, n8n, Vercel, and production workflows.',
   },
   {
-    question: 'Does FrankX offer courses or coaching?',
+    question: 'What is the flagship paid offer?',
     answer:
-      'FrankX offers free guides and tutorials on the blog, with premium coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
+      'The flagship offer is Build Your AI Creator OS: an implementation lab for building a personal AI operating system and shipping one public asset. Until checkout and delivery are verified, the public CTA is waitlist/application rather than direct purchase.',
   },
 ]
 

@@ -244,10 +244,10 @@ export default async function ReviewPage({
             </div>
           )}
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {review.title}
             </h1>
-            <p className="text-[17px] leading-relaxed text-white/70 mb-3">by {review.author}</p>
+            <p className="text-lg text-white/50 mb-3">by {review.author}</p>
             <StarRating rating={review.rating} />
             <div className="flex flex-wrap gap-2 mt-4">
               {review.categories.map((cat) => (
@@ -288,7 +288,7 @@ export default async function ReviewPage({
           </div>
           <Link
             href="/newsletter"
-            className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap"
           >
             Subscribe free
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -298,52 +298,61 @@ export default async function ReviewPage({
         </div>
       </section>
 
-      {/* Table of Contents — sequentially numbered based on rendered sections */}
-      {(() => {
-        const tocItems: Array<{ href: string; label: string }> = [
-          { href: '#insights', label: 'Key Insights' },
-        ];
-        if (review.quotes && review.quotes.length > 0) {
-          tocItems.push({ href: '#quotes', label: `Quotes (${review.quotes.length})` });
-        }
-        if (review.chapters && review.chapters.length > 0) {
-          tocItems.push({
-            href: '#chapters',
-            label: `Chapter-by-Chapter (${review.chapters.length})`,
-          });
-        }
-        tocItems.push({ href: '#audience', label: 'Best For' });
-        if (review.faq && review.faq.length > 0) {
-          tocItems.push({ href: '#faq', label: 'FAQ' });
-        }
-        if (review.continueReading && review.continueReading.length > 0) {
-          tocItems.push({ href: '#continue-reading', label: 'Continue Reading' });
-        }
-        if (review.videos && review.videos.length > 0) {
-          tocItems.push({ href: '#videos', label: 'Go Deeper — Videos' });
-        }
-        return (
-          <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-                In this deep-dive
-              </p>
-              <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
-                {tocItems.map((item, idx) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      className="hover:text-amber-300 transition-colors"
-                    >
-                      {String(idx + 1).padStart(2, '0')} &nbsp;·&nbsp; {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </nav>
-        );
-      })()}
+      {/* Table of Contents */}
+      <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
+        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+            In this deep-dive
+          </p>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
+            <li>
+              <a href="#insights" className="hover:text-amber-300 transition-colors">
+                01 &nbsp;·&nbsp; Key Insights
+              </a>
+            </li>
+            {review.quotes && review.quotes.length > 0 && (
+              <li>
+                <a href="#quotes" className="hover:text-amber-300 transition-colors">
+                  02 &nbsp;·&nbsp; Quotes ({review.quotes.length})
+                </a>
+              </li>
+            )}
+            {review.chapters && review.chapters.length > 0 && (
+              <li>
+                <a href="#chapters" className="hover:text-amber-300 transition-colors">
+                  03 &nbsp;·&nbsp; Chapter-by-Chapter ({review.chapters.length})
+                </a>
+              </li>
+            )}
+            <li>
+              <a href="#audience" className="hover:text-amber-300 transition-colors">
+                04 &nbsp;·&nbsp; Best For
+              </a>
+            </li>
+            {review.faq && review.faq.length > 0 && (
+              <li>
+                <a href="#faq" className="hover:text-amber-300 transition-colors">
+                  05 &nbsp;·&nbsp; FAQ
+                </a>
+              </li>
+            )}
+            {review.continueReading && review.continueReading.length > 0 && (
+              <li>
+                <a href="#continue-reading" className="hover:text-amber-300 transition-colors">
+                  06 &nbsp;·&nbsp; Continue Reading
+                </a>
+              </li>
+            )}
+            {review.videos && review.videos.length > 0 && (
+              <li>
+                <a href="#videos" className="hover:text-amber-300 transition-colors">
+                  07 &nbsp;·&nbsp; Go Deeper — Videos
+                </a>
+              </li>
+            )}
+          </ol>
+        </div>
+      </nav>
 
       {/* Key Insights */}
       <section id="insights" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
@@ -687,7 +696,7 @@ export default async function ReviewPage({
             href={review.amazonUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />

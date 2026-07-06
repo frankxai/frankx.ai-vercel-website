@@ -1,20 +1,20 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
+import { Calendar, Clock, Linkedin, Tag, Target, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
-import ReadingProgress from '@/components/blog/ReadingProgress'
-import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
+import SeriesNav from '@/components/blog/SeriesNav'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
-import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
+import { getAllBlogPosts, getBlogPost, getSeriesPosts, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
+import TableOfContents from '@/components/blog/TableOfContents'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -45,10 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       post.image ||
       `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
     publishedTime: post.date,
-    updatedTime: post.lastUpdated || undefined,
     authors: [post.author],
     keywords: post.keywords || undefined,
-    canonical: post.canonical || undefined,
   })
 }
 
@@ -103,18 +101,6 @@ export default async function BlogPostPage({
       name: post.author,
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
-      description:
-        "Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Independent builder of agentic AI systems and creator of 500+ AI-assisted songs.",
-      alumniOf: {
-        '@type': 'Organization',
-        name: 'Oracle',
-      },
-      sameAs: [
-        'https://x.com/frankxeth',
-        'https://www.linkedin.com/in/frank-x-riemer/',
-        'https://github.com/frankxai',
-        'https://www.youtube.com/@frankxai',
-      ],
     },
     publisher: {
       '@type': 'Organization',
@@ -139,9 +125,11 @@ export default async function BlogPostPage({
   // Extract FAQ from content body for FAQPage schema
   const extractedFaqs = extractFAQFromContent(post.content)
 
+  // Resolve series siblings (published parts) when this post belongs to a series
+  const seriesPosts = post.series ? getSeriesPosts(post.series.slug) : []
+
   return (
-    <main className="min-h-screen bg-[#0a0a0b] text-white">
-      <ReadingProgress />
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -159,10 +147,10 @@ export default async function BlogPostPage({
         />
       )}
 
-      {/* Aurora Background Effect */}
+      {/* Editorial background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/35 to-transparent" />
+        <div className="absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.10),rgba(6,182,212,0.04)_42%,transparent_72%)]" />
       </div>
 
       <article className="relative pt-28 pb-24">
@@ -207,13 +195,12 @@ export default async function BlogPostPage({
               </p>
 
               {/* Author Card */}
-              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-[#101216] p-6 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
                   <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover" />
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">AI Architect & Creator</div>
-                    <div className="text-xs text-white/35">Former Oracle AI architect · helped build Oracle&apos;s AI CoE</div>
+                    <div className="text-sm text-white/50">AI Architect & Creator Systems Builder</div>
                   </div>
                 </div>
 
@@ -223,90 +210,62 @@ export default async function BlogPostPage({
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
                   >
-                    <Twitter className="h-4 w-4" aria-hidden="true" />
+                    <Twitter className="h-4 w-4" />
                     <span className="hidden sm:inline">Share</span>
                   </a>
                   <a
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
                   >
-                    <Linkedin className="h-4 w-4" aria-hidden="true" />
+                    <Linkedin className="h-4 w-4" />
                     <span className="hidden sm:inline">Share</span>
                   </a>
                 </div>
               </div>
 
               {/* Hero Image */}
-              <div className="rounded-2xl overflow-hidden border border-white/10">
-                <HeroImage
-                  src={post.image}
-                  title={post.title}
-                  subtitle={post.description}
-                  alt={post.title}
-                  priority
-                />
-              </div>
+              <HeroImage
+                src={post.image}
+                title={post.title}
+                subtitle={post.description}
+                alt={post.title}
+                priority
+                className="rounded-2xl"
+              />
 
               {/* Reading Goal */}
               {post.readingGoal && (
-                <div className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
+                <div className="rounded-2xl border border-emerald-500/20 bg-[#101216] p-6">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                      {/* Target / aim SVG — avoids emoji rendering inconsistency */}
-                      <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="6" />
-                        <circle cx="12" cy="12" r="2" />
-                      </svg>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20">
+                      <Target className="h-4 w-4 text-emerald-300" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-400">Reading Goal</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/65">{post.readingGoal}</p>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Reading Goal</span>
+                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.readingGoal}</p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* AI Architect Recommendation — the signature routing box */}
-              {post.architectNote && (
-                <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/20">
-                      <svg className="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3M7.5 6h9A1.5 1.5 0 0118 7.5v9a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 016 16.5v-9A1.5 1.5 0 017.5 6z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-400">AI Architect Recommendation</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.architectNote.recommendation}</p>
-                      {post.architectNote.coePillar && (
-                        <p className="mt-3 text-xs text-white/40">
-                          AI CoE pillar: <span className="text-white/65">{post.architectNote.coePillar}</span>
-                        </p>
-                      )}
-                      {post.architectNote.personas?.length ? (
-                        <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-                          {post.architectNote.personas.map((pp) => (
-                            <li key={pp.persona} className="text-xs leading-relaxed text-white/55">
-                              <span className="font-medium text-white/80">{pp.persona}:</span> {pp.pick}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
+              {/* Series navigation — only for posts that belong to a series */}
+              {post.series && (
+                <SeriesNav
+                  series={post.series}
+                  currentSlug={post.slug}
+                  publishedParts={seriesPosts}
+                />
               )}
             </header>
           </div>
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-[680px]">
             <TableOfContents />
             <div className="article-prose">
               <MDXContent source={post.content} />
@@ -328,7 +287,7 @@ export default async function BlogPostPage({
                     <Link
                       key={tag}
                       href={`/blog?tag=${encodeURIComponent(tag.toLowerCase())}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-all duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 hover:bg-white/10"
                     >
                       #{tag}
                     </Link>
@@ -339,17 +298,9 @@ export default async function BlogPostPage({
 
             <RelatedResearch blogSlug={slug} />
 
-            {/* Axi article footer accent */}
-            <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
-              <Image
-                src="/images/mascot/axi-v3-icon.png"
-                alt="Axi"
-                width={36}
-                height={36}
-                className="rounded-lg opacity-60"
-              />
-              <p className="text-xs text-white/30">
-                Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
+            <div className="mt-12 border-t border-white/10 pt-8">
+              <p className="text-xs uppercase tracking-[0.24em] text-white/35">
+                FrankX.AI / AI Architecture, Creator Systems, and Builder Intelligence
               </p>
             </div>
           </div>
@@ -374,10 +325,9 @@ export default async function BlogPostPage({
           </div>
         </div>
       </article>
-    </main>
+    </div>
   )
 }
-
 
 
 

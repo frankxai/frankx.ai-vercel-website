@@ -200,15 +200,6 @@ export default async function PartnershipPage({
           ) : null}
 
           <PartnerCTA partner={partner} />
-
-          {partner.lastUpdated ? (
-            <p className="mx-auto max-w-4xl px-6 pb-12 text-center text-xs text-white/30">
-              Last updated{' '}
-              <time dateTime={partner.lastUpdated}>
-                {new Date(partner.lastUpdated + 'T00:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
-              </time>
-            </p>
-          ) : null}
         </>
       ) : (
         <PlaceholderState partner={partner} />

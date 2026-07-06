@@ -234,7 +234,7 @@ export default function MethodologyPage() {
             <h2 className="text-2xl font-bold text-white mb-2">
               4-Phase Research Process
             </h2>
-            <p className="text-white/60 mb-8">
+            <p className="text-white/50 mb-8">
               From raw signal to published intelligence — how every research brief is created.
             </p>
 
@@ -265,7 +265,7 @@ export default function MethodologyPage() {
                           <span className="text-xs text-white/30">{phase.duration}</span>
                         </div>
                         <h3 className="text-lg font-bold text-white mb-2">{phase.title}</h3>
-                        <p className="text-sm text-white/60 leading-relaxed mb-4">
+                        <p className="text-sm text-white/50 leading-relaxed mb-4">
                           {phase.description}
                         </p>
                         <ul className="space-y-2">
@@ -291,7 +291,7 @@ export default function MethodologyPage() {
             <h2 className="text-2xl font-bold text-white mb-2">
               Quality Principles
             </h2>
-            <p className="text-white/60 mb-8">
+            <p className="text-white/50 mb-8">
               The standards that govern what gets published and how claims are presented.
             </p>
 
@@ -319,7 +319,7 @@ export default function MethodologyPage() {
             <h2 className="text-2xl font-bold text-white mb-2">
               Source Hierarchy
             </h2>
-            <p className="text-white/60 mb-8">
+            <p className="text-white/50 mb-8">
               Not all sources are weighted equally. Our evidence hierarchy prioritizes independent, primary research.
             </p>
 
@@ -361,7 +361,7 @@ export default function MethodologyPage() {
             <h2 className="text-2xl font-bold text-white mb-2">
               Domain Coverage
             </h2>
-            <p className="text-white/60 mb-8">
+            <p className="text-white/50 mb-8">
               {researchDomains.length} active research domains, each maintained with regular source
               validation and data refresh cycles.
             </p>
@@ -394,7 +394,7 @@ export default function MethodologyPage() {
               <h2 className="text-xl font-bold text-white mb-3">
                 Explore the Research
               </h2>
-              <p className="text-sm text-white/60 mb-6 max-w-lg mx-auto">
+              <p className="text-sm text-white/50 mb-6 max-w-lg mx-auto">
                 Explore any of our {researchDomains.length} research domains. Every finding is
                 cross-referenced and regularly updated.
               </p>

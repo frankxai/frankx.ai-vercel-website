@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { SOCIAL_META } from './social-links'
+import { socialHandles } from './social-links'
 
 const siteUrl = 'https://frankx.ai'
 
@@ -10,7 +10,7 @@ export const siteConfig = {
   description:
     'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
   url: siteUrl,
-  twitter: SOCIAL_META.handle,
+  twitter: socialHandles.twitter,
   // Static fallback. /api/og dynamic route has empty-body issues in Next 16
   // + next/og — using a real file ensures social shares always have an image.
   ogImage: '/hero-homepage.png',
@@ -37,11 +37,6 @@ type CreateMetadataOptions = {
   updatedTime?: string
   authors?: string[]
   /**
-   * Override the canonical URL. Use to point a duplicate/secondary page at its
-   * primary version for SEO (consolidates link equity without deleting URLs).
-   */
-  canonical?: string
-  /**
    * When true, emits robots: { index: false, follow: false }
    * — used for draft pages, unlisted proposals, internal-only surfaces.
    */
@@ -58,20 +53,16 @@ export function createMetadata({
   publishedTime,
   updatedTime,
   authors,
-  canonical,
   noindex = false,
 }: CreateMetadataOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString()
-  const canonicalUrl = canonical
-    ? new URL(canonical, siteConfig.url).toString()
-    : url
 
   return {
     title,
     description,
     keywords,
     alternates: {
-      canonical: canonicalUrl,
+      canonical: url,
     },
     ...(noindex
       ? {

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-label="Building Custom Skills for ACOS: The Complete Developer Guide social card">
+  <defs>
+    <radialGradient id="a" cx="25%" cy="15%" r="68%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="85%" cy="78%" r="58%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1350" fill="#0a0a0b"/>
+  <rect width="1080" height="1350" fill="url(#a)"/>
+  <rect width="1080" height="1350" fill="url(#b)"/>
+  <rect x="56" y="56" width="968" height="1238" rx="22" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+  <text x="84" y="112" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">FRANKX.AI</text>
+  <text x="996" y="112" text-anchor="end" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="18">Agent Stack</text>
+  <text x="84" y="330" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="780" letter-spacing="0">Building Custom Skills</text>
+<text x="84" y="393" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="780" letter-spacing="0">for ACOS: The Complete</text>
+<text x="84" y="456" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="780" letter-spacing="0">Developer Guide</text>
+  <text x="86" y="1050" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="480" letter-spacing="0">Create your own ACOS skills with</text>
+<text x="86" y="1090" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="480" letter-spacing="0">auto-activation, progressive disclosure,</text>
+<text x="86" y="1130" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="480" letter-spacing="0">and real examples. From skill anatomy to</text>
+<text x="86" y="1170" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="480" letter-spacing="0">publishing—the full tutorial.</text>
+  <line x1="84" y1="1254" x2="996" y2="1254" stroke="#10b981" stroke-opacity=".55" stroke-width="2"/>
+  <text x="84" y="1294" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="18">AI systems, creator tooling, and builder strategy</text>
+</svg>

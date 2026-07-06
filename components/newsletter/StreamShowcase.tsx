@@ -326,7 +326,7 @@ function StreamCard({
             </div>
 
             {/* Description */}
-            <p className="mb-4 text-[15px] leading-relaxed text-white/70">
+            <p className="mb-4 text-sm leading-relaxed text-slate-400">
               {stream.description}
             </p>
 
@@ -373,12 +373,12 @@ function StreamCard({
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={status === 'loading'}
-                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+                  className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-white/20 disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="flex-shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+                  className="flex-shrink-0 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110 disabled:opacity-50"
                   style={{
                     background: `linear-gradient(135deg, ${stream.accentHex}, ${stream.accentHex}cc)`,
                   }}
@@ -400,7 +400,7 @@ export default function StreamShowcase({
   streams: NewsletterStream[]
 }) {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-16">
       <div className="mx-auto max-w-5xl space-y-8 px-6">
         {streams.map((stream, i) => (
           <div key={stream.id} id={stream.id}>

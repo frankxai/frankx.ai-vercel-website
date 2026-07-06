@@ -3,13 +3,29 @@ import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
+import imageNeeds from '@/data/tools/image-needs.json'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
+const blogImageFallback = '/images/blog/visual-system/best-ai-tools-for-creators-2026-hero.svg'
+const pendingBlogHeroPaths = new Set(
+  (imageNeeds.needs as Array<{ heroPath: string; status?: string }>)
+    .filter((need) => need.status?.startsWith('pending'))
+    .map((need) => need.heroPath)
+)
 
 // FAQ item for AI-extractable structured content
 export interface FAQItem {
   q: string
   a: string
+}
+
+// Multi-part series membership. Articles sharing a series.slug are linked
+// together (prev/next nav + "Part N of M") by SeriesNav.
+export interface BlogSeries {
+  slug: string // stable series id, e.g. "higher-self-protocol"
+  title: string // display title, e.g. "The Higher Self Protocol"
+  part: number // 1-based position of this article in the series
+  total: number // total parts planned (for "Part N of M")
 }
 
 export interface BlogPost {
@@ -26,26 +42,18 @@ export interface BlogPost {
   readingGoal?: string
   content: string
   featured?: boolean
-  flagship?: boolean
-  flagshipOrder?: number
-  canonical?: string // Override canonical URL (point a duplicate at its primary)
 
   // AI-First Content Fields
   tldr?: string // 50-word summary for AI extraction
   faq?: FAQItem[] // Question-answer pairs for FAQPage schema
   schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
   lastUpdated?: string // Freshness signal for search engines
-  /**
-   * AI Architect Recommendation box (rendered after the Reading Goal).
-   * The signature format: the routing call, which AI CoE pillar the decision
-   * lives in, and which agent personas should run what.
-   */
-  architectNote?: {
-    recommendation: string
-    coePillar?: string
-    personas?: Array<{ persona: string; pick: string }>
-  }
+
+  // Series membership (optional) — drives SeriesNav prev/next
+  series?: BlogSeries
 }
+
+export type BlogPostSummary = Omit<BlogPost, 'content'>
 
 // Normalize frontmatter field variants to canonical BlogPost fields
 function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
@@ -65,6 +73,43 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
+function resolveBlogImage(image: unknown, slug: string): string | undefined {
+  if (typeof image !== 'string' || image.trim() === '') return undefined
+  if (!image.startsWith('/')) return image
+  if (!pendingBlogHeroPaths.has(image)) return image
+
+  if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
+    return '/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg'
+  }
+  if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
+    return '/images/blog/visual-system/ai-model-routing-guide-hero.svg'
+  }
+  if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
+    return '/images/blog/visual-system/production-agentic-ai-systems-hero.svg'
+  }
+  if (/code|coding|cursor|windsurf/.test(slug)) {
+    return '/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg'
+  }
+  if (/skill|coe|note|knowledge/.test(slug)) {
+    return '/images/blog/visual-system/skill-libraries-ai-coe-governance-hero.svg'
+  }
+
+  return blogImageFallback
+}
+
+function buildBlogPost(slug: string, data: Record<string, any>, content: string): BlogPost {
+  const normalized = normalizeFrontmatter(data)
+  const readTime = readingTime(content)
+
+  return {
+    slug,
+    content,
+    readingTime: readTime.text,
+    ...normalized,
+    image: resolveBlogImage(normalized.image, slug),
+  } as BlogPost
+}
+
 export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
@@ -74,19 +119,15 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       const fullPath = path.join(blogDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
-      const readTime = readingTime(content)
-
-      return {
-        slug,
-        content,
-        readingTime: readTime.text,
-        ...normalizeFrontmatter(data),
-      } as BlogPost
+      return buildBlogPost(slug, data, content)
     })
 
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 })
 
+export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
+  return getAllBlogPosts().map(({ content: _content, ...post }) => post)
+})
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
   try {
@@ -94,14 +135,7 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
 
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
-    const readTime = readingTime(content)
-
-    return {
-      slug,
-      content,
-      readingTime: readTime.text,
-      ...normalizeFrontmatter(data),
-    } as BlogPost
+    return buildBlogPost(slug, data, content)
   } catch {
     return null
   }
@@ -109,17 +143,6 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
 
 export function getFeaturedPosts(): BlogPost[] {
   return getAllBlogPosts().filter(post => post.featured).slice(0, 3)
-}
-
-/**
- * Curated flagship articles — the editorial best-of, shown first on the blog
- * index with large visuals. Driven by `flagship: true` frontmatter and ordered
- * by `flagshipOrder` (ascending). Distinct from the broad `featured` flag.
- */
-export function getFlagshipPosts(): BlogPost[] {
-  return getAllBlogPosts()
-    .filter((post) => post.flagship)
-    .sort((a, b) => (a.flagshipOrder ?? 99) - (b.flagshipOrder ?? 99))
 }
 
 export function getPostsByCategory(category: string): BlogPost[] {
@@ -135,6 +158,16 @@ export function getPostsByTag(tag: string): BlogPost[] {
 }
 
 /**
+ * Return every published post in a series, ordered by part number.
+ * Used by SeriesNav to resolve prev/next and the "Part N of M" rail.
+ */
+export function getSeriesPosts(seriesSlug: string): BlogPost[] {
+  return getAllBlogPosts()
+    .filter(post => post.series?.slug === seriesSlug)
+    .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0))
+}
+
+/**
  * Extract FAQ pairs from MDX content body.
  * Handles two formats:
  *   1. **Q: Question?** followed by answer text
@@ -142,12 +175,8 @@ export function getPostsByTag(tag: string): BlogPost[] {
  * Only looks within ## FAQ or ## Frequently Asked Questions sections.
  */
 export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
-  // Find the FAQ section.
-  // NOTE: no `m` flag on purpose — with `m`, `$` matches at every end-of-line,
-  // so the lazy capture stops at the first newline and the section comes back
-  // empty (zero FAQ pairs for every post). Anchor the heading with `(?:^|\n)`
-  // instead so `$` here means end-of-string.
-  const faqMatch = content.match(/(?:^|\n)## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/)
+  // Find the FAQ section
+  const faqMatch = content.match(/^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/m)
   if (!faqMatch) return []
 
   const faqSection = faqMatch[1]
@@ -178,4 +207,3 @@ export function extractFAQFromContent(content: string): { question: string; answ
 
   return faqs
 }
-

@@ -5,7 +5,6 @@ export const metadata = createMetadata({
   description:
     'Pre-built AI workshop templates for university professors, corporate trainers, and bootcamp instructors. Structured agendas, instructor notes, and resource packs included.',
   path: '/workshops',
-  image: '/images/workshops/workshop-os-hero.jpg',
   keywords: [
     'AI workshops',
     'AI training templates',

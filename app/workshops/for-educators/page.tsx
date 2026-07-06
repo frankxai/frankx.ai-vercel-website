@@ -133,7 +133,7 @@ export default function ForEducatorsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
-      <section className="relative pt-28 pb-20 lg:pb-28 overflow-hidden">
+      <section className="relative pt-28 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.04] to-transparent" />
         <div className="absolute top-10 right-1/3 w-[400px] h-[400px] bg-violet-500/[0.05] rounded-full blur-[120px]" />
 
@@ -154,11 +154,11 @@ export default function ForEducatorsPage() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight">
               How to Use These Workshops
             </h1>
 
-            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">
+            <p className="text-lg text-zinc-400 max-w-2xl">
               Professional AI workshop templates designed for university
               classrooms, corporate training rooms, and bootcamp settings. Pick a
               template, review the agenda, and deliver with confidence.
@@ -168,13 +168,13 @@ export default function ForEducatorsPage() {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-10"
+            className="text-2xl font-bold text-white mb-8"
           >
             What you get
           </motion.h2>
@@ -187,13 +187,13 @@ export default function ForEducatorsPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-10"
+            className="text-2xl font-bold text-white mb-8"
           >
             Four steps to a great workshop
           </motion.h2>
@@ -226,13 +226,13 @@ export default function ForEducatorsPage() {
       </section>
 
       {/* Available Templates */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-8"
+            className="text-2xl font-bold text-white mb-6"
           >
             Available templates
           </motion.h2>
@@ -282,7 +282,7 @@ export default function ForEducatorsPage() {
       </section>
 
       {/* Custom Workshop CTA */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-28">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -293,32 +293,22 @@ export default function ForEducatorsPage() {
             <GlowCard color="violet">
               <div className="p-8 sm:p-10 text-center">
                 <Mail className="w-10 h-10 text-violet-400 mx-auto mb-4" />
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">
+                <h2 className="text-2xl font-bold text-white mb-3">
                   Request a Custom Workshop
                 </h2>
-                <p className="text-[17px] leading-relaxed text-white/80 mb-6 max-w-lg mx-auto">
+                <p className="text-sm text-zinc-400 mb-6 max-w-lg mx-auto">
                   Need a workshop tailored to your department, industry, or
                   audience level? Reach out and we can design something together.
                 </p>
                 <a
                   href="mailto:frank@frankx.ai?subject=Custom%20Workshop%20Request"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 text-white font-medium hover:from-violet-500 hover:to-violet-400 transition-all focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-violet-500 text-white font-medium hover:from-violet-500 hover:to-violet-400 transition-all"
                 >
                   <Mail className="w-4 h-4" />
                   Contact Frank Riemer
                 </a>
-                <p className="text-xs text-zinc-500 mt-4">
-                  Or{' '}
-                  <Link
-                    href="/inner-circle"
-                    className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
-                  >
-                    reserve a seat in the Inner Circle
-                  </Link>{' '}
-                  for first access to educator cohorts and founder pricing.
-                </p>
                 <p className="text-xs text-zinc-600 mt-3">
-                  Former AI Architect, Oracle
+                  AI Architect at Oracle
                 </p>
               </div>
             </GlowCard>

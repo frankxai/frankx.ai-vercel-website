@@ -160,11 +160,11 @@ function FeaturedCard({
                 variantId={template.lemonSqueezy.variantId || undefined}
                 price={template.price}
                 originalPrice={template.originalPrice}
-                label="Reserve invite"
+                label="Get Template"
                 size="lg"
               />
               <span className="text-xs text-white/30">
-                Commercial license included on launch
+                Includes commercial license
               </span>
             </div>
           </div>
@@ -300,7 +300,7 @@ function TemplateCard({
           variantId={template.lemonSqueezy.variantId || undefined}
           price={template.price}
           originalPrice={template.originalPrice}
-          label="Reserve"
+          label="Get"
           size="sm"
         />
       </div>
@@ -381,22 +381,10 @@ export default function ShopTemplatesPage() {
               Faster
             </h1>
 
-            <p className="mb-4 max-w-2xl text-lg text-white/50">
+            <p className="mb-10 max-w-2xl text-lg text-white/50">
               Production-tested templates from the systems behind frankx.ai.
               Claude Code skills, n8n workflows, Next.js starters, and full AI architecture blueprints.
               Built by an AI architect who ships in production.
-            </p>
-
-            <p className="mb-10 max-w-2xl text-sm text-white/40">
-              Pre-launch. Reserve at the price you see — billing opens when each
-              template ships. Questions:{' '}
-              <a
-                href="mailto:frank@frankx.ai"
-                className="text-cyan-400 underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded"
-              >
-                frank@frankx.ai
-              </a>
-              .
             </p>
           </motion.div>
 
@@ -453,30 +441,24 @@ export default function ShopTemplatesPage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             {/* Search */}
             <div className="relative max-w-md flex-1">
-              <label htmlFor="template-search" className="sr-only">
-                Search templates
-              </label>
-              <Search aria-hidden className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
               <input
-                id="template-search"
-                type="search"
+                type="text"
                 placeholder="Search templates..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 transition-colors focus:border-cyan-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
+                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 transition-colors focus:border-cyan-500/40 focus:outline-none"
               />
             </div>
 
             {/* Category tabs */}
-            <div className="flex flex-wrap items-center gap-1" role="group" aria-label="Filter templates by category">
-              <Filter aria-hidden className="mr-1 h-4 w-4 text-white/30" />
+            <div className="flex flex-wrap items-center gap-1">
+              <Filter className="mr-1 h-4 w-4 text-white/30" />
               {categories.map((cat) => (
                 <button
                   key={cat}
-                  type="button"
                   onClick={() => setCategory(cat)}
-                  aria-pressed={category === cat}
-                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-all ${
                     category === cat
                       ? 'border-cyan-500/30 bg-cyan-500/20 text-cyan-400'
                       : 'border-transparent bg-white/[0.04] text-white/40 hover:text-white/60'
@@ -489,12 +471,10 @@ export default function ShopTemplatesPage() {
           </div>
 
           {/* View toggle */}
-          <div className="flex items-center gap-1 rounded-lg bg-white/[0.04] p-1" role="group" aria-label="Toggle view mode">
+          <div className="flex items-center gap-1 rounded-lg bg-white/[0.04] p-1">
             <button
-              type="button"
               onClick={() => setViewMode('tiers')}
-              aria-pressed={viewMode === 'tiers'}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
                 viewMode === 'tiers'
                   ? 'bg-white/[0.1] text-white'
                   : 'text-white/40 hover:text-white/60'
@@ -503,10 +483,8 @@ export default function ShopTemplatesPage() {
               By Tier
             </button>
             <button
-              type="button"
               onClick={() => setViewMode('grid')}
-              aria-pressed={viewMode === 'grid'}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
                 viewMode === 'grid'
                   ? 'bg-white/[0.1] text-white'
                   : 'text-white/40 hover:text-white/60'
@@ -612,7 +590,7 @@ export default function ShopTemplatesPage() {
               },
               {
                 q: 'Is there a refund policy?',
-                a: 'Templates are digital downloads with immediate access on launch. If something is materially broken or misrepresented, write to frank@frankx.ai within 14 days and we will make it right.',
+                a: 'Due to the digital nature of the product (immediate source code access), we cannot offer refunds. Review the features carefully before purchasing.',
               },
             ].map((faq) => (
               <div

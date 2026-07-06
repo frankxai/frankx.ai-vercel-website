@@ -49,7 +49,7 @@ export default function ShortFormNexusPage() {
         {
           name: 'FrankX Brand Kit',
           description: 'Unified visual standards for all short-form output.',
-          url: '/brand'
+          url: '/design-lab/brand'
         }
       ]}
     >
@@ -66,7 +66,7 @@ export default function ShortFormNexusPage() {
         </p>
         <div className="flex flex-wrap gap-3 pt-2">
           <a
-            href="mailto:frank@frankx.ai?subject=Opus%20Pro%20Upvote%20%E2%86%91"
+            href="mailto:hello@frankx.ai?subject=Opus%20Pro%20Upvote%20%E2%86%91"
             className="inline-flex items-center rounded-full bg-amber-400 px-5 py-2.5 text-sm font-semibold text-black hover:bg-amber-300 transition-colors"
           >
             Upvote Interest

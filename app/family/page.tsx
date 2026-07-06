@@ -60,17 +60,17 @@ export default function FamilyHubPage() {
           <div className="absolute top-40 right-1/4 h-[300px] w-[300px] rounded-full bg-amber-500/8 blur-3xl" />
         </div>
 
-        <div className="relative mx-auto max-w-4xl px-6 py-20 lg:py-28 pt-32 text-center">
+        <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-32 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/60">
             <Home className="h-3.5 w-3.5" />
             <span>Riemer &middot; Gorte</span>
           </div>
 
-          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
+          <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Family Hub
           </h1>
 
-          <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/60">
             A living digital space for the Riemer-Gorte family. Connecting generations
             through stories, memories, and shared inspiration. Built with love by Frank.
           </p>
@@ -78,13 +78,13 @@ export default function FamilyHubPage() {
       </section>
 
       {/* Family Links */}
-      <section className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
+      <section className="mx-auto max-w-5xl px-6 pb-20">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {familyLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`group relative flex flex-col rounded-2xl border ${link.borderColor} bg-gradient-to-br ${link.color} backdrop-blur-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
+              className={`group relative flex flex-col rounded-2xl border ${link.borderColor} bg-gradient-to-br ${link.color} p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/20`}
             >
               {link.badge && (
                 <span className="absolute right-4 top-4 rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/70">
@@ -113,10 +113,10 @@ export default function FamilyHubPage() {
 
       {/* Family Values */}
       <section className="border-t border-white/[0.08] bg-white/[0.03]">
-        <div className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
+        <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="mb-12 text-center">
-            <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Why This Exists</h2>
-            <p className="text-[17px] leading-relaxed text-white/80">
+            <h2 className="mb-3 text-2xl font-bold text-white">Why This Exists</h2>
+            <p className="text-white/50">
               This hub is not a social network. It is a family archive.
             </p>
           </div>
@@ -156,14 +156,14 @@ export default function FamilyHubPage() {
       </section>
 
       {/* Stories placeholder */}
-      <section id="stories" className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8 text-center">
+      <section id="stories" className="mx-auto max-w-4xl px-6 py-20">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 text-center">
           <MessageCircle className="mx-auto mb-4 h-10 w-10 text-white/20" />
-          <h2 className="mb-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Family Stories</h2>
-          <p className="mb-6 text-[17px] leading-relaxed text-white/80">
+          <h2 className="mb-2 text-xl font-semibold text-white">Family Stories</h2>
+          <p className="mb-6 text-white/40">
             This is where collected stories, memories, and wisdom will live.
             Share your stories through the prompts on the{' '}
-            <Link href="/opa-und-oma" className="text-amber-400 hover:text-amber-300 underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">
+            <Link href="/opa-und-oma" className="text-amber-400 hover:text-amber-300 underline underline-offset-2">
               Opa & Oma page
             </Link>.
           </p>

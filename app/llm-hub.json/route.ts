@@ -32,6 +32,8 @@ export async function GET() {
         'https://artificialanalysis.ai/leaderboards/models',
         'https://lmarena.ai/',
         'https://arcprize.org/',
+        'https://blog.kilo.ai/p/you-dont-have-to-use-fable-and-mythos',
+        'https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs',
       ],
     },
     capabilities: CAPABILITY_ORDER.map((c) => ({
@@ -61,6 +63,7 @@ export async function GET() {
       capabilities: r.capabilities,
       tagline: r.tagline,
       best_for: getEditorial(r.id)?.bestFor ?? [],
+      mentioned_in: ['frontier-model-routing-without-fable-5'],
       url: `${SITE}/llm-hub/${r.id}`,
     })),
     decision_matrix: DECISION_MATRIX.map((d) => ({

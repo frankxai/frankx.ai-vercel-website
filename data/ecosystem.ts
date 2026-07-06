@@ -187,7 +187,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     shipped: 'pre-existing',
     summary: 'The 6-pillar enterprise framework, made personal.',
     description:
-      "The Oracle EMEA AI Center of Excellence methodology Frank refined for Fortune 500 clients, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS's personal-ai-coe format.",
+      "Frank's Oracle EMEA AI Center of Excellence methodology, documented and adapted for personal use. Strategy, Governance, Talent, Technology, Data, Ethics — the six pillars every operator needs. The theoretical backbone under Workshop OS's personal-ai-coe format.",
     relatedSystems: ['workshop-os', 'sis'],
     commands: ['/starlight-architect', '/ai-architecture'],
     color: 'slate',
@@ -227,6 +227,24 @@ export const ecosystemEntries: EcosystemEntry[] = [
     relatedSystems: ['sis'],
     commands: [],
     color: 'sky',
+  },
+  {
+    id: 'knowledge-tree-vertical',
+    name: 'Starlight Knowledge Tree',
+    slug: 'knowledge-tree-vertical',
+    tier: 'tier-2-substrate',
+    layer: 'L5-substrate',
+    repo: 'Starlight-Intelligence-System',
+    publicUrl: 'https://starlightintelligence.org/knowledge-tree',
+    repoUrl: null,
+    status: 'live',
+    shipped: '2026-06-10',
+    summary: 'Open intelligence graph for human capability, scientific knowledge, and contribution paths.',
+    description:
+      'A structured, public knowledge graph shipped as a vertical of the Starlight Intelligence System. Maps human capability domains, scientific knowledge clusters, and contribution paths — queryable by researchers, builders, and knowledge architects.',
+    relatedSystems: ['sis', 'sis-frankx-surface'],
+    commands: [],
+    color: 'emerald',
   },
   {
     id: 'build-first-ai-agent-funnel',

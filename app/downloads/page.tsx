@@ -7,7 +7,31 @@ export const metadata: Metadata = {
   description: 'Download free guides, frameworks, and resources for AI-powered creators.',
 }
 
-const downloads = [
+type DownloadItem = {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  features: string[]
+  variant: 'default' | 'emerald' | 'purple' | 'sunset' | 'ocean' | 'minimal'
+  icon: string
+  previewUrl?: string
+  href?: string
+  external?: boolean
+  cta?: string
+}
+
+const downloads: DownloadItem[] = [
+  {
+    id: 'agentic-creator-os',
+    title: 'Agentic Creator OS',
+    subtitle: 'Universal AI Agent Operating System',
+    description: 'One install. 90+ skills, 65+ commands, and 38 agents packaged for Claude Code, Codex, and Antigravity. Auto-activating context rules.',
+    previewUrl: '/downloads/preview/agentic-creator-os',
+    features: ['90+ Skills', '65+ Commands', '38 Agents', 'Multi-Platform'],
+    variant: 'purple' as const,
+    icon: '⚙️',
+  },
   {
     id: 'soulbook-guide',
     title: "The Creator's Soulbook",
@@ -27,6 +51,48 @@ const downloads = [
     features: ['50+ Suno Prompts', 'Emotion Mapping', 'Genre Templates', 'Release Playbooks'],
     variant: 'emerald' as const,
     icon: '🎵',
+  },
+  {
+    id: 'blue-life-commons',
+    title: 'Blue Life Commons',
+    subtitle: 'Ocean Intelligence System — Founding Knowledgebase',
+    description: 'An open-source ocean-intelligence commons: 31 sourced species pages, 8 region briefings, welfare assessments, and a sanctuary/rehab model — with how-to guides for researchers, NGOs, sanctuaries, educators, and developers. Built for the people and AI agents protecting marine life.',
+    href: 'https://github.com/frankxai/blue-life-commons/releases/tag/v0.1.0',
+    external: true,
+    cta: 'Download v0.1.0',
+    features: ['31 Species Pages', '8 Region Briefings', '10 Audience Guides', 'MCP + Agent Skills'],
+    variant: 'ocean' as const,
+    icon: '🌊',
+  },
+  {
+    id: 'health-intelligence-system',
+    title: 'Health Intelligence System',
+    subtitle: 'Cancer Prep & Treatment Decision Support',
+    description: 'A SIP-aligned excellence pack for cancer screening prep, abnormal-result briefs, treatment discussion packets, second opinions, and survivorship records.',
+    previewUrl: '/downloads/health-intelligence-system',
+    features: ['Cancer Module', 'Safety Gate', 'Clinician Briefs', 'GitHub Release'],
+    variant: 'emerald' as const,
+    icon: 'HIS',
+  },
+  {
+    id: 'starlight-sip-starter',
+    title: 'Starlight SIP Starter',
+    subtitle: 'Open Intelligence System Module',
+    description: 'Download the open-core SIP starter from Starlight: portable files, public vault seeds, release manifest, checksums, and validation guidance.',
+    previewUrl: 'https://starlightintelligence.org/download',
+    features: ['SIP Core Files', 'Public Vault Seeds', 'SHA256 Checksums', 'Upgrade Path'],
+    variant: 'ocean' as const,
+    icon: '✦',
+  },
+  {
+    id: 'starlight-plugin-starter',
+    title: 'Starlight Plugin Starter',
+    subtitle: 'Codex Plugin Prerelease',
+    description: 'Install four public-safe Codex plugins for enterprise AI, health intelligence safety, prompt evaluation, and Vibe OS product workflows.',
+    previewUrl: 'https://starlightintelligence.org/download#codex-plugin-starter',
+    features: ['4 Codex Plugins', 'GitHub Prerelease', 'SHA256 Checksum', 'Install Guide'],
+    variant: 'ocean' as const,
+    icon: 'CLI',
   },
 ]
 
@@ -50,7 +116,7 @@ export default function DownloadsPage() {
           </div>
 
           {/* Download Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {downloads.map((item) => (
               <AuroraGradient
                 key={item.id}
@@ -83,15 +149,29 @@ export default function DownloadsPage() {
 
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    href={item.previewUrl}
-                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
-                  >
-                    Preview & Download
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
+                    >
+                      {item.cta ?? 'Download'}
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.previewUrl ?? '#'}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
+                    >
+                      Preview & Download
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  )}
                 </div>
               </AuroraGradient>
             ))}

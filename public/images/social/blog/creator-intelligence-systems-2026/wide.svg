@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Why Every Creator Needs an Intelligence System in 2026 social card">
+  <defs>
+    <radialGradient id="a" cx="25%" cy="15%" r="68%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="85%" cy="78%" r="58%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0b"/>
+  <rect width="1200" height="630" fill="url(#a)"/>
+  <rect width="1200" height="630" fill="url(#b)"/>
+  <rect x="56" y="56" width="1088" height="518" rx="22" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+  <text x="84" y="112" fill="#f59e0b" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">FRANKX.AI</text>
+  <text x="1116" y="112" text-anchor="end" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="18">Creator Systems</text>
+  <text x="84" y="210" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="780" letter-spacing="0">Why Every Creator Needs an</text>
+<text x="84" y="264" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="780" letter-spacing="0">Intelligence System in 2026</text>
+  <text x="86" y="460" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="480" letter-spacing="0">The creators who thrive in 2026 won't be those with the</text>
+<text x="86" y="494" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="480" letter-spacing="0">best tools—they'll be those with the best systems. Here's</text>
+<text x="86" y="528" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="480" letter-spacing="0">why personal AI intelligence systems are the new...</text>
+  <line x1="84" y1="534" x2="1116" y2="534" stroke="#f59e0b" stroke-opacity=".55" stroke-width="2"/>
+  <text x="84" y="574" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="18">AI systems, creator tooling, and builder strategy</text>
+</svg>

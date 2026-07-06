@@ -73,7 +73,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
               <>
                 {/* Coming Soon Mode */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-4">
-                  <Sparkles className="w-4 h-4" aria-hidden="true" />
+                  <Sparkles className="w-4 h-4" />
                   Coming Soon
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">Join the Waitlist</h3>
@@ -83,9 +83,9 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 <Link
                   href="/newsletter"
                   onClick={() => handleClick('waitlist', '/newsletter', 'product-waitlist')}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]"
                 >
-                  <Mail className="w-4 h-4" aria-hidden="true" />
+                  <Mail className="w-4 h-4" />
                   Join Waitlist
                 </Link>
                 <div className="mt-6 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-left text-xs text-white/70">
@@ -112,7 +112,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 {offer.note ? <p className="mt-4 text-sm text-white/60">{offer.note}</p> : <p className="mt-4 text-sm text-white/60">Lifetime updates included</p>}
                 {(() => {
                   const content = (
-                    <span className="block w-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]">
+                    <span className="block w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]">
                       {offer.ctaPrimary}
                     </span>
                   )
@@ -122,7 +122,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <a
                         href={offer.ctaPrimaryHref}
                         onClick={() => handleClick('primary', offer.ctaPrimaryHref, offer.ctaPrimaryTracking)}
-                        className="mt-6 inline-flex w-full rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                        className="mt-6 inline-flex w-full"
                         target={offer.ctaPrimaryHref.startsWith('http') ? '_blank' : undefined}
                         rel={offer.ctaPrimaryHref.startsWith('http') ? 'noreferrer' : undefined}
                       >
@@ -135,7 +135,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                     <Link
                       href={offer.ctaPrimaryHref}
                       onClick={() => handleClick('primary', offer.ctaPrimaryHref, offer.ctaPrimaryTracking)}
-                      className="mt-6 inline-flex w-full rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                      className="mt-6 inline-flex w-full"
                     >
                       {content}
                     </Link>
@@ -147,7 +147,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <a
                         href={secondaryHref}
                         onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
-                        className="rounded underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                        className="underline-offset-4 hover:underline"
                         target={secondaryHref.startsWith('http') ? '_blank' : undefined}
                         rel={secondaryHref.startsWith('http') ? 'noreferrer' : undefined}
                       >
@@ -157,7 +157,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <Link
                         href={secondaryHref}
                         onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
-                        className="rounded underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                        className="underline-offset-4 hover:underline"
                       >
                         {secondaryLabel}
                       </Link>
@@ -203,7 +203,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <a
                         href={tier.ctaHref}
                         onClick={() => handleClick(`tier-${tier.name}`, tier.ctaHref, tier.ctaLabel)}
-                        className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
                         target={tier.ctaHref.startsWith('http') ? '_blank' : undefined}
                         rel={tier.ctaHref.startsWith('http') ? 'noreferrer' : undefined}
                       >
@@ -213,7 +213,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <Link
                         href={tier.ctaHref}
                         onClick={() => handleClick(`tier-${tier.name}`, tier.ctaHref, tier.ctaLabel)}
-                        className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
                       >
                         {tier.ctaLabel}
                       </Link>

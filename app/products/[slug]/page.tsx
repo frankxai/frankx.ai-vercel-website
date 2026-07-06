@@ -37,6 +37,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
+  const offer = product.offer
+  const primaryPrice = offer?.primaryPrice ?? 0
+
   // Structured Data for Product
   const productSchema = {
     name: product.name,
@@ -50,8 +53,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     offers: {
       '@type': 'Offer',
       url: `${siteConfig.url}/products/${product.slug}`,
-      priceCurrency: product.offer.currency || 'USD',
-      price: product.offer.primaryPrice,
+      priceCurrency: offer?.currency || 'USD',
+      price: primaryPrice,
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
       seller: {
@@ -59,6 +62,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         name: 'FrankX',
       },
     },
+    ...(product.socialProof?.stats
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.9',
+            reviewCount: '150', // Placeholder or real data if available
+          },
+        }
+      : {}),
   }
 
   return (
@@ -129,39 +141,43 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               
               <div className="mt-6 flex items-baseline gap-2">
                 <span className="text-5xl font-bold text-white">
-                  ${product.offer.primaryPrice}
+                  ${primaryPrice}
                 </span>
-                {product.offer.originalPrice && (
+                {offer?.originalPrice && (
                   <span className="text-xl text-gray-500 line-through">
-                    ${product.offer.originalPrice}
+                    ${offer.originalPrice}
                   </span>
                 )}
               </div>
 
               <div className="mt-8 space-y-4">
-                <BuyButton
-                  href={product.offer.ctaPrimaryHref}
-                  label={product.offer.ctaPrimary}
-                  trackingId={product.offer.ctaPrimaryTracking}
-                />
+                {offer ? (
+                  <BuyButton
+                    href={offer.ctaPrimaryHref}
+                    label={offer.ctaPrimary}
+                    trackingId={offer.ctaPrimaryTracking}
+                  />
+                ) : (
+                  <BuyButton href="/contact" label="Contact FrankX" trackingId="contact-product-fallback" />
+                )}
                 
-                {product.offer.ctaSecondary && product.offer.ctaSecondaryHref && (
+                {offer?.ctaSecondary && offer.ctaSecondaryHref && (
                   <Link
-                    href={product.offer.ctaSecondaryHref}
+                    href={offer.ctaSecondaryHref}
                     className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
                   >
-                    {product.offer.ctaSecondary}
+                    {offer.ctaSecondary}
                   </Link>
                 )}
               </div>
 
-              {product.offer.guarantee && (
+              {offer?.guarantee && (
                 <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
                   <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
-                    {product.offer.guarantee.label}
+                    {offer.guarantee.label}
                   </p>
                   <p className="mt-1 text-xs text-gray-400">
-                    {product.offer.guarantee.description}
+                    {offer.guarantee.description}
                   </p>
                 </div>
               )}

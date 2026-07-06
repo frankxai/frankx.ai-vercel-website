@@ -70,20 +70,6 @@ const nextConfig = {
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
       ...REDIRECT_ALIASES,
-      // Music School → the music learning curriculum hub (nav/command-palette
-      // linked /music-school but no page existed; /music/learn is the curriculum).
-      {
-        source: '/music-school',
-        destination: '/music/learn',
-        permanent: true,
-      },
-      // QR shortlink — bare /qr is handed out on slides/cards but had no route
-      // (404). Point it at the canonical QR asset page under /connect.
-      {
-        source: '/qr',
-        destination: '/connect/qr',
-        permanent: false,
-      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',
@@ -93,38 +79,6 @@ const nextConfig = {
       {
         source: '/arcanea/:path*',
         destination: 'https://arcanea.ai/:path*',
-        permanent: true,
-      },
-      // Social shortcuts — canonical URLs come from lib/social-links.ts.
-      // /youtube and /music remain real internal hubs (not external aliases).
-      {
-        source: '/github',
-        destination: 'https://github.com/frankxai',
-        permanent: true,
-      },
-      {
-        source: '/linkedin',
-        destination: 'https://www.linkedin.com/in/frank-x-riemer/',
-        permanent: true,
-      },
-      {
-        source: '/twitter',
-        destination: 'https://x.com/frankxeth',
-        permanent: true,
-      },
-      {
-        source: '/x',
-        destination: 'https://x.com/frankxeth',
-        permanent: true,
-      },
-      {
-        source: '/instagram',
-        destination: 'https://www.instagram.com/frank_riemer/',
-        permanent: true,
-      },
-      {
-        source: '/suno',
-        destination: 'https://suno.com/@frankx',
         permanent: true,
       },
       // Creator Lab signup → product page
@@ -347,6 +301,35 @@ const nextConfig = {
       'v1-enterprise-backup/**',
       'public/images/**',
       'public/videos/**',
+      // Build/working artifacts that no serverless function reads at runtime
+      // (verified: zero references under app/ or lib/). generated_audio alone is
+      // ~535MB; leaving these traced was the main reason the sitemap function
+      // blew past Vercel's 300MB function-size limit. 2026-06-14.
+      'generated_audio/**',
+      'generated_imgs/**',
+      'reading-site/**',
+      'playwright-report/**',
+    ],
+    // The /sitemap.xml route imports lib/route-enumeration.mjs, which does
+    // dynamic fs.readFileSync(path.join(ROOT, …)) calls. Next's file tracer
+    // can't resolve those statically, so it conservatively bundles the entire
+    // project root (incl. public/reading ~512MB) into the single sitemap
+    // function — 804MB, over the 300MB cap. The sitemap only reads content/
+    // frontmatter + data/ JSON, never public/, so excluding public/** here is
+    // safe. Scoped to this route (not '*') because API routes — content-studio,
+    // download/file, send-pdf — DO read public/ at runtime. 2026-06-14.
+    '/sitemap.xml': [
+      'public/**',
+      'generated_audio/**',
+      'generated_imgs/**',
+      'reading-site/**',
+      // content/ holds the MDX the sitemap walks for frontmatter, but these two
+      // subtrees are binary-only (content/images ~302MB, content/ingest ~27MB of
+      // mp4s) with zero .mdx — route-enumeration only walks blog/guides/
+      // newsletters/partnerships. Excluding them drops the function from 336MB
+      // to well under the 300MB cap. 2026-06-14.
+      'content/images/**',
+      'content/ingest/**',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.

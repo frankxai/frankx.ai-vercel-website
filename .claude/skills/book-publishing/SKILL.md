@@ -1,9 +1,16 @@
+---
+name: book-publishing
+description: ACOS book publishing intelligence for multi-book content, voice, and production workflows.
+---
+
 # ACOS Book Publishing Skill v1.0
 
 ## Purpose
+
 Intelligence layer for FrankX's 6-book publishing platform. Provides AI agents with complete book DNA — voice, research context, visual identity, and writing style for each book line. Any agent loading this skill can produce content indistinguishable from Frank's authored work.
 
 ## Activation
+
 Auto-activates when session involves: book writing, chapter drafting, book cover generation, PDF/EPUB creation, library reviews, or any `/books/` route work.
 
 **Triggers**: `book`, `chapter`, `poetry`, `spartan`, `self-development`, `imagination`, `manifestation`, `golden-age`, `library`, `review`, `cover image`, `pdf generation`, `epub`
@@ -13,6 +20,7 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
 ## Book Registry (6 Books)
 
 ### 1. Love & Poetry
+
 - **Slug**: `love-and-poetry`
 - **Subtitle**: Verses That Move the Soul
 - **Status**: Published
@@ -33,6 +41,7 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
   - NO emoji, NO hashtags, NO social media tone
 
 ### 2. Spartan Mindset
+
 - **Slug**: `spartan-mindset`
 - **Subtitle**: The Discipline of One More
 - **Status**: In Progress
@@ -53,6 +62,7 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
   - Epigraphs from warriors, athletes, stoics
 
 ### 3. The Golden Age of Creators
+
 - **Slug**: `golden-age`
 - **Subtitle**: The Democratization of Creative Capability and Distribution
 - **Status**: Published
@@ -72,6 +82,7 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
   - Maintain dual voice: technical authority + creative warmth
 
 ### 4. The Art of Self-Development
+
 - **Slug**: `self-development`
 - **Subtitle**: Seven Pillars of a Complete Life
 - **Status**: In Progress
@@ -92,6 +103,7 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
   - NO vague advice like "be present" without concrete how-to
 
 ### 5. Imagination
+
 - **Slug**: `imagination`
 - **Subtitle**: Unlocking the Power of the Mind
 - **Status**: In Progress
@@ -112,6 +124,7 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
   - NO self-help cliches, NO "unlock your potential"
 
 ### 6. Manifestation
+
 - **Slug**: `manifestation`
 - **Subtitle**: The Architecture of Reality
 - **Status**: In Progress
@@ -137,25 +150,28 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
 ## Cross-Book Standards
 
 ### Typography
-| Context | Font | Weight |
-|---------|------|--------|
-| Serif headings | Playfair Display | 700 |
-| Sans headings | Inter | 700 |
-| Serif body | Lora or Playfair Display | 400 |
-| Sans body | Inter | 400 |
-| Code/data | JetBrains Mono | 400 |
+
+| Context        | Font                     | Weight |
+| -------------- | ------------------------ | ------ |
+| Serif headings | Playfair Display         | 700    |
+| Sans headings  | Inter                    | 700    |
+| Serif body     | Lora or Playfair Display | 400    |
+| Sans body      | Inter                    | 400    |
+| Code/data      | JetBrains Mono           | 400    |
 
 ### Color System
-| Book | Primary | Accent | Background |
-|------|---------|--------|------------|
-| Love & Poetry | `rose-500` | `amber-400` | `#0a0a0f` |
-| Spartan Mindset | `red-600` | `stone-400` | `#030712` |
-| Golden Age | `amber-500` | `indigo-400` | `#0F172A` |
-| Self-Development | `emerald-500` | `cyan-400` | `#030f0a` |
-| Imagination | `violet-500` | `cyan-400` | `#0a0a12` |
-| Manifestation | `amber-400` | `purple-500` | `#0f0a05` |
+
+| Book             | Primary       | Accent       | Background |
+| ---------------- | ------------- | ------------ | ---------- |
+| Love & Poetry    | `rose-500`    | `amber-400`  | `#0a0a0f`  |
+| Spartan Mindset  | `red-600`     | `stone-400`  | `#030712`  |
+| Golden Age       | `amber-500`   | `indigo-400` | `#0F172A`  |
+| Self-Development | `emerald-500` | `cyan-400`   | `#030f0a`  |
+| Imagination      | `violet-500`  | `cyan-400`   | `#0a0a12`  |
+| Manifestation    | `amber-400`   | `purple-500` | `#0f0a05`  |
 
 ### Writing Universal Rules
+
 1. **No emoji** in any book content
 2. **No hashtags** or social media formatting
 3. **No AI-sounding phrases**: "delve into", "it's important to note", "in conclusion"
@@ -166,7 +182,9 @@ Auto-activates when session involves: book writing, chapter drafting, book cover
 8. **Image refs**: Use relative paths `/images/books/{slug}/` for chapter images
 
 ### Quality Gate
+
 Before any book content is published:
+
 - [ ] Voice matches book profile (re-read 2 paragraphs of existing chapters)
 - [ ] No AI-pattern language detected
 - [ ] Specific claims have cited sources or verifiable references
@@ -180,10 +198,25 @@ Before any book content is published:
 ## ACOS Integration
 
 ### Skill Auto-Activation Rules
+
 ```json
 {
   "book-publishing": {
-    "triggers": ["book", "chapter", "poetry", "spartan", "self-development", "imagination", "manifestation", "golden-age", "library", "review", "cover", "pdf", "epub"],
+    "triggers": [
+      "book",
+      "chapter",
+      "poetry",
+      "spartan",
+      "self-development",
+      "imagination",
+      "manifestation",
+      "golden-age",
+      "library",
+      "review",
+      "cover",
+      "pdf",
+      "epub"
+    ],
     "priority": "high",
     "profile": "content-architect",
     "auto_load": true
@@ -192,31 +225,35 @@ Before any book content is published:
 ```
 
 ### Agent Profiles for Book Work
-| Agent | Book Work Scope |
-|-------|----------------|
-| `content-architect` | Chapter writing, book structure, voice consistency |
-| `seo-intelligence` | Book/library SEO, JSON-LD schemas, meta optimization |
-| `frontend-designer` | BookReader UI, cover display, theme components |
-| `devops-engineer` | PDF pipeline, EPUB generation, Vercel Blob uploads |
+
+| Agent               | Book Work Scope                                      |
+| ------------------- | ---------------------------------------------------- |
+| `content-architect` | Chapter writing, book structure, voice consistency   |
+| `seo-intelligence`  | Book/library SEO, JSON-LD schemas, meta optimization |
+| `frontend-designer` | BookReader UI, cover display, theme components       |
+| `devops-engineer`   | PDF pipeline, EPUB generation, Vercel Blob uploads   |
 
 ### Hook Integration
+
 - **PreToolUse:Write** — When writing to `content/books/`, validate against book voice profile
 - **PostToolUse:Write** — After chapter creation, update reading time estimate in registry
 - **Stop** — Log book content changes to trajectory system for learning
 
 ### File Watchers
-| Path Pattern | Action |
-|-------------|--------|
-| `content/books/*/chapter-*.md` | Validate voice, update registry |
-| `public/images/books/*` | Verify image dimensions (848x1264 for covers) |
-| `app/books/**/*.tsx` | Run TypeScript check on book components |
-| `data/book-reviews.ts` | Validate review schema completeness |
+
+| Path Pattern                   | Action                                        |
+| ------------------------------ | --------------------------------------------- |
+| `content/books/*/chapter-*.md` | Validate voice, update registry               |
+| `public/images/books/*`        | Verify image dimensions (848x1264 for covers) |
+| `app/books/**/*.tsx`           | Run TypeScript check on book components       |
+| `data/book-reviews.ts`         | Validate review schema completeness           |
 
 ---
 
 ## PDF/EPUB Pipeline
 
 ### PDF Generation
+
 - **Tool**: Puppeteer (extends `scripts/generate-and-upload-pdfs.mjs`)
 - **Format**: 6x9" trade paperback (432pt x 648pt)
 - **Templates**: `public/pdf-templates/books/{slug}.html`
@@ -224,12 +261,14 @@ Before any book content is published:
 - **Output**: Vercel Blob storage via existing upload pipeline
 
 ### EPUB Generation
+
 - **Tool**: `epub-gen-memory` npm package
 - **Metadata**: ISBN placeholder, author, description, cover image
 - **Chapters**: Ordered by chapter number from registry
 - **Output**: Vercel Blob alongside PDF
 
 ### Generation Command
+
 ```bash
 # Generate all book PDFs
 node scripts/generate-book-pdfs.mjs
@@ -246,11 +285,13 @@ node scripts/generate-book-epubs.mjs
 ## Library Integration
 
 ### Book Reviews (`/library/`)
+
 - **Data**: `data/book-reviews.ts` — 8 reviews with cross-references to our books
 - **Schema**: Title, author, rating (1-5), key insights, best-for tags, related book slug
 - **Cross-sell**: Each review links to "Our book on this topic" via `relatedBook` field
 
 ### Review Voice
+
 Reviews follow FrankX blog voice: concise, opinionated, actionable insights over summary. Each review answers "What changed after reading this?" not "What is this book about?"
 
 ---
@@ -258,6 +299,7 @@ Reviews follow FrankX blog voice: concise, opinionated, actionable insights over
 ## Content Generation Workflow
 
 ### Writing a New Chapter
+
 1. Load this skill (auto or manual)
 2. Read 2 existing chapters from the same book for voice calibration
 3. Check the book's research sources for relevant material
@@ -267,6 +309,7 @@ Reviews follow FrankX blog voice: concise, opinionated, actionable insights over
 7. Update `books-registry.ts` with the new chapter entry
 
 ### Creating a Book Review
+
 1. Load this skill
 2. Read the actual book (or comprehensive summary + key passages)
 3. Identify 5 key insights that changed thinking/behavior
@@ -275,6 +318,7 @@ Reviews follow FrankX blog voice: concise, opinionated, actionable insights over
 6. Add to `data/book-reviews.ts`
 
 ### Generating Cover Images
+
 1. Load this skill for the book's visual identity section
 2. Use Nano Banana MCP with `pro` model, `2:3` aspect, `high` resolution
 3. Negative prompt ALWAYS includes: `clay, claymorphic, pastel, cartoon, cute, childish`

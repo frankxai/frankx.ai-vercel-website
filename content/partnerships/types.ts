@@ -21,7 +21,6 @@ export type PartnerTier =
   | 'model-provider'
   | 'tooling'
   | 'silicon'
-  | 'services'
 
 export type PartnerAccent = 'tech' | 'soul' | 'bridge'
 
@@ -66,8 +65,6 @@ export type CrossLinkSurface =
   | 'workshops'
   | 'blog'
   | 'os'
-  | 'agentic-builder-lab'
-  | 'build'
   | 'learn-gemini'
   | 'learn-claude'
   | 'connect'
@@ -146,10 +143,4 @@ export type Partner = {
 
   // SEO
   seo: { title: string; description: string }
-  /**
-   * ISO date (YYYY-MM-DD) of the last substantive content review.
-   * Rendered as a "Last updated" stamp on the partner page — partnership
-   * state claims rot fast, so every page carries its freshness.
-   */
-  lastUpdated?: string
 }

@@ -43,6 +43,7 @@ export type Platform =
   | 'github'
   | 'stories'
   | 'blog' // frankx.ai/blog — own surface
+  | 'farcaster'
 
 // ──────────────────────────────────────────────────────────────────────────
 // OPERATOR ARCHETYPES (3) — what role does this serve right now
@@ -63,6 +64,7 @@ export type ProducerId =
   | 'screen-producer'
   | 'food-producer'
   | 'travel-producer'
+  | 'social-producer'
 
 export type ProducerStatus = 'shipped' | 'partial' | 'planned-w20' | 'planned-w21'
 

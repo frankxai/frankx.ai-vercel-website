@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -156,53 +156,6 @@ function ScrollProgress() {
 }
 
 // ============================================================================
-// ROTATING WORD
-// ============================================================================
-
-const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
-
-function RotatingWord() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (shouldReduceMotion) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [shouldReduceMotion])
-
-  if (shouldReduceMotion) {
-    return (
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-        {heroWords[0]}
-      </span>
-    )
-  }
-
-  return (
-    <span className="inline-block relative">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
-          style={{ lineHeight: 1.1, paddingBottom: '0.05em' }}
-        >
-          {heroWords[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
@@ -215,7 +168,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
           src={`https://suno.com/embed/${track.sunoId}`}
           className="w-full h-[380px]"
           style={{ border: 'none' }}
-          allow="clipboard-write"
+          allow="autoplay; clipboard-write"
           loading="lazy"
           title={track.title}
         />
@@ -276,23 +229,23 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI Architect & Creator</span>
+                <span className="text-sm text-white/60">GenCreator by FrankX</span>
               </div>
 
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                <RotatingWord /> intelligence
+              <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
+                Build your AI
                 <br />
-                that compounds.
+                Creator OS.
               </h1>
 
-              <p className="text-[17px] md:text-xl text-white/70 max-w-xl leading-relaxed">
-                Former AI Architect, Oracle. 12,000+ songs with Suno.
-                90+ open-source AI skills. Everything documented.
+              <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
+                GenCreator helps creators build personal AI operating systems that turn ideas
+                into shipped work, audience, products, and revenue.
               </p>
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="font-serif italic text-base md:text-lg text-white/50 max-w-lg">
+                <p className="font-serif italic text-lg text-white/30 max-w-lg">
                   &ldquo;I create to understand. I share to teach.&rdquo;
                 </p>
               </div>
@@ -308,18 +261,18 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start learning
+                Choose Your GenCreator Path
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/inner-circle"
+                href="/courses/build-your-ai-creator-os"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Get the playbook
+                Build Your AI Creator OS
               </Link>
             </motion.div>
           </div>
@@ -339,7 +292,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                     src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
                     className="w-full h-[380px]"
                     style={{ border: 'none' }}
-                    allow="clipboard-write"
+                    allow="autoplay; clipboard-write"
                     loading="lazy"
                     title="Vibe OS — Featured Track"
                   />
@@ -374,9 +327,9 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'Ex-Oracle · Enterprise AI',
+  'AI Architect at Oracle',
   '12,000+ AI Songs Created',
-  '90+ Open-Source AI Skills',
+  '630+ AI Skills Shipped',
   'Everything Documented',
 ]
 
@@ -411,39 +364,39 @@ function AuthorityBar() {
 
 const products = [
   {
-    title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 90+ skills, 60+ agents, 80+ commands.',
-    href: '/acos',
+    title: 'GenCreator Framework',
+    description: 'The movement and operating framework: principles, handbook, blueprints, and soul.md.',
+    href: '/gencreator',
     color: 'emerald' as const,
   },
   {
-    title: 'Prompt Library',
-    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
-    href: '/prompt-library',
+    title: 'Build Your AI Creator OS',
+    description: 'Flagship implementation lab: Claude Code, agents, n8n, Vercel, templates, and one shipped asset.',
+    href: '/courses/build-your-ai-creator-os',
     color: 'violet' as const,
   },
   {
-    title: 'Creator Kit',
-    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
+    title: 'Offer Ladder',
+    description: 'Free starters, low-ticket packs, flagship cohort, advanced lab, and done-with-you systems.',
     href: '/products',
     color: 'cyan' as const,
   },
   {
-    title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Battle-tested at enterprise scale.',
-    href: '/ai-architecture',
+    title: 'Agentic Builder Track',
+    description: 'Advanced GenCreator path for Claude Code, MCP, n8n, Vercel, and production agent systems.',
+    href: '/products/agentic-creator-os',
     color: 'blue' as const,
   },
   {
-    title: 'Music Lab',
-    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
+    title: 'Create Track',
+    description: 'Music, content, prompts, state management, and visible artifacts shipped from taste plus tools.',
     href: '/music-lab',
     color: 'orange' as const,
   },
   {
-    title: 'Design Lab',
-    description: 'Generative art, visual experiments, nature-tech aesthetics.',
-    href: '/design-lab',
+    title: 'Free Community',
+    description: 'One GenCreator community first: Start Here, Wins, AI Creator OS, Music Lab, Agentic Builder, Office Hours.',
+    href: '/community',
     color: 'magenta' as const,
   },
 ]
@@ -459,13 +412,13 @@ function ProductsTools() {
           className="text-center mb-12 md:mb-16"
         >
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
-            Products & Tools
+            GenCreator System
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Built for builders
+            Create, build, sell
           </h2>
-          <p className="text-base text-white/60 max-w-2xl mx-auto">
-            Open-source tools, premium resources, and creative systems — built for builders who ship.
+          <p className="text-base text-white/40 max-w-2xl mx-auto">
+            One public identity, three paths, and a ladder from free trust to high-value implementation.
           </p>
         </motion.div>
 
@@ -483,7 +436,7 @@ function ProductsTools() {
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                   {product.title}
                 </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
+                <p className="text-sm text-white/50 leading-relaxed">
                   {product.description}
                 </p>
                 <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
@@ -561,7 +514,7 @@ function HubShowcase({
       <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
         {title}
       </h2>
-      <p className="text-base text-white/60 leading-relaxed mb-6">
+      <p className="text-base text-white/50 leading-relaxed mb-6">
         {description}
       </p>
 
@@ -644,7 +597,7 @@ function CreativeWorlds() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Creative Systems Lab
             </h2>
-            <p className="text-sm sm:text-base text-white/60 max-w-lg mb-6">
+            <p className="text-sm sm:text-base text-white/50 max-w-lg mb-6">
               Experiments in AI-native storytelling, design systems, media pipelines, and autonomous creative infrastructure.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -692,7 +645,7 @@ function DesignLab() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Design Lab
           </h2>
-          <p className="text-base text-white/60 max-w-xl">
+          <p className="text-base text-white/50 max-w-xl">
             Generative art experiments. Nature-tech fusion aesthetics.
             Digital gardens where code meets organic form.
           </p>
@@ -755,7 +708,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Books &amp; Writing
             </h2>
-            <p className="text-base text-white/60 max-w-lg">
+            <p className="text-base text-white/50 max-w-lg">
               Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
             </p>
           </div>
@@ -960,7 +913,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-white/60 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-white/50 line-clamp-2 leading-relaxed">
                     {post.description}
                   </p>
                 </div>
@@ -1024,7 +977,7 @@ function LearningHub() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Learn & Explore
           </h2>
-          <p className="text-base text-white/60 max-w-lg">
+          <p className="text-base text-white/50 max-w-lg">
             Guides, courses, video tutorials, and tools — everything you need to level up.
           </p>
         </motion.div>
@@ -1053,7 +1006,7 @@ function LearningHub() {
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">{card.description}</p>
+                  <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -1102,10 +1055,10 @@ function EmailCTA() {
               <span className="text-sm text-emerald-400">Weekly Insights</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-3">
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
-            <p className="text-[15px] md:text-base text-white/70 mb-8 max-w-sm mx-auto leading-relaxed">
+            <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1159,17 +1112,14 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               transition={{ delay: i * 0.05 }}
             >
               <button
-                type="button"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                aria-expanded={openIndex === i}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2 [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
+                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    aria-hidden="true"
                     className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}
@@ -1184,7 +1134,7 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-3 text-sm text-white/60 leading-relaxed">
+                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -1242,7 +1192,7 @@ function DigitalTwin() {
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
               Meet FRANK-Ω
             </h2>
-            <p className="text-base text-white/60 leading-relaxed mb-6">
+            <p className="text-base text-white/50 leading-relaxed mb-6">
               Two forms. One mind. FRANK-Ω is the completed intelligence — the version that has
               absorbed everything and just executes. Research-grounded visuals in 60 seconds.
               Creator scoring in real-time. Direct answers, no fluff.
@@ -1309,24 +1259,24 @@ function FinalCTA() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
               Start building.
             </h2>
-            <p className="font-serif italic text-base md:text-lg text-white/50 mb-2">
+            <p className="font-serif italic text-lg text-white/30 mb-2">
               The best way to predict the future is to create it.
             </p>
-            <p className="text-[17px] text-white/70 mb-8 md:mb-12 max-w-md mx-auto leading-relaxed">
-              Pick your path — architecture, music, or products.
+            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
+              Pick your path: create, build, or sell.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Start Here
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 py-4 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
               >
                 Get the Newsletter
               </Link>
@@ -1369,9 +1319,9 @@ export default function HomePageElite({
 
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
-          eyebrow="Enterprise AI"
-          title="AI Architecture"
-          description="Enterprise AI systems distilled from years of production work. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          eyebrow="Agentic Builder"
+          title="Advanced GenCreator Systems"
+          description="Advanced builder patterns for GenCreators ready to build agent systems. Multi-agent orchestration, MCP, Claude Code, Vercel, and production workflows."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1379,8 +1329,8 @@ export default function HomePageElite({
             { label: 'MCP Server Architecture', href: '/blog/mcp-server-architecture-workshop' },
             { label: 'Agent Patterns & Pillars', href: '/blog/production-agent-patterns-7-pillars' },
           ]}
-          ctaLabel="Explore AI Architecture"
-          ctaHref="/ai-architecture"
+          ctaLabel="Explore Agentic Builder Track"
+          ctaHref="/products/agentic-creator-os"
           color="blue"
           imageFirst
         />

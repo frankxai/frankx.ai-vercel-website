@@ -1,0 +1,38 @@
+path,category,filename,sizeKB,tags,mood,theme,suitableFor,notes
+/images/blog/frankx-resources-universe-hero.png,blog,frankx-resources-universe-hero.png,420,"hero,resources,intelligence",branded,dark,"blog-hero,homepage-showcase",NEW premium 2026-06: resources constellation hub
+/images/blog/frankx-curated-visuals-hero.png,blog,frankx-curated-visuals-hero.png,380,"gallery,curation,visual",atmospheric,dark,blog-hero,NEW premium 2026-06: glassmorphic curation display
+/images/blog/ai-video-generation-2026-hero.png,blog,ai-video-generation-2026-hero.png,450,"video,ai-generation,sora",cinematic,dark,blog-hero,NEW premium 2026-06: Sora/Runway/Kling/Veo console
+/images/blog/my-100-month-ai-stack-hero.png,blog,my-100-month-ai-stack-hero.png,390,"stack,tools,personal",technical,dark,blog-hero,NEW premium 2026-06: Da Vinci 100-month stack
+/images/blog/ollama-local-ai-privacy-hero.png,blog,ollama-local-ai-privacy-hero.png,410,"local,privacy,ollama",technical,dark,blog-hero,NEW premium 2026-06: sovereign local AI
+/images/blog/rag-for-creators-hero.png,blog,rag-for-creators-hero.png,370,"rag,search,creators",futuristic,dark,blog-hero,NEW premium 2026-06: RAG retrieval pipeline HUD
+/images/blog/voice-ai-agents-2026-hero.png,blog,voice-ai-agents-2026-hero.png,430,"voice,audio,agents",cinematic,dark,blog-hero,NEW premium 2026-06: ElevenLabs/Hume waveforms
+/images/blog/props-to-the-builders-hero.png,blog,props-to-the-builders-hero.png,360,"builders,era,tribute",branded,dark,blog-hero,NEW premium 2026-06: humble builders monoliths
+/images/blog/mcp-server-architecture-workshop-hero.png,blog,mcp-server-architecture-workshop-hero.png,400,"mcp,workshop,protocol",technical,dark,"blog-hero,workshop",NEW premium 2026-06: MCP server + tools diagram
+/images/blog/suno-ai-music-creation-workshop-hero.png,blog,suno-ai-music-creation-workshop-hero.png,440,"suno,music,workshop",cinematic,dark,"blog-hero,workshop",NEW premium 2026-06: Suno studio waveforms to instruments
+/images/acos/acos-hero-omega.png,acos,acos-hero-omega.png,1771,"hero",atmospheric,dark,"blog-hero,homepage-showcase",Existing high-quality ACOS flagship
+/images/blog/building-custom-skills-hero-v2.png,blog,building-custom-skills-hero-v2.png,2252,"skills,acos,tutorial",davinci-codex,dark,blog-hero,Existing scored pro (score 9-10)
+/images/vibe-os/vibe-os-ecosystem-overview.png,vibe-os,vibe-os-ecosystem-overview.png,~, "ecosystem,overview",atmospheric,dark,blog-hero,Existing (was duplicated, cleaned)
+/images/blog/aeo-knowledge-graph-2026.png,blog,aeo-knowledge-graph-2026.png,~, "aeo,graph,seo",technical,dark,blog-hero,Existing (duplicate body ref cleaned)
+SUMMARY: 1115 total image files (858 MB) across 40+ dirs. blog/297 (largest for articles), infographics/120, diagrams/96 (svg), mascot/75, ai-art/25, acos/26 etc. Tracking: data/visual-registry.json (curated 473 entries w/ tags+suitableFor), data/blog-heroes.json (71 tracked w/ scores + pro versions), data/inventories/*/blog-articles.json (ogImage metadata), public/images/registry.json (legacy 301), manual IMAGE_CATALOG.md + QUALITY_AUDIT.md. No prior flat CSV — this is the new canonical lightweight visual inventory. 10 new top-notch heroes added 2026-06 for all aurora placeholders + key gaps. Re-audit recommended after sync.
+SOURCE: vis-audit 2026-06 + full dir scan + blog-heroes scan (5 manifest gaps addressed via new + tracking). All images now premium dark glass/cinematic/technical per design-thinking + ACOS Visual Generator rules (no aurora, no placeholders, no body dups).
+/images/blog/ai-doesnt-have-to-be-soulless-hero.png,blog,ai-doesnt-have-to-be-soulless-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/the-soul-frequency-framework-hero.png,blog,the-soul-frequency-framework-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/golden-age-of-intelligence-hero.png,blog,golden-age-of-intelligence-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/30-minute-creator-os-quick-start-hero.png,blog,30-minute-creator-os-quick-start-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/acos-enterprise-deployment-guide-hero.png,blog,acos-enterprise-deployment-guide-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/acos-hooks-system-quality-gates-hero.png,blog,acos-hooks-system-quality-gates-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/acos-philosophy-technology-amplifies-hero.png,blog,acos-philosophy-technology-amplifies-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/acos-use-cases-creator-types-hero.png,blog,acos-use-cases-creator-types-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/acos-v10-autonomous-intelligence-hero.png,blog,acos-v10-autonomous-intelligence-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/acos-zero-to-production-quickstart-hero.png,blog,acos-zero-to-production-quickstart-hero.png,400,"hero,premium,acos-batch",branded,dark,"blog-hero",NEW premium batch 2 autonomous
+/images/blog/agentic-ai-roadmap-2025-hero.png,blog,agentic-ai-roadmap-2025-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/agentic-creator-os-hero.png,blog,agentic-creator-os-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/agentic-seo-publishing-masterplan-hero.png,blog,agentic-seo-publishing-masterplan-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/agi-2026-opportunities-students-creators-hero.png,blog,agi-2026-opportunities-students-creators-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/ai-coe-launch-hero.png,blog,ai-coe-launch-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/ai-engineering-without-hype-willison-hero.png,blog,ai-engineering-without-hype-willison-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/claude-code-mastery-top-resources-hero.png,blog,claude-code-mastery-top-resources-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/mcp-doctor-claude-code-server-optimization-hero.png,blog,mcp-doctor-claude-code-server-optimization-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/creator-intelligence-systems-2026-hero.png,blog,creator-intelligence-systems-2026-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/karpathys-ai-vision-deep-dive-hero.png,blog,karpathys-ai-vision-deep-dive-hero.png,400,"hero,premium,continuation",branded,dark,"blog-hero",NEW autonomous continuation batch
+/images/blog/best-ai-image-generators-2026-hero.png,blog,best-ai-image-generators-2026-hero.png,420,"hero,infogenius,ai-image-generators,comparison",branded,dark,"blog-hero,infographic",NEW top infogenius for best-ai-image-generators-2026 in winning dark-premium-glass shape

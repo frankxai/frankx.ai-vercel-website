@@ -117,10 +117,10 @@ export default function VibeOSAppPage() {
 
         {/* Updates */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-white/60">
+          <p className="text-sm text-white/50">
             Want to contribute or follow development?{' '}
             <a
-              href="mailto:frank@frankx.ai?subject=Vibe%20OS%20Development"
+              href="mailto:hello@frankx.ai?subject=Vibe%20OS%20Development"
               className="text-cyan-400 underline-offset-4 transition-colors hover:underline"
             >
               Get in touch

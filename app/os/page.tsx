@@ -303,30 +303,7 @@ export default function OSPage() {
             then made installable for anyone.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/inner-circle"
-              className="inline-flex items-center gap-2 rounded-full bg-zinc-50 px-6 py-3 text-sm font-semibold text-zinc-900 transition-colors hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              Join the Inner Circle
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="#modules"
-              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.03] px-5 py-3 text-sm font-medium text-zinc-200 transition-colors hover:bg-white/[0.06] hover:border-white/[0.18] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              Explore the 7 modules
-            </Link>
-            <Link
-              href="/research"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-violet-300 transition-colors hover:text-violet-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              Explore the research that powers it
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <p className="text-sm text-zinc-500 max-w-3xl leading-relaxed mt-6">
+          <p className="text-sm text-zinc-500 max-w-3xl leading-relaxed mt-5">
             Looking for everything else — substrate repos, operational layers, ops tooling? See the full{' '}
             <Link
               href="/ecosystem"
@@ -379,7 +356,7 @@ export default function OSPage() {
       </section>
 
       {/* Module grid */}
-      <section id="modules" className="py-16 scroll-mt-20">
+      <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -562,9 +539,9 @@ export default function OSPage() {
       <section className="py-16 border-t border-white/[0.04]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-zinc-500 leading-relaxed">
-            Frank Riemer is a Former AI Architect, Oracle. The enterprise
-            6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics),
-            battle-tested at enterprise scale, scales down to one person. This is what that looks like in practice.
+            Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence. The enterprise
+            6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) used at
+            Fortune 500s scales down to one person. This is what that looks like in practice.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
             <Link

@@ -55,7 +55,7 @@ const items: PaletteItem[] = [
   { group: 'Music', label: 'Music Showcase', description: '12,000+ AI songs — full catalog', href: '/music', icon: Music },
   { group: 'Music', label: 'Vibe OS', description: 'Music creation operating system', href: '/products/vibe-os', icon: Sparkles },
   { group: 'Music', label: 'Music Lab', description: 'Experimental sound design', href: '/music-lab', icon: Palette },
-  { group: 'Music', label: 'Music School', description: 'Learn AI music production', href: '/music-school', icon: GraduationCap },
+  { group: 'Music', label: 'Music School', description: 'Learn AI music production', href: '/music/learn', icon: GraduationCap },
   { group: 'Music', label: 'Suno Profile', description: 'Live Suno catalog', href: 'https://suno.com/@frankx', icon: Layers, external: true },
 
   // GenCreators

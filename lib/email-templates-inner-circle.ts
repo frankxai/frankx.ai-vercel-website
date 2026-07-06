@@ -66,7 +66,7 @@ If you have a question I should answer in the pricing email, hit reply. I read e
 —Frank
 
 Frank Riemer
-AI Architect — built Oracle EMEA AI Center of Excellence frameworks
+AI Architect, Oracle EMEA AI Center of Excellence
 Creator of FrankX — frankx.ai
 
 P.S. The Inner Circle is small by design. I'm capping the first cohort at 100 founding members. If you want a sense of what's inside before May 27, the closest public surface is /labs — that's the same format the live build labs will run on, just member-only.

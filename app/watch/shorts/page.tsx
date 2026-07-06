@@ -25,7 +25,7 @@ const shortsFAQ = [
   {
     question: 'Who curates these Shorts?',
     answer:
-      'Frank Riemer \u2014 Former AI Architect, Oracle \u2014 personally selects each Short. The curation filter: does this compress a real insight into 60 seconds or less? If not, it doesn\u2019t make the page.',
+      'Frank Riemer \u2014 AI Architect at Oracle EMEA AI Center of Excellence \u2014 personally selects each Short. The curation filter: does this compress a real insight into 60 seconds or less? If not, it doesn\u2019t make the page.',
   },
   {
     question: 'Why 60 seconds?',

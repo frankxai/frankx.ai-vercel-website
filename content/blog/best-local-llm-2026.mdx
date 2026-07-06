@@ -75,13 +75,25 @@ Two reasons it's worth it, and one honest caveat.
 
 **Cost.** A frontier API call costs per-token forever. A local model costs the electricity to run a laptop you already own. If you're a heavy user, the math flips fast — and there's no metered anxiety about how many times you hit the model. For the full picture of where local fits alongside the paid frontier models, see the [frontier model landscape for 2026](/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek) and the [best AI superpowers stack](/blog/best-ai-superpowers-stack-2026).
 
-**The caveat:** a 32B local model is not GPT-class or Claude-class on the hardest reasoning. For frontier-tier work — deep agentic coding, long-horizon planning — the cloud still wins. The right architecture in 2026 is both: local for the 80% that's private, cheap, and offline-capable; cloud for the 20% that genuinely needs the biggest brain. I build the creator-side of that split into [GenCreator](/gencreator).
+**The caveat:** a 32B local model is not GPT-class or Claude-class on the hardest reasoning. For frontier-tier work — deep agentic coding, long-horizon planning — the cloud still wins. The right architecture in 2026 is both: local for the 80% that's private, cheap, and offline-capable; cloud for the 20% that genuinely needs the biggest brain. I build the creator-side of that split into [GenCreator](https://gencreator.ai).
 
 ## Do I need a fancy GPU, or will my CPU do?
 
 You don't strictly need a GPU. llama.cpp runs on CPU, and on Apple Silicon the unified memory architecture makes it genuinely fast. On a typical Intel or AMD laptop, CPU-only inference of an 8B model is usable — think reading-speed, not instant.
 
 A GPU changes the experience, not the possibility. VRAM is the constraint that matters: a discrete card with 8–16 GB of VRAM lets the model live entirely on the GPU and run several times faster than CPU. If you're buying for local AI, **more VRAM beats a faster core** — a card with 16 GB of VRAM running a model fully in-GPU will outrun a faster card with 8 GB that has to spill to system RAM. And on the system side, 32 GB of RAM is the upgrade that unlocks the 32B tier. I name specific hardware honestly below.
+
+
+---
+
+### Evolve Your Creative Workflow: Build Your CoE
+
+If you are ready to stop chasing individual tools and start building a compounding system, explore the **[GenCreator Platform](https://gencreator.ai)**. 
+
+GenCreator is the same enterprise-grade six-pillar AI Center of Excellence (CoE) framework that Frank designs for Fortune 500s at Oracle, made accessible for solo builders and creators. Turn your tool stack into an automated personal engine.
+
+👉 **[Start building your personal AI CoE at GenCreator.ai](https://gencreator.ai)**
+
 
 ## FAQ
 

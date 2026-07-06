@@ -40,21 +40,9 @@ async function subscribeWebhook(email: string) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Accept both formData (HTML form posts, e.g. /soul-frequency-quiz) and JSON
-    // (fetch() callers, e.g. /links Linktree page) so a single endpoint serves
-    // every signup surface without each caller knowing the wire format.
-    let email: string | undefined
-    let redirectTo: string | null = null
-    const contentType = request.headers.get('content-type') || ''
-    if (contentType.includes('application/json')) {
-      const json = await request.json().catch(() => ({} as Record<string, unknown>))
-      email = (json.email as string | undefined)?.trim?.().toLowerCase()
-      redirectTo = (json.redirect as string | undefined) ?? null
-    } else {
-      const formData = await request.formData()
-      email = (formData.get('email') as string)?.trim?.().toLowerCase()
-      redirectTo = formData.get('redirect') as string | null
-    }
+    const formData = await request.formData()
+    const email = (formData.get('email') as string)?.trim().toLowerCase()
+    const redirectTo = formData.get('redirect') as string | null
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email address required' }, { status: 400 })

@@ -8,8 +8,8 @@ const contactMethods = [
     icon: Mail,
     title: 'Email Us',
     description: 'Get a response within 24 hours',
-    contact: 'frank@frankx.ai',
-    href: 'mailto:frank@frankx.ai?subject=FrankX.AI%20Inquiry',
+    contact: 'hello@frankx.ai',
+    href: 'mailto:hello@frankx.ai?subject=FrankX.AI%20Inquiry',
     preferred: true
   },
   {
@@ -17,7 +17,7 @@ const contactMethods = [
     title: 'Schedule a Call',
     description: 'Book a strategic consultation',
     contact: 'Strategy Session',
-    href: 'mailto:frank@frankx.ai?subject=Strategy%20Session%20Request',
+    href: 'mailto:hello@frankx.ai?subject=Strategy%20Session%20Request',
     preferred: false
   },
   {
@@ -25,7 +25,7 @@ const contactMethods = [
     title: 'Project Discussion',
     description: 'Discuss your AI transformation needs',
     contact: 'Project Consultation',
-    href: 'mailto:frank@frankx.ai?subject=Project%20Consultation',
+    href: 'mailto:hello@frankx.ai?subject=Project%20Consultation',
     preferred: false
   }
 ]
@@ -60,7 +60,7 @@ const services = [
 const faqs = [
   {
     question: 'What types of AI projects do you work on?',
-    answer: 'We build production AI systems: enterprise automation, agentic orchestration, creative AI tools like Vibe OS, and strategic AI consulting and transformation programs for organizations of all sizes.'
+    answer: 'We specialize in conscious AI implementations including enterprise automation, creative AI systems like Vibe OS, strategic AI consulting, and comprehensive AI transformation programs for organizations of all sizes.'
   },
   {
     question: 'How long does a typical engagement last?',
@@ -78,7 +78,7 @@ const faqs = [
 
 export const metadata = createMetadata({
   title: 'Contact FrankX.AI - AI Strategy & Consulting',
-  description: 'Get in touch for AI strategy consulting, enterprise implementations, and production AI systems. Expert guidance for your AI transformation.',
+  description: 'Get in touch for AI strategy consulting, enterprise implementations, and conscious AI solutions. Expert guidance for your AI transformation journey.',
   keywords: ['contact frankx ai', 'ai consulting contact', 'ai strategy consultation', 'enterprise ai help'],
   path: '/contact',
 })
@@ -104,8 +104,8 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              From strategic AI planning to full-scale implementations, we help you ship systems that
-              work. Let's discuss how AI can move your organization forward.
+              From strategic AI planning to full-scale implementations, we're here to guide your journey
+              into the intelligence age. Let's discuss how conscious AI can transform your organization.
             </p>
           </header>
 
@@ -226,11 +226,11 @@ export default function ContactPage() {
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
             <h2 className="text-4xl font-bold text-white">Start Your AI Transformation Today</h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Join forward-thinking organizations that are already shipping real AI systems that deliver results.
+              Join forward-thinking organizations that are already building their intelligent future with conscious AI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="mailto:frank@frankx.ai?subject=AI%20Strategy%20Consultation"
+                href="mailto:hello@frankx.ai?subject=AI%20Strategy%20Consultation"
                 className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
               >
                 Start the Conversation

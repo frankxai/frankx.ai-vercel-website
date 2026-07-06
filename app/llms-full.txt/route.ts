@@ -69,11 +69,11 @@ ${d.subtitle}
 
   const content = `# FrankX — Comprehensive Site Map (llms-full.txt)
 
-> Personal hub of Frank X. Riemer — Former AI Architect, Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — AI Architect at Oracle EMEA AI Center of Excellence, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
 This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
 
-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks, distilled from years of enterprise production work, and translates the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) into free personal-scale tooling for creators.
+The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks in enterprise environments at Oracle and translates the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) into free personal-scale tooling for creators.
 
 ## Brand Voice & Editorial Stance
 - **North star:** Elite Creator. AI Architect. Humble Excellence.

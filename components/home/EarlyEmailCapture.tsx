@@ -21,7 +21,7 @@ export function EarlyEmailCapture() {
           <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 tracking-tight">
             Weekly insights on AI systems, music, and creator tools.
           </h2>
-          <p className="text-sm text-white/60 mb-6">
+          <p className="text-sm text-white/40 mb-6">
             No spam. Real lessons from building in public. Unsubscribe anytime.
           </p>
           <div className="max-w-sm mx-auto">

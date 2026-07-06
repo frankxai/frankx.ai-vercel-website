@@ -21,6 +21,7 @@ export function FoundryApplicationForm() {
     building: '',
     why: '',
     stage: '',
+    website: '', // honeypot — hidden from humans, bots fill it
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -49,7 +50,10 @@ export function FoundryApplicationForm() {
 
   if (status === 'success') {
     return (
-      <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8 text-center">
+      <div
+        aria-live="polite"
+        className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8 text-center"
+      >
         <p className="text-lg font-semibold text-white">Application received.</p>
         <p className="mt-2 text-sm text-white/60">
           Frank reads every one personally — you&apos;ll hear back within a few days, and a
@@ -61,6 +65,18 @@ export function FoundryApplicationForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Honeypot — visually hidden and excluded from the tab order */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+        <label htmlFor="foundry-website">Website</label>
+        <input
+          id="foundry-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={set('website')}
+        />
+      </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="foundry-name" className="mb-2 block text-sm font-medium text-white/70">
@@ -186,11 +202,13 @@ export function FoundryApplicationForm() {
         {status === 'loading' ? 'Submitting…' : 'Submit Application'}
       </button>
 
-      {status === 'error' && errorMessage && (
-        <p className="rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400">
-          {errorMessage}
-        </p>
-      )}
+      <div aria-live="polite">
+        {status === 'error' && errorMessage && (
+          <p className="rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400">
+            {errorMessage}
+          </p>
+        )}
+      </div>
 
       <p className="text-xs text-white/40">
         Applications are read personally. You get one confirmation email and a decision — nothing

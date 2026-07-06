@@ -1,0 +1,44 @@
+{
+  "offers": [
+    {
+      "id": "free-newsletter",
+      "name": "FrankX Newsletter",
+      "stage": "free",
+      "primaryCta": "Subscribe and reply with the workflow you want to build next.",
+      "promise": "A useful weekly operating note for creators and operators building with AI.",
+      "guardrail": "No income claims, no fake certainty, no urgency theater."
+    },
+    {
+      "id": "builder-lab-primer",
+      "name": "Builder Lab Primer",
+      "stage": "education",
+      "primaryCta": "Join the primer when the first cohort opens.",
+      "promise": "Turn the weekly idea into one working artifact.",
+      "guardrail": "The promise is artifact completion, not business results."
+    },
+    {
+      "id": "inner-circle",
+      "name": "FrankX Inner Circle",
+      "stage": "membership",
+      "primaryCta": "Reply to request an Inner Circle invite.",
+      "promise": "A closer loop for founders, creators, and operators who want direct signal and operating artifacts.",
+      "guardrail": "Founding access is curated and approval based."
+    },
+    {
+      "id": "acos-system",
+      "name": "Agentic Creator OS",
+      "stage": "product",
+      "primaryCta": "Ask for the ACOS setup path.",
+      "promise": "Installable operating system patterns for content, agents, and creator workflows.",
+      "guardrail": "Product claims stay tied to concrete workflows and visible artifacts."
+    },
+    {
+      "id": "alliance-enterprise",
+      "name": "Alliance and Enterprise Advisory",
+      "stage": "enterprise",
+      "primaryCta": "Book a scoping conversation.",
+      "promise": "Architecture, rollout, and governance help for teams building AI operating systems.",
+      "guardrail": "No blanket transformation claims before discovery."
+    }
+  ]
+}

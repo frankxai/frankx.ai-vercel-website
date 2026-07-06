@@ -1,0 +1,67 @@
+{
+  "panels": [
+    {
+      "id": "skeptical-builder",
+      "label": "Skeptical builder",
+      "weight": 0.15,
+      "objections": ["Sounds too abstract", "Show me the artifact", "Avoid guru language"],
+      "successSignals": ["Specific next action", "Clear failure mode", "Useful even if they never buy"]
+    },
+    {
+      "id": "busy-executive",
+      "label": "Busy executive",
+      "weight": 0.14,
+      "objections": ["Too long", "Needs sharper business consequence"],
+      "successSignals": ["Decision framing", "Risk reduction", "Can forward to a team"]
+    },
+    {
+      "id": "solo-creator",
+      "label": "Solo creator",
+      "weight": 0.14,
+      "objections": ["Feels enterprise only", "What do I do this week"],
+      "successSignals": ["Practical prompt", "Personal voice", "Small repeatable loop"]
+    },
+    {
+      "id": "technical-operator",
+      "label": "Technical operator",
+      "weight": 0.13,
+      "objections": ["Needs system shape", "Avoid vague AI stack claims"],
+      "successSignals": ["Inputs and outputs", "Instrumentation", "Approval gates"]
+    },
+    {
+      "id": "ai-curious-beginner",
+      "label": "AI-curious beginner",
+      "weight": 0.1,
+      "objections": ["Too much jargon", "Feels intimidating"],
+      "successSignals": ["Plain language", "One concrete example", "Low-friction entry"]
+    },
+    {
+      "id": "high-intent-buyer",
+      "label": "High-intent buyer",
+      "weight": 0.12,
+      "objections": ["CTA too soft", "Need a reason to reply now"],
+      "successSignals": ["Qualified CTA", "Outcome path", "Proof of taste"]
+    },
+    {
+      "id": "paid-member",
+      "label": "Paid member",
+      "weight": 0.09,
+      "objections": ["Free content gives away too little", "Membership benefit unclear"],
+      "successSignals": ["Shows deeper loop", "Names inner circle value", "No hype"]
+    },
+    {
+      "id": "music-fan",
+      "label": "Music fan",
+      "weight": 0.06,
+      "objections": ["Too business-heavy"],
+      "successSignals": ["Creative bridge", "Mentions taste and production", "Optional path to Music Lab"]
+    },
+    {
+      "id": "enterprise-prospect",
+      "label": "Enterprise prospect",
+      "weight": 0.07,
+      "objections": ["Needs governance", "Needs credibility"],
+      "successSignals": ["Approval language", "Measured rollout", "No reckless automation"]
+    }
+  ]
+}

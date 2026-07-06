@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, ArrowUpRight, Sparkles } from 'lucide-react'
 
-import { BlogPost } from '@/lib/blog'
+import type { BlogPostSummary } from '@/lib/blog'
 import { cn } from '@/lib/utils'
 import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 
@@ -13,7 +13,7 @@ import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 const GLOW_RGB = '16, 185, 129'
 
 interface BlogCardProps {
-  post: BlogPost
+  post: BlogPostSummary
   featured?: boolean
   className?: string
 }
@@ -37,19 +37,12 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       onTouchMove={handlers.onTouchMove}
       onTouchEnd={handlers.onTouchEnd}
       className={cn(
-        // Liquid glass base
-        'group relative block overflow-hidden rounded-3xl',
-        'border border-white/[0.08]',
-        'bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)]',
-        '[box-shadow:0_8px_32px_-8px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)]',
-        // Transitions
+        'group relative block overflow-hidden rounded-2xl',
+        'border border-white/[0.09]',
+        'bg-[#101216]',
         'transition-all duration-500',
-        // Hover: lift + deeper shadow + emerald tint
-        'hover:border-white/[0.18]',
-        'hover:-translate-y-1.5',
-        'hover:[box-shadow:0_24px_64px_-12px_rgba(0,0,0,0.65),0_0_0_1px_rgba(16,185,129,0.10),inset_0_1px_0_rgba(255,255,255,0.10)]',
-        // Accessibility
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]',
+        'hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-[#12161b]',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
         featured && 'md:col-span-2 lg:col-span-3',
         className
       )}
@@ -60,28 +53,27 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       {/* Cursor-following radial glow */}
       <div
         ref={glowRef}
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 z-10"
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 z-10"
       />
 
       {/* Top-edge ambient hover glow */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
         style={{ background: `radial-gradient(ellipse at 50% 0%, rgba(${GLOW_RGB}, 0.08), transparent 65%)` }}
       />
 
       {/* Hero Image */}
       {showImage && (
-        <div className="relative w-full h-48 md:h-52 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
+        <div className="relative h-48 w-full overflow-hidden bg-[#0b0d10] md:h-56">
           <Image
             src={post.image!}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
             onError={() => setImgError(true)}
           />
-          {/* Stronger gradient so text below is always legible */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/35 to-transparent" />
 
           {/* Category badge */}
           <div className="absolute top-4 left-4">
@@ -137,20 +129,17 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
           {post.description}
         </p>
 
-        <div className="flex items-center gap-3 text-xs text-white/38 group-hover:text-white/55 transition-colors duration-300">
+        <div className="flex items-center gap-4 text-xs text-white/40 group-hover:text-white/55 transition-colors duration-300">
           <span className="flex items-center gap-1.5">
-            <Calendar className="w-3 h-3 shrink-0" aria-hidden="true" />
-            <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </time>
+            <Calendar className="w-3.5 h-3.5" />
+            {new Date(post.date).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
           </span>
-          <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden="true" />
           <span className="flex items-center gap-1.5">
-            <Clock className="w-3 h-3 shrink-0" aria-hidden="true" />
+            <Clock className="w-3.5 h-3.5" />
             {post.readingTime}
           </span>
         </div>

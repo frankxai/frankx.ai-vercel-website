@@ -340,14 +340,7 @@ export default function AdvancedAssessmentPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       {/* Progress Bar */}
-      <div
-        className="fixed top-0 left-0 right-0 z-50"
-        role="progressbar"
-        aria-valuenow={Math.round(progress)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`Assessment progress: step ${currentStep + 1} of ${assessmentSteps.length}`}
-      >
+      <div className="fixed top-0 left-0 right-0 z-50">
         <div className="h-1 bg-slate-800">
           <motion.div
             className="h-full bg-gradient-to-r from-purple-500 to-cyan-500"
@@ -415,10 +408,10 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
             <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 via-violet-500 to-indigo-500 flex items-center justify-center shadow-[0_0_40px_rgba(124,58,237,0.6)]">
               <Brain className="w-12 h-12 text-white" />
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
               <TypewriterText text="Your AI Intelligence Journey Begins" delay={0.3} />
             </h1>
-            <p className="text-[17px] md:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               A comprehensive assessment designed by our Agent Team to create your personalized pathway to conscious AI mastery.
             </p>
           </div>
@@ -491,10 +484,10 @@ function QuestionStep({
     <div>
       <RevealAnimation>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
             {step.title}
           </h2>
-          <p className="text-[17px] md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             {step.description}
           </p>
         </div>
@@ -509,11 +502,9 @@ function QuestionStep({
           {question.options.map((option, index) => (
             <motion.button
               key={option.id}
-              type="button"
               onClick={() => onOptionSelect(question.id, option.id, option.scores)}
-              aria-pressed={responses[question.id]?.optionId === option.id}
               className={cn(
-                'p-6 rounded-2xl border-2 transition-all duration-200 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
+                'p-6 rounded-xl border-2 transition-all duration-200 text-left',
                 'hover:border-purple-500/50 hover:bg-purple-500/10',
                 responses[question.id]?.optionId === option.id
                   ? 'border-purple-500 bg-purple-500/20'
@@ -597,10 +588,10 @@ function MatrixStep({
     <div>
       <RevealAnimation>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
             {step.title}
           </h2>
-          <p className="text-[17px] md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             {step.description}
           </p>
         </div>
@@ -631,12 +622,9 @@ function MatrixStep({
                   {matrix.columns.map((col) => (
                     <td key={`${row}-${col}`} className="p-3 text-center">
                       <button
-                        type="button"
                         onClick={() => onResponse(row, col)}
-                        aria-pressed={responses[row] === col}
-                        aria-label={`Rate "${row}" as ${col} out of 5`}
                         className={cn(
-                          'w-10 h-10 rounded-full border-2 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
+                          'w-10 h-10 rounded-full border-2 transition-all duration-200',
                           responses[row] === col
                             ? 'border-purple-500 bg-purple-500 text-white'
                             : 'border-slate-600 hover:border-purple-400 hover:bg-purple-400/20'
@@ -754,10 +742,10 @@ function ResultsStep({ profile }: { profile: UserProfile }) {
             <div className={cn('w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-[0_0_40px_rgba(124,58,237,0.6)]', personaInfo.color)}>
               <personaInfo.icon className="w-12 h-12 text-white" />
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
               You are {personaInfo.title}
             </h2>
-            <p className="text-[17px] md:text-xl text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
               {personaInfo.description}
             </p>
           </div>
