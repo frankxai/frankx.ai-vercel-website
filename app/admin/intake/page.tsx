@@ -37,6 +37,9 @@ const INTENT_COLOR: Record<Intent, string> = {
   partnership: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20',
   press: 'text-violet-300 bg-violet-500/10 border-violet-500/20',
   advisory: 'text-sky-300 bg-sky-500/10 border-sky-500/20',
+  // Executive intent: warm-neutral on cream — matches the
+  // /engagements/strategic-advisor register.
+  executive: 'text-[#e8dfc8] bg-[#a89c7d]/10 border-[#a89c7d]/30',
   general: 'text-slate-300 bg-white/5 border-white/15',
 }
 

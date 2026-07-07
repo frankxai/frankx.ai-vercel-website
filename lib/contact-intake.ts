@@ -36,6 +36,7 @@ import {
   INTENTS,
   INTENT_LABEL,
   INTENT_IS_COMMERCIAL,
+  INTENT_24H_ARTIFACT,
   type Intent,
 } from './intake-types'
 
@@ -43,7 +44,7 @@ import {
 // Defined in the client-safe ./intake-types module (no node imports) and
 // re-exported here so server-side importers keep a single import surface.
 
-export { INTENTS, INTENT_LABEL, INTENT_IS_COMMERCIAL }
+export { INTENTS, INTENT_LABEL, INTENT_IS_COMMERCIAL, INTENT_24H_ARTIFACT }
 export type { Intent }
 
 // ── Schema ─────────────────────────────────────────────────────────────────
@@ -202,9 +203,9 @@ async function sendOperatorNotification(
 
 /**
  * Escape user-controlled text for safe inclusion in HTML.
- * The auto-ack interpolates the requester's first name into HTML email; without
- * this escape, a malicious payload like `<img src=x onerror=...>` could fire in
- * email clients that render HTML. Resend doesn't sanitize what we send.
+ * payload.name is interpolated into the HTML body via firstName; without this
+ * escape a payload like `<img src=x onerror=...>` could fire in HTML-rendering
+ * email clients. Resend doesn't sanitize what we send.
  */
 function escapeHtml(s: string): string {
   return s
@@ -217,23 +218,30 @@ function escapeHtml(s: string): string {
 
 function buildAckBody(payload: IntakePayload): { text: string; html: string } {
   const firstNameRaw = payload.name.split(' ')[0]
-  // Plain-text body has no injection vector; the HTML body does.
+  // Plain-text body has no injection vector; HTML body does.
   const firstNameText = firstNameRaw
   const firstNameHtml = escapeHtml(firstNameRaw)
   const commercial = INTENT_IS_COMMERCIAL[payload.intent]
+  const artifact = INTENT_24H_ARTIFACT[payload.intent]
+  // Executive engagements get a discretion-tier ack — no booking nudge, no
+  // public-link CTA. Aligns with the brief-first sequence on the
+  // /engagements/strategic-advisor page (the brief lands within seven days,
+  // then a 45-minute conversation to decide on next steps).
+  const isExecutive = payload.intent === 'executive'
 
   const textLines = [
     `Hi ${firstNameText},`,
     '',
-    'Thanks — your message reached Frank directly. This is an automatic',
-    'confirmation so you know it landed; a real reply follows, usually within',
-    '1–2 working days (Madrid time).',
+    'Your message reached Frank. This is an automatic confirmation so you',
+    'know it landed; a real reply follows within 1–2 working days (Madrid time).',
     '',
-    `What you sent: ${INTENT_LABEL[payload.intent]}`,
+    `Within 24 hours you'll also receive ${artifact}.`,
     '',
-    commercial
-      ? `If it's faster to just talk, grab a 20-minute intro slot: ${BOOKING_URL}`
-      : `In the meantime, the work is all public: https://frankx.ai/agentic-builder-lab`,
+    isExecutive
+      ? 'Engagements at this level begin with a written one-page brief on the problem you named, produced within seven days. A 45-minute conversation follows, to decide whether the brief is the right read.'
+      : commercial
+        ? `If it's faster to just talk, grab a 20-minute intro slot: ${BOOKING_URL}`
+        : `In the meantime, the work is all public: https://frankx.ai/agentic-builder-lab`,
     '',
     '— Frank',
     'frank@frankx.ai · frankx.ai',
@@ -242,14 +250,16 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
   const html = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:520px;margin:0 auto;color:#0f172a;line-height:1.6">
   <p>Hi ${firstNameHtml},</p>
-  <p>Thanks — your message reached Frank directly. This is an automatic confirmation so you know it landed; a real reply follows, usually within <strong>1–2 working days</strong> (Madrid time).</p>
-  <p style="background:#f1f5f9;border-radius:8px;padding:12px 16px;font-size:14px;color:#475569">
-    <strong>What you sent:</strong> ${INTENT_LABEL[payload.intent]}
+  <p>Your message reached Frank. This is an automatic confirmation so you know it landed; a real reply follows within <strong>1–2 working days</strong> (Madrid time).</p>
+  <p style="background:#f8fafc;border-left:3px solid #0891b2;padding:14px 18px;font-size:14px;color:#0f172a;margin:20px 0">
+    Within <strong>24 hours</strong> you'll also receive ${artifact}.
   </p>
   <p>${
-    commercial
-      ? `If it's faster to just talk, <a href="${BOOKING_URL}" style="color:#0891b2">grab a 20-minute intro slot</a>.`
-      : `In the meantime, the work is all public — see the <a href="https://frankx.ai/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
+    isExecutive
+      ? 'Engagements at this level begin with a written one-page brief on the problem you named, produced within seven days. A 45-minute conversation follows, to decide whether the brief is the right read.'
+      : commercial
+        ? `If it's faster to just talk, <a href="${BOOKING_URL}" style="color:#0891b2">grab a 20-minute intro slot</a>.`
+        : `In the meantime, the work is all public — see the <a href="https://frankx.ai/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
   }</p>
   <p style="margin-top:24px;color:#64748b;font-size:14px">— Frank<br/>frank@frankx.ai · frankx.ai</p>
 </div>`.trim()

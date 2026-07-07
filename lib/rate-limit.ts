@@ -3,11 +3,11 @@ import type { NextRequest } from 'next/server'
 /**
  * Shared in-memory rate limiter.
  *
- * Token-bucket per (scope, key). One Map per scope so future routes don't
- * compete for cap space. Per-Vercel-instance, so effective limit is
- * N × instances under load — still meaningful against simple abuse loops.
- * For production-grade limiting across all instances, swap for Vercel KV +
- * Upstash rate-limiter, or enable Vercel WAF.
+ * Token-bucket per (scope, key). One Map per scope so /api/intake and
+ * /api/private-access don't compete for cap space. Per-Vercel-instance, so
+ * effective limit is N × instances under load — still meaningful against
+ * simple abuse loops. For production-grade limiting across all instances,
+ * swap for Vercel KV + Upstash rate-limiter, or enable Vercel WAF.
  *
  * The cap is a HARD cap on Map size, enforced via insertion-order LRU
  * eviction (Map preserves insertion order). When a burst of unique keys
@@ -30,6 +30,8 @@ interface ScopeConfig {
 const SCOPES = {
   // /api/intake — public contact form
   intake: { windowMs: 60_000, max: 5, cap: 1024 },
+  // /api/private-access — passcode guesses
+  'private-access': { windowMs: 60_000, max: 5, cap: 1024 },
 } satisfies Record<string, ScopeConfig>
 
 const stores = new Map<string, Map<string, Bucket>>()
@@ -90,4 +92,12 @@ export function rateLimited(scope: keyof typeof SCOPES, key: string): boolean {
 
   store.set(key, { count: 1, reset: now + cfg.windowMs })
   return false
+}
+
+/**
+ * Test hook — only used by unit tests. Don't call from app code.
+ * @internal
+ */
+export function __resetRateLimiterForTests(): void {
+  stores.clear()
 }
