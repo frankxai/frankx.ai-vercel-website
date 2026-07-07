@@ -32,6 +32,9 @@ export type SystemMapNode = {
   repo?: string
   href?: string
   metric?: string
+  associatedCommands?: string[]
+  inputsOutputs?: { inputs: string[]; outputs: string[] }
+  relatedRepos?: string[]
 }
 
 export type SystemMapEdge = {
@@ -543,6 +546,9 @@ export const systemMapNodes: SystemMapNode[] = [
     accent: 'emerald',
     position: { x: 300, y: 205 },
     metric: '8 loops',
+    associatedCommands: ['/acos', '/factory'],
+    inputsOutputs: { inputs: ['Progress ledger', 'repo status'], outputs: ['one execution queue', 'evidence path'] },
+    relatedRepos: ['frankx.ai-vercel-website', 'agentic-ops-hub']
   },
   {
     id: 'sis',

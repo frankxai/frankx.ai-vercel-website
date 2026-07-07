@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, type ComponentType } from 'react'
+import { useMemo, useState, useEffect, useRef, type ComponentType } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -9,17 +9,22 @@ import {
   CheckCircle2,
   CircuitBoard,
   Command,
+  Database,
   ExternalLink,
   Filter,
   GitBranch,
   Github,
+  Globe,
   Layers3,
   LockKeyhole,
   Network,
+  Play,
   Search,
   ShieldCheck,
   Sparkles,
+  Terminal,
   Workflow,
+  X,
 } from 'lucide-react'
 import {
   Background,
@@ -33,6 +38,7 @@ import {
   type Node,
   type NodeProps,
 } from '@xyflow/react'
+import { ecosystemEntries, type EcosystemLayer, type EcosystemTier } from '@/data/ecosystem'
 
 import {
   agenticLifeOsPublicScan,
@@ -235,6 +241,12 @@ const nodeTypes = {
 }
 
 function SystemMap() {
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null)
+
+  const selectedNode = useMemo(() => {
+    return systemMapNodes.find((n) => n.id === selectedNodeId) || null
+  }, [selectedNodeId])
+
   const nodes = useMemo<AtlasFlowNode[]>(
     () =>
       systemMapNodes.map((node) => ({
@@ -268,28 +280,122 @@ function SystemMap() {
   )
 
   return (
-    <div id="system-map" className="h-[520px] min-h-[420px] overflow-hidden rounded-lg border border-white/[0.08] bg-[#08080a]">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        fitView
-        fitViewOptions={{ padding: 0.1 }}
-        minZoom={0.35}
-        maxZoom={1.35}
-        proOptions={{ hideAttribution: true }}
-        nodesDraggable={false}
-      >
-        <Background color="#27272a" gap={28} size={1} />
-        <MiniMap
-          pannable
-          zoomable
-          className="!hidden !h-24 !w-32 !border !border-white/[0.08] !bg-zinc-950/90 sm:!block"
-          nodeColor={(node) => accentTokens[(node.data as SystemMapNode).accent]?.edge ?? '#71717a'}
-          maskColor="rgba(0,0,0,0.45)"
-        />
-        <Controls className="!border !border-white/[0.08] !bg-zinc-950/90 [&_button]:!border-white/[0.08] [&_button]:!bg-transparent [&_button]:!text-zinc-200 [&_button:hover]:!bg-white/[0.08]" />
-      </ReactFlow>
+    <div className="relative flex h-[520px] min-h-[420px] w-full overflow-hidden rounded-lg border border-white/[0.08] bg-[#08080a]">
+      <div id="system-map" className="flex-1">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          onNodeClick={(_, node) => setSelectedNodeId(node.id)}
+          onPaneClick={() => setSelectedNodeId(null)}
+          fitView
+          fitViewOptions={{ padding: 0.1 }}
+          minZoom={0.35}
+          maxZoom={1.35}
+          proOptions={{ hideAttribution: true }}
+          nodesDraggable={false}
+        >
+          <Background color="#27272a" gap={28} size={1} />
+          <MiniMap
+            pannable
+            zoomable
+            className="!hidden !h-24 !w-32 !border !border-white/[0.08] !bg-zinc-950/90 sm:!block"
+            nodeColor={(node) => accentTokens[(node.data as SystemMapNode).accent]?.edge ?? '#71717a'}
+            maskColor="rgba(0,0,0,0.45)"
+          />
+          <Controls className="!border !border-white/[0.08] !bg-zinc-950/90 [&_button]:!border-white/[0.08] [&_button]:!bg-transparent [&_button]:!text-zinc-200 [&_button:hover]:!bg-white/[0.08]" />
+        </ReactFlow>
+      </div>
+
+      {selectedNode && (
+        <div className="absolute bottom-0 right-0 top-0 z-10 w-full max-w-sm overflow-y-auto border-l border-white/[0.08] bg-[#0c0c0e]/95 p-6 backdrop-blur-xl sm:w-80 custom-scrollbar">
+          <button
+            onClick={() => setSelectedNodeId(null)}
+            className="absolute right-4 top-4 rounded-md p-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-zinc-100"
+          >
+            <X className="h-4 w-4" />
+          </button>
+
+          <div className="mt-2">
+            <div
+              className={`inline-flex items-center justify-center rounded-lg border p-2 ${accentTokens[selectedNode.accent].bg} ${accentTokens[selectedNode.accent].border} ${accentTokens[selectedNode.accent].text}`}
+            >
+              <Network className="h-5 w-5" />
+            </div>
+            <h3 className="mt-4 text-lg font-semibold text-zinc-100">{selectedNode.label}</h3>
+            <p className="mt-1 text-sm leading-relaxed text-zinc-400">{selectedNode.description}</p>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-6">
+            {selectedNode.relatedRepos && selectedNode.relatedRepos.length > 0 && (
+              <div>
+                <h4 className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  <Github className="h-3 w-3" />
+                  Related Repos
+                </h4>
+                <div className="mt-3 flex flex-col gap-2">
+                  {selectedNode.relatedRepos.map((repo) => (
+                    <div key={repo} className="rounded-md border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-xs font-medium text-zinc-300">
+                      {repo}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {selectedNode.associatedCommands && selectedNode.associatedCommands.length > 0 && (
+              <div>
+                <h4 className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  <Terminal className="h-3 w-3" />
+                  Commands
+                </h4>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {selectedNode.associatedCommands.map((cmd) => (
+                    <code key={cmd} className="rounded-md border border-white/[0.08] bg-black/40 px-2 py-1.5 text-[11px] text-zinc-300">
+                      {cmd}
+                    </code>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {selectedNode.inputsOutputs && (selectedNode.inputsOutputs.inputs.length > 0 || selectedNode.inputsOutputs.outputs.length > 0) && (
+              <div>
+                <h4 className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  <ArrowRight className="h-3 w-3" />
+                  Data Flow
+                </h4>
+                <div className="mt-3 space-y-4">
+                  {selectedNode.inputsOutputs.inputs.length > 0 && (
+                    <div>
+                      <div className="text-[10px] text-zinc-500">Inputs</div>
+                      <div className="mt-1.5 flex flex-wrap gap-1.5">
+                        {selectedNode.inputsOutputs.inputs.map((input) => (
+                          <span key={input} className="rounded-full bg-white/[0.04] border border-white/[0.05] px-2.5 py-1 text-[10px] text-zinc-300">
+                            {input}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {selectedNode.inputsOutputs.outputs.length > 0 && (
+                    <div>
+                      <div className="text-[10px] text-zinc-500">Outputs</div>
+                      <div className="mt-1.5 flex flex-wrap gap-1.5">
+                        {selectedNode.inputsOutputs.outputs.map((output) => (
+                          <span key={output} className="rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 text-[10px] text-emerald-300">
+                            {output}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -465,9 +571,85 @@ function OfferFunnel() {
   )
 }
 
-function DnaCards() {
+function SwarmSimulator({ card, onClose }: { card: typeof dnaCards[number]; onClose: () => void }) {
+  const [logs, setLogs] = useState<string[]>([])
+  const [isSimulating, setIsSimulating] = useState(true)
+  const logsEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setLogs([`> Initializing ${card.layer} Swarm Protocol...`])
+    
+    const sequence = [
+      `[Sys] Parsing instruction set for '${card.name}'...`,
+      `[Router] Allocating specialized subagents for ${card.layer} execution...`,
+      `[Worker-1] Executing primary task logic...`,
+      `[Worker-2] Gathering context from ${card.evidence[0] || 'local knowledge graph'}...`,
+      `[Gate] Running safety checks and quality evaluation...`,
+      `[Sys] Generated artifacts verified successfully.`,
+      `> Simulation Complete. Result: ${card.result}`
+    ]
+
+    let step = 0
+    const interval = setInterval(() => {
+      if (step < sequence.length) {
+        setLogs(prev => [...prev, sequence[step]])
+        step++
+      } else {
+        setIsSimulating(false)
+        clearInterval(interval)
+      }
+    }, 800)
+
+    return () => clearInterval(interval)
+  }, [card])
+
+  useEffect(() => {
+    logsEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [logs])
+
   return (
-    <section id="dna" className="border-b border-white/[0.06] bg-[#08080a] py-16 sm:py-20">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm sm:p-6">
+      <div className="flex w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-white/[0.12] bg-[#0c0c0e] shadow-2xl">
+        <div className="flex items-center justify-between border-b border-white/[0.08] bg-white/[0.02] px-4 py-3">
+          <div className="flex items-center gap-3">
+            <Terminal className="h-4 w-4 text-emerald-400" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-300">Swarm Execution Simulator</span>
+            {isSimulating && (
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              </span>
+            )}
+          </div>
+          <button onClick={onClose} className="rounded-md p-1.5 text-zinc-400 hover:bg-white/10 hover:text-white">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        
+        <div className="relative min-h-[320px] max-h-[60vh] overflow-y-auto p-4 font-mono text-sm bg-[#050505] custom-scrollbar">
+          {logs.map((log, i) => (
+            <div key={i} className={`mb-2.5 flex items-start gap-3 ${log.startsWith('>') ? 'text-emerald-400 font-medium' : 'text-zinc-300'}`}>
+              <span className="opacity-40 text-xs mt-0.5 shrink-0">{new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
+              <span>{log}</span>
+            </div>
+          ))}
+          <div ref={logsEndRef} />
+        </div>
+        
+        <div className="border-t border-white/[0.08] bg-white/[0.02] p-4 text-xs text-zinc-500 flex justify-between">
+          <span>Simulation running locally via mock engine.</span>
+          <span>Execution time: {(logs.length * 0.8).toFixed(1)}s</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DnaCards() {
+  const [simulatingCard, setSimulatingCard] = useState<typeof dnaCards[number] | null>(null)
+
+  return (
+    <section id="dna" className="relative border-b border-white/[0.06] bg-[#08080a] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Execution DNA"
@@ -480,13 +662,30 @@ function DnaCards() {
           {dnaCards.map((card) => {
             const tokens = accentTokens[card.accent]
             return (
-              <article key={card.name} className={`rounded-lg border ${tokens.border} bg-white/[0.025] p-5`}>
-                <div className={`mb-4 inline-flex rounded-lg border ${tokens.border} ${tokens.bg} p-2 ${tokens.text}`}>
-                  <Blocks className="h-4 w-4" aria-hidden="true" />
+              <article key={card.name} className={`relative flex flex-col rounded-lg border ${tokens.border} bg-white/[0.025] p-5`}>
+                <div className="flex items-start justify-between">
+                  <div className={`mb-4 inline-flex rounded-lg border ${tokens.border} ${tokens.bg} p-2 ${tokens.text}`}>
+                    <Blocks className="h-4 w-4" aria-hidden="true" />
+                  </div>
+                  <button 
+                    onClick={() => setSimulatingCard(card)}
+                    className="group inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[10px] font-medium text-zinc-300 transition hover:bg-white/10"
+                  >
+                    <Play className="h-3 w-3 fill-zinc-400 text-zinc-400 group-hover:fill-emerald-400 group-hover:text-emerald-400 transition-colors" />
+                    Simulate
+                  </button>
                 </div>
+                
                 <div className={`text-[11px] font-semibold uppercase tracking-[0.16em] ${tokens.text}`}>{card.layer}</div>
                 <h3 className="mt-2 text-base font-semibold text-zinc-50">{card.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">{card.description}</p>
+                
+                {card.name === 'Agentic execution' && (
+                  <div className="mt-4 overflow-hidden rounded-lg border border-white/[0.08]">
+                    <img src="/images/agentic-life-os/dna-execution.jpg" alt="Agentic Execution Visual" className="w-full object-cover" />
+                  </div>
+                )}
+                
+                <p className="mt-3 text-sm leading-6 text-zinc-400 flex-1">{card.description}</p>
                 <div className="mt-5 border-t border-white/[0.06] pt-4">
                   <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500">Execution</div>
                   <p className="mt-2 text-xs leading-5 text-zinc-400">{card.execution}</p>
@@ -507,6 +706,8 @@ function DnaCards() {
           })}
         </div>
       </div>
+
+      {simulatingCard && <SwarmSimulator card={simulatingCard} onClose={() => setSimulatingCard(null)} />}
     </section>
   )
 }
@@ -856,6 +1057,116 @@ function FinalCta() {
   )
 }
 
+function EcosystemExplorer() {
+  const [query, setQuery] = useState('')
+  const [tierFilter, setTierFilter] = useState<EcosystemTier | 'all'>('all')
+  const [layerFilter, setLayerFilter] = useState<EcosystemLayer | 'all'>('all')
+
+  const filteredEntries = useMemo(() => {
+    const normalized = query.trim().toLowerCase()
+    return ecosystemEntries.filter((entry) => {
+      const matchesTier = tierFilter === 'all' || entry.tier === tierFilter
+      const matchesLayer = layerFilter === 'all' || entry.layer === layerFilter
+      const matchesQuery =
+        normalized.length === 0 ||
+        `${entry.name} ${entry.summary} ${entry.repo}`.toLowerCase().includes(normalized)
+      return matchesTier && matchesLayer && matchesQuery
+    })
+  }, [query, tierFilter, layerFilter])
+
+  return (
+    <section id="ecosystem" className="border-b border-white/[0.06] bg-[#0a0a0b] py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Ecosystem Registry"
+          title="The complete FrankX operating estate"
+          copy="Every shipped system, sibling repo, operational layer, and ops-tooling slice mapped by tier and capability layer."
+          icon={Database}
+        />
+
+        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <label className="relative block w-full lg:max-w-md">
+            <span className="sr-only">Search ecosystem</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" aria-hidden="true" />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search systems by name, summary, repo..."
+              className="h-11 w-full rounded-lg border border-white/[0.1] bg-white/[0.035] pl-10 pr-4 text-sm text-zinc-100 outline-none placeholder:text-zinc-600 focus:border-cyan-300/40"
+            />
+          </label>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <select
+              value={tierFilter}
+              onChange={(e) => setTierFilter(e.target.value as any)}
+              className="h-11 rounded-lg border border-white/[0.1] bg-white/[0.035] px-3 text-sm text-zinc-300 outline-none focus:border-cyan-300/40"
+            >
+              <option value="all">All Tiers</option>
+              <option value="tier-1-frankx-surface">Tier 1 (Surface)</option>
+              <option value="tier-2-substrate">Tier 2 (Substrate)</option>
+              <option value="tier-3-operational">Tier 3 (Operational)</option>
+              <option value="tier-4-ops-tooling">Tier 4 (Ops Tooling)</option>
+            </select>
+            <select
+              value={layerFilter}
+              onChange={(e) => setLayerFilter(e.target.value as any)}
+              className="h-11 rounded-lg border border-white/[0.1] bg-white/[0.035] px-3 text-sm text-zinc-300 outline-none focus:border-cyan-300/40"
+            >
+              <option value="all">All Layers</option>
+              <option value="L0-intake">L0 Intake</option>
+              <option value="L1-second-brain">L1 Second Brain</option>
+              <option value="L2-command-center">L2 Command Center</option>
+              <option value="L3-operational-data">L3 Operational Data</option>
+              <option value="L4-public-face">L4 Public Face</option>
+              <option value="L5-substrate">L5 Substrate</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {filteredEntries.map((entry) => {
+            const tokens = accentTokens[entry.color as AtlasColor] || accentTokens.zinc
+            return (
+              <article key={entry.id} className={`rounded-lg border ${tokens.border} bg-white/[0.025] p-5 flex flex-col`}>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className={`mb-2 inline-flex rounded-md border ${tokens.border} ${tokens.bg} px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${tokens.text}`}>
+                      {entry.tier.replace('tier-', 'T').replace(/-/g, ' ')}
+                    </div>
+                    <h3 className="text-base font-semibold text-zinc-50">{entry.name}</h3>
+                  </div>
+                  {entry.publicUrl && (
+                    <ExternalAnchor href={entry.publicUrl} className={`rounded-lg border ${tokens.border} ${tokens.bg} p-2 ${tokens.text} hover:text-zinc-50`}>
+                      <Globe className="h-4 w-4" aria-hidden="true" />
+                    </ExternalAnchor>
+                  )}
+                </div>
+                <p className="mt-3 text-sm leading-6 text-zinc-400 flex-1">{entry.summary}</p>
+                <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3 text-[11px] text-zinc-500">
+                  <span className="flex items-center gap-1.5">
+                    <Layers3 className="h-3.5 w-3.5" />
+                    {entry.layer.replace('-', ' ')}
+                  </span>
+                  <span className={`px-2 py-0.5 rounded-full ${entry.status === 'live' ? 'bg-emerald-500/10 text-emerald-300' : 'bg-white/5 text-zinc-400'}`}>
+                    {entry.status}
+                  </span>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        
+        {filteredEntries.length === 0 && (
+          <div className="py-12 text-center text-zinc-500">
+            No ecosystem entries match your current filters.
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
 export default function AgenticLifeOsShell() {
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-zinc-100">
@@ -866,6 +1177,7 @@ export default function AgenticLifeOsShell() {
       <DnaCards />
       <IntelligenceSystems />
       <ModulesAndLoops />
+      <EcosystemExplorer />
       <GithubAtlas />
       <CommandSurfaceGrid />
       <FinalCta />

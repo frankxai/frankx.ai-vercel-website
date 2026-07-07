@@ -1,0 +1,15 @@
+{
+  "schema": "starlight.loop.v1",
+  "name": "frankx-image-infographic-loop",
+  "verdict": "MANUAL-FIRST",
+  "createdAt": "2026-07-02",
+  "objective": "Iteratively generate, review, log, and improve FrankX.ai social and website images and infographic frames.",
+  "stateFiles": [
+    ".loop/frankx-image-infographic-loop/STATE.md",
+    ".loop/frankx-image-infographic-loop/RUNS.md",
+    "docs/visual-loop/frankx-image-loop-2026-07-02.md",
+    "docs/visual-loop/design-loop-evidence.frankx-image-loop-2026-07-02.json"
+  ],
+  "outputDir": "public/images/social/frankx-loop-20260702",
+  "verifier": ".loop/frankx-image-infographic-loop/VERIFIER.md"
+}

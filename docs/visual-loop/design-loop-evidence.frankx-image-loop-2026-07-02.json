@@ -1,0 +1,205 @@
+{
+  "version": "2026-06-23",
+  "task": "FrankX.ai social media and website image/infographic generation loop",
+  "surface": "social images, website hero frames, OG frames, infographic frames",
+  "audience": "AI architects, serious creators, founders, and operators",
+  "first_read": "FrankX turns AI capability into practical command systems for content, tools, revenue, and publishing.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "starlight-design-intelligence/brand-packs/frankx"
+  ],
+  "references": [
+    {
+      "label": "FrankX brand pack",
+      "source": "C:/Users/frank/starlight/repos/starlight-design-intelligence/brand-packs/frankx",
+      "reason": "Brand, copy, tokens, and visual identity rules."
+    },
+    {
+      "label": "FrankX content strategy",
+      "source": "data/content-strategy.json and content/strategy/content-strategy-2026-06.md",
+      "reason": "Pillars, weekly targets, comparison/AEO traffic strategy, and infographic cadence."
+    },
+    {
+      "label": "Existing visual ledgers",
+      "source": "data/visual-asset-ledger.csv, data/visual-inventory.csv, data/blog-native-premium-visual-system.json",
+      "reason": "Reuse the repo's hero/social review and source logging pattern."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "executive AI command layer",
+      "obsidian and graphite material language",
+      "emerald/cyan technical signal",
+      "amber business signal when appropriate",
+      "concrete physical metaphors"
+    ],
+    "avoid": [
+      "cute bots",
+      "generic AI brains",
+      "stock laptop people",
+      "fake logos",
+      "garbled text",
+      "decorative filler"
+    ],
+    "signature": "FrankX visuals should look like command systems a founder can use, not AI mood boards.",
+    "system": [
+      "Tier B generated-owned images",
+      "no baked long text",
+      "safe negative space for later overlays",
+      "surface-specific crops",
+      "prompt and source path logged"
+    ]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "generated-media",
+    "provenance": "generated",
+    "why_premium": "Custom generated frames based on FrankX brand, content strategy, and actual visual ledgers.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/frankx-command-room-social-square-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Square command-room visual, 1254x1254. Strong central table, safe overlay space, no baked text. Score 27/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/aeo-citation-engine-wide-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Wide AEO citation archive visual, 1672x941. Strong physical archive and citation aperture, useful right-side overlay space. Score 28/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/personal-ai-coe-under-100-square-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Square Personal AI CoE tool-stack workbench, 1254x1254. Practical and credible, but paper-note marks create minor generated-scribble risk. Score 26/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/creator-os-content-engine-portrait-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Vertical creator OS content engine frame, 941x1672. Strong craft and phone crop, but more abstract than the content loop. Score 26/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/faceless-creator-stack-wide-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Wide Faceless Creator AI Stack production studio, 1672x941. Concrete creator evidence and useful right-side overlay space. Score 27/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/model-routing-deal-room-square-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Square model/tool routing decision desk, 1254x1254. Immediate routing read, generic symbols, no text artifacts. Score 29/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/refresh-queue-traffic-staleness-wide-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Wide refresh queue traffic/staleness physical infographic frame, 1672x941. Clear input-priority-output flow. Score 29/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/frankx-website-hero-command-layer-wide-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Wide website hero command-layer frame, 1672x941. Strong left overlay space, subtle X-shaped command geometry, concrete founder operations zones. Score 29/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/ai-architecture-blueprint-square-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Square AI architecture workflow blueprint, 1254x1254. Clean physical topology, strong upper overlay band, no fake UI/text. Score 29/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/offer-ladder-revenue-engine-wide-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Wide offer ladder and revenue engine physical infographic, 1672x941. Clear input, qualification, offer ladder, proof, and revenue flow. Minor tiny mark texture on deal modules. Score 28/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/search-social-compounding-map-wide-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Wide website/social compounding strategy map, 1672x941. Clean content, authority, distribution, revenue, and feedback loop with blank seamless modules. Score 30/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/ai-stack-comparison-matrix-square-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Square physical AI stack comparison matrix, 1254x1254. Selected route, blank rows/columns, strong overlay band, no text artifacts. Score 30/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/creator-revenue-flywheel-portrait-v1.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Vertical creator revenue flywheel physical infographic, 941x1672. Clear phone-native creator-to-revenue loop with blank modules and revenue/reinvestment path. Score 30/30."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/frankx-loop-contact-sheet-20260702.png",
+      "kind": "review-sheet",
+      "inspected": true,
+      "notes": "Contact sheet for 13 accepted FrankX image-loop assets, 2120x1648. Review labels are only in the contact sheet, not in source assets."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/overlays/search-social-compounding-map-wide-overlay-v1.png",
+      "kind": "social-infographic-overlay",
+      "inspected": true,
+      "notes": "Wide exact-copy overlay variant for website/social compounding strategy, 1672x941. Text fit and contrast passed."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/overlays/ai-stack-comparison-matrix-square-overlay-v1.png",
+      "kind": "social-infographic-overlay",
+      "inspected": true,
+      "notes": "Square exact-copy overlay variant for AI stack comparison matrix, 1254x1254. Text fit and contrast passed."
+    },
+    {
+      "path_or_url": "public/images/social/frankx-loop-20260702/overlays/creator-revenue-flywheel-portrait-overlay-v1.png",
+      "kind": "social-infographic-overlay",
+      "inspected": true,
+      "notes": "Vertical exact-copy overlay variant for creator revenue flywheel, 941x1672. Text fit and contrast passed."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier B generated-owned selected before production."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Cycles 1-13 exports inspected with view_image."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "Cycle 1 scored 27/30; cycle 2 scored 28/30; cycle 3 scored 26/30; cycle 4 scored 26/30; cycle 5 scored 27/30; cycle 6 scored 29/30; cycle 7 scored 29/30; cycle 8 scored 29/30; cycle 9 scored 29/30; cycle 10 scored 28/30; cycle 11 scored 30/30; cycle 12 scored 30/30; cycle 13 scored 30/30."
+    },
+    {
+      "name": "contact-sheet",
+      "status": "pass",
+      "evidence": "Batch contact sheet created and inspected at public/images/social/frankx-loop-20260702/frankx-loop-contact-sheet-20260702.png."
+    },
+    {
+      "name": "overlay-copy",
+      "status": "pass",
+      "evidence": "Three exact-copy overlay variants rendered and inspected for text fit, contrast, and annotation placement."
+    }
+  ],
+  "score": {
+    "total": 30,
+    "max": 30,
+    "notes": "Latest cycle approved at 30/30. Score each accepted image individually."
+  },
+  "decision": "ship",
+  "loop_status": "manual-first active - cycles 1-13 approved",
+  "known_risks": [
+    "Exact data labels and complex infographics should be code/design overlays rather than relying on image generation text.",
+    "Current production checkout contains unrelated dirty files; this loop uses additive-only paths."
+  ]
+}

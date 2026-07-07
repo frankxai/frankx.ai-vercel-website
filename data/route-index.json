@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 781,
+    "total": 792,
     "aliases": 15,
     "byType": {
       "core": 22,
-      "section": 384,
+      "section": 395,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -444,7 +444,7 @@
     {
       "href": "/ai-architecture/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -2946,7 +2946,7 @@
     {
       "href": "/blog/suno-ai-music-creation-workshop",
       "title": "Create Music Without Musical Training: The Suno AI Music Creation Workshop",
-      "description": "Transform your ideas into cinematic soundscapes, meditation music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and frequency science for transformative audio.",
+      "description": "Transform your ideas into cinematic soundscapes, meditation-inspired music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and aesthetic tuning choices for expressive audio.",
       "tags": [
         "Suno AI",
         "AI Music",
@@ -3265,7 +3265,7 @@
     },
     {
       "href": "/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
-      "title": "The Ultimate Guide: Using [ElevenLabs](https://try.elevenlabs.io/7x6qh6upgry8) for faceless Youtube channels and [Higgsfield](https://go.agenticincome.ai/higgsfield) for B-roll",
+      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsfield for B-Roll",
       "description": "How to combine modern AI voice models with responsive video tools for high-retention faceless production.",
       "tags": [
         "using",
@@ -3534,7 +3534,7 @@
     {
       "href": "/blueprint/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -5200,6 +5200,14 @@
       "type": "library"
     },
     {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/links",
       "title": "Links",
       "type": "static"
@@ -6103,6 +6111,33 @@
       "type": "section"
     },
     {
+      "href": "/path/aesthete",
+      "title": "Aesthete",
+      "tags": [
+        "path",
+        "aesthete"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/path/operator",
+      "title": "Operator",
+      "tags": [
+        "path",
+        "operator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/path/seeker",
+      "title": "Seeker",
+      "tags": [
+        "path",
+        "seeker"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/peak-performance",
       "title": "Peak Performance",
       "tags": [
@@ -6114,6 +6149,14 @@
     {
       "href": "/plan",
       "title": "Plan",
+      "type": "section"
+    },
+    {
+      "href": "/portal",
+      "title": "Portal",
+      "tags": [
+        "portal"
+      ],
       "type": "section"
     },
     {
@@ -6607,7 +6650,7 @@
     {
       "href": "/prototype/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -6709,6 +6752,16 @@
       "href": "/research/sources",
       "title": "Research Sources",
       "type": "research"
+    },
+    {
+      "href": "/research/visual-catalog",
+      "title": "Visual Catalog",
+      "tags": [
+        "research",
+        "visual",
+        "catalog"
+      ],
+      "type": "section"
     },
     {
       "href": "/resources",
@@ -7342,6 +7395,20 @@
       "type": "static"
     },
     {
+      "href": "/v",
+      "title": "V",
+      "tags": [],
+      "type": "section"
+    },
+    {
+      "href": "/v0",
+      "title": "V0",
+      "tags": [
+        "v0"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/valentines-day",
       "title": "Valentines Day",
       "tags": [
@@ -7377,10 +7444,27 @@
       "type": "community"
     },
     {
+      "href": "/vercel",
+      "title": "Vercel",
+      "tags": [
+        "vercel"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/vibe",
       "title": "Vibe",
       "tags": [
         "vibe"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/vibe-os",
+      "title": "Vibe OS",
+      "tags": [
+        "vibe",
+        "os"
       ],
       "type": "section"
     },
@@ -7450,6 +7534,17 @@
         "work",
         "with",
         "me"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/work/property-intelligence-os",
+      "title": "Property Intelligence OS",
+      "tags": [
+        "work",
+        "property",
+        "intelligence",
+        "os"
       ],
       "type": "section"
     },
