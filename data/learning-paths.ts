@@ -257,6 +257,7 @@ export const learningPaths: LearningPath[] = [
           'The flagship consumer surface at claude.ai — chat, Projects, Artifacts, file uploads, and the launchpad for trying every model variant.',
         href: 'https://claude.ai/',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Claude API',
@@ -265,6 +266,7 @@ export const learningPaths: LearningPath[] = [
           'The developer entry point (formerly the Anthropic API). Streaming, tool use, prompt caching, batches, Files API, vision, and PDF support.',
         href: 'https://docs.claude.com/en/api/overview',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Claude Code',
@@ -273,6 +275,7 @@ export const learningPaths: LearningPath[] = [
           'The terminal-first coding companion. Now available as a CLI, in VS Code / JetBrains, on the web at claude.ai/code, and on mobile via the Claude apps.',
         href: 'https://docs.claude.com/en/docs/claude-code/overview',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Claude Agent SDK',
@@ -281,6 +284,7 @@ export const learningPaths: LearningPath[] = [
           'Build autonomous agent loops with the same primitives Claude Code uses — sub-agents, hooks, settings, slash commands, MCP servers.',
         href: 'https://docs.claude.com/en/api/agent-sdk',
         status: 'New',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Model Context Protocol (MCP)',
@@ -289,6 +293,7 @@ export const learningPaths: LearningPath[] = [
           'Anthropic-led open protocol for connecting Claude to data sources and tools. Reference servers + a fast-growing ecosystem across vendors.',
         href: 'https://modelcontextprotocol.io/',
         status: 'GA',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Computer Use',
@@ -297,6 +302,7 @@ export const learningPaths: LearningPath[] = [
           "Lets Claude see a screen and operate a mouse and keyboard. Good for desktop automation, QA, and form-filling where there's no API.",
         href: 'https://docs.claude.com/en/docs/build-with-claude/computer-use',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Skills',
@@ -305,6 +311,7 @@ export const learningPaths: LearningPath[] = [
           'Reusable Claude capabilities (e.g. visual-creation, deep-research, security-review) authored as folders of instructions + scripts. Compose into agent workflows.',
         href: 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview',
         status: 'New',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Claude on Amazon Bedrock',
@@ -313,6 +320,7 @@ export const learningPaths: LearningPath[] = [
           'Claude as a fully-managed model in AWS Bedrock — IAM, VPC, CloudWatch, Knowledge Bases, and Bedrock Agents come for free if you already live in AWS.',
         href: 'https://docs.claude.com/en/api/claude-on-amazon-bedrock',
         status: 'GA',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Claude on Vertex AI',
@@ -321,6 +329,7 @@ export const learningPaths: LearningPath[] = [
           'Claude as a Vertex AI model — pair with BigQuery, GKE, and Google Cloud security boundaries. Useful when the rest of the stack is Google-native.',
         href: 'https://docs.claude.com/en/api/claude-on-vertex-ai',
         status: 'GA',
+        lastVerified: '2026-07-07',
       },
     ],
     announcements: [
@@ -1205,6 +1214,7 @@ export const learningPaths: LearningPath[] = [
           "Google's flagship reasoning model. Set thinking level HIGH for Deep Think mode on complex code, research, and multi-step planning.",
         href: 'https://deepmind.google/models/gemini/pro/',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Gemini 3.5 Flash',
@@ -1213,6 +1223,7 @@ export const learningPaths: LearningPath[] = [
           'GA since I/O 2026. Default model across Antigravity. Outperforms 3.1 Pro on coding and agentic benchmarks at ~4× the speed.',
         href: 'https://deepmind.google/models/gemini/',
         status: 'New',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Gemini Omni',
@@ -1221,6 +1232,7 @@ export const learningPaths: LearningPath[] = [
           'New "anything from any input" model — starts with video. Rolling out to AI Plus, Pro, and Ultra subscribers via the Gemini app and Google Flow.',
         href: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/',
         status: 'New',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Antigravity 2.0',
@@ -1229,6 +1241,7 @@ export const learningPaths: LearningPath[] = [
           'Standalone agent-first desktop app + CLI + SDK. Replaces Gemini CLI (sunset June 18, 2026). Default model: Gemini 3.5 Flash.',
         href: 'https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/',
         status: 'New',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'NotebookLM',
@@ -1237,6 +1250,7 @@ export const learningPaths: LearningPath[] = [
           'Audio Overviews with Interactive Mode (raise hand to interrupt the hosts). Cinematic Video Overviews in 10 visual styles. Multi-output Studio panel.',
         href: 'https://notebooklm.google/',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Veo 3.1 + Veo 3.1 Lite',
@@ -1245,6 +1259,7 @@ export const learningPaths: LearningPath[] = [
           'Text-to-video up to 60 seconds at 4K with native audio. Lite ships at under 50% the cost of Fast. Available via VideoFX, Vertex AI, and Gemini API.',
         href: 'https://deepmind.google/models/veo/',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Nano Banana Pro / Nano Banana 2',
@@ -1253,6 +1268,7 @@ export const learningPaths: LearningPath[] = [
           'Pro = Gemini 3 Pro Image (deliberate thinking pass, 2K native, up to 4K). 2 = Gemini 3.1 Flash Image (Flash speed). 5-subject character consistency, image search grounding.',
         href: 'https://deepmind.google/models/gemini-image/pro/',
         status: 'New',
+        lastVerified: '2026-07-07',
       },
       {
         name: 'Google AI Studio',
@@ -1261,6 +1277,7 @@ export const learningPaths: LearningPath[] = [
           'Fastest way to try Gemini and ship apps. New native Android app launched at I/O 2026 alongside the Gemini API "Get code" flow.',
         href: 'https://aistudio.google.com/',
         status: 'Updated',
+        lastVerified: '2026-07-07',
       },
     ],
     announcements: [
