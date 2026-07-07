@@ -539,9 +539,9 @@ export default function OSPage() {
       <section className="py-16 border-t border-white/[0.04]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-zinc-500 leading-relaxed">
-            Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence. The enterprise
-            6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) used at
-            Fortune 500s scales down to one person. This is what that looks like in practice.
+            Frank Riemer is a former AI architect at Oracle. FrankX adapts enterprise AI architecture
+            patterns (Strategy, Governance, Talent, Technology, Data, Ethics) to one-person and small-team
+            creative systems. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
             <Link

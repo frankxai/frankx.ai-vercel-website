@@ -46,10 +46,12 @@ git clone git@github.com:frankxai/frankx.ai-vercel-website.git .worktrees/vercel
 **Frank = Top Creator. Top AI Architect. Humble.**
 
 ### Who Frank Is
-- **AI Architect**: Enterprise-grade AI systems, Oracle expertise, agentic orchestration
-- **Creator**: 500+ AI songs, music production, generative art, digital products
+- **AI Architect**: Former AI architect at Oracle; enterprise-grade AI systems, cloud architecture, agentic orchestration
+- **Creator**: 12,000+ AI songs, music production, generative art, digital products
 - **Builder**: Ships products, writes code, creates content that works
 - **Technologist**: Bridges cutting-edge AI with practical creative applications
+
+Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
 ### Brand Attributes
 - **Excellence**: Every detail matters. Ultra high quality in everything.
@@ -81,7 +83,7 @@ role: AI Systems Designer
 specialty: Building enterprise-grade AI systems, agentic orchestration
 focus:
   - AI architecture and system design
-  - Oracle Cloud and enterprise integration
+  - Enterprise cloud architecture and public AI platform patterns
   - Agentic workflows and multi-agent systems
   - Technical documentation and tutorials
 ```

@@ -129,11 +129,14 @@ export default function YouTubePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+              className="mb-3 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Deep technical tutorials, production music workflows, and honest takes on building
-              with AI. From an Oracle AI Architect who ships code, creates music, and builds in public.
+              with AI. From a former AI architect at Oracle who ships code, creates music, and builds in public.
             </motion.p>
+            <p className="mb-8 max-w-2xl text-xs leading-relaxed text-slate-500">
+              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+            </p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -400,7 +403,7 @@ export default function YouTubePage() {
                 Subscribe to the Channel
               </h2>
               <p className="mx-auto mb-3 text-sm text-white/40">
-                Oracle AI Architect &middot; 12,000+ AI songs &middot; Building in public
+                Former AI architect at Oracle &middot; 12,000+ AI songs &middot; Building in public
               </p>
               <p className="mx-auto mb-8 max-w-lg text-slate-400">
                 Get weekly tutorials, production field notes, and behind-the-scenes of building

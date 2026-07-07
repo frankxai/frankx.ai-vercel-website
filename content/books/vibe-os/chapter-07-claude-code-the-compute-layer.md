@@ -59,7 +59,7 @@ A well-configured CLAUDE.md turns Claude Code from a general-purpose AI into a s
 ## Rules
 - Never rename working URLs
 - Never delete pages with traffic
-- Always use "AI Architect" (never "AI Systems Architect")
+- Always use "AI Architect" as the standard public title
 - Author name: "Frank Riemer" everywhere
 
 ## Deploy Workflow

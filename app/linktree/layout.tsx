@@ -6,7 +6,7 @@ import Script from 'next/script'
 export const metadata: Metadata = createMetadata({
   title: 'Frank X. Riemer | AI Architect & Creator - All Links',
   description:
-    'Connect with Frank X. Riemer — AI Architect at Oracle, creator of 12K+ AI songs, builder of the Agentic Creator OS. Products, resources, and community links.',
+    'Connect with Frank X. Riemer — former AI architect at Oracle, creator of 12K+ AI songs, builder of the Agentic Creator OS. Products, resources, and community links.',
   path: '/linktree',
   keywords: [
     'frank x riemer',
@@ -31,7 +31,7 @@ const schema = {
     name: 'Frank X. Riemer',
     alternateName: 'FrankX',
     description:
-      'AI Architect and creator building systems that amplify human creativity. Creator of 12K+ AI songs, Agentic Creator OS, and enterprise AI systems.',
+      'Former AI architect at Oracle and creator building systems that amplify human creativity. Creator of 12K+ AI songs, Agentic Creator OS, and practical AI systems.',
     url: 'https://frankx.ai',
     sameAs: SCHEMA_SAME_AS,
     jobTitle: 'AI Architect',

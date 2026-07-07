@@ -131,6 +131,6 @@ This ratio understates the individual advantage in one respect: the enterprise s
 
 Your thirty-eight agents require zero coordination cost. They do not need meetings. They do not produce status updates. They do not have competing priorities. The capacity that exists in the system is available for productive work, not coordination overhead.
 
-The talent pillar is where the gap between enterprise cost and personal cost is most dramatic. And it is where the compounding is most powerful — because every skill you build, every role definition you sharpen, every observation you convert to a configuration improvement makes the team more capable at zero additional cost.
+The talent pillar is where the gap between enterprise cost and personal cost is most dramatic. And it is where the compounding is most powerful — because every skill you build, every role definition you sharpen, every observation you convert to a configuration improvement makes the team more capable without proportional headcount cost.
 
 That is the Talent pillar.

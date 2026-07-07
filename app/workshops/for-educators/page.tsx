@@ -308,7 +308,7 @@ export default function ForEducatorsPage() {
                   Contact Frank Riemer
                 </a>
                 <p className="text-xs text-zinc-600 mt-3">
-                  AI Architect at Oracle
+                  Former AI architect at Oracle. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
                 </p>
               </div>
             </GlowCard>

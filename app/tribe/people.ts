@@ -123,13 +123,13 @@ export const tribePeople: TribePerson[] = [
   },
   {
     slug: 'oracle-ai-coe',
-    name: 'Oracle AI Center of Excellence',
-    role: 'Professional crucible, AI architecture, enterprise pressure',
-    privacy: 'Professional page. Keep public-safe and non-confidential.',
+    name: 'Former Enterprise AI Architecture Chapter',
+    role: 'Professional chapter, AI architecture, enterprise pressure',
+    privacy: 'Former professional chapter. Keep public-safe, non-confidential, and independent from Oracle endorsement.',
     shortGift:
-      'You sharpened the architect in me: enterprise pressure, client reality, cloud systems, AI strategy, and the discipline to translate intelligence into value.',
+      'You sharpened the architect in me: enterprise pressure, cloud systems, AI strategy, and the discipline to translate intelligence into value.',
     dedication:
-      'The AI Center of Excellence became a crucible. It forced intelligence to leave the abstract layer and meet customers, architecture, politics, constraints, compute, cost, security, trust, and business value. It taught me that real intelligence has to survive the room.',
+      'The enterprise AI chapter became a crucible. It forced intelligence to leave the abstract layer and meet architecture, politics, constraints, compute, cost, security, trust, and business value. It taught me that real intelligence has to survive the room.',
     unlocked: [
       'A stronger enterprise architecture backbone.',
       'The ability to translate AI possibility into business language and implementation reality.',

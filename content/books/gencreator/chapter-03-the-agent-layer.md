@@ -125,7 +125,7 @@ A good skill file has four sections:
 ```markdown
 ## Context
 You are writing content for frankx.ai, the personal website of Frank Riemer,
-Ex-Oracle AI Architect (EMEA AI Center of Excellence). The site covers AI
+Former AI architect at Oracle. The site covers AI
 architecture, creative AI production, agent systems, and the Personal AI
 Center of Excellence framework. Target audience: creators, developers,
 and professionals exploring AI-augmented workflows.
@@ -135,7 +135,7 @@ and professionals exploring AI-augmented workflows.
 
 ```markdown
 ## Rules
-- Use "AI Architect" as Frank's title (never "AI Systems Architect")
+- Use "AI Architect" as Frank's standard public title
 - Use positive-only language (never define things by what they are not)
 - Every technical claim must be verifiable
 - Author name is always "Frank Riemer" (never "Frank Guzman")

@@ -286,8 +286,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                AI Architect at Oracle. 12,000+ songs with Suno.
+                Former AI architect at Oracle. 12,000+ songs with Suno.
                 630+ AI skills shipped. Everything documented.
+              </p>
+              <p className="text-xs text-white/30 max-w-xl leading-relaxed">
+                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
               </p>
 
               <div className="flex items-center gap-3">
@@ -374,7 +377,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
+  'Former AI architect at Oracle',
   '12,000+ AI Songs Created',
   '630+ AI Skills Shipped',
   'Everything Documented',

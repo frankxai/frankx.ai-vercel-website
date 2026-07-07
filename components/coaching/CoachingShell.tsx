@@ -405,7 +405,7 @@ export default function CoachingShell() {
               className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500"
               variants={itemVariants}
             >
-              <span>Ex-Oracle AI Architect</span>
+              <span>Former AI architect at Oracle</span>
               <span className="text-white/20">|</span>
               <span>40+ AI Agents Built</span>
               <span className="text-white/20">|</span>
@@ -413,6 +413,9 @@ export default function CoachingShell() {
               <span className="text-white/20">|</span>
               <span>ACOS 1,000+ Builders</span>
             </motion.div>
+            <p className="mt-3 text-xs text-slate-600">
+              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+            </p>
           </motion.div>
         </motion.section>
 

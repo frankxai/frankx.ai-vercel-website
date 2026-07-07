@@ -195,7 +195,7 @@ const openclawHosting = [
   },
   {
     option: 'OCI Free Tier',
-    pros: ['Truly free forever (ARM A1)', '4 OCPU + 24GB RAM', 'Oracle expertise', 'Static IP', 'Always-on'],
+    pros: ['Truly free forever (ARM A1)', '4 OCPU + 24GB RAM', 'Enterprise cloud experience', 'Static IP', 'Always-on'],
     cons: ['ARM architecture limits some tools', 'OCI networking complexity', 'No GPU', 'Potential non-compete concerns'],
     cost: '$0/mo (free tier)',
     ram: '24GB (4 OCPU ARM)',
