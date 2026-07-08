@@ -178,7 +178,8 @@ export default function LearningPathPage() {
   // Recency signal for AI answer engines: parse the "Updated <Month DD, YYYY>"
   // heroEyebrow into an ISO date. This is the strongest freshness cue we have.
   const eyebrowDate = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)?.[1]
-  const dateModified = eyebrowDate ? new Date(eyebrowDate).toISOString() : undefined
+  const parsedDate = eyebrowDate ? new Date(eyebrowDate) : null
+  const dateModified = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate.toISOString() : undefined
   const heroThumb = path.videos[0]
     ? `https://img.youtube.com/vi/${path.videos[0].youtubeId}/maxresdefault.jpg`
     : undefined
