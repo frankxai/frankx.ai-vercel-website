@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint --config eslint.config.js \"app/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" --ignore-pattern \"app/design-lab/**\" --ignore-pattern \"components/v0-variants/**\"",
     "type-check": "tsc --noEmit",
+    "test:delivery": "node --experimental-strip-types scripts/test-delivery.mjs",
     "smoke": "node scripts/run-smoke-evals.mjs",
     "smoke:json": "node scripts/run-smoke-evals.mjs --json",
     "agents:quality": "node scripts/agents/audit-agent-quality.mjs",
