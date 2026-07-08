@@ -124,9 +124,12 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
                 {video.level}
               </span>
             </div>
-            <div className="absolute bottom-4 right-4 px-2 py-1 rounded bg-black/70 text-white text-sm">
-              {video.duration}
-            </div>
+            {/* Only show a real duration — the "See YouTube" placeholder read as unfinished. */}
+            {video.duration && video.duration !== 'See YouTube' && (
+              <div className="absolute bottom-4 right-4 px-2 py-1 rounded bg-black/70 text-white text-sm">
+                {video.duration}
+              </div>
+            )}
           </>
         )}
       </div>
