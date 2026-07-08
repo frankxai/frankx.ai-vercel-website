@@ -156,6 +156,35 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
             ))}
           </div>
         </div>
+
+        {/* Video-intelligence enrichment — the indexable substance + the take */}
+        {((video.keyTakeaways && video.keyTakeaways.length > 0) || video.architectNote) && (
+          <div className="mt-4 pt-4 border-t border-white/10 space-y-4">
+            {video.keyTakeaways && video.keyTakeaways.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-2">
+                  Key takeaways
+                </p>
+                <ul className="space-y-1.5">
+                  {video.keyTakeaways.map((takeaway, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-white/70">
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white/30" />
+                      {takeaway}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {video.architectNote && (
+              <div className={`rounded-xl border ${colors.border} bg-white/[0.02] p-3`}>
+                <p className={`text-xs font-semibold uppercase tracking-wider ${colors.text} mb-1`}>
+                  The AI Architect&apos;s take
+                </p>
+                <p className="text-sm text-white/70 leading-relaxed">{video.architectNote}</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -309,6 +338,25 @@ export default function LearningPathPage() {
                 {paragraph}
               </p>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* The AI Architect's Distillation — the unique, citable synthesis */}
+      {path.distillation && (
+        <section id="distillation" className="max-w-4xl mx-auto px-6 pb-16">
+          <div className={`rounded-2xl border ${colors.border} bg-white/[0.02] p-6 md:p-8`}>
+            <div className="flex items-center gap-3 mb-5">
+              <Sparkles className={`w-5 h-5 ${colors.text}`} />
+              <h2 className="text-xl md:text-2xl font-bold text-white">The AI Architect&apos;s Distillation</h2>
+            </div>
+            <div className="prose prose-invert max-w-none text-white/75 leading-relaxed">
+              {path.distillation.split('\n\n').map((paragraph, i) => (
+                <p key={i} className="mb-4">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </section>
       )}

@@ -12,6 +12,16 @@ export interface VideoResource {
   level: 'beginner' | 'intermediate' | 'advanced'
   description: string
   tags: string[]
+  // ── Video-intelligence enrichment (optional; renders only when present) ──
+  // The unique, indexable text that turns an embed list into a citable
+  // resource. Populated by scripts/learn/enrich-videos.mjs (transcript →
+  // drafted takeaways) then edited into Frank's voice.
+  /** 3-5 transcript-grounded key points a viewer takes away. */
+  keyTakeaways?: string[]
+  /** Frank's AI-Architect commentary — the differentiator no one can copy. */
+  architectNote?: string
+  /** Public transcript URL, when available, for VideoObject.transcript schema. */
+  transcriptUrl?: string
 }
 
 export interface EcosystemTool {
@@ -71,6 +81,13 @@ export interface LearningPath {
   // Optional richer portal sections — render conditionally when populated.
   heroEyebrow?: string
   longIntro?: string
+  /**
+   * The AI Architect's Distillation — an original, long-form synthesis of what
+   * this portal's videos teach, in Frank's voice. The unique, citable content
+   * that makes the portal rank and become the paid-curriculum backbone.
+   * Markdown paragraphs separated by \n\n.
+   */
+  distillation?: string
   ctaTitle?: string
   ctaBody?: string
   ecosystem?: EcosystemTool[]
@@ -96,6 +113,8 @@ export const learningPaths: LearningPath[] = [
     heroEyebrow: 'Updated June 10, 2026 · Reflects Claude 4.X family + MCP general availability',
     longIntro:
       "Anthropic ships fast: Opus 4.8 leads the family for the hardest reasoning, Sonnet 4.6 is the everyday default, and Haiku 4.5 is the cheap-and-fast tier — all sharing the same agent harness, tool-use surface, and Claude Code IDE. This portal pulls Anthropic's official walkthroughs and the sharpest independent walkthroughs into one path so you can move from your first claude.ai conversation to shipping agents on Bedrock or Vertex without sifting noise.\n\nThink of it as a map: the model line (Opus / Sonnet / Haiku) is the brain, the Claude API is the surface, Claude Code is the IDE companion, the Agent SDK is for building autonomous loops, and MCP is the connector protocol that lets all of them reach your data and tools. Computer Use and Skills are the newer abilities on top.\n\nStart with Foundations (videos 1–3) for the prompt and model layer, then branch into the track that fits — Builder (Claude Code, Agent SDK, MCP), Architect (Bedrock / Vertex / production patterns), or Operator (Skills, Computer Use, daily workflows). The Ecosystem grid, announcements timeline, and FAQ give you the lay of the land in one screen.",
+    distillation:
+      "Here is the honest shape of learning Claude in 2026, from someone who has watched enterprise AI up close: the model is no longer the hard part. Opus, Sonnet, and Haiku are all good enough that your results are decided by everything around the model — how you frame the work, what context you give it, and how much of the loop you let it run. The videos in this portal are worth your time in that order: get the prompt-and-context fundamentals first, then the harness, then the production surface. Skip that order and you will build a fast agent that ships the wrong thing.\n\nThe single mental model that pays off: Claude is a reasoning engine, and the ecosystem is how you feed and fence it. Prompting is how you frame the task. The Claude API is the raw surface. Claude Code is that same engine wired into your repo with an approval model. The Agent SDK is Claude Code's primitives exposed so you can build your own loops. MCP is the wire that lets any of them reach your data and tools. Skills are reusable capabilities you compose on top. Once you see it as one engine with concentric layers — not seven separate products — the learning order picks itself.\n\nThe most useful shift in the last year is captured by the 'don't build agents, build skills' idea: the payoff is not in a bigger autonomous loop, it is in small, sharp, reusable units of capability that a human still directs. That is the difference between a demo and a system you trust in production. When you watch the Claude Code and Agent SDK material, watch for where the human stays in the loop — the approval gates, the CLAUDE.md instructions, the verification step — because that is what separates people who ship with Claude from people who post screenshots of it.\n\nWhere I would spend your first week: run Claude Code on one real, small task in a repo you care about, add a CLAUDE.md, and force yourself to review every change. Then write one MCP server against a data source you actually use. Everything else in this portal — Computer Use, Bedrock/Vertex deployment, the model-selection tradeoffs — is a branch you take once that spine is solid. The goal is not to know Claude; it is to reliably direct it to a working, defensible result. That skill compounds.",
     ctaTitle: 'Ready to ship with Claude?',
     ctaBody:
       'Pair this portal with our written walkthrough and architecture playbooks. Build an agent, ship an MCP-backed app, or compare Claude head-to-head against Gemini.',
