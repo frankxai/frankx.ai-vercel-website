@@ -175,11 +175,25 @@ export default function LearningPathPage() {
   // otherwise `colors.gradientFrom` throws (the 500 #219 fixed).
   const colors = colorMap[path.color] || defaultColors
 
+  // Recency signal for AI answer engines: parse the "Updated <Month DD, YYYY>"
+  // heroEyebrow into an ISO date. This is the strongest freshness cue we have.
+  const eyebrowDate = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)?.[1]
+  const parsedDate = eyebrowDate ? new Date(eyebrowDate) : null
+  const dateModified = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate.toISOString() : undefined
+  const heroThumb = path.videos[0]
+    ? `https://img.youtube.com/vi/${path.videos[0].youtubeId}/maxresdefault.jpg`
+    : undefined
+  // Entity coverage — the tools this portal actually teaches, as named Things.
+  const aboutEntities = (path.ecosystem ?? []).slice(0, 8).map((t) => ({ '@type': 'Thing', name: t.name }))
+
   const courseSchema = {
     name: path.title,
     description: path.description,
     provider: { '@type': 'Organization', name: 'FrankX.AI', url: 'https://frankx.ai' },
     url: `https://frankx.ai/learn/${path.slug}`,
+    ...(heroThumb ? { image: heroThumb } : {}),
+    ...(dateModified ? { dateModified } : {}),
+    ...(aboutEntities.length > 0 ? { about: aboutEntities } : {}),
     educationalLevel:
       path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
     learningResourceType: 'Course',
