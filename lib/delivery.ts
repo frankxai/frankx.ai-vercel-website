@@ -53,6 +53,16 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
     accessCategories: ['agent-development', 'ai-architecture', 'coding'],
     emailTemplateId: 'premium-product',
   },
+  'suno-prompt-library': {
+    productId: 'suno-prompt-library',
+    deliveryType: 'pdf',
+    files: [
+      'suno-prompt-library-guide.pdf',
+      'suno-prompt-library-notion.zip',
+      'suno-prompt-cheatsheet.pdf',
+    ],
+    emailTemplateId: 'product-delivery',
+  },
 }
 
 /**
