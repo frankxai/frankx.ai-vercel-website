@@ -126,6 +126,11 @@ export default function LearnShell() {
         <div className="space-y-12">
           {CATEGORY_ORDER.map((cat) => {
             const inCat = learningPaths.filter((p) => p.category === cat)
+            // Skip an empty category entirely UNLESS it's consumer — the only
+            // one with a known roadmap roster (upcomingPortals are all consumer).
+            // This stops the in-build chips showing under the wrong header if a
+            // model-maker/cloud category ever empties.
+            if (inCat.length === 0 && cat !== 'consumer') return null
             const meta = categoryLabels[cat]
             return (
               <div key={cat}>
