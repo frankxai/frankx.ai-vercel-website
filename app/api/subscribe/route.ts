@@ -25,6 +25,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'ai-architect': {
     topics: [TOPICS.newsletter],
   },
+  'operator-scorecard': {
+    topics: [TOPICS.newsletter],
+  },
   'inner-circle': {
     topics: [TOPICS.newsletter, TOPICS['product-updates']],
   },
