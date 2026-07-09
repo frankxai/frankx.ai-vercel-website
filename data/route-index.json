@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 799,
-    "aliases": 15,
+    "total": 809,
+    "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 385,
+      "section": 386,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 202,
       "guide": 20,
-      "library": 31,
+      "library": 40,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -5175,6 +5175,16 @@
       "type": "library"
     },
     {
+      "href": "/library/art-and-fear",
+      "title": "Art & Fear",
+      "tags": [
+        "art",
+        "and",
+        "fear"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/atomic-habits",
       "title": "Atomic Habits",
       "tags": [
@@ -5204,6 +5214,16 @@
       "type": "library"
     },
     {
+      "href": "/library/bird-by-bird",
+      "title": "Bird by Bird: Some Instructions on Writing and Life",
+      "tags": [
+        "bird",
+        "by",
+        "bird"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/blue-zones",
       "title": "The Blue Zones: Lessons for Living Longer From the People Who\\",
       "tags": [
@@ -5222,6 +5242,14 @@
         "of",
         "being",
         "yourself"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breath",
+      "title": "Breath: The New Science of a Lost Art",
+      "tags": [
+        "breath"
       ],
       "type": "library"
     },
@@ -5246,6 +5274,14 @@
       "tags": [
         "deep",
         "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/e-squared",
+      "title": "E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality",
+      "tags": [
+        "squared"
       ],
       "type": "library"
     },
@@ -5334,6 +5370,17 @@
       "type": "library"
     },
     {
+      "href": "/library/steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "tags": [
+        "steal",
+        "like",
+        "an",
+        "artist"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/superfans",
       "title": "Superfans",
       "tags": [
@@ -5371,6 +5418,27 @@
       "type": "library"
     },
     {
+      "href": "/library/the-book-of-secrets",
+      "title": "The Book of Secrets",
+      "tags": [
+        "the",
+        "book",
+        "of",
+        "secrets"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-creative-act",
+      "title": "The Creative Act: A Way of Being",
+      "tags": [
+        "the",
+        "creative",
+        "act"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-little-book-of-ikigai",
       "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
       "tags": [
@@ -5383,6 +5451,15 @@
       "type": "library"
     },
     {
+      "href": "/library/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-war-of-art",
       "title": "The War of Art",
       "tags": [
@@ -5390,6 +5467,16 @@
         "war",
         "of",
         "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "the",
+        "wordless",
+        "laws"
       ],
       "type": "library"
     },
@@ -5453,6 +5540,14 @@
         "placebo"
       ],
       "type": "library"
+    },
+    {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
     },
     {
       "href": "/links",
@@ -7795,6 +7890,24 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
+    "/books/fable/chapter-01-the-listening-machine": "/books/fable",
+    "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
+    "/books/fable/chapter-03-the-narrow-window": "/books/fable",
+    "/books/fable/chapter-04-a-smaller-shape-of-the-sea": "/books/fable",
+    "/books/fable/chapter-05-the-wrong-note": "/books/fable",
+    "/books/fable/chapter-06-a-thousand-songs": "/books/fable/06-the-thousand-true-songs",
+    "/books/fable/chapter-07-the-grain-of-the-voice": "/books/fable/07-the-weaver-who-copied-a-voice",
+    "/books/fable/chapter-08-the-oracle-question": "/books/fable/08-the-well-and-the-kneeling-man",
+    "/books/fable/chapter-09-the-brokers-offer": "/books/fable/09-the-tower-that-rented-the-rain",
+    "/books/fable/chapter-10-the-second-workshop": "/books/fable/21-the-hundred-benches",
+    "/books/fable/chapter-11-the-copy": "/books/fable/10-the-perfect-forgery",
+    "/books/fable/chapter-12-idas-machine": "/books/fable/12-the-teachers-test",
+    "/books/fable/chapter-13-two-kinds-of-listening": "/books/fable/11-the-two-listeners",
+    "/books/fable/chapter-14-what-the-machine-could-not-hold": "/books/fable/13-the-laugh-in-the-jar",
+    "/books/fable/chapter-15-the-question-of-the-ledger": "/books/fable/24-are-they-dangerous",
+    "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
+    "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",

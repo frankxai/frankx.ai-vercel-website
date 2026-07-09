@@ -13,10 +13,13 @@ import { put } from '@vercel/blob'
  * Only works in production (needs BLOB_READ_WRITE_TOKEN).
  */
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET ?? 'frankx-admin-2026'
+const ADMIN_SECRET = process.env.ADMIN_SECRET
 
 export async function POST(request: NextRequest) {
-  // Simple auth check
+  if (!ADMIN_SECRET) {
+    return NextResponse.json({ error: 'Admin access not configured' }, { status: 503 })
+  }
+
   const authHeader = request.headers.get('x-admin-secret')
   if (authHeader !== ADMIN_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

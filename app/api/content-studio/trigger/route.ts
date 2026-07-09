@@ -35,6 +35,15 @@ function saveQueue(queue: ContentQueue) {
 }
 
 export async function POST(request: NextRequest) {
+  // This queue is picked up by a local Claude Code watcher — writing it on
+  // the deployed site's read-only filesystem would silently do nothing.
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      { error: 'Content Studio triggers only work from local `npm run dev`, where the watcher can see the queue file.' },
+      { status: 503 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { action, params = {} } = body;

@@ -50,6 +50,15 @@ export async function POST(req: Request) {
   const session = await auth()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
+  // Vercel's deployed filesystem is read-only outside /tmp — fail loud
+  // instead of pretending a gate decision was saved.
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      { error: 'Gate decisions are not available on the deployed site — run this from local `npm run dev` or `npm run gates:approve`.' },
+      { status: 503 }
+    )
+  }
+
   const body = await req.json().catch(() => null) as { gateId?: string; decision?: string; notes?: string | null } | null
   if (!body?.gateId || !['approve', 'reject'].includes(body.decision || '')) {
     return NextResponse.json({ error: 'bad-request', expected: '{gateId, decision: approve|reject, notes?}' }, { status: 400 })

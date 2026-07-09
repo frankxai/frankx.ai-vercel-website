@@ -86,6 +86,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
       downloadUrl: 'https://frankx.ai/api/download?product=5-suno-prompts',
+      recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
     template = ikigaiBrandingEmail({
@@ -94,6 +95,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
   } else {
     template = welcomeEmail1({
       recipientName: name || 'Creator',
+      recipientEmail: email,
     })
   }
 

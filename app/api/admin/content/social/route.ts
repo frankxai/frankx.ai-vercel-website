@@ -26,6 +26,15 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  // Vercel's deployed filesystem is read-only outside /tmp — fail loud
+  // instead of pretending a queue edit was saved.
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      { error: 'Admin writes are not available on the deployed site — run this from local `npm run dev`.' },
+      { status: 503 }
+    )
+  }
+
   try {
     const body = await request.json()
     const { action, id, updates } = body

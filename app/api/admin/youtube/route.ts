@@ -15,6 +15,17 @@ function writeJson(filename: string, data: unknown) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
 }
 
+// Vercel's deployed filesystem is read-only outside /tmp — a write there
+// would either throw or silently land in /tmp and vanish on the next
+// invocation. Fail loud instead of pretending the edit was saved.
+function writesUnavailable() {
+  if (!process.env.VERCEL) return null
+  return NextResponse.json(
+    { error: 'Admin writes are not available on the deployed site — run this from local `npm run dev`.' },
+    { status: 503 }
+  )
+}
+
 // GET /api/admin/youtube?type=annotations|clips|vault
 export async function GET(req: NextRequest) {
   const type = req.nextUrl.searchParams.get('type') || 'vault'
@@ -34,6 +45,9 @@ export async function GET(req: NextRequest) {
 // POST /api/admin/youtube
 // body: { type: 'annotation' | 'clip' | 'video', data: ... }
 export async function POST(req: NextRequest) {
+  const blocked = writesUnavailable()
+  if (blocked) return blocked
+
   const body = await req.json()
   const { type, data } = body
 
@@ -96,6 +110,9 @@ export async function POST(req: NextRequest) {
 // DELETE /api/admin/youtube
 // body: { type: 'clip', id: string }
 export async function DELETE(req: NextRequest) {
+  const blocked = writesUnavailable()
+  if (blocked) return blocked
+
   const body = await req.json()
   const { type, id } = body
 
