@@ -174,8 +174,10 @@ export default function OperatorScorecardClient() {
               </div>
 
               <div className="space-y-5 rounded-2xl border border-white/10 bg-white/[0.03] p-7 md:p-9">
-                <h2 className="text-xl font-semibold text-white md:text-2xl">{activeQuestion.prompt}</h2>
-                <div className="space-y-3">
+                <h2 id={`question-${activeQuestion.id}`} className="text-xl font-semibold text-white md:text-2xl">
+                  {activeQuestion.prompt}
+                </h2>
+                <div className="space-y-3" role="radiogroup" aria-labelledby={`question-${activeQuestion.id}`}>
                   {activeQuestion.options.map((option) => {
                     const isSelected = chosenOptionId === option.id
                     return (
@@ -183,6 +185,8 @@ export default function OperatorScorecardClient() {
                         type="button"
                         key={option.id}
                         onClick={() => selectAnswer(option.id)}
+                        role="radio"
+                        aria-checked={isSelected}
                         className={clsx(
                           'w-full rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left text-sm transition-colors hover:border-emerald-500/40 hover:bg-white/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400',
                           isSelected && 'border-emerald-500/60 bg-emerald-500/10'
