@@ -3,6 +3,8 @@
  * Sent immediately after subscribe. Delivers the Coach GPT link + Resource Pack promise.
  */
 
+import { buildUnsubscribeUrl } from '@/lib/email-config'
+
 interface EmailTemplate {
   subject: string
   html: string
@@ -10,10 +12,13 @@ interface EmailTemplate {
 
 export function ikigaiBrandingEmail({
   recipientName,
+  recipientEmail,
 }: {
   recipientName: string
+  recipientEmail?: string
 }): EmailTemplate {
   const firstName = recipientName?.split(' ')[0] || 'Creator'
+  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : 'https://frankx.ai/unsubscribe'
 
   return {
     subject: 'Your Ikigai & Branding Resource Pack — plus your free Coach',
@@ -76,7 +81,8 @@ export function ikigaiBrandingEmail({
           Frank Riemer · AI Architect · <a href="https://frankx.ai" style="color:#94a3b8;text-decoration:none;">frankx.ai</a>
         </p>
         <p style="margin:0;font-size:12px;color:#475569;">
-          You are receiving this because you subscribed to the Ikigai &amp; Branding Workshop list. Unsubscribe anytime from any FrankX email.
+          You are receiving this because you subscribed to the Ikigai &amp; Branding Workshop list.
+          <a href="${unsubscribeUrl}" style="color:#64748b;text-decoration:underline;">Unsubscribe</a>
         </p>
       </td></tr>
     </table>

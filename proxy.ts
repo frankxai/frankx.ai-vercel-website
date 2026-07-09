@@ -46,9 +46,12 @@ export async function proxy(request: NextRequest) {
   // header/body check — they stay out of the session gate below.
   const selfGatedApiPaths = ['/api/admin/upload', '/api/admin/verify']
   const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads', '/api/admin']
+  // Exact-segment match — `startsWith` alone would also catch a future
+  // public route like /admin-settings or /dashboard-assets.
+  const matchesPath = (path: string) => pathname === path || pathname.startsWith(path + '/')
   const isProtectedRoute =
-    !selfGatedApiPaths.some(path => pathname.startsWith(path)) &&
-    protectedPaths.some(path => pathname.startsWith(path))
+    !selfGatedApiPaths.some(matchesPath) &&
+    protectedPaths.some(matchesPath)
 
   if (isProtectedRoute) {
     const token = await getToken({

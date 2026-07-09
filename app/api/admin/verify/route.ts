@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import { verifyAdminSecret } from '@/lib/admin-secret'
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET
 
@@ -9,8 +10,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { password } = await request.json()
+    const candidate = typeof password === 'string' ? password : ''
 
-    if (password === ADMIN_SECRET) {
+    if (verifyAdminSecret(candidate, ADMIN_SECRET)) {
       return NextResponse.json({ success: true, token: ADMIN_SECRET })
     }
 

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { put } from '@vercel/blob'
+import { verifyAdminSecret } from '@/lib/admin-secret'
 
 /**
  * Admin Upload API
@@ -20,8 +21,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Admin access not configured' }, { status: 503 })
   }
 
-  const authHeader = request.headers.get('x-admin-secret')
-  if (authHeader !== ADMIN_SECRET) {
+  const authHeader = request.headers.get('x-admin-secret') || ''
+  if (!verifyAdminSecret(authHeader, ADMIN_SECRET)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

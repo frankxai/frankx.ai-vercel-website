@@ -91,6 +91,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
   } else if (listType === 'ikigai-branding') {
     template = ikigaiBrandingEmail({
       recipientName: name || 'Creator',
+      recipientEmail: email,
     })
   } else {
     template = welcomeEmail1({
