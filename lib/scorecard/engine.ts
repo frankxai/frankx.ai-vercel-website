@@ -61,6 +61,13 @@ export interface QuestionOption {
   label: string
   /** 0-3 operator-maturity points for this answer. */
   points: 0 | 1 | 2 | 3
+  /**
+   * Optional hover/focus microcopy — a single dry aside shown only for the
+   * option currently under the cursor or keyboard focus. Reserved for the
+   * handful of answers where a sharp observation earns its place; most
+   * options carry none. Never shown by default, never emoji, never hype.
+   */
+  hint?: string
 }
 
 export interface Question {
@@ -70,8 +77,8 @@ export interface Question {
   options: QuestionOption[]
 }
 
-const scale = (opts: [string, 0 | 1 | 2 | 3][]): QuestionOption[] =>
-  opts.map(([label, points], i) => ({ id: String.fromCharCode(97 + i), label, points }))
+const scale = (opts: [string, 0 | 1 | 2 | 3, string?][]): QuestionOption[] =>
+  opts.map(([label, points, hint], i) => ({ id: String.fromCharCode(97 + i), label, points, hint }))
 
 export const QUESTIONS: Question[] = [
   {
@@ -82,7 +89,11 @@ export const QUESTIONS: Question[] = [
       ["I do it myself almost every time — it's faster to just do it.", 0],
       ['I hand off simple, repetitive tasks to a tool or VA sometimes.', 1],
       ['I have specific agents or workflows I hand tasks to by default.', 2],
-      ["My default question is \"what's the config for this?\" before I touch it myself.", 3],
+      [
+        "My default question is \"what's the config for this?\" before I touch it myself.",
+        3,
+        'The instinct that actually compounds. Most people never ask it.',
+      ],
     ]),
   },
   {
@@ -115,7 +126,11 @@ export const QUESTIONS: Question[] = [
       ['No — every new chat or session starts from zero.', 0],
       ['I paste in context by hand each time.', 1],
       ['I have some saved prompts or docs I reference.', 2],
-      ['I have a persistent memory system that agents actually read.', 3],
+      [
+        'I have a persistent memory system that agents actually read.',
+        3,
+        'Rarer than it should be — most "systems" still live in one human\'s head.',
+      ],
     ]),
   },
   {
@@ -137,7 +152,11 @@ export const QUESTIONS: Question[] = [
       ["I don't know what that means yet.", 0],
       ["I've used ones other people built.", 1],
       ["I've customized or lightly built one.", 2],
-      ['I regularly build and ship my own skills, tools, or agent configs.', 3],
+      [
+        'I regularly build and ship my own skills, tools, or agent configs.',
+        3,
+        "This is the actual unlock — most operators stop at \"used one.\"",
+      ],
     ]),
   },
   {
@@ -156,7 +175,11 @@ export const QUESTIONS: Question[] = [
     dimension: 'distribution',
     prompt: 'If you published something today, how fast could real people actually see it?',
     options: scale([
-      ["I'd have to hope the algorithm cooperates.", 0],
+      [
+        "I'd have to hope the algorithm cooperates.",
+        0,
+        'Most "direct lines" are actually algorithms wearing a costume.',
+      ],
       ['Within a day or two via my usual channel.', 1],
       ['Same day, via multiple channels I control.', 2],
       ['Within the hour — I have a direct line I trust.', 3],
@@ -181,7 +204,11 @@ export const QUESTIONS: Question[] = [
       ["That hasn't happened yet.", 0],
       ['It was manual and a little awkward — an invoice, a DM, "let me send you a link."', 1],
       ['There is a working checkout, occasionally used.', 2],
-      ['There is a working checkout that converts routinely.', 3],
+      [
+        'There is a working checkout that converts routinely.',
+        3,
+        'The whole business fits in this one sentence.',
+      ],
     ]),
   },
   {
@@ -189,7 +216,7 @@ export const QUESTIONS: Question[] = [
     dimension: 'runway',
     prompt: 'If income stopped tomorrow, how long could you keep building at this pace?',
     options: scale([
-      ['Days to a couple of weeks.', 0],
+      ['Days to a couple of weeks.', 0, "Most people don't say this out loud. Good that you did."],
       ['About a month.', 1],
       ['A few months.', 2],
       ['Six-plus months, or the business is already cash-flow positive.', 3],
@@ -206,6 +233,12 @@ export interface Tier {
   minScore: number
   headline: string
   description: string
+  /**
+   * One sharp line of recognition — calm wit, zero hype, no emoji. Shown as
+   * the tier lands in the reveal sequence, separate from `description`'s
+   * fuller diagnostic paragraph.
+   */
+  tierLine: string
 }
 
 // Boundaries: 0-24 / 25-49 / 50-74 / 75-100. Kept as round quartiles so the
@@ -218,6 +251,7 @@ export const TIERS: Tier[] = [
     headline: 'You are the system.',
     description:
       'Every output in your business currently depends on you being in the room. That is not a character flaw — it is the default starting point. The fix is one delegation, not a rebuild.',
+    tierLine: 'You are the org chart. Every box reports to you, including the ones that shouldn\'t.',
   },
   {
     id: 'hybrid-delegator',
@@ -226,6 +260,7 @@ export const TIERS: Tier[] = [
     headline: "You've started handing off pieces.",
     description:
       "Some tasks move without you now, but nothing runs end-to-end without your hand on it. You're one step from a roster, not a rebuild.",
+    tierLine: "Delegation exists. It just hasn't become the default yet.",
   },
   {
     id: 'agentic-leader',
@@ -234,6 +269,7 @@ export const TIERS: Tier[] = [
     headline: 'You run a real roster.',
     description:
       'Multiple agents, a system that remembers, and a channel you own. The remaining gap is usually the one dimension you have not touched yet.',
+    tierLine: "You run a roster now, not a routine. Most of the estate isn't there.",
   },
   {
     id: 'ambient-operator',
@@ -242,6 +278,7 @@ export const TIERS: Tier[] = [
     headline: 'Work happens while you sleep.',
     description:
       "You've closed the loop from delegation to distribution to revenue. The frontier from here is compounding what already runs, and publishing the proof.",
+    tierLine: "Things ship on days you don't open a laptop. That's the actual bar.",
   },
 ]
 
