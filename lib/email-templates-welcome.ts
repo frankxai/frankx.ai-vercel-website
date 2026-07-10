@@ -1,5 +1,5 @@
 import { socialLinks } from '@/lib/social-links'
-import { buildUnsubscribeUrl } from '@/lib/email-config'
+import { buildUnsubscribeUrl, SITE_URL } from '@/lib/email-config'
 
 /**
  * Welcome Sequence Email Templates for FrankX.AI
@@ -69,7 +69,7 @@ function resourceRow(label: string, description: string, url: string, accentColo
 }
 
 function welcomeWrapper(content: string, preheader: string = '', recipientEmail?: string): string {
-  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : 'https://frankx.ai/unsubscribe'
+  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : `${SITE_URL}/unsubscribe`
   return `
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">

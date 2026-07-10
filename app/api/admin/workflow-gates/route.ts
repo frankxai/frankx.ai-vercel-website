@@ -2,6 +2,7 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
+import { writesUnavailable } from '@/lib/vercel-guard'
 
 const GATES_PATH = path.join(process.cwd(), 'data', 'workflow-gates.jsonl')
 
@@ -50,14 +51,8 @@ export async function POST(req: Request) {
   const session = await auth()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  // Vercel's deployed filesystem is read-only outside /tmp — fail loud
-  // instead of pretending a gate decision was saved.
-  if (process.env.VERCEL) {
-    return NextResponse.json(
-      { error: 'Gate decisions are not available on the deployed site — run this from local `npm run dev` or `npm run gates:approve`.' },
-      { status: 503 }
-    )
-  }
+  const blocked = writesUnavailable('Gate decisions are not available on the deployed site — run this from local `npm run dev` or `npm run gates:approve`.')
+  if (blocked) return blocked
 
   const body = await req.json().catch(() => null) as { gateId?: string; decision?: string; notes?: string | null } | null
   if (!body?.gateId || !['approve', 'reject'].includes(body.decision || '')) {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { join } from 'path'
+import { writesUnavailable } from '@/lib/vercel-guard'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,14 +27,8 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  // Vercel's deployed filesystem is read-only outside /tmp — fail loud
-  // instead of pretending a queue edit was saved.
-  if (process.env.VERCEL) {
-    return NextResponse.json(
-      { error: 'Admin writes are not available on the deployed site — run this from local `npm run dev`.' },
-      { status: 503 }
-    )
-  }
+  const blocked = writesUnavailable()
+  if (blocked) return blocked
 
   try {
     const body = await request.json()

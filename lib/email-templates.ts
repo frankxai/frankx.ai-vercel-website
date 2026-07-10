@@ -1,5 +1,5 @@
 import { socialLinks } from '@/lib/social-links'
-import { buildUnsubscribeUrl } from '@/lib/email-config'
+import { buildUnsubscribeUrl, SITE_URL } from '@/lib/email-config'
 
 /**
  * Email Template System v2.0 for FrankX.AI
@@ -59,7 +59,7 @@ function outlineButton(text: string, url: string): string {
 // ─── Email Wrapper ────────────────────────────────────────────────
 
 function emailWrapper(content: string, preheader: string = '', recipientEmail?: string): string {
-  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : 'https://frankx.ai/unsubscribe'
+  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : `${SITE_URL}/unsubscribe`
   return `
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">

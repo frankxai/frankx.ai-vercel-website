@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import { writesUnavailable } from '@/lib/vercel-guard'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
 
@@ -13,17 +14,6 @@ function readJson(filename: string) {
 function writeJson(filename: string, data: unknown) {
   const filePath = path.join(DATA_DIR, filename)
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
-}
-
-// Vercel's deployed filesystem is read-only outside /tmp — a write there
-// would either throw or silently land in /tmp and vanish on the next
-// invocation. Fail loud instead of pretending the edit was saved.
-function writesUnavailable() {
-  if (!process.env.VERCEL) return null
-  return NextResponse.json(
-    { error: 'Admin writes are not available on the deployed site — run this from local `npm run dev`.' },
-    { status: 503 }
-  )
 }
 
 // GET /api/admin/youtube?type=annotations|clips|vault

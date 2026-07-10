@@ -3,7 +3,7 @@
  * Sent immediately after subscribe. Delivers the Coach GPT link + Resource Pack promise.
  */
 
-import { buildUnsubscribeUrl } from '@/lib/email-config'
+import { buildUnsubscribeUrl, SITE_URL } from '@/lib/email-config'
 
 interface EmailTemplate {
   subject: string
@@ -18,7 +18,7 @@ export function ikigaiBrandingEmail({
   recipientEmail?: string
 }): EmailTemplate {
   const firstName = recipientName?.split(' ')[0] || 'Creator'
-  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : 'https://frankx.ai/unsubscribe'
+  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : `${SITE_URL}/unsubscribe`
 
   return {
     subject: 'Your Ikigai & Branding Resource Pack — plus your free Coach',
