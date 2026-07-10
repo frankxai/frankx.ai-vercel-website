@@ -9,6 +9,7 @@ import { getProductById } from './products'
 export interface DeliveryConfig {
   productId: string
   deliveryType: 'pdf' | 'access-code' | 'email-course' | 'external'
+  checkoutEnabled?: boolean
   files?: string[]
   accessCategories?: string[]
   emailTemplateId?: string
@@ -19,6 +20,7 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'creative-ai-toolkit': {
     productId: 'creative-ai-toolkit',
     deliveryType: 'pdf',
+    checkoutEnabled: false,
     files: ['creative-ai-toolkit-v1.pdf'],
     emailTemplateId: 'product-delivery',
   },
@@ -45,6 +47,7 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'agentic-creator-os': {
     productId: 'agentic-creator-os',
     deliveryType: 'access-code',
+    checkoutEnabled: true,
     files: [
       'ACOS-Quickstart-Guide.pdf',
       'ACOS-Complete-Reference.pdf',
@@ -56,6 +59,7 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'suno-prompt-library': {
     productId: 'suno-prompt-library',
     deliveryType: 'pdf',
+    checkoutEnabled: false,
     files: [
       'suno-prompt-library-guide.pdf',
       'suno-prompt-library-notion.zip',
@@ -76,14 +80,12 @@ export function generateAccessCode(productId: string): string {
 }
 
 /**
- * Get product download URL (stored in /public/products/)
+ * Get the existing product-file redirect URL for a Vercel Blob key.
  */
-export function getProductDownloadUrl(filename: string): string {
+export function getProductDownloadUrl(blobKey: string): string {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.frankx.ai'
-  // Files would be stored in a protected location or CDN
-  // For now, using a signed URL pattern
-  const token = generateAccessCode('download')
-  return `${baseUrl}/api/download/${filename}?token=${token}`
+  const params = new URLSearchParams({ key: blobKey })
+  return `${baseUrl}/api/download/file?${params.toString()}`
 }
 
 /**
@@ -91,6 +93,24 @@ export function getProductDownloadUrl(filename: string): string {
  */
 export function getDeliveryConfig(productId: string): DeliveryConfig | undefined {
   return DELIVERY_CONFIG[productId]
+}
+
+/**
+ * Paid checkout is allowed only when both the delivery behavior and at least
+ * one canonical Vercel Blob artifact are declared in the product registry.
+ */
+export function isProductDeliveryReady(productId: string): boolean {
+  const product = getProductById(productId)
+  const config = getDeliveryConfig(productId)
+  const files = product?.delivery?.files
+
+  return Boolean(
+    product &&
+    config &&
+    config.checkoutEnabled === true &&
+    files?.length &&
+    files.every((file) => file.name.trim() && file.blobKey.trim())
+  )
 }
 
 /**
@@ -121,10 +141,16 @@ export function generateProductEmailData(
     return null
   }
 
-  const downloadLinks = (config.files || []).map((file) => ({
-    name: file.replace('.pdf', '').replace(/-/g, ' '),
-    url: getProductDownloadUrl(file),
-  }))
+  const registryFiles = product.delivery?.files || []
+  const downloadLinks = registryFiles.length > 0
+    ? registryFiles.map((file) => ({
+        name: file.name,
+        url: getProductDownloadUrl(file.blobKey),
+      }))
+    : (config.files || []).map((file) => ({
+        name: file.replace('.pdf', '').replace(/-/g, ' '),
+        url: getProductDownloadUrl(file),
+      }))
 
   return {
     customerName,

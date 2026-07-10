@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { generateProductEmailData } from '@/lib/delivery'
+import type { ProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
+import { processCheckoutSessionDelivery } from '@/lib/stripe-delivery'
 
 // Lazy initialization — Stripe SDK throws at module load if STRIPE_SECRET_KEY
 // is missing, breaking `next build` in environments without the env var
@@ -17,31 +18,48 @@ function getStripe(): Stripe {
   return stripeClient
 }
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY
 const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
-async function sendEmailViaResend(to: string, subject: string, html: string) {
+async function sendEmailViaResend(
+  apiKey: string,
+  emailData: ProductEmailData,
+  idempotencyKey: string
+): Promise<{ providerMessageId: string }> {
+  const email = purchaseConfirmationEmail({
+    customerName: emailData.customerName,
+    productName: emailData.productName,
+    downloadLinks: emailData.downloadLinks,
+    receiptUrl: undefined,
+  })
+
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
+      'Idempotency-Key': idempotencyKey,
     },
     body: JSON.stringify({
       from: 'FrankX <frank@updates.frankx.ai>',
-      to: [to],
-      subject,
-      html,
+      to: [emailData.customerEmail],
+      subject: email.subject,
+      html: email.html,
     }),
   })
-  return res.json()
+
+  const payload = await res.json().catch(() => null) as { id?: unknown } | null
+  if (!res.ok || typeof payload?.id !== 'string') {
+    throw new Error(`Resend delivery failed with status ${res.status}`)
+  }
+
+  return { providerMessageId: payload.id }
 }
 
-async function addToResendAudience(email: string, name: string) {
-  await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
+async function addToResendAudience(apiKey: string, email: string, name: string) {
+  const response = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -51,6 +69,10 @@ async function addToResendAudience(email: string, name: string) {
       unsubscribed: false,
     }),
   })
+
+  if (!response.ok) {
+    throw new Error(`Resend audience update failed with status ${response.status}`)
+  }
 }
 
 export async function POST(request: Request) {
@@ -76,50 +98,60 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
 
-  if (event.type === 'checkout.session.completed') {
+  if (
+    event.type === 'checkout.session.completed' ||
+    event.type === 'checkout.session.async_payment_succeeded'
+  ) {
     const session = event.data.object as Stripe.Checkout.Session
 
     const customerEmail = session.customer_details?.email || session.customer_email
     const customerName = session.customer_details?.name || 'Customer'
-
-    if (!customerEmail) {
-      console.error('[Stripe] No customer email in session:', session.id)
-      return NextResponse.json({ received: true })
-    }
-
-    // Extract product slug from metadata (set during checkout session creation)
     const productSlug = session.metadata?.productSlug || session.metadata?.product_slug
+    const resendApiKey = process.env.RESEND_API_KEY?.trim()
 
-    if (productSlug) {
-      const emailData = generateProductEmailData(
-        productSlug,
+    const receipt = await processCheckoutSessionDelivery(
+      {
+        eventId: event.id,
+        sessionId: session.id,
+        paymentStatus: session.payment_status,
+        productId: productSlug,
+        customerEmail,
         customerName,
-        customerEmail
-      )
+      },
+      {
+        sendEmail: resendApiKey
+          ? (emailData, idempotencyKey) =>
+              sendEmailViaResend(resendApiKey, emailData, idempotencyKey)
+          : undefined,
+      }
+    )
 
-      if (emailData && RESEND_API_KEY) {
-        const email = purchaseConfirmationEmail({
-          customerName: emailData.customerName,
-          productName: emailData.productName,
-          downloadLinks: emailData.downloadLinks,
-          receiptUrl: undefined,
+    const logReceipt = receipt.status === 'delivered' ? console.info : console.error
+    logReceipt('[Stripe] Delivery receipt', receipt)
+
+    if (customerEmail && resendApiKey) {
+      try {
+        await addToResendAudience(resendApiKey, customerEmail, customerName)
+      } catch (error) {
+        console.error('[Stripe] Audience update failed', {
+          eventId: event.id,
+          sessionId: session.id,
+          message: error instanceof Error ? error.message : 'Unknown error',
         })
-
-        await sendEmailViaResend(customerEmail, email.subject, email.html)
       }
     }
 
-    // Add customer to Resend audience
-    if (RESEND_API_KEY) {
-      await addToResendAudience(customerEmail, customerName)
+    if (receipt.status === 'failed' && receipt.retryable) {
+      return NextResponse.json(
+        { received: false, delivery: 'failed', receiptId: receipt.receiptId },
+        { status: 503 }
+      )
     }
 
-    console.log('[Stripe] Checkout completed:', {
-      sessionId: session.id,
-      product: productSlug,
-      email: customerEmail,
-      amount: session.amount_total ? `${(session.amount_total / 100).toFixed(2)} ${session.currency?.toUpperCase()}` : 'unknown',
-      emailSent: Boolean(RESEND_API_KEY && productSlug),
+    return NextResponse.json({
+      received: true,
+      delivery: receipt.status,
+      receiptId: receipt.receiptId,
     })
   }
 
