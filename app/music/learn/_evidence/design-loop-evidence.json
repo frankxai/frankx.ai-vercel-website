@@ -1,0 +1,104 @@
+{
+  "version": "2026-06-23",
+  "task": "Make FrankX Music learning the canonical free authority layer with proof-safe claims and premium usable navigation.",
+  "surface": "/music/learn and /music/learn/science",
+  "audience": "Independent adult learners, creator-musicians, and family-supported younger learners",
+  "first_read": "Free self-paced music learning that leads to one observable artifact, not a second paid academy.",
+  "standards": [
+    "_intelligence/operating-system.md",
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "VISUAL_QA_GATE.md",
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX design and taste contracts",
+      "source": "design.md and taste.md",
+      "reason": "Brand restraint, obsidian material, technical evidence, and no AI-slop language"
+    },
+    {
+      "label": "NIH/NCCIH Music and Health",
+      "source": "https://www.nccih.nih.gov/health/music-and-health-what-you-need-to-know",
+      "reason": "Research uncertainty and distinction between listening content and credentialed music therapy"
+    },
+    {
+      "label": "WHO safe listening",
+      "source": "https://www.who.int/news-room/questions-and-answers/item/deafness-and-hearing-loss-safe-listening",
+      "reason": "Hearing-safety boundary"
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Existing stable route URLs",
+      "Useful instrument and craft depth",
+      "German-first piano and violin paths"
+    ],
+    "avoid": [
+      "Child-app hero as the canonical front door",
+      "Duplicate academy positioning",
+      "Medical-sounding frequency claims",
+      "Decorative motion and generic card walls"
+    ],
+    "signature": "Understand, practice, make: every route names one observable learning artifact.",
+    "system": [
+      "Obsidian near-solid surfaces with restrained emerald and cyan signals",
+      "Editorial typography and monospaced wayfinding",
+      "Lucide icons only",
+      "Static hierarchy by default with visible keyboard focus",
+      "Exact privacy, guardian, rights, and evidence boundaries"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "browser-capture",
+    "provenance": "owned",
+    "why_premium": "The primary visual is the real curriculum and route system, authored as exact UI rather than decorative media or fake product proof.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "app/music/learn/page.tsx",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Inspected at 1440x900, 390x844, 640px reflow, and reduced motion; no overflow, clipping, or running animation."
+    },
+    {
+      "path_or_url": "app/music/learn/science/page.tsx",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Inspected at 1440x900 and 390x844 with claim-boundary state; no overflow, clipping, or page error."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C exact curriculum UI is the real product proof; no external or generated hero asset is used."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Twelve local production screenshots inspected for hub and science first viewport and primary state."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "1440x900, 390x844, 640px reflow, reduced motion, keyboard focus, primary navigation, and page-error checks pass. Local-only global auth and Vercel telemetry requests are recorded separately."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "5/5 first read; 5/5 brand fit; 5/5 craft; 5/5 accessibility/responsiveness/reduced motion; 4/5 factual/provenance due external-source freshness dependency; 4/5 utility because legacy subroutes retain mixed visual systems."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "Legacy subroutes retain mixed light/dark visual systems and decorative motion.",
+    "External teacher, tool, and score links can change independently of FrankX.",
+    "Piano and violin remain German-first rather than fully bilingual."
+  ]
+}
