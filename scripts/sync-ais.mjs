@@ -5,22 +5,28 @@ import { existsSync, writeFileSync, mkdirSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
-const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
+const aisRootCandidates = [
+  process.env.AIS_ROOT ? resolve(process.env.AIS_ROOT) : null,
+  resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System'),
+  resolve(FRANKX_ROOT, '..', '..', 'repos', 'Agent-Intelligence-System'),
+].filter(Boolean);
+const AIS_ROOT = aisRootCandidates.find((candidate) => existsSync(candidate));
 
 const isCI = Boolean(process.env.VERCEL || process.env.CI || process.env.GITHUB_ACTIONS);
 
-if (!existsSync(AIS_ROOT)) {
+if (!AIS_ROOT) {
+  const searchedRoots = aisRootCandidates.join(', ');
   if (isCI) {
     console.warn(
-      `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}; ` +
+      `[sync-ais] Agent-Intelligence-System not found in ${searchedRoots}; ` +
       `skipping optional AIS emission during automated build.`
     );
     process.exit(0);
   }
 
   console.error(
-    `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}.\n` +
-    `Clone it: git clone https://github.com/frankxai/agentic-intelligence-system ${AIS_ROOT}`
+    `[sync-ais] Agent-Intelligence-System not found in ${searchedRoots}.\n` +
+    `Set AIS_ROOT to a built checkout or clone it beside the FrankX repository.`
   );
   process.exit(1);
 }
@@ -91,4 +97,3 @@ try {
   console.error('❌ [sync-ais] Error syncing AIS assets:', error.message);
   process.exit(1);
 }
-
