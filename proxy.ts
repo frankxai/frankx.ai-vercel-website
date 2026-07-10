@@ -42,8 +42,16 @@ export async function proxy(request: NextRequest) {
   }
 
   // ─── 3. Auth protection (existing) ────────────────────────
-  const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads']
-  const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path))
+  // /api/admin/upload and /api/admin/verify implement their own ADMIN_SECRET
+  // header/body check — they stay out of the session gate below.
+  const selfGatedApiPaths = ['/api/admin/upload', '/api/admin/verify']
+  const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads', '/api/admin']
+  // Exact-segment match — `startsWith` alone would also catch a future
+  // public route like /admin-settings or /dashboard-assets.
+  const matchesPath = (path: string) => pathname === path || pathname.startsWith(path + '/')
+  const isProtectedRoute =
+    !selfGatedApiPaths.some(matchesPath) &&
+    protectedPaths.some(matchesPath)
 
   if (isProtectedRoute) {
     const token = await getToken({
@@ -70,17 +78,18 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   // Match all paths except API routes, static files, and Next.js internals.
-  // Auth-gated paths (/dashboard, /admin, /api/dashboard, /api/leads) and
+  // Auth-gated paths (/dashboard, /admin, /api/dashboard, /api/leads, /api/admin) and
   // language/redirect logic still trigger via the explicit checks inside
   // the proxy function above — they don't need to be in the matcher.
   //
   // Exceptions:
-  //   - /api/dashboard + /api/leads stay protected via explicit matcher entries
-  //   - everything under /api/* (except those two), static assets, and Next
+  //   - /api/dashboard, /api/leads, /api/admin stay protected via explicit matcher entries
+  //   - everything under /api/* (except those three), static assets, and Next
   //     internals are excluded for perf reasons.
   matcher: [
     '/api/dashboard/:path*',
     '/api/leads/:path*',
+    '/api/admin/:path*',
     '/((?!api/|_next/static|_next/image|_next/data|favicon.ico|robots.txt|sitemap.xml|llms.txt|llms-full.txt|images/|fonts/).*)',
   ],
 }
