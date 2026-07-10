@@ -13,12 +13,24 @@ export function initialize(data) {
 }
 
 export async function resolve(specifier, context, nextResolve) {
+  if (specifier === 'next/server') {
+    return nextResolve('next/server.js', context)
+  }
+
   if (specifier.startsWith('@/')) {
-    const mapped = pathToFileURL(resolvePath(root, specifier.slice(2))).href
+    const mappedPath = resolvePath(root, specifier.slice(2))
+    const mapped = pathToFileURL(mappedPath).href
     if (mapped.endsWith('.json')) {
       return { url: mapped, format: 'json', shortCircuit: true }
     }
-    return nextResolve(mapped, context)
+    try {
+      return await nextResolve(mapped, context)
+    } catch (err) {
+      if (err?.code === 'ERR_MODULE_NOT_FOUND') {
+        return nextResolve(pathToFileURL(`${mappedPath}.ts`).href, context)
+      }
+      throw err
+    }
   }
 
   // Relative TS imports in this repo omit the extension (resolved by

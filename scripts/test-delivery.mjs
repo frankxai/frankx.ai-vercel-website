@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Regression test for the checkout -> delivery slug contract.
 //
-// app/api/checkout/route.ts's PRODUCTS map keys are the productId sent to
+// lib/checkout.ts's product keys are the productId sent to
 // Stripe as session metadata; the webhook (app/api/webhooks/stripe/route.ts)
 // looks that slug up via lib/delivery.ts's generateProductEmailData(), which
 // composes getProductById() (data/products.json) + getDeliveryConfig()
-// (lib/delivery.ts DELIVERY_CONFIG). If any of the three slugs don't line up
-// across all three, a paid buyer is charged and receives no delivery email.
+// (lib/delivery.ts DELIVERY_CONFIG). A product is checkout-ready only when its
+// canonical registry entry also declares at least one Blob delivery artifact.
 //
 // No test runner is configured in this repo (package.json has no "test"
 // script), so this uses node:test directly:
@@ -33,41 +33,50 @@ register(
   { data: { root: ROOT } }
 )
 
-const { generateProductEmailData } = await import(pathToFileURL(resolve(ROOT, 'lib/delivery.ts')).href)
+const { generateProductEmailData, isProductDeliveryReady } = await import(
+  pathToFileURL(resolve(ROOT, 'lib/delivery.ts')).href
+)
 
-// Must match the PRODUCTS map keys in app/api/checkout/route.ts exactly.
-const CHECKOUT_SLUGS = ['creative-ai-toolkit', 'agentic-creator-os', 'suno-prompt-library']
+const DELIVERY_READY_CHECKOUT_SLUGS = ['agentic-creator-os']
 
-test('every checkout slug resolves to a non-null delivery email payload', () => {
-  for (const slug of CHECKOUT_SLUGS) {
+test('every delivery-ready checkout slug resolves to an email payload', () => {
+  for (const slug of DELIVERY_READY_CHECKOUT_SLUGS) {
+    assert.equal(isProductDeliveryReady(slug), true)
     const data = generateProductEmailData(slug, 'Test Buyer', 'buyer@example.com')
     assert.ok(data, `expected generateProductEmailData("${slug}") to resolve — webhook would silently drop this buyer's email`)
   }
 })
 
-test('every checkout slug payload has a non-empty product name', () => {
-  for (const slug of CHECKOUT_SLUGS) {
+test('a product without canonical delivery artifacts is not checkout-ready', () => {
+  assert.equal(isProductDeliveryReady('creative-ai-toolkit'), false)
+  assert.equal(isProductDeliveryReady('suno-prompt-library'), false)
+})
+
+test('every delivery-ready payload has a non-empty product name', () => {
+  for (const slug of DELIVERY_READY_CHECKOUT_SLUGS) {
     const data = generateProductEmailData(slug, 'Test Buyer', 'buyer@example.com')
     assert.equal(typeof data.productName, 'string')
     assert.ok(data.productName.trim().length > 0, `expected a product name for "${slug}"`)
   }
 })
 
-test('every checkout slug payload has at least one download link', () => {
-  for (const slug of CHECKOUT_SLUGS) {
+test('every delivery-ready payload has canonical Blob redirect links', () => {
+  for (const slug of DELIVERY_READY_CHECKOUT_SLUGS) {
     const data = generateProductEmailData(slug, 'Test Buyer', 'buyer@example.com')
     assert.ok(Array.isArray(data.downloadLinks), `expected downloadLinks array for "${slug}"`)
     assert.ok(data.downloadLinks.length > 0, `expected at least one download link for "${slug}"`)
     for (const link of data.downloadLinks) {
       assert.equal(typeof link.name, 'string')
       assert.equal(typeof link.url, 'string')
-      assert.ok(link.url.startsWith('http'), `expected an absolute download URL for "${slug}"`)
+      const url = new URL(link.url)
+      assert.equal(url.pathname, '/api/download/file')
+      assert.ok(url.searchParams.get('key'), `expected a Blob key for "${slug}"`)
     }
   }
 })
 
 test('payload carries through the customer name and email unchanged', () => {
-  const data = generateProductEmailData('creative-ai-toolkit', 'Ada Lovelace', 'ada@example.com')
+  const data = generateProductEmailData('agentic-creator-os', 'Ada Lovelace', 'ada@example.com')
   assert.equal(data.customerName, 'Ada Lovelace')
   assert.equal(data.customerEmail, 'ada@example.com')
 })
