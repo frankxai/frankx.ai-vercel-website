@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "task": "Build the proof-led FrankX executive AI architecture homepage",
+  "surface": "FrankX homepage at /",
+  "audience": "Founders, operators, and technical leaders who need governed AI workflows",
+  "standards": [
+    "Premium Intelligence Web OS",
+    "FrankX design.md and taste.md",
+    "Starlight Design Taste Kernel",
+    "Premium Asset Standard",
+    "Visual QA Gate"
+  ],
+  "references": [
+    "FrankX brand world: direct, technical, results-first",
+    "Existing FrankX portrait and visual registry",
+    "Existing public ACOS repository and architecture routes"
+  ],
+  "direction": {
+    "keep": "One executive AI architecture route, real proof, editorial restraint, and honest ecosystem handoffs",
+    "avoid": "Catalog-homepage density, fake metrics, generic AI gradients, decorative 3D, and unsupported outcomes",
+    "signature": "A real architecture presentation paired with an inspectable operating-system narrative",
+    "system": "Obsidian base, emerald authority signal, cyan mechanism signal, static server-rendered composition"
+  },
+  "asset_quality": {
+    "tier": "A",
+    "source_method": "product-capture",
+    "provenance": "owned",
+    "why_premium": "The hero is a real FrankX architecture presentation and directly proves the work described by the page.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "components/home/FrankXProductionHome.tsx",
+      "kind": "homepage implementation",
+      "inspected": true
+    },
+    {
+      "path_or_url": "public/images/portraits/frank-presenting-oracle-2025.jpg",
+      "kind": "Tier A hero photograph",
+      "inspected": true
+    },
+    {
+      "path_or_url": "C:/Users/frank/starlight/repos/.codex-artifacts/frankx-production-home-20260710/desktop.png",
+      "kind": "desktop visual capture",
+      "inspected": true
+    },
+    {
+      "path_or_url": "C:/Users/frank/starlight/repos/.codex-artifacts/frankx-production-home-20260710/mobile.png",
+      "kind": "mobile visual capture before containment correction",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Real presentation photograph; no generated or decorative primary asset"
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Hero source and desktop/mobile PNG captures inspected"
+    },
+    {
+      "name": "desktop-first-viewport",
+      "status": "pass",
+      "evidence": "Dominant claim, primary route, real proof, and readable contrast are visible"
+    },
+    {
+      "name": "mobile-first-viewport",
+      "status": "blocked",
+      "evidence": "The single capped 390px capture exposed horizontal clipping; min-width containment was corrected after capture and requires preview inspection"
+    },
+    {
+      "name": "reduced-motion",
+      "status": "pass",
+      "evidence": "Homepage adds no animation runtime, scroll choreography, parallax, or autoplay media"
+    },
+    {
+      "name": "public-language",
+      "status": "pass",
+      "evidence": "Strict claim audit passed and changed files contain no banned AI-slop phrases"
+    },
+    {
+      "name": "performance",
+      "status": "pass",
+      "evidence": "Server component, optimized local image, no homepage-specific client runtime, production build passed"
+    }
+  ],
+  "score": {
+    "total": 25,
+    "max": 30,
+    "note": "Desktop composition is ship-level; mobile containment needs inspection on the Git-backed preview before release promotion."
+  },
+  "decision": "iterate"
+}
