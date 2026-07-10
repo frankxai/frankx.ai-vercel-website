@@ -145,7 +145,7 @@ export default function FrankXProductionHome({
         <div className="relative mx-auto w-full min-w-0 max-w-[520px] lg:justify-self-end">
           <div className="absolute -inset-10 bg-emerald-400/10 blur-[100px]" aria-hidden="true" />
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0d1111] shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
-            <div className="relative aspect-[4/5] min-h-[540px]">
+            <div className="relative aspect-[4/5] min-h-[420px] sm:min-h-[540px]">
               <Image
                 src="/images/portraits/frank-presenting-oracle-2025.jpg"
                 alt="Frank Riemer presenting an AI architecture session"
