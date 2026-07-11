@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "task": "Build the proof-led FrankX executive AI architecture homepage",
+  "surface": "FrankX homepage at /",
+  "audience": "Founders, operators, and technical leaders who need governed AI workflows",
+  "standards": [
+    "Premium Intelligence Web OS",
+    "FrankX design.md and taste.md",
+    "Starlight Design Taste Kernel",
+    "Premium Asset Standard",
+    "Visual QA Gate"
+  ],
+  "references": [
+    "FrankX brand world: direct, technical, results-first",
+    "Existing FrankX portrait and visual registry",
+    "Existing public ACOS repository and architecture routes"
+  ],
+  "direction": {
+    "keep": "One executive AI architecture route, real proof, editorial restraint, and honest ecosystem handoffs",
+    "avoid": "Catalog-homepage density, fake metrics, generic AI gradients, decorative 3D, and unsupported outcomes",
+    "signature": "A real architecture presentation paired with an inspectable operating-system narrative",
+    "system": "Obsidian base, emerald authority signal, cyan mechanism signal, static server-rendered composition"
+  },
+  "asset_quality": {
+    "tier": "A",
+    "source_method": "product-capture",
+    "provenance": "owned",
+    "why_premium": "The hero is a real FrankX architecture presentation and directly proves the work described by the page.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "components/home/FrankXProductionHome.tsx",
+      "kind": "homepage implementation",
+      "inspected": true
+    },
+    {
+      "path_or_url": "public/images/portraits/frank-presenting-oracle-2025.jpg",
+      "kind": "Tier A hero photograph",
+      "inspected": true
+    },
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-git-code-f2470d-starlight-intelligence.vercel.app",
+      "kind": "exact-head Vercel preview inspected at desktop, mobile, reflow, and reduced motion",
+      "inspected": true
+    },
+    {
+      "path_or_url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/257#issuecomment-4937575036",
+      "kind": "immutable responsive and reduced-motion verification receipt",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Real presentation photograph; no generated or decorative primary asset"
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Hero source and desktop/mobile PNG captures inspected"
+    },
+    {
+      "name": "desktop-first-viewport",
+      "status": "pass",
+      "evidence": "Dominant claim, primary route, real proof, and readable contrast are visible"
+    },
+    {
+      "name": "mobile-first-viewport",
+      "status": "pass",
+      "evidence": "Exact-head preview inspected at 390x844 and 640 CSS px reflow with zero document overflow or clipped visible and interactive elements"
+    },
+    {
+      "name": "reduced-motion",
+      "status": "pass",
+      "evidence": "Exact-head reduced-motion preview matched the preference with zero running animations; the homepage adds no scroll choreography, parallax, or autoplay media"
+    },
+    {
+      "name": "public-language",
+      "status": "pass",
+      "evidence": "Strict claim audit passed and changed files contain no banned AI-slop phrases"
+    },
+    {
+      "name": "performance",
+      "status": "pass",
+      "evidence": "Server component, optimized local image, no homepage-specific client runtime, production build passed"
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "note": "Exact-head preview passed desktop, 390px mobile, reflow, and reduced-motion inspection with Tier A proof and no clipping or overflow."
+  },
+  "decision": "ship"
+}
