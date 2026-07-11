@@ -20,9 +20,7 @@ const layouts = [
   "app/music/learn/science/layout.tsx",
   "app/music/learn/theory/layout.tsx",
   "app/music/learn/violin/layout.tsx",
-]
-  .map(read)
-  .join("\n");
+].map(read).join("\n");
 
 test("the canonical hub exposes every live learning route", () => {
   for (const route of [
@@ -35,7 +33,7 @@ test("the canonical hub exposes every live learning route", () => {
     "/music/learn/orchestration",
     "/music/learn/science",
   ]) {
-    assert.match(hub, new RegExp(`href: ["']${route}["']`));
+    assert.match(hub, new RegExp(`href:\\s*["']${route}["']`));
   }
 });
 
