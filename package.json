@@ -12,6 +12,7 @@
     "smoke:json": "node scripts/run-smoke-evals.mjs --json",
     "test:newsletter": "node --experimental-strip-types --test scripts/tests/submit-newsletter.test.mjs",
     "test:privacy-analytics": "node --experimental-strip-types --test scripts/tests/privacy-analytics.test.mjs",
+    "test:homepage-release": "node --test scripts/tests/homepage-release-contract.test.mjs",
     "agents:quality": "node scripts/agents/audit-agent-quality.mjs",
     "agents:quality:json": "node scripts/agents/audit-agent-quality.mjs --json",
     "design:lint": "node scripts/design-tokens.mjs lint",

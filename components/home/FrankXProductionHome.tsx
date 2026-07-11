@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { socialLinks } from '@/lib/social-links'
 import {
   ArrowRight,
   Check,
@@ -29,7 +30,7 @@ const proofArtifacts = [
     title: 'Agentic Creator OS',
     description:
       'A public, inspectable operating system for agent skills, commands, workflows, and creator delivery.',
-    href: 'https://github.com/frankxai/agentic-creator-os',
+    href: `${socialLinks.github}/agentic-creator-os`,
     action: 'Inspect the repository',
     external: true,
     Icon: Github,

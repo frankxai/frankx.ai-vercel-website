@@ -41,13 +41,13 @@
       "inspected": true
     },
     {
-      "path_or_url": "C:/Users/frank/starlight/repos/.codex-artifacts/frankx-production-home-20260710/desktop.png",
-      "kind": "desktop visual capture",
+      "path_or_url": "https://frankx-ai-vercel-website-git-code-f2470d-starlight-intelligence.vercel.app",
+      "kind": "exact-head Vercel preview inspected at desktop, mobile, reflow, and reduced motion",
       "inspected": true
     },
     {
-      "path_or_url": "C:/Users/frank/starlight/repos/.codex-artifacts/frankx-production-home-20260710/mobile.png",
-      "kind": "mobile visual capture before containment correction",
+      "path_or_url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/257#issuecomment-4937575036",
+      "kind": "immutable responsive and reduced-motion verification receipt",
       "inspected": true
     }
   ],
@@ -69,13 +69,13 @@
     },
     {
       "name": "mobile-first-viewport",
-      "status": "blocked",
-      "evidence": "The single capped 390px capture exposed horizontal clipping; min-width containment was corrected after capture and requires preview inspection"
+      "status": "pass",
+      "evidence": "Exact-head preview inspected at 390x844 and 640 CSS px reflow with zero document overflow or clipped visible and interactive elements"
     },
     {
       "name": "reduced-motion",
       "status": "pass",
-      "evidence": "Homepage adds no animation runtime, scroll choreography, parallax, or autoplay media"
+      "evidence": "Exact-head reduced-motion preview matched the preference with zero running animations; the homepage adds no scroll choreography, parallax, or autoplay media"
     },
     {
       "name": "public-language",
@@ -89,9 +89,9 @@
     }
   ],
   "score": {
-    "total": 25,
+    "total": 28,
     "max": 30,
-    "note": "Desktop composition is ship-level; mobile containment needs inspection on the Git-backed preview before release promotion."
+    "note": "Exact-head preview passed desktop, 390px mobile, reflow, and reduced-motion inspection with Tier A proof and no clipping or overflow."
   },
-  "decision": "iterate"
+  "decision": "ship"
 }
