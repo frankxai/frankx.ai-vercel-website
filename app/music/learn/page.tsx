@@ -255,7 +255,7 @@ export default function LearnMusicPage() {
                         <Link
                           key={route.href}
                           href={route.href}
-                          className="group flex min-h-64 flex-col rounded-[1.6rem] border border-white/10 bg-zinc-900/60 p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/40 hover:bg-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                          className="group flex min-h-64 flex-col rounded-[1.6rem] border border-white/10 bg-zinc-900/60 p-6 transition hover:-translate-y-[0.5px] hover:border-emerald-400/40 hover:bg-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                         >
                           <div className="flex items-start justify-between gap-4">
                             <span className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-emerald-300">

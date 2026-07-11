@@ -53,8 +53,10 @@ test("the hub is a free editorial layer with explicit privacy, guardian, and rig
   );
   assert.doesNotMatch(
     source,
-    /<form|<input|paid academy|course starten|zurück zu aleas welt/i,
+    /<form|<input|paid academy|Kurs starten|zurück zu aleas welt/i,
   );
+  assert.match(source, /hover:-translate-y-\[0\.5px\]/);
+  assert.doesNotMatch(source, /hover:-translate-y-0\.5/);
 });
 
 test("the science route removes medical-sounding frequency promises and publishes its evidence boundary", () => {
