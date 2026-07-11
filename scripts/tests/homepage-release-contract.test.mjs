@@ -4,7 +4,7 @@ import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 const OVERLAY_OPEN_TAG_PATTERN = /<div\b(?=[^>]*\bdata-home-proof-overlay\b)[^>]*>/
-const DIV_TAG_PATTERN = /<\/?div\b[^>]*>/g
+const DIV_TAG_PATTERN = /<\/?div\b[^>]*>/
 const CLASS_NAME_PATTERN = /\bclassName="([^"]+)"/
 const PARAGRAPH_TAG_PATTERN = /<p\b[^>]*>/g
 const WHITESPACE_PATTERN = /\s+/
@@ -14,11 +14,17 @@ const extractElementSource = (source, openingPattern) => {
   if (openingMatch?.index === undefined) return undefined
 
   let depth = 0
-  DIV_TAG_PATTERN.lastIndex = openingMatch.index
+  let cursor = openingMatch.index
 
-  for (let tag = DIV_TAG_PATTERN.exec(source); tag; tag = DIV_TAG_PATTERN.exec(source)) {
+  while (cursor < source.length) {
+    const tag = source.slice(cursor).match(DIV_TAG_PATTERN)
+    if (tag?.index === undefined) break
+
+    const tagStart = cursor + tag.index
+    const tagEnd = tagStart + tag[0].length
     depth += tag[0].startsWith('</') ? -1 : 1
-    if (depth === 0) return source.slice(openingMatch.index, DIV_TAG_PATTERN.lastIndex)
+    if (depth === 0) return source.slice(openingMatch.index, tagEnd)
+    cursor = tagEnd
   }
 
   return undefined
@@ -84,4 +90,13 @@ test('overlay source extraction includes nested divs and stops at the matching c
 
   assert.match(overlayMarkup, /Nested detail/)
   assert.doesNotMatch(overlayMarkup, /Unrelated sibling/)
+})
+
+test('overlay source extraction has no shared state between calls', () => {
+  const firstSource = '<div data-home-proof-overlay><p>First</p></div>'
+  const secondSource = '<div data-home-proof-overlay><div><p>Second</p></div></div>'
+
+  assert.match(extractElementSource(firstSource, OVERLAY_OPEN_TAG_PATTERN), /First/)
+  assert.match(extractElementSource(secondSource, OVERLAY_OPEN_TAG_PATTERN), /Second/)
+  assert.match(extractElementSource(firstSource, OVERLAY_OPEN_TAG_PATTERN), /First/)
 })
