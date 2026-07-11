@@ -159,15 +159,18 @@ export default function FrankXProductionHome({
                 className="absolute inset-0 bg-gradient-to-t from-[#08100d] via-[#08100d]/15 to-transparent"
                 aria-hidden="true"
               />
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-300/70">
-                  Evidence before adjectives
-                </p>
-                <p className="mt-3 max-w-sm text-base leading-7 text-white/78">
-                  Architecture is useful when a team can see the decisions, operate the workflow,
-                  and know when the system is wrong.
-                </p>
-              </div>
+            </div>
+            <div
+              data-home-proof-overlay
+              className="absolute inset-x-0 bottom-0 min-w-0 max-w-full p-5 min-[360px]:p-6 sm:p-8"
+            >
+              <p className="max-w-full font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-300/70">
+                Evidence before adjectives
+              </p>
+              <p className="mt-3 max-w-full text-base leading-7 text-white/78 sm:max-w-sm">
+                Architecture is useful when a team can see the decisions, operate the workflow,
+                and know when the system is wrong.
+              </p>
             </div>
           </div>
         </div>
