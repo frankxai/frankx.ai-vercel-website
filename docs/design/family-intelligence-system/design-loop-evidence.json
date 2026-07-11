@@ -1,0 +1,114 @@
+{
+  "version": "2026-06-23",
+  "task": "Create the public Family Intelligence System category page, founding archive page, and German private gateway.",
+  "surface": "FrankX public web routes and authenticated family gateway",
+  "audience": "Family stewards, relatives, archivists, and technical adopters",
+  "first_read": "A family needs governed memory and continuity, not merely a tree.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "_intelligence/operating-system.md",
+    "WEB_EXPERIENCE_STANDARD.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX brand pack",
+      "source": "starlight-design-intelligence/brand-packs/frankx",
+      "reason": "Typography, color roles, sentence-case hierarchy, and proof-led copy"
+    },
+    {
+      "label": "Premium Intelligence Web OS",
+      "source": "_intelligence/operating-system.md",
+      "reason": "Static composition first, useful first win, and verification requirements"
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Editorial hierarchy and generous quiet space",
+      "Exact trust-state interface as the focal asset",
+      "Explicit current-maturity and privacy language"
+    ],
+    "avoid": [
+      "Generic family-tree illustration",
+      "Neon gradient card grid",
+      "Unverified metrics or fake family data",
+      "Decorative 3D, orbs, and node-cloud cliches"
+    ],
+    "signature": "The governed knowledge chain: Claim, Evidence, Consent, Steward, Scope.",
+    "system": [
+      "Graphite foundation with paper-ivory foreground",
+      "Sage for trusted states, amber for review, rose for blocked",
+      "Existing FrankX display, sans, and mono typography",
+      "No generated media or external visual dependency",
+      "Local-only privacy planner as the first useful interaction"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "product-capture",
+    "provenance": "owned",
+    "why_premium": "The mechanism itself is rendered as exact, accessible interface rather than decorative metaphor.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "app/family-intelligence-system/page.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Implementation complete; desktop and mobile export inspection pending."
+    },
+    {
+      "path_or_url": "app/family/page.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Privacy-safe founding archive implementation; visual inspection pending."
+    },
+    {
+      "path_or_url": "app/familien-intelligenz-system/page.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "German public explainer and localized planner; visual inspection pending."
+    },
+    {
+      "path_or_url": "app/familie/page.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Locked and authenticated states require browser inspection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C exact UI/system asset is the correct medium for a trust and authorization product."
+    },
+    {
+      "name": "export-inspection",
+      "status": "blocked",
+      "evidence": "Pending bounded browser or Vercel preview inspection."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Desktop, mobile, keyboard, and authenticated-route inspection pending."
+    },
+    {
+      "name": "privacy-boundary",
+      "status": "pass",
+      "evidence": "Public routes contain no individual living-relative or child data; private subroutes are auth-gated."
+    }
+  ],
+  "score": {
+    "total": 24,
+    "max": 30,
+    "notes": "Strong mechanism, hierarchy, and safety. Export inspection and live visual QA are still required for ship status."
+  },
+  "decision": "iterate",
+  "known_risks": [
+    "Existing single-admin credentials are a pilot gate, not multi-person family authentication.",
+    "Secure intake and verified contact address are intentionally not opened yet.",
+    "Vercel preview and visual inspection remain pending machine admission."
+  ]
+}

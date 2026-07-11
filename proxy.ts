@@ -43,7 +43,8 @@ export async function proxy(request: NextRequest) {
 
   // ─── 3. Auth protection (existing) ────────────────────────
   const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads']
-  const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path))
+  const isPrivateFamilyArchiveRoute = pathname === '/family/tree' || pathname.startsWith('/familie/')
+  const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path)) || isPrivateFamilyArchiveRoute
 
   if (isProtectedRoute) {
     const token = await getToken({
@@ -52,6 +53,12 @@ export async function proxy(request: NextRequest) {
     })
 
     if (!token) {
+      if (isPrivateFamilyArchiveRoute) {
+        const familyGatewayUrl = new URL('/familie', request.url)
+        familyGatewayUrl.searchParams.set('zugang', 'erforderlich')
+        return NextResponse.redirect(familyGatewayUrl)
+      }
+
       const signInUrl = new URL('/auth/signin', request.url)
       signInUrl.searchParams.set('callbackUrl', request.url)
       return NextResponse.redirect(signInUrl)

@@ -29,7 +29,7 @@ type RouteIndexRoute = {
 
 const ROUTES = (routeIndex as { routes: RouteIndexRoute[] }).routes
 
-const BLOCKED_PREFIXES = ['/admin', '/api', '/auth', '/studio', '/papa']
+const BLOCKED_PREFIXES = ['/admin', '/api', '/auth', '/studio', '/papa', '/familie', '/family/tree']
 const BLOCKED_EXACT = new Set(['/thank-you', '/unsubscribe'])
 
 const MANUAL_ITEMS: SiteSearchItem[] = [

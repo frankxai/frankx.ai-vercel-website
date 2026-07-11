@@ -1,268 +1,68 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import {
-  TreePine,
-  Heart,
-  BookOpen,
-  MessageCircle,
-  Users,
-  ArrowRight,
-  Sparkles,
-  Home,
-  History,
-  GraduationCap,
-  HandHeart,
-} from 'lucide-react'
+import { ArrowRight, BookOpenText, FileSearch, Heart, LockKeyhole, ShieldCheck, TreePine } from 'lucide-react'
+import { auth } from '@/lib/auth'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Familie Hub — Riemer-Gorte',
-  description: 'Ein lebendiger digitaler Raum für die Familie Riemer-Gorte. Generationen verbinden durch Geschichten, Erinnerungen und gemeinsame Inspiration.',
-  robots: { index: false, follow: false },
+  title: 'Privates Familienportal',
+  description: 'Geschützter Zugang zum deutschsprachigen Familienarchiv.',
+  robots: { index: false, follow: false, nocache: true },
 }
 
-const familieLinks = [
-  {
-    title: 'Stammbaum',
-    description: 'Die Gorte- und Riemer-Familienlinien erkunden. Von Freudental (1729) über die Wolga und Karaganda bis Amsterdam.',
-    href: '/familie/stammbaum',
-    icon: TreePine,
-    color: 'from-emerald-500/20 to-emerald-600/5',
-    borderColor: 'border-emerald-500/20 hover:border-emerald-500/40',
-    iconColor: 'text-emerald-400',
-  },
-  {
-    title: 'Unsere Geschichte',
-    description: 'Wolgadeutsche, Trudarmee, Karaganda — die Geschichte unserer Vorfahren. Quellbasiert und transparent.',
-    href: '/familie/geschichte',
-    icon: History,
-    color: 'from-amber-500/20 to-amber-600/5',
-    borderColor: 'border-amber-500/20 hover:border-amber-500/40',
-    iconColor: 'text-amber-400',
-  },
-  {
-    title: 'Opa & Oma',
-    description: 'Ein besonderer Platz für alle Großeltern. Inspiration, Zitate, und eine Einladung eure Geschichten zu teilen.',
-    href: '/opa-und-oma',
-    icon: Heart,
-    color: 'from-rose-500/20 to-rose-600/5',
-    borderColor: 'border-rose-500/20 hover:border-rose-500/40',
-    iconColor: 'text-rose-400',
-  },
-  {
-    title: 'Papa',
-    description: 'Witali Riemer (1969-2018). Ein lebendiges Sohn-Archiv für Papa, mit Erbe für alle die ohne Vaterstimme aufwuchsen.',
-    href: '/papa',
-    icon: Heart,
-    color: 'from-cyan-500/20 to-cyan-600/5',
-    borderColor: 'border-cyan-500/20 hover:border-cyan-500/40',
-    iconColor: 'text-cyan-400',
-  },
-  {
-    title: 'Interview-Kit',
-    description: 'Fragenkataloge für die Gespräche mit Opa David, Oma Dorothea, Opa Alexander und Oma Paulina. Ausdruckbar.',
-    href: '/familie/interview-kit',
-    icon: MessageCircle,
-    color: 'from-rose-500/20 to-rose-600/5',
-    borderColor: 'border-rose-500/20 hover:border-rose-500/40',
-    iconColor: 'text-rose-400',
-    badge: 'Zeitkritisch',
-  },
-  {
-    title: 'Mitmachen',
-    description: 'Teile Erinnerungen, Fotos, Korrekturen oder Forschungsfragen. Diese Geschichte gehört uns allen.',
-    href: '/familie/mitmachen',
-    icon: HandHeart,
-    color: 'from-violet-500/20 to-violet-600/5',
-    borderColor: 'border-violet-500/20 hover:border-violet-500/40',
-    iconColor: 'text-violet-400',
-  },
-  {
-    title: 'Selbst forschen',
-    description: 'Wie man Vorfahren findet, ohne zu erfinden. Die Methode hinter unserer Familienforschung — mit KI und Archiven.',
-    href: '/familie/forsche-selbst',
-    icon: GraduationCap,
-    color: 'from-cyan-500/20 to-cyan-600/5',
-    borderColor: 'border-cyan-500/20 hover:border-cyan-500/40',
-    iconColor: 'text-cyan-400',
-  },
-]
+const privateAreas = [
+  { title: 'Stammbaum', description: 'Quellen, Beziehungen und offene Fragen', href: '/familie/stammbaum', icon: TreePine },
+  { title: 'Familiengeschichte', description: 'Geprüfte Erzählungen mit Herkunftsnachweisen', href: '/familie/geschichte', icon: BookOpenText },
+  { title: 'Interview-Kit', description: 'Gespräche mit älteren Generationen vorbereiten', href: '/familie/interview-kit', icon: Heart },
+  { title: 'Mitmachen', description: 'Eine Erinnerung, Korrektur oder Quelle vorschlagen', href: '/familie/mitmachen', icon: FileSearch },
+] as const
 
-export default function FamilieHubPage() {
+export default async function FamilieGatewayPage() {
+  const session = await auth()
+
   return (
-    <main className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-transparent to-transparent" />
-          <div className="absolute top-20 left-1/4 h-[400px] w-[400px] rounded-full bg-emerald-500/10 blur-3xl" />
-          <div className="absolute top-40 right-1/4 h-[300px] w-[300px] rounded-full bg-amber-500/8 blur-3xl" />
-        </div>
-
-        <div className="relative mx-auto max-w-4xl px-6 py-20 lg:py-28 pt-32 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/60">
-            <Home className="h-3.5 w-3.5" />
-            <span>Riemer &middot; Gorte</span>
+    <main className="min-h-screen bg-[#080b0d] text-[#f4efe5]">
+      <section className="mx-auto max-w-6xl px-6 pb-24 pt-32 lg:px-10 lg:pb-32 lg:pt-40" lang="de">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
+          <div>
+            <p className="text-sm font-semibold text-emerald-300">Familienportal · privater Bereich</p>
+            <h1 className="mt-5 max-w-4xl font-display text-5xl font-semibold leading-[1] tracking-[-0.04em] text-white sm:text-7xl">Familienwissen gehört in den richtigen Kreis.</h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-300">Geschichten, Quellen und Vorsorge werden nicht einfach veröffentlicht. Dieser Bereich trennt persönliche, enge, erweiterte und öffentliche Informationen.</p>
           </div>
-
-          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
-            Familie Hub
-          </h1>
-
-          <p className="mx-auto max-w-2xl text-[17px] leading-relaxed text-white/80">
-            Ein lebendiger digitaler Raum für die Familie Riemer-Gorte. Generationen
-            verbinden durch Geschichten, Erinnerungen und gemeinsame Inspiration.
-            Gebaut mit Liebe von Frank.
-          </p>
-        </div>
-      </section>
-
-      {/* Familie Links */}
-      <section className="mx-auto max-w-5xl px-6 py-20 lg:py-28">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {familieLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`group relative flex flex-col rounded-2xl border ${link.borderColor} bg-gradient-to-br ${link.color} backdrop-blur-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
-            >
-              {link.badge && (
-                <span className="absolute right-4 top-4 rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/70">
-                  {link.badge}
-                </span>
-              )}
-
-              <link.icon className={`mb-4 h-8 w-8 ${link.iconColor}`} />
-
-              <h2 className="mb-2 text-xl font-semibold text-white">
-                {link.title}
-              </h2>
-
-              <p className="mb-4 flex-1 text-sm leading-relaxed text-white/50">
-                {link.description}
-              </p>
-
-              <div className="flex items-center gap-1 text-sm font-medium text-white/40 transition-colors group-hover:text-white/70">
-                Entdecken
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Werte */}
-      <section className="border-t border-white/[0.08] bg-white/[0.03]">
-        <div className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
-          <div className="mb-12 text-center">
-            <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Warum es das gibt</h2>
-            <p className="text-[17px] leading-relaxed text-white/80">
-              Dieser Hub ist kein soziales Netzwerk. Er ist ein Familienarchiv.
+          <div className="rounded-3xl border border-emerald-300/20 bg-[#101719] p-7">
+            <ShieldCheck className="h-7 w-7 text-emerald-300" aria-hidden />
+            <h2 className="mt-7 text-2xl font-semibold text-white">{session ? 'Steward-Zugang aktiv' : 'Zugang sicher verschlossen'}</h2>
+            <p className="mt-3 leading-7 text-stone-400">
+              {session
+                ? 'Du siehst nur Verweise auf den privaten Pilotbereich. Jede Unterseite bleibt zusätzlich durch die Anmeldung geschützt.'
+                : 'Ohne gültige Anmeldung werden weder Stammbaum noch Familiengeschichten oder Interviewmaterial geladen.'}
             </p>
-          </div>
-
-          <div className="grid gap-8 sm:grid-cols-3">
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
-                <Users className="h-6 w-6 text-emerald-400" />
-              </div>
-              <h3 className="mb-2 font-semibold text-white">Verbindung</h3>
-              <p className="text-sm text-white/40">
-                Die Entfernung zwischen Amsterdam und Deutschland überbrücken. Nah bleiben, auch wenn wir getrennt sind.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
-                <BookOpen className="h-6 w-6 text-amber-400" />
-              </div>
-              <h3 className="mb-2 font-semibold text-white">Bewahrung</h3>
-              <p className="text-sm text-white/40">
-                Geschichten, Weisheiten und Erinnerungen festhalten, bevor sie verblassen. Ein Geschenk für zukünftige Generationen.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10">
-                <Sparkles className="h-6 w-6 text-violet-400" />
-              </div>
-              <h3 className="mb-2 font-semibold text-white">Inspiration</h3>
-              <p className="text-sm text-white/40">
-                Teilen was wir lernen. Einander ermutigen zu erkunden, zu erschaffen und zu wachsen.
-              </p>
-            </div>
+            {!session && (
+              <Link href="/auth/signin?callbackUrl=/familie" className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#e7d7b2] px-5 py-3 text-sm font-semibold text-[#111617] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+                Als Steward anmelden <LockKeyhole className="h-4 w-4" aria-hidden />
+              </Link>
+            )}
           </div>
         </div>
-      </section>
 
-      {/* Aktueller Forschungsstand */}
-      <section className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8">
-          <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-slate-400/70">
-            Aktueller Forschungsstand
-          </p>
-          <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
-            Ein Kandidat aus 1729 — und 116 Jahre Lücke
-          </h2>
-          <p className="mb-4 text-[17px] leading-relaxed text-white/80">
-            Ein KI-Forschungsteam hat Johann Konrad Reimer gefunden — getauft 1729 in
-            Freudental, Gründungssiedler der Kolonie Reinwald (1766). Ob er unser
-            direkter Vorfahre ist, ist nicht bewiesen. Zwischen ihm und unserem
-            gesicherten Urgroßvater Christian Riemer (1914, Karaganda) liegen 116 Jahre
-            ohne dokumentierte Kette. Ein plausibler Kandidat, keine Tatsache.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/familie/geschichte/riemer-linie"
-              className="inline-flex items-center gap-2 rounded-full text-sm font-medium text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
-            >
-              Die Riemer-Linie ansehen
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-            <Link
-              href="/familie/geschichte/offene-fragen"
-              className="inline-flex items-center gap-2 rounded-full text-sm font-medium text-amber-400 hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-            >
-              Alle offenen Fragen
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+        {session ? (
+          <div className="mt-20 grid gap-4 sm:grid-cols-2">
+            {privateAreas.map((area) => (
+              <Link key={area.href} href={area.href} className="group rounded-3xl border border-white/10 bg-white/[0.025] p-7 transition hover:border-emerald-300/35 hover:bg-emerald-300/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+                <area.icon className="h-6 w-6 text-emerald-300" aria-hidden />
+                <h2 className="mt-8 text-2xl font-semibold text-white">{area.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-stone-400">{area.description}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-stone-300 group-hover:text-white">Öffnen <ArrowRight className="h-4 w-4" aria-hidden /></span>
+              </Link>
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA: Mitmachen */}
-      <section className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8 text-center">
-          <MessageCircle className="mx-auto mb-4 h-10 w-10 text-white/20" />
-          <h2 className="mb-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">Diese Geschichte gehört uns allen</h2>
-          <p className="mb-6 text-[17px] leading-relaxed text-white/80">
-            Jede Erinnerung, jedes Foto, jede Korrektur macht unsere
-            Familiengeschichte vollständiger. Du musst kein Experte sein.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/familie/mitmachen"
-              className="inline-flex items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/10 px-5 py-2.5 text-sm font-medium text-rose-200 transition-all hover:bg-rose-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              <Heart className="h-4 w-4" />
-              Mitmachen
-            </Link>
-            <Link
-              href="/opa-und-oma"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              Opa & Oma Seite
-            </Link>
+        ) : (
+          <div className="mt-20 border-t border-white/10 pt-10">
+            <p className="max-w-2xl text-sm leading-6 text-stone-500">Der aktuelle Pilotzugang ist noch kein Mehrpersonen-Familienkonto. Persönliche Konten, Einladungen, Rollen und Wiederherstellung werden im eigenständigen Family Intelligence OS umgesetzt, bevor weitere Familienmitglieder Zugang erhalten.</p>
+            <Link href="/family-intelligence-system" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-200 hover:text-white">Das öffentliche System kennenlernen <ArrowRight className="h-4 w-4" aria-hidden /></Link>
           </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <section className="border-t border-white/[0.08]">
-        <div className="mx-auto max-w-4xl px-6 py-8 text-center">
-          <p className="text-xs text-white/20">
-            Mit Liebe gebaut von Frank in Amsterdam &middot; Für die Familie Riemer-Gorte
-          </p>
-        </div>
+        )}
       </section>
     </main>
   )

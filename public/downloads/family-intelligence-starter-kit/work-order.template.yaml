@@ -1,0 +1,22 @@
+work_order_id: generated-id
+source_conversation: private-reference-or-summary
+approved_summary: describe_the_approved_change
+allowed_data_scopes:
+  - public_protocols_only
+repository: absolute_or_git_repository_reference
+target_paths: []
+acceptance_criteria: []
+forbidden_actions:
+  - access_real_family_records
+  - publish_living_person_data
+  - contact_people
+  - change_dns_or_production
+privacy_classification: public_code_no_family_data
+required_tests: []
+reviewers:
+  - family_steward
+human_approval_required_for:
+  - production
+  - external_send
+  - publication
+  - succession

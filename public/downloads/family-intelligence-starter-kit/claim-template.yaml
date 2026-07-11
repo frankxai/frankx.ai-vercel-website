@@ -1,0 +1,22 @@
+claim_id: generated-private-id
+claimant_id: private-person-id
+subject:
+  type: person_or_event
+  private_id: replace-me
+predicate: describe_the_asserted_relationship_or_event
+object:
+  type: person_event_place_or_value
+  private_id_or_value: replace-me
+time_range: unknown
+place: unknown
+evidence_refs: []
+source_grade: unknown
+confidence: 0
+status: received
+privacy_scope: core_circle
+living_persons_affected: []
+consent_receipts: []
+reviewers: []
+disputes: []
+publication_status: not_requested
+notes: Treat this as a claim until a human steward reviews evidence and impact.

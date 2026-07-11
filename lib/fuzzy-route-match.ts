@@ -69,8 +69,13 @@ export interface MatchResult {
 
 const typedIndex = routeIndex as RouteIndex
 
+const suggestionBlockedPrefixes = ['/admin', '/api', '/auth', '/dashboard', '/familie', '/family/tree', '/papa']
+const suggestionRoutes = typedIndex.routes.filter(
+  (route) => !suggestionBlockedPrefixes.some((prefix) => route.href === prefix || route.href.startsWith(`${prefix}/`))
+)
+
 // Build once at module init — Fuse.js indexes are pure and cheap to reuse.
-const fuse = new Fuse(typedIndex.routes, {
+const fuse = new Fuse(suggestionRoutes, {
   keys: [
     { name: 'href', weight: 0.45 },
     { name: 'title', weight: 0.35 },
