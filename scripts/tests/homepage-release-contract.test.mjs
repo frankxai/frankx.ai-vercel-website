@@ -3,6 +3,26 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+const OVERLAY_OPEN_TAG_PATTERN = /<div\b(?=[^>]*\bdata-home-proof-overlay\b)[^>]*>/
+const DIV_TAG_PATTERN = /<\/?div\b[^>]*>/g
+const CLASS_NAME_PATTERN = /\bclassName="([^"]+)"/
+const PARAGRAPH_TAG_PATTERN = /<p\b[^>]*>/g
+const WHITESPACE_PATTERN = /\s+/
+
+const extractElementSource = (source, openingPattern) => {
+  const openingMatch = source.match(openingPattern)
+  if (openingMatch?.index === undefined) return undefined
+
+  let depth = 0
+  DIV_TAG_PATTERN.lastIndex = openingMatch.index
+
+  for (let tag = DIV_TAG_PATTERN.exec(source); tag; tag = DIV_TAG_PATTERN.exec(source)) {
+    depth += tag[0].startsWith('</') ? -1 : 1
+    if (depth === 0) return source.slice(openingMatch.index, DIV_TAG_PATTERN.lastIndex)
+  }
+
+  return undefined
+}
 
 test('homepage repository proof derives from the canonical social registry', async () => {
   const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
@@ -27,13 +47,12 @@ test('homepage release evidence is portable and records the verified ship state'
 
 test('portrait proof overlay is bounded by the card at narrow widths', async () => {
   const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
-  const overlayMarkup = homepage.match(
-    /<div\b(?=[^>]*\bdata-home-proof-overlay\b)[^>]*>[\s\S]*?<\/div>/,
-  )?.[0]
-  const overlayOpenTag = overlayMarkup?.match(/^<div\b[^>]*>/)?.[0]
-  const overlayClasses = overlayOpenTag?.match(/\bclassName="([^"]+)"/)?.[1].split(/\s+/) ?? []
-  const copyClasses = [...(overlayMarkup?.matchAll(/<p\b[^>]*\bclassName="([^"]+)"[^>]*>/g) ?? [])]
-    .map((match) => match[1].split(/\s+/))
+  const overlayMarkup = extractElementSource(homepage, OVERLAY_OPEN_TAG_PATTERN)
+  const overlayOpenTag = overlayMarkup?.match(OVERLAY_OPEN_TAG_PATTERN)?.[0]
+  const overlayClasses = overlayOpenTag?.match(CLASS_NAME_PATTERN)?.[1].split(WHITESPACE_PATTERN) ?? []
+  const copyClasses = Array.from(overlayMarkup?.matchAll(PARAGRAPH_TAG_PATTERN) ?? [], (match) =>
+    (match[0].match(CLASS_NAME_PATTERN)?.[1] ?? '').split(WHITESPACE_PATTERN),
+  )
     .find((classes) => classes.includes('text-base'))
 
   assert.ok(overlayMarkup, 'proof overlay must remain addressable')
@@ -51,4 +70,18 @@ test('portrait proof overlay is bounded by the card at narrow widths', async () 
   }
   assert.ok(copyClasses?.includes('max-w-full'), 'proof copy must stay bounded at narrow widths')
   assert.ok(copyClasses?.includes('sm:max-w-sm'), 'proof copy must preserve its desktop measure')
+})
+
+test('overlay source extraction includes nested divs and stops at the matching close', () => {
+  const source = `<section>
+    <div className="proof" data-home-proof-overlay>
+      <p className="copy">Proof</p>
+      <div className="nested"><p>Nested detail</p></div>
+    </div>
+    <div>Unrelated sibling</div>
+  </section>`
+  const overlayMarkup = extractElementSource(source, OVERLAY_OPEN_TAG_PATTERN)
+
+  assert.match(overlayMarkup, /Nested detail/)
+  assert.doesNotMatch(overlayMarkup, /Unrelated sibling/)
 })
