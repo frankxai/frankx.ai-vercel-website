@@ -95,7 +95,7 @@
     "max": 30,
     "notes": "5/5 first read; 5/5 brand fit; 5/5 craft; 5/5 accessibility/responsiveness/reduced motion; 4/5 factual/provenance due external-source freshness dependency; 4/5 utility because legacy subroutes retain mixed visual systems."
   },
-  "decision": "ship",
+  "decision": "ship_to_draft_preview",
   "known_risks": [
     "Legacy subroutes retain mixed light/dark visual systems and decorative motion.",
     "External teacher, tool, and score links can change independently of FrankX.",

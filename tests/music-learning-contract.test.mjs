@@ -10,6 +10,11 @@ const hub = read("app/music/learn/page.tsx");
 const science = read("app/music/learn/science/page.tsx");
 const piano = read("app/music/learn/piano/page.tsx");
 const violin = read("app/music/learn/violin/page.tsx");
+const routeWiringPatterns = [
+  /ROUTE_GROUPS\.map\(\(group\) =>/,
+  /group\.routes\.map\(\(route\) =>/,
+  /href=\{route\.href\}/,
+];
 const layouts = [
   "app/music/learn/layout.tsx",
   "app/music/learn/guitar/layout.tsx",
@@ -35,6 +40,7 @@ test("the canonical hub exposes every live learning route", () => {
   ]) {
     assert.match(hub, new RegExp(`href:\\s*["']${route}["']`));
   }
+  for (const pattern of routeWiringPatterns) assert.match(hub, pattern);
 });
 
 test("the hub is a free editorial layer with explicit privacy, guardian, and rights boundaries", () => {
