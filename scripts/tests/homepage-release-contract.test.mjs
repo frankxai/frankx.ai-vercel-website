@@ -24,3 +24,14 @@ test('homepage release evidence is portable and records the verified ship state'
   assert.equal(evidence.decision, 'ship')
   assert.ok(evidence.artifacts.every((artifact) => !artifact.path_or_url.startsWith('file:')))
 })
+
+test('portrait proof overlay is bounded by the card at narrow widths', async () => {
+  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
+
+  assert.match(homepage, /data-home-proof-overlay/)
+  assert.match(
+    homepage,
+    /absolute inset-x-0 bottom-0 min-w-0 max-w-full p-5 min-\[360px\]:p-6 sm:p-8/,
+  )
+  assert.match(homepage, /max-w-full text-base leading-7 text-white\/78 sm:max-w-sm/)
+})
