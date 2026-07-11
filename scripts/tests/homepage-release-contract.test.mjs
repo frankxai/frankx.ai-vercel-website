@@ -27,11 +27,25 @@ test('homepage release evidence is portable and records the verified ship state'
 
 test('portrait proof overlay is bounded by the card at narrow widths', async () => {
   const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
+  const overlayMarkup = homepage.match(/data-home-proof-overlay[\s\S]*?<\/div>/)?.[0]
+  const overlayClasses = overlayMarkup?.match(/className="([^"]+)"/)?.[1].split(/\s+/) ?? []
+  const copyClasses = [...(overlayMarkup?.matchAll(/<p className="([^"]+)">/g) ?? [])]
+    .map((match) => match[1].split(/\s+/))
+    .find((classes) => classes.includes('text-base'))
 
-  assert.match(homepage, /data-home-proof-overlay/)
-  assert.match(
-    homepage,
-    /absolute inset-x-0 bottom-0 min-w-0 max-w-full p-5 min-\[360px\]:p-6 sm:p-8/,
-  )
-  assert.match(homepage, /max-w-full text-base leading-7 text-white\/78 sm:max-w-sm/)
+  assert.ok(overlayMarkup, 'proof overlay must remain addressable')
+  for (const token of [
+    'absolute',
+    'inset-x-0',
+    'bottom-0',
+    'min-w-0',
+    'max-w-full',
+    'p-5',
+    'min-[360px]:p-6',
+    'sm:p-8',
+  ]) {
+    assert.ok(overlayClasses.includes(token), `proof overlay must retain ${token}`)
+  }
+  assert.ok(copyClasses?.includes('max-w-full'), 'proof copy must stay bounded at narrow widths')
+  assert.ok(copyClasses?.includes('sm:max-w-sm'), 'proof copy must preserve its desktop measure')
 })
