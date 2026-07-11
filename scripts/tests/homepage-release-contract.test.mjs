@@ -27,9 +27,12 @@ test('homepage release evidence is portable and records the verified ship state'
 
 test('portrait proof overlay is bounded by the card at narrow widths', async () => {
   const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
-  const overlayMarkup = homepage.match(/data-home-proof-overlay[\s\S]*?<\/div>/)?.[0]
-  const overlayClasses = overlayMarkup?.match(/className="([^"]+)"/)?.[1].split(/\s+/) ?? []
-  const copyClasses = [...(overlayMarkup?.matchAll(/<p className="([^"]+)">/g) ?? [])]
+  const overlayMarkup = homepage.match(
+    /<div\b(?=[^>]*\bdata-home-proof-overlay\b)[^>]*>[\s\S]*?<\/div>/,
+  )?.[0]
+  const overlayOpenTag = overlayMarkup?.match(/^<div\b[^>]*>/)?.[0]
+  const overlayClasses = overlayOpenTag?.match(/\bclassName="([^"]+)"/)?.[1].split(/\s+/) ?? []
+  const copyClasses = [...(overlayMarkup?.matchAll(/<p\b[^>]*\bclassName="([^"]+)"[^>]*>/g) ?? [])]
     .map((match) => match[1].split(/\s+/))
     .find((classes) => classes.includes('text-base'))
 
