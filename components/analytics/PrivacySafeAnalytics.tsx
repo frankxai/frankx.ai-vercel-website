@@ -10,10 +10,10 @@ import {
   sanitizeAnalyticsUrl,
 } from '@/lib/analytics-policy'
 
-const subscribeToMeasurementPolicy = () => () => {}
+const subscribeToMeasurementPolicy: (onStoreChange: () => void) => () => void = () => () => {}
 const getServerMeasurementPermission = () => false
 const getBrowserMeasurementPermission = () =>
-  allowsAnalyticsMeasurement(navigator.doNotTrack)
+  allowsAnalyticsMeasurement(typeof navigator !== 'undefined' ? navigator.doNotTrack : undefined)
 
 function beforeSend(event: BeforeSendEvent): BeforeSendEvent | null {
   if (hasDoNotTrack(typeof navigator === 'undefined' ? undefined : navigator.doNotTrack)) {
