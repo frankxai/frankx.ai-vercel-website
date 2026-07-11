@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 import {
+  allowsAnalyticsMeasurement,
   hasDoNotTrack,
   sanitizeAnalyticsProperties,
   sanitizeAnalyticsUrl,
@@ -22,15 +23,31 @@ test('optional analytics scripts stay unmounted without a consent control', asyn
   assert.doesNotMatch(runtimeContract, /googletagmanager|google-analytics|GoogleAnalytics|NEXT_PUBLIC_GA_/)
 })
 
-test('the aggregate default honors Do Not Track and redacts page-view URLs', async () => {
+test('the aggregate default gates providers before mount and redacts page-view URLs', async () => {
   const component = await readRepoFile('components/analytics/PrivacySafeAnalytics.tsx')
+  const providerStart = component.indexOf('<Analytics')
+  const mountGuard = component.indexOf('if (!measurementAllowed) return null')
 
   assert.equal(hasDoNotTrack(undefined), false)
+  assert.equal(hasDoNotTrack(''), false)
   assert.equal(hasDoNotTrack('0'), false)
+  assert.equal(hasDoNotTrack('no'), false)
+  assert.equal(hasDoNotTrack('unspecified'), false)
   assert.equal(hasDoNotTrack('1'), true)
   assert.equal(hasDoNotTrack('yes'), true)
+  assert.equal(hasDoNotTrack('maybe'), true)
+  assert.equal(allowsAnalyticsMeasurement('0'), true)
+  assert.equal(allowsAnalyticsMeasurement('no'), true)
+  assert.equal(allowsAnalyticsMeasurement('unspecified'), true)
+  assert.equal(allowsAnalyticsMeasurement('1'), false)
+  assert.equal(allowsAnalyticsMeasurement('yes'), false)
+  assert.equal(allowsAnalyticsMeasurement('custom-opt-out'), false)
   assert.equal(sanitizeAnalyticsUrl('https://frankx.ai/connect?email=person@example.com#form'), '/connect')
+  assert.match(component, /useSyncExternalStore/)
+  assert.match(component, /getServerMeasurementPermission = \(\) => false/)
+  assert.ok(mountGuard >= 0 && mountGuard < providerStart)
   assert.match(component, /<Analytics beforeSend={beforeSend}/)
+  assert.match(component, /<SpeedInsights \/>/)
   assert.match(component, /hasDoNotTrack/)
   assert.match(component, /return null/)
 })

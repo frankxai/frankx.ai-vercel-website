@@ -1,9 +1,19 @@
 'use client'
 
+import { useSyncExternalStore } from 'react'
 import { Analytics, type BeforeSendEvent } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
-import { hasDoNotTrack, sanitizeAnalyticsUrl } from '@/lib/analytics-policy'
+import {
+  allowsAnalyticsMeasurement,
+  hasDoNotTrack,
+  sanitizeAnalyticsUrl,
+} from '@/lib/analytics-policy'
+
+const subscribeToMeasurementPolicy = () => () => {}
+const getServerMeasurementPermission = () => false
+const getBrowserMeasurementPermission = () =>
+  allowsAnalyticsMeasurement(navigator.doNotTrack)
 
 function beforeSend(event: BeforeSendEvent): BeforeSendEvent | null {
   if (hasDoNotTrack(typeof navigator === 'undefined' ? undefined : navigator.doNotTrack)) {
@@ -23,6 +33,14 @@ function beforeSend(event: BeforeSendEvent): BeforeSendEvent | null {
  * providers stay unmounted until the product has a real consent control.
  */
 export function PrivacySafeAnalytics() {
+  const measurementAllowed = useSyncExternalStore(
+    subscribeToMeasurementPolicy,
+    getBrowserMeasurementPermission,
+    getServerMeasurementPermission,
+  )
+
+  if (!measurementAllowed) return null
+
   return (
     <>
       <Analytics beforeSend={beforeSend} />
