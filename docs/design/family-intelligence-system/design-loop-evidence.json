@@ -97,7 +97,12 @@
     {
       "name": "privacy-boundary",
       "status": "pass",
-      "evidence": "Public routes contain no individual living-relative or child data; private subroutes are auth-gated."
+      "evidence": "Public routes contain no individual living-relative or child data; each private route group re-checks the family session on the server, with proxy redirect as defense in depth."
+    },
+    {
+      "name": "live-production-baseline",
+      "status": "blocked",
+      "evidence": "Current production still serves legacy private family routes until this branch is reviewed and merged."
     }
   ],
   "score": {
@@ -108,6 +113,7 @@
   "decision": "iterate",
   "known_risks": [
     "Existing single-admin credentials are a pilot gate, not multi-person family authentication.",
+    "Legacy family records remain in a public Git history and require migration plus a separately approved purge decision.",
     "Secure intake and verified contact address are intentionally not opened yet.",
     "Vercel preview and visual inspection remain pending machine admission."
   ]

@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: 'Forsche selbst — Wie man Vorfahren findet, ohne zu erfinden | FrankX',
   description: 'Ich habe einen Kandidaten gefunden — getauft 1729 in Freudental, Gründungssiedler einer Wolga-Kolonie. Ob er mein Vorfahr ist, weiß ich nicht. Hier ist, wie ich den Unterschied zwischen Hypothese und Beweis handhabe — und wie du es auch kannst.',
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false, nocache: true },
   openGraph: {
     title: 'Kandidat gefunden. Beweis offen. So forsche ich ehrlich.',
     description: 'Die Methode, um Familienforschung mit KI zu betreiben, ohne sich selbst zu belügen. Drei Bewegungen: zuhören, suchen, bewahren — mit Konfidenzlevel in jedem Schritt.',

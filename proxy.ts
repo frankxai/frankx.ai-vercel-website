@@ -41,7 +41,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // ─── 3. Auth protection (existing) ────────────────────────
+  // ─── 3. Auth redirect (defense in depth; private routes re-check on the server) ───
   const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads']
   const isPrivateFamilyArchiveRoute = pathname === '/family/tree' || pathname.startsWith('/familie/')
   const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path)) || isPrivateFamilyArchiveRoute

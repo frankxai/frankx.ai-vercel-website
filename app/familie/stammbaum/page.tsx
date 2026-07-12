@@ -3,10 +3,9 @@ import Link from 'next/link'
 import { ArrowLeft, Heart, TreePine, MapPin, History } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Stammbaum — Riemer-Gorte',
-  description:
-    'Der Stammbaum der Familie Riemer-Gorte. Von Christian Riemer in Karaganda über vier Generationen bis nach Amsterdam.',
-  robots: { index: false, follow: false },
+  title: 'Privater Familienbaum',
+  description: 'Geschützter Familienbaum mit Quellen, Prüfstatus und offenen Fragen.',
+  robots: { index: false, follow: false, nocache: true },
 }
 
 interface FamilyMember {

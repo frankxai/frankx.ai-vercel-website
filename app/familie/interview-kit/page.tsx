@@ -12,9 +12,9 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Interview-Kit — Fragen für die Großeltern',
-  description: 'Strukturierte Fragenkataloge für die Gespräche mit Opa David, Oma Dorothea, Oma Paulina und Opa Alexander. Ausdruckbar, respektvoll, sanft.',
-  robots: { index: false, follow: false },
+  title: 'Privates Interview-Kit',
+  description: 'Geschützte, strukturierte Fragen für freiwillige Zeitzeugen-Gespräche.',
+  robots: { index: false, follow: false, nocache: true },
 }
 
 interface InterviewSet {

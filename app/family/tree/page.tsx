@@ -3,10 +3,9 @@ import Link from 'next/link'
 import { ArrowLeft, Heart, TreePine, MapPin } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Family Tree',
-  description:
-    'The Riemer-Gorte family tree. Tracing the connections between the Gorte and Riemer family lines.',
-  robots: { index: false, follow: false },
+  title: 'Private Family Tree',
+  description: 'Protected family tree with sources, review state, and unresolved questions.',
+  robots: { index: false, follow: false, nocache: true },
 }
 
 interface FamilyMember {

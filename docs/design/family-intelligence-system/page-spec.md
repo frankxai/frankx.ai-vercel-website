@@ -40,6 +40,8 @@ Out of scope: Real intake, family authentication, family data, email provisionin
 
 ## Verification
 
-Commands: `npm run type-check`; scoped lint; content and route checks.
+Commands: `npm run family:privacy:check`; `npm run type-check`; scoped lint; content and route checks.
 Screens: Desktop 1440px and mobile 390px for both public routes and German locked portal.
 QA gates: Privacy scan, claims audit, keyboard, reduced motion, responsive layout, design evidence ≥26/30 before ship.
+
+Release blocker: legacy `/familie/*` content must be protected by both server-side session checks and proxy defense in depth before the public system routes can merge.

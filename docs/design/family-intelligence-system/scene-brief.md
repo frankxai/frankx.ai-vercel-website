@@ -49,5 +49,5 @@ Budget: Zero 3D bytes.
 
 ## QA Risks
 
-Risks: Too much text; private and public route confusion; mobile form density; generic card appearance.
+Risks: Too much text; private and public route confusion; mobile form density; generic card appearance; legacy private routes exposed without a server authorization check.
 Verification: Desktop/mobile screenshots, keyboard pass, content claim audit, and privacy scan before final evidence changes from iterate to ship.
