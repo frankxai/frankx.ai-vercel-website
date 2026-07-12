@@ -272,6 +272,15 @@ export default function LibraryPage() {
                     {review.keyInsights[0]}
                   </p>
 
+                  {/* Provenance badge */}
+                  {review.capture && (
+                    <div className="mb-4 -mt-2">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-200/80 border border-cyan-500/15">
+                        Source-backed field note
+                      </span>
+                    </div>
+                  )}
+
                   {/* Deep-dive badge */}
                   {(review.chapters?.length || review.quotes?.length) && (
                     <div className="flex flex-wrap gap-2 mb-4 -mt-2">
