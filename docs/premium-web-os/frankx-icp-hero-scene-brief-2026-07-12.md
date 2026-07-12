@@ -16,7 +16,7 @@ The first viewport tells founders, creators, and AI leaders what FrankX helps th
 
 - Runtime: Motion / `framer-motion`, because this is component-state choreography rather than a scroll timeline.
 - Beat: 550ms masked vertical transition, 3.2s reading hold, one phrase at a time.
-- Reduced motion: one static best phrase; no timer and no animated substitution.
+- Hydration and reduced motion: one server-stable best phrase; no timer or animated substitution until the client is hydrated, and none at all when reduced motion is preferred.
 - Accessibility: a stable screen-reader headline; the visual rotation is hidden from assistive technology to prevent repeated announcements.
 - Performance: transform and opacity only; no text scramble, per-letter animation, filters, or new media payload.
 

@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -217,21 +217,28 @@ const heroOutcomes = [
   'Ship the next version of your business.',
 ]
 
+const subscribeToHydration = () => () => undefined
+
 function RotatingHeroOutcome() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const shouldReduceMotion = useReducedMotion()
+  const hasHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  )
 
   useEffect(() => {
-    if (shouldReduceMotion) return
+    if (!hasHydrated || shouldReduceMotion) return
 
     const interval = window.setInterval(() => {
       setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
     }, 3200)
 
     return () => window.clearInterval(interval)
-  }, [shouldReduceMotion])
+  }, [hasHydrated, shouldReduceMotion])
 
-  if (shouldReduceMotion) {
+  if (!hasHydrated || shouldReduceMotion) {
     return (
       <span className="block text-white/45" aria-hidden="true">
         {heroOutcomes[0]}
