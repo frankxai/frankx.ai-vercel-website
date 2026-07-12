@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
+import { learningPaths } from '@/data/learning-paths'
 
 const BASE_URL = siteConfig.url
 
@@ -235,6 +236,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
+    '/licensing',
   ]
 
   // Strategy and framework pages
@@ -557,6 +559,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
+    })
+  })
+
+  // Learn portal detail pages (/learn/[slug]) — dynamic route, not caught by the
+  // static route-index, so enumerate them explicitly. Recency from heroEyebrow.
+  learningPaths.forEach((path) => {
+    const m = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)
+    const parsed = m ? new Date(m[1]) : null
+    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate
+    entries.push({
+      url: `${BASE_URL}/learn/${path.slug}`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     })
   })
 

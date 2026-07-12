@@ -5,6 +5,7 @@ import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import Diagram from '@/components/blog/Diagram'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
+import LearnHubCallout from '@/components/learn/LearnHubCallout'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
 
 // Embed components for immersive media
@@ -284,6 +285,7 @@ export const mdxComponents: MDXComponents = {
   Callout,
   AffiliateLink,
   FunnelCTA,
+  LearnHubCallout,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,

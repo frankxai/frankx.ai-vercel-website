@@ -231,8 +231,8 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
           <p className="text-zinc-400 text-sm">
             The attendee portal requires server configuration.
             Contact Frank at{' '}
-            <a href="mailto:friemerx@gmail.com" className="text-zinc-300 underline underline-offset-2">
-              friemerx@gmail.com
+            <a href="mailto:frank@frankx.ai" className="text-zinc-300 underline underline-offset-2">
+              frank@frankx.ai
             </a>{' '}
             if you received a link that should work.
           </p>
@@ -252,8 +252,8 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
           <p className="text-zinc-400 text-sm">
             This link may have expired or been used incorrectly.
             Reach Frank at{' '}
-            <a href="mailto:friemerx@gmail.com" className="text-zinc-300 underline underline-offset-2">
-              friemerx@gmail.com
+            <a href="mailto:frank@frankx.ai" className="text-zinc-300 underline underline-offset-2">
+              frank@frankx.ai
             </a>{' '}
             to get a fresh link.
           </p>
@@ -280,8 +280,8 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
           <h1 className="text-2xl font-semibold text-zinc-100 mb-3">Link expired or invalid</h1>
           <p className="text-zinc-400 text-sm">
             Contact Frank at{' '}
-            <a href="mailto:friemerx@gmail.com" className="text-zinc-300 underline underline-offset-2">
-              friemerx@gmail.com
+            <a href="mailto:frank@frankx.ai" className="text-zinc-300 underline underline-offset-2">
+              frank@frankx.ai
             </a>{' '}
             for a fresh link.
           </p>
@@ -392,8 +392,8 @@ export default async function AttendeePage({ params }: { params: Promise<{ token
         <div className="text-center pt-4 pb-8">
           <p className="text-xs text-zinc-600">
             Questions?{' '}
-            <a href="mailto:friemerx@gmail.com" className="text-zinc-500 hover:text-zinc-300 transition-colors">
-              friemerx@gmail.com
+            <a href="mailto:frank@frankx.ai" className="text-zinc-500 hover:text-zinc-300 transition-colors">
+              frank@frankx.ai
             </a>
           </p>
         </div>

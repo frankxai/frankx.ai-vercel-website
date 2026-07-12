@@ -5,6 +5,7 @@ import {
   BarChart3,
   Bot,
   Calendar,
+  Database,
   DollarSign,
   FileText,
   Gauge,
@@ -69,6 +70,7 @@ const groups: { label: string; tools: Tool[] }[] = [
     tools: [
       { name: 'Ops', href: '/ops', description: 'Agent mission control', icon: Bot },
       { name: '404 Radar', href: '/admin/404-radar', description: 'Broken-link detection', icon: Radar },
+      { name: 'Data Room', href: '/admin/data-room', description: 'Private strategy docs', icon: Database },
       { name: 'Image Lab', href: '/admin/image-lab', description: 'Asset generation', icon: ImageIcon },
       { name: 'Vault', href: '/admin/vault', description: 'Private asset vault', icon: Vault },
       { name: 'Map', href: '/admin/map', description: 'Internal site map', icon: MapIcon },

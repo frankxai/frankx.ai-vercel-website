@@ -26,6 +26,8 @@ export interface BookChapter {
   image?: string;
   type?: 'prose' | 'poetry' | 'quotes' | 'exercises';
   epigraph?: { text: string; author: string };
+  /** Overrides the "Chapter {number}" badge (e.g. "Prologue", "Epilogue"). */
+  label?: string;
 }
 
 export interface BookConfig {

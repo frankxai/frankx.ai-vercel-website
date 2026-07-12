@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 788,
-    "aliases": 15,
+    "total": 813,
+    "aliases": 33,
     "byType": {
-      "core": 22,
-      "section": 390,
+      "core": 21,
+      "section": 389,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 203,
       "guide": 20,
-      "library": 4,
+      "library": 40,
       "newsletter": 1,
-      "os": 9,
-      "partnership": 4,
-      "product": 36,
+      "os": 11,
+      "partnership": 7,
+      "product": 21,
       "research": 3,
       "video": 3,
-      "workshop": 7
+      "workshop": 8
     }
   },
   "routes": [
@@ -83,11 +83,6 @@
         "builder",
         "lab"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/agentic-creator-os",
-      "title": "Agentic Creator OS",
       "type": "section"
     },
     {
@@ -3605,11 +3600,6 @@
       "type": "section"
     },
     {
-      "href": "/books/arcanea-creator-principles/chapter-08-the-living-practice",
-      "title": "Ch 8 — The Living Practice",
-      "type": "section"
-    },
-    {
       "href": "/build",
       "title": "Build",
       "type": "section"
@@ -5169,11 +5159,6 @@
       "type": "core"
     },
     {
-      "href": "/learning-paths",
-      "title": "Learning Paths",
-      "type": "core"
-    },
-    {
       "href": "/lebensbaum",
       "title": "Lebensbaum",
       "tags": [
@@ -5234,14 +5219,379 @@
       "type": "library"
     },
     {
+      "href": "/library/art-and-fear",
+      "title": "Art & Fear",
+      "tags": [
+        "art",
+        "and",
+        "fear"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/atomic-habits",
+      "title": "Atomic Habits",
+      "tags": [
+        "atomic",
+        "habits"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/awaken-the-giant-within",
+      "title": "Awaken the Giant Within",
+      "tags": [
+        "awaken",
+        "the",
+        "giant",
+        "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/becoming-supernatural",
+      "title": "Becoming Supernatural",
+      "tags": [
+        "becoming",
+        "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bird-by-bird",
+      "title": "Bird by Bird: Some Instructions on Writing and Life",
+      "tags": [
+        "bird",
+        "by",
+        "bird"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/blue-zones",
+      "title": "The Blue Zones: Lessons for Living Longer From the People Who\\",
+      "tags": [
+        "blue",
+        "zones"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breaking-the-habit-of-being-yourself",
+      "title": "Breaking the Habit of Being Yourself",
+      "tags": [
+        "breaking",
+        "the",
+        "habit",
+        "of",
+        "being",
+        "yourself"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breath",
+      "title": "Breath: The New Science of a Lost Art",
+      "tags": [
+        "breath"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/build",
       "title": "Library — Build",
+      "type": "library"
+    },
+    {
+      "href": "/library/cant-hurt-me",
+      "title": "Can",
+      "tags": [
+        "cant",
+        "hurt",
+        "me"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/deep-work",
+      "title": "Deep Work",
+      "tags": [
+        "deep",
+        "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/e-squared",
+      "title": "E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality",
+      "tags": [
+        "squared"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/fabric-of-reality",
+      "title": "The Fabric of Reality",
+      "tags": [
+        "fabric",
+        "of",
+        "reality"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-japanese-secret",
+      "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
+      "tags": [
+        "ikigai",
+        "japanese",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-ni-tsuite",
+      "title": "Ikigai-ni-Tsuite (生きがいについて)",
+      "tags": [
+        "ikigai",
+        "ni",
+        "tsuite"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/mans-search-for-meaning",
+      "title": "Man",
+      "tags": [
+        "mans",
+        "search",
+        "for",
+        "meaning"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/meditations",
+      "title": "Meditations",
+      "tags": [
+        "meditations"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/money-master-the-game",
+      "title": "Money: Master the Game",
+      "tags": [
+        "money",
+        "master",
+        "the",
+        "game"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/no-bad-parts",
+      "title": "No Bad Parts",
+      "tags": [
+        "no",
+        "bad",
+        "parts"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/profit-first",
+      "title": "Profit First",
+      "tags": [
+        "profit",
+        "first"
+      ],
       "type": "library"
     },
     {
       "href": "/library/quotes",
       "title": "Library — Quotes",
       "type": "library"
+    },
+    {
+      "href": "/library/steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "tags": [
+        "steal",
+        "like",
+        "an",
+        "artist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/superfans",
+      "title": "Superfans",
+      "tags": [
+        "superfans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-body",
+      "title": "The 4-Hour Body",
+      "tags": [
+        "the",
+        "hour",
+        "body"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-workweek",
+      "title": "The 4-Hour Workweek",
+      "tags": [
+        "the",
+        "hour",
+        "workweek"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-alchemist",
+      "title": "The Alchemist",
+      "tags": [
+        "the",
+        "alchemist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-book-of-secrets",
+      "title": "The Book of Secrets",
+      "tags": [
+        "the",
+        "book",
+        "of",
+        "secrets"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-creative-act",
+      "title": "The Creative Act: A Way of Being",
+      "tags": [
+        "the",
+        "creative",
+        "act"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-little-book-of-ikigai",
+      "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
+      "tags": [
+        "the",
+        "little",
+        "book",
+        "of",
+        "ikigai"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-war-of-art",
+      "title": "The War of Art",
+      "tags": [
+        "the",
+        "war",
+        "of",
+        "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "the",
+        "wordless",
+        "laws"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/think-and-grow-rich",
+      "title": "Think and Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tools-of-titans",
+      "title": "Tools of Titans",
+      "tags": [
+        "tools",
+        "of",
+        "titans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tribe-of-mentors",
+      "title": "Tribe of Mentors",
+      "tags": [
+        "tribe",
+        "of",
+        "mentors"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/unlimited-power",
+      "title": "Unlimited Power",
+      "tags": [
+        "unlimited",
+        "power"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/will-it-fly",
+      "title": "Will It Fly?",
+      "tags": [
+        "will",
+        "it",
+        "fly"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/you-are-the-placebo",
+      "title": "You Are the Placebo",
+      "tags": [
+        "you",
+        "are",
+        "the",
+        "placebo"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
     },
     {
       "href": "/links",
@@ -6032,42 +6382,86 @@
     },
     {
       "href": "/os/aco",
-      "title": "OS — ACO",
+      "title": "Agentic Content Officer",
+      "tags": [
+        "aco"
+      ],
       "type": "os"
     },
     {
       "href": "/os/acos",
-      "title": "OS — ACOS",
+      "title": "ACOS",
+      "tags": [
+        "acos"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/build-first-funnel",
+      "title": "Build First AI Agent Funnel",
+      "tags": [
+        "build",
+        "first",
+        "funnel"
+      ],
       "type": "os"
     },
     {
       "href": "/os/coe-hub",
-      "title": "OS — CoE Hub",
+      "title": "AI CoE Hub",
+      "tags": [
+        "coe",
+        "hub"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/library",
-      "title": "OS — Library",
+      "href": "/os/foundry",
+      "title": "FrankX Foundry",
+      "tags": [
+        "foundry"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/sis",
-      "title": "OS — Starlight Intelligence",
+      "href": "/os/iis",
+      "title": "Investment Intelligence System",
+      "tags": [
+        "iis"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/visual-intelligence",
-      "title": "OS — Visual Intelligence",
+      "href": "/os/library-os",
+      "title": "Library OS",
+      "tags": [
+        "library",
+        "os"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/vis",
+      "title": "Visual Intelligence System",
+      "tags": [
+        "vis"
+      ],
       "type": "os"
     },
     {
       "href": "/os/watch",
-      "title": "OS — Watch",
+      "title": "Watch OS",
+      "tags": [
+        "watch"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/workshop",
-      "title": "OS — Workshop",
+      "href": "/os/workshops",
+      "title": "Workshop OS",
+      "tags": [
+        "workshops"
+      ],
       "type": "os"
     },
     {
@@ -6119,6 +6513,15 @@
       "type": "partnership"
     },
     {
+      "href": "/partnerships/anthropic",
+      "title": "Anthropic",
+      "tags": [
+        "partnership",
+        "anthropic"
+      ],
+      "type": "partnership"
+    },
+    {
       "href": "/partnerships/arrow",
       "title": "Arrow",
       "tags": [
@@ -6128,11 +6531,20 @@
       "type": "partnership"
     },
     {
-      "href": "/partnerships/kyndryl",
-      "title": "Kyndryl",
+      "href": "/partnerships/google",
+      "title": "Google",
       "tags": [
         "partnership",
-        "kyndryl"
+        "google"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/nvidia",
+      "title": "Nvidia",
+      "tags": [
+        "partnership",
+        "nvidia"
       ],
       "type": "partnership"
     },
@@ -6145,6 +6557,15 @@
         "ede"
       ],
       "type": "section"
+    },
+    {
+      "href": "/partnerships/vercel",
+      "title": "Vercel",
+      "tags": [
+        "partnership",
+        "vercel"
+      ],
+      "type": "partnership"
     },
     {
       "href": "/peak-performance",
@@ -6826,178 +7247,6 @@
       "type": "section"
     },
     {
-      "href": "/shop/templates/claude-code-agent-orchestration",
-      "title": "Agent Orchestration Skill Pack",
-      "tags": [
-        "agents",
-        "mcp",
-        "orchestration",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-content-engine",
-      "title": "Content Engine Skill Pack",
-      "tags": [
-        "content",
-        "seo",
-        "blog",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-dev-tools",
-      "title": "Developer Tools Skill Pack",
-      "tags": [
-        "react",
-        "nextjs",
-        "typescript",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-seo-intelligence",
-      "title": "SEO Intelligence Skill Pack",
-      "tags": [
-        "seo",
-        "schema",
-        "keywords",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-suno-mastery",
-      "title": "Suno Mastery Skill Pack",
-      "tags": [
-        "music",
-        "suno",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-custom-tools",
-      "title": "MCP Custom Tools Starter",
-      "tags": [
-        "mcp",
-        "tools",
-        "typescript",
-        "config"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-multi-server",
-      "title": "Multi-Server MCP Setup",
-      "tags": [
-        "mcp",
-        "config",
-        "multi-server",
-        "production"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/multi-agent-blueprint",
-      "title": "Multi-Agent Framework",
-      "tags": [
-        "agents",
-        "blueprint",
-        "orchestration",
-        "enterprise",
-        "acos"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-content-pipeline",
-      "title": "AI Content Pipeline",
-      "tags": [
-        "n8n",
-        "workflow",
-        "content",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-customer-support",
-      "title": "AI Support Automation",
-      "tags": [
-        "n8n",
-        "workflow",
-        "support",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-lead-enrichment",
-      "title": "Lead Enrichment Engine",
-      "tags": [
-        "n8n",
-        "workflow",
-        "leads",
-        "crm",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-ai-chat",
-      "title": "AI Chat Application",
-      "tags": [
-        "nextjs",
-        "ai",
-        "chat",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-blog-cms",
-      "title": "Blog + CMS Starter",
-      "tags": [
-        "nextjs",
-        "blog",
-        "mdx",
-        "seo",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-saas-boilerplate",
-      "title": "Next.js SaaS Boilerplate",
-      "tags": [
-        "nextjs",
-        "saas",
-        "boilerplate",
-        "fullstack"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/rag-system-blueprint",
-      "title": "RAG System Blueprint",
-      "tags": [
-        "rag",
-        "blueprint",
-        "architecture",
-        "enterprise"
-      ],
-      "type": "product"
-    },
-    {
       "href": "/showcase",
       "title": "Showcase",
       "type": "section"
@@ -7557,6 +7806,15 @@
       "type": "workshop"
     },
     {
+      "href": "/workshops/build-hackathon",
+      "title": "Build Hackathon: Ship an AI Agent in 4 Hours",
+      "tags": [
+        "build",
+        "hackathon"
+      ],
+      "type": "workshop"
+    },
+    {
       "href": "/workshops/for-educators",
       "title": "For Educators",
       "tags": [
@@ -7676,6 +7934,24 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
+    "/books/fable/chapter-01-the-listening-machine": "/books/fable",
+    "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
+    "/books/fable/chapter-03-the-narrow-window": "/books/fable",
+    "/books/fable/chapter-04-a-smaller-shape-of-the-sea": "/books/fable",
+    "/books/fable/chapter-05-the-wrong-note": "/books/fable",
+    "/books/fable/chapter-06-a-thousand-songs": "/books/fable/06-the-thousand-true-songs",
+    "/books/fable/chapter-07-the-grain-of-the-voice": "/books/fable/07-the-weaver-who-copied-a-voice",
+    "/books/fable/chapter-08-the-oracle-question": "/books/fable/08-the-well-and-the-kneeling-man",
+    "/books/fable/chapter-09-the-brokers-offer": "/books/fable/09-the-tower-that-rented-the-rain",
+    "/books/fable/chapter-10-the-second-workshop": "/books/fable/21-the-hundred-benches",
+    "/books/fable/chapter-11-the-copy": "/books/fable/10-the-perfect-forgery",
+    "/books/fable/chapter-12-idas-machine": "/books/fable/12-the-teachers-test",
+    "/books/fable/chapter-13-two-kinds-of-listening": "/books/fable/11-the-two-listeners",
+    "/books/fable/chapter-14-what-the-machine-could-not-hold": "/books/fable/13-the-laugh-in-the-jar",
+    "/books/fable/chapter-15-the-question-of-the-ledger": "/books/fable/24-are-they-dangerous",
+    "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
+    "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",

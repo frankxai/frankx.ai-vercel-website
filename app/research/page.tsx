@@ -33,6 +33,8 @@ import {
 } from 'lucide-react'
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
+import LearnHubSection from '@/components/learn/LearnHubSection'
+import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -710,6 +712,12 @@ export default function ResearchPage() {
         <DomainsGrid />
         <ResearchTeamSection />
         <MethodologySection />
+        <LearnHubSection
+          relatedPortals={[...MODEL_MAKER_PORTALS]}
+          eyebrow="From research to practice"
+          heading="Learn the tools hands-on"
+          blurb="The research maps the landscape. These portals curate the videos, docs, and expert channels to actually build with each platform."
+        />
         <CTASection />
       </div>
     </main>

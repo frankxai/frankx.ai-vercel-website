@@ -191,3 +191,6 @@ link-checker-report.txt
 # Starlight/ACOS temporary files
 .starlight/
 .gemini/
+
+# /learn video-intelligence pipeline draft outputs (review artifacts)
+data/learn-enrichment/

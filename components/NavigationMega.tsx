@@ -161,6 +161,7 @@ const navigation = {
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
       { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
       { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
@@ -174,7 +175,7 @@ const navigation = {
       },
       {
         label: 'Connect',
-        items: ['About', 'Bio', 'Media Kit', 'Contact'],
+        items: ['About', 'Bio', 'Media Kit', 'Licensing', 'Contact'],
       },
     ],
   },

@@ -1,6 +1,6 @@
 {
   "_description": "FrankX Album Collections — genre-based packaging of Suno tracks",
-  "_lastUpdated": "2026-02-14",
+  "_lastUpdated": "2026-07-03",
   "albums": [
     {
       "id": "golden-frequencies",
@@ -35,7 +35,6 @@
       "genre": "Orchestral / Fantasy / Arena Rock",
       "trackIds": [
         "arcanea-light-me-up",
-        "arcanean-legends",
         "arcanean-starlight",
         "arcanea-awaken"
       ],
@@ -43,7 +42,7 @@
       "color": "rose",
       "price": 7.99,
       "lemonSqueezyProductId": null,
-      "playlistUrl": "https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25",
+      "playlistUrl": "https://suno.com/playlist/0487e8bd-0a92-4fe3-b5af-a9719c7b4d38",
       "releaseDate": null,
       "status": "draft"
     },
@@ -100,7 +99,6 @@
         "i-want-to-build-a-free-world",
         "i-want-to-be-free",
         "feel-your-magic",
-        "need-to-feel-your-magic-v2",
         "magical-world-v3",
         "golden-frequency-floor",
         "we-are-millions-of-starlights"
