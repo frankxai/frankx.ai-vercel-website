@@ -231,6 +231,13 @@ export default function LibraryPage() {
               ? booksRegistry.find((b) => b.slug === review.relatedBook)
               : null;
 
+            const previewImage = review.hasCover
+              ? {
+                  src: review.coverImage,
+                  alt: `${review.title} by ${review.author} — book cover`,
+                }
+              : review.capture?.images?.[0];
+
             return (
               <Link
                 key={review.slug}
@@ -240,11 +247,11 @@ export default function LibraryPage() {
                 <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
-                    {review.hasCover ? (
+                    {previewImage ? (
                       <div className="w-16 h-24 rounded-lg border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
                         <Image
-                          src={review.coverImage}
-                          alt={`${review.title} by ${review.author} — book cover`}
+                          src={previewImage.src}
+                          alt={previewImage.alt}
                           width={128}
                           height={192}
                           className="w-full h-full object-cover"
