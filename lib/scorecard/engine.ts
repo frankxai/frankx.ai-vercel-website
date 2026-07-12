@@ -7,6 +7,12 @@
 //
 // No framework imports here on purpose — this file is imported both by the Next.js client
 // component and directly by node:test in scripts/test-scorecard-engine.mjs.
+//
+// Scoring arithmetic (dimension tallying, tier resolution, ceiling selection) lives in
+// ./shared — extracted once the AI CoE Readiness Assessment became a second product needing
+// the identical math. This file keeps its exact public exports so nothing downstream changes.
+
+import { tallyScores, resolveTier, lowestScoringDimension } from './shared.ts'
 
 export type DimensionId =
   | 'delegation'
@@ -375,14 +381,8 @@ export interface ScorecardResult {
   ceiling: CeilingCopy
 }
 
-const MAX_POINTS_PER_QUESTION = 3
-
 export function getTierForScore(score: number): Tier {
-  let match = TIERS[0]
-  for (const tier of TIERS) {
-    if (score >= tier.minScore) match = tier
-  }
-  return match
+  return resolveTier(TIERS, score)
 }
 
 /**
@@ -390,46 +390,13 @@ export function getTierForScore(score: number): Tier {
  * `answers` maps questionId -> optionId. Unanswered questions score 0.
  */
 export function scoreScorecard(answers: Record<string, string>): ScorecardResult {
-  const byDimension = new Map<DimensionId, { raw: number; max: number }>()
-  for (const dim of DIMENSIONS) byDimension.set(dim.id, { raw: 0, max: 0 })
-
-  let totalRaw = 0
-  let totalMax = 0
-
-  for (const question of QUESTIONS) {
-    const bucket = byDimension.get(question.dimension)!
-    bucket.max += MAX_POINTS_PER_QUESTION
-    totalMax += MAX_POINTS_PER_QUESTION
-
-    const chosenId = answers[question.id]
-    const option = question.options.find((o) => o.id === chosenId)
-    const points = option?.points ?? 0
-    bucket.raw += points
-    totalRaw += points
-  }
-
-  const dimensionScores: DimensionScore[] = DIMENSIONS.map((dim) => {
-    const bucket = byDimension.get(dim.id)!
-    return {
-      dimension: dim.id,
-      label: dim.label,
-      raw: bucket.raw,
-      max: bucket.max,
-      pct: bucket.max === 0 ? 0 : Math.round((bucket.raw / bucket.max) * 100),
-    }
-  })
-
-  const totalScore = totalMax === 0 ? 0 : Math.round((totalRaw / totalMax) * 100)
+  const { dimensionScores, totalRaw, totalMax, totalScore } = tallyScores(DIMENSIONS, QUESTIONS, answers)
   const tier = getTierForScore(totalScore)
 
   // The ONE named ceiling = lowest-scoring dimension. Ties break toward the
   // dimension listed first in DIMENSIONS (delegation first — it is the
   // highest-leverage fix per the spec's moment-of-proof framing).
-  let lowest = dimensionScores[0]
-  for (const d of dimensionScores) {
-    if (d.pct < lowest.pct) lowest = d
-  }
-  const ceiling = CEILINGS[lowest.dimension]
+  const ceiling = CEILINGS[lowestScoringDimension(dimensionScores)]
 
   return { totalRaw, totalMax, totalScore, tier, dimensionScores, ceiling }
 }
