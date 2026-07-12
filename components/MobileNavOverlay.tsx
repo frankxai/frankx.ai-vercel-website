@@ -234,7 +234,11 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
           dialogRef.current?.querySelectorAll<HTMLElement>(
             'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
           ) ?? [],
-        ).filter((element) => element.offsetParent !== null)
+        ).filter((element) => {
+          const view = element.closest<HTMLElement>('[data-mobile-nav-view]')?.dataset.mobileNavView
+          if (!view) return true
+          return view === (activeSection ? 'section' : 'home')
+        })
 
         if (focusable.length === 0) return
         const first = focusable[0]
@@ -323,7 +327,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             >
               {/* Home view */}
-              <div className="h-full w-1/2 overflow-y-auto overscroll-contain">
+              <div data-mobile-nav-view="home" className="h-full w-1/2 overflow-y-auto overscroll-contain">
                 <HomeView
                   onSelectSection={(key) => setActiveSection(key)}
                   onClose={onClose}
@@ -331,7 +335,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
               </div>
 
               {/* Section view */}
-              <div className="h-full w-1/2 overflow-y-auto overscroll-contain">
+              <div data-mobile-nav-view="section" className="h-full w-1/2 overflow-y-auto overscroll-contain">
                 {current && (
                   <SectionView
                     section={current}
