@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   X,
   Search,
@@ -71,15 +71,15 @@ const sections: NavSection[] = [
     key: 'music',
     label: 'Music',
     icon: Music,
-    tagline: '12K+ AI tracks, Vibe OS, Music School',
+    tagline: 'Original releases, Vibe OS, music learning',
     featured: {
       title: 'AI Music Portfolio',
-      description: '12,000+ songs created with Suno AI.',
+      description: 'Original releases and the systems behind the music.',
       href: '/music',
-      badge: '12K+ Tracks',
+      badge: 'Studio',
     },
     items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
+      { name: 'Music Showcase', href: '/music', icon: Music, description: 'Listen to the evolving catalog' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
       { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
       { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory to production' },
@@ -190,14 +190,22 @@ const tileBase =
 export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
   const pathname = usePathname()
   const [activeSection, setActiveSection] = useState<SectionKey | null>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const shouldReduceMotion = useReducedMotion()
 
   // Lock body scroll while open
   useEffect(() => {
     if (!isOpen) return
     const prev = document.body.style.overflow
+    const previousFocus = document.activeElement as HTMLElement | null
     document.body.style.overflow = 'hidden'
+    const focusFrame = window.requestAnimationFrame(() => {
+      dialogRef.current?.querySelector<HTMLElement>('[data-mobile-nav-autofocus]')?.focus()
+    })
     return () => {
+      window.cancelAnimationFrame(focusFrame)
       document.body.style.overflow = prev
+      previousFocus?.focus()
     }
   }, [isOpen])
 
@@ -212,13 +220,33 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
     if (!isOpen) setActiveSection(null)
   }, [isOpen])
 
-  // Escape key closes
+  // Escape closes and Tab remains contained inside the modal navigation.
   useEffect(() => {
     if (!isOpen) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (activeSection) setActiveSection(null)
         else onClose()
+      }
+
+      if (e.key === 'Tab') {
+        const focusable = Array.from(
+          dialogRef.current?.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ) ?? [],
+        ).filter((element) => element.offsetParent !== null)
+
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
       }
     }
     window.addEventListener('keydown', onKey)
@@ -240,15 +268,18 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
       {isOpen && (
         <motion.div
           key="mobile-nav-overlay"
-          initial="hidden"
+          ref={dialogRef}
+          id="mobile-site-navigation"
+          initial={shouldReduceMotion ? false : 'hidden'}
           animate="visible"
-          exit="exit"
+          exit={shouldReduceMotion ? undefined : 'exit'}
           variants={overlayVariants}
-          className="fixed inset-0 z-[90] flex flex-col bg-[#030712] text-white md:hidden"
+          className="fixed inset-0 z-[90] flex flex-col bg-[#030712] text-white lg:hidden"
           role="dialog"
           aria-modal="true"
-          aria-label="Site navigation"
+          aria-labelledby="mobile-navigation-title"
         >
+          <h2 id="mobile-navigation-title" className="sr-only">Site navigation</h2>
           {/* Top bar */}
           <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-4">
             <Link
@@ -262,7 +293,8 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
               type="button"
               onClick={onClose}
               aria-label="Close menu"
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-300 transition hover:bg-white/5 active:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+              data-mobile-nav-autofocus
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-200 transition hover:bg-white/5 active:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
             >
               <X className="h-5 w-5" />
             </button>
@@ -288,7 +320,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
             <motion.div
               className="flex h-full w-[200%]"
               animate={{ x: activeSection ? '-50%' : '0%' }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             >
               {/* Home view */}
               <div className="h-full w-1/2 overflow-y-auto overscroll-contain">
@@ -323,13 +355,15 @@ function HomeView({
   onSelectSection: (key: SectionKey) => void
   onClose: () => void
 }) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <div
       className="flex min-h-full flex-col px-4 pt-6"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 24px)' }}
     >
-      <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-        Navigate
+      <h2 className="mb-3 text-[12px] font-semibold text-slate-400">
+        Choose a direction
       </h2>
 
       <div className="flex flex-col gap-2">
@@ -340,7 +374,7 @@ function HomeView({
               key={section.key}
               type="button"
               onClick={() => onSelectSection(section.key)}
-              initial={{ opacity: 0, y: 6 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 0.03 * i, duration: 0.2 } }}
               className={tileBase}
             >
@@ -361,8 +395,8 @@ function HomeView({
 
       <div className="my-5 h-px w-full bg-white/5" />
 
-      <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-        Direct
+      <h2 className="mb-3 text-[12px] font-semibold text-slate-400">
+        Go directly
       </h2>
 
       <Link href="/blog" onClick={onClose} className={tileBase}>
@@ -428,7 +462,7 @@ function SectionView({
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400/30 to-cyan-400/20 text-emerald-300">
             <FeaturedIcon className="h-4 w-4" />
           </span>
-          <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
+          <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
             {section.featured.badge}
           </span>
         </div>
@@ -441,7 +475,7 @@ function SectionView({
         </span>
       </Link>
 
-      <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+      <h2 className="mb-3 text-[12px] font-semibold text-slate-400">
         All in {section.label}
       </h2>
 

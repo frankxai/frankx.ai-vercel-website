@@ -4,7 +4,7 @@ import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState, useSyncExternalStore } from 'react'
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
+import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
@@ -210,17 +210,18 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // ============================================================================
 
 const heroOutcomes = [
+  'Explore your highest-leverage AI move.',
   'Architect your AI operating system.',
   'Build your AI Center of Excellence.',
-  'Create agentic workflows that compound.',
-  'Explore the systems behind the work.',
-  'Ship the next version of your business.',
+  'Orchestrate agents around real work.',
+  'Ship products that compound.',
 ]
 
 const subscribeToHydration = () => () => undefined
 
 function RotatingHeroOutcome() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
   const shouldReduceMotion = useReducedMotion()
   const hasHydrated = useSyncExternalStore(
     subscribeToHydration,
@@ -229,38 +230,52 @@ function RotatingHeroOutcome() {
   )
 
   useEffect(() => {
-    if (!hasHydrated || shouldReduceMotion) return
+    if (!hasHydrated || shouldReduceMotion || isPaused) return
 
     const interval = window.setInterval(() => {
       setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
     }, 3200)
 
     return () => window.clearInterval(interval)
-  }, [hasHydrated, shouldReduceMotion])
+  }, [hasHydrated, isPaused, shouldReduceMotion])
 
   if (!hasHydrated || shouldReduceMotion) {
     return (
-      <span className="block text-white/45" aria-hidden="true">
+      <span className="mt-5 block max-w-2xl bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl" aria-hidden="true">
         {heroOutcomes[0]}
       </span>
     )
   }
 
   return (
-    <span className="relative block min-h-[2.12em] overflow-hidden text-white/45" aria-hidden="true">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={heroOutcomes[currentIndex]}
-          className="block"
-          initial={{ opacity: 0, y: '58%' }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: '-42%' }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {heroOutcomes[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
+    <div className="mt-5 flex max-w-2xl items-start gap-3">
+      <span
+        className="relative block min-h-[2.3em] flex-1 overflow-hidden bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl"
+        aria-hidden="true"
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={heroOutcomes[currentIndex]}
+            className="block"
+            initial={{ opacity: 0, y: '58%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-42%' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {heroOutcomes[currentIndex]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+      <button
+        type="button"
+        onClick={() => setIsPaused((paused) => !paused)}
+        className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+        aria-label={isPaused ? 'Play changing headline' : 'Pause changing headline'}
+        aria-pressed={isPaused}
+      >
+        {isPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+      </button>
+    </div>
   )
 }
 
@@ -280,17 +295,20 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
               >
-                <span className="sr-only">
-                  Build what comes next. Architect your AI operating system.
-                </span>
-                <span aria-hidden="true">Build what comes next.</span>
-                <RotatingHeroOutcome />
+                Turn AI capability into an operating advantage.
               </h1>
 
+              <span className="sr-only">
+                Explore your highest-leverage AI move, architect your AI operating system, build
+                your AI Center of Excellence, orchestrate agents around real work, and ship products
+                that compound.
+              </span>
+              <RotatingHeroOutcome />
+
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
-                FrankX is a working studio for founders, creators, and teams building AI Centers of
-                Excellence, agentic operating systems, and businesses with more leverage. Explore
-                the architectures, field notes, music, and tools—and take what helps you move.
+                FrankX is the working studio for founders, creators, and AI leaders building an AI
+                operating system, a Center of Excellence, or agentic products. Explore the
+                architecture, inspect the systems, and start from what already works.
               </p>
 
               <div className="flex items-center gap-3">
@@ -308,16 +326,16 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore the Systems
+                Explore AI Architecture
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="#mind-palace"
-                onClick={() => trackEvent('hero_cta_click', { type: 'mind_palace' })}
+                href="/ecosystem"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Enter the Mind Palace
+                Map the Ecosystem
               </Link>
             </div>
 

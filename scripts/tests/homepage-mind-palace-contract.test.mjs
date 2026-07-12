@@ -23,14 +23,16 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
+  assert.match(homepage, /Explore your highest-leverage AI move\./)
   assert.match(homepage, /Architect your AI operating system\./)
   assert.match(homepage, /Build your AI Center of Excellence\./)
-  assert.match(homepage, /Create agentic workflows that compound\./)
-  assert.match(homepage, /Explore the systems behind the work\./)
-  assert.match(homepage, /Ship the next version of your business\./)
+  assert.match(homepage, /Orchestrate agents around real work\./)
+  assert.match(homepage, /Ship products that compound\./)
   assert.match(homepage, /function RotatingHeroOutcome\(\)/)
   assert.match(homepage, /useSyncExternalStore/)
   assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
+  assert.match(homepage, /Pause changing headline/)
+  assert.match(homepage, /Play changing headline/)
   assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
   assert.match(homepage, /Latest studio release · optional listening/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
@@ -75,8 +77,18 @@ test('the featured release stays human-reviewed instead of following the raw cat
 test('the mind palace scene has a complete accessible fallback and scoped cleanup', async () => {
   const atlas = await readRepoFile('components/home/MindPalaceAtlas.tsx')
 
-  for (const route of ['/music', '/learn', '/acos', '/soulbook', '/products', '/ecosystem']) {
+  for (const route of ['/ai-architecture', '/acos', '/products/vibe-os', '/library']) {
     assert.match(atlas, new RegExp(`href: '${route.replace('/', '\\/')}'`))
+  }
+  assert.match(atlas, /href="\/ecosystem"/)
+
+  for (const venture of [
+    'https://starlightintelligence.org',
+    'https://gencreator.ai',
+    'https://www.arcanea.ai',
+    'https://www.agenticincome.ai',
+  ]) {
+    assert.ok(atlas.includes(venture), `missing verified public venture: ${venture}`)
   }
 
   assert.match(atlas, /useGSAP\(/)
@@ -84,7 +96,9 @@ test('the mind palace scene has a complete accessible fallback and scoped cleanu
   assert.match(atlas, /prefers-reduced-motion: reduce/)
   assert.match(atlas, /pointer: coarse/)
   assert.match(atlas, /return \(\) => media\.revert\(\)/)
-  assert.match(atlas, /data-palace-route/)
+  assert.match(atlas, /data-palace-room/)
+  assert.match(atlas, /data-palace-corridor/)
   assert.match(atlas, /focus-visible:ring-2/)
   assert.doesNotMatch(atlas, /pin:\s*true/)
+  assert.doesNotMatch(atlas, /Music stays first/)
 })
