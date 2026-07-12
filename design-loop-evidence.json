@@ -1,0 +1,85 @@
+{
+  "version": "2026-06-23",
+  "task": "Upgrade the FrankX AI Architecture hub with verified official architectures and a Vercel, Railway, and GCP deployment model.",
+  "surface": "FrankX public AI Architecture field guide",
+  "audience": "AI architects, technical founders, and platform leads",
+  "first_read": "Build an operable agent system with one clear job for each deployment layer.",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/OUTCOMES.md"
+  ],
+  "references": [
+    {
+      "label": "Vercel AI SDK agents",
+      "source": "https://ai-sdk.dev/docs/agents/overview",
+      "reason": "Official agent-interface and model-integration baseline"
+    },
+    {
+      "label": "Google Cloud RAG architecture",
+      "source": "https://cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
+      "reason": "Official managed enterprise retrieval pattern"
+    },
+    {
+      "label": "Railway deployments",
+      "source": "https://docs.railway.com/deployments",
+      "reason": "Official persistent service and worker deployment boundary"
+    }
+  ],
+  "direction": {
+    "keep": ["Obsidian base", "Editorial hierarchy", "Direct technical copy", "Rounded primary controls"],
+    "avoid": ["Generic network art", "Fake dashboards", "Decorative motion", "Unsupported claims"],
+    "signature": "A precise three-stage Vercel, Railway, and GCP control-plane diagram connected to verified source architectures.",
+    "system": ["FrankX tech spectrum", "Tier C code-authored diagram", "Static-first composition", "Local filter state only"]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "vector-diagram",
+    "provenance": "owned",
+    "why_premium": "Exact architecture labels, request flows, and verified links make a code-authored system diagram the correct evidence-bearing medium.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "components/ai-architecture/OfficialArchitectureAtlas.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Source, lint, type, contract, and link checks complete; rendered visual inspection awaits browser admission and preview."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C system-authored architecture diagram is the correct medium for exact technical labels."
+    },
+    {
+      "name": "external-link-health",
+      "status": "pass",
+      "evidence": "16 unique official documentation and GitHub links returned HTTP 200 on 2026-07-12."
+    },
+    {
+      "name": "source-quality",
+      "status": "pass",
+      "evidence": "Each catalog entry links to an official maintainer-owned documentation or repository source."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "PP swarm/browser preflight is HOLD at 1.67 GB free RAM and 30 task runtimes."
+    }
+  ],
+  "score": {
+    "total": 25,
+    "max": 30,
+    "notes": "Static hierarchy, brand fit, accessibility structure, factual accuracy, and usefulness score well; the final five-point visual/context check remains blocked until preview inspection."
+  },
+  "decision": "blocked",
+  "known_risks": [
+    "Desktop, mobile, and filter-state visual inspection remains required before release promotion.",
+    "A Vercel preview build is still required to validate the full Next.js production artifact."
+  ]
+}
