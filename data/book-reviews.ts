@@ -6799,6 +6799,107 @@ export const bookReviews: BookReview[] = [
       },
     ],
   },
+  {
+    slug: 'tao-te-ching',
+    title: 'Tao Te Ching',
+    author: 'Lao Tzu',
+    coverImage: '/images/library/tao-te-ching-reading-capture.jpg',
+    rating: 5,
+    reviewDate: '2026-07-12',
+    categories: ['Philosophy', 'Spirituality', 'Classic'],
+    readingTime: '6 min',
+    keyInsights: [
+      'The alternative to force is not passivity. It is designing clear conditions, then letting the right action move without unnecessary resistance.',
+      'Yielding is strategic range: revise the plan quickly, preserve the principle, and keep the system capable of absorbing shocks.',
+      'Hollow capacity is productive capacity. Unclaimed attention, recovery, and white space are what let durable work continue.',
+      'Authority compounds more cleanly when proof lives in useful systems and lived artifacts rather than constant self-announcement.',
+      'A small portfolio with a real cadence outperforms an ever-expanding field of intentions. Concentration is what makes a body of work recognisable.',
+    ],
+    bestFor: [
+      'Founders carrying too many concurrent initiatives',
+      'Builders designing systems for endurance, not spectacle',
+      'Creators rebuilding a quieter relationship with visibility',
+      'Anyone who needs a strategic no more than another idea',
+    ],
+    tldr:
+      'The Tao Te Ching is a compact study of non-forcing: create the conditions, remove the excess, and let the essential work move. Its value for builders is not withdrawal from ambition, but ambition with enough internal and operational space to last.',
+    faq: [
+      {
+        q: 'What does the Tao Te Ching mean by yielding?',
+        a: 'It is not surrendering discernment. It is staying adaptable enough to change form without abandoning what matters.',
+      },
+      {
+        q: 'Why is this useful for builders and founders?',
+        a: 'Because most operational waste comes from forcing too many initiatives, decisions, and identities at once. The book makes subtraction a strategic discipline.',
+      },
+      {
+        q: 'Is this page a summary of the entire Tao Te Ching?',
+        a: 'No. It is a source-marked field note from one reading session, built around the passages captured here and their original application to creative and operating systems.',
+      },
+      {
+        q: 'Which translation is referenced here?',
+        a: 'The photographed copy is David Hinton’s translation. Short excerpts are retained only to anchor the public interpretation to the captured pages.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'In yielding is completion. In bent is straight. In hollow is full.',
+        chapter: 'Chapter 22 — David Hinton translation, p. 22',
+        context: 'The operative image is not weakness; it is a system that can flex without losing its centre.',
+      },
+      {
+        text: 'If you aren’t free of yourself, how will you ever become yourself?',
+        chapter: 'Chapter 7 — David Hinton translation, p. 7',
+        context: 'An antidote to building an identity-performance machine instead of a body of useful work.',
+      },
+    ],
+    capture: {
+      kind: 'book-photo',
+      capturedAt: '2026-07-12',
+      edition: 'Tao Te Ching',
+      translator: 'David Hinton',
+      sourcePages: [6, 7, 21, 22],
+      rightsStatus:
+        'Personal reading capture. Public page uses short excerpts and original commentary; readable page photographs remain private source evidence.',
+      publicNote:
+        'A summer reading capture from a personal copy. The public artifact preserves provenance and the applied idea; the private reflection remains outside the public repository.',
+      images: [
+        {
+          src: '/images/library/tao-te-ching-reading-capture.jpg',
+          alt: 'A personal copy of Tao Te Ching by Lao Tzu, translated by David Hinton, held during a reading session.',
+          caption: 'Reading field note — personal copy, David Hinton translation.',
+        },
+      ],
+    },
+    application: {
+      title: 'Tao operating experiment',
+      body:
+        'Turn the reading into a constraint, not a mood: one canonical public domain, one production Library OS, and fewer concurrent promises. Let the systems make the case before the narrative does.',
+      practice: {
+        title: 'Seven days of strategic hollowing',
+        duration: '7 days',
+        instruction:
+          'Before adding one initiative, link, or dependency, remove or decline one that does not strengthen FrankX, Arcanea, or Starlight Intelligence Systems. Protect one recovery block and one uninterrupted build block each day. At the end of the week, keep only what still moves without force.',
+      },
+      connections: [
+        {
+          label: 'The Library OS approach',
+          href: '/library/approach',
+          reason:
+            'The capture-to-publication system is where evidence becomes a durable, useful asset instead of another private fragment.',
+          kind: 'practice',
+        },
+        {
+          label: 'Build your own Library OS',
+          href: '/library/build',
+          reason:
+            'A direct route from one photographed book to a compounding, reader-owned knowledge system on a personal domain.',
+          kind: 'product',
+        },
+      ],
+    },
+  },
+
 ];
 
 // ─── Helper Functions ────────────────────────────────────────────
