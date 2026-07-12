@@ -654,7 +654,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
   if (!books || books.length === 0) return null
 
   return (
-    <section className="py-24 lg:py-32 border-t border-white/5">
+    <section id="books" className="scroll-mt-24 py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

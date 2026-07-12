@@ -1,4 +1,5 @@
 import HomePageElite from '@/components/home/HomePageElite'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { bookReviews } from '@/data/book-reviews'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
@@ -138,6 +139,18 @@ export default function Page() {
       date: post.date,
     }))
 
+  const books = getPublishedBooks()
+    .filter(
+      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
+    )
+    .slice(0, 6)
+    .map((book) => ({
+      slug: book.slug,
+      title: book.title,
+      subtitle: book.subtitle,
+      coverImage: book.coverImage,
+    }))
+
   const libraryBooks = bookReviews
     .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)
     .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
@@ -156,6 +169,7 @@ export default function Page() {
       <HomePageElite
         latestPosts={latestPosts}
         faqs={homepageFAQs}
+        books={books}
         libraryBooks={libraryBooks}
         featuredTrack={homepageFeaturedRelease}
       />

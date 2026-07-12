@@ -9,8 +9,11 @@ test('the public homepage remains the music-led living studio', async () => {
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
 
   assert.match(page, /import HomePageElite from '@\/components\/home\/HomePageElite'/)
+  assert.match(page, /import \{ getPublishedBooks \} from '@\/app\/books\/lib\/books-registry'/)
   assert.match(page, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
   assert.match(page, /featuredTrack=\{homepageFeaturedRelease\}/)
+  assert.match(page, /const books = getPublishedBooks\(\)/)
+  assert.match(page, /books=\{books\}/)
   assert.doesNotMatch(page, /<FrankXProductionHome\b/)
 
   assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
@@ -20,6 +23,32 @@ test('the public homepage remains the music-led living studio', async () => {
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
+})
+
+test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
+  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+
+  for (const section of [
+    '<TrustedByBlock />',
+    '<MindPalaceAtlas />',
+    '<ProductsTools />',
+    '<CreativeWorlds />',
+    '<DesignLab />',
+    '<BooksShowcase books={books} />',
+    '<LibraryShowcase libraryBooks={libraryBooks} />',
+    '<LatestArticles posts={latestPosts} />',
+    '<LearningHub />',
+    '<DigitalTwin />',
+    '<EmailCTA />',
+    '<FAQSection faqs={faqs} />',
+    '<FinalCTA />',
+  ]) {
+    assert.ok(homepage.includes(section), `missing homepage section: ${section}`)
+  }
+
+  assert.match(homepage, /import \{ GlowCard \} from '@\/components\/ui\/glow-card'/)
+  assert.match(homepage, /<section id="books" className="scroll-mt-24/)
+  assert.ok((homepage.match(/<GlowCard\b/g) ?? []).length >= 4, 'expected multiple glow-card surfaces')
 })
 
 test('the featured release stays human-reviewed instead of following the raw catalog', async () => {
