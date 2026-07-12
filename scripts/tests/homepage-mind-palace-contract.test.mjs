@@ -15,6 +15,9 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(page, /const books = getPublishedBooks\(\)/)
   assert.match(page, /books=\{books\}/)
   assert.doesNotMatch(page, /<FrankXProductionHome\b/)
+  assert.doesNotMatch(page, /Why does the homepage begin with music\?/)
+  assert.doesNotMatch(page, /Music is often the shortest path/)
+  assert.match(page, /How does music fit into FrankX\?/)
 
   assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
   assert.match(homepage, /https:\/\/suno\.com\/embed\/\$\{track\.sunoId\}/)
@@ -72,6 +75,8 @@ test('the featured release stays human-reviewed instead of following the raw cat
   assert.match(release, /Raw Suno catalog entries must never replace this object automatically/)
   assert.match(release, /reviewedAt: '\d{4}-\d{2}-\d{2}'/)
   assert.match(release, /sunoId: '[0-9a-f-]+'/)
+  assert.doesNotMatch(release, /Music is the first door/)
+  assert.match(release, /one creative artifact among the architecture/)
 })
 
 test('the mind palace scene has a complete accessible fallback and scoped cleanup', async () => {
