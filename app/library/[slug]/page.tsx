@@ -33,7 +33,11 @@ export async function generateMetadata({
 
   const description = reviewDescription(review);
   const canonical = `${SITE_URL}/library/${review.slug}`;
-  const ogImage = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
+  const ogImage = review.hasCover
+    ? `${SITE_URL}${review.coverImage}`
+    : review.capture?.images?.[0]?.src
+      ? `${SITE_URL}${review.capture.images[0].src}`
+      : undefined;
 
   return {
     title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
@@ -88,7 +92,11 @@ function JsonLd({ review }: { review: BookReview }) {
   const url = `${SITE_URL}/library/${review.slug}`;
   const description = reviewDescription(review);
   const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
-  const imageUrl = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
+  const imageUrl = review.hasCover
+    ? `${SITE_URL}${review.coverImage}`
+    : review.capture?.images?.[0]?.src
+      ? `${SITE_URL}${review.capture.images[0].src}`
+      : undefined;
 
   const graph: Array<Record<string, unknown>> = [
     {
@@ -197,6 +205,13 @@ export default async function ReviewPage({
     .filter((r) => r.slug !== review.slug)
     .slice(0, 3);
 
+  const headerImage = review.hasCover
+    ? {
+        src: review.coverImage,
+        alt: `${review.title} by ${review.author} — book cover`,
+      }
+    : review.capture?.images?.[0];
+
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Back Link */}
@@ -225,11 +240,11 @@ export default async function ReviewPage({
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
         <div className="flex items-start gap-6">
-          {review.hasCover ? (
+          {headerImage ? (
             <div className="w-24 h-36 rounded-xl border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
               <Image
-                src={review.coverImage}
-                alt={`${review.title} by ${review.author} — book cover`}
+                src={headerImage.src}
+                alt={headerImage.alt}
                 width={192}
                 height={288}
                 priority
