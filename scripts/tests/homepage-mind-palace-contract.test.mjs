@@ -4,7 +4,7 @@ import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
-test('the public homepage remains the music-led living studio', async () => {
+test('the public homepage leads with ICP outcomes while retaining music as living proof', async () => {
   const page = await readRepoFile('app/page.tsx')
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
 
@@ -21,6 +21,18 @@ test('the public homepage remains the music-led living studio', async () => {
   assert.match(homepage, /loading="eager"/)
   assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
+  assert.doesNotMatch(homepage, /Music first\./)
+  assert.doesNotMatch(homepage, /begin with music/)
+  assert.match(homepage, /Architect your AI operating system\./)
+  assert.match(homepage, /Build your AI Center of Excellence\./)
+  assert.match(homepage, /Create agentic workflows that compound\./)
+  assert.match(homepage, /Explore the systems behind the work\./)
+  assert.match(homepage, /Ship the next version of your business\./)
+  assert.match(homepage, /function RotatingHeroOutcome\(\)/)
+  assert.match(homepage, /useSyncExternalStore/)
+  assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
+  assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
+  assert.match(homepage, /Latest studio release · optional listening/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
 })

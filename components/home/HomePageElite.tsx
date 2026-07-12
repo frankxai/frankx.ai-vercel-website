@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -209,30 +209,88 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
+const heroOutcomes = [
+  'Architect your AI operating system.',
+  'Build your AI Center of Excellence.',
+  'Create agentic workflows that compound.',
+  'Explore the systems behind the work.',
+  'Ship the next version of your business.',
+]
+
+const subscribeToHydration = () => () => undefined
+
+function RotatingHeroOutcome() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+  const hasHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  )
+
+  useEffect(() => {
+    if (!hasHydrated || shouldReduceMotion) return
+
+    const interval = window.setInterval(() => {
+      setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
+    }, 3200)
+
+    return () => window.clearInterval(interval)
+  }, [hasHydrated, shouldReduceMotion])
+
+  if (!hasHydrated || shouldReduceMotion) {
+    return (
+      <span className="block text-white/45" aria-hidden="true">
+        {heroOutcomes[0]}
+      </span>
+    )
+  }
+
+  return (
+    <span className="relative block min-h-[2.12em] overflow-hidden text-white/45" aria-hidden="true">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={heroOutcomes[currentIndex]}
+          className="block"
+          initial={{ opacity: 0, y: '58%' }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: '-42%' }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {heroOutcomes[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
 function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
   return (
     <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           {/* Left Column — Text Content */}
-          <div className="order-2 space-y-8 lg:order-1">
+          <div className="order-1 space-y-8">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">Frank&apos;s living studio</span>
+                <span className="text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
               </div>
 
               <h1
-                className="max-w-3xl font-display text-5xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
+                className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
               >
-                Music first.
-                <span className="block text-white/40">Then the maps behind it.</span>
+                <span className="sr-only">
+                  Build what comes next. Architect your AI operating system.
+                </span>
+                <span aria-hidden="true">Build what comes next.</span>
+                <RotatingHeroOutcome />
               </h1>
 
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
-                This is my living studio: songs, agent systems, books, field notes, and tools from a
-                life spent experimenting—left open for friends, family, and fellow builders making
-                their own next move.
+                FrankX is a working studio for founders, creators, and teams building AI Centers of
+                Excellence, agentic operating systems, and businesses with more leverage. Explore
+                the architectures, field notes, music, and tools—and take what helps you move.
               </p>
 
               <div className="flex items-center gap-3">
@@ -246,20 +304,20 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             {/* CTAs */}
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
-                href="#mind-palace"
-                onClick={() => trackEvent('hero_cta_click', { type: 'mind_palace' })}
+                href="/ai-architecture"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Enter the Mind Palace
+                Explore the Systems
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/music"
-                onClick={() => trackEvent('hero_cta_click', { type: 'music' })}
+                href="#mind-palace"
+                onClick={() => trackEvent('hero_cta_click', { type: 'mind_palace' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Explore the Music
+                Enter the Mind Palace
               </Link>
             </div>
 
@@ -270,9 +328,9 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
           </div>
 
           {/* Right Column — Featured Track */}
-          <div className="relative order-1 lg:order-2">
+          <div className="relative order-2">
             <p className="mb-4 font-mono text-[11px] tracking-[0.08em] text-emerald-300/60 lg:hidden">
-              Frank&apos;s living studio · begin with music
+              Latest studio release · optional listening
             </p>
             <FeaturedTrack track={featuredTrack ?? homepageFeaturedRelease} />
           </div>
