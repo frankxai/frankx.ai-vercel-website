@@ -284,7 +284,7 @@ export default async function ReviewPage({
           <div className="overflow-hidden rounded-2xl border border-cyan-400/15 bg-cyan-500/[0.03]">
             <div className="p-6">
               <p className="text-[10px] uppercase tracking-[0.2em] text-cyan-300/75 mb-3">
-                Reading field note
+                Source capture
               </p>
               {review.capture.publicNote && (
                 <p className="text-[15px] leading-relaxed text-white/75">
@@ -306,8 +306,8 @@ export default async function ReviewPage({
             </div>
             {review.capture.images && review.capture.images.length > 0 && (
               <div className="grid gap-px border-t border-cyan-400/10 bg-cyan-400/10 sm:grid-cols-2">
-                {review.capture.images.map((image) => (
-                  <figure key={image.src} className="bg-[#0a0a0b]">
+                {review.capture.images.map((image, index) => (
+                  <figure key={`${image.src}-${index}`} className="bg-[#0a0a0b]">
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -565,7 +565,7 @@ export default async function ReviewPage({
             )}
             {review.application.connections && review.application.connections.length > 0 && (
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {review.application.connections.map((connection) => {
+                {review.application.connections.map((connection, index) => {
                   const card = (
                     <>
                       <p className="text-sm font-semibold text-white/90">{connection.label}</p>
@@ -577,7 +577,7 @@ export default async function ReviewPage({
 
                   return connection.href.startsWith('http') ? (
                     <a
-                      key={connection.href}
+                      key={`${connection.href}-${index}`}
                       href={connection.href}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -586,7 +586,7 @@ export default async function ReviewPage({
                       {card}
                     </a>
                   ) : (
-                    <Link key={connection.href} href={connection.href} className={className}>
+                    <Link key={`${connection.href}-${index}`} href={connection.href} className={className}>
                       {card}
                     </Link>
                   );
