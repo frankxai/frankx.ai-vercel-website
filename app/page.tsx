@@ -106,9 +106,9 @@ const homepageFAQs = [
       'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
   },
   {
-    question: 'Why does the homepage begin with music?',
+    question: 'How does music fit into FrankX?',
     answer:
-      'Music is often the shortest path into attention and feeling. The player is always user initiated, and the systems, production notes, and wider archive remain available when you want to understand how the work was made.',
+      'Music is one of the studio\'s living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.',
   },
   {
     question: 'Can I use the systems and tools?',

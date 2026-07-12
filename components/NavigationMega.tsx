@@ -43,7 +43,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-// import MobileNavOverlay from '@/components/MobileNavOverlay'
+import MobileNavOverlay from '@/components/MobileNavOverlay'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
@@ -352,17 +352,6 @@ export default function NavigationMega() {
   }, [pathname])
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
-
-  useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
 
@@ -503,7 +492,7 @@ export default function NavigationMega() {
             <button
               type="button"
               onClick={openCommandPalette}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
               aria-label="Open search"
               title="Search"
             >
@@ -512,9 +501,10 @@ export default function NavigationMega() {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
+              aria-controls="mobile-site-navigation"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -522,7 +512,7 @@ export default function NavigationMega() {
         </nav>
       </header>
 
-      {/* Mobile nav overlay removed */}
+      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   )
 }

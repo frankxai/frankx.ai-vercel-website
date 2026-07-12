@@ -30,7 +30,7 @@ export const homepageFeaturedRelease: HomepageFeaturedRelease = {
   duration: '4:00',
   kicker: 'Studio opening track',
   studioNote:
-    'Music is the first door into FrankX: a place to feel the work before following the systems behind it.',
+    'A current studio release—one creative artifact among the architecture, systems, books, and field notes built here.',
   reviewedAt: '2026-07-11',
   reviewStatus: 'approved',
 }
