@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 809,
+    "total": 813,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 386,
+      "section": 389,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 202,
+      "blog": 203,
       "guide": 20,
       "library": 40,
       "newsletter": 1,
@@ -1902,6 +1902,19 @@
         "ai-tools",
         "youtube-automation",
         "content-repurposing"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/family-ai-operating-system-agents-assets-agi",
+      "title": "Family AI Operating System: Agents, Assets, AGI",
+      "description": "A practical guide for families and founders to use AI agents, asset literacy, and safety habits without hype.",
+      "tags": [
+        "agentic-ai",
+        "family-ai",
+        "wealth-systems",
+        "ai-safety",
+        "creator-systems"
       ],
       "type": "blog"
     },
@@ -4405,10 +4418,41 @@
       "type": "section"
     },
     {
+      "href": "/familien-intelligenz-system",
+      "title": "Familien Intelligenz System",
+      "tags": [
+        "familien",
+        "intelligenz",
+        "system"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/family",
       "title": "Family",
       "tags": [
         "family"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/family-intelligence-system",
+      "title": "Family Intelligence System",
+      "tags": [
+        "family",
+        "intelligence",
+        "system"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/family-intelligence-system/download",
+      "title": "Download",
+      "tags": [
+        "family",
+        "intelligence",
+        "system",
+        "download"
       ],
       "type": "section"
     },

@@ -41,7 +41,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // ─── 3. Auth protection (existing) ────────────────────────
+  // ─── 3. Auth redirect (defense in depth; private routes re-check on the server) ───
   // /api/admin/upload and /api/admin/verify implement their own ADMIN_SECRET
   // header/body check — they stay out of the session gate below.
   const selfGatedApiPaths = ['/api/admin/upload', '/api/admin/verify']
@@ -49,9 +49,10 @@ export async function proxy(request: NextRequest) {
   // Exact-segment match — `startsWith` alone would also catch a future
   // public route like /admin-settings or /dashboard-assets.
   const matchesPath = (path: string) => pathname === path || pathname.startsWith(path + '/')
+  const isPrivateFamilyArchiveRoute = pathname === '/family/tree' || pathname.startsWith('/familie/')
   const isProtectedRoute =
-    !selfGatedApiPaths.some(matchesPath) &&
-    protectedPaths.some(matchesPath)
+    isPrivateFamilyArchiveRoute ||
+    (!selfGatedApiPaths.some(matchesPath) && protectedPaths.some(matchesPath))
 
   if (isProtectedRoute) {
     const token = await getToken({
@@ -60,6 +61,12 @@ export async function proxy(request: NextRequest) {
     })
 
     if (!token) {
+      if (isPrivateFamilyArchiveRoute) {
+        const familyGatewayUrl = new URL('/familie', request.url)
+        familyGatewayUrl.searchParams.set('zugang', 'erforderlich')
+        return NextResponse.redirect(familyGatewayUrl)
+      }
+
       const signInUrl = new URL('/auth/signin', request.url)
       signInUrl.searchParams.set('callbackUrl', request.url)
       return NextResponse.redirect(signInUrl)

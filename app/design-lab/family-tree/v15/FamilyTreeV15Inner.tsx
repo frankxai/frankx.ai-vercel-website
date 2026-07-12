@@ -15,6 +15,10 @@ interface LayoutPositions {
   [nodeId: string]: NodePosition
 }
 
+const getStrokeDashoffset = (element: Element) => {
+  return element instanceof SVGGeometryElement ? element.getTotalLength() : 0
+}
+
 export default function FamilyTreeV15Inner() {
   const [currentLayout, setCurrentLayout] = useState<LayoutMode>('tree')
   const svgRef = useRef<SVGSVGElement>(null)
@@ -145,7 +149,7 @@ export default function FamilyTreeV15Inner() {
 
       anime({
         targets: paths,
-        strokeDashoffset: [anime.setDashoffset, 0],
+        strokeDashoffset: [getStrokeDashoffset, 0],
         opacity: [0, 0.4],
         duration: 1200,
         easing: 'easeOutQuad',

@@ -1,0 +1,40 @@
+version: 1
+family_id: replace-in-private-workspace
+default_rule: use_the_smallest_circle_that_fulfils_the_purpose
+
+circles:
+  self:
+    label_de: Ich
+    examples: [private_notes, personal_instructions, draft_memories]
+    default_publication: prohibited
+  household:
+    label_de: Haushalt
+    examples: [shared_routines, household_calendar]
+    default_publication: prohibited
+  core_circle:
+    label_de: Engster Kreis
+    examples: [trusted_coordination, limited_emergency_context]
+    default_publication: prohibited
+  extended_family:
+    label_de: Erweiterte Familie
+    examples: [approved_stories, reunion_planning, reviewed_lineage_claims]
+    default_publication: prohibited
+  descendants_guardianship:
+    label_de: Nachkommen und Patenschaften
+    examples: [age_appropriate_learning, guardian_approved_support]
+    contains_child_data: possible
+    default_publication: prohibited
+  trusted_advisors:
+    label_de: Vertrauenspersonen
+    examples: [legal_review, archival_review, continuity_support]
+    default_publication: prohibited
+  public_archive:
+    label_de: Öffentliches Archiv
+    examples: [consented_biography, rights_cleared_historical_source]
+    default_publication: separate_human_review_required
+
+hard_rules:
+  - living_people_private_by_default
+  - children_never_public_by_default
+  - public_archive_is_not_a_sync_target
+  - every_access_is_family_scoped_and_audited

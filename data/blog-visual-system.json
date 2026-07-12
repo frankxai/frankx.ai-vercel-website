@@ -1,19 +1,49 @@
 {
   "meta": {
     "name": "FrankX Blog Visual Operating System",
-    "generatedAt": "2026-06-18T00:47:18.413Z",
+    "generatedAt": "2026-07-03T00:00:00.000Z",
     "generationMode": "hybrid-built-in-image-gen-plus-deterministic-social-png",
     "builtInImageGeneration": "used for premium cinematic bitmap hero headers; deterministic PNG overlays used for social cards to avoid text artifacts",
     "counts": {
-      "headers": 68,
-      "infographics": 21,
-      "socialCards": 180,
-      "socialCopyPacks": 60,
+      "headers": 69,
+      "infographics": 25,
+      "socialCards": 183,
+      "socialCopyPacks": 61,
       "premiumBitmapHeaders": 56
     },
     "reviewPolicy": "Public assets must not expose internal quality badges. Reject stock-like, generic, over-purple, logo-like, readable-text-artifacted, weak-mobile-crop, repeated-dashboard, or unclear-topic assets."
   },
   "posts": [
+    {
+      "slug": "family-ai-operating-system-agents-assets-agi",
+      "title": "Family AI Operating System: Agents, Assets, AGI",
+      "category": "Flagship",
+      "date": "2026-07-03",
+      "hero": "/images/blog/visual-system/family-ai-operating-system-agents-assets-agi-hero.png",
+      "infographic": "/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-family-map.png",
+      "infographics": [
+        "/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-family-map.png",
+        "/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-platform-map.png",
+        "/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-asset-stack.png",
+        "/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-safety-loop.png"
+      ],
+      "social": {
+        "wide": "/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.png",
+        "square": "/images/social/blog/family-ai-operating-system-agents-assets-agi/square.png",
+        "vertical": "/images/social/blog/family-ai-operating-system-agents-assets-agi/vertical.png"
+      },
+      "prompt": "/infogenius imagegen direction: create a premium cinematic family AI command-table hero, then composite exact FrankX typography into PNG hero/social cards; export exact PNG diagrams for platform, asset, safety, and audience maps.",
+      "source": "built-in imagegen + Chromium typography composition + design.md + taste.md + FrankX brand pack + official platform/investor education sources + post frontmatter",
+      "generationMode": "built-in-imagegen-plus-raster-png",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "notes": "Tier B raster package: imagegen hero with exact production typography, four exact PNG infographics, and three PNG social crops.",
+      "qualityScore": 28,
+      "qualityTier": "flagship",
+      "assetType": "hero-plus-infographics",
+      "spectrum": "tech",
+      "socialAngle": "family-founder"
+    },
     {
       "slug": "claude-agent-sdk-credit-pause-agent-stack-2026",
       "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",

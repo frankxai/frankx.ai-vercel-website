@@ -13,9 +13,9 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Mitmachen — Familie Riemer-Gorte',
-  description: 'Hilf uns, die Geschichte der Familie Riemer-Gorte zu erforschen und zu bewahren. Teile Erinnerungen, Fotos, Korrekturen oder Forschungsfragen.',
-  robots: { index: false, follow: false },
+  title: 'Privater Familienbeitrag',
+  description: 'Geschützter Arbeitsbereich für Erinnerungen, Korrekturen und Forschungsfragen.',
+  robots: { index: false, follow: false, nocache: true },
 }
 
 const beitragsarten = [
@@ -28,7 +28,7 @@ const beitragsarten = [
   {
     icon: Camera,
     titel: 'Foto oder Dokument',
-    beschreibung: 'Alte Fotos, Briefe, Urkunden, Pässe — alles hilft bei der Forschung.',
+    beschreibung: 'Alte Fotos, Briefe oder redigierte Dokumente können nach sicherer Freigabe helfen.',
     farbe: 'text-violet-400 bg-violet-500/10',
   },
   {

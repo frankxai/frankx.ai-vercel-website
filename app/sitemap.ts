@@ -272,6 +272,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Section pages (important navigation destinations)
   const sectionPages = [
+    { url: '/family', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/family-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/familien-intelligenz-system', priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: '/family-intelligence-system/download', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -694,6 +698,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // route; the generated JSON keeps sitemap coverage without over-bundling.
   const seenUrls = new Set(entries.map((e) => e.url))
   const discovered = getRouteIndexRoutes()
+  const privateRoutePrefixes = ['/familie', '/family/tree', '/dashboard', '/admin', '/auth', '/api']
   const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
     core: { priority: 0.8, changeFrequency: 'weekly' },
     blog: { priority: 0.7, changeFrequency: 'monthly' },
@@ -713,6 +718,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
   for (const route of discovered) {
+    if (privateRoutePrefixes.some((prefix) => route.href === prefix || route.href.startsWith(`${prefix}/`))) continue
     const url = `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)

@@ -10,9 +10,9 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Offene Fragen — Familienforschung Riemer-Gorte',
+  title: 'Private offene Forschungsfragen',
   description: 'Jede unbeantwortete Frage, was sie beantworten würde, und wer sie stellen kann. Ein transparentes Forschungsprotokoll.',
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: false, nocache: true },
 }
 
 type Status = 'offen' | 'in-arbeit' | 'beantwortet' | 'blockiert'

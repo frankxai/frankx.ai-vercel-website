@@ -1,0 +1,155 @@
+{
+  "version": "2026-06-23",
+  "task": "Publish the Family AI Operating System flagship article with a hero, four graphics, social cards, and announcement drafts.",
+  "surface": "FrankX blog article, blog listing card, Open Graph/social visual package, and draft announcement copy.",
+  "audience": "Family stewards, founder/operators, builders, and younger learners who need a practical map for AI tools, assets, and safety habits.",
+  "first_read": "AI should become a governed family operating system: learn, build, verify, protect, teach, and compound.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "frankx.ai-vercel-website/design.md",
+    "frankx.ai-vercel-website/taste.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX brand pack",
+      "source": "C:/Users/frank/starlight/repos/starlight-design-intelligence/brand-packs/frankx",
+      "reason": "Sets direct founder-facing voice, dark editorial material language, emerald/cyan tech spectrum, and restrained amber signals."
+    },
+    {
+      "label": "Premium Web OS",
+      "source": "C:/Users/frank/starlight/repos/_intelligence",
+      "reason": "Requires scene brief, static composition, asset provenance, visual QA, and release checks."
+    },
+    {
+      "label": "Official platform documentation",
+      "source": "OpenAI, Anthropic, xAI, Google Antigravity, Base, Hermes Agent, Investor.gov, FINRA, SEC, IRS",
+      "reason": "Grounds fast-changing AI platform and asset-risk claims in current primary sources."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Exact readable text in diagrams",
+      "Dark FrankX editorial command-layer feel",
+      "Clear platform, asset, and safety maps",
+      "Educational financial framing"
+    ],
+    "avoid": [
+      "Generated text artifacts",
+      "Stock-like AI visuals",
+      "Unverified investment claims",
+      "Decorative node-cloud filler",
+      "Crypto hype or implied advice"
+    ],
+    "signature": "A governed family AI core connects agents, assets, protection, and teaching into one compounding operating loop.",
+    "system": [
+      "Built-in imagegen cinematic hero base",
+      "Production-rendered FrankX typography composited into PNG outputs",
+      "Exact PNG diagrams with emerald/cyan signal lines and restrained amber risk notes",
+      "No stock imagery or external asset rights dependency",
+      "No motion or 3D because the article needs clarity over spectacle"
+    ]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "generated-media",
+    "provenance": "generated",
+    "why_premium": "The article hero needs a premium bitmap image, so the base was generated with the built-in imagegen skill and finished with exact typography. The supporting graphics are PNG exports with exact labels so they avoid AI text artifacts while publishing as bitmap assets.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "docs/visual-loop/family-ai-operating-system-agents-assets-agi/imagegen-source.png",
+      "kind": "imagegen-source",
+      "inspected": true,
+      "notes": "Built-in imagegen source scene: family/founder command table with AI, code, asset, and home cues."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/family-ai-operating-system-agents-assets-agi-hero.png",
+      "kind": "imagegen-derived-png",
+      "inspected": true,
+      "notes": "Hero PNG uses imagegen source plus exact production-rendered FrankX typography."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-family-map.png",
+      "kind": "raster-diagram",
+      "inspected": true,
+      "notes": "Family audience and operating-system map."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-platform-map.png",
+      "kind": "raster-diagram",
+      "inspected": true,
+      "notes": "Platform interconnect map with verification layers."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-asset-stack.png",
+      "kind": "raster-diagram",
+      "inspected": true,
+      "notes": "Educational asset stack and risk/liquidity map."
+    },
+    {
+      "path_or_url": "public/images/blog/visual-system/infographics/family-ai-operating-system-agents-assets-agi-safety-loop.png",
+      "kind": "raster-diagram",
+      "inspected": true,
+      "notes": "Human capability and safety loop."
+    },
+    {
+      "path_or_url": "public/images/social/blog/family-ai-operating-system-agents-assets-agi/wide.png",
+      "kind": "imagegen-derived-png",
+      "inspected": true,
+      "notes": "Wide social crop with exact text."
+    },
+    {
+      "path_or_url": "public/images/social/blog/family-ai-operating-system-agents-assets-agi/square.png",
+      "kind": "imagegen-derived-png",
+      "inspected": true,
+      "notes": "Square social crop with exact text."
+    },
+    {
+      "path_or_url": "public/images/social/blog/family-ai-operating-system-agents-assets-agi/vertical.png",
+      "kind": "imagegen-derived-png",
+      "inspected": true,
+      "notes": "Vertical social crop with exact text."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier B raster package: imagegen hero plus exact PNG diagrams and social cards."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "PNG exports were inspected locally: imagegen hero, wide/square/vertical social cards, and four infographic graphics."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "PNG package uses stable dimensions, high contrast text, no generated text artifacts, and no external media."
+    },
+    {
+      "name": "motion-reduced-motion",
+      "status": "not_applicable",
+      "evidence": "No motion, video, or audio assets are used."
+    },
+    {
+      "name": "rights-provenance",
+      "status": "pass",
+      "evidence": "Hero source was generated with the built-in imagegen tool and saved into the workspace evidence folder; final assets are owned PNG outputs."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "5 first read, 5 brand fit, 5 craft, 4 accessibility/responsive pending live crop check, 5 provenance/accuracy, 4 usefulness across article/social."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "External platform facts can age quickly and should be rechecked during future revisions.",
+    "PNG social cards should be compressed later if channel upload limits require it."
+  ]
+}
