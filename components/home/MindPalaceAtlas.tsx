@@ -129,6 +129,7 @@ const accentClasses: Record<PalaceRoute['accent'], { icon: string; marker: strin
 
 export function MindPalaceAtlas() {
   const rootRef = useRef<HTMLElement>(null)
+  const threadRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
@@ -141,7 +142,7 @@ export function MindPalaceAtlas() {
       }
 
       const routes = gsap.utils.toArray<HTMLElement>('[data-palace-route]', root)
-      const thread = root.querySelector<HTMLElement>('[data-palace-thread]')
+      const thread = threadRef.current
       const media = gsap.matchMedia()
 
       media.add(
@@ -258,6 +259,7 @@ export function MindPalaceAtlas() {
 
         <div className="relative">
           <div
+            ref={threadRef}
             data-palace-thread
             className="absolute bottom-7 left-[22px] top-7 w-px origin-top bg-gradient-to-b from-emerald-300/60 via-cyan-300/30 to-rose-300/20 sm:left-[26px]"
             aria-hidden="true"

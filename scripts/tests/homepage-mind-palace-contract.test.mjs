@@ -13,8 +13,11 @@ test('the public homepage remains the music-led living studio', async () => {
   assert.match(page, /featuredTrack=\{homepageFeaturedRelease\}/)
   assert.doesNotMatch(page, /<FrankXProductionHome\b/)
 
+  assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
   assert.match(homepage, /https:\/\/suno\.com\/embed\/\$\{track\.sunoId\}/)
   assert.match(homepage, /loading="eager"/)
+  assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
+  assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
 })

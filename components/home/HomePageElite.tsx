@@ -12,6 +12,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
 // TYPES
@@ -273,23 +274,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             <p className="mb-4 font-mono text-[11px] tracking-[0.08em] text-emerald-300/60 lg:hidden">
               Frank&apos;s living studio · begin with music
             </p>
-            <div>
-              {featuredTrack ? (
-                <FeaturedTrack track={featuredTrack} />
-              ) : (
-                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
-                  <iframe
-                    src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
-                    className="h-[300px] w-full sm:h-[340px] lg:h-[380px]"
-                    style={{ border: 'none' }}
-                    allow="autoplay; clipboard-write"
-                    loading="eager"
-                    title="Vibe O S — Studio opening track"
-                    sandbox="allow-scripts allow-same-origin"
-                  />
-                </div>
-              )}
-            </div>
+            <FeaturedTrack track={featuredTrack ?? homepageFeaturedRelease} />
           </div>
         </div>
       </div>
