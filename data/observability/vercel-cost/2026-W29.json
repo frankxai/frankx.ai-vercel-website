@@ -39,7 +39,7 @@
   "verdict": "RED",
   "alerts": [
     "duration_p50=570s > 360s RED threshold (was 510s W28, +11.8%). Build times still elevated and trending up; Turbopack + Next.js with large content library now averaging ~563s per READY build. P95=663s is the highest sampled this observability cycle — single slow outlier (dpl_Fs6jRMWvEHzS7wuDdd3Mwuj5yNUY, Jul 12 production) drove the tail.",
-    "count_error=1 (was 7 W28, -85.7% improvement). Single failure on preview branch agent/claude/web-excellence (dpl_7GdmpQ5pjHmWd3pinktVkrSES5ue, Jul 1) — not a production regression. Below RED threshold of ≥2.",
+    "count_error=1 (was 7 W28, -85.7% improvement). Single failure on preview branch agent/claude/web-excellence (dpl_7GdmpQ5pjHmWd3pinktVkrSES5ue, Jul 9 ~23:12 UTC) — not a production regression. Below RED threshold of ≥2.",
     "total_build_minutes=817 vs W28=961 (-15.0%). Lower total driven by fewer deploys this week (100 vs 128). Absolute level (817 min) well below 1500-min RED ceiling. count_skipped rose from 8 to 12 (+50%) but absolute swing is small (+4 deploys skipped)."
   ]
 }
