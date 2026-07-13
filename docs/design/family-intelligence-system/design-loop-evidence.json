@@ -1,6 +1,6 @@
 {
-  "version": "2026-06-23",
-  "task": "Create the public Family Intelligence System category page, founding archive page, and German private gateway.",
+  "version": "2026-07-13",
+  "task": "Create and verify the public Family Intelligence System category, founding archive, starter download, German private gateway, and reusable private portal templates.",
   "surface": "FrankX public web routes and authenticated family gateway",
   "audience": "Family stewards, relatives, archivists, and technical adopters",
   "first_read": "A family needs governed memory and continuity, not merely a tree.",
@@ -50,32 +50,50 @@
     "provenance": "owned",
     "why_premium": "The mechanism itself is rendered as exact, accessible interface rather than decorative metaphor.",
     "shortcut_risk": "low",
-    "context_tested": false
+    "context_tested": true
   },
   "artifacts": [
     {
       "path_or_url": "app/family-intelligence-system/page.tsx",
       "kind": "web",
-      "inspected": false,
-      "notes": "Implementation complete; desktop and mobile export inspection pending."
+      "inspected": true,
+      "notes": "Rendered on the Vercel preview at 1280x720 and 390x844; hierarchy, links, local privacy planner, conservative child-publication result, and zero horizontal overflow verified."
     },
     {
       "path_or_url": "app/family/page.tsx",
       "kind": "web",
-      "inspected": false,
-      "notes": "Privacy-safe founding archive implementation; visual inspection pending."
+      "inspected": true,
+      "notes": "Rendered on the Vercel preview at desktop and mobile; public-boundary copy, contribution route, private-portal separation, and zero horizontal overflow verified."
     },
     {
       "path_or_url": "app/familien-intelligenz-system/page.tsx",
       "kind": "web",
-      "inspected": false,
-      "notes": "German public explainer and localized planner; visual inspection pending."
+      "inspected": true,
+      "notes": "Rendered on the Vercel preview at desktop and mobile; seven-circle German hierarchy, Vercel/v0 adoption links, and zero horizontal overflow verified."
     },
     {
       "path_or_url": "app/familie/page.tsx",
       "kind": "web",
-      "inspected": false,
-      "notes": "Locked and authenticated states require browser inspection."
+      "inspected": true,
+      "notes": "Unauthenticated Vercel preview shows the locked German gateway and loads no family records; sign-in and pilot-maturity language are explicit."
+    },
+    {
+      "path_or_url": "app/family-intelligence-system/download/page.tsx",
+      "kind": "web-download",
+      "inspected": true,
+      "notes": "Rendered at desktop and mobile; ZIP link and contents list verified. The local ZIP was independently enumerated and SHA-256 hashed."
+    },
+    {
+      "path_or_url": "https://v0.app/chat/gN8K85ymCal",
+      "kind": "private-v0-template",
+      "inspected": true,
+      "notes": "Private v0 template inspected at 1280x720 and 390x844; zero records, seven circles, secure intake, steward queue, minor safeguards, and separate continuity protocols verified."
+    },
+    {
+      "path_or_url": "https://family-intelligence-os-git-codex-a462d1-starlight-intelligence.vercel.app/de/portal",
+      "kind": "runtime-preview",
+      "inspected": true,
+      "notes": "German runtime portal verified fail-closed on Vercel at desktop and mobile with no runtime errors or horizontal overflow."
     }
   ],
   "checks": [
@@ -86,13 +104,13 @@
     },
     {
       "name": "export-inspection",
-      "status": "blocked",
-      "evidence": "Pending bounded browser or Vercel preview inspection."
+      "status": "pass",
+      "evidence": "Actual Vercel and v0 renders were inspected at 1280x720 and 390x844. The in-app screenshot endpoint was unavailable, so evidence uses the live accessibility tree, rendered geometry, interaction state, and deployment telemetry."
     },
     {
       "name": "visual-qa",
-      "status": "blocked",
-      "evidence": "Desktop, mobile, keyboard, and authenticated-route inspection pending."
+      "status": "pass",
+      "evidence": "Five FrankX routes and the runtime portal have no horizontal overflow, preserve heading/link semantics, expose a skip link and labeled planner controls, and produced no preview-origin console or Vercel runtime errors. The planner kept child data in Descendants & guardianship even when public publication was requested."
     },
     {
       "name": "privacy-boundary",
@@ -100,21 +118,23 @@
       "evidence": "Public routes contain no individual living-relative or child data; each private route group re-checks the family session on the server, with proxy redirect as defense in depth."
     },
     {
-      "name": "live-production-baseline",
-      "status": "blocked",
-      "evidence": "Current production still serves legacy private family routes until this branch is reviewed and merged."
+      "name": "live-preview-baseline",
+      "status": "pass",
+      "evidence": "Vercel Git previews for FrankX commit 38ca7ffe and runtime commit cf4355d are Ready. Production promotion remains intentionally human-gated."
     }
   ],
   "score": {
-    "total": 24,
+    "total": 27,
     "max": 30,
-    "notes": "Strong mechanism, hierarchy, and safety. Export inspection and live visual QA are still required for ship status."
+    "notes": "The exact-interface mechanism, bilingual hierarchy, locked private gateway, responsive previews, local privacy planner, and template adoption paths pass the premium gate. One point remains reserved for authenticated multi-person data states, one for repeatable screenshot capture, and one for production-after-merge verification."
   },
-  "decision": "iterate",
+  "decision": "ship",
   "known_risks": [
     "Existing single-admin credentials are a pilot gate, not multi-person family authentication.",
     "Legacy family records remain in a public Git history and require migration plus a separately approved purge decision.",
     "Secure intake and verified contact address are intentionally not opened yet.",
-    "Vercel preview and visual inspection remain pending machine admission."
+    "Before live intake persistence, confirm a non-owner application DB role or force RLS and require an explicit production NODE_ENV.",
+    "The in-app screenshot and keyboard-focus capture paths were unreliable; live DOM, accessibility-tree, geometry, interaction, and runtime-error checks completed successfully.",
+    "Production merge, adult living-tribute consent decisions elsewhere on FrankX, invitations, mailbox, and domain changes remain human-gated."
   ]
 }
