@@ -365,16 +365,15 @@ export default function FriendsPage() {
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-xs font-bold text-white/72 backdrop-blur-xl">
                     <Sparkles className="h-3.5 w-3.5 text-amber-100" />
-                    People Systems
+                    People Operations
                   </div>
                   <h3 className="mt-6 text-4xl font-black tracking-tight md:text-5xl">
                     Ana Cecilia Cancino
                   </h3>
                   <p className="mt-4 text-lg leading-8 text-white/76">
-                    A public-safe bridge from Ana's HR, psychology,
-                    self-knowledge, faith, embodiment, and AI companion work
-                    into a practical business kit she can test, refine, and
-                    travel with.
+                    Ana has a careful HR and recruiting method. The next step
+                    is to make it easier for her four-person team to teach,
+                    run, review, and improve together.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -389,13 +388,13 @@ export default function FriendsPage() {
                     href="/allies/ana-cancino"
                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/45 hover:bg-white/10"
                   >
-                    Business kit
+                    Team operating plan
                   </Link>
                   <Link
                     href="/downloads/ana-ai-business-kit"
                     className="inline-flex items-center gap-2 rounded-full border border-emerald-200/25 bg-emerald-200/10 px-4 py-2.5 text-sm font-bold text-emerald-50 transition hover:border-emerald-100/45 hover:bg-emerald-200/15"
                   >
-                    Download kit
+                    Start HR Operations
                   </Link>
                 </div>
               </div>
@@ -403,9 +402,9 @@ export default function FriendsPage() {
             <div className="p-7 md:p-9">
               <div className="grid gap-4">
                 {[
-                  ["Public-safe", "Use verified public material first; keep deeper biography, quotes, and testimonials private until approved."],
-                  ["Offer-led", "Anchor the system in clarity sessions, reflection circles, workshops, and a proposed team path."],
-                  ["Installable", "Give her a ZIP with agent briefs, offer maps, aftercare, content loops, and ACOS guidance."],
+                  ["Verified", "Use current public facts first; keep deeper biography, credentials, quotes, and client claims out until Ana approves them."],
+                  ["Team-ready", "Guide the same sequence from first client call through reviewed documents, recruiting delivery, invoice, and handoff."],
+                  ["Human-led", "The team prepares and AI checks; Ana and the client remain accountable for people, price, invoice, and send decisions."],
                 ].map(([title, copy]) => (
                   <div
                     key={title}

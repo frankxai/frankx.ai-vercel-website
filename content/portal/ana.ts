@@ -1,68 +1,76 @@
 import type { PortalPartner } from './types'
 
 /**
- * Ana Cecilia Cancino — Ana AI Business Kit.
+ * Ana Cecilia Cancino — private-team workspace preview.
  *
- * Ported from app/allies/ana-cancino/page.tsx + app/friends/ana/page.tsx.
- * The source ally page status is "Noindex draft" — carried through here.
- * No new claims — only reorganized into the portal schema shape.
+ * This is intentionally noindex and contains no live client or candidate data.
+ * The source of truth for the operating sequence is Ana HR Operations v1.
  */
 export const ana: PortalPartner = {
   slug: 'ana',
   name: 'Ana Cecilia Cancino',
   relationship: 'ally',
-  status: 'draft',
+  status: 'building',
   accent: 'soul',
   noindex: true,
-  lastUpdated: '2026-07-01',
+  lastUpdated: '2026-07-14',
 
-  title: 'Ana AI Business Kit',
-  tagline: 'Her voice stays in front. The agents stay backstage.',
+  title: 'Ana Team Workspace',
+  tagline: 'One shared client path. Clear owners. Ana keeps the decisions.',
 
   provides: [
     {
-      title: 'Mirror Agent',
-      detail: 'Reflective drafting support for session prep and follow-up letters.',
+      title: 'Daily client control',
+      detail:
+        'A client-alias view of stage, owner, due date, blocker, and the approval waiting for Ana.',
     },
     {
-      title: 'Research Curator',
-      detail: 'Organizes her reading and research into a reusable content library.',
+      title: 'First-call capture',
+      detail:
+        'Guided discovery that separates client facts, assumptions, open decisions, owners, and dates.',
     },
     {
-      title: 'Library Cartographer',
-      detail: 'Maps existing material into posts, guides, sessions, and small products.',
+      title: 'Kickoff and role brief',
+      detail:
+        'A repeatable route from confirmed scope to job-relevant requirements and structured evidence.',
     },
     {
-      title: 'Workshop Architect',
-      detail: 'Structures repeatable workshop and circle formats from her existing offers.',
+      title: 'Offer and pricing draft',
+      detail:
+        'Scope, exclusions, deliverables, timing, and commercial terms prepared from Ana-approved sources only.',
     },
     {
-      title: 'Offer Builder',
-      detail: 'Turns existing offers into repeatable scripts, intake questions, and follow-up flows.',
+      title: 'Recruiting delivery',
+      detail:
+        'Consistent stages and aggregate client status while candidate identities and evidence remain in the approved ATS.',
     },
     {
-      title: 'Brand Guardian',
-      detail: 'Keeps public language careful until Ana approves biography, quotes, and deeper personal details.',
+      title: 'Invoice and handoff checks',
+      detail:
+        'Reconciled invoice drafts and exact recipient/channel checks before Ana gives a fresh send approval.',
     },
   ],
 
   projectPlan: [
     {
-      phase: 'Starter kit shipped',
-      window: 'Live',
-      outcome: 'Ana AI business kit published (v0.1.0) with agent briefs, offer ladder, and delivery-loop templates.',
+      phase: 'HR Operations v1',
+      window: 'Available now',
+      outcome:
+        'Eight guided procedures, templates, validation, privacy rules, Google Docs routing, and human approval gates are maintained in the Ana business-kit repository.',
       status: 'done',
     },
     {
-      phase: 'Intake + follow-up system',
-      window: 'In progress',
-      outcome: 'Clarify the three core offers (Personal Clarity Session, Guided Reflection Circle, Self-Knowledge Workshop) and install a simple intake + follow-up system.',
+      phase: 'Pilot decision',
+      window: 'Awaiting Ana',
+      outcome:
+        'Confirm the team roles, approved source systems, copied rehearsal, and exact success measures for a bounded 30-day pilot.',
       status: 'in-progress',
     },
     {
-      phase: 'Guided circle pilot',
+      phase: 'Copied rehearsal',
       window: 'Next',
-      outcome: 'Run the first guided reflection circle, collect feedback, and turn repeated questions into a paid guide.',
+      outcome:
+        'Run a past case with private details removed, or a made-up practice case, before connecting master templates, live candidate data, or external sends.',
       status: 'next',
     },
   ],
@@ -70,114 +78,115 @@ export const ana: PortalPartner = {
   yearPlan: [
     {
       quarter: 'Q1',
-      theme: 'Clarify the offer ladder',
+      theme: 'Source of truth and roles',
       milestones: [
-        'Name the three core existing offers in plain language',
-        'Install intake questions and an aftercare-letter template',
+        'Name one owner and one approver for every stage',
+        'Confirm Drive, ATS, finance, and private-record boundaries',
       ],
     },
     {
       quarter: 'Q2',
-      theme: 'Pilot the circle',
+      theme: 'Copied rehearsal and one live pilot',
       milestones: [
-        'Run the first guided reflection circle end to end',
-        'Collect feedback and identify the most repeated question worth turning into a guide',
+        'Complete the workflow on a practice case with no private details',
+        'Guide one approved live engagement with all gates visible',
       ],
     },
     {
       quarter: 'Q3',
-      theme: 'Light digital shop',
+      theme: 'Team workspace and learning library',
       milestones: [
-        'Package reflection cards, session templates, and reading paths as small digital products',
-        'Review which agent-pack outputs (Mirror, Research Curator, Offer Builder) actually got used',
+        'Keep only the procedures the team actually uses',
+        'Add approved templates, examples, and short training paths',
       ],
     },
     {
       quarter: 'Q4',
-      theme: 'Travel-friendly rhythm',
+      theme: 'Client experience and product decision',
       milestones: [
-        'Run remote-friendly sessions and circles on a schedule that fits her travel',
-        'Decide whether the proposed HR/team-clarity offer is worth building out',
+        'Test a shareable guide using approved example content only',
+        'Decide whether the Cecilia name, paid access, and commercial model should proceed',
       ],
     },
   ],
 
   recommendations: [
     {
-      kind: 'research',
-      slug: 'internal-family-systems',
-      why: "Ana's self-knowledge and psychology work maps directly onto the IFS model of parts and Self-energy.",
-    },
-    {
-      kind: 'library',
-      slug: 'no-bad-parts',
-      why: 'The core IFS text behind the self-knowledge and reflective-circle work she already does.',
-    },
-    {
-      kind: 'library',
-      slug: 'mans-search-for-meaning',
-      why: 'A foundational reference for the meaning-making and self-knowledge framing across her offers.',
+      kind: 'download',
+      slug: 'ana-ai-business-kit',
+      why: 'The plain-language start page for the maintained HR Operations workflow and installation path.',
     },
     {
       kind: 'blog',
       slug: 'inner-hr-ai-agent',
-      why: 'Directly parallels her HR and psychology background — treating the internal system with the same care as a workplace one.',
-    },
-    {
-      kind: 'download',
-      slug: 'ana-ai-business-kit',
-      why: "Ana's own starter kit — agent briefs, offer ladder, and delivery-loop templates.",
+      why: 'A useful reflection on human judgment and internal clarity; not a substitute for the operating SOPs.',
     },
   ],
 
   compounding: [
     {
       month: 0,
-      title: 'Foundations',
-      body: 'Starter kit installed. Existing offers named and framed as a repeatable ladder rather than one-off sessions.',
+      title: 'Shared sequence',
+      body:
+        'The team can see the same client stages, source facts, missing decisions, owners, dates, and approvals.',
     },
     {
       month: 3,
-      title: 'Intake proven',
-      body: 'Intake and follow-up system running on real clients across the entry-level offer.',
+      title: 'One proven path',
+      body:
+        'A copied rehearsal and controlled live engagement show where the system saves time and where Ana’s judgment must stay explicit.',
     },
     {
       month: 6,
-      title: 'Circle piloted',
-      body: 'First guided reflection circle run end to end, with feedback converted into a paid guide.',
+      title: 'Team learning library',
+      body:
+        'Approved examples and templates help new team members learn the process without relying on Ana’s memory alone.',
     },
     {
       month: 12,
-      title: 'Travel-friendly business',
-      body: 'A light digital shop and a remote-friendly session rhythm running alongside her travel — proposed HR/team work evaluated on real demand.',
+      title: 'Optional client product',
+      body:
+        'Only after the team is comfortable with the workflow, Ana can decide whether a shareable guide, client workspace, or paid Cecilia experience has earned the next build.',
     },
   ],
 
   sharedUpside: [
-    'Ana keeps her voice, her offers, and her client relationships in front — the agents stay backstage and only draft what she approves.',
-    'Every approved client pattern becomes a reusable asset (guide, template, post) instead of starting from zero each time.',
-    'A working self-knowledge business pattern becomes a template FrankX can offer other reflective-practice allies.',
+    'Ana’s method becomes teachable without giving software control over hiring, pricing, invoices, or client communication.',
+    'The team spends less time rebuilding the same documents and more time on research, candidate care, and client judgment.',
+    'Frank can maintain the technical layer while Ana retains her name, method, client relationships, and approval authority.',
   ],
 
   team: [
     {
-      role: 'Ana Cecilia Cancino — Founder',
-      howFrankHelps: 'A simple intake-to-follow-up system and a content library built from her existing offers, introduced only where it helps — no technical background required.',
+      role: 'Ana — accountable lead',
+      howFrankHelps:
+        'Makes every approval, blocker, and next action visible so Ana can lead by exception instead of reconstructing the process for each person.',
+    },
+    {
+      role: 'HR team — three colleagues',
+      howFrankHelps:
+        'Provides guided stages, approved templates, quality checks, and a learning path that does not require GitHub expertise.',
     },
   ],
 
   crossLinks: [
     {
-      surface: 'research',
-      label: 'Research Hub',
-      href: '/research',
-      rationale: 'Internal Family Systems research underneath the self-knowledge and reflective-circle framing.',
+      surface: 'downloads',
+      label: 'Start Ana HR Operations',
+      href: '/downloads/ana-ai-business-kit',
+      rationale: 'The current install path, first prompt, and human-control boundaries.',
     },
     {
-      surface: 'downloads',
-      label: 'Starter kit',
-      href: '/downloads/ana-ai-business-kit',
-      rationale: 'The installable version of the business system described on this page.',
+      surface: 'ai-coe',
+      label: 'AI Center of Excellence',
+      href: '/ai-coe',
+      rationale: 'The broader governance pattern for team adoption, experiments, review, and reusable capability.',
+    },
+    {
+      surface: 'research',
+      label: 'FrankX Research',
+      href: '/research',
+      rationale: 'Public research context; Ana’s future private library remains a separate, permissioned workspace.',
     },
   ],
 
@@ -186,13 +195,13 @@ export const ana: PortalPartner = {
   downloadHref: '/downloads/ana-ai-business-kit',
 
   cta: {
-    label: 'Download the kit',
-    href: '/downloads/ana-ai-business-kit',
+    label: 'Review the operating proposal',
+    href: '/allies/ana-cancino',
   },
 
   seo: {
-    title: 'Ana AI Business Kit × FrankX | Partner Portal',
+    title: 'Ana Team Workspace × FrankX',
     description:
-      "Ana Cecilia Cancino's HR, psychology, and self-knowledge work organized into an offer system, client loop, and travel-friendly business engine.",
+      "A private workspace preview for Ana's four-person HR team: shared stages, guided documents, private source boundaries, and explicit human approvals.",
   },
 }
