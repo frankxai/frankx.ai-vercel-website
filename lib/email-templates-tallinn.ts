@@ -1,0 +1,108 @@
+import {
+  TALLINN_EVENT,
+  TALLINN_TIME_WINDOWS,
+  TALLINN_VALIDATION_GATE,
+  getTallinnExperience,
+} from '@/data/tallinn-experiences'
+import type { TallinnInterestPayload } from '@/lib/tallinn-interest/schema'
+
+export interface TallinnEmailContent {
+  subject: string
+  text: string
+  html: string
+}
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+function slotLabels(payload: TallinnInterestPayload) {
+  return payload.slotIds
+    .map((id) => TALLINN_TIME_WINDOWS.find((slot) => slot.id === id)?.label)
+    .filter((label): label is string => Boolean(label))
+}
+
+export function buildTallinnInterestReceipt(
+  payload: TallinnInterestPayload,
+): TallinnEmailContent {
+  const experience = getTallinnExperience(payload.experienceSlug)
+  const firstName = payload.fullName.split(/\s+/)[0] || payload.fullName
+  const slots = slotLabels(payload)
+  const title = experience?.title ?? 'Tallinn working session'
+  const subject = `Interest received — ${title}`
+  const nextStep = `A room is considered only after ${TALLINN_VALIDATION_GATE.minimumConfirmed} people reconfirm one compatible time. This message is not a ticket or venue confirmation.`
+
+  const text = [
+    `Hi ${firstName},`,
+    '',
+    `Your interest in “${title}” is recorded.`,
+    '',
+    'Possible times:',
+    ...slots.map((slot) => `- ${slot}`),
+    '',
+    nextStep,
+    '',
+    TALLINN_EVENT.independenceNotice,
+    '',
+    payload.aftercareConsent
+      ? 'If the session runs, you also asked for the session artifact and related follow-up.'
+      : 'You did not opt into aftercare. Only coordination about this request will be sent.',
+    '',
+    '— Frank',
+    'frank@frankx.ai · frankx.ai',
+  ].join('\n')
+
+  const html = `
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:560px;margin:0 auto;color:#172033;line-height:1.65">
+  <p>Hi ${escapeHtml(firstName)},</p>
+  <p>Your interest in <strong>${escapeHtml(title)}</strong> is recorded.</p>
+  <div style="margin:20px 0;padding:16px 18px;border-radius:14px;background:#f1f5f9;color:#334155">
+    <strong>Possible times</strong>
+    <ul>${slots.map((slot) => `<li>${escapeHtml(slot)}</li>`).join('')}</ul>
+  </div>
+  <p>${escapeHtml(nextStep)}</p>
+  <p style="font-size:13px;color:#64748b">${escapeHtml(TALLINN_EVENT.independenceNotice)}</p>
+  <p style="font-size:13px;color:#64748b">${
+    payload.aftercareConsent
+      ? 'If the session runs, you also asked for the session artifact and related follow-up.'
+      : 'You did not opt into aftercare. Only coordination about this request will be sent.'
+  }</p>
+  <p style="margin-top:26px;color:#64748b">— Frank<br/>frank@frankx.ai · frankx.ai</p>
+</div>`.trim()
+
+  return { subject, text, html }
+}
+
+export function buildTallinnOperatorNotification(
+  payload: TallinnInterestPayload,
+): TallinnEmailContent {
+  const experience = getTallinnExperience(payload.experienceSlug)
+  const slots = slotLabels(payload)
+  const title = experience?.title ?? payload.experienceSlug
+  const subject = `Tallinn interest · ${title} · ${payload.fullName}`
+  const lines = [
+    'New Tallinn Experience Foundry interest.',
+    '',
+    `Name: ${payload.fullName}`,
+    `Email: ${payload.email}`,
+    `Offer: ${title} (${payload.experienceSlug})`,
+    `Variant: ${payload.variantId}`,
+    `Role lens: ${payload.roleLens}`,
+    `Attendance intent: ${payload.attendanceIntent}`,
+    `Possible times: ${slots.join(' | ')}`,
+    `Company / project: ${payload.companyOrProject || '(not provided)'}`,
+    `Aftercare: ${payload.aftercareConsent ? 'requested' : 'not requested'}`,
+    `Note: ${payload.note || '(not provided)'}`,
+    `Submission ID: ${payload.submissionId}`,
+    '',
+    'Venue gate remains human-approved. Do not book from this message alone.',
+  ]
+
+  const text = lines.join('\n')
+  const html = `<pre style="white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.6;color:#172033">${escapeHtml(text)}</pre>`
+  return { subject, text, html }
+}
