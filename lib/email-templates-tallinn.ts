@@ -6,6 +6,8 @@ import {
 } from '@/data/tallinn-experiences'
 import type { TallinnInterestPayload } from '@/lib/tallinn-interest/schema'
 
+type TallinnSlotLabel = (typeof TALLINN_TIME_WINDOWS)[number]['label']
+
 export interface TallinnEmailContent {
   subject: string
   text: string
@@ -23,7 +25,7 @@ function escapeHtml(value: string) {
 function slotLabels(payload: TallinnInterestPayload) {
   return payload.slotIds
     .map((id) => TALLINN_TIME_WINDOWS.find((slot) => slot.id === id)?.label)
-    .filter((label): label is string => Boolean(label))
+    .filter((label): label is TallinnSlotLabel => label !== undefined)
 }
 
 export function buildTallinnInterestReceipt(
