@@ -1,41 +1,56 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
+
+const installCommands = [
+  'codex plugin marketplace add frankxai/ana-ai-business-kit --ref main',
+  'codex plugin add ana-hr-operations@ana-business-kit',
+  'codex plugin list',
+] as const
 
 export function GET() {
   return NextResponse.json({
-    name: "ana-ai-business-kit",
-    version: "0.1.0",
-    releaseDate: "2026-06-24",
-    publicPage: "https://frankx.ai/downloads/ana-ai-business-kit",
-    checksumSha256:
-      "1a32030bb99f90f5b2a7c2d5dd82822ab7b686a59c105524dfcee5e52d0f979d",
-    assets: [
-      {
-        name: "ana-ai-business-kit-v0.1.0.zip",
-        url: "https://frankx.ai/downloads/ana-ai-business-kit-v0.1.0.zip",
-        checksumSha256:
-          "1a32030bb99f90f5b2a7c2d5dd82822ab7b686a59c105524dfcee5e52d0f979d",
-        checksumUrl: "https://frankx.ai/downloads/ana-ai-business-kit-v0.1.0.sha256",
-      },
-    ],
+    name: 'ana-ai-business-kit',
+    version: '1.0.0',
+    releaseDate: '2026-07-13',
+    status: 'current',
+    publicPage: 'https://frankx.ai/downloads/ana-ai-business-kit',
+    sourceRepo: 'https://github.com/frankxai/ana-ai-business-kit',
+    startGuide:
+      'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-ANA.md',
     install: {
-      start:
-        "Download the ZIP, copy the folder into a private workspace, then read README.md and 01-offer-map.md.",
-      acos:
-        "Install ACOS only when Ana wants Codex or Claude to help run the workflows: https://frankx.ai/downloads/preview/agentic-creator-os",
-      github:
-        "Recommended future source of truth: frankxai/ana-ai-business-kit. Hidden until the repo exists.",
+      audience:
+        'Ana and her team can use the guided start page; GitHub knowledge is not required.',
+      commands: installCommands,
+      firstPrompt:
+        'Use Ana HR Operations. Guide me through the first-call capture one section at a time. Separate facts from assumptions and stop for every human approval.',
     },
-    agents: [
-      "mirror-agent",
-      "research-curator",
-      "library-cartographer",
-      "blog-publisher",
-      "workshop-architect",
-      "brand-guardian",
-      "offer-builder",
-      "freedom-engine-steward",
+    workflow: [
+      'daily multi-client control',
+      'first client call',
+      'approved kickoff',
+      'role brief and job description',
+      'service offer and pricing approval',
+      'recruiting delivery and weekly status',
+      'invoice draft and reconciliation',
+      'approved client handoff',
     ],
-    privacy:
-      "Keep client names, notes, personal stories, and session records in private workspaces. Publish only approved patterns and public-safe language.",
-  });
+    guardrails: {
+      humanApproval:
+        'Required for hiring judgments, scope, price, invoices, final wording, recipients, and sends.',
+      privateRecords:
+        'Client and candidate records stay in approved private systems, outside GitHub.',
+      aiRole:
+        'Structure, draft, reconcile, and flag missing facts. Never rank candidates, invent prices, create payments, or send autonomously.',
+    },
+    legacyArchive: {
+      version: '0.1.0',
+      recommended: false,
+      purpose: 'Reference archive; not the current HR Operations workflow.',
+      name: 'ana-ai-business-kit-v0.1.0.zip',
+      url: 'https://frankx.ai/downloads/ana-ai-business-kit-v0.1.0.zip',
+      checksumSha256:
+        '1a32030bb99f90f5b2a7c2d5dd82822ab7b686a59c105524dfcee5e52d0f979d',
+      checksumUrl:
+        'https://frankx.ai/downloads/ana-ai-business-kit-v0.1.0.sha256',
+    },
+  })
 }

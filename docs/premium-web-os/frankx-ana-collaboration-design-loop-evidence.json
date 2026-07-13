@@ -1,0 +1,130 @@
+{
+  "version": "2026-07-14",
+  "task": "Replace the Ana friend and ally strategy-document pages with a decision-ready HR team experience, add a Cecilia proposal room, and align the Ana download and portal surfaces with the maintained HR Operations workflow.",
+  "surface": "FrankX /friends/ana, /allies/ana-cancino, /alliance/cecilia, /downloads/ana-ai-business-kit, and /portal/ana.",
+  "audience": "Ana Cecilia Cancino, her four-person HR team, and Frank as the proposed build and operations partner.",
+  "first_read": "Ana already has the method; the system makes it teachable without giving AI the decisions.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "_intelligence/operating-system.md",
+    "_intelligence/taste.md",
+    "_intelligence/design.md",
+    "_intelligence/motion.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "MOTION_TASTE_RUBRIC.md"
+  ],
+  "references": [
+    {
+      "label": "Ana HR Operations",
+      "source": "frankxai/ana-ai-business-kit",
+      "reason": "Defines the real procedure sequence, private-record contract, Google Docs route, and human approval points."
+    },
+    {
+      "label": "FrankX brand pack",
+      "source": "starlight-design-intelligence/brand-packs/frankx",
+      "reason": "Defines technical luxury, restrained signal color, direct founder language, and evidence over spectacle."
+    },
+    {
+      "label": "Ana and Frank meeting notes",
+      "source": "Google Drive, 2026-07-13",
+      "reason": "Provides the actual document and recruiting bottlenecks without exposing client or candidate data."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Warm bronze and forest bridge palette",
+      "Private review state until Ana approves indexing",
+      "Real links to Ana's site, LinkedIn, GitHub kit, and FrankX portal",
+      "Human approval for pricing, hiring, invoices, and sends"
+    ],
+    "avoid": [
+      "Freedom-engine language",
+      "Named fantasy agents and AI-swarm diagrams",
+      "Unverified biography, neuroscience, psychology, and income claims",
+      "Fake dashboards, decorative 3D, orbit diagrams, and generated portrait substitutes"
+    ],
+    "signature": "A keyboard-accessible stage explorer for Ana's exact HR workflow, paired with a consented proposal response.",
+    "system": [
+      "Tier C code-rendered workflow truth",
+      "Status vocabulary that separates available, pilot, proposal, and decision states",
+      "Native responsive composition and a complete reduced-motion state",
+      "Existing FrankX intake route for notification and durable response handling"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "vector-diagram",
+    "provenance": "owned",
+    "why_premium": "The primary visual is an exact and useful representation of Ana's verified operating process, not decorative imagery.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "kind": "page-spec",
+      "path_or_url": "docs/premium-web-os/frankx-ana-collaboration-page-spec-2026-07-14.md",
+      "inspected": true
+    },
+    {
+      "kind": "contract-test",
+      "path_or_url": "scripts/tests/ana-collaboration-contract.test.mjs",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C is the correct medium for process stages, responsibilities, status, and accessible interaction."
+    },
+    {
+      "name": "source-and-claims-audit",
+      "status": "pass",
+      "evidence": "Drive notes, live deployment state, current kit repository, domain responses, and public LinkedIn results were reviewed; unverified claims were excluded."
+    },
+    {
+      "name": "implementation",
+      "status": "pass",
+      "evidence": "Five Ana surfaces, the exact workflow explorer, proposal response form, current release endpoint, shared data, and a legacy-page removal are implemented."
+    },
+    {
+      "name": "scoped-code-validation",
+      "status": "pass",
+      "evidence": "Seven Ana contract tests, scoped ESLint, scoped TypeScript, and git diff whitespace checks pass."
+    },
+    {
+      "name": "ana-copy-audit",
+      "status": "pass",
+      "evidence": "Ana-facing files contain none of the obsolete Freedom Engine, agent-pack, ACOS, passive-income, public-safe, synthetic, or autonomous-recruiter language."
+    },
+    {
+      "name": "local-build",
+      "status": "blocked",
+      "evidence": "PP build preflight returned HOLD: 5.9 GB free versus the required 8 GB reserve, with 15 task runtimes versus a budget of 12."
+    },
+    {
+      "name": "export-inspection",
+      "status": "blocked",
+      "evidence": "Desktop and mobile preview inspection waits for a Vercel preview and browser-workload admission."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Responsive, keyboard, reduced-motion, and contrast inspection is not claimed until actual preview exports are inspected."
+    }
+  ],
+  "score": {
+    "total": 24,
+    "max": 30,
+    "notes": "Information architecture, verified copy, asset choice, responsive source, accessibility contract, and code checks are strong. Actual desktop/mobile export inspection remains required before ship status."
+  },
+  "decision": "iterate",
+  "known_risks": [
+    "No approved Ana portrait is available, so the hero uses verified workflow proof.",
+    "The current Ana site contains biography language that needs Ana verification in a separate repository session.",
+    "Cecilia identity, economics, payment tooling, DNS, and launch remain human-gated.",
+    "Machine preflight held full build and browser work during this pass."
+  ]
+}
