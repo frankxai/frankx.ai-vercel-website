@@ -271,12 +271,6 @@ export default function PianoLearnPage() {
           >
             ← Alle Instrumente
           </Link>
-          <Link
-            href="/alea"
-            className="rounded-full bg-rose-100 px-6 py-3 text-sm font-medium text-rose-600 transition hover:bg-rose-200"
-          >
-            ← Aleas Welt
-          </Link>
         </div>
       </div>
     </div>

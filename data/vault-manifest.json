@@ -18684,28 +18684,28 @@
       ]
     },
     {
-      "id": "alea",
-      "name": "Alea",
-      "description": "Visual assets from the Alea collection.",
+      "id": "family-learning",
+      "name": "Family Learning",
+      "description": "Generic visual assets for private family-learning experiences.",
       "count": 3,
-      "coverImage": "/images/alea/katze-mia-mascot.webp",
+      "coverImage": "/images/family-learning/cat-world/katze-mia-mascot.webp",
       "accent": "from-gray-500/20 to-slate-500/20",
       "borderAccent": "border-gray-500/30",
       "sortOrder": 99,
       "assets": [
         {
-          "id": "alea/katze-mia-mascot",
+          "id": "family-learning/cat-world/katze-mia-mascot",
           "filename": "katze-mia-mascot.webp",
-          "src": "/images/alea/katze-mia-mascot.webp",
-          "thumbnail": "/images/alea/katze-mia-mascot_thumb.jpeg",
-          "collection": "alea",
+          "src": "/images/family-learning/cat-world/katze-mia-mascot.webp",
+          "thumbnail": "/images/family-learning/cat-world/katze-mia-mascot_thumb.jpeg",
+          "collection": "family-learning",
           "format": "webp",
           "width": 4096,
           "height": 4096,
           "fileSize": 480994,
           "title": "Katze Mia Mascot",
           "tags": [
-            "alea",
+            "family-learning",
             "katze",
             "mia",
             "mascot"
@@ -18713,36 +18713,36 @@
           "createdAt": "2026-05-23"
         },
         {
-          "id": "alea/katze-schlafend",
+          "id": "family-learning/cat-world/katze-schlafend",
           "filename": "katze-schlafend.webp",
-          "src": "/images/alea/katze-schlafend.webp",
-          "thumbnail": "/images/alea/katze-schlafend_thumb.jpeg",
-          "collection": "alea",
+          "src": "/images/family-learning/cat-world/katze-schlafend.webp",
+          "thumbnail": "/images/family-learning/cat-world/katze-schlafend_thumb.jpeg",
+          "collection": "family-learning",
           "format": "webp",
           "width": 5056,
           "height": 3392,
           "fileSize": 310882,
           "title": "Katze Schlafend",
           "tags": [
-            "alea",
+            "family-learning",
             "katze",
             "schlafend"
           ],
           "createdAt": "2026-05-23"
         },
         {
-          "id": "alea/katze-spielend",
+          "id": "family-learning/cat-world/katze-spielend",
           "filename": "katze-spielend.webp",
-          "src": "/images/alea/katze-spielend.webp",
-          "thumbnail": "/images/alea/katze-spielend_thumb.jpeg",
-          "collection": "alea",
+          "src": "/images/family-learning/cat-world/katze-spielend.webp",
+          "thumbnail": "/images/family-learning/cat-world/katze-spielend_thumb.jpeg",
+          "collection": "family-learning",
           "format": "webp",
           "width": 5056,
           "height": 3392,
           "fileSize": 438004,
           "title": "Katze Spielend",
           "tags": [
-            "alea",
+            "family-learning",
             "katze",
             "spielend"
           ],
@@ -21664,7 +21664,7 @@
         {
           "id": "_originals/katze-mia-mascot",
           "filename": "katze-mia-mascot.png",
-          "src": "/images/_originals/alea/katze-mia-mascot.png",
+          "src": "/images/_originals/family-learning/cat-world/katze-mia-mascot.png",
           "thumbnail": null,
           "collection": "_originals",
           "format": "png",
@@ -21683,7 +21683,7 @@
         {
           "id": "_originals/katze-schlafend",
           "filename": "katze-schlafend.png",
-          "src": "/images/_originals/alea/katze-schlafend.png",
+          "src": "/images/_originals/family-learning/cat-world/katze-schlafend.png",
           "thumbnail": null,
           "collection": "_originals",
           "format": "png",
@@ -21701,7 +21701,7 @@
         {
           "id": "_originals/katze-spielend",
           "filename": "katze-spielend.png",
-          "src": "/images/_originals/alea/katze-spielend.png",
+          "src": "/images/_originals/family-learning/cat-world/katze-spielend.png",
           "thumbnail": null,
           "collection": "_originals",
           "format": "png",

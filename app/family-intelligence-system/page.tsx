@@ -5,12 +5,14 @@ import {
   ArrowRight,
   BookOpenText,
   CheckCircle2,
+  Cloud,
   Download,
   FileCheck2,
   GitBranch,
   LockKeyhole,
   Scale,
   ShieldCheck,
+  PanelsTopLeft,
   UsersRound,
 } from 'lucide-react'
 import FamilyPrivacyPlanner from '@/components/family-intelligence/FamilyPrivacyPlanner'
@@ -59,7 +61,7 @@ export default function FamilyIntelligenceSystemPage() {
           <div className="grid gap-14 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-amber-200/20 bg-amber-200/[0.06] px-3 py-1.5 text-xs font-semibold text-amber-100">
-                <GitBranch className="h-3.5 w-3.5" aria-hidden /> Open foundation · early build
+                <GitBranch className="h-3.5 w-3.5" aria-hidden /> Public foundation · early build
               </div>
               <h1 className="mt-7 max-w-5xl font-display text-5xl font-semibold leading-[0.96] tracking-[-0.045em] text-white sm:text-7xl lg:text-[5.8rem]">Your family needs more than a tree.</h1>
               <p className="mt-8 max-w-3xl text-lg leading-8 text-stone-300 sm:text-xl">Family Intelligence Infrastructure helps a family remember what matters, know what is supported, coordinate what must happen, and preserve access across generations.</p>
@@ -135,12 +137,14 @@ export default function FamilyIntelligenceSystemPage() {
       <section className="border-t border-white/10 bg-[#111719]">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-24 lg:grid-cols-3 lg:px-10 lg:py-28">
           <article className="lg:col-span-2">
-            <p className="text-sm font-semibold text-amber-300">Open protocols, private family data</p>
+            <p className="text-sm font-semibold text-amber-300">Reviewable protocols, private family data</p>
             <h2 className="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">Adopt the method. Keep ownership of the archive.</h2>
-            <p className="mt-5 max-w-2xl leading-7 text-stone-400">The doctrine and runtime are separate public repositories. Protocols, schemas, skills, reference agents, and deployment templates can be reviewed and extended. Real family records stay in the family’s private deployment.</p>
+            <p className="mt-5 max-w-2xl leading-7 text-stone-400">The doctrine and runtime are separate public repositories. Protocols, schemas, skills, reference agents, and deployment templates can be reviewed today. Real family records stay in the family’s private deployment. Reuse and redistribution terms remain subject to an explicit repository license decision.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="https://github.com/frankxai/family-intelligence-systems" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white/5">Systems repository <ArrowRight className="h-4 w-4" aria-hidden /></a>
               <a href="https://github.com/frankxai/family-intelligence-os" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white/5">Runtime repository <ArrowRight className="h-4 w-4" aria-hidden /></a>
+              <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ffrankxai%2Ffamily-intelligence-os&project-name=family-intelligence-portal&repository-name=family-intelligence-portal" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-emerald-300/25 px-5 py-3 text-sm font-semibold text-emerald-100 hover:bg-emerald-300/[0.06]"><Cloud className="h-4 w-4" aria-hidden />Deploy locked Vercel template</a>
+              <a href="https://github.com/frankxai/family-intelligence-os/blob/main/templates/v0-family-portal/PROMPT.md" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-amber-200/20 px-5 py-3 text-sm font-semibold text-amber-100 hover:bg-amber-100/[0.05]"><PanelsTopLeft className="h-4 w-4" aria-hidden />Open v0 build prompt</a>
             </div>
           </article>
           <aside className="rounded-3xl border border-amber-200/20 bg-amber-100/[0.04] p-7">

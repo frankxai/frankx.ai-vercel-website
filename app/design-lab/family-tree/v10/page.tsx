@@ -28,7 +28,7 @@ const nodePositions: Record<string, [number, number, number]> = {
   'dora': [-1, 0, 0],
   'witali': [1, 0, 0],
   'frank': [-0.5, -3, 1],
-  'tien': [1, -3, 1],
+  'example-partner': [1, -3, 1],
 }
 
 // Background particle field

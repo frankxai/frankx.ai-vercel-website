@@ -321,12 +321,6 @@ export default function ViolinLearnPage() {
           >
             ← Alle Instrumente
           </Link>
-          <Link
-            href="/alea"
-            className="rounded-full bg-amber-100 px-6 py-3 text-sm font-medium text-amber-600 transition hover:bg-amber-200"
-          >
-            ← Aleas Welt
-          </Link>
         </div>
       </div>
     </div>

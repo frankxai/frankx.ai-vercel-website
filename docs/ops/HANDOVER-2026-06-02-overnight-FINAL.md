@@ -242,7 +242,7 @@ Honest about what shipped vs what's still in flight.
 
 Remaining `'use client'` top-level pages worth promoting to the server+island pattern (Frank's call on priority):
 - `/frankx` (personal hub)
-- `/alea` (creator-spectrum hub)
+- `/music/learn` (public, generic music-learning hub)
 - `/year-of-the-fire-horse` (campaign hub)
 
 Each is mechanical: extract interactive code into `*Client.tsx`, keep `page.tsx` server-rendered with metadata + JSON-LD. ~30 min per page.

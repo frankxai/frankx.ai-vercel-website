@@ -140,12 +140,6 @@
       "outbound": 3
     },
     {
-      "route": "/alea",
-      "type": "page",
-      "inbound": 10,
-      "outbound": 4
-    },
-    {
       "route": "/prompt-library",
       "type": "page",
       "inbound": 10,
@@ -524,12 +518,6 @@
       "outbound": 6
     },
     {
-      "route": "/alea/musik",
-      "type": "page",
-      "inbound": 2,
-      "outbound": 1
-    },
-    {
       "route": "/changelog",
       "type": "page",
       "inbound": 2,
@@ -864,18 +852,6 @@
       "type": "page",
       "inbound": 1,
       "outbound": 1
-    },
-    {
-      "route": "/alea/musik/geige",
-      "type": "page",
-      "inbound": 1,
-      "outbound": 3
-    },
-    {
-      "route": "/alea/musik/klavier",
-      "type": "page",
-      "inbound": 1,
-      "outbound": 3
     },
     {
       "route": "/assess",
@@ -1242,12 +1218,6 @@
       "type": "page",
       "inbound": 0,
       "outbound": 3
-    },
-    {
-      "route": "/alea/katze",
-      "type": "page",
-      "inbound": 0,
-      "outbound": 1
     },
     {
       "route": "/artists/[slug]",
@@ -2329,86 +2299,6 @@
       "from": "/ai-world",
       "to": "/products/agentic-creator-os",
       "sourceFile": "app/ai-world/page.tsx"
-    },
-    {
-      "from": "/alea/katze",
-      "to": "/alea",
-      "sourceFile": "app/alea/katze/page.tsx"
-    },
-    {
-      "from": "/alea/katze",
-      "to": "/alea",
-      "sourceFile": "app/alea/katze/page.tsx"
-    },
-    {
-      "from": "/alea/musik/geige",
-      "to": "/alea",
-      "sourceFile": "app/alea/musik/geige/page.tsx"
-    },
-    {
-      "from": "/alea/musik/geige",
-      "to": "/alea/musik/klavier",
-      "sourceFile": "app/alea/musik/geige/page.tsx"
-    },
-    {
-      "from": "/alea/musik/geige",
-      "to": "/alea/musik",
-      "sourceFile": "app/alea/musik/geige/page.tsx"
-    },
-    {
-      "from": "/alea/musik/geige",
-      "to": "/alea",
-      "sourceFile": "app/alea/musik/geige/page.tsx"
-    },
-    {
-      "from": "/alea/musik/klavier",
-      "to": "/alea",
-      "sourceFile": "app/alea/musik/klavier/page.tsx"
-    },
-    {
-      "from": "/alea/musik/klavier",
-      "to": "/alea/musik/geige",
-      "sourceFile": "app/alea/musik/klavier/page.tsx"
-    },
-    {
-      "from": "/alea/musik/klavier",
-      "to": "/alea/musik",
-      "sourceFile": "app/alea/musik/klavier/page.tsx"
-    },
-    {
-      "from": "/alea/musik/klavier",
-      "to": "/alea",
-      "sourceFile": "app/alea/musik/klavier/page.tsx"
-    },
-    {
-      "from": "/alea/musik",
-      "to": "/alea",
-      "sourceFile": "app/alea/musik/page.tsx"
-    },
-    {
-      "from": "/alea",
-      "to": "/music/learn/piano",
-      "sourceFile": "app/alea/page.tsx"
-    },
-    {
-      "from": "/alea",
-      "to": "/music/learn/violin",
-      "sourceFile": "app/alea/page.tsx"
-    },
-    {
-      "from": "/alea",
-      "to": "/music/learn",
-      "sourceFile": "app/alea/page.tsx"
-    },
-    {
-      "from": "/alea",
-      "to": "/music/learn",
-      "sourceFile": "app/alea/page.tsx"
-    },
-    {
-      "from": "/alea",
-      "to": "/",
-      "sourceFile": "app/alea/page.tsx"
     },
     {
       "from": "/artists/[slug]/client.tsx",
@@ -3856,11 +3746,6 @@
       "sourceFile": "app/music/learn/orchestration/page.tsx"
     },
     {
-      "from": "/music/learn",
-      "to": "/alea",
-      "sourceFile": "app/music/learn/page.tsx"
-    },
-    {
       "from": "/music/learn/piano",
       "to": "/music/learn/violin",
       "sourceFile": "app/music/learn/piano/page.tsx"
@@ -3868,11 +3753,6 @@
     {
       "from": "/music/learn/piano",
       "to": "/music/learn",
-      "sourceFile": "app/music/learn/piano/page.tsx"
-    },
-    {
-      "from": "/music/learn/piano",
-      "to": "/alea",
       "sourceFile": "app/music/learn/piano/page.tsx"
     },
     {
@@ -3963,11 +3843,6 @@
     {
       "from": "/music/learn/violin",
       "to": "/music/learn",
-      "sourceFile": "app/music/learn/violin/page.tsx"
-    },
-    {
-      "from": "/music/learn/violin",
-      "to": "/alea",
       "sourceFile": "app/music/learn/violin/page.tsx"
     },
     {

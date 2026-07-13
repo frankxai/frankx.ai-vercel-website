@@ -1,32 +1,46 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getGeschichteThema } from '@/lib/familie/geschichte-themen'
-import { GeschichteThemaPage } from './GeschichteThemaPage'
+import { PrivateFamilyWorkspace } from '@/components/familie/PrivateFamilyWorkspace'
+import { getResearchTopic, researchTopics } from '@/lib/familie/private-portal-content'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
+export function generateStaticParams() {
+  return researchTopics.map((topic) => ({ slug: topic.slug }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const thema = getGeschichteThema(slug)
-  if (!thema) return {}
+  const topic = getResearchTopic(slug)
 
   return {
-    title: `${thema.titel} — Privates Familienarchiv`,
-    description: 'Geschützter Quellen- und Forschungsbereich des Familienarchivs.',
+    title: topic ? `${topic.eyebrow} · Privates Familienportal` : 'Thema nicht gefunden',
+    description: topic?.description,
     robots: { index: false, follow: false, nocache: true },
   }
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export default async function ResearchTopicPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const thema = getGeschichteThema(slug)
-  if (!thema) notFound()
+  const topic = getResearchTopic(slug)
 
-  return <GeschichteThemaPage thema={thema} />
+  if (!topic) notFound()
+
+  return (
+    <PrivateFamilyWorkspace
+      eyebrow={topic.eyebrow}
+      title={topic.title}
+      description={topic.description}
+      modules={[
+        ...topic.questions.map((question, index) => ({
+          title: `Prüffrage ${index + 1}`,
+          description: question,
+          state: 'bereit' as const,
+        })),
+        ...topic.nextSteps.map((step, index) => ({
+          title: `Nächster Schritt ${index + 1}`,
+          description: step,
+          state: 'bereit' as const,
+        })),
+      ]}
+    />
+  )
 }

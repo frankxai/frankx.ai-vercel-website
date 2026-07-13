@@ -1,20 +1,21 @@
 /**
- * Shared family tree data for all visualization variants.
- * Source of truth: .frankx/family/*.md (YAML frontmatter)
- * This is a compiled version for client-side rendering.
+ * Synthetic family-tree fixture used only by public design-lab visualizations.
+ * Real family records must be resolved from an authenticated Family Intelligence OS tenant.
  */
+
+export const dataClassification = 'synthetic-example' as const
 
 export interface FamilyNode {
   id: string
   name: string
   bornName?: string
   role: string
-  generation: number // 0 = grandparents, 1 = parents, 2 = current
+  generation: number
   side: 'gorte' | 'riemer' | 'bridge' | 'current' | 'partner'
   location?: string
   details?: string[]
-  born?: string // ISO date YYYY-MM-DD or YYYY
-  died?: string // ISO date YYYY-MM-DD; presence implies in-memoriam
+  born?: string
+  died?: string
   bornLocation?: string
   diedLocation?: string
 }
@@ -26,97 +27,83 @@ export interface FamilyEdge {
 }
 
 export const familyNodes: FamilyNode[] = [
-  // Generation 0: Grandparents - Gorte
   {
-    id: 'david-gorte',
-    name: 'David Gorte',
-    role: 'Opa',
+    id: 'example-maternal-grandparent-a',
+    name: 'Beispielperson A',
+    role: 'Großelternteil',
     generation: 0,
     side: 'gorte',
-    details: ['Maternal grandfather'],
+    details: ['Synthetische Design-Lab-Daten'],
   },
   {
-    id: 'dorothea-gorte',
-    name: 'Dorothea Gorte',
-    bornName: 'geb. Prager',
-    role: 'Oma',
+    id: 'example-maternal-grandparent-b',
+    name: 'Beispielperson B',
+    role: 'Großelternteil',
     generation: 0,
     side: 'gorte',
-    details: ['Maternal grandmother'],
+    details: ['Synthetische Design-Lab-Daten'],
   },
-  // Generation 0: Grandparents - Riemer
   {
-    id: 'alexander-riemer',
-    name: 'Alexander Riemer',
-    role: 'Opa',
+    id: 'example-paternal-grandparent-a',
+    name: 'Beispielperson C',
+    role: 'Großelternteil',
     generation: 0,
     side: 'riemer',
-    details: ['Paternal grandfather'],
+    details: ['Synthetische Design-Lab-Daten'],
   },
   {
-    id: 'paulina-riemer',
-    name: 'Paulina Riemer',
-    bornName: 'geb. Schneider',
-    role: 'Oma',
+    id: 'example-paternal-grandparent-b',
+    name: 'Beispielperson D',
+    role: 'Großelternteil',
     generation: 0,
     side: 'riemer',
-    details: ['Paternal grandmother'],
+    details: ['Synthetische Design-Lab-Daten'],
   },
-  // Generation 1: Parents
   {
-    id: 'dora-riemer',
-    name: 'Dora Riemer',
-    bornName: 'geb. Gorte',
-    role: 'Mama',
+    id: 'example-parent-a',
+    name: 'Beispielperson E',
+    role: 'Elternteil',
     generation: 1,
     side: 'bridge',
-    details: ['Daughter of David & Dorothea'],
+    details: ['Synthetische Design-Lab-Daten'],
   },
   {
-    id: 'witali-riemer',
-    name: 'Witali Riemer',
-    role: 'Papa',
+    id: 'example-parent-b',
+    name: 'Beispielperson F',
+    role: 'Elternteil',
     generation: 1,
     side: 'bridge',
-    details: ['Son of Alexander & Paulina', 'Wolgadeutsche heritage'],
-    born: '1969-09-08',
-    bornLocation: 'Pavlovka, Kazakhstan',
-    died: '2018-07-09',
-    diedLocation: 'Seesen, Germany',
+    details: ['Synthetische Design-Lab-Daten'],
   },
-  // Generation 2: Current
   {
-    id: 'frank-riemer',
-    name: 'Frank Riemer',
-    role: "That's me",
+    id: 'example-focus-person',
+    name: 'Beispielperson G',
+    role: 'Fokusperson',
     generation: 2,
     side: 'current',
-    location: 'Amsterdam',
-    details: ['AI Architect', 'Music Creator'],
+    details: ['Synthetische Design-Lab-Daten'],
   },
   {
-    id: 'tien',
-    name: 'Tien',
-    role: 'Partner',
+    id: 'example-partner',
+    name: 'Beispielperson H',
+    role: 'Partnerperson',
     generation: 2,
     side: 'partner',
-    location: 'Amsterdam',
+    details: ['Synthetische Design-Lab-Daten'],
   },
 ]
 
 export const familyEdges: FamilyEdge[] = [
-  // Marriages
-  { source: 'david-gorte', target: 'dorothea-gorte', type: 'spouse' },
-  { source: 'alexander-riemer', target: 'paulina-riemer', type: 'spouse' },
-  { source: 'dora-riemer', target: 'witali-riemer', type: 'spouse' },
-  { source: 'frank-riemer', target: 'tien', type: 'partner' },
-  // Parent-child
-  { source: 'david-gorte', target: 'dora-riemer', type: 'parent-child' },
-  { source: 'dorothea-gorte', target: 'dora-riemer', type: 'parent-child' },
-  { source: 'alexander-riemer', target: 'witali-riemer', type: 'parent-child' },
-  { source: 'paulina-riemer', target: 'witali-riemer', type: 'parent-child' },
-  { source: 'dora-riemer', target: 'frank-riemer', type: 'parent-child' },
-  { source: 'witali-riemer', target: 'frank-riemer', type: 'parent-child' },
+  { source: 'example-maternal-grandparent-a', target: 'example-maternal-grandparent-b', type: 'spouse' },
+  { source: 'example-paternal-grandparent-a', target: 'example-paternal-grandparent-b', type: 'spouse' },
+  { source: 'example-parent-a', target: 'example-parent-b', type: 'spouse' },
+  { source: 'example-focus-person', target: 'example-partner', type: 'partner' },
+  { source: 'example-maternal-grandparent-a', target: 'example-parent-a', type: 'parent-child' },
+  { source: 'example-maternal-grandparent-b', target: 'example-parent-a', type: 'parent-child' },
+  { source: 'example-paternal-grandparent-a', target: 'example-parent-b', type: 'parent-child' },
+  { source: 'example-paternal-grandparent-b', target: 'example-parent-b', type: 'parent-child' },
+  { source: 'example-parent-a', target: 'example-focus-person', type: 'parent-child' },
+  { source: 'example-parent-b', target: 'example-focus-person', type: 'parent-child' },
 ]
 
 export const sideColors = {

@@ -721,8 +721,8 @@
       "id": "commit-54dd0fa",
       "timestamp": "2026-02-07T22:55:41.000Z",
       "type": "commit",
-      "title": "Add Riemer grandparents, rename /opa to /opa-und-oma for all 4 grandparents",
-      "description": "- Add Alexander & Paulina Riemer (paternal grandparents) to family graph",
+      "title": "Retired legacy family graph fixture",
+      "description": "Private family records no longer belong in public repository fixtures.",
       "metadata": {
         "commit": "54dd0fa",
         "branch": "main",

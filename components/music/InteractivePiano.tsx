@@ -80,7 +80,7 @@ export interface Song {
 // Songs are intentionally ordered: German Kinderlieder first (so they lead
 // in childMode), then international classics, classical, film/anime, folk.
 export const SONGS: Record<string, Song> = {
-  // ── Deutsche Kinderlieder (top of list — Alea sees these first) ──────────
+  // ── Deutsche Kinderlieder (top of list for younger learners) ─────────────
   entchen: {
     name: 'Alle meine Entchen',
     emoji: '🦆',

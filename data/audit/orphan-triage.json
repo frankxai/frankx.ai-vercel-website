@@ -220,11 +220,6 @@
         "reason": "Interactive drum machine — 16 drum pads with keyboard mapping"
       },
       {
-        "route": "/music-lab/for-kids/xylophone",
-        "linkFrom": ["/music-lab", "/alea"],
-        "reason": "Pentatonic xylophone for kids — Web Audio synthesized, no wrong notes"
-      },
-      {
         "route": "/music-lab/piano/songs",
         "linkFrom": ["/music-lab/piano", "/music/learn"],
         "reason": "Piano song collections — Ghibli, film scores, sheet music links"
@@ -298,11 +293,6 @@
         "route": "/youtube-strategy",
         "linkFrom": ["/about", "/content-studio"],
         "reason": "YouTube content strategy page with production workflow"
-      },
-      {
-        "route": "/games/memory-match",
-        "linkFrom": ["/games", "/alea"],
-        "reason": "Memory match game with difficulty levels — family-friendly"
       },
       {
         "route": "/showcase",
@@ -427,10 +417,6 @@
       {
         "route": "/de/valentines-day",
         "reason": "Valentine's Day personal page — German, with rose petals and quotes"
-      },
-      {
-        "route": "/alea/katze",
-        "reason": "Virtual pet cat game for Alea — German, feed/play/sleep mechanics"
       }
     ],
     "D_redirect": [

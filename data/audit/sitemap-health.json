@@ -164,13 +164,6 @@
       "category": "core",
       "isOrphan": false
     },
-    "/alea": {
-      "score": 90,
-      "inbound": 10,
-      "outbound": 4,
-      "category": "family",
-      "isOrphan": false
-    },
     "/prompt-library": {
       "score": 80,
       "inbound": 10,
@@ -612,13 +605,6 @@
       "category": "core",
       "isOrphan": false
     },
-    "/alea/musik": {
-      "score": 80,
-      "inbound": 2,
-      "outbound": 1,
-      "category": "family",
-      "isOrphan": false
-    },
     "/changelog": {
       "score": 80,
       "inbound": 2,
@@ -1009,20 +995,6 @@
       "inbound": 1,
       "outbound": 1,
       "category": "other",
-      "isOrphan": false
-    },
-    "/alea/musik/geige": {
-      "score": 80,
-      "inbound": 1,
-      "outbound": 3,
-      "category": "family",
-      "isOrphan": false
-    },
-    "/alea/musik/klavier": {
-      "score": 80,
-      "inbound": 1,
-      "outbound": 3,
-      "category": "family",
       "isOrphan": false
     },
     "/assess": {
@@ -1450,13 +1422,6 @@
       "inbound": 0,
       "outbound": 3,
       "category": "other",
-      "isOrphan": true
-    },
-    "/alea/katze": {
-      "score": 30,
-      "inbound": 0,
-      "outbound": 1,
-      "category": "family",
       "isOrphan": true
     },
     "/artists/[slug]": {
@@ -2207,18 +2172,13 @@
       "/admin/wealth"
     ],
     "family": [
-      "/alea",
-      "/alea/musik",
       "/family",
       "/family/tree",
       "/games",
-      "/alea/musik/geige",
-      "/alea/musik/klavier",
       "/opa-und-oma",
       "/valentines-day",
       "/valentines-day/tien",
       "/valentines-day/tien/piano",
-      "/alea/katze",
       "/de/valentines-day",
       "/games/memory-match",
       "/hoffnung"

@@ -73,9 +73,9 @@ function SVGConnections() {
           <stop offset="100%" stopColor="#10b981" stopOpacity="0.05" />
         </linearGradient>
       </defs>
-      {/* Gorte → Dora */}
+      {/* Gorte → Parent A */}
       <line x1="25%" y1="22%" x2="35%" y2="45%" stroke="url(#conn-gorte)" strokeWidth="1" strokeDasharray="4 4" />
-      {/* Riemer → Witali */}
+      {/* Riemer → Parent B */}
       <line x1="75%" y1="22%" x2="65%" y2="45%" stroke="url(#conn-riemer)" strokeWidth="1" strokeDasharray="4 4" />
       {/* Parents → Frank */}
       <line x1="35%" y1="58%" x2="40%" y2="78%" stroke="url(#conn-bridge)" strokeWidth="1" strokeDasharray="4 4" />

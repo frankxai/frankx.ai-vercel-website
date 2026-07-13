@@ -11,14 +11,14 @@ import type { FamilyNode } from '@/lib/family-tree-data'
 
 // 3D positions for family members
 const positions3D: Record<string, [number, number, number]> = {
-  'frank-riemer': [0, 0, 0],
-  'tien': [2.5, 0, 0.5],
-  'dora-riemer': [-2, 2, -1],
-  'witali-riemer': [2, 2, -1],
-  'david-gorte': [-4, 4, -2],
-  'dorothea-gorte': [-1.5, 4.5, -2.5],
-  'alexander-riemer': [1.5, 4.5, -2.5],
-  'paulina-riemer': [4, 4, -2],
+  'example-focus-person': [0, 0, 0],
+  'example-partner': [2.5, 0, 0.5],
+  'example-parent-a': [-2, 2, -1],
+  'example-parent-b': [2, 2, -1],
+  'example-maternal-grandparent-a': [-4, 4, -2],
+  'example-maternal-grandparent-b': [-1.5, 4.5, -2.5],
+  'example-paternal-grandparent-a': [1.5, 4.5, -2.5],
+  'example-paternal-grandparent-b': [4, 4, -2],
 }
 
 function StarNode({
@@ -34,7 +34,7 @@ function StarNode({
   const glowRef = useRef<THREE.Mesh>(null)
   const pos = positions3D[node.id] || [0, 0, 0]
   const colors = sideColors[node.side]
-  const isCenter = node.id === 'frank-riemer'
+  const isCenter = node.id === 'example-focus-person'
   const baseSize = isCenter ? 0.35 : 0.22
 
   useFrame((state) => {
@@ -137,16 +137,16 @@ function Scene() {
   const [hovered, setHovered] = useState<string | null>(null)
 
   const connections = [
-    { from: 'frank-riemer', to: 'dora-riemer', color: '#10b981' },
-    { from: 'frank-riemer', to: 'witali-riemer', color: '#10b981' },
-    { from: 'frank-riemer', to: 'tien', color: '#f43f5e' },
-    { from: 'dora-riemer', to: 'david-gorte', color: '#f59e0b' },
-    { from: 'dora-riemer', to: 'dorothea-gorte', color: '#f59e0b' },
-    { from: 'witali-riemer', to: 'alexander-riemer', color: '#06b6d4' },
-    { from: 'witali-riemer', to: 'paulina-riemer', color: '#06b6d4' },
-    { from: 'david-gorte', to: 'dorothea-gorte', color: '#f43f5e' },
-    { from: 'alexander-riemer', to: 'paulina-riemer', color: '#f43f5e' },
-    { from: 'dora-riemer', to: 'witali-riemer', color: '#f43f5e' },
+    { from: 'example-focus-person', to: 'example-parent-a', color: '#10b981' },
+    { from: 'example-focus-person', to: 'example-parent-b', color: '#10b981' },
+    { from: 'example-focus-person', to: 'example-partner', color: '#f43f5e' },
+    { from: 'example-parent-a', to: 'example-maternal-grandparent-a', color: '#f59e0b' },
+    { from: 'example-parent-a', to: 'example-maternal-grandparent-b', color: '#f59e0b' },
+    { from: 'example-parent-b', to: 'example-paternal-grandparent-a', color: '#06b6d4' },
+    { from: 'example-parent-b', to: 'example-paternal-grandparent-b', color: '#06b6d4' },
+    { from: 'example-maternal-grandparent-a', to: 'example-maternal-grandparent-b', color: '#f43f5e' },
+    { from: 'example-paternal-grandparent-a', to: 'example-paternal-grandparent-b', color: '#f43f5e' },
+    { from: 'example-parent-a', to: 'example-parent-b', color: '#f43f5e' },
   ]
 
   return (

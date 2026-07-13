@@ -154,7 +154,7 @@ export default function FamilyTreeMermaidPage() {
 
           {/* Pipeline Indicator */}
           <div className="flex items-center gap-2 text-sm text-white/40">
-            <span>.frankx/family/*.md</span>
+            <span>synthetic fixture</span>
             <span>→</span>
             <span>lib/family-tree-data.ts</span>
             <span>→</span>

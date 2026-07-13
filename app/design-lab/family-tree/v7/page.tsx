@@ -9,16 +9,16 @@ import type { FamilyNode } from '@/lib/family-tree-data'
 // Layout positions for pedigree chart (x, y in percentage)
 const positions = {
   // Generation 0 - Top row (Grandparents)
-  'david-gorte': { x: 15, y: 10 },
-  'dorothea-gorte': { x: 28, y: 10 },
-  'alexander-riemer': { x: 58, y: 10 },
-  'paulina-riemer': { x: 71, y: 10 },
+  'example-maternal-grandparent-a': { x: 15, y: 10 },
+  'example-maternal-grandparent-b': { x: 28, y: 10 },
+  'example-paternal-grandparent-a': { x: 58, y: 10 },
+  'example-paternal-grandparent-b': { x: 71, y: 10 },
   // Generation 1 - Middle row (Parents)
-  'dora-riemer': { x: 36, y: 45 },
-  'witali-riemer': { x: 53, y: 45 },
+  'example-parent-a': { x: 36, y: 45 },
+  'example-parent-b': { x: 53, y: 45 },
   // Generation 2 - Bottom row (Current)
-  'frank-riemer': { x: 41, y: 80 },
-  'tien': { x: 54, y: 80 },
+  'example-focus-person': { x: 41, y: 80 },
+  'example-partner': { x: 54, y: 80 },
 } as const
 
 interface PersonCardProps {
@@ -106,131 +106,131 @@ function ConnectionLines() {
   // Spouse connections (horizontal dashed)
   lines.push(
     {
-      x1: getPos('david-gorte').x + 6.5,
-      y1: getPos('david-gorte').y,
-      x2: getPos('dorothea-gorte').x - 6.5,
-      y2: getPos('dorothea-gorte').y,
+      x1: getPos('example-maternal-grandparent-a').x + 6.5,
+      y1: getPos('example-maternal-grandparent-a').y,
+      x2: getPos('example-maternal-grandparent-b').x - 6.5,
+      y2: getPos('example-maternal-grandparent-b').y,
       type: 'spouse',
       color: sideColors.gorte.hex,
     },
     {
-      x1: getPos('alexander-riemer').x + 6.5,
-      y1: getPos('alexander-riemer').y,
-      x2: getPos('paulina-riemer').x - 6.5,
-      y2: getPos('paulina-riemer').y,
+      x1: getPos('example-paternal-grandparent-a').x + 6.5,
+      y1: getPos('example-paternal-grandparent-a').y,
+      x2: getPos('example-paternal-grandparent-b').x - 6.5,
+      y2: getPos('example-paternal-grandparent-b').y,
       type: 'spouse',
       color: sideColors.riemer.hex,
     },
     {
-      x1: getPos('dora-riemer').x + 6.5,
-      y1: getPos('dora-riemer').y,
-      x2: getPos('witali-riemer').x - 6.5,
-      y2: getPos('witali-riemer').y,
+      x1: getPos('example-parent-a').x + 6.5,
+      y1: getPos('example-parent-a').y,
+      x2: getPos('example-parent-b').x - 6.5,
+      y2: getPos('example-parent-b').y,
       type: 'spouse',
       color: sideColors.bridge.hex,
     },
     {
-      x1: getPos('frank-riemer').x + 6.5,
-      y1: getPos('frank-riemer').y,
-      x2: getPos('tien').x - 6.5,
-      y2: getPos('tien').y,
+      x1: getPos('example-focus-person').x + 6.5,
+      y1: getPos('example-focus-person').y,
+      x2: getPos('example-partner').x - 6.5,
+      y2: getPos('example-partner').y,
       type: 'partner',
       color: sideColors.current.hex,
     }
   )
 
   // Parent-child connections (vertical solid lines with branch points)
-  // Gorte couple → Dora
-  const gorteMidX = (getPos('david-gorte').x + getPos('dorothea-gorte').x) / 2
+  // Gorte couple → Parent A
+  const gorteMidX = (getPos('example-maternal-grandparent-a').x + getPos('example-maternal-grandparent-b').x) / 2
   lines.push(
     // Vertical drop from couple midpoint
     {
       x1: gorteMidX,
-      y1: getPos('david-gorte').y + 3,
+      y1: getPos('example-maternal-grandparent-a').y + 3,
       x2: gorteMidX,
-      y2: getPos('dora-riemer').y - 15,
+      y2: getPos('example-parent-a').y - 15,
       type: 'parent-child',
       color: sideColors.gorte.hex,
     },
-    // Horizontal to Dora
+    // Horizontal to Parent A
     {
       x1: gorteMidX,
-      y1: getPos('dora-riemer').y - 15,
-      x2: getPos('dora-riemer').x,
-      y2: getPos('dora-riemer').y - 15,
+      y1: getPos('example-parent-a').y - 15,
+      x2: getPos('example-parent-a').x,
+      y2: getPos('example-parent-a').y - 15,
       type: 'parent-child',
       color: sideColors.gorte.hex,
     },
-    // Vertical drop to Dora
+    // Vertical drop to Parent A
     {
-      x1: getPos('dora-riemer').x,
-      y1: getPos('dora-riemer').y - 15,
-      x2: getPos('dora-riemer').x,
-      y2: getPos('dora-riemer').y - 3,
+      x1: getPos('example-parent-a').x,
+      y1: getPos('example-parent-a').y - 15,
+      x2: getPos('example-parent-a').x,
+      y2: getPos('example-parent-a').y - 3,
       type: 'parent-child',
       color: sideColors.gorte.hex,
     }
   )
 
-  // Riemer couple → Witali
-  const riemerMidX = (getPos('alexander-riemer').x + getPos('paulina-riemer').x) / 2
+  // Riemer couple → Parent B
+  const riemerMidX = (getPos('example-paternal-grandparent-a').x + getPos('example-paternal-grandparent-b').x) / 2
   lines.push(
     // Vertical drop from couple midpoint
     {
       x1: riemerMidX,
-      y1: getPos('alexander-riemer').y + 3,
+      y1: getPos('example-paternal-grandparent-a').y + 3,
       x2: riemerMidX,
-      y2: getPos('witali-riemer').y - 15,
+      y2: getPos('example-parent-b').y - 15,
       type: 'parent-child',
       color: sideColors.riemer.hex,
     },
-    // Horizontal to Witali
+    // Horizontal to Parent B
     {
       x1: riemerMidX,
-      y1: getPos('witali-riemer').y - 15,
-      x2: getPos('witali-riemer').x,
-      y2: getPos('witali-riemer').y - 15,
+      y1: getPos('example-parent-b').y - 15,
+      x2: getPos('example-parent-b').x,
+      y2: getPos('example-parent-b').y - 15,
       type: 'parent-child',
       color: sideColors.riemer.hex,
     },
-    // Vertical drop to Witali
+    // Vertical drop to Parent B
     {
-      x1: getPos('witali-riemer').x,
-      y1: getPos('witali-riemer').y - 15,
-      x2: getPos('witali-riemer').x,
-      y2: getPos('witali-riemer').y - 3,
+      x1: getPos('example-parent-b').x,
+      y1: getPos('example-parent-b').y - 15,
+      x2: getPos('example-parent-b').x,
+      y2: getPos('example-parent-b').y - 3,
       type: 'parent-child',
       color: sideColors.riemer.hex,
     }
   )
 
   // Parents → Frank
-  const parentsMidX = (getPos('dora-riemer').x + getPos('witali-riemer').x) / 2
+  const parentsMidX = (getPos('example-parent-a').x + getPos('example-parent-b').x) / 2
   lines.push(
     // Vertical drop from parents midpoint
     {
       x1: parentsMidX,
-      y1: getPos('dora-riemer').y + 3,
+      y1: getPos('example-parent-a').y + 3,
       x2: parentsMidX,
-      y2: getPos('frank-riemer').y - 15,
+      y2: getPos('example-focus-person').y - 15,
       type: 'parent-child',
       color: sideColors.bridge.hex,
     },
     // Horizontal to Frank
     {
       x1: parentsMidX,
-      y1: getPos('frank-riemer').y - 15,
-      x2: getPos('frank-riemer').x,
-      y2: getPos('frank-riemer').y - 15,
+      y1: getPos('example-focus-person').y - 15,
+      x2: getPos('example-focus-person').x,
+      y2: getPos('example-focus-person').y - 15,
       type: 'parent-child',
       color: sideColors.bridge.hex,
     },
     // Vertical drop to Frank
     {
-      x1: getPos('frank-riemer').x,
-      y1: getPos('frank-riemer').y - 15,
-      x2: getPos('frank-riemer').x,
-      y2: getPos('frank-riemer').y - 3,
+      x1: getPos('example-focus-person').x,
+      y1: getPos('example-focus-person').y - 15,
+      x2: getPos('example-focus-person').x,
+      y2: getPos('example-focus-person').y - 3,
       type: 'parent-child',
       color: sideColors.bridge.hex,
     }

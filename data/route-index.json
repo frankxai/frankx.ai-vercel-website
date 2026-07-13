@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 813,
+    "total": 810,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 389,
+      "section": 386,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -530,52 +530,6 @@
       "title": "Ais",
       "tags": [
         "ais"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/alea",
-      "title": "Alea",
-      "tags": [
-        "alea"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/alea/katze",
-      "title": "Katze",
-      "tags": [
-        "alea",
-        "katze"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/alea/musik",
-      "title": "Musik",
-      "tags": [
-        "alea",
-        "musik"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/alea/musik/geige",
-      "title": "Geige",
-      "tags": [
-        "alea",
-        "musik",
-        "geige"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/alea/musik/klavier",
-      "title": "Klavier",
-      "tags": [
-        "alea",
-        "musik",
-        "klavier"
       ],
       "type": "section"
     },
@@ -4409,11 +4363,33 @@
       "type": "section"
     },
     {
+      "href": "/familie/nachkommen-und-patenschaften",
+      "title": "Nachkommen Und Patenschaften",
+      "tags": [
+        "familie",
+        "nachkommen",
+        "und",
+        "patenschaften"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/familie/stammbaum",
       "title": "Stammbaum",
       "tags": [
         "familie",
         "stammbaum"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/familie/vorsorge-und-notfall",
+      "title": "Vorsorge Und Notfall",
+      "tags": [
+        "familie",
+        "vorsorge",
+        "und",
+        "notfall"
       ],
       "type": "section"
     },

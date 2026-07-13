@@ -73,14 +73,6 @@
       "type": "static"
     },
     {
-      "href": "/alea/musik/${inst.slug}",
-      "sourceFile": "app/alea/musik/page.tsx",
-      "line": 131,
-      "type": "dynamic-template",
-      "falsePositive": true,
-      "note": "Slugs resolve to existing pages like /alea/musik/klavier, /alea/musik/geige"
-    },
-    {
       "href": "/design-lab/family-tree/${v.version}",
       "sourceFile": "app/design-lab/family-tree/page.tsx",
       "line": 209,
@@ -132,7 +124,6 @@
     "/ai-art",
     "/ai-evolution",
     "/ai-world",
-    "/alea/katze",
     "/artists/[slug]",
     "/assess/ai-coe",
     "/assessment/advanced",

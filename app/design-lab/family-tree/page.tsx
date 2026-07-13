@@ -324,9 +324,9 @@ export default function FamilyTreeLabPage() {
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-white/50">
               lib/family-tree-data.ts
             </code>{' '}
-            which mirrors{' '}
+            which is classified as{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-white/50">
-              .frankx/family/*.md
+              synthetic-example
             </code>
           </p>
         </div>

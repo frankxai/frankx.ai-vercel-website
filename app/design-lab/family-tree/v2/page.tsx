@@ -63,14 +63,14 @@ const nodeTypes: NodeTypes = {
 
 // Layout positions
 const nodePositions: Record<string, { x: number; y: number }> = {
-  'david-gorte': { x: 0, y: 0 },
-  'dorothea-gorte': { x: 250, y: 0 },
-  'alexander-riemer': { x: 600, y: 0 },
-  'paulina-riemer': { x: 850, y: 0 },
-  'dora-riemer': { x: 125, y: 220 },
-  'witali-riemer': { x: 725, y: 220 },
-  'frank-riemer': { x: 350, y: 440 },
-  'tien': { x: 600, y: 440 },
+  'example-maternal-grandparent-a': { x: 0, y: 0 },
+  'example-maternal-grandparent-b': { x: 250, y: 0 },
+  'example-paternal-grandparent-a': { x: 600, y: 0 },
+  'example-paternal-grandparent-b': { x: 850, y: 0 },
+  'example-parent-a': { x: 125, y: 220 },
+  'example-parent-b': { x: 725, y: 220 },
+  'example-focus-person': { x: 350, y: 440 },
+  'example-partner': { x: 600, y: 440 },
 }
 
 export default function FamilyTreeV2() {
@@ -88,17 +88,17 @@ export default function FamilyTreeV2() {
   const edges: Edge[] = useMemo(
     () => [
       // Spouse edges (dashed)
-      { id: 'e-dg-dog', source: 'david-gorte', target: 'dorothea-gorte', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' }, animated: false },
-      { id: 'e-ar-pr', source: 'alexander-riemer', target: 'paulina-riemer', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' } },
-      { id: 'e-dr-wr', source: 'dora-riemer', target: 'witali-riemer', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' } },
-      { id: 'e-fr-t', source: 'frank-riemer', target: 'tien', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' } },
+      { id: 'e-dg-dog', source: 'example-maternal-grandparent-a', target: 'example-maternal-grandparent-b', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' }, animated: false },
+      { id: 'e-ar-pr', source: 'example-paternal-grandparent-a', target: 'example-paternal-grandparent-b', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' } },
+      { id: 'e-dr-wr', source: 'example-parent-a', target: 'example-parent-b', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' } },
+      { id: 'e-fr-t', source: 'example-focus-person', target: 'example-partner', type: 'straight', style: { stroke: '#f43f5e40', strokeDasharray: '5 5' } },
       // Parent-child edges
-      { id: 'e-dg-dr', source: 'david-gorte', target: 'dora-riemer', style: { stroke: '#f59e0b30' }, animated: true },
-      { id: 'e-dog-dr', source: 'dorothea-gorte', target: 'dora-riemer', style: { stroke: '#f59e0b30' }, animated: true },
-      { id: 'e-ar-wr', source: 'alexander-riemer', target: 'witali-riemer', style: { stroke: '#06b6d430' }, animated: true },
-      { id: 'e-pr-wr', source: 'paulina-riemer', target: 'witali-riemer', style: { stroke: '#06b6d430' }, animated: true },
-      { id: 'e-dr-fr', source: 'dora-riemer', target: 'frank-riemer', style: { stroke: '#10b98130' }, animated: true },
-      { id: 'e-wr-fr', source: 'witali-riemer', target: 'frank-riemer', style: { stroke: '#10b98130' }, animated: true },
+      { id: 'e-dg-dr', source: 'example-maternal-grandparent-a', target: 'example-parent-a', style: { stroke: '#f59e0b30' }, animated: true },
+      { id: 'e-dog-dr', source: 'example-maternal-grandparent-b', target: 'example-parent-a', style: { stroke: '#f59e0b30' }, animated: true },
+      { id: 'e-ar-wr', source: 'example-paternal-grandparent-a', target: 'example-parent-b', style: { stroke: '#06b6d430' }, animated: true },
+      { id: 'e-pr-wr', source: 'example-paternal-grandparent-b', target: 'example-parent-b', style: { stroke: '#06b6d430' }, animated: true },
+      { id: 'e-dr-fr', source: 'example-parent-a', target: 'example-focus-person', style: { stroke: '#10b98130' }, animated: true },
+      { id: 'e-wr-fr', source: 'example-parent-b', target: 'example-focus-person', style: { stroke: '#10b98130' }, animated: true },
     ],
     []
   )

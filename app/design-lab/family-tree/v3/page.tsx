@@ -13,7 +13,7 @@ const RING_RADII = [0, 130, 260, 360] // center, gen2(parents), gen1(grandparent
 
 // Position nodes around rings
 function getNodePosition(node: FamilyNode, index: number, total: number): { x: number; y: number } {
-  if (node.id === 'frank-riemer') return { x: CX, y: CY }
+  if (node.id === 'example-focus-person') return { x: CX, y: CY }
 
   let ring = 0
   let angleOffset = 0
@@ -33,7 +33,7 @@ function getNodePosition(node: FamilyNode, index: number, total: number): { x: n
     count = gpNodes.length
     // Spread grandparents evenly across top half
     angleOffset = -Math.PI * 0.8 + (idx / (count - 1)) * Math.PI * 1.6
-  } else if (node.id === 'tien') {
+  } else if (node.id === 'example-partner') {
     ring = 1
     angleOffset = Math.PI / 2 + 0.3
   }
@@ -57,7 +57,7 @@ function RadialNode({
   onHover: (id: string | null) => void
 }) {
   const colors = sideColors[node.side]
-  const isCenter = node.id === 'frank-riemer'
+  const isCenter = node.id === 'example-focus-person'
   const radius = isCenter ? 40 : 28
 
   return (
@@ -146,13 +146,13 @@ export default function FamilyTreeV3() {
 
   // Connection lines
   const connections = [
-    { from: 'frank-riemer', to: 'dora-riemer' },
-    { from: 'frank-riemer', to: 'witali-riemer' },
-    { from: 'frank-riemer', to: 'tien' },
-    { from: 'dora-riemer', to: 'david-gorte' },
-    { from: 'dora-riemer', to: 'dorothea-gorte' },
-    { from: 'witali-riemer', to: 'alexander-riemer' },
-    { from: 'witali-riemer', to: 'paulina-riemer' },
+    { from: 'example-focus-person', to: 'example-parent-a' },
+    { from: 'example-focus-person', to: 'example-parent-b' },
+    { from: 'example-focus-person', to: 'example-partner' },
+    { from: 'example-parent-a', to: 'example-maternal-grandparent-a' },
+    { from: 'example-parent-a', to: 'example-maternal-grandparent-b' },
+    { from: 'example-parent-b', to: 'example-paternal-grandparent-a' },
+    { from: 'example-parent-b', to: 'example-paternal-grandparent-b' },
   ]
 
   const getPos = (id: string) => nodePositions.find(n => n.node.id === id)?.position || { x: 0, y: 0 }

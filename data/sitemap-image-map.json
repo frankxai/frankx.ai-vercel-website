@@ -841,15 +841,6 @@
       "status": "complete"
     },
     {
-      "route": "/alea",
-      "file": "app/alea/page.tsx",
-      "images": [],
-      "imageCount": 0,
-      "hasHero": false,
-      "hasOgImage": false,
-      "status": "acceptable-no-image"
-    },
-    {
       "route": "/artists/[slug]",
       "file": "app/artists/[slug]/page.tsx",
       "images": [],

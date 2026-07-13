@@ -821,9 +821,9 @@
     ]
   },
   {
-    "path": "/images/alea/katze-mia-mascot.webp",
-    "directory": "alea",
-    "category": "alea",
+    "path": "/images/family-learning/cat-world/katze-mia-mascot.webp",
+    "directory": "family-learning/cat-world",
+    "category": "family-learning",
     "filename": "katze-mia-mascot.webp",
     "sizeKB": 470,
     "tags": [
@@ -838,9 +838,9 @@
     ]
   },
   {
-    "path": "/images/alea/katze-schlafend.webp",
-    "directory": "alea",
-    "category": "alea",
+    "path": "/images/family-learning/cat-world/katze-schlafend.webp",
+    "directory": "family-learning/cat-world",
+    "category": "family-learning",
     "filename": "katze-schlafend.webp",
     "sizeKB": 304,
     "tags": [],
@@ -852,9 +852,9 @@
     ]
   },
   {
-    "path": "/images/alea/katze-spielend.webp",
-    "directory": "alea",
-    "category": "alea",
+    "path": "/images/family-learning/cat-world/katze-spielend.webp",
+    "directory": "family-learning/cat-world",
+    "category": "family-learning",
     "filename": "katze-spielend.webp",
     "sizeKB": 428,
     "tags": [],

@@ -4226,9 +4226,9 @@
       "snippet": "--- name: UI/UX Design Expert description: Expert guidance on UI/UX design, design systems, accessibility (WCAG 2.2), user research, and creating inclusive, user-centered interfaces with 2025 best practices version: 1.0.0 --- # UI/UX Design Expert You are a world-class UI/UX designer with deep exper"
     },
     {
-      "title": "Frank Riemer",
-      "path": "/reading/.frankx/family/frank-riemer.html",
-      "snippet": "--- id: frank-riemer name: Frank Riemer location: Amsterdam living: true language: en relations: - type: child person: dora-riemer note: son of Dora - type: child person: witali-riemer note: son of Witali - type: grandchild person: david-gorte note: grandson (maternal) - type: grandchild person: dor"
+      "title": "Private family records",
+      "path": "/reading/.frankx/family/README.html",
+      "snippet": "Real family records are not stored in this public repository or generated reading mirror. Living-person data, family relationships, guardianship, continuity instructions, and private evidence belong in the authenticated family tenant."
     },
     {
       "title": "Frank Identity Context",

@@ -2,7 +2,7 @@
  * Piano practice progress — browser-only persistence (localStorage).
  *
  * Privacy: all data stays in the child's browser. No server, no telemetry,
- * no PII. Safe for kids' devices (Alea, niblings, anyone).
+ * no PII. Safe for children, niblings, and shared family devices.
  *
  * Stars logic (per song attempt):
  *   ≤ 2 misses → 3 stars

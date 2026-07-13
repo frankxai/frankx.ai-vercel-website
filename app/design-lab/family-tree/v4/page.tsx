@@ -83,7 +83,7 @@ function GenerationChapter({
                 return (
                   <div
                     key={node.id}
-                    className={`flex-1 rounded-xl border p-5 backdrop-blur-sm transition-all hover:scale-[1.02] ${node.id === 'frank-riemer' ? 'ring-1 ring-violet-500/20' : ''}`}
+                    className={`flex-1 rounded-xl border p-5 backdrop-blur-sm transition-all hover:scale-[1.02] ${node.id === 'example-focus-person' ? 'ring-1 ring-violet-500/20' : ''}`}
                     style={{
                       borderColor: `${colors.hex}30`,
                       background: `linear-gradient(135deg, ${colors.hex}10, transparent)`,
@@ -131,7 +131,7 @@ export default function FamilyTreeV4() {
     },
     {
       title: 'The Parents',
-      subtitle: 'Where the two lines join. Dora Gorte meets Witali Riemer.',
+      subtitle: 'Where the two lines join. Parent A Gorte meets Parent B Riemer.',
       generation: 1,
       nodes: familyNodes.filter(n => n.generation === 1),
     },

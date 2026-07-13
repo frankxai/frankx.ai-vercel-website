@@ -46,24 +46,24 @@ export default function FamilyTreeCanvasPage() {
       // Generation 0: Grandparents
       if (node.generation === 0) {
         y = height * 0.15
-        if (node.id === 'david-gorte') x = centerX - horizontalSpacing * 1.5
-        if (node.id === 'dorothea-gorte') x = centerX - horizontalSpacing * 0.5
-        if (node.id === 'alexander-riemer') x = centerX + horizontalSpacing * 0.5
-        if (node.id === 'paulina-riemer') x = centerX + horizontalSpacing * 1.5
+        if (node.id === 'example-maternal-grandparent-a') x = centerX - horizontalSpacing * 1.5
+        if (node.id === 'example-maternal-grandparent-b') x = centerX - horizontalSpacing * 0.5
+        if (node.id === 'example-paternal-grandparent-a') x = centerX + horizontalSpacing * 0.5
+        if (node.id === 'example-paternal-grandparent-b') x = centerX + horizontalSpacing * 1.5
       }
 
       // Generation 1: Parents
       if (node.generation === 1) {
         y = height * 0.5
-        if (node.id === 'dora-riemer') x = centerX - horizontalSpacing * 0.5
-        if (node.id === 'witali-riemer') x = centerX + horizontalSpacing * 0.5
+        if (node.id === 'example-parent-a') x = centerX - horizontalSpacing * 0.5
+        if (node.id === 'example-parent-b') x = centerX + horizontalSpacing * 0.5
       }
 
       // Generation 2: Current
       if (node.generation === 2) {
         y = height * 0.85
-        if (node.id === 'frank-riemer') x = centerX - horizontalSpacing * 0.5
-        if (node.id === 'tien') x = centerX + horizontalSpacing * 0.5
+        if (node.id === 'example-focus-person') x = centerX - horizontalSpacing * 0.5
+        if (node.id === 'example-partner') x = centerX + horizontalSpacing * 0.5
       }
 
       positions.push({

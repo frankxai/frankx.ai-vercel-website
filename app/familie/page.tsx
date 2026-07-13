@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, BookOpenText, FileSearch, Heart, LockKeyhole, ShieldCheck, TreePine } from 'lucide-react'
+import { ArrowRight, BookOpenText, FileSearch, Heart, LockKeyhole, ShieldCheck, ShieldPlus, TreePine, UsersRound } from 'lucide-react'
 import { auth } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
@@ -16,6 +16,8 @@ const privateAreas = [
   { title: 'Familiengeschichte', description: 'Geprüfte Erzählungen mit Herkunftsnachweisen', href: '/familie/geschichte', icon: BookOpenText },
   { title: 'Interview-Kit', description: 'Gespräche mit älteren Generationen vorbereiten', href: '/familie/interview-kit', icon: Heart },
   { title: 'Mitmachen', description: 'Eine Erinnerung, Korrektur oder Quelle vorschlagen', href: '/familie/mitmachen', icon: FileSearch },
+  { title: 'Nachkommen & Patenschaften', description: 'Guardian-geführte Räume für Kinder und nächste Generationen', href: '/familie/nachkommen-und-patenschaften', icon: UsersRound },
+  { title: 'Vorsorge & Notfall', description: 'Getrennte Protokolle für Notfall, Handlungsunfähigkeit und Nachlass', href: '/familie/vorsorge-und-notfall', icon: ShieldPlus },
 ] as const
 
 export default async function FamilieGatewayPage() {
