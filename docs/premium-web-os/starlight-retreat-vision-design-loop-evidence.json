@@ -1,0 +1,67 @@
+{
+  "version": "2026-07-14",
+  "task": "Build and verify the public Starlight Retreats vision route and homepage teaser.",
+  "surface": "FrankX /retreats page and homepage teaser",
+  "audience": "Creators, founders and practitioners seeking a small working retreat with practical follow-through.",
+  "first_read": "A developing human-led working retreat, with the real status and next step visible immediately.",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "starlight-design-intelligence/brand-packs/frankx"
+  ],
+  "references": [
+    {
+      "label": "Retreat OS venture truth",
+      "source": "C:/Users/frank/starlight/repos/retreat-os/docs/venture/ANA_FRANK_RETREAT_STUDIO.md",
+      "reason": "Defines the economic cohort, offer method, roles and unconfirmed status."
+    },
+    {
+      "label": "Purpose to Practice proof product",
+      "source": "docs/specs/tallinn-purpose-to-practice-facilitator-pack-2026-07-14.md",
+      "reason": "Provides the prepared 90-minute artifact and participant boundary."
+    },
+    {
+      "label": "FrankX brand pack",
+      "source": "C:/Users/frank/starlight/repos/starlight-design-intelligence/brand-packs/frankx/DESIGN.md",
+      "reason": "Sets the obsidian foundation, soul-spectrum amber and editorial restraint."
+    }
+  ],
+  "direction": {
+    "keep": ["Editorial calm", "Lived-in working materials", "Honest status labels", "One dominant photographic subject"],
+    "avoid": ["Luxury-resort advertising", "Wellness clichés", "Generic AI graphics", "Unconfirmed availability or outcome claims"],
+    "signature": "A room pathfinder turns visitor intent into an honest recommended format and status.",
+    "system": ["Obsidian and amber soul spectrum", "Poppins display and Inter body", "Tier B generated-owned hero", "Local state motion only", "Exact text in HTML"]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "generated-media",
+    "provenance": "generated",
+    "why_premium": "An art-directed documentary destination frame shows the real kind of room, people and work the concept requires.",
+    "shortcut_risk": "medium",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "public/images/retreats/starlight-retreat-hero.webp",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Generated-owned 1672x941 concept image inspected at original resolution after WebP conversion; clear working group, usable quiet copy space, no venue branding, fake UI or visible anatomical artifact; 98 KB."
+    },
+    {
+      "path_or_url": "/retreats",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Awaiting Vercel preview because PP build/browser admission is HOLD."
+    }
+  ],
+  "checks": [
+    {"name": "asset-tier", "status": "pass", "evidence": "Tier B generated-owned hero declared before production."},
+    {"name": "export-inspection", "status": "pass", "evidence": "Original generated export and 98 KB WebP inspected; desktop composition works and mobile crop remains preview-gated."},
+    {"name": "visual-qa", "status": "blocked", "evidence": "Awaiting desktop, mobile and reduced-motion preview."}
+  ],
+  "score": {"total": 0, "max": 30, "notes": "Scored after actual preview inspection."},
+  "decision": "blocked",
+  "known_risks": ["PR #275 is the stacked base and must integrate first.", "No venue, date or price is confirmed."]
+}
