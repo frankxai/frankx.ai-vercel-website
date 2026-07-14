@@ -42,13 +42,13 @@ export function buildTallinnInterestReceipt(
   const firstName = payload.fullName.split(WHITESPACE_RE)[0] || payload.fullName
   const slots = slotLabels(payload)
   const title = experience?.title ?? 'Tallinn working session'
-  const subject = `Interest received — ${title}`
-  const nextStep = `A room is considered only after ${TALLINN_VALIDATION_GATE.minimumConfirmed} people reconfirm one compatible time. This message is not a ticket or venue confirmation.`
+  const subject = `We received your interest — ${title}`
+  const nextStep = `We will contact you only if at least ${TALLINN_VALIDATION_GATE.minimumConfirmed} people confirm the same time. Until then, nothing is booked. This message is not a ticket or venue confirmation.`
 
   const text = [
     `Hi ${firstName},`,
     '',
-    `Your interest in “${title}” is recorded.`,
+    `Thank you — we received your interest in “${title}”.`,
     '',
     'Possible times:',
     ...slots.map((slot) => `- ${slot}`),
@@ -58,7 +58,7 @@ export function buildTallinnInterestReceipt(
     TALLINN_EVENT.independenceNotice,
     '',
     payload.aftercareConsent
-      ? 'If the session runs, you also asked for the session artifact and related follow-up.'
+      ? 'If the session runs, you asked to receive the completed materials and one session-related check-in seven days later.'
       : 'You did not opt into aftercare. Only coordination about this request will be sent.',
     '',
     '— Frank',
@@ -68,7 +68,7 @@ export function buildTallinnInterestReceipt(
   const html = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:560px;margin:0 auto;color:#172033;line-height:1.65">
   <p>Hi ${escapeHtml(firstName)},</p>
-  <p>Your interest in <strong>${escapeHtml(title)}</strong> is recorded.</p>
+  <p>Thank you — we received your interest in <strong>${escapeHtml(title)}</strong>.</p>
   <div style="margin:20px 0;padding:16px 18px;border-radius:14px;background:#f1f5f9;color:#334155">
     <strong>Possible times</strong>
     <ul>${slots.map((slot) => `<li>${escapeHtml(slot)}</li>`).join('')}</ul>
@@ -77,7 +77,7 @@ export function buildTallinnInterestReceipt(
   <p style="font-size:13px;color:#64748b">${escapeHtml(TALLINN_EVENT.independenceNotice)}</p>
   <p style="font-size:13px;color:#64748b">${
     payload.aftercareConsent
-      ? 'If the session runs, you also asked for the session artifact and related follow-up.'
+      ? 'If the session runs, you asked to receive the completed materials and one session-related check-in seven days later.'
       : 'You did not opt into aftercare. Only coordination about this request will be sent.'
   }</p>
   <p style="margin-top:26px;color:#64748b">— Frank<br/>frank@frankx.ai · frankx.ai</p>
@@ -94,7 +94,7 @@ export function buildTallinnOperatorNotification(
   const title = experience?.title ?? payload.experienceSlug
   const subject = `Tallinn interest · ${title} · ${payload.fullName}`
   const lines = [
-    'New Tallinn Experience Foundry interest.',
+    'New Tallinn session interest.',
     '',
     `Name: ${payload.fullName}`,
     `Email: ${payload.email}`,

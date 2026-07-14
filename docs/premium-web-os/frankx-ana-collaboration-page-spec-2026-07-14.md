@@ -2,25 +2,36 @@
 
 Date: 2026-07-14
 
-Owner: Codex, isolated branch `agent/codex/frankx-ana-collaboration-20260714`
+Owner: Codex, integration branch `codex/frankx-ana-production-20260714`
 
 Primary reviewer: Frank
 Required approval before indexing, launch, pricing, payment, identity, or external communication: Ana Cecilia Cancino
 
 ## Outcome
 
-Replace the existing strategy-document pages with a small, usable collaboration experience that helps Ana and her four-person team answer three questions:
+Create a small, usable collaboration experience that helps Ana and her team answer three questions:
 
-1. What is already available and safe to try?
-2. What should the team pilot next?
-3. Which larger ideas need Ana's explicit decision before Frank builds them?
+1. Which part of the existing client journey becomes easier first?
+2. What is the safest useful way to try it together?
+3. Which larger ideas are worth a conversation, and which should wait?
 
-The first product loop is: understand the proposal -> inspect the real workflow -> choose priorities -> send one consented response to Frank through the existing FrankX intake pipeline.
+The first product loop is: understand the practical promise -> inspect the real client path -> choose what would be useful next -> send one consented response to Frank through the existing FrankX intake pipeline.
+
+## Audience and language brief
+
+- **Primary audience:** Ana, an experienced founder and people operator who also creates retreats and protects time for her family; her team are capable HR and recruiting practitioners, not software trainees.
+- **Session job:** understand the proposal quickly, see how it respects the way the team already works, and decide whether one bounded working trial deserves a conversation.
+- **First win:** everyone can point to the same stage, owner, approved source, open decision, and next action without changing the tools they trust.
+- **Words the audience uses:** client journey, ownership, handoff, approved template, open decision, next action, private records, working trial, client experience.
+- **Internal words to keep backstage:** agentic, swarm, operating-system install, architecture, plugin, skill, control plane, adoption, technical-readiness framing, and team-training language.
+- **Never frame as a deficiency:** team size, GitHub familiarity, Ana's memory, or the need to “learn our system.” The team already knows the work; the product reduces coordination effort around it.
+- **Emotional posture:** respected and curious before; clear, in control, and free to say yes, change it, or not now afterward.
+- **Primary CTA:** review the client path. Technical setup is secondary and written for Frank or a technical helper.
 
 ## Evidence base
 
 - Frank and Ana's 2026-07-13 meeting notes in Google Drive: the recurring operational sequence is first call, kickoff, job description, offer, pricing approval, recruiting delivery, invoice, and handoff. Offer preparation can take 20–30 minutes and the process has been difficult to teach consistently.
-- User update on 2026-07-14: Ana's team is now four people.
+- User update on 2026-07-14: Ana leads an established team. This is context for ownership and handoffs, never a problem statement or sophistication signal.
 - `ana-ai-business-kit` main at version 1.0.0: installable Ana HR Operations plugin, eight named SOPs, private engagement-record contract, Google Docs copy-and-verify path, money and send gates.
 - Current public LinkedIn crawl: Ana's profile lists Dasbanq; recent public posts identify her as HR Manager and credit her with leading a distributed-team roundup. The crawl does not provide a reliable post history, so the pages must not claim more.
 - `anaceciliacancino.com` is connected to an existing Vercel project and has a live under-construction experience; `/work-with-me`, not `/offers`, is the current offer route.
@@ -35,17 +46,17 @@ The first product loop is: understand the proposal -> inspect the real workflow 
 - Do not describe AI as making hiring, pricing, invoice, or send decisions.
 - Do not claim neuroscience, psychology, legal, medical, or employment outcomes without Ana-approved credentials and substantiation.
 - Do not publish the email address supplied in chat until Ana confirms the spelling and intended public use.
-- A noindex page is still publicly reachable. Only public-safe facts and proposal language belong on it.
+- A noindex page is still publicly reachable. Only publication-ready facts and proposal language belong on it.
 
 ## Status language
 
 Every meaningful item uses one of these labels:
 
 - **Available now** — shipped, inspectable, and safe to try on copies.
-- **Pilot recommended** — bounded next step; not yet proven with Ana's team.
-- **Proposal for Ana** — a direction Frank recommends; Ana has not approved it.
-- **Needs Ana's decision** — identity, commercial, data, or launch choice that cannot be inferred.
-- **Later** — intentionally outside the first operating pilot.
+- **Suggested starting point** — a bounded next step offered for discussion, not prescribed to the team.
+- **For discussion** — an idea Frank has prepared; Ana has not approved it.
+- **Ana decides** — an identity, commercial, data, or launch choice that cannot be inferred.
+- **Only if useful** — intentionally outside the first working trial.
 
 Avoid "live," "approved," "our product," "revenue engine," or "autonomous" unless the underlying fact is verified.
 
@@ -55,13 +66,13 @@ Avoid "live," "approved," "our product," "revenue engine," or "autonomous" unles
 
 Purpose: a warm, concise introduction to Ana's public work and the collaboration.
 
-First read: **Ana already built the method. Now her team should be able to run it with her.**
+First read: **Ana built the method. This makes the handoffs lighter.**
 
 Sections:
 
 1. Human introduction and verified public profile links.
 2. Three things Frank sees in her work: structured recruiting, distributed-team leadership, and human judgment.
-3. What has changed: a four-person team and a need to make the process teachable.
+3. What becomes easier: shared ownership, visible decisions, and safer handoffs across the team.
 4. Clear routes to the team plan, Ana's current website, LinkedIn, and the HR Operations start page.
 5. Review boundary: noindex until Ana approves public wording.
 
@@ -69,26 +80,26 @@ Sections:
 
 Purpose: the practical operating proposal for Ana and her team.
 
-First read: **Your method, made easy for the team to run.**
+First read: **One clear client path, shaped around the way your team already works.**
 
 Sections:
 
-1. Status board: plugin available, copied rehearsal recommended, portal and paid product proposed.
+1. Status board: current workflow available, a privacy-safe practice case suggested, larger product ideas separated from the first trial.
 2. Interactive stage explorer for the exact HR workflow.
-3. Responsibility split: team prepares, AI organizes and checks, Ana/client decide.
-4. A 30-day pilot with copied material before live work.
-5. Future workspace architecture: team control board, private source systems, client-facing outputs, research library.
+3. Responsibility split: the team owns the client work, AI supports preparation, Ana/client retain consequential decisions.
+4. A focused 30-day working trial that starts with a privacy-safe practice case.
+5. Optional shared-workspace concept: one calm view across existing source systems and client-ready outputs.
 6. Decision form that sends selected priorities and comments through `/api/intake`.
 
 ### `/alliance/cecilia`
 
-Purpose: an approval-first decision room for the working name, `cecilia.chat`, the client AI guide, and possible commercial models.
+Purpose: a decision room for the working name, `cecilia.chat`, a possible client companion, and possible commercial models.
 
-First read: **Cecilia is a working name, not a launched brand.**
+First read: **A client-facing companion for Ana's expertise—only if it earns a role.**
 
 Sections:
 
-1. What Cecilia could be: team-shared front door, product name, or a name Ana declines.
+1. What Cecilia could be: a product beneath Ana's existing identity, a shared team brand, or an idea Ana declines.
 2. Three layers: free guide, paid client support, private team workspace.
 3. Explicit exclusions: Cecilia does not assess or select candidates, provide therapy or legal advice, make hiring decisions, or store private client data on a public page.
 4. Commercial choices described without public percentages: Ana-majority revenue share; fixed build/maintenance; or measured pilot before monetization.
@@ -99,11 +110,11 @@ Sections:
 
 Purpose: replace the obsolete v0.1 ZIP-first page with the current v1 install path.
 
-First read: **Start with the workflow, not GitHub.**
+First read: **Begin with one client engagement.**
 
-Primary action: open the maintained GitHub start guide or copy the three install commands.
+Primary action: open the team guide or review the client path.
 
-Secondary action: open the team plan.
+Secondary action: open the clearly separated technical setup for Frank or a technical helper.
 Legacy ZIP: clearly labeled as an earlier archive, not the recommended HR system.
 
 ### `/portal/ana`
@@ -128,11 +139,11 @@ First client call -> approved kickoff
                            approved handoff
 ```
 
-At every stage the system exposes: complete facts, missing decisions, owner, due date, approvals, and the next human action.
+At every stage the shared view exposes: complete facts, missing decisions, owner, due date, approvals, and the next human action.
 
 ## Responsibility model
 
-| Work | Team | AI | Ana / client |
+| Work | Team | AI support | Ana / client |
 | --- | --- | --- | --- |
 | Capture source facts | Owns | Structures | Confirms accuracy |
 | Draft role/offer documents | Contributes | Drafts and checks | Approves wording and scope |
@@ -170,24 +181,24 @@ Static-first rule: hierarchy, labels, paths, and submission work without animati
 - Sending a response is not approval to purchase, launch, index, use Ana's name, or process client data.
 - Success state states only what the endpoint confirms.
 
-## Thirty-day pilot
+## Focused 30-day working trial
 
-1. **Week 1 — map and configure:** confirm team responsibilities, approved template sources, private record location, candidate-tracker rules, and current price source.
-2. **Week 2 — copied rehearsal:** run a past case with private details removed, or a made-up practice case, without editing master documents or sending anything.
-3. **Week 3 — one controlled live engagement:** use only approved data and stop at every Ana/client gate.
-4. **Week 4 — review:** keep what saved time, remove what the team did not use, and decide whether to build the portal or Cecilia pilot.
+1. **Week 1 — align the working setup:** confirm ownership, approved template sources, private record locations, candidate-tracker rules, and the current price source.
+2. **Week 2 — practice without live data:** run a past case with private details removed, or a made-up practice case, without editing master documents or sending anything.
+3. **Week 3 — support one approved engagement:** use only approved data and pause at every Ana/client decision.
+4. **Week 4 — review the evidence:** keep what reduces coordination effort, remove what does not earn its place, and decide whether a shared workspace or Cecilia concept deserves further work.
 
 ## Sequential design council record
 
 Machine posture held new swarms, so council roles were executed sequentially.
 
-- Creative director: rejected the current "freedom engine" and broad spiritual-business framing; selected one human promise and one exact workflow proof.
+- Creative director: rejected the broad internal product framing and spiritual-business language; selected one human promise and one exact workflow proof.
 - Brand designer: retained FrankX technical luxury but warmed the palette; avoided cloning Ana's sanctuary site.
 - Product designer: made the response form and stage explorer the page's product loop.
 - Motion designer: selected Track A and static-first behavior.
 - Frontend architect: reuses the existing intake endpoint and keeps page-specific logic in Ana-scoped components/data.
 - Accessibility reviewer: requires native buttons, visible focus, 44px targets, field labels, live status, reduced motion, and mobile-first sequence.
-- Taste critic: rejects invented credentials, agent names, fake revenue certainty, and repeating card grids.
+- Taste critic: rejects invented credentials, agent names, fake revenue certainty, repeating card grids, patronizing onboarding language, and any copy that makes team size or technical familiarity the problem.
 
 ## Release gates
 

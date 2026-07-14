@@ -24,7 +24,7 @@ export function GET() {
       'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/WHO-READS-WHAT.md',
     install: {
       audience:
-        'Ana and her team can use the guided start page; GitHub knowledge is not required.',
+        'The guided workflow is the primary entry point; Frank or a designated technical helper can handle setup separately.',
       commands: installCommands,
       firstPrompt:
         'Use Ana HR Operations. Guide me through the first-call capture one section at a time. Separate facts from assumptions and stop for every human approval.',
@@ -43,7 +43,7 @@ export function GET() {
       humanApproval:
         'Required for hiring judgments, scope, price, invoices, final wording, recipients, and sends.',
       privateRecords:
-        'Client and candidate records stay in approved private systems, outside GitHub.',
+        'Client records stay in approved private systems; candidate identities and evidence stay in the approved ATS.',
       aiRole:
         'Structure, draft, reconcile, and flag missing facts. Never rank candidates, invent prices, create payments, or send autonomously.',
     },

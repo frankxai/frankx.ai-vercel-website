@@ -8,7 +8,6 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const MAX_BODY_BYTES = 12_000
-const REVIEW_EMAIL = /@example\.com$/i
 
 type BodyReadResult =
   | { ok: true; value: unknown }
@@ -56,7 +55,8 @@ async function readJsonWithinLimit(
 function reviewMode() {
   return !(
     process.env.VERCEL_ENV === 'production' &&
-    process.env.TALLINN_CAPTURE_MODE === 'live'
+    process.env.TALLINN_CAPTURE_MODE === 'live' &&
+    process.env.TALLINN_PRIVACY_NOTICE_APPROVED === 'true'
   )
 }
 export async function POST(request: NextRequest) {
@@ -98,6 +98,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (reviewMode()) {
+      return NextResponse.json(
+        {
+          ok: false,
+          reviewMode: true,
+          error: 'Interest collection is not open. No data was stored and no email was sent.',
+        },
+        { status: 409 },
+      )
+    }
+
     const parsed = TallinnInterestSchema.safeParse(body)
     if (!parsed.success) {
       const firstIssue = parsed.error.issues[0]
@@ -116,37 +127,6 @@ export async function POST(request: NextRequest) {
 
     if (parsed.data.website) {
       return NextResponse.json({ ok: true, message: 'Thanks.' })
-    }
-
-    if (reviewMode()) {
-      if (!REVIEW_EMAIL.test(parsed.data.email)) {
-        return NextResponse.json(
-          {
-            ok: false,
-            reviewMode: true,
-            error:
-              'This private preview stores no personal data. Use test@example.com to exercise the flow.',
-          },
-          { status: 409 },
-        )
-      }
-
-      console.log(
-        '[tallinn-interest-preview]',
-        JSON.stringify({
-          experienceSlug: parsed.data.experienceSlug,
-          variantId: parsed.data.variantId,
-          slotCount: parsed.data.slotIds.length,
-          simulated: true,
-        }),
-      )
-      return NextResponse.json({
-        ok: true,
-        reviewMode: true,
-        receiptSent: false,
-        duplicate: false,
-        message: 'Preview simulation passed. No data was stored and no email was sent.',
-      })
     }
 
     const notionToken = process.env.NOTION_TOKEN || process.env.NOTION_API_KEY
@@ -197,7 +177,7 @@ export async function POST(request: NextRequest) {
           duplicate: result.duplicate,
           receiptSent: false,
           message: result.stored
-            ? 'Your interest is recorded. Confirmation is still being finalized.'
+            ? 'We received your interest, but processing is still being finalized.'
             : 'This request is already being processed. Please wait before trying again.',
         },
         { status: 202 },
@@ -220,8 +200,8 @@ export async function POST(request: NextRequest) {
       receiptSent: result.receiptSent,
       duplicate: result.duplicate,
       message: result.duplicate
-        ? 'This request was already recorded.'
-        : 'Your interest is recorded. This is not a ticket or venue confirmation yet.',
+        ? 'We already received this request.'
+        : 'Thank you — we received your interest. This is not a ticket or venue confirmation.',
     })
   } catch (error) {
     console.error('[tallinn-interest] unexpected error', error)

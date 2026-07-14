@@ -6,12 +6,12 @@
 
 **Lead:** Frank
 
-**Ana:** producer by default; any contribution is opt-in and agreed before participant communication
-**Artifact:** two-page Human + AI Practice Map
+**Potential role for Ana:** none by default. Any operational or public role must be chosen and accepted by Ana before participant communication.
+**Take-home:** two-page Purpose-to-Practice Plan
 
 ## Promise
 
-Participants leave with one purpose-to-practice sentence, a bounded weekly human + AI workflow, three light agent roles, explicit human-only decisions, and a dated 30-day experiment.
+Participants leave with one purpose-to-practice sentence, a weekly practice, three clear ways AI may help, explicit decisions that stay human, and a dated 30-day trial.
 
 The format is educational and reflective. It is not therapy, IFS, psychological treatment, medical advice, employment advice, or a neurological intervention.
 
@@ -31,8 +31,8 @@ The format is educational and reflective. It is not therapy, IFS, psychological 
 
 - opening and independence language;
 - ikigai framing and purpose synthesis;
-- working system demonstration;
-- human/agent boundary and 30-day experiment;
+- practical AI example;
+- human/AI limits and 30-day trial;
 - timekeeping and close.
 
 ### Ana may own, only if she chooses
@@ -40,7 +40,7 @@ The format is educational and reflective. It is not therapy, IFS, psychological 
 - welcome and room flow;
 - participant arrival, materials, water, and accessibility needs;
 - a two-minute grounding pause in her own approved language;
-- observation notes on clarity, energy, and friction;
+- aggregate, non-identifying observation notes on clarity and friction;
 - end-of-room logistics.
 
 Do not introduce Ana with psychology, neuroscience, IFS, therapy, meditation certification, or health language unless she provides and approves the exact evidence and wording.
@@ -59,11 +59,11 @@ Do not introduce Ana with psychology, neuroscience, IFS, therapy, meditation cer
 
 ## Run of show
 
-### 00:00–00:08 — arrival contract and artifact preview
+### 00:00–00:08 — arrival agreement and worksheet preview
 
 **Say:**
 
-> Welcome. This is a small independent working room, not an official Mindvalley session. You can pass on any prompt. Share only what you want to share; personal stories stay here, while your own finished map is yours to use. There is no pitch at the end. In ninety minutes, the goal is this exact two-page map and one experiment small enough to begin next week.
+> Welcome. This is a small independent working session, not an official Mindvalley session. You can pass on any prompt. We ask everyone to keep personal stories private, but we cannot guarantee what another participant may repeat. Share only what feels safe. Your completed plan is yours to use. There is no pitch at the end. In ninety minutes, the goal is this exact two-page plan and one trial small enough to begin next week.
 
 Show a finished map. Ask everyone to write only their name and date.
 
@@ -77,7 +77,7 @@ Show a finished map. Ask everyone to write only their name and date.
 
 No claims about longevity, healing, happiness, or finding one perfect purpose.
 
-### 00:18–00:32 — human-signal evidence
+### 00:18–00:32 — real examples
 
 Give 2.5 minutes per quadrant. Ask for examples, not adjectives.
 
@@ -100,42 +100,42 @@ Pair review:
 - Can the contribution be observed?
 - Is the boundary believable?
 
-### 00:45–00:55 — Frank’s working-system demonstration
+### 00:45–00:55 — Frank’s practical AI example
 
 Use one real, non-sensitive example. Show only:
 
 ```text
 Human intention
   → source set
-  → research steward
-  → making partner
-  → verifier
+  → research helper
+  → drafting helper
+  → quality checker
   → human approval
-  → one inspectable artifact
+  → one completed result
 ```
 
-Name the governing files or patterns—AGENTS.md, SKILL.md, SOP, shared knowledge, evidence, stop conditions—without asking participants to install anything.
+Explain the ingredients in plain language: clear instructions, trusted sources, a review step, and stop conditions. Do not ask participants to install anything.
 
-### 00:55–01:10 — weekly practice and agent roles
+### 00:55–01:10 — weekly practice and AI support
 
 Participants define:
 
 - trigger;
 - human move;
-- smallest useful artifact;
+- smallest useful result;
 - evidence;
 - weekly review;
-- research, making, and verification roles;
-- sources the roles may use.
+- research, drafting, and checking roles;
+- sources the AI may use.
 
-Remind the room: an “agent role” can begin as a repeatable ChatGPT/Claude/Codex conversation. It does not need autonomous software.
+Remind the room: an AI support role can begin as a saved prompt or repeatable conversation. It does not require autonomous software.
 
 ### 01:10–01:22 — human-only decisions and stop conditions
 
 Prompt:
 
-- What may no agent publish, promise, spend, send, or decide without you?
-- Which uncertainty, privacy, quality, or impact signal returns the work to a human?
+- What may no AI tool publish, promise, spend, send, or decide without you?
+- When must the AI stop and hand the work back to you?
 
 Suggested minimum: public send, money, private data, consequential claims, and decisions affecting another person stay human-approved.
 
@@ -143,13 +143,13 @@ Suggested minimum: public send, money, private data, consequential claims, and d
 
 The experiment needs a start date, end date, smallest proof, feedback person, and weekly review appointment.
 
-Peer question: “Is it small, reversible, dated, and inspectable?”
+Peer question: “Is it small, reversible, dated, and easy to review?”
 
 ### 01:28–01:30 — close
 
 **Say:**
 
-> Your map belongs to you. If you asked for aftercare, I will send the clean map and one implementation prompt; otherwise the only remaining message is session logistics or closure. Before leaving, date the first review. The point is not to automate your purpose. It is to give your intention a practice that can survive ordinary life.
+> Your plan belongs to you. If you asked for follow-up, I will send the clean worksheet and one implementation prompt; otherwise the only remaining message is session logistics or notice that the session will not run. Before leaving, date the first review. The point is not to automate your purpose. It is to give your intention a practice that can survive ordinary life.
 
 No program pitch. If someone asks for help, note the requested problem and ask permission before any introduction to Frank or Ana.
 
@@ -172,7 +172,7 @@ No map is collected by default. At close, ask for anonymous hand signals or a on
 
 1. Did you finish the map? yes / partly / no
 2. Is the next practice clear enough to begin? yes / not yet
-3. Which future door, if any, do you want to ask about? creator / founder / team / people-HR / retreat / none
+3. Would you like Frank to contact you about one related topic? creator / founder / team / people-HR / future retreat / none. Record an answer only with explicit contact consent.
 
 At Day 7, only consenting participants receive:
 

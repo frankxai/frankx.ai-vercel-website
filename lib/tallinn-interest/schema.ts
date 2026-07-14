@@ -26,7 +26,7 @@ export const TallinnInterestSchema = z.object({
     .trim()
     .min(1)
     .max(60)
-    .regex(/^[a-z0-9-]+$/, 'Invalid experiment variant.'),
+    .regex(/^[a-z0-9-]+$/, 'Invalid session option.'),
   roleLens: z.enum(TALLINN_ROLE_LENSES),
   attendanceIntent: z.enum(TALLINN_ATTENDANCE_INTENTS),
   slotIds: z

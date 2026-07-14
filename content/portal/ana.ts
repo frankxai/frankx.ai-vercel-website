@@ -16,13 +16,13 @@ export const ana: PortalPartner = {
   lastUpdated: '2026-07-14',
 
   title: 'Ana Team Workspace',
-  tagline: 'One shared client path. Clear owners. Ana keeps the decisions.',
+  tagline: 'One shared client path. Clear ownership. Decisions stay with the right people.',
 
   provides: [
     {
       title: 'Daily client control',
       detail:
-        'A client-alias view of stage, owner, due date, blocker, and the approval waiting for Ana.',
+        'A client-alias view of stage, owner, due date, blocker, and the decision waiting for its named owner.',
     },
     {
       title: 'First-call capture',
@@ -53,21 +53,21 @@ export const ana: PortalPartner = {
 
   projectPlan: [
     {
-      phase: 'HR Operations v1',
+      phase: 'Current working flow',
       window: 'Available now',
       outcome:
         'Eight guided procedures, templates, validation, privacy rules, Google Docs routing, and human approval gates are maintained in the Ana business-kit repository.',
       status: 'done',
     },
     {
-      phase: 'Pilot decision',
-      window: 'Awaiting Ana',
+      phase: 'Working-trial decision',
+      window: 'Review together',
       outcome:
-        'Confirm the team roles, approved source systems, copied rehearsal, and exact success measures for a bounded 30-day pilot.',
+        'Confirm ownership, approved source systems, a privacy-safe practice case, and the exact success measures for a focused 30-day trial.',
       status: 'in-progress',
     },
     {
-      phase: 'Copied rehearsal',
+      phase: 'Privacy-safe practice',
       window: 'Next',
       outcome:
         'Run a past case with private details removed, or a made-up practice case, before connecting master templates, live candidate data, or external sends.',
@@ -86,7 +86,7 @@ export const ana: PortalPartner = {
     },
     {
       quarter: 'Q2',
-      theme: 'Copied rehearsal and one live pilot',
+      theme: 'Practice case and one approved engagement',
       milestones: [
         'Complete the workflow on a practice case with no private details',
         'Guide one approved live engagement with all gates visible',
@@ -94,10 +94,10 @@ export const ana: PortalPartner = {
     },
     {
       quarter: 'Q3',
-      theme: 'Team workspace and learning library',
+      theme: 'Shared work view and reference library',
       milestones: [
-        'Keep only the procedures the team actually uses',
-        'Add approved templates, examples, and short training paths',
+        'Keep only the steps that earn their place in daily work',
+        'Organize approved templates and examples so they are easy to find and reuse',
       ],
     },
     {
@@ -114,7 +114,7 @@ export const ana: PortalPartner = {
     {
       kind: 'download',
       slug: 'ana-ai-business-kit',
-      why: 'The plain-language start page for the maintained HR Operations workflow and installation path.',
+      why: 'The team guide, client path, and optional technical setup for the maintained HR Operations workflow.',
     },
     {
       kind: 'blog',
@@ -132,26 +132,26 @@ export const ana: PortalPartner = {
     },
     {
       month: 3,
-      title: 'One proven path',
+      title: 'A better working rhythm',
       body:
-        'A copied rehearsal and controlled live engagement show where the system saves time and where Ana’s judgment must stay explicit.',
+        'A privacy-safe practice case and one controlled engagement show where the team gains time and where Ana’s judgment must stay explicit.',
     },
     {
       month: 6,
-      title: 'Team learning library',
+      title: 'Reusable team knowledge',
       body:
-        'Approved examples and templates help new team members learn the process without relying on Ana’s memory alone.',
+        'Approved examples and templates make the team’s best work easier to find, reuse, and improve together.',
     },
     {
       month: 12,
-      title: 'Optional client product',
+      title: 'Optional client experience',
       body:
-        'Only after the team is comfortable with the workflow, Ana can decide whether a shareable guide, client workspace, or paid Cecilia experience has earned the next build.',
+        'If clients benefit from the working trial, Ana can decide whether a shareable guide, client workspace, or Cecilia experience deserves further investment.',
     },
   ],
 
   sharedUpside: [
-    'Ana’s method becomes teachable without giving software control over hiring, pricing, invoices, or client communication.',
+    'Ana’s method becomes easier to run consistently without giving software control over hiring, pricing, invoices, or client communication.',
     'The team spends less time rebuilding the same documents and more time on research, candidate care, and client judgment.',
     'Frank can maintain the technical layer while Ana retains her name, method, client relationships, and approval authority.',
   ],
@@ -160,12 +160,12 @@ export const ana: PortalPartner = {
     {
       role: 'Ana — accountable lead',
       howFrankHelps:
-        'Makes every approval, blocker, and next action visible so Ana can lead by exception instead of reconstructing the process for each person.',
+        'Keeps the decisions Ana chooses to retain visible while ownership and routine work remain clear across the team.',
     },
     {
-      role: 'HR team — three colleagues',
+      role: 'HR team — delivery owners',
       howFrankHelps:
-        'Provides guided stages, approved templates, quality checks, and a learning path that does not require GitHub expertise.',
+        'Keeps stages, approved templates, quality checks, and pending decisions visible in plain language; GitHub is not part of the team’s daily work.',
     },
   ],
 
@@ -175,12 +175,6 @@ export const ana: PortalPartner = {
       label: 'Start Ana HR Operations',
       href: '/downloads/ana-ai-business-kit',
       rationale: 'The current install path, first prompt, and human-control boundaries.',
-    },
-    {
-      surface: 'ai-coe',
-      label: 'AI Center of Excellence',
-      href: '/ai-coe',
-      rationale: 'The broader governance pattern for team adoption, experiments, review, and reusable capability.',
     },
     {
       surface: 'research',
@@ -202,6 +196,6 @@ export const ana: PortalPartner = {
   seo: {
     title: 'Ana Team Workspace × FrankX',
     description:
-      "A private workspace preview for Ana's four-person HR team: shared stages, guided documents, private source boundaries, and explicit human approvals.",
+      "An unlisted workspace preview for Ana and her team: shared stages, clear ownership, private source boundaries, and explicit human approvals.",
   },
 }

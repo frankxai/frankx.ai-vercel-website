@@ -159,28 +159,28 @@ export const anaWorkflowStages: AnaWorkflowStage[] = [
 export const anaPilot = [
   {
     window: 'Week 1',
-    title: 'Map the real setup',
+    title: 'Align the working setup',
     detail:
-      'Confirm who owns each stage, which templates are approved, where private records belong, how the candidate tracker is used, and where prices come from.',
+      'Confirm who owns each stage, which templates are approved, where private records belong, how the candidate tracker is used, and which source governs pricing.',
   },
   {
     window: 'Week 2',
-    title: 'Rehearse on copies',
+    title: 'Practice without live data',
     detail:
       'Practice with a past case whose private details have been removed, or a made-up example. Do not edit a master document, contact a client, or use candidate data.',
     callout: 'No client contact · master templates stay untouched',
   },
   {
     window: 'Week 3',
-    title: 'Guide one live engagement',
+    title: 'Support one approved engagement',
     detail:
-      'Use approved data, stop at every gate, and watch where the team needs less complexity or better prompts.',
+      'Use approved data, pause at every decision, and note where ownership, handoffs, or the support layer should become clearer.',
   },
   {
     window: 'Week 4',
-    title: 'Keep only what helps',
+    title: 'Review the evidence',
     detail:
-      'Review time saved, quality, team adoption, and whether a private portal or Cecilia pilot is worth the next build.',
+      'Review time saved, quality, ease of use, and whether a shared workspace or Cecilia concept has earned further work.',
   },
 ] as const
 

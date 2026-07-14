@@ -44,10 +44,10 @@ const experienceLayers = [
     icon: CircleDollarSign,
   },
   {
-    status: 'Pilot recommended',
-    title: 'The private team workspace',
+    status: 'For discussion',
+    title: 'A shared team workspace',
     detail:
-      'A control board, guided HR procedures, research library, template index, approval queue, and shared learning for Ana’s team.',
+      'One calm view of active work, approved templates, research, pending decisions, and client-ready outputs for Ana’s team.',
     boundary:
       'Private sources stay in Drive, the approved ATS, finance systems, and other authorized tools.',
     icon: Users,
@@ -57,10 +57,10 @@ const experienceLayers = [
 const commercialModels = [
   {
     label: 'Option A',
-    title: 'Ana-owned product, shared operating upside',
+    title: 'Ana-owned product with an operating partnership',
     detail:
-      'Ana keeps the clear majority of net product revenue. Frank receives a smaller agreed share for product build, infrastructure, and ongoing operations.',
-    bestWhen: 'Both want a long-term partnership and Frank remains responsible for meaningful operations.',
+      'Ana retains ownership of her method, brand, and client relationships. Frank’s compensation matches the agreed build, infrastructure, and ongoing operating responsibility.',
+    bestWhen: 'Both want a long-term partnership with clearly divided ownership, work, and accountability.',
   },
   {
     label: 'Option B',
@@ -71,7 +71,7 @@ const commercialModels = [
   },
   {
     label: 'Option C',
-    title: 'Measured pilot before monetization',
+    title: 'Evidence before monetization',
     detail:
       'Prototype the experience with made-up example content, then test with a small invited group. No checkout until people use it and the support burden is understood.',
     bestWhen: 'The offer, brand, and client demand still need evidence.',
@@ -100,7 +100,7 @@ const responsePriorities = [
   { id: 'name-and-voice', label: 'Naming, voice, and identity options' },
   { id: 'free-guide', label: 'A free guide using approved information only' },
   { id: 'paid-client', label: 'Paid client-support experience' },
-  { id: 'team-workspace', label: 'Private workspace for the team of four' },
+  { id: 'team-workspace', label: 'Shared workspace for Ana’s team' },
   { id: 'commercial-model', label: 'Private commercial term sheet' },
   { id: 'privacy-legal', label: 'Privacy, ownership, and legal review checklist' },
 ]
@@ -119,10 +119,10 @@ export default function CeciliaAlliancePage() {
               Working name · Ana decides
             </div>
             <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
-              A gentler front door for Ana's expertise, if she wants it.
+              A client-facing companion for Ana's expertise—only if it earns a role.
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-8 text-ana-cream/70 md:text-xl">
-              Cecilia could become a name Ana's whole team can share and a useful guide clients can visit between human touchpoints. It could also remain only an idea. Ana chooses the name, promise, boundaries, economics, and whether anything is launched.
+              Cecilia is a working concept: a clear place where clients could prepare for conversations and find approved guidance between human touchpoints. It could sit beneath Ana's existing identity, become a shared team brand, or stop here. Ana chooses the name, promise, boundaries, economics, and whether anything moves forward.
             </p>
             <p className="mt-4 max-w-2xl border-l border-ana-gold/[0.35] pl-4 text-sm leading-6 text-ana-cream/[0.72]">
               Una propuesta, no una decisión tomada. La marca y la voz siguen siendo de Ana.
@@ -130,7 +130,7 @@ export default function CeciliaAlliancePage() {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <TrackedLink href="#experience" eventName="ana_cecilia_cta_open" eventProperties={{ destination: 'experience' }} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
-                See what it could become
+                Review the working concept
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </TrackedLink>
               <TrackedLink href={anaLinks.teamPlan} eventName="ana_cecilia_cta_open" eventProperties={{ destination: 'team_plan' }} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
@@ -157,7 +157,7 @@ export default function CeciliaAlliancePage() {
                 ['Next safe step', 'Prototype with made-up examples after Ana responds'],
               ].map(([label, value]) => (
                 <div key={label} className="grid gap-2 py-3.5 sm:grid-cols-[7rem_1fr]">
-                  <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-white/[0.38]">{label}</dt>
+                  <dt className="text-xs font-semibold tracking-[0.04em] text-white/[0.38]">{label}</dt>
                   <dd className="text-sm leading-6 text-ana-cream/[0.68]">{value}</dd>
                 </div>
               ))}
@@ -170,7 +170,7 @@ export default function CeciliaAlliancePage() {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">One name, three possible layers</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Start useful. Earn trust before asking for payment.</h2>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Start with a useful guide. Add paid support only when the value is clear.</h2>
             <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">Each layer has a different audience and level of responsibility. The free guide can use approved information only; client and team spaces need clear decisions about identity, access, privacy, and support.</p>
           </div>
 
@@ -201,16 +201,16 @@ export default function CeciliaAlliancePage() {
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Identity decision</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Cecilia can support Ana. It should never replace her without consent.</h2>
-            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">A shared name may help the other women on the team feel represented. It may also dilute Ana's existing reputation. The right answer comes from a short naming and voice workshop, not from a domain purchase.</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Brand architecture</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Cecilia should strengthen Ana's reputation, not compete with it.</h2>
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">Three routes are credible: a product beneath Ana’s name, a shared team identity, or no new identity yet. Compare them against client recognition, team use, and long-term strategy—there is no reason to choose a new brand simply because a domain exists.</p>
           </div>
 
           <div className="overflow-hidden rounded-[2.2rem] border border-white/10 bg-black/[0.18]">
             {[
               ['Ana Cecilia stays the brand', 'Cecilia becomes a product or companion name under Ana’s established identity.'],
               ['Cecilia becomes the team brand', 'Ana remains founder and visible expert while the team shares one company-facing identity.'],
-              ['No new identity yet', 'Pilot the workflow under Ana’s current name and revisit only after the team sees client demand.'],
+              ['No new identity yet', 'Use Ana’s current identity and revisit the question only if clients and the team find a shared product name genuinely useful.'],
             ].map(([title, detail], index) => (
               <article key={title} className={`grid gap-3 p-6 sm:grid-cols-[3rem_1fr] sm:p-7 ${index > 0 ? 'border-t border-white/10' : ''}`}>
                 <span className="font-mono text-xs text-ana-gold">0{index + 1}</span>
@@ -227,9 +227,9 @@ export default function CeciliaAlliancePage() {
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Commercial models to discuss privately</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Ana should keep most of the value created from her method.</h2>
-            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">Frank can earn a smaller share when he carries real build and operating responsibility. Exact percentages do not belong on a public review page; they belong in an approved agreement with a precise definition of net revenue.</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Ownership and economics</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Ana's method stays Ana's. Shared upside follows real responsibility.</h2>
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">Ana’s method, reputation, and client relationships are foundational. Any compensation for product build, infrastructure, or ongoing operations should be transparent, bounded, and agreed privately. Nothing here implies commercial approval.</p>
           </div>
 
           <div className="mt-10 divide-y divide-white/10 border-y border-white/10">
@@ -241,7 +241,7 @@ export default function CeciliaAlliancePage() {
                   <p className="mt-3 text-sm leading-6 text-ana-cream/[0.56]">{model.detail}</p>
                 </div>
                 <div className="rounded-[1.35rem] border border-white/[0.09] bg-white/[0.025] p-4">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/[0.38]">Best when</p>
+                  <p className="text-[11px] font-semibold tracking-[0.04em] text-white/[0.38]">Best when</p>
                   <p className="mt-2 text-sm leading-6 text-ana-cream/[0.62]">{model.bestWhen}</p>
                 </div>
               </article>
@@ -279,9 +279,9 @@ export default function CeciliaAlliancePage() {
         <div className="mx-auto max-w-5xl">
           <AnaProposalResponse
             proposalId="cecilia-brand-and-client-guide-v1"
-            eyebrow="Cecilia decision room"
-            title="Choose the direction before Frank builds it."
-            intro="This response tells Frank what to explore. A public name, domain launch, payment setup, client-data connection, revenue agreement, and use of Ana's identity all remain separate approvals."
+            eyebrow="Your review"
+            title="Choose what deserves a prototype."
+            intro="Your response guides the next conversation only. A public name, domain launch, payment setup, client-data connection, revenue agreement, and use of Ana's identity all remain separate approvals."
             decisions={responseDecisions}
             priorities={responsePriorities}
           />
@@ -292,7 +292,7 @@ export default function CeciliaAlliancePage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex max-w-2xl items-start gap-3">
             <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-ana-gold" aria-hidden="true" />
-            <p className="text-sm leading-6 text-ana-cream/50">Cecilia does not assess or select candidates, provide therapy or legal advice, make hiring decisions, or store client and candidate data on a public page. Those boundaries are part of the product, not footnotes.</p>
+            <p className="text-sm leading-6 text-ana-cream/50">Cecilia would not assess candidates, make hiring decisions, provide therapy or legal advice, or place client and candidate data on a public page. Those limits remain explicit in any future prototype.</p>
           </div>
           <a href={anaLinks.workWithMe} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">
             Ana's current work-with-me page

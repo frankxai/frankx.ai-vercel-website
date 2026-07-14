@@ -2,8 +2,8 @@
   "version": "2026-07-14",
   "task": "Replace the Ana friend and ally strategy-document pages with a decision-ready HR team experience, add a Cecilia proposal room, and align the Ana download and portal surfaces with the maintained HR Operations workflow.",
   "surface": "FrankX /friends/ana, /allies/ana-cancino, /alliance/cecilia, /downloads/ana-ai-business-kit, and /portal/ana.",
-  "audience": "Ana Cecilia Cancino, her four-person HR team, and Frank as the proposed build and operations partner.",
-  "first_read": "Ana already has the method; the system makes it teachable without giving AI the decisions.",
+  "audience": "Ana Cecilia Cancino and the experienced operators she chooses to include; Frank is a potential build and operations collaborator, subject to Ana's approval.",
+  "first_read": "Ana already has the method; the collaboration makes ownership and handoffs visible while accountable people retain the decisions.",
   "standards": [
     "design-agent-standards/OUTCOMES.md",
     "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
@@ -13,7 +13,9 @@
     "_intelligence/design.md",
     "_intelligence/motion.md",
     "WEB_EXPERIENCE_STANDARD.md",
-    "MOTION_TASTE_RUBRIC.md"
+    "MOTION_TASTE_RUBRIC.md",
+    "Brand Voice skill",
+    "Ana HR Operations skill"
   ],
   "references": [
     {
@@ -48,9 +50,9 @@
     "signature": "A keyboard-accessible stage explorer for Ana's exact HR workflow, paired with a consented proposal response.",
     "system": [
       "Tier C code-rendered workflow truth",
-      "Status vocabulary that separates available, pilot, proposal, and decision states",
+      "Status vocabulary that separates live, pilot, proposal, decision, and hold states",
       "Native responsive composition and a complete reduced-motion state",
-      "Existing FrankX intake route for notification and durable response handling"
+      "Consent-gated response handling; no external action without a named human approval"
     ]
   },
   "asset_quality": {
@@ -74,9 +76,9 @@
     },
     {
       "kind": "Vercel preview",
-      "path_or_url": "dpl_7erkLQBNyx1iwAHV5K6j3C1EDkJF",
-      "inspected": true,
-      "notes": "The friend, team-plan, download, portal, and Cecilia routes were inspected at 1440x900 and 390x844 with reduced motion enabled."
+      "path_or_url": "pending after the PR update",
+      "inspected": false,
+      "notes": "The current Ana copy and Tallinn review-mode changes require a fresh deployment inspection; an earlier preview is not treated as evidence for this revision."
     }
   ],
   "checks": [
@@ -98,12 +100,12 @@
     {
       "name": "scoped-code-validation",
       "status": "pass",
-      "evidence": "All 19 Ana and Tallinn release contracts pass, together with the full merge gate, TypeScript, production build, and scoped whitespace checks."
+      "evidence": "All 24 Ana release contracts and all 15 Tallinn contracts pass, together with TypeScript, the CI-mode production build, and scoped whitespace checks."
     },
     {
       "name": "ana-copy-audit",
       "status": "pass",
-      "evidence": "Ana-facing files contain none of the obsolete Freedom Engine, agent-pack, ACOS, passive-income, public-safe, synthetic, or autonomous-recruiter language."
+      "evidence": "Recipient-facing application files contain none of the obsolete product language or internal implementation shorthand identified in the copy review."
     },
     {
       "name": "local-build",
@@ -112,21 +114,21 @@
     },
     {
       "name": "export-inspection",
-      "status": "pass",
-      "evidence": "Actual Vercel exports were inspected for every Ana-facing route at desktop and mobile breakpoints; the intended warm-technical hierarchy remains coherent throughout."
+      "status": "pending",
+      "evidence": "A fresh Vercel preview will be inspected after the coherent branch update is pushed."
     },
     {
       "name": "visual-qa",
-      "status": "pass",
-      "evidence": "No horizontal overflow or broken images were found. Workflow tabs and proposal radios were exercised by keyboard after hydration, and reduced-motion rendering is complete."
+      "status": "pending",
+      "evidence": "Desktop and mobile visual QA, keyboard interaction, reduced-motion behavior, and review-mode form absence remain release gates on the new preview."
     }
   ],
   "score": {
-    "total": 28,
+    "total": 24,
     "max": 30,
-    "notes": "The verified copy, exact workflow asset, restrained hierarchy, desktop/mobile composition, keyboard behavior, privacy boundary, production build, and live preview all meet the ship gate."
+    "notes": "Copy, workflow proof, privacy boundaries, contract tests, TypeScript, and the production build are verified. The score remains in review until the fresh preview passes desktop, mobile, accessibility, and reduced-motion inspection."
   },
-  "decision": "ship",
+  "decision": "preview-ready",
   "known_risks": [
     "No approved Ana portrait is available, so the hero uses verified workflow proof.",
     "The current Ana site contains biography language that needs Ana verification in a separate repository session.",

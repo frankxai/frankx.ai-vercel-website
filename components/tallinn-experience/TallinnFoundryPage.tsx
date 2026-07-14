@@ -28,83 +28,83 @@ interface TallinnFoundryPageProps {
 }
 
 const systemStages = [
-  { index: '01', label: 'Human', note: 'meaning + judgment' },
-  { index: '02', label: 'Practice', note: 'one useful artifact' },
-  { index: '03', label: 'System', note: 'repeatable boundaries' },
-  { index: '04', label: 'Team', note: 'roles + review' },
+  { index: '01', label: 'What matters', note: 'meaning + judgment' },
+  { index: '02', label: 'Practical result', note: 'one useful plan' },
+  { index: '03', label: 'Weekly rhythm', note: 'repeatable limits' },
+  { index: '04', label: 'Team use', note: 'roles + decisions' },
 ] as const
 
 const sourceRail = [
   {
     label: 'Ikigai & Personal Branding',
     href: '/workshops/ikigai-branding',
-    note: 'Purpose and positioning scaffold',
+    note: 'Purpose and positioning exercises',
   },
   {
     label: 'Research',
     href: '/research',
-    note: 'Source-aware synthesis',
+    note: 'Evidence and reading behind the sessions',
   },
   {
     label: 'Library',
     href: '/library',
-    note: 'Books, models, and field notes',
+    note: 'Books and field notes',
   },
   {
     label: 'Agentic Builder Lab',
     href: '/agentic-builder-lab',
-    note: 'Working agent architecture',
+    note: 'Examples of practical AI workflows',
   },
 ] as const
 
 const collaborationModes = [
   {
-    mode: 'Producer',
-    title: 'Ana stays offstage',
-    body: 'Venue, flow, participant care, and logistics. Frank facilitates. This is the default until Ana asks for a public lane.',
+    mode: 'No role assumed',
+    title: 'Ana decides whether to participate',
+    body: 'Frank facilitates and remains responsible for the session. Ana has no operational or public role unless she explicitly accepts one.',
   },
   {
-    mode: 'Contributor',
-    title: 'One bounded people lens',
-    body: 'Ana approves a short prompt, role-clarity review, or closing reflection. Her exact wording, credit, and reuse rights are agreed first.',
+    mode: 'Optional contribution',
+    title: 'One clearly agreed contribution',
+    body: 'Ana may approve a short reflection or role-clarity exercise. Her scope, wording, credit, fee, and reuse rights are agreed first.',
   },
   {
-    mode: 'Co-creator',
-    title: 'A genuinely joint format',
-    body: 'A people + agent team workshop with shared design, delivery, commercial terms, and a written line between individual and joint IP.',
+    mode: 'Co-created session',
+    title: 'A session designed and delivered together',
+    body: 'Ana and Frank may co-create a people-and-AI workshop only after roles, fees, credit, ownership, reuse rights, and cancellation terms are agreed in writing.',
   },
 ] as const
 
 const demandSteps = [
   {
     n: '01',
-    title: 'Collect intent',
-    body: 'People choose an outcome, format, and compatible time. This is interest—not a ticket.',
+    title: 'Collect interest',
+    body: 'People choose a session and every provisional time they could attend. This is not registration.',
   },
   {
     n: '02',
-    title: 'Reconfirm one room',
-    body: `Choose the strongest format and ask likely attendees to reconfirm one time. Target ${TALLINN_VALIDATION_GATE.minimumConfirmed} confirmed + ${TALLINN_VALIDATION_GATE.standbyTarget} standby.`,
+    title: 'Confirm one session and time',
+    body: `Choose the strongest option, then ask likely attendees to confirm once more. Proceed only with ${TALLINN_VALIDATION_GATE.minimumConfirmed} confirmed and ${TALLINN_VALIDATION_GATE.standbyTarget} on standby.`,
   },
   {
     n: '03',
-    title: 'Price the venue',
-    body: `Request a resident room-only quote first. Frank reviews any spend; the working room-only ceiling is €${TALLINN_VALIDATION_GATE.roomOnlyCapEur}.`,
+    title: 'Get a written venue quote',
+    body: `Ask for a two-hour room-only quote. Frank must approve any spend; the budget cap is €${TALLINN_VALIDATION_GATE.roomOnlyCapEur} unless he explicitly changes it.`,
   },
   {
     n: '04',
-    title: 'Confirm or release',
-    body: `At ${TALLINN_VALIDATION_GATE.decisionWindow}, confirm the room and logistics—or release the idea cleanly.`,
+    title: 'Make the go or no-go decision',
+    body: `At ${TALLINN_VALIDATION_GATE.decisionWindow}, confirm the venue and participant details—or cancel the proposal and notify everyone.`,
   },
 ] as const
 
 const aftercare = [
-  { when: 'Immediately', what: 'Interest receipt; no ticket or venue promise.' },
-  { when: 'After the gate', what: 'One reconfirmation request for the chosen format and time.' },
-  { when: 'T−24 hours', what: 'Room, access, what to bring, and confidentiality boundary.' },
-  { when: 'Same day', what: 'The participant’s artifact, template, and sources.' },
+  { when: 'Immediately', what: 'Interest received; no ticket or venue promise.' },
+  { when: 'After review', what: 'One confirmation request for the selected session and time.' },
+  { when: 'T−24 hours', what: 'Final venue address, access, what to bring, and privacy expectations.' },
+  { when: 'Same day', what: 'The participant’s completed worksheet, materials, and source list.' },
   { when: '+48 hours', what: 'One implementation prompt, only if requested.' },
-  { when: 'Day 7', what: 'A practice check, only with separate aftercare consent.' },
+  { when: 'Day 7', what: 'One session-related check-in, only with separate consent.' },
 ] as const
 
 function SystemMap() {
@@ -143,13 +143,13 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
           <div className="grid gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
-                Tallinn · {TALLINN_EVENT.window} · independent field lab
+                Tallinn · {TALLINN_EVENT.window} · independent working sessions
               </p>
               <h1 className="mt-7 max-w-4xl font-display text-5xl font-semibold leading-[0.94] tracking-[-0.055em] text-white sm:text-7xl lg:text-[5.65rem]">
-                Leave Tallinn with one thing running.
+                Leave Tallinn with one clear plan you can use the next morning.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Small, artifact-led working rooms for purpose, creator practice, and human + agent teams. Ninety minutes. Eight to twelve people. No stage required.
+                Small, practical 90-minute sessions for purpose, creative work, and responsible AI use in teams. Eight to twelve people. Everyone leaves with a completed plan, worksheet, or team agreement.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <TrackedLink
@@ -158,7 +158,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                   eventProperties={{ destination: 'formats' }}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
-                  Find your format
+                  Find the right session
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </TrackedLink>
                 <TrackedLink
@@ -167,19 +167,19 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                   eventProperties={{ destination: 'interest_form' }}
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/[0.15] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/[0.35] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  Test demand first
+                  See current status
                 </TrackedLink>
               </div>
             </div>
 
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                The artifact system
+                How each session works
               </p>
               <SystemMap />
               <div className="mt-5 flex items-start gap-3 text-sm leading-6 text-slate-400">
                 <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" aria-hidden="true" />
-                <p>Venue not booked. Interest comes first. Frank leads; Ana chooses her visibility and contribution.</p>
+                <p>Nothing is booked yet. Frank leads; Ana chooses whether and how she contributes.</p>
               </div>
             </div>
           </div>
@@ -205,12 +205,12 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Five to review first</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Recommended shortlist</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                One family. Five distinct doors.
+                Five session ideas to review with Ana.
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-400">
-                These are the strongest formats to discuss with Ana. The first is the recommended pilot; the fifth quietly tests whether a deeper retreat deserves to exist.
+                Purpose to Practice is the recommended first pilot. The other four serve creators, solo founders, teams, and founders who want a quieter integration session. The fifth becomes a retreat format only if Ana and participants want to explore it.
               </p>
             </div>
 
@@ -242,7 +242,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                     aria-label={`Review ${experience.title}`}
                     className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-cyan-300 underline decoration-cyan-300/25 underline-offset-4 hover:decoration-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                   >
-                    Review
+                    See details
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </TrackedLink>
                 </article>
@@ -252,9 +252,9 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
 
           <div className="mt-20 grid gap-8 border-t border-white/10 pt-10 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Second-wave tests</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Additional ideas—not proposed for the first pilot</p>
               <p className="mt-3 max-w-sm text-sm leading-6 text-slate-400">
-                Five sharper message and market variants. Build only after the first demand signals tell us where to lean.
+                Keep these five on hold until the first session is reviewed. Do not announce or build them yet.
               </p>
             </div>
             <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
@@ -280,9 +280,9 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
       <section className="surface-1 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Built from work that already exists</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Existing workshops and research</p>
             <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-              No theatre. Inspectable source material.
+              Review the material behind this proposal.
             </h2>
           </div>
           <div className="mt-12 grid gap-px overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -307,10 +307,10 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">Frank + Ana</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Collaboration without forced visibility.
+                Ana chooses her role before anything is announced.
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-400">
-                Ana does not need the spotlight to have real authorship. The role expands only with her consent, clear scope, and fair commercial terms.
+                Ana may contribute behind the scenes or publicly. Her role expands only with her explicit approval, a clear scope, agreed credit, and fair commercial terms.
               </p>
             </div>
             <div className="divide-y divide-white/10 border-y border-white/10">
@@ -326,7 +326,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             </div>
           </div>
           <div className="mt-10 rounded-2xl border border-amber-300/20 bg-amber-300/[0.045] p-5 text-sm leading-6 text-amber-50/90">
-            Public claims stay deliberately narrow: no therapy, IFS, neuroscience, psychology, certification, or health-outcome claims unless Ana supplies and approves the exact evidence and wording.
+            No public health, therapy, psychology, neuroscience, certification, or outcome claim will be made in Ana’s name unless she provides and approves the exact evidence and wording.
           </div>
         </div>
       </section>
@@ -337,13 +337,13 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
-                Tallink candidate
+                Possible venue
               </div>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Validate the room before buying the room.
+                No venue booking before participant confirmation.
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-400">
-                Tallink Spa & Conference Hotel is convenient because Frank is already staying there. It is still only a venue candidate; hotel residence does not establish free meeting-room access.
+                Tallink Spa & Conference Hotel is being considered because Frank is staying there. No meeting room is included or reserved.
               </p>
               <a
                 href="https://hotels.tallink.com/events/tallink-spa-conference-hotel-conference-center"
@@ -351,12 +351,9 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                 rel="noreferrer"
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white underline decoration-white/25 underline-offset-4 hover:decoration-white"
               >
-                View Tallink’s published conference offer
+                View Tallink’s conference information
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
               </a>
-              <p className="mt-5 text-xs leading-5 text-slate-500">
-                Published weekday package baseline: 10-person minimum, €43 per person for half day. Ask separately for a two-hour room-only resident quote or courtesy hold; do not assume it exists.
-              </p>
             </div>
           <ol className="grid gap-px overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/10 sm:grid-cols-2">
               {demandSteps.map((step) => (
@@ -372,7 +369,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             <div className="surface-2 mt-12 rounded-[1.75rem] border border-white/[0.08] p-6 sm:p-8">
             <div className="flex items-center gap-2 text-sm font-semibold text-white">
               <CalendarClock className="h-5 w-5 text-cyan-300" aria-hidden="true" />
-              Windows to test—not promises
+              Possible times—not confirmed
             </div>
             <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {TALLINN_TIME_WINDOWS.map((slot) => (
@@ -389,12 +386,12 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Care after the room</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Optional follow-up</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                The workshop is a beginning with boundaries.
+                Participants choose what follow-up they receive.
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-400">
-                Follow-through is session-specific, consent-based, and designed to help the artifact survive the trip home—not to smuggle people into a marketing list.
+                Follow-up is limited to the session and sent only with consent. No participant is added to a newsletter or unrelated marketing.
               </p>
             </div>
             <div className="divide-y divide-white/10 border-y border-white/10">
@@ -416,19 +413,19 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             <div className="lg:sticky lg:top-28">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
                 <Users className="h-4 w-4" aria-hidden="true" />
-                Demand signal
+                Share your interest
               </div>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Request the room you would actually attend.
+                Which session would you attend?
               </h2>
               <p className="mt-5 max-w-md text-base leading-7 text-slate-400">
-                Choose honestly. The venue decision is made only from reconfirmed, time-compatible demand.
+                Choose a session and every provisional time that could work. We will contact you only if the minimum group can attend the same time.
               </p>
               <ul className="mt-8 space-y-3 text-sm text-slate-300">
                 {[
                   'No payment or ticket at this stage',
                   'No venue is currently booked',
-                  'No newsletter consent bundled in',
+                  'No newsletter or unrelated marketing',
                   'No sensitive health or employment details',
                 ].map((item) => (
                   <li key={item} className="flex gap-3">
@@ -452,7 +449,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
       <footer className="border-t border-white/[0.08] bg-[#0a0a0b]">
         <div className="mx-auto max-w-7xl px-5 py-10 text-xs leading-5 text-slate-500 sm:px-8 lg:px-10">
           <p>{TALLINN_EVENT.independenceNotice}</p>
-          <p className="mt-2">Concept preview · venue, schedule, host roles, capacity, and live capture remain unconfirmed.</p>
+          <p className="mt-2">Concept review only. No venue, time, host role, capacity, or interest collection is confirmed.</p>
         </div>
       </footer>
     </main>

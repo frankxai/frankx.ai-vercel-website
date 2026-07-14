@@ -1,67 +1,67 @@
-# Tallinn Experience Foundry — page and scene brief
+# Tallinn Working Sessions — page and scene brief
 
 Date: 2026-07-14
 
-Status: implementation brief for private review
-Owner: Codex FrankX Tallinn Experience Foundry lane
+Status: internal implementation brief — not partner or attendee copy
+Owner: Codex FrankX Tallinn production lane
 
 ## Problem and audience
 
-Frank has six days before Mindvalley U begins in Tallinn. He needs one credible way to test demand for a small independent workshop without implying an official Mindvalley relationship, booking a room before demand exists, or asking Ana to become a public facilitator before she chooses that role.
+Frank has six days before Mindvalley U begins in Tallinn. He needs one credible way to check interest in a small independent workshop without implying an official Mindvalley relationship, booking a room before enough people confirm, or assigning Ana any role before she accepts it.
 
-The first audience is a warm, high-intent group of creators, solo founders, team leaders, and people leaders who will already be in Tallinn. They do not need another talk. They need a compact working room and a useful artifact they can carry into the rest of the event.
+The first audience is a warm group of creators, solo founders, team leaders, and people leaders who will already be in Tallinn. They do not need another talk. They need a compact working session and a useful plan, worksheet, or team agreement they can use after the event.
 
 ## Product decision
 
-Build one Experience Foundry with:
+Build one Tallinn Working Sessions review experience with:
 
 - one hub at `/experiences/tallinn-2026`;
 - ten data-driven offer pages at `/experiences/tallinn-2026/[slug]`;
 - five offers marked for Frank + Ana review on 2026-07-15;
-- one shared interest and qualification form;
-- one transparent validation rule: eight compatible confirmations before any room commitment;
+- one shared interest form that remains hidden until privacy requirements and personal-data collection are explicitly approved;
+- one transparent validation rule: eight compatible confirmations and two people on standby before any venue review;
 - no checkout, room booking, email campaign, public counter, or automated follow-up in this release.
 
-All pages remain `noindex` until Frank and Ana approve the offer, roles, claims, timing, and venue.
+All pages remain `noindex` until Frank approves the offer, claims, timing, and venue. Any wording or role that names Ana also requires her explicit approval.
 
 ## First viewport
 
-Eyebrow: `Tallinn · 20 July–2 August 2026 · independent field lab`
+Eyebrow: `Tallinn · 20 July–2 August 2026 · independent working sessions`
 
-Headline: `Leave Tallinn with one thing running.`
+Headline: `Leave Tallinn with one clear plan you can use the next morning.`
 
 Deck: a small-room working-session promise, not a conference or inspiration claim.
 
-Primary action: `Find your format`, anchored to the outcome router.
-Trust line: venue not booked; interest first; independent of Mindvalley.
+Primary action: `Find the right session`, anchored to the session chooser.
+Trust line: nothing is booked; Frank leads; Ana chooses whether and how she contributes; independent of Mindvalley.
 
-The right side is a Tier C exact product surface: a four-stage operating map labelled `human → practice → system → team`. It is not a fake dashboard. Selecting a visitor context changes the recommended session, the artifact made in the room, and the proof route they can inspect now.
+The right side is a Tier C exact product surface: a four-stage map labelled `what matters → practical result → weekly rhythm → team use`. It is not a fake dashboard. Selecting a visitor context changes the recommended session, the take-home made in the session, and the existing material they can review now.
 
 ## Signature interaction
 
-The outcome router has five explicit contexts:
+The session chooser has five explicit contexts:
 
 1. creator;
 2. solo founder;
 3. team lead;
 4. people / HR leader;
-5. integration-minded participant.
+5. reflective professional.
 
 The control uses real button semantics, visible focus, and a static first recommendation in server-rendered HTML. Motion is limited to color and border transitions. With reduced motion, nothing animates and no information is lost.
 
 ## Page rhythm
 
-1. Independent field-lab hero and real operating map.
-2. Experience Compass.
+1. Independent working-session hero and practical map.
+2. Session chooser.
 3. Five review-first sessions as an editorial numbered sequence.
-4. The remaining five validation pages as a compact offer index, not a card wall.
-5. Frank / Ana role architecture: Frank leads; Ana can choose producer, host, contributor, or observer without a spotlight obligation.
-6. Demand-to-room gate: interest → compatible confirmations → human venue approval → confirmed session.
+4. The remaining five ideas as a compact review index, clearly not proposed for the first pilot.
+5. Frank / Ana role boundary: Frank leads; Ana has no role by default and may choose planning support, one agreed contribution, co-creation, or no participation.
+6. Interest-to-venue decision: interest → compatible confirmations → human venue approval → confirmed session.
 7. Tallink-first venue logic and explicit unconfirmed status.
-8. Shared request form and privacy boundary.
+8. Explicit no-store/no-send status while collection is disabled; shared interest form only after privacy approval.
 9. Independent-event disclaimer and source links.
 
-Each offer page repeats only what is needed to decide: promise, who it is for, 90-minute arc, artifact, proof already live, collaborator invitation, venue gate, and request form.
+Each offer page repeats only what is needed to decide: promise, who it is for, 90-minute plan, take-home, existing material, host boundary, current venue status, and either the disabled-collection notice or approved interest form.
 
 ## Visual system
 

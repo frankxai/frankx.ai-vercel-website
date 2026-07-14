@@ -134,14 +134,14 @@ export function AnaTeamWorkflow() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">
-              One client, one clear path
+              One client journey, clearly shared
             </p>
             <h2 id="ana-workflow-title" className="mt-2 text-2xl font-semibold tracking-tight text-ana-cream sm:text-3xl">
-              Explore Ana's real operating sequence
+              Review the path your team already runs
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-6 text-ana-cream/[0.55]">
-            Select any stage to see what the team prepares, what AI may do, and where human approval remains required.
+            Select a stage to see who owns the work, how AI can support preparation, and which decision stays human.
           </p>
         </div>
       </div>
@@ -156,7 +156,7 @@ export function AnaTeamWorkflow() {
               className="flex-1"
             />
             <span className="hidden text-xs leading-5 text-emerald-100/[0.55] sm:block">
-              Always on
+              Current view
             </span>
           </div>
 
@@ -240,7 +240,7 @@ export function AnaTeamWorkflow() {
               Stage {active.number}
             </span>
             <span className="rounded-full border border-emerald-300/20 bg-emerald-300/[0.07] px-3 py-1 text-[11px] font-semibold text-emerald-100/80">
-              Available in v1
+              Prepared for review
             </span>
           </div>
           <h3 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-ana-cream">
@@ -250,10 +250,10 @@ export function AnaTeamWorkflow() {
 
           <dl className="mt-7 grid gap-3">
             {[
-              ['Team prepares', active.teamRole],
-              ['AI may help', active.aiRole],
-              ['Approval required', active.approval],
-              ['Stage output', active.output],
+              ['Team owns', active.teamRole],
+              ['AI supports', active.aiRole],
+              ['Decision owner', active.approval],
+              ['Ready output', active.output],
             ].map(([label, value]) => (
               <div key={label} className="rounded-[1.35rem] border border-white/[0.09] bg-black/20 p-4">
                 <dt className="flex items-center gap-2 text-xs font-semibold tracking-[0.06em] text-ana-gold">

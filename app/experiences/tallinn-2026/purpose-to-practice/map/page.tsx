@@ -3,8 +3,8 @@ import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Human + AI Practice Map — Purpose to Practice',
-  description: 'The print-ready working artifact for the independent Purpose to Practice session in Tallinn.',
+  title: 'Purpose-to-Practice Plan — Printable worksheet',
+  description: 'The print-ready two-page worksheet for the independent Purpose to Practice session in Tallinn.',
   path: '/experiences/tallinn-2026/purpose-to-practice/map',
   noindex: true,
 })
@@ -13,7 +13,7 @@ const signals = [
   {
     number: '01',
     title: 'Everyday meaning',
-    prompt: 'What people, activities, moments, or responsibilities bring value and aliveness now?',
+    prompt: 'Which people, activities, moments, or responsibilities feel meaningful or energising now?',
   },
   {
     number: '02',
@@ -23,19 +23,19 @@ const signals = [
   {
     number: '03',
     title: 'Useful contribution',
-    prompt: 'Whose real situation could become meaningfully better through your contribution?',
+    prompt: 'Who could benefit from what you know or do?',
   },
   {
     number: '04',
     title: 'This season',
-    prompt: 'What must the next practice respect: energy, money, care, time, or attention?',
+    prompt: 'What limits must this practice respect—energy, money, care, time, or attention?',
   },
 ] as const
 
 const roles = [
-  { n: 'A1', role: 'Research steward', output: 'Evidence, sources, open questions' },
-  { n: 'A2', role: 'Making partner', output: 'Draft, plan, prototype, or synthesis' },
-  { n: 'A3', role: 'Verifier', output: 'Checks, gaps, risks, and stop signal' },
+  { n: 'A1', role: 'Research helper', output: 'Relevant sources and open questions' },
+  { n: 'A2', role: 'Drafting helper', output: 'First draft, plan, or summary' },
+  { n: 'A3', role: 'Quality checker', output: 'Gaps, risks, and reasons to stop' },
 ] as const
 
 function WritingLines({ count = 3 }: { count?: number }) {
@@ -76,8 +76,8 @@ export default function HumanAiPracticeMapPage() {
         <header className="flex items-start justify-between gap-6 border-b border-slate-300 pb-6">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Purpose to Practice · working map 01/02</p>
-            <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em]">Human signal</h1>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">Start from lived evidence. The four areas are a modern reflection scaffold, not a test and not the full meaning of ikigai.</p>
+            <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em]">What matters now</h1>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">Start with real moments from your life. These questions support reflection; they are not a test or a complete definition of ikigai.</p>
           </div>
           <div className="min-w-36 text-xs leading-6 text-slate-500">
             <p>Name __________________</p>
@@ -112,16 +112,16 @@ export default function HumanAiPracticeMapPage() {
         </div>
 
         <footer className="mt-6 flex items-center justify-between border-t border-slate-300 pt-4 text-[9px] leading-4 text-slate-500">
-          <p>Independent Tallinn working session · no Mindvalley affiliation or endorsement</p>
-          <p>FrankX · participant-owned artifact</p>
+          <p>Independent session; not organized, sponsored, or endorsed by Mindvalley.</p>
+          <p>FrankX · this worksheet belongs to the participant</p>
         </footer>
       </section>
 
       <section className="worksheet-sheet mx-auto mt-8 min-h-[277mm] max-w-[210mm] bg-white p-7 text-slate-950 shadow-[0_24px_90px_rgba(0,0,0,0.45)] sm:p-10 print:mt-0 print:min-h-[277mm] print:p-6">
         <header className="border-b border-slate-300 pb-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-700">Purpose to Practice · working map 02/02</p>
-          <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em]">Practice → system → experiment</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">AI can help prepare, make, and verify. Meaning, consent, consequential judgment, and the final commitment stay human.</p>
+          <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em]">Your weekly practice and 30-day trial</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">AI may help you research, draft, and check. You keep responsibility for meaning, consent, important decisions, and the final commitment.</p>
         </header>
 
         <div className="mt-7 grid gap-5 sm:grid-cols-[0.9fr_1.1fr] print:grid-cols-[0.9fr_1.1fr]">
@@ -152,7 +152,7 @@ export default function HumanAiPracticeMapPage() {
           </section>
 
           <section className="border border-slate-300 p-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-700">Three light agent roles</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-700">Three ways AI may help</p>
             <div className="mt-5 divide-y divide-slate-300 border-y border-slate-300">
               {roles.map((role) => (
                 <div key={role.n} className="grid grid-cols-[2.2rem_1fr] gap-3 py-3 text-xs">
@@ -166,7 +166,7 @@ export default function HumanAiPracticeMapPage() {
               ))}
             </div>
             <div className="mt-5">
-              <p className="text-xs font-bold">Shared sources they may use</p>
+              <p className="text-xs font-bold">Sources the AI may use</p>
               <WritingLines count={2} />
             </div>
           </section>
@@ -175,12 +175,12 @@ export default function HumanAiPracticeMapPage() {
         <div className="mt-5 grid gap-5 sm:grid-cols-2 print:grid-cols-2">
           <section className="border-2 border-slate-900 p-5">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700">Human-only decisions</p>
-            <p className="mt-2 text-xs leading-5 text-slate-500">What may no agent publish, promise, spend, send, or decide without you?</p>
+            <p className="mt-2 text-xs leading-5 text-slate-500">What may no AI tool publish, promise, spend, send, or decide without you?</p>
             <WritingLines count={3} />
           </section>
           <section className="border-2 border-slate-900 p-5">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700">Stop conditions</p>
-            <p className="mt-2 text-xs leading-5 text-slate-500">Which uncertainty, privacy, quality, or impact signal returns the work to a human?</p>
+            <p className="mt-2 text-xs leading-5 text-slate-500">When must the AI stop and hand the work back to you?</p>
             <WritingLines count={3} />
           </section>
         </div>
@@ -188,7 +188,7 @@ export default function HumanAiPracticeMapPage() {
         <section className="mt-5 bg-slate-950 p-6 text-white print:bg-slate-950 print:text-white">
           <div className="flex items-center justify-between gap-5">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-300">30-day experiment</p>
-            <p className="text-[10px] text-slate-400">Small · reversible · dated · inspectable</p>
+            <p className="text-[10px] text-slate-400">Small · reversible · dated · easy to review</p>
           </div>
           <div className="mt-5 grid gap-5 text-xs sm:grid-cols-2 print:grid-cols-2">
             <div>
@@ -196,7 +196,7 @@ export default function HumanAiPracticeMapPage() {
               <div className="mt-4 h-px bg-white/50" />
             </div>
             <div>
-              <p className="text-slate-400">Smallest useful proof</p>
+              <p className="text-slate-400">What progress would count?</p>
               <div className="mt-4 h-px bg-white/50" />
             </div>
             <div>
@@ -211,8 +211,8 @@ export default function HumanAiPracticeMapPage() {
         </section>
 
         <footer className="mt-6 flex items-center justify-between border-t border-slate-300 pt-4 text-[9px] leading-4 text-slate-500">
-          <p>This is an educational reflection and operating artifact—not therapy, medical, legal, or employment advice.</p>
-          <p>Human + AI Practice Map · v0.1</p>
+          <p>This is an educational reflection worksheet—not therapy, medical, legal, or employment advice.</p>
+          <p>Purpose-to-Practice Plan · v0.1</p>
         </footer>
       </section>
     </main>

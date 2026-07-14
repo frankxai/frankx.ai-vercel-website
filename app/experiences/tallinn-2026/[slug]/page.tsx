@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: TallinnOfferRouteProps): Prom
 
   if (!experience) {
     return createMetadata({
-      title: 'Tallinn working session',
-      description: 'Private concept preview.',
+      title: 'Tallinn session under review',
+      description: 'Unlisted review page. This session is not open for booking.',
       path: `/experiences/tallinn-2026/${slug}`,
       noindex: true,
     })
@@ -40,7 +40,8 @@ export default async function TallinnOfferRoute({ params }: TallinnOfferRoutePro
 
   const captureEnabled =
     process.env.VERCEL_ENV === 'production' &&
-    process.env.TALLINN_CAPTURE_MODE === 'live'
+    process.env.TALLINN_CAPTURE_MODE === 'live' &&
+    process.env.TALLINN_PRIVACY_NOTICE_APPROVED === 'true'
 
   return <TallinnOfferPage experience={experience} captureEnabled={captureEnabled} />
 }

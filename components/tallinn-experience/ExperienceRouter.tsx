@@ -29,10 +29,10 @@ interface ExperienceRouterProps {
 }
 
 const pathStages = [
-  { label: 'Human signal', note: 'What matters and what stays human' },
-  { label: 'Practice', note: 'A decision or artifact you can use' },
-  { label: 'System', note: 'A repeatable workflow with boundaries' },
-  { label: 'Team', note: 'Roles, knowledge, escalation, review' },
+  { label: 'What matters now', note: 'What matters and what stays yours' },
+  { label: 'Your practice', note: 'Create a decision or plan you can use' },
+  { label: 'Weekly rhythm', note: 'Set a repeatable way of working, with clear limits' },
+  { label: 'Team use', note: 'Agree who does what and who decides' },
 ] as const
 
 const activeStage: Record<TallinnOutcome, number> = {
@@ -77,13 +77,13 @@ export function ExperienceRouter({ experiences }: ExperienceRouterProps) {
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
         <div className="max-w-3xl">
           <p className="text-xs font-semibold tracking-[0.2em] text-cyan-300">
-            Outcome router
+            Choose a session
           </p>
           <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-            Find the room that matches the work.
+            Find the session that fits what you need now.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            Two choices. One recommendation. Every format ends in an inspectable artifact.
+            Choose who you are attending as and what you want to take home. We will show two practical options.
           </p>
         </div>
 
@@ -142,7 +142,7 @@ export function ExperienceRouter({ experiences }: ExperienceRouterProps) {
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
             <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-cyan-300">
               <Route className="h-4 w-4" aria-hidden="true" />
-              Recommended working room
+              Best match for you
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-4">
@@ -172,13 +172,13 @@ export function ExperienceRouter({ experiences }: ExperienceRouterProps) {
                 <p className="mt-3 text-base leading-7 text-slate-300">{primary.promise}</p>
                 <dl className="mt-6 grid gap-4 sm:grid-cols-2">
                   <div>
-                    <dt className="text-xs font-semibold tracking-[0.14em] text-slate-500">You make</dt>
+                    <dt className="text-xs font-semibold tracking-[0.14em] text-slate-500">You leave with</dt>
                     <dd className="mt-1 text-sm text-white">{primary.artifact}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-semibold tracking-[0.14em] text-slate-500">Host shape</dt>
+                    <dt className="text-xs font-semibold tracking-[0.14em] text-slate-500">Hosting</dt>
                     <dd className="mt-1 text-sm leading-6 text-slate-300">
-                      Frank leads. Ana’s lane is invitation-only and hers to choose.
+                      Frank leads. Ana joins or co-hosts only if she chooses and approves the format.
                     </dd>
                   </div>
                 </dl>
@@ -186,7 +186,7 @@ export function ExperienceRouter({ experiences }: ExperienceRouterProps) {
                   href={`/experiences/tallinn-2026/${primary.slug}`}
                   className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]"
                 >
-                  Review this format
+                  See this session
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 {alternative ? (

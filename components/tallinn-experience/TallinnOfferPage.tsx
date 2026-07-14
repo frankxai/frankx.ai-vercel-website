@@ -64,7 +64,7 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
             className="inline-flex min-h-11 items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Tallinn Experience Foundry
+            Tallinn Working Sessions
           </Link>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
@@ -86,7 +86,7 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
                   eventProperties={{ experience_slug: experience.slug, destination: 'interest_form' }}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
-                  Test this format
+                  Share your interest
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </TrackedLink>
                 <TrackedLink
@@ -95,13 +95,13 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
                   eventProperties={{ experience_slug: experience.slug, destination: 'run_of_show' }}
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/[0.15] px-6 py-3 text-sm font-semibold text-white hover:border-white/[0.35] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  Inspect the 90 minutes
+                  See the 90-minute plan
                 </TrackedLink>
               </div>
             </div>
 
             <div className={`surface-3 rounded-[2rem] border ${accent.border} p-7 shadow-[0_28px_90px_rgba(0,0,0,0.35)] sm:p-8`}>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">The leave-with</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">What you take home</p>
               <p className="mt-5 font-display text-3xl font-semibold text-white">{experience.artifact}</p>
               <p className="mt-5 text-sm leading-6 text-slate-300">{experience.leaveWith}</p>
               {experience.slug === 'purpose-to-practice' ? (
@@ -111,7 +111,7 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
                   eventProperties={{ experience_slug: experience.slug, artifact: 'practice_map' }}
                   className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white underline decoration-white/25 underline-offset-4 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  Inspect the working map
+                  Preview the worksheet
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </TrackedLink>
               ) : null}
@@ -132,12 +132,12 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${accent.eyebrow}`}>Run of show</p>
+              <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${accent.eyebrow}`}>What happens in 90 minutes</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Every minute earns the artifact.
+                Most of the session is spent doing the work.
               </h2>
               <p className="mt-5 max-w-md text-base leading-7 text-slate-400">
-                A working room, not a compressed keynote. Demonstration stays short so participants can make, inspect, and commit.
+                A short introduction, guided exercises, time to work, and a final decision. This is a working session, not a keynote.
               </p>
             </div>
             <ol className="border-t border-white/10">
@@ -171,14 +171,14 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
               </ul>
             </div>
             <div className="surface-3 rounded-[1.75rem] border border-white/[0.08] p-7 sm:p-9">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Host architecture</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Who leads</p>
               <dl className="mt-7 space-y-6">
                 <div>
                   <dt className="text-sm font-semibold text-white">Frank</dt>
                   <dd className="mt-2 text-sm leading-6 text-slate-400">{experience.frankRole}</dd>
                 </div>
                 <div className="border-t border-white/10 pt-6">
-                  <dt className="text-sm font-semibold text-white">Ana · invitation, not assumption</dt>
+                  <dt className="text-sm font-semibold text-white">Ana’s role — only with her approval</dt>
                   <dd className="mt-2 text-sm leading-6 text-slate-400">{experience.anaInvitation}</dd>
                 </div>
               </dl>
@@ -191,10 +191,10 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Inspectable proof</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Built from real surfaces.</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">What already exists</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Built from existing workshops and research.</h2>
               <p className="mt-5 max-w-md text-base leading-7 text-slate-400">
-                The pilot repackages working research, templates, and architecture. It does not pretend a new methodology has already been validated.
+                This proposed pilot draws on existing workshops, research, and templates. The Tallinn format itself has not yet been tested and will run only after the participation threshold is met.
               </p>
             </div>
             <div className="grid gap-px overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/10 sm:grid-cols-3">
@@ -218,29 +218,29 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Operational truth</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">A proposal until demand clears the gate.</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Current status</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Proposed only. Nothing is booked yet.</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="surface-3 rounded-2xl border border-white/[0.08] p-6">
                 <MapPin className="h-5 w-5 text-amber-300" aria-hidden="true" />
-                <h3 className="mt-7 text-lg font-semibold text-white">Venue candidate</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">{TALLINN_EVENT.venueCandidate}. No room is booked and no free room is assumed.</p>
+                <h3 className="mt-7 text-lg font-semibold text-white">Possible venue</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{TALLINN_EVENT.venueCandidate} is being considered. No room has been reserved.</p>
               </div>
               <div className="surface-3 rounded-2xl border border-white/[0.08] p-6">
                 <Users className="h-5 w-5 text-cyan-300" aria-hidden="true" />
-                <h3 className="mt-7 text-lg font-semibold text-white">Demand threshold</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">{TALLINN_VALIDATION_GATE.minimumConfirmed} reconfirmed + {TALLINN_VALIDATION_GATE.standbyTarget} standby at one time before venue review.</p>
+                <h3 className="mt-7 text-lg font-semibold text-white">When we decide</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">We review the venue only after {TALLINN_VALIDATION_GATE.minimumConfirmed} people confirm the same time, with {TALLINN_VALIDATION_GATE.standbyTarget} additional people on standby.</p>
               </div>
               <div className="surface-3 rounded-2xl border border-white/[0.08] p-6">
                 <Clock3 className="h-5 w-5 text-emerald-300" aria-hidden="true" />
-                <h3 className="mt-7 text-lg font-semibold text-white">Windows to test</h3>
+                <h3 className="mt-7 text-lg font-semibold text-white">Possible times</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-400">{TALLINN_TIME_WINDOWS.slice(0, 3).map((slot) => slot.label).join(' · ')}</p>
               </div>
               <div className="surface-3 rounded-2xl border border-white/[0.08] p-6">
                 <ShieldCheck className="h-5 w-5 text-slate-300" aria-hidden="true" />
-                <h3 className="mt-7 text-lg font-semibold text-white">Decision owner</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Frank approves venue, spend, final host roles, schedule, and any move from preview to live capture.</p>
+                <h3 className="mt-7 text-lg font-semibold text-white">Approval</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">Frank approves the venue, budget, final hosts, and schedule. Personal-data collection remains off unless he explicitly enables it after the privacy requirements are met.</p>
               </div>
             </div>
           </div>
@@ -252,10 +252,10 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
             <div className="lg:sticky lg:top-28">
               <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${accent.eyebrow}`}>Interest, not booking</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Would you enter this room?</h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-slate-400">Your answer helps choose one format and one compatible time. It creates no payment, ticket, or venue commitment.</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Would you be interested in this session?</h2>
+              <p className="mt-5 max-w-md text-base leading-7 text-slate-400">Your answer helps us choose one session and one workable time. This is not a registration, booking, or payment.</p>
               <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm leading-6 text-slate-400">
-                <p className="font-semibold text-white">After the room</p>
+                <p className="font-semibold text-white">Optional follow-up</p>
                 <ul className="mt-3 space-y-2">
                   {experience.aftercare.map((item) => <li key={item}>· {item}</li>)}
                 </ul>
@@ -277,7 +277,7 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-10 text-xs leading-5 text-slate-500 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <p>{TALLINN_EVENT.independenceNotice}</p>
           <Link href="/experiences/tallinn-2026" className="shrink-0 text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
-            Compare all ten formats
+            See all ten session ideas
           </Link>
         </div>
       </footer>

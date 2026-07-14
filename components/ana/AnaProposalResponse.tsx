@@ -117,10 +117,10 @@ export function AnaProposalResponse({
     return (
       <div role="status" aria-live="polite" className="rounded-[2rem] border border-emerald-300/25 bg-emerald-300/[0.065] p-7 text-center sm:p-9">
         <CheckCircle2 className="mx-auto h-8 w-8 text-emerald-200" aria-hidden="true" />
-        <h3 className="mt-4 text-2xl font-semibold text-ana-cream">Frank has your response.</h3>
+        <h3 className="mt-4 text-2xl font-semibold text-ana-cream">Your response is in.</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-ana-cream/[0.65]">
           {ackSent ? 'A confirmation was also sent to the email you entered. ' : ''}
-          Frank can now prepare the next conversation. Nothing has been purchased, launched, or made public.
+          Frank will use it to prepare the next conversation. Nothing has been purchased, launched, connected to client data, or made public.
         </p>
         <button
           type="button"
@@ -159,7 +159,7 @@ export function AnaProposalResponse({
       </fieldset>
 
       <fieldset className="mt-7">
-        <legend className="text-sm font-semibold text-ana-cream">What should Frank prepare next?</legend>
+        <legend className="text-sm font-semibold text-ana-cream">Which parts matter most?</legend>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {priorities.map((priority) => {
             const id = `${formId}-${priority.id}`
@@ -200,7 +200,7 @@ export function AnaProposalResponse({
 
       <label className="mt-5 flex items-start gap-2.5 text-sm leading-6 text-ana-cream/[0.55]">
         <input name="consent" type="checkbox" required className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-emerald-400 focus:ring-emerald-300/50" />
-        <span>I consent to FrankX storing this response so Frank can follow up. No marketing without a separate opt-in.</span>
+        <span>I agree that FrankX may store this response so Frank can follow up. This does not opt me into marketing.</span>
       </label>
 
       {status === 'error' && error ? (
@@ -212,10 +212,10 @@ export function AnaProposalResponse({
           {status === 'submitting' ? (
             <><Loader2 className="h-4 w-4 animate-spin motion-reduce:animate-none" aria-hidden="true" />Sending response…</>
           ) : (
-            <>Send my response to Frank<ArrowRight className="h-4 w-4" aria-hidden="true" /></>
+            <>Send my response<ArrowRight className="h-4 w-4" aria-hidden="true" /></>
           )}
         </button>
-        <p className="text-xs leading-5 text-ana-cream/[0.38]">Planning signal only. No purchase, launch, or publication approval.</p>
+        <p className="text-xs leading-5 text-ana-cream/[0.38]">This asks for a conversation only. It does not approve a purchase, launch, or publication.</p>
       </div>
     </form>
   )

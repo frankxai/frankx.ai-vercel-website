@@ -34,9 +34,9 @@ const roleLabel: Record<(typeof TALLINN_ROLE_LENSES)[number], string> = {
 }
 
 const intentLabel: Record<(typeof TALLINN_ATTENDANCE_INTENTS)[number], string> = {
-  exploring: 'Exploring',
-  likely: 'Likely if the format fits',
-  'ready-if-time-works': 'Ready if one time works',
+  exploring: 'Interested, still deciding',
+  likely: 'Likely if the session fits',
+  'ready-if-time-works': 'Ready if a listed time works',
 }
 
 const VARIANT_ID_RE = /^[a-z0-9-]{1,60}$/
@@ -74,8 +74,29 @@ export function TallinnInterestForm({
 }: TallinnInterestFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
   const [message, setMessage] = useState<string | null>(null)
-  const [simulated, setSimulated] = useState(false)
   const submissionId = useRef<string | null>(null)
+
+  if (!captureEnabled) {
+    return (
+      <div
+        role="status"
+        className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.06] p-6 text-amber-50 sm:p-7"
+      >
+        <div className="flex items-start gap-3">
+          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" aria-hidden="true" />
+          <div>
+            <h3 className="text-lg font-semibold text-white">Interest collection is not open yet.</h3>
+            <p className="mt-3 text-sm leading-6 text-amber-50/90">
+              Ana and Frank are reviewing the concept. No form is active, and nothing on this page will be stored or sent. To comment, reply directly to the person who shared this link.
+            </p>
+            <p className="mt-3 text-xs leading-5 text-amber-100/65">
+              No personal data will be stored and no email will be sent from this page.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -104,7 +125,7 @@ export function TallinnInterestForm({
 
     if (payload.slotIds.length === 0) {
       setStatus('error')
-      setMessage('Please choose at least one time window.')
+      setMessage('Choose at least one possible time.')
       return
     }
 
@@ -132,8 +153,7 @@ export function TallinnInterestForm({
           duplicate: Boolean(json.duplicate),
         })
         setStatus('done')
-        setSimulated(Boolean(json.reviewMode))
-        setMessage(json.message || 'Your interest is recorded.')
+        setMessage(json.message || 'Thank you — we received your interest.')
         form.reset()
         submissionId.current = null
       } else {
@@ -153,7 +173,7 @@ export function TallinnInterestForm({
         stage: 'network',
       })
       setStatus('error')
-      setMessage('Network error. Please try again or email frank@frankx.ai.')
+      setMessage('We could not send this right now. Please try again or email frank@frankx.ai.')
     }
   }
 
@@ -162,46 +182,24 @@ export function TallinnInterestForm({
       <div role="status" aria-live="polite" className="py-4 text-center">
         <CheckCircle2 className="mx-auto h-9 w-9 text-emerald-300" aria-hidden="true" />
         <h3 className="mt-4 font-display text-2xl font-semibold text-white">
-          {simulated ? 'Review flow passed.' : 'You are in the interest cohort.'}
+          Thank you — we received your interest.
         </h3>
         <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-300">{message}</p>
         <p className="mx-auto mt-3 max-w-lg text-xs leading-5 text-slate-500">
-          {simulated
-            ? 'No personal data was stored and no email was sent.'
-            : `A room is considered only after ${TALLINN_VALIDATION_GATE.minimumConfirmed} people reconfirm one compatible time.`}
+          We will contact you only if at least {TALLINN_VALIDATION_GATE.minimumConfirmed} people confirm the same time. This is still not a booking.
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            setStatus('idle')
-            setMessage(null)
-          }}
-          className="mt-6 min-h-11 text-sm font-semibold text-cyan-300 underline decoration-cyan-300/30 underline-offset-4 hover:decoration-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-        >
-          Test another request
-        </button>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {!captureEnabled ? (
-        <div className="flex gap-3 rounded-2xl border border-amber-300/20 bg-amber-300/[0.06] p-4 text-sm leading-6 text-amber-50">
-          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" aria-hidden="true" />
-          <p>
-            Private review mode. No external service is called. Use{' '}
-            <code className="font-mono text-amber-200">test@example.com</code> to exercise the complete interface.
-          </p>
-        </div>
-      ) : null}
-
       {lockExperience ? (
         <input type="hidden" name="experienceSlug" value={defaultExperienceSlug} />
       ) : (
         <div>
           <label htmlFor="experienceSlug" className="block text-sm font-semibold text-white">
-            Session to test
+            Session you are interested in
           </label>
           <select
             id="experienceSlug"
@@ -241,14 +239,14 @@ export function TallinnInterestForm({
             maxLength={200}
             autoComplete="email"
             className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
-            placeholder={captureEnabled ? 'you@company.com' : 'test@example.com'}
+            placeholder="you@company.com"
           />
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="roleLens" className="block text-sm font-semibold text-white">Current lens</label>
+          <label htmlFor="roleLens" className="block text-sm font-semibold text-white">Your role</label>
           <select
             id="roleLens"
             name="roleLens"
@@ -278,7 +276,7 @@ export function TallinnInterestForm({
       </div>
 
       <fieldset>
-        <legend className="text-sm font-semibold text-white">How real is the interest?</legend>
+        <legend className="text-sm font-semibold text-white">How likely are you to attend?</legend>
         <div className="mt-3 grid gap-2 sm:grid-cols-3">
           {TALLINN_ATTENDANCE_INTENTS.map((intent) => (
             <label key={intent} className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-slate-300 has-[:checked]:border-emerald-300/55 has-[:checked]:bg-emerald-300/[0.08] has-[:checked]:text-white">
@@ -297,7 +295,7 @@ export function TallinnInterestForm({
 
       <fieldset>
         <legend className="text-sm font-semibold text-white">Which times could work?</legend>
-        <p className="mt-1 text-xs leading-5 text-slate-500">Choose one to three. The official agenda still takes priority.</p>
+        <p className="mt-1 text-xs leading-5 text-slate-500">Choose every provisional time that could work. The official Mindvalley University agenda takes priority.</p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {TALLINN_TIME_WINDOWS.map((slot) => (
             <label key={slot.id} className="flex min-h-12 cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-6 text-slate-300 has-[:checked]:border-cyan-300/55 has-[:checked]:bg-cyan-300/[0.08] has-[:checked]:text-white">
@@ -327,7 +325,7 @@ export function TallinnInterestForm({
           placeholder="One useful outcome is enough. Please do not include health or therapy details."
         />
         <p id="note-guidance" className="mt-2 text-xs leading-5 text-slate-500">
-          Keep this practical. No sensitive health, therapy, or employment-case information.
+          Please do not include health information or private candidate, employee, client, or therapy details.
         </p>
       </div>
 
@@ -345,7 +343,8 @@ export function TallinnInterestForm({
             className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-cyan-400 focus:ring-cyan-300/60"
           />
           <span>
-            I agree that FrankX may store my details to evaluate and coordinate this Tallinn session and contact me about this request. No newsletter or unrelated marketing.
+            I agree that FrankX may use and store the details I submit only to assess and coordinate this proposed Tallinn session and contact me about it. My details will not be added to a newsletter or used for unrelated marketing. I can request access or deletion at frank@frankx.ai. See the{' '}
+            <a href="/privacy" className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">Privacy Notice</a>.
           </span>
         </label>
         <label className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-400">
@@ -354,7 +353,7 @@ export function TallinnInterestForm({
             type="checkbox"
             className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-emerald-400 focus:ring-emerald-300/60"
           />
-          <span>If the session runs, send me its artifact and session-related Day-7 check.</span>
+          <span>If the session runs, send me the completed materials and one session-related check-in seven days later.</span>
         </label>
       </div>
 
@@ -373,17 +372,17 @@ export function TallinnInterestForm({
           {status === 'submitting' ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin motion-reduce:animate-none" aria-hidden="true" />
-              Checking…
+              Sending…
             </>
           ) : (
             <>
-              {captureEnabled ? 'Request a seat' : 'Simulate request'}
+              Share my interest
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </>
           )}
         </button>
         <p className="text-xs leading-5 text-slate-500">
-          Not a ticket. Not a room booking. No payment.
+          This only shares your interest. It is not a ticket, booking, or payment.
         </p>
       </div>
     </form>
