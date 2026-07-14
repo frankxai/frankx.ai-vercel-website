@@ -17,16 +17,25 @@ import { testEmail, newsletterWelcomeEmail, communityBroadcastEmail } from '@/li
  * }
  */
 
+function isTestEmailRequestAuthorized(request: NextRequest) {
+  if (process.env.NODE_ENV === 'development') {
+    return true
+  }
+
+  const secret = process.env.TEST_EMAIL_SECRET
+  return Boolean(secret && request.headers.get('x-test-email-secret') === secret)
+}
+
+function notFoundResponse() {
+  return NextResponse.json({ error: 'Not found' }, { status: 404 })
+}
+
 export async function POST(request: NextRequest) {
+  if (!isTestEmailRequestAuthorized(request)) {
+    return notFoundResponse()
+  }
+
   try {
-    // In production this endpoint would otherwise relay arbitrary email from
-    // our sending domain — require a shared secret header outside dev.
-    if (process.env.NODE_ENV === 'production') {
-      const secret = process.env.TEST_EMAIL_SECRET
-      if (!secret || request.headers.get('x-test-email-secret') !== secret) {
-        return NextResponse.json({ error: 'Not found' }, { status: 404 })
-      }
-    }
 
     // Check if RESEND_API_KEY is configured
     if (!process.env.RESEND_API_KEY) {
@@ -139,6 +148,9 @@ export async function POST(request: NextRequest) {
 
 // Support GET request for quick testing via browser
 export async function GET(request: NextRequest) {
+  if (!isTestEmailRequestAuthorized(request)) {
+    return notFoundResponse()
+  }
   return NextResponse.json({
     endpoint: '/api/test-email',
     method: 'POST',
