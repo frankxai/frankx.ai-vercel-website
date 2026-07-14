@@ -9,13 +9,17 @@ const installCommands = [
 export function GET() {
   return NextResponse.json({
     name: 'ana-ai-business-kit',
-    version: '1.0.0',
-    releaseDate: '2026-07-13',
+    version: '1.1.0',
+    releaseDate: '2026-07-14',
     status: 'current',
     publicPage: 'https://frankx.ai/downloads/ana-ai-business-kit',
     sourceRepo: 'https://github.com/frankxai/ana-ai-business-kit',
     startGuide:
       'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-ANA.md',
+    teamStartGuide:
+      'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-TEAM.md',
+    readingMap:
+      'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/WHO-READS-WHAT.md',
     install: {
       audience:
         'Ana and her team can use the guided start page; GitHub knowledge is not required.',

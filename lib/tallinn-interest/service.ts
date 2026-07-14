@@ -2,6 +2,7 @@ import {
   buildTallinnInterestReceipt,
   buildTallinnOperatorNotification,
 } from '@/lib/email-templates-tallinn'
+import { INTENT_LABEL } from '@/lib/intake-types'
 import type { TallinnInterestPayload } from '@/lib/tallinn-interest/schema'
 
 export interface TallinnCaptureEnvironment {
@@ -114,7 +115,7 @@ async function createRecord(
       properties: {
         Name: { title: [{ text: { content: payload.fullName } }] },
         Email: { email: payload.email },
-        Intent: { select: { name: 'Workshop (1-day team build)' } },
+        Intent: { select: { name: INTENT_LABEL.general } },
         Stage: { select: { name: 'New' } },
         Company: payload.companyOrProject
           ? { rich_text: [{ text: { content: payload.companyOrProject } }] }

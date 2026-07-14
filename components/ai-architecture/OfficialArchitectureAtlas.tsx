@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -83,7 +83,7 @@ function SystemTopology() {
         {stages.map((stage, index) => {
           const Icon = stage.icon
           return (
-            <div key={stage.name} className="contents">
+            <Fragment key={stage.name}>
               <div className="min-h-40 rounded-2xl border border-white/10 bg-black/20 p-5">
                 <Icon className={`h-6 w-6 ${stage.accent}`} aria-hidden="true" />
                 <h3 className="mt-8 font-semibold text-white">{stage.name}</h3>
@@ -92,7 +92,7 @@ function SystemTopology() {
               {index < stages.length - 1 && (
                 <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-slate-600 lg:rotate-0" aria-hidden="true" />
               )}
-            </div>
+            </Fragment>
           )
         })}
       </div>
@@ -174,7 +174,7 @@ export function OfficialArchitectureAtlas() {
                 Start from maintained architecture, then adapt it deliberately.
               </h2>
             </div>
-            <div className="flex flex-wrap gap-2" aria-label="Filter architectures by deployment target">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter architectures by deployment target">
               {deploymentFilters.map((item) => (
                 <button
                   key={item}
@@ -207,14 +207,18 @@ export function OfficialArchitectureAtlas() {
                 </div>
 
                 <div className="rounded-2xl border border-white/10 bg-[#0f1117] p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center gap-2" aria-label={`${source.title} request flow`}>
+                  <ol className="flex flex-wrap items-center gap-2" aria-label={`${source.title} request flow`}>
                     {source.flow.map((step, index) => (
-                      <div key={step} className="contents">
-                        <span className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 font-mono text-xs text-slate-300">{step}</span>
-                        {index < source.flow.length - 1 && <ArrowRight className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />}
-                      </div>
+                      <Fragment key={step}>
+                        <li className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 font-mono text-xs text-slate-300">{step}</li>
+                        {index < source.flow.length - 1 && (
+                          <li className="flex items-center" aria-hidden="true">
+                            <ArrowRight className="h-3.5 w-3.5 text-slate-600" />
+                          </li>
+                        )}
+                      </Fragment>
                     ))}
-                  </div>
+                  </ol>
                   <div className="mt-8 flex flex-wrap gap-3 border-t border-white/10 pt-5">
                     <a href={source.docsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200">
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />

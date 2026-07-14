@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true, nocache: true },
 }
 
-const currentVersion = '1.0.0'
+const currentVersion = '1.1.0'
 const legacyZipUrl = '/downloads/ana-ai-business-kit-v0.1.0.zip'
 const legacyChecksumUrl = '/downloads/ana-ai-business-kit-v0.1.0.sha256'
 
@@ -38,13 +38,13 @@ const stages = [
 
 export default function AnaAIBusinessKitDownloadPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#090806] text-[#fff8e9]">
+    <main className="min-h-screen overflow-hidden bg-ana-obsidian text-ana-cream">
       <section className="relative isolate overflow-hidden px-5 pb-16 pt-28 sm:px-8 md:pb-24 md:pt-36 lg:px-12">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_14%_8%,rgba(220,178,119,0.20),transparent_33%),radial-gradient(circle_at_84%_16%,rgba(25,87,66,0.24),transparent_32%),linear-gradient(135deg,#090806_0%,#15110c_48%,#07120f_100%)]" />
-        <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-[#ddb87f]/[0.55] to-transparent" />
+        <div className="absolute inset-0 -z-20 bg-ana-aurora" />
+        <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-ana-gold/[0.55] to-transparent" />
 
         <div className="mx-auto max-w-7xl">
-          <Link href="/downloads" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.035] px-4 py-2 text-xs font-semibold text-[#fff8e9]/60 transition hover:border-white/30 hover:text-[#fff8e9]">
+          <Link href="/downloads" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.035] px-4 py-2 text-xs font-semibold text-ana-cream/60 transition hover:border-white/30 hover:text-ana-cream">
             <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
             All downloads
           </Link>
@@ -58,19 +58,23 @@ export default function AnaAIBusinessKitDownloadPage() {
               <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
                 Start with the workflow, not GitHub.
               </h1>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-[#fff8e9]/70 md:text-xl">
+              <p className="mt-7 max-w-3xl text-lg leading-8 text-ana-cream/70 md:text-xl">
                 Ana and her team do not need to become developers. Ana HR Operations guides one engagement at a time, asks for missing facts, prepares drafts, and stops for the right human approval.
               </p>
-              <p className="mt-4 max-w-2xl border-l border-[#ddb87f]/[0.35] pl-4 text-sm leading-6 text-[#f5dcb4]/[0.72]">
+              <p className="mt-4 max-w-2xl border-l border-ana-gold/[0.35] pl-4 text-sm leading-6 text-ana-cream/[0.72]">
                 Empieza con un cliente, una copia del documento y una decisión clara. El sistema explica el siguiente paso.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-3">
-                <a href={anaLinks.kitStart} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#f4dfbd] px-6 py-3 text-sm font-semibold text-[#17120d] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ddb87f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#090806]">
+                <a href={anaLinks.kitStart} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
                   Open Ana's start guide
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-[#fff8e9]/[0.78] transition hover:border-white/[0.35] hover:text-[#fff8e9]">
+                <a href={anaLinks.kitTeamStart} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
+                  Open the team start
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                </a>
+                <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
                   See the team plan
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -80,10 +84,10 @@ export default function AnaAIBusinessKitDownloadPage() {
             <aside className="rounded-[2.5rem] border border-white/10 bg-white/[0.05] p-5 shadow-[0_36px_130px_rgba(0,0,0,0.44)] backdrop-blur-2xl sm:p-7">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ddb87f]">What Ana needs</p>
+                  <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">What Ana needs</p>
                   <h2 className="mt-3 text-3xl font-semibold tracking-tight">Four simple ingredients.</h2>
                 </div>
-                <FolderLock className="h-8 w-8 text-[#f1cf99]" aria-hidden="true" />
+                <FolderLock className="h-8 w-8 text-ana-gold" aria-hidden="true" />
               </div>
               <ol className="mt-7 divide-y divide-white/10 border-y border-white/10">
                 {[
@@ -93,12 +97,12 @@ export default function AnaAIBusinessKitDownloadPage() {
                   ['04', 'Private, company-approved storage for live records'],
                 ].map(([number, item]) => (
                   <li key={number} className="grid grid-cols-[2.5rem_1fr] gap-3 py-4">
-                    <span className="font-mono text-xs text-[#ddb87f]">{number}</span>
-                    <span className="text-sm leading-6 text-[#fff8e9]/[0.66]">{item}</span>
+                    <span className="font-mono text-xs text-ana-gold">{number}</span>
+                    <span className="text-sm leading-6 text-ana-cream/[0.66]">{item}</span>
                   </li>
                 ))}
               </ol>
-              <p className="mt-5 text-xs leading-5 text-[#fff8e9]/[0.42]">A GitHub account is optional unless Ana wants her own fork and change history.</p>
+              <p className="mt-5 text-xs leading-5 text-ana-cream/[0.42]">A GitHub account is optional unless Ana wants her own fork and change history.</p>
             </aside>
           </div>
         </div>
@@ -107,24 +111,24 @@ export default function AnaAIBusinessKitDownloadPage() {
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ddb87f]">Five-minute setup</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Five-minute setup</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Frank can install it with the team.</h2>
-            <p className="mt-5 text-base leading-7 text-[#fff8e9]/[0.58]">The commands add Frank's maintained plugin source, install Ana HR Operations, and confirm that Codex can see it.</p>
-            <a href={anaLinks.kitRepo} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#f5dcb4] underline decoration-[#ddb87f]/[0.35] underline-offset-4 hover:decoration-[#ddb87f]">
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">The commands add Frank's maintained plugin source, install Ana HR Operations, and confirm that Codex can see it.</p>
+            <a href={anaLinks.kitRepo} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">
               Inspect the maintained repository
               <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0a08] shadow-[0_28px_100px_rgba(0,0,0,0.36)]">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-ana-obsidian shadow-[0_28px_100px_rgba(0,0,0,0.36)]">
             <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/[0.42]">PowerShell, Terminal, or Codex CLI</p>
               <span className="rounded-full border border-emerald-300/20 bg-emerald-300/[0.06] px-3 py-1 text-[10px] font-semibold text-emerald-100/75">No local clone required</span>
             </div>
-            <pre className="overflow-x-auto p-5 text-sm leading-8 text-[#f4dfbd] sm:p-7">
+            <pre className="overflow-x-auto p-5 text-sm leading-8 text-ana-cream sm:p-7">
               <code>{anaInstallCommands.join('\n')}</code>
             </pre>
-            <div className="border-t border-white/10 bg-white/[0.025] px-5 py-4 text-xs leading-5 text-[#fff8e9]/[0.45] sm:px-7">
+            <div className="border-t border-white/10 bg-white/[0.025] px-5 py-4 text-xs leading-5 text-ana-cream/[0.45] sm:px-7">
               Start a new Codex task after installation, then select Ana HR Operations from the plugin list.
             </div>
           </div>
@@ -134,26 +138,26 @@ export default function AnaAIBusinessKitDownloadPage() {
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ddb87f]">What the current system handles</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">What the current system handles</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">The same path Ana already uses, made teachable.</h2>
           </div>
 
           <ol className="mt-10 grid overflow-hidden rounded-[2rem] border border-white/10 bg-black/[0.18] sm:grid-cols-2 lg:grid-cols-4">
             {stages.map((stage, index) => (
               <li key={stage} className={`min-h-32 p-5 sm:p-6 ${index > 0 ? 'border-t border-white/10 sm:border-l sm:border-t-0 sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l lg:[&:nth-child(4n+1)]:border-l-0' : ''} ${index > 1 ? 'sm:border-t' : ''} ${index > 3 ? 'lg:border-t' : ''}`}>
-                <span className="font-mono text-xs text-[#ddb87f]">{String(index).padStart(2, '0')}</span>
-                <p className="mt-4 text-sm font-semibold leading-6 text-[#fff8e9]/75">{stage}</p>
+                <span className="font-mono text-xs text-ana-gold">{String(index).padStart(2, '0')}</span>
+                <p className="mt-4 text-sm font-semibold leading-6 text-ana-cream/75">{stage}</p>
               </li>
             ))}
           </ol>
 
-          <div className="mt-8 rounded-[2rem] border border-[#ddb87f]/20 bg-[#ddb87f]/[0.06] p-6 sm:p-8">
+          <div className="mt-8 rounded-[2rem] border border-ana-gold/20 bg-ana-gold/[0.06] p-6 sm:p-8">
             <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ddb87f]">First team prompt</p>
+                <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">First team prompt</p>
                 <h3 className="mt-3 text-2xl font-semibold">Let the system guide the conversation one section at a time.</h3>
               </div>
-              <blockquote className="rounded-[1.4rem] border border-white/10 bg-black/20 p-5 text-sm leading-7 text-[#fff8e9]/[0.66]">
+              <blockquote className="rounded-[1.4rem] border border-white/10 bg-black/20 p-5 text-sm leading-7 text-ana-cream/[0.66]">
                 Use Ana HR Operations. I have a new recruiting client. Set up a private engagement record outside the repository and guide me through the first-call capture one section at a time. Separate facts from assumptions. Do not send, schedule, price, or invoice anything without my explicit approval.
               </blockquote>
             </div>
@@ -164,12 +168,12 @@ export default function AnaAIBusinessKitDownloadPage() {
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(221,184,127,0.11),rgba(255,255,255,0.025),rgba(25,87,66,0.11))] lg:grid-cols-[0.86fr_1.14fr]">
           <div className="p-6 sm:p-8 lg:p-10">
-            <div className="flex items-center gap-3 text-[#f1cf99]">
+            <div className="flex items-center gap-3 text-ana-gold">
               <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               <p className="text-xs font-semibold uppercase tracking-[0.18em]">The important boundary</p>
             </div>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">The plugin prepares. Ana approves.</h2>
-            <p className="mt-5 text-base leading-7 text-[#fff8e9]/[0.58]">It does not rank candidates, invent prices, edit master templates, create payments, or send documents automatically.</p>
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">It does not rank candidates, invent prices, edit master templates, create payments, or send documents automatically.</p>
           </div>
 
           <div className="grid border-t border-white/10 bg-black/[0.18] sm:grid-cols-2 lg:border-l lg:border-t-0">
@@ -181,7 +185,7 @@ export default function AnaAIBusinessKitDownloadPage() {
             ].map((item, index) => (
               <div key={item} className={`flex items-start gap-3 p-5 sm:p-6 ${index > 0 ? 'border-t border-white/10 sm:border-l sm:border-t-0 sm:[&:nth-child(odd)]:border-l-0' : ''} ${index > 1 ? 'sm:border-t' : ''}`}>
                 <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-200/80" aria-hidden="true" />
-                <p className="text-sm leading-6 text-[#fff8e9]/[0.58]">{item}</p>
+                <p className="text-sm leading-6 text-ana-cream/[0.58]">{item}</p>
               </div>
             ))}
           </div>
@@ -193,18 +197,18 @@ export default function AnaAIBusinessKitDownloadPage() {
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="flex items-center gap-3">
-                <Download className="h-5 w-5 text-[#f1cf99]" aria-hidden="true" />
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ddb87f]">Earlier archive</p>
+                <Download className="h-5 w-5 text-ana-gold" aria-hidden="true" />
+                <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Earlier archive</p>
               </div>
               <h2 className="mt-3 text-2xl font-semibold">The v0.1 starter ZIP remains available for reference.</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-[#fff8e9]/50">It contains the earlier reflective-practice documents and named agent briefs. It is not the recommended HR Operations workflow for the team.</p>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-ana-cream/50">It contains the earlier reflective-practice documents and named agent briefs. It is not the recommended HR Operations workflow for the team.</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href={legacyZipUrl} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.13] px-4 py-2 text-sm font-semibold text-[#fff8e9]/[0.58] transition hover:border-white/30 hover:text-[#fff8e9]">
+              <a href={legacyZipUrl} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.13] px-4 py-2 text-sm font-semibold text-ana-cream/[0.58] transition hover:border-white/30 hover:text-ana-cream">
                 Download legacy ZIP
                 <Download className="h-4 w-4" aria-hidden="true" />
               </a>
-              <a href={legacyChecksumUrl} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.13] px-4 py-2 text-sm font-semibold text-[#fff8e9]/[0.58] transition hover:border-white/30 hover:text-[#fff8e9]">
+              <a href={legacyChecksumUrl} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.13] px-4 py-2 text-sm font-semibold text-ana-cream/[0.58] transition hover:border-white/30 hover:text-ana-cream">
                 Checksum
                 <FileCheck2 className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -212,11 +216,11 @@ export default function AnaAIBusinessKitDownloadPage() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#f4dfbd] px-5 py-3 text-sm font-semibold text-[#17120d] transition hover:bg-white">
+            <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
               Review the 30-day pilot
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <Link href="/portal/ana" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-[#fff8e9]/[0.68] transition hover:border-white/[0.35] hover:text-[#fff8e9]">
+            <Link href="/portal/ana" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/[0.68] transition hover:border-white/[0.35] hover:text-ana-cream">
               Preview the team portal
               <Users className="h-4 w-4" aria-hidden="true" />
             </Link>

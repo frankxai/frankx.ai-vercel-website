@@ -1,3 +1,5 @@
+import { ALLY_SOCIAL_LINKS } from '@/lib/social-links'
+
 export type AnaWorkflowStage = {
   id:
     | 'board'
@@ -22,10 +24,14 @@ export const anaLinks = {
   website: 'https://www.anaceciliacancino.com/',
   workWithMe: 'https://www.anaceciliacancino.com/work-with-me',
   research: 'https://www.anaceciliacancino.com/research',
-  linkedin: 'https://www.linkedin.com/in/ana-cancino-/',
+  linkedin: ALLY_SOCIAL_LINKS.anaCancino.linkedin,
   kitRepo: 'https://github.com/frankxai/ana-ai-business-kit',
   kitStart:
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-ANA.md',
+  kitTeamStart:
+    'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-TEAM.md',
+  kitReadingMap:
+    'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/WHO-READS-WHAT.md',
 } as const
 
 export const anaWorkflowStages: AnaWorkflowStage[] = [

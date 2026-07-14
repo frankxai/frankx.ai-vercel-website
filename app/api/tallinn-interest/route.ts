@@ -10,6 +10,49 @@ export const dynamic = 'force-dynamic'
 const MAX_BODY_BYTES = 12_000
 const REVIEW_EMAIL = /@example\.com$/i
 
+type BodyReadResult =
+  | { ok: true; value: unknown }
+  | { ok: false; tooLarge: boolean }
+
+async function readJsonWithinLimit(
+  request: NextRequest,
+  maxBytes: number,
+): Promise<BodyReadResult> {
+  if (!request.body) return { ok: false, tooLarge: false }
+
+  const reader = request.body.getReader()
+  const chunks: Uint8Array[] = []
+  let byteLength = 0
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      if (!value) continue
+
+      byteLength += value.byteLength
+      if (byteLength > maxBytes) {
+        await reader.cancel('Request body exceeds the configured limit.').catch(() => undefined)
+        return { ok: false, tooLarge: true }
+      }
+      chunks.push(value)
+    }
+
+    const body = new Uint8Array(byteLength)
+    let offset = 0
+    for (const chunk of chunks) {
+      body.set(chunk, offset)
+      offset += chunk.byteLength
+    }
+
+    return { ok: true, value: JSON.parse(new TextDecoder().decode(body)) }
+  } catch {
+    return { ok: false, tooLarge: false }
+  } finally {
+    reader.releaseLock()
+  }
+}
+
 function reviewMode() {
   return !(
     process.env.VERCEL_ENV === 'production' &&
@@ -33,7 +76,21 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const body = await request.json().catch(() => null)
+    const bodyResult = await readJsonWithinLimit(request, MAX_BODY_BYTES)
+    if (!bodyResult.ok) {
+      if (bodyResult.tooLarge) {
+        return NextResponse.json(
+          { ok: false, error: 'Request is too large.' },
+          { status: 413 },
+        )
+      }
+      return NextResponse.json(
+        { ok: false, error: 'Invalid request.' },
+        { status: 400 },
+      )
+    }
+
+    const body = bodyResult.value
     if (!body || typeof body !== 'object') {
       return NextResponse.json(
         { ok: false, error: 'Invalid request.' },

@@ -12,6 +12,9 @@ const offer = read('components/tallinn-experience/TallinnOfferPage.tsx')
 const form = read('components/tallinn-experience/TallinnInterestForm.tsx')
 const route = read('app/api/tallinn-interest/route.ts')
 const service = read('lib/tallinn-interest/service.ts')
+const threshold = read('lib/tallinn-interest/threshold.ts')
+const worksheet = read('app/experiences/tallinn-2026/purpose-to-practice/map/page.tsx')
+const packageJson = read('package.json')
 const portfolio = read('docs/specs/tallinn-workshop-portfolio-2026-07-14.md')
 
 test('registry exposes exactly ten unique offer routes and five ranked reviews', () => {
@@ -60,6 +63,33 @@ test('preview mode is no-storage, dummy-email only, and does not create a market
   assert.match(route, /No data was stored and no email was sent/)
   assert.doesNotMatch(service, /audiences|contacts|newsletter/i)
   assert.match(form, /No newsletter or unrelated marketing/)
+})
+
+test('request safety, identity fallback, and CRM classification are release-gated', () => {
+  assert.match(route, /readJsonWithinLimit\(request, MAX_BODY_BYTES\)/)
+  assert.match(route, /request\.body\.getReader\(\)/)
+  assert.doesNotMatch(route, /request\.json\(\)/)
+  assert.match(form, /function createSubmissionId\(\)/)
+  assert.match(form, /cryptoApi\?\.getRandomValues/)
+  assert.match(service, /INTENT_LABEL\.general/)
+  assert.doesNotMatch(service, /Workshop \(1-day team build\)/)
+  assert.match(packageJson, /"test:ana-release"/)
+  assert.match(packageJson, /"merge:gate": "npm run test:homepage-release && npm run test:ana-release/)
+  assert.match(packageJson, /"merge:gate:ci": "npm run test:homepage-release && npm run test:ana-release/)
+})
+
+test('capacity and participant artifact promises match each selected experience', () => {
+  assert.match(registry, /capacity: '8–10 people',\s*roomCapacityTarget: 10,/)
+  assert.equal((registry.match(/roomCapacityTarget: 12,/g) ?? []).length, 10)
+  assert.match(threshold, /experience\.slug === experienceSlug/)
+  assert.match(threshold, /\?\.roomCapacityTarget/)
+  assert.match(registry, /A two-page Human \+ AI Practice Map/)
+})
+
+test('the print route isolates the worksheet without hiding the Next.js root', () => {
+  assert.match(worksheet, /body \* \{ visibility: hidden; \}/)
+  assert.match(worksheet, /#tallinn-worksheet, #tallinn-worksheet \* \{ visibility: visible; \}/)
+  assert.doesNotMatch(worksheet, /body > \*:not\(#main\)/)
 })
 
 test('live capture stores first and sends only transactional mail afterward', () => {

@@ -55,9 +55,9 @@ export default function HumanAiPracticeMapPage() {
         @media print {
           @page { size: A4; margin: 10mm; }
           body { background: white !important; }
-          body > *:not(#main) { display: none !important; }
-          #main { min-height: 0 !important; overflow: visible !important; }
-          #tallinn-worksheet { min-height: 0 !important; }
+          body * { visibility: hidden; }
+          #tallinn-worksheet, #tallinn-worksheet * { visibility: visible; }
+          #tallinn-worksheet { position: absolute; left: 0; top: 0; min-height: 0 !important; }
           .worksheet-sheet { box-shadow: none !important; break-after: page; }
           .worksheet-sheet:last-of-type { break-after: auto; }
         }

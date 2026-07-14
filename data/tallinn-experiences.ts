@@ -37,6 +37,7 @@ export interface TallinnExperience {
   outcomes: readonly TallinnOutcome[]
   duration: string
   capacity: string
+  roomCapacityTarget: number
   accent: TallinnAccent
   reviewRank: number | null
   arriveWith: string
@@ -152,10 +153,11 @@ export const tallinnExperiences = [
     outcomes: ['direction', 'workflow'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'amber',
     reviewRank: 1,
     arriveWith: 'One real question about the work or chapter you are entering.',
-    leaveWith: 'A one-page Human + AI Practice Map and a dated 30-day experiment.',
+    leaveWith: 'A two-page Human + AI Practice Map and a dated 30-day experiment.',
     artifact: 'Human + AI Practice Map',
     sessionArc: [
       {
@@ -234,6 +236,7 @@ export const tallinnExperiences = [
     outcomes: ['artifact', 'workflow'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'cyan',
     reviewRank: 2,
     arriveWith: 'One idea, claim, lesson, or source you genuinely care about.',
@@ -310,6 +313,7 @@ export const tallinnExperiences = [
     outcomes: ['workflow', 'team-system'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'cyan',
     reviewRank: 3,
     arriveWith: 'One recurring workflow that currently depends on you remembering everything.',
@@ -387,6 +391,7 @@ export const tallinnExperiences = [
     outcomes: ['team-system', 'direction'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'emerald',
     reviewRank: 4,
     arriveWith: 'One team workflow where ownership or AI use is currently ambiguous.',
@@ -464,6 +469,7 @@ export const tallinnExperiences = [
     outcomes: ['direction', 'workflow'],
     duration: '90 minutes',
     capacity: '8–10 people',
+    roomCapacityTarget: 10,
     accent: 'amber',
     reviewRank: 5,
     arriveWith: 'One decision you do not want to carry home unresolved.',
@@ -539,6 +545,7 @@ export const tallinnExperiences = [
     outcomes: ['direction', 'artifact'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'amber',
     reviewRank: null,
     arriveWith: 'A transition, tension, or body of work you are trying to name.',
@@ -574,6 +581,7 @@ export const tallinnExperiences = [
     outcomes: ['artifact', 'team-system'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'cyan',
     reviewRank: null,
     arriveWith: 'Two examples that sound like you and one that clearly does not.',
@@ -609,6 +617,7 @@ export const tallinnExperiences = [
     outcomes: ['workflow', 'team-system'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'cyan',
     reviewRank: null,
     arriveWith: 'Your current AI tools and one failure mode you do not want to repeat.',
@@ -644,6 +653,7 @@ export const tallinnExperiences = [
     outcomes: ['direction', 'team-system'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'emerald',
     reviewRank: null,
     arriveWith: 'One real role or responsibility that AI is already changing.',
@@ -680,6 +690,7 @@ export const tallinnExperiences = [
     outcomes: ['workflow', 'direction'],
     duration: '90 minutes',
     capacity: '8–12 people',
+    roomCapacityTarget: 12,
     accent: 'amber',
     reviewRank: null,
     arriveWith: 'A normal week and one pattern that repeatedly drains attention.',

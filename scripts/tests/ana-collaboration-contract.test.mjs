@@ -19,12 +19,14 @@ const visualFiles = [
 ]
 
 test('Ana review routes stay out of search until she approves them', async () => {
-  const [friend, ally, cecilia, download, portal] = await Promise.all([
+  const [friend, ally, cecilia, download, portal, routeIndexSource, sitemap] = await Promise.all([
     readRepoFile(pageFiles[0]),
     readRepoFile(pageFiles[1]),
     readRepoFile(pageFiles[2]),
     readRepoFile(pageFiles[3]),
     readRepoFile('content/portal/ana.ts'),
+    readRepoFile('data/route-index.json'),
+    readRepoFile('app/sitemap.ts'),
   ])
 
   assert.match(friend, /noindex: true/)
@@ -32,15 +34,31 @@ test('Ana review routes stay out of search until she approves them', async () =>
   assert.match(cecilia, /noindex: true/)
   assert.match(download, /robots: \{ index: false, follow: true, nocache: true \}/)
   assert.match(portal, /noindex: true/)
+
+  const routeIndex = JSON.parse(routeIndexSource)
+  for (const href of [
+    '/friends/ana',
+    '/allies/ana-cancino',
+    '/alliance/cecilia',
+    '/downloads/ana-ai-business-kit',
+    '/experiences/tallinn-2026',
+    '/experiences/tallinn-2026/purpose-to-practice',
+  ]) {
+    const route = routeIndex.routes.find((candidate) => candidate.href === href)
+    assert.ok(route, `${href} must remain a valid route`)
+    assert.equal(route.sitemap, false, `${href} must stay out of the public sitemap`)
+  }
+  assert.match(sitemap, /if \(route\.sitemap === false\) continue/)
 })
 
 test('the Ana surfaces form one connected review journey', async () => {
-  const [friend, ally, cecilia, download, links] = await Promise.all([
+  const [friend, ally, cecilia, download, links, socialLinks] = await Promise.all([
     readRepoFile(pageFiles[0]),
     readRepoFile(pageFiles[1]),
     readRepoFile(pageFiles[2]),
     readRepoFile(pageFiles[3]),
     readRepoFile('data/ana-collaboration.ts'),
+    readRepoFile('lib/social-links.ts'),
   ])
 
   assert.match(friend, /href="\/allies\/ana-cancino"/)
@@ -51,8 +69,35 @@ test('the Ana surfaces form one connected review journey', async () => {
   assert.match(download, /href="\/portal\/ana"/)
   assert.match(cecilia, /href="\/allies\/ana-cancino"/)
   assert.match(links, /https:\/\/www\.anaceciliacancino\.com\//)
-  assert.match(links, /https:\/\/www\.linkedin\.com\/in\/ana-cancino-\//)
+  assert.match(links, /ALLY_SOCIAL_LINKS\.anaCancino\.linkedin/)
+  assert.match(socialLinks, /https:\/\/www\.linkedin\.com\/in\/ana-cancino-\//)
   assert.match(links, /https:\/\/github\.com\/frankxai\/ana-ai-business-kit/)
+  assert.match(links, /START-HERE-TEAM\.md/)
+  assert.match(links, /docs\/WHO-READS-WHAT\.md/)
+})
+
+test('the workflow explorer and proposal choices expose complete keyboard semantics', async () => {
+  const [workflow, response] = await Promise.all([
+    readRepoFile('components/ana/AnaTeamWorkflow.tsx'),
+    readRepoFile('components/ana/AnaProposalResponse.tsx'),
+  ])
+
+  assert.match(workflow, /role="tablist"/)
+  assert.match(workflow, /role="tab"/)
+  assert.match(workflow, /role="tabpanel"/)
+  assert.match(workflow, /aria-selected=\{active\}/)
+  assert.match(workflow, /event\.key === 'ArrowRight'/)
+  assert.match(workflow, /event\.key === 'Home'/)
+  assert.doesNotMatch(workflow, /<nav aria-label="Ana HR workflow stages"/)
+  assert.match(response, /peer-focus-visible:ring-2/)
+  assert.match(response, /peer-focus-visible:ring-offset-2/)
+})
+
+test('Ana and Tallinn contracts are wired into both merge gates', async () => {
+  const packageJson = await readRepoFile('package.json')
+  assert.match(packageJson, /"test:ana-release"/)
+  assert.match(packageJson, /"merge:gate": "npm run test:homepage-release && npm run test:ana-release/)
+  assert.match(packageJson, /"merge:gate:ci": "npm run test:homepage-release && npm run test:ana-release/)
 })
 
 test('the workflow preserves Ana HR Operations sequence and human accountability', async () => {
@@ -103,9 +148,13 @@ test('the download endpoint points to the maintained kit and labels the old ZIP 
   assert.match(page, /Current HR workflow · v\{currentVersion\}/)
   assert.match(page, /Earlier archive/)
   assert.match(page, /not the recommended HR Operations workflow/)
-  assert.match(release, /version: '1\.0\.0'/)
+  assert.match(release, /version: '1\.1\.0'/)
   assert.match(release, /status: 'current'/)
   assert.match(release, /sourceRepo: 'https:\/\/github\.com\/frankxai\/ana-ai-business-kit'/)
+  assert.match(release, /teamStartGuide:/)
+  assert.match(release, /START-HERE-TEAM\.md/)
+  assert.match(release, /readingMap:/)
+  assert.match(release, /docs\/WHO-READS-WHAT\.md/)
   assert.match(release, /legacyArchive:/)
   assert.match(release, /recommended: false/)
 })

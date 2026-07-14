@@ -120,33 +120,33 @@ function StatusTone({ tone }: { tone: (typeof statusItems)[number]['tone'] }) {
 
 export default function AnaAllyPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#090806] text-[#fff8e9]">
+    <main className="min-h-screen overflow-hidden bg-ana-obsidian text-ana-cream">
       <section className="relative isolate overflow-hidden px-5 pb-14 pt-28 sm:px-8 md:pb-20 md:pt-36 lg:px-12">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_14%_8%,rgba(220,178,119,0.20),transparent_33%),radial-gradient(circle_at_84%_16%,rgba(25,87,66,0.24),transparent_32%),radial-gradient(circle_at_54%_90%,rgba(220,178,119,0.09),transparent_35%),linear-gradient(135deg,#090806_0%,#15110c_48%,#07120f_100%)]" />
-        <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-[#ddb87f]/[0.55] to-transparent" />
+        <div className="absolute inset-0 -z-20 bg-ana-aurora" />
+        <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-ana-gold/[0.55] to-transparent" />
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#ddb87f]/25 bg-[#ddb87f]/[0.09] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#f5dcb4]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-ana-gold/25 bg-ana-gold/[0.09] px-4 py-2 text-xs font-semibold tracking-[0.08em] text-ana-cream">
               <Users className="h-4 w-4" aria-hidden="true" />
               Prepared for Ana and her four-person team
             </div>
             <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
               Your method, made easy for the team to run.
             </h1>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-[#fff8e9]/70 md:text-xl">
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-ana-cream/70 md:text-xl">
               Ana already has the difficult part: a thoughtful HR and recruiting process. This proposal makes the sequence visible, teaches it one stage at a time, and keeps Ana in control of every consequential decision.
             </p>
-            <p className="mt-4 max-w-2xl border-l border-[#ddb87f]/[0.35] pl-4 text-sm leading-6 text-[#f5dcb4]/[0.72]">
+            <p className="mt-4 max-w-2xl border-l border-ana-gold/[0.35] pl-4 text-sm leading-6 text-ana-cream/[0.72]">
               El equipo prepara. La IA organiza y revisa. Ana y el cliente deciden.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href="#workflow" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#f4dfbd] px-6 py-3 text-sm font-semibold text-[#17120d] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ddb87f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#090806]">
+              <a href="#workflow" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
                 Explore the workflow
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
-              <Link href="/downloads/ana-ai-business-kit" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-[#fff8e9]/[0.78] transition hover:border-white/[0.35] hover:text-[#fff8e9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ddb87f]">
+              <Link href="/downloads/ana-ai-business-kit" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
                 Start Ana HR Operations
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
@@ -156,10 +156,10 @@ export default function AnaAllyPage() {
           <aside className="rounded-[2.5rem] border border-white/10 bg-white/[0.05] p-5 shadow-[0_36px_130px_rgba(0,0,0,0.44)] backdrop-blur-2xl sm:p-6">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ddb87f]">The useful first win</p>
+                <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">The useful first win</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight">One client path the whole team can explain.</h2>
               </div>
-              <FileCheck2 className="hidden h-10 w-10 text-[#f1cf99] sm:block" aria-hidden="true" />
+              <FileCheck2 className="hidden h-10 w-10 text-ana-gold sm:block" aria-hidden="true" />
             </div>
             <ol className="mt-7 space-y-0 border-y border-white/10">
               {[
@@ -170,12 +170,12 @@ export default function AnaAllyPage() {
                 ['5', 'Hand off the reviewed draft'],
               ].map(([number, label]) => (
                 <li key={number} className="grid grid-cols-[2rem_1fr] gap-3 border-b border-white/[0.09] py-3 last:border-b-0">
-                  <span className="font-mono text-xs text-[#ddb87f]">0{number}</span>
-                  <span className="text-sm text-[#fff8e9]/[0.68]">{label}</span>
+                  <span className="font-mono text-xs text-ana-gold">0{number}</span>
+                  <span className="text-sm text-ana-cream/[0.68]">{label}</span>
                 </li>
               ))}
             </ol>
-            <p className="mt-5 flex items-start gap-2 text-xs leading-5 text-[#fff8e9]/[0.42]">
+            <p className="mt-5 flex items-start gap-2 text-xs leading-5 text-ana-cream/[0.42]">
               <LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               Client and candidate records stay in approved private systems, never in this page or a public repository.
             </p>
@@ -189,7 +189,7 @@ export default function AnaAllyPage() {
             <article key={item.title} className={`p-5 sm:p-6 ${index > 0 ? 'border-t border-white/10 md:border-t-0 md:border-l' : ''} ${index === 2 ? 'xl:border-t-0' : ''}`}>
               <StatusTone tone={item.tone} />
               <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-[#fff8e9]/[0.52]">{item.detail}</p>
+              <p className="mt-2 text-sm leading-6 text-ana-cream/[0.52]">{item.detail}</p>
             </article>
           ))}
         </div>
@@ -204,9 +204,9 @@ export default function AnaAllyPage() {
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ddb87f]">Clear responsibility</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Clear responsibility</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Automation backstage. Accountability in the room.</h2>
-            <p className="mt-5 text-base leading-7 text-[#fff8e9]/[0.58]">The system is useful because every person can see where preparation ends and a human decision begins.</p>
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">The system is useful because every person can see where preparation ends and a human decision begins.</p>
           </div>
 
           <div className="mt-10 grid border-y border-white/10 lg:grid-cols-3 lg:divide-x lg:divide-white/10">
@@ -215,12 +215,12 @@ export default function AnaAllyPage() {
               return (
                 <article key={group.label} className={`py-7 lg:px-8 lg:py-9 ${index > 0 ? 'border-t border-white/10 lg:border-t-0' : ''}`}>
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5 text-[#f1cf99]" aria-hidden="true" />
+                    <Icon className="h-5 w-5 text-ana-gold" aria-hidden="true" />
                     <h3 className="text-lg font-semibold">{group.label}</h3>
                   </div>
                   <ul className="mt-5 space-y-3">
                     {group.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-[#fff8e9]/[0.58]">
+                      <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-ana-cream/[0.58]">
                         <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-200/80" aria-hidden="true" />
                         {item}
                       </li>
@@ -236,22 +236,22 @@ export default function AnaAllyPage() {
       <section id="pilot" className="scroll-mt-24 px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ddb87f]">Pilot recommended</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Pilot recommended</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Thirty days. One bounded learning loop.</h2>
-              <p className="mt-5 text-base leading-7 text-[#fff8e9]/[0.58]">The first month should prove that the process helps the team and protects quality, not build a giant platform. No live automation is connected until the practice run passes review.</p>
+              <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">The first month should prove that the process helps the team and protects quality, not build a giant platform. No live automation is connected until the practice run passes review.</p>
           </div>
 
-          <ol className="border-l border-[#ddb87f]/25 pl-5 sm:pl-8">
+          <ol className="border-l border-ana-gold/25 pl-5 sm:pl-8">
             {anaPilot.map((step, index) => (
               <li key={step.window} className="relative pb-9 last:pb-0">
-                <span className="absolute -left-[1.63rem] top-1 grid h-5 w-5 place-items-center rounded-full border border-[#ddb87f]/[0.55] bg-[#15110c] sm:-left-[2.63rem]" aria-hidden="true">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#ddb87f]" />
+                <span className="absolute -left-[1.63rem] top-1 grid h-5 w-5 place-items-center rounded-full border border-ana-gold/[0.55] bg-ana-obsidian sm:-left-[2.63rem]" aria-hidden="true">
+                  <span className="h-1.5 w-1.5 rounded-full bg-ana-gold" />
                 </span>
                 <div className="grid gap-3 sm:grid-cols-[6rem_1fr]">
-                  <p className="font-mono text-xs text-[#ddb87f]">{step.window}</p>
+                  <p className="font-mono text-xs text-ana-gold">{step.window}</p>
                   <div>
                     <h3 className="text-xl font-semibold">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-[#fff8e9]/[0.58]">{step.detail}</p>
+                    <p className="mt-2 text-sm leading-6 text-ana-cream/[0.58]">{step.detail}</p>
                     {index === 1 ? <p className="mt-3 inline-flex rounded-full border border-emerald-300/20 bg-emerald-300/[0.055] px-3 py-1 text-[11px] font-semibold text-emerald-100/75">No client contact · master templates stay untouched</p> : null}
                   </div>
                 </div>
@@ -265,15 +265,15 @@ export default function AnaAllyPage() {
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(221,184,127,0.11),rgba(255,255,255,0.025),rgba(25,87,66,0.11))]">
           <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
             <div className="p-6 sm:p-8 lg:p-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ddb87f]">What the future workspace connects</p>
+              <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">What the future workspace connects</p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">A calm front door over the tools Ana already uses.</h2>
-              <p className="mt-5 text-base leading-7 text-[#fff8e9]/[0.58]">Google Drive, Docs, the ATS or tracker, Canva, and finance records remain the source systems. The portal should guide the team; it should not hide where truth lives.</p>
+              <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">Google Drive, Docs, the ATS or tracker, Canva, and finance records remain the source systems. The portal should guide the team; it should not hide where truth lives.</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/portal/ana" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#f4dfbd] px-5 py-3 text-sm font-semibold text-[#17120d] transition hover:bg-white">
+                <Link href="/portal/ana" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
                   Preview the team portal
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <a href={anaLinks.kitRepo} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-[#fff8e9]/[0.68] transition hover:border-white/[0.35] hover:text-[#fff8e9]">
+                <a href={anaLinks.kitRepo} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/[0.68] transition hover:border-white/[0.35] hover:text-ana-cream">
                   Inspect the maintained kit
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
@@ -287,9 +287,9 @@ export default function AnaAllyPage() {
                 ['Client experience', 'Approved briefs, documents, status, and aftercare — never a public candidate database.'],
               ].map(([title, detail], index) => (
                 <article key={title} className={`p-5 sm:p-6 ${index > 0 ? 'border-t border-white/10 sm:border-l sm:border-t-0' : ''}`}>
-                  <p className="font-mono text-xs text-[#ddb87f]">0{index + 1}</p>
+                  <p className="font-mono text-xs text-ana-gold">0{index + 1}</p>
                   <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#fff8e9]/[0.52]">{detail}</p>
+                  <p className="mt-3 text-sm leading-6 text-ana-cream/[0.52]">{detail}</p>
                 </article>
               ))}
             </div>
@@ -313,12 +313,12 @@ export default function AnaAllyPage() {
       <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex max-w-2xl items-start gap-3">
-            <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[#f1cf99]" aria-hidden="true" />
-            <p className="text-sm leading-6 text-[#fff8e9]/50">Ana approves biography, team roles, templates, identity, pricing, legal terms, client data handling, payments, indexing, and every external send. Silence never counts as approval.</p>
+            <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-ana-gold" aria-hidden="true" />
+            <p className="text-sm leading-6 text-ana-cream/50">Ana approves biography, team roles, templates, identity, pricing, legal terms, client data handling, payments, indexing, and every external send. Silence never counts as approval.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/friends/ana" className="text-sm font-semibold text-[#f5dcb4] underline decoration-[#ddb87f]/[0.35] underline-offset-4 hover:decoration-[#ddb87f]">Ana's friend profile</Link>
-            <Link href="/alliance/cecilia" className="text-sm font-semibold text-[#f5dcb4] underline decoration-[#ddb87f]/[0.35] underline-offset-4 hover:decoration-[#ddb87f]">Cecilia proposal</Link>
+            <Link href="/friends/ana" className="text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">Ana's friend profile</Link>
+            <Link href="/alliance/cecilia" className="text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">Cecilia proposal</Link>
           </div>
         </div>
       </section>

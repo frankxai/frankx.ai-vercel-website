@@ -1,4 +1,7 @@
-import { TALLINN_VALIDATION_GATE } from '@/data/tallinn-experiences'
+import {
+  TALLINN_VALIDATION_GATE,
+  tallinnExperiences,
+} from '@/data/tallinn-experiences'
 
 export interface TallinnThresholdRecord {
   normalizedEmail: string
@@ -30,7 +33,11 @@ export function evaluateTallinnThreshold(
   )
 
   const confirmed = unique.size
-  if (confirmed >= TALLINN_VALIDATION_GATE.roomCapacityTarget) {
+  const roomCapacityTarget =
+    tallinnExperiences.find((experience) => experience.slug === experienceSlug)
+      ?.roomCapacityTarget ?? TALLINN_VALIDATION_GATE.roomCapacityTarget
+
+  if (confirmed >= roomCapacityTarget) {
     return { state: 'session-full', confirmed }
   }
   if (confirmed >= TALLINN_VALIDATION_GATE.minimumConfirmed) {
