@@ -17,13 +17,30 @@ import { testEmail, newsletterWelcomeEmail, communityBroadcastEmail } from '@/li
  * }
  */
 
+function secretsMatch(expectedSecret: string, providedSecret: string) {
+  const expectedBytes = new TextEncoder().encode(expectedSecret)
+  const providedBytes = new TextEncoder().encode(providedSecret)
+
+  if (expectedBytes.length !== providedBytes.length) {
+    return false
+  }
+
+  let difference = 0
+  for (let index = 0; index < expectedBytes.length; index += 1) {
+    difference |= expectedBytes[index] ^ providedBytes[index]
+  }
+
+  return difference === 0
+}
+
 function isTestEmailRequestAuthorized(request: NextRequest) {
   if (process.env.NODE_ENV === 'development') {
     return true
   }
 
-  const secret = process.env.TEST_EMAIL_SECRET
-  return Boolean(secret && request.headers.get('x-test-email-secret') === secret)
+  const expectedSecret = process.env.TEST_EMAIL_SECRET
+  const providedSecret = request.headers.get('x-test-email-secret')
+  return Boolean(expectedSecret && providedSecret && secretsMatch(expectedSecret, providedSecret))
 }
 
 function notFoundResponse() {
