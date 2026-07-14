@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { ArrowRight, Check, RadioTower } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { GlowCard } from '@/components/ui/glow-card'
 import {
   TALLINN_AMPLIFIER_OUTCOMES,
@@ -11,6 +11,7 @@ import {
   type TallinnAmplifierOutcome,
   type TallinnAmplifierRole,
 } from '@/data/tallinn-studio'
+import { trackEvent } from '@/lib/analytics'
 
 interface SessionAmplifierProps {
   defaultRole?: TallinnAmplifierRole
@@ -42,7 +43,7 @@ export function SessionAmplifier({
   )
 
   return (
-    <section id="amplifier" className="border-y border-white/[0.07] bg-white/[0.012]">
+    <section id="amplifier" className="surface-1 border-y border-white/[0.08]">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
           <div>
@@ -67,10 +68,10 @@ export function SessionAmplifier({
                 {TALLINN_AMPLIFIER_ROLES.map((item) => (
                   <label
                     key={item.id}
-                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors focus-within:ring-2 focus-within:ring-cyan-300 focus-within:ring-offset-2 focus-within:ring-offset-[#090c10] motion-reduce:transition-none ${
+                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors focus-within:ring-2 focus-within:ring-cyan-300 focus-within:ring-offset-2 focus-within:ring-offset-void motion-reduce:transition-none ${
                       role === item.id
                         ? 'border-cyan-300/55 bg-cyan-300/10 text-white'
-                        : 'border-white/10 bg-white/[0.025] text-slate-300 hover:border-white/25 hover:text-white'
+                        : 'surface-1 border-white/10 text-slate-300 hover:border-white/25 hover:text-white'
                     }`}
                   >
                     <input
@@ -78,7 +79,10 @@ export function SessionAmplifier({
                       name="amplifier-role"
                       value={item.id}
                       checked={role === item.id}
-                      onChange={() => setRole(item.id)}
+                      onChange={() => {
+                        setRole(item.id)
+                        trackEvent('tallinn_amplifier_role_selected', { role: item.id })
+                      }}
                       className="sr-only"
                     />
                     <span className="block text-sm font-semibold">{item.label}</span>
@@ -93,10 +97,10 @@ export function SessionAmplifier({
                 {TALLINN_AMPLIFIER_OUTCOMES.map((item) => (
                   <label
                     key={item.id}
-                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors focus-within:ring-2 focus-within:ring-emerald-300 focus-within:ring-offset-2 focus-within:ring-offset-[#090c10] motion-reduce:transition-none ${
+                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors focus-within:ring-2 focus-within:ring-emerald-300 focus-within:ring-offset-2 focus-within:ring-offset-void motion-reduce:transition-none ${
                       outcome === item.id
                         ? 'border-emerald-300/55 bg-emerald-300/[0.09] text-white'
-                        : 'border-white/10 bg-white/[0.025] text-slate-300 hover:border-white/25 hover:text-white'
+                        : 'surface-1 border-white/10 text-slate-300 hover:border-white/25 hover:text-white'
                     }`}
                   >
                     <input
@@ -104,7 +108,10 @@ export function SessionAmplifier({
                       name="amplifier-outcome"
                       value={item.id}
                       checked={outcome === item.id}
-                      onChange={() => setOutcome(item.id)}
+                      onChange={() => {
+                        setOutcome(item.id)
+                        trackEvent('tallinn_amplifier_outcome_selected', { outcome: item.id })
+                      }}
                       className="sr-only"
                     />
                     <span className="block text-sm font-semibold">{item.label}</span>
@@ -116,7 +123,7 @@ export function SessionAmplifier({
           </div>
 
           <div aria-live="polite">
-            <GlowCard color="cyan" className="rounded-[2rem] bg-[#0d1117]">
+            <GlowCard color="cyan" className="surface-2 rounded-[2rem]">
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="flex flex-col gap-4 border-b border-white/10 pb-7 sm:flex-row sm:items-start sm:justify-between">
                   <div>
@@ -134,7 +141,7 @@ export function SessionAmplifier({
 
                 <ol className="mt-8 grid gap-3 md:grid-cols-3">
                   {stages.map((stage) => (
-                    <li key={stage.id} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
+                    <li key={stage.id} className="surface-1 rounded-2xl border border-white/10 p-5">
                       <div className="flex items-center justify-between gap-3">
                         <span className="font-mono text-xs text-cyan-300">{stage.index}</span>
                         <Check className="h-4 w-4 text-emerald-300" aria-hidden="true" />
@@ -149,13 +156,15 @@ export function SessionAmplifier({
                   <p className="max-w-xl text-sm leading-6 text-slate-400">
                     This is a starting architecture. The speaker or host keeps authorship; Frank shapes the room, artifact, and continuation layer around it.
                   </p>
-                  <Link
+                  <TrackedLink
                     href={`/experiences/tallinn-2026?role=${role}&outcome=${outcome}#interest`}
-                    className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-100 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]"
+                    eventName="tallinn_amplifier_plan_selected"
+                    eventProperties={{ role, outcome }}
+                    className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-100 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
                   >
                     Use this plan
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  </TrackedLink>
                 </div>
               </div>
             </GlowCard>

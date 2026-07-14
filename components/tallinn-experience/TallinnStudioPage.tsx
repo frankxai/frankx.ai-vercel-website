@@ -11,8 +11,8 @@ import {
   Users,
 } from 'lucide-react'
 
+import { TrackedGlowButton } from '@/components/analytics/TrackedGlowButton'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
-import { GlowButton } from '@/components/ui/GlowButton'
 import { GlowCard } from '@/components/ui/glow-card'
 import {
   TALLINN_AMPLIFIER_OUTCOMES,
@@ -96,11 +96,11 @@ export function TallinnStudioPage({
   const planKey = `${defaultRole}:${defaultOutcome}`
 
   return (
-    <main className="overflow-hidden bg-[#080a0d] text-white">
+    <main className="overflow-hidden bg-void text-white">
       <CursorSpotlight />
 
-      <section className="relative border-b border-white/[0.07]">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[54rem] bg-[radial-gradient(circle_at_18%_12%,rgba(6,182,212,0.14),transparent_34%),radial-gradient(circle_at_78%_8%,rgba(245,158,11,0.10),transparent_30%)]" />
+      <section className="relative border-b border-white/[0.08]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[54rem] bg-tallinn-aurora" />
         <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-28 sm:px-8 sm:pt-36 lg:px-10 lg:pb-28 lg:pt-44">
           <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             <div>
@@ -124,18 +124,31 @@ export function TallinnStudioPage({
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <GlowButton href="#amplifier" size="lg" color="cyan">
+                <TrackedGlowButton
+                  href="#amplifier"
+                  size="lg"
+                  color="cyan"
+                  eventName="tallinn_studio_cta_clicked"
+                  eventProperties={{ action: 'build_session_path', placement: 'hero' }}
+                >
                   Build your session path
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </GlowButton>
-                <GlowButton href="#interest" size="lg" variant="secondary" color="emerald">
+                </TrackedGlowButton>
+                <TrackedGlowButton
+                  href="#interest"
+                  size="lg"
+                  variant="secondary"
+                  color="emerald"
+                  eventName="tallinn_studio_cta_clicked"
+                  eventProperties={{ action: 'register_interest', placement: 'hero' }}
+                >
                   Register interest
-                </GlowButton>
+                </TrackedGlowButton>
               </div>
 
               <div className="mt-12 grid gap-px overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/10 sm:grid-cols-3">
                 {roomStages.map((stage) => (
-                  <div key={stage.index} className="bg-[#0b0e12] p-5">
+                  <div key={stage.index} className="surface-2 p-5">
                     <p className={`font-mono text-xs ${stage.color}`}>{stage.index}</p>
                     <p className="mt-6 text-sm font-semibold text-white">{stage.label}</p>
                     <p className="mt-2 text-xs leading-5 text-slate-500">{stage.note}</p>
@@ -196,7 +209,7 @@ export function TallinnStudioPage({
         defaultOutcome={defaultOutcome}
       />
 
-      <section className="border-b border-white/[0.07]">
+      <section className="border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div className="lg:sticky lg:top-28 lg:self-start">
@@ -240,7 +253,7 @@ export function TallinnStudioPage({
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07] bg-white/[0.012]">
+      <section className="surface-1 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
@@ -282,7 +295,7 @@ export function TallinnStudioPage({
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07] bg-white/[0.012]">
+      <section className="surface-1 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 text-sm font-medium text-emerald-300">
@@ -323,7 +336,7 @@ export function TallinnStudioPage({
               </div>
             </GlowCard>
 
-            <div className="divide-y divide-white/10 rounded-[2rem] border border-white/10 bg-[#0b0e12] px-6 sm:px-8">
+            <div className="surface-2 divide-y divide-white/10 rounded-[2rem] border border-white/10 px-6 sm:px-8">
               {studioFormats.map((format) => (
                 <Link
                   key={format.slug}
@@ -355,7 +368,7 @@ export function TallinnStudioPage({
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07]">
+      <section className="border-b border-white/[0.08]">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:px-10 lg:py-28">
           <figure>
             <a
@@ -412,7 +425,7 @@ export function TallinnStudioPage({
       </section>
 
       <section id="interest" className="relative scroll-mt-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,0.10),transparent_30%),radial-gradient(circle_at_84%_75%,rgba(6,182,212,0.09),transparent_32%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-studio-continuation" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:items-start lg:px-10 lg:py-28">
           <div className="lg:sticky lg:top-28">
             <p className="text-sm font-medium text-emerald-300">Register interest</p>
@@ -437,7 +450,7 @@ export function TallinnStudioPage({
             </ul>
           </div>
 
-          <GlowCard color="emerald" className="rounded-[2rem] bg-[#0b0e12]">
+          <GlowCard color="emerald" className="surface-2 rounded-[2rem]">
             <div className="p-5 sm:p-8 lg:p-10">
               <TallinnInterestForm
                 key={`interest:${planKey}`}
@@ -449,7 +462,7 @@ export function TallinnStudioPage({
         </div>
       </section>
 
-      <footer className="border-t border-white/[0.07] bg-[#080a0d]">
+      <footer className="border-t border-white/[0.08] bg-void">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-10 text-xs leading-5 text-slate-500 sm:px-8 md:flex-row md:items-start md:justify-between lg:px-10">
           <p className="max-w-3xl">{TALLINN_STUDIO_EVENT.independenceNotice}</p>
           <div className="flex shrink-0 gap-5">

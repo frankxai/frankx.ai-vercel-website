@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Check, MapPin } from 'lucide-react'
 
-import { GlowButton } from '@/components/ui/GlowButton'
+import { TrackedGlowButton } from '@/components/analytics/TrackedGlowButton'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { GlowCard } from '@/components/ui/glow-card'
 import { TALLINN_STUDIO_EVENT, type TallinnPublicFormat } from '@/data/tallinn-studio'
 
@@ -11,17 +11,19 @@ interface TallinnFormatPageProps {
 
 export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
-      <section className="relative border-b border-white/[0.07]">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-[radial-gradient(circle_at_18%_10%,rgba(6,182,212,0.12),transparent_34%),radial-gradient(circle_at_82%_20%,rgba(245,158,11,0.09),transparent_30%)]" />
+    <main className="min-h-screen overflow-hidden bg-void text-white">
+      <section className="relative border-b border-white/[0.08]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-tallinn-aurora" />
         <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-28 sm:px-8 sm:pt-36 lg:px-10 lg:pb-28 lg:pt-44">
-          <Link
+          <TrackedLink
             href="/experiences/tallinn-2026"
+            eventName="tallinn_format_cta_clicked"
+            eventProperties={{ action: 'return_to_studio', format_slug: format.slug }}
             className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Tallinn Session Studio
-          </Link>
+          </TrackedLink>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
             <div>
@@ -31,17 +33,29 @@ export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{format.promise}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <GlowButton href="/experiences/tallinn-2026#interest" size="lg" color={format.accent}>
+                <TrackedGlowButton
+                  href="/experiences/tallinn-2026#interest"
+                  size="lg"
+                  color={format.accent}
+                  eventName="tallinn_format_cta_clicked"
+                  eventProperties={{ action: 'shape_format', format_slug: format.slug }}
+                >
                   Shape this format
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </GlowButton>
-                <GlowButton href={format.workshopHref} size="lg" variant="secondary">
-                  See the source work
-                </GlowButton>
+                </TrackedGlowButton>
+                <TrackedGlowButton
+                  href={format.sourceHref}
+                  size="lg"
+                  variant="secondary"
+                  eventName="tallinn_format_cta_clicked"
+                  eventProperties={{ action: 'open_source', format_slug: format.slug }}
+                >
+                  {format.sourceLabel}
+                </TrackedGlowButton>
               </div>
             </div>
 
-            <GlowCard color={format.accent} className="rounded-[2rem] bg-[#0b0e12]">
+            <GlowCard color={format.accent} className="surface-2 rounded-[2rem]">
               <div className="p-7 sm:p-9">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
@@ -86,7 +100,7 @@ export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
         </div>
       </section>
 
-      <section className="border-y border-white/[0.07] bg-white/[0.015]">
+      <section className="surface-1 border-y border-white/[0.08]">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-center lg:px-10 lg:py-20">
           <div>
             <div className="flex items-center gap-2 text-sm text-cyan-300">
@@ -100,10 +114,16 @@ export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
               Register interest to help decide whether this should become a Tallinn session. No ticket, venue, or schedule is promised by the form.
             </p>
           </div>
-          <GlowButton href="/experiences/tallinn-2026#interest" size="lg" color="emerald">
+          <TrackedGlowButton
+            href="/experiences/tallinn-2026#interest"
+            size="lg"
+            color="emerald"
+            eventName="tallinn_format_cta_clicked"
+            eventProperties={{ action: 'register_interest', format_slug: format.slug }}
+          >
             Register interest
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </GlowButton>
+          </TrackedGlowButton>
         </div>
       </section>
 

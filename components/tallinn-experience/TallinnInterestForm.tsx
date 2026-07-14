@@ -46,7 +46,7 @@ export function TallinnInterestForm({
       company: String(data.get('company') || ''),
       source: window.location.pathname,
       message: [
-        'Tallinn Tribe Studio interest',
+        'Tallinn Session Studio interest',
         `Role: ${roleLabel}`,
         `Desired outcome: ${outcomeLabel}`,
         `Context: ${context || '(not provided)'}`,
@@ -60,11 +60,15 @@ export function TallinnInterestForm({
       outcome,
     })
 
+    const controller = new AbortController()
+    const timeoutId = window.setTimeout(() => controller.abort(), 15_000)
+
     try {
       const response = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       })
       const json = await response.json().catch(() => ({}))
 
@@ -77,13 +81,22 @@ export function TallinnInterestForm({
       setStatus('done')
       form.reset()
     } catch (error) {
-      trackEvent('tallinn_studio_interest_failed', { role, outcome })
+      const timedOut = error instanceof DOMException && error.name === 'AbortError'
+      trackEvent('tallinn_studio_interest_failed', {
+        role,
+        outcome,
+        reason: timedOut ? 'timeout' : 'request_error',
+      })
       setStatus('error')
       setMessage(
-        error instanceof Error
+        timedOut
+          ? 'The request timed out. Please try again or email frank@frankx.ai.'
+          : error instanceof Error
           ? error.message
           : 'We could not send this right now. Please email frank@frankx.ai.',
       )
+    } finally {
+      window.clearTimeout(timeoutId)
     }
   }
 
@@ -121,7 +134,7 @@ export function TallinnInterestForm({
             id="tallinn-role"
             name="role"
             defaultValue={defaultRole}
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-[#0a0d12] px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-space px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           >
             {TALLINN_AMPLIFIER_ROLES.map((role) => (
               <option key={role.id} value={role.id}>
@@ -138,7 +151,7 @@ export function TallinnInterestForm({
             id="tallinn-outcome"
             name="outcome"
             defaultValue={defaultOutcome}
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-[#0a0d12] px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-space px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           >
             {TALLINN_AMPLIFIER_OUTCOMES.map((outcome) => (
               <option key={outcome.id} value={outcome.id}>
@@ -161,7 +174,7 @@ export function TallinnInterestForm({
             maxLength={200}
             autoComplete="name"
             placeholder="Your name"
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+            className="surface-2 mt-2 min-h-12 w-full rounded-xl border border-white/10 px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           />
         </div>
         <div>
@@ -176,7 +189,7 @@ export function TallinnInterestForm({
             maxLength={200}
             autoComplete="email"
             placeholder="you@example.com"
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+            className="surface-2 mt-2 min-h-12 w-full rounded-xl border border-white/10 px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           />
         </div>
       </div>
@@ -191,7 +204,7 @@ export function TallinnInterestForm({
           maxLength={200}
           autoComplete="organization"
           placeholder="Who or what is behind the room?"
-          className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+          className="surface-2 mt-2 min-h-12 w-full rounded-xl border border-white/10 px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
         />
       </div>
 
@@ -205,7 +218,7 @@ export function TallinnInterestForm({
           maxLength={2400}
           rows={5}
           placeholder="Your audience, existing session, venue, idea, constraints, or the result you want people to leave with."
-          className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-white/[0.025] px-4 py-3 text-sm leading-6 text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+          className="surface-2 mt-2 w-full resize-y rounded-xl border border-white/10 px-4 py-3 text-sm leading-6 text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
         />
         <p className="mt-2 text-xs leading-5 text-slate-500">
           Do not include private participant, health, employment, or therapy information.
@@ -240,7 +253,7 @@ export function TallinnInterestForm({
         <div role="alert" className="rounded-xl border border-rose-300/25 bg-rose-300/[0.06] px-4 py-3 text-sm leading-6 text-rose-100">
           <p>{message}</p>
           <a
-            href="mailto:frank@frankx.ai?subject=Tallinn%20Tribe%20Studio"
+            href="mailto:frank@frankx.ai?subject=Tallinn%20Session%20Studio"
             className="mt-2 inline-flex items-center gap-2 font-semibold text-white underline decoration-white/30 underline-offset-4"
           >
             <Mail className="h-4 w-4" aria-hidden="true" />
@@ -253,7 +266,7 @@ export function TallinnInterestForm({
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
         >
           {status === 'submitting' ? (
             'Sending…'

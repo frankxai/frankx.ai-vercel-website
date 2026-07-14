@@ -127,7 +127,8 @@ export const TALLINN_PUBLIC_FORMATS = [
     fit: 'Creators and professionals reshaping their next chapter',
     status: 'Built from Frank’s Ikigai & Branding work',
     accent: 'amber' as const,
-    workshopHref: '/workshops/ikigai-branding',
+    sourceHref: '/workshops/ikigai-branding',
+    sourceLabel: 'Explore Ikigai & Branding',
     steps: [
       'Name the real signals: meaning, demonstrated strengths, useful contribution, and this season’s limits.',
       'Write one purpose-to-practice sentence with an honest trade-off.',
@@ -143,7 +144,8 @@ export const TALLINN_PUBLIC_FORMATS = [
     fit: 'Speakers, coaches, trainers, and program hosts',
     status: 'Available to shape around your method',
     accent: 'cyan' as const,
-    workshopHref: '/experiences/tallinn-2026#interest',
+    sourceHref: '/workshops',
+    sourceLabel: 'Explore the workshop studio',
     steps: [
       'Protect the speaker’s core method and name the one change the room should support.',
       'Add one participant-owned artifact and one consent-safe signal from the room.',
@@ -159,7 +161,8 @@ export const TALLINN_PUBLIC_FORMATS = [
     fit: 'Creators, founders, technical professionals, and curious builders',
     status: 'Workshop architecture ready; live format to be tailored',
     accent: 'emerald' as const,
-    workshopHref: '/workshops/build-first-ai-agent',
+    sourceHref: '/workshops/build-first-ai-agent',
+    sourceLabel: 'Explore the AI Agent workshop',
     steps: [
       'Choose one small task and define what the agent may and may not do.',
       'Connect a model, one tool, and a visible loop around the task.',
@@ -175,7 +178,8 @@ export const TALLINN_PUBLIC_FORMATS = [
     fit: 'Creators, musicians, storytellers, and curious first-timers',
     status: 'Built from Frank’s 12,000+ song practice; live format to be shaped',
     accent: 'amber' as const,
-    workshopHref: '/music',
+    sourceHref: '/music',
+    sourceLabel: 'Explore FrankX Music',
     steps: [
       'Translate a feeling or story into a precise musical brief.',
       'Generate, compare, and refine with deliberate structure and taste.',

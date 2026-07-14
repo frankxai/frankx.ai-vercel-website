@@ -1,13 +1,18 @@
 import Link from 'next/link'
 import { ArrowRight, Check, FlaskConical, Sparkles, Users } from 'lucide-react'
 
-import { GlowButton } from '@/components/ui/GlowButton'
+import { TrackedGlowButton } from '@/components/analytics/TrackedGlowButton'
 import { GlowCard } from '@/components/ui/glow-card'
 import { workshops } from '@/data/workshops'
 
-const personallyDeliveredWorkshop = workshops.find(
-  (workshop) => workshop.provenance === 'delivered-personal',
-)!
+function requirePersonallyDeliveredWorkshop() {
+  const workshop = workshops.find((item) => item.provenance === 'delivered-personal')
+  if (!workshop) {
+    throw new Error('Workshop registry requires one personally delivered workshop.')
+  }
+  return workshop
+}
+const personallyDeliveredWorkshop = requirePersonallyDeliveredWorkshop()
 const studioAssistedDeliveredWorkshops = workshops.filter(
   (workshop) => workshop.provenance === 'delivered-studio-assisted',
 )
@@ -28,9 +33,9 @@ const evidence = [
 
 export default function WorkshopsPage() {
   return (
-    <main className="overflow-hidden bg-[#080a0d] text-white">
-      <section className="relative border-b border-white/[0.07]">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[46rem] bg-[radial-gradient(circle_at_20%_12%,rgba(16,185,129,0.13),transparent_34%),radial-gradient(circle_at_82%_10%,rgba(139,92,246,0.11),transparent_30%)]" />
+    <main className="overflow-hidden bg-void text-white">
+      <section className="relative border-b border-white/[0.08]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[46rem] bg-workshop-aurora" />
         <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-28 sm:px-8 sm:pt-36 lg:px-10 lg:pb-28 lg:pt-44">
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
@@ -42,13 +47,26 @@ export default function WorkshopsPage() {
                 Build the room around one useful result: something participants make, test, decide, or carry into the next week.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <GlowButton href="#formats" size="lg" color="emerald">
+                <TrackedGlowButton
+                  href="#formats"
+                  size="lg"
+                  color="emerald"
+                  eventName="workshop_studio_cta_clicked"
+                  eventProperties={{ action: 'explore_formats', placement: 'hero' }}
+                >
                   Explore the formats
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </GlowButton>
-                <GlowButton href="/experiences/tallinn-2026#amplifier" size="lg" variant="secondary" color="cyan">
+                </TrackedGlowButton>
+                <TrackedGlowButton
+                  href="/experiences/tallinn-2026#amplifier"
+                  size="lg"
+                  variant="secondary"
+                  color="cyan"
+                  eventName="workshop_studio_cta_clicked"
+                  eventProperties={{ action: 'open_session_amplifier', placement: 'hero' }}
+                >
                   Amplify your session
-                </GlowButton>
+                </TrackedGlowButton>
               </div>
             </div>
 
@@ -79,7 +97,7 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
-      <section id="formats" className="scroll-mt-24 border-b border-white/[0.07] bg-white/[0.012]">
+      <section id="formats" className="surface-1 scroll-mt-24 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
             <div className="lg:sticky lg:top-28">
@@ -151,7 +169,7 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07]">
+      <section className="border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
@@ -195,7 +213,7 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07] bg-white/[0.012]">
+      <section className="surface-1 border-b border-white/[0.08]">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[0.84fr_1.16fr] lg:items-center lg:px-10 lg:py-28">
           <div>
             <div className="flex items-center gap-2 text-sm font-medium text-emerald-300">
@@ -208,7 +226,7 @@ export default function WorkshopsPage() {
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
             {evidence.map((item) => (
-              <li key={item} className="flex min-h-28 gap-3 rounded-2xl border border-white/10 bg-[#0b0e12] p-5 text-sm leading-6 text-slate-300">
+              <li key={item} className="surface-2 flex min-h-28 gap-3 rounded-2xl border border-white/10 p-5 text-sm leading-6 text-slate-300">
                 <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
                 {item}
               </li>
@@ -218,7 +236,7 @@ export default function WorkshopsPage() {
       </section>
 
       <section className="relative">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(6,182,212,0.09),transparent_32%),radial-gradient(circle_at_82%_65%,rgba(16,185,129,0.08),transparent_30%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-studio-continuation" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <GlowCard color="cyan" className="rounded-[2.25rem]">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end lg:p-14">
@@ -231,10 +249,16 @@ export default function WorkshopsPage() {
                   Use the Tallinn Session Amplifier to turn it into a before, in-room, and after plan—then share whether you want Frank to help shape the pilot.
                 </p>
               </div>
-              <GlowButton href="/experiences/tallinn-2026#amplifier" size="lg" color="cyan">
+              <TrackedGlowButton
+                href="/experiences/tallinn-2026#amplifier"
+                size="lg"
+                color="cyan"
+                eventName="workshop_studio_cta_clicked"
+                eventProperties={{ action: 'open_session_amplifier', placement: 'closing' }}
+              >
                 Open the Session Amplifier
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </GlowButton>
+              </TrackedGlowButton>
             </div>
           </GlowCard>
         </div>

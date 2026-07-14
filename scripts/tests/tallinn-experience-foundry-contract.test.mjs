@@ -10,6 +10,9 @@ const registry = read('data/tallinn-studio.ts')
 const studio = read('components/tallinn-experience/TallinnStudioPage.tsx')
 const amplifier = read('components/tallinn-experience/SessionAmplifier.tsx')
 const form = read('components/tallinn-experience/TallinnInterestForm.tsx')
+const formatPage = read('components/tallinn-experience/TallinnFormatPage.tsx')
+const missingFormat = read('app/experiences/tallinn-2026/[slug]/not-found.tsx')
+const trackedGlowButton = read('components/analytics/TrackedGlowButton.tsx')
 const canonicalRoute = read('app/experiences/tallinn-2026/page.tsx')
 const shortAliasRoute = read('app/experiences/mvu-tallinn-2026/page.tsx')
 const longAliasRoute = read('app/experiences/mindvalley-university-tallinn-2026/page.tsx')
@@ -21,6 +24,7 @@ const workshopClient = read('app/workshops/[slug]/WorkshopClient.tsx')
 const glowCard = read('components/ui/glow-card.tsx')
 const nextConfig = read('next.config.mjs')
 const worksheet = read('app/experiences/tallinn-2026/purpose-to-practice/map/page.tsx')
+const tailwindConfig = read('tailwind.config.js')
 
 function sourceFiles(path) {
   const absolute = join(root, path)
@@ -73,6 +77,9 @@ test('session amplifier creates an immediate before, in-room, and after plan', (
   assert.match(amplifier, /role=\$\{role\}&outcome=\$\{outcome\}/)
   assert.match(studio, /key={`amplifier:\$\{planKey\}`}/)
   assert.match(studio, /key={`interest:\$\{planKey\}`}/)
+  assert.match(amplifier, /tallinn_amplifier_role_selected/)
+  assert.match(amplifier, /tallinn_amplifier_outcome_selected/)
+  assert.match(amplifier, /tallinn_amplifier_plan_selected/)
 })
 
 test('interest form uses the consent-based unified intake pipeline', () => {
@@ -83,7 +90,23 @@ test('interest form uses the consent-based unified intake pipeline', () => {
   assert.match(form, /<Link\s+href="\/privacy"/)
   assert.match(form, /Tribe, project, or venue/)
   assert.match(form, /Interest only\. No ticket, payment, or venue promise/)
+  assert.match(form, /new AbortController\(\)/)
+  assert.match(form, /controller\.abort\(\), 15_000/)
+  assert.match(form, /signal: controller\.signal/)
+  assert.match(form, /Tallinn Session Studio interest/)
+  assert.doesNotMatch(form, /Tallinn Tribe Studio/)
   assert.doesNotMatch(form, /captureEnabled|TALLINN_CAPTURE_MODE|TALLINN_PRIVACY_NOTICE_APPROVED/)
+})
+
+test('public conversion paths are measurable and accurately labeled', () => {
+  assert.match(trackedGlowButton, /trackEvent\(eventName, eventProperties\)/)
+  assert.match(studio, /tallinn_studio_cta_clicked/)
+  assert.match(formatPage, /tallinn_format_cta_clicked/)
+  assert.match(workshopsPage, /workshop_studio_cta_clicked/)
+  assert.match(missingFormat, /tallinn_studio_recovery_clicked/)
+  assert.match(registry, /sourceLabel: 'Explore the workshop studio'/)
+  assert.match(formatPage, /\{format\.sourceLabel\}/)
+  assert.doesNotMatch(formatPage, /See the source work/)
 })
 
 test('public Tallinn source tree contains no collaborator, stay, budget, or internal demand details', () => {
@@ -134,8 +157,20 @@ test('workshop catalog separates delivered work from studio architectures', () =
   assert.match(workshopRegistry, /slug: 'build-first-ai-agent',[\s\S]*provenance: 'delivered-studio-assisted'/)
   assert.match(workshopDetail, /workshop\.provenance/)
   assert.match(workshopClient, /workshop\.provenance === 'studio-draft'/)
+  assert.match(workshopsPage, /Workshop registry requires one personally delivered workshop/)
   assert.doesNotMatch(workshopDetail, /EventScheduled|CourseJsonLd|EventJsonLd/)
   assert.match(workshopDetail, /Workshop Studio/)
+})
+
+test('Tallinn surfaces use shared void, surface, and aurora tokens', () => {
+  const publicSurfaces = [studio, amplifier, form, formatPage, workshopsPage].join('\n')
+
+  assert.match(tailwindConfig, /'tallinn-aurora'/)
+  assert.match(tailwindConfig, /'workshop-aurora'/)
+  assert.match(tailwindConfig, /'studio-continuation'/)
+  assert.match(publicSurfaces, /bg-void/)
+  assert.match(publicSurfaces, /surface-2/)
+  assert.doesNotMatch(publicSurfaces, /bg-\[#0|ring-offset-\[#0|bg-\[radial-gradient/)
 })
 
 test('format routes preserve legacy URLs through safe public aliases', () => {
