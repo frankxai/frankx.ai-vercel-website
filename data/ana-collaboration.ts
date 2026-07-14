@@ -168,6 +168,7 @@ export const anaPilot = [
     title: 'Rehearse on copies',
     detail:
       'Practice with a past case whose private details have been removed, or a made-up example. Do not edit a master document, contact a client, or use candidate data.',
+    callout: 'No client contact · master templates stay untouched',
   },
   {
     window: 'Week 3',

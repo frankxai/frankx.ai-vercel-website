@@ -14,13 +14,23 @@ await Promise.all([
 
 const failures = []
 if (sources.length < 8) failures.push('official source atlas contains fewer than eight architectures')
-if (!sources.every((source) => source.docsUrl && source.repoUrl && source.flow.length >= 4)) {
+if (!sources.every((source) =>
+  source.docsUrl &&
+  source.source?.kind &&
+  source.source?.label &&
+  source.source?.url &&
+  Array.isArray(source.flow) &&
+  source.flow.length >= 4
+)) {
   failures.push('every architecture must include docs, repository, and a four-stage flow')
 }
-if (!['Vercel', 'Railway', 'GCP'].every((provider) => sources.some((source) => source.deployment.includes(provider)))) {
+if (!['Vercel', 'Railway', 'GCP'].every((provider) =>
+  sources.some((source) => source.deployment?.includes(provider))
+)) {
   failures.push('deployment matrix must cover Vercel, Railway, and GCP')
 }
 if (!home.includes('Every external link in this catalog was checked')) failures.push('visible link-verification statement missing')
+if (home.includes('Working repository')) failures.push('generic repository label remains')
 if (blueprintIndex.includes('/blueprint/') || legacyShell.includes('/blueprint/')) failures.push('legacy broken /blueprint route remains')
 if (!blueprintIndex.includes('/ai-architecture/${blueprint.slug}') || !legacyShell.includes('/ai-architecture/${blueprint.slug}')) {
   failures.push('canonical blueprint route is missing')

@@ -18,6 +18,7 @@ import {
   tallinnExperiences,
   tallinnReviewExperiences,
 } from '@/data/tallinn-experiences'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 
 import { ExperienceRouter } from './ExperienceRouter'
 import { TallinnInterestForm } from './TallinnInterestForm'
@@ -135,8 +136,8 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
   const formExperiences = tallinnExperiences.map(({ slug, title }) => ({ slug, title }))
 
   return (
-    <main className="overflow-hidden bg-[#08090b] text-white">
-      <section className="relative border-b border-white/[0.07]">
+    <main className="overflow-hidden bg-[#0a0a0b] text-white">
+      <section className="relative border-b border-white/[0.08]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[38rem] bg-[radial-gradient(circle_at_72%_10%,rgba(67,191,227,0.12),transparent_42%),radial-gradient(circle_at_22%_5%,rgba(245,158,11,0.08),transparent_34%)]" />
         <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-28 sm:px-8 sm:pt-36 lg:px-10 lg:pb-28 lg:pt-44">
           <div className="grid gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:items-end">
@@ -151,19 +152,23 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                 Small, artifact-led working rooms for purpose, creator practice, and human + agent teams. Ninety minutes. Eight to twelve people. No stage required.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link
+                <TrackedLink
                   href="#find-your-format"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08090b]"
+                  eventName="tallinn_foundry_cta_open"
+                  eventProperties={{ destination: 'formats' }}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                 >
                   Find your format
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
+                </TrackedLink>
+                <TrackedLink
                   href="#request"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  eventName="tallinn_foundry_cta_open"
+                  eventProperties={{ destination: 'interest_form' }}
+                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/[0.15] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/[0.35] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   Test demand first
-                </Link>
+                </TrackedLink>
               </div>
             </div>
 
@@ -230,14 +235,16 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                       Leave with: <span className="text-slate-300">{experience.artifact}</span>
                     </p>
                   </div>
-                  <Link
+                  <TrackedLink
                     href={`/experiences/tallinn-2026/${experience.slug}`}
+                    eventName="tallinn_experience_open"
+                    eventProperties={{ experience_slug: experience.slug, collection: 'ana_review' }}
                     aria-label={`Review ${experience.title}`}
                     className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-cyan-300 underline decoration-cyan-300/25 underline-offset-4 hover:decoration-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                   >
                     Review
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  </TrackedLink>
                 </article>
               ))}
             </div>
@@ -252,23 +259,25 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             </div>
             <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
               {secondWave.map((experience) => (
-                <Link
+                <TrackedLink
                   key={experience.slug}
                   href={`/experiences/tallinn-2026/${experience.slug}`}
+                  eventName="tallinn_experience_open"
+                  eventProperties={{ experience_slug: experience.slug, collection: 'second_wave' }}
                   className="group bg-[#0b0d10] p-6 transition-colors hover:bg-white/[0.035] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-300"
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">{experience.eyebrow}</p>
                   <h3 className="mt-3 text-base font-semibold text-white">{experience.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-400">{experience.artifact}</p>
                   <ArrowRight className="mt-5 h-4 w-4 text-slate-600 transition-colors group-hover:text-cyan-300" aria-hidden="true" />
-                </Link>
+                </TrackedLink>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07] bg-white/[0.012]">
+      <section className="surface-1 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Built from work that already exists</p>
@@ -322,7 +331,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
         </div>
       </section>
 
-      <section className="border-b border-white/[0.07] bg-[#0b0d10]">
+      <section className="surface-1 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
@@ -349,9 +358,9 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                 Published weekday package baseline: 10-person minimum, €43 per person for half day. Ask separately for a two-hour room-only resident quote or courtesy hold; do not assume it exists.
               </p>
             </div>
-            <ol className="grid gap-px overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/10 sm:grid-cols-2">
+          <ol className="grid gap-px overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/10 sm:grid-cols-2">
               {demandSteps.map((step) => (
-                <li key={step.n} className="bg-[#0e1116] p-6 sm:p-7">
+              <li key={step.n} className="surface-3 p-6 sm:p-7">
                   <p className="font-mono text-xs text-slate-600">{step.n}</p>
                   <h3 className="mt-7 text-lg font-semibold text-white">{step.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-400">{step.body}</p>
@@ -360,7 +369,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             </ol>
           </div>
 
-          <div className="mt-12 rounded-[1.75rem] border border-white/10 bg-[#08090b] p-6 sm:p-8">
+            <div className="surface-2 mt-12 rounded-[1.75rem] border border-white/[0.08] p-6 sm:p-8">
             <div className="flex items-center gap-2 text-sm font-semibold text-white">
               <CalendarClock className="h-5 w-5 text-cyan-300" aria-hidden="true" />
               Windows to test—not promises
@@ -400,7 +409,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
         </div>
       </section>
 
-      <section id="request" className="relative bg-[#0a0d12]">
+      <section id="request" className="relative bg-[#0a0a0b]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(16,185,129,0.08),transparent_30%),radial-gradient(circle_at_80%_70%,rgba(67,191,227,0.08),transparent_34%)]" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
@@ -429,7 +438,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
                 ))}
               </ul>
             </div>
-            <div className="rounded-[2rem] border border-white/10 bg-[#0d1117] p-5 shadow-[0_28px_100px_rgba(0,0,0,0.38)] sm:p-8 lg:p-10">
+            <div className="surface-3 rounded-[2rem] border border-white/[0.08] p-5 shadow-[0_28px_100px_rgba(0,0,0,0.38)] sm:p-8 lg:p-10">
               <TallinnInterestForm
                 experiences={formExperiences}
                 defaultExperienceSlug="purpose-to-practice"
@@ -440,7 +449,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
         </div>
       </section>
 
-      <footer className="border-t border-white/[0.07] bg-[#08090b]">
+      <footer className="border-t border-white/[0.08] bg-[#0a0a0b]">
         <div className="mx-auto max-w-7xl px-5 py-10 text-xs leading-5 text-slate-500 sm:px-8 lg:px-10">
           <p>{TALLINN_EVENT.independenceNotice}</p>
           <p className="mt-2">Concept preview · venue, schedule, host roles, capacity, and live capture remain unconfirmed.</p>

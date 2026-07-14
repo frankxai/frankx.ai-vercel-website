@@ -8,6 +8,13 @@ import type { TallinnInterestPayload } from '@/lib/tallinn-interest/schema'
 
 type TallinnSlotLabel = (typeof TALLINN_TIME_WINDOWS)[number]['label']
 
+const HTML_AMPERSAND_RE = /&/g
+const HTML_LESS_THAN_RE = /</g
+const HTML_GREATER_THAN_RE = />/g
+const HTML_DOUBLE_QUOTE_RE = /"/g
+const HTML_SINGLE_QUOTE_RE = /'/g
+const WHITESPACE_RE = /\s+/
+
 export interface TallinnEmailContent {
   subject: string
   text: string
@@ -15,11 +22,11 @@ export interface TallinnEmailContent {
 }
 function escapeHtml(value: string) {
   return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
+    .replace(HTML_AMPERSAND_RE, '&amp;')
+    .replace(HTML_LESS_THAN_RE, '&lt;')
+    .replace(HTML_GREATER_THAN_RE, '&gt;')
+    .replace(HTML_DOUBLE_QUOTE_RE, '&quot;')
+    .replace(HTML_SINGLE_QUOTE_RE, '&#39;')
 }
 
 function slotLabels(payload: TallinnInterestPayload) {
@@ -32,7 +39,7 @@ export function buildTallinnInterestReceipt(
   payload: TallinnInterestPayload,
 ): TallinnEmailContent {
   const experience = getTallinnExperience(payload.experienceSlug)
-  const firstName = payload.fullName.split(/\s+/)[0] || payload.fullName
+  const firstName = payload.fullName.split(WHITESPACE_RE)[0] || payload.fullName
   const slots = slotLabels(payload)
   const title = experience?.title ?? 'Tallinn working session'
   const subject = `Interest received — ${title}`

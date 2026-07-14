@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 
 const sourcePath = new URL('../data/ai-architecture/official-sources.json', import.meta.url)
 const sources = JSON.parse(await readFile(sourcePath, 'utf8'))
-const urls = [...new Set(sources.flatMap((source) => [source.docsUrl, source.repoUrl]))]
+const urls = [...new Set(sources.flatMap((source) => [source.docsUrl, source.source?.url]).filter(Boolean))]
 
 const results = []
 for (const url of urls) {

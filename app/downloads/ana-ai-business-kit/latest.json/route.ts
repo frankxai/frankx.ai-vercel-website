@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 
+export const dynamic = 'force-static'
+
 const installCommands = [
   'codex plugin marketplace add frankxai/ana-ai-business-kit --ref main',
   'codex plugin add ana-hr-operations@ana-business-kit',

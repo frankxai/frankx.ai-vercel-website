@@ -9,7 +9,11 @@
     "deployment": ["Vercel"],
     "flow": ["Next.js", "AI SDK", "Model gateway", "Postgres"],
     "docsUrl": "https://ai-sdk.dev/docs/agents/overview",
-    "repoUrl": "https://github.com/vercel/chatbot"
+    "source": {
+      "kind": "repository",
+      "label": "Vercel AI chatbot repository",
+      "url": "https://github.com/vercel/chatbot"
+    }
   },
   {
     "id": "vertex-rag",
@@ -21,7 +25,11 @@
     "deployment": ["GCP", "Vercel"],
     "flow": ["Vercel UI", "Vertex AI", "Retrieval", "Evaluation"],
     "docsUrl": "https://cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
-    "repoUrl": "https://github.com/GoogleCloudPlatform/agent-starter-pack"
+    "source": {
+      "kind": "repository",
+      "label": "Agent Starter Pack repository",
+      "url": "https://github.com/GoogleCloudPlatform/agent-starter-pack"
+    }
   },
   {
     "id": "google-adk-team",
@@ -33,7 +41,11 @@
     "deployment": ["GCP", "Vercel"],
     "flow": ["Web client", "Coordinator", "Specialists", "Vertex AI"],
     "docsUrl": "https://cloud.google.com/architecture/ai-ml",
-    "repoUrl": "https://github.com/google/adk-samples"
+    "source": {
+      "kind": "repository",
+      "label": "Google ADK samples repository",
+      "url": "https://github.com/google/adk-samples"
+    }
   },
   {
     "id": "railway-worker-plane",
@@ -45,7 +57,11 @@
     "deployment": ["Railway", "Vercel"],
     "flow": ["Vercel API", "Queue", "Railway worker", "Database"],
     "docsUrl": "https://docs.railway.com/deployments",
-    "repoUrl": "https://github.com/railwayapp-templates"
+    "source": {
+      "kind": "repository",
+      "label": "Railway multi-agent reference repository",
+      "url": "https://github.com/railwayapp-templates/multi-agent-system"
+    }
   },
   {
     "id": "openai-agent-service",
@@ -57,7 +73,11 @@
     "deployment": ["Railway", "Vercel"],
     "flow": ["Client", "Agent service", "Tools", "Trace"],
     "docsUrl": "https://openai.github.io/openai-agents-python/",
-    "repoUrl": "https://github.com/openai/openai-agents-python"
+    "source": {
+      "kind": "repository",
+      "label": "OpenAI Agents SDK repository",
+      "url": "https://github.com/openai/openai-agents-python"
+    }
   },
   {
     "id": "mcp-tool-plane",
@@ -69,7 +89,11 @@
     "deployment": ["Railway", "GCP", "Vercel"],
     "flow": ["Agent", "MCP client", "MCP server", "System of record"],
     "docsUrl": "https://github.com/modelcontextprotocol/servers",
-    "repoUrl": "https://github.com/github/github-mcp-server"
+    "source": {
+      "kind": "repository",
+      "label": "GitHub MCP Server repository",
+      "url": "https://github.com/github/github-mcp-server"
+    }
   },
   {
     "id": "durable-agent-workflow",
@@ -81,7 +105,11 @@
     "deployment": ["Railway", "GCP"],
     "flow": ["Event", "Workflow", "Activities", "Approval"],
     "docsUrl": "https://docs.temporal.io/develop/typescript",
-    "repoUrl": "https://github.com/temporalio/samples-typescript"
+    "source": {
+      "kind": "repository",
+      "label": "Temporal TypeScript samples repository",
+      "url": "https://github.com/temporalio/samples-typescript"
+    }
   },
   {
     "id": "agent-observability",
@@ -93,6 +121,10 @@
     "deployment": ["Vercel", "Railway", "GCP"],
     "flow": ["Application", "OTel SDK", "Collector", "Backend"],
     "docsUrl": "https://opentelemetry.io/docs/languages/js/",
-    "repoUrl": "https://github.com/open-telemetry/opentelemetry-js"
+    "source": {
+      "kind": "repository",
+      "label": "OpenTelemetry JavaScript repository",
+      "url": "https://github.com/open-telemetry/opentelemetry-js"
+    }
   }
 ]

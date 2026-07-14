@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 
 import { AnaProposalResponse } from '@/components/ana/AnaProposalResponse'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { anaLinks } from '@/data/ana-collaboration'
 import { createMetadata } from '@/lib/seo'
 
@@ -128,14 +129,14 @@ export default function CeciliaAlliancePage() {
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href="#experience" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
+              <TrackedLink href="#experience" eventName="ana_cecilia_cta_open" eventProperties={{ destination: 'experience' }} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
                 See what it could become
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
+              </TrackedLink>
+              <TrackedLink href={anaLinks.teamPlan} eventName="ana_cecilia_cta_open" eventProperties={{ destination: 'team_plan' }} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
                 Review the team plan
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+              </TrackedLink>
             </div>
           </div>
 

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 
 import sourcesData from '@/data/ai-architecture/official-sources.json'
+import { trackEvent } from '@/lib/analytics'
 
 type Deployment = 'Vercel' | 'Railway' | 'GCP'
 
@@ -28,16 +29,20 @@ type ArchitectureSource = {
   deployment: Deployment[]
   flow: string[]
   docsUrl: string
-  repoUrl: string
+  source: {
+    kind: 'repository' | 'template-directory'
+    label: string
+    url: string
+  }
 }
 
 const sources = sourcesData as ArchitectureSource[]
 const deploymentFilters: Array<'All' | Deployment> = ['All', 'Vercel', 'Railway', 'GCP']
 
 const deploymentStyle: Record<Deployment, string> = {
-  Vercel: 'border-white/15 bg-white/[0.06] text-white',
-  Railway: 'border-violet-400/25 bg-violet-400/[0.08] text-violet-200',
-  GCP: 'border-cyan-400/25 bg-cyan-400/[0.08] text-cyan-200',
+  Vercel: 'border-white/[0.15] surface-3 text-white',
+  Railway: 'glass-purple text-violet-200',
+  GCP: 'glass-cyan text-cyan-200',
 }
 
 function DeploymentBadge({ deployment }: { deployment: Deployment }) {
@@ -71,7 +76,7 @@ function SystemTopology() {
   ]
 
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-[#0f1117] p-4 shadow-2xl shadow-black/30 sm:p-6">
+    <div className="surface-3 rounded-[2rem] border border-white/[0.08] p-4 shadow-2xl shadow-black/30 sm:p-6">
       <div className="mb-6 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
         <div>
           <p className="font-mono text-xs text-emerald-300">Recommended control plane</p>
@@ -84,7 +89,7 @@ function SystemTopology() {
           const Icon = stage.icon
           return (
             <Fragment key={stage.name}>
-              <div className="min-h-40 rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div className="surface-2 min-h-40 rounded-2xl border border-white/[0.08] p-5">
                 <Icon className={`h-6 w-6 ${stage.accent}`} aria-hidden="true" />
                 <h3 className="mt-8 font-semibold text-white">{stage.name}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-400">{stage.detail}</p>
@@ -96,7 +101,7 @@ function SystemTopology() {
           )
         })}
       </div>
-      <div className="mt-5 flex items-start gap-3 rounded-2xl border border-emerald-400/15 bg-emerald-400/[0.05] p-4 text-sm text-slate-300">
+      <div className="glass-emerald mt-5 flex items-start gap-3 rounded-2xl p-4 text-sm text-slate-300">
         <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
         <p>Keep the web request short. Move durable work to workers. Use managed AI and data services only where their governance or scale earns the complexity.</p>
       </div>
@@ -130,6 +135,7 @@ export function OfficialArchitectureAtlas() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#official-architectures"
+                onClick={() => trackEvent('ai_architecture_cta_opened', { destination: 'official_architectures' })}
                 className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               >
                 Choose an architecture
@@ -137,6 +143,7 @@ export function OfficialArchitectureAtlas() {
               </a>
               <Link
                 href="/ai-architecture/blueprints"
+                onClick={() => trackEvent('ai_architecture_cta_opened', { destination: 'blueprints', placement: 'hero' })}
                 className="text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white"
               >
                 Open FrankX blueprints
@@ -179,7 +186,10 @@ export function OfficialArchitectureAtlas() {
                 <button
                   key={item}
                   type="button"
-                  onClick={() => setFilter(item)}
+                  onClick={() => {
+                    setFilter(item)
+                    trackEvent('ai_architecture_filter_selected', { deployment: item })
+                  }}
                   aria-pressed={filter === item}
                   className={`rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${filter === item ? 'border-white bg-white text-slate-950' : 'border-white/10 text-slate-400 hover:border-white/25 hover:text-white'}`}
                 >
@@ -206,7 +216,7 @@ export function OfficialArchitectureAtlas() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-[#0f1117] p-5 sm:p-6">
+                <div className="surface-3 rounded-2xl border border-white/[0.08] p-5 sm:p-6">
                   <ol className="flex flex-wrap items-center gap-2" aria-label={`${source.title} request flow`}>
                     {source.flow.map((step, index) => (
                       <Fragment key={step}>
@@ -220,13 +230,13 @@ export function OfficialArchitectureAtlas() {
                     ))}
                   </ol>
                   <div className="mt-8 flex flex-wrap gap-3 border-t border-white/10 pt-5">
-                    <a href={source.docsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200">
+                    <a href={source.docsUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('ai_architecture_source_opened', { architecture_id: source.id, link_kind: 'official_docs' })} className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200">
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
                       Official architecture
                     </a>
-                    <a href={source.repoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white">
+                    <a href={source.source.url} target="_blank" rel="noreferrer" onClick={() => trackEvent('ai_architecture_source_opened', { architecture_id: source.id, link_kind: source.source.kind })} className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white">
                       <Github className="h-4 w-4" aria-hidden="true" />
-                      Working repository
+                      {source.source.label}
                     </a>
                   </div>
                 </div>
@@ -238,13 +248,13 @@ export function OfficialArchitectureAtlas() {
 
       <section className="border-t border-white/[0.06] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-8 rounded-[2rem] border border-emerald-400/15 bg-emerald-400/[0.04] p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
+          <div className="glass-emerald grid gap-8 rounded-[2rem] p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
             <div>
               <GitBranch className="h-6 w-6 text-emerald-300" aria-hidden="true" />
               <h2 className="mt-5 font-display text-3xl font-bold">Use the reference. Keep your architecture.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">Fork the maintained implementation, replace its boundaries one at a time, and keep deployment, observability, security, and rollback evidence beside the code.</p>
             </div>
-            <Link href="/ai-architecture/blueprints" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-emerald-100">
+            <Link href="/ai-architecture/blueprints" onClick={() => trackEvent('ai_architecture_cta_opened', { destination: 'blueprints', placement: 'footer' })} className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-emerald-100">
               Inspect the blueprints
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

@@ -10,7 +10,7 @@ export const ana: PortalPartner = {
   slug: 'ana',
   name: 'Ana Cecilia Cancino',
   relationship: 'ally',
-  status: 'building',
+  status: 'draft',
   accent: 'soul',
   noindex: true,
   lastUpdated: '2026-07-14',

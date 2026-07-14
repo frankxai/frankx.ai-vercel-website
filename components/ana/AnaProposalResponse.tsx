@@ -3,6 +3,8 @@
 import { useId, useState } from 'react'
 import { ArrowRight, CheckCircle2, Loader2, LockKeyhole } from 'lucide-react'
 
+import { trackEvent } from '@/lib/analytics'
+
 type Decision = {
   id: string
   label: string
@@ -68,6 +70,12 @@ export function AnaProposalResponse({
       consent: data.get('consent') === 'on',
     }
 
+    trackEvent('ana_proposal_submit_attempted', {
+      proposal_id: proposalId,
+      decision_id: decisionId,
+      priority_count: selectedPriorityIds.length,
+    })
+
     try {
       const response = await fetch('/api/intake', {
         method: 'POST',
@@ -77,6 +85,11 @@ export function AnaProposalResponse({
       const json = await response.json().catch(() => ({}))
 
       if (response.ok && json.ok) {
+        trackEvent('ana_proposal_submit_succeeded', {
+          proposal_id: proposalId,
+          decision_id: decisionId,
+          priority_count: selectedPriorityIds.length,
+        })
         setAckSent(Boolean(json.ackSent))
         setStatus('done')
         form.reset()
@@ -84,9 +97,18 @@ export function AnaProposalResponse({
       }
 
       setStatus('error')
+      trackEvent('ana_proposal_submit_failed', {
+        proposal_id: proposalId,
+        stage: 'provider_response',
+        status_code: response.status,
+      })
       setError(json.error || 'The response could not be delivered. Please try again.')
     } catch {
       setStatus('error')
+      trackEvent('ana_proposal_submit_failed', {
+        proposal_id: proposalId,
+        stage: 'network',
+      })
       setError('Network error. Please try again later.')
     }
   }
@@ -188,7 +210,7 @@ export function AnaProposalResponse({
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button type="submit" disabled={status === 'submitting'} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
           {status === 'submitting' ? (
-            <><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />Sending response…</>
+            <><Loader2 className="h-4 w-4 animate-spin motion-reduce:animate-none" aria-hidden="true" />Sending response…</>
           ) : (
             <>Send my response to Frank<ArrowRight className="h-4 w-4" aria-hidden="true" /></>
           )}

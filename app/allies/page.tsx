@@ -71,20 +71,6 @@ const activeNodes = [
     tags: ["Trinity AI", "OpenClaw", "Creator OS", "Agent swarms"],
   },
   {
-    title: "Ana Team Operating Plan",
-    status: "Pilot proposal",
-    color: "amber" as GlowColor,
-    href: "/allies/ana-cancino",
-    friendHref: "/friends/ana",
-    downloadHref: "/downloads/ana-ai-business-kit",
-    portalHref: "/portal/ana",
-    description:
-      "Ana's real HR and recruiting sequence organized for a four-person team: first call, kickoff, role brief, offer, recruiting, invoice, and approved handoff.",
-    visitorUse:
-      "Explore the operating workflow, review a bounded 30-day pilot, and send Ana's priorities to Frank without launching or purchasing anything.",
-    tags: ["HR operations", "Recruiting", "Team workflow", "Human approval"],
-  },
-  {
     title: "Harzfenster Hospitality Intelligence",
     status: "Hospitality pilot",
     color: "teal" as GlowColor,

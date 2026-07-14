@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { join } from 'node:path'
 import test from 'node:test'
+import ts from 'typescript'
 
 const root = process.cwd()
 const read = (path) => readFileSync(join(root, path), 'utf8')
@@ -16,6 +18,112 @@ const threshold = read('lib/tallinn-interest/threshold.ts')
 const worksheet = read('app/experiences/tallinn-2026/purpose-to-practice/map/page.tsx')
 const packageJson = read('package.json')
 const portfolio = read('docs/specs/tallinn-workshop-portfolio-2026-07-14.md')
+
+const nodeRequire = createRequire(import.meta.url)
+
+function loadCaptureService() {
+  const output = ts.transpileModule(service, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2022,
+      esModuleInterop: true,
+    },
+    fileName: 'lib/tallinn-interest/service.ts',
+  }).outputText
+  const serviceModule = { exports: {} }
+  const requireForService = (id) => {
+    if (id === '@/lib/email-templates-tallinn') {
+      const template = { subject: 'Test', text: 'Test', html: '<p>Test</p>' }
+      return {
+        buildTallinnInterestReceipt: () => template,
+        buildTallinnOperatorNotification: () => template,
+      }
+    }
+    if (id === '@/lib/intake-types') {
+      return { INTENT_LABEL: { general: 'General Inquiry' } }
+    }
+    if (id === '@/lib/tallinn-interest/schema') return {}
+    return nodeRequire(id)
+  }
+
+  Function('require', 'module', 'exports', output)(
+    requireForService,
+    serviceModule,
+    serviceModule.exports,
+  )
+  return serviceModule.exports.captureTallinnInterest
+}
+
+const captureTallinnInterest = loadCaptureService()
+
+const capturePayload = {
+  fullName: 'Review Person',
+  email: 'review@example.com',
+  experienceSlug: 'purpose-to-practice',
+  variantId: 'default',
+  roleLens: 'creator',
+  attendanceIntent: 'ready-if-time-works',
+  slotIds: ['wed-0815'],
+  companyOrProject: '',
+  note: '',
+  aftercareConsent: false,
+  consentToContact: true,
+  submissionId: '00000000-0000-4000-8000-000000000001',
+  website: '',
+}
+
+const captureEnvironment = {
+  notionToken: 'test-notion-token',
+  notionDatabaseId: 'test-database',
+  resendApiKey: 'test-resend-key',
+  operatorEmail: 'operator@example.com',
+}
+
+function createMemoryIdempotency() {
+  const states = new Map()
+  return {
+    states,
+    async reserve(key, token, startedAt) {
+      if (states.has(key)) return false
+      states.set(key, { status: 'pending', token, startedAt })
+      return true
+    },
+    async get(key) {
+      return states.get(key) ?? null
+    },
+    async complete(key, token, recordId, completedAt) {
+      const current = states.get(key)
+      if (!current || current.token !== token) return false
+      states.set(key, { status: 'completed', token, recordId, completedAt })
+      return true
+    },
+    async recover(key, token, recordId, completedAt) {
+      if (!states.has(key)) return false
+      states.set(key, { status: 'completed', token, recordId, completedAt })
+      return true
+    },
+  }
+}
+
+function createCaptureFetch({ writeStatus = 200 } = {}) {
+  const calls = []
+  const fetchImpl = async (url, init) => {
+    calls.push({ url: String(url), method: init?.method })
+    if (String(url).includes('/databases/')) {
+      return new Response(JSON.stringify({ results: [] }), { status: 200 })
+    }
+    if (String(url).endsWith('/pages')) {
+      return new Response(JSON.stringify({ id: 'notion-record-1' }), {
+        status: writeStatus,
+      })
+    }
+    if (String(url).includes('api.resend.com/emails')) {
+      return new Response(JSON.stringify({ id: 'email-1' }), { status: 200 })
+    }
+    throw new Error(`Unexpected URL: ${url}`)
+  }
+  return { calls, fetchImpl }
+}
 
 test('registry exposes exactly ten unique offer routes and five ranked reviews', () => {
   const slugs = [...registry.matchAll(/\n\s{4}slug: '([^']+)'/g)].map((match) => match[1])
@@ -99,6 +207,65 @@ test('live capture stores first and sends only transactional mail afterward', ()
   assert.ok(receiptIndex > createIndex)
   assert.match(service, /Source/)
   assert.match(service, /submissionId/)
+})
+
+test('capture behavior reserves, stores, finalizes, and only then sends mail', async () => {
+  const idempotency = createMemoryIdempotency()
+  const { calls, fetchImpl } = createCaptureFetch()
+  const result = await captureTallinnInterest(capturePayload, captureEnvironment, {
+    fetchImpl,
+    idempotency,
+    createReservationToken: () => 'reservation-1',
+    now: () => new Date('2026-07-14T12:00:00.000Z'),
+  })
+
+  assert.equal(result.stored, true)
+  assert.equal(result.duplicate, false)
+  assert.equal(result.receiptSent, true)
+  assert.equal(result.operatorNotified, true)
+  assert.equal(calls.filter((call) => call.url.endsWith('/pages')).length, 1)
+  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 2)
+  assert.ok(
+    calls.findIndex((call) => call.url.endsWith('/pages')) <
+      calls.findIndex((call) => call.url.includes('api.resend.com/emails')),
+  )
+  assert.equal([...idempotency.states.values()][0].status, 'completed')
+})
+
+test('a failed Notion write sends no mail and leaves the reservation fail-closed', async () => {
+  const idempotency = createMemoryIdempotency()
+  const { calls, fetchImpl } = createCaptureFetch({ writeStatus: 500 })
+  const result = await captureTallinnInterest(capturePayload, captureEnvironment, {
+    fetchImpl,
+    idempotency,
+    createReservationToken: () => 'reservation-1',
+  })
+
+  assert.equal(result.stored, false)
+  assert.equal(result.error, 'notion-write-failed')
+  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 0)
+  assert.equal([...idempotency.states.values()][0].status, 'pending')
+})
+
+test('concurrent retries allow one Notion write and one pair of transactional emails', async () => {
+  const idempotency = createMemoryIdempotency()
+  const { calls, fetchImpl } = createCaptureFetch()
+  const first = captureTallinnInterest(capturePayload, captureEnvironment, {
+    fetchImpl,
+    idempotency,
+    createReservationToken: () => 'reservation-1',
+  })
+  const second = captureTallinnInterest(capturePayload, captureEnvironment, {
+    fetchImpl,
+    idempotency,
+    createReservationToken: () => 'reservation-2',
+  })
+  const results = await Promise.all([first, second])
+
+  assert.equal(results.filter((result) => result.stored && !result.duplicate).length, 1)
+  assert.equal(results.filter((result) => result.duplicate).length, 1)
+  assert.equal(calls.filter((call) => call.url.endsWith('/pages')).length, 1)
+  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 2)
 })
 
 test('external capture endpoints are centralized and have one canonical source', () => {

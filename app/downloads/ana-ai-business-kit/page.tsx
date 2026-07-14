@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -13,13 +12,16 @@ import {
 } from 'lucide-react'
 
 import { anaInstallCommands, anaLinks } from '@/data/ana-collaboration'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
+import { createMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Start Ana HR Operations | FrankX',
   description:
     "A plain-language start page for Ana's current HR Operations workflow: first call, kickoff, role brief, offer, recruiting, invoice, and approved handoff.",
-  robots: { index: false, follow: true, nocache: true },
-}
+  path: '/downloads/ana-ai-business-kit',
+  noindex: true,
+})
 
 const currentVersion = '1.1.0'
 const legacyZipUrl = '/downloads/ana-ai-business-kit-v0.1.0.zip'
@@ -66,14 +68,14 @@ export default function AnaAIBusinessKitDownloadPage() {
               </p>
 
               <div className="mt-9 flex flex-wrap gap-3">
-                <a href={anaLinks.kitStart} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
+                <TrackedLink href={anaLinks.kitStart} target="_blank" rel="noopener noreferrer" eventName="ana_kit_guide_open" eventProperties={{ guide: 'ana_start' }} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
                   Open Ana's start guide
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </a>
-                <a href={anaLinks.kitTeamStart} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
+                </TrackedLink>
+                <TrackedLink href={anaLinks.kitTeamStart} target="_blank" rel="noopener noreferrer" eventName="ana_kit_guide_open" eventProperties={{ guide: 'team_start' }} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
                   Open the team start
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </a>
+                </TrackedLink>
                 <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
                   See the team plan
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />

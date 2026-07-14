@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 
 import { anaLinks } from '@/data/ana-collaboration'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -215,9 +216,11 @@ export default function AnaFriendPage() {
             {anaJourney.map((item) => {
               const Icon = item.icon
               return (
-                <Link
+                <TrackedLink
                   key={item.href}
                   href={item.href}
+                  eventName="ana_journey_room_open"
+                  eventProperties={{ step: item.step, destination: item.href }}
                   className="group flex min-h-64 flex-col rounded-[1.8rem] border border-white/[0.10] bg-white/[0.035] p-5 transition hover:-translate-y-0.5 hover:border-ana-gold/[0.38] hover:bg-white/[0.055] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold motion-reduce:hover:translate-y-0"
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -231,7 +234,7 @@ export default function AnaFriendPage() {
                     Open this room
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" aria-hidden="true" />
                   </span>
-                </Link>
+                </TrackedLink>
               )
             })}
           </div>

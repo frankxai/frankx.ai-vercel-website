@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { PrintWorksheetButton } from '@/components/tallinn-experience/PrintWorksheetButton'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -65,9 +64,9 @@ export default function HumanAiPracticeMapPage() {
 
       <div className="mx-auto mb-6 flex max-w-[210mm] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between print:hidden">
         <div>
-          <Link href="/experiences/tallinn-2026/purpose-to-practice" className="text-sm text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white">
+          <TrackedLink href="/experiences/tallinn-2026/purpose-to-practice" eventName="tallinn_worksheet_back" eventProperties={{ destination: 'purpose_to_practice' }} className="text-sm text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white">
             ← Purpose to Practice
-          </Link>
+          </TrackedLink>
           <p className="mt-2 text-xs text-slate-500">Review or print two A4 working pages. No participant data is stored.</p>
         </div>
         <PrintWorksheetButton />

@@ -242,7 +242,7 @@ export default function AnaAllyPage() {
           </div>
 
           <ol className="border-l border-ana-gold/25 pl-5 sm:pl-8">
-            {anaPilot.map((step, index) => (
+            {anaPilot.map((step) => (
               <li key={step.window} className="relative pb-9 last:pb-0">
                 <span className="absolute -left-[1.63rem] top-1 grid h-5 w-5 place-items-center rounded-full border border-ana-gold/[0.55] bg-ana-obsidian sm:-left-[2.63rem]" aria-hidden="true">
                   <span className="h-1.5 w-1.5 rounded-full bg-ana-gold" />
@@ -252,7 +252,7 @@ export default function AnaAllyPage() {
                   <div>
                     <h3 className="text-xl font-semibold">{step.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-ana-cream/[0.58]">{step.detail}</p>
-                    {index === 1 ? <p className="mt-3 inline-flex rounded-full border border-emerald-300/20 bg-emerald-300/[0.055] px-3 py-1 text-[11px] font-semibold text-emerald-100/75">No client contact · master templates stay untouched</p> : null}
+                    {'callout' in step ? <p className="mt-3 inline-flex rounded-full border border-emerald-300/20 bg-emerald-300/[0.055] px-3 py-1 text-[11px] font-semibold text-emerald-100/75">{step.callout}</p> : null}
                   </div>
                 </div>
               </li>

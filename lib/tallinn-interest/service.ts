@@ -14,6 +14,34 @@ export interface TallinnCaptureEnvironment {
 export interface TallinnCaptureDependencies {
   fetchImpl?: typeof fetch
   now?: () => Date
+  createReservationToken?: () => string
+  idempotency?: TallinnCaptureIdempotency
+}
+
+export type TallinnReservationState =
+  | { status: 'pending'; token: string; startedAt: string }
+  | {
+      status: 'completed'
+      token: string
+      recordId?: string
+      completedAt: string
+    }
+
+export interface TallinnCaptureIdempotency {
+  reserve: (sourceKey: string, token: string, startedAt: string) => Promise<boolean>
+  get: (sourceKey: string) => Promise<TallinnReservationState | null>
+  complete: (
+    sourceKey: string,
+    token: string,
+    recordId: string | undefined,
+    completedAt: string,
+  ) => Promise<boolean>
+  recover: (
+    sourceKey: string,
+    token: string,
+    recordId: string | undefined,
+    completedAt: string,
+  ) => Promise<boolean>
 }
 
 export interface TallinnCaptureResult {
@@ -22,7 +50,13 @@ export interface TallinnCaptureResult {
   receiptSent: boolean
   operatorNotified: boolean
   recordId?: string
-  error?: 'notion-query-failed' | 'notion-write-failed'
+  pending?: boolean
+  error?:
+    | 'reservation-failed'
+    | 'submission-pending'
+    | 'reservation-finalize-failed'
+    | 'notion-query-failed'
+    | 'notion-write-failed'
 }
 
 const NOTION_VERSION = '2022-06-28'
@@ -184,6 +218,100 @@ export async function captureTallinnInterest(
   const fetchImpl = dependencies.fetchImpl ?? fetch
   const capturedAt = (dependencies.now?.() ?? new Date()).toISOString()
   const key = sourceKey(payload)
+  const token = dependencies.createReservationToken?.() ?? crypto.randomUUID()
+  const idempotency = dependencies.idempotency
+
+  if (!idempotency) {
+    return {
+      stored: false,
+      duplicate: false,
+      receiptSent: false,
+      operatorNotified: false,
+      error: 'reservation-failed',
+    }
+  }
+
+  let reservationWon: boolean
+  try {
+    reservationWon = await idempotency.reserve(key, token, capturedAt)
+  } catch {
+    return {
+      stored: false,
+      duplicate: false,
+      receiptSent: false,
+      operatorNotified: false,
+      error: 'reservation-failed',
+    }
+  }
+
+  if (!reservationWon) {
+    let reservation: TallinnReservationState | null
+    try {
+      reservation = await idempotency.get(key)
+    } catch {
+      return {
+        stored: false,
+        duplicate: false,
+        receiptSent: false,
+        operatorNotified: false,
+        error: 'reservation-failed',
+      }
+    }
+
+    if (reservation?.status === 'completed') {
+      return {
+        stored: true,
+        duplicate: true,
+        receiptSent: false,
+        operatorNotified: false,
+        recordId: reservation.recordId,
+      }
+    }
+
+    let existing: Awaited<ReturnType<typeof findExistingRecord>>
+    try {
+      existing = await findExistingRecord(key, env, fetchImpl)
+    } catch {
+      return {
+        stored: false,
+        duplicate: true,
+        pending: true,
+        receiptSent: false,
+        operatorNotified: false,
+        error: 'submission-pending',
+      }
+    }
+
+    if (existing.ok && existing.recordId) {
+      try {
+        await idempotency.recover(
+          key,
+          reservation?.token ?? token,
+          existing.recordId,
+          capturedAt,
+        )
+      } catch {
+        // The Notion record is already the durable source of truth. A later
+        // retry can repair the reservation without repeating side effects.
+      }
+      return {
+        stored: true,
+        duplicate: true,
+        receiptSent: false,
+        operatorNotified: false,
+        recordId: existing.recordId,
+      }
+    }
+
+    return {
+      stored: false,
+      duplicate: true,
+      pending: true,
+      receiptSent: false,
+      operatorNotified: false,
+      error: 'submission-pending',
+    }
+  }
 
   let existing: Awaited<ReturnType<typeof findExistingRecord>>
   try {
@@ -207,6 +335,11 @@ export async function captureTallinnInterest(
     }
   }
   if (existing.recordId) {
+    try {
+      await idempotency.complete(key, token, existing.recordId, capturedAt)
+    } catch {
+      // The Notion query proves the durable record already exists.
+    }
     return {
       stored: true,
       duplicate: true,
@@ -235,6 +368,30 @@ export async function captureTallinnInterest(
       receiptSent: false,
       operatorNotified: false,
       error: 'notion-write-failed',
+    }
+  }
+
+  let reservationCompleted = false
+  try {
+    reservationCompleted = await idempotency.complete(
+      key,
+      token,
+      created.recordId,
+      capturedAt,
+    )
+  } catch {
+    reservationCompleted = false
+  }
+
+  if (!reservationCompleted) {
+    return {
+      stored: true,
+      duplicate: false,
+      pending: true,
+      receiptSent: false,
+      operatorNotified: false,
+      recordId: created.recordId,
+      error: 'reservation-finalize-failed',
     }
   }
 

@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
+import { enumerateRoutes } from '../../lib/route-enumeration.mjs'
+
 const readRepoFile = (path) =>
   readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
@@ -16,26 +18,31 @@ const visualFiles = [
   ...pageFiles,
   'components/ana/AnaProposalResponse.tsx',
   'components/ana/AnaTeamWorkflow.tsx',
+  'components/ai-architecture/OfficialArchitectureAtlas.tsx',
 ]
 
 test('Ana review routes stay out of search until she approves them', async () => {
-  const [friend, ally, cecilia, download, portal, routeIndexSource, sitemap] = await Promise.all([
+  const [friend, ally, cecilia, download, portal, publicAllies, publicFriends, sitemap] = await Promise.all([
     readRepoFile(pageFiles[0]),
     readRepoFile(pageFiles[1]),
     readRepoFile(pageFiles[2]),
     readRepoFile(pageFiles[3]),
     readRepoFile('content/portal/ana.ts'),
-    readRepoFile('data/route-index.json'),
+    readRepoFile('app/allies/page.tsx'),
+    readRepoFile('app/friends/page.tsx'),
     readRepoFile('app/sitemap.ts'),
   ])
 
   assert.match(friend, /noindex: true/)
   assert.match(ally, /noindex: true/)
   assert.match(cecilia, /noindex: true/)
-  assert.match(download, /robots: \{ index: false, follow: true, nocache: true \}/)
+  assert.match(download, /noindex: true/)
   assert.match(portal, /noindex: true/)
+  assert.match(portal, /status: 'draft'/)
+  assert.doesNotMatch(publicAllies, /Ana Team Operating Plan|\/allies\/ana-cancino/)
+  assert.doesNotMatch(publicFriends, /Ana Cecilia Cancino|\/friends\/ana/)
 
-  const routeIndex = JSON.parse(routeIndexSource)
+  const routes = enumerateRoutes()
   for (const href of [
     '/friends/ana',
     '/allies/ana-cancino',
@@ -44,7 +51,7 @@ test('Ana review routes stay out of search until she approves them', async () =>
     '/experiences/tallinn-2026',
     '/experiences/tallinn-2026/purpose-to-practice',
   ]) {
-    const route = routeIndex.routes.find((candidate) => candidate.href === href)
+    const route = routes.find((candidate) => candidate.href === href)
     assert.ok(route, `${href} must remain a valid route`)
     assert.equal(route.sitemap, false, `${href} must stay out of the public sitemap`)
   }

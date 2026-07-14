@@ -34,6 +34,10 @@ export const TallinnInterestSchema = z.object({
     .min(1, 'Choose at least one possible time.')
     .max(3, 'Choose no more than three times.')
     .refine(
+      (values) => new Set(values).size === values.length,
+      'Choose each time only once.',
+    )
+    .refine(
       (values) => values.every((value) => slotIds.has(value)),
       'Choose only listed times.',
     ),

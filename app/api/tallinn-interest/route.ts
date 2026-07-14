@@ -162,12 +162,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const result = await captureTallinnInterest(parsed.data, {
-      notionToken,
-      notionDatabaseId,
-      resendApiKey: process.env.RESEND_API_KEY,
-      operatorEmail: process.env.OPERATOR_EMAIL || 'frank@frankx.ai',
-    })
+    const { createVercelKvTallinnCaptureIdempotency } = await import(
+      '@/lib/tallinn-interest/idempotency'
+    )
+    const result = await captureTallinnInterest(
+      parsed.data,
+      {
+        notionToken,
+        notionDatabaseId,
+        resendApiKey: process.env.RESEND_API_KEY,
+        operatorEmail: process.env.OPERATOR_EMAIL || 'frank@frankx.ai',
+      },
+      { idempotency: createVercelKvTallinnCaptureIdempotency() },
+    )
 
     console.log(
       '[tallinn-interest]',
@@ -181,6 +188,21 @@ export async function POST(request: NextRequest) {
         error: result.error,
       }),
     )
+
+    if (result.pending) {
+      return NextResponse.json(
+        {
+          ok: result.stored,
+          pending: true,
+          duplicate: result.duplicate,
+          receiptSent: false,
+          message: result.stored
+            ? 'Your interest is recorded. Confirmation is still being finalized.'
+            : 'This request is already being processed. Please wait before trying again.',
+        },
+        { status: 202 },
+      )
+    }
 
     if (!result.stored) {
       return NextResponse.json(

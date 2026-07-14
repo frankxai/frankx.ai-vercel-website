@@ -11,6 +11,7 @@ import {
   TALLINN_ATTENDANCE_INTENTS,
   TALLINN_ROLE_LENSES,
 } from '@/lib/tallinn-interest/options'
+import { trackEvent } from '@/lib/analytics'
 
 interface FormExperience {
   slug: string
@@ -38,10 +39,12 @@ const intentLabel: Record<(typeof TALLINN_ATTENDANCE_INTENTS)[number], string> =
   'ready-if-time-works': 'Ready if one time works',
 }
 
+const VARIANT_ID_RE = /^[a-z0-9-]{1,60}$/
+
 function safeVariant() {
   const params = new URLSearchParams(window.location.search)
   const candidate = params.get('variant') || params.get('ref') || 'default'
-  return /^[a-z0-9-]{1,60}$/.test(candidate) ? candidate : 'default'
+  return VARIANT_ID_RE.test(candidate) ? candidate : 'default'
 }
 
 function createSubmissionId() {
@@ -99,6 +102,15 @@ export function TallinnInterestForm({
       website: String(data.get('website') || ''),
     }
 
+    trackEvent('tallinn_interest_submit_attempted', {
+      experience_slug: payload.experienceSlug,
+      variant_id: payload.variantId,
+      role_lens: payload.roleLens,
+      attendance_intent: payload.attendanceIntent,
+      slot_count: payload.slotIds.length,
+      capture_mode: captureEnabled ? 'live' : 'review',
+    })
+
     try {
       const response = await fetch('/api/tallinn-interest', {
         method: 'POST',
@@ -107,16 +119,33 @@ export function TallinnInterestForm({
       })
       const json = await response.json().catch(() => ({}))
       if (response.ok && json.ok) {
+        trackEvent('tallinn_interest_submit_succeeded', {
+          experience_slug: payload.experienceSlug,
+          variant_id: payload.variantId,
+          capture_mode: json.reviewMode ? 'review' : 'live',
+          duplicate: Boolean(json.duplicate),
+        })
         setStatus('done')
         setSimulated(Boolean(json.reviewMode))
         setMessage(json.message || 'Your interest is recorded.')
         form.reset()
         submissionId.current = null
       } else {
+        trackEvent('tallinn_interest_submit_failed', {
+          experience_slug: payload.experienceSlug,
+          variant_id: payload.variantId,
+          stage: 'provider_response',
+          status_code: response.status,
+        })
         setStatus('error')
         setMessage(json.error || 'Something went wrong. Please try again.')
       }
     } catch {
+      trackEvent('tallinn_interest_submit_failed', {
+        experience_slug: payload.experienceSlug,
+        variant_id: payload.variantId,
+        stage: 'network',
+      })
       setStatus('error')
       setMessage('Network error. Please try again or email frank@frankx.ai.')
     }
