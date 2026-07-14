@@ -1,7 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Workshops and Session Studio | FrankX',
+  title: 'Workshops and Session Studio',
   description:
     'One delivered Ikigai & Branding workshop plus adaptable AI agent, AI music, leadership, and session-amplification studio formats to shape and pilot.',
   path: '/workshops',

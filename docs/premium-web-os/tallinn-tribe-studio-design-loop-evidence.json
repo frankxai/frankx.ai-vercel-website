@@ -63,14 +63,20 @@
     "provenance": "source-cited",
     "why_premium": "The primary visual is a real interactive planning loop rendered in the page. Official Mindvalley share assets provide secondary, source-linked event context rather than decorative filler.",
     "shortcut_risk": "low",
-    "context_tested": false
+    "context_tested": true
   },
   "artifacts": [
     {
-      "path_or_url": "https://www.frankx.ai/experiences/tallinn-2026",
+      "path_or_url": "https://frankx-ai-vercel-website-git-agen-3fc012-starlight-intelligence.vercel.app/experiences/tallinn-2026",
       "kind": "web",
-      "inspected": false,
-      "notes": "Awaiting preview implementation, desktop/mobile inspection, and privacy scan."
+      "inspected": true,
+      "notes": "Vercel preview inspected with cloud-browser full-page captures at 1440 x 1000 and 390 x 844 CSS pixels, plus a dedicated 390-pixel interest-form capture. Hierarchy, image framing, responsive stacking, field legibility, and CTA flow passed."
+    },
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-git-agen-3fc012-starlight-intelligence.vercel.app/workshops",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Full-page 1440-pixel cloud-browser capture confirmed the delivered-foundation versus studio-architecture distinction is visually dominant and every undeveloped format carries a Studio draft label."
     },
     {
       "path_or_url": "https://a.storyblok.com/f/60579/1920x1080/5eaf944304/1a_fbshare_invite_1920x1080.jpg",
@@ -93,34 +99,44 @@
     },
     {
       "name": "export-inspection",
-      "status": "blocked",
-      "evidence": "Final page screenshots are not yet available."
+      "status": "pass",
+      "evidence": "Inspected full-page Vercel-preview captures at 2880 x 14658 output pixels for desktop and 780 x 25628 output pixels for mobile, plus a 780 x 1688 conversion-form capture and a 2880 x 9038 workshop-index capture."
     },
     {
       "name": "visual-qa",
-      "status": "blocked",
-      "evidence": "Desktop, mobile, and reduced-motion preview inspection remains."
+      "status": "pass",
+      "evidence": "Desktop and mobile captures show no clipping, horizontal overflow, overlap, broken images, or unreadable controls. Animation-disabled capture preserves every section and conversion action."
     },
     {
       "name": "privacy-boundary",
-      "status": "blocked",
-      "evidence": "Public-source privacy scan remains after implementation."
+      "status": "pass",
+      "evidence": "Preview HTML and source scans contain no collaborator name, hotel, private budget, travel, or internal demand-gate details. Both legacy public aliases canonicalize to the sanitized public studio."
     },
     {
       "name": "motion-purpose",
       "status": "pass",
       "evidence": "Motion is limited to role/outcome state emphasis and card affordance; no decorative scroll scene."
+    },
+    {
+      "name": "remote-build-and-runtime",
+      "status": "pass",
+      "evidence": "Vercel preview compiled, type-checked, generated routes, and reached READY. Runtime error clusters are empty; observed requests were successful, with one unrelated Vercel flags probe returning 400."
+    },
+    {
+      "name": "route-and-form-contract",
+      "status": "pass",
+      "evidence": "Canonical route, both requested aliases, a format detail route, and /workshops return 200 with correct canonicals. The unified /api/intake honeypot path returns a safe success without storing or emailing data."
     }
   ],
   "score": {
-    "total": 0,
+    "total": 28,
     "max": 30,
-    "notes": "Score after browser inspection."
+    "notes": "Premium composition, truthful provenance, privacy boundary, responsive conversion flow, remote build, and runtime checks passed. Two points remain reserved for a post-merge keyboard-only production smoke and a real operator-confirmed intake delivery using non-test contact details."
   },
-  "decision": "blocked",
+  "decision": "ship",
   "known_risks": [
     "Official images are source-hosted share assets, not an explicit general-use license; keep usage to attributed linked previews.",
     "The current public Git history still contains the retired internal planning even after the public tree is sanitized.",
-    "Machine preflight currently blocks browser QA and new design-council agents until system pressure drops."
+    "Local browser automation remained held by the machine safety floor, so visual QA used a cloud browser against the Vercel preview; a keyboard-only production smoke remains advisable after merge."
   ]
 }

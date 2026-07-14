@@ -67,7 +67,7 @@ export function SessionAmplifier({
                 {TALLINN_AMPLIFIER_ROLES.map((item) => (
                   <label
                     key={item.id}
-                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors motion-reduce:transition-none ${
+                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors focus-within:ring-2 focus-within:ring-cyan-300 focus-within:ring-offset-2 focus-within:ring-offset-[#090c10] motion-reduce:transition-none ${
                       role === item.id
                         ? 'border-cyan-300/55 bg-cyan-300/10 text-white'
                         : 'border-white/10 bg-white/[0.025] text-slate-300 hover:border-white/25 hover:text-white'
@@ -93,7 +93,7 @@ export function SessionAmplifier({
                 {TALLINN_AMPLIFIER_OUTCOMES.map((item) => (
                   <label
                     key={item.id}
-                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors motion-reduce:transition-none ${
+                    className={`relative cursor-pointer rounded-2xl border px-4 py-3 transition-colors focus-within:ring-2 focus-within:ring-emerald-300 focus-within:ring-offset-2 focus-within:ring-offset-[#090c10] motion-reduce:transition-none ${
                       outcome === item.id
                         ? 'border-emerald-300/55 bg-emerald-300/[0.09] text-white'
                         : 'border-white/10 bg-white/[0.025] text-slate-300 hover:border-white/25 hover:text-white'
