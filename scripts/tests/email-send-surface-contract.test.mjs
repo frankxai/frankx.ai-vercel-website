@@ -1,22 +1,22 @@
 import assert from 'node:assert/strict'
-import { access, readFile } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 const repoUrl = new URL('../../', import.meta.url)
 const repoFile = (path) => new URL(path, repoUrl)
 
-const fileExists = async (path) => {
-  try {
-    await access(repoFile(path))
-    return true
-  } catch {
-    return false
-  }
-}
+test('retired public email routes are explicit inert 404 tombstones', async () => {
+  for (const path of [
+    'app/api/test-email/route.ts',
+    'app/api/welcome-sequence/route.ts',
+  ]) {
+    const source = await readFile(repoFile(path), 'utf8')
 
-test('public arbitrary-recipient email routes do not exist', async () => {
-  assert.equal(await fileExists('app/api/test-email/route.ts'), false)
-  assert.equal(await fileExists('app/api/welcome-sequence/route.ts'), false)
+    assert.match(source, /NextResponse\.json\(\{ error: 'Not found' \}, \{ status: 404 \}\)/)
+    assert.match(source, /export const GET = notFound/)
+    assert.match(source, /export const POST = notFound/)
+    assert.doesNotMatch(source, /resend|fetch\(|process\.env|kv\./i)
+  }
 })
 
 test('welcome cron fails closed before queue or provider work', async () => {
