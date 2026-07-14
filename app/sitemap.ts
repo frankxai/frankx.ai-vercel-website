@@ -98,7 +98,7 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
-function getRouteIndexRoutes(): Array<{ href: string; type: string }> {
+function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: boolean }> {
   try {
     const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
     const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
@@ -713,6 +713,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
   for (const route of discovered) {
+    if (route.sitemap === false) continue
     const url = `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)
