@@ -1,186 +1,96 @@
-import { createMetadata } from '@/lib/seo'
+'use client'
+
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import {
-  Github, ExternalLink, ArrowRight, Zap, Package,
-  Globe, Wrench, FlaskConical, Star, Activity,
-  GitBranch, ChevronRight, Terminal, Layers
+  Github,
+  ExternalLink,
+  Search,
+  Layers,
+  Zap,
+  Globe,
+  Wrench,
+  Package,
+  FlaskConical,
+  Star,
+  Activity,
+  GitBranch,
+  Terminal,
+  Copy,
+  Check,
+  ChevronRight,
+  Sparkles,
+  MapPin,
+  GitPullRequest
 } from 'lucide-react'
-import {
-  getClusters,
-  getReposByCluster,
-  getTopPriority,
-  getManifest,
-  CLUSTER_COLORS,
-  STATUS_COLORS,
-  type Repo,
-  type RepoCluster,
-} from '@/lib/repos'
+import { GlowCard } from '@/components/ui/glow-card'
+import PremiumButton from '@/components/ui/PremiumButton'
+import manifestData from '@/data/repos-manifest.json'
 
-export const metadata = createMetadata({
-  title: 'Universe Map | FrankX',
-  description: 'The complete map of the FrankX ecosystem — 50+ repos across 6 clusters. From Arcanea to ACOS to Products.',
-  path: '/map',
-})
+// ─── Types ────────────────────────────────────────────────────────────────
+type RepoCluster = 'arcanea' | 'acos' | 'websites' | 'creator-tools' | 'products' | 'research'
+type RepoStatus = 'shipping' | 'building' | 'stable' | 'exploring' | 'archived'
+type RepoPriority = 'critical' | 'high' | 'medium' | 'low'
 
-// ─── Cluster icons ────────────────────────────────────────────────────────
-
-const CLUSTER_ICONS: Record<RepoCluster, React.ReactNode> = {
-  arcanea:         <Layers className="w-4 h-4" />,
-  acos:            <Zap className="w-4 h-4" />,
-  websites:        <Globe className="w-4 h-4" />,
-  'creator-tools': <Wrench className="w-4 h-4" />,
-  products:        <Package className="w-4 h-4" />,
-  research:        <FlaskConical className="w-4 h-4" />,
+interface Repo {
+  name: string
+  cluster: RepoCluster
+  description: string
+  status: RepoStatus
+  priority: RepoPriority
+  url: string
+  deployed?: string
+  tags: string[]
+  updatedAt: string
 }
 
-// ─── Repo Card ────────────────────────────────────────────────────────────
+// ─── Component ────────────────────────────────────────────────────────────
+export default function MapHubPage() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [copiedRepo, setCopiedRepo] = useState<string | null>(null)
 
-function RepoCard({ repo }: { repo: Repo }) {
-  const status = STATUS_COLORS[repo.status]
-  const cluster = CLUSTER_COLORS[repo.cluster]
+  const repos = useMemo(() => {
+    return (manifestData.repos as Repo[]) || []
+  }, [])
 
-  return (
-    <div className={`group relative rounded-xl border bg-white/[0.02] p-4 transition-all hover:bg-white/[0.04] hover:border-white/10 ${cluster.border}`}>
-      {/* Priority indicator */}
-      {(repo.priority === 'critical' || repo.priority === 'high') && (
-        <div className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${repo.priority === 'critical' ? 'bg-red-400/60' : 'bg-amber-400/40'}`} />
-      )}
+  // Filtered list for the Fast-Path Console
+  const filteredRepos = useMemo(() => {
+    if (!searchQuery) return repos.slice(0, 10) // Show first 10 by default
+    return repos.filter(
+      repo =>
+        repo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        repo.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        repo.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
+    )
+  }, [repos, searchQuery])
 
-      <div className="pl-1">
-        {/* Header row */}
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className={`inline-flex items-center gap-1 shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full border ${status.badge}`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${status.dot}`} />
-              {status.label}
-            </span>
-            {repo.private && (
-              <span className="text-[10px] text-white/30 font-mono">private</span>
-            )}
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            {repo.deployed && (
-              <a
-                href={repo.deployed}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/30 hover:text-white/70 transition-colors"
-                aria-label={`${repo.name} live site`}
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
-            <a
-              href={repo.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/30 hover:text-white/70 transition-colors"
-              aria-label={`${repo.name} on GitHub`}
-            >
-              <Github className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </div>
+  // Stats
+  const activeCount = repos.filter(r => r.status === 'shipping' || r.status === 'building').length
+  const shippingCount = repos.filter(r => r.status === 'shipping').length
+  const totalCount = repos.length
 
-        {/* Repo name */}
-        <h3 className="font-semibold text-sm text-white/90 mb-1 font-mono leading-tight">
-          {repo.name}
-        </h3>
-
-        {/* Description */}
-        {repo.description && (
-          <p className="text-xs text-white/50 leading-relaxed line-clamp-2 mb-2">
-            {repo.description}
-          </p>
-        )}
-
-        {/* Milestone pill */}
-        {repo.milestone && (
-          <div className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border ${cluster.badge}`}>
-            <GitBranch className="w-2.5 h-2.5" />
-            {repo.milestone}
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-
-// ─── Cluster section ──────────────────────────────────────────────────────
-
-function ClusterSection({ clusterId }: { clusterId: RepoCluster }) {
-  const clusters = getClusters()
-  const config = clusters.find(c => c.id === clusterId)
-  if (!config) return null
-
-  const repos = getReposByCluster(clusterId)
-  const colors = CLUSTER_COLORS[clusterId]
-  const icon = CLUSTER_ICONS[clusterId]
-
-  const active = repos.filter(r => r.status === 'shipping' || r.status === 'building').length
+  const handleCopyClone = (repoName: string) => {
+    const cmd = `git clone https://github.com/frankxai/${repoName}.git`
+    navigator.clipboard.writeText(cmd)
+    setCopiedRepo(repoName)
+    setTimeout(() => setCopiedRepo(null), 2000)
+  }
 
   return (
-    <section>
-      {/* Cluster header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className={`p-1.5 rounded-lg ${colors.bg} ${colors.accent}`}>
-            {icon}
-          </div>
-          <div>
-            <h2 className={`font-bold text-sm ${colors.accent}`}>{config.name}</h2>
-            <p className="text-xs text-white/40">{config.tagline}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 text-xs text-white/40">
-          {active > 0 && (
-            <span className="flex items-center gap-1">
-              <Activity className="w-3 h-3 text-emerald-400" />
-              <span className="text-emerald-400">{active} active</span>
-            </span>
-          )}
-          <span>{repos.length} repos</span>
-        </div>
+    <div className="min-h-screen bg-[#0a0a0b] text-[#A9A9AA] font-sans antialiased selection:bg-emerald-500/25 selection:text-white">
+      {/* Ambient background glows */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/5 rounded-full blur-[128px]" />
+        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-cyan-500/4 rounded-full blur-[128px]" />
       </div>
 
-      {/* Repo grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {repos.map(repo => (
-          <RepoCard key={repo.name} repo={repo} />
-        ))}
-      </div>
-    </section>
-  )
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────
-
-export default function MapPage() {
-  const manifest = getManifest()
-  const topPriority = getTopPriority(3)
-  const clusters = getClusters()
-
-  const activeCount = manifest.repos.filter(
-    r => r.status === 'shipping' || r.status === 'building'
-  ).length
-  const shippingCount = manifest.repos.filter(r => r.status === 'shipping').length
-
-  return (
-    <div className="min-h-screen bg-[#0a0a0b]">
-      {/* Ambient aurora */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-cyan-500/4 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <div className="mb-12">
-          {/* Label */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* ─── Hero Section ──────────────────────────────────────────────── */}
+        <div className="mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/50 mb-6">
             <Terminal className="w-3.5 h-3.5 text-purple-400" />
-            <span>frankxai · GitHub Universe</span>
+            <span>frankxai · GitHub Universe Map</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -190,113 +100,204 @@ export default function MapPage() {
             </span>
           </h1>
 
-          <p className="text-lg text-white/50 max-w-2xl mb-8">
-            {manifest.totalRepos} repos across {clusters.length} clusters.
-            From Arcanea to ACOS to Products — everything being built.
+          <p className="text-base sm:text-lg text-white/50 max-w-2xl mb-8 leading-relaxed">
+            Everything being built across the FrankX creator ecosystem. Select from three distinct, high-fidelity approaches to navigate and inspect the codebase.
           </p>
 
-          {/* Stats bar */}
-          <div className="flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+          {/* Stats Bar */}
+          <div className="flex flex-wrap gap-6 pt-4 border-t border-white/5">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
                 <Github className="w-4 h-4 text-white/50" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{manifest.totalRepos}</div>
-                <div className="text-xs text-white/40">Total repos</div>
+                <div className="text-lg font-bold text-white font-mono">{totalCount}</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Total Repos</div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 flex items-center justify-center">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-amber-400/10 border border-amber-400/20 flex items-center justify-center">
                 <Activity className="w-4 h-4 text-amber-400" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{activeCount}</div>
-                <div className="text-xs text-white/40">Active now</div>
+                <div className="text-lg font-bold text-white font-mono">{activeCount}</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Active Now</div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center">
                 <Zap className="w-4 h-4 text-emerald-400" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{shippingCount}</div>
-                <div className="text-xs text-white/40">Shipping</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-purple-400/10 border border-purple-400/20 flex items-center justify-center">
-                <Layers className="w-4 h-4 text-purple-400" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-white">{clusters.length}</div>
-                <div className="text-xs text-white/40">Clusters</div>
+                <div className="text-lg font-bold text-white font-mono">{shippingCount}</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Shipping</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── Current Focus ─────────────────────────────────────────────── */}
-        {topPriority.length > 0 && (
-          <section className="mb-12">
-            <div className="flex items-center gap-2 mb-4">
-              <Star className="w-4 h-4 text-amber-400" />
-              <h2 className="text-sm font-semibold text-white/70 uppercase tracking-wider">Current Focus</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {topPriority.map(repo => {
-                const cluster = CLUSTER_COLORS[repo.cluster]
-                const status = STATUS_COLORS[repo.status]
-                return (
-                  <a
-                    key={repo.name}
-                    href={repo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`group flex flex-col gap-2 p-4 rounded-xl border bg-white/[0.03] hover:bg-white/[0.05] transition-all ${cluster.border}`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-400/10 text-red-300 border border-red-400/20`}>
-                        {repo.priority}
-                      </span>
-                      <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border ${status.badge}`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${status.dot}`} />
-                        {status.label}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="font-mono text-sm font-semibold text-white/90 group-hover:text-white transition-colors">
-                        {repo.name}
-                      </div>
-                      {repo.milestone && (
-                        <div className={`text-xs mt-0.5 ${cluster.accent}`}>{repo.milestone}</div>
-                      )}
-                    </div>
-                    {repo.description && (
-                      <p className="text-xs text-white/40 line-clamp-2 leading-relaxed">
-                        {repo.description}
-                      </p>
-                    )}
-                    <div className="flex items-center gap-1 text-xs text-white/30 group-hover:text-white/50 transition-colors mt-auto">
-                      <Github className="w-3 h-3" />
-                      <span>frankxai/{repo.name}</span>
-                      <ChevronRight className="w-3 h-3 ml-auto" />
-                    </div>
-                  </a>
-                )
-              })}
-            </div>
-          </section>
-        )}
+        {/* ─── Approach Selection Grid ───────────────────────────────────── */}
+        <section className="mb-20">
+          <div className="flex items-center gap-2 mb-6">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <h2 className="text-xs font-semibold text-white/70 uppercase tracking-wider font-mono">Select Visualization Approach</h2>
+          </div>
 
-        {/* ── Cluster Grid ──────────────────────────────────────────────── */}
-        <div className="space-y-12">
-          {(['arcanea', 'acos', 'websites', 'creator-tools', 'products', 'research'] as RepoCluster[]).map(clusterId => (
-            <ClusterSection key={clusterId} clusterId={clusterId} />
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* V1 Bento Grid Card */}
+            <GlowCard color="emerald" href="/map/v1" className="p-6 flex flex-col justify-between h-full group">
+              <div>
+                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-3">
+                  Approach v1
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                  Ecosystem Console
+                </h3>
+                <p className="text-xs text-white/50 leading-relaxed mb-6">
+                  Interactive bento grid layout presenting repo clusters, live search, status filtering, and a sticky "GitHub Embed" details and clone panel.
+                </p>
+              </div>
+              <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs text-white/30 group-hover:text-white/60 transition-colors font-mono">
+                <span>Launch Console</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </GlowCard>
 
-        {/* ── ACOS CTA ──────────────────────────────────────────────────── */}
+            {/* V2 Node Graph Card */}
+            <GlowCard color="cyan" href="/map/v2" className="p-6 flex flex-col justify-between h-full group">
+              <div>
+                <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-semibold block mb-3">
+                  Approach v2
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2 font-mono group-hover:text-cyan-400 transition-colors">
+                  Strategic Node Graph
+                </h3>
+                <p className="text-xs text-white/50 leading-relaxed mb-6">
+                  SVG mind-map / node graph visualizing active dependencies, data flows, and connections between codebases, tools, and platforms.
+                </p>
+              </div>
+              <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs text-white/30 group-hover:text-white/60 transition-colors font-mono">
+                <span>Launch Node Graph</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </GlowCard>
+
+            {/* V3 Timeline Card */}
+            <GlowCard color="amber" href="/map/v3" className="p-6 flex flex-col justify-between h-full group">
+              <div>
+                <span className="text-[10px] font-mono text-amber-400 uppercase tracking-widest font-semibold block mb-3">
+                  Approach v3
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2 font-mono group-hover:text-amber-400 transition-colors">
+                  Creator Chronicles
+                </h3>
+                <p className="text-xs text-white/50 leading-relaxed mb-6">
+                  A widescreen cinematic scroll timeline showing development epochs from Arcanea lore to ACOS substrates to sovereign commercial products.
+                </p>
+              </div>
+              <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs text-white/30 group-hover:text-white/60 transition-colors font-mono">
+                <span>Launch Timeline</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </GlowCard>
+          </div>
+        </section>
+
+        {/* ─── Fast-Path Console ─────────────────────────────────────────── */}
+        <section className="bg-white/[0.01] border border-white/5 rounded-2xl p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <Terminal className="w-4 h-4 text-emerald-400" />
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono">Fast-Path Console</h3>
+              </div>
+              <p className="text-xs text-white/45">Quickly query repositories and copy clone scripts without loading visualization maps.</p>
+            </div>
+
+            <div className="relative w-full sm:w-72">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 pr-4 py-2 bg-white/[0.02] border border-white/8 rounded-xl text-white placeholder-white/20 focus:outline-none focus:border-emerald-500/40 transition-colors text-xs"
+              />
+            </div>
+          </div>
+
+          <div className="border border-white/5 rounded-xl overflow-hidden bg-black/40">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs font-mono">
+                <thead>
+                  <tr className="border-b border-white/5 bg-white/[0.02] text-white/40">
+                    <th className="px-4 py-3 font-semibold">Repository</th>
+                    <th className="px-4 py-3 font-semibold">Cluster</th>
+                    <th className="px-4 py-3 font-semibold">Status</th>
+                    <th className="px-4 py-3 font-semibold text-right">Clone / Github</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/[0.03]">
+                  {filteredRepos.map((repo) => (
+                    <tr key={repo.name} className="hover:bg-white/[0.01] transition-colors">
+                      <td className="px-4 py-3">
+                        <span className="font-semibold text-white">{repo.name}</span>
+                        <p className="text-[10px] text-white/30 font-sans mt-0.5 line-clamp-1">{repo.description}</p>
+                      </td>
+                      <td className="px-4 py-3 text-white/40 uppercase tracking-widest text-[9px]">{repo.cluster}</td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full border border-white/10 bg-white/5 text-white/60">
+                          {repo.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <div className="flex justify-end gap-2">
+                          <button
+                            onClick={() => handleCopyClone(repo.name)}
+                            className="px-2 py-1 rounded bg-white/5 border border-white/5 text-white/60 hover:text-white transition-all flex items-center gap-1.5 text-[10px]"
+                            title="Copy clone command"
+                          >
+                            {copiedRepo === repo.name ? (
+                              <>
+                                <Check className="w-3 h-3 text-emerald-400" />
+                                <span className="text-emerald-400">Copied</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3 h-3" />
+                                <span>Copy</span>
+                              </>
+                            )}
+                          </button>
+                          <a
+                            href={repo.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1 rounded bg-white/5 border border-white/5 text-white/40 hover:text-white transition-all"
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {searchQuery && filteredRepos.length === 0 && (
+            <div className="text-center py-8 text-white/35 text-xs font-mono">No matching repositories found.</div>
+          )}
+          {!searchQuery && repos.length > 10 && (
+            <div className="text-right mt-3">
+              <Link href="/map/v1" className="text-[10px] font-mono text-emerald-400 hover:text-emerald-300 underline">
+                View all {repos.length} repositories in Ecosystem Console
+              </Link>
+            </div>
+          )}
+        </section>
+
+        {/* ACOS Core CTA */}
         <section className="mt-16 p-6 rounded-2xl border border-emerald-400/20 bg-emerald-400/5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -304,7 +305,7 @@ export default function MapPage() {
                 <Zap className="w-4 h-4 text-emerald-400" />
                 <span className="text-sm font-semibold text-emerald-400">Install ACOS</span>
               </div>
-              <p className="text-white/60 text-sm">The operating system that powers this entire ecosystem.</p>
+              <p className="text-white/60 text-sm">The agentic operating system substrate powering this entire ecosystem.</p>
             </div>
             <code className="px-4 py-2.5 rounded-lg bg-black/40 border border-white/10 text-xs text-emerald-300 font-mono whitespace-nowrap shrink-0">
               git clone github.com/frankxai/agentic-creator-os
@@ -312,44 +313,13 @@ export default function MapPage() {
           </div>
         </section>
 
-        {/* ── Nav links ─────────────────────────────────────────────────── */}
-        <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap gap-6">
-          {[
-            { href: '/sprint', label: 'Current Sprint', icon: <Activity className="w-3.5 h-3.5" /> },
-            { href: '/roadmap', label: 'Roadmap', icon: <GitBranch className="w-3.5 h-3.5" /> },
-            { href: '/changelog', label: 'Changelog', icon: <Star className="w-3.5 h-3.5" /> },
-            { href: 'https://github.com/frankxai', label: 'GitHub', icon: <Github className="w-3.5 h-3.5" />, external: true },
-          ].map(({ href, label, icon, external }) => (
-            external ? (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-white/40 hover:text-white/70 transition-colors"
-              >
-                {icon}
-                <span>{label}</span>
-                <ArrowRight className="w-3 h-3" />
-              </a>
-            ) : (
-              <Link
-                key={href}
-                href={href}
-                className="flex items-center gap-1.5 text-sm text-white/40 hover:text-white/70 transition-colors"
-              >
-                {icon}
-                <span>{label}</span>
-                <ArrowRight className="w-3 h-3" />
-              </Link>
-            )
-          ))}
+        {/* Footer Navigation */}
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-6 text-xs text-white/40">
+          <Link href="/sprint" className="hover:text-white transition-colors">Current Sprint</Link>
+          <Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link>
+          <Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link>
+          <a href="https://github.com/frankxai" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
         </div>
-
-        {/* Last updated */}
-        <p className="mt-6 text-xs text-white/20 font-mono">
-          Last synced: {manifest.lastUpdated} · Auto-updates every Monday via GitHub Actions
-        </p>
       </div>
     </div>
   )
