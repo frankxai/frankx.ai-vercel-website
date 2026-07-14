@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { ArrowRight, CheckCircle2, Mail } from 'lucide-react'
 
@@ -225,12 +226,12 @@ export function TallinnInterestForm({
         />
         <span>
           I agree that FrankX may store these details only to respond to this interest. No newsletter or unrelated marketing without a separate opt-in. See the{' '}
-          <a
+          <Link
             href="/privacy"
             className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
           >
             Privacy Notice
-          </a>
+          </Link>
           .
         </span>
       </label>

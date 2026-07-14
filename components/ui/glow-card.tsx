@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useReducedMotion } from 'framer-motion'
+import { useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 
@@ -52,11 +53,17 @@ interface GlowCardProps {
 export function GlowCard({ children, color = 'teal', href, className, onClick }: GlowCardProps) {
   const shouldReduceMotion = useReducedMotion()
   const rgb = glowColors[color]
-  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLAnchorElement>({
+  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLElement>({
     rgb,
     radius: 600,
     opacity: 0.18,
   })
+  const setCardRef = useCallback(
+    (node: HTMLElement | null) => {
+      cardRef.current = node
+    },
+    [cardRef],
+  )
 
   const baseClass = cn(
     // Shape + glass
@@ -84,12 +91,12 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
       {/* Cursor-following radial glow */}
       <div
         ref={glowRef}
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 motion-reduce:transition-none"
       />
 
       {/* Top-edge ambient glow: appears on hover */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
         style={{
           background: `radial-gradient(ellipse at 50% 0%, rgba(${rgb}, 0.10), transparent 65%)`,
         }}
@@ -101,7 +108,7 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
     return (
       <Link
         href={href}
-        ref={cardRef}
+        ref={setCardRef}
         className={cn(baseClass, 'block h-full')}
         onPointerMove={shouldReduceMotion ? undefined : handlers.onPointerMove}
         onPointerLeave={shouldReduceMotion ? undefined : handlers.onPointerLeave}
@@ -116,29 +123,12 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
 
   return (
     <div
-       
-      ref={cardRef as any}
+      ref={setCardRef}
       className={cn(baseClass, onClick && 'cursor-pointer')}
-      onPointerMove={
-        shouldReduceMotion
-          ? undefined
-          : (handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLDivElement>)
-      }
-      onPointerLeave={
-        shouldReduceMotion
-          ? undefined
-          : (handlers.onPointerLeave as unknown as React.PointerEventHandler<HTMLDivElement>)
-      }
-      onTouchMove={
-        shouldReduceMotion
-          ? undefined
-          : (handlers.onTouchMove as unknown as React.TouchEventHandler<HTMLDivElement>)
-      }
-      onTouchEnd={
-        shouldReduceMotion
-          ? undefined
-          : (handlers.onTouchEnd as unknown as React.TouchEventHandler<HTMLDivElement>)
-      }
+      onPointerMove={shouldReduceMotion ? undefined : handlers.onPointerMove}
+      onPointerLeave={shouldReduceMotion ? undefined : handlers.onPointerLeave}
+      onTouchMove={shouldReduceMotion ? undefined : handlers.onTouchMove}
+      onTouchEnd={shouldReduceMotion ? undefined : handlers.onTouchEnd}
       onClick={onClick}
     >
       {glowLayers}

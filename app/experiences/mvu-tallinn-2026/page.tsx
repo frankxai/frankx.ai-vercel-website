@@ -11,6 +11,7 @@ export const metadata = createMetadata({
     'An independent FrankX session studio for people gathering in Tallinn during Mindvalley U 2026.',
   path: '/experiences/mvu-tallinn-2026',
   canonical: 'https://frankx.ai/experiences/tallinn-2026',
+  noindex: true,
 })
 
 interface TallinnAliasRouteProps {

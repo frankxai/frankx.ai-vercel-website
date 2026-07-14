@@ -5,8 +5,13 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { GlowCard } from '@/components/ui/glow-card'
 import { workshops } from '@/data/workshops'
 
-const provenWorkshop = workshops.find((workshop) => workshop.slug === 'ikigai-branding')!
-const studioWorkshops = workshops.filter((workshop) => workshop.slug !== 'ikigai-branding')
+const personallyDeliveredWorkshop = workshops.find(
+  (workshop) => workshop.provenance === 'delivered-personal',
+)!
+const studioAssistedDeliveredWorkshops = workshops.filter(
+  (workshop) => workshop.provenance === 'delivered-studio-assisted',
+)
+const studioWorkshops = workshops.filter((workshop) => workshop.provenance === 'studio-draft')
 
 const colorClassMap: Record<(typeof studioWorkshops)[number]['color'], string> = {
   cyan: 'text-cyan-300',
@@ -49,17 +54,23 @@ export default function WorkshopsPage() {
 
             <div className="border-y border-white/10 py-7">
               <p className="text-sm font-semibold text-white">The provenance line is explicit</p>
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 <div>
-                  <p className="text-xs font-semibold text-amber-200">Delivered foundation</p>
+                  <p className="text-xs font-semibold text-amber-200">Personally developed + delivered</p>
                   <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Ikigai &amp; Branding is the workshop Frank has personally developed and facilitated.
+                    Ikigai &amp; Branding is Frank’s personally developed and facilitated foundation.
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-cyan-200">Studio architecture</p>
+                  <p className="text-xs font-semibold text-emerald-200">Delivered, studio-assisted</p>
                   <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Every other format is a prepared concept to tailor and pilot—not presented as past delivery.
+                    Build Your First AI Agent has a delivery record; its architecture was built with the agentic studio.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-cyan-200">Studio drafts</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">
+                    The remaining formats are prepared architectures to tailor and pilot—not past delivery claims.
                   </p>
                 </div>
               </div>
@@ -77,38 +88,65 @@ export default function WorkshopsPage() {
                 Delivered by Frank
               </div>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                The proven foundation.
+                The delivered work.
               </h2>
               <p className="mt-5 max-w-md text-base leading-7 text-slate-400">
-                Purpose becomes useful when it changes what you practice, publish, or choose. This format turns reflection into a concrete brand and next move.
+                Two formats have a real delivery record, with different authorship stories. The distinction stays visible.
               </p>
             </div>
 
-            <GlowCard color="amber" href={`/workshops/${provenWorkshop.slug}`} className="rounded-[2rem]">
-              <div className="flex min-h-[34rem] flex-col p-7 sm:p-9 lg:p-11">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="rounded-full border border-amber-300/30 bg-amber-300/[0.08] px-3 py-1.5 text-xs font-semibold text-amber-100">
-                    Delivered workshop
-                  </span>
-                  <span className="text-xs text-slate-500">{provenWorkshop.duration}</span>
+            <div className="space-y-5">
+              <GlowCard color="amber" href={`/workshops/${personallyDeliveredWorkshop.slug}`} className="rounded-[2rem]">
+                <div className="flex min-h-[31rem] flex-col p-7 sm:p-9 lg:p-11">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="rounded-full border border-amber-300/30 bg-amber-300/[0.08] px-3 py-1.5 text-xs font-semibold text-amber-100">
+                      Personally developed + delivered
+                    </span>
+                    <span className="text-xs text-slate-500">{personallyDeliveredWorkshop.duration}</span>
+                  </div>
+                  <div className="mt-auto">
+                    <h3 className="max-w-2xl font-display text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">
+                      {personallyDeliveredWorkshop.title}
+                    </h3>
+                    <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
+                      {personallyDeliveredWorkshop.subtitle}
+                    </p>
+                    <div className="mt-9 flex flex-col gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-sm text-slate-400">For {personallyDeliveredWorkshop.audience.toLowerCase()}</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-semibold text-white">
+                        Explore the workshop
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-auto">
-                  <h3 className="max-w-2xl font-display text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">
-                    {provenWorkshop.title}
-                  </h3>
-                  <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
-                    {provenWorkshop.subtitle}
-                  </p>
-                  <div className="mt-9 flex flex-col gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-sm text-slate-400">For {provenWorkshop.audience.toLowerCase()}</p>
+              </GlowCard>
+
+              {studioAssistedDeliveredWorkshops.map((workshop) => (
+                <GlowCard key={workshop.slug} color="emerald" href={`/workshops/${workshop.slug}`} className="rounded-[2rem]">
+                  <div className="grid gap-6 p-7 sm:grid-cols-[1fr_auto] sm:items-end sm:p-9">
+                    <div>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="rounded-full border border-emerald-300/25 bg-emerald-300/[0.07] px-3 py-1.5 text-xs font-semibold text-emerald-100">
+                          Delivered pilot
+                        </span>
+                        <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-slate-400">
+                          Studio-assisted architecture
+                        </span>
+                      </div>
+                      <h3 className="mt-7 font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+                        {workshop.title}
+                      </h3>
+                      <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">{workshop.subtitle}</p>
+                    </div>
                     <span className="inline-flex items-center gap-2 text-sm font-semibold text-white">
                       Explore the workshop
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </span>
                   </div>
-                </div>
-              </div>
-            </GlowCard>
+                </GlowCard>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -125,7 +163,7 @@ export default function WorkshopsPage() {
                 Prepared to shape. Ready to test honestly.
               </h2>
               <p className="mt-5 max-w-md text-base leading-7 text-slate-400">
-                These are authored workshop systems and facilitator drafts. Each needs a real audience, host brief, and pilot before it earns a delivered claim.
+                These are studio-authored workshop systems and facilitator drafts. Each still needs a real audience, host brief, and pilot before it earns a delivered claim.
               </p>
             </div>
 

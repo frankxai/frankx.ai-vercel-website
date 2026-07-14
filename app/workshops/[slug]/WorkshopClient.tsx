@@ -250,7 +250,7 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
               {workshop.overview}
             </p>
 
-            <WorkshopProvenanceNotice />
+            {workshop.provenance === 'studio-draft' ? <WorkshopProvenanceNotice /> : null}
           </motion.div>
         </div>
       </section>

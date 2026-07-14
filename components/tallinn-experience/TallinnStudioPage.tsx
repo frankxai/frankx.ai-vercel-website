@@ -93,6 +93,7 @@ export function TallinnStudioPage({
 }: TallinnStudioPageProps) {
   const provenFormat = TALLINN_PUBLIC_FORMATS[0]
   const studioFormats = TALLINN_PUBLIC_FORMATS.slice(1)
+  const planKey = `${defaultRole}:${defaultOutcome}`
 
   return (
     <main className="overflow-hidden bg-[#080a0d] text-white">
@@ -189,7 +190,11 @@ export function TallinnStudioPage({
         </div>
       </section>
 
-      <SessionAmplifier defaultRole={defaultRole} defaultOutcome={defaultOutcome} />
+      <SessionAmplifier
+        key={`amplifier:${planKey}`}
+        defaultRole={defaultRole}
+        defaultOutcome={defaultOutcome}
+      />
 
       <section className="border-b border-white/[0.07]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
@@ -434,7 +439,11 @@ export function TallinnStudioPage({
 
           <GlowCard color="emerald" className="rounded-[2rem] bg-[#0b0e12]">
             <div className="p-5 sm:p-8 lg:p-10">
-              <TallinnInterestForm defaultRole={defaultRole} defaultOutcome={defaultOutcome} />
+              <TallinnInterestForm
+                key={`interest:${planKey}`}
+                defaultRole={defaultRole}
+                defaultOutcome={defaultOutcome}
+              />
             </div>
           </GlowCard>
         </div>

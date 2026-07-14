@@ -27,7 +27,12 @@ export async function generateMetadata(
 
   const url = `${SITE_URL}/workshops/${workshop.slug}`
   const title = `${workshop.title} · FrankX Workshop Studio`
-  const description = `Studio architecture to tailor and pilot. ${workshop.subtitle || workshop.overview.slice(0, 120)}`
+  const provenanceLead = {
+    'delivered-personal': 'Personally developed and delivered workshop.',
+    'delivered-studio-assisted': 'Delivered workshop with a studio-assisted architecture.',
+    'studio-draft': 'Studio architecture to tailor and pilot.',
+  }[workshop.provenance]
+  const description = `${provenanceLead} ${workshop.subtitle || workshop.overview.slice(0, 120)}`
 
   return {
     title,
