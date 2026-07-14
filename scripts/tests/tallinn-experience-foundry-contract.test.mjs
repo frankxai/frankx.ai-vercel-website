@@ -143,10 +143,10 @@ test('portfolio contains thirty scored ideas and the five Ana-review formats', (
 
   for (const title of [
     'Purpose to Practice',
-    'Agentic Creator Studio',
-    'Build Your Agentic Team',
-    'Human + Agent Team Charter',
-    'Founder Integration Salon',
+    'Creator Studio: From Idea to Draft',
+    'Build Your AI Support Team',
+    'Human + AI Team Agreement',
+    'Founder Decision Circle',
   ]) {
     assert.match(portfolio, new RegExp(title.replace(/[+]/g, '\\+')))
   }
@@ -154,33 +154,47 @@ test('portfolio contains thirty scored ideas and the five Ana-review formats', (
 
 test('hub and offer pages preserve operational truth and affiliation boundary', () => {
   assert.match(registry, /not affiliated with, sponsored by, or endorsed by Mindvalley/)
-  assert.match(registry, /no room is booked/)
+  assert.match(registry, /Possible venue only · nothing is reserved/)
   assert.match(hub, /TALLINN_EVENT\.independenceNotice/)
   assert.match(offer, /TALLINN_EVENT\.independenceNotice/)
-  assert.match(hub, /Venue not booked/)
-  assert.match(offer, /No room is booked/)
-  assert.match(hub, /Leave Tallinn with one thing running/)
-  assert.match(hub, /Human/)
-  assert.match(hub, /Practice/)
-  assert.match(hub, /System/)
-  assert.match(hub, /Team/)
+  assert.match(hub, /Nothing is booked yet/)
+  assert.match(offer, /No room has been reserved/)
+  assert.match(hub, /Leave Tallinn with one clear plan you can use the next morning/)
+  assert.match(hub, /What matters/)
+  assert.match(hub, /Practical result/)
+  assert.match(hub, /Weekly rhythm/)
+  assert.match(hub, /Team use/)
 })
 
-test('preview mode is no-storage, dummy-email only, and does not create a marketing audience', () => {
+test('review mode hides the form, stores nothing, sends nothing, and creates no marketing audience', () => {
   assert.match(route, /TALLINN_CAPTURE_MODE === 'live'/)
-  assert.ok(route.includes("const REVIEW_EMAIL = /@example\\.com$/i"))
+  assert.match(route, /TALLINN_PRIVACY_NOTICE_APPROVED === 'true'/)
+  assert.match(form, /if \(!captureEnabled\)/)
+  assert.match(form, /Interest collection is not open yet/)
   assert.match(route, /No data was stored and no email was sent/)
+  assert.doesNotMatch(form, /test@example\.com|Simulate request/)
+  assert.doesNotMatch(route, /test@example\.com|Preview simulation passed/)
   assert.doesNotMatch(service, /audiences|contacts|newsletter/i)
-  assert.match(form, /No newsletter or unrelated marketing/)
+  assert.match(form, /not be added to a newsletter or used for unrelated marketing/)
+})
+
+test('attendee copy assumes no Ana role and excludes internal market language', () => {
+  assert.match(registry, /No role is assumed/)
+  assert.match(hub, /No role assumed/)
+  assert.doesNotMatch(registry, /producer by default|thought-leadership route|people-work pipeline/i)
+  assert.doesNotMatch(hub, /Outcome router|Demand signal|market variants|smuggle people/i)
+  assert.doesNotMatch(offer, /Host architecture|Operational truth|demand clears the gate/i)
 })
 
 test('request safety, identity fallback, and CRM classification are release-gated', () => {
   assert.match(route, /readJsonWithinLimit\(request, MAX_BODY_BYTES\)/)
   assert.match(route, /request\.body\.getReader\(\)/)
   assert.doesNotMatch(route, /request\.json\(\)/)
+  assert.match(route, /errorName: safeErrorName\(error\)/)
+  assert.doesNotMatch(route, /unexpected error['"], error/)
   assert.match(form, /function createSubmissionId\(\)/)
   assert.match(form, /cryptoApi\?\.getRandomValues/)
-  assert.match(form, /Please choose at least one time window\./)
+  assert.match(form, /Choose at least one possible time\./)
   assert.match(service, /INTENT_LABEL\.general/)
   assert.doesNotMatch(service, /Workshop \(1-day team build\)/)
   assert.match(packageJson, /"test:ana-release"/)
@@ -193,7 +207,7 @@ test('capacity and participant artifact promises match each selected experience'
   assert.equal((registry.match(/roomCapacityTarget: 12,/g) ?? []).length, 10)
   assert.match(threshold, /experience\.slug === experienceSlug/)
   assert.match(threshold, /\?\.roomCapacityTarget/)
-  assert.match(registry, /A two-page Human \+ AI Practice Map/)
+  assert.match(registry, /A two-page Purpose-to-Practice Plan/)
 })
 
 test('the print route isolates the worksheet without hiding the Next.js root', () => {
@@ -304,5 +318,7 @@ test('unlisted routes remain noindex and generate all ten static paths', () => {
   const offerRoute = read('app/experiences/tallinn-2026/[slug]/page.tsx')
   assert.match(hubRoute, /noindex: true/)
   assert.match(offerRoute, /noindex: true/)
+  assert.match(hubRoute, /TALLINN_PRIVACY_NOTICE_APPROVED === 'true'/)
+  assert.match(offerRoute, /TALLINN_PRIVACY_NOTICE_APPROVED === 'true'/)
   assert.match(offerRoute, /generateStaticParams/)
 })

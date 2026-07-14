@@ -8,6 +8,7 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const MAX_BODY_BYTES = 12_000
+const SAFE_ERROR_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9_.-]{0,63}$/
 
 type BodyReadResult =
   | { ok: true; value: unknown }
@@ -59,6 +60,12 @@ function reviewMode() {
     process.env.TALLINN_PRIVACY_NOTICE_APPROVED === 'true'
   )
 }
+
+function safeErrorName(error: unknown) {
+  if (!(error instanceof Error)) return 'NonErrorThrow'
+  return SAFE_ERROR_NAME_PATTERN.test(error.name) ? error.name : 'UnknownError'
+}
+
 export async function POST(request: NextRequest) {
   try {
     const contentLength = Number(request.headers.get('content-length') || '0')
@@ -204,7 +211,9 @@ export async function POST(request: NextRequest) {
         : 'Thank you — we received your interest. This is not a ticket or venue confirmation.',
     })
   } catch (error) {
-    console.error('[tallinn-interest] unexpected error', error)
+    console.error('[tallinn-interest] unexpected error', {
+      errorName: safeErrorName(error),
+    })
     return NextResponse.json(
       { ok: false, error: 'An unexpected error occurred. Please try again.' },
       { status: 500 },

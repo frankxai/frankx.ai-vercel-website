@@ -107,7 +107,13 @@ const responsePriorities = [
   { id: 'commercial', label: 'Discuss ownership, support, and commercial terms' },
 ]
 
-function StatusTone({ tone }: { tone: (typeof statusItems)[number]['tone'] }) {
+function StatusTone({
+  tone,
+  status,
+}: {
+  tone: (typeof statusItems)[number]['tone']
+  status: string
+}) {
   const classes = {
     emerald: 'border-emerald-300/25 bg-emerald-300/[0.07] text-emerald-100',
     amber: 'border-amber-300/25 bg-amber-300/[0.07] text-amber-100',
@@ -115,7 +121,7 @@ function StatusTone({ tone }: { tone: (typeof statusItems)[number]['tone'] }) {
     slate: 'border-white/[0.15] bg-white/[0.05] text-white/[0.65]',
   }
 
-  return <span className={`rounded-full border px-3 py-1 text-[11px] font-semibold tracking-[0.04em] ${classes[tone]}`}>{statusItems.find((item) => item.tone === tone)?.status}</span>
+  return <span className={`rounded-full border px-3 py-1 text-[11px] font-semibold tracking-[0.04em] ${classes[tone]}`}>{status}</span>
 }
 
 export default function AnaAllyPage() {
@@ -187,7 +193,7 @@ export default function AnaAllyPage() {
         <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-black/[0.18] md:grid-cols-2 xl:grid-cols-4">
           {statusItems.map((item, index) => (
             <article key={item.title} className={`p-5 sm:p-6 ${index > 0 ? 'border-t border-white/10 md:border-t-0 md:border-l' : ''} ${index === 2 ? 'xl:border-t-0' : ''}`}>
-              <StatusTone tone={item.tone} />
+              <StatusTone tone={item.tone} status={item.status} />
               <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
               <p className="mt-2 text-sm leading-6 text-ana-cream/[0.52]">{item.detail}</p>
             </article>

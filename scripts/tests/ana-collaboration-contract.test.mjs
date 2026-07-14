@@ -163,9 +163,9 @@ test('the download endpoint points to the maintained kit and labels the old ZIP 
     readRepoFile('app/downloads/ana-ai-business-kit/latest.json/route.ts'),
   ])
 
-  assert.match(page, /Current HR workflow · v\{currentVersion\}/)
+  assert.match(page, /Current working flow · v\{currentVersion\}/)
   assert.match(page, /Earlier archive/)
-  assert.match(page, /not the recommended HR Operations workflow/)
+  assert.match(page, /Keep it as an archive; use the current workflow/)
   assert.match(release, /version: '1\.1\.0'/)
   assert.match(release, /status: 'current'/)
   assert.match(release, /sourceRepo: 'https:\/\/github\.com\/frankxai\/ana-ai-business-kit'/)
@@ -196,8 +196,26 @@ test('Ana-facing copy excludes obsolete product language and internal shorthand'
     /synthetic/i,
     /system of record/i,
     /autonomous recruiter/i,
+    /four-person/i,
+    /team of four/i,
+    /three colleagues/i,
+    /do not need to become developers/i,
+    /difficult to teach/i,
+    /made teachable/i,
+    /without relying on Ana.?s memory/i,
+    /bounded learning loop/i,
+    /team proves the workflow/i,
+    /named agent briefs/i,
+    /AI Center of Excellence/i,
+    /what should Frank/i,
+    /Tell Frank/i,
+    /before Frank builds/i,
   ]) {
     assert.doesNotMatch(combined, pattern)
+  }
+
+  for (const source of sources.slice(0, 4)) {
+    assert.doesNotMatch(source, /\buppercase\b/, 'ordinary Ana-facing copy must not be forced to all caps')
   }
 })
 
