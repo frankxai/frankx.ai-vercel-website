@@ -111,6 +111,68 @@ export default function AnaAIBusinessKitDownloadPage() {
       </section>
 
       <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">The current release · v{currentVersion}</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Two packages. One clear boundary.</h2>
+            </div>
+            <div className="lg:pb-1">
+              <p className="max-w-2xl text-base leading-7 text-ana-cream/[0.62]">Download only what the moment needs. Ana and the working team use the internal Operator Kit. A client receives only the reviewed Client Session Kit.</p>
+              <a href={anaLinks.kitRelease} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">
+                View the verified v{currentVersion} release
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-10 grid overflow-hidden rounded-[2.5rem] border border-white/10 bg-black/[0.18] lg:grid-cols-2">
+            <article className="p-6 sm:p-8 lg:p-10">
+              <div className="flex items-center justify-between gap-4">
+                <span className="rounded-full border border-ana-gold/25 bg-ana-gold/[0.07] px-3 py-1 text-xs font-semibold text-ana-gold">For Ana and the working team</span>
+                <FolderLock className="h-6 w-6 text-ana-gold" aria-hidden="true" />
+              </div>
+              <h3 className="mt-7 text-3xl font-semibold tracking-tight">Operator Kit</h3>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-ana-cream/[0.62]">The internal preparation workspace: operating guides, approval controls, role references, and the material used to prepare client work. Keep this package inside Ana&apos;s practice.</p>
+              <p className="mt-4 text-xs font-semibold text-ana-cream/[0.42]">Begin with START-HERE.md</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <TrackedLink href={anaLinks.kitOperatorDownload} eventName="ana_kit_release_download" eventProperties={{ package: 'operator' }} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
+                  Download Operator Kit
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                </TrackedLink>
+                <a href={anaLinks.kitOperatorChecksum} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/[0.68] transition hover:border-white/[0.35] hover:text-ana-cream">
+                  Verify checksum
+                  <FileCheck2 className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+
+            <article className="border-t border-white/10 bg-[linear-gradient(145deg,rgba(25,87,66,0.13),rgba(255,255,255,0.025))] p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+              <div className="flex items-center justify-between gap-4">
+                <span className="rounded-full border border-emerald-300/25 bg-emerald-300/[0.07] px-3 py-1 text-xs font-semibold text-emerald-100">For a reviewed client handoff</span>
+                <FileCheck2 className="h-6 w-6 text-emerald-200" aria-hidden="true" />
+              </div>
+              <h3 className="mt-7 text-3xl font-semibold tracking-tight">Client Session Kit</h3>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-ana-cream/[0.62]">The focused session pack designed for client sharing. Ana or an accountable team member reviews the exact files and recipient before it leaves the practice.</p>
+              <p className="mt-4 text-xs font-semibold text-ana-cream/[0.42]">Begin with README.md</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <TrackedLink href={anaLinks.kitClientDownload} eventName="ana_kit_release_download" eventProperties={{ package: 'client_session' }} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-100 px-5 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
+                  Download Client Session Kit
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                </TrackedLink>
+                <a href={anaLinks.kitClientChecksum} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/[0.68] transition hover:border-white/[0.35] hover:text-ana-cream">
+                  Verify checksum
+                  <FileCheck2 className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <p className="mt-5 text-xs leading-5 text-ana-cream/[0.42]">Both downloads come from the same tagged GitHub release. The published manifest records the exact file list, entry point, and SHA-256 checksum for each package.</p>
+        </div>
+      </section>
+
+      <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Technical setup · optional</p>

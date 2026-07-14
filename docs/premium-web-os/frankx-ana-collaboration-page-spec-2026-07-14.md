@@ -117,6 +117,16 @@ Primary action: open the team guide or review the client path.
 Secondary action: open the clearly separated technical setup for Frank or a technical helper.
 Legacy ZIP: clearly labeled as an earlier archive, not the recommended HR system.
 
+Release delivery loop:
+
+1. Choose the package by recipient, not by technical familiarity.
+2. Ana and the working team use the internal Operator Kit and begin with `START-HERE.md`.
+3. A client receives only the Client Session Kit, after an accountable person reviews the exact files and recipient, and begins with `README.md`.
+4. Both packages link to the same tagged `v1.1.0` GitHub release, manifest, and SHA-256 checksums.
+5. The earlier v0.1 ZIP remains visually secondary and explicitly archival.
+
+The download route remains a static utility surface. Additional motion or 3D would slow package selection without adding proof or comprehension, so the existing responsive composition, focus states, and restrained native transitions are retained.
+
 ### `/portal/ana`
 
 Purpose: noindex preview of the future shared team workspace using accurate HR modules and project status. It must not imply that a private client portal or data integrations are already active.

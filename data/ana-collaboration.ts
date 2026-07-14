@@ -39,6 +39,18 @@ export const anaLinks = {
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-TEAM.md',
   kitReadingMap:
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/WHO-READS-WHAT.md',
+  kitRelease:
+    'https://github.com/frankxai/ana-ai-business-kit/releases/tag/v1.1.0',
+  kitManifest:
+    'https://github.com/frankxai/ana-ai-business-kit/releases/download/v1.1.0/kit-manifest.json',
+  kitOperatorDownload:
+    'https://github.com/frankxai/ana-ai-business-kit/releases/download/v1.1.0/ana-operator-kit-v1.1.0.zip',
+  kitOperatorChecksum:
+    'https://github.com/frankxai/ana-ai-business-kit/releases/download/v1.1.0/ana-operator-kit-v1.1.0.zip.sha256',
+  kitClientDownload:
+    'https://github.com/frankxai/ana-ai-business-kit/releases/download/v1.1.0/ana-client-session-kit-v1.1.0.zip',
+  kitClientChecksum:
+    'https://github.com/frankxai/ana-ai-business-kit/releases/download/v1.1.0/ana-client-session-kit-v1.1.0.zip.sha256',
 } as const
 
 export const anaWorkflowStages: AnaWorkflowStage[] = [
