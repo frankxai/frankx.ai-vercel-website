@@ -26,6 +26,8 @@ export interface TallinnCaptureResult {
 }
 
 const NOTION_VERSION = '2022-06-28'
+const NOTION_API_BASE = 'https://api.notion.com/v1'
+const RESEND_EMAILS_URL = 'https://api.resend.com/emails'
 const FROM_NOTIFY = 'FrankX Tallinn <notify@mail.frankx.ai>'
 const FROM_FRANK = 'Frank <frank@mail.frankx.ai>'
 
@@ -70,7 +72,7 @@ async function findExistingRecord(
 ) {
   const response = await fetchWithTimeout(
     fetchImpl,
-    `https://api.notion.com/v1/databases/${env.notionDatabaseId}/query`,
+    `${NOTION_API_BASE}/databases/${env.notionDatabaseId}/query`,
     {
       method: 'POST',
       headers: {
@@ -103,7 +105,7 @@ async function createRecord(
   env: TallinnCaptureEnvironment,
   fetchImpl: typeof fetch,
 ) {
-  const response = await fetchWithTimeout(fetchImpl, 'https://api.notion.com/v1/pages', {
+  const response = await fetchWithTimeout(fetchImpl, `${NOTION_API_BASE}/pages`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${env.notionToken}`,
@@ -153,7 +155,7 @@ async function sendEmail(
 ) {
   if (!apiKey) return false
   try {
-    const response = await fetchWithTimeout(fetchImpl, 'https://api.resend.com/emails', {
+    const response = await fetchWithTimeout(fetchImpl, RESEND_EMAILS_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,

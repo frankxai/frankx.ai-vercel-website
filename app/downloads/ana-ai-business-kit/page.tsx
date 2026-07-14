@@ -74,7 +74,7 @@ export default function AnaAIBusinessKitDownloadPage() {
                   Open the team start
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
+                <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream">
                   See the team plan
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -216,11 +216,11 @@ export default function AnaAIBusinessKitDownloadPage() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
+            <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
               Review the 30-day pilot
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <Link href="/portal/ana" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/[0.68] transition hover:border-white/[0.35] hover:text-ana-cream">
+            <Link href={anaLinks.privateWorkspace} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/[0.68] transition hover:border-white/[0.35] hover:text-ana-cream">
               Preview the team portal
               <Users className="h-4 w-4" aria-hidden="true" />
             </Link>

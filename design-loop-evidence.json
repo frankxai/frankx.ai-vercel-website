@@ -40,14 +40,14 @@
     "provenance": "owned",
     "why_premium": "Exact architecture labels, request flows, and verified links make a code-authored system diagram the correct evidence-bearing medium.",
     "shortcut_risk": "low",
-    "context_tested": false
+    "context_tested": true
   },
   "artifacts": [
     {
       "path_or_url": "components/ai-architecture/OfficialArchitectureAtlas.tsx",
       "kind": "web",
-      "inspected": false,
-      "notes": "Source, lint, type, contract, and link checks complete; rendered visual inspection awaits browser admission and preview."
+      "inspected": true,
+      "notes": "Source, lint, type, contract, and link checks pass; actual desktop and 390px Vercel exports were inspected with reduced motion enabled."
     }
   ],
   "checks": [
@@ -68,18 +68,27 @@
     },
     {
       "name": "visual-qa",
-      "status": "blocked",
-      "evidence": "PP swarm/browser preflight is HOLD at 1.67 GB free RAM and 30 task runtimes."
+      "status": "pass",
+      "evidence": "Desktop and mobile preview captures show a clear control-plane hierarchy, no overflow, no broken images, and an operable reduced-motion layout."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "The actual Vercel route was inspected at 1440x900 and 390x844, including the hero control plane, catalog cards, filters, and mobile stacking."
+    },
+    {
+      "name": "production-artifact",
+      "status": "pass",
+      "evidence": "The Next.js production build completed, the Vercel preview is ready, and no route-level runtime errors were reported."
     }
   ],
   "score": {
-    "total": 25,
+    "total": 28,
     "max": 30,
-    "notes": "Static hierarchy, brand fit, accessibility structure, factual accuracy, and usefulness score well; the final five-point visual/context check remains blocked until preview inspection."
+    "notes": "Static hierarchy, brand fit, accessible filtering, factual accuracy, desktop/mobile composition, and production verification all meet the ship gate."
   },
-  "decision": "blocked",
+  "decision": "ship",
   "known_risks": [
-    "Desktop, mobile, and filter-state visual inspection remains required before release promotion.",
-    "A Vercel preview build is still required to validate the full Next.js production artifact."
+    "External reference health remains time-sensitive and should continue to be checked by the existing release verifier."
   ]
 }

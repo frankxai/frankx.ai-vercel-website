@@ -59,7 +59,7 @@
     "provenance": "owned",
     "why_premium": "The primary visual is an exact and useful representation of Ana's verified operating process, not decorative imagery.",
     "shortcut_risk": "low",
-    "context_tested": false
+    "context_tested": true
   },
   "artifacts": [
     {
@@ -71,6 +71,12 @@
       "kind": "contract-test",
       "path_or_url": "scripts/tests/ana-collaboration-contract.test.mjs",
       "inspected": true
+    },
+    {
+      "kind": "Vercel preview",
+      "path_or_url": "dpl_7erkLQBNyx1iwAHV5K6j3C1EDkJF",
+      "inspected": true,
+      "notes": "The friend, team-plan, download, portal, and Cecilia routes were inspected at 1440x900 and 390x844 with reduced motion enabled."
     }
   ],
   "checks": [
@@ -92,7 +98,7 @@
     {
       "name": "scoped-code-validation",
       "status": "pass",
-      "evidence": "Seven Ana contract tests, scoped ESLint, scoped TypeScript, and git diff whitespace checks pass."
+      "evidence": "All 19 Ana and Tallinn release contracts pass, together with the full merge gate, TypeScript, production build, and scoped whitespace checks."
     },
     {
       "name": "ana-copy-audit",
@@ -101,30 +107,30 @@
     },
     {
       "name": "local-build",
-      "status": "blocked",
-      "evidence": "PP build preflight returned HOLD: 5.9 GB free versus the required 8 GB reserve, with 15 task runtimes versus a budget of 12."
+      "status": "pass",
+      "evidence": "The CI-mode Next.js production build completed successfully and generated all 1,565 static pages."
     },
     {
       "name": "export-inspection",
-      "status": "blocked",
-      "evidence": "Desktop and mobile preview inspection waits for a Vercel preview and browser-workload admission."
+      "status": "pass",
+      "evidence": "Actual Vercel exports were inspected for every Ana-facing route at desktop and mobile breakpoints; the intended warm-technical hierarchy remains coherent throughout."
     },
     {
       "name": "visual-qa",
-      "status": "blocked",
-      "evidence": "Responsive, keyboard, reduced-motion, and contrast inspection is not claimed until actual preview exports are inspected."
+      "status": "pass",
+      "evidence": "No horizontal overflow or broken images were found. Workflow tabs and proposal radios were exercised by keyboard after hydration, and reduced-motion rendering is complete."
     }
   ],
   "score": {
-    "total": 24,
+    "total": 28,
     "max": 30,
-    "notes": "Information architecture, verified copy, asset choice, responsive source, accessibility contract, and code checks are strong. Actual desktop/mobile export inspection remains required before ship status."
+    "notes": "The verified copy, exact workflow asset, restrained hierarchy, desktop/mobile composition, keyboard behavior, privacy boundary, production build, and live preview all meet the ship gate."
   },
-  "decision": "iterate",
+  "decision": "ship",
   "known_risks": [
     "No approved Ana portrait is available, so the hero uses verified workflow proof.",
     "The current Ana site contains biography language that needs Ana verification in a separate repository session.",
     "Cecilia identity, economics, payment tooling, DNS, and launch remain human-gated.",
-    "Machine preflight held full build and browser work during this pass."
+    "Private Drive artifacts remain unshared until Ana's exact Google account is confirmed."
   ]
 }

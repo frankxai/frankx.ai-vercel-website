@@ -101,6 +101,16 @@ test('live capture stores first and sends only transactional mail afterward', ()
   assert.match(service, /submissionId/)
 })
 
+test('external capture endpoints are centralized and have one canonical source', () => {
+  assert.match(service, /const NOTION_API_BASE = 'https:\/\/api\.notion\.com\/v1'/)
+  assert.match(service, /const RESEND_EMAILS_URL = 'https:\/\/api\.resend\.com\/emails'/)
+  assert.equal((service.match(/https:\/\/api\.notion\.com\/v1/g) ?? []).length, 1)
+  assert.equal((service.match(/https:\/\/api\.resend\.com\/emails/g) ?? []).length, 1)
+  assert.match(service, /`\$\{NOTION_API_BASE\}\/databases\/\$\{env\.notionDatabaseId\}\/query`/)
+  assert.match(service, /`\$\{NOTION_API_BASE\}\/pages`/)
+  assert.match(service, /fetchWithTimeout\(fetchImpl, RESEND_EMAILS_URL/)
+})
+
 test('unlisted routes remain noindex and generate all ten static paths', () => {
   const hubRoute = read('app/experiences/tallinn-2026/page.tsx')
   const offerRoute = read('app/experiences/tallinn-2026/[slug]/page.tsx')

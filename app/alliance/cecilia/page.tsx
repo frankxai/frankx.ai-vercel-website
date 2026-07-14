@@ -132,7 +132,7 @@ export default function CeciliaAlliancePage() {
                 See what it could become
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
-              <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
+              <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
                 Review the team plan
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

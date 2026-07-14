@@ -53,7 +53,7 @@ const anaJourney = [
     status: 'Start here',
     title: 'The team operating plan',
     detail: 'See the complete client journey, decision gates, 30-day pilot, and the exact questions Frank needs Ana to answer.',
-    href: '/allies/ana-cancino',
+    href: anaLinks.teamPlan,
   },
   {
     step: '02',
@@ -61,7 +61,7 @@ const anaJourney = [
     status: 'Team preview',
     title: 'The private-workspace model',
     detail: 'Explore how the daily board, templates, research, recruiting delivery, invoices, and handoffs fit together without moving private records into the site.',
-    href: '/portal/ana',
+    href: anaLinks.privateWorkspace,
   },
   {
     step: '03',
@@ -69,7 +69,7 @@ const anaJourney = [
     status: 'Ready to rehearse',
     title: 'The installable HR Operations kit',
     detail: 'Start with the guided team route, then rehearse one fictional engagement before connecting any live client work.',
-    href: '/downloads/ana-ai-business-kit',
+    href: anaLinks.kitDownload,
   },
   {
     step: '04',
@@ -77,7 +77,7 @@ const anaJourney = [
     status: 'Review together',
     title: 'The Tallinn Experience Foundry',
     detail: 'Choose which 90-minute experience is worth testing, inspect the participant artifact, and signal interest without implying a booking or affiliation.',
-    href: '/experiences/tallinn-2026',
+    href: anaLinks.tallinnFoundry,
   },
   {
     step: '05',
@@ -85,7 +85,7 @@ const anaJourney = [
     status: 'Decision needed',
     title: 'The Cecilia collaboration room',
     detail: 'Consider the name, product layers, partnership boundaries, and commercial models before identity, data, or money moves.',
-    href: '/alliance/cecilia',
+    href: anaLinks.ceciliaRoom,
   },
   {
     step: '06',
@@ -93,7 +93,7 @@ const anaJourney = [
     status: 'Public field guide',
     title: 'The AI Architecture atlas',
     detail: 'See the source-backed Vercel, Railway, and GCP patterns behind the systems Frank builds for founders and teams.',
-    href: '/ai-architecture',
+    href: anaLinks.architectureAtlas,
   },
 ] as const
 
@@ -122,7 +122,7 @@ export default function AnaFriendPage() {
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
+              <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
                 See the team plan
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
@@ -247,11 +247,11 @@ export default function AnaFriendPage() {
               The first build is intentionally practical: a shared workflow, private records outside GitHub, copied Google Docs templates, and approval gates the whole team can understand.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/allies/ana-cancino" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
+              <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
                 Review the operating proposal
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="/alliance/cecilia" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-black/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/75 transition hover:border-white/[0.35] hover:text-ana-cream">
+              <Link href={anaLinks.ceciliaRoom} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-black/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/75 transition hover:border-white/[0.35] hover:text-ana-cream">
                 Consider the Cecilia idea
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

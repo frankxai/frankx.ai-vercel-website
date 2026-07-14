@@ -146,7 +146,7 @@ export default function AnaAllyPage() {
                 Explore the workflow
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
-              <Link href="/downloads/ana-ai-business-kit" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
+              <Link href={anaLinks.kitDownload} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
                 Start Ana HR Operations
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
@@ -269,7 +269,7 @@ export default function AnaAllyPage() {
               <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">A calm front door over the tools Ana already uses.</h2>
               <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">Google Drive, Docs, the ATS or tracker, Canva, and finance records remain the source systems. The portal should guide the team; it should not hide where truth lives.</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/portal/ana" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
+                <Link href={anaLinks.privateWorkspace} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
                   Preview the team portal
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -317,8 +317,8 @@ export default function AnaAllyPage() {
             <p className="text-sm leading-6 text-ana-cream/50">Ana approves biography, team roles, templates, identity, pricing, legal terms, client data handling, payments, indexing, and every external send. Silence never counts as approval.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/friends/ana" className="text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">Ana's friend profile</Link>
-            <Link href="/alliance/cecilia" className="text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">Cecilia proposal</Link>
+            <Link href={anaLinks.friendPage} className="text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">Ana's friend profile</Link>
+            <Link href={anaLinks.ceciliaRoom} className="text-sm font-semibold text-ana-cream underline decoration-ana-gold/[0.35] underline-offset-4 hover:decoration-ana-gold">Cecilia proposal</Link>
           </div>
         </div>
       </section>

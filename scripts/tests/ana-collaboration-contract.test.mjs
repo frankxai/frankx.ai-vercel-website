@@ -61,13 +61,24 @@ test('the Ana surfaces form one connected review journey', async () => {
     readRepoFile('lib/social-links.ts'),
   ])
 
-  assert.match(friend, /href="\/allies\/ana-cancino"/)
-  assert.match(friend, /href="\/alliance\/cecilia"/)
-  assert.match(ally, /href="\/portal\/ana"/)
-  assert.match(ally, /href="\/friends\/ana"/)
-  assert.match(ally, /href="\/alliance\/cecilia"/)
-  assert.match(download, /href="\/portal\/ana"/)
-  assert.match(cecilia, /href="\/allies\/ana-cancino"/)
+  for (const [key, path] of [
+    ['friendPage', '/friends/ana'],
+    ['teamPlan', '/allies/ana-cancino'],
+    ['privateWorkspace', '/portal/ana'],
+    ['kitDownload', '/downloads/ana-ai-business-kit'],
+    ['tallinnFoundry', '/experiences/tallinn-2026'],
+    ['ceciliaRoom', '/alliance/cecilia'],
+    ['architectureAtlas', '/ai-architecture'],
+  ]) {
+    assert.ok(links.includes(`${key}: '${path}'`), `${key} must own ${path}`)
+  }
+  assert.match(friend, /href: anaLinks\.teamPlan/)
+  assert.match(friend, /href: anaLinks\.tallinnFoundry/)
+  assert.match(friend, /href=\{anaLinks\.ceciliaRoom\}/)
+  assert.match(ally, /href=\{anaLinks\.privateWorkspace\}/)
+  assert.match(ally, /href=\{anaLinks\.friendPage\}/)
+  assert.match(download, /href=\{anaLinks\.privateWorkspace\}/)
+  assert.match(cecilia, /href=\{anaLinks\.teamPlan\}/)
   assert.match(links, /https:\/\/www\.anaceciliacancino\.com\//)
   assert.match(links, /ALLY_SOCIAL_LINKS\.anaCancino\.linkedin/)
   assert.match(socialLinks, /https:\/\/www\.linkedin\.com\/in\/ana-cancino-\//)
