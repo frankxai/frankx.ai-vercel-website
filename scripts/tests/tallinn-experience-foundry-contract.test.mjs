@@ -79,7 +79,7 @@ const captureEnvironment = {
   operatorEmail: 'operator@example.com',
 }
 
-function createMemoryIdempotency() {
+function createMemoryIdempotency({ completeResult = true } = {}) {
   const states = new Map()
   return {
     states,
@@ -94,6 +94,7 @@ function createMemoryIdempotency() {
     async complete(key, token, recordId, completedAt) {
       const current = states.get(key)
       if (!current || current.token !== token) return false
+      if (!completeResult) return false
       states.set(key, { status: 'completed', token, recordId, completedAt })
       return true
     },
@@ -179,6 +180,7 @@ test('request safety, identity fallback, and CRM classification are release-gate
   assert.doesNotMatch(route, /request\.json\(\)/)
   assert.match(form, /function createSubmissionId\(\)/)
   assert.match(form, /cryptoApi\?\.getRandomValues/)
+  assert.match(form, /Please choose at least one time window\./)
   assert.match(service, /INTENT_LABEL\.general/)
   assert.doesNotMatch(service, /Workshop \(1-day team build\)/)
   assert.match(packageJson, /"test:ana-release"/)
@@ -243,6 +245,25 @@ test('a failed Notion write sends no mail and leaves the reservation fail-closed
 
   assert.equal(result.stored, false)
   assert.equal(result.error, 'notion-write-failed')
+  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 0)
+  assert.equal([...idempotency.states.values()][0].status, 'pending')
+})
+
+test('a failed reservation finalization sends no mail and remains fail-closed', async () => {
+  const idempotency = createMemoryIdempotency({ completeResult: false })
+  const { calls, fetchImpl } = createCaptureFetch()
+  const result = await captureTallinnInterest(capturePayload, captureEnvironment, {
+    fetchImpl,
+    idempotency,
+    createReservationToken: () => 'reservation-1',
+  })
+
+  assert.equal(result.stored, true)
+  assert.equal(result.pending, true)
+  assert.equal(result.error, 'reservation-finalize-failed')
+  assert.equal(result.receiptSent, false)
+  assert.equal(result.operatorNotified, false)
+  assert.equal(calls.filter((call) => call.url.endsWith('/pages')).length, 1)
   assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 0)
   assert.equal([...idempotency.states.values()][0].status, 'pending')
 })

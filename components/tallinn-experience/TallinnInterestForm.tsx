@@ -102,6 +102,12 @@ export function TallinnInterestForm({
       website: String(data.get('website') || ''),
     }
 
+    if (payload.slotIds.length === 0) {
+      setStatus('error')
+      setMessage('Please choose at least one time window.')
+      return
+    }
+
     trackEvent('tallinn_interest_submit_attempted', {
       experience_slug: payload.experienceSlug,
       variant_id: payload.variantId,
