@@ -1,0 +1,294 @@
+---
+title: "Codex, Plugins, Skills, and the Team Operating System Behind Them"
+description: "A practical guide to building, governing, sharing, and evolving Codex workflows—from one reusable skill to a team-ready plugin."
+date: "2026-07-15"
+lastModified: "2026-07-15"
+author: "Frank"
+tags: ["Codex", "AI workflows", "plugins", "skills", "AI governance", "teams"]
+keywords:
+  [
+    "Codex plugins",
+    "Codex skills",
+    "ChatGPT Business workflows",
+    "team AI governance",
+    "custom AI workflow",
+    "MCP team workflows",
+  ]
+category: "AI Architecture"
+featured: false
+image: "/images/blog/acos-enterprise-deployment-guide-hero-v8.jpg"
+readingGoal: "Choose the right Codex surface for a workflow, then set up a safe path for your team to share, review, and improve it."
+readingTime: "14 min"
+---
+
+# Codex, Plugins, Skills, and the Team Operating System Behind Them
+
+_The useful question is not “can AI do this?” It is “what should become a repeatable capability, who owns it, and what is allowed to happen when it runs?”_
+
+## The short version
+
+Codex is OpenAI’s coding agent: it can work with a codebase, follow instructions, use approved tools, and help teams plan, write, review, and verify software work. But Codex is not one monolithic system. It has several layers, each meant for a different job:
+
+| Layer | What it is | Use it when | Do not use it as |
+| --- | --- | --- | --- |
+| Prompt or task context | One-time instructions | The constraint only matters now | Your team handbook |
+| `AGENTS.md` | Durable repository guidance | A rule should travel with a codebase | A live integration or secret store |
+| Skill | A reusable workflow with instructions, references, and optional scripts | The work repeats and needs a reliable method | A permissions system |
+| Plugin | An installable bundle of skills plus optional apps, MCP configuration, hooks, and assets | Multiple people need the same capability | A substitute for source-system access control |
+| MCP server or app | A connection to live tools and data | The workflow needs GitHub, Drive, Slack, Notion, or an internal system | A place to hide business logic without review |
+| Hook | An automatic check around a lifecycle event | A rule must be enforced mechanically | A replacement for human judgment |
+| Automation | A scheduled reminder, monitor, or follow-up | The work must recur on a clock | An uncontrolled autonomous operator |
+
+That distinction matters. A team that packages every idea as a plugin creates a noisy catalog. A team that leaves everything as chat prompts cannot review, reuse, or improve what it does. The strongest operating model is intentionally boring: start small, version it in Git, prove it works, then distribute it with the smallest amount of authority necessary.
+
+## What Codex actually gives a team
+
+Codex is best understood as an execution environment for knowledge work around software. It can read a repository, make scoped changes, run checks, use configured tools, and work from durable instructions. It appears in several surfaces—terminal, IDE, desktop app, cloud workflows, and code review—so the same workflow may have a different practical shape depending on where the work happens.
+
+For a team, that makes Codex useful in four ways:
+
+1. **A consistent working method.** A good skill turns “ask the model nicely” into a sequence with inputs, decisions, checks, and an expected deliverable.
+2. **A shared capability catalog.** A plugin can distribute that method to teammates rather than leaving the best prompt inside one person’s history.
+3. **A controlled connection to work systems.** Apps and MCP servers can let a workflow read or act in GitHub, Drive, Slack, Notion, or a custom service—subject to separate workspace, runtime, and source-system permissions.
+4. **An auditable improvement loop.** Git history, pull requests, tests, workspace controls, and review records make it possible to improve a workflow without guessing who changed it or what it is allowed to do.
+
+OpenAI’s own model is explicit about the separation: plugins package reusable skills and optional connectors, while connector access, app actions, source-system authorization, and runtime permissions remain independent control layers. [The plugin controls documentation](https://learn.chatgpt.com/docs/enterprise/apps-and-connectors) is the important reference here.
+
+## Skill first; plugin when distribution is the problem
+
+A **skill** is the unit of reusable know-how. It contains the instruction set, supporting material, and optionally scripts or templates. Think of it as a well-designed runbook that Codex can execute with context.
+
+A **plugin** is the delivery package. It can contain one or more skills, plus optional MCP configuration, app connectors, hooks, assets, and install metadata. The plugin answers: “How does this capability get onto another person’s machine or into a workspace?”
+
+This gives a simple rule:
+
+> Start with a skill when you are learning the workflow. Package it as a plugin when the workflow is stable enough that other people should install it.
+
+OpenAI recommends the same progression: use a local skill while iterating on a single repository or personal workflow, and build a plugin when the workflow needs to be shared across teams, bundle connectors or MCP configuration, package lifecycle hooks, or become a stable package. See [Build skills](https://learn.chatgpt.com/docs/build-skills) and [Build plugins](https://learn.chatgpt.com/docs/build-plugins).
+
+### A useful example
+
+Imagine a team wants a “publish technical article” workflow.
+
+The first version should be a skill. It can define:
+
+- required inputs: audience, thesis, source list, product claims, and CTA;
+- a sequence: research, outline, draft, claim review, editor review, CMS-ready output;
+- acceptance criteria: no unsupported claims, links checked, title and description supplied;
+- a boundary: it prepares a draft but never publishes automatically.
+
+Once the team has used it repeatedly, the plugin can bundle that skill with an optional Google Drive or Notion connector, a source-citation helper, a frontmatter template, and a pre-publish hook. The plugin still does **not** grant publication authority by itself. That belongs to the CMS, the connected account, and the action approvals configured around it.
+
+## The team architecture: six layers, six owners
+
+Most failures come from asking one layer to solve another layer’s problem. A clean team setup assigns an owner to each layer.
+
+| Layer | Team owner | What to manage |
+| --- | --- | --- |
+| Workflow design | Domain lead | Skill instructions, examples, quality bar, edge cases |
+| Code and change history | Repository owner | Git branches, pull requests, tests, releases, rollback |
+| Plugin distribution | Platform owner | Marketplace, versions, install policy, deprecation path |
+| Connected data and actions | System owner | OAuth scopes, app permissions, source-system roles, audit logs |
+| Local execution | Security/IT | Sandbox, network, filesystem, approvals, managed configuration |
+| Outcomes | Business owner | Adoption, cycle time, quality, incident and exception review |
+
+This is not bureaucracy for its own sake. It makes two important things possible: a writer can improve editorial guidance without getting production infrastructure access, and an administrator can constrain an integration without rewriting the workflow.
+
+## How a team should create and share a custom workflow
+
+Here is a practical progression that works for engineering, operations, content, research, sales enablement, and internal support.
+
+### 1. Write the workflow before adding tools
+
+Define the job in plain language:
+
+- What outcome does it produce?
+- What inputs are required?
+- What decisions must the human make?
+- What must never happen automatically?
+- What evidence proves the output is ready?
+
+If the answer is vague, a plugin will only automate ambiguity. The first artifact should be a short `SKILL.md`, not an integration.
+
+### 2. Keep the skill lean and testable
+
+The skill should state the workflow, the quality gates, and where to find deeper references. Put long policies, examples, schemas, and templates in adjacent files so the operating instructions remain readable.
+
+For example:
+
+```text
+skills/
+  customer-brief/
+    SKILL.md                 # workflow and decision points
+    references/
+      voice-and-claims.md    # detailed policy
+      brief-template.md      # output structure
+    scripts/
+      validate-brief.mjs     # optional mechanical check
+```
+
+Test the skill against real but low-risk examples. Record failures as missing instructions, unclear inputs, or missing guardrails—not as a reason to add more words everywhere.
+
+### 3. Version it in the repository that owns the work
+
+Treat workflow changes like code changes:
+
+- one purpose per branch;
+- a named owner and reviewer;
+- a concise change note explaining what behavior changed;
+- tests or representative fixtures where practical;
+- version tags or a changelog for team-visible releases.
+
+This is how an individual contributes safely. They propose a change through a pull request, the domain owner checks that the workflow still meets its purpose, and the platform or security owner reviews any new tool, connector, hook, or permission request.
+
+### 4. Package it as a plugin only when it is worth distributing
+
+Every Codex plugin has a `.codex-plugin/plugin.json` manifest. A minimal skills-only package can be this small:
+
+```json
+{
+  "name": "team-content-ops",
+  "version": "0.1.0",
+  "description": "Reusable editorial workflow for the team.",
+  "skills": "./skills/"
+}
+```
+
+The plugin can grow to include MCP configuration, app wiring, hooks, and presentation metadata, but each addition should have a reason. The [plugin structure reference](https://learn.chatgpt.com/docs/build-plugins#plugin-structure) documents the supported layout.
+
+### 5. Share through the right channel
+
+There are three useful distribution patterns:
+
+| Pattern | Best for | How it works |
+| --- | --- | --- |
+| Repository skill | A workflow tied to one codebase | Commit the skill beside the project and let `AGENTS.md` point to it |
+| Curated marketplace | A collection of versioned, reusable team plugins | Maintain a marketplace JSON catalog in Git; pin refs or versions for repeatability |
+| Workspace sharing | A vetted plugin for a selected group in ChatGPT Work | Share from the desktop app with members or groups; keep it inside the workspace boundary |
+
+The marketplace is particularly useful for a platform team. One catalog can expose multiple plugins, let the team decide which are available by default, and give every entry a reviewable source. OpenAI documents repo-scoped and personal marketplace locations, version pinning, and plugin installation policies in [Build plugins](https://learn.chatgpt.com/docs/build-plugins#build-your-own-curated-plugin-list).
+
+### 6. Treat connected systems as an explicit elevation of risk
+
+A writing skill that reads a local markdown file is one thing. A plugin that can read CRM notes, create tickets, or post to Slack is another.
+
+Before adding a connector or MCP server, specify:
+
+- what data it may read;
+- which actions it may take;
+- whether write actions require an explicit human approval;
+- the connected identity and its least-privilege source-system role;
+- the rollback or correction path;
+- what is logged and where.
+
+Start read-only. Add narrow write actions only after the workflow has proven useful and the responsible system owner has approved the exact scope. A plugin can expose a capability, but it should never be the only gate between an agent and an irreversible action.
+
+## What ChatGPT Business and Codex provide—and what they do not
+
+For a team using ChatGPT Work/Business and Codex, OpenAI provides meaningful building blocks: workspace membership and roles, plugin and skill controls, supported apps/connectors, local client permissions, managed configuration, analytics, and—in applicable plans and setups—governance and compliance capabilities.
+
+That is enough to establish a strong internal foundation. It is not the entire operating system for a company.
+
+| Need | What ChatGPT Work/Codex can contribute | What you still need to own or add |
+| --- | --- | --- |
+| Shared AI workflows | Skills, plugins, workspace sharing, marketplaces | Workflow ownership, release process, training, documentation |
+| Software changes | Codex execution, GitHub integration, code review support | Git hosting, CI/CD, code ownership, deployment policy |
+| Internal knowledge | Apps/connectors and custom MCP apps | Information architecture, source-of-truth decisions, retention policy |
+| Access control | Workspace roles, app controls, managed local policy | Identity provider, repository/Drive/CRM permissions, least privilege |
+| Audit and compliance | Plan-dependent analytics, compliance and workspace controls | Legal requirements, SIEM/log retention, risk review, incident response |
+| Business operations | Agent-assisted analysis and structured workflows | CRM, ticketing, finance, HR, contract, and approval systems |
+
+In other words: ChatGPT Business and Codex can be the intelligence and execution layer. They do not replace GitHub, an identity provider, a CRM, a data warehouse, a ticketing system, or a human approval policy. They connect to those systems under their existing controls.
+
+The critical architectural fact is that authorization is layered. Workspace access does not grant access to a connected repository; installing a plugin does not authorize its app; an app permission does not override the source system; and a permissive local runtime should not bypass the organization’s governance. OpenAI lays out these boundaries in [Roles and workspace permissions](https://learn.chatgpt.com/docs/enterprise/roles-and-workspace-permissions).
+
+## A sensible default stack for most teams
+
+You do not need a sprawling agent platform on day one. A good default is:
+
+1. **ChatGPT Work/Business + Codex** for the agent surfaces and shared workspace.
+2. **GitHub or GitLab** for versioning, pull requests, ownership, and CI.
+3. **An identity provider** for provisioning, offboarding, and group membership.
+4. **One knowledge system**—for example Drive or Notion—with clear source-of-truth rules.
+5. **One work-tracking system**—for example Linear, Jira, or GitHub Issues.
+6. **A secrets manager** for service credentials; never place secrets inside skills, plugins, prompts, or repositories.
+7. **A lightweight registry**: owner, version, risk tier, connected systems, last review date, and deprecation status for every team plugin.
+
+Add specialist tooling only when the workflow creates a concrete need: SIEM integration for regulated audit requirements, evaluation tooling for high-stakes model behavior, a workflow engine for long-running multi-system processes, or a data platform for governed analytics.
+
+## The ACOS model: turn capabilities into a curated operating system
+
+Agentic Creator OS (ACOS) is useful here as a packaging discipline, not as a magic layer. Its core idea is straightforward: organize proven capabilities as modular skills, make workflows discoverable, and keep connectors and hooks separate from the knowledge they serve.
+
+For a team, an ACOS-style operating model could look like this:
+
+```text
+team-ai-operations/
+  plugins/
+    editorial-ops/            # article, research, and quality workflows
+    engineering-delivery/     # scoped build and review workflows
+    customer-intelligence/    # approved research and account-prep workflows
+  marketplace.json            # curated install catalog
+  policies/
+    risk-tiers.md             # read-only, draft, write, external-action
+    review-policy.md          # owners and release requirements
+  registry/
+    capabilities.yml          # owner, version, systems, review date
+```
+
+The point is not the folder names. The point is that skills stay composable, plugins stay distributable, connected systems stay permissioned, and release decisions remain visible.
+
+## A four-week rollout that does not create chaos
+
+### Week 1: choose one workflow and one owner
+
+Pick a frequent, low-risk workflow. Good candidates are research briefs, release-note drafts, support-triage drafts, pull-request preparation, or meeting preparation. Avoid autonomous publishing, financial actions, hiring decisions, and broad data migrations.
+
+### Week 2: build the skill and measure the baseline
+
+Run the workflow manually with the skill. Measure time to first useful output, number of review cycles, errors caught, and what human judgment remained essential.
+
+### Week 3: add a reviewable distribution path
+
+Put the skill in Git. Add a small plugin only if teammates outside the repository need to install it. Publish it to a curated marketplace or share it with the intended workspace group.
+
+### Week 4: decide whether a connector is justified
+
+If the workflow is valuable without live data, keep it that way. If a connector removes a real bottleneck, add it read-only first, document its scopes, and test the approval path before enabling a write action.
+
+At the end of the month, keep only workflows that create a measurable improvement or a clear quality benefit. Deprecate the rest. A smaller catalog people trust beats a directory of hundreds of mysterious commands.
+
+## The governance checklist
+
+Before a team installs or shares a plugin, answer these questions in writing:
+
+- Who owns the workflow and approves changes?
+- What business outcome does it support?
+- What can it read, write, or send?
+- Which external systems does it touch?
+- Is every integration least-privilege and reversible?
+- What does a user see before an external action happens?
+- How is the plugin versioned, tested, and rolled back?
+- Where are its logs, evidence, and incident path?
+- When is the next review date?
+
+If you cannot answer those questions, the capability is not ready for team-wide distribution. Keep it as a local experiment.
+
+## Final principle: build a capability library, not a prompt graveyard
+
+The transition from individual AI use to a high-performing team is not about accumulating more tools. It is about making good work repeatable without making the organization brittle.
+
+Use a prompt for the moment. Use `AGENTS.md` for repository truth. Use a skill for a reusable method. Use a plugin to distribute a proven method. Use MCP or an app only when live data or action is genuinely needed. Use Git, reviews, permissions, and human approval to keep the system worthy of trust.
+
+That is how an individual’s useful experiment becomes a team capability—and how a team capability becomes an operating system that improves instead of drifting.
+
+## Related reading
+
+- [ACOS for Enterprise: Team Deployment and Governance Guide](/blog/acos-enterprise-deployment-guide)
+- [The Complete Guide to Agentic Creator OS](/blog/agentic-creator-os-complete-guide)
+- [ACOS Hooks and Quality Gates](/blog/acos-hooks-system-quality-gates)
+- [Swarm Intelligence: Multi-Agent Orchestration](/blog/swarm-intelligence-multi-agent-orchestration)
+
+---
+
+_Sources: [OpenAI Codex documentation](https://developers.openai.com/codex/), [Build skills](https://learn.chatgpt.com/docs/build-skills), [Build plugins](https://learn.chatgpt.com/docs/build-plugins), [Plugin controls](https://learn.chatgpt.com/docs/enterprise/apps-and-connectors), and [Roles and workspace permissions](https://learn.chatgpt.com/docs/enterprise/roles-and-workspace-permissions). Product availability and workspace controls can vary by plan, role, and rollout; verify the current settings in your workspace before enabling a capability._
