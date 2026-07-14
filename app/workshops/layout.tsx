@@ -1,17 +1,16 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'AI Workshops | FrankX',
+  title: 'Workshops and Session Studio | FrankX',
   description:
-    'Pre-built AI workshop templates for university professors, corporate trainers, and bootcamp instructors. Structured agendas, instructor notes, and resource packs included.',
+    'One delivered Ikigai & Branding workshop plus adaptable AI agent, AI music, leadership, and session-amplification studio formats to shape and pilot.',
   path: '/workshops',
   keywords: [
     'AI workshops',
-    'AI training templates',
+    'workshop design',
     'AI curriculum',
-    'university AI course',
-    'corporate AI training',
-    'bootcamp AI workshops',
+    'session design',
+    'participant artifacts',
     'AI education',
     'prompt engineering workshop',
     'AI agent workshop',
@@ -23,9 +22,9 @@ export const metadata = createMetadata({
 const workshopsLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'AI Workshops',
+  name: 'FrankX Workshop Studio',
   description:
-    'Pre-built AI workshop templates for educators and trainers.',
+    'A delivered Ikigai & Branding workshop and a studio of adaptable workshop architectures to shape and pilot.',
   url: 'https://frankx.ai/workshops',
   author: {
     '@type': 'Person',

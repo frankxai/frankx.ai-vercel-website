@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 
@@ -49,6 +50,7 @@ interface GlowCardProps {
  *   <GlowCard color="violet">…</GlowCard>
  */
 export function GlowCard({ children, color = 'teal', href, className, onClick }: GlowCardProps) {
+  const shouldReduceMotion = useReducedMotion()
   const rgb = glowColors[color]
   const { cardRef, glowRef, handlers } = useMouseGlow<HTMLAnchorElement>({
     rgb,
@@ -65,7 +67,7 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
     // Depth shadows: ambient base + subtle inset specular
     '[box-shadow:0_8px_32px_-8px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)]',
     // Transitions
-    'transition-all duration-300',
+    'transition-all duration-300 motion-reduce:transition-none',
     // Hover: brighter border + deeper shadows
     'hover:border-white/[0.18]',
     'hover:[box-shadow:0_20px_60px_-12px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.10)]',
@@ -101,10 +103,10 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
         href={href}
         ref={cardRef}
         className={cn(baseClass, 'block h-full')}
-        onPointerMove={handlers.onPointerMove}
-        onPointerLeave={handlers.onPointerLeave}
-        onTouchMove={handlers.onTouchMove}
-        onTouchEnd={handlers.onTouchEnd}
+        onPointerMove={shouldReduceMotion ? undefined : handlers.onPointerMove}
+        onPointerLeave={shouldReduceMotion ? undefined : handlers.onPointerLeave}
+        onTouchMove={shouldReduceMotion ? undefined : handlers.onTouchMove}
+        onTouchEnd={shouldReduceMotion ? undefined : handlers.onTouchEnd}
       >
         {glowLayers}
         <div className="relative z-10">{children}</div>
@@ -117,10 +119,26 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
        
       ref={cardRef as any}
       className={cn(baseClass, onClick && 'cursor-pointer')}
-      onPointerMove={handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLDivElement>}
-      onPointerLeave={handlers.onPointerLeave as unknown as React.PointerEventHandler<HTMLDivElement>}
-      onTouchMove={handlers.onTouchMove as unknown as React.TouchEventHandler<HTMLDivElement>}
-      onTouchEnd={handlers.onTouchEnd as unknown as React.TouchEventHandler<HTMLDivElement>}
+      onPointerMove={
+        shouldReduceMotion
+          ? undefined
+          : (handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLDivElement>)
+      }
+      onPointerLeave={
+        shouldReduceMotion
+          ? undefined
+          : (handlers.onPointerLeave as unknown as React.PointerEventHandler<HTMLDivElement>)
+      }
+      onTouchMove={
+        shouldReduceMotion
+          ? undefined
+          : (handlers.onTouchMove as unknown as React.TouchEventHandler<HTMLDivElement>)
+      }
+      onTouchEnd={
+        shouldReduceMotion
+          ? undefined
+          : (handlers.onTouchEnd as unknown as React.TouchEventHandler<HTMLDivElement>)
+      }
       onClick={onClick}
     >
       {glowLayers}
