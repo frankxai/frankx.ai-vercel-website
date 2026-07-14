@@ -63,3 +63,18 @@
 /repo_sync_report.md
 /notes.md
 /task_plan.md
+
+# Next.js / dependencies / git worktrees
+/node_modules/
+/.next/
+/.worktrees/
+/.asph-wip/
+/public/reading/
+/reading-site/
+/.starlight/
+/.gemini/
+/tmp/
+/backups/
+/package-lock.json
+/pnpm-lock.yaml
+
