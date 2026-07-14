@@ -1,0 +1,1283 @@
+diff --git a/.agent-harness.json b/.agent-harness.json
+new file mode 100644
+index 00000000..40f62bfd
+--- /dev/null
++++ b/.agent-harness.json
+@@ -0,0 +1,45 @@
++﻿{
++    "name":  "frankx-blog-vos-worktree",
++    "classification":  "tooling",
++    "owner":  "FrankX AI",
++    "updated":  "2026-06-19",
++    "remote":  "https://github.com/frankxai/frankx.ai-vercel-website.git",
++    "health":  {
++                   "primaryCheck":  "npm run health",
++                   "manualChecks":  [
++                                        "Review AGENTS.md before edits",
++                                        "Preserve user work and dirty files",
++                                        "Scan public outputs for secrets and private memory"
++                                    ]
++               },
++    "agentGuidance":  {
++                          "readAgentsMd":  true,
++                          "avoidPrivateMemory":  true,
++                          "preserveExistingConventions":  true,
++                          "designTasteKernel":  {
++                                                    "enabled":  true,
++                                                    "root":  "C:\\Users\\frank\\starlight\\repos",
++                                                    "files":  [
++                                                                  "C:\\Users\\frank\\starlight\\repos\\DESIGN_TASTE.md",
++                                                                  "C:\\Users\\frank\\starlight\\repos\\WEB_EXPERIENCE_STANDARD.md",
++                                                                  "C:\\Users\\frank\\starlight\\repos\\MOTION_TASTE_RUBRIC.md",
++                                                                  "C:\\Users\\frank\\starlight\\repos\\MULTI_AGENT_DESIGN_COUNCIL.md",
++                                                                  "C:\\Users\\frank\\starlight\\repos\\VISUAL_QA_GATE.md"
++                                                              ],
++                                                    "appliesTo":  [
++                                                                      "site",
++                                                                      "app",
++                                                                      "landing-page",
++                                                                      "dashboard",
++                                                                      "visual-identity",
++                                                                      "brand",
++                                                                      "motion",
++                                                                      "media",
++                                                                      "social",
++                                                                      "frontend"
++                                                                  ],
++                                                    "motionPlugin":  "motion-design-studio",
++                                                    "visualVerificationRequired":  true
++                                                }
++                      }
++}
+diff --git a/AGENTS.md b/AGENTS.md
+index 92755b61..9a3b136b 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -1,17 +1,17 @@
+-# FrankX — AGENTS.md
++﻿# FrankX â€” AGENTS.md
+ 
+ **Repo:** `frankxai/FrankX` (private dev + content authoring)
+-**Branch (default):** `main` · **Active feature:** `feature/prompt-hub`
+-**Live site:** https://frankx.ai (deploys from a *different* repo — see "Deploy" below)
+-**Stack:** Next.js 16 App Router · React 18.3 · TypeScript 5.7 · Tailwind 3.4 · Vercel · pnpm/npm
++**Branch (default):** `main` Â· **Active feature:** `feature/prompt-hub`
++**Live site:** https://frankx.ai (deploys from a *different* repo â€” see "Deploy" below)
++**Stack:** Next.js 16 App Router Â· React 18.3 Â· TypeScript 5.7 Â· Tailwind 3.4 Â· Vercel Â· pnpm/npm
+ **Last touched:** 2026-06-02
+ 
+-## Current sprint (W21, 2026-05-18 → 24)
++## Current sprint (W21, 2026-05-18 â†’ 24)
+ 
+ - **Theme:** Deliver NLDigital. Ship Newsletter Issue 1. Lock June 1 launch.
+ - **Authoritative doc:** `docs/planning/2026-W21-sprint.md`
+ - **Machine shadow:** `data/sprint-current.json` (backs `/sprint`)
+-- **Forcing functions:** NLDigital delivered Tue 5/19 · Newsletter Issue 1 ships Fri 5/22 · Inner Circle launches Mon 6/1 · Madrid trip Wed 5/27 → Mon 6/2
++- **Forcing functions:** NLDigital delivered Tue 5/19 Â· Newsletter Issue 1 ships Fri 5/22 Â· Inner Circle launches Mon 6/1 Â· Madrid trip Wed 5/27 â†’ Mon 6/2
+ - **In-flight foundations:** `/hub-audit` `/traffic-week` `/newsletter-week` commands + `@integrity-guard` agent shipped 2026-05-20
+ 
+ This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, OpenCode, Cursor, etc.) entering this repo. **Read it first. Read it before AGENTS.md elsewhere.** It overrides general-purpose agent assumptions and points you at the specific files that govern behavior.
+@@ -20,13 +20,13 @@ This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, O
+ 
+ ## 1. Read in this order
+ 
+-1. **This file** — orientation
+-2. **`CLAUDE.md`** — project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)
+-3. **`.codex/instructions.md`** — Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)
+-4. **`OPS-INDEX.md`** — single front-door pointer index (read for "where does X live?")
+-5. **`design.md` + `taste.md`** — visual contract (tokens + judgment). Required before any UI work.
+-6. **`.frankx/identity.md` + `.frankx/brand.md` + `.frankx/stack.md`** — who Frank is, brand voice, tech reference
+-7. **Memory index** at `~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md` (Claude Code) — 50+ topic files
++1. **This file** â€” orientation
++2. **`CLAUDE.md`** â€” project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)
++3. **`.codex/instructions.md`** â€” Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)
++4. **`OPS-INDEX.md`** â€” single front-door pointer index (read for "where does X live?")
++5. **`design.md` + `taste.md`** â€” visual contract (tokens + judgment). Required before any UI work.
++6. **`.frankx/identity.md` + `.frankx/brand.md` + `.frankx/stack.md`** â€” who Frank is, brand voice, tech reference
++7. **Memory index** at `~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md` (Claude Code) â€” 50+ topic files
+ 
+ ---
+ 
+@@ -39,13 +39,13 @@ This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, O
+ | `frankxai/FrankX` (this)            | Private dev + content authoring | (not deployed)             |
+ | `frankxai/frankx.ai-vercel-website` | **PRODUCTION**                  | `frankx-ai-vercel-website` |
+ 
+-To ship: sync the relevant files to the production repo and push there. See `CLAUDE.md` § "Production Deployment" for the full sync workflow. There is also a sibling worktree at `C:\Users\frank\frankx-prod-sync\` cloned from production.
++To ship: sync the relevant files to the production repo and push there. See `CLAUDE.md` Â§ "Production Deployment" for the full sync workflow. There is also a sibling worktree at `C:\Users\frank\frankx-prod-sync\` cloned from production.
+ 
+ **Do not** add an `origin` for `frankx.ai-vercel-website` to this repo and force-push. They are intentionally separate.
+ 
+ ---
+ 
+-## 3. Health + diagnostics — single command
++## 3. Health + diagnostics â€” single command
+ 
+ ```bash
+ # Process + port + memory snapshot (PowerShell)
+@@ -73,14 +73,14 @@ If `npm run health` reports orphan Codex sessions, see `docs/ops/SESSION-CAPTURE
+ 
+ - **Default branch:** `main`
+ - **Working branch right now:** `feature/papa-hub` (Witali Riemer hub work, shipped to production via Trees-API on 2026-05-05)
+-- **Worktrees** at `.worktrees/` — `draft`, `memory-abstraction`, `preview`. Use these for parallel work; do not switch branches in the main checkout.
++- **Worktrees** at `.worktrees/` â€” `draft`, `memory-abstraction`, `preview`. Use these for parallel work; do not switch branches in the main checkout.
+ - **Stale branch policy:** any branch unmerged + untouched > 30 days is candidate for archival. Always inspect with `git log --left-right` before deleting.
+ 
+-`.gitattributes` enforces LF on all source files. If `git status` shows mass "modified" on files you didn't touch, run `git checkout -- .` once after pulling — that's a one-time CRLF re-normalization.
++`.gitattributes` enforces LF on all source files. If `git status` shows mass "modified" on files you didn't touch, run `git checkout -- .` once after pulling â€” that's a one-time CRLF re-normalization.
+ 
+ ---
+ 
+-## 5. The merge gate — what must pass before `main`
++## 5. The merge gate â€” what must pass before `main`
+ 
+ ```bash
+ npm run merge:gate
+@@ -103,7 +103,7 @@ Plus, before any content publish (newsletter, blog post, social):
+ ```
+ @integrity-guard <file-or-surface>
+ # 5-gate quality check: brand voice + AI-slop + claim audit + schema + conversion
+-# PASS → publish. WARN → ship with corrections. FAIL → block.
++# PASS â†’ publish. WARN â†’ ship with corrections. FAIL â†’ block.
+ ```
+ 
+ See `.claude/agents/integrity-guard.md`. Shipped 2026-05-20.
+@@ -112,7 +112,7 @@ See `.claude/agents/integrity-guard.md`. Shipped 2026-05-20.
+ 
+ ## 5b. The 6-layer operating loop (added 2026-05-20)
+ 
+-Every operating decision composes into one of six layers. Full doctrine in `CLAUDE.md` § "The 6-layer Operating Loop". Quick reference:
++Every operating decision composes into one of six layers. Full doctrine in `CLAUDE.md` Â§ "The 6-layer Operating Loop". Quick reference:
+ 
+ | Layer | Question | Tier-1 commands |
+ |---|---|---|
+@@ -140,9 +140,9 @@ For full guidelines and trigger mappings, read `.antigravity/instructions.md`.
+ 
+ ---
+ 
+-## 6. Brand discipline — non-negotiable
++## 6. Brand discipline â€” non-negotiable
+ 
+-- **Voice:** "Elite Creator. AI Architect. Humble Excellence." — direct, technical, results-first, never spiritual or guru. See `.frankx/brand.md`.
++- **Voice:** "Elite Creator. AI Architect. Humble Excellence." â€” direct, technical, results-first, never spiritual or guru. See `.frankx/brand.md`.
+ - **Title:** "AI Architect" (never "AI Systems Architect", never "Senior AI Architect").
+ - **No Arcanean mythology in FrankX copy.** Guardians, Gates, Realms, Seekers belong in `/ultraworld` and the `Arcanea` repo. FrankX is brand-clean.
+ - **No Canva.** All visuals use Nano Banana 2 (Gemini 3.1 Flash Image) via `scripts/lib/nb-image.mjs` or the `scripts/nb-generate.mjs` CLI. See the `nb-image` skill.
+@@ -155,8 +155,8 @@ For full guidelines and trigger mappings, read `.antigravity/instructions.md`.
+ 
+ Two files at repo root govern visual decisions. **Read both before any UI work.**
+ 
+-- **`design.md`** — Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do's/Don'ts. Source of truth: `tailwind.config.js` and `lib/design-system.ts` — `design.md` mirrors them in agent-readable form.
+-- **`taste.md`** — companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google's spec deliberately doesn't capture.
++- **`design.md`** â€” Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do's/Don'ts. Source of truth: `tailwind.config.js` and `lib/design-system.ts` â€” `design.md` mirrors them in agent-readable form.
++- **`taste.md`** â€” companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google's spec deliberately doesn't capture.
+ 
+ The answer is usually less.
+ 
+@@ -182,7 +182,7 @@ The answer is usually less.
+ 
+ ---
+ 
+-## 9. Anti-patterns — never
++## 9. Anti-patterns â€” never
+ 
+ - **Never rename working URLs.** `/library/{slug}` is `/library/{slug}` forever. SEO history matters more than aesthetics.
+ - **Never delete pages with traffic.** Unlink from nav, keep page noindex'd at most.
+@@ -220,3 +220,16 @@ These shape priority. Confirm in `docs/planning/2026-W19-sprint.md` for the late
+ ---
+ 
+ _End of AGENTS.md. If something here is wrong or missing, the rule is: edit the source-of-truth file (CLAUDE.md, .frankx/*, OPS-INDEX.md) and update the pointer here. Don't duplicate content._
++
++## Design Taste Kernel
++
++For any site, app, landing page, dashboard, visual identity, brand, motion, media, social, or frontend task, apply the shared Design Taste Kernel before handoff:
++
++- C:\Users\frank\starlight\repos\DESIGN_TASTE.md
++- C:\Users\frank\starlight\repos\WEB_EXPERIENCE_STANDARD.md
++- C:\Users\frank\starlight\repos\MOTION_TASTE_RUBRIC.md
++- C:\Users\frank\starlight\repos\MULTI_AGENT_DESIGN_COUNCIL.md
++- C:\Users\frank\starlight\repos\VISUAL_QA_GATE.md
++
++When motion, scroll, generated media, GIF/video, or premium polish matters, route through the Motion Design Studio plugin/skills and verify the result visually.
++
+diff --git a/CLAUDE.md b/CLAUDE.md
+index ef646b90..2413580a 100644
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -46,11 +46,13 @@ git clone git@github.com:frankxai/frankx.ai-vercel-website.git .worktrees/vercel
+ **Frank = Top Creator. Top AI Architect. Humble.**
+ 
+ ### Who Frank Is
+-- **AI Architect**: Enterprise-grade AI systems, Oracle expertise, agentic orchestration
+-- **Creator**: 500+ AI songs, music production, generative art, digital products
++- **AI Architect**: Former AI architect at Oracle; enterprise-grade AI systems, cloud architecture, agentic orchestration
++- **Creator**: 12,000+ AI songs, music production, generative art, digital products
+ - **Builder**: Ships products, writes code, creates content that works
+ - **Technologist**: Bridges cutting-edge AI with practical creative applications
+ 
++Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++
+ ### Brand Attributes
+ - **Excellence**: Every detail matters. Ultra high quality in everything.
+ - **Craftsmanship**: Meticulous attention to design, code, and copy.
+@@ -81,7 +83,7 @@ role: AI Systems Designer
+ specialty: Building enterprise-grade AI systems, agentic orchestration
+ focus:
+   - AI architecture and system design
+-  - Oracle Cloud and enterprise integration
++  - Enterprise cloud architecture and public AI platform patterns
+   - Agentic workflows and multi-agent systems
+   - Technical documentation and tutorials
+ ```
+diff --git a/app/ai-evolution/layout.tsx b/app/ai-evolution/layout.tsx
+index e45f6df7..ced11c4d 100644
+--- a/app/ai-evolution/layout.tsx
++++ b/app/ai-evolution/layout.tsx
+@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
+ export const metadata: Metadata = {
+   title: 'The AI Evolution: From GenAI to AGI | FrankX Research',
+   description:
+-    'A living research map of the complete AI landscape — from foundation models through agentic AI to the AGI horizon. Model taxonomy, automation stack, and builder resources from an AI Architect at Oracle.',
++    'A living research map of the complete AI landscape — from foundation models through agentic AI to the AGI horizon. Model taxonomy, automation stack, and builder resources from a former AI architect at Oracle.',
+   keywords: [
+     'AI evolution',
+     'generative AI',
+diff --git a/app/ai-evolution/page.tsx b/app/ai-evolution/page.tsx
+index 9197bcab..668145a0 100644
+--- a/app/ai-evolution/page.tsx
++++ b/app/ai-evolution/page.tsx
+@@ -370,12 +370,19 @@ export default function AIEvolutionPage() {
+               custom={3}
+               className="mt-4 text-base text-slate-500"
+             >
+-              By Frank Riemer, AI Architect at Oracle
++              By Frank Riemer, former AI architect at Oracle
++            </motion.p>
++            <motion.p
++              variants={fadeUp}
++              custom={4}
++              className="mt-2 text-xs text-slate-600"
++            >
++              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+             </motion.p>
+ 
+             <motion.div
+               variants={fadeUp}
+-              custom={4}
++              custom={5}
+               className="mt-8 flex flex-wrap gap-4"
+             >
+               <div className="flex items-center gap-2 text-sm text-slate-400">
+diff --git a/app/bio/layout.tsx b/app/bio/layout.tsx
+index cb0951fd..524be37e 100644
+--- a/app/bio/layout.tsx
++++ b/app/bio/layout.tsx
+@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
+ export const metadata: Metadata = {
+   title: 'Bio · Frank Riemer | FrankX',
+   description:
+-    'Press bio, speaker topics, and media kit for Frank Riemer — AI Architect at Oracle EMEA, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
++    'Press bio, speaker topics, and media kit for Frank Riemer — former AI architect at Oracle, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+   openGraph: {
+     title: 'Frank Riemer — AI Architect & Creator',
+     description:
+-      'AI Architect at Oracle EMEA. Author of The Golden Age of Intelligence. 12,000+ AI songs.',
++      'Former AI architect at Oracle. Author of The Golden Age of Intelligence. 12,000+ AI songs.',
+     type: 'profile',
+     url: 'https://frankx.ai/bio',
+   },
+diff --git a/app/bio/page.tsx b/app/bio/page.tsx
+index 38896644..239bea61 100644
+--- a/app/bio/page.tsx
++++ b/app/bio/page.tsx
+@@ -20,15 +20,15 @@ import CopyableBio from './CopyableBio';
+ // or copy the length that fits.
+ 
+ const ONE_LINE =
+-  'Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence and the creator of 12,000+ AI songs.';
++  'Frank Riemer is a former AI architect at Oracle, founder of FrankX, and creator of 12,000+ AI songs.';
+ 
+-const SHORT_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs enterprise AI systems. By night, he is the creator of 12,000+ AI songs and the author of *The Golden Age of Intelligence*. He adapts enterprise-grade AI frameworks for individual creators at frankx.ai. Based in Amsterdam.`;
++const SHORT_BIO = `Frank Riemer is a former AI architect at Oracle, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
+ 
+-const LONG_BIO = `Frank Riemer is an AI Architect at Oracle's EMEA AI Center of Excellence, where he designs Center-of-Excellence frameworks and agentic systems for enterprise teams across Europe. The same six-pillar architecture he works with in enterprise settings — Strategy, Governance, Talent, Technology, Data, Ethics — he scales down for individuals at frankx.ai, the personal AI Center of Excellence.
++const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and former AI architect at Oracle. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
+ 
+-By night, he is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a visionary manifesto on the convergence of human and artificial intelligence.
++He is one of the most prolific AI music creators in the world — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a manifesto on the convergence of human and artificial intelligence.
+ 
+-His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and the contemplative traditions that, three thousand years before neuroscience, mapped the operation of the human brain. He writes, ships, and creates daily.
++His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and practical systems for human creativity. He writes, ships, and creates daily. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.
+ 
+ Originally from a Volga German family that rebuilt itself across three displaced generations, Frank lives in Amsterdam, on the water.`;
+ 
+@@ -38,7 +38,7 @@ const SPEAKER_TOPICS = [
+   {
+     title: 'The Personal AI Center of Excellence',
+     summary:
+-      'How the same six-pillar architecture I use in enterprise AI work — Strategy / Governance / Talent / Technology / Data / Ethics — translates to one human life.',
++      'How enterprise AI architecture patterns — Strategy / Governance / Talent / Technology / Data / Ethics — translate to one human life.',
+   },
+   {
+     title: 'Enterprise Agentic Systems in 2026',
+@@ -112,7 +112,7 @@ const SELECTED_WORK = [
+ // ─── Press / Quick facts ────────────────────────────────────────────────
+ 
+ const QUICK_FACTS = [
+-  ['Role', 'AI Architect, Oracle EMEA AI Center of Excellence'],
++  ['Role', 'Former AI architect at Oracle'],
+   ['Based', 'Amsterdam, Netherlands'],
+   ['Languages', 'English, German, Russian'],
+   ['Songs released', '12,000+ via Suno'],
+@@ -123,7 +123,7 @@ const QUICK_FACTS = [
+ export const metadata: Metadata = {
+   title: 'Bio · Frank Riemer | FrankX',
+   description:
+-    'Press bio, speaker topics, and media kit for Frank Riemer — AI Architect at Oracle EMEA, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
++    'Press bio, speaker topics, and media kit for Frank Riemer — former AI architect at Oracle, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+ };
+ 
+ export default function BioPage() {
+@@ -135,10 +135,6 @@ export default function BioPage() {
+           name: 'Frank Riemer',
+           alternateName: 'FrankX',
+           jobTitle: 'AI Architect',
+-          worksFor: {
+-            '@type': 'Organization',
+-            name: 'Oracle EMEA AI Center of Excellence',
+-          },
+           description: ONE_LINE,
+           url: 'https://frankx.ai/bio',
+           sameAs: [
+diff --git a/app/coaching/page.tsx b/app/coaching/page.tsx
+index 8a396c81..2ce0b1a5 100644
+--- a/app/coaching/page.tsx
++++ b/app/coaching/page.tsx
+@@ -423,7 +423,7 @@ export default function CoachingPage() {
+               className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500"
+               variants={itemVariants}
+             >
+-              <span>Oracle AI Architect</span>
++              <span>Former AI architect at Oracle</span>
+               <span className="text-white/20">|</span>
+               <span>40+ AI Agents Built</span>
+               <span className="text-white/20">|</span>
+@@ -431,6 +431,9 @@ export default function CoachingPage() {
+               <span className="text-white/20">|</span>
+               <span>ACOS 1,000+ Builders</span>
+             </motion.div>
++            <p className="mt-3 text-xs text-slate-600">
++              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++            </p>
+           </motion.div>
+         </motion.section>
+ 
+diff --git a/app/courses/build-your-ai-creator-os/page.tsx b/app/courses/build-your-ai-creator-os/page.tsx
+index 4cb27788..fab2f64b 100644
+--- a/app/courses/build-your-ai-creator-os/page.tsx
++++ b/app/courses/build-your-ai-creator-os/page.tsx
+@@ -89,8 +89,11 @@ export default function BuildYourAICreatorOSPage() {
+                 {course.shortDescription}
+               </p>
+ 
+-              <p className="text-sm text-white/40 mb-10">
+-                By Frank Riemer, AI Architect at Oracle
++              <p className="text-sm text-white/40 mb-2">
++                By Frank Riemer, former AI architect at Oracle
++              </p>
++              <p className="text-xs text-white/30 mb-10">
++                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+               </p>
+ 
+               <div className="flex flex-wrap gap-8 mb-12">
+diff --git a/app/design-lab/nature/variants/homepage/page.tsx b/app/design-lab/nature/variants/homepage/page.tsx
+index ddb58d48..d4ee1028 100644
+--- a/app/design-lab/nature/variants/homepage/page.tsx
++++ b/app/design-lab/nature/variants/homepage/page.tsx
+@@ -324,11 +324,14 @@ function NatureHero() {
+             animate={{ opacity: 1 }}
+             transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
+           >
+-            AI Architect at Oracle. Creator of 12,000+ songs with Suno.
++            Former AI architect at Oracle. Creator of 12,000+ songs with Suno.
+             Building intelligent systems at the intersection of{' '}
+             <span className="text-emerald-400/80">technology</span> and{' '}
+             <span className="text-cyan-400/80">creativity</span>.
+           </motion.p>
++          <p className="mb-8 text-xs text-white/35">
++            Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++          </p>
+ 
+           {/* CTAs */}
+           <motion.div
+diff --git a/app/linktree/layout.tsx b/app/linktree/layout.tsx
+index ff8db887..5798c765 100644
+--- a/app/linktree/layout.tsx
++++ b/app/linktree/layout.tsx
+@@ -6,7 +6,7 @@ import Script from 'next/script'
+ export const metadata: Metadata = createMetadata({
+   title: 'Frank X. Riemer | AI Architect & Creator - All Links',
+   description:
+-    'Connect with Frank X. Riemer — AI Architect at Oracle, creator of 12K+ AI songs, builder of the Agentic Creator OS. Products, resources, and community links.',
++    'Connect with Frank X. Riemer — former AI architect at Oracle, creator of 12K+ AI songs, builder of the Agentic Creator OS. Products, resources, and community links.',
+   path: '/linktree',
+   keywords: [
+     'frank x riemer',
+@@ -31,7 +31,7 @@ const schema = {
+     name: 'Frank X. Riemer',
+     alternateName: 'FrankX',
+     description:
+-      'AI Architect and creator building systems that amplify human creativity. Creator of 12K+ AI songs, Agentic Creator OS, and enterprise AI systems.',
++      'Former AI architect at Oracle and creator building systems that amplify human creativity. Creator of 12K+ AI songs, Agentic Creator OS, and practical AI systems.',
+     url: 'https://frankx.ai',
+     sameAs: SCHEMA_SAME_AS,
+     jobTitle: 'AI Architect',
+diff --git a/app/llms-full.txt/route.ts b/app/llms-full.txt/route.ts
+index 1ec595fb..cf86c4fc 100644
+--- a/app/llms-full.txt/route.ts
++++ b/app/llms-full.txt/route.ts
+@@ -69,15 +69,15 @@ ${d.subtitle}
+ 
+   const content = `# FrankX — Comprehensive Site Map (llms-full.txt)
+ 
+-> Personal hub of Frank X. Riemer — AI Architect at Oracle EMEA AI Center of Excellence, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
++> Personal hub of Frank X. Riemer — former AI architect at Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+ 
+ This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
+ 
+-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks in enterprise environments at Oracle and translates the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) into free personal-scale tooling for creators.
++The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free personal-scale tooling for creators. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+ 
+ ## Brand Voice & Editorial Stance
+ - **North star:** Elite Creator. AI Architect. Humble Excellence.
+-- **Title:** "AI Architect" (never "AI Systems Architect")
++- **Title:** "AI Architect" as the standard public title
+ - **Position:** Bridge between enterprise AI and personal creator tooling
+ - **Refusal list:** stock-photo people on laptops, generic SaaS hero language ("empower your team", "unlock your potential", "next-level"), spinning loaders >400ms, two equal CTAs, AI-slop phrases ("delve into", "dive deep", "unleash", "harness", "in conclusion")
+ 
+diff --git a/app/llms.txt/route.ts b/app/llms.txt/route.ts
+index 882ad0c8..8d621472 100644
+--- a/app/llms.txt/route.ts
++++ b/app/llms.txt/route.ts
+@@ -34,9 +34,9 @@ export async function GET() {
+ 
+   const content = `# FrankX
+ 
+-> Personal hub of Frank X. Riemer — AI Architect at Oracle EMEA AI Center of Excellence, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
++> Personal hub of Frank X. Riemer — former AI architect at Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+ 
+-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks in enterprise environments and translates the same 6-pillar architecture into free, personal-scale tooling for creators, individuals, and families.
++The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free, personal-scale tooling for creators, individuals, and families. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+ 
+ ## Foundations
+ - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
+diff --git a/app/os/page.tsx b/app/os/page.tsx
+index 8bfdd2be..9b67710c 100644
+--- a/app/os/page.tsx
++++ b/app/os/page.tsx
+@@ -539,9 +539,9 @@ export default function OSPage() {
+       <section className="py-16 border-t border-white/[0.04]">
+         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+           <p className="text-sm text-zinc-500 leading-relaxed">
+-            Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence. The enterprise
+-            6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) used at
+-            Fortune 500s scales down to one person. This is what that looks like in practice.
++            Frank Riemer is a former AI architect at Oracle. FrankX adapts enterprise AI architecture
++            patterns (Strategy, Governance, Talent, Technology, Data, Ethics) to one-person and small-team
++            creative systems. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+           </p>
+           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
+             <Link
+diff --git a/app/page.tsx b/app/page.tsx
+index e28a7e92..2d877728 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -9,7 +9,7 @@ import { bookReviews } from '@/data/book-reviews'
+ export const metadata = createMetadata({
+   title: 'FrankX — AI Architect & Creator',
+   description:
+-    'AI Architect at Oracle EMEA AI Center of Excellence. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
++    'Former AI architect at Oracle. Creator of 12,000+ songs with Suno. Practical AI systems, technical tutorials, and music production workflows for creators who ship.',
+   keywords: [
+     'ai architect',
+     'ai music creation',
+@@ -76,7 +76,7 @@ const homepageFAQs = [
+   {
+     question: 'What is FrankX.AI?',
+     answer:
+-      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle EMEA and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
++      'FrankX.AI is the independent personal hub of Frank Riemer, a former AI architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
+   },
+   {
+     question: 'What kind of content does FrankX publish?',
+diff --git a/app/product-development/acos-v11/page.tsx b/app/product-development/acos-v11/page.tsx
+index 24976f33..dd24ec10 100644
+--- a/app/product-development/acos-v11/page.tsx
++++ b/app/product-development/acos-v11/page.tsx
+@@ -195,7 +195,7 @@ const openclawHosting = [
+   },
+   {
+     option: 'OCI Free Tier',
+-    pros: ['Truly free forever (ARM A1)', '4 OCPU + 24GB RAM', 'Oracle expertise', 'Static IP', 'Always-on'],
++    pros: ['Truly free forever (ARM A1)', '4 OCPU + 24GB RAM', 'Enterprise cloud experience', 'Static IP', 'Always-on'],
+     cons: ['ARM architecture limits some tools', 'OCI networking complexity', 'No GPU', 'Potential non-compete concerns'],
+     cost: '$0/mo (free tier)',
+     ram: '24GB (4 OCPU ARM)',
+diff --git a/app/products/prompt-vault/page.tsx b/app/products/prompt-vault/page.tsx
+index ccbeb8a9..64842428 100644
+--- a/app/products/prompt-vault/page.tsx
++++ b/app/products/prompt-vault/page.tsx
+@@ -204,7 +204,7 @@ export default function PromptVaultPage() {
+             <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
+               <span className="flex items-center gap-1.5">
+                 <Brain className="h-4 w-4 text-[#8B5CF6]" />
+-                AI Architect at Oracle
++                Former AI architect at Oracle
+               </span>
+               <span className="text-white/20">|</span>
+               <span className="flex items-center gap-1.5">
+@@ -217,6 +217,9 @@ export default function PromptVaultPage() {
+                 40+ agents built
+               </span>
+             </div>
++            <p className="mb-8 text-xs text-slate-600">
++              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++            </p>
+ 
+             {/* CTA */}
+             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+diff --git a/app/tribe/people.ts b/app/tribe/people.ts
+index 722aaa04..0b5ee4bd 100644
+--- a/app/tribe/people.ts
++++ b/app/tribe/people.ts
+@@ -123,13 +123,13 @@ export const tribePeople: TribePerson[] = [
+   },
+   {
+     slug: 'oracle-ai-coe',
+-    name: 'Oracle AI Center of Excellence',
+-    role: 'Professional crucible, AI architecture, enterprise pressure',
+-    privacy: 'Professional page. Keep public-safe and non-confidential.',
++    name: 'Former Enterprise AI Architecture Chapter',
++    role: 'Professional chapter, AI architecture, enterprise pressure',
++    privacy: 'Former professional chapter. Keep public-safe, non-confidential, and independent from Oracle endorsement.',
+     shortGift:
+-      'You sharpened the architect in me: enterprise pressure, client reality, cloud systems, AI strategy, and the discipline to translate intelligence into value.',
++      'You sharpened the architect in me: enterprise pressure, cloud systems, AI strategy, and the discipline to translate intelligence into value.',
+     dedication:
+-      'The AI Center of Excellence became a crucible. It forced intelligence to leave the abstract layer and meet customers, architecture, politics, constraints, compute, cost, security, trust, and business value. It taught me that real intelligence has to survive the room.',
++      'The enterprise AI chapter became a crucible. It forced intelligence to leave the abstract layer and meet architecture, politics, constraints, compute, cost, security, trust, and business value. It taught me that real intelligence has to survive the room.',
+     unlocked: [
+       'A stronger enterprise architecture backbone.',
+       'The ability to translate AI possibility into business language and implementation reality.',
+diff --git a/app/watch/shorts/page.tsx b/app/watch/shorts/page.tsx
+index b2509479..aa30a0f2 100644
+--- a/app/watch/shorts/page.tsx
++++ b/app/watch/shorts/page.tsx
+@@ -25,7 +25,7 @@ const shortsFAQ = [
+   {
+     question: 'Who curates these Shorts?',
+     answer:
+-      'Frank Riemer \u2014 AI Architect at Oracle EMEA AI Center of Excellence \u2014 personally selects each Short. The curation filter: does this compress a real insight into 60 seconds or less? If not, it doesn\u2019t make the page.',
++      'Frank Riemer \u2014 former AI architect at Oracle \u2014 personally selects each Short. The curation filter: does this compress a real insight into 60 seconds or less? If not, it doesn\u2019t make the page. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
+   },
+   {
+     question: 'Why 60 seconds?',
+diff --git a/app/workshops/for-educators/page.tsx b/app/workshops/for-educators/page.tsx
+index bf9ff4d4..975416a2 100644
+--- a/app/workshops/for-educators/page.tsx
++++ b/app/workshops/for-educators/page.tsx
+@@ -308,7 +308,7 @@ export default function ForEducatorsPage() {
+                   Contact Frank Riemer
+                 </a>
+                 <p className="text-xs text-zinc-600 mt-3">
+-                  AI Architect at Oracle
++                  Former AI architect at Oracle. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+                 </p>
+               </div>
+             </GlowCard>
+diff --git a/app/workshops/ikigai-branding/present/slides.tsx b/app/workshops/ikigai-branding/present/slides.tsx
+index 20469421..2899ffc3 100644
+--- a/app/workshops/ikigai-branding/present/slides.tsx
++++ b/app/workshops/ikigai-branding/present/slides.tsx
+@@ -65,7 +65,7 @@ export const SLIDES: Slide[] = [
+     title: 'Ikigai & Branding',
+     minutes: 2,
+     speakerNotes: [
+-      'Welcome. One sentence on who you are: AI Architect at Oracle EMEA, building the same CoE frameworks for individuals.',
++      'Welcome. One sentence on who you are: former AI architect at Oracle, translating enterprise AI architecture patterns into practical systems for individuals.',
+       'Frame the promise: leave with an audience map, an angle, a hook bank, a 7-day plan, and a premium visual — all built live with an AI partner.',
+       'Set the tone: we build, we do not lecture.',
+     ],
+diff --git a/app/youtube/page.tsx b/app/youtube/page.tsx
+index 96204aef..1fb7e49e 100644
+--- a/app/youtube/page.tsx
++++ b/app/youtube/page.tsx
+@@ -129,11 +129,14 @@ export default function YouTubePage() {
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6, delay: 0.2 }}
+-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
++              className="mb-3 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+             >
+               Deep technical tutorials, production music workflows, and honest takes on building
+-              with AI. From an Oracle AI Architect who ships code, creates music, and builds in public.
++              with AI. From a former AI architect at Oracle who ships code, creates music, and builds in public.
+             </motion.p>
++            <p className="mb-8 max-w-2xl text-xs leading-relaxed text-slate-500">
++              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++            </p>
+ 
+             <motion.div
+               initial={{ opacity: 0, y: 20 }}
+@@ -400,7 +403,7 @@ export default function YouTubePage() {
+                 Subscribe to the Channel
+               </h2>
+               <p className="mx-auto mb-3 text-sm text-white/40">
+-                Oracle AI Architect &middot; 12,000+ AI songs &middot; Building in public
++                Former AI architect at Oracle &middot; 12,000+ AI songs &middot; Building in public
+               </p>
+               <p className="mx-auto mb-8 max-w-lg text-slate-400">
+                 Get weekly tutorials, production field notes, and behind-the-scenes of building
+diff --git a/components/coaching/CoachingShell.tsx b/components/coaching/CoachingShell.tsx
+index a2e66784..8a75ef95 100644
+--- a/components/coaching/CoachingShell.tsx
++++ b/components/coaching/CoachingShell.tsx
+@@ -405,7 +405,7 @@ export default function CoachingShell() {
+               className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500"
+               variants={itemVariants}
+             >
+-              <span>Ex-Oracle AI Architect</span>
++              <span>Former AI architect at Oracle</span>
+               <span className="text-white/20">|</span>
+               <span>40+ AI Agents Built</span>
+               <span className="text-white/20">|</span>
+@@ -413,6 +413,9 @@ export default function CoachingShell() {
+               <span className="text-white/20">|</span>
+               <span>ACOS 1,000+ Builders</span>
+             </motion.div>
++            <p className="mt-3 text-xs text-slate-600">
++              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++            </p>
+           </motion.div>
+         </motion.section>
+ 
+diff --git a/components/design-lab/GlassCathedralHero.tsx b/components/design-lab/GlassCathedralHero.tsx
+index 5f69fafe..947001ce 100644
+--- a/components/design-lab/GlassCathedralHero.tsx
++++ b/components/design-lab/GlassCathedralHero.tsx
+@@ -11,7 +11,7 @@ const stats = [
+   {
+     label: 'Enterprise AI',
+     value: '4+ years',
+-    sublabel: 'Oracle AI Architect',
++    sublabel: 'Former AI Architect',
+     icon: Brain,
+     element: 'water' as const,
+   },
+diff --git a/components/home/HomePage.tsx b/components/home/HomePage.tsx
+index 48c383d2..8801385f 100644
+--- a/components/home/HomePage.tsx
++++ b/components/home/HomePage.tsx
+@@ -100,7 +100,7 @@ export default function HomePage() {
+                 </StaggerItem>
+                 <StaggerItem>
+                   <p className="text-xl text-slate-200 max-w-4xl mx-auto leading-relaxed">
+-                    AI Architect at Oracle by day, creator by night. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
++                    Former enterprise AI architect, creator by design. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
+                   </p>
+                 </StaggerItem>
+                 <StaggerItem>
+@@ -138,7 +138,7 @@ export default function HomePage() {
+                   <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 pt-8 text-sm text-white/50">
+                     <div className="flex items-center gap-2">
+                       <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+-                      <span>AI Architect · Oracle Cloud</span>
++                      <span>Former AI architect · enterprise cloud</span>
+                     </div>
+                     <div className="flex items-center gap-2">
+                       <div className="w-2 h-2 rounded-full bg-cyan-400 shrink-0"></div>
+@@ -756,4 +756,3 @@ export default function HomePage() {
+ }
+ 
+ 
+-
+diff --git a/components/home/HomePageElite.tsx b/components/home/HomePageElite.tsx
+index 04f2b0f1..2b4f9382 100644
+--- a/components/home/HomePageElite.tsx
++++ b/components/home/HomePageElite.tsx
+@@ -286,9 +286,12 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
+               </h1>
+ 
+               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
+-                AI Architect at Oracle. 12,000+ songs with Suno.
++                Former AI architect at Oracle. 12,000+ songs with Suno.
+                 630+ AI skills shipped. Everything documented.
+               </p>
++              <p className="text-xs text-white/30 max-w-xl leading-relaxed">
++                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++              </p>
+ 
+               <div className="flex items-center gap-3">
+                 <FrankOmegaAvatar size="xs" />
+@@ -374,7 +377,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
+ // ============================================================================
+ 
+ const credentials = [
+-  'AI Architect at Oracle',
++  'Former AI architect at Oracle',
+   '12,000+ AI Songs Created',
+   '630+ AI Skills Shipped',
+   'Everything Documented',
+diff --git a/components/home/V3HomePage.tsx b/components/home/V3HomePage.tsx
+index 78a5d8e5..e8e8860e 100644
+--- a/components/home/V3HomePage.tsx
++++ b/components/home/V3HomePage.tsx
+@@ -97,7 +97,7 @@ export default function V3HomePage() {
+                     icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
+                     className="mx-auto"
+                   >
+-                    Built by Oracle AI Architect | 500+ Suno Sessions
++                    Built by a former AI architect at Oracle | 500+ Suno sessions
+                   </Pill>
+                 </StaggerItem>
+ 
+@@ -121,7 +121,7 @@ export default function V3HomePage() {
+                 <StaggerItem>
+                   <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
+                     Prompt packs, tool recommendations, and n8n/Zapier automations for AI architects.
+-                    Plus Suno music workflows and consciousness-first creation systems. Built by an Oracle AI Architect who's created 500+ songs.
++                    Plus Suno music workflows and creator-first systems. Built by a former AI architect at Oracle who's created 500+ songs.
+                   </p>
+                 </StaggerItem>
+ 
+diff --git a/components/v0-variants/ACOSProductV0.tsx b/components/v0-variants/ACOSProductV0.tsx
+index 965ee0ca..24191d0d 100644
+--- a/components/v0-variants/ACOSProductV0.tsx
++++ b/components/v0-variants/ACOSProductV0.tsx
+@@ -741,7 +741,7 @@ export default function ACOSLandingPage() {
+               },
+               {
+                 question: "What's included in the lifetime updates?",
+-                answer: "You get all future skills, agents, features, and system improvements at no additional cost. As AI evolves, ACOS evolves with it—and you're always on the latest version."
++                answer: "You get the current ACOS release and included improvements covered by your license. As AI evolves, ACOS evolves with it, with update scope described at purchase time."
+               },
+               {
+                 question: "Can I get a refund if it's not for me?",
+diff --git a/components/youtube/YouTubeHubShell.tsx b/components/youtube/YouTubeHubShell.tsx
+index 6975e898..31e07461 100644
+--- a/components/youtube/YouTubeHubShell.tsx
++++ b/components/youtube/YouTubeHubShell.tsx
+@@ -129,11 +129,14 @@ export default function YouTubeHubShell() {
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6, delay: 0.2 }}
+-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
++              className="mb-3 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+             >
+               Deep technical tutorials, production music workflows, and honest takes on building
+-              with AI. From an Oracle AI Architect who ships code, creates music, and builds in public.
++              with AI. From a former AI architect at Oracle who ships code, creates music, and builds in public.
+             </motion.p>
++            <p className="mb-8 max-w-2xl text-xs leading-relaxed text-slate-500">
++              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
++            </p>
+ 
+             <motion.div
+               initial={{ opacity: 0, y: 20 }}
+@@ -400,7 +403,7 @@ export default function YouTubeHubShell() {
+                 Subscribe to the Channel
+               </h2>
+               <p className="mx-auto mb-3 text-sm text-white/40">
+-                Oracle AI Architect &middot; 12,000+ AI songs &middot; Building in public
++                Former AI architect at Oracle &middot; 12,000+ AI songs &middot; Building in public
+               </p>
+               <p className="mx-auto mb-8 max-w-lg text-slate-400">
+                 Get weekly tutorials, production field notes, and behind-the-scenes of building
+diff --git a/content/blog/EDITORIAL_STANDARD.md b/content/blog/EDITORIAL_STANDARD.md
+index 4a78bf0c..3fd64841 100644
+--- a/content/blog/EDITORIAL_STANDARD.md
++++ b/content/blog/EDITORIAL_STANDARD.md
+@@ -9,7 +9,7 @@ The operating standard for every article. Goal: writing that is **credible, huma
+ Frank Riemer is a **former Oracle AI architect** who **helped build Oracle's EMEA AI Center of Excellence**. He is now independent, building agentic AI systems and creating music with AI.
+ 
+ - ✅ "Ex-Oracle AI architect", "former Oracle AI architect", "helped build Oracle's AI Center of Excellence", "the frameworks I built at Oracle"
+-- ❌ "I work at Oracle", "my day job at Oracle", "I'm an AI Architect at Oracle" (present tense = inaccurate)
++- ❌ Present-tense Oracle employment claims (inaccurate)
+ - Oracle Cloud / OCI **expertise** is still fair to cite — it's the credibility, not a current employer.
+ 
+ Canonical bio (short): *Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Now builds agentic systems independently and makes music with AI.*
+diff --git a/content/blog/ai-model-routing-guide.mdx b/content/blog/ai-model-routing-guide.mdx
+index 376d3bb9..3bcbb125 100644
+--- a/content/blog/ai-model-routing-guide.mdx
++++ b/content/blog/ai-model-routing-guide.mdx
+@@ -117,4 +117,4 @@ As of mid-June 2026 it remains a limited Vertex preview — no model card, bench
+ 
+ ---
+ 
+-*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. This guide refreshes quarterly and after every [Model Arena](/research/model-arena) round; vendor-claimed figures are marked, and every measured claim traces to a [published receipt](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs). Last refreshed June 10, 2026.*
++*By Frank — former AI architect at Oracle. This independent guide refreshes quarterly and after every [Model Arena](/research/model-arena) round; vendor-claimed figures are marked, and every measured claim traces to a [published receipt](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs). Not affiliated with, endorsed by, or sponsored by Oracle. Last refreshed June 10, 2026.*
+diff --git a/content/blog/claude-fable-5-analysis-2026.mdx b/content/blog/claude-fable-5-analysis-2026.mdx
+index fa44a41f..92058882 100644
+--- a/content/blog/claude-fable-5-analysis-2026.mdx
++++ b/content/blog/claude-fable-5-analysis-2026.mdx
+@@ -153,4 +153,4 @@ Inside Claude Code, dispatch the same task to subagents with different `model` o
+ 
+ ---
+ 
+-*Analysis by Frank — AI Architect at Oracle's EMEA AI Center of Excellence, building agentic systems and publishing every eval receipt. Launch facts validated against [Anthropic's announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5), [TechCrunch](https://techcrunch.com/2026/06/09/anthropic-released-claude-fable-5-its-most-powerful-model-publicly-days-after-warning-ai-is-getting-too-dangerous/), [VentureBeat](https://venturebeat.com/technology/anthropic-brings-mythos-to-the-masses-with-claude-fable-5-its-most-powerful-generally-available-model-ever), [CNBC](https://www.cnbc.com/2026/06/09/anthropic-mythos-claude-fable-5.html), and [heise](https://www.heise.de/en/news/Anthropic-releases-Claude-Mythos-5-as-Fable-5-with-restrictions-11326644.html). First-party eval data from the [Starlight Model Arena](https://starlightintelligence.org/research/model-arena), receipts in the open repo. Vendor-claimed figures are marked as such.*
++*Analysis by Frank — former AI architect at Oracle, building independent agentic systems and publishing every eval receipt. Launch facts validated against [Anthropic's announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5), [TechCrunch](https://techcrunch.com/2026/06/09/anthropic-released-claude-fable-5-its-most-powerful-model-publicly-days-after-warning-ai-is-getting-too-dangerous/), [VentureBeat](https://venturebeat.com/technology/anthropic-brings-mythos-to-the-masses-with-claude-fable-5-its-most-powerful-generally-available-model-ever), [CNBC](https://www.cnbc.com/2026/06/09/anthropic-mythos-claude-fable-5.html), and [heise](https://www.heise.de/en/news/Anthropic-releases-Claude-Mythos-5-as-Fable-5-with-restrictions-11326644.html). First-party eval data from the [Starlight Model Arena](https://starlightintelligence.org/research/model-arena), receipts in the open repo. Vendor-claimed figures are marked as such. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.*
+diff --git a/content/blog/claude-fable-5-prompting-guide.mdx b/content/blog/claude-fable-5-prompting-guide.mdx
+index 5d84a373..1caad2f9 100644
+--- a/content/blog/claude-fable-5-prompting-guide.mdx
++++ b/content/blog/claude-fable-5-prompting-guide.mdx
+@@ -134,4 +134,4 @@ Four head-to-head eval rounds against Opus 4.8, run in Claude Code within 24 hou
+ 
+ ---
+ 
+-*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. Every behavioral claim above traces to a receipt in the [open arena repo](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs); vendor-claimed figures are marked as such in the [full Fable 5 analysis](/blog/claude-fable-5-analysis-2026).*
++*By Frank — former AI architect at Oracle. Every behavioral claim above traces to a receipt in the [open arena repo](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs); vendor-claimed figures are marked as such in the [full Fable 5 analysis](/blog/claude-fable-5-analysis-2026). Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.*
+diff --git a/content/blog/golden-age-of-creators-why-now-is-different.mdx b/content/blog/golden-age-of-creators-why-now-is-different.mdx
+index 310700c4..61f8ef93 100644
+--- a/content/blog/golden-age-of-creators-why-now-is-different.mdx
++++ b/content/blog/golden-age-of-creators-why-now-is-different.mdx
+@@ -50,7 +50,7 @@ visualSystem:
+ 
+ I want to tell you what's actually happening right now — not the hype version, not the fear version, but what I'm seeing from inside it.
+ 
+-I'm an AI Architect at Oracle's EMEA AI Center of Excellence. My job is building AI frameworks for enterprises — strategies, governance, tooling, operating models — for organizations with tens of thousands of employees and nine-figure budgets. I spend my weeks thinking about how large institutions adopt AI at scale.
++I am a former AI architect at Oracle. I have worked around enterprise-scale AI and cloud transformation environments — strategies, governance, tooling, operating models — where large institutions learn how to adopt AI at scale. FrankX is an independent project built from public knowledge, personal experience, and non-confidential patterns only.
+ 
+ In the evenings and weekends, I build for myself.
+ 
+diff --git a/content/blog/llm-evals-claude-code-guide.mdx b/content/blog/llm-evals-claude-code-guide.mdx
+index 275f4d1a..1e444e7c 100644
+--- a/content/blog/llm-evals-claude-code-guide.mdx
++++ b/content/blog/llm-evals-claude-code-guide.mdx
+@@ -127,4 +127,4 @@ Our Round 3 — four tasks, two models, mechanical verification, one blind judgm
+ 
+ ---
+ 
+-*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. The harness, task-design rules, and all four Fable 5 vs Opus 4.8 receipts are open source: [methodology](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md) · [receipts](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs) · [live results](/research/model-arena).*
++*By Frank — former AI architect at Oracle. The independent harness, task-design rules, and all four Fable 5 vs Opus 4.8 receipts are open source: [methodology](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md) · [receipts](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs) · [live results](/research/model-arena). Not affiliated with, endorsed by, or sponsored by Oracle.*
+diff --git a/content/blog/oracle-genai-agents-vs-langgraph-crewai-2026.mdx b/content/blog/oracle-genai-agents-vs-langgraph-crewai-2026.mdx
+index a4c42fac..bebede40 100644
+--- a/content/blog/oracle-genai-agents-vs-langgraph-crewai-2026.mdx
++++ b/content/blog/oracle-genai-agents-vs-langgraph-crewai-2026.mdx
+@@ -1,6 +1,6 @@
+ ---
+ title: "Oracle GenAI Agents vs LangGraph vs CrewAI: Enterprise AI Agent Comparison 2026"
+-description: "A practical comparison of OCI GenAI Agents, LangGraph, and CrewAI for enterprise deployments. Features, pricing, and decision framework from an AI architect's perspective."
++description: "A practical comparison of OCI GenAI Agents, LangGraph, and CrewAI for enterprise deployments. Features, cost considerations, and decision framework from an AI architect's perspective."
+ date: "2026-01-26"
+ author: "Frank"
+ category: "AI & Systems"
+@@ -9,7 +9,9 @@ keywords: ["oracle ai agents", "oci genai agents", "langgraph vs crewai", "enter
+ image: "/images/blog/oracle-genai-comparison.png"
+ ---
+ 
+-**TL;DR**: OCI GenAI Agents offers zero-cost AI agents with native Oracle integration and enterprise guardrails. LangGraph provides graph-based orchestration for complex stateful workflows. CrewAI excels at role-based team simulations. Your choice depends on existing infrastructure, compliance requirements, and workflow complexity.
++**TL;DR**: OCI GenAI Agents can be compelling for Oracle-native teams because of native Oracle integration and enterprise guardrails. LangGraph provides graph-based orchestration for complex stateful workflows. CrewAI excels at role-based team simulations. Your choice depends on existing infrastructure, compliance requirements, workflow complexity, and verified current pricing.
++
++**Disclosure:** Independent analysis. Not affiliated with, endorsed by, or sponsored by Oracle. Pricing and licensing terms can change; verify current public Oracle documentation and your contract before making a purchase decision.
+ 
+ ---
+ 
+@@ -17,7 +19,7 @@ image: "/images/blog/oracle-genai-comparison.png"
+ 
+ The AI agent market is moving from "interesting demo" to "production requirement." Gartner predicts 40% of enterprise applications will embed AI agents by end of 2026. The question isn't whether to adopt agents—it's which framework matches your infrastructure and use cases.
+ 
+-For Oracle customers specifically, this decision has a non-obvious dimension: OCI GenAI Agents comes at no additional cost within Fusion Cloud. That changes the calculus significantly.
++For Oracle customers specifically, this decision has a non-obvious dimension: native alignment with Fusion Cloud and Oracle data can change the calculus. Confirm current licensing, usage limits, and commercial terms before treating any capability as included.
+ 
+ ---
+ 
+@@ -25,7 +27,7 @@ For Oracle customers specifically, this decision has a non-obvious dimension: OC
+ 
+ | Framework | Primary Use Case | Deployment Model | Cost Model |
+ |-----------|------------------|------------------|------------|
+-| **OCI GenAI Agents** | Oracle ecosystem integration, RAG on enterprise data | Fully managed | Included with Fusion Cloud |
++| **OCI GenAI Agents** | Oracle ecosystem integration, RAG on enterprise data | Fully managed | Verify current Oracle pricing/contract terms |
+ | **LangGraph** | Complex stateful workflows with branching logic | Self-hosted or LangGraph Platform | Open source + infrastructure |
+ | **CrewAI** | Role-based team coordination, rapid prototyping | Self-hosted or AMP Suite | Open source + infrastructure |
+ 
+@@ -60,7 +62,7 @@ OCI Generative AI Agents is a fully managed service that combines LLMs with AI t
+ 
+ ### What Makes It Different
+ 
+-1. **Zero additional cost** for Fusion Cloud customers
++1. **Potential commercial advantage** for eligible Fusion Cloud customers; verify current terms
+ 2. **50+ pre-built agents** embedded in Fusion Applications (finance, HR, supply chain, sales)
+ 3. **AI Agent Marketplace** with 100+ partner-built agents
+ 4. **Google Gemini on OCI**—Oracle is the only hyperscaler besides GCP to offer managed Gemini
+@@ -182,7 +184,7 @@ CrewAI agents can directly reference MCP servers in configuration using URLs or
+ ✅ You're already on Oracle Fusion Cloud or Oracle Database 23ai
+ ✅ You need RAG on enterprise data with minimal setup
+ ✅ Compliance/security inheritance from existing Oracle infrastructure matters
+-✅ Budget constraint—included at no additional cost
++✅ Budget constraint - verified Oracle licensing and usage terms fit your case
+ ✅ You want managed service, not DIY orchestration
+ 
+ ### Choose LangGraph If:
+@@ -212,7 +214,7 @@ CrewAI agents can directly reference MCP servers in configuration using URLs or
+ | **State Persistence** | Built-in | Built-in | Requires AMP |
+ | **MCP Support** | Via OCI APIs | Adapter | Native config |
+ | **Observability** | OCI Console | LangSmith | AMP Suite |
+-| **Cost** | Included w/Fusion | Open source + infra | Open source + infra |
++| **Cost** | Verify Oracle pricing/contract terms | Open source + infra | Open source + infra |
+ | **Oracle Integration** | Native | Manual | Manual |
+ | **HIPAA/SOC2** | Via Oracle | Self-implement | AMP certified |
+ | **On-premise** | No (OCI only) | Yes | Yes |
+@@ -245,7 +247,7 @@ No. It's a managed OCI service. For multi-cloud, consider LangGraph or CrewAI wi
+ Yes. LangGraph requires understanding graph theory and state machines. CrewAI uses intuitive role-based metaphors. The tradeoff is control vs. speed-to-start.
+ 
+ ### Do I need to pay extra for OCI GenAI Agents?
+-No. It's included with Oracle Fusion Cloud subscriptions at no additional cost.
++Verify current Oracle pricing, Fusion Cloud entitlements, and usage limits. Do not assume a capability is included without checking public Oracle documentation and your contract.
+ 
+ ### Can LangGraph and CrewAI use Oracle data?
+ Yes. Both can integrate with Oracle databases via standard connectors. You'd need to build the integration vs. OCI's native approach.
+@@ -260,7 +262,7 @@ CrewAI → LangGraph for production is common. Some Oracle teams start with OCI
+ 
+ ## Key Takeaways
+ 
+-1. **OCI GenAI Agents**: Best for Oracle-native deployments with zero additional cost and managed simplicity
++1. **OCI GenAI Agents**: Best for Oracle-native deployments where managed simplicity and verified commercial terms fit
+ 2. **LangGraph**: Best for complex stateful workflows requiring production-grade orchestration
+ 3. **CrewAI**: Best for rapid prototyping and role-based coordination
+ 4. **All three are production-viable**—the choice is about fit, not capability
+diff --git a/content/blog/production-llm-agents-oci-part-1-architecture.mdx b/content/blog/production-llm-agents-oci-part-1-architecture.mdx
+index f5be7f83..ce8388ed 100644
+--- a/content/blog/production-llm-agents-oci-part-1-architecture.mdx
++++ b/content/blog/production-llm-agents-oci-part-1-architecture.mdx
+@@ -22,11 +22,13 @@ readingTime: "18 min read"
+ 
+ **TL;DR**: Most GenAI initiatives stall because teams build the model layer and neglect the other five planes that make production possible. This blueprint maps enterprise architecture requirements to OCI services across six planes—from identity to observability—giving you the complete stack that survives compliance reviews and 3 AM incidents.
+ 
++**Disclosure:** Independent analysis. Not affiliated with, endorsed by, or sponsored by Oracle. Uses public OCI documentation and general enterprise architecture patterns, not confidential Oracle or customer material.
++
+ ---
+ 
+ ## Why Architecture Matters More Than Models
+ 
+-Every enterprise I work with has built an LLM demo in a week.
++In enterprise-scale AI work, the pattern is familiar: teams can build an LLM demo in a week.
+ 
+ Most are still running that same demo six months later.
+ 
+diff --git a/content/blog/production-llm-agents-oci-part-2-agent-patterns.mdx b/content/blog/production-llm-agents-oci-part-2-agent-patterns.mdx
+index f6d48311..ad483237 100644
+--- a/content/blog/production-llm-agents-oci-part-2-agent-patterns.mdx
++++ b/content/blog/production-llm-agents-oci-part-2-agent-patterns.mdx
+@@ -22,6 +22,8 @@ readingTime: "22 min read"
+ 
+ **TL;DR**: Not all agent workflows are equal. This pattern library maps six orchestration patterns to OCI services, with explicit decision criteria for each. Match your workflow requirements to the right pattern before you write a single line of code.
+ 
++**Disclosure:** Independent analysis. Not affiliated with, endorsed by, or sponsored by Oracle. Uses public OCI documentation and general enterprise architecture patterns, not confidential Oracle or customer material.
++
+ ---
+ 
+ ## The Pattern Selection Problem
+diff --git a/content/blog/production-llm-agents-oci-part-3-operating-model.mdx b/content/blog/production-llm-agents-oci-part-3-operating-model.mdx
+index aa45bf50..4d80cea4 100644
+--- a/content/blog/production-llm-agents-oci-part-3-operating-model.mdx
++++ b/content/blog/production-llm-agents-oci-part-3-operating-model.mdx
+@@ -25,6 +25,8 @@ seriesPart: 3
+ 
+ **TL;DR:** Production GenAI systems fail not because of bad models, but because of missing operating models. This guide provides a complete 5-stage maturity framework, evaluation pipelines, MLOps architecture, incident runbooks, cost optimization strategies, and team operating models—all mapped to OCI services.
+ 
++**Disclosure:** Independent analysis. Not affiliated with, endorsed by, or sponsored by Oracle. Uses public OCI documentation and general enterprise architecture patterns, not confidential Oracle or customer material.
++
+ ---
+ 
+ ## The Operating Model Imperative
+diff --git a/content/blog/vibe-os-platform-introduction.mdx b/content/blog/vibe-os-platform-introduction.mdx
+index 2ec1122c..01abe813 100644
+--- a/content/blog/vibe-os-platform-introduction.mdx
++++ b/content/blog/vibe-os-platform-introduction.mdx
+@@ -352,4 +352,4 @@ Free tier available today. No credit card required.
+ 
+ ---
+ 
+-_Built by Frank, AI Architect at Oracle and creator of 12,000+ AI-generated songs. All analysis reflects personal experience building production multi-agent systems on OCI and public clouds._
++_Built by Frank, former AI architect at Oracle and creator of 12,000+ AI-generated songs. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. Analysis uses public cloud patterns and personal experimentation, not confidential Oracle or customer material._
+diff --git a/content/books/agentic-builder/chapter-01-the-agent-thesis.md b/content/books/agentic-builder/chapter-01-the-agent-thesis.md
+index 1369f215..bfd5dfaa 100644
+--- a/content/books/agentic-builder/chapter-01-the-agent-thesis.md
++++ b/content/books/agentic-builder/chapter-01-the-agent-thesis.md
+@@ -260,7 +260,7 @@ The book progresses from foundations to production:
+ - **Chapters 7-9** address advanced architectures: computer use, voice agents, and autonomous infrastructure.
+ - **Chapters 10-12** tackle deployment: security, observability, cost management, and the organizational patterns that make agentic systems succeed in enterprise environments.
+ 
+-I write from two perspectives. As a former AI Architect at Oracle's EMEA AI Center of Excellence, I designed agentic systems for enterprise clients -- systems that must be reliable, auditable, and cost-effective at scale. As the builder of ACOS (the Agentic Cognitive Operating System), I operate 38 agents with 75+ skills in my personal infrastructure -- a system I use daily for content creation, research, code generation, and business operations.
++I write from two perspectives. As a former AI architect at Oracle, I worked around enterprise-scale agentic system requirements -- reliability, auditability, cost discipline, and operating-model clarity. As the builder of ACOS (the Agentic Cognitive Operating System), I operate 38 agents with 75+ skills in my personal infrastructure -- a system I use daily for content creation, research, code generation, and business operations. ACOS is independent and does not use confidential Oracle or customer material.
+ 
+ Enterprise and personal agent systems face the same fundamental challenges. The enterprise system has more constraints (compliance, procurement, multi-tenancy). The personal system has more freedom (experimentation, rapid iteration, tolerance for failure). Both need the same architectural foundations: reliable tool use, effective memory, principled orchestration, and rigorous evaluation.
+ 
+diff --git a/content/books/architects-playbook/chapter-11-memory-and-learning.md b/content/books/architects-playbook/chapter-11-memory-and-learning.md
+index cc8d8813..42eddcec 100644
+--- a/content/books/architects-playbook/chapter-11-memory-and-learning.md
++++ b/content/books/architects-playbook/chapter-11-memory-and-learning.md
+@@ -38,9 +38,9 @@ Here is the actual structure of my primary CLAUDE.md memory:
+ 
+ ## Brand Positioning
+ Frank = Top Creator. Top AI Architect. Humble.
+-- Ex-Oracle AI Architect (EMEA AI Center of Excellence)
++- Former AI architect at Oracle
+ - 12,000+ AI songs, music production, generative art
+-- Title: "AI Architect" (never "AI Systems Architect")
++- Title: "AI Architect"
+ 
+ ## Agent Profiles
+ ### 1. Technical Architect
+@@ -107,7 +107,7 @@ For this, I use a separate MEMORY.md file managed by Claude Code's auto-memory f
+ 
+ ## Frank's Real Name & Title (PERMANENT — CRITICAL)
+ - **Frank Riemer** — NOT "Frank Guzman" or any other name
+-- **Title**: "AI Architect" — NOT "AI Systems Architect"
++- **Title**: "AI Architect"
+ - NEVER use "Frank Guzman" anywhere — corrected across 11 files
+ ```
+ 
+@@ -266,7 +266,7 @@ The identity layer is the bedrock. It answers: who am I working for, and what ar
+ 
+ ```
+ CLAUDE.md (project root):
+-├── Brand positioning: Frank Riemer, Ex-Oracle AI Architect (EMEA AI CoE)
++├── Brand positioning: Frank Riemer, former AI architect at Oracle
+ ├── Voice guidelines: Confident, precise, technical authority
+ ├── Agent profiles: 6 defined agents with triggers and skills
+ ├── Content standards: Every claim verifiable, no filler
+diff --git a/content/books/gencreator/chapter-01-the-one-person-studio.md b/content/books/gencreator/chapter-01-the-one-person-studio.md
+index ca3ab8e8..88ff5bb6 100644
+--- a/content/books/gencreator/chapter-01-the-one-person-studio.md
++++ b/content/books/gencreator/chapter-01-the-one-person-studio.md
+@@ -9,7 +9,7 @@ Consider two content operations.
+ 
+ The first is a Fortune 500 technology company's content marketing department. Twenty-five people: a VP of Content, two directors, four senior writers, three junior writers, two editors, three designers, two video producers, a social media manager, an SEO specialist, two project managers, two analytics leads, and an executive assistant. Annual budget: $2.5 million in salaries alone, before tools, office space, software licenses, and agency retainers. Output: roughly fifty articles per month, one quarterly whitepaper, and a weekly newsletter. Good work. Professional. Consistent. Expensive.
+ 
+-The second is a single person working from a home office in the Netherlands. One ex-Oracle AI Architect, now a full-time creator. Monthly tool budget: approximately fifty dollars. Output: thirty articles per month, three book chapters per week, daily songs, weekly product updates, a research hub spanning seventeen domains, and an open-source agent operating system used by over a thousand builders. Also good work. Also professional. Also consistent. Radically cheaper.
++The second is a single person working from a home office in the Netherlands. One former AI architect at Oracle, now a full-time creator. Monthly tool budget: approximately fifty dollars. Output: thirty articles per month, three book chapters per week, daily songs, weekly product updates, a research hub spanning seventeen domains, and an open-source agent operating system used by over a thousand builders. Also good work. Also professional. Also consistent. Radically cheaper.
+ 
+ I am the second operation. And the gap between us is not talent, ambition, or hours worked. The gap is the operating system.
+ 
+diff --git a/content/books/gencreator/chapter-03-the-agent-layer.md b/content/books/gencreator/chapter-03-the-agent-layer.md
+index 2d029212..a5f5f2b2 100644
+--- a/content/books/gencreator/chapter-03-the-agent-layer.md
++++ b/content/books/gencreator/chapter-03-the-agent-layer.md
+@@ -125,7 +125,7 @@ A good skill file has four sections:
+ ```markdown
+ ## Context
+ You are writing content for frankx.ai, the personal website of Frank Riemer,
+-Ex-Oracle AI Architect (EMEA AI Center of Excellence). The site covers AI
++Former AI architect at Oracle. The site covers AI
+ architecture, creative AI production, agent systems, and the Personal AI
+ Center of Excellence framework. Target audience: creators, developers,
+ and professionals exploring AI-augmented workflows.
+@@ -135,7 +135,7 @@ and professionals exploring AI-augmented workflows.
+ 
+ ```markdown
+ ## Rules
+-- Use "AI Architect" as Frank's title (never "AI Systems Architect")
++- Use "AI Architect" as Frank's standard public title
+ - Use positive-only language (never define things by what they are not)
+ - Every technical claim must be verifiable
+ - Author name is always "Frank Riemer" (never "Frank Guzman")
+diff --git a/content/books/gencreator/chapter-07-the-quality-architecture.md b/content/books/gencreator/chapter-07-the-quality-architecture.md
+index d3c30aea..ae525167 100644
+--- a/content/books/gencreator/chapter-07-the-quality-architecture.md
++++ b/content/books/gencreator/chapter-07-the-quality-architecture.md
+@@ -31,7 +31,7 @@ The GenCreator Quality Architecture applies the same pattern to creative output:
+ 
+ **Gate 4: Does it pass the value check?** After reading this piece, will the reader know something they did not know before? Will they be able to do something they could not do before? Will they see something they could not see before? If the answer is no — if the piece is content for content's sake — it fails the value gate.
+ 
+-**Gate 5: Does it pass the brand check?** Author name: Frank Riemer (not Frank, not FrankX, not AI-generated placeholder). Title: AI Architect (not AI Systems Architect). Voice: positive-only language (no "this is NOT for" framing). Visual identity: consistent with the design system. These are the brand standards that maintain consistency across a high-volume output system.
++**Gate 5: Does it pass the brand check?** Author name: Frank Riemer (not Frank, not FrankX, not AI-generated placeholder). Title: AI Architect. Voice: positive-only language (no "this is NOT for" framing). Visual identity: consistent with the design system. These are the brand standards that maintain consistency across a high-volume output system.
+ 
+ Five gates. Each takes two minutes to evaluate. Total quality gate time: ten minutes per piece. The ten-minute investment prevents the reputation damage of publishing a single substandard piece.
+ 
+diff --git a/content/books/personal-ai-coe/chapter-04-the-talent-pillar.md b/content/books/personal-ai-coe/chapter-04-the-talent-pillar.md
+index ee5b70d3..62716b1d 100644
+--- a/content/books/personal-ai-coe/chapter-04-the-talent-pillar.md
++++ b/content/books/personal-ai-coe/chapter-04-the-talent-pillar.md
+@@ -131,6 +131,6 @@ This ratio understates the individual advantage in one respect: the enterprise s
+ 
+ Your thirty-eight agents require zero coordination cost. They do not need meetings. They do not produce status updates. They do not have competing priorities. The capacity that exists in the system is available for productive work, not coordination overhead.
+ 
+-The talent pillar is where the gap between enterprise cost and personal cost is most dramatic. And it is where the compounding is most powerful — because every skill you build, every role definition you sharpen, every observation you convert to a configuration improvement makes the team more capable at zero additional cost.
++The talent pillar is where the gap between enterprise cost and personal cost is most dramatic. And it is where the compounding is most powerful — because every skill you build, every role definition you sharpen, every observation you convert to a configuration improvement makes the team more capable without proportional headcount cost.
+ 
+ That is the Talent pillar.
+diff --git a/content/books/vibe-os/chapter-02-nextjs-the-application-layer.md b/content/books/vibe-os/chapter-02-nextjs-the-application-layer.md
+index 9ecee5e9..d437d039 100644
+--- a/content/books/vibe-os/chapter-02-nextjs-the-application-layer.md
++++ b/content/books/vibe-os/chapter-02-nextjs-the-application-layer.md
+@@ -71,7 +71,7 @@ import { getPublishedBooks } from '@/app/books/lib/books-registry'
+ 
+ export const metadata = createMetadata({
+   title: 'FrankX -- AI Architect & Creator',
+-  description: 'Ex-Oracle AI Architect (EMEA AI Center of Excellence)...',
++  description: 'Former AI architect at Oracle...',
+   path: '/',
+ })
+ 
+@@ -371,7 +371,7 @@ Every page on frankx.ai has structured metadata generated by the `createMetadata
+ ```typescript
+ export const metadata = createMetadata({
+   title: 'FrankX -- AI Architect & Creator',
+-  description: 'Ex-Oracle AI Architect (EMEA AI Center of Excellence)...',
++  description: 'Former AI architect at Oracle...',
+   path: '/',
+   type: 'website',
+   image: '/images/og-default.png',
+diff --git a/content/books/vibe-os/chapter-07-claude-code-the-compute-layer.md b/content/books/vibe-os/chapter-07-claude-code-the-compute-layer.md
+index b460e396..6d3cbb9a 100644
+--- a/content/books/vibe-os/chapter-07-claude-code-the-compute-layer.md
++++ b/content/books/vibe-os/chapter-07-claude-code-the-compute-layer.md
+@@ -59,7 +59,7 @@ A well-configured CLAUDE.md turns Claude Code from a general-purpose AI into a s
+ ## Rules
+ - Never rename working URLs
+ - Never delete pages with traffic
+-- Always use "AI Architect" (never "AI Systems Architect")
++- Always use "AI Architect" as the standard public title
+ - Author name: "Frank Riemer" everywhere
+ 
+ ## Deploy Workflow
+diff --git a/content/golden-age-book/chapter-06-the-creator-who-stayed.md b/content/golden-age-book/chapter-06-the-creator-who-stayed.md
+index a46940ac..5e11635f 100644
+--- a/content/golden-age-book/chapter-06-the-creator-who-stayed.md
++++ b/content/golden-age-book/chapter-06-the-creator-who-stayed.md
+@@ -179,7 +179,7 @@ When the creator practice generates enough revenue, enough stability, and enough
+ 
+ ## IX. A Story
+ 
+-I write this chapter with 17 books published, 12,000 songs produced, and a platform serving students, professors, researchers, and doctors. I write it after years in a full-time role as an AI Architect at Oracle, where I built the enterprise AI frameworks that I now translate into free tools for individuals.
++I write this chapter with 17 books published, 12,000 songs produced, and a platform serving students, professors, researchers, and doctors. I write it after years working around enterprise-scale AI architecture, including a former AI architect role at Oracle, where I learned public, non-confidential patterns that I now translate into independent tools for individuals.
+ 
+ I did not arrive here through a viral moment. I arrived through staying.
+ 
+diff --git a/content/lead-magnets/5-suno-prompts.md b/content/lead-magnets/5-suno-prompts.md
+index a94bbd85..26a54dfd 100644
+--- a/content/lead-magnets/5-suno-prompts.md
++++ b/content/lead-magnets/5-suno-prompts.md
+@@ -201,5 +201,5 @@ Learn more: [frankx.ai/music-lab](https://frankx.ai/music-lab)
+ 
+ ---
+ 
+-_Created by Frank Riemer | AI Architect at Oracle | 500+ AI Songs_
++_Created by Frank Riemer | Former AI architect at Oracle | 500+ AI Songs | Independent project. Not affiliated with, endorsed by, or sponsored by Oracle._
+ _frankx.ai_
+diff --git a/content/newsletters/daily/2026-02-17.html b/content/newsletters/daily/2026-02-17.html
+index 1dc98616..b983db0b 100644
+--- a/content/newsletters/daily/2026-02-17.html
++++ b/content/newsletters/daily/2026-02-17.html
+@@ -153,7 +153,7 @@
+           Frank Guzman
+         </p>
+         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
+-          Musician → AI Systems Architect<br>
++          Musician → AI Architect<br>
+           <span style="color: #22d3ee;">500+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
+         </p>
+       </div>
+diff --git a/content/partnerships/_placeholders/anthropic.ts b/content/partnerships/_placeholders/anthropic.ts
+index 13eec4b5..9fb6d328 100644
+--- a/content/partnerships/_placeholders/anthropic.ts
++++ b/content/partnerships/_placeholders/anthropic.ts
+@@ -32,7 +32,7 @@ export const anthropic: Partner = {
+ 
+ The pattern I see: enterprises and architects are moving toward agent-native workflows faster than the methodology to support that move has matured. Reference implementations, opinionated harnesses, and a curriculum that meets architects where they work are scarce. Claude Code is the strongest harness on the market for that shift, and a Claude-native AI CoE methodology — open, multi-cloud, with public reference implementations — is what closes the gap.
+ 
+-That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, the workshop Claude branch I already teach, and a 7,000-person EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks.`,
++That is the layer I bring. Former Oracle AI architecture experience, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, the workshop Claude branch I already teach, and a 7,000-person EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks. This is an independent project, not affiliated with, endorsed by, or sponsored by Oracle.`,
+ 
+   workingReality: [
+     {
+@@ -54,9 +54,9 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
+       },
+     },
+     {
+-      label: 'Oracle EMEA AI CoE practice',
++      label: 'Former enterprise AI architecture practice',
+       detail:
+-        'AI Architect at the Oracle EMEA AI Center of Excellence. CoE blueprints used by Oracle solution architects across the region — the same six-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translated into Claude-Code-native workflows.',
++        'Former AI architect at Oracle. Enterprise AI architecture patterns translated into Claude-Code-native workflows using public knowledge, personal experience, and non-confidential material.',
+     },
+     {
+       label: 'Workshop Claude branch already taught',
+@@ -84,7 +84,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
+       href: 'https://github.com/frankxai/ai-architect-academy',
+     },
+     {
+-      label: 'OCI Claude Code skill pack — published with the Oracle AI Architect org',
++      label: 'OCI Claude Code skill pack — public Oracle/OCI learning resource',
+       href: 'https://github.com/oci-ai-architects/claude-code-oci-ai-architect-skills',
+     },
+     {
+@@ -248,7 +248,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
+   ],
+ 
+   whatThisIsNot: [
+-    'Not an Anthropic-employee-flavored relationship — Frank is an AI Architect at Oracle EMEA, operator-side.',
++    'Not an Anthropic-employee-flavored relationship — Frank is a former AI architect at Oracle, operator-side. Independent project. Not affiliated with Oracle.',
+     'Not a model-reseller pitch — there is no API margin or reseller mechanic in scope.',
+     'Not exclusive — Frank also ships in Codex, Gemini, and ADK where the workflow fits. The honest position is Claude-Code-native by default, not Claude-Code-only.',
+     'Not a deck-building consulting role — every deliverable is a public artifact (repo, curriculum module, workshop cohort, deep-dive).',
+diff --git a/data/acos/agents.ts b/data/acos/agents.ts
+index 94a0786b..faf60729 100644
+--- a/data/acos/agents.ts
++++ b/data/acos/agents.ts
+@@ -219,7 +219,7 @@ export const PILLARS: Pillar[] = [
+       { name: 'Wealth Operations', kind: 'command', ref: '/wealth-ops', status: 'in-progress', one_liner: 'Real estate, mortgages, tax optimization, FIRE planning.' },
+       { name: 'Wealth Ops Skill', kind: 'skill', ref: 'wealth-ops', status: 'in-progress', one_liner: 'Multi-property portfolio and net-worth tracking. Consolidation candidate with Wealth Operations.' },
+       { name: 'Oracle Work', kind: 'skill', ref: 'oracle-work', status: 'in-progress', one_liner: 'Customer projects, presentations, demos, internal content.' },
+-      { name: 'Oracle AI Architect', kind: 'skill', ref: 'oracle-ai-architect', status: 'in-progress', one_liner: 'Enterprise AI CoE frameworks and reference architectures.' },
++      { name: 'Enterprise AI Architect', kind: 'skill', ref: 'oracle-ai-architect', status: 'in-progress', one_liner: 'Public enterprise AI architecture patterns and reference architectures.' },
+       { name: 'OCI Services Expert', kind: 'skill', ref: 'oci-services-expert', status: 'in-progress', one_liner: 'Oracle Cloud architecture, cost optimization.' },
+       { name: 'Oracle Diagram Generator', kind: 'skill', ref: 'oracle-diagram-generator', status: 'in-progress', one_liner: 'Reference architecture diagrams for presentations.' },
+       { name: 'Business Ops Orchestrator', kind: 'agent', ref: 'business-ops-orchestrator', status: 'shipped', one_liner: '3-flow-type Opus composer (flow-bv / flow-wealth / flow-oracle) routing across the BV legal/tax substrate (/bv-ops + business-ops skill), wealth substrate (/wealth-ops + wealth-ops skill), and Oracle day-job substrate (oracle-work + oracle-ai-architect skills) with confidentiality envelope (Tier 1/2 redaction) + sanitized memory + private-path persistence. P8 top-level composer. Pass 1 exemplar (2026-05-28).' },
+diff --git a/data/progress-tracker.json b/data/progress-tracker.json
+index 5eb03135..4955906e 100644
+--- a/data/progress-tracker.json
++++ b/data/progress-tracker.json
+@@ -168,7 +168,7 @@
+             "verifiable": false
+           }
+         ],
+-        "journey": "Building bridges between enterprise AI and independent creators. Oracle expertise made accessible."
++        "journey": "Building bridges between enterprise AI and independent creators. Enterprise AI experience made accessible."
+       },
+       "purpose": {
+         "name": "Purpose",
+diff --git a/lib/voice/frankx-voice.ts b/lib/voice/frankx-voice.ts
+index f8e9d9eb..75ce18c4 100644
+--- a/lib/voice/frankx-voice.ts
++++ b/lib/voice/frankx-voice.ts
+@@ -36,7 +36,7 @@
+  *   and on IFS / Psyche-layer surfaces. It MUST stay distinct from
+  *   marketing and technical registers.
+  *
+- * Last reviewed: 2026-05-13
++ * Last reviewed: 2026-06-25
+  */
+ 
+ export const FRANKX_VOICE = {
+@@ -46,15 +46,17 @@ export const FRANKX_VOICE = {
+   identity: {
+     name: 'Frank',
+     title: 'AI Architect', // memory-anchored — see below
+-    role: 'AI Architect at Oracle EMEA AI Center of Excellence',
++    role: 'Former AI architect at Oracle',
+     positioning: 'Elite Creator. AI Architect. Humble Excellence.',
+     narrative:
+-      "Personal AI CoE — the same 6-pillar framework (Strategy, Governance, Talent, Technology, Data, Ethics) Frank builds for Fortune 500s, made personal at 1/5000th the cost.",
++      'Personal AI CoE — enterprise AI architecture patterns (Strategy, Governance, Talent, Technology, Data, Ethics) translated into practical systems for creators, entrepreneurs, and operators.',
+     proof: [
+       '12,000+ AI songs shipped',
+-      'Oracle EMEA AI Center of Excellence',
++      'Former AI architect at Oracle',
++      'Helped build a seven-figure business',
+       'ACOS, Workshop OS, Watch OS, Library OS, SIS, IIS shipped to production',
+     ],
++    disclaimer: 'Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
+   },
+ 
+   /**
