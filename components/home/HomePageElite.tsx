@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState, useSyncExternalStore } from 'react'
@@ -11,8 +12,15 @@ import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
-import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
+
+const MindPalaceAtlas = dynamic(
+  () => import('@/components/home/MindPalaceAtlas').then((mod) => mod.MindPalaceAtlas),
+  {
+    ssr: false,
+    loading: () => <div aria-hidden className="min-h-[28rem]" />,
+  },
+)
 
 // ============================================================================
 // TYPES
@@ -143,23 +151,6 @@ function AuroraBackground() {
 }
 
 // ============================================================================
-// SCROLL PROGRESS
-// ============================================================================
-
-function ScrollProgress() {
-  const shouldReduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 origin-left z-50"
-      style={{ scaleX: shouldReduceMotion ? 1 : scaleX }}
-    />
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
@@ -173,7 +164,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
           className="h-[300px] w-full sm:h-[340px] lg:h-[380px]"
           style={{ border: 'none' }}
           allow="autoplay; clipboard-write"
-          loading="eager"
+          loading="lazy"
           title={track.title}
           sandbox="allow-scripts allow-same-origin"
         />
@@ -1340,7 +1331,6 @@ export default function HomePageElite({
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
-      <ScrollProgress />
 
       <div className="relative z-10 overflow-x-hidden">
         {/* 1-3. Hero with featured track */}
