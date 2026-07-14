@@ -1,21 +1,29 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe, Layers, Code2 } from 'lucide-react'
-import { ecosystemEntries, getEntryBySlug, getRelated, type EcosystemEntry } from '@/data/ecosystem'
+import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe, Layers } from 'lucide-react'
+import {
+  getEntryBySlug,
+  getRelated,
+  isPublicEcosystemEntry,
+  publicEcosystemEntries,
+  type EcosystemEntry,
+} from '@/data/ecosystem'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return ecosystemEntries.map((e) => ({ slug: e.slug }))
+  return publicEcosystemEntries.map((e) => ({ slug: e.slug }))
 }
+
+export const dynamicParams = false
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const entry = getEntryBySlug(slug)
-  if (!entry) {
+  if (!entry || !isPublicEcosystemEntry(entry)) {
     return { title: 'System not found — FrankX Ecosystem' }
   }
   return {
@@ -90,10 +98,10 @@ function EntrySchema({ entry }: { entry: EcosystemEntry }) {
 export default async function EcosystemEntryPage({ params }: PageProps) {
   const { slug } = await params
   const entry = getEntryBySlug(slug)
-  if (!entry) notFound()
+  if (!entry || !isPublicEcosystemEntry(entry)) notFound()
 
   const tokens = COLOR_TOKENS[entry.color]
-  const related = getRelated(entry.id)
+  const related = getRelated(entry.id).filter(isPublicEcosystemEntry)
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -101,10 +109,7 @@ export default async function EcosystemEntryPage({ params }: PageProps) {
 
       {/* Hero */}
       <section className="relative pt-20 pb-12 overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-b ${tokens.glow} via-transparent to-transparent`} aria-hidden="true" />
-        <div className="absolute top-20 right-1/4 w-[500px] h-[500px] rounded-full blur-[140px] opacity-50">
-          <div className={`absolute inset-0 ${tokens.bg} rounded-full`} aria-hidden="true" />
-        </div>
+        <div className="absolute inset-x-0 top-0 h-px bg-cyan-300/40" aria-hidden="true" />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
@@ -170,31 +175,20 @@ export default async function EcosystemEntryPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Commands + Related */}
+      {/* Boundary + Related */}
       <section className="py-12 border-t border-white/[0.04]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {entry.commands.length > 0 && (
-            <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-6">
-              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500 mb-4">
-                <Code2 className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>Slash commands</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {entry.commands.map((cmd) => (
-                  <code
-                    key={cmd}
-                    className="inline-flex items-center rounded-md border border-white/[0.06] bg-white/[0.04] px-2 py-1 text-xs font-mono text-zinc-300"
-                  >
-                    {cmd}
-                  </code>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-6">
+            <p className="text-sm font-medium text-zinc-500">Operating boundary</p>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+              Public pages describe the architecture and proof available today. Credentials, private records, production authority,
+              and high-stakes decisions remain outside the public system.
+            </p>
+          </div>
 
           {related.length > 0 && (
-            <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-6">
-              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500 mb-4">
+            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-6">
+              <div className="flex items-center gap-2 text-xs font-medium text-zinc-500 mb-4">
                 <Layers className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>Connects to</span>
               </div>
@@ -217,28 +211,30 @@ export default async function EcosystemEntryPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Repo + Layer info */}
+      {/* Evidence + maturity */}
       <section className="py-12 border-t border-white/[0.04]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent p-6">
-            <h3 className="text-sm font-semibold text-zinc-50 mb-3">Where it lives</h3>
+          <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-6">
+            <h3 className="text-sm font-semibold text-zinc-50 mb-3">Evidence and maturity</h3>
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div>
-                <dt className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Repo</dt>
-                <dd className="font-mono text-zinc-300">{entry.repo}</dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Layer</dt>
-                <dd className="font-mono text-zinc-300">{entry.layer}</dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Tier</dt>
-                <dd className="text-zinc-300">{TIER_LABEL[entry.tier]}</dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Status</dt>
+                <dt className="text-xs text-zinc-500 mb-1">Maturity</dt>
                 <dd className="text-zinc-300">{STATUS_LABEL[entry.status]}</dd>
               </div>
+              <div>
+                <dt className="text-xs text-zinc-500 mb-1">Public role</dt>
+                <dd className="text-zinc-300">{TIER_LABEL[entry.tier]}</dd>
+              </div>
+              {entry.repoUrl && (
+                <div className="sm:col-span-2">
+                  <dt className="text-xs text-zinc-500 mb-1">Open repository</dt>
+                  <dd>
+                    <a href={entry.repoUrl} target="_blank" rel="noreferrer" className="text-zinc-300 hover:text-cyan-300">
+                      {entry.repo}
+                    </a>
+                  </dd>
+                </div>
+              )}
             </dl>
           </div>
         </div>

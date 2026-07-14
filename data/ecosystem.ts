@@ -76,6 +76,8 @@ export interface EcosystemEntry {
     | 'fuchsia'
     | 'lime'
     | 'orange'
+  /** Explicit public listing override. Internal tiers are private by default. */
+  publicListing?: boolean
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -315,6 +317,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     relatedSystems: [],
     commands: [],
     color: 'orange',
+    publicListing: false,
   },
   {
     id: 'ikigai-workshop',
@@ -362,9 +365,9 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'live',
     shipped: '2026-05-03',
-    summary: 'The complete map of every FrankX system — 25+ entries across 4 tiers.',
+    summary: 'Public decision surface for choosing and inspecting FrankX operating systems.',
     description:
-      "The Arcanea-equivalent for FrankX — every system, repo, and operational tool indexed in one place. Mirrors the arcanea-meta pattern. Powered by data/ecosystem.ts (this file). Built in F1 night session 2026-05-03.",
+      'A public-safe view of the operating-system portfolio. Visitors can choose the work they need to make operational, inspect the available proof, and understand what remains private.',
     relatedSystems: ['frankx-os-meta', 'frankx-meta-skill'],
     commands: [],
     color: 'fuchsia',
@@ -424,6 +427,96 @@ export const ecosystemEntries: EcosystemEntry[] = [
     relatedSystems: ['library-frankx-surface'],
     commands: ['/library-add', '/library-deepen', '/library-research'],
     color: 'rose',
+  },
+  {
+    id: 'agentic-creator-os',
+    name: 'Agentic Creator OS',
+    slug: 'agentic-creator-os',
+    tier: 'tier-2-substrate',
+    layer: 'L5-substrate',
+    repo: 'agentic-creator-os',
+    publicUrl: 'https://github.com/frankxai/agentic-creator-os',
+    repoUrl: 'https://github.com/frankxai/agentic-creator-os',
+    status: 'live',
+    shipped: 'ongoing',
+    summary: 'Open operating system for research, production, review, and distribution workflows.',
+    description:
+      'A portable creator operating system with skills, commands, specialist agents, workflow gates, and creative memory. It is designed for creators moving from isolated prompts to a reviewable publishing operation.',
+    relatedSystems: ['acos', 'sis', 'agentic-business-os', 'agentic-music-os'],
+    commands: [],
+    color: 'fuchsia',
+  },
+  {
+    id: 'agentic-business-os',
+    name: 'Agentic Business OS',
+    slug: 'agentic-business-os',
+    tier: 'tier-2-substrate',
+    layer: 'L5-substrate',
+    repo: 'agentic-business-os',
+    publicUrl: 'https://github.com/frankxai/agentic-business-os',
+    repoUrl: 'https://github.com/frankxai/agentic-business-os',
+    status: 'live',
+    shipped: 'ongoing',
+    summary: 'Reusable business operating system for decisions, evidence, ownership, and recurring reviews.',
+    description:
+      'A public template for founder-operators who need an operating cadence before adding more automation. It connects repository context, decision records, quality gates, and bounded agent workflows.',
+    relatedSystems: ['sis', 'agentic-creator-os', 'agentic-life-os'],
+    commands: [],
+    color: 'emerald',
+  },
+  {
+    id: 'agentic-music-os',
+    name: 'Agentic Music OS',
+    slug: 'agentic-music-os',
+    tier: 'tier-2-substrate',
+    layer: 'L5-substrate',
+    repo: 'agentic-music-os',
+    publicUrl: 'https://github.com/frankxai/agentic-music-os',
+    repoUrl: 'https://github.com/frankxai/agentic-music-os',
+    status: 'live',
+    shipped: 'ongoing',
+    summary: 'Open music-production operating system connecting creative direction, evidence, media, and release gates.',
+    description:
+      'A music-specific operating layer for prompt evidence, production state, visual formats, rights notes, and release preparation. Account actions, distribution, spend, and rights decisions remain human-controlled.',
+    relatedSystems: ['agentic-creator-os', 'sis'],
+    commands: [],
+    color: 'violet',
+  },
+  {
+    id: 'research-intelligence-os',
+    name: 'Research Intelligence OS',
+    slug: 'research-intelligence-os',
+    tier: 'tier-2-substrate',
+    layer: 'L5-substrate',
+    repo: 'research-intelligence-os',
+    publicUrl: 'https://github.com/frankxai/research-intelligence-os',
+    repoUrl: 'https://github.com/frankxai/research-intelligence-os',
+    status: 'live',
+    shipped: 'ongoing',
+    summary: 'Open research system for traceable sources, claims, uncertainty, synthesis, and handoff.',
+    description:
+      'A research operating model built around provenance and review. It helps organize questions, sources, claims, uncertainty, and decision logs without creating clinical, legal, or financial authority.',
+    relatedSystems: ['sis', 'agentic-student-os'],
+    commands: [],
+    color: 'sky',
+  },
+  {
+    id: 'family-intelligence-os',
+    name: 'Family Intelligence OS',
+    slug: 'family-intelligence-os',
+    tier: 'tier-2-substrate',
+    layer: 'L5-substrate',
+    repo: 'family-intelligence-os',
+    publicUrl: 'https://github.com/frankxai/family-intelligence-os',
+    repoUrl: 'https://github.com/frankxai/family-intelligence-os',
+    status: 'live',
+    shipped: 'ongoing',
+    summary: 'Open patterns for preserving source-backed family stories while keeping family data private.',
+    description:
+      'A public code and workflow layer for family-safe capture, provenance, access boundaries, story records, and durable exports. The repository is public; family histories and records are not.',
+    relatedSystems: ['sis', 'agentic-life-os'],
+    commands: [],
+    color: 'amber',
   },
   {
     id: 'arcanea',
@@ -608,6 +701,43 @@ export const ecosystemEntries: EcosystemEntry[] = [
     color: 'emerald',
   },
 
+  {
+    id: 'agentic-student-os',
+    name: 'Agentic Student OS',
+    slug: 'agentic-student-os',
+    tier: 'tier-1-frankx-surface',
+    layer: 'L4-public-face',
+    repo: 'frankx',
+    publicUrl: 'https://frankx.ai/ecosystem/agentic-student-os',
+    repoUrl: null,
+    status: 'scaffolded',
+    shipped: '2026-07-11 (public blueprint)',
+    summary: 'A student operating-system blueprint for study loops, research capture, technical projects, and thesis work.',
+    description:
+      'Turns lectures, source queues, repo state, drafts, and supervisor feedback into reviewable workflows. Capability packs cover computer science projects, medical study evidence review, and thesis preparation with explicit human gates for high-stakes judgment.',
+    relatedSystems: ['acos', 'library-frankx-surface', 'watch-os'],
+    commands: ['/student-os', '/study-loop', '/thesis-system'],
+    color: 'emerald',
+  },
+  {
+    id: 'agentic-life-os',
+    name: 'Agentic Life OS',
+    slug: 'agentic-life-os',
+    tier: 'tier-1-frankx-surface',
+    layer: 'L4-public-face',
+    repo: 'agentic-life-os',
+    publicUrl: 'https://frankx.ai/ecosystem/agentic-life-os',
+    repoUrl: null,
+    status: 'active',
+    shipped: 'ongoing (private operator suite)',
+    summary: 'A personal operating-system blueprint for commitments, knowledge, money admin, health routines, and legacy records.',
+    description:
+      'Applies the FrankX Layer Model to personal operations: calendars, inboxes, recurring admin, asset records, health routines, knowledge capture, and family-safe decision logs. It organizes facts and routes review; it does not replace professional advice.',
+    relatedSystems: ['pp-swarm', 'acos', 'frankx-os-meta'],
+    commands: ['/life-os', '/personal-ops', '/money-admin', '/legacy-graph'],
+    color: 'sky',
+  },
+
   // ─── Tier 4 — Ops tooling (PP swarm) ────────────────────────────────────
   {
     id: 'pp-swarm',
@@ -658,6 +788,14 @@ export function getRelated(id: string): EcosystemEntry[] {
   if (!entry) return []
   return entry.relatedSystems.map((rid) => getEntry(rid)).filter((e): e is EcosystemEntry => !!e)
 }
+
+export function isPublicEcosystemEntry(entry: EcosystemEntry): boolean {
+  if (typeof entry.publicListing === 'boolean') return entry.publicListing
+  if (entry.tier === 'tier-3-operational' || entry.tier === 'tier-4-ops-tooling') return false
+  return entry.tier === 'tier-1-frankx-surface' || Boolean(entry.repoUrl)
+}
+
+export const publicEcosystemEntries = ecosystemEntries.filter(isPublicEcosystemEntry)
 
 export const ECOSYSTEM_TIERS: { id: EcosystemTier; label: string; description: string }[] = [
   {

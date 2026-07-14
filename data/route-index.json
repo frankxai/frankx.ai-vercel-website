@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 792,
+    "total": 794,
     "aliases": 15,
     "byType": {
       "core": 22,
-      "section": 395,
+      "section": 397,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -4303,6 +4303,28 @@
       "type": "section"
     },
     {
+      "href": "/ecosystem/agentic-life-os",
+      "title": "Agentic Life OS",
+      "tags": [
+        "ecosystem",
+        "agentic",
+        "life",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ecosystem/agentic-student-os",
+      "title": "Agentic Student OS",
+      "tags": [
+        "ecosystem",
+        "agentic",
+        "student",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/enterprise",
       "title": "Enterprise",
       "tags": [
@@ -6111,33 +6133,6 @@
       "type": "section"
     },
     {
-      "href": "/path/aesthete",
-      "title": "Aesthete",
-      "tags": [
-        "path",
-        "aesthete"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/path/operator",
-      "title": "Operator",
-      "tags": [
-        "path",
-        "operator"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/path/seeker",
-      "title": "Seeker",
-      "tags": [
-        "path",
-        "seeker"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/peak-performance",
       "title": "Peak Performance",
       "tags": [
@@ -7401,6 +7396,39 @@
       "type": "section"
     },
     {
+      "href": "/v/ai-architecture",
+      "title": "AI Architecture",
+      "tags": [
+        "ai",
+        "architecture"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/v/animelegends",
+      "title": "Animelegends",
+      "tags": [
+        "animelegends"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/v/gencreator",
+      "title": "Gencreator",
+      "tags": [
+        "gencreator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/v/motion",
+      "title": "Motion",
+      "tags": [
+        "motion"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/v0",
       "title": "V0",
       "tags": [
@@ -7456,15 +7484,6 @@
       "title": "Vibe",
       "tags": [
         "vibe"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/vibe-os",
-      "title": "Vibe OS",
-      "tags": [
-        "vibe",
-        "os"
       ],
       "type": "section"
     },

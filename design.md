@@ -51,3 +51,10 @@ To generate the Landing Hero:
 2. If replacement is needed, run `nano_banana_pro` with the prompt in `C:\Users\frank\starlight\higgsfield\experiments\frankx-landing-hero.md`.
 3. Generate a 2K draft, review, and upscale to 4K using `upscale_image`.
 4. Log preflight, generation, result URL, and next action in the global [ledger.jsonl](file:///C:/Users/frank/starlight/higgsfield/ledger.jsonl).
+
+<!-- STARLIGHT-REPO-CONTRACT:START -->
+## Starlight repository contract
+
+Contract: `starlight.repo_profile.v2` · Team: `frankx-product-revenue-team` · Priority: `tier-0`
+Use the Premium Intelligence Web OS and the repo's brand pack. Build static hierarchy first; add motion only after composition works. Require real product/proof or high-fidelity assets, provenance, desktop/mobile/reduced-motion inspection, accessibility, performance, and a minimum 26/30 visual quality score.
+<!-- STARLIGHT-REPO-CONTRACT:END -->

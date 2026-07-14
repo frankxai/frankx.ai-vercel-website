@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-04T12:30:18.563Z",
-  "totalAssets": 1512,
-  "totalCollections": 53,
-  "totalSize": 1288801791,
+  "generatedAt": "2026-07-09T16:23:48.776Z",
+  "totalAssets": 1515,
+  "totalCollections": 55,
+  "totalSize": 1293222920,
   "formats": {
-    "png": 826,
+    "png": 828,
+    "jpg": 136,
     "svg": 347,
     "webp": 194,
-    "jpg": 135,
     "jpeg": 10
   },
   "collections": [
@@ -20896,6 +20896,36 @@
       ]
     },
     {
+      "id": "agentic-life-os",
+      "name": "Agentic Life Os",
+      "description": "Visual assets from the Agentic Life Os collection.",
+      "count": 1,
+      "coverImage": "/images/agentic-life-os/dna-execution.jpg",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "agentic-life-os/dna-execution",
+          "filename": "dna-execution.jpg",
+          "src": "/images/agentic-life-os/dna-execution.jpg",
+          "thumbnail": null,
+          "collection": "agentic-life-os",
+          "format": "jpg",
+          "width": 2752,
+          "height": 1536,
+          "fileSize": 3427023,
+          "title": "Dna Execution",
+          "tags": [
+            "agentic-life-os",
+            "dna",
+            "execution"
+          ],
+          "createdAt": "2026-07-04"
+        }
+      ]
+    },
+    {
       "id": "alea",
       "name": "Alea",
       "description": "Visual assets from the Alea collection.",
@@ -23021,6 +23051,54 @@
             "triptych"
           ],
           "createdAt": "2026-05-28"
+        }
+      ]
+    },
+    {
+      "id": "property-intelligence",
+      "name": "Property Intelligence",
+      "description": "Visual assets from the Property Intelligence collection.",
+      "count": 2,
+      "coverImage": "/images/property-intelligence/portal-desktop.png",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "property-intelligence/portal-desktop",
+          "filename": "portal-desktop.png",
+          "src": "/images/property-intelligence/portal-desktop.png",
+          "thumbnail": null,
+          "collection": "property-intelligence",
+          "format": "png",
+          "width": 1440,
+          "height": 1000,
+          "fileSize": 831667,
+          "title": "Portal Desktop",
+          "tags": [
+            "property-intelligence",
+            "portal",
+            "desktop"
+          ],
+          "createdAt": "2026-06-30"
+        },
+        {
+          "id": "property-intelligence/portal-mobile",
+          "filename": "portal-mobile.png",
+          "src": "/images/property-intelligence/portal-mobile.png",
+          "thumbnail": null,
+          "collection": "property-intelligence",
+          "format": "png",
+          "width": 390,
+          "height": 900,
+          "fileSize": 162439,
+          "title": "Portal Mobile",
+          "tags": [
+            "property-intelligence",
+            "portal",
+            "mobile"
+          ],
+          "createdAt": "2026-06-30"
         }
       ]
     },

@@ -225,3 +225,28 @@ Guidelines for using this skill effectively.
 ---
 
 *All AI agents in the FrankX ecosystem share this skills library.*
+
+<!-- STARLIGHT-REPO-CONTRACT:START -->
+## Starlight repository contract
+
+Contract: `starlight.repo_profile.v2` · Team: `frankx-product-revenue-team` · Priority: `tier-0`
+### Required routing
+
+- Team profile: `frankx-product-revenue-team`
+- Skills:
+- `product`
+- `product-development`
+- `checkout-revenue`
+- `analytics-growth-ops`
+- `creator-revenue`
+- Plugins:
+- `product-development-agent-os`
+- `frankx-product-revenue`
+- Tools:
+- `github`
+- `vercel`
+- `posthog`
+- `sentry`
+
+Actual skills live under `skills/<name>/SKILL.md`. This file is an inventory; do not create a root `skill.md`.
+<!-- STARLIGHT-REPO-CONTRACT:END -->
