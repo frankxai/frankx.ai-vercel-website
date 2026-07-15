@@ -29,13 +29,14 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: [
+          // Training and broad content-ingestion crawlers remain blocked.
+          // Visitor-triggered answer engines (ChatGPT-User, Claude-User,
+          // PerplexityBot) follow the public rule above so Library pages can
+          // be retrieved and cited without opting the site into model training.
           'GPTBot',
-          'ChatGPT-User',
           'CCBot',
           'ClaudeBot',
-          'Claude-User',
           'Google-Extended',
-          'PerplexityBot',
           'FacebookBot',
           'Meta-ExternalAgent',
         ],

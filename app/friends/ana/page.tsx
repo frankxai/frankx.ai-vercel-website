@@ -1,273 +1,281 @@
-import Link from "next/link";
+import Link from 'next/link'
 import {
   ArrowRight,
   BriefcaseBusiness,
   CheckCircle2,
   Compass,
   ExternalLink,
-  Heart,
-  Lock,
-  MessagesSquare,
-  Shield,
-  Sparkles,
+  HeartHandshake,
+  LayoutDashboard,
+  MapPinned,
+  Network,
+  PackageCheck,
+  ShieldCheck,
   Users,
-} from "lucide-react";
-import { createMetadata } from "@/lib/seo";
+} from 'lucide-react'
+
+import { anaLinks } from '@/data/ana-collaboration'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
+import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: "Ana Cecilia Cancino | Friend of FrankX",
+  title: 'Ana Cecilia Cancino | Collaboration Review',
   description:
-    "A public-safe friend page for Ana Cecilia Cancino, connecting her HR, psychology, self-knowledge, and AI companion work to a practical business system.",
-  path: "/friends/ana",
+    'A guided collaboration space for Ana Cancino: review the HR operations proposal, team handoffs, and next-step ideas with Frank.',
+  path: '/friends/ana',
   noindex: true,
-});
+})
 
 const publicSignals = [
   {
     icon: BriefcaseBusiness,
-    title: "People and hiring work",
-    copy: "Ana's public profiles point to talent acquisition, recruiting, HR, and people work across tech teams and remote companies.",
+    title: 'Structured recruiting',
+    detail:
+      'Ana has a real sequence for discovery, role definition, offers, recruiting delivery, invoicing, and client handoff.',
   },
   {
-    icon: Heart,
-    title: "Psychology and self-knowledge",
-    copy: "Her own site frames the work around soul, body, psychology, faith, and clearer inner dialogue.",
+    icon: Users,
+    title: 'Distributed-team leadership',
+    detail:
+      'Ana’s public work shows hands-on people operations, recruiting, and distributed-team coordination at Dasbanq.',
   },
   {
-    icon: MessagesSquare,
-    title: "Quiet AI companions",
-    copy: "Her site already presents AI companions as reflective guides, not as noisy automation mascots.",
+    icon: HeartHandshake,
+    title: 'Human judgment stays central',
+    detail:
+      'The system can prepare and check the work. Ana and her clients remain accountable for people, price, and send decisions.',
   },
-];
+] as const
 
-const howFrankxHelps = [
-  "Turn the existing offers into repeatable scripts, intake questions, letters, and follow-up flows.",
-  "Package her research and reading into a content library that can become posts, guides, sessions, and small products.",
-  "Give her agent briefs she can use with Codex, Claude, or ACOS without needing to become technical first.",
-  "Keep public language careful until Ana approves biography, quotes, testimonials, and deeper personal details.",
-];
-
-const nextYear = [
-  ["Now", "Clarify the three core offers and install a simple intake + follow-up system."],
-  ["90 days", "Run the first guided circle, collect feedback, and turn repeated questions into a paid guide."],
-  ["6 months", "Create a light digital shop: reflection cards, session templates, reading paths, and workshop prompts."],
-  ["12 months", "Run remote-friendly sessions, circles, team workshops, and digital products around her travel rhythm."],
-];
+const anaJourney = [
+  {
+    step: '01',
+    icon: Compass,
+    status: 'Start here',
+    title: 'The working proposal',
+    detail: 'Review the client path, responsibility boundaries, focused 30-day validation, and the questions that still need Ana’s judgment.',
+    href: anaLinks.teamPlan,
+  },
+  {
+    step: '02',
+    icon: LayoutDashboard,
+    status: 'Optional preview',
+    title: 'The shared-workspace concept',
+    detail: 'See how one calm view could connect active work, templates, research, invoices, and handoffs while private records stay in approved systems.',
+    href: anaLinks.privateWorkspace,
+  },
+  {
+    step: '03',
+    icon: PackageCheck,
+    status: 'Ready for safe practice',
+    title: 'The current HR workflow',
+    detail: 'Open the team guide and run one fictional engagement before connecting templates or live client work.',
+    href: anaLinks.kitDownload,
+  },
+  {
+    step: '04',
+    icon: MapPinned,
+    status: 'Idea for discussion',
+    title: 'A Tallinn working session',
+    detail: 'Compare the strongest 90-minute formats, inspect what participants would leave with, and decide whether one deserves a carefully scoped pilot.',
+    href: anaLinks.tallinnFoundry,
+  },
+  {
+    step: '05',
+    icon: HeartHandshake,
+    status: 'Future decision',
+    title: 'The Cecilia concept',
+    detail: 'Explore whether a client-facing companion could strengthen Ana’s work, and compare the identity, ownership, privacy, and commercial choices first.',
+    href: anaLinks.ceciliaRoom,
+  },
+  {
+    step: '06',
+    icon: Network,
+    status: 'Technical reference',
+    title: 'How the technical layer is governed',
+    detail: 'Inspect the source-backed Vercel, Railway, and GCP patterns Frank uses when reliability, privacy, and clear ownership matter.',
+    href: anaLinks.architectureAtlas,
+  },
+] as const
 
 export default function AnaFriendPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#080706] text-[#fff8ea]">
-      <section className="relative overflow-hidden px-5 pb-16 pt-28 md:px-10 md:pb-24 md:pt-32">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_16%,rgba(212,165,116,0.22),transparent_34%),radial-gradient(circle_at_82%_20%,rgba(31,95,74,0.24),transparent_32%),radial-gradient(circle_at_60%_84%,rgba(107,58,31,0.18),transparent_38%),linear-gradient(135deg,#080706_0%,#13100b_48%,#07120f_100%)]" />
-        <div className="absolute left-[9%] top-32 -z-10 h-56 w-56 rounded-full border border-[#d4a574]/10 bg-[#d4a574]/[0.045] blur-3xl" />
-        <div className="absolute bottom-10 right-[8%] -z-10 h-72 w-72 rounded-full border border-[#1f5f4a]/10 bg-[#1f5f4a]/[0.08] blur-3xl" />
+    <main className="min-h-screen overflow-hidden bg-ana-obsidian text-ana-cream">
+      <section className="relative isolate overflow-hidden px-5 pb-16 pt-28 sm:px-8 md:pb-24 md:pt-36 lg:px-12">
+        <div className="absolute inset-0 -z-20 bg-ana-aurora" />
+        <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-ana-gold/[0.55] to-transparent" />
 
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.82fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.06fr_0.94fr] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4a574]/30 bg-[#d4a574]/10 px-4 py-2 text-xs font-bold text-[#f5edd8] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
-              <Sparkles className="h-4 w-4" />
-              Friend profile - public-safe draft
+            <div className="inline-flex items-center gap-2 rounded-full border border-ana-gold/25 bg-ana-gold/[0.09] px-4 py-2 text-xs font-semibold tracking-[0.08em] text-ana-cream">
+              <HeartHandshake className="h-4 w-4" aria-hidden="true" />
+              Ana × FrankX · Working collaboration
             </div>
-            <h1 className="max-w-5xl text-balance text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
-              Ana Cecilia Cancino
+
+            <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
+              Ana built the method. This makes the handoffs lighter.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#fff8ea]/76 md:text-xl">
-              Ana's own site stays the center of her voice. FrankX adds the
-              bridge: a way to turn HR, psychology, faith, embodiment, and
-              self-knowledge work into offers, follow-up, content, and a
-              travel-friendly AI-assisted business.
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-ana-cream/70 md:text-xl">
+              Ana's strength is the care and judgment behind her recruiting and client work. This collaboration makes the shared rhythm easier to see: clear ownership, trusted templates, visible decisions, and reliable handoffs.
             </p>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-[#fff8ea]/52">
-              Para Ana: sencillo, util, sin hype. No fake quotes. Just a clear
-              path from what she already does to offers she can repeat, improve,
-              and carry with her.
+            <p className="mt-4 max-w-2xl border-l border-ana-gold/[0.35] pl-4 text-sm leading-6 text-ana-cream/[0.72]">
+              Para Ana y su equipo: el método ya existe. Ahora podemos hacerlo más fácil de compartir, revisar y mejorar juntos.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/allies/ana-cancino"
-                className="inline-flex items-center gap-2 rounded-full bg-[#f5edd8] px-5 py-3 text-sm font-black text-[#0e0e0f] shadow-[0_20px_70px_rgba(212,165,116,0.18)] transition hover:bg-[#d4a574]"
-              >
-                See her business system
-                <ArrowRight className="h-4 w-4" />
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-6 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ana-obsidian">
+                Review the working proposal
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link
-                href="/downloads/ana-ai-business-kit"
-                className="inline-flex items-center gap-2 rounded-full border border-[#f5edd8]/20 bg-[#f5edd8]/[0.055] px-5 py-3 text-sm font-bold text-[#fff8ea] backdrop-blur-xl transition hover:border-[#f5edd8]/45 hover:bg-[#f5edd8]/10"
-              >
-                Download starter kit
-              </Link>
-              <a
-                href="https://www.anaceciliacancino.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[#d4a574]/25 bg-[#d4a574]/10 px-5 py-3 text-sm font-bold text-[#f5edd8] backdrop-blur-xl transition hover:border-[#d4a574]/45 hover:bg-[#d4a574]/15"
-              >
-                Ana's site
-                <ExternalLink className="h-4 w-4" />
+              <a href={anaLinks.website} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-white/[0.045] px-6 py-3 text-sm font-semibold text-ana-cream/[0.78] transition hover:border-white/[0.35] hover:text-ana-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold">
+                Visit Ana's site
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           </div>
 
-          <aside className="relative rounded-[2.7rem] border border-[#f5edd8]/12 bg-[#f5edd8]/[0.065] p-5 shadow-[0_34px_130px_rgba(0,0,0,0.46)] backdrop-blur-2xl">
-            <div className="rounded-[2.25rem] border border-[#f5edd8]/10 bg-black/25 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]">
-              <div className="grid h-24 w-24 place-items-center rounded-[2.2rem] border border-[#d4a574]/28 bg-[linear-gradient(145deg,rgba(212,165,116,0.24),rgba(31,95,74,0.18),rgba(255,255,255,0.05))] text-3xl font-black text-[#f5edd8]">
-                Ana
-              </div>
-              <div className="mt-7">
-                <p className="text-xs font-bold text-[#d4a574]">
-                  Existing center
-                </p>
-                <h2 className="mt-3 text-3xl font-black tracking-tight">
-                  Soul, people, clarity, and work that can travel.
-                </h2>
-                <p className="mt-4 text-sm leading-6 text-[#fff8ea]/64">
-                  Her site already has a quiet world: offers, companions,
-                  research, and a personal language. This page respects that and
-                  gives it a business operating layer.
-                </p>
-              </div>
-              <div className="mt-7 grid gap-3">
-                {["No fabricated quotes", "No invented credentials", "Approval before indexing"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3 rounded-full border border-[#f5edd8]/10 bg-black/22 px-4 py-3 text-sm text-[#fff8ea]/72"
-                    >
-                      <Shield className="h-4 w-4 text-[#d4a574]" />
-                      {item}
-                    </div>
-                  ),
-                )}
-              </div>
+          <aside aria-label="What changed" className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.055] p-4 shadow-[0_36px_130px_rgba(0,0,0,0.44)] backdrop-blur-2xl sm:p-5">
+            <div className="rounded-[2.05rem] border border-white/[0.09] bg-black/[0.24] p-5 sm:p-7">
+              <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">What becomes easier</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight">Everyone sees the same client path.</h2>
+              <p className="mt-4 text-sm leading-6 text-ana-cream/[0.58]">
+                Your team already knows the work. This shared layer makes the current stage, owner, open decision, and approval visible without replacing the tools or judgment you trust.
+              </p>
+
+              <dl className="mt-7 divide-y divide-white/[0.09] border-y border-white/[0.09]">
+                {[
+                  ['01', 'Shared view', 'One current stage, owner, next action, and due date.'],
+                  ['02', 'Clear decisions', 'Ana and client approvals stay explicit at every consequential step.'],
+                  ['03', 'Safe start', 'Begin with a fictional case before using templates or live records.'],
+                ].map(([number, label, value]) => (
+                  <div key={number} className="grid gap-2 py-4 sm:grid-cols-[2.5rem_5.5rem_1fr] sm:items-start">
+                    <dt className="font-mono text-xs text-ana-gold">{number}</dt>
+                    <dt className="text-xs font-semibold tracking-[0.06em] text-white/40">{label}</dt>
+                    <dd className="text-sm leading-6 text-ana-cream/[0.68]">{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </aside>
         </div>
       </section>
 
-      <section className="px-5 py-14 md:px-10 md:py-20">
+      <section className="px-5 py-16 sm:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-9 max-w-3xl">
-            <p className="text-sm font-bold text-[#d4a574]">
-              What is already real
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">What we are building from</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Ana's existing way of working is the foundation.</h2>
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.58]">
+              This collaboration begins with what Ana has already made visible: thoughtful people operations, a clear recruiting sequence, and human judgment. Any deeper profile, client story, or future offer remains hers to review before it appears.
             </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
-              Start from her current language.
-            </h2>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
-            {publicSignals.map((signal) => {
-              const Icon = signal.icon;
+          <div className="mt-10 grid border-y border-white/10 md:grid-cols-3 md:divide-x md:divide-white/10">
+            {publicSignals.map((signal, index) => {
+              const Icon = signal.icon
               return (
-                <article
-                  key={signal.title}
-                  className="rounded-[2.25rem] border border-[#f5edd8]/10 bg-[#f5edd8]/[0.045] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.30)] backdrop-blur-2xl"
-                >
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#d4a574]/25 bg-[#d4a574]/10">
-                    <Icon className="h-6 w-6 text-[#d4a574]" />
+                <article key={signal.title} className={`py-7 md:px-7 md:py-9 ${index > 0 ? 'border-t border-white/10 md:border-t-0' : ''}`}>
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl border border-ana-gold/[0.22] bg-ana-gold/[0.08] text-ana-gold">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <h3 className="text-lg font-semibold">{signal.title}</h3>
                   </div>
-                  <h3 className="mt-5 text-xl font-black tracking-tight">{signal.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#fff8ea]/62">{signal.copy}</p>
+                  <p className="mt-4 text-sm leading-6 text-ana-cream/[0.58]">{signal.detail}</p>
                 </article>
-              );
+              )
+            })}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={anaLinks.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.12] px-4 py-2 text-sm font-semibold text-ana-cream/[0.64] transition hover:border-white/30 hover:text-ana-cream">
+              Ana on LinkedIn
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+            <a href={anaLinks.kitStart} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.12] px-4 py-2 text-sm font-semibold text-ana-cream/[0.64] transition hover:border-white/30 hover:text-ana-cream">
+              Open the HR Operations start guide
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-12" aria-labelledby="ana-journey-title">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">Choose where to begin</p>
+            <h2 id="ana-journey-title" className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
+              Start with the decision in front of you. Explore the rest when it becomes useful.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-ana-cream/[0.62]">
+              The working proposal is the clearest first step. The other paths are there when you want to inspect the practical workflow, the Tallinn idea, a longer partnership, or the technical foundations.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {anaJourney.map((item) => {
+              const Icon = item.icon
+              return (
+                <TrackedLink
+                  key={item.href}
+                  href={item.href}
+                  eventName="ana_journey_room_open"
+                  eventProperties={{ step: item.step, destination: item.href }}
+                  className="group flex min-h-64 flex-col rounded-[1.8rem] border border-white/[0.10] bg-white/[0.035] p-5 transition hover:-translate-y-0.5 hover:border-ana-gold/[0.38] hover:bg-white/[0.055] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ana-gold motion-reduce:hover:translate-y-0"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-mono text-xs text-ana-gold">{item.step}</span>
+                    <span className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-ana-cream/[0.55]">{item.status}</span>
+                  </div>
+                  <Icon className="mt-9 h-6 w-6 text-ana-gold" aria-hidden="true" />
+                  <h3 className="mt-5 text-xl font-semibold text-ana-cream">{item.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-ana-cream/[0.56]">{item.detail}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ana-cream/[0.78] group-hover:text-ana-cream">
+                    Explore
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" aria-hidden="true" />
+                  </span>
+                </TrackedLink>
+              )
             })}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-14 md:px-10 md:py-20">
-        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-          <article className="rounded-[2.6rem] border border-[#d4a574]/18 bg-[linear-gradient(145deg,rgba(212,165,116,0.13),rgba(255,255,255,0.04),rgba(31,95,74,0.10))] p-6 shadow-[0_30px_110px_rgba(0,0,0,0.36)] backdrop-blur-2xl md:p-8">
-            <div className="flex items-center gap-3 text-sm font-bold text-[#d4a574]">
-              <Compass className="h-5 w-5" />
-              FrankX role
-            </div>
-            <h2 className="mt-5 text-3xl font-black tracking-tight md:text-4xl">
-              Make the work easier to repeat without flattening the work.
-            </h2>
-            <p className="mt-4 text-base leading-7 text-[#fff8ea]/66">
-              The goal is not to turn Ana into a software company. The goal is
-              to give her a simple system: better intake, better sessions,
-              better follow-up, better content reuse, and products that can
-              earn while she travels.
+      <section className="px-5 pb-20 sm:px-8 md:pb-28 lg:px-12">
+        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-ana-panel lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="p-6 sm:p-8 lg:p-10">
+            <p className="text-xs font-semibold tracking-[0.08em] text-ana-gold">The practical promise</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">Keep the standards. Reduce the coordination effort.</h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-ana-cream/[0.62]">
+              Begin with one shared client path, keep private records in approved systems, work from copies of trusted templates, and make every consequential decision visible to the right person.
             </p>
-          </article>
-
-          <div className="grid gap-3">
-            {howFrankxHelps.map((item, index) => (
-              <div
-                key={item}
-                className="grid gap-3 rounded-[1.8rem] border border-[#f5edd8]/10 bg-black/25 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:grid-cols-[auto_1fr]"
-              >
-                <span className="font-mono text-xs text-[#d4a574]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="text-sm leading-6 text-[#fff8ea]/70">{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-14 md:px-10 md:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-9 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-bold text-[#d4a574]">
-                Next year
-              </p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
-                A freedom engine, in normal words.
-              </h2>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href={anaLinks.teamPlan} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ana-cream px-5 py-3 text-sm font-semibold text-ana-obsidian transition hover:bg-white">
+                Review the proposal
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link href={anaLinks.ceciliaRoom} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.16] bg-black/[0.15] px-5 py-3 text-sm font-semibold text-ana-cream/75 transition hover:border-white/[0.35] hover:text-ana-cream">
+                Explore the longer-term idea
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
-            <Link
-              href="/downloads/ana-ai-business-kit"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-[#f5edd8]/18 bg-[#f5edd8]/[0.055] px-5 py-3 text-sm font-bold text-[#fff8ea] transition hover:border-[#f5edd8]/40 hover:bg-[#f5edd8]/10"
-            >
-              Open the kit
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-4">
-            {nextYear.map(([time, copy]) => (
-              <article
-                key={time}
-                className="rounded-[2rem] border border-[#f5edd8]/10 bg-[#f5edd8]/[0.045] p-5 backdrop-blur-2xl"
-              >
-                <p className="font-mono text-xs font-bold text-[#d4a574]">
-                  {time}
-                </p>
-                <p className="mt-4 text-sm leading-6 text-[#fff8ea]/70">{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 pb-16 pt-6 md:px-10 md:pb-24">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2.6rem] border border-[#f5edd8]/12 bg-[#08120f]/74 p-6 shadow-[0_34px_120px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:flex-row md:items-center md:justify-between md:p-8">
-          <div>
-            <div className="flex items-center gap-2 text-sm font-bold text-[#fff8ea]/45">
-              <Lock className="h-4 w-4" />
-              Approval boundary
+          <aside className="border-t border-white/10 bg-black/20 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+            <div className="flex items-center gap-3 text-ana-gold">
+              <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+              <span className="text-xs font-semibold tracking-[0.08em]">Ana remains in control</span>
             </div>
-            <h2 className="mt-3 text-3xl font-black tracking-tight">
-              Shareable now. Search-hidden until Ana approves.
-            </h2>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-[#fff8ea]/66">
-              The page only uses public-safe framing. Direct words from Ana,
-              deeper personal story, client examples, and indexing wait for her
-              review.
+            <p className="mt-5 text-lg leading-7 text-ana-cream/[0.72]">
+              This unlisted page contains non-confidential proposal material only. Any biography, client example, testimonial, identity decision, or public launch stays with Ana.
             </p>
-          </div>
-          <div className="flex items-center gap-3 rounded-full border border-[#d4a574]/20 bg-[#d4a574]/10 px-5 py-3 text-sm font-bold text-[#f5edd8]">
-            <CheckCircle2 className="h-4 w-4" />
-            Noindex first
-          </div>
+            <div className="mt-6 flex items-center gap-2 text-sm text-ana-cream/[0.48]">
+              <CheckCircle2 className="h-4 w-4 text-emerald-200" aria-hidden="true" />
+              Public facts and proposal language only
+            </div>
+          </aside>
         </div>
       </section>
     </main>
-  );
+  )
 }

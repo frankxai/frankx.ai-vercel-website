@@ -46,11 +46,14 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
+  // Pre-build only the first published chapter per book (26 pages instead of 135).
+  // All other chapters are rendered on demand — dynamicParams defaults to true.
+  // Chapter content is read from filesystem at request time (readFileSync below),
+  // which works correctly in Vercel serverless functions.
   const params: { bookSlug: string; chapterSlug: string }[] = [];
   for (const book of booksRegistry) {
-    for (const chapter of book.chapters.filter((c) => c.published)) {
-      params.push({ bookSlug: book.slug, chapterSlug: chapter.slug });
-    }
+    const first = book.chapters.find((c) => c.published);
+    if (first) params.push({ bookSlug: book.slug, chapterSlug: first.slug });
   }
   return params;
 }

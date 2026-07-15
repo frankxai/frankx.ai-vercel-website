@@ -71,20 +71,6 @@ const activeNodes = [
     tags: ["Trinity AI", "OpenClaw", "Creator OS", "Agent swarms"],
   },
   {
-    title: "Ana AI Business Kit",
-    status: "Noindex draft",
-    color: "amber" as GlowColor,
-    href: "/allies/ana-cancino",
-    friendHref: "/friends/ana",
-    downloadHref: "/downloads/ana-ai-business-kit",
-    portalHref: "/portal/ana",
-    description:
-      "Ana Cecilia Cancino's HR, psychology, self-knowledge, research, and AI companion work organized into an offer system, client loop, and travel-friendly business engine.",
-    visitorUse:
-      "Download a starter kit and see how her existing offers become repeatable sessions, circles, workshops, and aftercare.",
-    tags: ["HR", "Psychology", "Self-knowledge", "Offers"],
-  },
-  {
     title: "Harzfenster Hospitality Intelligence",
     status: "Hospitality pilot",
     color: "teal" as GlowColor,
