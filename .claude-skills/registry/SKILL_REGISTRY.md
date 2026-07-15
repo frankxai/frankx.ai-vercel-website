@@ -1,5 +1,5 @@
 # FrankX Skill Registry
-**Version**: 3.1.0 | **Last Updated**: December 22, 2025
+**Version**: 3.2.0 | **Last Updated**: June 23, 2026
 **Architecture**: Three-Tier Lifebook System (7 Pillars)
 
 ---
@@ -169,7 +169,7 @@ Products:
 | circle | ✓ | ✓ | ✓ |
 | legacy | ✓ | ✓ | ✓ |
 
-### Technical Skills (10)
+### Technical Skills (20)
 - mcp-architecture
 - claude-sdk
 - langgraph-patterns
@@ -180,12 +180,22 @@ Products:
 - nextjs-react-expert
 - framer-expert
 - ui-ux-design-expert
+- api-design — REST/GraphQL/RPC patterns, schema design, versioning
+- async-python — asyncio patterns, concurrency, performance (mirrored from ACOS)
+- ci-cd-pipeline — GitHub Actions, deploy gates, release automation
+- creator-intelligence — creator economy intelligence and patterns
+- database-migrations — schema evolution, zero-downtime migration patterns
+- docker-containers — image design, multi-stage builds, runtime ops
+- documentation-generation — automated docs from code (TypeDoc, Sphinx, etc.)
+- monitoring-observability — metrics, logs, traces, SLOs
+- security-hardening — auth, secrets, OWASP, runtime defense
+- design-asset-intake — triage external GitHub design/UI/motion/shader libraries before wiring into the site (from claude-skills-library)
 
 ### Business Skills (2)
 - oci-services-expert
 - product-management-expert
 
-### Creative Skills (7)
+### Creative Skills (8)
 - frankx-brand
 - frankx-content
 - golden-age-book-writing
@@ -193,6 +203,7 @@ Products:
 - suno-prompt-architect
 - social-media-strategy
 - video-production-workflow
+- content-strategy — strategy, calendar, voice consistency (mirrored from ACOS)
 
 ### Personal Skills (4)
 - greek-philosopher
@@ -200,9 +211,12 @@ Products:
 - gym-training-expert
 - health-nutrition-expert
 
-### Project Skills (2)
+### Project Skills (4)
+
 - arcanea-lore
 - frankx-daily-execution
+- agentic-builder-lab — mirrored from `agentic-creator-os`. One build session → MDX log + LinkedIn draft + demo brief + Mermaid diagram + reusable prompt. Triggers: `/build-log`, "log a build", "agentic-builder-lab". Voice override: technical-authority register (overrides `frankx-brand` studio voice for this scope only).
+- epicways-client-intelligence — TheEpicWays and Estefania client-service intelligence system. Use for allies/friends pages, offer loops, leadership/workshop/event delivery, Codex/Claude skill packs, plugins, and rounded liquid partner UI. Human-first; AI backstage; no blockchain/NFT framing unless explicitly requested.
 
 ---
 

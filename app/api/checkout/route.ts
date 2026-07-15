@@ -2,19 +2,22 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
-// Product price mapping — add Stripe Price IDs when configured
+// Product price mapping — add Stripe Price IDs when configured.
+// Keys must match a real `id` in data/products.json so the webhook
+// (app/api/webhooks/stripe/route.ts) can resolve delivery via
+// lib/delivery.ts's getProductById()/getDeliveryConfig().
 const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }> = {
   'creative-ai-toolkit': {
     name: 'Creative AI Toolkit',
     priceId: process.env.STRIPE_PRICE_TOOLKIT || '',
     amount: 4700,
   },
-  'acos-creator-kit': {
+  'agentic-creator-os': {
     name: 'ACOS Creator Kit',
     priceId: process.env.STRIPE_PRICE_ACOS || '',
     amount: 4700,
   },
-  'suno-prompt-pack': {
+  'suno-prompt-library': {
     name: 'Suno Prompt Pack',
     priceId: process.env.STRIPE_PRICE_SUNO || '',
     amount: 2900,
@@ -48,6 +51,11 @@ export async function POST(request: NextRequest) {
     if (email) {
       params.append('customer_email', email)
     }
+    // The webhook (app/api/webhooks/stripe/route.ts) keys ALL post-purchase
+    // delivery off session.metadata.productSlug. Without this, buyers are
+    // charged but never receive their product email.
+    params.append('metadata[productSlug]', productId)
+    params.append('payment_intent_data[metadata][productSlug]', productId)
 
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',

@@ -295,6 +295,20 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    // Proxy frankx.ai/palace → the standalone frankx-palace deployment (React 19 +
+    // React-Three-Fiber; kept separate from this React 18 app on purpose). Guarded by
+    // PALACE_ORIGIN so the build is safe when the env var is unset (route simply 404s).
+    // The palace is served under basePath=/palace, so the path is preserved 1:1.
+    // Normalize so a trailing slash (common when pasting a Vercel URL) doesn't
+    // produce `//palace` in the destination.
+    const palaceOrigin = (process.env.PALACE_ORIGIN || '').replace(/\/+$/, '')
+    if (!palaceOrigin) return []
+    return [
+      { source: '/palace', destination: `${palaceOrigin}/palace` },
+      { source: '/palace/:path*', destination: `${palaceOrigin}/palace/:path*` },
+    ]
+  },
   outputFileTracingRoot: __dirname,
   // Belt-and-suspenders alongside .vercelignore: shrink serverless function bundles
   // by ensuring large static-asset trees never get traced into function code.
@@ -315,6 +329,16 @@ const nextConfig = {
       'v1-enterprise-backup/**',
       'public/images/**',
       'public/videos/**',
+    ],
+  },
+  // Books chapter on-demand renders need the .md content files. NFT cannot
+  // trace dynamic readFileSync(join(cwd, book.contentDir, slug+'.md')) paths,
+  // so we explicitly bundle all book .md files in the chapter Lambda.
+  // contentDir values in booksRegistry span content/books/** and content/golden-age-book/**. 2026-07-06.
+  outputFileTracingIncludes: {
+    '/books/[bookSlug]/[chapterSlug]': [
+      'content/books/**/*.md',
+      'content/golden-age-book/**/*.md',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
@@ -346,7 +370,9 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        // Strict site-wide CSP — excludes /palace, which needs a WebGL-friendly
+        // policy (see the dedicated block below).
+        source: '/((?!palace).*)',
         headers: [
           {
             key: 'Content-Security-Policy',
@@ -390,6 +416,35 @@ const nextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+      {
+        // The 3D memory palace (Three.js / React-Three-Fiber) needs WebGL: unsafe-eval,
+        // blob: workers, and Google Fonts. Scoped to /palace only — the strict
+        // policy above still governs the rest of frankx.ai.
+        // noindex: palace is an internal showcase, not a search-indexed page.
+        source: '/palace/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:",
+              "worker-src 'self' blob:",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob:",
+              "connect-src 'self' blob: data: https://fonts.googleapis.com https://fonts.gstatic.com",
+            ].join('; '),
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
           },
         ],
       },
