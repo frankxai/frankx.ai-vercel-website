@@ -28,6 +28,7 @@
     "gen:search": "node scripts/generate_search_index.mjs",
     "gen:export": "node --experimental-strip-types scripts/gen-registry-export.mjs",
     "content:index": "node scripts/generate-youtube-index.mjs",
+    "content-command:validate": "node scripts/content-command-center-validate.mjs",
     "vault:scan": "node scripts/generate-vault-manifest.mjs",
     "newsletter:index": "node scripts/generate-content-index.mjs",
     "heroes:scan": "node scripts/generate-blog-heroes.mjs",

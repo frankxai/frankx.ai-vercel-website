@@ -1,308 +1,191 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
-import { createRequire } from 'node:module'
-import { join } from 'node:path'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { extname, join } from 'node:path'
 import test from 'node:test'
-import ts from 'typescript'
 
 const root = process.cwd()
 const read = (path) => readFileSync(join(root, path), 'utf8')
 
-const registry = read('data/tallinn-experiences.ts')
-const hub = read('components/tallinn-experience/TallinnFoundryPage.tsx')
-const offer = read('components/tallinn-experience/TallinnOfferPage.tsx')
+const registry = read('data/tallinn-studio.ts')
+const studio = read('components/tallinn-experience/TallinnStudioPage.tsx')
+const amplifier = read('components/tallinn-experience/SessionAmplifier.tsx')
 const form = read('components/tallinn-experience/TallinnInterestForm.tsx')
-const route = read('app/api/tallinn-interest/route.ts')
-const service = read('lib/tallinn-interest/service.ts')
-const threshold = read('lib/tallinn-interest/threshold.ts')
+const formatPage = read('components/tallinn-experience/TallinnFormatPage.tsx')
+const missingFormat = read('app/experiences/tallinn-2026/[slug]/not-found.tsx')
+const trackedGlowButton = read('components/analytics/TrackedGlowButton.tsx')
+const canonicalRoute = read('app/experiences/tallinn-2026/page.tsx')
+const shortAliasRoute = read('app/experiences/mvu-tallinn-2026/page.tsx')
+const longAliasRoute = read('app/experiences/mindvalley-university-tallinn-2026/page.tsx')
+const formatRoute = read('app/experiences/tallinn-2026/[slug]/page.tsx')
+const workshopRegistry = read('data/workshops.ts')
+const workshopsPage = read('app/workshops/page.tsx')
+const workshopDetail = read('app/workshops/[slug]/page.tsx')
+const workshopClient = read('app/workshops/[slug]/WorkshopClient.tsx')
+const glowCard = read('components/ui/glow-card.tsx')
+const nextConfig = read('next.config.mjs')
 const worksheet = read('app/experiences/tallinn-2026/purpose-to-practice/map/page.tsx')
-const packageJson = read('package.json')
+const tailwindConfig = read('tailwind.config.js')
 
-const nodeRequire = createRequire(import.meta.url)
+function sourceFiles(path) {
+  const absolute = join(root, path)
+  if (!existsSync(absolute)) return []
+  return readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
+    const child = join(path, entry.name)
+    if (entry.isDirectory()) return sourceFiles(child)
+    return ['.ts', '.tsx', '.md', '.json'].includes(extname(entry.name)) ? [child] : []
+  })
+}
 
-function loadCaptureService() {
-  const output = ts.transpileModule(service, {
-    compilerOptions: {
-      module: ts.ModuleKind.CommonJS,
-      target: ts.ScriptTarget.ES2022,
-      esModuleInterop: true,
-    },
-    fileName: 'lib/tallinn-interest/service.ts',
-  }).outputText
-  const serviceModule = { exports: {} }
-  const requireForService = (id) => {
-    if (id === '@/lib/email-templates-tallinn') {
-      const template = { subject: 'Test', text: 'Test', html: '<p>Test</p>' }
-      return {
-        buildTallinnInterestReceipt: () => template,
-        buildTallinnOperatorNotification: () => template,
-      }
-    }
-    if (id === '@/lib/intake-types') {
-      return { INTENT_LABEL: { general: 'General Inquiry' } }
-    }
-    if (id === '@/lib/tallinn-interest/schema') return {}
-    return nodeRequire(id)
+test('public studio has five audience roles, four outcomes, and four canonical formats', () => {
+  const roles = [...registry.matchAll(/^    id: '(speaker|coach|tribe-host|venue|attendee)',/gm)]
+  const outcomes = [...registry.matchAll(/^    id: '(sharper-room|participant-artifact|useful-follow-through|new-workshop)',/gm)]
+  const formats = [...registry.matchAll(/^    slug: '(purpose-to-practice|speaker-session-amplifier|agentic-builder-lab|ai-music-creation-lab)',/gm)]
+
+  assert.equal(roles.length, 5)
+  assert.equal(outcomes.length, 4)
+  assert.equal(formats.length, 4)
+  assert.match(registry, /Proven foundation/)
+  assert.match(registry, /Studio format/)
+})
+
+test('canonical page and both requested aliases render the same public studio', () => {
+  assert.match(canonicalRoute, /<TallinnStudioPage/)
+  assert.match(shortAliasRoute, /<TallinnStudioPage/)
+  assert.match(longAliasRoute, /<TallinnStudioPage/)
+  assert.match(shortAliasRoute, /canonical: 'https:\/\/frankx\.ai\/experiences\/tallinn-2026'/)
+  assert.match(longAliasRoute, /canonical: 'https:\/\/frankx\.ai\/experiences\/tallinn-2026'/)
+  assert.match(shortAliasRoute, /noindex: true/)
+  assert.match(longAliasRoute, /noindex: true/)
+  assert.doesNotMatch(canonicalRoute, /noindex/)
+})
+
+test('public experience copy keeps the official event boundary explicit', () => {
+  assert.match(studio, /Make the room travel farther/)
+  assert.match(registry, /Not organized, sponsored, or endorsed by Mindvalley/)
+  assert.match(studio, /Official Mindvalley U 2026 artwork/)
+  assert.match(studio, /Official Mindvalley U Tallinn 2024 community image/)
+  assert.match(registry, /https:\/\/www\.mindvalley\.com\/u/)
+  assert.match(nextConfig, /hostname: 'a\.storyblok\.com'/)
+})
+
+test('session amplifier creates an immediate before, in-room, and after plan', () => {
+  assert.match(amplifier, /Before the room/)
+  assert.match(amplifier, /Inside the room/)
+  assert.match(amplifier, /After the room/)
+  assert.match(amplifier, /aria-live="polite"/)
+  assert.match(amplifier, /Core artifact/)
+  assert.match(amplifier, /role=\$\{role\}&outcome=\$\{outcome\}/)
+  assert.match(studio, /key={`amplifier:\$\{planKey\}`}/)
+  assert.match(studio, /key={`interest:\$\{planKey\}`}/)
+  assert.match(amplifier, /tallinn_amplifier_role_selected/)
+  assert.match(amplifier, /tallinn_amplifier_outcome_selected/)
+  assert.match(amplifier, /tallinn_amplifier_plan_selected/)
+})
+
+test('interest form uses the consent-based unified intake pipeline', () => {
+  assert.match(form, /fetch\('\/api\/intake'/)
+  assert.match(form, /intent: 'workshop'/)
+  assert.match(form, /name="consent"/)
+  assert.match(form, /No newsletter or unrelated marketing/)
+  assert.match(form, /<Link\s+href="\/privacy"/)
+  assert.match(form, /Tribe, project, or venue/)
+  assert.match(form, /Interest only\. No ticket, payment, or venue promise/)
+  assert.match(form, /new AbortController\(\)/)
+  assert.match(form, /controller\.abort\(\), 15_000/)
+  assert.match(form, /signal: controller\.signal/)
+  assert.match(form, /Tallinn Session Studio interest/)
+  assert.doesNotMatch(form, /Tallinn Tribe Studio/)
+  assert.doesNotMatch(form, /captureEnabled|TALLINN_CAPTURE_MODE|TALLINN_PRIVACY_NOTICE_APPROVED/)
+})
+
+test('public conversion paths are measurable and accurately labeled', () => {
+  assert.match(trackedGlowButton, /trackEvent\(eventName, eventProperties\)/)
+  assert.match(studio, /tallinn_studio_cta_clicked/)
+  assert.match(formatPage, /tallinn_format_cta_clicked/)
+  assert.match(workshopsPage, /workshop_studio_cta_clicked/)
+  assert.match(missingFormat, /tallinn_studio_recovery_clicked/)
+  assert.match(registry, /sourceLabel: 'Explore the workshop studio'/)
+  assert.match(formatPage, /\{format\.sourceLabel\}/)
+  assert.doesNotMatch(formatPage, /See the source work/)
+})
+
+test('public Tallinn source tree contains no collaborator, stay, budget, or internal demand details', () => {
+  const files = [
+    ...sourceFiles('app/experiences/tallinn-2026'),
+    ...sourceFiles('app/experiences/mvu-tallinn-2026'),
+    ...sourceFiles('app/experiences/mindvalley-university-tallinn-2026'),
+    ...sourceFiles('components/tallinn-experience'),
+    'data/tallinn-studio.ts',
+  ]
+  const publicSource = files.map((path) => `${path}\n${read(path)}`).join('\n')
+
+  for (const forbidden of [
+    /\bAna\b/i,
+    /Tallink/i,
+    /roomOnlyCapEur/i,
+    /minimumConfirmed/i,
+    /decisionWindow/i,
+    /TALLINN_TIME_WINDOWS/i,
+    /budget cap/i,
+    /staying there/i,
+    /€\s*250/,
+  ]) {
+    assert.doesNotMatch(publicSource, forbidden)
   }
+})
 
-  Function('require', 'module', 'exports', output)(
-    requireForService,
-    serviceModule,
-    serviceModule.exports,
-  )
-  return serviceModule.exports.captureTallinnInterest
-}
-
-const captureTallinnInterest = loadCaptureService()
-
-const capturePayload = {
-  fullName: 'Review Person',
-  email: 'review@example.com',
-  experienceSlug: 'purpose-to-practice',
-  variantId: 'default',
-  roleLens: 'creator',
-  attendanceIntent: 'ready-if-time-works',
-  slotIds: ['wed-0815'],
-  companyOrProject: '',
-  note: '',
-  aftercareConsent: false,
-  consentToContact: true,
-  submissionId: '00000000-0000-4000-8000-000000000001',
-  website: '',
-}
-
-const captureEnvironment = {
-  notionToken: 'test-notion-token',
-  notionDatabaseId: 'test-database',
-  resendApiKey: 'test-resend-key',
-  operatorEmail: 'operator@example.com',
-}
-
-function createMemoryIdempotency({ completeResult = true } = {}) {
-  const states = new Map()
-  return {
-    states,
-    async reserve(key, token, startedAt) {
-      if (states.has(key)) return false
-      states.set(key, { status: 'pending', token, startedAt })
-      return true
-    },
-    async get(key) {
-      return states.get(key) ?? null
-    },
-    async complete(key, token, recordId, completedAt) {
-      const current = states.get(key)
-      if (!current || current.token !== token) return false
-      if (!completeResult) return false
-      states.set(key, { status: 'completed', token, recordId, completedAt })
-      return true
-    },
-    async recover(key, token, recordId, completedAt) {
-      if (!states.has(key)) return false
-      states.set(key, { status: 'completed', token, recordId, completedAt })
-      return true
-    },
+test('obsolete public planning and dedicated Tallinn capture files are removed', () => {
+  for (const path of [
+    'data/tallinn-experiences.ts',
+    'components/tallinn-experience/TallinnFoundryPage.tsx',
+    'components/tallinn-experience/TallinnOfferPage.tsx',
+    'app/api/tallinn-interest/route.ts',
+    'lib/email-templates-tallinn.ts',
+    'docs/specs/tallinn-experience-operations-2026-07-14.md',
+    'docs/specs/tallinn-purpose-to-practice-facilitator-pack-2026-07-14.md',
+  ]) {
+    assert.equal(existsSync(join(root, path)), false, `${path} should not remain public`)
   }
-}
-
-function createCaptureFetch({ writeStatus = 200 } = {}) {
-  const calls = []
-  const fetchImpl = async (url, init) => {
-    calls.push({ url: String(url), method: init?.method })
-    if (String(url).includes('/databases/')) {
-      return new Response(JSON.stringify({ results: [] }), { status: 200 })
-    }
-    if (String(url).endsWith('/pages')) {
-      return new Response(JSON.stringify({ id: 'notion-record-1' }), {
-        status: writeStatus,
-      })
-    }
-    if (String(url).includes('api.resend.com/emails')) {
-      return new Response(JSON.stringify({ id: 'email-1' }), { status: 200 })
-    }
-    throw new Error(`Unexpected URL: ${url}`)
-  }
-  return { calls, fetchImpl }
-}
-
-test('registry exposes exactly ten unique offer routes and five ranked reviews', () => {
-  const slugs = [...registry.matchAll(/\n\s{4}slug: '([^']+)'/g)].map((match) => match[1])
-  assert.equal(slugs.length, 10)
-  assert.equal(new Set(slugs).size, 10)
-
-  const reviewRanks = [...registry.matchAll(/\n\s{4}reviewRank: ([1-5]),/g)]
-    .map((match) => Number(match[1]))
-    .sort((a, b) => a - b)
-  assert.deepEqual(reviewRanks, [1, 2, 3, 4, 5])
 })
 
-test('hub and offer pages preserve operational truth and affiliation boundary', () => {
-  assert.match(registry, /not affiliated with, sponsored by, or endorsed by Mindvalley/)
-  assert.match(registry, /Possible venue only · nothing is reserved/)
-  assert.match(hub, /TALLINN_EVENT\.independenceNotice/)
-  assert.match(offer, /TALLINN_EVENT\.independenceNotice/)
-  assert.match(hub, /Nothing is booked yet/)
-  assert.match(offer, /No room has been reserved/)
-  assert.match(hub, /Leave Tallinn with one clear plan you can use the next morning/)
-  assert.match(hub, /What matters/)
-  assert.match(hub, /Practical result/)
-  assert.match(hub, /Weekly rhythm/)
-  assert.match(hub, /Team use/)
+test('workshop catalog separates delivered work from studio architectures', () => {
+  assert.match(workshopsPage, /Delivered by Frank/)
+  assert.match(workshopsPage, /Personally developed \+ delivered/)
+  assert.match(workshopsPage, /Delivered, studio-assisted/)
+  assert.match(workshopsPage, /Studio drafts/)
+  assert.match(workshopRegistry, /slug: 'ikigai-branding',[\s\S]*provenance: 'delivered-personal'/)
+  assert.match(workshopRegistry, /slug: 'build-first-ai-agent',[\s\S]*provenance: 'delivered-studio-assisted'/)
+  assert.match(workshopDetail, /workshop\.provenance/)
+  assert.match(workshopClient, /workshop\.provenance === 'studio-draft'/)
+  assert.match(workshopsPage, /Workshop registry requires one personally delivered workshop/)
+  assert.doesNotMatch(workshopDetail, /EventScheduled|CourseJsonLd|EventJsonLd/)
+  assert.match(workshopDetail, /Workshop Studio/)
 })
 
-test('review mode hides the form, stores nothing, sends nothing, and creates no marketing audience', () => {
-  assert.match(route, /TALLINN_CAPTURE_MODE === 'live'/)
-  assert.match(route, /TALLINN_PRIVACY_NOTICE_APPROVED === 'true'/)
-  assert.match(form, /if \(!captureEnabled\)/)
-  assert.match(form, /Interest collection is not open yet/)
-  assert.match(route, /No data was stored and no email was sent/)
-  assert.doesNotMatch(form, /test@example\.com|Simulate request/)
-  assert.doesNotMatch(route, /test@example\.com|Preview simulation passed/)
-  assert.doesNotMatch(service, /audiences|contacts|newsletter/i)
-  assert.match(form, /not be added to a newsletter or used for unrelated marketing/)
+test('Tallinn surfaces use shared void, surface, and aurora tokens', () => {
+  const publicSurfaces = [studio, amplifier, form, formatPage, workshopsPage].join('\n')
+
+  assert.match(tailwindConfig, /'tallinn-aurora'/)
+  assert.match(tailwindConfig, /'workshop-aurora'/)
+  assert.match(tailwindConfig, /'studio-continuation'/)
+  assert.match(publicSurfaces, /bg-void/)
+  assert.match(publicSurfaces, /surface-2/)
+  assert.doesNotMatch(publicSurfaces, /bg-\[#0|ring-offset-\[#0|bg-\[radial-gradient/)
 })
 
-test('attendee copy assumes no collaborator role and excludes internal market language', () => {
-  assert.match(registry, /No role is assumed/)
-  assert.match(hub, /No role assumed/)
-  assert.doesNotMatch(registry, /producer by default|thought-leadership route|people-work pipeline/i)
-  assert.doesNotMatch(hub, /Outcome router|Demand signal|market variants|smuggle people/i)
-  assert.doesNotMatch(offer, /Host architecture|Operational truth|demand clears the gate/i)
+test('format routes preserve legacy URLs through safe public aliases', () => {
+  assert.match(registry, /TALLINN_LEGACY_FORMAT_ALIASES/)
+  assert.match(formatRoute, /generateStaticParams/)
+  assert.match(formatRoute, /TALLINN_PUBLIC_ROUTE_SLUGS/)
+  assert.match(formatRoute, /canonical: `https:\/\/frankx\.ai\/experiences\/tallinn-2026\/\$\{format\.slug\}`/)
 })
 
-test('request safety, identity fallback, and CRM classification are release-gated', () => {
-  assert.match(route, /readJsonWithinLimit\(request, MAX_BODY_BYTES\)/)
-  assert.match(route, /request\.body\.getReader\(\)/)
-  assert.doesNotMatch(route, /request\.json\(\)/)
-  assert.match(route, /errorName: safeErrorName\(error\)/)
-  assert.doesNotMatch(route, /unexpected error['"], error/)
-  assert.match(form, /function createSubmissionId\(\)/)
-  assert.match(form, /cryptoApi\?\.getRandomValues/)
-  assert.match(form, /Choose at least one possible time\./)
-  assert.match(service, /INTENT_LABEL\.general/)
-  assert.doesNotMatch(service, /Workshop \(1-day team build\)/)
-  assert.match(packageJson, /"test:collaboration-release"/)
-  assert.match(packageJson, /"merge:gate": "npm run test:homepage-release && npm run test:collaboration-release/)
-  assert.match(packageJson, /"merge:gate:ci": "npm run test:homepage-release && npm run test:collaboration-release/)
-})
-
-test('capacity and participant artifact promises match each selected experience', () => {
-  assert.match(registry, /capacity: '8–10 people',\s*roomCapacityTarget: 10,/)
-  assert.equal((registry.match(/roomCapacityTarget: 12,/g) ?? []).length, 10)
-  assert.match(threshold, /experience\.slug === experienceSlug/)
-  assert.match(threshold, /\?\.roomCapacityTarget/)
-  assert.match(registry, /A two-page Purpose-to-Practice Plan/)
-})
-
-test('the print route isolates the worksheet without hiding the Next.js root', () => {
+test('motion-sensitive glow behavior and print isolation remain safe', () => {
+  assert.match(glowCard, /useReducedMotion/)
+  assert.match(glowCard, /shouldReduceMotion \? undefined/)
+  assert.match(glowCard, /motion-reduce:transition-none/)
+  assert.doesNotMatch(glowCard, /as any|as unknown as/)
   assert.match(worksheet, /body \* \{ visibility: hidden; \}/)
   assert.match(worksheet, /#tallinn-worksheet, #tallinn-worksheet \* \{ visibility: visible; \}/)
   assert.doesNotMatch(worksheet, /body > \*:not\(#main\)/)
-})
-
-test('live capture stores first and sends only transactional mail afterward', () => {
-  const createIndex = service.indexOf('createRecord(payload')
-  const receiptIndex = service.indexOf('buildTallinnInterestReceipt(payload)')
-  assert.ok(createIndex > -1)
-  assert.ok(receiptIndex > createIndex)
-  assert.match(service, /Source/)
-  assert.match(service, /submissionId/)
-})
-
-test('capture behavior reserves, stores, finalizes, and only then sends mail', async () => {
-  const idempotency = createMemoryIdempotency()
-  const { calls, fetchImpl } = createCaptureFetch()
-  const result = await captureTallinnInterest(capturePayload, captureEnvironment, {
-    fetchImpl,
-    idempotency,
-    createReservationToken: () => 'reservation-1',
-    now: () => new Date('2026-07-14T12:00:00.000Z'),
-  })
-
-  assert.equal(result.stored, true)
-  assert.equal(result.duplicate, false)
-  assert.equal(result.receiptSent, true)
-  assert.equal(result.operatorNotified, true)
-  assert.equal(calls.filter((call) => call.url.endsWith('/pages')).length, 1)
-  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 2)
-  assert.ok(
-    calls.findIndex((call) => call.url.endsWith('/pages')) <
-      calls.findIndex((call) => call.url.includes('api.resend.com/emails')),
-  )
-  assert.equal([...idempotency.states.values()][0].status, 'completed')
-})
-
-test('a failed Notion write sends no mail and leaves the reservation fail-closed', async () => {
-  const idempotency = createMemoryIdempotency()
-  const { calls, fetchImpl } = createCaptureFetch({ writeStatus: 500 })
-  const result = await captureTallinnInterest(capturePayload, captureEnvironment, {
-    fetchImpl,
-    idempotency,
-    createReservationToken: () => 'reservation-1',
-  })
-
-  assert.equal(result.stored, false)
-  assert.equal(result.error, 'notion-write-failed')
-  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 0)
-  assert.equal([...idempotency.states.values()][0].status, 'pending')
-})
-
-test('a failed reservation finalization sends no mail and remains fail-closed', async () => {
-  const idempotency = createMemoryIdempotency({ completeResult: false })
-  const { calls, fetchImpl } = createCaptureFetch()
-  const result = await captureTallinnInterest(capturePayload, captureEnvironment, {
-    fetchImpl,
-    idempotency,
-    createReservationToken: () => 'reservation-1',
-  })
-
-  assert.equal(result.stored, true)
-  assert.equal(result.pending, true)
-  assert.equal(result.error, 'reservation-finalize-failed')
-  assert.equal(result.receiptSent, false)
-  assert.equal(result.operatorNotified, false)
-  assert.equal(calls.filter((call) => call.url.endsWith('/pages')).length, 1)
-  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 0)
-  assert.equal([...idempotency.states.values()][0].status, 'pending')
-})
-
-test('concurrent retries allow one Notion write and one pair of transactional emails', async () => {
-  const idempotency = createMemoryIdempotency()
-  const { calls, fetchImpl } = createCaptureFetch()
-  const first = captureTallinnInterest(capturePayload, captureEnvironment, {
-    fetchImpl,
-    idempotency,
-    createReservationToken: () => 'reservation-1',
-  })
-  const second = captureTallinnInterest(capturePayload, captureEnvironment, {
-    fetchImpl,
-    idempotency,
-    createReservationToken: () => 'reservation-2',
-  })
-  const results = await Promise.all([first, second])
-
-  assert.equal(results.filter((result) => result.stored && !result.duplicate).length, 1)
-  assert.equal(results.filter((result) => result.duplicate).length, 1)
-  assert.equal(calls.filter((call) => call.url.endsWith('/pages')).length, 1)
-  assert.equal(calls.filter((call) => call.url.includes('api.resend.com/emails')).length, 2)
-})
-
-test('external capture endpoints are centralized and have one canonical source', () => {
-  assert.match(service, /const NOTION_API_BASE = 'https:\/\/api\.notion\.com\/v1'/)
-  assert.match(service, /const RESEND_EMAILS_URL = 'https:\/\/api\.resend\.com\/emails'/)
-  assert.equal((service.match(/https:\/\/api\.notion\.com\/v1/g) ?? []).length, 1)
-  assert.equal((service.match(/https:\/\/api\.resend\.com\/emails/g) ?? []).length, 1)
-  assert.match(service, /`\$\{NOTION_API_BASE\}\/databases\/\$\{env\.notionDatabaseId\}\/query`/)
-  assert.match(service, /`\$\{NOTION_API_BASE\}\/pages`/)
-  assert.match(service, /fetchWithTimeout\(fetchImpl, RESEND_EMAILS_URL/)
-})
-
-test('unlisted routes remain noindex and generate all ten static paths', () => {
-  const hubRoute = read('app/experiences/tallinn-2026/page.tsx')
-  const offerRoute = read('app/experiences/tallinn-2026/[slug]/page.tsx')
-  assert.match(hubRoute, /noindex: true/)
-  assert.match(offerRoute, /noindex: true/)
-  assert.match(hubRoute, /TALLINN_PRIVACY_NOTICE_APPROVED === 'true'/)
-  assert.match(offerRoute, /TALLINN_PRIVACY_NOTICE_APPROVED === 'true'/)
-  assert.match(offerRoute, /generateStaticParams/)
 })

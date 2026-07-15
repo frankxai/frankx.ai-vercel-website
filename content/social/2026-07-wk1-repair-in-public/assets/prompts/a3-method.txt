@@ -1,0 +1,20 @@
+## CONCEPT
+Method-slide background: an agent sweeping a site graph and finding the broken nodes — the campaign's "browses like a first-time visitor" idea as an abstract visualization.
+
+## COMPOSITION
+Portrait. An abstract sitemap graph of thin luminous nodes and edges occupying the lower two-thirds, a single bright cyan scanning line sweeping diagonally across it. Most nodes dim cyan-white; exactly three nodes glow in a muted red-orange warning tone (#e2725b-range, sparingly — reserved strictly for broken status). Upper third stays dark and clear for typography.
+
+## SCENE
+Graph suspended behind smoked black glass with a sense of depth, intelligence-console world.
+
+## LIGHTING
+Nodes and scan line are the only light sources; soft bloom, deep black surround.
+
+## PALETTE
+Void black (#0a0a0b) base, dim cyan nodes, emerald (#10b981) accents, muted warning tone reserved for exactly 3 flagged nodes, cyan (#06b6d4) scan line. (v2 Tech-spectrum correction, 2026-07-04.)
+
+## MOOD
+Precise, methodical, quietly forensic.
+
+## STYLE REFERENCES
+FrankX brand world: constellation graph, signal field. No text, no labels, no people, no cartoon elements.

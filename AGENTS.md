@@ -138,6 +138,8 @@ Every operating decision composes into one of six layers. Full doctrine in `CLAU
 
 The weekly cadence walks all six. Skipping L4 produces the LLM-slop output the site refuses to ship. Skipping L6 produces a one-way street.
 
+**The automated spine.** 7 always-on cloud routines (CCR) walk this loop without Frank's machine on — daily research pulse, Sunday fan-out, Friday newsletter, Saturday hub audit, monthly dependency audit, weekly Vercel cost watch. `docs/ops/SCHEDULED-ROUTINES.md` is the fleet's source of truth for every scheduled automation: read it before creating, changing, or reasoning about one, and add a table row in the same change. **Durable-output-sink law:** every routine must leave a PR, a committed file, or a Slack DM — never report-only into run-history. Agents cannot toggle web-UI-created routines (API rejects it); those are Frank's to manage at https://claude.ai/code/routines.
+
 ---
 
 ## 5c. Antigravity-Native Swarm Orchestration (added 2026-05-29)
@@ -270,3 +272,14 @@ For any website, app, landing page, dashboard, brand surface, visual asset, moti
 
 Repo-local instructions remain authoritative when stricter.
 <!-- PREMIUM-WEB-OS:END -->
+
+<!-- STARLIGHT-REPO-CONTRACT:START -->
+## Starlight repository contract
+
+Contract: `starlight.repo_profile.v2` · Team: `frankx-product-revenue-team` · Priority: `tier-0`
+- Work only in assigned paths and preserve unrelated dirty files.
+- Read `SYSTEM.md`, `SCHEMA.md`, and `SKILLS.md` before architectural changes.
+- Use the smallest 3–5 role team and an independent verifier for release-affecting work.
+- Required handoff: artifacts, checks, verifier verdict, risks, approvals, rollback, and next bounded action.
+- Human-gated actions: DNS, secrets, billing, spend, migrations, destructive operations, permissions, legal/IP, brand identity, external sends, and high-risk production changes.
+<!-- STARLIGHT-REPO-CONTRACT:END -->

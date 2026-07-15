@@ -1,102 +1,29 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { ArrowRight, CheckCircle2, Loader2, ShieldCheck } from 'lucide-react'
+import Link from 'next/link'
+import { useState } from 'react'
+import { ArrowRight, CheckCircle2, Mail } from 'lucide-react'
 
 import {
-  TALLINN_TIME_WINDOWS,
-  TALLINN_VALIDATION_GATE,
-} from '@/data/tallinn-experiences'
-import {
-  TALLINN_ATTENDANCE_INTENTS,
-  TALLINN_ROLE_LENSES,
-} from '@/lib/tallinn-interest/options'
+  TALLINN_AMPLIFIER_OUTCOMES,
+  TALLINN_AMPLIFIER_ROLES,
+  type TallinnAmplifierOutcome,
+  type TallinnAmplifierRole,
+} from '@/data/tallinn-studio'
 import { trackEvent } from '@/lib/analytics'
 
-interface FormExperience {
-  slug: string
-  title: string
-}
-
 interface TallinnInterestFormProps {
-  experiences: readonly FormExperience[]
-  defaultExperienceSlug: string
-  lockExperience?: boolean
-  captureEnabled: boolean
-}
-
-const roleLabel: Record<(typeof TALLINN_ROLE_LENSES)[number], string> = {
-  creator: 'Creator',
-  'solo-founder': 'Solo founder',
-  'team-leader': 'Team leader',
-  'people-ops': 'People / HR',
-  other: 'Other',
-}
-
-const intentLabel: Record<(typeof TALLINN_ATTENDANCE_INTENTS)[number], string> = {
-  exploring: 'Interested, still deciding',
-  likely: 'Likely if the session fits',
-  'ready-if-time-works': 'Ready if a listed time works',
-}
-
-const VARIANT_ID_RE = /^[a-z0-9-]{1,60}$/
-
-function safeVariant() {
-  const params = new URLSearchParams(window.location.search)
-  const candidate = params.get('variant') || params.get('ref') || 'default'
-  return VARIANT_ID_RE.test(candidate) ? candidate : 'default'
-}
-
-function createSubmissionId() {
-  const cryptoApi = typeof window !== 'undefined' ? window.crypto : undefined
-  if (typeof cryptoApi?.randomUUID === 'function') return cryptoApi.randomUUID()
-
-  const bytes = new Uint8Array(16)
-  if (typeof cryptoApi?.getRandomValues === 'function') {
-    cryptoApi.getRandomValues(bytes)
-  } else {
-    for (let index = 0; index < bytes.length; index += 1) {
-      bytes[index] = Math.floor(Math.random() * 256)
-    }
-  }
-
-  bytes[6] = (bytes[6] & 0x0f) | 0x40
-  bytes[8] = (bytes[8] & 0x3f) | 0x80
-  const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0'))
-  return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10).join('')}`
+  defaultRole?: TallinnAmplifierRole
+  defaultOutcome?: TallinnAmplifierOutcome
 }
 
 export function TallinnInterestForm({
-  experiences,
-  defaultExperienceSlug,
-  lockExperience = false,
-  captureEnabled,
+  defaultRole = 'speaker',
+  defaultOutcome = 'participant-artifact',
 }: TallinnInterestFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
   const [message, setMessage] = useState<string | null>(null)
-  const submissionId = useRef<string | null>(null)
-
-  if (!captureEnabled) {
-    return (
-      <div
-        role="status"
-        className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.06] p-6 text-amber-50 sm:p-7"
-      >
-        <div className="flex items-start gap-3">
-          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" aria-hidden="true" />
-          <div>
-            <h3 className="text-lg font-semibold text-white">Interest collection is not open yet.</h3>
-            <p className="mt-3 text-sm leading-6 text-amber-50/90">
-              The concept is under review. No form is active, and nothing on this page will be stored or sent. To comment, reply directly to the person who shared this link.
-            </p>
-            <p className="mt-3 text-xs leading-5 text-amber-100/65">
-              No personal data will be stored and no email will be sent from this page.
-            </p>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  const [ackSent, setAckSent] = useState(false)
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -105,284 +32,253 @@ export function TallinnInterestForm({
 
     const form = event.currentTarget
     const data = new FormData(form)
-    submissionId.current ||= createSubmissionId()
+    const role = String(data.get('role') || defaultRole) as TallinnAmplifierRole
+    const outcome = String(data.get('outcome') || defaultOutcome) as TallinnAmplifierOutcome
+    const roleLabel = TALLINN_AMPLIFIER_ROLES.find((item) => item.id === role)?.label ?? role
+    const outcomeLabel =
+      TALLINN_AMPLIFIER_OUTCOMES.find((item) => item.id === outcome)?.label ?? outcome
+    const context = String(data.get('context') || '').trim()
 
     const payload = {
-      fullName: String(data.get('fullName') || ''),
+      intent: 'workshop',
+      name: String(data.get('name') || ''),
       email: String(data.get('email') || ''),
-      experienceSlug: String(data.get('experienceSlug') || defaultExperienceSlug),
-      variantId: safeVariant(),
-      roleLens: String(data.get('roleLens') || ''),
-      attendanceIntent: String(data.get('attendanceIntent') || ''),
-      slotIds: data.getAll('slotIds').map(String),
-      companyOrProject: String(data.get('companyOrProject') || ''),
-      note: String(data.get('note') || ''),
-      aftercareConsent: data.get('aftercareConsent') === 'on',
-      consentToContact: data.get('consentToContact') === 'on',
-      submissionId: submissionId.current,
+      company: String(data.get('company') || ''),
+      source: window.location.pathname,
+      message: [
+        'Tallinn Session Studio interest',
+        `Role: ${roleLabel}`,
+        `Desired outcome: ${outcomeLabel}`,
+        `Context: ${context || '(not provided)'}`,
+      ].join('\n'),
       website: String(data.get('website') || ''),
+      consent: data.get('consent') === 'on',
     }
 
-    if (payload.slotIds.length === 0) {
-      setStatus('error')
-      setMessage('Choose at least one possible time.')
-      return
-    }
-
-    trackEvent('tallinn_interest_submit_attempted', {
-      experience_slug: payload.experienceSlug,
-      variant_id: payload.variantId,
-      role_lens: payload.roleLens,
-      attendance_intent: payload.attendanceIntent,
-      slot_count: payload.slotIds.length,
-      capture_mode: captureEnabled ? 'live' : 'review',
+    trackEvent('tallinn_studio_interest_attempted', {
+      role,
+      outcome,
     })
 
+    const controller = new AbortController()
+    const timeoutId = window.setTimeout(() => controller.abort(), 15_000)
+
     try {
-      const response = await fetch('/api/tallinn-interest', {
+      const response = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       })
       const json = await response.json().catch(() => ({}))
-      if (response.ok && json.ok) {
-        trackEvent('tallinn_interest_submit_succeeded', {
-          experience_slug: payload.experienceSlug,
-          variant_id: payload.variantId,
-          capture_mode: json.reviewMode ? 'review' : 'live',
-          duplicate: Boolean(json.duplicate),
-        })
-        setStatus('done')
-        setMessage(json.message || 'Thank you — we received your interest.')
-        form.reset()
-        submissionId.current = null
-      } else {
-        trackEvent('tallinn_interest_submit_failed', {
-          experience_slug: payload.experienceSlug,
-          variant_id: payload.variantId,
-          stage: 'provider_response',
-          status_code: response.status,
-        })
-        setStatus('error')
-        setMessage(json.error || 'Something went wrong. Please try again.')
+
+      if (!response.ok || !json.ok) {
+        throw new Error(json.error || 'Something went wrong. Please try again.')
       }
-    } catch {
-      trackEvent('tallinn_interest_submit_failed', {
-        experience_slug: payload.experienceSlug,
-        variant_id: payload.variantId,
-        stage: 'network',
+
+      trackEvent('tallinn_studio_interest_succeeded', { role, outcome })
+      setAckSent(Boolean(json.ackSent))
+      setStatus('done')
+      form.reset()
+    } catch (error) {
+      const timedOut = error instanceof DOMException && error.name === 'AbortError'
+      trackEvent('tallinn_studio_interest_failed', {
+        role,
+        outcome,
+        reason: timedOut ? 'timeout' : 'request_error',
       })
       setStatus('error')
-      setMessage('We could not send this right now. Please try again or email frank@frankx.ai.')
+      setMessage(
+        timedOut
+          ? 'The request timed out. Please try again or email frank@frankx.ai.'
+          : error instanceof Error
+          ? error.message
+          : 'We could not send this right now. Please email frank@frankx.ai.',
+      )
+    } finally {
+      window.clearTimeout(timeoutId)
     }
   }
 
   if (status === 'done') {
     return (
-      <div role="status" aria-live="polite" className="py-4 text-center">
-        <CheckCircle2 className="mx-auto h-9 w-9 text-emerald-300" aria-hidden="true" />
-        <h3 className="mt-4 font-display text-2xl font-semibold text-white">
-          Thank you — we received your interest.
+      <div role="status" aria-live="polite" className="py-8 text-center">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-300" aria-hidden="true" />
+        <h3 className="mt-5 font-display text-3xl font-semibold tracking-[-0.025em] text-white">
+          Your signal reached Frank.
         </h3>
-        <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-300">{message}</p>
-        <p className="mx-auto mt-3 max-w-lg text-xs leading-5 text-slate-500">
-          We will contact you only if at least {TALLINN_VALIDATION_GATE.minimumConfirmed} people confirm the same time. This is still not a booking.
+        <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-300">
+          {ackSent
+            ? 'A confirmation is in your inbox. A real reply follows within 1–2 working days.'
+            : 'A real reply follows within 1–2 working days.'}
         </p>
+        <button
+          type="button"
+          onClick={() => setStatus('idle')}
+          className="mt-6 text-sm font-semibold text-cyan-300 underline decoration-cyan-300/30 underline-offset-4 hover:decoration-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+        >
+          Share another idea
+        </button>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {lockExperience ? (
-        <input type="hidden" name="experienceSlug" value={defaultExperienceSlug} />
-      ) : (
+      <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="experienceSlug" className="block text-sm font-semibold text-white">
-            Session you are interested in
+          <label htmlFor="tallinn-role" className="block text-sm font-semibold text-white">
+            I am here as a…
           </label>
           <select
-            id="experienceSlug"
-            name="experienceSlug"
-            defaultValue={defaultExperienceSlug}
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-[#0a0d12] px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+            id="tallinn-role"
+            name="role"
+            defaultValue={defaultRole}
+            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-space px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           >
-            {experiences.map((experience) => (
-              <option key={experience.slug} value={experience.slug}>
-                {experience.title}
+            {TALLINN_AMPLIFIER_ROLES.map((role) => (
+              <option key={role.id} value={role.id}>
+                {role.label}
               </option>
             ))}
           </select>
         </div>
-      )}
+        <div>
+          <label htmlFor="tallinn-outcome" className="block text-sm font-semibold text-white">
+            I want to create…
+          </label>
+          <select
+            id="tallinn-outcome"
+            name="outcome"
+            defaultValue={defaultOutcome}
+            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-space px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+          >
+            {TALLINN_AMPLIFIER_OUTCOMES.map((outcome) => (
+              <option key={outcome.id} value={outcome.id}>
+                {outcome.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="fullName" className="block text-sm font-semibold text-white">Name</label>
+          <label htmlFor="tallinn-name" className="block text-sm font-semibold text-white">
+            Name
+          </label>
           <input
-            id="fullName"
-            name="fullName"
+            id="tallinn-name"
+            name="name"
             required
             maxLength={200}
             autoComplete="name"
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
             placeholder="Your name"
+            className="surface-2 mt-2 min-h-12 w-full rounded-xl border border-white/10 px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-white">Email</label>
+          <label htmlFor="tallinn-email" className="block text-sm font-semibold text-white">
+            Email
+          </label>
           <input
-            id="email"
+            id="tallinn-email"
             name="email"
             type="email"
             required
             maxLength={200}
             autoComplete="email"
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
-            placeholder="you@company.com"
+            placeholder="you@example.com"
+            className="surface-2 mt-2 min-h-12 w-full rounded-xl border border-white/10 px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
           />
         </div>
       </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="roleLens" className="block text-sm font-semibold text-white">Your role</label>
-          <select
-            id="roleLens"
-            name="roleLens"
-            required
-            defaultValue=""
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-[#0a0d12] px-4 text-sm text-white focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
-          >
-            <option value="" disabled>Choose one</option>
-            {TALLINN_ROLE_LENSES.map((role) => (
-              <option key={role} value={role}>{roleLabel[role]}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="companyOrProject" className="block text-sm font-semibold text-white">
-            Company or project <span className="font-normal text-slate-500">(optional)</span>
-          </label>
-          <input
-            id="companyOrProject"
-            name="companyOrProject"
-            maxLength={200}
-            autoComplete="organization"
-            className="mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
-            placeholder="What you are building"
-          />
-        </div>
-      </div>
-
-      <fieldset>
-        <legend className="text-sm font-semibold text-white">How likely are you to attend?</legend>
-        <div className="mt-3 grid gap-2 sm:grid-cols-3">
-          {TALLINN_ATTENDANCE_INTENTS.map((intent) => (
-            <label key={intent} className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-slate-300 has-[:checked]:border-emerald-300/55 has-[:checked]:bg-emerald-300/[0.08] has-[:checked]:text-white">
-              <input
-                type="radio"
-                name="attendanceIntent"
-                value={intent}
-                required
-                className="h-4 w-4 border-white/30 bg-transparent text-emerald-400 focus:ring-emerald-300/60"
-              />
-              {intentLabel[intent]}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend className="text-sm font-semibold text-white">Which times could work?</legend>
-        <p className="mt-1 text-xs leading-5 text-slate-500">Choose every provisional time that could work. The official Mindvalley University agenda takes priority.</p>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {TALLINN_TIME_WINDOWS.map((slot) => (
-            <label key={slot.id} className="flex min-h-12 cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-6 text-slate-300 has-[:checked]:border-cyan-300/55 has-[:checked]:bg-cyan-300/[0.08] has-[:checked]:text-white">
-              <input
-                type="checkbox"
-                name="slotIds"
-                value={slot.id}
-                className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-cyan-400 focus:ring-cyan-300/60"
-              />
-              {slot.label}
-            </label>
-          ))}
-        </div>
-      </fieldset>
 
       <div>
-        <label htmlFor="note" className="block text-sm font-semibold text-white">
-          What do you want to leave with? <span className="font-normal text-slate-500">(optional)</span>
+        <label htmlFor="tallinn-company" className="block text-sm font-semibold text-white">
+          Tribe, project, or venue <span className="font-normal text-slate-500">(optional)</span>
+        </label>
+        <input
+          id="tallinn-company"
+          name="company"
+          maxLength={200}
+          autoComplete="organization"
+          placeholder="Who or what is behind the room?"
+          className="surface-2 mt-2 min-h-12 w-full rounded-xl border border-white/10 px-4 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="tallinn-context" className="block text-sm font-semibold text-white">
+          What should Frank understand? <span className="font-normal text-slate-500">(optional)</span>
         </label>
         <textarea
-          id="note"
-          name="note"
-          maxLength={800}
-          rows={4}
-          aria-describedby="note-guidance"
-          className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
-          placeholder="One useful outcome is enough. Please do not include health or therapy details."
+          id="tallinn-context"
+          name="context"
+          maxLength={2400}
+          rows={5}
+          placeholder="Your audience, existing session, venue, idea, constraints, or the result you want people to leave with."
+          className="surface-2 mt-2 w-full resize-y rounded-xl border border-white/10 px-4 py-3 text-sm leading-6 text-white placeholder:text-slate-600 focus:border-cyan-300/60 focus:outline-none focus:ring-1 focus:ring-cyan-300/60"
         />
-        <p id="note-guidance" className="mt-2 text-xs leading-5 text-slate-500">
-          Please do not include health information or private candidate, employee, client, or therapy details.
+        <p className="mt-2 text-xs leading-5 text-slate-500">
+          Do not include private participant, health, employment, or therapy information.
         </p>
       </div>
 
       <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="website">Website</label>
-        <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+        <label htmlFor="tallinn-website">Website</label>
+        <input id="tallinn-website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="space-y-3 border-t border-white/10 pt-5">
-        <label className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-300">
-          <input
-            name="consentToContact"
-            type="checkbox"
-            required
-            className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-cyan-400 focus:ring-cyan-300/60"
-          />
-          <span>
-            I agree that FrankX may use and store the details I submit only to assess and coordinate this proposed Tallinn session and contact me about it. My details will not be added to a newsletter or used for unrelated marketing. I can request access or deletion at frank@frankx.ai. See the{' '}
-            <a href="/privacy" className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">Privacy Notice</a>.
-          </span>
-        </label>
-        <label className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-400">
-          <input
-            name="aftercareConsent"
-            type="checkbox"
-            className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-emerald-400 focus:ring-emerald-300/60"
-          />
-          <span>If the session runs, send me the completed materials and one session-related check-in seven days later.</span>
-        </label>
-      </div>
+      <label className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-300">
+        <input
+          name="consent"
+          type="checkbox"
+          required
+          className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-cyan-400 focus:ring-cyan-300/60"
+        />
+        <span>
+          I agree that FrankX may store these details only to respond to this interest. No newsletter or unrelated marketing without a separate opt-in. See the{' '}
+          <Link
+            href="/privacy"
+            className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
+          >
+            Privacy Notice
+          </Link>
+          .
+        </span>
+      </label>
 
       {status === 'error' && message ? (
-        <p role="alert" className="rounded-xl border border-rose-300/25 bg-rose-300/[0.06] px-4 py-3 text-sm leading-6 text-rose-100">
-          {message}
-        </p>
+        <div role="alert" className="rounded-xl border border-rose-300/25 bg-rose-300/[0.06] px-4 py-3 text-sm leading-6 text-rose-100">
+          <p>{message}</p>
+          <a
+            href="mailto:frank@frankx.ai?subject=Tallinn%20Session%20Studio"
+            className="mt-2 inline-flex items-center gap-2 font-semibold text-white underline decoration-white/30 underline-offset-4"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            Email Frank instead
+          </a>
+        </div>
       ) : null}
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
         >
           {status === 'submitting' ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin motion-reduce:animate-none" aria-hidden="true" />
-              Sending…
-            </>
+            'Sending…'
           ) : (
             <>
-              Share my interest
+              Register interest
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </>
           )}
         </button>
         <p className="text-xs leading-5 text-slate-500">
-          This only shares your interest. It is not a ticket, booking, or payment.
+          Interest only. No ticket, payment, or venue promise.
         </p>
       </div>
     </form>
