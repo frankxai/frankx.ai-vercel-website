@@ -1,16 +1,16 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 823,
+    "total": 819,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 389,
+      "section": 391,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 202,
-      "workshop": 18,
+      "workshop": 12,
       "guide": 20,
       "library": 41,
       "newsletter": 1,
@@ -4329,10 +4329,12 @@
       "type": "section"
     },
     {
-      "href": "/experiences/tallinn-2026",
-      "title": "Tallinn 2026",
+      "href": "/experiences/mindvalley-university-tallinn-2026",
+      "title": "Mindvalley University Tallinn 2026",
       "tags": [
         "experiences",
+        "mindvalley",
+        "university",
         "tallinn",
         "2026"
       ],
@@ -4340,74 +4342,47 @@
       "sitemap": false
     },
     {
-      "href": "/experiences/tallinn-2026/agentic-creator-studio",
-      "title": "Agentic Creator Studio",
+      "href": "/experiences/mvu-tallinn-2026",
+      "title": "Mvu Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mvu",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026",
+      "title": "Tallinn 2026",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/experiences/tallinn-2026/agentic-builder-lab",
+      "title": "Build Your First AI Agent",
       "tags": [
         "agentic",
-        "creator",
-        "studio"
+        "builder",
+        "lab"
       ],
-      "type": "workshop",
-      "sitemap": false
+      "type": "workshop"
     },
     {
-      "href": "/experiences/tallinn-2026/build-your-agentic-team",
-      "title": "Build Your Agentic Team",
+      "href": "/experiences/tallinn-2026/ai-music-creation-lab",
+      "title": "AI Music Creation Lab",
       "tags": [
-        "build",
-        "your",
-        "agentic",
-        "team"
-      ],
-      "type": "workshop",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/calm-work-architecture",
-      "title": "Calm Work Architecture",
-      "tags": [
-        "calm",
-        "work",
-        "architecture"
-      ],
-      "type": "workshop",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/founder-integration-salon",
-      "title": "Founder Integration Salon",
-      "tags": [
-        "founder",
-        "integration",
-        "salon"
-      ],
-      "type": "workshop",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/human-agent-team-charter",
-      "title": "Human + Agent Team Charter",
-      "tags": [
-        "human",
-        "agent",
-        "team",
-        "charter"
-      ],
-      "type": "workshop",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/personal-ai-coe-one-page",
-      "title": "Personal AI CoE on One Page",
-      "tags": [
-        "personal",
         "ai",
-        "coe",
-        "one",
-        "page"
+        "music",
+        "creation",
+        "lab"
       ],
-      "type": "workshop",
-      "sitemap": false
+      "type": "workshop"
     },
     {
       "href": "/experiences/tallinn-2026/purpose-to-practice",
@@ -4417,8 +4392,7 @@
         "to",
         "practice"
       ],
-      "type": "workshop",
-      "sitemap": false
+      "type": "workshop"
     },
     {
       "href": "/experiences/tallinn-2026/purpose-to-practice/map",
@@ -4436,38 +4410,14 @@
       "sitemap": false
     },
     {
-      "href": "/experiences/tallinn-2026/purpose-without-performance",
-      "title": "Purpose Without Performance",
+      "href": "/experiences/tallinn-2026/speaker-session-amplifier",
+      "title": "Speaker Session Amplifier",
       "tags": [
-        "purpose",
-        "without",
-        "performance"
+        "speaker",
+        "session",
+        "amplifier"
       ],
-      "type": "workshop",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/role-clarity-agent-era",
-      "title": "Role Clarity in the Agent Era",
-      "tags": [
-        "role",
-        "clarity",
-        "agent",
-        "era"
-      ],
-      "type": "workshop",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/voice-before-volume",
-      "title": "Voice Before Volume",
-      "tags": [
-        "voice",
-        "before",
-        "volume"
-      ],
-      "type": "workshop",
-      "sitemap": false
+      "type": "workshop"
     },
     {
       "href": "/experiments",

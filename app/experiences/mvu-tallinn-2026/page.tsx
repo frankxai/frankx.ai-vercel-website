@@ -6,17 +6,19 @@ import {
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Tallinn Session Studio — Make the room travel farther',
+  title: 'Tallinn Session Studio — Independent companion concept',
   description:
-    'An independent Tallinn session studio for speakers, coaches, tribe hosts, venues, and attendees. Shape a live idea into a participant artifact and useful follow-through.',
-  path: '/experiences/tallinn-2026',
+    'An independent FrankX session studio for people gathering in Tallinn during Mindvalley U 2026.',
+  path: '/experiences/mvu-tallinn-2026',
+  canonical: 'https://frankx.ai/experiences/tallinn-2026',
+  noindex: true,
 })
 
-interface TallinnStudioRouteProps {
+interface TallinnAliasRouteProps {
   searchParams: Promise<{ role?: string; outcome?: string }>
 }
 
-export default async function TallinnStudioRoute({ searchParams }: TallinnStudioRouteProps) {
+export default async function TallinnAliasRoute({ searchParams }: TallinnAliasRouteProps) {
   const { role, outcome } = await searchParams
 
   return (

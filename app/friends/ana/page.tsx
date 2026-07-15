@@ -7,7 +7,6 @@ import {
   ExternalLink,
   HeartHandshake,
   LayoutDashboard,
-  MapPinned,
   Network,
   PackageCheck,
   ShieldCheck,
@@ -74,14 +73,6 @@ const anaJourney = [
   },
   {
     step: '04',
-    icon: MapPinned,
-    status: 'Idea for discussion',
-    title: 'A Tallinn working session',
-    detail: 'Compare the strongest 90-minute formats, inspect what participants would leave with, and decide whether one deserves a carefully scoped pilot.',
-    href: anaLinks.tallinnFoundry,
-  },
-  {
-    step: '05',
     icon: HeartHandshake,
     status: 'Future decision',
     title: 'The Cecilia concept',
@@ -89,7 +80,7 @@ const anaJourney = [
     href: anaLinks.ceciliaRoom,
   },
   {
-    step: '06',
+    step: '05',
     icon: Network,
     status: 'Technical reference',
     title: 'How the technical layer is governed',
@@ -208,7 +199,7 @@ export default function AnaFriendPage() {
               Start with the decision in front of you. Explore the rest when it becomes useful.
             </h2>
             <p className="mt-5 text-base leading-7 text-ana-cream/[0.62]">
-              The working proposal is the clearest first step. The other paths are there when you want to inspect the practical workflow, the Tallinn idea, a longer partnership, or the technical foundations.
+              The working proposal is the clearest first step. The other paths are there when you want to inspect the practical workflow, a longer partnership, or the technical foundations.
             </p>
           </div>
 
