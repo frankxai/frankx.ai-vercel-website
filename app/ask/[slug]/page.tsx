@@ -58,7 +58,7 @@ const PERSONA_COLORS: Record<AskPersona, string> = {
 function MarkdownBody({ content }: { content: string }) {
   // Render markdown as accessible HTML using Tailwind prose classes
   // We parse the markdown server-side to avoid shipping a markdown parser to the client
-  const lines = content.split('\n')
+  const lines = content.split(/\r?\n/)
   const elements: React.ReactNode[] = []
   let i = 0
 
@@ -69,7 +69,7 @@ function MarkdownBody({ content }: { content: string }) {
     if (line.startsWith('## ')) {
       elements.push(
         <h2 key={i} className="mt-8 mb-3 text-xl font-semibold text-white tracking-tight">
-          {line.slice(3)}
+          <InlineMarkdown text={line.slice(3)} />
         </h2>
       )
       i++
@@ -80,7 +80,7 @@ function MarkdownBody({ content }: { content: string }) {
     if (line.startsWith('### ')) {
       elements.push(
         <h3 key={i} className="mt-6 mb-2 text-[17px] font-semibold text-white/90">
-          {line.slice(4)}
+          <InlineMarkdown text={line.slice(4)} />
         </h3>
       )
       i++
@@ -117,7 +117,11 @@ function MarkdownBody({ content }: { content: string }) {
         i++
       }
       const [header, , ...rows] = tableLines
-      const headerCells = header.split('|').filter(Boolean).map((c) => c.trim())
+      const trimmedHeader = header.trim()
+      const headerCells = trimmedHeader
+        .split('|')
+        .slice(1, trimmedHeader.endsWith('|') ? -1 : undefined)
+        .map((c) => c.trim())
       elements.push(
         <div key={i} className="my-5 overflow-x-auto rounded-xl border border-white/10">
           <table className="w-full text-[14px]">
@@ -132,14 +136,21 @@ function MarkdownBody({ content }: { content: string }) {
             </thead>
             <tbody>
               {rows.map((row, ri) => {
-                const cells = row.split('|').filter(Boolean).map((c) => c.trim())
+                const trimmedRow = row.trim()
+                const cells = trimmedRow
+                  .split('|')
+                  .slice(1, trimmedRow.endsWith('|') ? -1 : undefined)
+                  .map((c) => c.trim())
                 return (
                   <tr key={ri} className="border-b border-white/[0.05] last:border-0 hover:bg-white/[0.02]">
-                    {cells.map((cell, ci) => (
-                      <td key={ci} className="px-4 py-3 text-slate-300 leading-relaxed">
-                        <InlineMarkdown text={cell} />
-                      </td>
-                    ))}
+                    {headerCells.map((_, ci) => {
+                      const cell = cells[ci] || ''
+                      return (
+                        <td key={ci} className="px-4 py-3 text-slate-300 leading-relaxed">
+                          <InlineMarkdown text={cell} />
+                        </td>
+                      )
+                    })}
                   </tr>
                 )
               })}

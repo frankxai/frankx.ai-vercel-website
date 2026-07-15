@@ -7,11 +7,9 @@ import {
   askQuestions,
   featuredQuestions,
   CATEGORY_LABELS,
-  PERSONA_LABELS,
   type AskCategory,
 } from '@/data/ask-questions'
 
-const SITE_URL = 'https://frankx.ai'
 const CANONICAL_PATH = '/ask'
 
 export const metadata = createMetadata({
