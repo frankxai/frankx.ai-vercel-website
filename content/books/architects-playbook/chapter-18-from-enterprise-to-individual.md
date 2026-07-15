@@ -165,4 +165,4 @@ That is what an architect does.
 
 ---
 
-*Frank Riemer is a AI Architect & Creator. He now translates enterprise AI architecture patterns for individuals at frankx.ai — free. ACOS, the Agentic Creator Operating System, is the working implementation of the architecture described in this book. Start building at frankx.ai/acos.*
+*Frank Riemer is an AI Architect & Creator. He now translates enterprise AI architecture patterns for individuals at frankx.ai — free. ACOS, the Agentic Creator Operating System, is the working implementation of the architecture described in this book. Start building at frankx.ai/acos.*

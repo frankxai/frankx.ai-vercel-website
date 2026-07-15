@@ -20,9 +20,9 @@ import CopyableBio from './CopyableBio';
 // or copy the length that fits.
 
 const ONE_LINE =
-  'Frank Riemer is a AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs.';
+  'Frank Riemer is an AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs.';
 
-const SHORT_BIO = `Frank Riemer is a AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is an AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
 
 const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 

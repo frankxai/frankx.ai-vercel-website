@@ -132,7 +132,7 @@ export default function YouTubePage() {
               className="mb-3 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Deep technical tutorials, production music workflows, and honest takes on building
-              with AI. From a AI Architect & Creator who ships code, creates music, and builds in public.
+              with AI. From an AI Architect & Creator who ships code, creates music, and builds in public.
             </motion.p>
             <p className="mb-8 max-w-2xl text-xs leading-relaxed text-slate-500">
               Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.

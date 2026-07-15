@@ -540,7 +540,7 @@ export default function OSPage() {
       <section className="py-16 border-t border-white/[0.04]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-zinc-500 leading-relaxed">
-            Frank Riemer is a AI Architect & Creator. FrankX adapts enterprise AI architecture
+            Frank Riemer is an AI Architect & Creator. FrankX adapts enterprise AI architecture
             patterns (Strategy, Governance, Talent, Technology, Data, Ethics) to one-person and small-team
             creative systems. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
           </p>

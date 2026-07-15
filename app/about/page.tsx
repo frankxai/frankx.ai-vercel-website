@@ -24,7 +24,7 @@ const aboutFaqs = [
   {
     question: 'Who is Frank and what is FrankX.AI?',
     answer:
-      'Frank is a AI Architect & Creator and a prolific AI music creator. FrankX.AI is his independent hub for public, non-confidential lessons from production AI systems, 12,000+ Suno experiments, and practical creator operating systems.',
+      'Frank is an AI Architect & Creator and a prolific AI music creator. FrankX.AI is his independent hub for public, non-confidential lessons from production AI systems, 12,000+ Suno experiments, and practical creator operating systems.',
   },
   {
     question: 'What makes FrankX.AI different from other AI resources?',

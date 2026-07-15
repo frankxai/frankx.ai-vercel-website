@@ -126,7 +126,7 @@ Key changed areas:
 
 ## Risky Claims Found
 
-- Current-employment phrasing: "AI Architect & Creator", "Oracle AI Architect", "AI Architect & Creator EMEA".
+- Current-employment phrasing: "AI Architect at Oracle", "Oracle AI Architect", "AI Architect at Oracle EMEA".
 - Formal institution implication: "Oracle AI Center of Excellence" and "Oracle EMEA AI CoE practice" used as public positioning.
 - Partnership/endorsement risk: Anthropic placeholder implied Oracle org publication and Oracle-side status too directly.
 - Confidential/customer implication: language such as "Every enterprise I work with" and "designed systems for enterprise clients."

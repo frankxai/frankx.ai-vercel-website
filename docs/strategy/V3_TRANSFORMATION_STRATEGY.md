@@ -201,7 +201,7 @@ Frank's complete creative operating system - how he uses AI as a former enterpri
 ### NEW Hero Section Structure
 
 **Badge/Trust Signal:**
-"Built by a AI Architect & Creator | 12,000+ Songs Created | Featured Creator"
+"Built by an AI Architect & Creator | 12,000+ Songs Created | Featured Creator"
 
 **Headline (Option 1 - Recommended):**
 "Master AI-Powered Creation in 24 Hours"
@@ -281,8 +281,8 @@ Ship faster, create better, and amplify your impact with AI as your creative co-
 ### Where to Use "AI Architect & Creator":
 
 **✅ Use in:**
-- About section: "Frank's background as a AI Architect & Creator brings..."
-- Credibility callouts: "Built by a AI Architect & Creator with 12,000+ songs"
+- About section: "Frank's background as an AI Architect & Creator brings..."
+- Credibility callouts: "Built by an AI Architect & Creator with 12,000+ songs"
 - Team page: "Former enterprise AI architect, now building independent creator systems"
 
 **❌ Don't Use in:**

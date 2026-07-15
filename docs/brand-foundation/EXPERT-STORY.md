@@ -17,7 +17,7 @@ The work speaks. Everything else is context.
 ## Professional Credentials
 
 ### Former Role
-**AI Architect & Creator**
+**Former AI Architect at Oracle**
 - Worked around enterprise AI/cloud transformation and production architecture patterns
 - Translates enterprise-scale AI lessons into independent creator and entrepreneur systems
 - Designing multi-agent systems and agentic orchestration

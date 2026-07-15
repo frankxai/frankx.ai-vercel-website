@@ -118,7 +118,7 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
       <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
         <strong style="color: #94a3b8;">Frank Riemer</strong><br>
         AI Architect & Creator<br>
-        500+ AI songs | Enterprise AI Systems
+        12,000+ AI songs | Workshops & Tools
       </p>
 
       <div style="margin: 16px 0;">

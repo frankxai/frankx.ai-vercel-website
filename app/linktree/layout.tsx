@@ -31,7 +31,7 @@ const schema = {
     name: 'Frank X. Riemer',
     alternateName: 'FrankX',
     description:
-      'AI Architect & Creator and creator building systems that amplify human creativity. Creator of 12K+ AI songs, Agentic Creator OS, and practical AI systems.',
+      'AI Architect & Creator building systems that amplify human creativity. 12K+ AI songs, Agentic Creator OS, and practical AI systems.',
     url: 'https://frankx.ai',
     sameAs: SCHEMA_SAME_AS,
     jobTitle: 'AI Architect',

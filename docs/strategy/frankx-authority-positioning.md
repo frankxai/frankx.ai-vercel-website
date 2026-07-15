@@ -23,7 +23,7 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. O
 
 ## Short Bio
 
-Frank Riemer is a AI Architect & Creator, creator of 12,000+ AI songs, and founder of FrankX. He helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
+Frank Riemer is an AI Architect & Creator, creator of 12,000+ AI songs, and founder of FrankX. He helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
 
 ## Long Bio
 
