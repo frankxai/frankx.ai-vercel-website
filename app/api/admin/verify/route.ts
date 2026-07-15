@@ -1,22 +1,19 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { getAdminSecret, safeEqual } from '@/lib/admin-auth'
+import { verifyAdminSecret } from '@/lib/admin-secret'
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET
 
 export async function POST(request: NextRequest) {
   try {
-    const secret = getAdminSecret()
-    if (!secret) {
-      return NextResponse.json(
-        { error: 'Admin access is not configured (ADMIN_SECRET unset).' },
-        { status: 503 }
-      )
+    if (!ADMIN_SECRET) {
+      return NextResponse.json({ error: 'Admin access not configured' }, { status: 503 })
     }
 
     const { password } = await request.json()
+    const candidate = typeof password === 'string' ? password : ''
 
-    // The admin supplied this password; returning it as the session token is the
-    // existing contract (command-center stores it and replays it as x-admin-secret).
-    if (typeof password === 'string' && safeEqual(password, secret)) {
-      return NextResponse.json({ success: true, token: secret })
+    if (verifyAdminSecret(candidate, ADMIN_SECRET)) {
+      return NextResponse.json({ success: true, token: ADMIN_SECRET })
     }
 
     return NextResponse.json({ error: 'Invalid password' }, { status: 401 })

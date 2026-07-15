@@ -109,9 +109,7 @@ const toAbsoluteUrl = (href: string) => {
 }
 
 const agentSchema = {
-  name: 'FrankX Agent Team',
-  description:
-    'Claude-powered consulting collective of specialized agents delivering creative AI strategy, narrative production, sonic design, foresight, and governance for leaders.',
+  name: 'FrankX Claude Agent Collective',
   itemListElement: claudeAgents.map((agent, index) => ({
     '@type': 'ListItem',
     position: index + 1,
@@ -264,13 +262,6 @@ export default function AgentTeamPage() {
                 </ul>
                 <div className="flex flex-col gap-4 pt-4 sm:flex-row">
                   <Link
-                    href="/inner-circle"
-                    className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-400 to-sky-400 px-8 py-4 font-semibold text-slate-950 shadow-lg shadow-primary-900/30 transition-transform hover:-translate-y-0.5 hover:from-primary-300 hover:to-sky-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-200"
-                  >
-                    Join the Inner Circle
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden />
-                  </Link>
-                  <Link
                     href="/start"
                     className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 font-semibold text-slate-900 shadow-lg shadow-primary-900/20 transition-transform hover:-translate-y-0.5 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-100"
                   >
@@ -290,7 +281,7 @@ export default function AgentTeamPage() {
               <div className="space-y-4">
                 <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur">
                   <h2 className="text-lg font-semibold text-white">How the collective shows up</h2>
-                  <p className="mt-2 text-sm text-white/80 leading-relaxed">
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">
                     Engagements combine strategic foresight, creative production, and measurement so leaders can show proof of progress
                     while staying grounded in human outcomes.
                   </p>
@@ -310,7 +301,7 @@ export default function AgentTeamPage() {
           <section className="space-y-8">
             <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Agent operating system</h2>
-              <p className="text-sm text-white/80 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 The FrankX collective is guided by a shared operating system that turns strategy into shipping
                 rituals. This keeps every agent aligned with the narrative director, design director, and the
                 outcomes your audience feels.
@@ -320,7 +311,7 @@ export default function AgentTeamPage() {
               {operatingSystem.map((section) => (
                 <div key={section.title} className="rounded-4xl border border-white/10 bg-white/5 p-7 backdrop-blur">
                   <h3 className="text-lg font-semibold text-white">{section.title}</h3>
-                  <p className="mt-2 text-sm text-white/80 leading-relaxed">{section.description}</p>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{section.description}</p>
                   <ul className="mt-4 space-y-2 text-sm text-white/70">
                     {section.items.map((item) => (
                       <li key={item} className="flex items-start gap-2">
@@ -353,7 +344,7 @@ export default function AgentTeamPage() {
           <section className="space-y-8">
             <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Meet the Claude partners in your corner</h2>
-              <p className="text-sm text-white/80 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 Every agent mirrors a dimension of the FrankX practice—system architecture, storytelling, sonic identity, and foresight.
                 Together they deliver engagements that feel human while satisfying enterprise expectations.
               </p>
@@ -391,7 +382,7 @@ export default function AgentTeamPage() {
                       <ArrowUpRight className="h-4 w-4" aria-hidden />
                     </Link>
                   </div>
-                  <p className="mt-4 text-sm text-white/80 leading-relaxed">{agent.role}</p>
+                  <p className="mt-4 text-sm text-white/70 leading-relaxed">{agent.role}</p>
                   <div className="mt-6 grid gap-6 lg:grid-cols-2">
                     <div>
                       <h4 className="text-sm font-semibold text-white">Core workflows</h4>
@@ -424,7 +415,7 @@ export default function AgentTeamPage() {
           <section className="space-y-8" id="segments">
             <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Segmented entry points for every relationship</h2>
-              <p className="text-sm text-white/80 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 Whether you are bringing AI to family conversations, studio launches, or executive programs, the segment profiles guide you to the
                 right starting rituals and resources. Each CTA leads to assets already shipping inside the hub.
               </p>
@@ -440,7 +431,7 @@ export default function AgentTeamPage() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-white">{segment.title}</h3>
-                        <p className="mt-2 text-sm text-white/80 leading-relaxed">{segment.description}</p>
+                        <p className="mt-2 text-sm text-white/70 leading-relaxed">{segment.description}</p>
                       </div>
                     </div>
                     <p className="mt-4 text-sm text-white/60 leading-relaxed">{segment.transformation}</p>
@@ -480,7 +471,7 @@ export default function AgentTeamPage() {
           <section className="space-y-8" id="tiers">
             <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Choose the engagement that fits your next move</h2>
-              <p className="text-sm text-white/80 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 Each tier unlocks a focused layer of the agent team. Start with a free briefing, co-design a workshop, or bring the full collective in on retainer.
                 Every path links directly to the resources and programs already live inside the hub.
               </p>
@@ -524,7 +515,7 @@ export default function AgentTeamPage() {
           <section className="space-y-8">
             <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Proof from teams already in motion</h2>
-              <p className="text-sm text-white/80 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 Leaders across startups, enterprises, and creative communities rely on the agent team to translate vision into measurable progress.
                 Their words capture the mix of rigor and resonance you can expect.
               </p>
@@ -546,7 +537,7 @@ export default function AgentTeamPage() {
           <section className="space-y-8" id="programs">
             <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Upcoming programs and deliverables</h2>
-              <p className="text-sm text-white/80 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 Track the living roadmap that retainer partners access first. Each milestone connects to a tangible resource or program you can plug into.
               </p>
             </div>
@@ -560,7 +551,7 @@ export default function AgentTeamPage() {
                     {milestone.status.replace('-', ' ')}
                   </span>
                   <h3 className="mt-4 text-xl font-semibold text-white">{milestone.title}</h3>
-                  <p className="mt-3 text-sm text-white/80 leading-relaxed">{milestone.description}</p>
+                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{milestone.description}</p>
                   <p className="mt-3 text-xs uppercase tracking-[0.35em] text-white/50">Focus</p>
                   <p className="text-sm text-white/60 leading-relaxed">{milestone.focus}</p>
                   {milestone.eta ? <p className="mt-3 text-xs text-white/50">{milestone.eta}</p> : null}

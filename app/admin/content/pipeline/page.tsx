@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -106,11 +106,7 @@ export default function PipelinePage() {
   const [stats, setStats] = useState<PipelineStats | null>(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    loadData()
-  }, [])
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true)
     try {
       const res = await fetch('/api/admin/content/inventory')
@@ -124,7 +120,11 @@ export default function PipelinePage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    loadData()
+  }, [loadData])
 
   const getItemsForStage = (stageId: string) =>
     content.filter(c => c.pipelineStage === stageId)

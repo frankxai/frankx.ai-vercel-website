@@ -5,6 +5,7 @@ import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import Diagram from '@/components/blog/Diagram'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
+import LearnHubCallout from '@/components/learn/LearnHubCallout'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
 
 // Embed components for immersive media
@@ -109,19 +110,19 @@ function Callout({ children, type = 'info' }: CalloutProps) {
 
 function CustomImage({ src, alt, ...props }: any) {
   return (
-    <figure className="my-10 group">
-      <div className="overflow-hidden rounded-xl border border-white/[0.10] shadow-2xl shadow-black/40 transition-shadow duration-500 group-hover:shadow-black/60">
+    <figure className="my-10">
+      <div className="overflow-hidden rounded-xl border border-white/[0.08]">
         <Image
           src={src}
-          alt={alt ?? ''}
+          alt={alt}
           width={1200}
           height={630}
-          className="h-auto w-full transition-transform duration-700 group-hover:scale-[1.01]"
+          className="h-auto w-full"
           {...props}
         />
       </div>
       {alt && alt !== 'image' && (
-        <figcaption className="mt-3 text-center text-xs text-white/35 tracking-wide">
+        <figcaption className="mt-3 text-center text-sm text-white/40">
           {alt}
         </figcaption>
       )}
@@ -138,7 +139,7 @@ export const mdxComponents: MDXComponents = {
   ),
   h2: ({ children, ...props }: ComponentPropsWithoutRef<'h2'>) => (
     <h2
-      className="mt-14 mb-5 text-2xl font-bold tracking-tight text-white md:text-3xl border-b border-white/[0.06] pb-3"
+      className="mt-14 mb-5 text-2xl font-bold tracking-tight text-white md:text-3xl"
       {...props}
     >
       {children}
@@ -193,7 +194,7 @@ export const mdxComponents: MDXComponents = {
   // ── Inline code ───────────────────────────────────────────────────────
   code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => (
     <code
-      className="rounded-[5px] border border-emerald-500/[0.18] bg-emerald-500/[0.08] px-[0.4em] py-[0.15em] text-[0.875em] font-mono text-emerald-300 tracking-tight"
+      className="rounded-md border border-white/[0.08] bg-white/[0.06] px-1.5 py-0.5 text-[0.9em] font-mono text-emerald-300/90"
       {...props}
     >
       {children}
@@ -202,14 +203,8 @@ export const mdxComponents: MDXComponents = {
 
   // ── Code blocks ───────────────────────────────────────────────────────
   pre: ({ children, ...props }: ComponentPropsWithoutRef<'pre'>) => (
-    <div className="my-8 overflow-hidden rounded-xl border border-white/[0.10] shadow-xl shadow-black/30">
-      {/* Chrome bar with traffic-light dots for premium terminal feel */}
-      <div className="flex items-center gap-1.5 border-b border-white/[0.06] bg-white/[0.04] px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" aria-hidden="true" />
-        <span className="h-2.5 w-2.5 rounded-full bg-amber-500/60" aria-hidden="true" />
-        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/60" aria-hidden="true" />
-      </div>
-      <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+    <div className="my-8 overflow-hidden rounded-xl border border-white/[0.08]">
+      <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
       <pre
         className="overflow-x-auto bg-[#0d1117] p-5 text-sm leading-relaxed text-white/80 font-mono"
         {...props}
@@ -222,12 +217,10 @@ export const mdxComponents: MDXComponents = {
   // ── Blockquote ────────────────────────────────────────────────────────
   blockquote: ({ children, ...props }: ComponentPropsWithoutRef<'blockquote'>) => (
     <blockquote
-      className="article-blockquote relative my-10 pl-6 md:pl-8"
+      className="article-blockquote my-10 border-l-2 border-emerald-500/40 pl-6 md:pl-8"
       {...props}
     >
-      {/* Gradient left border — more editorial than a flat rule */}
-      <div className="pointer-events-none absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-400/70 via-emerald-500/40 to-transparent" aria-hidden="true" />
-      <div className="italic text-[1.2rem] leading-[1.75] text-white/65 md:text-[1.3rem] md:leading-[1.7] [&>p]:mb-0 [&>p]:before:content-['“'] [&>p]:after:content-['”'] [&>p]:before:text-emerald-500/60 [&>p]:after:text-emerald-500/60">
+      <div className="font-serif-italic text-xl leading-relaxed text-white/70 md:text-[22px] md:leading-[1.6] [&>p]:mb-0">
         {children}
       </div>
     </blockquote>
@@ -235,32 +228,32 @@ export const mdxComponents: MDXComponents = {
 
   // ── Tables ────────────────────────────────────────────────────────────
   table: ({ children, ...props }: ComponentPropsWithoutRef<'table'>) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-white/[0.10] shadow-lg shadow-black/20">
+    <div className="my-8 overflow-x-auto rounded-xl border border-white/[0.08]">
       <table className="min-w-full text-sm" {...props}>
         {children}
       </table>
     </div>
   ),
   thead: ({ children, ...props }: ComponentPropsWithoutRef<'thead'>) => (
-    <thead className="border-b border-white/[0.10] bg-white/[0.05]" {...props}>
+    <thead className="border-b border-white/[0.08] bg-white/[0.03]" {...props}>
       {children}
     </thead>
   ),
   th: ({ children, ...props }: ComponentPropsWithoutRef<'th'>) => (
     <th
-      className="px-5 py-3.5 text-left text-[11px] font-semibold uppercase tracking-[0.12em] text-white/50"
+      className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-white/60"
       {...props}
     >
       {children}
     </th>
   ),
   td: ({ children, ...props }: ComponentPropsWithoutRef<'td'>) => (
-    <td className="px-5 py-3.5 text-white/75 border-b border-white/[0.05]" {...props}>
+    <td className="px-4 py-3 text-white/75 border-b border-white/[0.04]" {...props}>
       {children}
     </td>
   ),
   tr: ({ children, ...props }: ComponentPropsWithoutRef<'tr'>) => (
-    <tr className="odd:bg-white/[0.01] hover:bg-emerald-500/[0.03] transition-colors duration-150" {...props}>
+    <tr className="hover:bg-white/[0.02] transition-colors" {...props}>
       {children}
     </tr>
   ),
@@ -292,6 +285,7 @@ export const mdxComponents: MDXComponents = {
   Callout,
   AffiliateLink,
   FunnelCTA,
+  LearnHubCallout,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,

@@ -189,7 +189,7 @@ const cloudProviders = {
     tagline: 'Enterprise Integration Champion',
     color: 'from-blue-600 to-indigo-600',
     pricing: 'Premium',
-    description: 'Enterprise-ready cloud with native Microsoft ecosystem integration',
+    description: 'Enterprise-ready cloud with seamless Microsoft ecosystem integration',
     strengths: ['Microsoft ecosystem', 'Enterprise compliance', 'Hybrid cloud', '.NET excellence'],
     weaknesses: ['Complex pricing', 'Steeper learning curve', 'Less startup-friendly'],
     aiServices: ['Azure OpenAI', 'Cognitive Services', 'ML Studio', 'Form Recognizer'],
@@ -653,7 +653,7 @@ function DecisionFramework() {
               <h3 className="text-xl font-bold text-white">Innovation-Focused</h3>
             </div>
             <p className="text-white/70 mb-4">
-              Frontier AI models, rapid experimentation
+              Cutting-edge AI, rapid experimentation
             </p>
             <div className="space-y-2">
               <p className="text-sm text-white/60">
@@ -697,7 +697,7 @@ export default function AIArchitecturePage() {
         {/* Hero */}
         <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
           <div className="relative aspect-[21/9]">
-            <Image src="/images/architectures/ai-gateway.png" alt="AI gateway architecture diagram" fill sizes="(max-width: 1152px) 100vw, 1152px" className="object-cover" />
+            <Image src="/images/architectures/ai-gateway.png" alt="AI gateway architecture diagram" fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
           </div>
           <div className="absolute bottom-0 left-0 p-6">

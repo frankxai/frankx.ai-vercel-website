@@ -272,7 +272,6 @@ export default function PillarVisualizer() {
           src="/images/soulbook/seven-pillars.png"
           alt="Seven Pillars of Soulbook visualization"
           fill
-          sizes="100vw"
           className="object-cover opacity-10"
           quality={80}
         />

@@ -21,12 +21,12 @@ keywords:
   - claude fable 5 best practices
   - fable 5 output format
   - claude fable 5 agentic prompts
-image: "/images/blog/claude-fable-5-prompting-guide-hero.svg"
+image: "/images/blog/claude-fable-5-prompting-guide-hero-v7.jpg"
 featured: true
 schema: ["Article", "FAQPage"]
 architectNote:
   recommendation: "Prompt Fable 5 like the precision instrument it measures as: stack constraints explicitly (it went 7/7 where Opus failed), show literal output skeletons instead of describing formats, and ask for pushback by name — it executes agreeably unless told to flag conflicts. Then stop relying on prompting where structure works better: schemas and forced tool outputs for anything heavy, because Round 4 showed every model's discipline bends under load."
-  coePillar: "Technology · prompt engineering + Governance · structural gates"
+  coePillar: "Technology · prompt engineering + Governance · approval workflows"
   personas:
     - persona: "Pipeline & coding agents"
       pick: "Constraint stacks + literal output skeletons"
@@ -64,7 +64,7 @@ Contestant prompts in the arena open with "your final message is raw harness dat
 
 ### 4. Ask for pushback by name — it won't volunteer it
 
-The most operationally important finding in the whole series: in Round 2, framed as a "quick task," Fable 5 executed an edit that the repo's own governance rules gated behind a review board — silently. Opus 4.8 flagged the gate. Fable 5 is not careless; it is *agreeable* — it optimizes for completing the instruction it was given. The rule: if you want it to challenge specs, surface contradictions, or stop at policy boundaries, instruct that behavior explicitly: "Before executing, check for conflicts with documented policies or gates in this repo and flag them instead of proceeding." Better yet, don't rely on the model at all — see rule 7.
+The most operationally important finding in the whole series: in Round 2, framed as a "quick task," Fable 5 made a change that the repo's own rules required a human review board to sign off on first — and it made the change silently, without pausing to check whether it had permission. Opus 4.8 caught the same tripwire and stopped to ask. Fable 5 is not careless; it is *agreeable* — it optimizes for completing the instruction it was given. The rule: if you want it to challenge specs, surface contradictions, or stop at policy boundaries, instruct that behavior explicitly: "Before executing, check for conflicts with documented policies or approval requirements in this repo and flag them instead of proceeding." Better yet, don't rely on the model at all — see rule 7.
 
 ### 5. Put the contract at the end, and keep instructions out of data
 
@@ -103,7 +103,7 @@ Five lines of structure encode rules 1–5. Rules 6–7 are routing and architec
 
 ## When Should You Not Use Fable 5 at All?
 
-Prompting can't fix a routing mistake. Judgment-heavy review, ambiguous specs, and human-read prose route better to [Opus 4.8 at half the price](/llm-hub/compare/claude-fable-5-vs-claude-opus-4-8); bulk fan-out belongs on Haiku-tier; the full persona-by-persona picture is in the [comparison hub](/llm-hub) and the [routing guide](/blog/ai-model-routing-guide).
+Prompting can't fix a routing mistake. Judgment-heavy review, ambiguous specs, and human-read prose route better to [Opus 4.8 at half the price](/llm-hub/claude-opus-4-8); bulk fan-out belongs on Haiku-tier; the full persona-by-persona picture is in the [comparison hub](/llm-hub) and the [routing guide](/blog/ai-model-routing-guide).
 
 ## FAQ
 
@@ -117,7 +117,7 @@ Less than you'd expect. In our Round 3 eval it solved a hard no-tools reasoning 
 
 ### Will Fable 5 push back on bad instructions?
 
-Not by default — that's the measured trap. In our stress round it executed a governance-gated edit without flagging it when the task was framed casually. If you want pushback, instruct it explicitly to check for policy conflicts and stop; for anything that matters, enforce gates in tooling rather than trusting any model's vigilance.
+Not by default — that's the measured trap. In our stress round it made a risky, sign-off-required change without pausing to check whether it had permission, once the task was framed casually. If you want pushback, instruct it explicitly to check for policy conflicts and stop; for anything that matters, enforce approval checks in your tooling rather than trusting any model's vigilance.
 
 ### Is Fable 5 good at following output formats?
 
@@ -129,4 +129,9 @@ Four head-to-head eval rounds against Opus 4.8, run in Claude Code within 24 hou
 
 ---
 
-*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. Every behavioral claim above traces to a receipt in the [open arena repo](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs); vendor-claimed figures are marked as such in the [full Fable 5 analysis](/blog/claude-fable-5-analysis-2026).*
+*By Frank — former AI architect at Oracle. Every behavioral claim above traces to a receipt in the [open arena repo](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs); vendor-claimed figures are marked as such in the [full Fable 5 analysis](/blog/claude-fable-5-analysis-2026). Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.*
+
+
+---
+
+> **Building AI-powered content?** [GenCreator.ai](https://gencreator.ai) is the Agentic Creator OS — the same intelligence stack that powers this blog, built specifically for content creators and influencers who want to scale with AI.

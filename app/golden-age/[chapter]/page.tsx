@@ -1,6 +1,9 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { notFound } from 'next/navigation';
+// Using the noSSR wrapper — ChapterReader.tsx imports marked + isomorphic-dompurify
+// which crash the SSR pre-render at runtime ("Failed to load external module").
+// See app/golden-age/components/ChapterReaderNoSSR.tsx for full rationale.
 import ChapterReader from '../components/ChapterReaderNoSSR';
 import { chapters, bookMetadata } from '../metadata';
 import { createMetadata } from '@/lib/seo';

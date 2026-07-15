@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title id="title">Availability is a capability stack</title>
+  <desc id="desc">A layered stack showing why model availability, fallbacks, evidence, cost, and governance matter.</desc>
+  <rect width="1400" height="860" fill="#09090B"/>
+  <text x="80" y="90" fill="#F3D27A" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800">Availability is a capability.</text>
+  <text x="80" y="130" fill="#FFFFFF" fill-opacity="0.62" font-family="Inter, Arial, sans-serif" font-size="20">The frontier model is only production-grade when the route survives volatility.</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(140 210)">
+      <rect width="1120" height="88" rx="16" fill="#D4AF37" fill-opacity="0.12" stroke="#D4AF37" stroke-opacity="0.45"/>
+      <text x="36" y="36" fill="#F8E6B0" font-size="22" font-weight="700">1. Primary model</text>
+      <text x="36" y="64" fill="#fff" fill-opacity="0.68" font-size="17">The best model for the job when access, budget, and policy all clear.</text>
+    </g>
+    <g transform="translate(185 322)">
+      <rect width="1030" height="88" rx="16" fill="#67E8F9" fill-opacity="0.1" stroke="#67E8F9" stroke-opacity="0.38"/>
+      <text x="36" y="36" fill="#A5F3FC" font-size="22" font-weight="700">2. Fallback model</text>
+      <text x="36" y="64" fill="#fff" fill-opacity="0.68" font-size="17">The model that keeps the workflow moving when the primary refuses, disappears, or rate-limits.</text>
+    </g>
+    <g transform="translate(230 434)">
+      <rect width="940" height="88" rx="16" fill="#34D399" fill-opacity="0.1" stroke="#34D399" stroke-opacity="0.38"/>
+      <text x="36" y="36" fill="#6EE7B7" font-size="22" font-weight="700">3. Cheap lane</text>
+      <text x="36" y="64" fill="#fff" fill-opacity="0.68" font-size="17">High-volume extraction, summarization, drafting, and fan-out work that should not pay flagship rates.</text>
+    </g>
+    <g transform="translate(275 546)">
+      <rect width="850" height="88" rx="16" fill="#A78BFA" fill-opacity="0.1" stroke="#A78BFA" stroke-opacity="0.38"/>
+      <text x="36" y="36" fill="#C4B5FD" font-size="22" font-weight="700">4. Open / sovereign lane</text>
+      <text x="36" y="64" fill="#fff" fill-opacity="0.68" font-size="17">Weights, providers, and hosting choices for data residency, auditability, and continuity.</text>
+    </g>
+    <g transform="translate(320 658)">
+      <rect width="760" height="88" rx="16" fill="#FB923C" fill-opacity="0.1" stroke="#FB923C" stroke-opacity="0.38"/>
+      <text x="36" y="36" fill="#FDBA74" font-size="22" font-weight="700">5. Evidence ledger</text>
+      <text x="36" y="64" fill="#fff" fill-opacity="0.68" font-size="17">Receipts, source labels, checked dates, and caveats that keep routing honest.</text>
+    </g>
+  </g>
+</svg>

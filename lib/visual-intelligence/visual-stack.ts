@@ -9,7 +9,7 @@ export const visualStack: StackLayer[] = [
     kind: 'asset',
     name: 'Asset Layer',
     purpose:
-      'What gets made. Two velocity tiers: NB2 for premium hero work; Higgsfield for the cinematic and product-grade volume tier.',
+      'What gets made. Two velocity tiers: NB2 for premium hero work; Higgsfield for the cinematic and product-grade volume tier. The authoritative engine registry — with live install status, cost, and the full menu (InfoGenius/NB2, Higgsfield, fal.ai, GPT Image 2) — lives at lib/gen/backends.ts (public at /studio/engines). The higgsfield-* entries below are roles, not installed skills; Higgsfield is reached via its MCP server.',
     entries: [
       {
         tool: 'nb-image',

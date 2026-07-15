@@ -1828,14 +1828,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "ai-doesnt-have-to-be-soulless.png",
-    "sizeKB": 1317,
+    "sizeKB": 979,
     "tags": [
-      "ai",
-      "consciousness"
+      "hero",
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
+      "blog-hero",
       "homepage-showcase"
     ]
   },
@@ -1926,11 +1928,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "build-your-own-jarvis-hero.png",
-    "sizeKB": 791,
+    "sizeKB": 779,
     "tags": [
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2007,11 +2011,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "building-research-intelligence-system-hero.png",
-    "sizeKB": 1084,
+    "sizeKB": 1164,
     "tags": [
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2036,13 +2042,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "claude-code-mcp.png",
-    "sizeKB": 590,
+    "sizeKB": 656,
     "tags": [
-      "ai"
+      "hero",
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
+      "blog-hero",
       "homepage-showcase"
     ]
   },
@@ -2300,11 +2309,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "deal-flow-pipeline.png",
-    "sizeKB": 578,
-    "tags": [],
-    "mood": "atmospheric",
+    "sizeKB": 614,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v2"
+    ],
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
+      "blog-hero",
       "homepage-showcase"
     ]
   },
@@ -2385,13 +2399,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "enterprise-agent-roadmap-hero.png",
-    "sizeKB": 786,
+    "sizeKB": 949,
     "tags": [
-      "ai",
       "hero",
-      "ecosystem"
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2403,11 +2417,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "eu-inc-28th-regime-european-startups-hero.png",
-    "sizeKB": 922,
+    "sizeKB": 885,
     "tags": [
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2432,12 +2448,14 @@
     "directory": "blog",
     "category": "blog",
     "filename": "frankx-business-plan-canvas-hero.png",
-    "sizeKB": 656,
+    "sizeKB": 505,
     "tags": [
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v3"
     ],
-    "mood": "atmospheric",
-    "theme": "dark",
+    "mood": "branded",
+    "theme": "light",
     "suitableFor": [
       "blog-hero",
       "homepage-showcase"
@@ -2464,11 +2482,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "frankx-vision-mission-values-hero.png",
-    "sizeKB": 789,
+    "sizeKB": 562,
     "tags": [
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v3"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2516,12 +2536,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "golden-age-field-guide-hero.png",
-    "sizeKB": 840,
+    "sizeKB": 1080,
     "tags": [
       "hero",
-      "golden-age"
+      "premium",
+      "acos-batch-v3"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2599,11 +2620,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "iacos-research-os.png",
-    "sizeKB": 775,
-    "tags": [],
-    "mood": "atmospheric",
+    "sizeKB": 804,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3"
+    ],
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
+      "blog-hero",
       "homepage-showcase"
     ]
   },
@@ -2638,11 +2664,13 @@
     "directory": "blog",
     "category": "blog",
     "filename": "intelligence-revolution-hero.png",
-    "sizeKB": 979,
+    "sizeKB": 820,
     "tags": [
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v3"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -2735,17 +2763,17 @@
     "directory": "blog",
     "category": "blog",
     "filename": "misinformation-guardian-hackathon-hero.png",
-    "sizeKB": 233,
+    "sizeKB": 829,
     "tags": [
       "hero",
-      "arcanea"
+      "premium",
+      "acos-batch-v3"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
-      "homepage-showcase",
-      "card-thumbnail"
+      "homepage-showcase"
     ]
   },
   {
@@ -2999,16 +3027,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "personal-ai-assistant-setup-workshop-hero.png",
-    "sizeKB": 608,
+    "sizeKB": 705,
     "tags": [
-      "ai",
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
-      "blog-hero",
-      "homepage-showcase"
+      "blog-hero"
     ]
   },
   {
@@ -3016,16 +3044,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "production-agent-patterns-7-pillars-hero.png",
-    "sizeKB": 699,
+    "sizeKB": 763,
     "tags": [
-      "ai",
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
-      "blog-hero",
-      "homepage-showcase"
+      "blog-hero"
     ]
   },
   {
@@ -3132,16 +3160,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "reader-first-golden-age-hero.png",
-    "sizeKB": 628,
+    "sizeKB": 634,
     "tags": [
       "hero",
-      "golden-age"
+      "premium",
+      "acos-batch-v3-svg-replaces"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
-      "blog-hero",
-      "homepage-showcase"
+      "blog-hero"
     ]
   },
   {
@@ -3149,16 +3177,16 @@
     "directory": "blog",
     "category": "blog",
     "filename": "science-of-state-change-music-hero.png",
-    "sizeKB": 913,
+    "sizeKB": 737,
     "tags": [
-      "music",
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
-      "blog-hero",
-      "homepage-showcase"
+      "blog-hero"
     ]
   },
   {
@@ -5788,14 +5816,15 @@
   {
     "path": "/images/models/claude-opus-4-6-hero.png",
     "directory": "models",
-    "category": "models",
+    "category": "blog",
     "filename": "claude-opus-4-6-hero.png",
-    "sizeKB": 602,
+    "sizeKB": 473,
     "tags": [
-      "ai",
-      "hero"
+      "hero",
+      "premium",
+      "acos-batch-v2"
     ],
-    "mood": "atmospheric",
+    "mood": "branded",
     "theme": "dark",
     "suitableFor": [
       "blog-hero",
@@ -7318,6 +7347,910 @@
     "theme": "dark",
     "suitableFor": [
       "section-anchor"
+    ]
+  },
+  {
+    "path": "/images/blog/frankx-resources-universe-hero.png",
+    "directory": "blog",
+    "category": "resources",
+    "filename": "frankx-resources-universe-hero.png",
+    "sizeKB": 420,
+    "tags": [
+      "hero",
+      "resources",
+      "intelligence"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/frankx-curated-visuals-hero.png",
+    "directory": "blog",
+    "category": "visual",
+    "filename": "frankx-curated-visuals-hero.png",
+    "sizeKB": 380,
+    "tags": [
+      "gallery",
+      "curation",
+      "visual"
+    ],
+    "mood": "atmospheric",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/ai-video-generation-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "ai-video-generation-2026-hero.png",
+    "sizeKB": 450,
+    "tags": [
+      "video",
+      "ai-generation",
+      "sora"
+    ],
+    "mood": "cinematic",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/my-100-month-ai-stack-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "my-100-month-ai-stack-hero.png",
+    "sizeKB": 390,
+    "tags": [
+      "stack",
+      "tools",
+      "personal"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/ollama-local-ai-privacy-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "ollama-local-ai-privacy-hero.png",
+    "sizeKB": 410,
+    "tags": [
+      "local",
+      "privacy",
+      "ollama"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/rag-for-creators-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "rag-for-creators-hero.png",
+    "sizeKB": 370,
+    "tags": [
+      "rag",
+      "search",
+      "creators"
+    ],
+    "mood": "futuristic",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/voice-ai-agents-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "voice-ai-agents-2026-hero.png",
+    "sizeKB": 430,
+    "tags": [
+      "voice",
+      "audio",
+      "agents"
+    ],
+    "mood": "cinematic",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/props-to-the-builders-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "props-to-the-builders-hero.png",
+    "sizeKB": 360,
+    "tags": [
+      "builders",
+      "era",
+      "tribute"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/mcp-server-architecture-workshop-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "mcp-server-architecture-workshop-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "mcp",
+      "workshop",
+      "protocol"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "workshop"
+    ]
+  },
+  {
+    "path": "/images/blog/suno-ai-music-creation-workshop-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "suno-ai-music-creation-workshop-hero.png",
+    "sizeKB": 440,
+    "tags": [
+      "suno",
+      "music",
+      "workshop"
+    ],
+    "mood": "cinematic",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "workshop"
+    ]
+  },
+  {
+    "path": "/images/blog/ai-doesnt-have-to-be-soulless-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "ai-doesnt-have-to-be-soulless-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/the-soul-frequency-framework-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "the-soul-frequency-framework-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/golden-age-of-intelligence-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "golden-age-of-intelligence-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/30-minute-creator-os-quick-start-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "30-minute-creator-os-quick-start-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/acos-enterprise-deployment-guide-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "acos-enterprise-deployment-guide-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/acos-hooks-system-quality-gates-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "acos-hooks-system-quality-gates-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/acos-philosophy-technology-amplifies-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "acos-philosophy-technology-amplifies-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/acos-use-cases-creator-types-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "acos-use-cases-creator-types-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/acos-v10-autonomous-intelligence-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "acos-v10-autonomous-intelligence-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/acos-zero-to-production-quickstart-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "acos-zero-to-production-quickstart-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "new-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/agentic-ai-roadmap-2025-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "agentic-ai-roadmap-2025-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/agentic-creator-os-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "agentic-creator-os-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/agentic-seo-publishing-masterplan-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "agentic-seo-publishing-masterplan-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/agi-2026-opportunities-students-creators-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "agi-2026-opportunities-students-creators-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/ai-coe-launch-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "ai-coe-launch-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/ai-engineering-without-hype-willison-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "ai-engineering-without-hype-willison-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/claude-code-mastery-top-resources-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "claude-code-mastery-top-resources-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/mcp-doctor-claude-code-server-optimization-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "mcp-doctor-claude-code-server-optimization-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/creator-intelligence-systems-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "creator-intelligence-systems-2026-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/karpathys-ai-vision-deep-dive-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "karpathys-ai-vision-deep-dive-hero.png",
+    "sizeKB": 400,
+    "tags": [
+      "hero",
+      "premium",
+      "continuation-batch"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/best-ai-image-generators-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "best-ai-image-generators-2026-hero.png",
+    "sizeKB": 420,
+    "tags": [
+      "hero",
+      "infogenius",
+      "ai-image-generators",
+      "comparison",
+      "2026"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "infographic",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/30-minute-creator-os-quick-start.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "30-minute-creator-os-quick-start.png",
+    "sizeKB": 465,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v2"
+    ],
+    "mood": "branded",
+    "theme": "light",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/ai-guide-for-families-and-professionals.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "ai-guide-for-families-and-professionals.png",
+    "sizeKB": 570,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v2"
+    ],
+    "mood": "branded",
+    "theme": "light",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/frankx-intelligence-atlas-volume-1-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "frankx-intelligence-atlas-volume-1-hero.png",
+    "sizeKB": 1290,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
+  },
+  {
+    "path": "/images/blog/nvidia-ces-2026-physical-ai-revolution-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "nvidia-ces-2026-physical-ai-revolution-hero.png",
+    "sizeKB": 980,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/observability-stack-multi-agent-systems-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "observability-stack-multi-agent-systems-2026-hero.png",
+    "sizeKB": 833,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/oracle-genai-agents-vs-langgraph-crewai-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "oracle-genai-agents-vs-langgraph-crewai-2026-hero.png",
+    "sizeKB": 822,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/production-agent-patterns-aws-bedrock-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "production-agent-patterns-aws-bedrock-hero.png",
+    "sizeKB": 970,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/production-llm-agents-oci-part-1-architecture-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "production-llm-agents-oci-part-1-architecture-hero.png",
+    "sizeKB": 897,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/production-llm-agents-oci-part-2-agent-patterns-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "production-llm-agents-oci-part-2-agent-patterns-hero.png",
+    "sizeKB": 793,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/production-llm-agents-oci-part-3-operating-model-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "production-llm-agents-oci-part-3-operating-model-hero.png",
+    "sizeKB": 685,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/props-to-the-builders-of-this-era-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "props-to-the-builders-of-this-era-hero.png",
+    "sizeKB": 889,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/seo-aeo-optimization-acos-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "seo-aeo-optimization-acos-hero.png",
+    "sizeKB": 714,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/gemini-3-5-pro-analysis-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "gemini-3-5-pro-analysis-2026-hero.png",
+    "sizeKB": 919,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/gemma-3-analysis-2026-hero.png",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "gemma-3-analysis-2026-hero.png",
+    "sizeKB": 900,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/gpt-oss-analysis-2026-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "gpt-oss-analysis-2026-hero-v5.jpg",
+    "sizeKB": 245,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/kimi-k2-analysis-2026-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "kimi-k2-analysis-2026-hero-v5.jpg",
+    "sizeKB": 346,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/llama-4-analysis-2026-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "llama-4-analysis-2026-hero-v5.jpg",
+    "sizeKB": 279,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/llm-evals-claude-code-guide-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "llm-evals-claude-code-guide-hero-v5.jpg",
+    "sizeKB": 198,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/microsoft-mai-frontier-models-2026-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "microsoft-mai-frontier-models-2026-hero-v5.jpg",
+    "sizeKB": 180,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/mistral-large-3-analysis-2026-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "mistral-large-3-analysis-2026-hero-v5.jpg",
+    "sizeKB": 274,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
+    ]
+  },
+  {
+    "path": "/images/blog/qwen3-max-analysis-2026-hero-v5.jpg",
+    "directory": "blog",
+    "category": "blog",
+    "filename": "qwen3-max-analysis-2026-hero-v5.jpg",
+    "sizeKB": 226,
+    "tags": [
+      "hero",
+      "premium",
+      "acos-batch-v3-svg-replaces"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "blog-hero"
     ]
   }
 ]

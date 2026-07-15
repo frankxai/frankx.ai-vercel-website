@@ -25,13 +25,13 @@ export const anthropic2026q2: PartnerProposal = {
     'Claude Code is the harness for every shipped FrankX project — frankx.ai, ACOS, SIS, Library OS, the workshop curriculum, the partnership system itself.',
     'ACOS, SIS, and Library OS are three Claude-Code-native open-source systems, all public on github.com/frankxai.',
     'The Build First AI Agent workshop teaches Claude as a primary agent path to the EMEA enterprise architect audience.',
-    '7,000+ EMEA AI architect followers across Oracle, NVIDIA, Anthropic, and founder networks already watching Claude-native CoE patterns.',
-    'Active feedback loop on Claude Code skills and the MCP roadmap from daily delivery use across customer-facing engagements.',
+    'Public builder channels across the site, newsletter, GitHub, and LinkedIn already carry Claude-native CoE patterns.',
+    'Active feedback loop on Claude Code skills and the MCP roadmap from daily delivery use in FrankX work.',
     'A2A protocol guide and the agent-framework comparison content publish Claude as the reasoning-lane benchmark.',
   ],
 
   proposalSummary:
-    "Frank's practice is already 80% Anthropic-aligned. This proposal formalizes that alignment via Claude for Work Partner Program entry with workshop attendee credits, co-marketing on the Build First AI Agent workshop (Claude branch), DevRel touchpoint for Claude Code skill pack feedback, and a quarterly co-published deep-dive on Claude-native AI CoE patterns. The shape is three quarters — Q2 application and first deep-dive, Q3 program entry confirmed and EMEA cohort live, Q4 joint EMEA event at NLDigital or Madrid with the Claude Code skill pack v2 published as a partner-tier reference. No new audience to acquire, no new format to design — every surface listed is already running.",
+    "Frank's practice is already strongly Anthropic-aligned. This proposal formalizes that alignment via Claude for Work Partner Program entry with workshop attendee credits, co-marketing on the Build First AI Agent workshop (Claude branch), DevRel touchpoint for Claude Code skill pack feedback, and a quarterly co-published deep-dive on Claude-native AI CoE patterns. The shape is three quarters — Q2 application and first deep-dive, Q3 program entry confirmed and EMEA cohort live, Q4 joint EMEA event at NLDigital or Madrid with the Claude Code skill pack v2 published as a partner-tier reference. The surfaces listed are already running.",
 
   timeline: [
     {

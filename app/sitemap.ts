@@ -3,18 +3,11 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
-import { getAllModels } from '@/lib/llm-hub/registry'
-import { COMPARISONS } from '@/lib/llm-hub/comparisons'
-// Pre-baked at build time by scripts/build-route-index.mjs (which uses
-// lib/route-enumeration.mjs). Importing the JSON keeps the sitemap lambda
-// small — calling enumerateRoutes() at request time forces Turbopack to
-// bundle every file under content/, data/, lib/research/ etc. into the
-// function (42k+ files → blows past Vercel's 250MB lambda limit and the
-// deploy ERRORs after build).
-import routeIndex from '@/data/route-index.json'
+import { learningPaths } from '@/data/learning-paths'
 
-const BASE_URL = 'https://frankx.ai'
+const BASE_URL = siteConfig.url
 
 // Extract slug from MDX filename
 function getSlugFromFilename(filename: string): string {
@@ -105,6 +98,16 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
+function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: boolean }> {
+  try {
+    const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
+    const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
+    return Array.isArray(raw.routes) ? raw.routes : []
+  } catch {
+    return []
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
@@ -112,7 +115,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -120,6 +126,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Tool pages
@@ -128,6 +136,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/roi-calculator',
     '/tools/strategy-canvas',
     '/tools/builder',
+    '/superpowers',
   ]
 
   // Assessment pages
@@ -227,6 +236,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
+    '/licensing',
   ]
 
   // Strategy and framework pages
@@ -270,11 +280,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/learn/claude-mastery', priority: 0.75, changeFrequency: 'weekly' as const },
-    { url: '/learn/gemini-mastery', priority: 0.85, changeFrequency: 'weekly' as const },
-    // LLM Hub — the model intelligence surface (high-priority SEO)
-    { url: '/llm-hub', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/llm-hub/compare', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
@@ -327,8 +332,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/founder-playbook',
     '/insights',
     '/thank-you',
-    '/onboarding',
-    '/dashboard',
   ]
 
   // Research hub pages
@@ -555,6 +558,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Learn portal detail pages (/learn/[slug]) — dynamic route, not caught by the
+  // static route-index, so enumerate them explicitly. Recency from heroEyebrow.
+  learningPaths.forEach((path) => {
+    const m = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)
+    const parsed = m ? new Date(m[1]) : null
+    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate
+    entries.push({
+      url: `${BASE_URL}/learn/${path.slug}`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    })
+  })
+
   // Audience landing pages
   audiencePages.forEach(page => {
     entries.push({
@@ -601,26 +618,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/guides/${slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
-  // LLM Hub — per-model pages (dynamic, keyed by registry slug)
-  getAllModels().forEach((m) => {
-    entries.push({
-      url: `${BASE_URL}/llm-hub/${m.id}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.75,
-    })
-  })
-
-  // LLM Hub — head-to-head comparison pages (dynamic)
-  COMPARISONS.forEach((c) => {
-    entries.push({
-      url: `${BASE_URL}/llm-hub/compare/${c.slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
       priority: 0.7,
     })
   })
@@ -691,80 +688,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Routes that must NEVER appear in the sitemap because they're noindex'd
-  // at the page level (robots: index: false) or are private surfaces.
-  // Keep in sync with app/robots.ts disallow list + per-page robots metadata.
-  const noindexRoutes = new Set<string>([
-    '/tribe',
-    '/unsubscribe',
-    '/onboarding',
-    '/dashboard',
-    '/command-center',
-    '/papa/erinnerungen',
-    '/papa/mitmachen',
-  ])
-  const noindexPrefixes = ['/tribe/', '/preview/', '/prototype/', '/admin/', '/api/', '/auth/']
-
-  function isNoindex(pathname: string): boolean {
-    if (noindexRoutes.has(pathname)) return true
-    return noindexPrefixes.some((prefix) => pathname.startsWith(prefix))
-  }
-
-  // Auto-discovery safety net — pull every route from the pre-baked
-  // data/route-index.json (built from lib/route-enumeration.mjs at prebuild)
-  // and add any that the hand-curated arrays above missed. The existing
-  // entry wins on collision, so manual priority/changeFrequency settings
-  // are preserved.
+  // Auto-discovery safety net — read the generated route index created by
+  // scripts/build-route-index.mjs before next build. Importing the enumerator
+  // directly here makes Turbopack trace broad filesystem reads in the sitemap
+  // route; the generated JSON keeps sitemap coverage without over-bundling.
   const seenUrls = new Set(entries.map((e) => e.url))
-  // Prune any noindex'd routes that the hand-curated arrays accidentally
-  // included (defensive — newer waves may add /tribe etc. to the legacy
-  // arrays without realizing they're noindex'd).
-  for (let i = entries.length - 1; i >= 0; i--) {
-    const pathname = entries[i].url.replace(BASE_URL, '')
-    if (isNoindex(pathname)) {
-      seenUrls.delete(entries[i].url)
-      entries.splice(i, 1)
-    }
+  const discovered = getRouteIndexRoutes()
+  const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
+    core: { priority: 0.8, changeFrequency: 'weekly' },
+    blog: { priority: 0.7, changeFrequency: 'monthly' },
+    workshop: { priority: 0.8, changeFrequency: 'monthly' },
+    product: { priority: 0.8, changeFrequency: 'weekly' },
+    guide: { priority: 0.7, changeFrequency: 'monthly' },
+    library: { priority: 0.7, changeFrequency: 'monthly' },
+    os: { priority: 0.7, changeFrequency: 'monthly' },
+    research: { priority: 0.7, changeFrequency: 'weekly' },
+    newsletter: { priority: 0.75, changeFrequency: 'monthly' },
+    partnership: { priority: 0.6, changeFrequency: 'monthly' },
+    tool: { priority: 0.6, changeFrequency: 'monthly' },
+    community: { priority: 0.6, changeFrequency: 'monthly' },
+    section: { priority: 0.5, changeFrequency: 'monthly' },
+    video: { priority: 0.7, changeFrequency: 'weekly' },
+    static: { priority: 0.4, changeFrequency: 'yearly' },
+    legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
-  try {
-    const discovered = (routeIndex as { routes: Array<{ href: string; type: string }> }).routes
-    // Heuristic priority + frequency by route type — only used for routes that
-    // weren't already in the hand-curated arrays above.
-    const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
-      core: { priority: 0.8, changeFrequency: 'weekly' },
-      blog: { priority: 0.7, changeFrequency: 'monthly' },
-      workshop: { priority: 0.8, changeFrequency: 'monthly' },
-      product: { priority: 0.8, changeFrequency: 'weekly' },
-      guide: { priority: 0.7, changeFrequency: 'monthly' },
-      library: { priority: 0.7, changeFrequency: 'monthly' },
-      os: { priority: 0.7, changeFrequency: 'monthly' },
-      research: { priority: 0.7, changeFrequency: 'weekly' },
-      newsletter: { priority: 0.75, changeFrequency: 'monthly' },
-      partnership: { priority: 0.6, changeFrequency: 'monthly' },
-      tool: { priority: 0.6, changeFrequency: 'monthly' },
-      community: { priority: 0.6, changeFrequency: 'monthly' },
-      section: { priority: 0.5, changeFrequency: 'monthly' },
-      video: { priority: 0.7, changeFrequency: 'weekly' },
-      static: { priority: 0.4, changeFrequency: 'yearly' },
-      legacy: { priority: 0.3, changeFrequency: 'yearly' },
-    }
-    for (const route of discovered) {
-      if (isNoindex(route.href)) continue
-      const url = `${BASE_URL}${route.href}`
-      if (seenUrls.has(url)) continue
-      seenUrls.add(url)
-      const def = defaults[route.type] ?? defaults.section
-      entries.push({
-        url,
-        lastModified: currentDate,
-        changeFrequency: def.changeFrequency,
-        priority: def.priority,
-      })
-    }
-  } catch (err) {
-    // Don't fail sitemap generation if the pre-baked index is missing or
-    // malformed — the hand-curated arrays above still produce a valid sitemap.
-    console.warn('[sitemap] route-index auto-discovery failed:', (err as Error).message)
+  for (const route of discovered) {
+    if (route.sitemap === false) continue
+    const url = `${BASE_URL}${route.href}`
+    if (seenUrls.has(url)) continue
+    seenUrls.add(url)
+    const def = defaults[route.type] ?? defaults.section
+    entries.push({
+      url,
+      lastModified: currentDate,
+      changeFrequency: def.changeFrequency,
+      priority: def.priority,
+    })
   }
 
   return entries

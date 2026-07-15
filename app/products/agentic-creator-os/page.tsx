@@ -1,10 +1,11 @@
+import Script from 'next/script'
+
 import products from '@/data/products.json'
 import FinalCTA from '@/components/products/FinalCTA'
 import OfferStack from '@/components/products/OfferStack'
 import ProductHero from '@/components/products/ProductHero'
 import ProofRail from '@/components/products/ProofRail'
 import TransformationList from '@/components/products/TransformationList'
-import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
@@ -28,18 +29,13 @@ export const metadata = createMetadata({
 })
 
 const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
   name: product.name,
   description: product.promise,
-  image: 'https://frankx.ai/images/acos/acos-hero-omega.png',
-  category: product.category ?? 'Creator Systems',
   brand: {
     '@type': 'Brand',
-    name: 'FrankX',
-    url: 'https://frankx.ai',
-  },
-  audience: {
-    '@type': 'Audience',
-    audienceType: 'Creators, AI architects, and operators building agent systems',
+    name: 'FrankX.ai',
   },
   offers: {
     '@type': 'Offer',
@@ -47,12 +43,6 @@ const structuredData = {
     priceCurrency: product.offer.currency || 'USD',
     availability: 'https://schema.org/InStock',
     priceValidUntil: '2026-12-31',
-    url: `https://frankx.ai/products/${product.slug}`,
-    seller: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: 'https://frankx.ai',
-    },
   },
 }
 
@@ -90,7 +80,7 @@ export default function AgenticCreatorOSPage() {
                 <summary className="cursor-pointer text-lg font-semibold text-white">
                   {item.question}
                 </summary>
-                <p className="mt-3 text-sm text-white/80">{item.answer}</p>
+                <p className="mt-3 text-sm text-white/70">{item.answer}</p>
               </details>
             ))}
           </div>
@@ -106,7 +96,9 @@ export default function AgenticCreatorOSPage() {
         primaryTracking={product.offer.ctaPrimaryTracking}
       />
 
-      <JsonLd type="Product" data={structuredData} id="product-structured-data" />
+      <Script id="product-structured-data" type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </Script>
     </div>
   )
 }

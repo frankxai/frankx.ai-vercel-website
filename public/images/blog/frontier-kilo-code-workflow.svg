@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860" role="img" aria-labelledby="title desc">
+  <title id="title">Kilo Code model freedom workflow</title>
+  <desc id="desc">A workflow diagram showing how to choose a provider, set a model, run a task, capture a receipt, and route fallback models.</desc>
+  <rect width="1500" height="860" fill="#09090B"/>
+  <text x="80" y="90" fill="#F3D27A" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800">Kilo Code model freedom workflow</text>
+  <text x="80" y="128" fill="#fff" fill-opacity="0.62" font-family="Inter, Arial, sans-serif" font-size="20">Use the coding surface as a routing harness, not a model loyalty oath.</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <g fill="none" stroke="#D4AF37" stroke-width="2" stroke-opacity="0.46">
+      <path d="M280 360h145M525 360h145M770 360h145M1015 360h145"/>
+      <path d="M425 360l-18-10v20zM670 360l-18-10v20zM915 360l-18-10v20zM1160 360l-18-10v20z" fill="#D4AF37" fill-opacity="0.8"/>
+    </g>
+    <g transform="translate(80 260)">
+      <rect width="200" height="200" rx="24" fill="#fff" fill-opacity="0.045" stroke="#67E8F9" stroke-opacity="0.36"/>
+      <text x="28" y="52" fill="#A5F3FC" font-size="20" font-weight="700">1. Provider</text>
+      <text x="28" y="90" fill="#fff" fill-opacity="0.72" font-size="16">Kilo Gateway</text>
+      <text x="28" y="118" fill="#fff" fill-opacity="0.72" font-size="16">OpenRouter</text>
+      <text x="28" y="146" fill="#fff" fill-opacity="0.72" font-size="16">BYOK</text>
+    </g>
+    <g transform="translate(425 260)">
+      <rect width="200" height="200" rx="24" fill="#fff" fill-opacity="0.045" stroke="#F3D27A" stroke-opacity="0.36"/>
+      <text x="28" y="52" fill="#F8E6B0" font-size="20" font-weight="700">2. Model</text>
+      <text x="28" y="90" fill="#fff" fill-opacity="0.72" font-size="16">GPT-5.5</text>
+      <text x="28" y="118" fill="#fff" fill-opacity="0.72" font-size="16">Kimi K2.7</text>
+      <text x="28" y="146" fill="#fff" fill-opacity="0.72" font-size="16">MiniMax M3</text>
+    </g>
+    <g transform="translate(670 260)">
+      <rect width="200" height="200" rx="24" fill="#fff" fill-opacity="0.045" stroke="#34D399" stroke-opacity="0.36"/>
+      <text x="28" y="52" fill="#6EE7B7" font-size="20" font-weight="700">3. Task</text>
+      <text x="28" y="90" fill="#fff" fill-opacity="0.72" font-size="16">same prompt</text>
+      <text x="28" y="118" fill="#fff" fill-opacity="0.72" font-size="16">same repo</text>
+      <text x="28" y="146" fill="#fff" fill-opacity="0.72" font-size="16">same checks</text>
+    </g>
+    <g transform="translate(915 260)">
+      <rect width="200" height="200" rx="24" fill="#fff" fill-opacity="0.045" stroke="#A78BFA" stroke-opacity="0.36"/>
+      <text x="28" y="52" fill="#C4B5FD" font-size="20" font-weight="700">4. Receipt</text>
+      <text x="28" y="90" fill="#fff" fill-opacity="0.72" font-size="16">tests</text>
+      <text x="28" y="118" fill="#fff" fill-opacity="0.72" font-size="16">tokens</text>
+      <text x="28" y="146" fill="#fff" fill-opacity="0.72" font-size="16">failure mode</text>
+    </g>
+    <g transform="translate(1160 260)">
+      <rect width="260" height="200" rx="24" fill="#fff" fill-opacity="0.045" stroke="#FB923C" stroke-opacity="0.36"/>
+      <text x="28" y="52" fill="#FDBA74" font-size="20" font-weight="700">5. Route</text>
+      <text x="28" y="90" fill="#fff" fill-opacity="0.72" font-size="16">primary</text>
+      <text x="28" y="118" fill="#fff" fill-opacity="0.72" font-size="16">fallback</text>
+      <text x="28" y="146" fill="#fff" fill-opacity="0.72" font-size="16">cheap / sovereign lane</text>
+    </g>
+  </g>
+  <rect x="170" y="580" width="1160" height="118" rx="20" fill="#D4AF37" fill-opacity="0.07" stroke="#D4AF37" stroke-opacity="0.25"/>
+  <text x="210" y="626" fill="#F8E6B0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Operating rule</text>
+  <text x="210" y="665" fill="#fff" fill-opacity="0.74" font-family="Inter, Arial, sans-serif" font-size="19">Never compare vibes. Run the same job, capture the receipt, then decide where the task routes next week.</text>
+</svg>

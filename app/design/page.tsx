@@ -163,7 +163,7 @@ function SectionHeader({ eyebrow, title, deck }: { eyebrow: string; title: strin
   return (
     <div className="mb-10">
       <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">{eyebrow}</p>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">{title}</h2>
       {deck && <p className="text-base text-white/60 max-w-2xl">{deck}</p>}
     </div>
   );
@@ -213,7 +213,7 @@ export default function DesignPage() {
             Built on Google Labs DESIGN.md (alpha · Apache 2.0)
           </Link>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
             The FrankX
             <br />
             <span className="bg-gradient-to-r from-emerald-300 via-cyan-200 to-amber-300 bg-clip-text text-transparent">
@@ -263,7 +263,7 @@ export default function DesignPage() {
       </section>
 
       {/* FOUNDATION */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader
             eyebrow="01 · Foundation"
@@ -282,7 +282,7 @@ export default function DesignPage() {
       </section>
 
       {/* INK */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader
             eyebrow="02 · Ink"
@@ -304,7 +304,7 @@ export default function DesignPage() {
       </section>
 
       {/* COLOR SPECTRUMS */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader
             eyebrow="03 · Spectrums"
@@ -359,7 +359,7 @@ export default function DesignPage() {
       </section>
 
       {/* TYPOGRAPHY */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader
             eyebrow="04 · Typography"
@@ -389,7 +389,7 @@ export default function DesignPage() {
       </section>
 
       {/* SPACING + ROUNDED */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Spacing */}
@@ -427,7 +427,7 @@ export default function DesignPage() {
       </section>
 
       {/* COMPONENTS */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader
             eyebrow="07 · Components"
@@ -502,7 +502,7 @@ export default function DesignPage() {
       </section>
 
       {/* DO'S AND DON'TS */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader eyebrow="08 · Compass" title="Do's and Don'ts" />
           <div className="grid md:grid-cols-2 gap-6">
@@ -539,7 +539,7 @@ export default function DesignPage() {
       </section>
 
       {/* TASTE PULL-QUOTE */}
-      <section className="py-20 lg:py-28 border-b border-white/5">
+      <section className="py-20 lg:py-24 border-b border-white/5">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/60 font-medium mb-6">
             From taste.md

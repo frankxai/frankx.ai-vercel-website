@@ -29,7 +29,7 @@ export async function GET() {
       <description>${escapeXml(description)}</description>
       <pubDate>${dateStr}</pubDate>
       <category>${escapeXml(post.category || 'AI & Systems')}</category>
-      <author>noreply@frankx.ai (${escapeXml(post.author || 'Frank')})</author>
+      <author>frank@frankx.ai (${escapeXml(post.author || 'Frank')})</author>
     </item>`
     })
     .join('\n')
@@ -43,8 +43,8 @@ export async function GET() {
     <description>${escapeXml(siteConfig.description)}</description>
     <language>en-us</language>
     <copyright>© ${new Date().getFullYear()} Frank X. Riemer</copyright>
-    <managingEditor>noreply@frankx.ai (Frank)</managingEditor>
-    <webMaster>noreply@frankx.ai (Frank)</webMaster>
+    <managingEditor>frank@frankx.ai (Frank)</managingEditor>
+    <webMaster>frank@frankx.ai (Frank)</webMaster>
     <lastBuildDate>${buildDate}</lastBuildDate>
     <pubDate>${buildDate}</pubDate>
     <ttl>60</ttl>

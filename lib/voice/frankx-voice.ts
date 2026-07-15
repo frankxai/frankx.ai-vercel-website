@@ -36,7 +36,7 @@
  *   and on IFS / Psyche-layer surfaces. It MUST stay distinct from
  *   marketing and technical registers.
  *
- * Last reviewed: 2026-05-13
+ * Last reviewed: 2026-06-25
  */
 
 export const FRANKX_VOICE = {
@@ -46,15 +46,17 @@ export const FRANKX_VOICE = {
   identity: {
     name: 'Frank',
     title: 'AI Architect', // memory-anchored — see below
-    role: 'Ex-Oracle AI Architect — helped build Oracle EMEA AI Center of Excellence',
+    role: 'Former AI architect at Oracle',
     positioning: 'Elite Creator. AI Architect. Humble Excellence.',
     narrative:
-      "Personal AI CoE — the same 6-pillar framework (Strategy, Governance, Talent, Technology, Data, Ethics) Frank built for Fortune 500s, made personal at 1/5000th the cost.",
+      'Personal AI CoE — enterprise AI architecture patterns (Strategy, Governance, Talent, Technology, Data, Ethics) translated into practical systems for creators, entrepreneurs, and operators.',
     proof: [
       '12,000+ AI songs shipped',
-      'Oracle EMEA AI Center of Excellence',
+      'Former AI architect at Oracle',
+      'Helped build a seven-figure business',
       'ACOS, Workshop OS, Watch OS, Library OS, SIS, IIS shipped to production',
     ],
+    disclaimer: 'Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
   },
 
   /**

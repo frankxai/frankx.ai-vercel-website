@@ -99,18 +99,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-function Schema({ osModule }: { osModule: OSModule }) {
+function Schema({ module }: { module: OSModule }) {
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'SoftwareApplication',
-        '@id': `https://frankx.ai/os/${osModule.slug}#app`,
-        name: osModule.name,
+        '@id': `https://frankx.ai/os/${module.slug}#app`,
+        name: module.name,
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Cross-platform',
-        description: osModule.description,
-        url: `https://frankx.ai/os/${osModule.slug}`,
+        description: module.description,
+        url: `https://frankx.ai/os/${module.slug}`,
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
@@ -120,10 +120,10 @@ function Schema({ osModule }: { osModule: OSModule }) {
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': `https://frankx.ai/os/${osModule.slug}#breadcrumb`,
+        '@id': `https://frankx.ai/os/${module.slug}#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'FrankX OS', item: 'https://frankx.ai/os' },
-          { '@type': 'ListItem', position: 2, name: osModule.name, item: `https://frankx.ai/os/${osModule.slug}` },
+          { '@type': 'ListItem', position: 2, name: module.name, item: `https://frankx.ai/os/${module.slug}` },
         ],
       },
     ],
@@ -142,7 +142,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <Schema osModule={osModule} />
+      <Schema module={osModule} />
       <FrankXOSHeader currentModuleId={osModule.id} />
 
       {/* Hero */}
@@ -291,7 +291,7 @@ export default async function OSModulePage({ params }: { params: Promise<{ slug:
             </h2>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto mb-6">
               The full stack is being packaged as an installable template. One command scaffolds a
-              working version of this osModule in your own project.
+              working version of this module in your own project.
             </p>
             <div className="inline-block rounded-lg border border-white/[0.08] bg-black/40 px-4 py-3 font-mono text-sm text-zinc-300">
               <span className="text-zinc-500">$</span> npx create-workshop-os my-ops

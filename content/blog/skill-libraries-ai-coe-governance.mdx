@@ -1,0 +1,251 @@
+---
+title: "How to Govern an AI Skill Library"
+description: "A practical operating model for skill registries, risk tiers, evaluations, and AI CoE ownership."
+date: "2026-06-15"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["ai-coe", "ai-skills", "governance", "enterprise-ai", "evals"]
+featured: false
+keywords: ["ai skill library", "ai governance", "ai coe", "agent skills enterprise", "ai evaluation"]
+readingGoal: "You will learn how to govern an AI skill library without turning the AI CoE into a bottleneck."
+tldr: "An AI skill library needs just enough governance to compound safely: a registry, owner, version, risk tier, evaluation suite, review cadence, and rollback path. Startups can run this lightly. Enterprises need formal review for sensitive workflows and role-based bundles."
+schema: ["Article", "FAQPage"]
+image: "/images/blog/native-premium/headers/skill-libraries-ai-coe-governance-hero.webp"
+nativePremiumVisual:
+  version: "2026-06-native-imagegen-premium-v1"
+  hero: "/images/blog/native-premium/headers/skill-libraries-ai-coe-governance-hero.webp"
+  sourceTool: "built-in image_gen"
+  generationBatch: "019ef1f8-2819-77d1-b973-9a5a0b921c05"
+  sourceCandidate: "11 skill governance cabinet"
+  reviewStatus: "accepted"
+  deploymentStatus: "ready"
+visualSystem:
+  version: "2026-06-frankx-vos"
+  hero: "/images/blog/visual-system/skill-libraries-ai-coe-governance-hero.svg"
+  generatedMode: "repo-native-svg"
+rasterVisualSystem:
+  version: "2026-06-frankx-raster-vos"
+  hero: "/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp"
+  sourceHero: "/images/blog/generated/ai-skills-operating-layer-premium-hero.png"
+  infographic: "/images/blog/editorial/infographics/skill-libraries-ai-coe-governance-operating-map.png"
+  generatedMode: "deterministic-editorial-raster"
+  reviewStatus: "accepted"
+  deploymentStatus: "ready"
+---
+
+# How to Govern an AI Skill Library
+
+## TL;DR
+
+An AI skill library needs just enough governance to compound safely: a registry, owner, version, risk tier, evaluation suite, review cadence, and rollback path.
+
+The goal is not bureaucracy.
+
+The goal is abundance with standards.
+
+---
+
+AI skills multiply quickly.
+
+At first that feels good. Every team has ideas. Every workflow can become reusable. Every repeated task looks like a candidate for automation.
+
+Then the catalog grows.
+
+Nobody knows which skills are approved.
+Some skills overlap.
+Some are stale.
+Some touch sensitive data.
+Some work only because one person knows the hidden assumptions.
+
+This is where an AI Center of Excellence earns its place.
+
+Not by slowing everything down.
+
+By creating the operating model that lets useful work compound.
+
+## The Skill Registry
+
+Every shared skill should be recorded.
+
+Minimum fields:
+
+| Field | Purpose |
+| --- | --- |
+| Skill name | Stable folder or package name |
+| Purpose | Workflow the skill supports |
+| Owner | Person or team accountable |
+| Version | Current approved version |
+| Status | Draft, testing, approved, deprecated |
+| Risk tier | Level of review required |
+| User group | Who should use it |
+| Tools | Required MCP servers, APIs, or local tools |
+| Data class | Public, internal, confidential, regulated |
+| Evaluations | Link to test scenarios and results |
+| Last reviewed | Freshness signal |
+| Rollback | Last known-good version |
+
+This can start as a Markdown table.
+
+The standard matters more than the software.
+
+## The Risk Model
+
+Not every skill needs the same review.
+
+Use a tiered model:
+
+| Tier | Example | Review |
+| --- | --- | --- |
+| 0 | Personal productivity | Personal judgment |
+| 1 | Internal drafts | Owner review |
+| 2 | Business workflow | Registry + evals |
+| 3 | Sensitive workflow | Security/legal/privacy review |
+| 4 | Operational action | Strict approval, logging, rollback |
+
+Writing a blog outline should not need a committee.
+
+Changing production configuration should never be delegated casually.
+
+Governance should match possible harm.
+
+## Evaluation Before Expansion
+
+Do not scale a skill because it feels useful.
+
+Scale it because it passed evaluation.
+
+At minimum, test:
+
+- clean success case
+- incomplete input case
+- boundary or misuse case
+
+For production use, add:
+
+- trigger accuracy
+- false trigger checks
+- reference loading
+- script execution
+- output quality
+- data boundary behavior
+- coexistence with other skills
+- regression after edits
+
+Skills should be tested alone and inside the bundle where they will run.
+
+This matters because skills compete for attention. Too many broad descriptions can confuse routing. A smaller library of strong skills beats a huge library of vague ones.
+
+## Role-Based Bundles
+
+The best enterprise pattern is not "everyone gets every skill."
+
+It is role-based access:
+
+- sales bundle
+- engineering bundle
+- support bundle
+- legal bundle
+- finance bundle
+- executive operations bundle
+- founder/operator bundle
+
+Each bundle should contain the workflows that role actually uses.
+
+If a user needs more than the active set can reliably support, split by task type or route through an orchestrator. Do not flood the context layer and hope the model chooses correctly.
+
+## The AI CoE Job
+
+The AI CoE should own the standards, not every action.
+
+Its responsibilities:
+
+- define skill design standards
+- maintain the registry
+- approve risk tiers
+- publish evaluation requirements
+- manage sensitive workflow review
+- train teams on skill creation
+- monitor drift and failures
+- retire stale skills
+- maintain role bundles
+- keep source files as the source of truth
+
+The mature model is central standards, federated execution.
+
+Teams should be able to build. The CoE makes sure the work can be trusted.
+
+## Startup Version
+
+If you are a startup, do not overbuild this.
+
+Use:
+
+- one repo
+- one registry file
+- one owner per skill
+- three eval cases
+- one monthly review
+- clear customer data rules
+
+That is enough to prevent chaos while keeping speed.
+
+## Enterprise Version
+
+If you are an enterprise, add:
+
+- formal security review
+- version pinning
+- signed commits
+- audit trail
+- human approval gates
+- incident process
+- rollback policy
+- deprecation workflow
+- cross-surface deployment tracking
+
+Custom skills do not automatically sync across every surface. Treat the repository as the source of truth and manage deployment intentionally.
+
+## The Cultural Standard
+
+Good skill governance is not defensive.
+
+It is generous.
+
+It says: when someone discovers a better way to do work, we do not leave that improvement trapped in one inbox, one prompt, or one person.
+
+We turn it into a reusable asset.
+
+We give it an owner.
+
+We test it.
+
+We share it.
+
+We improve it.
+
+That is how AI becomes an abundance engine instead of another pile of disconnected experiments.
+
+## FAQ
+
+### What is an AI skill registry?
+
+An AI skill registry is the internal source of truth for approved skills, owners, versions, risk tiers, required tools, data boundaries, evaluations, and review dates.
+
+### Should startups govern AI skills?
+
+Yes, but lightly. A shared repo, owner, risk tier, and three eval scenarios per important skill is enough to start.
+
+### When does a skill need formal review?
+
+Formal review is needed when the skill touches customer data, legal language, financial reporting, regulated content, HR decisions, production systems, or security operations.
+
+### What is the biggest mistake in skill libraries?
+
+Creating too many broad skills. Start narrow, evaluate, then consolidate only when performance stays strong.
+
+## Related Reading
+
+- [The FrankX Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer)
+- [Why Everyone Needs Their Own AI Center of Excellence](/blog/why-everyone-needs-personal-ai-coe)
+- [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)

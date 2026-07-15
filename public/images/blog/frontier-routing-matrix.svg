@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="920" viewBox="0 0 1500 920" role="img" aria-labelledby="title desc">
+  <title id="title">Frontier model routing matrix</title>
+  <desc id="desc">A matrix matching common AI system tasks to primary, fallback, cheap, and evidence lanes.</desc>
+  <rect width="1500" height="920" fill="#09090B"/>
+  <text x="70" y="80" fill="#F3D27A" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800">Starlight routing matrix</text>
+  <text x="70" y="118" fill="#fff" fill-opacity="0.6" font-family="Inter, Arial, sans-serif" font-size="20">Which model should run the job, and what evidence supports the route?</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="16">
+    <rect x="70" y="170" width="1360" height="610" rx="18" fill="#fff" fill-opacity="0.035" stroke="#fff" stroke-opacity="0.1"/>
+    <g fill="#fff" fill-opacity="0.46" font-size="13" font-weight="700">
+      <text x="100" y="218">TASK</text>
+      <text x="405" y="218">PRIMARY</text>
+      <text x="650" y="218">FALLBACK</text>
+      <text x="895" y="218">CHEAP / OPEN</text>
+      <text x="1160" y="218">EVIDENCE</text>
+    </g>
+    <g stroke="#fff" stroke-opacity="0.07">
+      <path d="M70 240h1360M70 335h1360M70 430h1360M70 525h1360M70 620h1360M70 715h1360"/>
+      <path d="M375 170v610M625 170v610M875 170v610M1135 170v610"/>
+    </g>
+    <g fill="#fff" fill-opacity="0.84">
+      <text x="100" y="292">Strict schema agent</text>
+      <text x="405" y="292" fill="#F8E6B0">Fable 5</text>
+      <text x="650" y="292">Opus 4.8</text>
+      <text x="895" y="292">Gemini Flash</text>
+      <text x="1160" y="292">Arena receipts</text>
+      <text x="100" y="387">Judgment review</text>
+      <text x="405" y="387" fill="#C4B5FD">Opus 4.8</text>
+      <text x="650" y="387">Fable 5</text>
+      <text x="895" y="387">Sonnet tier</text>
+      <text x="1160" y="387">Arena receipts</text>
+      <text x="100" y="482">Kilo Code lane</text>
+      <text x="405" y="482" fill="#6EE7B7">GPT-5.5</text>
+      <text x="650" y="482">Kimi K2.7</text>
+      <text x="895" y="482">MiniMax M3</text>
+      <text x="1160" y="482">Kilo-sourced</text>
+      <text x="100" y="577">Antigravity agent</text>
+      <text x="405" y="577" fill="#93C5FD">Gemini 3.5 Flash</text>
+      <text x="650" y="577">Gemini Pro</text>
+      <text x="895" y="577">Gemma 4</text>
+      <text x="1160" y="577">Google official</text>
+      <text x="100" y="672">Volume drafting</text>
+      <text x="405" y="672" fill="#67E8F9">Grok 4.3</text>
+      <text x="650" y="672">Gemini Flash</text>
+      <text x="895" y="672">DeepSeek / Kimi</text>
+      <text x="1160" y="672">xAI + receipts</text>
+      <text x="100" y="767">Sovereign stack</text>
+      <text x="405" y="767" fill="#76B900">Nemotron</text>
+      <text x="650" y="767">Mistral / DeepSeek</text>
+      <text x="895" y="767">Self-host</text>
+      <text x="1160" y="767">source-labeled</text>
+    </g>
+  </g>
+</svg>

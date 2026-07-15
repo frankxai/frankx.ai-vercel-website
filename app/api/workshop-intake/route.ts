@@ -279,15 +279,22 @@ export async function POST(request: NextRequest) {
 
 /**
  * GET — operator endpoint for /admin/intake to fetch recent submissions.
- * Auth-gated by ADMIN_TOKEN cookie or query param.
+ * Auth-gated by ADMIN_TOKEN, fail-closed. Cookie or Bearer header only.
  */
 export async function GET(request: NextRequest) {
+  // Deny-by-default: if ADMIN_TOKEN is unset, no one reads PII. The prior
+  // `if (adminToken && requestToken !== adminToken)` skipped the check
+  // entirely when the env var was unset, leaving this endpoint open.
+  //
+  // Secret comes from the HttpOnly `admin-token` cookie or the
+  // `Authorization: Bearer <token>` header — never a query param, which
+  // ends up in browser history, copied URLs, access logs, and Referer
+  // propagation. Same fix already applied to /api/intake.
   const adminToken = process.env.ADMIN_TOKEN
-  const requestToken =
-    request.nextUrl.searchParams.get('token') ||
-    request.cookies.get('admin-token')?.value
+  const bearer = request.headers.get('authorization')?.match(/^Bearer\s+(.+)$/i)?.[1]
+  const requestToken = bearer || request.cookies.get('admin-token')?.value
 
-  if (adminToken && requestToken !== adminToken) {
+  if (!adminToken || requestToken !== adminToken) {
     return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -307,7 +314,16 @@ export async function GET(request: NextRequest) {
       .reverse() // newest first
       .slice(0, 200)
     return NextResponse.json({ ok: true, count: entries.length, entries })
-  } catch {
-    return NextResponse.json({ ok: true, count: 0, entries: [] })
+  } catch (err) {
+    // ENOENT means no submissions yet — a genuinely empty inbox. Any other
+    // error (permissions, disk, corrupt path) is a real outage.
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      return NextResponse.json({ ok: true, count: 0, entries: [] })
+    }
+    console.error('[workshop-intake] failed to read intake log', err)
+    return NextResponse.json(
+      { ok: false, error: 'Failed to read intake log.' },
+      { status: 500 },
+    )
   }
 }

@@ -103,11 +103,11 @@ export const MODULE_6_CITATIONS: Citation[] = [
  */
 export const FRANK_CREDENTIALS = {
   role: 'AI Architect',
-  org: 'Built Oracle EMEA AI Center of Excellence frameworks',
+  org: 'Oracle EMEA AI Center of Excellence',
   catalog: '12,000+ AI-produced tracks',
   site: 'frankx.ai',
   proofPoints: [
-    'Built enterprise AI Center of Excellence frameworks at Fortune 500 scale',
+    'Designs enterprise AI Center of Excellence frameworks',
     'Same patterns open-sourced for individual creators',
     'Multi-pillar operating system: SIS · ACOS · IIS · Workshop OS · Library OS',
   ],
@@ -190,3 +190,7 @@ export const UNSPOKEN_DOUBTS: UnspokenDoubt[] = [
     acknowledgment: 'Most people do. The Day-7 check-in is how this workshop is different.',
   },
 ]
+/** Identity helper for authoring a typed, const-checked citation set. */
+export function defineCitations<const T extends readonly Citation[]>(citations: T): T {
+  return citations
+}

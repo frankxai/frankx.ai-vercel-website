@@ -89,8 +89,11 @@ export default function BuildYourAICreatorOSPage() {
                 {course.shortDescription}
               </p>
 
-              <p className="text-sm text-white/40 mb-10">
-                By Frank Riemer, Former AI Architect, Oracle
+              <p className="text-sm text-white/40 mb-2">
+                By Frank Riemer, former AI architect at Oracle
+              </p>
+              <p className="text-xs text-white/30 mb-10">
+                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
               </p>
 
               <div className="flex flex-wrap gap-8 mb-12">

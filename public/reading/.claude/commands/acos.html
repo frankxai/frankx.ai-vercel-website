@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
-  <title>ACOS - Agentic Creator OS v10.0</title>
+  <meta name="date" content="2026-05-28" />
+  <title>ACOS - Agentic Creator OS v7.0</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
@@ -41,8 +41,8 @@
   </head>
 <body>
   <header>
-    <div class="title">ACOS - Agentic Creator OS v10.0</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="title">ACOS - Agentic Creator OS v7.0</div>
+    <div class="meta">LLM: Unknown • Date: 2026-05-28 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -50,56 +50,27 @@
       <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
     </nav>
     <div class="content">
-      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>acos.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
-      <h1>ACOS - Agentic Creator OS v10.0</h1>
-<p><strong>Autonomous Intelligence</strong> — Self-improving with safety guarantees.</p>
+      <div class="breadcrumbs"><span>acos.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-05-28</strong></div>
+      <h1>ACOS - Agentic Creator OS v7.0</h1>
+<p>The single command you need. ACOS auto-routes everything.</p>
 <h2>System Status</h2>
 <p>Run diagnostic and display:</p>
 <ol>
 <li>Count <code>.claude/trajectories/*.json</code> (exclude _active, _operations, patterns)</li>
 <li>Read <code>.claude/trajectories/patterns.json</code> for pattern count</li>
 <li>Read <code>.claude-flow/metrics/learning-status.json</code> for learning state</li>
+<li>Count total commands: <code>.claude/commands/*.md</code> + <code>.claude/commands/claude-flow-*/*.md</code></li>
 </ol>
 <pre><code>+================================================================+
-|                    AGENTIC CREATOR OS v10.0                      |
-|         &quot;Autonomous Intelligence. One Command.&quot;                  |
+|                    AGENTIC CREATOR OS v7.0                       |
+|         &quot;One Command. Auto-Routes Everything.&quot;                   |
 +================================================================+
-|  Skills: 22 curated | Agents: 8 specialist | Profiles: 6 IAM   |
-|  Hooks: 7 events | Intelligence: 93/100 | MCP: 6 servers       |
+|  Skills: 630+ | Agents: 40+ | Commands: 130+ | Hook Events: 7  |
 |  Trajectories: [N] | Avg Success: [N%] | Patterns: [N]         |
-|  Learning: Active | Audit: Immutable | Circuit Breaker: Armed  |
+|  Learning: Active | Swarm: Ready | Checkpoints: Enabled        |
 +================================================================+
 </code></pre>
-<h2>v10 Intelligence Systems</h2>
-<table>
-<thead>
-<tr>
-<th>System</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Experience Replay</td>
-<td>Injects top-2 similar successful trajectories as context</td>
-</tr>
-<tr>
-<td>Agent IAM</td>
-<td>Per-profile tool/directory scoping with least-privilege</td>
-</tr>
-<tr>
-<td>Immutable Audit Trail</td>
-<td>Append-only JSONL logging all tool use and decisions</td>
-</tr>
-<tr>
-<td>Confidence Circuit Breaker</td>
-<td>WARN at 3, RESTRICT at 5, BREAK at 8 failures per file</td>
-</tr>
-<tr>
-<td>Conservative Self-Modify Gate</td>
-<td>Snapshots config, auto-reverts if score drops &gt;5 points</td>
-</tr>
-</tbody></table>
 <h2>How It Works</h2>
 <p>You just talk. ACOS handles routing automatically.</p>
 <pre><code>Your request
@@ -162,16 +133,6 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <td>1 agent</td>
 </tr>
 <tr>
-<td>image, visual, infographic, thumbnail</td>
-<td>Image Ops Router</td>
-<td>1-2 agents</td>
-</tr>
-<tr>
-<td>grok image, chatgpt image, replicate</td>
-<td>Image Ops Router</td>
-<td>1-2 agents</td>
-</tr>
-<tr>
 <td>arcanea, gate, realm, guardian, seeker</td>
 <td>Ultraworld</td>
 <td>3-7 agents</td>
@@ -193,7 +154,7 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 </tr>
 </tbody></table>
 <h2>What Runs Automatically (You Never Touch These)</h2>
-<p>7 hook events fire every session (optimized from 15 to 7 for performance):</p>
+<p>7 hook events fire every session:</p>
 <table>
 <thead>
 <tr>
@@ -203,23 +164,27 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 </thead>
 <tbody><tr>
 <td>SessionStart</td>
-<td>Trajectory created, learning restored, Starlight context</td>
+<td>Trajectory created, learning restored, agents ready</td>
 </tr>
 <tr>
 <td>UserPromptSubmit</td>
-<td>Skills activated, routing hints, domain classification</td>
+<td>Skills activated, complexity detected, routing hints</td>
 </tr>
 <tr>
 <td>PreToolUse</td>
-<td>Agent IAM enforcement, circuit breaker checks</td>
+<td>Security checks, dangerous command detection</td>
 </tr>
 <tr>
 <td>PostToolUse</td>
-<td>Operations tracked, audit trail, success scoring</td>
+<td>Operations tracked, patterns stored, checkpoints</td>
+</tr>
+<tr>
+<td>PostToolUseFailure</td>
+<td>Failures recorded for future avoidance</td>
 </tr>
 <tr>
 <td>Stop</td>
-<td>Trajectory scored, patterns extracted, Starlight sync</td>
+<td>Trajectory scored, patterns extracted, session checkpoint</td>
 </tr>
 <tr>
 <td>PreCompact</td>
@@ -229,12 +194,11 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <h2>Self-Learning (Agentic Jujutsu)</h2>
 <p>Every session makes ACOS smarter:</p>
 <ul>
-<li>Operations recorded as trajectories (60+ stored)</li>
-<li>Success auto-scored on session end (67% avg)</li>
-<li>Patterns extracted from successful workflows (50+ n-grams)</li>
-<li>Experience Replay injects top-2 similar past successes</li>
-<li>Starlight Intelligence System syncs patterns across sessions</li>
-<li>Intelligence score: 93/100 (up from 72 in v9.3)</li>
+<li>Operations recorded as trajectories</li>
+<li>Success auto-scored on session end</li>
+<li>Patterns extracted from successful workflows</li>
+<li>Next session gets trajectory hints</li>
+<li>Created by ruvnet, customized for ACOS</li>
 </ul>
 <h2>Quick Reference</h2>
 <h3>Primary Commands (Use These)</h3>
@@ -303,38 +267,22 @@ ACOS IS the interface. Everything else is internal infrastructure.</p>
 <td>Learning system status</td>
 </tr>
 </tbody></table>
-<h3>Image Ops Routing (New)</h3>
-<p>For image tasks in ACOS, use the shared routing policy:</p>
-<ul>
-<li>Policy: <code>data/ai-ops/image-model-router.json</code></li>
-<li>Planner: <code>npm run image:plan -- --intent &lt;intent&gt;</code></li>
-<li>Generator: <code>npm run image:generate -- --provider &lt;openai|xai|replicate&gt; --prompt &quot;...&quot;</code></li>
-<li>Matrix test: <code>npm run image:matrix -- --prompt &quot;...&quot; --intent &lt;intent&gt;</code></li>
-</ul>
-<p>Nano Banana remains first-class for Claude sessions via MCP (<code>mcp__nanobanana__generate_image</code>).</p>
 <h3>Internal Infrastructure (Never Type These)</h3>
 <p>All 83 /claude-flow-* commands are absorbed into ACOS.
 They still exist for backwards compatibility but you never need them.
 ACOS invokes them internally when appropriate.</p>
 <h2>Architecture</h2>
-<pre><code>                           /acos v10
-                              |
-                 +------------+------------+
-                 |            |            |
-            FrankX AI    Ultraworld    Intelligence
-            (Build)      (Create)      (Think)
-                 |            |            |
-            +---+---+   +---+---+   +---+---+
-            |   |   |   |   |   |   |   |   |
-           Blog UI SEO World Book Game Star Super
-           Eng Des Int  Arch Weav Des light intel
-
-  +---------------- Safety Layer -----------------+
-  |  Agent IAM | Circuit Breaker | Audit Trail    |
-  +-----------------------------------------------+
-  +------------- Intelligence Layer ---------------+
-  |  Experience Replay | Starlight Sync | Score 93 |
-  +-----------------------------------------------+
+<pre><code>                         /acos
+                           |
+              +------------+------------+
+              |            |            |
+         FrankX AI    Ultraworld    Intelligence
+         (Build)      (Create)      (Think)
+              |            |            |
+         +---+---+   +---+---+   +---+---+
+         |   |   |   |   |   |   |   |   |
+        Blog UI  SEO World Book Game Star Super
+        Eng  Des Int  Arch Weav Des  light intel
 </code></pre>
 <p>Just describe what you want. ACOS handles the rest.</p>
 

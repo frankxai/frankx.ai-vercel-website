@@ -110,6 +110,28 @@ export const socialLinks = {
 } as const
 
 /**
+ * Verified public profiles for people featured on FrankX collaboration pages.
+ * Kept separate from Frank's own canonical identity while remaining centralized.
+ */
+export const ALLY_SOCIAL_LINKS = {
+  anaCancino: {
+    linkedin: 'https://www.linkedin.com/in/ana-cancino-/',
+  },
+} as const
+
+/**
+ * Social @-handles (not URLs) — used for metadata cards (Twitter `creator`, etc.).
+ */
+export const socialHandles = {
+  twitter: SOCIAL_PROFILES.x.handle ?? '@frankxeth',
+  x: SOCIAL_PROFILES.x.handle ?? '@frankxeth',
+  linkedin: SOCIAL_PROFILES.linkedin.username,
+  github: SOCIAL_PROFILES.github.username,
+  youtube: SOCIAL_PROFILES.youtube.username,
+  instagram: SOCIAL_PROFILES.instagram.handle ?? '@frank_riemer',
+} as const
+
+/**
  * All social links (including secondary)
  */
 export const ALL_SOCIAL_LINKS = Object.values(SOCIAL_PROFILES)
@@ -184,7 +206,7 @@ export const SHARE_URLS = {
 export const CONTACT_INFO = {
   email: {
     primary: 'frank@frankx.ai',
-    label: 'Email Frank',
+    label: 'Email FrankX',
     subject: 'Creative AI Collaboration'
   },
   website: {
@@ -206,14 +228,6 @@ export const SOCIAL_META = {
   site: '@frankxeth',
   creator: '@frankxeth',
   handle: '@frankxeth'
-} as const
-
-/**
- * Twitter/Instagram handles for metadata consumers
- */
-export const socialHandles = {
-  twitter: SOCIAL_PROFILES.x.handle || '@frankxeth',
-  instagram: SOCIAL_PROFILES.instagram.handle || '@frank_riemer',
 } as const
 
 /**

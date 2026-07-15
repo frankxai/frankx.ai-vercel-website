@@ -1,16 +1,18 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState, useEffect } from 'react'
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
+import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
 // TYPES
@@ -37,8 +39,10 @@ interface FeaturedTrackData {
   sunoId: string
   audioUrl: string
   genre: string[]
-  plays: number
   duration: string
+  kicker: string
+  studioNote: string
+  reviewedAt: string
 }
 
 interface BookData {
@@ -156,84 +160,46 @@ function ScrollProgress() {
 }
 
 // ============================================================================
-// ROTATING WORD
-// ============================================================================
-
-const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
-
-function RotatingWord() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (shouldReduceMotion) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [shouldReduceMotion])
-
-  if (shouldReduceMotion) {
-    return (
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-        {heroWords[0]}
-      </span>
-    )
-  }
-
-  return (
-    <span className="inline-block relative">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
-          style={{ lineHeight: 1.1, paddingBottom: '0.05em' }}
-        >
-          {heroWords[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
 function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
   return (
-    <GlowCard color="emerald" className="p-0 overflow-hidden">
+    <GlowCard color="emerald" className="overflow-hidden p-0">
       {/* Suno embed — shows cover art, title, waveform + controls */}
-      <div className="rounded-2xl overflow-hidden">
+      <div id="studio-release" className="overflow-hidden rounded-2xl">
         <iframe
           src={`https://suno.com/embed/${track.sunoId}`}
-          className="w-full h-[380px]"
+          className="h-[300px] w-full sm:h-[340px] lg:h-[380px]"
           style={{ border: 'none' }}
-          allow="clipboard-write"
-          loading="lazy"
+          allow="autoplay; clipboard-write"
+          loading="eager"
           title={track.title}
+          sandbox="allow-scripts allow-same-origin"
         />
       </div>
 
-      <div className="px-5 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-emerald-400/70 font-medium uppercase tracking-wide">Vibe OS</span>
-          <span className="text-xs text-white/30">·</span>
-          <span className="text-xs text-white/40">{track.genre.join(', ')}</span>
+      <div className="border-t border-white/[0.07] px-5 py-4">
+        <div className="flex items-start justify-between gap-5">
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
+              {track.kicker}
+            </p>
+            <p className="mt-2 max-w-md text-xs leading-5 text-white/40">{track.studioNote}</p>
+          </div>
+          <span className="shrink-0 font-mono text-[10px] text-white/25">{track.duration}</span>
         </div>
-        <Link
-          href="/music"
-          className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-emerald-400 transition-colors"
-        >
-          All tracks
-          <ArrowRight className="w-3 h-3" />
-        </Link>
+
+        <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
+          <span className="text-[11px] text-white/30">{track.genre.join(' · ')}</span>
+          <Link
+            href="/music"
+            className="inline-flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-emerald-300"
+          >
+            Enter Music
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
       </div>
     </GlowCard>
   )
@@ -243,128 +209,151 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
-const staggerEase = [0.22, 1, 0.36, 1] as const
+const heroOutcomes = [
+  'Explore your highest-leverage AI move.',
+  'Architect your AI operating system.',
+  'Build your AI Center of Excellence.',
+  'Orchestrate agents around real work.',
+  'Ship products that compound.',
+]
 
-function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
+const subscribeToHydration = () => () => undefined
+
+function RotatingHeroOutcome() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
   const shouldReduceMotion = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
+  const hasHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  )
 
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.8], [0, 30])
+  useEffect(() => {
+    if (!hasHydrated || shouldReduceMotion || isPaused) return
+
+    const interval = window.setInterval(() => {
+      setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
+    }, 3200)
+
+    return () => window.clearInterval(interval)
+  }, [hasHydrated, isPaused, shouldReduceMotion])
+
+  if (!hasHydrated || shouldReduceMotion) {
+    return (
+      <span className="mt-5 block max-w-2xl bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl" aria-hidden="true">
+        {heroOutcomes[0]}
+      </span>
+    )
+  }
 
   return (
-    <section
-      ref={ref}
-      className="relative min-h-[90vh] flex items-center overflow-hidden pt-16 md:pt-20"
-    >
-      <motion.div
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
-        style={shouldReduceMotion ? undefined : { opacity, y }}
+    <div className="mt-5 flex max-w-2xl items-start gap-3">
+      <span
+        className="relative block min-h-[2.3em] flex-1 overflow-hidden bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl"
+        aria-hidden="true"
       >
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={heroOutcomes[currentIndex]}
+            className="block"
+            initial={{ opacity: 0, y: '58%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-42%' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {heroOutcomes[currentIndex]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+      <button
+        type="button"
+        onClick={() => setIsPaused((paused) => !paused)}
+        className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+        aria-label={isPaused ? 'Play changing headline' : 'Pause changing headline'}
+        aria-pressed={isPaused}
+      >
+        {isPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+      </button>
+    </div>
+  )
+}
+
+function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
+  return (
+    <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           {/* Left Column — Text Content */}
-          <div className="space-y-8">
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: staggerEase }}
-              className="space-y-6"
-            >
+          <div className="order-1 space-y-8">
+            <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI Architect & Creator</span>
+                <span className="text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
               </div>
 
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                <RotatingWord /> intelligence
-                <br />
-                that compounds.
+              <h1
+                className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
+              >
+                Turn AI capability into an operating advantage.
               </h1>
 
-              <p className="text-[17px] md:text-xl text-white/70 max-w-xl leading-relaxed">
-                Former AI Architect, Oracle. 12,000+ songs with Suno.
-                90+ open-source AI skills. Everything documented.
+              <span className="sr-only">
+                Explore your highest-leverage AI move, architect your AI operating system, build
+                your AI Center of Excellence, orchestrate agents around real work, and ship products
+                that compound.
+              </span>
+              <RotatingHeroOutcome />
+
+              <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
+                FrankX is the working studio for founders, creators, and AI leaders building an AI
+                operating system, a Center of Excellence, or agentic products. Explore the
+                architecture, inspect the systems, and start from what already works.
               </p>
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="font-serif italic text-base md:text-lg text-white/50 max-w-lg">
-                  &ldquo;I create to understand. I share to teach.&rdquo;
+                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/30">
+                  &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* CTAs */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.3, ease: staggerEase }}
-            >
+            <div className="flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/start"
-                onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                href="/ai-architecture"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start learning
+                Explore AI Architecture
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/inner-circle"
-                onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                href="/ecosystem"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Get the playbook
+                Map the Ecosystem
               </Link>
-            </motion.div>
+            </div>
+
+            <p className="max-w-xl text-[11px] leading-5 text-white/25">
+              Independent project by former Oracle AI architect Frank Riemer. Not affiliated with,
+              endorsed by, or sponsored by Oracle.
+            </p>
           </div>
 
           {/* Right Column — Featured Track */}
-          <div className="relative hidden md:block">
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.2 }}
-            >
-              {featuredTrack ? (
-                <FeaturedTrack track={featuredTrack} />
-              ) : (
-                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
-                  <iframe
-                    src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
-                    className="w-full h-[380px]"
-                    style={{ border: 'none' }}
-                    allow="clipboard-write"
-                    loading="lazy"
-                    title="Vibe OS — Featured Track"
-                  />
-                </div>
-              )}
-            </motion.div>
+          <div className="relative order-2">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.08em] text-emerald-300/60 lg:hidden">
+              Latest studio release · optional listening
+            </p>
+            <FeaturedTrack track={featuredTrack ?? homepageFeaturedRelease} />
           </div>
         </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={shouldReduceMotion ? { duration: 0 } : { delay: 1.5 }}
-      >
-        <motion.div
-          className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
-          animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
-          transition={shouldReduceMotion ? undefined : { duration: 2, repeat: Infinity }}
-        >
-          <div className="w-1 h-1.5 bg-white/40 rounded-full" />
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }
@@ -374,10 +363,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'Ex-Oracle · Enterprise AI',
-  '12,000+ AI Songs Created',
-  '90+ Open-Source AI Skills',
-  'Everything Documented',
+  'Former AI architect at Oracle',
+  'Independent living studio',
+  'Music, systems, books, and field notes',
+  'Built for people, not platforms',
 ]
 
 function AuthorityBar() {
@@ -412,31 +401,31 @@ function AuthorityBar() {
 const products = [
   {
     title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 90+ skills, 60+ agents, 80+ commands.',
+    description: 'An open creator operating system for agent skills, commands, and repeatable workflows.',
     href: '/acos',
     color: 'emerald' as const,
   },
   {
     title: 'Prompt Library',
-    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
+    description: 'Reusable prompts for writing, music, coding, and image generation, available to inspect and adapt.',
     href: '/prompt-library',
     color: 'violet' as const,
   },
   {
     title: 'Creator Kit',
-    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
+    description: 'Premium templates and guided implementation resources for creators who want a faster start.',
     href: '/products',
     color: 'cyan' as const,
   },
   {
     title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Battle-tested at enterprise scale.',
+    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
     title: 'Music Lab',
-    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
+    description: 'An evolving music archive, Suno production workflows, and genre-focused field guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
@@ -458,14 +447,15 @@ function ProductsTools() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
+          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Built for builders
+            Ways to go further
           </h2>
-          <p className="text-base text-white/60 max-w-2xl mx-auto">
-            Open-source tools, premium resources, and creative systems — built for builders who ship.
+          <p className="text-base text-white/40 max-w-2xl mx-auto">
+            Start with the open work. Choose a paid tool only when its scope fits the capability you
+            are ready to build next.
           </p>
         </motion.div>
 
@@ -483,7 +473,7 @@ function ProductsTools() {
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                   {product.title}
                 </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
+                <p className="text-sm text-white/50 leading-relaxed">
                   {product.description}
                 </p>
                 <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
@@ -555,13 +545,13 @@ function HubShowcase({
       transition={{ duration: 0.5, delay: 0.1 }}
       className="flex flex-col justify-center"
     >
-      <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-3">
+      <p className="mb-3 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
         {eyebrow}
       </p>
       <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
         {title}
       </h2>
-      <p className="text-base text-white/60 leading-relaxed mb-6">
+      <p className="text-base text-white/50 leading-relaxed mb-6">
         {description}
       </p>
 
@@ -638,13 +628,13 @@ function CreativeWorlds() {
 
           {/* Overlay text */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/70 font-medium mb-2">
+            <p className="mb-2 text-xs font-medium tracking-[0.1em] text-amber-400/70">
               Creative Worlds
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Creative Systems Lab
             </h2>
-            <p className="text-sm sm:text-base text-white/60 max-w-lg mb-6">
+            <p className="text-sm sm:text-base text-white/50 max-w-lg mb-6">
               Experiments in AI-native storytelling, design systems, media pipelines, and autonomous creative infrastructure.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -686,13 +676,13 @@ function DesignLab() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-magenta-400/50 font-medium mb-3 text-fuchsia-400/50">
+          <p className="mb-3 text-xs font-medium tracking-[0.1em] text-fuchsia-400/50">
             Visual Experiments
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Design Lab
           </h2>
-          <p className="text-base text-white/60 max-w-xl">
+          <p className="text-base text-white/50 max-w-xl">
             Generative art experiments. Nature-tech fusion aesthetics.
             Digital gardens where code meets organic form.
           </p>
@@ -740,7 +730,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
   if (!books || books.length === 0) return null
 
   return (
-    <section className="py-24 lg:py-32 border-t border-white/5">
+    <section id="books" className="scroll-mt-24 py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -749,13 +739,13 @@ function BooksShowcase({ books }: { books: BookData[] }) {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
         >
           <div>
-            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/50 font-medium mb-3">
+            <p className="mb-3 text-xs font-medium tracking-[0.1em] text-amber-400/50">
               Frank&apos;s Books
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Books &amp; Writing
             </h2>
-            <p className="text-base text-white/60 max-w-lg">
+            <p className="text-base text-white/50 max-w-lg">
               Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
             </p>
           </div>
@@ -819,13 +809,13 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
         >
           <div>
-            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
+            <p className="mb-3 text-xs font-medium tracking-[0.1em] text-emerald-400/60">
               The Library OS · Open Source
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Every book, a permanent asset
             </h2>
-            <p className="text-base text-white/55 max-w-xl">
+            <p className="text-base text-white/50 max-w-xl">
               Curated deep-dives — quotes, chapter summaries, and the connections between ideas. Built on the open-source <Link href="/library/approach" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-emerald-400/60 transition">Library OS</Link>. Clone it. Run it. Make your reading life public.
             </p>
           </div>
@@ -952,7 +942,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                 )}
                 <div className="p-5 sm:p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 text-white/50 uppercase tracking-wider">
+                    <span className="rounded-full bg-white/5 px-2 py-0.5 text-[11px] font-medium tracking-[0.04em] text-white/50 sm:text-xs">
                       {post.category}
                     </span>
                     <span className="text-xs text-white/30">{post.readingTime}</span>
@@ -960,7 +950,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-white/60 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-white/50 line-clamp-2 leading-relaxed">
                     {post.description}
                   </p>
                 </div>
@@ -1018,13 +1008,13 @@ function LearningHub() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-cyan-400/50 font-medium mb-3">
+          <p className="mb-3 text-xs font-medium tracking-[0.1em] text-cyan-400/50">
             Resources
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Learn & Explore
           </h2>
-          <p className="text-base text-white/60 max-w-lg">
+          <p className="text-base text-white/50 max-w-lg">
             Guides, courses, video tutorials, and tools — everything you need to level up.
           </p>
         </motion.div>
@@ -1053,7 +1043,7 @@ function LearningHub() {
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">{card.description}</p>
+                  <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -1102,10 +1092,10 @@ function EmailCTA() {
               <span className="text-sm text-emerald-400">Weekly Insights</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-3">
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
-            <p className="text-[15px] md:text-base text-white/70 mb-8 max-w-sm mx-auto leading-relaxed">
+            <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1159,17 +1149,14 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               transition={{ delay: i * 0.05 }}
             >
               <button
-                type="button"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                aria-expanded={openIndex === i}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2 [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
+                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    aria-hidden="true"
                     className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}
@@ -1184,7 +1171,7 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-3 text-sm text-white/60 leading-relaxed">
+                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -1236,16 +1223,16 @@ function DigitalTwin() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-[11px] tracking-[0.25em] uppercase text-blue-400/60 font-medium mb-3">
+            <p className="mb-3 text-xs font-medium tracking-[0.1em] text-blue-400/60">
               Digital Twin
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
               Meet FRANK-Ω
             </h2>
-            <p className="text-base text-white/60 leading-relaxed mb-6">
-              Two forms. One mind. FRANK-Ω is the completed intelligence — the version that has
-              absorbed everything and just executes. Research-grounded visuals in 60 seconds.
-              Creator scoring in real-time. Direct answers, no fluff.
+            <p className="text-base text-white/50 leading-relaxed mb-6">
+              FRANK-Ω is a playful digital-twin experiment: a way to turn Frank&apos;s accumulated
+              methods, questions, and creative patterns into a companion people can explore. The
+              lab documents what works, what still fails, and where human judgment stays essential.
             </p>
 
             <div className="p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 mb-6">
@@ -1260,8 +1247,8 @@ function DigitalTwin() {
                   />
                 </div>
                 <p className="text-sm text-white/60 leading-relaxed italic">
-                  &ldquo;Hello. I don&apos;t do small talk. Drop me a topic and I&apos;ll build it.
-                  Architecture, music, visuals — name it.&rdquo;
+                  &ldquo;Bring me a question, a half-built idea, or something you cannot quite name yet.
+                  We will look for the smallest useful next experiment.&rdquo;
                 </p>
               </div>
             </div>
@@ -1307,26 +1294,27 @@ function FinalCTA() {
 
           <div className="relative text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Start building.
+              Take what helps. Build what matters.
             </h2>
-            <p className="font-serif italic text-base md:text-lg text-white/50 mb-2">
-              The best way to predict the future is to create it.
+            <p className="font-serif italic text-lg text-white/30 mb-2">
+              You do not have to become someone else to begin.
             </p>
-            <p className="text-[17px] text-white/70 mb-8 md:mb-12 max-w-md mx-auto leading-relaxed">
-              Pick your path — architecture, music, or products.
+            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
+              Choose one honest next step. The music, maps, and tools will still be here when you
+              are ready for another.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start Here
+                Find My Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 py-4 text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
               >
                 Get the Newsletter
               </Link>
@@ -1339,7 +1327,7 @@ function FinalCTA() {
 }
 
 // ============================================================================
-// MAIN COMPONENT — 15 sections
+// MAIN COMPONENT — 16 sections
 // ============================================================================
 
 export default function HomePageElite({
@@ -1364,6 +1352,9 @@ export default function HomePageElite({
         {/* 4b. AI Stack — tool logos with guide links */}
         <TrustedByBlock />
 
+        {/* 4c. Signature route atlas — one earned GSAP scene */}
+        <MindPalaceAtlas />
+
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
 
@@ -1371,7 +1362,7 @@ export default function HomePageElite({
         <HubShowcase
           eyebrow="Enterprise AI"
           title="AI Architecture"
-          description="Enterprise AI systems distilled from years of production work. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          description="Production-minded AI architecture, agentic workflows, and orchestration patterns documented with the decisions, constraints, and human controls still visible."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1389,7 +1380,7 @@ export default function HomePageElite({
         <HubShowcase
           eyebrow="Music Production"
           title="Music Lab"
-          description="12,000+ AI songs produced with Suno. Genre mastery from orchestral to hip hop. Prompt engineering that creates radio-ready tracks."
+          description="An evolving Suno music archive with production notes, genre experiments, and prompt methods shared from the studio as they are learned."
           imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
           imageAlt="Suno Prompt Engineering Guide"
           links={[
@@ -1426,10 +1417,10 @@ export default function HomePageElite({
         {/* 14. Email CTA */}
         <EmailCTA />
 
-        {/* 14. FAQ */}
+        {/* 15. FAQ */}
         <FAQSection faqs={faqs} />
 
-        {/* 15. Final CTA */}
+        {/* 16. Final CTA */}
         <FinalCTA />
       </div>
     </main>

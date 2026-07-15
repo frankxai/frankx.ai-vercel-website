@@ -23,7 +23,7 @@ keywords:
   - gpt-oss vs qwen deepseek
   - run gpt-oss locally ollama
   - best open source llm 2026
-image: "/images/blog/gpt-oss-analysis-2026-hero.svg"
+image: "/images/blog/generated/gpt-oss-analysis-2026-premium-hero.png"
 featured: true
 schema: ["Article", "FAQPage"]
 architectNote:
@@ -45,6 +45,8 @@ architectNote:
 **TL;DR**: gpt-oss-120b and gpt-oss-20b are OpenAI's open-weight models — Apache 2.0, free to download, no API key required. The 120b (116.8B total, 5.1B active, MoE) runs on a single 80GB GPU; the 20b (21B total, 3.6B active) runs in ~16GB of memory, including laptops. Both ship MXFP4-quantized with a 131,072-token (128K) context and low/medium/high reasoning effort levels. On OpenAI's own evals the 120b scores 80.1% GPQA Diamond and 97.9% AIME 2025 (with tools); the 20b posts 98.7% AIME 2025. They run on Ollama, vLLM, LM Studio, llama.cpp, and Hugging Face Transformers. As of June 2026 there's no "gpt-oss-2" — but the family has been busy: a safeguard variant shipped in October 2025, and gpt-oss-120b became an official MLPerf Inference v6.0 benchmark in March 2026. Here's the honest builder's take on what to run and when.
 
 ---
+
+<LearnHubCallout slug="chatgpt-mastery" blurb="gpt-oss is part of OpenAI’s stack — see the full ecosystem in the" label="ChatGPT & OpenAI Mastery portal." />
 
 ## What Is gpt-oss?
 
@@ -195,5 +197,5 @@ All the headline figures (AIME, GPQA Diamond, MMLU, HLE, SWE-Bench) come from Op
 
 ---
 
-*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+*Analysis by Frank — former Oracle AI architect building agentic systems independently and making music with AI.
 Published June 5, 2026. Benchmarks are OpenAI's own model-card and launch-post figures (arXiv 2508.10925), cross-referenced against the gpt-oss GitHub repo, MLCommons, and independent pricing trackers. Vendor-reported numbers are marked as such; figures I couldn't independently corroborate were omitted rather than guessed.*

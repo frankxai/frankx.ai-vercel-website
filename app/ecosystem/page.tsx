@@ -111,12 +111,12 @@ function TierSection({ tierId, label, description }: { tierId: EcosystemTier; la
   if (entries.length === 0) return null
 
   return (
-    <section className="py-14">
+    <section className="py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-zinc-50 mb-2">{label}</h2>
-            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl">{description}</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-zinc-50 mb-1">{label}</h2>
+            <p className="text-sm text-zinc-500 max-w-2xl">{description}</p>
           </div>
           <span className="text-xs font-mono text-zinc-500 whitespace-nowrap">{entries.length} systems</span>
         </div>
@@ -147,16 +147,16 @@ export default function EcosystemPage() {
             <span>FrankX Ecosystem Map</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-50 leading-[1.1] tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-zinc-50 leading-tight tracking-tight mb-6">
             Every system, in one map
           </h1>
 
-          <p className="text-[17px] sm:text-xl leading-relaxed text-white/80 max-w-3xl mb-6">
+          <p className="text-lg sm:text-xl text-zinc-400 max-w-3xl leading-relaxed mb-6">
             {ecosystemEntries.length} systems across 4 tiers — public surfaces on frankx.ai, open-source substrate
             you can fork, internal operational layers, and the daily ops tooling that keeps it all running.
           </p>
 
-          <p className="text-[17px] text-zinc-500 max-w-3xl leading-relaxed">
+          <p className="text-base text-zinc-500 max-w-3xl leading-relaxed">
             For the operational subset Frank uses to run the business day-to-day, see{' '}
             <Link href="/os" className="text-cyan-300 hover:text-cyan-200 underline decoration-cyan-300/30 hover:decoration-cyan-300/60 underline-offset-2">
               FrankX OS

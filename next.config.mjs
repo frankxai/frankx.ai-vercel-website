@@ -59,6 +59,15 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
+      // Suno track covers and playlist art (music inventory imageUrl fields)
+      {
+        protocol: 'https',
+        hostname: 'cdn1.suno.ai',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn2.suno.ai',
+      },
     ],
   },
   compiler: {
@@ -70,20 +79,6 @@ const nextConfig = {
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
       ...REDIRECT_ALIASES,
-      // Music School → the music learning curriculum hub (nav/command-palette
-      // linked /music-school but no page existed; /music/learn is the curriculum).
-      {
-        source: '/music-school',
-        destination: '/music/learn',
-        permanent: true,
-      },
-      // QR shortlink — bare /qr is handed out on slides/cards but had no route
-      // (404). Point it at the canonical QR asset page under /connect.
-      {
-        source: '/qr',
-        destination: '/connect/qr',
-        permanent: false,
-      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',
@@ -93,38 +88,6 @@ const nextConfig = {
       {
         source: '/arcanea/:path*',
         destination: 'https://arcanea.ai/:path*',
-        permanent: true,
-      },
-      // Social shortcuts — canonical URLs come from lib/social-links.ts.
-      // /youtube and /music remain real internal hubs (not external aliases).
-      {
-        source: '/github',
-        destination: 'https://github.com/frankxai',
-        permanent: true,
-      },
-      {
-        source: '/linkedin',
-        destination: 'https://www.linkedin.com/in/frank-x-riemer/',
-        permanent: true,
-      },
-      {
-        source: '/twitter',
-        destination: 'https://x.com/frankxeth',
-        permanent: true,
-      },
-      {
-        source: '/x',
-        destination: 'https://x.com/frankxeth',
-        permanent: true,
-      },
-      {
-        source: '/instagram',
-        destination: 'https://www.instagram.com/frank_riemer/',
-        permanent: true,
-      },
-      {
-        source: '/suno',
-        destination: 'https://suno.com/@frankx',
         permanent: true,
       },
       // Creator Lab signup → product page
@@ -293,8 +256,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/ai-architect/:path*',
-        destination: '/ai-architecture/:path*',
+        source: '/ai-architect/:path((?!ai-coe-hub).*)',
+        destination: '/ai-architecture/:path',
         permanent: true,
       },
       // Product page redirects to main pages
@@ -327,6 +290,20 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    // Proxy frankx.ai/palace → the standalone frankx-palace deployment (React 19 +
+    // React-Three-Fiber; kept separate from this React 18 app on purpose). Guarded by
+    // PALACE_ORIGIN so the build is safe when the env var is unset (route simply 404s).
+    // The palace is served under basePath=/palace, so the path is preserved 1:1.
+    // Normalize so a trailing slash (common when pasting a Vercel URL) doesn't
+    // produce `//palace` in the destination.
+    const palaceOrigin = (process.env.PALACE_ORIGIN || '').replace(/\/+$/, '')
+    if (!palaceOrigin) return []
+    return [
+      { source: '/palace', destination: `${palaceOrigin}/palace` },
+      { source: '/palace/:path*', destination: `${palaceOrigin}/palace/:path*` },
+    ]
+  },
   outputFileTracingRoot: __dirname,
   // Belt-and-suspenders alongside .vercelignore: shrink serverless function bundles
   // by ensuring large static-asset trees never get traced into function code.
@@ -347,6 +324,16 @@ const nextConfig = {
       'v1-enterprise-backup/**',
       'public/images/**',
       'public/videos/**',
+    ],
+  },
+  // Books chapter on-demand renders need the .md content files. NFT cannot
+  // trace dynamic readFileSync(join(cwd, book.contentDir, slug+'.md')) paths,
+  // so we explicitly bundle all book .md files in the chapter Lambda.
+  // contentDir values in booksRegistry span content/books/** and content/golden-age-book/**. 2026-07-06.
+  outputFileTracingIncludes: {
+    '/books/[bookSlug]/[chapterSlug]': [
+      'content/books/**/*.md',
+      'content/golden-age-book/**/*.md',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
@@ -378,7 +365,9 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        // Strict site-wide CSP — excludes /palace, which needs a WebGL-friendly
+        // policy (see the dedicated block below).
+        source: '/((?!palace).*)',
         headers: [
           {
             key: 'Content-Security-Policy',
@@ -386,18 +375,67 @@ const nextConfig = {
             // Audit: grep -r '<iframe' app/ components/ to find all embed sources
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://plausible.io https://assets.lemonsqueezy.com https://www.googletagmanager.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https: http:",
               "media-src 'self' https:",
               "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://plausible.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'none'",
             ].join('; '),
           },
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+      {
+        // The 3D memory palace (Three.js / React-Three-Fiber) needs WebGL: unsafe-eval,
+        // blob: workers, and Google Fonts. Scoped to /palace only — the strict
+        // policy above still governs the rest of frankx.ai.
+        // noindex: palace is an internal showcase, not a search-indexed page.
+        source: '/palace/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:",
+              "worker-src 'self' blob:",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob:",
+              "connect-src 'self' blob: data: https://fonts.googleapis.com https://fonts.gstatic.com",
+            ].join('; '),
           },
           {
             key: 'Permissions-Policy',

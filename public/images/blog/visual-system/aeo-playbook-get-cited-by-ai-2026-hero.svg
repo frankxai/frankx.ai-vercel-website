@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#050607"/>
+      <stop offset="48%" stop-color="#0a0a0b"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="26%" cy="18%" r="56%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity=".28"/>
+      <stop offset="52%" stop-color="#06b6d4" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="82%" cy="74%" r="48%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity=".20"/>
+      <stop offset="62%" stop-color="#10b981" stop-opacity=".05"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#ffffff" stroke-opacity=".045" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <rect width="1600" height="900" fill="url(#glowA)"/>
+  <rect width="1600" height="900" fill="url(#glowB)"/>
+  <path d="M112 690 C360 565 568 746 812 610 C996 508 1124 294 1444 222" fill="none" stroke="#06b6d4" stroke-width="2" stroke-opacity=".42"/>
+  <path d="M116 734 C360 640 580 790 828 668 C1050 560 1180 390 1458 352" fill="none" stroke="#10b981" stroke-width="2" stroke-opacity=".30"/>
+  <rect x="88" y="82" width="1424" height="736" rx="24" fill="none" stroke="#ffffff" stroke-opacity=".10"/>
+  <rect x="116" y="112" width="256" height="42" rx="21" fill="#06b6d4" fill-opacity=".10" stroke="#06b6d4" stroke-opacity=".45"/>
+  <text x="140" y="140" fill="#06b6d4" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="750" letter-spacing="0">Model Intelligence</text>
+  <text x="116" y="212" fill="#64748b" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="600">FRANKX.AI / CREATION CHRONICLES</text>
+  <text x="116" y="308" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="760" letter-spacing="0">How to Get Cited by ChatGPT</text>
+<text x="116" y="380" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="760" letter-spacing="0">and Perplexity: The AEO</text>
+<text x="116" y="452" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="760" letter-spacing="0">Playbook for 2026</text>
+  <text x="120" y="640" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">Answer Engine Optimization is how you become the</text>
+<text x="120" y="674" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">source AI quotes. The on-page and off-page playbook to</text>
+<text x="120" y="708" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">get cited by ChatGPT, Perplexity, and Gemini — with a...</text>
+  <g opacity=".96">
+    <circle cx="1166" cy="450" r="132" fill="#111318" stroke="#06b6d4" stroke-opacity=".55" stroke-width="2"/>
+    <circle cx="1166" cy="450" r="88" fill="none" stroke="#10b981" stroke-opacity=".5" stroke-width="2"/>
+    <circle cx="1166" cy="450" r="38" fill="#06b6d4" fill-opacity=".20" stroke="#06b6d4" stroke-opacity=".85"/>
+    <text x="1166" y="444" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">BUILD</text>
+    <text x="1166" y="474" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="16">SYSTEM</text>
+    
+        <rect x="995" y="220" width="184" height="72" rx="10" fill="#111318" stroke="#06b6d4" stroke-opacity=".55"/>
+        <text x="1013" y="264" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="650">Capability</text>
+      
+
+        <rect x="1225" y="220" width="184" height="72" rx="10" fill="#111318" stroke="#10b981" stroke-opacity=".55"/>
+        <text x="1243" y="264" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="650">Routing</text>
+      
+
+        <rect x="995" y="355" width="184" height="72" rx="10" fill="#111318" stroke="#06b6d4" stroke-opacity=".55"/>
+        <text x="1013" y="399" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="650">Cost</text>
+      
+
+        <rect x="1225" y="355" width="184" height="72" rx="10" fill="#111318" stroke="#10b981" stroke-opacity=".55"/>
+        <text x="1243" y="399" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="650">Latency</text>
+      
+
+        <rect x="995" y="490" width="184" height="72" rx="10" fill="#111318" stroke="#06b6d4" stroke-opacity=".55"/>
+        <text x="1013" y="534" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="650">Governance</text>
+      
+  </g>
+  <text x="120" y="780" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500">Intelligence Dispatches</text>
+  <text x="1480" y="780" text-anchor="end" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="18">2026-06-07</text>
+</svg>

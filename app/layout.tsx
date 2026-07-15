@@ -4,20 +4,17 @@ import './globals.css'
 import Script from 'next/script'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
-// import CommandPalette from '@/components/CommandPalette'
+import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
-import { HideOnLandingRoutes } from '@/components/layout/HideOnLandingRoutes'
+import { PrivacySafeAnalytics } from '@/components/analytics/PrivacySafeAnalytics'
 
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
@@ -117,11 +114,6 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   category: 'Technology',
-  // Google Search Console verification. Set GOOGLE_SITE_VERIFICATION in Vercel
-  // env to the token from Search Console → renders the meta tag automatically.
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-  },
   robots: {
     index: true,
     follow: true,
@@ -148,21 +140,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        <link rel="alternate" hrefLang="en" href="https://frankx.ai" />
-        <link rel="alternate" hrefLang="x-default" href="https://frankx.ai" />
+        <link rel="alternate" hrefLang="en" href={siteConfig.url} />
+        <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
         {aisSchemaGraph && (
-          // Plain <script>, NOT next/script: next/script client-re-injects
-          // inline content (throwing "appendChild: Invalid or unexpected token"
-          // on every page) and JSON-LD must be in the static SSR HTML for
-          // crawlers/AI agents anyway. Matches components/seo/JsonLd.tsx.
-          <script
+          <Script
             id="ais-schema-graph"
             type="application/ld+json"
+            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(aisSchemaGraph) }}
           />
         )}
@@ -180,16 +168,9 @@ export default function RootLayout({
       >
         <SessionProvider>
           <OrganizationJsonLd />
-          {plausibleDomain && (
-            <Script
-              strategy="afterInteractive"
-              data-domain={plausibleDomain}
-              src="https://plausible.io/js/script.js"
-            />
-          )}
           <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100] focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2"
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
           >
             Skip to content
           </a>
@@ -201,20 +182,13 @@ export default function RootLayout({
             <div className="absolute top-1/3 -right-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/[0.025] blur-[140px]" />
             <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
           </div>
-          <HideOnLandingRoutes>
-            <NavigationMega />
-          </HideOnLandingRoutes>
-          <div id="main-content" className="relative z-10 min-h-screen overflow-x-hidden">
+          <NavigationMega />
+          <CommandPaletteProvider />
+          <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>
-          <HideOnLandingRoutes>
-            <Footer />
-          </HideOnLandingRoutes>
-          <Analytics />
-          <SpeedInsights />
-          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-          )}
+          <Footer />
+          <PrivacySafeAnalytics />
         </SessionProvider>
       </body>
     </html >

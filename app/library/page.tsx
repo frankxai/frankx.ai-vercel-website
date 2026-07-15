@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'FrankX',
     images: [
       {
-        url: '/images/library/library-collection-hero.jpg',
+        url: '/hero-homepage.png',
         width: 1200,
         height: 630,
         alt: 'FrankX Library — book reviews and key insights',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'The Library | FrankX',
     description: 'Key insights from the books that matter most.',
-    images: ['/images/library/library-collection-hero.jpg'],
+    images: ['/hero-homepage.png'],
   },
 };
 
@@ -143,23 +143,23 @@ export default function LibraryPage() {
     <div className="min-h-screen bg-[#0a0a0b]">
       <CollectionJsonLd />
       {/* Hero */}
-      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 px-6">
+      <section className="relative pt-32 pb-20 px-6">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
-          <p className="text-amber-400/80 text-xs sm:text-sm tracking-[0.2em] uppercase mb-4">
+          <p className="text-amber-400/80 text-sm tracking-[0.2em] uppercase mb-4">
             Curated Insights
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             The{' '}
             <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">
               Library
             </span>
           </h1>
-          <p className="text-[17px] md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
             Key insights from the books that shaped our thinking. Not summaries — the ideas
             that changed how we build, create, and live. Each review connects back to our own
             books.
@@ -181,7 +181,7 @@ export default function LibraryPage() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/library/quotes"
-              className="inline-flex items-center gap-2 text-sm text-rose-300/80 hover:text-rose-200 transition-colors border border-rose-500/20 rounded-full px-4 py-2 bg-rose-500/5 hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 text-sm text-rose-300/80 hover:text-rose-200 transition-colors border border-rose-500/20 rounded-full px-4 py-2 bg-rose-500/5 hover:bg-rose-500/10"
             >
               Browse all quotes
               <svg
@@ -201,7 +201,7 @@ export default function LibraryPage() {
             </Link>
             <Link
               href="/library/approach"
-              className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10"
             >
               How this library is built
               <svg
@@ -231,6 +231,13 @@ export default function LibraryPage() {
               ? booksRegistry.find((b) => b.slug === review.relatedBook)
               : null;
 
+            const previewImage = review.hasCover
+              ? {
+                  src: review.coverImage,
+                  alt: `${review.title} by ${review.author} — book cover`,
+                }
+              : review.capture?.images?.[0];
+
             return (
               <Link
                 key={review.slug}
@@ -240,11 +247,11 @@ export default function LibraryPage() {
                 <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
-                    {review.hasCover ? (
+                    {previewImage ? (
                       <div className="w-16 h-24 rounded-lg border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
                         <Image
-                          src={review.coverImage}
-                          alt={`${review.title} by ${review.author} — book cover`}
+                          src={previewImage.src}
+                          alt={previewImage.alt}
                           width={128}
                           height={192}
                           className="w-full h-full object-cover"
@@ -271,6 +278,15 @@ export default function LibraryPage() {
                   <p className="text-sm text-white/60 leading-relaxed mb-4 line-clamp-2">
                     {review.keyInsights[0]}
                   </p>
+
+                  {/* Provenance badge */}
+                  {review.capture && (
+                    <div className="mb-4 -mt-2">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-200/80 border border-cyan-500/15">
+                        Source-backed
+                      </span>
+                    </div>
+                  )}
 
                   {/* Deep-dive badge */}
                   {(review.chapters?.length || review.quotes?.length) && (
@@ -386,17 +402,17 @@ export default function LibraryPage() {
 
       {/* Our Books CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-32">
-        <div className="rounded-3xl border border-amber-500/10 bg-amber-500/[0.03] backdrop-blur-xl p-10 lg:p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-3">
+        <div className="rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-10 text-center">
+          <h2 className="text-2xl font-bold text-white mb-3">
             Inspired by the best. Built from experience.
           </h2>
-          <p className="text-[17px] text-white/60 max-w-xl mx-auto mb-8 leading-relaxed">
+          <p className="text-white/50 max-w-xl mx-auto mb-6">
             These books shaped our thinking. Our own six books distill those ideas into
             actionable frameworks built from lived experience.
           </p>
           <Link
             href="/books"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors"
           >
             Explore Our Books
             <svg

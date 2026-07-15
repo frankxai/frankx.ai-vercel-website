@@ -90,7 +90,7 @@ Vercel Partner Program — application is in flight. This page is the conversati
     },
     {
       label: 'ai-coe — the AI CoE blueprint in public, deployed on Vercel',
-      href: '/ai-coe',
+      href: '/ai-architect/ai-coe-hub',
     },
   ],
 

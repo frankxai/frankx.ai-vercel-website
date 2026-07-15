@@ -35,12 +35,14 @@ When they're old enough to explore, they'll find:
 
 ## Professional
 
-- **Day Job:** AI Architect at Oracle
+- **Professional Background:** Former AI architect at Oracle
 - **Focus Areas:**
   - Enterprise AI systems
   - Multi-agent orchestration
-  - Oracle Cloud Infrastructure
+  - Large-scale cloud and AI architecture
   - Agentic workflows
+
+Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
 ---
 

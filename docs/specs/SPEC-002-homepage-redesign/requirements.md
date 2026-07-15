@@ -146,7 +146,7 @@ The current homepage fails to communicate FrankX's elite positioning as a top cr
 │  [Secondary: See My Work →]                                 │
 │                                                             │
 │  [TRUST INDICATORS]                                         │
-│  ✓ 500+ AI Songs Created  ✓ Oracle AI Architect             │
+│  ✓ 12,000+ AI Songs Created  ✓ Former AI Architect at Oracle             │
 │  ✓ 1000+ Creators Helped  ✓ Enterprise Experience           │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -240,8 +240,8 @@ The current homepage fails to communicate FrankX's elite positioning as a top cr
 4. "Create More. Ship Faster. With AI That Works."
 
 ### Trust Indicators (Must Include)
-- 500+ AI songs created
-- Oracle AI Architect
+- 12,000+ AI songs created
+- Former AI architect at Oracle
 - 1000+ creators helped
 - Enterprise-grade systems
 - 10+ years tech experience

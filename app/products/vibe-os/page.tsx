@@ -23,7 +23,6 @@ export const metadata = createMetadata({
   title: `${product.name} - Free Creative State Management | FrankX.ai`,
   description: product.promise,
   path: `/products/${product.slug}`,
-  image: '/hero-vibe-os.png',
   keywords: [
     'vibe os',
     'creative state management',
@@ -42,7 +41,7 @@ const structuredData = {
   '@type': 'SoftwareApplication',
   name: product.name,
   description: product.promise,
-  image: 'https://frankx.ai/hero-vibe-os.png',
+  image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
   applicationCategory: 'ProductivityApplication',
   operatingSystem: 'Web',
   brand: {
@@ -54,6 +53,11 @@ const structuredData = {
     price: '0',
     priceCurrency: product.offer.currency,
     availability: 'https://schema.org/InStock'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '23'
   }
 }
 

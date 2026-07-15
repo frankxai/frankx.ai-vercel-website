@@ -27,39 +27,15 @@ const iconMap: Record<string, LucideIcon> = {
   Crown,
 }
 
-// Map each stream to its thematic team character
+// Public newsletter cards use system icons instead of internal character lore.
 const streamCharacters: Record<string, { src: string; name: string }> = {
-  'creation-chronicles': {
-    src: '/images/mascot/mascot-v25-crystal-familiar.png',
-    name: 'Axi',
-  },
-  'ai-architect': {
-    src: '/images/team/codex-falcon.png',
-    name: 'Codex',
-  },
-  'music-lab': {
-    src: '/images/team/echo-leopard.png',
-    name: 'Echo',
-  },
-  arcanea: {
-    src: '/images/team/stella-owl.png',
-    name: 'Stella',
-  },
-  investor: {
-    src: '/images/team/draconia-tiger.png',
-    name: 'Draconia',
-  },
-  'inner-circle': {
-    src: '/images/team/nero-umbra.png',
-    name: 'Nero',
-  },
 }
 
 // Map each stream ID to a thematic ecosystem image
 const streamImages: Record<string, { src: string; alt: string }> = {
   'creation-chronicles': {
     src: '/images/ecosystem/13-creation-chronicles.png',
-    alt: 'Creation Chronicles — behind-the-scenes of building an AI-powered creator business',
+    alt: 'Signal Loop - weekly systems and creator field notes from Frank Riemer',
   },
   'ai-architect': {
     src: '/images/ecosystem/15-acos-claude-code.png',
@@ -71,7 +47,7 @@ const streamImages: Record<string, { src: string; alt: string }> = {
   },
   arcanea: {
     src: '/images/ecosystem/07-arcanea-10-gates.png',
-    alt: 'Arcanea Transmissions — the 10 Gates mythology and creative universe',
+    alt: 'Creative Systems Research - worldbuilding, media pipelines, and visual systems',
   },
   investor: {
     src: '/images/ecosystem/05-value-ladder-progression.png',
@@ -79,7 +55,7 @@ const streamImages: Record<string, { src: string; alt: string }> = {
   },
   'inner-circle': {
     src: '/images/design-lab/nature-09-crystal-garden.png',
-    alt: 'Inner Circle — exclusive access, revenue breakdowns, and system architecture',
+    alt: 'Inner Circle - private implementation notes, not open yet',
   },
 }
 
@@ -326,7 +302,7 @@ function StreamCard({
             </div>
 
             {/* Description */}
-            <p className="mb-4 text-[15px] leading-relaxed text-white/70">
+            <p className="mb-4 text-sm leading-relaxed text-slate-400">
               {stream.description}
             </p>
 
@@ -373,12 +349,12 @@ function StreamCard({
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={status === 'loading'}
-                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+                  className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-white/20 disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="flex-shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+                  className="flex-shrink-0 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110 disabled:opacity-50"
                   style={{
                     background: `linear-gradient(135deg, ${stream.accentHex}, ${stream.accentHex}cc)`,
                   }}
@@ -400,7 +376,7 @@ export default function StreamShowcase({
   streams: NewsletterStream[]
 }) {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-16">
       <div className="mx-auto max-w-5xl space-y-8 px-6">
         {streams.map((stream, i) => (
           <div key={stream.id} id={stream.id}>
