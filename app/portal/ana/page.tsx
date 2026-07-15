@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
 export default function LegacyPrivatePortalPage() {
-  redirect('/friends/ana')
+  redirect('/allies/ana-cancino')
 }
