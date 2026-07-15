@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import CountdownTimer from './CountdownTimer'
+import { Check } from 'lucide-react'
 
 interface AuctionCardProps {
   auction: {
@@ -17,8 +18,10 @@ interface AuctionCardProps {
     }
     startingBid: number
     buyNowPrice?: number
-    currentBid: number
-    bidCount: number
+    currentBid?: number
+    bidCount?: number
+    winningBid?: number
+    acquiredBy?: string
     endTime: string
     status: string
     featured?: boolean
@@ -29,12 +32,14 @@ interface AuctionCardProps {
 export default function AuctionCard({ auction }: AuctionCardProps) {
   const isActive = auction.status === 'active'
   const isUpcoming = auction.status === 'upcoming'
-  const currentPrice = auction.currentBid > 0 ? auction.currentBid : auction.startingBid
+  const isCompleted = auction.status === 'completed'
 
   return (
     <Link
       href={`/auctions/${auction.slug}`}
-      className="group relative block overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] transition-all duration-500"
+      className={`group relative block overflow-hidden rounded-2xl border bg-white/[0.03] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] ${
+        isCompleted ? 'border-white/[0.04]' : 'border-white/[0.08]'
+      }`}
     >
       {/* Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -42,7 +47,9 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
           src={auction.item.images[0]}
           alt={auction.title}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
+            isCompleted ? 'grayscale opacity-70' : ''
+          }`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/30 to-transparent" />
@@ -50,17 +57,23 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
         {/* Status badge */}
         <div className="absolute top-4 left-4 flex items-center gap-2">
           {isActive && (
-            <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-medium backdrop-blur-sm flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Live
+            <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-medium backdrop-blur-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              Open for Proposals
             </span>
           )}
           {isUpcoming && (
-            <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-medium backdrop-blur-sm">
+            <span className="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 text-xs font-medium backdrop-blur-sm">
               Upcoming
             </span>
           )}
-          {auction.featured && (
+          {isCompleted && (
+            <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-medium backdrop-blur-sm flex items-center gap-1">
+              <Check className="w-3.5 h-3.5" />
+              Acquired
+            </span>
+          )}
+          {auction.featured && !isCompleted && (
             <span className="px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-400 text-xs font-medium backdrop-blur-sm">
               Featured
             </span>
@@ -75,9 +88,11 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
         )}
 
         {/* Countdown */}
-        <div className="absolute bottom-4 left-4">
-          <CountdownTimer endTime={auction.endTime} compact />
-        </div>
+        {!isCompleted && (
+          <div className="absolute bottom-4 left-4">
+            <CountdownTimer endTime={auction.endTime} compact />
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -87,7 +102,7 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
             <span className="text-xs text-white/40 uppercase tracking-wider">
               {auction.item.category}
             </span>
-            <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors leading-tight mt-1">
+            <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition-colors leading-tight mt-1">
               {auction.title}
             </h3>
           </div>
@@ -99,26 +114,30 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
 
         {/* Price row */}
         <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
-          <div>
-            <span className="text-xs text-white/40">
-              {auction.bidCount > 0 ? 'Current Bid' : 'Starting Bid'}
-            </span>
-            <div className="text-xl font-bold text-white">${currentPrice}</div>
-          </div>
-          {auction.buyNowPrice && (
-            <div className="text-right">
-              <span className="text-xs text-white/40">Buy Now</span>
-              <div className="text-lg font-semibold text-cyan-400">${auction.buyNowPrice}</div>
-            </div>
+          {isCompleted ? (
+            <>
+              <div>
+                <span className="text-xs text-white/40">Acquisition Price</span>
+                <div className="text-xl font-bold text-white/70">${auction.winningBid}</div>
+              </div>
+              <div className="text-right">
+                <span className="text-xs text-white/40">Status</span>
+                <div className="text-sm font-semibold text-emerald-400 font-mono">Closed</div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <span className="text-xs text-white/40">Starting Bid</span>
+                <div className="text-xl font-bold text-white">${auction.startingBid}</div>
+              </div>
+              <div className="text-right">
+                <span className="text-xs text-white/40 font-medium text-amber-400">Silent Bid Open</span>
+                <div className="text-xs text-white/30 font-medium">Reviewing Proposals</div>
+              </div>
+            </>
           )}
         </div>
-
-        {/* Bid count */}
-        {auction.bidCount > 0 && (
-          <div className="text-xs text-white/30 mt-2">
-            {auction.bidCount} bid{auction.bidCount !== 1 ? 's' : ''}
-          </div>
-        )}
       </div>
     </Link>
   )
