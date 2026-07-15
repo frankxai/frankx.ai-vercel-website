@@ -128,11 +128,16 @@ export async function createCheckoutUrl(options: LemonSqueezyCheckoutOptions): P
  * Verify Lemon Squeezy webhook signature
  */
 export function verifyWebhookSignature(payload: string, signature: string): boolean {
-  if (!WEBHOOK_SECRET) return false
+  if (!WEBHOOK_SECRET || !signature) return false
 
   const hmac = crypto.createHmac('sha256', WEBHOOK_SECRET)
   const digest = hmac.update(payload).digest('hex')
-  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(digest))
+  const digestBuffer = Buffer.from(digest)
+  const signatureBuffer = Buffer.from(signature)
+  // timingSafeEqual throws on unequal-length buffers instead of returning
+  // false — a missing/malformed header must not crash the webhook.
+  if (signatureBuffer.length !== digestBuffer.length) return false
+  return crypto.timingSafeEqual(signatureBuffer, digestBuffer)
 }
 
 // ── Product Helpers ─────────────────────────────────────────────────────────

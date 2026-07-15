@@ -21,7 +21,8 @@ import {
 } from 'lucide-react'
 
 const REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
-const STARTER_ZIP = 'https://starlightintelligence.org/download'
+// Direct zipball — GitHub auto-generates this for any tag, always works, downloads as a real .zip.
+const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v7.4.1.zip'
 const RELEASES = 'https://github.com/frankxai/Starlight-Intelligence-System/releases'
 const PROTOCOL = 'https://starlightintelligence.org/protocol'
 const KNOWLEDGE_TREE = 'https://starlightintelligence.org/knowledge-tree'
@@ -181,7 +182,7 @@ export default function StarlightIntelligenceSystemPage() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
               <Download className="h-4 w-4" />
-              Download SIP Starter
+              Download .zip <span className="text-white/70 font-normal text-xs">v7.4.1</span>
             </Link>
             <Link
               href={REPO}
@@ -350,7 +351,7 @@ export default function StarlightIntelligenceSystemPage() {
                 </li>
                 <li className="flex gap-2">
                   <span className="text-slate-500 font-mono text-xs mt-0.5">3.</span>
-                  <span>Open the SIP Starter download page</span>
+                  <span>Download the SIS starter pack (.zip)</span>
                 </li>
                 <li className="flex gap-2">
                   <span className="text-slate-500 font-mono text-xs mt-0.5">4.</span>
@@ -371,7 +372,7 @@ export default function StarlightIntelligenceSystemPage() {
                   className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-black transition-all hover:bg-emerald-400 w-fit"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  Download SIP Starter
+                  Download .zip <span className="font-normal text-xs opacity-70">v7.4.1</span>
                 </Link>
                 <div className="text-[10px] text-slate-500 font-mono leading-relaxed">
                   ~6 MB · markdown + commands + agents · drop into Claude Project
@@ -570,7 +571,7 @@ export default function StarlightIntelligenceSystemPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <div className="text-[11px] uppercase tracking-wider text-emerald-300 mb-2 font-semibold">Protocol</div>
-              <h3 className="text-base font-semibold text-white mb-3">SIP v1.1.1</h3>
+              <h3 className="text-base font-semibold text-white mb-3">SIP v1.1.0</h3>
               <p className="text-sm text-slate-400 leading-relaxed mb-3">Six layers:</p>
               <ul className="space-y-1.5 text-sm text-slate-300">
                 <li className="flex gap-2"><Check className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>File contract (SKILL · AGENTS · MEMORY · CANON · SOUL · STACK)</span></li>
@@ -679,7 +680,7 @@ export default function StarlightIntelligenceSystemPage() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20"
             >
               <Download className="h-4 w-4" />
-              Download SIP Starter
+              Download .zip <span className="text-white/70 font-normal text-xs">v7.4.1 · ~6MB</span>
             </Link>
             <Link
               href={REPO}
@@ -705,7 +706,7 @@ export default function StarlightIntelligenceSystemPage() {
             {/* SIPBadge removed */}
             <div className="text-[11px] text-slate-500 font-mono leading-relaxed text-left">
               <div className="text-emerald-300">Built on SIP — Starlight Intelligence Protocol</div>
-              <div>Substrate: starlightintelligence.org/protocol v1.1.1</div>
+              <div>Substrate: starlightintelligence.org/protocol v1.1.0</div>
               <div>Layers: file-contract · attestation · commands · sovereignty</div>
               <div className="mt-1 text-slate-600">Attestation is compounding, not credit transfer.</div>
             </div>

@@ -27,39 +27,15 @@ const iconMap: Record<string, LucideIcon> = {
   Crown,
 }
 
-// Map each stream to its thematic team character
+// Public newsletter cards use system icons instead of internal character lore.
 const streamCharacters: Record<string, { src: string; name: string }> = {
-  'creation-chronicles': {
-    src: '/images/mascot/mascot-v25-crystal-familiar.png',
-    name: 'Axi',
-  },
-  'ai-architect': {
-    src: '/images/team/codex-falcon.png',
-    name: 'Codex',
-  },
-  'music-lab': {
-    src: '/images/team/echo-leopard.png',
-    name: 'Echo',
-  },
-  arcanea: {
-    src: '/images/team/stella-owl.png',
-    name: 'Stella',
-  },
-  investor: {
-    src: '/images/team/draconia-tiger.png',
-    name: 'Draconia',
-  },
-  'inner-circle': {
-    src: '/images/team/nero-umbra.png',
-    name: 'Nero',
-  },
 }
 
 // Map each stream ID to a thematic ecosystem image
 const streamImages: Record<string, { src: string; alt: string }> = {
   'creation-chronicles': {
     src: '/images/ecosystem/13-creation-chronicles.png',
-    alt: 'Creation Chronicles — behind-the-scenes of building an AI-powered creator business',
+    alt: 'Signal Loop - weekly systems and creator field notes from Frank Riemer',
   },
   'ai-architect': {
     src: '/images/ecosystem/15-acos-claude-code.png',
@@ -71,7 +47,7 @@ const streamImages: Record<string, { src: string; alt: string }> = {
   },
   arcanea: {
     src: '/images/ecosystem/07-arcanea-10-gates.png',
-    alt: 'Arcanea Transmissions — the 10 Gates mythology and creative universe',
+    alt: 'Creative Systems Research - worldbuilding, media pipelines, and visual systems',
   },
   investor: {
     src: '/images/ecosystem/05-value-ladder-progression.png',
@@ -79,7 +55,7 @@ const streamImages: Record<string, { src: string; alt: string }> = {
   },
   'inner-circle': {
     src: '/images/design-lab/nature-09-crystal-garden.png',
-    alt: 'Inner Circle — exclusive access, revenue breakdowns, and system architecture',
+    alt: 'Inner Circle - private implementation notes, not open yet',
   },
 }
 

@@ -1,0 +1,10 @@
+{
+  "name": "epicways-intelligence-starter-kit",
+  "version": "0.1.0",
+  "releaseDate": "2026-06-23",
+  "publicPage": "https://frankx.ai/downloads/epicways-intelligence",
+  "description": "A public-safe starter operating kit for TheEpicWays client intelligence: signal, offer shape, room design, memory, follow-up, impact, and approved content reuse.",
+  "loops": ["signal", "shape", "room", "memory", "growth"],
+  "status": "starter-kit",
+  "privateDataPolicy": "Do not include client names, private notes, recordings, or sensitive internal details in public assets."
+}

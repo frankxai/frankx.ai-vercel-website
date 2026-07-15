@@ -1,4 +1,5 @@
 import { socialLinks } from '@/lib/social-links'
+import { buildUnsubscribeUrl, SITE_URL } from '@/lib/email-config'
 
 /**
  * Welcome Sequence Email Templates for FrankX.AI
@@ -67,7 +68,8 @@ function resourceRow(label: string, description: string, url: string, accentColo
     </table>`
 }
 
-function welcomeWrapper(content: string, preheader: string = ''): string {
+function welcomeWrapper(content: string, preheader: string = '', recipientEmail?: string): string {
+  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : `${SITE_URL}/unsubscribe`
   return `
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -161,7 +163,7 @@ function welcomeWrapper(content: string, preheader: string = ''): string {
                   <td align="center" style="padding-top: 8px;">
                     <p style="font-size: 11px; color: #475569; margin: 0; line-height: 1.6;">
                       You received this because you signed up at frankx.ai<br>
-                      <a href="https://frankx.ai/unsubscribe" style="color: #64748b; text-decoration: underline;">Unsubscribe</a>
+                      <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: underline;">Unsubscribe</a>
                     </p>
                   </td>
                 </tr>
@@ -182,6 +184,7 @@ function welcomeWrapper(content: string, preheader: string = ''): string {
 
 export function welcomeEmail1(data: {
   recipientName: string
+  recipientEmail?: string
 }): EmailTemplate {
   const name = data.recipientName || 'Creator'
 
@@ -195,7 +198,7 @@ export function welcomeEmail1(data: {
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 12px 0;">
-            I'm Frank Riemer. I build enterprise AI systems at Oracle during the day and create AI music in the studio at night — 12,000+ tracks and counting.
+            I'm Frank Riemer. I bring former enterprise AI architecture experience into FrankX and create AI music in the studio at night — 12,000+ tracks and counting.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
@@ -262,7 +265,7 @@ export function welcomeEmail1(data: {
 
   return {
     subject: 'Welcome to the FrankX Ecosystem',
-    html: welcomeWrapper(content, 'You\'re in. Here are three resources to get started right away.')
+    html: welcomeWrapper(content, 'You\'re in. Here are three resources to get started right away.', data.recipientEmail)
   }
 }
 

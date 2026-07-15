@@ -329,7 +329,7 @@ Tell them sunrise by sunrise`,
     name: 'Healing & Frequencies',
     icon: Waves,
     color: 'text-cyan-400',
-    description: 'Meditation, healing frequencies, ambient soundscapes',
+    description: 'Meditation-inspired, ambient soundscapes',
     ideas: [
       {
         title: 'Crystal Waters 528Hz',
@@ -340,7 +340,7 @@ Tell them sunrise by sunrise`,
         simplePrompt:
           'Ambient healing music with 528Hz frequency undertone. Crystal singing bowls, soft synth pads, gentle piano, nature water sounds. No vocals. Spatial audio, wide stereo, gentle reverb. Deeply meditative and peaceful, like floating on crystal waters',
         customStyle:
-          'Ambient, healing frequencies, 528Hz, crystal bowls, synth pads, piano, nature sounds, spatial audio, meditative',
+          'Ambient, soft 528Hz-style ambience, crystal bowls, synth pads, piano, nature sounds, spatial audio, meditative',
         customLyrics: `[Intro]
 [Soft singing bowls fading in]
 

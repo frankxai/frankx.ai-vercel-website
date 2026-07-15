@@ -86,7 +86,7 @@ If you ship agents in your work and want:
 If you're building agents inside a company with governance / compliance / multi-stakeholder needs:
 
 - The €497 **Mastery** tier adds a structured 6-week cohort + AI-assisted code review queue.
-- The €997 **Architect** tier adds Frank's day-job AI Center of Excellence framework + Oracle ADK + compliance templates.
+- The €997 **Architect** tier adds Frank's enterprise AI Center of Excellence framework, public Oracle ADK learning material, and compliance-oriented templates.
 - The €2,997 **Founder's Circle** adds 4 hours of Frank's actual time per quarter, by application only.
 
 → [frankx.ai/build](https://frankx.ai/build)

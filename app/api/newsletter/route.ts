@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Same Resend audience as app/api/subscribe/route.ts — the canonical list.
+const RESEND_AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
+
 async function subscribeConvertKit(email: string) {
   const apiKey = process.env.CONVERTKIT_API_KEY
   const formId = process.env.CONVERTKIT_FORM_ID
@@ -38,11 +41,32 @@ async function subscribeWebhook(email: string) {
   return { ok: res.ok, status: res.status }
 }
 
+async function subscribeResend(email: string) {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) return { ok: false, reason: 'Resend env missing' }
+  const res = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, unsubscribed: false })
+  })
+  // 409 = already subscribed — success from the visitor's point of view
+  return { ok: res.ok || res.status === 409, status: res.status }
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData()
-    const email = (formData.get('email') as string)?.trim().toLowerCase()
-    const redirectTo = formData.get('redirect') as string | null
+    const contentType = request.headers.get('content-type') || ''
+    let email = ''
+    let isJsonClient = false
+
+    if (contentType.includes('application/json')) {
+      isJsonClient = true
+      const body = await request.json().catch(() => ({}))
+      email = String(body?.email || '').trim().toLowerCase()
+    } else {
+      const formData = await request.formData()
+      email = String(formData.get('email') || '').trim().toLowerCase()
+    }
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email address required' }, { status: 400 })
@@ -60,15 +84,18 @@ export async function POST(request: NextRequest) {
       const r = await subscribeWebhook(email)
       if (!r.ok) outcome = { ok: false }
     } else {
-      // Fallback: log only
-      console.log('Newsletter signup (no provider configured):', email)
+      const r = await subscribeResend(email)
+      if (!r.ok) outcome = { ok: false }
     }
 
     if (!outcome.ok) {
       return NextResponse.json({ error: 'Subscription failed' }, { status: 502 })
     }
 
-    // Always redirect to thank-you page for better UX
+    if (isJsonClient) {
+      return NextResponse.json({ success: true, message: 'Successfully subscribed!' })
+    }
+
     const thankYouUrl = new URL('/newsletter/thank-you', request.url)
     return NextResponse.redirect(thankYouUrl, 303)
   } catch (error) {

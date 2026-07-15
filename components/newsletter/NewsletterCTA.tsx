@@ -25,7 +25,7 @@ export default function NewsletterCTA() {
               How it works
             </h2>
             <p className="text-slate-400">
-              Each stream is independent. Subscribe to what matters.
+              Start with the main letter. Add deeper streams only when they matter.
             </p>
           </motion.div>
 
@@ -33,18 +33,18 @@ export default function NewsletterCTA() {
             {[
               {
                 step: '01',
-                title: 'Pick your streams',
-                desc: 'Choose one or all. Each has its own cadence and content type.',
+                title: 'Join Signal Loop',
+                desc: 'The main weekly note carries the clearest AI, creative, and performance signal.',
               },
               {
                 step: '02',
-                title: 'Get curated content',
-                desc: 'Not repurposed blog posts. Original insights crafted for each stream.',
+                title: 'Read what held up',
+                desc: 'Systems, experiments, and stories are shared only after they survive real use.',
               },
               {
                 step: '03',
                 title: 'Stay in control',
-                desc: 'Manage each stream independently. Unsubscribe from one without losing others.',
+                desc: 'No pressure loops. Leave any time, or add deeper streams when they earn your attention.',
               },
             ].map((item, i) => (
               <motion.div
@@ -83,14 +83,14 @@ export default function NewsletterCTA() {
               <FrankOmega variant="pixar-blue" size="sm" glow rounded />
             </div>
             <h2 className="relative mb-3 text-2xl font-bold text-white sm:text-3xl">
-              Not sure which stream?
+              Start with one clear signal
             </h2>
             <p className="relative mx-auto mb-4 max-w-md text-slate-400">
-              Start with Creation Chronicles — it covers everything and
-              you&apos;ll see what resonates.
+              Signal Loop is the main letter from Frank. It covers the systems,
+              experiments, and decisions most likely to help you think and ship.
             </p>
             <p className="relative mx-auto mb-8 max-w-sm text-xs text-blue-400/60 italic">
-              &ldquo;I&apos;ll be in your inbox. No fluff. Just the signal.&rdquo; — FRANK-Ω
+              &ldquo;No tricks. Just the signal that survived the week.&rdquo; — Frank
             </p>
             <div className="relative flex flex-wrap justify-center gap-4">
               <a
@@ -98,7 +98,7 @@ export default function NewsletterCTA() {
                 className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5"
               >
                 <Mail className="h-4 w-4" />
-                Start with the main stream
+                Start with Signal Loop
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <Link

@@ -7,6 +7,29 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import BuyButton from './BuyButton'
+import type { ProductRecord } from '@/types/products'
+
+// Some registry entries (e.g. golden-age) predate the full ProductRecord shape:
+// they carry title/description/cta/price instead of name/headline/offer.
+// The page must render (not 500) for both shapes.
+type LegacyFields = {
+  title?: string
+  description?: string
+  price?: number
+  cta?: { label: string; href: string }
+}
+
+function normalize(product: ProductRecord) {
+  const legacy = product as ProductRecord & LegacyFields
+  return {
+    name: product.name ?? legacy.title ?? product.slug,
+    headline: product.headline ?? legacy.description ?? '',
+    summary: product.summary || product.promise || legacy.description || '',
+    offer: (product.offer ?? undefined) as ProductRecord['offer'] | undefined,
+    legacyPrice: legacy.price,
+    legacyCta: legacy.cta,
+  }
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -20,12 +43,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     })
   }
 
+  const { name, summary } = normalize(product)
+
   return createMetadata({
-    title: product.name,
-    description: product.summary || product.promise,
+    title: name,
+    description: summary,
     path: `/products/${product.slug}`,
     type: 'website', // Product pages are often 'website' or 'product' (og:type product not always standard)
-    image: `/api/og?title=${encodeURIComponent(product.name)}&subtitle=${encodeURIComponent(product.category ?? 'Product')}`,
+    image: `/api/og?title=${encodeURIComponent(name)}&subtitle=${encodeURIComponent(product.category ?? 'Product')}`,
   })
 }
 
@@ -37,31 +62,35 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  const offer = product.offer
-  const primaryPrice = offer?.primaryPrice ?? 0
+  const { name, headline, summary, offer, legacyPrice, legacyCta } = normalize(product)
+  const schemaPrice = offer?.primaryPrice ?? legacyPrice
 
   // Structured Data for Product
   const productSchema = {
-    name: product.name,
-    description: product.summary,
-    image: [`${siteConfig.url}/api/og?title=${encodeURIComponent(product.name)}`],
+    name,
+    description: summary,
+    image: [`${siteConfig.url}/api/og?title=${encodeURIComponent(name)}`],
     sku: product.id,
     brand: {
       '@type': 'Brand',
       name: 'FrankX',
     },
-    offers: {
-      '@type': 'Offer',
-      url: `${siteConfig.url}/products/${product.slug}`,
-      priceCurrency: offer?.currency || 'USD',
-      price: primaryPrice,
-      priceValidUntil: '2026-12-31',
-      availability: 'https://schema.org/InStock',
-      seller: {
-        '@type': 'Organization',
-        name: 'FrankX',
-      },
-    },
+    ...(schemaPrice !== undefined
+      ? {
+          offers: {
+            '@type': 'Offer',
+            url: `${siteConfig.url}/products/${product.slug}`,
+            priceCurrency: offer?.currency || 'USD',
+            price: schemaPrice,
+            priceValidUntil: '2026-12-31',
+            availability: 'https://schema.org/InStock',
+            seller: {
+              '@type': 'Organization',
+              name: 'FrankX',
+            },
+          },
+        }
+      : {}),
     ...(product.socialProof?.stats
       ? {
           aggregateRating: {
@@ -81,7 +110,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <Breadcrumbs
           items={[
             { label: 'Products', href: '/products' },
-            { label: product.name, href: `/products/${product.slug}` },
+            { label: name, href: `/products/${product.slug}` },
           ]}
         />
 
@@ -93,25 +122,29 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
             
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              {product.name}
+              {name}
             </h1>
-            
-            <p className="mt-6 text-xl leading-relaxed text-gray-300">
-              {product.headline}
-            </p>
-            
-            <div className="mt-8 border-l-2 border-cyan-500/50 pl-6">
-              <p className="text-lg italic text-gray-400">"{product.subheadline}"</p>
-            </div>
 
-            <div className="mt-10">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-300/70">
-                The Promise
-              </h3>
-              <p className="mt-2 text-base text-gray-300">
-                {product.promise}
-              </p>
-            </div>
+            <p className="mt-6 text-xl leading-relaxed text-gray-300">
+              {headline}
+            </p>
+
+            {product.subheadline && (
+              <div className="mt-8 border-l-2 border-cyan-500/50 pl-6">
+                <p className="text-lg italic text-gray-400">"{product.subheadline}"</p>
+              </div>
+            )}
+
+            {product.promise && (
+              <div className="mt-10">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-300/70">
+                  The Promise
+                </h3>
+                <p className="mt-2 text-base text-gray-300">
+                  {product.promise}
+                </p>
+              </div>
+            )}
 
             {/* Modules / Features */}
             {product.modules && (
@@ -138,48 +171,62 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:p-10">
               <h3 className="text-xl font-semibold text-white">Get Instant Access</h3>
-              
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className="text-5xl font-bold text-white">
-                  ${primaryPrice}
-                </span>
-                {offer?.originalPrice && (
-                  <span className="text-xl text-gray-500 line-through">
-                    ${offer.originalPrice}
-                  </span>
-                )}
-              </div>
 
-              <div className="mt-8 space-y-4">
-                {offer ? (
-                  <BuyButton
-                    href={offer.ctaPrimaryHref}
-                    label={offer.ctaPrimary}
-                    trackingId={offer.ctaPrimaryTracking}
-                  />
-                ) : (
-                  <BuyButton href="/contact" label="Contact FrankX" trackingId="contact-product-fallback" />
-                )}
-                
-                {offer?.ctaSecondary && offer.ctaSecondaryHref && (
-                  <Link
-                    href={offer.ctaSecondaryHref}
-                    className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
-                  >
-                    {offer.ctaSecondary}
-                  </Link>
-                )}
-              </div>
+              {offer ? (
+                <>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="text-5xl font-bold text-white">
+                      ${offer.primaryPrice}
+                    </span>
+                    {offer.originalPrice && (
+                      <span className="text-xl text-gray-500 line-through">
+                        ${offer.originalPrice}
+                      </span>
+                    )}
+                  </div>
 
-              {offer?.guarantee && (
-                <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
-                    {offer.guarantee.label}
-                  </p>
-                  <p className="mt-1 text-xs text-gray-400">
-                    {offer.guarantee.description}
-                  </p>
-                </div>
+                  <div className="mt-8 space-y-4">
+                    <BuyButton
+                      href={offer.ctaPrimaryHref}
+                      label={offer.ctaPrimary}
+                      trackingId={offer.ctaPrimaryTracking}
+                    />
+
+                    {offer.ctaSecondary && offer.ctaSecondaryHref && (
+                      <Link
+                        href={offer.ctaSecondaryHref}
+                        className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
+                      >
+                        {offer.ctaSecondary}
+                      </Link>
+                    )}
+                  </div>
+
+                  {offer.guarantee && (
+                    <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
+                        {offer.guarantee.label}
+                      </p>
+                      <p className="mt-1 text-xs text-gray-400">
+                        {offer.guarantee.description}
+                      </p>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="text-5xl font-bold text-white">
+                      {legacyPrice === 0 ? 'Free' : legacyPrice !== undefined ? `$${legacyPrice}` : ''}
+                    </span>
+                  </div>
+
+                  {legacyCta && (
+                    <div className="mt-8 space-y-4">
+                      <BuyButton href={legacyCta.href} label={legacyCta.label} />
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Social Proof */}

@@ -292,11 +292,11 @@ export default function VideoCreationClient() {
             </p>
           </div>
           <Link
-            href="/watch"
+            href="/admin/youtube"
             className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/20 hover:bg-white/[0.06] sm:inline-flex"
           >
             <LayoutDashboard className="h-4 w-4" />
-            YouTube Hub
+            YouTube Admin
             <ArrowUpRight className="h-3 w-3 opacity-50" />
           </Link>
         </div>

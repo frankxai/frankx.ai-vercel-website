@@ -231,6 +231,13 @@ export default function LibraryPage() {
               ? booksRegistry.find((b) => b.slug === review.relatedBook)
               : null;
 
+            const previewImage = review.hasCover
+              ? {
+                  src: review.coverImage,
+                  alt: `${review.title} by ${review.author} — book cover`,
+                }
+              : review.capture?.images?.[0];
+
             return (
               <Link
                 key={review.slug}
@@ -240,11 +247,11 @@ export default function LibraryPage() {
                 <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
-                    {review.hasCover ? (
+                    {previewImage ? (
                       <div className="w-16 h-24 rounded-lg border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
                         <Image
-                          src={review.coverImage}
-                          alt={`${review.title} by ${review.author} — book cover`}
+                          src={previewImage.src}
+                          alt={previewImage.alt}
                           width={128}
                           height={192}
                           className="w-full h-full object-cover"
@@ -271,6 +278,15 @@ export default function LibraryPage() {
                   <p className="text-sm text-white/60 leading-relaxed mb-4 line-clamp-2">
                     {review.keyInsights[0]}
                   </p>
+
+                  {/* Provenance badge */}
+                  {review.capture && (
+                    <div className="mb-4 -mt-2">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-200/80 border border-cyan-500/15">
+                        Source-backed
+                      </span>
+                    </div>
+                  )}
 
                   {/* Deep-dive badge */}
                   {(review.chapters?.length || review.quotes?.length) && (

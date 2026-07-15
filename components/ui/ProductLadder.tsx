@@ -36,7 +36,7 @@ const products = [
       'Social Media Growth Hooks',
     ],
     cta: 'Get the Toolkit',
-    href: '/products/creative-ai-toolkit',
+    href: '/toolkit',
   },
   {
     id: 'acos',

@@ -99,6 +99,12 @@ export default function PianoLearnPage() {
           </p>
         </motion.header>
 
+        <div className="mb-10 rounded-2xl border border-rose-200 bg-white/80 px-5 py-4 text-sm leading-6 text-slate-600" role="note">
+          <strong className="text-slate-800">Hinweis für Familien:</strong> Diese Seite speichert keine Namen,
+          E-Mail-Adressen oder Aufnahmen. Jüngere Lernende sollten externe Videos und Dienste nur gemeinsam mit
+          einem Elternteil, einer Aufsichtsperson oder einer Lehrkraft öffnen.
+        </div>
+
         {/* Quick Start */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
@@ -133,7 +139,7 @@ export default function PianoLearnPage() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎓 Die besten Lehrer auf YouTube</h2>
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎓 Ausgewählte Lehrer auf YouTube</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {TEACHERS.map((teacher) => {
               const c = colorMap[teacher.color]
@@ -230,7 +236,7 @@ export default function PianoLearnPage() {
           className="mb-10 rounded-3xl bg-gradient-to-br from-cyan-50/80 to-violet-50/80 p-8 text-center shadow-sm"
         >
           <h2 className="text-2xl font-bold text-slate-800">🎧 Klavier von Onkel Frank</h2>
-          <p className="mt-2 text-slate-500">Golden Frequencies — neoclassical piano und healing sounds</p>
+          <p className="mt-2 text-slate-500">Golden Frequencies — neoklassisches Klavier und ruhige Ambient-Stücke</p>
           <div className="mt-4 flex flex-wrap justify-center gap-3">
             <a
               href="https://suno.com/playlist/77e7f75f-24b4-4c8f-b02c-10eff76a7052"
