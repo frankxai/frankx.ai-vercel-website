@@ -37,7 +37,7 @@ export const metadata = createMetadata({
 const proofPoints = [
   {
     label: 'Professional background',
-    value: 'Former AI architect at Oracle',
+    value: 'AI Architect & Creator',
     note: 'Enterprise AI and cloud architecture patterns translated into independent creator systems.',
   },
   {
@@ -185,7 +185,7 @@ export default function MediaKitPage() {
               notes, and peak-state routines that keep work grounded.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/38">
-              Independent project. Former AI architect at Oracle. FrankX is not affiliated with,
+              Independent project. AI Architect & Creator. FrankX is not affiliated with,
               endorsed by, or sponsored by Oracle.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

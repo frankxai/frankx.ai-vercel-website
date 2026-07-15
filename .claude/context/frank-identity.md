@@ -35,7 +35,7 @@ When they're old enough to explore, they'll find:
 
 ## Professional
 
-- **Professional Background:** Former AI architect at Oracle
+- **Professional Background:** AI Architect & Creator
 - **Focus Areas:**
   - Enterprise AI systems
   - Multi-agent orchestration

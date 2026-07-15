@@ -363,7 +363,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'Former AI architect at Oracle',
+  'AI Architect & Creator',
   'Independent living studio',
   'Music, systems, books, and field notes',
   'Built for people, not platforms',

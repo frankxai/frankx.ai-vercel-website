@@ -7,7 +7,7 @@
 
 ## Legal And Brand Boundary
 
-- Frank may be described as a **former AI architect at Oracle**.
+- Frank may be described as a **AI Architect & Creator**.
 - Oracle should not be framed as a current employer, sponsor, partner, certifier, customer, or endorser of FrankX.
 - Do not use Oracle logos, screenshots, confidential material, internal roadmaps, customer examples, nonpublic pricing, partner information, or deal specifics.
 - Avoid exact deal-size claims unless public, sourced, and clearly relevant. Prefer "enterprise-scale", "large enterprise AI/cloud transformation work", or "multi-billion-dollar opportunity environments."
@@ -23,11 +23,11 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. O
 
 ## Short Bio
 
-Frank Riemer is a former AI architect at Oracle, creator of 12,000+ AI songs, and founder of FrankX. He helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
+Frank Riemer is a AI Architect & Creator, creator of 12,000+ AI songs, and founder of FrankX. He helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
 
 ## Long Bio
 
-Frank Riemer is a musician-technologist, founder of FrankX, and former AI architect at Oracle. He has worked around enterprise-scale AI and cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
+Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI and cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
 FrankX is his independent studio for human-first AI systems: creator operating systems, AI music workflows, prompt libraries, automation playbooks, and founder-grade execution frameworks. The work translates lessons from large enterprise AI/cloud environments into tools that help individuals and small teams move with more clarity, taste, and leverage.
 
@@ -41,7 +41,7 @@ Frank's position is simple: AI should help humans create more, think better, and
 
 **Deck:** FrankX translates lessons from enterprise-scale AI/cloud work and creator-led building into operating systems for entrepreneurs, creators, and operators. Build workflows that help you think, create, automate, publish, and sell without losing your voice.
 
-**Proof line:** Former AI architect at Oracle. Helped build a seven-figure business. Creator of 12,000+ AI songs. Building human-first AI systems in public.
+**Proof line:** AI Architect & Creator. Helped build a seven-figure business. Creator of 12,000+ AI songs. Building human-first AI systems in public.
 
 **Primary CTA:** Build Your Creator OS
 
@@ -59,7 +59,7 @@ The result is entrepreneur AI: practical systems that help a creator, founder, o
 
 ## Approved Language
 
-- former AI architect at Oracle
+- AI Architect & Creator
 - former enterprise AI architect
 - enterprise-scale AI/cloud work
 - large enterprise AI/cloud transformation environments

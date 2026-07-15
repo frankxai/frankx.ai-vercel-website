@@ -132,7 +132,7 @@ export default function YouTubePage() {
               className="mb-3 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Deep technical tutorials, production music workflows, and honest takes on building
-              with AI. From a former AI architect at Oracle who ships code, creates music, and builds in public.
+              with AI. From a AI Architect & Creator who ships code, creates music, and builds in public.
             </motion.p>
             <p className="mb-8 max-w-2xl text-xs leading-relaxed text-slate-500">
               Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
@@ -403,7 +403,7 @@ export default function YouTubePage() {
                 Subscribe to the Channel
               </h2>
               <p className="mx-auto mb-3 text-sm text-white/40">
-                Former AI architect at Oracle &middot; 12,000+ AI songs &middot; Building in public
+                AI Architect & Creator &middot; 12,000+ AI songs &middot; Building in public
               </p>
               <p className="mx-auto mb-8 max-w-lg text-slate-400">
                 Get weekly tutorials, production field notes, and behind-the-scenes of building

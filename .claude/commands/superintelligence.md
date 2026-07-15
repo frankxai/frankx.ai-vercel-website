@@ -20,7 +20,7 @@ context:
 Key points to remember:
 - Frank is 28, lives in Amsterdam with girlfriend Tien
 - Godfather to 2, uncle to many—building a legacy they can explore
-- AI Architect at Oracle by day, creator by night
+- AI Architect & Creator by day, creator by night
 - This work is genuine exploration, not content marketing
 - Standard: excellence in execution, let the work speak
 

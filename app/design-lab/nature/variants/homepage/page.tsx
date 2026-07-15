@@ -324,7 +324,7 @@ function NatureHero() {
             animate={{ opacity: 1 }}
             transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
           >
-            Former AI architect at Oracle. Creator of 12,000+ songs with Suno.
+            AI Architect & Creator. Creator of 12,000+ songs with Suno.
             Building intelligent systems at the intersection of{' '}
             <span className="text-emerald-400/80">technology</span> and{' '}
             <span className="text-cyan-400/80">creativity</span>.

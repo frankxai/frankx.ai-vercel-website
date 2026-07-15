@@ -69,7 +69,7 @@ ${d.subtitle}
 
   const content = `# FrankX — Comprehensive Site Map (llms-full.txt)
 
-> Personal hub of Frank X. Riemer — former AI architect at Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — AI Architect & Creator, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
 This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
 
