@@ -1,33 +1,31 @@
 import HomePageElite from '@/components/home/HomePageElite'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
+import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
+import { bookReviews } from '@/data/book-reviews'
+import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
+import { getAllBlogPosts } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
-import JsonLd from '@/components/seo/JsonLd'
-import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { getAllBlogPosts } from '@/lib/blog'
-import { bookReviews } from '@/data/book-reviews'
 
 export const metadata = createMetadata({
-  title: 'FrankX - AI Architect & Creator Systems',
+  title: 'FrankX — Music, Systems & A Living Studio',
   description:
-    'Former AI architect at Oracle. Creator of 12,000+ songs with Suno. Practical AI systems, music experiments, and evidence-led performance notes for creators who ship with clarity.',
+    'Enter Frank Riemer\'s living studio: music, agent systems, books, field notes, and practical tools shared for creators, builders, friends, and family.',
   keywords: [
     'Frank Riemer',
     'FrankX',
-    'ai architect',
-    'personal AI operating system',
+    'living studio',
     'AI creator systems',
-    'attention and recovery systems',
-    'ai music creation',
-    'suno ai',
-    'ai architecture',
-    'ai workflow automation',
-    'creator tools',
+    'AI music creation',
+    'Suno music',
     'agentic workflows',
-    'enterprise ai',
-    'claude code',
+    'personal AI operating system',
+    'AI architecture',
+    'creator tools',
+    'Claude Code',
     'multi-agent systems',
-    'ai coding agents',
-    'prompt engineering',
+    'field notes',
+    'digital products',
   ],
   path: '/',
 })
@@ -40,7 +38,7 @@ const websiteSchema = {
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
   description:
-    'FrankX is Frank Riemer\'s home for AI creator systems, agentic workflows, music experiments, and evidence-led performance notes.',
+    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -53,7 +51,6 @@ const websiteSchema = {
     'query-input': 'required name=search_term_string',
   },
 }
-
 const personSchema = {
   '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
@@ -70,22 +67,16 @@ const personSchema = {
   brand: {
     '@id': `${siteUrl}/#organization`,
   },
-  sameAs: [
-    socialLinks.linkedin,
-    socialLinks.github,
-    socialLinks.suno,
-    socialLinks.twitter,
-  ],
+  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno, socialLinks.twitter],
   knowsAbout: [
     'AI Architecture',
     'Personal AI Operating Systems',
     'AI Creator Systems',
     'AI Music Creation',
-    'Suno AI',
-    'Attention and Recovery Systems',
-    'Enterprise AI Strategy',
-    'Cloud Infrastructure',
     'Agentic Workflows',
+    'Multi-Agent Systems',
+    'Creator Education',
+    'Creative Technology',
   ],
 }
 
@@ -98,82 +89,79 @@ const organizationSchema = {
   founder: {
     '@id': `${siteUrl}/#frank-riemer`,
   },
-  sameAs: [
-    socialLinks.linkedin,
-    socialLinks.github,
-    socialLinks.suno,
-  ],
+  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'FrankX publishes AI creator systems, agentic workflow labs, music experiments, and practical performance notes from Frank Riemer.',
+    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
   {
-    question: 'What is FrankX.AI?',
+    question: 'What is FrankX?',
     answer:
-      'FrankX.AI is the independent personal hub of Frank Riemer, a former AI architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
+      'FrankX is Frank Riemer\'s independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
-    question: 'What kind of content does FrankX publish?',
+    question: 'Where should I begin?',
     answer:
-      'FrankX publishes technical tutorials on AI coding agents, enterprise AI architecture patterns, Suno AI music production guides, prompt engineering frameworks, multi-agent orchestration, and the Signal Loop field notes.',
+      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
   },
   {
-    question: 'How can I learn AI music production with Suno?',
+    question: 'How does music fit into FrankX?',
     answer:
-      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and tuning and texture choices. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
+      'Music is one of the studio\'s living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.',
   },
   {
-    question: 'What is the Agentic Creator OS (ACOS)?',
+    question: 'Can I use the systems and tools?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
+      'Yes. FrankX includes public guides and open systems you can inspect first, plus paid packs and guided paths for people who want a more complete or supported route. Each offer should state its scope before asking for a purchase.',
   },
   {
-    question: 'Where does peak performance fit?',
+    question: 'Is FrankX an agency or coaching business?',
     answer:
-      'FrankX treats performance as an evidence-led creator system: attention, energy, recovery, and emotional steadiness. It is not medical advice or miracle biohacking.',
+      'FrankX is a founder studio rather than a conventional client agency. Some bounded architecture work, programs, or private access may open when the fit is mutual, but the public work and usefulness come first.',
   },
   {
-    question: 'Does FrankX offer courses or coaching?',
+    question: 'How are new music and studio updates chosen?',
     answer:
-      'FrankX offers free guides and tutorials on the blog, with premium coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
+      'A weekly process can prepare candidates, but nothing is featured automatically from a catalog or social feed. Music, copy, links, and rights state are reviewed before a homepage update or public send.',
   },
 ]
 
-const featuredTrack = {
-  id: 'vibe-os-track',
-  title: 'Vibe O S',
-  sunoId: '9cbad174-9276-427f-9aed-1ba00c7db3db',
-  audioUrl:
-    'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9cbad174-9276-427f-9aed-1ba00c7db3db/9cbad174-9276-427f-9aed-1ba00c7db3db.mp3',
-  genre: ['female hip hop', 'bass-heavy', 'lyrical'],
-  plays: 128,
-  duration: '4:00',
-}
-
 export default function Page() {
   const latestPosts = getAllBlogPosts()
-    .slice(0, 3)
-    .map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      description: p.description,
-      category: p.category,
-      readingTime: p.readingTime,
-      date: p.date,
+    .slice(0, 6)
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      description: post.description,
+      category: post.category,
+      readingTime: post.readingTime,
+      date: post.date,
+    }))
+
+  const books = getPublishedBooks()
+    .filter(
+      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
+    )
+    .slice(0, 6)
+    .map((book) => ({
+      slug: book.slug,
+      title: book.title,
+      subtitle: book.subtitle,
+      coverImage: book.coverImage,
     }))
 
   const libraryBooks = bookReviews
-    .filter((r) => (r.quotes?.length ?? 0) > 0 && (r.chapters?.length ?? 0) > 0)
+    .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)
     .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
     .slice(0, 5)
-    .map((r) => ({
-      slug: r.slug,
-      title: r.title,
-      author: r.author,
-      coverImage: r.coverImage,
-      quoteCount: r.quotes?.length ?? 0,
-      chapterCount: r.chapters?.length ?? 0,
+    .map((review) => ({
+      slug: review.slug,
+      title: review.title,
+      author: review.author,
+      coverImage: review.coverImage,
+      quoteCount: review.quotes?.length ?? 0,
+      chapterCount: review.chapters?.length ?? 0,
     }))
 
   return (
@@ -181,8 +169,9 @@ export default function Page() {
       <HomePageElite
         latestPosts={latestPosts}
         faqs={homepageFAQs}
+        books={books}
         libraryBooks={libraryBooks}
-        featuredTrack={featuredTrack}
+        featuredTrack={homepageFeaturedRelease}
       />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />

@@ -53,9 +53,7 @@ export default function CategoryDropdown({
     ? `${selectedCategory} (${getCategoryCount(selectedCategory)})`
     : `All Categories (${totalPosts})`
 
-  const selectedIcon = selectedCategory
-    ? getCategoryStyle(selectedCategory).icon
-    : '✨'
+  const selectedIcon = selectedCategory ? getCategoryStyle(selectedCategory).icon : null
 
   return (
     <div ref={dropdownRef} className="relative inline-block">
@@ -75,7 +73,11 @@ export default function CategoryDropdown({
         aria-haspopup="listbox"
       >
         <div className="flex items-center gap-2.5">
-          <span className="text-lg">{selectedIcon}</span>
+          {selectedIcon ? (
+            <span className="text-lg">{selectedIcon}</span>
+          ) : (
+            <Sparkles className="w-4 h-4 text-emerald-400" />
+          )}
           <span className="text-sm font-medium text-white">
             {selectedCategoryLabel}
           </span>
@@ -121,7 +123,7 @@ export default function CategoryDropdown({
               aria-selected={!selectedCategory}
             >
               <div className="flex items-center gap-3">
-                <span className="text-base">✨</span>
+                <Sparkles className="w-4 h-4 text-emerald-400" />
                 <div className="text-left">
                   <span className="text-sm font-medium text-white block">
                     All Categories

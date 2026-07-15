@@ -104,6 +104,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             </div>
             <div className="hidden md:flex items-center gap-5 text-sm text-white/40">
               <span><span className="font-semibold text-white">{posts.length}</span> articles</span>
+              <span aria-hidden="true">·</span>
               <span><span className="font-semibold text-white">{categories.length}</span> topics</span>
             </div>
           </motion.div>

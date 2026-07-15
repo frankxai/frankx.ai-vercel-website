@@ -1,0 +1,92 @@
+{
+  "version": "1.0",
+  "task": "Public FrankX subpage and download surface for Property Intelligence OS",
+  "surface": "/work/property-intelligence-os",
+  "audience": "Rental property owners, real estate agencies, renter experience buyers, and implementation partners",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "Premium Intelligence Web OS",
+    "PREMIUM_ASSET_STANDARD.md",
+    "AGENTIC_DESIGN_LOOP.md"
+  ],
+  "references": [
+    "C:/Users/frank/starlight/repos/property-portal-template/portal-desktop.png",
+    "C:/Users/frank/starlight/repos/property-portal-template/portal-mobile.png",
+    "C:/Users/frank/starlight/repos/property-intelligence-system/packs/property-intelligence-starter-kit/v0.1.0"
+  ],
+  "direction": {
+    "keep": [
+      "Repo-native operating-system positioning",
+      "FrankX dark executive tone",
+      "Human approval as a trust feature",
+      "Download and partner conversion paths"
+    ],
+    "avoid": [
+      "Generic SaaS hero language",
+      "Decorative abstract primary assets",
+      "Claims that the public kit contains private owner or renter data",
+      "Auto-commitment claims for pricing, leases, urgent repairs, or legal guidance"
+    ],
+    "signature": "A real portal screenshot leads the page, then the business and agent architecture prove the template is installable and sellable.",
+    "system": "Dark premium product page, emerald/cyan signal accents, real product capture hero asset, compact cards, explicit architecture and launch gates."
+  },
+  "asset_quality": {
+    "tier": "A",
+    "source_method": "product-capture",
+    "provenance": "owned",
+    "why_premium": "The hero visual is a real screenshot exported from the local Property Portal Template, showing the actual renter portal and owner dashboard direction instead of an abstract promise.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "public/images/property-intelligence/portal-desktop.png",
+      "kind": "desktop product screenshot",
+      "inspected": true
+    },
+    {
+      "path_or_url": "public/images/property-intelligence/portal-mobile.png",
+      "kind": "mobile product screenshot",
+      "inspected": true
+    },
+    {
+      "path_or_url": "public/downloads/property-intelligence-starter-kit-v0.1.0.zip",
+      "kind": "downloadable starter kit",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "notes": "Tier A product capture is used as the primary hero evidence."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "notes": "Desktop and mobile screenshots were opened and visually inspected."
+    },
+    {
+      "name": "download-artifact",
+      "status": "pass",
+      "notes": "ZIP and SHA-256 checksum were regenerated in public/downloads after adding agent team, MCP/Railway architecture, install runbook, business model, data boundaries, and success gates."
+    },
+    {
+      "name": "desktop-mobile-page-qa",
+      "status": "pass",
+      "notes": "System Chrome browser QA returned HTTP 200 on desktop and mobile, confirmed hero image, download CTA, architecture section, and checksum visibility."
+    },
+    {
+      "name": "vercel-preview",
+      "status": "blocked",
+      "notes": "Requires a clean preview deployment after the site gate passes and unrelated dirty work is isolated."
+    }
+  ],
+  "score": {
+    "total": 27,
+    "max": 30,
+    "notes": "Strong product proof, public download path, responsive first viewport, and browser-verified page assertions. Vercel preview remains the release boundary."
+  },
+  "decision": "iterate"
+}
