@@ -92,6 +92,7 @@ C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
 .claude-flow/swarm/
 .claude-flow/governance/
 nul
+.asph-wip/
 
 # ACOS session artifacts (regenerated per-session, never commit)
 .acos/
