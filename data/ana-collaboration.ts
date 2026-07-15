@@ -25,7 +25,6 @@ export const anaLinks = {
   teamPlan: '/allies/ana-cancino',
   privateWorkspace: '/portal/ana',
   kitDownload: '/downloads/ana-ai-business-kit',
-  tallinnFoundry: '/experiences/tallinn-2026',
   ceciliaRoom: '/alliance/cecilia',
   architectureAtlas: '/ai-architecture',
   website: 'https://www.anaceciliacancino.com/',

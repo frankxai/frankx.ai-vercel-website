@@ -74,37 +74,36 @@ The FrankX ecosystem operates as a **Unified Creator Operating System** with thr
 
 ---
 
-## Audience Segments
+## Audience Segments & The "Choose Your Path" Macro-Routing
 
-### 1. The Curious Creator
-**Profile:** Just discovered AI tools, overwhelmed by options
-**Entry:** Blog content, Soulbook
-**Journey:** Soulbook → Creative AI Toolkit → Creator Lab
-**Timeline:** 30-90 days
+The ecosystem serves specific archetypes grouped under three macro-paths designed for homepage routing and high-status brand attraction:
 
-### 2. The Active Builder
-**Profile:** Already using Claude/ChatGPT, wants systems
-**Entry:** ACOS articles, Technical content
-**Journey:** Technical Blog → Creator Lab → Creator Studio
-**Timeline:** 14-60 days
+Internally we know who's in each path (see target notes below) — but site copy never names a demographic. Attraction works through demonstrated competence and real proof, not descriptive targeting language. Each path routes to a real, existing product; nothing here should invent a new one.
 
-### 3. The Music Producer
-**Profile:** Uses or wants to use Suno, Udio
-**Entry:** Suno content, Vibe OS
-**Journey:** Suno Prompt Library → Creative AI Toolkit → Creation Chronicles
-**Timeline:** 7-30 days
+### Macro Path 1: "I am building a brand." (Creator / Aesthetic path) → routes to `/gencreator`
+**Target (internal only, never in copy):** Visual creators, musicians, influencers, story-driven entrepreneurs.
+**Desire:** Aesthetic elevation, creative systems, effortless publishing.
+**Attraction Trigger:** The Epiphany Story (see `frankx-authority-positioning.md`), told through real shipped work — not lore.
+- **The Music Producer:** Uses Suno, wants the existing **Vibe OS** guide (creative-state management, AI music — do not redefine this product; it's the Suno-based tool that already exists).
+- **The Story-Driven Entrepreneur:** Building brand via narrative, wants Creation Chronicles.
+- **The Visual Creator:** Wants GenCreator OS for scaling output.
+**Journey:** Visual social content → `/gencreator` (real product page) → Creation Chronicles.
 
-### 4. The Enterprise Architect
-**Profile:** Building AI systems at scale
-**Entry:** Oracle/Production AI content
-**Journey:** Technical Blog → Consulting → Residency
-**Timeline:** 60-180 days
+### Macro Path 2: "I am starting over / building myself." (Direction Seeker path) → routes to `/soulbook`
+**Target (internal only):** Jobless, students, career pivoters, the Curious Creator.
+**Desire:** Stability, blueprints for success, daily routines, mindset shifts (Spartan ethos).
+**Attraction Trigger:** Frank's own Oracle-departure story as a literal blueprint — specific, dated, non-abstract.
+- **The Curious Creator:** Overwhelmed, wants the Soulbook and 7 Pillars.
+- **The Re-builder:** Lost their job/direction, wants daily execution systems.
+**Journey:** YouTube/long-form text → `/soulbook` → Creative AI Toolkit ($47).
 
-### 5. The Story-Driven Entrepreneur
-**Profile:** Building brand through narrative
-**Entry:** Creation Chronicles content
-**Journey:** Blog → Creation Chronicles → Creator Studio
-**Timeline:** 30-90 days
+### Macro Path 3: "I am scaling an empire." (Elite Operator path) → routes to `/ai-architect-academy`
+**Target (internal only):** Founders, high-net-worth operators, enterprise architects.
+**Desire:** Leverage, scale, elite networks, enterprise-grade systems without bloat.
+**Attraction Trigger:** High-signal technical depth. Peer-level understanding of multi-agent swarms and sovereign wealth architectures — status through demonstrated competence, not adjectives.
+- **The Active Builder:** Uses AI, wants ACOS and advanced systems.
+- **The Enterprise Architect:** Building at scale, wants Residency/Consulting.
+**Journey:** Deep-dive strategy content → `/ai-architect-academy` / `/acos` → Residency.
 
 ---
 

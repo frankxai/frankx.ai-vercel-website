@@ -16,7 +16,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
 import { IntakeForm } from '@/components/workshops/IntakeForm'
 import { ModuleAccordion } from '@/components/workshops/ModuleAccordion'
-import { CourseSchema } from '@/components/workshops/CourseSchema'
+import { WorkshopProvenanceNotice } from '@/components/workshops/WorkshopProvenanceNotice'
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const WORKSHOP_SLUG = 'ikigai-content-studio'
@@ -26,8 +26,6 @@ export default function IkigaiContentStudioPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <CourseSchema workshop={workshop} />
-
       {/* Hero */}
       <section className="relative pt-28 pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.05] to-transparent" />
@@ -75,6 +73,8 @@ export default function IkigaiContentStudioPage() {
             <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
               {workshop.overview}
             </p>
+
+            <WorkshopProvenanceNotice />
 
             {/* Primary CTA */}
             <div className="flex flex-wrap items-center gap-3">

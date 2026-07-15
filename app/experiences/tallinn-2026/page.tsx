@@ -1,19 +1,28 @@
-import { TallinnFoundryPage } from '@/components/tallinn-experience/TallinnFoundryPage'
+import {
+  isTallinnAmplifierOutcome,
+  isTallinnAmplifierRole,
+  TallinnStudioPage,
+} from '@/components/tallinn-experience/TallinnStudioPage'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Tallinn Working Sessions — 90 minutes, one useful result',
+  title: 'Tallinn Session Studio — Make the room travel farther',
   description:
-    'An unlisted review page for small, independent Tallinn sessions. Each session helps 8–12 participants leave with a completed plan, worksheet, or team agreement. Nothing is booked yet.',
+    'An independent Tallinn session studio for speakers, coaches, tribe hosts, venues, and attendees. Shape a live idea into a participant artifact and useful follow-through.',
   path: '/experiences/tallinn-2026',
-  noindex: true,
 })
 
-export default function TallinnExperienceFoundryPage() {
-  const captureEnabled =
-    process.env.VERCEL_ENV === 'production' &&
-    process.env.TALLINN_CAPTURE_MODE === 'live' &&
-    process.env.TALLINN_PRIVACY_NOTICE_APPROVED === 'true'
+interface TallinnStudioRouteProps {
+  searchParams: Promise<{ role?: string; outcome?: string }>
+}
 
-  return <TallinnFoundryPage captureEnabled={captureEnabled} />
+export default async function TallinnStudioRoute({ searchParams }: TallinnStudioRouteProps) {
+  const { role, outcome } = await searchParams
+
+  return (
+    <TallinnStudioPage
+      defaultRole={isTallinnAmplifierRole(role) ? role : undefined}
+      defaultOutcome={isTallinnAmplifierOutcome(outcome) ? outcome : undefined}
+    />
+  )
 }

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrankX — Wk1 Repair in Public carousel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0C; --paper:#F5F5F3; --mute:rgba(245,245,243,.62);
+    --accent:#22d3ee; --line:rgba(245,245,243,.14);
+    --hook:url('./assets/a1-hook.png');
+    --method:url('./assets/a3-method.png');
+    --hero:url('./assets/hero-16x9.png');
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#191a1d;font-family:'Inter',system-ui,sans-serif;padding:40px;display:flex;flex-wrap:wrap;gap:32px;justify-content:center;align-items:flex-start}
+  .slide{
+    width:540px;height:675px;position:relative;overflow:hidden;background:var(--ink);
+    color:var(--paper);border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);flex:0 0 auto;
+  }
+  .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+  .bg.hook{background-image:var(--hook)}
+  .bg.method{background-image:var(--method)}
+  .bg.plain{background:
+     radial-gradient(120% 80% at 12% 0%, rgba(60,62,68,.35) 0%, transparent 55%),
+     linear-gradient(180deg,#0d0e11 0%,#0A0A0C 100%)}
+  .bg.plain::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;
+     background:linear-gradient(180deg,transparent,rgba(34,211,238,.5),transparent)}
+  .pad{position:absolute;inset:0;z-index:2;padding:52px 48px;display:flex;flex-direction:column}
+  .kicker{font:500 13px/1 'JetBrains Mono',monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  .idx{position:absolute;top:52px;right:48px;font:500 13px/1 'JetBrains Mono',monospace;color:var(--mute);letter-spacing:.1em;z-index:3}
+  h1{font-weight:800;letter-spacing:-.02em;line-height:1.02}
+  .h-xl{font-size:62px}
+  .h-lg{font-size:44px}
+  .h-md{font-size:34px}
+  .stat{font-weight:800;color:var(--accent);letter-spacing:-.03em}
+  .s-xl{font-size:118px;line-height:.9}
+  .body{font-size:22px;line-height:1.42;color:var(--paper);font-weight:400}
+  .mute{color:var(--mute)}
+  .spacer{flex:1}
+  .foot{display:flex;justify-content:space-between;align-items:center;font:500 14px/1 'JetBrains Mono',monospace;color:var(--mute);letter-spacing:.08em;z-index:3}
+  .foot .save{color:var(--accent)}
+  .seam{font:500 20px/1.6 'JetBrains Mono',monospace;color:var(--paper)}
+  .seam b{color:var(--accent);font-weight:500}
+  .rule{height:1px;background:var(--line);margin:22px 0}
+  .cap{max-width:900px;color:#cfcfca;font-size:15px;line-height:1.6;font-family:'Inter';background:#0e0f12;border:1px solid #24252a;border-radius:8px;padding:22px 26px}
+  .cap h3{color:#fff;font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+  .note{width:100%;text-align:center;color:#6f7076;font:500 12px/1.5 'JetBrains Mono',monospace;letter-spacing:.1em;margin-top:8px}
+  @media print{
+    body{background:#fff;padding:0;gap:0}
+    .slide{border-radius:0;box-shadow:none;page-break-after:always;width:1080px;height:1350px}
+    .cap,.note{display:none}
+    .pad{padding:104px 96px}.idx{top:104px;right:96px}
+    .h-xl{font-size:124px}.h-lg{font-size:88px}.h-md{font-size:68px}.s-xl{font-size:236px}
+    .body{font-size:44px}.kicker{font-size:26px}.foot{font-size:28px}.seam{font-size:40px}.idx{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+<!-- S1 hook -->
+<div class="slide">
+  <div class="bg hook"></div>
+  <span class="idx">01 / 08</span>
+  <div class="pad">
+    <span class="kicker">Repair in public</span>
+    <div class="spacer"></div>
+    <h1 class="h-lg">Our AI agents audited<br>our own websites.</h1>
+    <div style="margin:18px 0 4px" class="stat s-xl">668</div>
+    <div class="body mute">broken assets. The teardown&nbsp;→</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S2 twist -->
+<div class="slide">
+  <div class="bg plain"></div>
+  <span class="idx">02 / 08</span>
+  <div class="pad">
+    <span class="kicker">The uncomfortable part</span>
+    <div class="spacer"></div>
+    <h1 class="h-lg">Nothing was<br>“down.”</h1>
+    <div class="rule"></div>
+    <div class="body">Every page returned <b style="color:var(--accent);font-weight:600">200 OK</b>. Monitoring was green. That is exactly what makes this failure class dangerous.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S3 finding 1 -->
+<div class="slide">
+  <div class="bg plain"></div>
+  <span class="idx">03 / 08</span>
+  <div class="pad">
+    <span class="kicker">Finding 01</span>
+    <div class="spacer"></div>
+    <div class="stat s-xl" style="font-size:96px">524</div>
+    <h1 class="h-md" style="margin-top:6px">images broke from<br>one cause.</h1>
+    <div class="rule"></div>
+    <div class="body mute">Cached pages still pointed at deployment URLs that no longer exist. Invisible from the editor — cleared by one fresh deploy.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S4 finding 2 -->
+<div class="slide">
+  <div class="bg plain"></div>
+  <span class="idx">04 / 08</span>
+  <div class="pad">
+    <span class="kicker">Finding 02</span>
+    <div class="spacer"></div>
+    <h1 class="h-lg">The newsletter<br>accepted every<br>signup.</h1>
+    <div style="margin-top:16px" class="h-md stat">Then dropped it.</div>
+    <div class="rule"></div>
+    <div class="body mute">The form said “success.” The audience never grew. Nobody complained — the affected people are the ones you never hear from.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S5 finding 3 -->
+<div class="slide">
+  <div class="bg plain"></div>
+  <span class="idx">05 / 08</span>
+  <div class="pad">
+    <span class="kicker">Finding 03</span>
+    <div class="spacer"></div>
+    <div class="stat s-xl" style="font-size:104px">0</div>
+    <h1 class="h-md" style="margin-top:6px">paid checkouts<br>worked. On any site.</h1>
+    <div class="rule"></div>
+    <div class="body mute">Product pages collecting clicks that could never convert. If you haven't bought your own product this month, you don't know if anyone can.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S6 the pattern -->
+<div class="slide">
+  <div class="bg plain"></div>
+  <span class="idx">06 / 08</span>
+  <div class="pad">
+    <span class="kicker">The pattern</span>
+    <div class="spacer"></div>
+    <h1 class="h-md">The failures live<br>in the seams.</h1>
+    <div style="margin:26px 0 0">
+      <div class="seam">cache <b>↔</b> deployment</div>
+      <div class="seam">API <b>↔</b> database</div>
+      <div class="seam">site <b>↔</b> payment provider</div>
+    </div>
+    <div class="rule"></div>
+    <div class="body mute">Each system “healthy.” The connection between them, broken.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S7 the method -->
+<div class="slide">
+  <div class="bg method"></div>
+  <span class="idx">07 / 08</span>
+  <div class="pad">
+    <span class="kicker">The method</span>
+    <div class="spacer"></div>
+    <h1 class="h-md">An agent that browses<br>like a first-time<br>visitor. Every day.</h1>
+    <div class="rule"></div>
+    <div class="body">Follows every link. Loads every image. Submits every form. Checks every promise — then files a report a human triages.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span>frankx.ai/research</span><span></span></div>
+  </div>
+</div>
+
+<!-- S8 CTA -->
+<div class="slide">
+  <div class="bg hook"></div>
+  <span class="idx">08 / 08</span>
+  <div class="pad">
+    <span class="kicker">Open doors · July</span>
+    <div class="spacer"></div>
+    <h1 class="h-lg">We're fixing all<br>of it in public.</h1>
+    <div style="margin-top:14px" class="body"><b style="color:var(--accent);font-weight:600">5 fix PRs</b> shipped in week one.</div>
+    <div class="spacer"></div>
+    <div class="foot"><span class="save">↓ Save this if you ship websites</span></div>
+    <div style="margin-top:18px" class="body" >Full report → <b style="color:#fff;font-weight:600">frankx.ai/research</b></div>
+  </div>
+</div>
+
+<!-- Hero (LinkedIn / X card) -->
+<div class="slide" style="width:100%;max-width:1100px;height:auto;aspect-ratio:16/9;background:var(--ink)">
+  <div class="bg hero"></div>
+  <div class="pad" style="justify-content:flex-end;padding:56px 64px">
+    <span class="kicker" style="position:absolute;top:56px;left:64px">One operator · an AI Center of Excellence</span>
+    <h1 class="h-lg" style="font-size:52px;max-width:62%">We audited our own production sites with an agent swarm.</h1>
+    <div style="margin-top:14px" class="body mute" style="max-width:60%">668 findings. 5 fix PRs. Published as-is. — frankx.ai/research</div>
+  </div>
+</div>
+
+<div class="note">Preview @ 540×675. Print / Save-as-PDF exports each slide at 1080×1350 (4:5) with hero at 16:9. Backgrounds: Nano Banana Pro — hook/method 2K, hero 4K. Tech-spectrum palette (cyan/emerald) per FrankX DESIGN.md.</div>
+
+<div class="cap">
+  <h3>Caption + first comment</h3>
+  <p><b>Caption:</b> We audited our own production sites with an AI agent swarm — and published what it found. 668 broken assets. A newsletter silently dropping signups. Zero working checkouts. All on sites that looked perfectly healthy from every dashboard we had. July is open-doors month: the audits, the fixes, and the system behind them, all in public. Full report on the research hub (link in bio). If you ship websites with a small team, slide 6 is the one to remember: failures live in the seams between healthy systems.<br><br>
+  <b>Hashtags:</b> #buildinpublic #aiagents #webdevelopment #indiehacker #automation #ai<br><br>
+  <b>First comment (seed the swipe):</b> The scariest one was the newsletter — it returned “success” and quietly dropped every signup. Full teardown + the 5 fixes → frankx.ai/research</p>
+</div>
+
+</body>
+</html>
