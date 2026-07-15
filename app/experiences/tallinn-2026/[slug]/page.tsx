@@ -1,47 +1,46 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { TallinnOfferPage } from '@/components/tallinn-experience/TallinnOfferPage'
-import { getTallinnExperience, tallinnExperiences } from '@/data/tallinn-experiences'
+import { TallinnFormatPage } from '@/components/tallinn-experience/TallinnFormatPage'
+import {
+  getTallinnPublicFormat,
+  TALLINN_PUBLIC_ROUTE_SLUGS,
+} from '@/data/tallinn-studio'
 import { createMetadata } from '@/lib/seo'
 
-interface TallinnOfferRouteProps {
+interface TallinnFormatRouteProps {
   params: Promise<{ slug: string }>
 }
+
 export function generateStaticParams() {
-  return tallinnExperiences.map((experience) => ({ slug: experience.slug }))
+  return TALLINN_PUBLIC_ROUTE_SLUGS.map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: TallinnOfferRouteProps): Promise<Metadata> {
+export async function generateMetadata({ params }: TallinnFormatRouteProps): Promise<Metadata> {
   const { slug } = await params
-  const experience = getTallinnExperience(slug)
+  const format = getTallinnPublicFormat(slug)
 
-  if (!experience) {
+  if (!format) {
     return createMetadata({
-      title: 'Tallinn session under review',
-      description: 'Unlisted review page. This session is not open for booking.',
+      title: 'Tallinn session format',
+      description: 'Explore independent session and workshop formats for Tallinn 2026.',
       path: `/experiences/tallinn-2026/${slug}`,
       noindex: true,
     })
   }
 
   return createMetadata({
-    title: `${experience.title} — Tallinn working session`,
-    description: experience.promise,
-    path: `/experiences/tallinn-2026/${experience.slug}`,
-    noindex: true,
+    title: `${format.title} — Tallinn Session Studio`,
+    description: format.promise,
+    path: `/experiences/tallinn-2026/${slug}`,
+    canonical: `https://frankx.ai/experiences/tallinn-2026/${format.slug}`,
   })
 }
 
-export default async function TallinnOfferRoute({ params }: TallinnOfferRouteProps) {
+export default async function TallinnFormatRoute({ params }: TallinnFormatRouteProps) {
   const { slug } = await params
-  const experience = getTallinnExperience(slug)
-  if (!experience) notFound()
+  const format = getTallinnPublicFormat(slug)
+  if (!format) notFound()
 
-  const captureEnabled =
-    process.env.VERCEL_ENV === 'production' &&
-    process.env.TALLINN_CAPTURE_MODE === 'live' &&
-    process.env.TALLINN_PRIVACY_NOTICE_APPROVED === 'true'
-
-  return <TallinnOfferPage experience={experience} captureEnabled={captureEnabled} />
+  return <TallinnFormatPage format={format} />
 }
