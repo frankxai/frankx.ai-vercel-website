@@ -286,6 +286,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
     { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-hardware', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/prototypes', priority: 0.5, changeFrequency: 'monthly' as const },

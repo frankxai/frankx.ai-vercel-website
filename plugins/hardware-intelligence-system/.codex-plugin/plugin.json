@@ -1,0 +1,22 @@
+{
+  "name": "hardware-intelligence-system",
+  "version": "0.1.0",
+  "description": "Plan AI workstations, unified-memory nodes, cloud capacity, and phased machine fleets.",
+  "author": {
+    "name": "FrankX"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Hardware Intelligence System",
+    "shortDescription": "Plan AI workstations, nodes, cloud, and TCO.",
+    "longDescription": "Turn workloads, budgets, models, media pipelines, and uptime needs into an evidence-labeled AI hardware and fleet plan with reusable Markdown, CSV, and JSON artifacts.",
+    "developerName": "FrankX",
+    "category": "Productivity",
+    "capabilities": ["Analyze", "Write"],
+    "defaultPrompt": [
+      "Plan an AI workstation and phased fleet for my workloads.",
+      "Compare a creator PC, unified-memory node, and cloud.",
+      "Estimate model fit, concurrency, power, and three-year TCO."
+    ]
+  }
+}

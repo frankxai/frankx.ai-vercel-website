@@ -57,6 +57,7 @@ const NAV_COLUMNS = [
     label: 'Build',
     links: [
       { label: 'Architecture Hub', href: '/ai-architecture' },
+      { label: 'AI Hardware', href: '/ai-hardware' },
       { label: 'Blueprints', href: '/ai-architecture/blueprints' },
       { label: 'AI World', href: '/ai-world' },
       { label: 'Research Hub', href: '/research' },

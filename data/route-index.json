@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 819,
+    "total": 825,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 391,
+      "section": 396,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 202,
+      "blog": 203,
       "workshop": 12,
       "guide": 20,
       "library": 41,
@@ -483,6 +483,15 @@
     {
       "href": "/ai-evolution",
       "title": "AI Evolution",
+      "type": "section"
+    },
+    {
+      "href": "/ai-hardware",
+      "title": "AI Hardware",
+      "tags": [
+        "ai",
+        "hardware"
+      ],
       "type": "section"
     },
     {
@@ -3086,6 +3095,18 @@
         "Hooks",
         "Content Strategy",
         "Creator Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-sovereign-curator",
+      "title": "The Sovereign Curator: Platform Curation and the Art of Responsible AI Reuse",
+      "description": "Why raw content creation is a commodity in the age of infinite AI noise—and how to build high-leverage curation engines, owned platforms, and responsible attribution networks.",
+      "tags": [
+        "Curation",
+        "Creator Economy",
+        "AI Workflows",
+        "Platform Design"
       ],
       "type": "blog"
     },
@@ -6104,6 +6125,33 @@
       "type": "section"
     },
     {
+      "href": "/map/v1",
+      "title": "V1",
+      "tags": [
+        "map",
+        "v1"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v2",
+      "title": "V2",
+      "tags": [
+        "map",
+        "v2"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v3",
+      "title": "V3",
+      "tags": [
+        "map",
+        "v3"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/media-kit",
       "title": "Media Kit",
       "tags": [
@@ -6995,6 +7043,17 @@
         "vibe",
         "os",
         "docs"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/products/visual-creation-loop",
+      "title": "Visual Creation Loop",
+      "tags": [
+        "products",
+        "visual",
+        "creation",
+        "loop"
       ],
       "type": "section"
     },

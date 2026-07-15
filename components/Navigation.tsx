@@ -25,6 +25,7 @@ const navItems: NavItem[] = [
     href: '/ai-architecture',
     subItems: [
       { name: 'Architecture Hub', href: '/ai-architecture' },
+      { name: 'AI Hardware', href: '/ai-hardware' },
       { name: 'Blueprints', href: '/ai-architecture/blueprints' },
       { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes' },
       { name: 'Templates', href: '/ai-architecture/templates' },

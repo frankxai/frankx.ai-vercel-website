@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Hardware Fleet Planner"
+  short_description: "Plan workstation, AI nodes, cloud, and TCO"
+  default_prompt: "Use $plan-ai-hardware-fleet to design a phased AI workstation and fleet plan."
