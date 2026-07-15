@@ -265,6 +265,9 @@ module.exports = {
         // Brand v2.0 aurora gradients (LOW opacity)
         'tech-aurora': 'radial-gradient(ellipse 120% 80% at 20% 50%, rgba(171,71,199,0.12), transparent 60%), radial-gradient(ellipse 100% 60% at 80% 30%, rgba(67,191,227,0.08), transparent 50%)',
         'soul-aurora': 'radial-gradient(ellipse 120% 80% at 30% 60%, rgba(245,158,11,0.15), transparent 60%), radial-gradient(ellipse 100% 60% at 70% 20%, rgba(249,112,102,0.12), transparent 50%)',
+        'tallinn-aurora': 'radial-gradient(circle at 18% 12%, rgba(67,191,227,0.14), transparent 34%), radial-gradient(circle at 80% 10%, rgba(245,158,11,0.10), transparent 30%)',
+        'workshop-aurora': 'radial-gradient(circle at 20% 12%, rgba(16,185,129,0.13), transparent 34%), radial-gradient(circle at 82% 10%, rgba(171,71,199,0.11), transparent 30%)',
+        'studio-continuation': 'radial-gradient(circle at 18% 20%, rgba(16,185,129,0.10), transparent 30%), radial-gradient(circle at 84% 75%, rgba(67,191,227,0.09), transparent 32%)',
         'brand-gradient': 'linear-gradient(135deg, #AB47C7, #43BFE3)',
         'ana-aurora': 'radial-gradient(circle at 16% 10%, rgba(212,165,116,0.20), transparent 34%), radial-gradient(circle at 84% 16%, rgba(31,95,74,0.22), transparent 31%), linear-gradient(135deg, #0E0E0F 0%, #17130f 48%, #0a1712 100%)',
         'ana-aurora-cecilia': 'radial-gradient(circle at 14% 8%, rgba(212,165,116,0.22), transparent 32%), radial-gradient(circle at 82% 18%, rgba(31,95,74,0.26), transparent 32%), radial-gradient(circle at 55% 90%, rgba(107,58,31,0.15), transparent 35%), linear-gradient(135deg, #0E0E0F 0%, #17130f 48%, #0a1712 100%)',

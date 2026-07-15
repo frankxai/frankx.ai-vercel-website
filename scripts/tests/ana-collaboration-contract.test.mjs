@@ -48,12 +48,19 @@ test('Ana review routes stay out of search until she approves them', async () =>
     '/allies/ana-cancino',
     '/alliance/cecilia',
     '/downloads/ana-ai-business-kit',
-    '/experiences/tallinn-2026',
-    '/experiences/tallinn-2026/purpose-to-practice',
   ]) {
     const route = routes.find((candidate) => candidate.href === href)
     assert.ok(route, `${href} must remain a valid route`)
     assert.equal(route.sitemap, false, `${href} must stay out of the public sitemap`)
+  }
+
+  for (const href of [
+    '/experiences/tallinn-2026',
+    '/experiences/tallinn-2026/purpose-to-practice',
+  ]) {
+    const route = routes.find((candidate) => candidate.href === href)
+    assert.ok(route, `${href} must remain a valid public route`)
+    assert.notEqual(route.sitemap, false, `${href} must be eligible for the public sitemap`)
   }
   assert.match(sitemap, /if \(route\.sitemap === false\) continue/)
 })
@@ -73,14 +80,14 @@ test('the Ana surfaces form one connected review journey', async () => {
     ['teamPlan', '/allies/ana-cancino'],
     ['privateWorkspace', '/portal/ana'],
     ['kitDownload', '/downloads/ana-ai-business-kit'],
-    ['tallinnFoundry', '/experiences/tallinn-2026'],
     ['ceciliaRoom', '/alliance/cecilia'],
     ['architectureAtlas', '/ai-architecture'],
   ]) {
     assert.ok(links.includes(`${key}: '${path}'`), `${key} must own ${path}`)
   }
   assert.match(friend, /href: anaLinks\.teamPlan/)
-  assert.match(friend, /href: anaLinks\.tallinnFoundry/)
+  assert.doesNotMatch(friend, /Tallinn|tallinnFoundry/)
+  assert.doesNotMatch(links, /tallinnFoundry/)
   assert.match(friend, /href=\{anaLinks\.ceciliaRoom\}/)
   assert.match(ally, /href=\{anaLinks\.privateWorkspace\}/)
   assert.match(ally, /href=\{anaLinks\.friendPage\}/)

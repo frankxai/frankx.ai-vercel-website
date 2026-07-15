@@ -1,0 +1,252 @@
+import type { HardwarePlatform, PlannerInputs, SetupProfile } from '@/lib/hardware-intelligence/types'
+
+export const HARDWARE_REVIEWED_AT = '2026-07-15'
+
+export const HARDWARE_PLATFORMS: HardwarePlatform[] = [
+  {
+    id: 'rtx-5080',
+    name: 'GeForce RTX 5080 workstation',
+    vendor: 'NVIDIA ecosystem',
+    lane: 'creator',
+    memory: '16GB GDDR7 VRAM',
+    bandwidth: '960 GB/s',
+    power: '360W GPU class',
+    priceBandEur: [3500, 5000],
+    priceLabel: '€3,500–€5,000 complete system',
+    modelBand: '7B–14B comfortable; 20B tight',
+    bestFor: ['4K editing', 'Gaming', 'Local still images', 'Voice and transcription', 'Cloud-first agent teams'],
+    tradeoffs: ['16GB constrains complex local video graphs', 'Not a large-model server'],
+    sourceUrl: 'https://marketplace.nvidia.com/it-it/consumer/graphics-cards/nvidia-geforce-rtx-5080/',
+    sourceLabel: 'NVIDIA official specifications',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'rtx-5090',
+    name: 'GeForce RTX 5090 workstation',
+    vendor: 'NVIDIA ecosystem',
+    lane: 'creator',
+    memory: '32GB GDDR7 VRAM',
+    bandwidth: '1,792 GB/s',
+    power: '575W GPU class',
+    priceBandEur: [5400, 8000],
+    priceLabel: '€5,400–€8,000 complete system',
+    modelBand: '20B–35B quantized; 70B needs offload',
+    bestFor: ['Serious ComfyUI production', 'Local video experiments', '4K/8K editing', 'Gaming', 'Fast coding models'],
+    tradeoffs: ['High heat and power', '32GB still does not replace a 128GB model node'],
+    sourceUrl: 'https://marketplace.nvidia.com/en-us/consumer/graphics-cards/nvidia-geforce-rtx-5090/',
+    sourceLabel: 'NVIDIA official specifications',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'rtx-pro-5000',
+    name: 'RTX PRO 5000 Blackwell',
+    vendor: 'NVIDIA',
+    lane: 'pro',
+    memory: '48GB GDDR7 ECC VRAM',
+    bandwidth: '1,344 GB/s',
+    power: '300W card class',
+    priceBandEur: [5700, 7000],
+    priceLabel: '€5,700+ card only',
+    modelBand: '35B easy; 70B quantized with limited headroom',
+    bestFor: ['ECC requirements', 'Enterprise drivers', 'Pro visualization', 'MIG workload isolation'],
+    tradeoffs: ['A full 5090 PC can cost less', 'Poor founder value without an enterprise requirement'],
+    sourceUrl: 'https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/workstation-datasheet-blackwell-rtx-pro-5000-gtc25-spring-nvidia-3658700.pdf',
+    sourceLabel: 'NVIDIA official data sheet',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'rtx-pro-6000',
+    name: 'RTX PRO 6000 Blackwell',
+    vendor: 'NVIDIA',
+    lane: 'pro',
+    memory: '96GB GDDR7 ECC VRAM',
+    bandwidth: '1,792 GB/s',
+    power: '600W card class',
+    priceBandEur: [13000, 15000],
+    priceLabel: '€13,000+ card only',
+    modelBand: '70B comfortable; selected 120B quantized',
+    bestFor: ['One-box pro AI', 'Large-model speed', '3D and media', 'Multi-user isolation'],
+    tradeoffs: ['Enterprise capital expense', 'Large absolute depreciation'],
+    sourceUrl: 'https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/workstation-datasheet-blackwell-rtx-pro6000-x-nvidia-us-3519208-web.pdf',
+    sourceLabel: 'NVIDIA official data sheet',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'gx10',
+    name: 'ASUS Ascent GX10 / DGX Spark class',
+    vendor: 'NVIDIA GB10 ecosystem',
+    lane: 'memory',
+    memory: '128GB unified LPDDR5X',
+    bandwidth: '273 GB/s',
+    power: '240W system power supply',
+    priceBandEur: [3950, 5400],
+    priceLabel: '€3,950–€5,400',
+    modelBand: '70B–120B practical; up to 200B under supported recipes',
+    bestFor: ['Always-on agents', 'Private RAG', 'Large-model capacity', 'Matched multi-node expansion'],
+    tradeoffs: ['Linux on Arm', 'Capacity-first, not creator-GPU speed', 'Not a Windows editing or gaming PC'],
+    sourceUrl: 'https://docs.nvidia.com/dgx/dgx-spark/hardware.html',
+    sourceLabel: 'NVIDIA DGX Spark hardware guide',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'ai-max-395',
+    name: 'Ryzen AI Max+ 395 system',
+    vendor: 'AMD Strix Halo ecosystem',
+    lane: 'memory',
+    memory: 'Up to 128GB unified LPDDR5X',
+    bandwidth: '256 GB/s',
+    power: 'Up to 120W platform class',
+    priceBandEur: [3000, 4000],
+    priceLabel: 'Target €3,000–€4,000 for 128GB',
+    modelBand: '70B strong capacity; selected 109B–120B recipes',
+    bestFor: ['x86 Windows or Linux', 'Large-memory value', 'Compact hybrid use', 'Development'],
+    tradeoffs: ['Validate every ROCm/Vulkan workload', 'Availability and 128GB pricing vary'],
+    sourceUrl: 'https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo/ryzen-ai-max-plus-395.html',
+    sourceLabel: 'AMD official product page',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'mac-studio',
+    name: 'Mac Studio M3 Ultra',
+    vendor: 'Apple',
+    lane: 'apple',
+    memory: '96GB unified memory base',
+    bandwidth: '819 GB/s',
+    power: 'Efficient desktop envelope',
+    priceBandEur: [4850, 7600],
+    priceLabel: '€4,849+ depending on storage',
+    modelBand: '70B-class MLX capacity; selected larger quantized models',
+    bestFor: ['Final Cut and ProRes', 'MLX inference', 'Quiet operation', 'Apple development'],
+    tradeoffs: ['No CUDA', 'Weak fit for Windows gaming and CUDA-first media stacks'],
+    sourceUrl: 'https://www.apple.com/nl/mac-studio/specs/',
+    sourceLabel: 'Apple Netherlands specifications',
+    evidenceKind: 'official-and-retail',
+  },
+  {
+    id: 'axelera-metis',
+    name: 'Axelera Metis PCIe',
+    vendor: 'Axelera AI',
+    lane: 'edge',
+    memory: '4–64GB depending on card',
+    bandwidth: 'Purpose-built edge fabric',
+    power: '30–58W typical',
+    priceBandEur: [350, 1650],
+    priceLabel: '€350–€1,650 card class',
+    modelBand: 'Vision and small-model inference',
+    bestFor: ['Computer vision', 'Industrial edge', 'YOLO pipelines', 'Low-power inference'],
+    tradeoffs: ['Not a CUDA creator GPU', 'Not a 70B LLM node'],
+    sourceUrl: 'https://docs.axelera.ai/sdk/reference/system/hardware/',
+    sourceLabel: 'Axelera official hardware reference',
+    evidenceKind: 'official-and-retail',
+  },
+]
+
+export const SETUP_PROFILES: SetupProfile[] = [
+  {
+    id: 'cloud-builder',
+    name: 'Cloud-first builder',
+    strapline: 'Preserve capital. Make the orchestration durable.',
+    budgetBandEur: [300, 2500],
+    dominantWorkload: 'build',
+    components: ['Existing laptop or desktop', '€15–€80/month durable worker', 'Frontier coding and media APIs'],
+    runsWell: ['GitHub and Vercel operations', 'Scheduled agents', 'Product validation'],
+    cloudFirst: ['Frontier reasoning', 'Video generation', 'Burst GPU jobs'],
+    expansionTrigger: 'Buy Node-01 when builds, memory pressure, or editing block ten productive hours per month.',
+    fit: 'Pre-revenue founders and mobile operators.',
+  },
+  {
+    id: 'balanced-creator',
+    name: 'Balanced RTX creator',
+    strapline: 'The highest-leverage first physical node.',
+    budgetBandEur: [4000, 5000],
+    dominantWorkload: 'balanced',
+    components: ['Ryzen 9 9950X-class CPU', 'RTX 5080 16GB', '128GB RAM', '2TB + 4TB NVMe'],
+    runsWell: ['Concurrent coding agents', 'CapCut and 4K editing', 'Local still-image workflows', '7B–14B local models'],
+    cloudFirst: ['Hero video', 'Large local models', 'Peak reasoning'],
+    expansionTrigger: 'Add a 128GB node when privacy, 70B+ models, or independent 24/7 service becomes weekly work.',
+    fit: 'Best capital-adjusted main workstation.',
+  },
+  {
+    id: 'visual-forge',
+    name: 'Local visual forge',
+    strapline: 'Buy iteration density, not benchmark status.',
+    budgetBandEur: [5500, 8000],
+    dominantWorkload: 'media',
+    components: ['Ryzen 9 9950X/9950X3D', 'RTX 5090 32GB', '128GB RAM', '6TB+ NVMe'],
+    runsWell: ['Complex ComfyUI graphs', 'Local image batches', 'Meaningful video experiments', '20B–35B local models'],
+    cloudFirst: ['Frontier cinematic video', '70B+ serving', 'Rare training jobs'],
+    expansionTrigger: 'Add the agent node after the workstation is blocked by background inference or needs business-hours sleep.',
+    fit: 'Creator businesses where local media throughput is already strategic.',
+  },
+  {
+    id: 'agent-node',
+    name: 'Private agent node',
+    strapline: 'Capacity and uptime without turning the server into your desktop.',
+    budgetBandEur: [3000, 5400],
+    dominantWorkload: 'agents',
+    components: ['GX10/DGX Spark or 128GB Ryzen AI Max+ node', 'Local model gateway', 'Queue, logs, approvals, and encrypted storage'],
+    runsWell: ['70B–120B quantized inference', 'Private RAG', 'Always-on agent queues', 'Team API endpoint'],
+    cloudFirst: ['Frontier validation', 'Heavy media generation', 'Trillion-parameter work'],
+    expansionTrigger: 'Add a matched second node only for a named model, measured queue pressure, and supported interconnect.',
+    fit: 'Teams with privacy, uptime, or large-model requirements.',
+  },
+  {
+    id: 'dual-lane-studio',
+    name: 'Dual-lane AI studio',
+    strapline: 'Interactive speed and memory capacity, routed as one service.',
+    budgetBandEur: [8000, 13000],
+    dominantWorkload: 'balanced',
+    components: ['RTX 5080/5090 creator workstation', '128GB unified-memory node', '10GbE, UPS, shared storage'],
+    runsWell: ['Media production while agents run', 'Private large models', 'Small-team inference', 'Background indexing'],
+    cloudFirst: ['Frontier video and reasoning', 'Burst training', 'Overflow'],
+    expansionTrigger: 'Add another creator or matched model node when utilization and team ownership are measured.',
+    fit: 'Revenue-backed studios and small AI teams.',
+  },
+]
+
+export function recommendSetup(input: PlannerInputs): SetupProfile[] {
+  const scored = SETUP_PROFILES.map((profile) => {
+    let score = 0
+    if (input.budget >= profile.budgetBandEur[0]) score += 3
+    if (input.budget <= profile.budgetBandEur[1] * 1.15) score += 2
+    if (profile.dominantWorkload === input.workload) score += 4
+    if (profile.dominantWorkload === 'balanced' && input.workload !== 'agents') score += 2
+    if ((input.alwaysOn || input.privacy || input.team) && ['agent-node', 'dual-lane-studio'].includes(profile.id)) score += 4
+    if (input.workload === 'media' && profile.id === 'visual-forge') score += 3
+    if (input.budget < 3500 && profile.id === 'cloud-builder') score += 5
+    return { profile, score }
+  })
+
+  return scored.sort((a, b) => b.score - a.score).slice(0, 3).map(({ profile }) => profile)
+}
+
+export const WORKLOAD_FIT = [
+  { memory: '16GB VRAM', local: 'SDXL, optimized FLUX stills, 7B–14B LLMs', cloud: 'Frontier video, large LLMs', posture: 'Creator floor' },
+  { memory: '24–32GB VRAM', local: 'Serious image production, video experiments, 20B–35B LLMs', cloud: 'Hero video, 70B+ reasoning', posture: 'Visual forge' },
+  { memory: '48GB ECC VRAM', local: 'Pro media, 35B models, constrained 70B', cloud: 'Large training and frontier scale', posture: 'Pro middle tier' },
+  { memory: '96GB ECC VRAM', local: 'Fast 70B, selected 120B quantized, pro media', cloud: 'Frontier training', posture: 'One-box pro AI' },
+  { memory: '128GB unified', local: '70B–120B capacity, private RAG, agent queues', cloud: 'Peak latency and giant training', posture: 'Memory node' },
+]
+
+export const HARDWARE_FAQ = [
+  {
+    question: 'Is unified memory better than an RTX GPU?',
+    answer: 'It is better for fitting large models, not automatically for running every workload faster. A 128GB unified-memory node offers capacity; high-end discrete VRAM offers much greater bandwidth and the mature CUDA creator stack. Many teams need both lanes over time.',
+  },
+  {
+    question: 'Can memory from a workstation, Mac, and GX10 combine?',
+    answer: 'Not as one transparent pool. Production systems route complete jobs to separate endpoints. Matched nodes can shard named models through supported runtimes and networking, but heterogeneous devices should be treated as a fleet, not one GPU.',
+  },
+  {
+    question: 'Is 16GB VRAM enough for AI creation?',
+    answer: 'It is enough for strong still-image workflows, local voice, transcription, and small local models. It becomes restrictive for complex multi-model image graphs, local video pipelines, long context, and 20B–35B models. Cloud video remains a sensible quality ceiling.',
+  },
+  {
+    question: 'Should an always-on agent run on a local supercomputer?',
+    answer: 'The durable queue, rules, identities, approvals, and logs can run cheaply in the cloud. Buy a large-memory local node when privacy, uptime, model size, team concurrency, or replaceable API spend is measured—not merely because the agent is always on.',
+  },
+  {
+    question: 'Can desktop systems run trillion-parameter models?',
+    answer: 'Only as advanced multi-node inference experiments under severe constraints. Training trillion-parameter models is data-centre work. A desktop fleet is valuable for routing, inference, media production, evaluation, and prototyping—not as a substitute for a modern training cluster.',
+  },
+]

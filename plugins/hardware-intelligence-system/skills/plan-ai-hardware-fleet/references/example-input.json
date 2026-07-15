@@ -1,0 +1,17 @@
+{
+  "project": "Example AI creator studio",
+  "currency": "EUR",
+  "region": "NL",
+  "electricity_per_kwh": 0.3,
+  "horizon_years": 3,
+  "monthly_cloud_spend": 300,
+  "cloud_replaceable_fraction": 0.35,
+  "models": [
+    {"name": "14B Q6", "weights_gib": 11, "runtime_overhead_fraction": 0.25, "context_cache_gib": 3},
+    {"name": "70B Q4", "weights_gib": 42, "runtime_overhead_fraction": 0.25, "context_cache_gib": 8}
+  ],
+  "machines": [
+    {"name": "Creator PC 16GB", "role": "workstation", "price": 4200, "accelerator_memory_gib": 16, "usable_memory_fraction": 0.9, "system_ram_gib": 128, "storage_tb": 6, "active_watts": 550, "idle_watts": 70, "active_hours_per_day": 6, "idle_hours_per_day": 2, "interactive_streams_small": 4, "interactive_streams_large": 1, "source_url": "https://example.com/workstation", "observed_on": "2026-07-15"},
+    {"name": "Unified node 128GB", "role": "unified-node", "price": 4000, "accelerator_memory_gib": 128, "usable_memory_fraction": 0.8, "system_ram_gib": 0, "storage_tb": 4, "active_watts": 180, "idle_watts": 45, "active_hours_per_day": 12, "idle_hours_per_day": 12, "interactive_streams_small": 8, "interactive_streams_large": 2, "source_url": "https://example.com/node", "observed_on": "2026-07-15"}
+  ]
+}
