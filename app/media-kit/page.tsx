@@ -94,7 +94,7 @@ const quickFacts = [
   ['Title', 'AI Architect'],
   ['Based in', 'Amsterdam, Netherlands'],
   ['Public hub', 'https://www.frankx.ai'],
-  ['Contact', 'hello@frankx.ai'],
+  ['Contact', 'frank@frankx.ai'],
 ]
 
 const boundaries = [
@@ -190,7 +190,7 @@ export default function MediaKitPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="mailto:hello@frankx.ai?subject=Media%20or%20speaking%20request"
+                href="mailto:frank@frankx.ai?subject=Media%20or%20speaking%20request"
                 className="group inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-600"
               >
                 Book or interview Frank
@@ -379,11 +379,11 @@ export default function MediaKitPage() {
             conversations are specific enough to be useful.
           </p>
           <a
-            href="mailto:hello@frankx.ai?subject=Media%20or%20speaking%20request"
+            href="mailto:frank@frankx.ai?subject=Media%20or%20speaking%20request"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
             <Mail className="h-4 w-4" />
-            hello@frankx.ai
+            frank@frankx.ai
           </a>
         </div>
       </section>
