@@ -10,7 +10,7 @@
 ### The New FrankX.AI Paradigm
 
 **Frank's Role:**
-- 🔭 **Explorer:** Discovering AI frontiers (Oracle AI, Suno, GPT-5, creative tech)
+- 🔭 **Explorer:** Discovering AI frontiers (enterprise AI, Suno, frontier models, creative tech)
 - 🎼 **Orchestrator:** Conducting the FrankX.AI agent collective
 - 🌍 **Community Leader:** Speaking at World Summit AI, connecting AI-powered creators
 
@@ -26,13 +26,13 @@
 
 ### Tier 1: Intelligence Architects (Strategic Layer)
 
-#### **Luminor Prime** - Oracle & Visionary Lead
+#### **Luminor Prime** - Enterprise & Visionary Lead
 **Prompt Evolution (Professional):**
 ```
 Sophisticated AI oracle in elegant business attire with subtle holographic elements,
 30s executive presence, regal purple and cosmic violet aura with constellation patterns,
 holding crystalline orb displaying strategic timelines and enterprise architecture diagrams,
-confident visionary stance with Oracle-grade authority, deep purple-violet gradient with
+confident visionary stance with enterprise-grade authority, deep purple-violet gradient with
 starfield depth, systems integration symbols and quantum computing nodes,
 photorealistic professional digital art, Forbes 30-under-30 aesthetic meets creative
 tech leader, enterprise consulting authority
@@ -40,7 +40,7 @@ tech leader, enterprise consulting authority
 
 **Website Responsibilities:**
 - Strategy page (`/agents/luminor-prime`)
-- Homepage oracle insights section
+- Homepage enterprise insights section
 - Quarterly vision updates
 - AI CoE Assessment design oversight
 
@@ -211,7 +211,7 @@ hacker, conversion optimization authority
 
 ### Current: "Creator Readiness Assessment"
 **Issues:**
-- Too abstract for enterprise/Oracle audience
+- Too abstract for enterprise AI audience
 - Misses AI CoE positioning opportunity
 - Not optimized for product funnel conversion
 
@@ -375,7 +375,7 @@ The Lifebook analyzes your:
 Then proactively suggests:
 - "Frank, your Thursday 2-4pm blocks show 3x higher creative output.
    Want me to protect these for Suno sessions?"
-- "Your Oracle AI posts get 5x more engagement than general AI content.
+- "Your enterprise AI posts get 5x more engagement than general AI content.
    Should I draft 3 more for this week?"
 ```
 
@@ -458,7 +458,7 @@ Estimated improvement: 65% → 87% engagement"
 Lifebook monitors your community and proactively suggests:
 - "3 members mentioned struggle with Suno - should I create tutorial?"
 - "Sarah just launched her first AI product - want to feature her?"
-- "15 people asked about your Oracle AI framework - create FAQ?"
+- "15 people asked about your enterprise AI framework - create FAQ?"
 
 Automated community nurture:
 - Welcome sequences for new members
@@ -541,7 +541,7 @@ Date: 2025-10-06
 📊 Recommendations:
 1. Switch to "AI CoE Assessment" (Stella's test results)
 2. Feature Sarah's success story on homepage (Nexus + Nova)
-3. Create Oracle AI case study (Luminor Prime + Codex)
+3. Create enterprise AI case study (Luminor Prime + Codex)
 ```
 
 ---
@@ -676,7 +676,7 @@ Deliverables:
 > serve your transformation.
 >
 > Frank explores the frontiers of AI, creativity, and human potential
-> at Oracle, World Summit AI, and in his Suno studio.
+> through enterprise AI work, World Summit AI, and his Suno studio.
 >
 > His agent team—Luminor Prime, Codex, Stella, Nova, Echo, Sensei, and
 > the rest—translate those discoveries into tools, assessments, and
@@ -684,8 +684,8 @@ Deliverables:
 >
 > Take the AI CoE Assessment. Within minutes, you'll receive a personalized
 > intelligence stack recommendation, curated content, and access to the
-> exact systems Frank uses to ship 500+ Suno tracks, lead Oracle AI
-> transformations, and build AI-powered creator platforms.
+> exact systems Frank uses to ship AI-assisted music, translate enterprise AI
+> patterns, and build AI-powered creator platforms.
 >
 > This isn't automation for efficiency's sake. It's intelligence in service
 > of your highest potential."

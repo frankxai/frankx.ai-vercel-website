@@ -28,13 +28,13 @@ export const kyndryl: Partner = {
 
 The gap I see: agentic platforms move faster than the architects who have to design with them. Kyndryl has the platform and the customer base; what compounds slower is a repeatable, coding-agent-native methodology that lets consultants design reference architectures, stand up PoCs, and demonstrate agentic patterns in days instead of weeks.
 
-That is the layer I bring — an AI Architect Academy curriculum, a working coding-agent toolkit (Claude Code, Codex, Gemini skill packs), a public body of agentic systems (ACOS, a 31-tool MCP server), and an enterprise-AI audience that turns the methodology into reach.`,
+That is the layer FrankX brings — an AI Architect Academy curriculum, a working coding-agent toolkit (Claude Code, Codex, Gemini skill packs), and a public body of agentic systems (ACOS, a 31-tool MCP server).`,
 
   workingReality: [
     {
-      label: 'Oracle EMEA AI CoE practice',
+      label: 'Former enterprise AI architecture practice',
       detail:
-        'Strategic architect role at the Oracle EMEA AI Center of Excellence — building CoE blueprints used by Oracle solution architects across the region. The methodology travels.',
+        'Public, non-confidential enterprise AI architecture patterns translated into creator and partner enablement systems. The methodology travels without requiring private employer material.',
     },
     {
       label: 'Open coding-agent toolkit',
@@ -55,14 +55,14 @@ That is the layer I bring — an AI Architect Academy curriculum, a working codi
       },
     },
     {
-      label: 'Audience funnel',
+      label: 'Public distribution surface',
       detail:
-        'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. Posts about AI CoE and agentic patterns regularly land 100+ engagements among that audience.',
+        'FrankX publishes AI CoE and agentic patterns through the public site, GitHub, newsletter, and LinkedIn.',
     },
     {
       label: 'Enterprise modernization pedigree',
       detail:
-        "Production OCI Generative AI and Oracle Database 23ai agent-integration patterns from the CoE work — directly relevant to Kyndryl's mainframe-to-cloud and AI-readiness engagements.",
+        "Public OCI Generative AI and Oracle Database 23ai agent-integration patterns — directly relevant to mainframe-to-cloud and AI-readiness education.",
     },
   ],
 
@@ -100,9 +100,9 @@ That is the layer I bring — an AI Architect Academy curriculum, a working codi
       metric: 'Curriculum',
     },
     {
-      title: 'Content engine + audience funnel',
-      body: "Co-branded thought leadership that powers Kyndryl Consult's AI-readiness narrative, distributed through an enterprise-AI audience already engaged on agentic patterns.",
-      metric: '7,000+ followers',
+      title: 'Content engine + public distribution',
+      body: "Co-branded thought leadership that powers an AI-readiness narrative, distributed through FrankX public channels already focused on agentic patterns.",
+      metric: 'Public channels',
     },
     {
       title: 'Live agentic body of work',
@@ -110,9 +110,9 @@ That is the layer I bring — an AI Architect Academy curriculum, a working codi
       metric: '85+ repos / 31 tools',
     },
     {
-      title: 'Oracle / OCI modernization bridge',
-      body: "Oracle EMEA AI CoE pedigree maps directly onto Kyndryl's OCI alliance and mainframe-to-cloud modernization — agentic AI on a stack Kyndryl already delivers.",
-      metric: 'OCI pedigree',
+      title: 'OCI modernization bridge',
+      body: "Public OCI and agentic AI patterns map naturally onto mainframe-to-cloud modernization education.",
+      metric: 'OCI patterns',
     },
   ],
 

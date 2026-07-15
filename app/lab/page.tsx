@@ -64,9 +64,9 @@ const tools = [
     tagline: 'AI civilization engine + generative lore',
     description:
       'Five Eldrian entities. Ten Gates. A complete civilization system with AI-generated character art, lore content pipeline, and world-state engine. Arcanea is where Frank\'s worlds come alive.',
-    href: 'https://arcanea.ai',
+    href: '/arcanea',
     hrefLabel: 'Enter the World',
-    externalHref: true,
+    externalHref: false,
     status: 'Beta' as const,
     statusColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
     color: 'amber' as const,

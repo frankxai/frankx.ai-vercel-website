@@ -20,14 +20,6 @@ export interface OutboundLink {
 
 export const outboundLinks: OutboundLink[] = [
   {
-    slug: 'book-workshop',
-    destination: 'https://frankx.ai/workshops',
-    label: 'Book a FrankX workshop',
-    category: 'other',
-    description:
-      'Safe public fallback for workshop booking CTAs while a dedicated booking calendar is verified.',
-  },
-  {
     slug: 'ikigai-coach',
     destination:
       'https://chatgpt.com/g/g-69301df74bd8819184c26dfc0b50d65a-ikigai-branding-coach',
@@ -35,38 +27,6 @@ export const outboundLinks: OutboundLink[] = [
     category: 'coach-gpt',
     description:
       'Free custom GPT that walks you through Ikigai mapping and brand translation via Socratic questioning.',
-  },
-  {
-    slug: 'ikigai-notion-template',
-    destination: 'https://frankx.ai/workshops/ikigai-branding',
-    label: 'Ikigai Notion template',
-    category: 'tool',
-    description:
-      'Needs owner verification for the final Notion duplicate URL. Falls back to the workshop hub instead of a dead redirect.',
-  },
-  {
-    slug: 'ikigai-sheet-template',
-    destination: 'https://frankx.ai/workshops/ikigai-branding',
-    label: 'Ikigai Google Sheet template',
-    category: 'tool',
-    description:
-      'Needs owner verification for the final Google Sheet URL. Falls back to the workshop hub instead of a dead redirect.',
-  },
-  {
-    slug: 'claude-cowork',
-    destination: 'https://frankx.ai/workshops/ikigai-branding',
-    label: 'Claude Cowork',
-    category: 'tool',
-    description:
-      'Needs owner verification for the final Claude artifact URL. Falls back to the workshop hub instead of a dead redirect.',
-  },
-  {
-    slug: 'ikigai-prompt-scaffold',
-    destination: 'https://frankx.ai/workshops/ikigai-branding',
-    label: 'Ikigai prompt scaffold',
-    category: 'tool',
-    description:
-      'Needs owner verification for the final prompt scaffold asset. Falls back to the workshop hub instead of a dead redirect.',
   },
 ]
 

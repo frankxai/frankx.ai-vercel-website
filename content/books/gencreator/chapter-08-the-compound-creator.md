@@ -80,7 +80,7 @@ At 4.4x efficiency, the creator who previously could produce 1 article per week 
 
 The 10x comes not from doing the same thing faster, but from doing more compound activities in the same time. The AI compresses the mechanical work (research, drafting, formatting, adapting). The human expands the creative work (voice, taste, judgment, strategy).
 
-This is not a hypothetical. This is my actual weekly output: 2 articles, 3 book chapters, daily music production, platform maintenance — alongside a demanding full-time role at Oracle. The system produces this output not because I work 80-hour weeks. I work approximately 15 hours per week on creative production. The system does the rest.
+This is not a hypothetical. This is my actual weekly output: 2 articles, 3 book chapters, daily music production, platform maintenance — alongside demanding enterprise AI work. The system produces this output not because I work 80-hour weeks. I work approximately 15 hours per week on creative production. The system does the rest.
 
 ---
 

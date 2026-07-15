@@ -366,7 +366,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Frank',
-  jobTitle: 'Creator & Oracle AI Architect',
+  jobTitle: 'Creator and former AI architect at Oracle',
   offers: [
     { '@type': 'Offer', name: 'Vibe OS', url: '...' },
     // ... additional products
@@ -675,7 +675,7 @@ When working on FrankX:
 
 ## Contact & Support
 
-- **Primary Contact**: Frank (hello@frankx.ai)
+- **Primary Contact**: Frank (frank@frankx.ai)
 - **Documentation Issues**: GitHub Issues
 - **Community**: Discord (link in README)
 - **Strategic Consulting**: Calendly (calendly.com/frankx)

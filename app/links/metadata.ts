@@ -52,7 +52,7 @@ export const linksPageSchema = {
     },
     sameAs: SCHEMA_SAME_AS,
     jobTitle: 'AI Architect',
-    worksFor: {
+    alumniOf: {
       '@type': 'Organization',
       name: 'Oracle',
       url: 'https://www.oracle.com',
@@ -70,10 +70,7 @@ export const linksPageSchema = {
       {
         '@type': 'Occupation',
         name: 'AI Architect',
-        occupationLocation: {
-          '@type': 'Place',
-          name: 'Oracle',
-        },
+        description: 'Former AI architect at Oracle; independent FrankX builder',
       },
       {
         '@type': 'Occupation',

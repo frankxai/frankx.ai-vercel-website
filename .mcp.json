@@ -1,0 +1,88 @@
+{
+  "mcpServers": {
+    "google-analytics": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@googleanalytics/google-analytics-mcp"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/your/credentials.json",
+        "GA4_PROPERTY_ID": "13609240621"
+      }
+    },
+    "agentdb": {
+      "command": "node",
+      "args": [
+        "node_modules/agentdb/dist/src/cli/agentdb-cli.js",
+        "mcp",
+        "start"
+      ],
+      "env": {
+        "AGENTDB_PATH": "data/acos/agentdb/agents.db",
+        "AGENTDB_DIMENSION": "384"
+      }
+    },
+    "remotion-video": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@remotion/mcp"
+      ]
+    },
+    "sis": {
+      "command": "node",
+      "args": [
+        "C:/Users/frank/Starlight-Intelligence-System/dist/mcp-server.js",
+        "--vault-dir",
+        "C:/Users/frank/.starlight/vaults"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "higgsfield": {
+      "type": "http",
+      "url": "https://mcp.higgsfield.ai/mcp"
+    },
+    "elevenlabs": {
+      "command": "uvx",
+      "args": ["elevenlabs-mcp"],
+      "env": {
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}"
+      }
+    },
+    "starlight-social": {
+      "command": "node",
+      "args": [
+        "C:/Users/frank/starlight/repos/agentic-creator-os/mcp-servers/social/build/index.js"
+      ],
+      "env": {
+        "SOCIAL_PUBLISHER_TYPE": "local",
+        "BLOTATO_API_KEY": "${BLOTATO_API_KEY}",
+        "POSTIZ_API_URL": "${POSTIZ_API_URL}",
+        "POSTIZ_API_KEY": "${POSTIZ_API_KEY}",
+        "BROWSER_SESSION_PATH": "C:/Users/frank/starlight/repos/FrankX/private/auth/browser-profile"
+      }
+    },
+    "headroom": {
+      "command": "C:/Users/frank/AppData/Roaming/Python/Python313/Scripts/headroom.exe",
+      "args": [
+        "mcp",
+        "serve"
+      ]
+    }
+  }
+}

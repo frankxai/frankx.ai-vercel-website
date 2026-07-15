@@ -249,7 +249,7 @@ export const sections: LinktreeSection[] = [
       {
         title: 'Training Log',
         subtitle: 'Functional fitness, calisthenics, performance tracking',
-        href: '/downloads/health-intelligence-system',
+        href: '/fitness',
         icon: Dumbbell,
         gradient: 'from-amber-500/20 to-yellow-500/20',
         audiences: ['students', 'creators'],

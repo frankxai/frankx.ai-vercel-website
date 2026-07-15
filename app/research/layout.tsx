@@ -8,8 +8,8 @@ const sourceCount = new Set(
 ).size
 
 export const metadata: Metadata = {
-  title: 'AI Research for Builders of the Intelligence Age | FrankX.AI',
-  description: `Field notes, model analysis, architecture patterns, agentic systems, cloud AI strategy, and practical research across ${domainCount} active research domains and ${sourceCount}+ verified sources.`,
+  title: 'Research Intelligence Hub | FrankX.AI',
+  description: `Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 135+ cross-referenced findings, ${domainCount} active research domains, ${sourceCount}+ verified sources.`,
   keywords: [
     'AI research',
     'enterprise AI architecture',
@@ -22,12 +22,11 @@ export const metadata: Metadata = {
     'vector databases',
     'AI security',
     'AI coding assistants',
-    'cloud AI',
-    'AI CoE',
+    'AI neuroscience',
   ],
   openGraph: {
-    title: 'AI Research for Builders of the Intelligence Age | FrankX.AI',
-    description: 'Field notes, model analysis, architecture patterns, agentic systems, cloud AI strategy, and practical research.',
+    title: 'Research Intelligence Hub | FrankX.AI',
+    description: 'Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology.',
     type: 'website',
     url: 'https://frankx.ai/research',
     images: [
@@ -41,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Research for Builders of the Intelligence Age | FrankX.AI',
-    description: `${domainCount} research domains and ${sourceCount}+ verified sources for builders turning AI into systems.`,
+    title: 'Research Intelligence Hub | FrankX.AI',
+    description: `${domainCount} research domains. 135+ validated findings. ${sourceCount}+ verified sources.`,
     images: ['/images/brand/og-template.png'],
   },
   alternates: {
@@ -57,8 +56,8 @@ export const metadata: Metadata = {
 const websiteLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'AI Research for Builders of the Intelligence Age',
-  description: `Practical AI research across ${domainCount} domains with ${sourceCount}+ verified sources.`,
+  name: 'Research Intelligence Hub',
+  description: `Validated AI research across ${domainCount} domains with ${sourceCount}+ verified sources.`,
   url: 'https://frankx.ai/research',
   author: {
     '@type': 'Person',
@@ -83,7 +82,7 @@ const websiteLd = JSON.stringify({
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'AI Research',
+        name: 'Research Hub',
         item: 'https://frankx.ai/research',
       },
     ],

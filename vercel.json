@@ -1,6 +1,5 @@
 {
   "framework": "nextjs",
-  "installCommand": "npm ci",
   "cleanUrls": true,
   "ignoreCommand": "bash scripts/should-deploy.sh",
   "headers": [

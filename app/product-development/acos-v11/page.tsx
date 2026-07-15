@@ -195,7 +195,7 @@ const openclawHosting = [
   },
   {
     option: 'OCI Free Tier',
-    pros: ['Truly free forever (ARM A1)', '4 OCPU + 24GB RAM', 'Oracle expertise', 'Static IP', 'Always-on'],
+    pros: ['Truly free forever (ARM A1)', '4 OCPU + 24GB RAM', 'Enterprise cloud experience', 'Static IP', 'Always-on'],
     cons: ['ARM architecture limits some tools', 'OCI networking complexity', 'No GPU', 'Potential non-compete concerns'],
     cost: '$0/mo (free tier)',
     ram: '24GB (4 OCPU ARM)',
@@ -379,8 +379,8 @@ export default function ACOSv11Roadmap() {
           <Link href="/watch" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
             <Play className="w-3.5 h-3.5" /> /watch hub <ExternalLink className="w-3 h-3" />
           </Link>
-          <Link href="/watch" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
-            <Monitor className="w-3.5 h-3.5" /> /watch hub <ExternalLink className="w-3 h-3" />
+          <Link href="/admin/youtube" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
+            <Monitor className="w-3.5 h-3.5" /> /admin/youtube <ExternalLink className="w-3 h-3" />
           </Link>
           <Link href="/content-strategy/video-creation" className="text-sm text-emerald-400 flex items-center gap-1 hover:underline">
             <FileText className="w-3.5 h-3.5" /> Content Strategy <ExternalLink className="w-3 h-3" />
