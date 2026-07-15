@@ -1,173 +1,110 @@
 ---
 name: library-os
-description: Library OS — the persistent digital library system. Use when adding a book, deepening an existing review, extracting insights from handwritten notes / highlights / photos, or when the user wants to build their own library on their site. Handles the full workflow from capture to publish.
+description: Library OS — source-aware reading intelligence. Use for a book, reading photo, handwritten note, highlight export, or request to build a durable, privacy-aware second brain on a personal domain.
 ---
 
 # Library OS
 
-**The open-source Library Intelligence System.** Captures everything you read into a permanent, intelligent, citation-ready knowledge library on your own website.
+**The open-source Library Intelligence System.** Turn reading signals into a source-marked, useful, and durable library on a domain you control.
+
+The public library is an approved projection. It is not the capture inbox and it is never the owner’s entire inner life.
 
 ## When to use this skill
 
-- User mentions adding a book, book review, reading list, library
-- User shares handwritten notes, book highlights, Kindle exports, or a photo of notes
-- User says "I just finished [book]" or "let me capture this book"
-- User asks about the book system, /library/*, or wants to port it to another site
-- User wants to deepen a shallow review into a hub page
+- A user shares a book, a photographed page, marginalia, a Kindle/Readwise export, a voice memo, or a reading note.
+- A user asks to add or deepen a Library entry, or to build a library/second brain on their site.
+- A user asks an agent to apply a book’s ideas to their work or life.
+- A user needs the Library OS site, links, domain, schema, or distribution repository updated.
 
-## Core philosophy
-
-1. **Own your library.** Kindle highlights die in Kindle. Notion docs scatter. A library on your own site, in git, becomes a permanent asset that compounds for decades.
-2. **Data schema is the spine.** The template is interchangeable; the `BookReview` type + its sub-types are the interoperable core. Port to any Next.js, Astro, SvelteKit, or even static HTML.
-3. **Structured, not scraped.** Every book is curated — quotes carry chapter references, chapter summaries carry key ideas, related reading carries a *reason*, not a category tag.
-4. **AEO-first.** Every book page emits BreadcrumbList + Article + Review + FAQPage + Quotation schema. Citation surface is the product.
-5. **Repeatable, not bespoke.** One data schema, one template, one command pipeline. Every new book follows the same path. No snowflakes.
-
-## The workflow (canonical)
+## Operating model
 
 ```
-CAPTURE ──────► EXTRACT ──────► ENRICH ──────► PUBLISH
-   │                │                │              │
-   ▼                ▼                ▼              ▼
-Photo, notes,   quotes[]      continueReading[]   /library/{slug}
-Kindle export,  chapters[]    videos[]            (live, SEO+AEO)
-voice memo      tldr, faq     + schema
+PRIVATE CAPTURE → EVIDENCE LEDGER → DISTILL → CONNECT → REVIEW → PUBLISH
+     photo            source/pages       insight     action      approval     public URL
 ```
 
-**Step 1 — CAPTURE**
-The user provides the raw signal: a book title, a handwritten note photo, a highlights export, a voice memo. If a photo, extract text via vision. If a file, read it.
+1. **Private capture** preserves the raw signal: original photos, full notes, voice transcripts, personal context.
+2. **Evidence ledger** records edition, translator, ISBN when known, source pages/locations, capture date, rights status, and whether a passage is verbatim or paraphrased.
+3. **Distillation** creates the public book entry: TL;DR, five insights, a small set of accurate short quotes, and clear uncertainty where evidence is incomplete.
+4. **Connection** turns insight into an original application, a practice, and verified links to the owner’s existing systems or pages.
+5. **Review** separates what is genuinely public from the private reflection. Nothing is published automatically.
+6. **Publish** emits a permanent canonical URL, structured data, tested internal links, and a route that can remain stable for years.
 
-**Step 2 — EXTRACT**
-Run `/library-add` to create the baseline entry (title, author, categories, 5 key insights, best-for, FAQ, TL;DR, cover). Then run `/library-deepen` to populate `quotes` and `chapters` via the `book-distiller` subagent.
+## Privacy and rights contract
 
-**Step 3 — ENRICH**
-Run `/library-research` to populate `continueReading` (external books with why-they-pair rationale) and `videos` (talks, interviews, lectures).
+- **Do not commit private reflections, private transcripts, or full readable scans of copyrighted pages to a public repository.** Keep them in the owner’s private capture inbox/vault.
+- A public page may carry a contextual photo, source pages, short excerpts, and original commentary only after the owner approves it.
+- Label paraphrases as paraphrases. Never manufacture quotations, chapter titles, page numbers, translations, or source certainty.
+- When only a few photographed pages are available, create a **field note**, not a synthetic summary of the whole book.
+- Treat images of readable book interiors as private evidence by default. A personal cover/context photo may be public when approved.
+- Never expose personal relationships, health, finances, or other sensitive context merely because an agent had access to it. Translate only the approved operating lesson into public prose.
 
-**Step 4 — PUBLISH**
-Commit, sync to production repo, ship. Page goes live at `/library/{slug}` with the full deep-dive hub: TL;DR, TOC, insights, quotes, chapters, FAQ, continue-reading, videos, related-own-book, Amazon CTA.
+## Public schema
 
-## The three slash commands
+The public projection is `BookReview` in `app/books/types.ts`.
 
-| Command | Purpose | Writes to |
+- `capture?: PublicBookCapture` records approved provenance: capture type/date, edition/translator, source pages, rights note, and approved contextual images.
+- `application?: BookApplication` records the original public application: an operating interpretation, a concrete practice, and verified connections to owned pages.
+- `quotes[]` contains only short, source-anchored excerpts.
+- Private material stays outside this schema and outside git.
+
+## Canonical commands
+
+| Command | Role | Writes |
 |---|---|---|
-| `/library-add` | Create a new entry from just a title | `data/book-reviews.ts`, `public/images/library/` |
-| `/library-deepen` | Add quotes + chapters to existing entry | `data/book-reviews.ts` |
-| `/library-research` | Add continueReading + videos | `data/book-reviews.ts` |
+| `/library-capture` | Photo/note intake and public/private separation | Capture record + recommendation |
+| `/library-add` | Baseline book entry | `data/book-reviews.ts` |
+| `/library-deepen` | Source-grounded quotes and chapter distillation | `data/book-reviews.ts` |
+| `/library-research` | Related reading and video links | `data/book-reviews.ts` |
 
-Run in order. Each is idempotent — running `/library-deepen` twice just refines the existing quotes/chapters, it does not duplicate.
+Use `/library-capture` first whenever the source is a photo, note, or highlight export.
 
-## The subagent
+## Photo-first protocol
 
-**book-distiller** — the extraction specialist. Given a book + (optional) source text, returns structured `quotes[]` and `chapters[]` matching the exact type shape. Delegated to by `/library-deepen` so the main conversation stays thin.
+1. Identify only what is actually visible: title, author, translator/edition, pages, headings, and short passages.
+2. Create an evidence record with confidence and gaps. Do not infer unseen chapters.
+3. Ask or apply the owner’s publication rule: **private source, public field note, or do not publish**.
+4. Extract at most the short quotations needed to support the public interpretation; preserve verbatim text separately from paraphrase.
+5. Produce a public application in the owner’s voice without exposing private source material.
+6. Add one contextual image only when it is approved and does not become a page-scan substitute.
+7. Route the entry through `/library-add` and optional `/library-deepen`.
 
-See `.claude/agents/book-distiller.md` for the agent prompt.
+## Personalisation without disclosure
 
-## The data schema (always the source of truth)
+A capable agent may reason from an owner-approved personal/project brief to make the application specific. The public output must pass this test:
 
-Located at `app/books/types.ts`:
+> Would the owner want this exact sentence visible to a stranger, search engine, customer, collaborator, and future self?
 
-```ts
-interface BookReview {
-  // Identity
-  slug, title, author, coverImage, rating, reviewDate, categories, readingTime
+When the answer is no, retain the insight in the private system and publish only the general operating principle.
 
-  // Core content (required)
-  keyInsights: string[]  // exactly 5
-  bestFor: string[]      // 3-4
+## Link and domain management
 
-  // AEO core (optional, strongly recommended)
-  tldr?: string
-  faq?: Array<{q, a}>
-  publicationYear?: number
+Every Library entry is a graph node, not a dead-end article.
 
-  // Deep-dive hub (optional — the progressive depth layer)
-  quotes?: BookQuote[]                // curated passages
-  chapters?: BookChapterSummary[]     // number, title, keyIdea, summary
-  continueReading?: RelatedReadingItem[]  // with reason, not algorithm
-  videos?: BookVideo[]                // kind, duration, description
-
-  // Wiring
-  amazonUrl?: string
-  relatedBook?: string     // slug from booksRegistry — links to our own books
-  hasCover?: boolean       // gates the next/image render
-}
-```
-
-Books without the deep-dive fields render as review-depth. Books with all fields render as full knowledge hubs. One template, progressive depth.
-
-## Cross-AI / cross-tool portability
-
-The intelligence is in the **schema + workflow**, not in any specific AI tool. The same pattern works with:
-
-- **Claude Code (native)** — the three slash commands + subagent + skill are defined here
-- **ChatGPT / Claude.ai (web)** — paste the extraction prompt from the command file, paste the book details, get structured output, paste into `data/book-reviews.ts`
-- **Codex / Cursor / Gemini CLI** — read `.claude/commands/library-*.md` as plain instructions, execute the steps
-- **Hand-roll** — the schema and template work without any AI. Manually curated libraries are valid.
-
-See `docs/cross-ai-guide.md` in the library-os repo for the prompt-paste versions.
-
-## Deployment targets
-
-The template is Next.js App Router (frankx.ai uses this). Adaptations:
-
-- **Astro** — Port `app/library/` to `src/pages/library/`, use `.astro` for layout. Data schema unchanged.
-- **SvelteKit** — `routes/library/+page.svelte`, data unchanged.
-- **Hugo** — static generation, the `BookReview[]` becomes frontmatter YAML in `content/library/*.md`.
-- **Plain HTML** — a small build script renders the data to static pages.
-
-The spine — `data/book-reviews.ts` as a typed array + the JSON-LD schema — is portable.
-
-## Index page contract
-
-The library index (`/library`) shows:
-- All reviews sorted by `reviewDate` DESC (newest first)
-- Cards with cover + title + author + star rating + top insight
-- "Deep-dive badge" on cards that have quotes/chapters/videos (e.g. "16 quotes · 14 chapters · 5 videos")
-- Category filter (optional, client-side)
-- CollectionPage + ItemList + BreadcrumbList JSON-LD
-
-## Detail page contract
-
-The detail page (`/library/{slug}`) renders, in order:
-1. Back link → `/library`
-2. Header: cover + title + author + stars + category chips
-3. TL;DR card (if `tldr`)
-4. Table of Contents (inline anchor nav, sections only shown when data present)
-5. Key Insights (5)
-6. Quotes Worth Remembering (if `quotes`)
-7. Chapter-by-Chapter accordion (if `chapters`)
-8. Best For
-9. FAQ accordion (if `faq`)
-10. Continue Reading grid (if `continueReading`)
-11. Go Deeper — Videos (if `videos`)
-12. "If You Liked This, Read Ours" (if `relatedBook` matches a slug in booksRegistry)
-13. Amazon CTA
-14. More from the Library (3 other reviews)
-
-All section IDs are anchor-linkable with `scroll-mt-24` for smooth jumps from the TOC.
+- Use permanent slugs: `/library/{slug}`. A changed slug requires an explicit 301 entry in `data/redirect-aliases.json`.
+- Links to internal FrankX pages belong in `application.connections[]`, using verified canonical paths.
+- Check every new internal path against the route registry and run the scoped internal-link check before merge.
+- External links require a real target and `target="_blank"` with `rel="noopener noreferrer"`; do not invent video, retailer, or affiliate URLs.
+- Keep production canonical host, metadata, JSON-LD, sitemap, and Vercel domain redirects aligned. One public domain wins; aliases redirect to it.
+- The production site (`frankxai/frankx.ai-vercel-website`) is the live Library surface. The public `frankxai/library-os` repository is the distribution contract. Sync through explicit versioned releases/checklists, never informal file copying.
 
 ## Quality bar
 
-- **No AI-sounding phrases.** Blacklist: delve, dive into, it's worth noting, certainly, absolutely, in conclusion, let's explore.
-- **No fake URLs.** If uncertain about a specific video URL, use a YouTube search URL. Better a search than a dead link.
-- **No blurb-style recommendations.** Every `continueReading.reason` must state a *connection*, not a summary.
-- **No chapter fabrication.** If the book's chapter list is uncertain, stop and ask for the table of contents. Never invent chapters.
-- **Cover images from legitimate sources.** OpenLibrary (`covers.openlibrary.org/b/isbn/{ISBN}-L.jpg`) is fair-use for review purposes. Never scrape Amazon product images.
+- Five non-overlapping key insights, each specific enough to guide a decision.
+- Original commentary is visibly distinct from source text.
+- A field note never pretends to be a full-book review.
+- No generic “AI summary” language; no fake certainty; no fabricated chapters.
+- Include a concrete action only when it can be performed without hidden context.
+- New pages must have canonical metadata, sitemap coverage, source provenance where applicable, and passing links.
 
-## Git workflow
+## Completion gate
 
-Library changes live in the FrankX dev repo but deploy via the production repo (`frankxai/frankx.ai-vercel-website`). Standard pattern:
+Before publishing, confirm:
 
-1. Commit library changes in FrankX dev repo (scoped: `app/library/`, `app/books/types.ts`, `data/book-reviews.ts`, `public/images/library/`)
-2. Create isolated worktree from prod `origin/main`
-3. Sync those exact files into the worktree
-4. Commit in worktree, push branch, open PR
-5. Admin-merge after Vercel preview passes (CI will show pre-existing tech debt — ignore per issue #31)
-6. Verify live on frankx.ai
-
-## Related
-
-- `/library` → the live index
-- `/library/approach` → the showcase page explaining the system
-- GitHub: `library-os` repo → open-source template + docs
-- Companion skill: `book-publishing` (for authoring own books)
+- [ ] The source is identified or uncertainty is stated.
+- [ ] Private inputs are excluded from the public repository and page.
+- [ ] Quoted text is short, accurate, and source-marked.
+- [ ] The public application is original and approved for a broad audience.
+- [ ] Internal and external links are valid and canonical.
+- [ ] The URL is stable, indexed as intended, and deployable.
+- [ ] Production and the public template release notes describe the same capability level.

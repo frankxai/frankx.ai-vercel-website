@@ -32,7 +32,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   }
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 flex min-w-0 items-center overflow-hidden text-sm text-white/50">
+    <nav aria-label="Breadcrumb" className="mb-6 flex items-center text-sm text-white/50">
       <JsonLd type="BreadcrumbList" data={schema} />
       
       <Link
@@ -44,16 +44,16 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
       </Link>
 
       {items.map((item, index) => (
-        <div key={item.href} className="flex min-w-0 items-center">
-          <ChevronRight className="mx-2 h-4 w-4 shrink-0 opacity-50" />
+        <div key={item.href} className="flex items-center">
+          <ChevronRight className="mx-2 h-4 w-4 opacity-50" />
           {index === items.length - 1 ? (
-            <span className="hidden truncate font-medium text-white/90 sm:inline" aria-current="page">
+            <span className="font-medium text-white/90" aria-current="page">
               {item.label}
             </span>
           ) : (
             <Link
               href={item.href}
-              className="shrink-0 transition-colors hover:text-white"
+              className="hover:text-white transition-colors"
             >
               {item.label}
             </Link>

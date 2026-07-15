@@ -287,7 +287,7 @@ function HeroSection() {
             </p>
 
             <p className="text-[17px] leading-relaxed text-white/60 mb-8 max-w-lg">
-              {musicStats.totalTracks}+ published tracks on Suno AI. From healing frequencies and orchestral epics
+              {musicStats.totalTracks}+ published tracks on Suno AI. From meditation-inspired soundscapes to orchestral epics
               to tech house and hip hop. This page now runs as a visual operating system: narrative assets,
               swarm-owned media pipelines, and platform-ready sales paths.
             </p>

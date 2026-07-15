@@ -1,15 +1,1 @@
-[
-  {
-    "page": "Homepage",
-    "link": "Build your own",
-    "href": "/library/build",
-    "issue": "Failed to fetch link: fetch failed"
-  },
-  {
-    "page": "Realm",
-    "link": "/realm",
-    "href": "/realm",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
-  }
-]
+[]

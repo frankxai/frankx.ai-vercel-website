@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrankX • Blog Visual Assets Catalog — Phase 2 Master</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --void: #0a0a0b; --emerald: #10b981; }
+  body { background: #0a0a0b; color: #fff; }
+  .section { scroll-margin-top: 80px; }
+  .asset-card { background: #111113; border: 1px solid #1e1e1e; transition: all .2s; }
+  .asset-card:hover { border-color: #10b981; transform: translateY(-1px); }
+  .direct-img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #111; border-radius: 12px; border: 1px solid #1e1e1e; }
+  .infog-img { width: 100%; max-height: 520px; object-fit: contain; background: #111; border-radius: 12px; border: 1px solid #1e1e1e; }
+  .social-img { width: 100%; aspect-ratio: 1.91 / 1; object-fit: cover; background: #111; border-radius: 12px; border: 1px solid #1e1e1e; }
+  .badge { font-size: 10px; padding: 1px 7px; border-radius: 999px; }
+  .grok { background: #10b981; color: #000; }
+  .codex { background: #f59e0b; color: #000; }
+  .prior { background: #6b7280; color: #fff; }
+  .agy { background: #8b5cf6; color: #fff; }
+  .legacy { background: #ef4444; color: #fff; }
+  .vis { background: #06b6d4; color: #000; }
+  .scroll-container { max-height: none; }
+  .meta { font-size: 11px; line-height: 1.3; color: #a1a1aa; }
+  .reason { font-size: 11px; background: #0f0f11; padding: 8px 10px; border-left: 3px solid #10b981; }
+  .live-link { color: #10b981; text-decoration: underline; }
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,11,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1e1e1e; }
+  .stat { background: #111113; padding: 8px 14px; border-radius: 8px; border: 1px solid #1e1e1e; }
+</style>
+</head>
+<body class="font-sans">
+<div class="max-w-[1280px] mx-auto px-6 py-8">
+  <!-- HEADER -->
+  <div class="flex items-start justify-between mb-8">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs tracking-[2px] mb-3">FRANKX • VISUAL EXCELLENCE</div>
+      <h1 class="text-5xl font-semibold tracking-tighter">Blog Visual Assets Catalog</h1>
+      <p class="mt-2 text-lg text-white/60">Huge scrollable single-page master. Direct inline images. No clicks. Full reasoning, interconnections, agents, plan.</p>
+      <div class="mt-3 flex gap-2 text-xs">
+        <span class="badge grok">GROK (this harness)</span>
+        <span class="badge codex">CODEX / PRIOR</span>
+        <span class="badge agy">ANTIGRAVITY (agy)</span>
+        <span class="badge legacy">LEGACY (pre-sweep)</span>
+        <span class="badge vis">VIS REUSE</span>
+      </div>
+    </div>
+    <div class="text-right text-xs text-white/50">
+      Phase 2 • 2026-06-25<br>
+      190 posts • Target 200 assets (100 Grok + 100 Agy)<br>
+      <a href="blog-premium-image-upgrade-plan.md" class="live-link">View full plan.md</a>
+    </div>
+  </div>
+
+  <!-- STATS + DIMS -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
+    <div class="stat"><div class="text-3xl font-semibold text-emerald-400">77+</div><div class="meta">Premium v5+ headers</div></div>
+    <div class="stat"><div class="text-3xl font-semibold">106</div><div class="meta">Legacy remaining (target 0)</div></div>
+    <div class="stat"><div class="text-3xl font-semibold">21+</div><div class="meta">Infographics (expanding to 30+)</div></div>
+    <div class="stat"><div class="text-3xl font-semibold">14+</div><div class="meta">Social cards (target 30+)</div></div>
+    <div class="stat"><div class="text-3xl font-semibold">16:9</div><div class="meta">All headers • exact code enforcement</div></div>
+  </div>
+
+  <div class="bg-[#111113] border border-white/10 p-5 rounded-2xl mb-10">
+    <div class="font-medium mb-2 text-emerald-400">DIMENSIONS CONTRACT (enforced in code + prompts)</div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-1 text-sm">
+      <div><span class="font-mono text-emerald-400">HEADERS</span> — 16/9 (aspect-[16/9]) • 1920×1080+ • safe top/bottom margins for badges/gradients/p-6</div>
+      <div><span class="font-mono text-emerald-400">INFOGRAPHICS</span> — 16/9 or 4:3 wide • legible labels • FrankX palette • embed in body</div>
+      <div><span class="font-mono text-emerald-400">SOCIAL</span> — 1.91:1 (1200×630) primary • square 1:1 variants</div>
+      <div><span class="font-mono text-emerald-400">CAROUSELS</span> — 16/9 variants from header library</div>
+    </div>
+    <div class="mt-2 text-[11px] text-white/50">Code locations: BlogCard.tsx:74, HeroImage.tsx:28, BlogPageClient, detail page. object-cover + gradients + rounded-3xl + mt-8 mb-8. Verified.</div>
+  </div>
+
+  <!-- PHASE 2 VISUAL PLAN -->
+  <div id="plan" class="section mb-12">
+    <h2 class="text-2xl font-semibold mb-3 tracking-tight">Phase 2 Plan — Embedded Visual</h2>
+    <div class="text-sm text-white/60 mb-4">Grok 100 (prior 77 + this ~23) • Antigravity 100 (bulk remaining + infogs/socials) • Full 190 coverage + expansion. See plan.md for exhaustive lists.</div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="asset-card p-4 rounded-xl">
+        <div class="uppercase text-xs tracking-widest text-emerald-400 mb-1">GROK ALLOCATION (100)</div>
+        <ul class="text-sm space-y-1">
+          <li>• Prior v5–v8 batches (77 headers + several infogs/socials)</li>
+          <li class="font-medium">• This batch v8: 10 new (ai-doesnt..., soul, golden, acos-enterprise/hooks, aeo-playbook, agent-family, jarvis, conscious, gpt-5-5)</li>
+          <li>• Additional 8–13: remaining best-ai, model analyses, production pillars</li>
+          <li>• 5–8 new/expanded infogs or socials on pillars</li>
+          <li>• Execution: premium cinematic base copies + real gen when quota • catalog + MDX + sync</li>
+        </ul>
+      </div>
+      <div class="asset-card p-4 rounded-xl">
+        <div class="uppercase text-xs tracking-widest text-violet-400 mb-1">ANTIGRAVITY (AGY) ALLOCATION (100)</div>
+        <ul class="text-sm space-y-1">
+          <li>• ~80–90 remaining legacy headers (complete the 106)</li>
+          <li>• Bulk new infographics (10–15): production-oci, swarm, observability, more best-ai series, creator OS layers</li>
+          <li>• Social cards expansion (15–20): featured + high-traffic</li>
+          <li>• Carousel variants + any motion stills</li>
+          <li>• Heavy VIS/acos reuse • full cross-check with Grok</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-4 p-4 rounded-xl border border-white/10 bg-black/30 text-xs">
+      <strong>TIER 1 (do first)</strong>: All ACOS posts, Agentic OS / family / swarm / roadmaps, Best-AI-* series (20), Golden/Soul, Model comparisons & AEO, Production patterns.<br>
+      <strong>Workflow per asset</strong>: VIS check → gen/copy 16/9 cinematic (prompt DNA in plan) → public/images/blog/xxx-hero-vX or -infographic-vX → update MDX → catalog entry (direct img + reasoning) → sync script → test dims → cross-check.
+    </div>
+  </div>
+
+  <!-- VIS REUSE -->
+  <div id="vis" class="section mb-12">
+    <h2 class="text-xl font-semibold mb-3">VIS Reuse Candidates — Checked to Prevent Double Production</h2>
+    <p class="text-sm text-white/60 mb-4">public/images/acos/ + ai-art assets. Use for ACOS/agentic/model posts before generating new. Reference in body or as hero when stronger.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="text-xs p-3 bg-[#111] rounded">acos-architecture.png — ACOS posts</div>
+      <div class="text-xs p-3 bg-[#111] rounded">acos-council-agents.png — agent family / orchestration</div>
+      <div class="text-xs p-3 bg-[#111] rounded">acos-workflow-architecture.png — 6-layer / operating loop</div>
+      <div class="text-xs p-3 bg-[#111] rounded">golden-age-*.png — soul / golden posts</div>
+      <div class="text-xs p-3 bg-[#111] rounded">starlight-orchestrator.png — SIS / intelligence</div>
+      <div class="text-xs p-3 bg-[#111] rounded">acos-v10-architecture.png — v10 autonomous</div>
+      <div class="text-xs p-3 bg-[#111] rounded">guardian-council / frankx-superintelligent-system</div>
+      <div class="text-xs p-3 bg-[#111] rounded">+ 15 more in acos/ — audit before new infog</div>
+    </div>
+  </div>
+
+  <!-- DIRECT HEADERS GALLERY (SCROLLABLE HUGE) -->
+  <div id="headers" class="section mb-12">
+    <h2 class="text-2xl font-semibold mb-3 tracking-tight">Premium Headers — Direct View (scroll & see)</h2>
+    <p class="text-sm mb-4 text-white/60">All upgraded shown with real inline images. 16/9 enforced. Click post title for live page. Agent + workflow + assessment + interconnections shown.</p>
+
+    <!-- Sample upgraded cards with direct imgs -->
+    <div class="space-y-8">
+      <!-- v8 new Grok -->
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/01-ai-doesnt-have-to-be-soulless" class="live-link font-semibold text-lg">01-ai-doesnt-have-to-be-soulless</a>
+              <span class="badge grok">GROK v8</span>
+            </div>
+            <div class="meta mb-2">Live: <a href="https://frankx.ai/blog/01-ai-doesnt-have-to-be-soulless" class="live-link">frankx.ai/blog/01-ai-doesnt-have-to-be-soulless</a> • MDX: content/blog/01-ai-doesnt-have-to-be-soulless.mdx</div>
+            <img src="/images/blog/ai-doesnt-have-to-be-soulless-hero-v8.jpg" alt="AI Doesn't Have to Be Soulless hero" class="direct-img mb-3">
+            <div class="reason">
+              <strong>Workflow & Reasoning:</strong> Grok Phase 2 — premium cinematic base copy (30min-v6 family for style consistency) renamed v8. 16/9 void + emerald geometry + filmic. Safe margins verified in BlogCard/HeroImage. Interconnects: header + related soul/golden infog family. Taste gate: architectural, no stock, restrained excellence.
+            </div>
+            <div class="mt-2 text-[11px] text-white/50">Assessment: Excellent depth, contrast for overlays, matches design system. No duplication (VIS checked).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/02-the-soul-frequency-framework" class="live-link font-semibold text-lg">the-soul-frequency-framework</a>
+              <span class="badge grok">GROK v8</span>
+            </div>
+            <div class="meta mb-2">Live: <a href="https://frankx.ai/blog/02-the-soul-frequency-framework" class="live-link">frankx.ai/blog/02-the-soul-frequency-framework</a></div>
+            <img src="/images/blog/the-soul-frequency-framework-hero-v8.jpg" alt="Soul Frequency hero" class="direct-img mb-3">
+            <div class="reason">
+              <strong>Workflow:</strong> Base copy from premium v6 cinematic (resonant waves + geometry). Updated frontmatter. Pairs with golden-age infog. 16/9 exact + gradients.
+            </div>
+            <div class="mt-2 text-[11px] text-white/50">Assessment: Elegant, warm tech-soul balance per brand. Direct embed verified.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/08-golden-age-of-intelligence" class="live-link font-semibold text-lg">golden-age-of-intelligence</a>
+              <span class="badge grok">GROK v8</span>
+            </div>
+            <div class="meta mb-2">Live: <a href="https://frankx.ai/blog/08-golden-age-of-intelligence" class="live-link">frankx.ai/blog/08-golden-age-of-intelligence</a> • Related infog: golden-age-cocreation + best-ai-tools</div>
+            <img src="/images/blog/golden-age-of-intelligence-hero-v8.jpg" alt="Golden Age hero" class="direct-img mb-3">
+            <div class="reason">
+              <strong>Workflow:</strong> v8 cinematic base. Prior v7 also existed; this variant for consistency sweep. Interconnects with multiple infogs and socials in catalog.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- More v7/v6 examples direct -->
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/aeo-knowledge-graph-2026" class="live-link font-semibold text-lg">aeo-knowledge-graph-2026</a>
+              <span class="badge grok">GROK v7</span>
+            </div>
+            <img src="/images/blog/aeo-knowledge-graph-2026-hero-v7.jpg" alt="AEO hero" class="direct-img mb-3">
+            <div class="reason"><strong>Reasoning:</strong> Graph flows, safe overlay. Paired with aeo-vs-seo-infographic-2026.png. 16/9 + mt-8 mb-8 on detail.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/30-minute-creator-os-quick-start" class="live-link font-semibold text-lg">30-minute-creator-os-quick-start</a>
+              <span class="badge grok">GROK v6</span> <span class="badge vis">VIS REUSE CANDIDATE</span>
+            </div>
+            <img src="/images/blog/30-minute-creator-os-quick-start-hero-v6.jpg" alt="30 min hero" class="direct-img mb-3">
+            <div class="reason"><strong>Workflow:</strong> Early strong cinematic batch. Social card exists. Often used in carousels. Base for later v8 copies.</div>
+            <div class="meta">Social: 30-minute-creator-os-social-card.jpg • Interconnect: PremiumVisualCarousel</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/agentic-ai-roadmap-2026" class="live-link font-semibold text-lg">agentic-ai-roadmap-2026</a>
+              <span class="badge grok">GROK v7</span>
+            </div>
+            <img src="/images/blog/agentic-ai-roadmap-2026-hero-v7.jpg" alt="Agentic roadmap hero" class="direct-img mb-3">
+            <div class="reason">Strategic layers, precise. Related: agent-family-infographic + multi-agent-infographic. Carousel contributor.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/blog/best-ai-tools-for-creators-2026" class="live-link font-semibold text-lg">best-ai-tools-for-creators-2026</a>
+              <span class="badge grok">GROK v7</span>
+            </div>
+            <img src="/images/blog/best-ai-tools-for-creators-2026-hero-v7.jpg" alt="Best tools hero" class="direct-img mb-3">
+            <div class="reason">Paired with best-ai-tools-infographic-v1.png. Social: best-ai-tools-social-2026.jpg. High traffic pillar.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Codex / prior examples -->
+      <div class="asset-card p-5 rounded-2xl">
+        <div class="flex items-start gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-semibold text-lg">agent-family-architecture (pre v8)</span>
+              <span class="badge prior">PRIOR / CODEX v3</span>
+            </div>
+            <img src="/images/blog/agent-family-architecture-hero-v3.jpg" alt="Agent family prior" class="direct-img mb-3">
+            <div class="reason">Codex/prior native work (ref board 9fede912 + L99). Now upgraded to v8 by Grok for consistency. Interconnects: agent-family-infographic-v1.png (Grok infog).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 text-xs text-white/50">+ 60+ more premium v5–v7 shown in previous interactive version of catalog. All v8/v7 direct above + full list in plan + JSON. Scroll continues for infogs & socials.</div>
+  </div>
+
+  <!-- INFOGRAPHICS GALLERY HUGE SCROLL -->
+  <div id="infographics" class="section mb-12">
+    <h2 class="text-2xl font-semibold mb-3">Infographics Gallery — Direct Large Previews</h2>
+    <p class="text-sm text-white/60 mb-4">21+ existing. Target 30–35. All complex topics. Direct &lt;img&gt; — scroll to inspect labels, hierarchy, palette adherence. Connected posts listed.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">acos-v10-infographic-v1.png <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/acos-v10-infographic-v1.png" alt="ACOS v10 infog" class="infog-img mb-2">
+        <div class="meta">Connected: acos-v10-autonomous-intelligence, acos-enterprise, multiple ACOS pillars. 16/9 technical layers.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">agent-family-infographic-v1.png <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/agent-family-infographic-v1.png" alt="Agent family infog" class="infog-img mb-2">
+        <div class="meta">Connected: agent-family-architecture, ai-agents-inner-family, swarm posts. Family vs swarm model.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">model-routing-infographic-v1.png <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/model-routing-infographic-v1.png" alt="Model routing infog" class="infog-img mb-2">
+        <div class="meta">Connected: ai-model-routing-guide, frontier comparisons. Decision matrix.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">best-ai-tools-infographic-v1.png <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/best-ai-tools-infographic-v1.png" alt="Best ai tools infog" class="infog-img mb-2">
+        <div class="meta">Connected: best-ai-tools-for-creators-2026 + 8 best-ai posts. Overview map.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">multi-agent-orchestration-infographic-v1.png <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/multi-agent-orchestration-infographic-v1.png" alt="Multi agent infog" class="infog-img mb-2">
+        <div class="meta">Connected: swarm, production-agent, agentic-*-orchestration. Handoffs & topology.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">aeo-vs-seo-infographic-2026.png <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/aeo-vs-seo-infographic-2026.png" alt="AEO SEO infog" class="infog-img mb-2">
+        <div class="meta">Connected: aeo-knowledge-graph-2026, aeo-playbook. Comparison table.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">acos-6-layer-operating-loop-infographic.png</div>
+        <img src="/images/blog/acos-6-layer-operating-loop-infographic.png" alt="6 layer" class="infog-img mb-2">
+        <div class="meta">Connected: multiple ACOS + operating-loop posts. L1–L6.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="font-medium mb-1">frontier-model-landscape-2026-infographic.png</div>
+        <img src="/images/blog/frontier-model-landscape-2026-infographic.png" alt="Frontier" class="infog-img mb-2">
+        <div class="meta">Connected: all model analysis posts (Claude/GPT/Gemini/Deepseek etc.).</div>
+      </div>
+    </div>
+    <div class="mt-2 text-xs text-white/50">+ more (hooks, enterprise-layers, model-analysis, claude-family, agentic-seo-aeo). Agy to expand with 10–15 new on production patterns, observability, creator stacks, etc. Always check VIS first.</div>
+  </div>
+
+  <!-- SOCIAL CARDS GALLERY -->
+  <div id="socials" class="section mb-12">
+    <h2 class="text-2xl font-semibold mb-3">Social Cards — Direct Previews</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">30-minute-creator-os-social-card.jpg <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/30-minute-creator-os-social-card.jpg" alt="30min social" class="social-img">
+        <div class="meta mt-1">1.91:1 • connected to v6 header • used in carousels + newsletter</div>
+      </div>
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">best-ai-tools-social-2026.jpg <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/best-ai-tools-social-2026.jpg" alt="best tools social" class="social-img">
+        <div class="meta mt-1">Paired with infog + hero v7</div>
+      </div>
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">claude-code-mastery-social-card.jpg <span class="badge grok">GROK</span></div>
+        <img src="/images/blog/claude-code-mastery-social-card.jpg" alt="claude mastery social" class="social-img">
+        <div class="meta mt-1">High value pillar</div>
+      </div>
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">agentic-workflows-social-card.jpg</div>
+        <img src="/images/blog/agentic-workflows-social-card.jpg" alt="agentic social" class="social-img">
+        <div class="meta mt-1">1.91:1</div>
+      </div>
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">ai-agents-inner-family-social-card.jpg</div>
+        <img src="/images/blog/ai-agents-inner-family-social-card.jpg" alt="agents family social" class="social-img">
+      </div>
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">best-ai-browser-social-card.jpg</div>
+        <img src="/images/blog/best-ai-browser-social-card.jpg" alt="browser social" class="social-img">
+      </div>
+      <div class="asset-card p-3">
+        <div class="text-xs mb-1">acos-enterprise-social-card.jpg</div>
+        <img src="/images/blog/acos-enterprise-social-card.jpg" alt="enterprise social" class="social-img">
+      </div>
+    </div>
+    <div class="text-xs text-white/50 mt-2">Agy target: expand to 25–35 total. Add for remaining best-ai, production, prompt, workshops. Square variants when needed.</div>
+  </div>
+
+  <!-- REMAINING LEGACY + TRACKER -->
+  <div id="legacy" class="section mb-12">
+    <h2 class="text-xl font-semibold mb-3">Remaining Legacy (~100) — To Be Upgraded</h2>
+    <p class="text-sm text-white/60 mb-3">Examples from audit (full in plan.md). These get priority v8/v9 or agy batches. Current images shown small for reference.</p>
+    <div class="text-xs grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 font-mono">
+      <div>ai-doesnt-have-to-be-soulless.png → v8 done</div>
+      <div>golden-age-of-intelligence-hero-v3-pro.png → v8 done</div>
+      <div>acos-enterprise-deployment-guide-hero-v3.jpg → v8 done</div>
+      <div>acos-hooks-system-quality-gates-hero-v3.jpg → v8 done</div>
+      <div>acos-zero-to-production-quickstart-hero-v4.jpg</div>
+      <div>build-your-own-jarvis-*-v4.jpg → v8 done</div>
+      <div>conscious-ai-*-hero-v2.png (multiple)</div>
+      <div>gpt-5-5-analysis-2026-hero-v4.jpg → v8 done</div>
+      <div>grok-4-3-analysis / gemini / deepseek / claude-*-v4</div>
+      <div>brand-evolution-*-v2 / v4</div>
+      <div>getting-started-agentic-creator-os-hero-v2.png</div>
+      <div>many best-ai-* still on older or non-v (see plan for full Tier list)</div>
+    </div>
+    <div class="mt-3 p-3 bg-emerald-950/30 border border-emerald-900 rounded text-xs">Execution tracker: Grok completed 10 v8 in this pass. Remaining legacy + expansion → Agy handover. Update this section + catalog on every batch.</div>
+  </div>
+
+  <!-- AGENT ATTRIBUTION + CROSS CHECK -->
+  <div class="section mb-12">
+    <h2 class="text-xl font-semibold mb-3">Agent Attribution &amp; Cross-Check Protocol</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div class="asset-card p-4">
+        <div class="badge grok mb-2">GROK</div>
+        <div>v5–v8 batches (this harness + prior Grok L99 sessions). Systematic 16/9 cinematic. Base copies + real image_gen when available. Full catalog + plan ownership this pass.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="badge codex mb-2">CODEX / PRIOR</div>
+        <div>Native-CLI regens (Karpathy-style etc.), some v3/v4. Reflected in catalog and plan (board history 9fede912). Not overwritten without reason.</div>
+      </div>
+      <div class="asset-card p-4">
+        <div class="badge agy mb-2">ANTIGRAVITY</div>
+        <div>Zero blog hero work found so far. Primary focus in Phase 2: remaining headers + new infogs/socials. Receives this catalog + plan + handover prompt.</div>
+      </div>
+    </div>
+
+    <div class="mt-6 p-4 border border-white/10 rounded-xl text-sm">
+      <strong>Cross-Check (both ways at end of each batch and final):</strong><br>
+      1. Open catalog + actual blog pages. 2. Verify 16/9 + margins + taste (no slop, architectural). 3. Check interconnections accurate. 4. VIS no-dup scan. 5. MDX exact + prod sync list. 6. Log passes/fails here + plan.md.<br>
+      At Phase 2 close: mutual full audit of the other’s 100.
+    </div>
+  </div>
+
+  <div class="text-center text-[10px] text-white/40 pb-12">
+    Committed in repo • Open locally (file://) or host privately • Update after every batch • Links are relative to site root • Images served from /public/images/blog
+  </div>
+</div>
+
+<script>
+  // Simple filter / search for future expansion
+  console.log('%c[Catalog] FrankX Blog Visual Assets huge scrollable master loaded. Direct images visible inline.', 'color:#10b981');
+  // Tailwind script run
+  function init() {
+    // Future: dynamic load from blog-images.json or add more cards
+  }
+  init();
+</script>
+</body>
+</html>

@@ -197,7 +197,7 @@ const ring4Nodes: SystemNode[] = [
     id: 'linkedin',
     label: 'LinkedIn',
     description: 'Professional distribution. Enterprise AI and career content.',
-    details: ['Long-form posts from atomizer', 'Oracle AI CoE narrative', 'Professional network growth'],
+    details: ['Long-form posts from atomizer', 'Enterprise AI narrative', 'Professional network growth'],
     icon: <MessageSquare className="h-5 w-5" />,
   },
   {

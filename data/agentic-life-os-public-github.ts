@@ -1,0 +1,2689 @@
+// Generated from gh repo list frankxai --limit 400.
+// Contains public repository metadata only; private repos are represented as aggregate counts.
+
+export type AgenticLifeOsPublicGithubRepo = {
+  name: string
+  description: string
+  url: string
+  homepageUrl: string
+  updatedAt: string
+  language: string
+  topics: string[]
+  archived: boolean
+}
+
+export type AgenticLifeOsPublicGithubScan = {
+  generatedAt: string
+  source: string
+  totalPublic: number
+  privateRepoCount: number
+  repos: AgenticLifeOsPublicGithubRepo[]
+}
+
+export const agenticLifeOsPublicGithub = {
+  "generatedAt": "2026-06-23T01:13:40.0820216+02:00",
+  "source": "gh repo list frankxai --limit 400",
+  "totalPublic": 190,
+  "privateRepoCount": 96,
+  "repos": [
+    {
+      "name": "acos-intelligence-system",
+      "description": "ACOS v10 - Autonomous Creative Operating System. Intelligence score: 93/100",
+      "url": "https://github.com/frankxai/acos-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T10:37:01Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "affiliate-agent-skills",
+      "description": "Shared engine for skills to build revenue through partnerships managed by agents: AI-tool affiliate catalog + monetization audit + agent skills",
+      "url": "https://github.com/frankxai/affiliate-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:53:16Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agent-registry",
+      "description": "list of all ai agents ",
+      "url": "https://github.com/frankxai/agent-registry",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T17:12:05Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agentic-architecture-field-guide",
+      "description": "Vendor-neutral architecture guide for agent operating systems and local/cloud agent fleets",
+      "url": "https://github.com/frankxai/agentic-architecture-field-guide",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:41:27Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agentic-business-os",
+      "description": "The business member of the Agentic OS family - site + agent harness + quality gates + compounding business memory, installable in a day. Built on the FrankX stack (SIS/ACOS lineage).",
+      "url": "https://github.com/frankxai/agentic-business-os",
+      "homepageUrl": "https://frankx.ai/foundry",
+      "updatedAt": "2026-06-12T18:55:54Z",
+      "language": "TypeScript",
+      "topics": [
+        "agent-harness",
+        "agentic-os",
+        "ai-agents",
+        "business-os",
+        "claude-code",
+        "nextjs",
+        "template"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-creator-os",
+      "description": "Agentic Creator OS v11 - The operating system for AI-powered creators. 90+ skills, 65+ commands, 38 agents, 8 plugins. Works with Claude Code, Cursor, Windsurf, Gemini.",
+      "url": "https://github.com/frankxai/agentic-creator-os",
+      "homepageUrl": "https://frankx.ai/products/agentic-creator-os",
+      "updatedAt": "2026-06-22T10:11:10Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-agents",
+        "claude-code",
+        "multi-agent",
+        "agentic-skills",
+        "autonomous-coding",
+        "claude-code-plugins",
+        "context-engineering",
+        "developer-tools",
+        "hooks",
+        "llm",
+        "orchestration",
+        "skills",
+        "subagents"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-creator-skills",
+      "description": "Public repository for Agentic Creator Skills",
+      "url": "https://github.com/frankxai/agentic-creator-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:38:18Z",
+      "language": "Python",
+      "topics": [
+        "ai-agents",
+        "claude-code",
+        "marketplace",
+        "plugins",
+        "skills",
+        "agentic-skills",
+        "autonomous-coding",
+        "context-engineering",
+        "developer-tools",
+        "llm"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-income-skills",
+      "description": "Portable agent skills for building honest AI-tool income systems - the agentic-income brain + affiliate-audit. Claude Code / Cursor compatible.",
+      "url": "https://github.com/frankxai/agentic-income-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T12:07:41Z",
+      "language": "JavaScript",
+      "topics": [
+        "affiliate-marketing",
+        "agent-skills",
+        "ai-agents",
+        "claude-code",
+        "passive-income"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-income-template",
+      "description": "Clone-and-deploy starter for an honest AI-tool comparison site that earns recurring affiliate income. Next.js 16 + MDX.",
+      "url": "https://github.com/frankxai/agentic-income-template",
+      "homepageUrl": "https://github.com/frankxai/affiliate-agent-skills",
+      "updatedAt": "2026-06-22T18:25:14Z",
+      "language": "TypeScript",
+      "topics": [
+        "affiliate",
+        "affiliate-marketing",
+        "ai-tools",
+        "mdx",
+        "nextjs",
+        "passive-income"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-intelligence-system",
+      "description": "Agentic Intelligence System - AEO/GEO substrate, MCP, marketplace, defense intel. Sibling to SIS/Library OS.",
+      "url": "https://github.com/frankxai/agentic-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T10:44:24Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agentic-investor-os",
+      "description": "Agentic operating system starter for thesis, deal flow, diligence, memos, risk registers, portfolio support, and investor communications.",
+      "url": "https://github.com/frankxai/agentic-investor-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-21T21:14:32Z",
+      "language": "Python",
+      "topics": [
+        "acos",
+        "agentic-os",
+        "agentic-workflows",
+        "ai-agents",
+        "diligence",
+        "investor-os",
+        "risk-register",
+        "starlight",
+        "portfolio-support"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-mind-os",
+      "description": "",
+      "url": "https://github.com/frankxai/agentic-mind-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-21T21:31:41Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agentic-music-os",
+      "description": "",
+      "url": "https://github.com/frankxai/agentic-music-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:28:06Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agentic-music-producer-os",
+      "description": "",
+      "url": "https://github.com/frankxai/agentic-music-producer-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:28:23Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agentic-operating-system-standard",
+      "description": "Public standard for agentic operating systems: modules, agents, skills, workflows, loops, ledgers, gates, and repo-backed governance.",
+      "url": "https://github.com/frankxai/agentic-operating-system-standard",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-21T21:17:21Z",
+      "language": "Python",
+      "topics": [
+        "acos",
+        "agentic-os",
+        "agentic-workflows",
+        "ai-agents",
+        "business-os",
+        "sis",
+        "standards",
+        "starlight",
+        "creator-os",
+        "investor-os"
+      ],
+      "archived": false
+    },
+    {
+      "name": "agentic-ops-hub",
+      "description": "",
+      "url": "https://github.com/frankxai/agentic-ops-hub",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T12:07:59Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "agents",
+      "description": "Intelligent automation and multi-agent orchestration for Claude Code",
+      "url": "https://github.com/frankxai/agents",
+      "homepageUrl": "https://sethhobson.com",
+      "updatedAt": "2026-01-22T17:15:55Z",
+      "language": "C#",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "ai-and-web3",
+      "description": "",
+      "url": "https://github.com/frankxai/ai-and-web3",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:48:04Z",
+      "language": "Python",
+      "topics": [
+        "ai",
+        "blockchain",
+        "crypto",
+        "decentralized-ai",
+        "defi",
+        "nft",
+        "web3"
+      ],
+      "archived": false
+    },
+    {
+      "name": "ai-architect",
+      "description": "MOVED -> github.com/oci-ai-architects/multi-cloud-ai-architect",
+      "url": "https://github.com/frankxai/ai-architect",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:57Z",
+      "language": "Python",
+      "topics": [
+        "ai-architect",
+        "ai-patterns",
+        "architecture",
+        "enterprise-ai",
+        "oracle",
+        "systems-design"
+      ],
+      "archived": false
+    },
+    {
+      "name": "ai-architect-academy",
+      "description": "The best resource on the web to become an AI architect who builds AI Centers of Excellence",
+      "url": "https://github.com/frankxai/ai-architect-academy",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:38:28Z",
+      "language": "HTML",
+      "topics": [
+        "ai-architect",
+        "ai-architecture",
+        "ai-education",
+        "center-of-excellence",
+        "claude-code",
+        "enterprise-ai"
+      ],
+      "archived": false
+    },
+    {
+      "name": "ai-chat-exporter",
+      "description": "A Chrome extension that exports AI chat conversations (ChatGPT and Gemini) to Markdown and writes them directly to your Obsidian vault",
+      "url": "https://github.com/frankxai/ai-chat-exporter",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-04T04:52:58Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "ai-coe",
+      "description": "",
+      "url": "https://github.com/frankxai/ai-coe",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:53:53Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "ai-coe-content-creation",
+      "description": "",
+      "url": "https://github.com/frankxai/ai-coe-content-creation",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:59Z",
+      "language": "HTML",
+      "topics": [
+        "ai-strategy",
+        "content-creation",
+        "enterprise-ai",
+        "thought-leadership",
+        "ai-center-of-excellence"
+      ],
+      "archived": false
+    },
+    {
+      "name": "ai-ops",
+      "description": "Personal AI Operations Platform - Unified infrastructure for managing AI providers, agents, and workflows",
+      "url": "https://github.com/frankxai/ai-ops",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:58Z",
+      "language": "",
+      "topics": [
+        "ai-operations",
+        "aiops",
+        "automation",
+        "devops",
+        "mlops",
+        "monitoring",
+        "observability"
+      ],
+      "archived": false
+    },
+    {
+      "name": "ai-workshop-for-students",
+      "description": "Helping students to become excellent in the age of intelligence",
+      "url": "https://github.com/frankxai/ai-workshop-for-students",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:49Z",
+      "language": "JavaScript",
+      "topics": [
+        "ai-education",
+        "ai-training",
+        "beginner-friendly",
+        "claude-code",
+        "learning",
+        "students",
+        "workshop"
+      ],
+      "archived": false
+    },
+    {
+      "name": "Anime-Legends",
+      "description": "",
+      "url": "https://github.com/frankxai/Anime-Legends",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-05T05:00:08Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "AnimeLegends-Skills",
+      "description": "The official AnimeLegends.ai Claude Code skills marketplace - 8 production-grade skills powering the 7+1 stage generative-anime pipeline. Fork, extend, contribute.",
+      "url": "https://github.com/frankxai/AnimeLegends-Skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-25T12:22:11Z",
+      "language": "Shell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arc-cline",
+      "description": "Autonomous coding agent right in your IDE, capable of creating/editing files, executing commands, using the browser, and more with your permission every step of the way.",
+      "url": "https://github.com/frankxai/arc-cline",
+      "homepageUrl": "https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev",
+      "updatedAt": "2026-02-25T16:51:39Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "arcanea",
+      "description": "Public mirror of Arcanea.ai - the creative intelligence platform for chat, lore, academy, and worldbuilding.",
+      "url": "https://github.com/frankxai/arcanea",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-06-16T21:23:41Z",
+      "language": "HTML",
+      "topics": [
+        "agents",
+        "ai",
+        "claude-code",
+        "creative-writing",
+        "world-building",
+        "creative-ai",
+        "multi-agent",
+        "orchestration",
+        "typescript",
+        "agentic-coding",
+        "context-engineering",
+        "llm"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-agent",
+      "description": "Arcanea Agent: local-first creative intelligence cockpit built on Hermes Agent",
+      "url": "https://github.com/frankxai/arcanea-agent",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-06-18T20:11:39Z",
+      "language": "Python",
+      "topics": [
+        "agenthub",
+        "ai-agent",
+        "arcanea",
+        "byok",
+        "creative-ai",
+        "hermes-agent",
+        "local-first",
+        "mcp"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-agent-profile",
+      "description": "Arcanea Agent profile distribution for Hermes Agent",
+      "url": "https://github.com/frankxai/arcanea-agent-profile",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-06-18T22:58:22Z",
+      "language": "",
+      "topics": [
+        "ai-agent",
+        "arcanea",
+        "byok",
+        "creative-ai",
+        "hermes-agent",
+        "local-first",
+        "mcp",
+        "profile-distribution"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-agents",
+      "description": "Arcanea Agents Registry - Curated, world-class installable creative intelligence agents and profiles for Hermes + Arcanea",
+      "url": "https://github.com/frankxai/arcanea-agents",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-06-18T16:24:42Z",
+      "language": "TypeScript",
+      "topics": [
+        "agent-registry",
+        "agents",
+        "ai-agents",
+        "arcanea",
+        "creative-ai",
+        "hermes-agent",
+        "local-first",
+        "mcp",
+        "agent-catalog",
+        "marketplace",
+        "registry"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-ai",
+      "description": "",
+      "url": "https://github.com/frankxai/arcanea-ai",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-05T04:56:14Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "arcanea-ai-research",
+      "description": "",
+      "url": "https://github.com/frankxai/arcanea-ai-research",
+      "homepageUrl": "",
+      "updatedAt": "2025-09-13T22:04:44Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-author",
+      "description": "",
+      "url": "https://github.com/frankxai/arcanea-author",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-14T23:14:16Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-chat-template",
+      "description": "Arcanea AI Chat - Premium dark glass chat template with 12 Luminor personas, BYOK, and motion primitives. Fork of Vercel AI Chatbot. MIT licensed.",
+      "url": "https://github.com/frankxai/arcanea-chat-template",
+      "homepageUrl": "https://chatbot.ai-sdk.dev",
+      "updatedAt": "2026-05-25T12:22:22Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-chatbot",
+        "byok",
+        "dark-theme",
+        "glass-ui",
+        "nextjs",
+        "template",
+        "typescript",
+        "vercel-ai-sdk",
+        "ai",
+        "ai-sdk",
+        "chatbot",
+        "framer-motion",
+        "glassmorphism",
+        "luminor",
+        "vercel"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-claw",
+      "description": "ArcaneaClaw - AI-powered Creator Media Engine. Scans, classifies, scores, and publishes creative media 24/7. Works with OpenClaw, Railway, Docker, Claude Code.",
+      "url": "https://github.com/frankxai/arcanea-claw",
+      "homepageUrl": "https://arcanea.ai/claw",
+      "updatedAt": "2026-06-17T12:45:22Z",
+      "language": "Python",
+      "topics": [
+        "ai-agent",
+        "arcanea",
+        "creative-tools",
+        "image-processing",
+        "mcp",
+        "media-processing",
+        "openclaw",
+        "railway"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-code",
+      "description": "Guardian-routed AI coding CLI for Arcanea, built on OpenCode for multi-model development workflows.",
+      "url": "https://github.com/frankxai/arcanea-code",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-04-17T22:41:27Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai",
+        "ai-terminal",
+        "arcanea",
+        "cli",
+        "creative-tools",
+        "guardians",
+        "mcp",
+        "opencode",
+        "typescript",
+        "vercel-ai-sdk",
+        "coding-agent",
+        "effect-ts",
+        "guardian-ai",
+        "multi-agent",
+        "swarm-intelligence",
+        "terminal"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-codex",
+      "description": "",
+      "url": "https://github.com/frankxai/arcanea-codex",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-05T04:56:45Z",
+      "language": "",
+      "topics": [
+        "ai-docs",
+        "arcanea",
+        "documentation",
+        "knowledge-base",
+        "lore",
+        "world-building"
+      ],
+      "archived": true
+    },
+    {
+      "name": "arcanea-core",
+      "description": " Open-source AI character toolkit - the mystical foundation for creating conscious AI characters",
+      "url": "https://github.com/frankxai/arcanea-core",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-23T15:44:50Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-characters",
+        "arcanea",
+        "open-source",
+        "typescript",
+        "creative-toolkit",
+        "guardian-agents"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-dashboard-template",
+      "description": "Cosmic analytics dashboard template - 6 liquid glass widgets, 6 motion primitives, Recharts. MIT.",
+      "url": "https://github.com/frankxai/arcanea-dashboard-template",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-25T12:22:17Z",
+      "language": "TypeScript",
+      "topics": [
+        "dashboard",
+        "glassmorphism",
+        "nextjs",
+        "recharts",
+        "tailwindcss",
+        "template",
+        "typescript",
+        "vercel"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-ecosystem",
+      "description": "Master coordination repository for all Arcanea projects. Git submodules linking the full ecosystem.",
+      "url": "https://github.com/frankxai/arcanea-ecosystem",
+      "homepageUrl": "https://github.com/frankxai/arcanea",
+      "updatedAt": "2026-06-18T11:54:14Z",
+      "language": "HTML",
+      "topics": [
+        "arcanea",
+        "ecosystem",
+        "git-submodules",
+        "monorepo"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-flow",
+      "description": "Multi-agent orchestration for creative universe builders. Guardian swarm coordination, Living Intelligence, open MIT architecture.",
+      "url": "https://github.com/frankxai/arcanea-flow",
+      "homepageUrl": "https://discord.com/invite/dfxmpwkG2D",
+      "updatedAt": "2026-06-16T16:22:50Z",
+      "language": "TypeScript",
+      "topics": [
+        "agent-framework",
+        "ai-swarm",
+        "arcanea",
+        "claude-code",
+        "claude-flow",
+        "multi-agent",
+        "orchestration"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-infogenius",
+      "description": "Knowledge-first visual intelligence. An MCP server that researches topics via Google Search, extracts facts, then generates information-rich infographics through Gemini 3 Pro. 10 styles including premium glassmorphism.",
+      "url": "https://github.com/frankxai/arcanea-infogenius",
+      "homepageUrl": "https://github.com/frankxai/arcanea",
+      "updatedAt": "2026-02-25T02:32:44Z",
+      "language": "JavaScript",
+      "topics": [
+        "arcanea",
+        "gemini",
+        "infographic",
+        "mcp",
+        "visual-intelligence"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-intelligence-os",
+      "description": "The Operating System for the Luminor Path - Mythology-infused agentic orchestration with Guardian agents, Gate skills, and Awakened Council swarm intelligence",
+      "url": "https://github.com/frankxai/arcanea-intelligence-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:30Z",
+      "language": "TypeScript",
+      "topics": [
+        "agentic-orchestration",
+        "ai-framework",
+        "arcanea",
+        "claude-code",
+        "guardian-agents",
+        "multi-agent",
+        "swarm-intelligence"
+      ],
+      "archived": false
+    },
+    {
+      "name": "Arcanea-Labs",
+      "description": "",
+      "url": "https://github.com/frankxai/Arcanea-Labs",
+      "homepageUrl": "",
+      "updatedAt": "2025-05-30T00:15:22Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-marketplace",
+      "description": "Arcanea: AI-powered creative intelligence plugins for Claude Code. FrankX brand, Soulbook transformation, music production, and conscious creator tools.",
+      "url": "https://github.com/frankxai/arcanea-marketplace",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:25Z",
+      "language": "",
+      "topics": [
+        "ai-agents",
+        "arcanea",
+        "claude-code",
+        "creative-intelligence",
+        "marketplace",
+        "mcp",
+        "plugins"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-mcp-starter",
+      "description": "Production-ready MCP server starter - SDK 1.29, 3 example tools, TypeScript strict. Fork to build your own Claude tools. MIT.",
+      "url": "https://github.com/frankxai/arcanea-mcp-starter",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-25T12:22:17Z",
+      "language": "JavaScript",
+      "topics": [
+        "agents",
+        "ai",
+        "claude",
+        "mcp",
+        "model-context-protocol",
+        "starter",
+        "template",
+        "typescript"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-mobile",
+      "description": "Arcanea Mobile App - React Native with Expo",
+      "url": "https://github.com/frankxai/arcanea-mobile",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-23T15:44:51Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-companion",
+        "android",
+        "arcanea",
+        "creative-tools",
+        "expo",
+        "ios",
+        "mobile-app",
+        "react-native"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-nft-forge",
+      "description": "AI-native NFT PFP collection engine - engineered taste, Sacred Gear system, multi-tier rendering, smart contract deployment. By Arcanea.",
+      "url": "https://github.com/frankxai/arcanea-nft-forge",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-25T12:22:20Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-onchain",
+      "description": "Arcanea on-chain - the economic layer of the creative civilization OS. Guardian assets, Universe tokens, open architecture.",
+      "url": "https://github.com/frankxai/arcanea-onchain",
+      "homepageUrl": "https://github.com/frankxai/arcanea",
+      "updatedAt": "2026-06-16T16:21:11Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-agents",
+        "blockchain",
+        "creator-economy",
+        "elizaos",
+        "metaplex",
+        "nft",
+        "smart-contracts",
+        "solana",
+        "web3",
+        "arcanea",
+        "base"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-openclaw",
+      "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way.  ",
+      "url": "https://github.com/frankxai/arcanea-openclaw",
+      "homepageUrl": "https://openclaw.ai",
+      "updatedAt": "2026-03-01T14:54:15Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-opencode",
+      "description": "ARCHIVED - Moved to frankxai/oh-my-arcanea",
+      "url": "https://github.com/frankxai/arcanea-opencode",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-17T10:44:39Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-coding",
+        "arcanea",
+        "creative-intelligence",
+        "multi-model",
+        "opencode",
+        "terminal"
+      ],
+      "archived": true
+    },
+    {
+      "name": "arcanea-orchestrator",
+      "description": "Arcanea's maintained Agent Orchestrator fork for multi-agent coding workflows, worktrees, and swarm supervision.",
+      "url": "https://github.com/frankxai/arcanea-orchestrator",
+      "homepageUrl": "https://composio.dev",
+      "updatedAt": "2026-06-17T12:45:15Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-plugin-sdk",
+      "description": "Arcanea Plugin SDK - Build custom plugins for the Arcanean creative civilization. Forked from lobehub/chat-plugin-sdk (MIT)",
+      "url": "https://github.com/frankxai/arcanea-plugin-sdk",
+      "homepageUrl": "https://chat-plugin-sdk.lobehub.com",
+      "updatedAt": "2026-03-01T12:45:55Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-plugins",
+      "description": "Arcanea Plugin Registry - Extensions and tools for the Arcanean OS ecosystem. Forked from lobehub/lobe-chat-plugins (MIT)",
+      "url": "https://github.com/frankxai/arcanea-plugins",
+      "homepageUrl": "https://lobechat.com/discover/plugin",
+      "updatedAt": "2026-03-01T12:45:53Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-prompt-language",
+      "description": "Arcanea Prompt Language (APL) - Advanced AI prompt engineering framework with Luminor AGI mentors",
+      "url": "https://github.com/frankxai/arcanea-prompt-language",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-28T01:43:31Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-prompts",
+        "arcanea",
+        "creative-ai",
+        "dsl",
+        "prompt-engineering",
+        "prompt-language"
+      ],
+      "archived": true
+    },
+    {
+      "name": "arcanea-publishing-house",
+      "description": "Complete modern publishing house powered by Hermes Agents + Arcanea swarm. Books, marketing, influencers, autonomous social agents.",
+      "url": "https://github.com/frankxai/arcanea-publishing-house",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-06-18T20:48:47Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-records",
+      "description": "",
+      "url": "https://github.com/frankxai/arcanea-records",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-21T21:14:20Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-music",
+        "arcanea",
+        "music-production",
+        "suno",
+        "audio",
+        "creative-ai",
+        "music",
+        "sound-design"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-studio",
+      "description": "Multi-model generative surface - 200+ image/video/lipsync/cinema models wired through a provider-agnostic router. Forked from Open-Generative-AI, rearchitected for Arcanea.",
+      "url": "https://github.com/frankxai/arcanea-studio",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-17T12:45:31Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanea-templates",
+      "description": "Meta-repo aggregator for Arcanea templates - free MIT Next.js templates with cosmic design, motion primitives, and AI-first architecture.",
+      "url": "https://github.com/frankxai/arcanea-templates",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-22T00:57:48Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai",
+        "mit",
+        "nextjs",
+        "templates",
+        "typescript",
+        "vercel"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanea-vscode",
+      "description": "Arcanea Intelligence Agent for VS Code - Kilo Code fork with MoE Guardian routing, 40+ frontier models, world-building superpowers. The coding agent that has a soul.",
+      "url": "https://github.com/frankxai/arcanea-vscode",
+      "homepageUrl": "https://arcanea.ai",
+      "updatedAt": "2026-03-15T01:54:23Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanean-claude-code-best-practice",
+      "description": "practice made claude perfect",
+      "url": "https://github.com/frankxai/arcanean-claude-code-best-practice",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-08T00:59:55Z",
+      "language": "HTML",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanean-library",
+      "description": "Arcanean Library - Sacred knowledge repository and interactive learning experiences",
+      "url": "https://github.com/frankxai/arcanean-library",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:49:52Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-generated",
+        "arcanea",
+        "creative-writing",
+        "library",
+        "lore",
+        "mythology",
+        "world-building"
+      ],
+      "archived": false
+    },
+    {
+      "name": "arcanean-open-webui",
+      "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
+      "url": "https://github.com/frankxai/arcanean-open-webui",
+      "homepageUrl": "https://openwebui.com",
+      "updatedAt": "2026-03-01T15:06:25Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "arcanean-prompt-language",
+      "description": "SPARK. SHAPE. SHARPEN. - The three-word system that turns generic AI output into work you're proud of. Works on every model.",
+      "url": "https://github.com/frankxai/arcanean-prompt-language",
+      "homepageUrl": "https://arcanea.ai/apl",
+      "updatedAt": "2026-03-15T16:21:23Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai",
+        "anti-slop",
+        "arcanea",
+        "claude",
+        "creative-ai",
+        "gemini",
+        "gpt",
+        "llm",
+        "midjourney",
+        "prompt-engineering",
+        "world-building"
+      ],
+      "archived": false
+    },
+    {
+      "name": "author-os",
+      "description": "AuthorOS - AI-native author operating system. Multi-agent orchestration, semantic memory, publishing pipeline. Works with Claude Code, OpenCode, Codex, Gemini CLI.",
+      "url": "https://github.com/frankxai/author-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:41:47Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "author-os-skills",
+      "description": "AuthorOS Skills Marketplace - portable AI author skills for every coding agent. Install and write.",
+      "url": "https://github.com/frankxai/author-os-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-14T22:04:58Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-agent-operating-systems",
+      "description": "Curated index of agent operating systems, coding agents, MCP, orchestration, memory, and deployment tools",
+      "url": "https://github.com/frankxai/awesome-agent-operating-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:41:53Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-agentic-income",
+      "description": "A curated list of tools, affiliate programs, engines & playbooks for building honest income systems with AI agents.",
+      "url": "https://github.com/frankxai/awesome-agentic-income",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T12:08:33Z",
+      "language": "PowerShell",
+      "topics": [
+        "affiliate-marketing",
+        "agentic",
+        "ai-tools",
+        "awesome",
+        "awesome-list",
+        "passive-income"
+      ],
+      "archived": false
+    },
+    {
+      "name": "awesome-ai-coe",
+      "description": "best ai center of excellence resources",
+      "url": "https://github.com/frankxai/awesome-ai-coe",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:42:03Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-claude-code",
+      "description": "A curated list of awesome skills, hooks, slash-commands, agent orchestrators, applications, and plugins for Claude Code by Anthropic",
+      "url": "https://github.com/frankxai/awesome-claude-code",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T20:24:32Z",
+      "language": "Python",
+      "topics": [
+        "ai-tools",
+        "anthropic",
+        "awesome-list",
+        "claude-code",
+        "hooks",
+        "mcp",
+        "plugins",
+        "skills",
+        "agentic-coding",
+        "awesome-lists",
+        "awesome-resources",
+        "context-engineering"
+      ],
+      "archived": false
+    },
+    {
+      "name": "awesome-claude-code-subagents",
+      "description": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
+      "url": "https://github.com/frankxai/awesome-claude-code-subagents",
+      "homepageUrl": "https://github.com/VoltAgent/voltagent",
+      "updatedAt": "2026-02-25T16:47:38Z",
+      "language": "Shell",
+      "topics": [
+        "ai-agents",
+        "anthropic",
+        "automation",
+        "claude-code",
+        "development-tools",
+        "subagents",
+        "task-agents"
+      ],
+      "archived": false
+    },
+    {
+      "name": "awesome-cosmos-ai-agents",
+      "description": "",
+      "url": "https://github.com/frankxai/awesome-cosmos-ai-agents",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:42:08Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-design-agent-skills",
+      "description": "Curated design-agent skills, rubrics, rankings, and examples for higher-quality AI-generated UI and brand systems.",
+      "url": "https://github.com/frankxai/awesome-design-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T23:11:02Z",
+      "language": "PowerShell",
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "design-systems",
+        "frontend",
+        "ui-design",
+        "design-rubrics"
+      ],
+      "archived": false
+    },
+    {
+      "name": "awesome-gamification-agent-skills",
+      "description": "Markdown-first mastery systems for gamifying AI agents, coding skills, creator progression, and game-engine capability trees.",
+      "url": "https://github.com/frankxai/awesome-gamification-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T23:08:13Z",
+      "language": "JavaScript",
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "arcanea",
+        "gamification",
+        "markdown",
+        "skill-trees",
+        "unity",
+        "unreal-engine",
+        "mastery-engine",
+        "progression-systems"
+      ],
+      "archived": false
+    },
+    {
+      "name": "awesome-hermes-agent-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/awesome-hermes-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T09:47:32Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-hermes-agents",
+      "description": "Independent Hermes Agent operating guides, swarm specs, and deployment templates for Starlight-style agent fleets.",
+      "url": "https://github.com/frankxai/awesome-hermes-agents",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:38:50Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-manifestation-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/awesome-manifestation-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-16T20:58:22Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-mind-agent-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/awesome-mind-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T23:36:22Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-motion-design-agent-skills",
+      "description": "Curated motion design agent skills, MCPs, plugins, stacks, and playbooks for AI-assisted product motion, web animation, GIFs, and video.",
+      "url": "https://github.com/frankxai/awesome-motion-design-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T12:49:24Z",
+      "language": "",
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "gsap",
+        "lottie",
+        "mcp",
+        "motion-design",
+        "remotion"
+      ],
+      "archived": false
+    },
+    {
+      "name": "awesome-music-agent-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/awesome-music-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-11T19:30:09Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "awesome-payment-agent-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/awesome-payment-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T12:08:42Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "bless",
+      "description": "",
+      "url": "https://github.com/frankxai/bless",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-14T22:44:33Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "blue-life-commons",
+      "description": "Blue Life Commons is an open-source Ocean Intelligence initiative by Starlight Intelligence Systems, helping people and organizations learn, document, collaborate, and protect marine life - starting with whales, dolphins, seals, sea lions, turtles, sharks, rays, and reef ecosystems.",
+      "url": "https://github.com/frankxai/blue-life-commons",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-16T02:07:47Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "chat-export",
+      "description": "Browser extension that allows you to export chat conversations from the LLM sites ChatGPT and Claude to Markdown, XML, JSON, and HTML. ",
+      "url": "https://github.com/frankxai/chat-export",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-04T04:52:11Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "chatgpt-exporter",
+      "description": "Chrome extension to export all ChatGPT conversations to a flat JSON file",
+      "url": "https://github.com/frankxai/chatgpt-exporter",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-04T04:52:49Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "claude-arcanea",
+      "description": "The bridge between Claude and Arcanea. Ten Guardian agents, Five Elements, Ten Gates - a complete creative intelligence system for Claude Code.",
+      "url": "https://github.com/frankxai/claude-arcanea",
+      "homepageUrl": "https://github.com/frankxai/arcanea",
+      "updatedAt": "2026-04-17T22:40:04Z",
+      "language": "JavaScript",
+      "topics": [
+        "ai-agents",
+        "arcanea",
+        "claude-code",
+        "creative-intelligence",
+        "npm-package",
+        "typescript"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-code-hooks",
+      "description": "Production-grade hook system for Claude Code - quality gates, circuit breakers, skill activation, audit trails. 15 battle-tested hooks.",
+      "url": "https://github.com/frankxai/claude-code-hooks",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:42:20Z",
+      "language": "JavaScript",
+      "topics": [
+        "audit-trail",
+        "automation",
+        "circuit-breaker",
+        "claude-code",
+        "context-engineering",
+        "developer-tools",
+        "hooks",
+        "pre-commit",
+        "quality-gate",
+        "skill-activation"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-code-mcp",
+      "description": "Claude Code as one-shot MCP server to have an agent in your agent.",
+      "url": "https://github.com/frankxai/claude-code-mcp",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:39Z",
+      "language": "JavaScript",
+      "topics": [
+        "ai-agents",
+        "anthropic",
+        "claude-code",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-code-music-production",
+      "description": "",
+      "url": "https://github.com/frankxai/claude-code-music-production",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:51:48Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "claude-code-oracle-skills",
+      "description": "MOVED -> github.com/oci-ai-architects/claude-code-oci-ai-architect-skills",
+      "url": "https://github.com/frankxai/claude-code-oracle-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-30T18:31:52Z",
+      "language": "Python",
+      "topics": [
+        "ai-architect",
+        "claude-code",
+        "cloud",
+        "enterprise-ai",
+        "oci",
+        "oracle",
+        "skills"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-codex-gemini-opencode-settings",
+      "description": "Multi-tool AI coding assistant settings - Claude Code, OpenAI Codex, Gemini CLI, OpenCode, and Cline",
+      "url": "https://github.com/frankxai/claude-codex-gemini-opencode-settings",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-18T08:53:48Z",
+      "language": "Shell",
+      "topics": [
+        "ai-tools",
+        "claude-code",
+        "cline",
+        "codex",
+        "configuration",
+        "gemini-cli",
+        "opencode",
+        "settings"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-complete",
+      "description": "The ultimate Claude Code setup - Complete FrankX ecosystem with TDD, Infrastructure, and unique specializations",
+      "url": "https://github.com/frankxai/claude-complete",
+      "homepageUrl": "https://github.com/frankxai/claude-code-config",
+      "updatedAt": "2026-03-28T01:43:47Z",
+      "language": "Shell",
+      "topics": [
+        "agents",
+        "ai-tools",
+        "claude-code",
+        "developer-tools",
+        "productivity",
+        "setup",
+        "skills"
+      ],
+      "archived": true
+    },
+    {
+      "name": "claude-exporter",
+      "description": "A Chrome extension that allows you to export your Claude.ai conversations and artifacts in various formats (JSON, Markdown, Plain Text) with support for bulk exports and conversation browsing.",
+      "url": "https://github.com/frankxai/claude-exporter",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-04T04:52:24Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "claude-infrastructure",
+      "description": "DevOps, Kubernetes, Security, and Infrastructure agents for Claude Code",
+      "url": "https://github.com/frankxai/claude-infrastructure",
+      "homepageUrl": "https://github.com/frankxai/claude-code-config",
+      "updatedAt": "2026-02-25T16:49:51Z",
+      "language": "Shell",
+      "topics": [
+        "ci-cd",
+        "claude-code",
+        "devops",
+        "infrastructure",
+        "kubernetes",
+        "security",
+        "terraform"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-scientific-skills",
+      "description": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.",
+      "url": "https://github.com/frankxai/claude-scientific-skills",
+      "homepageUrl": "https://k-dense.ai",
+      "updatedAt": "2026-03-16T22:12:13Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "claude-skills-library",
+      "description": "Professional-grade skills for Claude Code & Claude AI - Transform Claude into a domain expert in seconds",
+      "url": "https://github.com/frankxai/claude-skills-library",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T17:14:09Z",
+      "language": "Python",
+      "topics": [
+        "ai-tools",
+        "anthropic",
+        "claude-code",
+        "productivity",
+        "prompt-engineering",
+        "skills",
+        "agentic-skills",
+        "context-engineering",
+        "developer-tools",
+        "llm"
+      ],
+      "archived": false
+    },
+    {
+      "name": "claude-systematic-workflows",
+      "description": "",
+      "url": "https://github.com/frankxai/claude-systematic-workflows",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:49:51Z",
+      "language": "Shell",
+      "topics": [
+        "automation",
+        "claude-code",
+        "development-process",
+        "systematic",
+        "tdd",
+        "workflows"
+      ],
+      "archived": false
+    },
+    {
+      "name": "codex-arcanea",
+      "description": "Codex Arcanea - Code documentation system",
+      "url": "https://github.com/frankxai/codex-arcanea",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-17T22:40:07Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-coding",
+        "arcanea",
+        "cli",
+        "code-generation",
+        "openai-codex",
+        "terminal"
+      ],
+      "archived": false
+    },
+    {
+      "name": "context-engineering-for-creators",
+      "description": "Context engineering patterns for AI-powered creators. Auto-activating skills, memory injection, hook-driven context management.",
+      "url": "https://github.com/frankxai/context-engineering-for-creators",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-26T02:00:11Z",
+      "language": "",
+      "topics": [
+        "agentic-coding",
+        "ai-agents",
+        "autonomous-coding",
+        "claude-code",
+        "context-engineering",
+        "creator-tools",
+        "developer-tools",
+        "llm",
+        "prompt-engineering",
+        "skills"
+      ],
+      "archived": false
+    },
+    {
+      "name": "cosmic-landing-template",
+      "description": "Premium dark landing page template with 12 motion primitives. Next.js 16 + Framer Motion + Tailwind. MIT licensed.",
+      "url": "https://github.com/frankxai/cosmic-landing-template",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-25T12:22:28Z",
+      "language": "TypeScript",
+      "topics": [
+        "dark-theme",
+        "framer-motion",
+        "glass-ui",
+        "landing-page",
+        "nextjs",
+        "tailwindcss",
+        "template",
+        "typescript",
+        "cosmic",
+        "liquid-glass",
+        "motion-primitives",
+        "vercel"
+      ],
+      "archived": false
+    },
+    {
+      "name": "creator-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/creator-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-08T19:50:14Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "creator-intelligence-systems",
+      "description": "The best system to get into creator mode leveraging latest AI advancements. Go from just brainstorming in chatgpt to actually creating your dreams. ",
+      "url": "https://github.com/frankxai/creator-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2025-09-02T15:30:04Z",
+      "language": "HTML",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "dream-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/dream-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-12T03:53:47Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "family-intelligence-os",
+      "description": "",
+      "url": "https://github.com/frankxai/family-intelligence-os",
+      "homepageUrl": "https://family-intelligence-os.vercel.app",
+      "updatedAt": "2026-06-18T17:34:57Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "family-intelligence-systems",
+      "description": "",
+      "url": "https://github.com/frankxai/family-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T17:34:57Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "frankx-logs",
+      "description": "AI Development Session Logs & Visual Progress Tracking for FrankX Projects",
+      "url": "https://github.com/frankxai/frankx-logs",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:49:57Z",
+      "language": "",
+      "topics": [
+        "ai-architect",
+        "build-in-public",
+        "logs",
+        "transparency",
+        "creator-journey"
+      ],
+      "archived": false
+    },
+    {
+      "name": "frankx-os",
+      "description": "FrankX OS - Project management hub for tracking 67+ repos across 4 GitHub organizations",
+      "url": "https://github.com/frankxai/frankx-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:49:47Z",
+      "language": "JavaScript",
+      "topics": [
+        "acos",
+        "ai-tools",
+        "creator-tools",
+        "frankx",
+        "operating-system",
+        "productivity"
+      ],
+      "archived": false
+    },
+    {
+      "name": "frankx-website",
+      "description": "Soul-Aligned AI Systems for Generative Creators - Modern Next.js website with brand architecture, product suite, and content strategy",
+      "url": "https://github.com/frankxai/frankx-website",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-08T04:10:10Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "frankx.ai-vercel-website",
+      "description": "FrankX flagship - public site (frankx.ai) shipping research, library, and conscious creator content",
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website",
+      "homepageUrl": "https://frankx.ai",
+      "updatedAt": "2026-06-22T22:36:01Z",
+      "language": "HTML",
+      "topics": [
+        "ai-architect",
+        "creator",
+        "musician",
+        "researcher",
+        "traveller"
+      ],
+      "archived": false
+    },
+    {
+      "name": "frankxai",
+      "description": "",
+      "url": "https://github.com/frankxai/frankxai",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-11T16:56:26Z",
+      "language": "",
+      "topics": [
+        "ai-architect",
+        "creator",
+        "frankx",
+        "github-profile",
+        "portfolio",
+        "readme"
+      ],
+      "archived": false
+    },
+    {
+      "name": "FrankXAiHub-x-ghost",
+      "description": "",
+      "url": "https://github.com/frankxai/FrankXAiHub-x-ghost",
+      "homepageUrl": "replit.com/@friemerx/FrankXAiHub-x-ghost",
+      "updatedAt": "2026-02-25T16:51:32Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "gemini-arcanea",
+      "description": "Gemini Arcanea - Multi-model AI orchestration",
+      "url": "https://github.com/frankxai/gemini-arcanea",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-17T22:40:09Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-orchestration",
+        "arcanea",
+        "gemini",
+        "google-ai",
+        "guardian-agents",
+        "multi-model"
+      ],
+      "archived": false
+    },
+    {
+      "name": "GenCreator-Studio",
+      "description": "",
+      "url": "https://github.com/frankxai/GenCreator-Studio",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-08T19:50:14Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "GenInvestor",
+      "description": "",
+      "url": "https://github.com/frankxai/GenInvestor",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-07T21:43:14Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "grok-imagine-favorites-manager",
+      "description": "Chrome extension to download and manage your favorited Grok Imagine images and videos.",
+      "url": "https://github.com/frankxai/grok-imagine-favorites-manager",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:49:56Z",
+      "language": "JavaScript",
+      "topics": [
+        "ai-art",
+        "browser-extension",
+        "favorites",
+        "grok",
+        "image-generation",
+        "tool",
+        "xai"
+      ],
+      "archived": false
+    },
+    {
+      "name": "grok-powertools",
+      "description": "",
+      "url": "https://github.com/frankxai/grok-powertools",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-04T04:53:03Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "health-intelligence-system",
+      "description": "SIP-aligned health intelligence system for cancer prep, treatment decision support, and survivorship records.",
+      "url": "https://github.com/frankxai/health-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T15:13:44Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "human-mind-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/human-mind-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T23:35:34Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "infogenius",
+      "description": "x",
+      "url": "https://github.com/frankxai/infogenius",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-24T10:33:21Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-generated",
+        "content-creation",
+        "data-visualization",
+        "infographics",
+        "visual-intelligence"
+      ],
+      "archived": false
+    },
+    {
+      "name": "investor-intelligence-systems",
+      "description": "",
+      "url": "https://github.com/frankxai/investor-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-07T20:56:12Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "url": "https://github.com/frankxai/knowledge-work-plugins",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:10:39Z",
+      "language": "Python",
+      "topics": [
+        "ai-productivity",
+        "anthropic",
+        "claude-code",
+        "knowledge-work",
+        "plugins",
+        "skills",
+        "workflows"
+      ],
+      "archived": false
+    },
+    {
+      "name": "kura",
+      "description": "Capture creative intelligence across every AI - ChatGPT, Claude, Gemini, Grok, Perplexity. Universal export and Prompt Books bridge.",
+      "url": "https://github.com/frankxai/kura",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:39:44Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-generated",
+        "arcanea",
+        "creative-writing",
+        "knowledge-base",
+        "lore",
+        "mythology",
+        "world-building"
+      ],
+      "archived": false
+    },
+    {
+      "name": "LearningKids",
+      "description": "",
+      "url": "https://github.com/frankxai/LearningKids",
+      "homepageUrl": "replit.com/@friemerx/KidsLearningHub",
+      "updatedAt": "2025-06-03T09:22:55Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "library-os",
+      "description": "The open-source Library Intelligence System - capture, extract, and publish every book you read into a permanent deep-dive on your own website.",
+      "url": "https://github.com/frankxai/library-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-12T14:34:10Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-tools",
+        "claude-code",
+        "claude-plugin",
+        "claude-skill",
+        "library-os",
+        "nextjs",
+        "personal-knowledge-management",
+        "quote-management",
+        "reading-list",
+        "vercel",
+        "book-intelligence"
+      ],
+      "archived": false
+    },
+    {
+      "name": "libre",
+      "description": "",
+      "url": "https://github.com/frankxai/libre",
+      "homepageUrl": "",
+      "updatedAt": "2025-09-09T20:37:37Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "life-sciences",
+      "description": "Repo for the Claude Code Marketplace to use with the Claude for Life Sciences Launch. This will continue to host the marketplace.json long-term, but not the actual MCP servers.",
+      "url": "https://github.com/frankxai/life-sciences",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:53Z",
+      "language": "Python",
+      "topics": [
+        "ai-research",
+        "bioinformatics",
+        "health",
+        "life-sciences",
+        "longevity",
+        "science"
+      ],
+      "archived": false
+    },
+    {
+      "name": "lobe-chat-1",
+      "description": "",
+      "url": "https://github.com/frankxai/lobe-chat-1",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:51:35Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "lobe-chat-foRk",
+      "description": " Lobe Chat - an open-source, modern-design AI chat framework. Supports Multi AI Providers( OpenAI / Claude 3 / Gemini / Ollama / DeepSeek / Qwen), Knowledge Base (file upload / knowledge management / RAG ), Multi-Modals (Plugins/Artifacts) and Thinking. One-click FREE deployment of your private ChatGPT/ Claude / DeepSeek application.",
+      "url": "https://github.com/frankxai/lobe-chat-foRk",
+      "homepageUrl": "https://chat-preview.lobehub.com",
+      "updatedAt": "2025-03-16T00:22:39Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "lyric-genius-mcp-server",
+      "description": "",
+      "url": "https://github.com/frankxai/lyric-genius-mcp-server",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-05T04:57:22Z",
+      "language": "",
+      "topics": [
+        "api",
+        "genius",
+        "lyrics",
+        "mcp-server",
+        "model-context-protocol",
+        "music",
+        "songwriting"
+      ],
+      "archived": true
+    },
+    {
+      "name": "magic-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/magic-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T23:09:16Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "marine-agent-skills",
+      "description": "Claude Code skill pack for contributing schema-valid, sourced, ethics-checked artifacts to the Blue Life Commons / Ocean Intelligence System.",
+      "url": "https://github.com/frankxai/marine-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-15T14:27:10Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "marine-mcp",
+      "description": "Review-gated MCP server for the Ocean Intelligence System - serves the Blue Life Commons corpus to AI agents, source-attributed.",
+      "url": "https://github.com/frankxai/marine-mcp",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-15T14:24:25Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "mcp-doctor",
+      "description": "Diagnose, optimize, and manage your Claude Code MCP servers",
+      "url": "https://github.com/frankxai/mcp-doctor",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:54:43Z",
+      "language": "TypeScript",
+      "topics": [
+        "claude-code",
+        "developer-tools",
+        "diagnostics",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "optimization"
+      ],
+      "archived": false
+    },
+    {
+      "name": "mind-intelligence-systems",
+      "description": "",
+      "url": "https://github.com/frankxai/mind-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T23:35:10Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "mind-palace-agent-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/mind-palace-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T23:32:47Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "music-intelligence-systems",
+      "description": "",
+      "url": "https://github.com/frankxai/music-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T14:55:20Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "neuroscience-research-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/neuroscience-research-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T22:34:19Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "oci-ai-architect",
+      "description": "MOVED -> github.com/oci-ai-architects/oci-ai-architect",
+      "url": "https://github.com/frankxai/oci-ai-architect",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-23T15:44:54Z",
+      "language": "HCL",
+      "topics": [
+        "ai-architect",
+        "certification",
+        "cloud-architecture",
+        "enterprise",
+        "genai",
+        "oci",
+        "oracle"
+      ],
+      "archived": false
+    },
+    {
+      "name": "oci-open-webui",
+      "description": "",
+      "url": "https://github.com/frankxai/oci-open-webui",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:48Z",
+      "language": "Python",
+      "topics": [
+        "chat-interface",
+        "docker",
+        "llm",
+        "oci",
+        "open-webui",
+        "oracle",
+        "self-hosted"
+      ],
+      "archived": false
+    },
+    {
+      "name": "oh-my-arcanea",
+      "description": "Arcanea overlay for oh-my-opencode with Guardian routing, hooks, and swarm-ready coding workflows.",
+      "url": "https://github.com/frankxai/oh-my-arcanea",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-27T00:31:35Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-agents",
+        "ai-coding",
+        "arcanea",
+        "claude-code",
+        "gemini",
+        "multi-model",
+        "opencode",
+        "terminal"
+      ],
+      "archived": false
+    },
+    {
+      "name": "openclaw-acos-skills-railway-template",
+      "description": "One click deploy for OpenClaw with the full Agentic Creator Skills that turns it into a full content creation production multi-agent swarm",
+      "url": "https://github.com/frankxai/openclaw-acos-skills-railway-template",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:54Z",
+      "language": "JavaScript",
+      "topics": [
+        "acos",
+        "claude-code",
+        "one-click-deploy",
+        "openclaw",
+        "railway",
+        "skills",
+        "template"
+      ],
+      "archived": false
+    },
+    {
+      "name": "oracle-genai-guides",
+      "description": "MOVED -> github.com/oci-ai-architects/oci-genai-guides",
+      "url": "https://github.com/frankxai/oracle-genai-guides",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:47:47Z",
+      "language": "Python",
+      "topics": [
+        "ai-architecture",
+        "enterprise-ai",
+        "genai",
+        "generative-ai",
+        "oci",
+        "oracle",
+        "tutorials"
+      ],
+      "archived": false
+    },
+    {
+      "name": "oracleclaw-on-oci",
+      "description": "One-click OCI deployment stack for OpenClaw with Podman-first runtime, Bastion access, and optional OCI GenAI integration.",
+      "url": "https://github.com/frankxai/oracleclaw-on-oci",
+      "homepageUrl": "",
+      "updatedAt": "2026-03-04T13:23:27Z",
+      "language": "HCL",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "payment-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/payment-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T12:08:49Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "peak-performance",
+      "description": "System health auditor for AI-powered development machines. Ten Gate scoring maps machine metrics to creative capacity. CLI + MCP server + Claude Code plugin. By Arcanea.",
+      "url": "https://github.com/frankxai/peak-performance",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:54:50Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "pipeshub-ai",
+      "description": "PipesHub is a fully extensible and explainable workplace AI platform for enterprise search and workflow automation",
+      "url": "https://github.com/frankxai/pipeshub-ai",
+      "homepageUrl": "https://pipeshub.com",
+      "updatedAt": "2026-02-25T16:49:58Z",
+      "language": "Python",
+      "topics": [
+        "ai",
+        "automation",
+        "data-pipelines",
+        "integration",
+        "pipelines"
+      ],
+      "archived": false
+    },
+    {
+      "name": "production-agent-patterns",
+      "description": "The same AI agent implemented across 6 frameworks (OpenAI, Claude, LangGraph, AWS, Google, Oracle) with production deployment configs",
+      "url": "https://github.com/frankxai/production-agent-patterns",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T20:24:34Z",
+      "language": "Python",
+      "topics": [
+        "ai-agents",
+        "aws-strands",
+        "claude-sdk",
+        "google-adk",
+        "langgraph",
+        "multi-framework",
+        "openai-agents-sdk",
+        "production",
+        "oracle-adk",
+        "agentic-coding",
+        "context-engineering"
+      ],
+      "archived": false
+    },
+    {
+      "name": "prompt-engine",
+      "description": "13-agent prompt-engineering team for Claude, GPT, Gemini, and OSS models. Design / optimize / evaluate / red-team / introspect - every prompt walks the same gate.",
+      "url": "https://github.com/frankxai/prompt-engine",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:39:48Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "prompt-library",
+      "description": "Library-of-Alexandria for elite prompts. Curated, attributed, evaluated, lab-tagged, red-teamed. Open contributions welcome.",
+      "url": "https://github.com/frankxai/prompt-library",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:39:54Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "psychology-research-intelligence-system",
+      "description": "",
+      "url": "https://github.com/frankxai/psychology-research-intelligence-system",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T22:34:17Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "reality-intelligence-systems",
+      "description": "",
+      "url": "https://github.com/frankxai/reality-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-07T21:42:45Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "realityarchitect",
+      "description": "Build the systems that build the life you want. The open method for going from AI tool-user to system-builder - this repo is the website (realityarchitect.ai) and the method.",
+      "url": "https://github.com/frankxai/realityarchitect",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:39:59Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "realitydiffusion",
+      "description": "Where We Learn AI Reality Transformation",
+      "url": "https://github.com/frankxai/realitydiffusion",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-05T04:57:47Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "research-intelligence-os",
+      "description": "",
+      "url": "https://github.com/frankxai/research-intelligence-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T22:34:13Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "research-intelligence-systems",
+      "description": "",
+      "url": "https://github.com/frankxai/research-intelligence-systems",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-20T09:16:18Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "saas-ai-architect-academy",
+      "description": "",
+      "url": "https://github.com/frankxai/saas-ai-architect-academy",
+      "homepageUrl": "https://saas-ai-architect-academy.vercel.app",
+      "updatedAt": "2026-02-25T16:49:48Z",
+      "language": "TypeScript",
+      "topics": [
+        "academy",
+        "ai-architect",
+        "ai-education",
+        "course-platform",
+        "enterprise-ai",
+        "nextjs",
+        "saas"
+      ],
+      "archived": false
+    },
+    {
+      "name": "SaveMyPhind-conversation-exporter",
+      "description": " Save my Chatbot: Download your ChatGPT, Claude, Perplexity and Phind conversations into markdown files.  Now available in the Chrome Web Store and the Firefox Add-ons Store!",
+      "url": "https://github.com/frankxai/SaveMyPhind-conversation-exporter",
+      "homepageUrl": "https://save.hugocollin.com",
+      "updatedAt": "2026-04-04T04:52:36Z",
+      "language": "Imba",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "second-brain-os",
+      "description": "Second Brain OS - local-first cross-session memory substrate. Storage tier for the Cartographer + Psychometrist in the Prompt Hub. Bootable Node template.",
+      "url": "https://github.com/frankxai/second-brain-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:40:11Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "sentinel",
+      "description": "",
+      "url": "https://github.com/frankxai/sentinel",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-11T17:29:50Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "sentinel-swarm-agent-skills",
+      "description": "",
+      "url": "https://github.com/frankxai/sentinel-swarm-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:42:34Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "sis",
+      "description": "Starlight Intelligence System - public reference + adoption signal for SIP substrate (canonical: Starlight-Intelligence-System)",
+      "url": "https://github.com/frankxai/sis",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-04T23:35:14Z",
+      "language": "",
+      "topics": [
+        "adoption-signal",
+        "sip-substrate",
+        "starlight-intelligence-system"
+      ],
+      "archived": false
+    },
+    {
+      "name": "skills-copilot-codespaces-vscode",
+      "description": "My clone repository",
+      "url": "https://github.com/frankxai/skills-copilot-codespaces-vscode",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:51:40Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "skills-getting-started-with-github-copilot",
+      "description": "Exercise: Get started using GitHub Copilot",
+      "url": "https://github.com/frankxai/skills-getting-started-with-github-copilot",
+      "homepageUrl": "",
+      "updatedAt": "2026-04-15T23:24:51Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "Soulbook-",
+      "description": "",
+      "url": "https://github.com/frankxai/Soulbook-",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:51:34Z",
+      "language": "",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "starlight",
+      "description": "Minimal SIP adoption kit - fork in 60 seconds, ship attested",
+      "url": "https://github.com/frankxai/starlight",
+      "homepageUrl": "https://starlightintelligence.org/protocol",
+      "updatedAt": "2026-05-02T00:22:54Z",
+      "language": "",
+      "topics": [
+        "claude-code",
+        "sip",
+        "sovereign-ai",
+        "adoption-kit",
+        "starlight-intelligence-protocol"
+      ],
+      "archived": false
+    },
+    {
+      "name": "starlight-agent-army-architecture",
+      "description": "Starlight implementation playbook for local and cloud agent armies",
+      "url": "https://github.com/frankxai/starlight-agent-army-architecture",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:42:38Z",
+      "language": "PowerShell",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-agent-skills",
+      "description": "Portable Starlight substrate skills for agent runtimes, SIS, ACOS, and cross-agent workflow activation.",
+      "url": "https://github.com/frankxai/starlight-agent-skills",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T18:36:53Z",
+      "language": "Python",
+      "topics": [
+        "agent-runtime",
+        "agent-skills",
+        "ai-agents",
+        "skills",
+        "starlight"
+      ],
+      "archived": false
+    },
+    {
+      "name": "starlight-command",
+      "description": "Open operating system for running multi-agent, multi-repo work: handover ingest, eval rubric, live cockpit.",
+      "url": "https://github.com/frankxai/starlight-command",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-16T01:33:15Z",
+      "language": "HTML",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-communities",
+      "description": "",
+      "url": "https://github.com/frankxai/starlight-communities",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T16:05:59Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-cosmos-engine",
+      "description": "",
+      "url": "https://github.com/frankxai/starlight-cosmos-engine",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T14:54:57Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-design-intelligence",
+      "description": "Owned premium design intelligence: brand packs, motion systems, UI rubrics, and visual identity doctrine for FrankX, Starlight, and Arcanea.",
+      "url": "https://github.com/frankxai/starlight-design-intelligence",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T23:11:03Z",
+      "language": "",
+      "topics": [
+        "agent-skills",
+        "brand-systems",
+        "design-intelligence",
+        "motion-design",
+        "starlight",
+        "ui-quality"
+      ],
+      "archived": false
+    },
+    {
+      "name": "starlight-evals",
+      "description": "Whole-system evaluation for the Starlight Intelligence System - models, memory, retrieval, harness, substrate, datasets. Receipts, named weaknesses, cadence. Built on SIP.",
+      "url": "https://github.com/frankxai/starlight-evals",
+      "homepageUrl": "https://starlightintelligence.org/research/proving-ground",
+      "updatedAt": "2026-06-22T12:09:08Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-horizon-dataset",
+      "description": "Append-only ledger of benevolent human-AI intentions - training data for aligned AI (CC-BY-SA 4.0)",
+      "url": "https://github.com/frankxai/starlight-horizon-dataset",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-17T00:54:58Z",
+      "language": "",
+      "topics": [
+        "ai-safety",
+        "ai-training-data",
+        "alignment",
+        "benevolent-ai",
+        "dataset",
+        "human-ai"
+      ],
+      "archived": false
+    },
+    {
+      "name": "starlight-intelligence",
+      "description": "",
+      "url": "https://github.com/frankxai/starlight-intelligence",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T16:06:17Z",
+      "language": "",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "Starlight-Intelligence-System",
+      "description": "The sovereign intelligence substrate - persistent memory, 48 agents, 71 skills, and attested governance for your whole AI fleet across Claude Code, Cursor, Codex, Gemini CLI & Antigravity.",
+      "url": "https://github.com/frankxai/Starlight-Intelligence-System",
+      "homepageUrl": "https://starlightintelligence.org/protocol",
+      "updatedAt": "2026-06-21T23:33:49Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-agents",
+        "claude-code",
+        "intelligence",
+        "memory",
+        "multi-agent",
+        "orchestration",
+        "cognitive-architecture",
+        "context-engineering",
+        "developer-tools",
+        "llm",
+        "mcp",
+        "sip",
+        "sovereign-ai",
+        "starlight-intelligence-protocol",
+        "substrate",
+        "agent-memory",
+        "claude-code-plugin",
+        "mcp-server",
+        "personal-ai",
+        "skills"
+      ],
+      "archived": false
+    },
+    {
+      "name": "starlight-knowledge-tree",
+      "description": "",
+      "url": "https://github.com/frankxai/starlight-knowledge-tree",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:40:31Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-memory",
+      "description": "Sovereign memory provider contract, router, and resource policy for Starlight Intelligence System",
+      "url": "https://github.com/frankxai/starlight-memory",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T20:07:35Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-swarm",
+      "description": "The Multi-Agent-System of the best frontier models working together based on open standards and multi cli coding agent and memory substrate of the starlight memory and the starlight academy to train agents and their swarm behavior, guided by the Starlight Queen",
+      "url": "https://github.com/frankxai/starlight-swarm",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-22T14:55:16Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "starlight-voice",
+      "description": "Open-source Jarvis-grade personal voice operator. Tauri tray + Python Pipecat sidecar. PTT primary, sub-800ms hot-path SLA.",
+      "url": "https://github.com/frankxai/starlight-voice",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-16T01:51:48Z",
+      "language": "Python",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "storage-intelligence",
+      "description": "Developer disk cleanup with a brain claude code command - WSL-aware, framework-aware, 3-lens safety council. npx storage-intelligence",
+      "url": "https://github.com/frankxai/storage-intelligence",
+      "homepageUrl": "http://www.frankx.ai",
+      "updatedAt": "2026-03-23T15:44:56Z",
+      "language": "JavaScript",
+      "topics": [
+        "claude-code",
+        "cli",
+        "developer-tools",
+        "disk-cleanup",
+        "next-js",
+        "node-modules",
+        "nodejs",
+        "npm",
+        "storage",
+        "wsl"
+      ],
+      "archived": false
+    },
+    {
+      "name": "suno-mcp-server",
+      "description": "MCP server for Suno AI music generation. Create, manage, and iterate on AI music directly from Claude Code, Cursor, or any MCP client.",
+      "url": "https://github.com/frankxai/suno-mcp-server",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:42:53Z",
+      "language": "",
+      "topics": [
+        "ai-music",
+        "audio",
+        "claude-code",
+        "creative-ai",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "music-generation",
+        "music-production",
+        "suno"
+      ],
+      "archived": false
+    },
+    {
+      "name": "trinityaicoaching",
+      "description": "",
+      "url": "https://github.com/frankxai/trinityaicoaching",
+      "homepageUrl": "https://trinityaicoaching.vercel.app",
+      "updatedAt": "2026-02-25T16:51:31Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "vibe-os",
+      "description": "Research-backed frequency healing audio generation and AI music integration",
+      "url": "https://github.com/frankxai/vibe-os",
+      "homepageUrl": "",
+      "updatedAt": "2026-05-27T10:22:12Z",
+      "language": "Python",
+      "topics": [
+        "ai-music",
+        "binaural-beats",
+        "frequency",
+        "music",
+        "python",
+        "sound-healing",
+        "suno",
+        "vibe-coding"
+      ],
+      "archived": false
+    },
+    {
+      "name": "vibe-os-substrate",
+      "description": "Vibe OS - state engineering for high-output creators. SIP-conformant vertical. Frameworks MIT, personal data private. Composes with frankxai/vibe-os audio engine via Hz canon.",
+      "url": "https://github.com/frankxai/vibe-os-substrate",
+      "homepageUrl": "https://starlightintelligence.org/protocol",
+      "updatedAt": "2026-04-23T01:52:00Z",
+      "language": "",
+      "topics": [
+        "chronotype",
+        "claude-code",
+        "sip",
+        "ritual-stack",
+        "state-engineering",
+        "vibe-os"
+      ],
+      "archived": false
+    },
+    {
+      "name": "vibeclubs",
+      "description": "Claude Code + your crew + a soundtrack. Host a vibeclub.",
+      "url": "https://github.com/frankxai/vibeclubs",
+      "homepageUrl": "https://vibeclubs-web.vercel.app",
+      "updatedAt": "2026-05-25T12:22:41Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "visual-intelligence",
+      "description": "Agentic visual asset management for AI-native creators. Auto-tag, audit, and manage images with AI-powered quality enforcement.",
+      "url": "https://github.com/frankxai/visual-intelligence",
+      "homepageUrl": "",
+      "updatedAt": "2026-06-18T11:40:35Z",
+      "language": "JavaScript",
+      "topics": [
+        "acos",
+        "agent-skills",
+        "claude-code",
+        "claude-skills",
+        "creator-tools",
+        "dam",
+        "image-management",
+        "nextjs",
+        "visual-assets"
+      ],
+      "archived": false
+    },
+    {
+      "name": "waitly",
+      "description": "",
+      "url": "https://github.com/frankxai/waitly",
+      "homepageUrl": "",
+      "updatedAt": "2026-02-25T16:51:30Z",
+      "language": "TypeScript",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "name": "workflow-tier-plugin",
+      "description": "The Workflow Tier - 8 portable multi-agent Claude Code workflows + native HITL + trajectory memory + cost discipline. MIT.",
+      "url": "https://github.com/frankxai/workflow-tier-plugin",
+      "homepageUrl": "https://frankx.ai/workflows",
+      "updatedAt": "2026-06-18T11:40:40Z",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false
+    }
+  ]
+} satisfies AgenticLifeOsPublicGithubScan

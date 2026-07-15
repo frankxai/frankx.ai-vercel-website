@@ -1,12 +1,18 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import { verifyAdminSecret } from '@/lib/admin-secret'
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET ?? 'frankx-admin-2026'
+const ADMIN_SECRET = process.env.ADMIN_SECRET
 
 export async function POST(request: NextRequest) {
   try {
-    const { password } = await request.json()
+    if (!ADMIN_SECRET) {
+      return NextResponse.json({ error: 'Admin access not configured' }, { status: 503 })
+    }
 
-    if (password === ADMIN_SECRET) {
+    const { password } = await request.json()
+    const candidate = typeof password === 'string' ? password : ''
+
+    if (verifyAdminSecret(candidate, ADMIN_SECRET)) {
       return NextResponse.json({ success: true, token: ADMIN_SECRET })
     }
 

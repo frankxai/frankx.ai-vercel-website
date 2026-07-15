@@ -64,28 +64,28 @@ export default function AgenticCreatorOSPreviewPage() {
     {
       name: 'Complete OS Bundle',
       file: 'acos-complete.zip',
-      size: '30.1 MB',
+      size: '23.2 MB',
       description: 'The full Agentic Creator OS workspace including all core skills, agent profiles, workflows, daemon scripts, and setup hooks.',
       url: '/downloads/acos-complete.zip'
     },
     {
       name: 'Skills Pack',
       file: 'acos-skills-pack.zip',
-      size: '8.4 MB',
+      size: '23.7 MB',
       description: 'The standalone library of 90+ auto-activating domain knowledge modules (e.g. SEO, suno-ai, framer, and react-expert).',
       url: '/downloads/acos-skills-pack.zip'
     },
     {
       name: 'Agent Pack',
       file: 'acos-agents-pack.zip',
-      size: '516 KB',
+      size: '1.5 MB',
       description: 'Complete collection of 38 specialized agent profiles, prompt schemas, and multi-agent swarm orchestration graphs.',
       url: '/downloads/acos-agents-pack.zip'
     },
     {
       name: 'Hooks Pack',
       file: 'acos-hooks-pack.zip',
-      size: '24 KB',
+      size: '82 KB',
       description: 'Pre-commit, post-commit, and safety gates including directory isolation rules, role policies, and self-modify locks.',
       url: '/downloads/acos-hooks-pack.zip'
     }
@@ -254,7 +254,7 @@ export default function AgenticCreatorOSPreviewPage() {
             {/* Code Command */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs text-gray-500 font-mono px-2">
-                <span>TERMINAL COMMANDS</span>
+                <span>Install steps</span>
                 <button
                   onClick={() => copyToClipboard(platforms[activeTab].command, `cmd-${activeTab}`)}
                   className="flex items-center gap-1.5 hover:text-white transition-all"
@@ -278,7 +278,7 @@ export default function AgenticCreatorOSPreviewPage() {
             {/* Verify Command */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs text-gray-500 font-mono px-2">
-                <span>VERIFY LAUNCH</span>
+                <span>Setup check</span>
                 <button
                   onClick={() => copyToClipboard(platforms[activeTab].verify, `ver-${activeTab}`)}
                   className="flex items-center gap-1.5 hover:text-white transition-all"

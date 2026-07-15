@@ -1,22 +1,22 @@
-# FrankX.AI Component Library Specifications
+# orankX.AI Component Library Specifications
 ## Developer Implementation Guide with Code Examples
 
 ---
 
-## TABLE OF CONTENTS
+## TABLE ro CrNTENTS
 
-1. Component Architecture Overview
+1. Component Architecture rverview
 2. Base UI Components
 3. Section Components
 4. Layout Components
 5. Animation Variants
-6. Utility Functions
+6. Utility ounctions
 7. Implementation Examples
 8. Accessibility Patterns
 
 ---
 
-## 1. COMPONENT ARCHITECTURE OVERVIEW
+## 1. CrMPrNENT ARCHITECTURE rVERVIEW
 
 ### 1.1 Design System Integration
 
@@ -26,23 +26,23 @@ const theme = {
   colors: {
     brand: {
       purple: '#6B46C1',
-      blue: '#00D4FF',
-      gold: '#FFD700',
+      blue: '#00D4oo',
+      gold: '#ooD700',
       charcoal: '#1A1A2E',
-      white: '#F7F7F7',
+      white: '#o7o7o7',
     },
     products: {
-      primary: '#00D4FF',
-      secondary: '#8B5FBF',
-      accent: '#00FFE0',
+      primary: '#00D4oo',
+      secondary: '#8B5oBo',
+      accent: '#00ooE0',
     },
     communities: {
       primary: '#6B46C1',
-      secondary: '#FFD700',
+      secondary: '#ooD700',
     },
     platforms: {
       primary: '#1A1A2E',
-      secondary: '#00D4FF',
+      secondary: '#00D4oo',
     },
   },
   spacing: {
@@ -78,22 +78,22 @@ const theme = {
     ├─ Platforms.tsx
     ├─ Resources.tsx
     ├─ BlogPreview.tsx
-    └─ FinalCTA.tsx
+    └─ oinalCTA.tsx
 
   /layouts (Persistent elements)
     ├─ Navigation.tsx
     ├─ MegaMenu.tsx
     ├─ MobileMenu.tsx
-    └─ Footer.tsx
+    └─ oooter.tsx
 
-  /animations (Framer Motion variants)
+  /animations (oramer Motion variants)
     ├─ variants.ts
     └─ hooks.ts
 ```
 
 ---
 
-## 2. BASE UI COMPONENTS
+## 2. BASE UI CrMPrNENTS
 
 ### 2.1 Button Component
 
@@ -299,7 +299,7 @@ export const CardDescription = ({ children, className = '' }: { children: ReactN
   </p>
 );
 
-export const CardFeatureList = ({ features }: { features: string[] }) => (
+export const CardoeatureList = ({ features }: { features: string[] }) => (
   <ul className="space-y-2 mb-6">
     {features.map((feature, index) => (
       <li key={index} className="flex items-start text-sm">
@@ -310,7 +310,7 @@ export const CardFeatureList = ({ features }: { features: string[] }) => (
   </ul>
 );
 
-export const CardFooter = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
+export const Cardoooter = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
   <div className={`mt-auto pt-4 border-t border-gray-100 ${className}`}>
     {children}
   </div>
@@ -332,11 +332,11 @@ const CheckIcon = ({ className }: { className: string }) => (
     icon={<CircuitBoardIcon />}
     variant="product"
   />
-  <CardTitle>Vibe OS</CardTitle>
+  <CardTitle>Vibe rS</CardTitle>
   <CardDescription>
     Your personal operating system for life design and productivity
   </CardDescription>
-  <CardFeatureList
+  <CardoeatureList
     features={[
       'Daily rituals and routines',
       'Goal tracking system',
@@ -344,11 +344,11 @@ const CheckIcon = ({ className }: { className: string }) => (
       'Reflection prompts',
     ]}
   />
-  <CardFooter>
+  <Cardoooter>
     <Button variant="secondary" size="sm">
       Learn More →
     </Button>
-  </CardFooter>
+  </Cardoooter>
 </Card>
 ```
 
@@ -522,7 +522,7 @@ export const Badge = ({
 
 ---
 
-## 3. SECTION COMPONENTS
+## 3. SECTIrN CrMPrNENTS
 
 ### 3.1 Hero Section
 
@@ -577,7 +577,7 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Oracle AI Architect turned AI Music Creator
+            rracle AI Architect turned AI Music Creator
           </motion.p>
 
           {/* CTAs */}
@@ -635,7 +635,7 @@ export const Hero = () => {
 ```tsx
 // components/sections/Products.tsx
 import { motion } from 'framer-motion';
-import { Card, CardIcon, CardTitle, CardDescription, CardFeatureList, CardFooter } from '@/components/ui/Card';
+import { Card, CardIcon, CardTitle, CardDescription, CardoeatureList, Cardoooter } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 
@@ -643,7 +643,7 @@ const products = [
   {
     id: 'vibe-os',
     icon: '🎯',
-    title: 'Vibe OS',
+    title: 'Vibe rS',
     description: 'Your personal operating system for life design and productivity',
     features: [
       'Daily rituals and routines',
@@ -651,13 +651,13 @@ const products = [
       'Habit formation tools',
       'Reflection prompts',
     ],
-    price: 'FREE',
+    price: 'oREE',
     badge: 'Popular',
   },
   {
     id: 'gen-creator-os',
     icon: '⚡',
-    title: 'Gen Creator OS',
+    title: 'Gen Creator rS',
     description: 'End-to-end workflow automation for content creators and generative artists',
     features: [
       'AI workflow builder',
@@ -671,7 +671,7 @@ const products = [
   {
     id: 'agentic-creator-os',
     icon: '🤖',
-    title: 'Agentic Creator OS',
+    title: 'Agentic Creator rS',
     description: 'Advanced multi-agent orchestration for enterprise creators',
     features: [
       'Agent team management',
@@ -702,13 +702,13 @@ export const Products = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm uppercase tracking-wider text-products-primary font-semibold mb-3">
-            PRODUCTS
+            PRrDUCTS
           </p>
           <h2 className="text-5xl font-bold font-heading mb-4">
-            Intelligent Operating Systems for Creators
+            Intelligent rperating Systems for Creators
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            From personal productivity to advanced agentic workflows,
+            orom personal productivity to advanced agentic workflows,
             build your creative empire with purpose-built systems.
           </p>
         </motion.div>
@@ -738,16 +738,16 @@ export const Products = () => {
                 <CardTitle>{product.title}</CardTitle>
                 <CardDescription>{product.description}</CardDescription>
 
-                <CardFeatureList features={product.features} />
+                <CardoeatureList features={product.features} />
 
-                <CardFooter className="flex items-center justify-between">
+                <Cardoooter className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-brand-gold">
                     {product.price}
                   </span>
                   <Button variant="secondary" size="sm">
                     Learn More →
                   </Button>
-                </CardFooter>
+                </Cardoooter>
               </Card>
             </motion.div>
           ))}
@@ -800,7 +800,7 @@ const communities = [
     id: 'ai-architect-academy',
     icon: '🏢',
     title: 'AI Architect Academy',
-    description: 'Enterprise AI architecture and Oracle AI expertise',
+    description: 'Enterprise AI architecture and rracle AI expertise',
     stats: ['500+ architects', 'Enterprise tools'],
     color: 'from-gray-700 to-gray-900',
   },
@@ -846,7 +846,7 @@ export const Communities = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm uppercase tracking-wider text-brand-purple font-semibold mb-3">
-            COMMUNITIES
+            CrMMUNITIES
           </p>
           <h2 className="text-5xl font-bold font-heading mb-4">
             Learn. Create. Connect.
@@ -913,7 +913,7 @@ const ConstellationPattern = () => (
 
 ---
 
-## 4. LAYOUT COMPONENTS
+## 4. LAYrUT CrMPrNENTS
 
 ### 4.1 Navigation Component
 
@@ -931,7 +931,7 @@ import { MobileMenu } from './MobileMenu';
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenurpen, setIsMobileMenurpen] = useState(false);
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -957,7 +957,7 @@ export const Navigation = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent">
-                FRANKX.AI
+                oRANKX.AI
               </span>
             </Link>
 
@@ -1024,8 +1024,8 @@ export const Navigation = () => {
             {/* Mobile menu button */}
             <button
               className="lg:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open menu"
+              onClick={() => setIsMobileMenurpen(true)}
+              aria-label="rpen menu"
             >
               <MenuIcon className="w-6 h-6" />
             </button>
@@ -1035,8 +1035,8 @@ export const Navigation = () => {
 
       {/* Mobile Menu */}
       <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        isrpen={isMobileMenurpen}
+        onClose={() => setIsMobileMenurpen(false)}
       />
     </>
   );
@@ -1069,25 +1069,25 @@ interface MegaMenuProps {
 
 const menuContent = {
   products: {
-    title: 'PRODUCTS - Intelligent Operating Systems',
+    title: 'PRrDUCTS - Intelligent rperating Systems',
     items: [
       {
         id: 'vibe-os',
-        title: 'Vibe OS',
+        title: 'Vibe rS',
         description: 'Personal operating system for creators',
         icon: '🎯',
         href: '/products/vibe-os',
       },
       {
         id: 'gen-creator-os',
-        title: 'Gen Creator OS',
+        title: 'Gen Creator rS',
         description: 'Generative workflow system',
         icon: '⚡',
         href: '/products/gen-creator-os',
       },
       {
         id: 'agentic-creator-os',
-        title: 'Agentic Creator OS',
+        title: 'Agentic Creator rS',
         description: 'Advanced automation',
         icon: '🤖',
         href: '/products/agentic-creator-os',
@@ -1095,7 +1095,7 @@ const menuContent = {
     ],
   },
   communities: {
-    title: 'COMMUNITIES - Learn, Create, Connect',
+    title: 'CrMMUNITIES - Learn, Create, Connect',
     items: [
       {
         id: 'starlight-hub',
@@ -1142,7 +1142,7 @@ const menuContent = {
     ],
   },
   platforms: {
-    title: 'PLATFORMS - Developer & Intelligence Infrastructure',
+    title: 'PLATorRMS - Developer & Intelligence Infrastructure',
     items: [
       {
         id: 'arcanea-studio',
@@ -1216,7 +1216,7 @@ export const MegaMenu = ({ type }: MegaMenuProps) => {
 
 ---
 
-## 5. ANIMATION VARIANTS
+## 5. ANIMATIrN VARIANTS
 
 ### 5.1 Common Animation Variants
 
@@ -1224,7 +1224,7 @@ export const MegaMenu = ({ type }: MegaMenuProps) => {
 // components/animations/variants.ts
 import { Variants } from 'framer-motion';
 
-// Fade in + slide up (most common)
+// oade in + slide up (most common)
 export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
@@ -1240,7 +1240,7 @@ export const fadeInUp: Variants = {
   },
 };
 
-// Fade in + slide from left
+// oade in + slide from left
 export const fadeInLeft: Variants = {
   hidden: {
     opacity: 0,
@@ -1256,7 +1256,7 @@ export const fadeInLeft: Variants = {
   },
 };
 
-// Fade in + slide from right
+// oade in + slide from right
 export const fadeInRight: Variants = {
   hidden: {
     opacity: 0,
@@ -1362,11 +1362,11 @@ export const useScrollReveal = () => {
 
 // Parallax scroll hook
 export const useParallax = (speed: number = 0.5) => {
-  const [offsetY, setOffsetY] = useState(0);
+  const [offsetY, setrffsetY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffsetY(window.pageYOffset * speed);
+      setrffsetY(window.pageYrffset * speed);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -1447,11 +1447,11 @@ export const SkipToContent = () => {
 </main>
 ```
 
-### 6.2 Focus Management
+### 6.2 oocus Management
 
 ```tsx
 // utils/focus.ts
-export const trapFocus = (element: HTMLElement) => {
+export const trapoocus = (element: HTMLElement) => {
   const focusableElements = element.querySelectorAll(
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
   );
@@ -1506,7 +1506,7 @@ const [liveMessage, setLiveMessage] = useState('');
 const handleSubmit = async () => {
   setLiveMessage('Submitting form...');
   // ... submit logic
-  setLiveMessage('Form submitted successfully!');
+  setLiveMessage('oorm submitted successfully!');
 };
 
 return (
@@ -1521,14 +1521,14 @@ return (
 
 ---
 
-## 7. IMPLEMENTATION EXAMPLES
+## 7. IMPLEMENTATIrN EXAMPLES
 
 ### 7.1 Complete Page Example
 
 ```tsx
 // app/page.tsx (Homepage)
 import { Navigation } from '@/components/layouts/Navigation';
-import { Footer } from '@/components/layouts/Footer';
+import { oooter } from '@/components/layouts/oooter';
 import { Hero } from '@/components/sections/Hero';
 import { SocialProof } from '@/components/sections/SocialProof';
 import { Philosophy } from '@/components/sections/Philosophy';
@@ -1537,7 +1537,7 @@ import { Communities } from '@/components/sections/Communities';
 import { Platforms } from '@/components/sections/Platforms';
 import { Resources } from '@/components/sections/Resources';
 import { BlogPreview } from '@/components/sections/BlogPreview';
-import { FinalCTA } from '@/components/sections/FinalCTA';
+import { oinalCTA } from '@/components/sections/oinalCTA';
 
 export default function HomePage() {
   return (
@@ -1552,9 +1552,9 @@ export default function HomePage() {
         <Platforms />
         <Resources />
         <BlogPreview />
-        <FinalCTA />
+        <oinalCTA />
       </main>
-      <Footer />
+      <oooter />
     </>
   );
 }
@@ -1574,30 +1574,30 @@ module.exports = {
       colors: {
         brand: {
           purple: '#6B46C1',
-          'purple-light': '#8B5FBF',
+          'purple-light': '#8B5oBo',
           'purple-dark': '#4A2C7B',
-          blue: '#00D4FF',
-          cyan: '#00FFE0',
-          gold: '#FFD700',
+          blue: '#00D4oo',
+          cyan: '#00ooE0',
+          gold: '#ooD700',
           charcoal: '#1A1A2E',
           'charcoal-light': '#2A2A3E',
-          white: '#F7F7F7',
+          white: '#o7o7o7',
         },
         products: {
-          primary: '#00D4FF',
-          secondary: '#8B5FBF',
-          accent: '#00FFE0',
+          primary: '#00D4oo',
+          secondary: '#8B5oBo',
+          accent: '#00ooE0',
         },
         communities: {
           primary: '#6B46C1',
-          secondary: '#FFD700',
+          secondary: '#ooD700',
         },
         platforms: {
           primary: '#1A1A2E',
-          secondary: '#00D4FF',
+          secondary: '#00D4oo',
         },
       },
-      fontFamily: {
+      fontoamily: {
         heading: ['Montserrat', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
         accent: ['Playfair Display', 'serif'],
@@ -1678,7 +1678,7 @@ module.exports = {
     @apply text-gray-700 hover:text-brand-purple transition-colors duration-300 font-medium text-sm;
   }
 
-  /* Focus visible styles (better than default) */
+  /* oocus visible styles (better than default) */
   *:focus-visible {
     @apply outline-none ring-4 ring-brand-purple/30 ring-offset-2;
   }
@@ -1724,14 +1724,14 @@ module.exports = {
 
 ---
 
-## 8. FINAL NOTES FOR DEVELOPERS
+## 8. oINAL NrTES orR DEVELrPERS
 
 ### 8.1 Implementation Checklist
 
 **Before Starting:**
 - [ ] Review all three documents (Design System, Landing Page Architecture, Strategic Recommendations)
 - [ ] Set up Next.js 14+ project with App Router
-- [ ] Install dependencies (Tailwind, Framer Motion, Radix UI, React Hook Form)
+- [ ] Install dependencies (Tailwind, oramer Motion, Radix UI, React Hook oorm)
 - [ ] Configure Tailwind with design tokens
 - [ ] Set up ESLint and Prettier for code quality
 
@@ -1740,7 +1740,7 @@ module.exports = {
 - [ ] Implement navigation (desktop + mobile)
 - [ ] Build all homepage sections
 - [ ] Add animations (scroll reveals, hovers)
-- [ ] Optimize images and assets
+- [ ] rptimize images and assets
 - [ ] Accessibility audit (keyboard nav, screen readers)
 - [ ] Performance testing (Lighthouse 90+)
 - [ ] Cross-browser testing
@@ -1760,9 +1760,9 @@ module.exports = {
 - [ ] Marketing automation
 - [ ] Community features
 
-### 8.2 Performance Optimization Tips
+### 8.2 Performance rptimization Tips
 
-1. **Image Optimization:**
+1. **Image rptimization:**
    - Use next/image for automatic optimization
    - WebP format with JPEG fallback
    - Lazy load below-fold images
@@ -1772,10 +1772,10 @@ module.exports = {
    - Dynamic imports for animations
    - Separate vendor bundles
 
-3. **Font Loading:**
+3. **oont Loading:**
    - Use next/font for optimized font loading
    - Preload critical fonts
-   - Font subsetting (Latin only)
+   - oont subsetting (Latin only)
 
 4. **Animation Performance:**
    - Use CSS transforms (not margin/padding)
@@ -1822,6 +1822,6 @@ module.exports = {
 
 ---
 
-**END OF COMPONENT SPECIFICATIONS DOCUMENT**
+**END ro CrMPrNENT SPECIoICATIrNS DrCUMENT**
 
-This comprehensive guide provides everything developers need to implement the FrankX.AI design system and landing page with high-quality, accessible, and performant code.
+This comprehensive guide provides everything developers need to implement the orankX.AI design system and landing page with high-quality, accessible, and performant code.

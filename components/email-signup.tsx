@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useId, FormEvent } from 'react'
+import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
-  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'ikigai-branding' | 'agentic-builder-lab' | 'premium-packs' | 'all'
+  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'ikigai-branding' | 'agentic-builder-lab' | 'all'
   placeholder?: string
   buttonText?: string
   className?: string
@@ -25,14 +25,8 @@ export function EmailSignup({
   compact = false,
 }: EmailSignupProps) {
   const router = useRouter()
-  const hpId = useId()
-  const emailId = useId()
-  const nameId = useId()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
-  // Honeypot — a hidden field real users never see. Bots that auto-fill inputs
-  // trip it, and the API silently discards those submissions.
-  const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -58,7 +52,6 @@ export function EmailSignup({
           email,
           name: showName ? name : undefined,
           listType,
-          website,
         }),
       })
 
@@ -84,29 +77,11 @@ export function EmailSignup({
     }
   }
 
-  const honeypotField = (
-    <div aria-hidden="true" className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden">
-      <label htmlFor={hpId}>Leave this field blank</label>
-      <input
-        id={hpId}
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        value={website}
-        onChange={(e) => setWebsite(e.target.value)}
-      />
-    </div>
-  )
-
   if (compact) {
     return (
-      <form onSubmit={handleSubmit} className={cn('relative', className)} aria-busy={status === 'loading'} noValidate>
-        {honeypotField}
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <label htmlFor={emailId} className="sr-only">Email address</label>
+      <form onSubmit={handleSubmit} className={cn('relative', className)}>
+        <div className="flex gap-2">
           <input
-            id={emailId}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -117,7 +92,7 @@ export function EmailSignup({
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="w-full shrink-0 whitespace-nowrap px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto sm:px-6"
+            className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
           </button>
@@ -151,16 +126,15 @@ export function EmailSignup({
 
   return (
     <div className={cn('w-full max-w-md', className)}>
-      <form onSubmit={handleSubmit} className="space-y-4" aria-busy={status === 'loading'} noValidate>
-        {honeypotField}
+      <form onSubmit={handleSubmit} className="space-y-4">
         {showName && (
           <div>
-            <label htmlFor={nameId} className="block text-sm font-medium text-slate-300 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
               First Name (optional)
             </label>
             <input
               type="text"
-              id={nameId}
+              id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your first name"
@@ -171,12 +145,12 @@ export function EmailSignup({
         )}
 
         <div>
-          <label htmlFor={emailId} className="block text-sm font-medium text-slate-300 mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
             Email Address
           </label>
           <input
             type="email"
-            id={emailId}
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}

@@ -9,13 +9,15 @@ import type { CrossLink, CrossLinkSurface } from '@/content/partnerships/types'
  */
 
 export const SURFACE_HREFS: Record<CrossLinkSurface, string> = {
-  'ai-coe': '/ai-coe',
+  'ai-coe': '/ai-architect/ai-coe-hub',
   'ai-architecture': '/ai-architecture',
   'ai-architect-academy': '/ai-architect-academy',
   research: '/research',
   workshops: '/workshops',
   blog: '/blog',
   os: '/os',
+  'agentic-builder-lab': '/labs',
+  build: '/build',
   'learn-gemini': '/learn/gemini-mastery',
   'learn-claude': '/learn/claude-mastery',
   connect: '/connect',
@@ -29,6 +31,8 @@ export const SURFACE_LABELS: Record<CrossLinkSurface, string> = {
   workshops: 'Workshops calendar',
   blog: 'Field notes',
   os: 'FrankX OS overview',
+  'agentic-builder-lab': 'Agentic Builder Lab',
+  build: 'Build — what we ship',
   'learn-gemini': 'Gemini & Google AI mastery portal',
   'learn-claude': 'Claude mastery portal',
   connect: 'Connect — in-person + QR landing',

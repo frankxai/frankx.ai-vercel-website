@@ -6,13 +6,13 @@ The operating standard for every article. Goal: writing that is **credible, huma
 
 ## 1. Author canon (keep this accurate everywhere)
 
-Frank Riemer is a **former Oracle AI architect** who **helped build Oracle's EMEA AI Center of Excellence**. He is now independent, building agentic AI systems and creating music with AI.
+Frank Riemer is a **former AI architect at Oracle**. He is now independent, building agentic AI systems and creating music with AI.
 
-- ✅ "Ex-Oracle AI architect", "former Oracle AI architect", "helped build Oracle's AI Center of Excellence", "the frameworks I built at Oracle"
-- ❌ "I work at Oracle", "my day job at Oracle", "I'm an AI Architect at Oracle" (present tense = inaccurate)
+- ✅ "Former AI architect at Oracle", "former enterprise AI architect", "enterprise AI/cloud experience", "production AI architecture experience"
+- ❌ Present-tense Oracle employment claims (inaccurate)
 - Oracle Cloud / OCI **expertise** is still fair to cite — it's the credibility, not a current employer.
 
-Canonical bio (short): *Former Oracle AI architect who helped build Oracle's AI Center of Excellence. Now builds agentic systems independently and makes music with AI.*
+Canonical bio (short): *Former AI architect at Oracle. Now builds agentic systems independently and makes music with AI.*
 
 Profiles (use for `sameAs` / links): x.com/frankxeth · linkedin.com/in/frank-x-riemer · github.com/frankxai · youtube.com/@frankxai
 

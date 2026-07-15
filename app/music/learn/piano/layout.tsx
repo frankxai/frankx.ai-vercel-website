@@ -1,12 +1,12 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: 'Learn Piano | Beginner Guide & Best Teachers | FrankX',
+  title: "Learn Piano | German-First Beginner Practice | FrankX",
   description:
-    'Learn piano from scratch with curated YouTube teachers, first songs, practice tips, and fun facts. For kids and beginners of all ages.',
-  path: '/music/learn/piano',
-})
+    "A free German-first piano starter with an interactive keyboard, curated external teachers, first songs, and family-supported practice prompts.",
+  path: "/music/learn/piano",
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children
+  return children;
 }

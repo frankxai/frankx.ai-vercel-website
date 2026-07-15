@@ -166,7 +166,7 @@ For courses and coaching, validation means asking. Post in communities where you
 
 **Differentiation validation** uses competitive analysis. Search your target keyword. Read the top ten results. Ask: What do all of these miss? What perspective is absent? What depth is lacking? If you cannot identify a clear differentiation angle — something you would say that none of the top ten results say — you are entering a commoditized space where your content will struggle to rank or resonate.
 
-My differentiation on AI CoE content is structural: I build these frameworks professionally at Oracle, and I implement them personally on frankx.ai. Nobody else occupies that exact position. When I write about personal AI strategy, I am not theorizing — I am describing a system I use daily to produce at scale while holding a full-time job. That lived credibility is impossible to replicate by someone who has only read about AI strategy.
+My differentiation on AI CoE content is structural: I have built these frameworks in enterprise AI contexts, and I implement them personally on frankx.ai. Nobody else occupies that exact position. When I write about personal AI strategy, I am not theorizing — I am describing a system I use daily to produce at scale alongside demanding work. That lived credibility is impossible to replicate by someone who has only read about AI strategy.
 
 Your differentiation will be different. But it must exist. And it must be specific enough that a reader immediately understands why your perspective matters.
 
