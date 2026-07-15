@@ -1,5 +1,3 @@
-import { ALLY_SOCIAL_LINKS } from '@/lib/social-links'
-
 export type AnaWorkflowStage = {
   id:
     | 'board'
@@ -39,7 +37,6 @@ export const anaLinks = {
   website: 'https://www.anaceciliacancino.com/',
   workWithMe: 'https://www.anaceciliacancino.com/work-with-me',
   research: 'https://www.anaceciliacancino.com/research',
-  linkedin: ALLY_SOCIAL_LINKS.anaCancino.linkedin,
   kitRepo: 'https://github.com/frankxai/ana-ai-business-kit',
   kitStart:
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-ANA.md',
