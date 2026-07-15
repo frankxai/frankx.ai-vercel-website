@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 799,
-    "aliases": 15,
+    "total": 823,
+    "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 385,
+      "section": 389,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 202,
+      "workshop": 18,
       "guide": 20,
-      "library": 31,
+      "library": 41,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
       "product": 21,
       "research": 3,
-      "video": 3,
-      "workshop": 8
+      "video": 3
     }
   },
   "routes": [
@@ -531,7 +531,8 @@
       "tags": [
         "ais"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/alea",
@@ -580,6 +581,16 @@
       "type": "section"
     },
     {
+      "href": "/alliance/cecilia",
+      "title": "Cecilia",
+      "tags": [
+        "alliance",
+        "cecilia"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/allies",
       "title": "Allies",
       "tags": [
@@ -595,7 +606,8 @@
         "ana",
         "cancino"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/allies/epic-ways",
@@ -614,7 +626,8 @@
         "allies",
         "harzfenster"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/allies/trinity-ai",
@@ -624,7 +637,8 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/ana",
@@ -642,7 +656,8 @@
         "intelligence",
         "system"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/assess",
@@ -3616,7 +3631,8 @@
       "tags": [
         "canon"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/changelog",
@@ -3710,7 +3726,8 @@
         "connect",
         "qr"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/consulting",
@@ -3734,7 +3751,8 @@
         "video",
         "creation"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/content-studio",
@@ -3918,7 +3936,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v1",
@@ -4062,7 +4081,8 @@
         "tree",
         "v6"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v7",
@@ -4199,7 +4219,8 @@
         "creator",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/downloads/ana-ai-business-kit",
@@ -4211,7 +4232,8 @@
         "business",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/downloads/epicways-intelligence",
@@ -4244,7 +4266,8 @@
         "intelligence",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/downloads/preview/agentic-creator-os",
@@ -4306,6 +4329,147 @@
       "type": "section"
     },
     {
+      "href": "/experiences/tallinn-2026",
+      "title": "Tallinn 2026",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/agentic-creator-studio",
+      "title": "Agentic Creator Studio",
+      "tags": [
+        "agentic",
+        "creator",
+        "studio"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/build-your-agentic-team",
+      "title": "Build Your Agentic Team",
+      "tags": [
+        "build",
+        "your",
+        "agentic",
+        "team"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/calm-work-architecture",
+      "title": "Calm Work Architecture",
+      "tags": [
+        "calm",
+        "work",
+        "architecture"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/founder-integration-salon",
+      "title": "Founder Integration Salon",
+      "tags": [
+        "founder",
+        "integration",
+        "salon"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/human-agent-team-charter",
+      "title": "Human + Agent Team Charter",
+      "tags": [
+        "human",
+        "agent",
+        "team",
+        "charter"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/personal-ai-coe-one-page",
+      "title": "Personal AI CoE on One Page",
+      "tags": [
+        "personal",
+        "ai",
+        "coe",
+        "one",
+        "page"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice",
+      "title": "Purpose to Practice",
+      "tags": [
+        "purpose",
+        "to",
+        "practice"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice/map",
+      "title": "Map",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026",
+        "purpose",
+        "to",
+        "practice",
+        "map"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-without-performance",
+      "title": "Purpose Without Performance",
+      "tags": [
+        "purpose",
+        "without",
+        "performance"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/role-clarity-agent-era",
+      "title": "Role Clarity in the Agent Era",
+      "tags": [
+        "role",
+        "clarity",
+        "agent",
+        "era"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/voice-before-volume",
+      "title": "Voice Before Volume",
+      "tags": [
+        "voice",
+        "before",
+        "volume"
+      ],
+      "type": "workshop",
+      "sitemap": false
+    },
+    {
       "href": "/experiments",
       "title": "Experiments",
       "tags": [
@@ -4319,7 +4483,8 @@
       "tags": [
         "familie"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/forsche-selbst",
@@ -4359,7 +4524,8 @@
         "offene",
         "fragen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/geschichte/riemer-linie",
@@ -4384,7 +4550,8 @@
         "interview",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/mitmachen",
@@ -4393,7 +4560,8 @@
         "familie",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/stammbaum",
@@ -4402,7 +4570,8 @@
         "familie",
         "stammbaum"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family",
@@ -4410,7 +4579,8 @@
       "tags": [
         "family"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family/tree",
@@ -4419,7 +4589,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/feed",
@@ -4524,7 +4695,8 @@
         "friends",
         "ahmad"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/friends/ana",
@@ -4533,7 +4705,8 @@
         "friends",
         "ana"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/friends/estefania",
@@ -4551,7 +4724,8 @@
         "friends",
         "jojo"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/gallery",
@@ -4661,7 +4835,8 @@
         "ikigai",
         "branding"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/goals",
@@ -5017,7 +5192,8 @@
         "vault",
         "preview"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/insights",
@@ -5175,6 +5351,16 @@
       "type": "library"
     },
     {
+      "href": "/library/art-and-fear",
+      "title": "Art & Fear",
+      "tags": [
+        "art",
+        "and",
+        "fear"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/atomic-habits",
       "title": "Atomic Habits",
       "tags": [
@@ -5204,6 +5390,16 @@
       "type": "library"
     },
     {
+      "href": "/library/bird-by-bird",
+      "title": "Bird by Bird: Some Instructions on Writing and Life",
+      "tags": [
+        "bird",
+        "by",
+        "bird"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/blue-zones",
       "title": "The Blue Zones: Lessons for Living Longer From the People Who\\",
       "tags": [
@@ -5222,6 +5418,14 @@
         "of",
         "being",
         "yourself"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breath",
+      "title": "Breath: The New Science of a Lost Art",
+      "tags": [
+        "breath"
       ],
       "type": "library"
     },
@@ -5246,6 +5450,14 @@
       "tags": [
         "deep",
         "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/e-squared",
+      "title": "E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality",
+      "tags": [
+        "squared"
       ],
       "type": "library"
     },
@@ -5334,10 +5546,31 @@
       "type": "library"
     },
     {
+      "href": "/library/steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "tags": [
+        "steal",
+        "like",
+        "an",
+        "artist"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/superfans",
       "title": "Superfans",
       "tags": [
         "superfans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tao-te-ching",
+      "title": "Tao Te Ching",
+      "tags": [
+        "tao",
+        "te",
+        "ching"
       ],
       "type": "library"
     },
@@ -5371,6 +5604,27 @@
       "type": "library"
     },
     {
+      "href": "/library/the-book-of-secrets",
+      "title": "The Book of Secrets",
+      "tags": [
+        "the",
+        "book",
+        "of",
+        "secrets"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-creative-act",
+      "title": "The Creative Act: A Way of Being",
+      "tags": [
+        "the",
+        "creative",
+        "act"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-little-book-of-ikigai",
       "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
       "tags": [
@@ -5383,6 +5637,15 @@
       "type": "library"
     },
     {
+      "href": "/library/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-war-of-art",
       "title": "The War of Art",
       "tags": [
@@ -5390,6 +5653,16 @@
         "war",
         "of",
         "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "the",
+        "wordless",
+        "laws"
       ],
       "type": "library"
     },
@@ -5453,6 +5726,14 @@
         "placebo"
       ],
       "type": "library"
+    },
+    {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
     },
     {
       "href": "/links",
@@ -6104,7 +6385,8 @@
         "newsletter",
         "confirm"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/newsletter/preferences",
@@ -6132,7 +6414,8 @@
         "newsletter",
         "unsubscribe"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/observatory",
@@ -6194,7 +6477,8 @@
         "und",
         "oma"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/open-source",
@@ -6211,7 +6495,8 @@
       "tags": [
         "ops"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/ops/calendar",
@@ -6229,7 +6514,8 @@
         "ops",
         "sites"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/opus-pro",
@@ -6347,7 +6633,8 @@
         "papa",
         "erinnerungen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/papa/leben",
@@ -6361,7 +6648,8 @@
         "papa",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/partners",
@@ -6417,7 +6705,8 @@
         "van",
         "ede"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/partnerships/vercel",
@@ -6787,7 +7076,8 @@
         "prompts",
         "psyche"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/prototype/arcanea-game-engine",
@@ -7257,7 +7547,8 @@
         "students",
         "ikigai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/students/prompts",
@@ -7411,7 +7702,8 @@
       "tags": [
         "study"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/superpowers",
@@ -7501,7 +7793,8 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/unsubscribe",
@@ -7644,7 +7937,8 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/workshops",
@@ -7795,6 +8089,24 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
+    "/books/fable/chapter-01-the-listening-machine": "/books/fable",
+    "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
+    "/books/fable/chapter-03-the-narrow-window": "/books/fable",
+    "/books/fable/chapter-04-a-smaller-shape-of-the-sea": "/books/fable",
+    "/books/fable/chapter-05-the-wrong-note": "/books/fable",
+    "/books/fable/chapter-06-a-thousand-songs": "/books/fable/06-the-thousand-true-songs",
+    "/books/fable/chapter-07-the-grain-of-the-voice": "/books/fable/07-the-weaver-who-copied-a-voice",
+    "/books/fable/chapter-08-the-oracle-question": "/books/fable/08-the-well-and-the-kneeling-man",
+    "/books/fable/chapter-09-the-brokers-offer": "/books/fable/09-the-tower-that-rented-the-rain",
+    "/books/fable/chapter-10-the-second-workshop": "/books/fable/21-the-hundred-benches",
+    "/books/fable/chapter-11-the-copy": "/books/fable/10-the-perfect-forgery",
+    "/books/fable/chapter-12-idas-machine": "/books/fable/12-the-teachers-test",
+    "/books/fable/chapter-13-two-kinds-of-listening": "/books/fable/11-the-two-listeners",
+    "/books/fable/chapter-14-what-the-machine-could-not-hold": "/books/fable/13-the-laugh-in-the-jar",
+    "/books/fable/chapter-15-the-question-of-the-ledger": "/books/fable/24-are-they-dangerous",
+    "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
+    "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",

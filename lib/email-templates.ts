@@ -1,4 +1,5 @@
 import { socialLinks } from '@/lib/social-links'
+import { buildUnsubscribeUrl, SITE_URL } from '@/lib/email-config'
 
 /**
  * Email Template System v2.0 for FrankX.AI
@@ -57,7 +58,8 @@ function outlineButton(text: string, url: string): string {
 
 // ─── Email Wrapper ────────────────────────────────────────────────
 
-function emailWrapper(content: string, preheader: string = ''): string {
+function emailWrapper(content: string, preheader: string = '', recipientEmail?: string): string {
+  const unsubscribeUrl = recipientEmail ? buildUnsubscribeUrl(recipientEmail) : `${SITE_URL}/unsubscribe`
   return `
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -151,7 +153,7 @@ function emailWrapper(content: string, preheader: string = ''): string {
                   <td align="center" style="padding-top: 8px;">
                     <p style="font-size: 11px; color: #475569; margin: 0; line-height: 1.6;">
                       You received this because you signed up at frankx.ai<br>
-                      <a href="https://frankx.ai/unsubscribe" style="color: #64748b; text-decoration: underline;">Unsubscribe</a>
+                      <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: underline;">Unsubscribe</a>
                     </p>
                   </td>
                 </tr>
@@ -390,6 +392,7 @@ export function communityBroadcastEmail(data: {
 export function musicPromptsEmail(data: {
   recipientName: string
   downloadUrl: string
+  recipientEmail?: string
 }): EmailTemplate {
   const tracks = [
     { title: 'The Awakening', stat: '142 plays', genre: 'African / World', url: 'https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407' },
@@ -457,7 +460,7 @@ export function musicPromptsEmail(data: {
 
   return {
     subject: 'Your 5 Suno prompts are ready',
-    html: emailWrapper(content, 'The exact prompts behind 500+ plays on Suno AI. Download your 5 free prompts now.')
+    html: emailWrapper(content, 'The exact prompts behind 500+ plays on Suno AI. Download your 5 free prompts now.', data.recipientEmail)
   }
 }
 
