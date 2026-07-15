@@ -22,7 +22,7 @@ export interface RouterExperience {
   outcomes: readonly TallinnOutcome[]
   reviewRank: number | null
   frankRole: string
-  anaInvitation: string
+  collaboratorInvitation: string
 }
 interface ExperienceRouterProps {
   experiences: readonly RouterExperience[]
@@ -178,7 +178,7 @@ export function ExperienceRouter({ experiences }: ExperienceRouterProps) {
                   <div>
                     <dt className="text-xs font-semibold tracking-[0.14em] text-slate-500">Hosting</dt>
                     <dd className="mt-1 text-sm leading-6 text-slate-300">
-                      Frank leads. Ana joins or co-hosts only if she chooses and approves the format.
+                      Frank leads. An invited collaborator joins or co-hosts only after explicitly approving the format.
                     </dd>
                   </div>
                 </dl>

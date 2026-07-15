@@ -178,8 +178,8 @@ export function TallinnOfferPage({ experience, captureEnabled }: TallinnOfferPag
                   <dd className="mt-2 text-sm leading-6 text-slate-400">{experience.frankRole}</dd>
                 </div>
                 <div className="border-t border-white/10 pt-6">
-                  <dt className="text-sm font-semibold text-white">Ana’s role — only with her approval</dt>
-                  <dd className="mt-2 text-sm leading-6 text-slate-400">{experience.anaInvitation}</dd>
+                  <dt className="text-sm font-semibold text-white">A collaborator’s role — only with approval</dt>
+                  <dd className="mt-2 text-sm leading-6 text-slate-400">{experience.collaboratorInvitation}</dd>
                 </div>
               </dl>
             </div>

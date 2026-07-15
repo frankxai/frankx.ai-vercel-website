@@ -17,7 +17,6 @@ const service = read('lib/tallinn-interest/service.ts')
 const threshold = read('lib/tallinn-interest/threshold.ts')
 const worksheet = read('app/experiences/tallinn-2026/purpose-to-practice/map/page.tsx')
 const packageJson = read('package.json')
-const portfolio = read('docs/specs/tallinn-workshop-portfolio-2026-07-14.md')
 
 const nodeRequire = createRequire(import.meta.url)
 
@@ -137,21 +136,6 @@ test('registry exposes exactly ten unique offer routes and five ranked reviews',
   assert.deepEqual(reviewRanks, [1, 2, 3, 4, 5])
 })
 
-test('portfolio contains thirty scored ideas and the five Ana-review formats', () => {
-  const numberedRows = portfolio.match(/^\| \d{1,2} \|/gm) ?? []
-  assert.equal(numberedRows.length, 30)
-
-  for (const title of [
-    'Purpose to Practice',
-    'Creator Studio: From Idea to Draft',
-    'Build Your AI Support Team',
-    'Human + AI Team Agreement',
-    'Founder Decision Circle',
-  ]) {
-    assert.match(portfolio, new RegExp(title.replace(/[+]/g, '\\+')))
-  }
-})
-
 test('hub and offer pages preserve operational truth and affiliation boundary', () => {
   assert.match(registry, /not affiliated with, sponsored by, or endorsed by Mindvalley/)
   assert.match(registry, /Possible venue only · nothing is reserved/)
@@ -178,7 +162,7 @@ test('review mode hides the form, stores nothing, sends nothing, and creates no 
   assert.match(form, /not be added to a newsletter or used for unrelated marketing/)
 })
 
-test('attendee copy assumes no Ana role and excludes internal market language', () => {
+test('attendee copy assumes no collaborator role and excludes internal market language', () => {
   assert.match(registry, /No role is assumed/)
   assert.match(hub, /No role assumed/)
   assert.doesNotMatch(registry, /producer by default|thought-leadership route|people-work pipeline/i)
@@ -197,9 +181,9 @@ test('request safety, identity fallback, and CRM classification are release-gate
   assert.match(form, /Choose at least one possible time\./)
   assert.match(service, /INTENT_LABEL\.general/)
   assert.doesNotMatch(service, /Workshop \(1-day team build\)/)
-  assert.match(packageJson, /"test:ana-release"/)
-  assert.match(packageJson, /"merge:gate": "npm run test:homepage-release && npm run test:ana-release/)
-  assert.match(packageJson, /"merge:gate:ci": "npm run test:homepage-release && npm run test:ana-release/)
+  assert.match(packageJson, /"test:collaboration-release"/)
+  assert.match(packageJson, /"merge:gate": "npm run test:homepage-release && npm run test:collaboration-release/)
+  assert.match(packageJson, /"merge:gate:ci": "npm run test:homepage-release && npm run test:collaboration-release/)
 })
 
 test('capacity and participant artifact promises match each selected experience', () => {

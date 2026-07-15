@@ -46,7 +46,7 @@ export interface TallinnExperience {
   sessionArc: readonly TallinnSessionBeat[]
   deliverables: readonly string[]
   frankRole: string
-  anaInvitation: string
+  collaboratorInvitation: string
   proofLinks: readonly TallinnProofLink[]
   aftercare: readonly string[]
   testHypothesis: string
@@ -194,8 +194,8 @@ export const tallinnExperiences = [
     ],
     frankRole:
       'Frank guides the session, introduces the worksheet, and helps each participant turn reflection into a clear next step.',
-    anaInvitation:
-      'Ana is invited to shape the session as a partner. She may offer a short opening or people perspective only if she chooses and approves it; no public role or clinical claim is assumed.',
+    collaboratorInvitation:
+      'An invited collaborator may shape the session or offer a short opening only after explicitly approving the scope; no public role or clinical claim is assumed.',
     proofLinks: [
       {
         label: 'Ikigai & Branding workshop',
@@ -272,8 +272,8 @@ export const tallinnExperiences = [
     ],
     frankRole:
       'Frank guides source selection, the brief, the AI-assisted draft, and the final review.',
-    anaInvitation:
-      'Ana may help shape the participant experience or join as an observer. Any public contribution requires her approval first.',
+    collaboratorInvitation:
+      'An invited collaborator may help shape the participant experience or join as an observer. Any public contribution requires approval first.',
     proofLinks: [
       {
         label: 'FrankX Research',
@@ -350,8 +350,8 @@ export const tallinnExperiences = [
     ],
     frankRole:
       'Frank shows a working example and helps participants define the roles, handoffs, limits, and first task.',
-    anaInvitation:
-      'Ana may review the role-clarity questions only if she chooses. No operational or public role is assumed.',
+    collaboratorInvitation:
+      'An invited collaborator may review the role-clarity questions only after opting in. No operational or public role is assumed.',
     proofLinks: [
       {
         label: 'AI Architecture',
@@ -428,8 +428,8 @@ export const tallinnExperiences = [
     ],
     frankRole:
       'Frank guides the role, data, evidence, approval, and review decisions in the team agreement.',
-    anaInvitation:
-      'Ana may co-design the people and role-clarity parts. Her title, contribution, public credit, fee, and reuse rights require her approval before any announcement.',
+    collaboratorInvitation:
+      'An invited collaborator may co-design the people and role-clarity parts. Title, contribution, public credit, fee, and reuse rights require approval before any announcement.',
     proofLinks: [
       {
         label: 'AI Architecture',
@@ -504,8 +504,8 @@ export const tallinnExperiences = [
       'Consent-based peer connections',
     ],
     frankRole: 'Frank hosts the decision rounds and helps each participant define a practical next step.',
-    anaInvitation:
-      'Ana may support hospitality and participant care, entirely behind the scenes if she prefers. Any reflective prompt is co-designed only with her approval.',
+    collaboratorInvitation:
+      'An invited collaborator may support hospitality and participant care behind the scenes. Any reflective prompt is co-designed only with approval.',
     proofLinks: [
       {
         label: 'Conscious AI operating systems',
@@ -559,7 +559,7 @@ export const tallinnExperiences = [
     ],
     deliverables: ['Positioning sentence', 'One person you want to help', 'Three examples of your work', 'One-month rhythm'],
     frankRole: 'Frank guides the purpose, positioning, evidence, and expression exercises.',
-    anaInvitation: 'Ana may review the values or audience questions only if she chooses. No role is assumed.',
+    collaboratorInvitation: 'An invited collaborator may review the values or audience questions only after opting in. No role is assumed.',
     proofLinks: [
       { label: 'Ikigai & Branding', href: '/workshops/ikigai-branding', note: 'The existing synthesis engine.' },
       { label: 'Creator route', href: '/for/creators', note: 'The practical creator path.' },
@@ -595,7 +595,7 @@ export const tallinnExperiences = [
     ],
     deliverables: ['Voice charter', 'Prohibited-claims list', 'Source rule', 'Publish checklist'],
     frankRole: 'Frank guides voice extraction, source and claim rules, and the live draft review.',
-    anaInvitation: 'Ana may review the human-language or privacy questions only if she chooses. No role is assumed.',
+    collaboratorInvitation: 'An invited collaborator may review the human-language or privacy questions only after opting in. No role is assumed.',
     proofLinks: [
       { label: 'FrankX Research', href: '/research', note: 'Source discipline in public.' },
       { label: 'Prompt Library', href: '/prompt-library', note: 'Prompts that can carry the charter.' },
@@ -631,7 +631,7 @@ export const tallinnExperiences = [
     ],
     deliverables: ['One-page personal AI plan', 'Tool rules', 'Trusted source list', 'Weekly review'],
     frankRole: 'Frank guides the six decisions, the one-page plan, and the weekly review.',
-    anaInvitation: 'Ana may contribute one people or values question only if she chooses and approves it. No role is assumed.',
+    collaboratorInvitation: 'An invited collaborator may contribute one people or values question only after approving it. No role is assumed.',
     proofLinks: [
       { label: 'Personal AI CoE workshop', href: '/workshops/personal-ai-coe', note: 'The full existing 90-minute format.' },
       { label: 'ACOS', href: '/acos', note: 'The public operating-system surface.' },
@@ -667,15 +667,15 @@ export const tallinnExperiences = [
     ],
     deliverables: ['Role outcome map', 'Responsibility scorecard', 'Human-only judgment list', '30-day trial'],
     frankRole: 'Frank guides the AI-role, accountability, privacy, and review questions.',
-    anaInvitation:
-      'Ana may lead or co-design the people and HR perspective only after she approves the scope, public wording, examples, fee, credit, and ownership. No legal or psychological advice is implied.',
+    collaboratorInvitation:
+      'An invited collaborator may lead or co-design the people and HR perspective only after approving the scope, public wording, examples, fee, credit, and ownership. No legal or psychological advice is implied.',
     proofLinks: [
       { label: 'AI Architecture', href: '/ai-architecture', note: 'The agent and governance layer.' },
       { label: 'FrankX Library', href: '/library', note: 'The source and learning layer.' },
     ],
     aftercare: ['Editable worksheet', 'Optional trial review', 'Day-7 role check'],
-    testHypothesis: 'Test whether people leaders value a practical role-clarity worksheet and whether Ana wants to develop the format further.',
-    followOn: 'Possible next step, only with Ana’s approval: a private HR engagement, a joint workshop, or a team role-design session.',
+    testHypothesis: 'Test whether people leaders value a practical role-clarity worksheet and whether a collaborator wants to develop the format further.',
+    followOn: 'Possible next step, only with separate approval: a private HR engagement, a joint workshop, or a team role-design session.',
   },
   {
     slug: 'calm-work-architecture',
@@ -704,8 +704,8 @@ export const tallinnExperiences = [
     ],
     deliverables: ['Weekly heat map', 'AI offload boundary', 'Two recovery buffers', 'Review ritual'],
     frankRole: 'Frank guides the workload map, AI limits, buffers, and weekly review.',
-    anaInvitation:
-      'Ana may contribute a short grounding or people-operations question only after she approves the wording and role. No health or therapy claims.',
+    collaboratorInvitation:
+      'An invited collaborator may contribute a short grounding or people-operations question only after approving the wording and role. No health or therapy claims.',
     proofLinks: [
       { label: 'AI contemplative practice', href: '/research/ai-contemplative-practice', note: 'Source-aware attention and AI work.' },
       { label: 'Conscious AI operating systems', href: '/research/conscious-ai-operating-systems', note: 'The operating-system bridge.' },

@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 823,
-    "aliases": 33,
+    "total": 812,
+    "aliases": 39,
     "byType": {
       "core": 21,
-      "section": 389,
+      "section": 377,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 202,
+      "blog": 203,
       "workshop": 18,
       "guide": 20,
       "library": 41,
@@ -207,14 +207,6 @@
         "agents",
         "pack",
         "workshops"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/ahmad",
-      "title": "Ahmad",
-      "tags": [
-        "ahmad"
       ],
       "type": "section"
     },
@@ -481,6 +473,16 @@
       "type": "section"
     },
     {
+      "href": "/ai-coe-readiness",
+      "title": "AI Coe Readiness",
+      "tags": [
+        "ai",
+        "coe",
+        "readiness"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-evolution",
       "title": "AI Evolution",
       "type": "section"
@@ -524,15 +526,6 @@
       "href": "/ai-world",
       "title": "AI World",
       "type": "section"
-    },
-    {
-      "href": "/ais",
-      "title": "Ais",
-      "tags": [
-        "ais"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/alea",
@@ -581,33 +574,12 @@
       "type": "section"
     },
     {
-      "href": "/alliance/cecilia",
-      "title": "Cecilia",
-      "tags": [
-        "alliance",
-        "cecilia"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/allies",
       "title": "Allies",
       "tags": [
         "allies"
       ],
       "type": "section"
-    },
-    {
-      "href": "/allies/ana-cancino",
-      "title": "Ana Cancino",
-      "tags": [
-        "allies",
-        "ana",
-        "cancino"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/allies/epic-ways",
@@ -636,25 +608,6 @@
         "allies",
         "trinity",
         "ai"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
-      "href": "/ana",
-      "title": "Ana",
-      "tags": [
-        "ana"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/ana-intelligence-system",
-      "title": "Ana Intelligence System",
-      "tags": [
-        "ana",
-        "intelligence",
-        "system"
       ],
       "type": "section",
       "sitemap": false
@@ -1715,6 +1668,19 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/codex-plugins-for-teams",
+      "title": "Codex Plugins for Teams: A Practical Operating Guide",
+      "description": "A product-accurate guide to Codex, ChatGPT Work, skills, plugins, apps, team sharing, permissions, and governed workflow releases.",
+      "tags": [
+        "codex",
+        "plugins",
+        "ai skills",
+        "team workflows",
+        "ai governance"
       ],
       "type": "blog"
     },
@@ -3730,14 +3696,6 @@
       "sitemap": false
     },
     {
-      "href": "/consulting",
-      "title": "Consulting",
-      "tags": [
-        "consulting"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/contact",
       "title": "Contact",
       "type": "static"
@@ -4223,19 +4181,6 @@
       "sitemap": false
     },
     {
-      "href": "/downloads/ana-ai-business-kit",
-      "title": "Ana AI Business Kit",
-      "tags": [
-        "downloads",
-        "ana",
-        "ai",
-        "business",
-        "kit"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/downloads/epicways-intelligence",
       "title": "Epicways Intelligence",
       "tags": [
@@ -4341,7 +4286,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/agentic-creator-studio",
-      "title": "Agentic Creator Studio",
+      "title": "Creator Studio: From Idea to Draft",
       "tags": [
         "agentic",
         "creator",
@@ -4352,7 +4297,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/build-your-agentic-team",
-      "title": "Build Your Agentic Team",
+      "title": "Build Your AI Support Team",
       "tags": [
         "build",
         "your",
@@ -4364,7 +4309,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/calm-work-architecture",
-      "title": "Calm Work Architecture",
+      "title": "A Calmer Working Week",
       "tags": [
         "calm",
         "work",
@@ -4375,7 +4320,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/founder-integration-salon",
-      "title": "Founder Integration Salon",
+      "title": "Founder Decision Circle",
       "tags": [
         "founder",
         "integration",
@@ -4386,7 +4331,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/human-agent-team-charter",
-      "title": "Human + Agent Team Charter",
+      "title": "Human + AI Team Agreement",
       "tags": [
         "human",
         "agent",
@@ -4398,7 +4343,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/personal-ai-coe-one-page",
-      "title": "Personal AI CoE on One Page",
+      "title": "Your Personal AI Rules on One Page",
       "tags": [
         "personal",
         "ai",
@@ -4448,7 +4393,7 @@
     },
     {
       "href": "/experiences/tallinn-2026/role-clarity-agent-era",
-      "title": "Role Clarity in the Agent Era",
+      "title": "Role Clarity in the AI Era",
       "tags": [
         "role",
         "clarity",
@@ -4857,14 +4802,6 @@
       "type": "section"
     },
     {
-      "href": "/graph",
-      "title": "Graph",
-      "tags": [
-        "graph"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/guides",
       "title": "Guides",
       "type": "core"
@@ -5136,14 +5073,6 @@
       "type": "guide"
     },
     {
-      "href": "/harzfenster",
-      "title": "Harzfenster",
-      "tags": [
-        "harzfenster"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/hoffnung",
       "title": "Hoffnung",
       "tags": [
@@ -5157,15 +5086,6 @@
       "tags": [
         "hospitality",
         "intelligence"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/hospitality-os",
-      "title": "Hospitality OS",
-      "tags": [
-        "hospitality",
-        "os"
       ],
       "type": "section"
     },
@@ -5261,14 +5181,6 @@
       "tags": [
         "investor",
         "workflows"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/jojo",
-      "title": "Jojo",
-      "tags": [
-        "jojo"
       ],
       "type": "section"
     },
@@ -6490,6 +6402,15 @@
       "type": "section"
     },
     {
+      "href": "/operator-scorecard",
+      "title": "Operator Scorecard",
+      "tags": [
+        "operator",
+        "scorecard"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ops",
       "title": "Ops",
       "tags": [
@@ -7541,16 +7462,6 @@
       "type": "section"
     },
     {
-      "href": "/students/ikigai",
-      "title": "Ikigai",
-      "tags": [
-        "students",
-        "ikigai"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/students/prompts",
       "title": "Prompts",
       "tags": [
@@ -7785,16 +7696,6 @@
         "tribe"
       ],
       "type": "section"
-    },
-    {
-      "href": "/trinity-ai",
-      "title": "Trinity AI",
-      "tags": [
-        "trinity",
-        "ai"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/unsubscribe",
@@ -8089,6 +7990,11 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/ais": "/friends/ana",
+    "/alliance/cecilia": "/friends/ana",
+    "/allies/ana-cancino": "/friends/ana",
+    "/ana": "/friends/ana",
+    "/ana-intelligence-system": "/friends/ana",
     "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
     "/books/fable/chapter-01-the-listening-machine": "/books/fable",
     "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
@@ -8108,6 +8014,7 @@
     "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
     "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
+    "/downloads/ana-ai-business-kit": "/friends/ana",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",

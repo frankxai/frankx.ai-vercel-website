@@ -1,14 +1,14 @@
 {
   "version": "1.0",
   "generatedAt": "2026-06-25T12:58:51.475Z",
-  "totalAssets": 1115,
+  "totalAssets": 1113,
   "totalCollections": 52,
-  "totalSize": 975409012,
+  "totalSize": 975131097,
   "formats": {
     "png": 541,
     "svg": 168,
     "webp": 133,
-    "jpg": 263,
+    "jpg": 261,
     "jpeg": 10
   },
   "collections": [
@@ -9221,50 +9221,12 @@
       "id": "mascot",
       "name": "Mascot Concepts",
       "description": "ACOS mascot design exploration — three-tailed beast guardians, holographic entities, chrome mech-spirits, data constellations.",
-      "count": 39,
-      "coverImage": "/images/mascot/ana-omega-hero-v1.jpg",
+      "count": 37,
+      "coverImage": "/images/mascot/axi-v1-full.png",
       "accent": "from-purple-500/20 to-pink-500/20",
       "borderAccent": "border-purple-500/30",
       "sortOrder": 2,
       "assets": [
-        {
-          "id": "mascot/ana-omega-hero-v1",
-          "filename": "ana-omega-hero-v1.jpg",
-          "src": "/images/mascot/ana-omega-hero-v1.jpg",
-          "thumbnail": "/images/mascot/ana-omega-hero-v1_thumb.jpeg",
-          "collection": "mascot",
-          "format": "jpg",
-          "width": 2048,
-          "height": 2048,
-          "fileSize": 194410,
-          "title": "Ana Omega Hero V1",
-          "tags": [
-            "mascot",
-            "ana",
-            "omega",
-            "hero"
-          ],
-          "createdAt": "2026-05-23"
-        },
-        {
-          "id": "mascot/ana-omega-portrait-v1",
-          "filename": "ana-omega-portrait-v1.jpg",
-          "src": "/images/mascot/ana-omega-portrait-v1.jpg",
-          "thumbnail": "/images/mascot/ana-omega-portrait-v1_thumb.jpeg",
-          "collection": "mascot",
-          "format": "jpg",
-          "width": 1024,
-          "height": 1024,
-          "fileSize": 83505,
-          "title": "Ana Omega Portrait V1",
-          "tags": [
-            "mascot",
-            "ana",
-            "omega",
-            "portrait"
-          ],
-          "createdAt": "2026-05-23"
-        },
         {
           "id": "mascot/axi-v1-full",
           "filename": "axi-v1-full.png",

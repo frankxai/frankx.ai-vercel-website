@@ -60,18 +60,18 @@ const sourceRail = [
 const collaborationModes = [
   {
     mode: 'No role assumed',
-    title: 'Ana decides whether to participate',
-    body: 'Frank facilitates and remains responsible for the session. Ana has no operational or public role unless she explicitly accepts one.',
+    title: 'Participation is opt-in',
+    body: 'Frank facilitates and remains responsible for the session. An invited collaborator has no operational or public role unless they explicitly accept one.',
   },
   {
     mode: 'Optional contribution',
     title: 'One clearly agreed contribution',
-    body: 'Ana may approve a short reflection or role-clarity exercise. Her scope, wording, credit, fee, and reuse rights are agreed first.',
+    body: 'A collaborator may approve a short reflection or role-clarity exercise. Scope, wording, credit, fee, and reuse rights are agreed first.',
   },
   {
     mode: 'Co-created session',
     title: 'A session designed and delivered together',
-    body: 'Ana and Frank may co-create a people-and-AI workshop only after roles, fees, credit, ownership, reuse rights, and cancellation terms are agreed in writing.',
+    body: 'Frank and an invited collaborator may co-create a people-and-AI workshop only after roles, fees, credit, ownership, reuse rights, and cancellation terms are agreed in writing.',
   },
 ] as const
 
@@ -179,7 +179,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
               <SystemMap />
               <div className="mt-5 flex items-start gap-3 text-sm leading-6 text-slate-400">
                 <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" aria-hidden="true" />
-                <p>Nothing is booked yet. Frank leads; Ana chooses whether and how she contributes.</p>
+                <p>Nothing is booked yet. Frank leads; any invited collaborator chooses whether and how they contribute.</p>
               </div>
             </div>
           </div>
@@ -207,10 +207,10 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Recommended shortlist</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Five session ideas to review with Ana.
+                Five session ideas for review.
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-400">
-                Purpose to Practice is the recommended first pilot. The other four serve creators, solo founders, teams, and founders who want a quieter integration session. The fifth becomes a retreat format only if Ana and participants want to explore it.
+                Purpose to Practice is the recommended first pilot. The other four serve creators, solo founders, teams, and founders who want a quieter integration session. The fifth becomes a retreat format only if participants want to explore it.
               </p>
             </div>
 
@@ -305,12 +305,12 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">Frank + Ana</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">Optional collaboration</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Ana chooses her role before anything is announced.
+                Every collaborator chooses their role before anything is announced.
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-400">
-                Ana may contribute behind the scenes or publicly. Her role expands only with her explicit approval, a clear scope, agreed credit, and fair commercial terms.
+                A collaborator may contribute behind the scenes or publicly. Their role expands only with explicit approval, a clear scope, agreed credit, and fair commercial terms.
               </p>
             </div>
             <div className="divide-y divide-white/10 border-y border-white/10">
@@ -326,7 +326,7 @@ export function TallinnFoundryPage({ captureEnabled }: TallinnFoundryPageProps) 
             </div>
           </div>
           <div className="mt-10 rounded-2xl border border-amber-300/20 bg-amber-300/[0.045] p-5 text-sm leading-6 text-amber-50/90">
-            No public health, therapy, psychology, neuroscience, certification, or outcome claim will be made in Ana’s name unless she provides and approves the exact evidence and wording.
+            No public health, therapy, psychology, neuroscience, certification, or outcome claim will be attributed to a collaborator without their approval of the exact evidence and wording.
           </div>
         </div>
       </section>

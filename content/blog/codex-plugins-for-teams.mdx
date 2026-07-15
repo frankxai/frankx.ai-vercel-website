@@ -1,6 +1,6 @@
 ---
-title: "Codex Plugins for Teams: Skills, Sharing, Governance"
-description: "Learn how Codex plugins package skills and tools, how teams share and update workflows, and what ChatGPT Business still needs around it."
+title: "Codex Plugins for Teams: A Practical Operating Guide"
+description: "A product-accurate guide to Codex, ChatGPT Work, skills, plugins, apps, team sharing, permissions, and governed workflow releases."
 date: "2026-07-15"
 lastUpdated: "2026-07-15"
 author: "FrankX"
@@ -16,25 +16,25 @@ keywords:
     "Codex plugin marketplace",
   ]
 image: "/images/blog/editorial/headers/codex-plugins-for-teams-hero.webp"
-readingGoal: "Understand the Codex plugin model, choose the right unit for a workflow, and set up a safe team release process."
-tldr: "Codex is the agent that performs work. Skills encode reusable methods. Plugins package those skills with optional tools, hooks, apps, and metadata so a team can install and govern them. OpenAI provides the execution and workspace layer; GitHub, private content systems, and release controls complete the operating model."
+readingGoal: "Choose the right OpenAI surface, package a reusable workflow, and establish a safe team release process."
+tldr: "Use Chat for quick answers, ChatGPT Work for longer review-ready deliverables, and Codex for codebases and developer workflows. Skills encode methods; plugins distribute skills and optional connected capabilities. OpenAI provides the execution and workspace controls, while teams still need explicit ownership, permissions, testing, versioning, and release discipline."
 faq:
-  - q: "What is the difference between Codex and ChatGPT?"
-    a: "ChatGPT is the broader product experience. Codex is OpenAI's agent for executing software and structured work across supported local and hosted surfaces."
-  - q: "What is the difference between a Codex skill and a plugin?"
-    a: "A skill is one reusable workflow. A plugin is an installable package that can bundle skills with apps, MCP configuration, hooks, assets, and metadata."
+  - q: "Is ChatGPT Work the same as ChatGPT Business?"
+    a: "No. Work is a way of completing longer, multi-step tasks. Business is a paid workspace plan with collaboration and administrative controls."
+  - q: "What is the difference between a skill and a plugin?"
+    a: "A skill is a reusable set of instructions and supporting resources. A plugin is an installable bundle that can distribute skills, an MCP-backed app, or both."
+  - q: "Does installing a plugin grant access to company systems?"
+    a: "No. Plugin installation, app authorization, source-system permissions, and task approval are separate layers."
   - q: "Can a website install a Codex plugin automatically?"
-    a: "A website can guide installation or copy a verified command, but installation and workspace approval should remain explicit."
-  - q: "Where should private templates and client data live?"
-    a: "Keep private data in the system that owns its access, retention, and audit controls. Put the reusable method and safe examples in the plugin."
-  - q: "Do nontechnical teams need GitHub?"
-    a: "Not every user needs GitHub. Maintainers benefit from its review, testing, versioning, and rollback, while other contributors can use a structured feedback form."
-  - q: "When does a team need MCP or a hosted application?"
-    a: "Use MCP when the agent needs authenticated live data or actions. Build a hosted application when clients need branded UI, tenancy, billing, or entitlements."
+    a: "A website can explain the workflow or copy a verified command, but installation and workspace approval remain explicit actions."
+  - q: "Can a team share plugins without publishing them publicly?"
+    a: "Yes. Workspace-created plugins can be shared inside an eligible workspace, and code-managed teams can distribute plugins through a private Git marketplace."
+  - q: "Do teams need tooling beyond ChatGPT Business?"
+    a: "Usually yes for mature operations: a source repository, release checks, a private content system, and sometimes a ticketing or approval system."
 schema: ["Article", "FAQPage", "HowTo"]
 featured: false
 architectNote:
-  recommendation: "Keep the operating method in a versioned plugin and keep live client data in the system that already owns its permissions. Install access and data access are separate decisions."
+  recommendation: "Separate reusable method from private data. Version the method; keep live records in the system that owns their permissions and retention."
   coePillar: "Governance, reusable workflows, and data boundaries"
   personas:
     - persona: "Workflow owner"
@@ -43,359 +43,283 @@ architectNote:
       pick: "Own packaging, tests, releases, and rollback."
 ---
 
-## TL;DR
+## The short version
 
-A Codex plugin is not a giant prompt and it is not a database. It is an installable package for reusable work.
+OpenAI now offers several related ways to work, and the names are easy to collapse into one idea. They are not the same thing.
 
-Codex performs the task. A skill describes how the task should be done. A plugin packages one or more skills with optional tools, hooks, apps, scripts, and metadata. A team can share that package while keeping live templates, client files, and sensitive records in Google Drive, SharePoint, Notion, GitHub, or another permissioned source system.
+- **Chat** is best for quick questions, drafts, and conversational analysis.
+- **ChatGPT Work** is designed for longer, multi-step tasks that produce a review-ready result.
+- **Codex** is the agent for software work: understanding repositories, changing code, running checks, and working with developer tools.
+- **Skills** are reusable methods that teach an agent how to perform a particular kind of work.
+- **Plugins** are installable bundles that can distribute skills, an MCP-backed app, or both.
 
-The practical model is **shared operating method, private data overlay**.
+The clean team model is to place reusable instructions and safe examples in a skill or plugin, while private records remain in the system that already controls their access.
 
-The same pattern works for HR, marketing, sales, finance, research, and software teams.
+<figure className="my-10">
+  <img
+    src="/images/blog/editorial/infographics/codex-plugins-for-teams-lifecycle.webp"
+    alt="A universal plugin lifecycle from source and review through release, installation, execution, feedback, and the next version"
+    className="w-full rounded-3xl border border-white/10"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-sm text-slate-400">
+    A reusable workflow becomes dependable only when ownership, review, release, and feedback are explicit.
+  </figcaption>
+</figure>
 
-<Diagram
-  src="/images/blog/editorial/infographics/codex-plugins-for-teams-lifecycle.webp"
-  alt="Four-step lifecycle for a team AI plugin: build the method, review it, share it with the team, and improve the next version, while files, records, and permissions remain in protected company systems"
-  caption="The universal team model: one reviewed method can be shared across a workspace while live data remains inside the systems that already control access."
-/>
+## Start by choosing the right surface
 
-Ana HR Operations is a working example. Its plugin contains four reviewed skills. Ana's current templates and client material stay outside the plugin, behind the permissions of the system that owns them.
+The first decision is not “Which plugin do we build?” It is “Where should this work happen?”
 
-## What is Codex, exactly?
+| Surface | Best fit | Where work runs | Plugin note |
+|---|---|---|---|
+| ChatGPT Chat | Questions, exploration, drafts | Hosted ChatGPT experience | Use approved workspace capabilities when available |
+| ChatGPT Work on the web | Longer research, synthesis, and review-ready artifacts | Hosted ChatGPT experience | Supports plugins in eligible workspaces |
+| ChatGPT Work on desktop | Multi-step work involving local files, apps, or browser context | Desktop plus supported connected environments | Supports plugins; available capabilities depend on the client and workspace |
+| Codex desktop | Repository work, code changes, testing, and developer workflows | Local workspace with configured tools | Supports plugins and local skills |
+| Codex CLI | Terminal-first coding and automation | Your local terminal environment | Provides `/plugins` and marketplace commands |
+| Codex IDE integration | Coding inside the editor | Local project and editor environment | Skills and MCP are documented; verify plugin availability in the current client |
+| Codex cloud | Isolated hosted software tasks | OpenAI-managed cloud environment | Treat its environment and permissions separately from local Codex |
 
-Codex is OpenAI's coding agent. ChatGPT Work uses the technology behind Codex for broader multi-step work across files, connected systems, and artifacts. In both cases, you give the agent a task; it gathers context, uses available tools, makes or proposes changes, runs checks, and returns the result for review.
+Two distinctions matter:
 
-That agent can appear through different supported surfaces: a desktop app, command-line workflow, editor integration, or hosted task. Availability varies by client, plan, and workspace policy, so the useful mental model is not the window. The useful mental model is the **agent runtime**.
+1. **Work is not a subscription plan.** It is a mode and experience for completing longer tasks. **ChatGPT Business** is a workspace plan.
+2. **ChatGPT and Codex overlap, but they are not interchangeable.** ChatGPT is the broader knowledge-work product; Codex is optimized for software engineering and codebase execution.
 
-Codex answers: **who performs the work?**
+OpenAI’s current [quickstart](https://learn.chatgpt.com/docs/quickstart) and [ChatGPT usage guide](https://learn.chatgpt.com/docs/use-chatgpt) are the best places to verify which surfaces are available to your workspace.
 
-The other layers answer different questions:
+## The vocabulary: skill, plugin, app, and MCP
 
-| Layer | The question it answers | Typical example |
-| --- | --- | --- |
-| Task or prompt | What should happen right now? | "Prepare the weekly recruiting status." |
-| `AGENTS.md` | What rules apply inside this repository? | Required tests, deployment policy, writing standards |
-| Skill | How should this recurring workflow be performed? | Recruiting intake, research validation, content approval |
-| Plugin | How do we package and distribute the capability? | Ana HR Operations |
-| App or MCP connection | Which external system can the agent read or act on? | Google Drive, GitHub, Slack, a private HR system |
-| Hook | What should be enforced around the work? | Block unsafe commands or require a validation step |
-| Automation | When should the task run again? | Monday operating review or monthly audit |
+These four concepts form a stack.
 
-OpenAI's current documentation describes [skills as reusable workflow instructions](https://learn.chatgpt.com/docs/build-skills) and [plugins as installable bundles](https://learn.chatgpt.com/docs/build-plugins). Apps connect ChatGPT or Codex to external capabilities, commonly through MCP-backed tools.
+### A skill is the method
 
-## What is actually inside a Codex plugin?
+A skill is a reusable folder of instructions and supporting resources. It can define:
 
-Every plugin has a manifest at `.codex-plugin/plugin.json`. It identifies the package and can declare its version, author, skills, apps, MCP servers, hooks, capabilities, and presentation metadata.
+- when the workflow should run;
+- the sequence of work;
+- quality checks and stop conditions;
+- safe examples and templates;
+- scripts or reference files used by the workflow.
 
-As of July 15, 2026, the installed Ana package looks like this:
+A useful skill is narrow enough to test. “Help with operations” is vague. “Turn meeting notes into a decision log, identify unresolved owners, and draft the follow-up” is testable.
 
-```text
-ana-hr-operations/
-  .codex-plugin/
-    plugin.json
-  skills/
-    ana-hr-operations/
-      SKILL.md
-      references/
-      assets/
-      scripts/
-    ana-approved-content/
-    ana-research-library/
-    ana-template-studio/
-```
+OpenAI documents three practical distribution patterns:
 
-The manifest calls this version `0.2.0+codex.20260714123709`. The four skills divide the work into clear operating areas:
+- **Workspace skills** managed through ChatGPT for a team.
+- **Local filesystem skills** available to an individual Codex environment.
+- **Plugin-packaged skills** distributed as part of a larger installable bundle.
 
-| Skill | Responsibility |
-| --- | --- |
-| `ana-hr-operations` | Recruiting, client delivery, offers, invoices, and approval queues |
-| `ana-approved-content` | Public-safe content briefs and editorial boundaries |
-| `ana-research-library` | Evidence capture, source standards, and research validation |
-| `ana-template-studio` | Document/template jobs and specialist routing |
+See [Build skills](https://learn.chatgpt.com/docs/build-skills) and [Skills and plugins](https://learn.chatgpt.com/docs/skills-and-plugins) for the current mechanics.
 
-Each skill can carry its own instructions, reference material, templates, and scripts. Maintainers can keep eval cases and tests alongside the plugin source. This is the difference between "remember this prompt" and a maintainable operating asset.
+### A plugin is the distribution unit
 
-<Diagram
-  src="/images/diagrams/codex-plugins-for-teams-architecture.svg"
-  alt="Architecture of the installed Ana HR Operations Codex plugin, its four skills, team runtime, GitHub source control, and private data overlay"
-  caption="Ana HR Operations as a concrete implementation: GitHub governs the package, four skills carry the method, the workspace runs it, and private records remain outside the plugin."
-/>
+A plugin is an installable package. It can contain skills, an app connected through MCP, or both. Depending on the package, it may also include configuration, hooks, browser resources, scheduled-task templates, and assets.
 
-Plugins may also include apps, MCP configuration, hooks, browser capabilities, scheduled-task templates, and presentation assets. They do not need every layer. The smallest useful package is usually the best one.
+That makes a plugin appropriate when a workflow needs one or more of the following:
 
-## Skill, plugin, connector, or hosted app?
+- a coordinated set of skills;
+- a consistent installation experience;
+- a connected business system;
+- versioned updates for a group;
+- shared configuration and release metadata.
 
-Start with the smallest unit that matches the problem.
+### An app is a user-facing connected capability
 
-| Choose | When | Owner | Lifecycle |
-| --- | --- | --- | --- |
-| Prompt | The work is genuinely one-off | Individual | Ends with the task |
-| `AGENTS.md` | Rules should persist for one repository | Repository maintainers | Versioned with the repo |
-| Skill | One recurring method needs to become reusable | Workflow owner | Draft, test, review, improve |
-| Plugin | Several capabilities should install and update as one team product | Product owner + technical maintainer | Versioned releases |
-| App/MCP connector | The agent needs live data or actions in another system | System owner + workspace admin | Auth, permissions, monitoring |
-| Hosted application | Clients need branded UI, tenancy, billing, entitlements, or a controlled product experience | Product team | Full software lifecycle |
+An app exposes tools or information from another system to ChatGPT or Codex. A custom app uses **MCP**, the Model Context Protocol, to describe those tools.
 
-A recruiting-status template is a skill. A bundle of recruiting, research, commercial, and content workflows is a plugin. Reading the current candidate tracker may require a connector. Selling Cecilia as a client-facing product requires a hosted application.
+The important security boundary is this:
 
-## What happens when a team member starts a task?
+> Installing a plugin does not automatically authorize its app, and authorizing an app does not override permissions in the source system.
 
-Installing a plugin does not bypass permissions. The capability chain is sequential:
+If a plugin can query a document system, the user still needs an authorized connection and access to the relevant documents. Removing a plugin also does not necessarily disconnect the underlying app connection; administrators should manage those lifecycles independently.
+
+## What a well-structured team plugin looks like
+
+Here is a generic, hypothetical layout:
 
 ```text
-Workspace allows the plugin
-        ↓
-Member installs or receives access where required
-        ↓
-New task loads the installed package
-        ↓
-Relevant skill is selected
-        ↓
-External app uses an approved connection or asks for authorization
-        ↓
-Runtime approvals and safety rules apply
-        ↓
-Human reviews the result or action where policy requires it
+team-operations-toolkit/
+├─ .codex-plugin/
+│  └─ plugin.json
+├─ skills/
+│  ├─ weekly-brief/
+│  │  ├─ SKILL.md
+│  │  └─ references/
+│  ├─ research-check/
+│  │  └─ SKILL.md
+│  └─ client-ready-review/
+│     └─ SKILL.md
+├─ .mcp.json              # only when connected tools are required
+├─ hooks/                 # optional automation boundaries
+└─ README.md
 ```
 
-Every boundary can say no.
+The package should contain the reusable method, schemas, and synthetic examples. It should not contain live customer documents, employee records, credentials, confidential strategy, or copied private templates unless the repository and every distribution path are explicitly approved for that data.
 
-A workspace admin can control plugin or app availability. The connected service still decides which Drive folders, repositories, Slack channels, or records the signed-in user can access. Codex runtime settings still decide whether a command, filesystem change, or external action needs approval.
+## Two ways teams share a plugin
 
-This matters in HR. "Can use the Ana plugin" must never mean "can see every client file."
+### 1. Workspace-native sharing
 
-OpenAI documents this as a [capability and permission chain](https://learn.chatgpt.com/docs/enterprise/apps-and-connectors). Plugin distribution, app access, source-system authorization, and runtime permissions are separate controls.
+For eligible ChatGPT workspaces, a creator can open the desktop plugin directory, find a plugin under **Created by you**, and use **Share** to grant access to members, groups, or a workspace link. Recipients find it under **Shared with you**.
 
-## How should Ana and her team share the plugin?
+This is workspace sharing, not public marketplace publication. Administrators may disable sharing or require review. It is the simplest path when the team wants a managed workspace experience and does not need a code-centric release process.
 
-There are two useful distribution layers.
+### 2. A Git-maintained marketplace
 
-### Native workspace sharing
+Engineering-led teams can keep plugin packages in a private Git repository and expose them through a marketplace manifest. This provides pull requests, protected branches, tests, tagged releases, changelogs, and rollback.
 
-A plugin created locally can be shared from the ChatGPT desktop plugin experience with workspace members, groups, or a workspace-scoped link where the feature is available and enabled. Shared plugins stay inside the workspace boundary rather than becoming public products.
-
-This is the clean path for an approved internal team that wants a simple install experience.
-
-### Git-backed engineering distribution
-
-GitHub is not required for native sharing, but it is the stronger source-of-truth layer when multiple people maintain the package. It provides branches, pull requests, code review, tests, tags, changelogs, and rollback.
-
-For a curated marketplace source, the current documented CLI flow starts by adding the source:
+The generic CLI flow is:
 
 ```bash
-codex plugin marketplace add frankxai/ana-ai-business-kit --ref main
+codex plugin marketplace add owner/team-plugins --ref main
+codex plugin marketplace list
 ```
 
-Then open the plugin browser:
+Then launch Codex, enter `/plugins`, choose the plugin, install it, and start a new session so the current skills and tools load.
 
-```text
-/plugins
-```
-
-Install the package there. To refresh the configured marketplace source named `ana-business-kit`, run:
+To refresh marketplace metadata later:
 
 ```bash
-codex plugin marketplace upgrade ana-business-kit
+codex plugin marketplace upgrade team-plugins
 ```
 
-Then follow any update or reinstall action shown by the plugin browser and start a new session so the bundled skills and tools load into that session.
+After an upgrade, review the offered plugin update in `/plugins` and begin a new session. An update should never be treated as an invisible global mutation: users need a clear version, changelog, and effective date.
 
-The exact install surface can vary across supported clients and versions. The stable operating principle is: **approved source, visible version, explicit install, new session, verified first task**.
+The commands above follow OpenAI’s [plugin-building and distribution guide](https://learn.chatgpt.com/docs/build-plugins). Replace the example owner, repository, and marketplace name with your approved private source.
 
-A website button can guide the user to these steps, copy the correct command, or open documentation. A public website should not silently install local software or bypass workspace approval.
+## How permissions actually work
 
-## How do individuals improve a shared plugin?
-
-The team needs two contribution paths.
-
-### Technical contribution path
+Teams get into trouble when they treat “plugin installed” as “workflow authorized.” A safe execution crosses several independent gates:
 
 ```text
-Issue or proposal
-      ↓
-Feature branch
-      ↓
-Skill change + eval cases
-      ↓
-Pull request and owner review
-      ↓
-Protected main
-      ↓
-Version, changelog, marketplace update
-      ↓
-Team installs update in a new task
+Workspace policy allows the plugin
+        ↓
+The member can install or receive it
+        ↓
+Any connected app is separately authorized
+        ↓
+The source system permits the requested records and actions
+        ↓
+The current ChatGPT or Codex surface applies its runtime controls
+        ↓
+A human approves consequential output or action where required
 ```
 
-### Nontechnical contribution path
+Examples:
 
-A recruiter, project lead, or operations specialist should not need Git to report that a workflow is missing a step. Give them a short feedback form with:
+- A document-review skill may be installed but unable to read a restricted folder.
+- A project-management app may read tickets but lack permission to close them.
+- A local Codex task may edit a repository but still require approval before a production deployment.
+- A workspace administrator may allow a plugin while disabling member-to-member sharing.
 
-- the workflow they ran
-- expected versus actual result
-- the missing rule or example
-- whether sensitive data was involved
-- urgency and business impact
-- a sanitized example
+OpenAI provides workspace-level [plugin controls](https://learn.chatgpt.com/docs/enterprise/plugin-controls) and [skill controls](https://learn.chatgpt.com/docs/enterprise/skill-controls). The connected source, repository, and deployment platform retain their own controls.
 
-The workflow owner translates accepted feedback into an issue or change request. The technical maintainer packages and tests it. This keeps domain expertise close to the people doing the work without asking every contributor to become a release engineer.
+## How individuals improve a shared workflow
 
-## How should a team govern plugins?
+A team needs a contribution path that works for both technical and nontechnical people.
 
-Four roles are enough to start:
+### For a small wording or method change
+
+1. Capture the problem with the input, expected output, and what failed.
+2. Change the skill instructions or safe example in a branch or workspace draft.
+3. Run a small evaluation set containing normal, edge, and refusal cases.
+4. Have the workflow owner review the behavior, not just the prose.
+5. Release a new version with a plain-language changelog.
+
+### For a new connected action
+
+1. Define the minimum read and write permissions.
+2. Decide whether an existing approved app is sufficient.
+3. If necessary, expose the new tool through MCP.
+4. Add confirmation before destructive, financial, legal, external-message, or production actions.
+5. Test authorization failure, missing data, partial completion, and rollback.
+6. Obtain administrator and system-owner approval before release.
+
+### For nontechnical contributors
+
+Do not require everyone to learn Git. Provide a structured intake form with:
+
+- workflow name and owner;
+- example input with private data removed;
+- desired result;
+- current failure;
+- sensitivity level;
+- affected team;
+- urgency and proposed acceptance criteria.
+
+A maintainer can convert that request into a tested change. The contributor then validates the result before it ships.
+
+## A release model that scales
+
+OpenAI provides the agent, plugin surfaces, workspace controls, and connected-app framework. It does not replace your operating model. The following is a FrankX recommendation for team governance, not an OpenAI product requirement.
 
 | Role | Accountable for |
-| --- | --- |
-| Product/workflow owner | Method, language, acceptance criteria, client boundaries |
-| Technical maintainer | Manifest, packaging, tests, releases, install support, rollback |
-| Workspace admin | Availability, member/group access, apps, allowed actions |
-| Contributors | Feedback, examples, test cases, proposed improvements |
+|---|---|
+| Workflow owner | Business method, acceptable output, and human approval points |
+| Technical maintainer | Package structure, tests, permissions, version, and rollback |
+| Security or data owner | Allowed systems, data classes, retention, and external actions |
+| Contributor | Reproducible feedback and validation of the change |
+| Release approver | Final decision for higher-risk changes |
 
-Add risk tiers to the workflows, not just the plugin as a whole:
+Classify releases by consequence:
 
-| Tier | Example | Minimum control |
-| --- | --- | --- |
-| 0 | Personal draft | Individual review |
-| 1 | Internal summary | Owner review |
-| 2 | Client-facing document | Approved template + named reviewer |
-| 3 | Sensitive HR workflow | Privacy/security review + restricted data access |
-| 4 | External send or system action | Explicit approval, log, and rollback path |
+- **Low risk:** wording, formatting, or safe examples; peer review and automated checks.
+- **Medium risk:** changed decision logic or a new read-only data source; workflow-owner review plus permission testing.
+- **High risk:** write actions, external messages, production changes, payments, or regulated data; explicit system-owner approval, staged rollout, audit record, and rollback plan.
 
-Every release should answer seven questions:
+Every release should answer five questions:
 
 1. What changed?
-2. Who approved the method?
-3. Which eval cases passed?
-4. Which data classes can the workflow touch?
-5. Which external actions require approval?
-6. Which version is installed?
-7. How do we return to the last known-good release?
+2. Who approved it?
+3. What data and tools can it reach?
+4. How was it tested?
+5. How do we revert it?
 
-For a broader registry model, see [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance). For the conceptual foundation, read [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer).
+## What ChatGPT Business provides—and what it does not
 
-## What does Codex and ChatGPT Business provide?
+ChatGPT Business provides a dedicated workspace, essential administrative controls, SAML SSO and MFA, and OpenAI states that business data is not used for model training by default. Organizations with stronger identity, audit, retention, residency, analytics, or role requirements should evaluate Enterprise or Edu capabilities against their policies.
 
-OpenAI provides a substantial part of the runtime and workspace layer. It does not replace every system a governed team needs.
+Even with Business or Enterprise, a mature plugin program usually needs adjacent tooling:
 
-| Need | Codex / ChatGPT workspace | Additional tooling commonly used |
-| --- | --- | --- |
-| Agent execution | Codex tasks, review, local or hosted work where entitled | Optional CI runners for independent checks |
-| Reusable methods | Skills and plugins | Git for source history and release review |
-| Team distribution | Plugin discovery and workspace sharing on supported surfaces | Git-backed marketplace for controlled releases |
-| External data/actions | Apps and MCP-backed tools | Google Drive, GitHub, Slack, HRIS, CRM, or custom APIs |
-| Membership and access | Workspace members, groups, roles, and supported admin controls | Identity provider/SCIM where supported and required |
-| Action safety | App permissions, approvals, runtime policy | Domain-specific approval service or audit store for high-risk actions |
-| Evaluation | Skills may include validation scripts; OpenAI does not replace an eval lifecycle | CI, eval harnesses, test datasets, quality dashboards |
-| Long-term source history | Manifest version and installed package state | GitHub or GitLab, protected branches, tags, changelog |
-| Private content | Authorized connected sources | Drive, SharePoint, Notion, document management, HR systems |
-| Client product | Internal agent workflow | Hosted portal for tenancy, billing, branded UX, and entitlements |
+| Need | Typical system |
+|---|---|
+| Version history and review | GitHub, GitLab, or another source repository |
+| Private working documents | Google Drive, SharePoint, Notion, or an approved document platform |
+| Requests and approvals | Linear, Jira, ServiceNow, or a structured form |
+| Automated tests | Repository CI and workflow-specific evaluations |
+| Secrets | A managed secrets platform, never a skill file |
+| Production delivery | The application’s existing deployment platform and approval controls |
 
-The exact controls depend on plan and surface. Some advanced governance, compliance, lifecycle, and spend controls documented for Enterprise or Edu should not be assumed to be part of every ChatGPT Business workspace. Check the current workspace settings before promising a control to a team.
+The product boundary is healthy: ChatGPT and Codex perform the work; the systems of record keep ownership of identity, access, data, and deployment.
 
-Connected systems also retain their own compliance and permissions responsibilities. An approved plugin does not make an unapproved Drive folder visible. An enabled app does not expand the user's underlying account rights.
+## A practical first workflow
 
-## What is the recommended Ana operating model?
+Start with a workflow that is frequent, reviewable, and reversible—for example, turning internal meeting notes into a decision log.
 
-Use four distinct layers:
+1. Write the expected output schema.
+2. Create a skill with the method and synthetic examples.
+3. Keep the actual meeting notes in the approved document system.
+4. Test ten representative cases, including missing owners and contradictory decisions.
+5. Pilot with two or three people.
+6. Measure correction rate, time saved, and unsafe assumptions.
+7. Release the first shared version only after the owner accepts the results.
+
+Use OpenAI’s built-in skill creator where it is exposed—Codex documents `$skill-creator`—and follow the current [skill guide](https://learn.chatgpt.com/docs/build-skills). For a larger package, use the plugin creator shown by your client and the [plugin guide](https://learn.chatgpt.com/docs/build-plugins); invocation syntax can differ by surface.
+
+## The durable operating principle
+
+The best team plugin is not the one with the most instructions. It is the one whose boundary is obvious:
 
 ```text
-1. GitHub
-   Reviewed workflow source, tests, versions, releases
-
-2. Ana HR Operations plugin
-   Approved methods, routing, templates-as-examples, validation scripts
-
-3. Codex / ChatGPT workspace
-   Installation, member access, task execution, approvals
-
-4. Private Drive or business system
-   Current templates, client records, live engagement data
+Reusable method → skill
+Installable collection → plugin
+Connected capability → app through MCP
+Private records → governed source system
+Change history → version control
+Consequential action → explicit approval
 ```
 
-Ownership stays explicit:
+When those boundaries are designed first, teams can share improvements without copying private context into public packages, grant the minimum necessary access, and update workflows without losing control of what changed.
 
-- **Ana:** product and workflow owner. She approves methods, language, templates, and client boundaries.
-- **Technical maintainer:** packaging, security checks, tests, releases, update support, and rollback.
-- **Workspace admin:** which groups can discover the plugin and which connected apps/actions are allowed.
-- **Team members:** run approved workflows and submit structured improvements.
-
-Clients should not receive the same internal operations plugin. A future Cecilia experience should be a separate hosted and permissioned product with its own data model, entitlements, and client-safe interface.
-
-See the live [Ana collaboration review](/friends/ana) for the broader product context.
-
-## How do you create a custom workflow?
-
-Use this sequence:
-
-1. Pick one repeated workflow with a named owner.
-2. Write down the trigger, inputs, output, approval boundary, and private-data boundary.
-3. Create one focused skill with `SKILL.md`.
-4. Add references, examples, or scripts only when they improve repeatability.
-5. Test the success case, incomplete-input case, misuse case, and permission boundary.
-6. Pilot with two or three people.
-7. Package it as a plugin only when the workflow is stable or needs team distribution.
-
-Codex includes tools such as `$skill-creator` and `$plugin-creator` in supported environments to scaffold these assets. Record and Replay can also turn a demonstrated workflow into a draft skill. The generated result is a starting point; the workflow owner still needs to review the method and the team still needs eval cases.
-
-For a deeper skill-governance model, read [Why Everyone Needs Their Own AI Center of Excellence](/blog/why-everyone-needs-personal-ai-coe).
-
-## A practical seven-day pilot
-
-**Day 1:** Select one workflow that happens at least weekly. Name the owner.
-
-**Day 2:** Capture the real inputs, output, tools, data class, and approval step.
-
-**Day 3:** Build a narrow skill. Keep live client data out of the package.
-
-**Day 4:** Run five eval cases: normal, missing input, conflicting input, sensitive data, and unsafe action.
-
-**Day 5:** Let two team members use it without coaching. Record where they hesitate.
-
-**Day 6:** Correct the skill, add examples, and rerun the evals.
-
-**Day 7:** Decide whether it remains a skill, joins a plugin, needs a connector, or should become a hosted product.
-
-That is enough to discover whether the workflow is genuinely reusable before building an elaborate platform around it.
-
-## FAQ
-
-### What is the difference between Codex and ChatGPT?
-
-ChatGPT is the broader product experience for conversation, research, apps, files, and delegated work. Codex is OpenAI's coding agent. ChatGPT Work applies the technology behind Codex to broader multi-step work across files, connected systems, and artifacts.
-
-### What is the difference between a Codex skill and a plugin?
-
-A skill is one reusable workflow with instructions and optional resources or scripts. A plugin is the installable package that can bundle several skills plus apps, MCP configuration, hooks, assets, and metadata.
-
-### Can a website install a Codex plugin automatically?
-
-It should not silently install one. A website can explain the package, copy a verified marketplace command, or direct a user into the supported plugin experience. Installation and workspace approval should remain explicit.
-
-### Can a ChatGPT Business admin distribute or approve a plugin for everyone?
-
-Current documentation supports workspace plugin sharing and admin controls on supported surfaces, but exact controls vary by plan, workspace configuration, and client version. Verify the live admin settings before designing a rollout around a specific control.
-
-### Where should private templates and client data live?
-
-Keep them in the system that already owns access, retention, and audit responsibilities, such as Drive, SharePoint, Notion, an HR system, or a document platform. The plugin should carry the method and safe examples, not unrestricted client records.
-
-### How does one team member publish a change?
-
-They propose feedback or a branch change. The workflow owner reviews the method, tests cover expected and boundary cases, and the technical maintainer releases a new version through a protected source and changelog. Team members then install or receive the update in a new task.
-
-### Do nontechnical teams need GitHub?
-
-Not every user needs GitHub. The maintainers benefit from it for review, tests, versioning, and rollback. Nontechnical contributors can use a structured feedback form while the maintainer translates accepted changes into the release workflow.
-
-### When do we need MCP or a hosted application?
-
-Use MCP or an app connector when the agent needs live external tools or structured context, often with authentication. Build a hosted application when external clients need branded UI, account isolation, billing, entitlements, or a controlled experience beyond an internal workspace plugin.
-
-## Build the smallest system that can be trusted
-
-Do not start with a marketplace, ten plugins, and a governance committee.
-
-Start with one repeated workflow. Give it an owner. Separate the reusable method from private data. Test it with a small team. Package it only when distribution becomes the real problem.
-
-That is how an individual improvement becomes team infrastructure without turning every useful idea into another unmanaged automation.
-
-**Next:** [See Ana HR Operations in context](/friends/ana) or [design a governed team workflow with FrankX](/work-with-me).
+For the latest product behavior, consult OpenAI’s official [plugins documentation](https://learn.chatgpt.com/docs/plugins), [projects guide](https://learn.chatgpt.com/docs/projects), and [Work guide](https://learn.chatgpt.com/docs/get-started-with-work).

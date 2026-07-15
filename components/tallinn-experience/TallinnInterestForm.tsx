@@ -87,7 +87,7 @@ export function TallinnInterestForm({
           <div>
             <h3 className="text-lg font-semibold text-white">Interest collection is not open yet.</h3>
             <p className="mt-3 text-sm leading-6 text-amber-50/90">
-              Ana and Frank are reviewing the concept. No form is active, and nothing on this page will be stored or sent. To comment, reply directly to the person who shared this link.
+              The concept is under review. No form is active, and nothing on this page will be stored or sent. To comment, reply directly to the person who shared this link.
             </p>
             <p className="mt-3 text-xs leading-5 text-amber-100/65">
               No personal data will be stored and no email will be sent from this page.
