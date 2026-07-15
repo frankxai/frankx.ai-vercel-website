@@ -1,0 +1,120 @@
+{
+  "version": "2026-07-12",
+  "task": "Repair the FrankX mobile navigation, refine the ICP hero, and redesign the Mind Palace as a connected public venture blueprint.",
+  "surface": "FrankX global mobile navigation, homepage hero, and Mind Palace section.",
+  "audience": "Founders, creators, AI leaders, and sophisticated operators building owned AI systems, products, and operating leverage.",
+  "first_read": "FrankX turns AI capability into an operating advantage and connects a real portfolio of systems, ventures, and creative work.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "_intelligence/operating-system.md",
+    "_intelligence/motion.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "MOTION_TASTE_RUBRIC.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX brand pack",
+      "source": "starlight-design-intelligence/brand-packs/frankx",
+      "reason": "Defines clean technical luxury, direct founder language, and the emerald/cyan technical spectrum."
+    },
+    {
+      "label": "WCAG 2.2 pause, stop, hide",
+      "source": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide",
+      "reason": "Requires user control for automatically changing content that continues beyond five seconds."
+    },
+    {
+      "label": "Top agency pattern radar",
+      "source": "_intelligence/references/top-agency-patterns.md",
+      "reason": "Supports one authored set-piece, a strong still frame, and mobile-specific composition without copying a reference site."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Obsidian editorial canvas and restrained technical signal colors",
+      "Real public routes, ventures, products, and systems",
+      "Reviewed music release as optional studio proof",
+      "Native scroll, keyboard access, and reduced-motion behavior"
+    ],
+    "avoid": [
+      "Generic orbit or node-cloud wallpaper",
+      "Low-contrast changing text",
+      "A desktop graph compressed onto mobile",
+      "Generated text, stale counts, decorative 3D, and fake dashboards"
+    ],
+    "signature": "A code-rendered architectural blueprint where real public systems assemble as connected rooms around the FrankX studio.",
+    "system": [
+      "Tier A route and venture truth with Tier C code-rendered visualization",
+      "High-contrast emerald/cyan outcome language over the obsidian canvas",
+      "One GSAP corridor-assembly sequence using transform, opacity, and SVG stroke only",
+      "Static sequential mobile trail and complete reduced-motion final state",
+      "Accessible modal navigation with focus containment and restoration"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "vector-diagram",
+    "provenance": "owned",
+    "why_premium": "The blueprint is an exact, inspectable system visualization of verified FrankX ventures and routes rather than decorative imagery.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "components/NavigationMega.tsx",
+      "kind": "ui",
+      "inspected": false,
+      "notes": "Mobile trigger and overlay integration; browser proof pending."
+    },
+    {
+      "path_or_url": "components/home/HomePageElite.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "ICP promise, changing outcome color, pause/play control, and CTA hierarchy; preview inspection pending."
+    },
+    {
+      "path_or_url": "components/home/MindPalaceAtlas.tsx",
+      "kind": "motion",
+      "inspected": false,
+      "notes": "Desktop blueprint, mobile trail, and reduced-motion final state; preview inspection pending."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C is the correct medium for exact UI, routes, labels, relationships, and accessible interaction."
+    },
+    {
+      "name": "contract-and-lint",
+      "status": "pass",
+      "evidence": "11 navigation/homepage contracts and scoped ESLint pass."
+    },
+    {
+      "name": "hero-outcome-contrast",
+      "status": "pass",
+      "evidence": "Emerald-200, cyan-200, and sky-200 endpoints measure 15.43:1, 15.86:1, and 14.91:1 against the #0a0a0b canvas."
+    },
+    {
+      "name": "export-inspection",
+      "status": "blocked",
+      "evidence": "Vercel preview and responsive capture follow the coherent commit."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Desktop, mobile, tablet menu, and reduced-motion inspection are pending machine or cloud admission."
+    }
+  ],
+  "score": {
+    "total": 24,
+    "max": 30,
+    "notes": "Direction, specificity, accessibility design, and implementation pass; actual preview inspection is required before a ship score."
+  },
+  "decision": "iterate",
+  "known_risks": [
+    "Local browser QA and full build remain machine-gated while PP is in maintenance posture.",
+    "The complete estate is larger than the curated homepage map; the ecosystem route remains the exhaustive index."
+  ]
+}

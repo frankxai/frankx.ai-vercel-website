@@ -266,6 +266,10 @@ module.exports = {
         'tech-aurora': 'radial-gradient(ellipse 120% 80% at 20% 50%, rgba(171,71,199,0.12), transparent 60%), radial-gradient(ellipse 100% 60% at 80% 30%, rgba(67,191,227,0.08), transparent 50%)',
         'soul-aurora': 'radial-gradient(ellipse 120% 80% at 30% 60%, rgba(245,158,11,0.15), transparent 60%), radial-gradient(ellipse 100% 60% at 70% 20%, rgba(249,112,102,0.12), transparent 50%)',
         'brand-gradient': 'linear-gradient(135deg, #AB47C7, #43BFE3)',
+        'ana-aurora': 'radial-gradient(circle at 16% 10%, rgba(212,165,116,0.20), transparent 34%), radial-gradient(circle at 84% 16%, rgba(31,95,74,0.22), transparent 31%), linear-gradient(135deg, #0E0E0F 0%, #17130f 48%, #0a1712 100%)',
+        'ana-aurora-cecilia': 'radial-gradient(circle at 14% 8%, rgba(212,165,116,0.22), transparent 32%), radial-gradient(circle at 82% 18%, rgba(31,95,74,0.26), transparent 32%), radial-gradient(circle at 55% 90%, rgba(107,58,31,0.15), transparent 35%), linear-gradient(135deg, #0E0E0F 0%, #17130f 48%, #0a1712 100%)',
+        'ana-panel': 'linear-gradient(135deg, rgba(212,165,116,0.12), rgba(255,255,255,0.035), rgba(31,95,74,0.10))',
+        'ana-stage': 'linear-gradient(145deg, rgba(212,165,116,0.10), rgba(255,255,255,0.035), rgba(31,95,74,0.08))',
         // Legacy (preserved for backward compat)
         'midnight-radial': 'radial-gradient(circle at 20% 20%, rgba(171, 71, 199, 0.12), transparent 55%)',
         'aurora-vortex': 'radial-gradient(circle at 80% 10%, rgba(67, 191, 227, 0.08), transparent 45%)',
@@ -347,6 +351,7 @@ module.exports = {
         'glow-blue': '0 0 40px rgba(67, 191, 227, 0.35)',
         'glow-emerald': '0 0 40px rgba(16, 185, 129, 0.35)',
         'glow-gold': '0 0 40px rgba(245, 158, 11, 0.35)',
+        'ana-glow': '0 18px 60px rgba(212, 165, 116, 0.11)',
         'glow-magenta': '0 0 40px rgba(224, 64, 251, 0.35)',
         'glow-arcanea': '0 0 40px rgba(124, 58, 237, 0.35)',
         // Legacy aliases

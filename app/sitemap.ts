@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
+import { learningPaths } from '@/data/learning-paths'
 
 const BASE_URL = siteConfig.url
 
@@ -97,7 +98,7 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
-function getRouteIndexRoutes(): Array<{ href: string; type: string }> {
+function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: boolean }> {
   try {
     const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
     const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
@@ -235,6 +236,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
+    '/licensing',
   ]
 
   // Strategy and framework pages
@@ -556,6 +558,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Learn portal detail pages (/learn/[slug]) — dynamic route, not caught by the
+  // static route-index, so enumerate them explicitly. Recency from heroEyebrow.
+  learningPaths.forEach((path) => {
+    const m = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)
+    const parsed = m ? new Date(m[1]) : null
+    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate
+    entries.push({
+      url: `${BASE_URL}/learn/${path.slug}`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    })
+  })
+
   // Audience landing pages
   audiencePages.forEach(page => {
     entries.push({
@@ -697,6 +713,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
   for (const route of discovered) {
+    if (route.sitemap === false) continue
     const url = `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)

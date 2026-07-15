@@ -7,17 +7,25 @@
  * of model-maker portals (the hub as a whole), and LearnHubSection silently
  * drops any portal slug that no longer resolves — so a rename can't break a page.
  *
- * When Phase 3 adds cloud (aws-bedrock, azure-ai-foundry, oracle-oci-genai) and
- * creative (suno-music, midjourney, notebooklm) portals, add their slugs to the
- * relevant guide/research entries here (e.g. midjourney-guide → midjourney).
+ * When creative (suno-music, midjourney, notebooklm) portals ship, add their
+ * slugs to the relevant guide/research entries here (e.g. midjourney-guide →
+ * midjourney).
  */
 
-/** The four model-maker portals live today. Order is the display order. */
+/** The five model-maker portals live today. Order is the display order. */
 export const MODEL_MAKER_PORTALS = [
   'claude-mastery',
   'codex-mastery',
   'chatgpt-mastery',
   'gemini-mastery',
+  'antigravity-mastery',
+] as const
+
+/** The three cloud portals. Surface these on cloud/production-architecture pages. */
+export const CLOUD_PORTALS = [
+  'aws-bedrock-mastery',
+  'azure-ai-foundry-mastery',
+  'oracle-oci-genai-mastery',
 ] as const
 
 /** content/guides/<slug>.mdx → portal slugs. Omitted guides get the default set. */
@@ -27,11 +35,12 @@ const GUIDE_PORTALS: Record<string, string[]> = {
   'openai-chatgpt-guide': ['chatgpt-mastery'],
   'image-generation-mastery': ['gemini-mastery'],
   'ai-writing-system': ['claude-mastery', 'chatgpt-mastery'],
-  'first-agent-primer': ['claude-mastery', 'codex-mastery'],
+  'first-agent-primer': ['claude-mastery', 'codex-mastery', 'antigravity-mastery'],
   'agent-collective-operating-system': ['claude-mastery'],
   'top-50-ai-prompts': ['chatgpt-mastery', 'claude-mastery'],
   'skills-library-playbook': ['claude-mastery'],
   'frankx-skill-creation-methodology': ['claude-mastery'],
+  'founder-ai-stack-2026': ['claude-mastery', 'chatgpt-mastery', 'gemini-mastery'],
 }
 
 /** lib/research/domains.ts <slug> → portal slugs. Omitted domains get the default set. */
@@ -40,14 +49,16 @@ const RESEARCH_PORTALS: Record<string, string[]> = {
   'model-arena': ['claude-mastery', 'codex-mastery', 'chatgpt-mastery', 'gemini-mastery'],
   'agent-benchmarks': ['claude-mastery', 'codex-mastery', 'chatgpt-mastery', 'gemini-mastery'],
   'coding-assistants': ['claude-mastery', 'codex-mastery', 'gemini-mastery'],
-  'agent-frameworks': ['claude-mastery', 'codex-mastery', 'gemini-mastery'],
-  'ai-agent-config': ['claude-mastery', 'codex-mastery'],
-  'multi-agent-systems': ['claude-mastery', 'gemini-mastery'],
+  'ai-agent-config': ['claude-mastery', 'codex-mastery', 'antigravity-mastery'],
+  'multi-agent-systems': ['claude-mastery', 'gemini-mastery', 'antigravity-mastery'],
   'prompt-engineering': ['claude-mastery', 'chatgpt-mastery'],
   'context-engineering': ['claude-mastery'],
-  'production-patterns': ['claude-mastery'],
-  'mcp-ecosystem': ['claude-mastery'],
+  // Production / cloud-deployment domains surface the cloud portals.
+  'production-patterns': ['claude-mastery', 'aws-bedrock-mastery', 'azure-ai-foundry-mastery', 'oracle-oci-genai-mastery'],
+  'mcp-ecosystem': ['claude-mastery', 'aws-bedrock-mastery'],
+  'enterprise-ai': ['aws-bedrock-mastery', 'azure-ai-foundry-mastery', 'oracle-oci-genai-mastery'],
   'ai-creative-tools': ['gemini-mastery'],
+  'agent-frameworks': ['claude-mastery', 'codex-mastery', 'gemini-mastery', 'antigravity-mastery'],
 }
 
 /** Portals to surface at the bottom of a guide page. */
