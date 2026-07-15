@@ -9,7 +9,7 @@ Consider two content operations.
 
 The first is a Fortune 500 technology company's content marketing department. Twenty-five people: a VP of Content, two directors, four senior writers, three junior writers, two editors, three designers, two video producers, a social media manager, an SEO specialist, two project managers, two analytics leads, and an executive assistant. Annual budget: $2.5 million in salaries alone, before tools, office space, software licenses, and agency retainers. Output: roughly fifty articles per month, one quarterly whitepaper, and a weekly newsletter. Good work. Professional. Consistent. Expensive.
 
-The second is a single person working from a home office in the Netherlands. One AI Architect & Creator, now a full-time creator. Monthly tool budget: approximately fifty dollars. Output: thirty articles per month, three book chapters per week, daily songs, weekly product updates, a research hub spanning seventeen domains, and an open-source agent operating system used by over a thousand builders. Also good work. Also professional. Also consistent. Radically cheaper.
+The second is a single person working from a home office in the Netherlands. One independent AI Architect & Creator. Monthly tool budget: approximately fifty dollars. Output: thirty articles per month, three book chapters per week, daily songs, weekly product updates, a research hub spanning seventeen domains, and an open-source agent operating system used by over a thousand builders. Also good work. Also professional. Also consistent. Radically cheaper.
 
 I am the second operation. And the gap between us is not talent, ambition, or hours worked. The gap is the operating system.
 

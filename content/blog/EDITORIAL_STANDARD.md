@@ -6,7 +6,7 @@ The operating standard for every article. Goal: writing that is **credible, huma
 
 ## 1. Author canon (keep this accurate everywhere)
 
-Frank Riemer is a **AI Architect & Creator**. He is now independent, building agentic AI systems and creating music with AI.
+Frank Riemer is an **AI Architect & Creator**. He is now independent, building agentic AI systems and creating music with AI.
 
 - ✅ "AI Architect & Creator", "former enterprise AI architect", "enterprise AI/cloud experience", "production AI architecture experience"
 - ❌ Present-tense Oracle employment claims (inaccurate)

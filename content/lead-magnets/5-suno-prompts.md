@@ -201,5 +201,5 @@ Learn more: [frankx.ai/music-lab](https://frankx.ai/music-lab)
 
 ---
 
-_Created by Frank Riemer | AI Architect & Creator | 500+ AI Songs | Independent project. Not affiliated with, endorsed by, or sponsored by Oracle._
+_Created by Frank Riemer | AI Architect & Creator | 12,000+ AI Songs | Independent project. Not affiliated with, endorsed by, or sponsored by Oracle._
 _frankx.ai_

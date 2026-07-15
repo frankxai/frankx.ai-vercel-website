@@ -52,7 +52,7 @@ export const FRANKX_VOICE = {
       'Personal AI CoE — enterprise AI architecture patterns (Strategy, Governance, Talent, Technology, Data, Ethics) translated into practical systems for creators, entrepreneurs, and operators.',
     proof: [
       '12,000+ AI songs shipped',
-      'AI Architect & Creator',
+      'Built Oracle EMEA AI CoE — 1000+ requests handled',
       'Helped build a seven-figure business',
       'ACOS, Workshop OS, Watch OS, Library OS, SIS, IIS shipped to production',
     ],

@@ -33,7 +33,7 @@
 AI Architect & Creator helping creators build practical AI systems. Founder @FrankX_AI • 12,000+ AI songs • human-first systems
 
 ### Bio (Medium - 1 paragraph)
-Frank X. Riemer is a musician-technologist, founder of FrankX.AI, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
+Frank X. Riemer is a musician-technologist, founder of FrankX.AI, and an AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
 
 ### Bio (Long - Full Background)
 Frank X. Riemer is a musician, technologist, and creator transformation guide who spent the first half of his career as a professional violinist before discovering his calling at the intersection of creativity, business, and artificial intelligence.

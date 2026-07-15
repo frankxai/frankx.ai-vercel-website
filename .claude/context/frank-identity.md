@@ -48,7 +48,7 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
 ## Creative
 
-- **Music:** 500+ AI-generated songs via Suno
+- **Music:** 12,000+ AI-generated songs via Suno
 - **Writing:** Blog articles on AI, consciousness, creativity
 - **Building:** Digital products, courses, templates
 
