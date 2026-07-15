@@ -42,7 +42,7 @@ export default function TermsPage() {
         <p>For products where the withdrawal right applies, you may exercise it by contacting us at <a href="mailto:frank@frankx.ai" className="text-violet-400">frank@frankx.ai</a> within 14 days of purchase.</p>
       </Section>
 
-      <Section title="6. License Grant">
+      <Section title="6. License Grant" id="license-grant">
         <p>Upon purchase, we grant you a personal, non-exclusive, non-transferable license to use the digital product for your own purposes.</p>
         <p><strong className="text-zinc-300">You may:</strong></p>
         <ul>
@@ -70,7 +70,7 @@ export default function TermsPage() {
         <p>We reserve text-and-data-mining rights for protected content under EU law where applicable.</p>
       </Section>
 
-      <Section title="9. Music, Creative Works, And Licensing">
+      <Section title="9. Music, Creative Works, And Licensing" id="music-licensing">
         <p>Music, lyrics, stems, cover art, videos, books, prompt packs, templates, and Arcanea canon are not licensed for reuse unless a product page, release page, or signed agreement says so.</p>
         <p>Commercial, sync, publishing, education, agency, enterprise, and partner licenses require explicit written terms. Public access to a page is not a reuse license.</p>
       </Section>
@@ -124,9 +124,9 @@ export default function TermsPage() {
   )
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) {
   return (
-    <section className="mt-10">
+    <section id={id} className="mt-10 scroll-mt-24">
       <h2 className="text-xl font-semibold text-zinc-200 mb-3">{title}</h2>
       <div className="text-zinc-400 text-sm leading-relaxed space-y-3">{children}</div>
     </section>

@@ -221,7 +221,7 @@ function BlueprintCard({ blueprint, index }: { blueprint: ArchitecturePrototype;
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
     >
-      <Link href={`/blueprint/${blueprint.slug}`} className="group block h-full">
+      <Link href={`/ai-architecture/${blueprint.slug}`} className="group block h-full">
         <div className="relative h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 hover:border-white/15 hover:bg-white/[0.06] group-hover:-translate-y-0.5 group-hover:shadow-lg group-hover:shadow-cyan-500/[0.05]">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-400">
