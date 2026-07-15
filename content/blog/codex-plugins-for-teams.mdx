@@ -15,7 +15,7 @@ keywords:
     "ChatGPT Business plugins",
     "Codex plugin marketplace",
   ]
-image: "/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp"
+image: "/images/blog/editorial/headers/codex-plugins-for-teams-hero.webp"
 readingGoal: "Understand the Codex plugin model, choose the right unit for a workflow, and set up a safe team release process."
 tldr: "Codex is the agent that performs work. Skills encode reusable methods. Plugins package those skills with optional tools, hooks, apps, and metadata so a team can install and govern them. OpenAI provides the execution and workspace layer; GitHub, private content systems, and release controls complete the operating model."
 faq:
@@ -51,13 +51,15 @@ Codex performs the task. A skill describes how the task should be done. A plugin
 
 The practical model is **shared operating method, private data overlay**.
 
-Ana HR Operations is a working example. Its plugin contains four reviewed skills. Ana's current templates and client material stay outside the plugin, behind the permissions of the system that owns them.
+The same pattern works for HR, marketing, sales, finance, research, and software teams.
 
 <Diagram
-  src="/images/diagrams/codex-plugins-for-teams-architecture.svg"
-  alt="Architecture of the installed Ana HR Operations Codex plugin, its four skills, team runtime, GitHub source control, and private data overlay"
-  caption="The actual installed Ana HR Operations package. Workflow logic travels with the plugin; private company data does not."
+  src="/images/blog/editorial/infographics/codex-plugins-for-teams-lifecycle.webp"
+  alt="Four-step lifecycle for a team AI plugin: build the method, review it, share it with the team, and improve the next version, while files, records, and permissions remain in protected company systems"
+  caption="The universal team model: one reviewed method can be shared across a workspace while live data remains inside the systems that already control access."
 />
+
+Ana HR Operations is a working example. Its plugin contains four reviewed skills. Ana's current templates and client material stay outside the plugin, behind the permissions of the system that owns them.
 
 ## What is Codex, exactly?
 
@@ -112,6 +114,12 @@ The manifest calls this version `0.2.0+codex.20260714123709`. The four skills di
 | `ana-template-studio` | Document/template jobs and specialist routing |
 
 Each skill can carry its own instructions, reference material, templates, and scripts. Maintainers can keep eval cases and tests alongside the plugin source. This is the difference between "remember this prompt" and a maintainable operating asset.
+
+<Diagram
+  src="/images/diagrams/codex-plugins-for-teams-architecture.svg"
+  alt="Architecture of the installed Ana HR Operations Codex plugin, its four skills, team runtime, GitHub source control, and private data overlay"
+  caption="Ana HR Operations as a concrete implementation: GitHub governs the package, four skills carry the method, the workspace runs it, and private records remain outside the plugin."
+/>
 
 Plugins may also include apps, MCP configuration, hooks, browser capabilities, scheduled-task templates, and presentation assets. They do not need every layer. The smallest useful package is usually the best one.
 
