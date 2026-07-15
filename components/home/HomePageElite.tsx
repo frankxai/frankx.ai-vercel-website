@@ -413,8 +413,8 @@ const products = [
   },
   {
     title: 'Creator Kit',
-    description: 'Premium templates and guided implementation resources for creators who want a faster start.',
-    href: '/products',
+    description: 'The $47 kit that turns the free ACOS install into a guided setup — templates, a 45-minute walkthrough, and direct support.',
+    href: '/acos#pricing',
     color: 'cyan' as const,
   },
   {
