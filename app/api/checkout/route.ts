@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
     params.append('cancel_url', `${request.nextUrl.origin}/checkout/cancel`)
     params.append('line_items[0][price]', product.priceId)
     params.append('line_items[0][quantity]', '1')
+    params.append('metadata[productSlug]', productId)
     if (email) {
       params.append('customer_email', email)
     }

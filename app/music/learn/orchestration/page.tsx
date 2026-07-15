@@ -296,7 +296,7 @@ export default function OrchestrationPage() {
           <Link href="/music/learn/violin" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">🎻 Violin</Link>
           <Link href="/music/learn/theory" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">📐 Theory</Link>
           <Link href="/music/create" className="rounded-full border border-white/10 px-6 py-3 text-sm text-emerald-400/60 transition hover:border-emerald-500/30 hover:text-emerald-400">🤖 Create with AI</Link>
-          <Link href="/music/learn" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">← Academy</Link>
+          <Link href="/music/learn" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">← Learning map</Link>
         </div>
       </div>
     </div>

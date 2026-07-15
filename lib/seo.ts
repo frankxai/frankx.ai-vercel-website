@@ -5,10 +5,10 @@ import { socialHandles } from './social-links'
 const siteUrl = 'https://frankx.ai'
 
 export const siteConfig = {
-  name: 'FrankX Intelligence Hub',
+  name: 'FrankX — Executive AI Architecture',
   shortName: 'FrankX',
   description:
-    'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
+    'Executive AI architecture, agent workflows, and operator systems for founders and teams.',
   url: siteUrl,
   twitter: socialHandles.twitter,
   // Static fallback. /api/og dynamic route has empty-body issues in Next 16

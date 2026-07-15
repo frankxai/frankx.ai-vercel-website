@@ -8,16 +8,16 @@ export function ConnectLandedTracker() {
   const params = useSearchParams()
 
   useEffect(() => {
-    const utmSource = params?.get('utm_source') ?? undefined
-    const utmMedium = params?.get('utm_medium') ?? undefined
-    const utmCampaign = params?.get('utm_campaign') ?? undefined
-    const eventTag = params?.get('e') ?? params?.get('event') ?? undefined
+    const hasCampaignTag = Boolean(
+      params?.get('utm_source') ||
+      params?.get('utm_medium') ||
+      params?.get('utm_campaign') ||
+      params?.get('e') ||
+      params?.get('event')
+    )
 
     trackEvent('connect_landed', {
-      utm_source: utmSource,
-      utm_medium: utmMedium,
-      utm_campaign: utmCampaign,
-      event_tag: eventTag,
+      entry: hasCampaignTag ? 'tagged_link' : 'direct_or_referral',
     })
   }, [params])
 
