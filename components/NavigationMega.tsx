@@ -78,7 +78,7 @@ const navigation = {
       { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
       { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters: identity to legacy' },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '98+ curated prompts' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '130+ curated prompts' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
     ],
