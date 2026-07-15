@@ -4,10 +4,19 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 
-import type { DimensionScore } from '@/lib/scorecard/engine'
+// Deliberately not imported from a specific product's engine (operator-scorecard,
+// ai-coe-readiness, or any future one) — this component only ever reads `dimension` as an
+// opaque React key, so it stays product-agnostic and structurally accepts any of them.
+interface DimensionScoreLike {
+  dimension: string
+  label: string
+  raw: number
+  max: number
+  pct: number
+}
 
 interface DimensionRadarProps {
-  scores: DimensionScore[]
+  scores: DimensionScoreLike[]
   size?: number
   color?: string
   /**
