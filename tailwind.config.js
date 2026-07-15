@@ -57,11 +57,11 @@ module.exports = {
           glow: 'rgba(245, 158, 11, 0.15)',
         },
 
-        // ANA SPECTRUM - For Ana Intelligence System surfaces
+        // COLLABORATION SPECTRUM - Used by the dedicated collaboration hub
         // Sister to Frank-Ω electric-blue: warm-gold + deep-emerald + earth + amber.
         // Composed warmth, intellectual power, Venezuelan-jaguar register.
         ana: {
-          gold:     '#D4A574',                  // Primary  — Ana-Ω hood, hero CTAs
+          gold:     '#D4A574',                  // Primary — warm dusty gold, hero CTAs
           emerald:  '#1F5F4A',                  // Accent   — depth, jaguar rosettes
           earth:    '#6B3A1F',                  // Earth    — tortoiseshell, terracotta
           amber:    '#E8A951',                  // Highlight — eye color, links
@@ -270,7 +270,6 @@ module.exports = {
         'studio-continuation': 'radial-gradient(circle at 18% 20%, rgba(16,185,129,0.10), transparent 30%), radial-gradient(circle at 84% 75%, rgba(67,191,227,0.09), transparent 32%)',
         'brand-gradient': 'linear-gradient(135deg, #AB47C7, #43BFE3)',
         'ana-aurora': 'radial-gradient(circle at 16% 10%, rgba(212,165,116,0.20), transparent 34%), radial-gradient(circle at 84% 16%, rgba(31,95,74,0.22), transparent 31%), linear-gradient(135deg, #0E0E0F 0%, #17130f 48%, #0a1712 100%)',
-        'ana-aurora-cecilia': 'radial-gradient(circle at 14% 8%, rgba(212,165,116,0.22), transparent 32%), radial-gradient(circle at 82% 18%, rgba(31,95,74,0.26), transparent 32%), radial-gradient(circle at 55% 90%, rgba(107,58,31,0.15), transparent 35%), linear-gradient(135deg, #0E0E0F 0%, #17130f 48%, #0a1712 100%)',
         'ana-panel': 'linear-gradient(135deg, rgba(212,165,116,0.12), rgba(255,255,255,0.035), rgba(31,95,74,0.10))',
         'ana-stage': 'linear-gradient(145deg, rgba(212,165,116,0.10), rgba(255,255,255,0.035), rgba(31,95,74,0.08))',
         // Legacy (preserved for backward compat)

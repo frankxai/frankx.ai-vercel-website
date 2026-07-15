@@ -13,21 +13,21 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
   const { id } = use(params)
   const auction = auctions.find(a => a.slug === id)
 
-  if (!auction) return notFound()
-
-  const isCompleted = auction.status === 'completed'
-  const currentPrice = auction.winningBid || auction.startingBid
-
   // Form State
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [bidAmount, setBidAmount] = useState(String(auction.startingBid))
+  const [bidAmount, setBidAmount] = useState(String(auction?.startingBid ?? ''))
   const [proposal, setProposal] = useState('')
   
   // Status State
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  if (!auction) return notFound()
+
+  const isCompleted = auction.status === 'completed'
+  const currentPrice = auction.winningBid || auction.startingBid
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

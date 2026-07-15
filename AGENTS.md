@@ -87,6 +87,14 @@ Multiple agents (Claude, Grok, Gemini, Codex, Cursor, Cline) work this repo in p
 
 ## 5. The merge gate â€” what must pass before `main`
 
+### Public/private content gate
+
+- Public content must follow `C:\Users\frank\.starlight\policies\public-private-content-boundary.md`.
+- A client or partner hub is a route-scoped permission boundary. Material approved for that hub must not be reused in blogs, newsletters, social posts, screenshots, diagrams, marketplace copy, or other public routes without a separate consent record for that surface.
+- Before publishing, scan copy, frontmatter, code blocks, filenames, alt text, captions, metadata, links, and public assets for names and identifying operational details.
+- If named-entity consent is absent, use a generic or fictional example and remove identifying repositories, packages, plugins, skills, versions, commands, workflows, roadmaps, and orphaned assets.
+- Named or client-adjacent public releases require an independent privacy verifier and a post-deploy scan of live HTML and direct asset URLs.
+
 ```bash
 npm run merge:gate
 # = npm run type-check
