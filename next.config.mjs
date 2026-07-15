@@ -312,6 +312,16 @@ const nextConfig = {
       'public/videos/**',
     ],
   },
+  // Books chapter on-demand renders need the .md content files. NFT cannot
+  // trace dynamic readFileSync(join(cwd, book.contentDir, slug+'.md')) paths,
+  // so we explicitly bundle all book .md files in the chapter Lambda.
+  // contentDir values in booksRegistry span content/books/** and content/golden-age-book/**. 2026-07-06.
+  outputFileTracingIncludes: {
+    '/books/[bookSlug]/[chapterSlug]': [
+      'content/books/**/*.md',
+      'content/golden-age-book/**/*.md',
+    ],
+  },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
   // Listed here so Next.js requires them at runtime from node_modules instead.
   //
