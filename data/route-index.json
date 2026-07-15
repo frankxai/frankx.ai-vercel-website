@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 819,
+    "total": 835,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 391,
+      "section": 402,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 202,
+      "blog": 207,
       "workshop": 12,
       "guide": 20,
       "library": 41,
@@ -477,6 +477,25 @@
       "tags": [
         "ai",
         "coe"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-coe-readiness",
+      "title": "AI Coe Readiness",
+      "tags": [
+        "ai",
+        "coe",
+        "readiness"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-computer",
+      "title": "AI Computer",
+      "tags": [
+        "ai",
+        "computer"
       ],
       "type": "section"
     },
@@ -1719,6 +1738,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/codex-plugins-for-teams",
+      "title": "Codex Plugins for Teams: Skills, Sharing, Governance",
+      "description": "Learn how Codex plugins package skills and tools, how teams share and update workflows, and what ChatGPT Business still needs around it.",
+      "tags": [
+        "codex",
+        "plugins",
+        "ai skills",
+        "team workflows",
+        "ai governance"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/conscious-ai-for-entrepreneurs",
       "title": "The Thoughtful Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity",
       "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
@@ -1854,6 +1886,19 @@
         "glassmorphism",
         "ai-development",
         "design-lab"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/do-you-need-rtx-5090-for-ai-2026",
+      "title": "Do You Need an RTX 5090 for AI?",
+      "description": "A grounded buyer guide comparing RTX 5090 workstations, cloud GPU rental, RTX 5080, DGX Spark, and Ryzen AI Max+ mini PCs.",
+      "tags": [
+        "ai-computer",
+        "local-ai",
+        "rtx-5090",
+        "creator-systems",
+        "ai-hardware"
       ],
       "type": "blog"
     },
@@ -2469,6 +2514,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/music-intelligence-vibe-os-launch",
+      "title": "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era Music",
+      "description": "An open, interconnected system for AI-era music creation — a 25-state research library (Vibe OS), portable agents, an MCP server, and free Suno prompt templates. Built in public across GitHub.",
+      "tags": [
+        "music-intelligence",
+        "vibe-os",
+        "suno-ai",
+        "mcp-server",
+        "ai-music",
+        "open-source"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/my-100-month-ai-stack-every-tool-i-actually-use",
       "title": "My $100/Month AI Stack: Every Tool I Actually Use",
       "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
@@ -3076,6 +3135,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-light-within-protocol",
+      "title": "The Light Within Protocol: A 20-Minute Morning Practice (and Where AI Helps)",
+      "description": "A concrete morning practice that stacks the levers with real evidence behind them — paced breath, gratitude, coherence, and vivid visualization — plus an honest account of where a model removes friction and where it must never go.",
+      "tags": [
+        "the-light-within",
+        "visualization",
+        "breathwork",
+        "morning routine",
+        "contemplative practice"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
       "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
       "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
@@ -3086,6 +3158,18 @@
         "Hooks",
         "Content Strategy",
         "Creator Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-sovereign-curator",
+      "title": "The Sovereign Curator: Platform Curation and the Art of Responsible AI Reuse",
+      "description": "Why raw content creation is a commodity in the age of infinite AI noise—and how to build high-leverage curation engines, owned platforms, and responsible attribution networks.",
+      "tags": [
+        "Curation",
+        "Creator Economy",
+        "AI Workflows",
+        "Platform Design"
       ],
       "type": "blog"
     },
@@ -6104,6 +6188,33 @@
       "type": "section"
     },
     {
+      "href": "/map/v1",
+      "title": "V1",
+      "tags": [
+        "map",
+        "v1"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v2",
+      "title": "V2",
+      "tags": [
+        "map",
+        "v2"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v3",
+      "title": "V3",
+      "tags": [
+        "map",
+        "v3"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/media-kit",
       "title": "Media Kit",
       "tags": [
@@ -6115,6 +6226,15 @@
     {
       "href": "/music",
       "title": "Music",
+      "type": "section"
+    },
+    {
+      "href": "/music-intelligence",
+      "title": "Music Intelligence",
+      "tags": [
+        "music",
+        "intelligence"
+      ],
       "type": "section"
     },
     {
@@ -6294,6 +6414,15 @@
       "type": "section"
     },
     {
+      "href": "/music/templates",
+      "title": "Templates",
+      "tags": [
+        "music",
+        "templates"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music/tools",
       "title": "Tools",
       "tags": [
@@ -6436,6 +6565,15 @@
       "tags": [
         "open",
         "source"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/operator-scorecard",
+      "title": "Operator Scorecard",
+      "tags": [
+        "operator",
+        "scorecard"
       ],
       "type": "section"
     },
@@ -6999,6 +7137,17 @@
       "type": "section"
     },
     {
+      "href": "/products/visual-creation-loop",
+      "title": "Visual Creation Loop",
+      "tags": [
+        "products",
+        "visual",
+        "creation",
+        "loop"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/progress",
       "title": "Progress",
       "tags": [
@@ -7283,6 +7432,17 @@
       "href": "/research/sources",
       "title": "Research Sources",
       "type": "research"
+    },
+    {
+      "href": "/research/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "research",
+        "the",
+        "light",
+        "within"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/visual-catalog",
@@ -7692,6 +7852,16 @@
       "tags": [
         "thank",
         "you"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "the",
+        "light",
+        "within"
       ],
       "type": "section"
     },

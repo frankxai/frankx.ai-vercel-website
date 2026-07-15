@@ -192,3 +192,5 @@ link-checker-report.txt
 # Starlight/ACOS temporary files
 .starlight/
 .gemini/
+
+.vercel
