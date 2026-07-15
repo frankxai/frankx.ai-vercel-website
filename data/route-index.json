@@ -2,7 +2,7 @@
   "version": "1.0",
   "stats": {
     "total": 821,
-    "aliases": 39,
+    "aliases": 38,
     "byType": {
       "core": 21,
       "section": 388,
@@ -589,6 +589,17 @@
         "allies"
       ],
       "type": "section"
+    },
+    {
+      "href": "/allies/ana-cancino",
+      "title": "Ana Cancino",
+      "tags": [
+        "allies",
+        "ana",
+        "cancino"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/allies/epic-ways",
@@ -4655,16 +4666,6 @@
       "sitemap": false
     },
     {
-      "href": "/friends/ana",
-      "title": "Ana",
-      "tags": [
-        "friends",
-        "ana"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/friends/estefania",
       "title": "Estefania",
       "tags": [
@@ -8078,11 +8079,10 @@
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
-    "/ais": "/friends/ana",
-    "/alliance/cecilia": "/friends/ana",
-    "/allies/ana-cancino": "/friends/ana",
-    "/ana": "/friends/ana",
-    "/ana-intelligence-system": "/friends/ana",
+    "/ais": "/allies/ana-cancino",
+    "/alliance/cecilia": "/allies/ana-cancino",
+    "/ana": "/allies/ana-cancino",
+    "/ana-intelligence-system": "/allies/ana-cancino",
     "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
     "/books/fable/chapter-01-the-listening-machine": "/books/fable",
     "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
@@ -8102,7 +8102,7 @@
     "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
     "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
-    "/downloads/ana-ai-business-kit": "/friends/ana",
+    "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
