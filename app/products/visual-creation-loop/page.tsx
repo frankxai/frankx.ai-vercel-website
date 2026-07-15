@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import { notFound } from 'next/navigation'
 
 import products from '@/data/products.json'
 import { createMetadata } from '@/lib/seo'
@@ -7,16 +8,12 @@ import type { ProductRecord } from '@/types/products'
 import ProductHero from '@/components/products/ProductHero'
 import OfferStack from '@/components/products/OfferStack'
 
-const product = products.find((entry) => entry.id === 'visual-creation-loop') as ProductRecord
-
-if (!product) {
-  throw new Error('Visual Creation Loop product record missing')
-}
+const product = products.find((entry) => entry.id === 'visual-creation-loop') as ProductRecord | undefined
 
 export const metadata = createMetadata({
-  title: `${product.name} - ${product.headline} | FrankX.ai`,
-  description: product.promise,
-  path: `/products/${product.slug}`,
+  title: product ? `${product.name} - ${product.headline} | FrankX.ai` : 'Visual Creation Loop | FrankX.ai',
+  description: product?.promise ?? 'The Visual Creation Loop product is currently unavailable.',
+  path: '/products/visual-creation-loop',
   keywords: [
     'visual creation loop',
     'agentic visual generation',
@@ -26,26 +23,29 @@ export const metadata = createMetadata({
   ]
 })
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: product.name,
-  description: product.promise,
-  image: 'https://frankx.ai/images/products/visual-creation-loop-hero.jpg',
-  brand: {
-    '@type': 'Brand',
-    name: 'FrankX.ai'
-  },
-  offers: {
-    '@type': 'Offer',
-    price: product.offer.primaryPrice.toString(),
-    priceCurrency: product.offer.currency,
-    availability: 'https://schema.org/InStock'
-  }
-}
-
 export default function VisualCreationLoopPage() {
+  if (!product) {
+    notFound()
+  }
+
   const productId = product.analyticsId ?? product.id
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.promise,
+    image: 'https://frankx.ai/images/products/visual-creation-loop-hero.jpg',
+    brand: {
+      '@type': 'Brand',
+      name: 'FrankX.ai'
+    },
+    offers: {
+      '@type': 'Offer',
+      price: product.offer.primaryPrice.toString(),
+      priceCurrency: product.offer.currency,
+      availability: 'https://schema.org/InStock'
+    }
+  }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-void">
