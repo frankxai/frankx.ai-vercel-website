@@ -1,12 +1,9 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
+import { track as trackVercelEvent } from '@vercel/analytics'
 
-type AnalyticsAdapter = {
-  track?: (event: string, properties?: Record<string, any>) => void
-  identify?: (userId: string, traits?: Record<string, any>) => void
-  group?: (groupId: string, traits?: Record<string, any>) => void
-}
+import { hasDoNotTrack, sanitizeAnalyticsProperties } from '@/lib/analytics-policy'
 
 type AnalyticsEvent = {
   name: string
@@ -17,40 +14,30 @@ type AnalyticsEvent = {
 const eventBuffer: AnalyticsEvent[] = []
 const subscribers = new Set<() => void>()
 
-let adapter: AnalyticsAdapter | null = null
-
-export function configureAnalytics(customAdapter: AnalyticsAdapter) {
-  adapter = customAdapter
-}
-
 function emitUpdate() {
   subscribers.forEach((listener) => listener())
 }
 
 export function trackEvent(name: string, params: Record<string, any> = {}) {
+  const safeParams = sanitizeAnalyticsProperties(params)
   const payload: AnalyticsEvent = {
     name,
-    params,
+    params: safeParams,
     timestamp: Date.now()
   }
 
   eventBuffer.push(payload)
 
   if (typeof window !== 'undefined') {
-    if (adapter?.track) {
-      adapter.track(name, params)
-    } else {
-      const posthog = (window as any).posthog
-      const segment = (window as any).analytics
-      const plausible = (window as any).plausible
+    if (hasDoNotTrack(window.navigator.doNotTrack)) {
+      emitUpdate()
+      return
+    }
 
-      try {
-        if (posthog?.capture) posthog.capture(name, params)
-        if (segment?.track) segment.track(name, params)
-        if (plausible) plausible(name, { props: params })
-      } catch {
-        /* analytics must never break the page */
-      }
+    try {
+      trackVercelEvent(name, safeParams)
+    } catch {
+      /* analytics must never break the page */
     }
   } else {
     console.log('Analytics Event:', payload)
@@ -78,38 +65,6 @@ export function trackShortEvent(
     category: short.category,
     author: short.author,
   })
-}
-
-export function identifyUser(userId: string, traits: Record<string, any> = {}) {
-  if (adapter?.identify) {
-    adapter.identify(userId, traits)
-    return
-  }
-
-  if (typeof window !== 'undefined') {
-    const posthog = (window as any).posthog
-    const segment = (window as any).analytics
-    if (posthog?.identify) posthog.identify(userId, traits)
-    if (segment?.identify) segment.identify(userId, traits)
-  } else {
-    console.log('Analytics Identify:', { userId, traits })
-  }
-}
-
-export function groupUser(groupId: string, traits: Record<string, any> = {}) {
-  if (adapter?.group) {
-    adapter.group(groupId, traits)
-    return
-  }
-
-  if (typeof window !== 'undefined') {
-    const posthog = (window as any).posthog
-    const segment = (window as any).analytics
-    if (posthog?.group) posthog.group(groupId, traits)
-    if (segment?.group) segment.group(groupId, traits)
-  } else {
-    console.log('Analytics Group:', { groupId, traits })
-  }
 }
 
 export function getBufferedEvents() {

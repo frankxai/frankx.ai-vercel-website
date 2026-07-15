@@ -53,6 +53,16 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
     accessCategories: ['agent-development', 'ai-architecture', 'coding'],
     emailTemplateId: 'premium-product',
   },
+  'suno-prompt-library': {
+    productId: 'suno-prompt-library',
+    deliveryType: 'pdf',
+    files: [
+      'suno-prompt-library-guide.pdf',
+      'suno-prompt-library-notion.zip',
+      'suno-prompt-cheatsheet.pdf',
+    ],
+    emailTemplateId: 'product-delivery',
+  },
 }
 
 /**
@@ -69,7 +79,7 @@ export function generateAccessCode(productId: string): string {
  * Get product download URL (stored in /public/products/)
  */
 export function getProductDownloadUrl(filename: string): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://frankx.ai'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.frankx.ai'
   // Files would be stored in a protected location or CDN
   // For now, using a signed URL pattern
   const token = generateAccessCode('download')

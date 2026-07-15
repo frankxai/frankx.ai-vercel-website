@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
         <h3 className="text-base font-medium text-zinc-300 mt-4">Data collected automatically</h3>
         <ul className="text-zinc-400 text-sm space-y-1">
-          <li>Pages visited and interactions (via Vercel Analytics — privacy-focused, no cookies)</li>
+          <li>Pages visited and bounded interaction events through Vercel Analytics and, when configured, Plausible or Google Analytics</li>
           <li>Device type, browser, and approximate location (country level)</li>
           <li>IP address (anonymized, not stored long-term)</li>
         </ul>
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
           ['Data Type', 'Retention Period'],
           ['Newsletter subscriptions', 'Until you unsubscribe'],
           ['Purchase records', '7 years (Dutch tax obligation)'],
-          ['Analytics data', 'Aggregated, no personal data stored'],
+          ['Analytics data', 'Kept according to the retention settings of the configured analytics provider; newsletter events exclude email addresses and free-text fields'],
           ['Contact form messages', '1 year after last reply'],
           ['Account data', 'Until you request deletion'],
         ]} />
@@ -92,9 +92,9 @@ export default function PrivacyPage() {
         <InfoTable rows={[
           ['Cookie', 'Type', 'Purpose', 'Duration'],
           ['Essential', 'Strictly necessary', 'Session management, security', 'Session'],
-          ['Analytics', 'Performance', 'Vercel Analytics (privacy-focused)', 'Session'],
+          ['Analytics', 'Performance', 'Vercel Analytics and optional Plausible or Google Analytics', 'Provider setting'],
         ]} />
-        <p className="text-sm text-zinc-500 mt-2">We do not use marketing cookies or third-party tracking cookies. Vercel Analytics is privacy-focused and does not use cookies for tracking individual users.</p>
+        <p className="text-sm text-zinc-500 mt-2">Vercel Analytics is enabled for aggregate site measurement. Plausible and Google Analytics load only when their deployment settings are configured. Newsletter conversion events do not include the submitted email address.</p>
       </Section>
 
       <Section title="8. International Transfers">

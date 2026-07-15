@@ -1,24 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, BookOpen } from 'lucide-react';
 import { getPublishedBooks } from './lib/books-registry';
 import { getThemeClasses } from './lib/theme-classes';
 import type { Metadata } from 'next';
-import { bookCreationEngine, platformBooks } from '@/data/platform';
-import {
-  CTASection as PlatformCTASection,
-  SectionHeader,
-  StatusBadge,
-  SystemFlow,
-} from '@/components/platform/platform-ui';
 
 export const metadata: Metadata = {
-  title: 'Books, Field Notes and Living Systems | FrankX',
+  title: 'Books | FrankX',
   description:
-    'Books as operating systems for the Intelligence Age: AI systems, creator OS, cloud AI, Arcanea IP, music, philosophy, and practical field notes.',
+    'Six books on love, discipline, creativity, self-development, imagination, and manifestation. Read free online or download as PDF and EPUB.',
   openGraph: {
-    title: 'Books, Field Notes and Living Systems | FrankX',
-    description: 'Books as operating systems for the Intelligence Age.',
+    title: 'The FrankX Library',
+    description: 'Six books. One voice. No filler.',
     type: 'website',
   },
 };
@@ -37,79 +29,27 @@ export default function BooksHubPage() {
         <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-16 sm:pt-32 sm:pb-20">
           <div className="text-center max-w-3xl mx-auto">
             <p className="text-sm uppercase tracking-[0.3em] text-white/30 mb-6">
-              Books and field notes
+              The Library
             </p>
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
               <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-                Books, Field Notes
+                Six Books.
               </span>
               <br />
               <span className="bg-gradient-to-r from-rose-300 via-amber-200 to-violet-300 bg-clip-text text-transparent">
-                and Living Systems.
+                One Voice.
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-white/40 max-w-xl mx-auto leading-relaxed">
-              FrankX.ai books explore intelligence, AI, creativity, cloud systems, philosophy,
-              worldbuilding, music, and the human operating system.
+              Love, discipline, creativity, growth, imagination, and the architecture of reality.
+              Every chapter free to read online.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Living Book Projects */}
-      <section className="max-w-6xl mx-auto px-6 py-16 border-y border-white/[0.05]">
-        <SectionHeader
-          eyebrow="Book Projects"
-          title="Books as operating systems for the Intelligence Age."
-          deck="The writing lab now connects AI systems, cloud AI, creator operating systems, Arcanea IP, Meaningwave, and philosophical field notes into a durable IP platform."
-        />
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {platformBooks.map((book) => (
-            <Link
-              key={book.slug}
-              href={book.ctaHref || '/newsletter'}
-              className="group rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 transition hover:border-white/[0.16] hover:bg-white/[0.055]"
-            >
-              <div className="mb-6 flex items-start justify-between gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/[0.06] text-emerald-300">
-                  <BookOpen className="h-5 w-5" />
-                </div>
-                <StatusBadge status={book.status} />
-              </div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/35">
-                {book.category}
-              </p>
-              <h2 className="mt-3 text-xl font-semibold text-white">{book.title}</h2>
-              <p className="mt-2 text-sm text-emerald-200/70">{book.subtitle}</p>
-              <p className="mt-4 text-sm leading-6 text-white/52">{book.excerpt}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {book.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-white/42">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-5">
-                <span className="text-xs capitalize text-white/38">{book.bookStatus.replace('-', ' ')}</span>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300">
-                  {book.ctaLabel || 'Explore project'}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* Books Grid */}
       <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="mb-10 pt-16">
-          <SectionHeader
-            eyebrow="Published Library"
-            title="Readable books already live on the site."
-            deck="The current registry stays intact: published and in-progress books keep their reader routes, covers, chapters, PDF/EPUB paths, and SEO history."
-          />
-        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {books.map((book) => {
             const tc = getThemeClasses(book.theme.id);
@@ -189,18 +129,6 @@ export default function BooksHubPage() {
         </div>
       </section>
 
-      {/* Book Creation Engine */}
-      <section className="max-w-6xl mx-auto px-6 pb-24">
-        <SectionHeader
-          eyebrow="Book Creation Engine"
-          title="Research, outline, draft, publish, repurpose, productize."
-          deck="The book system is designed to compound: every book can become essays, playbooks, templates, workshops, products, and community loops."
-        />
-        <div className="mt-10">
-          <SystemFlow steps={bookCreationEngine} compact />
-        </div>
-      </section>
-
       {/* Library CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <div className="relative p-8 sm:p-12 rounded-2xl border border-white/[0.08] bg-white/[0.03] text-center">
@@ -219,14 +147,6 @@ export default function BooksHubPage() {
           </Link>
         </div>
       </section>
-
-      <PlatformCTASection
-        eyebrow="Writing Lab"
-        title="Follow the book and field-note pipeline."
-        deck="New books, research notes, and living systems will move through the newsletter before they become finished products."
-        primary={{ label: 'Follow the writing lab', href: '/newsletter' }}
-        secondary={{ label: 'Read essays', href: '/blog' }}
-      />
     </div>
   );
 }

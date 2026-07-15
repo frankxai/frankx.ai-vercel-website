@@ -1,133 +1,178 @@
 import HomePageElite from '@/components/home/HomePageElite'
-import { createMetadata } from '@/lib/seo'
-import { socialLinks } from '@/lib/social-links'
-import JsonLd from '@/components/seo/JsonLd'
-import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { getAllBlogPosts } from '@/lib/blog'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
+import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { bookReviews } from '@/data/book-reviews'
+import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
+import { getAllBlogPosts } from '@/lib/blog'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'GenCreator by FrankX — Build Your AI Creator OS',
+  title: 'FrankX — Music, Systems & A Living Studio',
   description:
-    'GenCreator helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'Enter Frank Riemer\'s living studio: music, agent systems, books, field notes, and practical tools shared for creators, builders, friends, and family.',
   keywords: [
-    'ai architect',
-    'ai music creation',
-    'suno ai',
-    'ai architecture',
-    'ai workflow automation',
-    'creator tools',
+    'Frank Riemer',
+    'FrankX',
+    'living studio',
+    'AI creator systems',
+    'AI music creation',
+    'Suno music',
     'agentic workflows',
-    'enterprise ai',
-    'claude code',
+    'personal AI operating system',
+    'AI architecture',
+    'creator tools',
+    'Claude Code',
     'multi-agent systems',
-    'ai coding agents',
-    'prompt engineering',
+    'field notes',
+    'digital products',
   ],
   path: '/',
 })
 
+const siteUrl = siteConfig.url
+
 const websiteSchema = {
-  name: 'FrankX.AI',
-  url: 'https://frankx.ai',
+  '@id': `${siteUrl}/#website`,
+  name: 'FrankX',
+  alternateName: ['FrankX.AI', 'Frank Riemer'],
+  url: siteUrl,
   description:
-    'GenCreator by FrankX helps creators build personal AI operating systems that turn ideas into shipped work, audience, products, and revenue.',
+    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
+  publisher: {
+    '@id': `${siteUrl}/#organization`,
+  },
+  about: {
+    '@id': `${siteUrl}/#frank-riemer`,
+  },
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://frankx.ai/search?q={search_term_string}',
+    target: `${siteUrl}/search?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 }
-
 const personSchema = {
+  '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
-  jobTitle: 'AI Architect',
-  url: 'https://frankx.ai/about',
-  sameAs: [
-    socialLinks.linkedin,
-    socialLinks.github,
-    socialLinks.suno,
-    socialLinks.twitter,
-  ],
+  jobTitle: 'AI Architect and Creator',
+  url: `${siteUrl}/frank-riemer`,
+  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
+  mainEntityOfPage: {
+    '@id': `${siteUrl}/frank-riemer`,
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Oracle',
+  },
+  brand: {
+    '@id': `${siteUrl}/#organization`,
+  },
+  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno, socialLinks.twitter],
   knowsAbout: [
     'AI Architecture',
+    'Personal AI Operating Systems',
+    'AI Creator Systems',
     'AI Music Creation',
-    'Suno AI',
-    'Enterprise AI Strategy',
-    'Cloud Infrastructure',
     'Agentic Workflows',
+    'Multi-Agent Systems',
+    'Creator Education',
+    'Creative Technology',
   ],
 }
 
 const organizationSchema = {
-  name: 'FrankX.AI',
-  url: 'https://frankx.ai',
-  logo: 'https://frankx.ai/images/brand/logo-full.png',
-  sameAs: [
-    socialLinks.linkedin,
-    socialLinks.github,
-    socialLinks.suno,
-  ],
+  '@id': `${siteUrl}/#organization`,
+  name: 'FrankX',
+  alternateName: 'FrankX.AI',
+  url: siteUrl,
+  logo: `${siteUrl}/images/brand/logo-full.png`,
+  founder: {
+    '@id': `${siteUrl}/#frank-riemer`,
+  },
+  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'GenCreator systems, AI creator tools, and implementation labs for creators who ship.',
+    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
   {
-    question: 'What is FrankX.AI?',
+    question: 'What is FrankX?',
     answer:
-      'FrankX.AI is the home of GenCreator by FrankX: a creator operating system for turning ideas into shipped work, audience, products, and revenue. It is built from Frank Riemer\'s work as an AI Architect and creator.',
+      'FrankX is Frank Riemer\'s independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
-    question: 'What is GenCreator?',
+    question: 'Where should I begin?',
     answer:
-      'GenCreator is the public launch identity for FrankX. It combines creator strategy, AI workflows, music/content systems, templates, and agentic builder patterns into one personal AI operating system.',
+      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
   },
   {
-    question: 'What should I start with?',
+    question: 'How does music fit into FrankX?',
     answer:
-      'Start at /start and choose Create, Build, or Sell. The flagship path is Build Your AI Creator OS, with free material first and paid cohort access only when delivery is verified.',
+      'Music is one of the studio\'s living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.',
   },
   {
-    question: 'Where does Agentic Creator OS fit?',
+    question: 'Can I use the systems and tools?',
     answer:
-      'Agentic Creator OS is the advanced builder track inside GenCreator. It is for creators ready to build their own agent systems with Claude Code, MCP, n8n, Vercel, and production workflows.',
+      'Yes. FrankX includes public guides and open systems you can inspect first, plus paid packs and guided paths for people who want a more complete or supported route. Each offer should state its scope before asking for a purchase.',
   },
   {
-    question: 'What is the flagship paid offer?',
+    question: 'Is FrankX an agency or coaching business?',
     answer:
-      'The flagship offer is Build Your AI Creator OS: an implementation lab for building a personal AI operating system and shipping one public asset. Until checkout and delivery are verified, the public CTA is waitlist/application rather than direct purchase.',
+      'FrankX is a founder studio rather than a conventional client agency. Some bounded architecture work, programs, or private access may open when the fit is mutual, but the public work and usefulness come first.',
+  },
+  {
+    question: 'How are new music and studio updates chosen?',
+    answer:
+      'A weekly process can prepare candidates, but nothing is featured automatically from a catalog or social feed. Music, copy, links, and rights state are reviewed before a homepage update or public send.',
   },
 ]
 
 export default function Page() {
   const latestPosts = getAllBlogPosts()
-    .slice(0, 3)
-    .map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      description: p.description,
-      category: p.category,
-      readingTime: p.readingTime,
-      date: p.date,
+    .slice(0, 6)
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      description: post.description,
+      category: post.category,
+      readingTime: post.readingTime,
+      date: post.date,
+    }))
+
+  const books = getPublishedBooks()
+    .filter(
+      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
+    )
+    .slice(0, 6)
+    .map((book) => ({
+      slug: book.slug,
+      title: book.title,
+      subtitle: book.subtitle,
+      coverImage: book.coverImage,
     }))
 
   const libraryBooks = bookReviews
-    .filter((r) => (r.quotes?.length ?? 0) > 0 && (r.chapters?.length ?? 0) > 0)
+    .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)
     .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
     .slice(0, 5)
-    .map((r) => ({
-      slug: r.slug,
-      title: r.title,
-      author: r.author,
-      coverImage: r.coverImage,
-      quoteCount: r.quotes?.length ?? 0,
-      chapterCount: r.chapters?.length ?? 0,
+    .map((review) => ({
+      slug: review.slug,
+      title: review.title,
+      author: review.author,
+      coverImage: review.coverImage,
+      quoteCount: review.quotes?.length ?? 0,
+      chapterCount: review.chapters?.length ?? 0,
     }))
 
   return (
     <>
-      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} libraryBooks={libraryBooks} />
+      <HomePageElite
+        latestPosts={latestPosts}
+        faqs={homepageFAQs}
+        books={books}
+        libraryBooks={libraryBooks}
+        featuredTrack={homepageFeaturedRelease}
+      />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />

@@ -17,7 +17,6 @@ import {
   GraduationCap,
   Target,
   Code2,
-  Cloud,
   Terminal,
   Workflow,
   Bot,
@@ -44,29 +43,10 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-// import MobileNavOverlay from '@/components/MobileNavOverlay'
+import MobileNavOverlay from '@/components/MobileNavOverlay'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
-  platform: {
-    label: 'Platform',
-    href: '/research',
-    featured: {
-      title: 'FrankX Authority Platform',
-      description: 'Research, cloud AI systems, products, essays, and books in one operating surface.',
-      href: '/research',
-      badge: 'Authority',
-    },
-    items: [
-      { name: 'Research', href: '/research', icon: Microscope, description: 'AI research for builders' },
-      { name: 'Cloud AI', href: '/cloud', icon: Cloud, description: 'From AI hype to cloud workloads' },
-      { name: 'Products', href: '/products', icon: Briefcase, description: 'Templates, playbooks, and sprints' },
-      { name: 'Blog', href: '/blog', icon: FileText, description: 'Essays from the Intelligence Age' },
-      { name: 'Books', href: '/books', icon: BookOpen, description: 'Field notes and living systems' },
-      { name: 'Work with Frank', href: '/work-with-me', icon: Compass, description: 'Advisory, sprints, and studio work' },
-      { name: 'Newsletter', href: '/newsletter', icon: Sparkles, description: 'Weekly architecture and build notes' },
-    ],
-  },
   music: {
     label: 'Music',
     href: '/music',
@@ -80,7 +60,7 @@ const navigation = {
       { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
       { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Full curriculum: theory to production' },
+      { name: 'Music School', href: '/music-school', icon: GraduationCap, description: 'Full curriculum: theory to production' },
       { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
     ],
   },
@@ -122,8 +102,6 @@ const navigation = {
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Learn through play' },
       { name: 'Watch', href: '/watch', icon: Play, description: 'Curated video library' },
       { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'NEW · 60-second high-signal insights' },
-      { name: 'Daily Dare', href: '/dare', icon: Flame, description: "NEW · Today's 4-part challenge" },
-      { name: 'The Quest', href: '/quest', icon: Map, description: '30 days, 6 principles of the mind' },
     ],
   },
   build: {
@@ -173,9 +151,6 @@ const navigation = {
     items: [
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence operations' },
-      { name: 'Cloud AI', href: '/cloud', icon: Cloud, description: 'AI CoE, MCP, and workload architecture' },
-      { name: 'Products', href: '/products', icon: Briefcase, description: 'Products for the agentic builder' },
-      { name: 'Books', href: '/books', icon: BookOpen, description: 'Books, field notes, and living systems' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
       { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
@@ -185,20 +160,22 @@ const navigation = {
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
       { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
       {
         label: 'Research & Knowledge',
-        items: ['Research Hub', 'Cloud AI', 'Books', 'Intelligence Atlas', 'Downloads'],
+        items: ['Research Hub', 'Intelligence Atlas', 'Downloads'],
       },
       {
         label: 'Products & Systems',
-        items: ['Products', 'Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
+        items: ['Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
-        items: ['About', 'Bio', 'Contact'],
+        items: ['About', 'Bio', 'Media Kit', 'Licensing', 'Contact'],
       },
     ],
   },
@@ -375,17 +352,6 @@ export default function NavigationMega() {
   }, [pathname])
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
-
-  useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
 
@@ -445,7 +411,7 @@ export default function NavigationMega() {
     return pathname.startsWith(href)
   }
 
-  const desktopSections: NavKey[] = ['platform', 'music', 'gencreators', 'learn', 'build', 'explore']
+  const desktopSections: NavKey[] = ['music', 'gencreators', 'learn', 'build', 'explore']
 
   return (
     <>
@@ -508,36 +474,45 @@ export default function NavigationMega() {
               type="button"
               onClick={openCommandPalette}
               className="flex h-8 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
-              aria-label="Open search (Ctrl+K)"
-              title="Search (Ctrl+K)"
+              aria-label="Open search"
+              title="Search"
             >
               <Search className="h-3.5 w-3.5" />
               <span className="hidden xl:inline text-[11px] font-medium">Search</span>
-              <kbd className="hidden xl:inline-flex items-center gap-0.5 rounded border border-white/10 bg-black/30 px-1 py-0.5 text-[10px] font-mono text-slate-500">
-                <span>⌘</span>K
-              </kbd>
             </button>
             <Link
-              href="/cloud/prototype-sprints"
+              href="/start"
               className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
-              Start a Sprint
+              Start Here
             </Link>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 lg:hidden"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label="Open search"
+              title="Search"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-site-navigation"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </nav>
       </header>
 
-      {/* Mobile nav overlay removed */}
+      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   )
 }

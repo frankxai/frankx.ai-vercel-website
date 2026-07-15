@@ -51,7 +51,7 @@ const CONSCIOUSNESS_FREQUENCIES: Record<number, FrequencyDetails> = {
   // Solfeggio Frequencies
   396: { name: 'Liberation', effect: 'Release fear and guilt', consciousness: 'healing' },
   417: { name: 'Change', effect: 'Facilitate transformation', consciousness: 'transformation' },
-  528: { name: 'Love', effect: 'DNA repair and healing', consciousness: 'healing' },
+  528: { name: 'Warmth', effect: 'open, reflective ambience', consciousness: 'healing' },
   639: { name: 'Connection', effect: 'Harmonious relationships', consciousness: 'creativity' },
   741: { name: 'Expression', effect: 'Creative expression', consciousness: 'creativity' },
   852: { name: 'Intuition', effect: 'Spiritual awakening', consciousness: 'transformation' },

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "vercel-agent-interface",
+    "title": "Streaming agent interface",
+    "owner": "Vercel",
+    "layer": "Experience",
+    "summary": "A Next.js agent surface with streamed responses, tool results, authentication, persistence, and model routing.",
+    "bestFor": "Public AI products, internal copilots, and fast product iteration.",
+    "deployment": ["Vercel"],
+    "flow": ["Next.js", "AI SDK", "Model gateway", "Postgres"],
+    "docsUrl": "https://ai-sdk.dev/docs/agents/overview",
+    "source": {
+      "kind": "repository",
+      "label": "Vercel AI chatbot repository",
+      "url": "https://github.com/vercel/chatbot"
+    }
+  },
+  {
+    "id": "vertex-rag",
+    "title": "Managed enterprise RAG",
+    "owner": "Google Cloud",
+    "layer": "Intelligence",
+    "summary": "A grounded retrieval path built around Vertex AI, managed data services, evaluation, and enterprise controls.",
+    "bestFor": "Governed knowledge assistants and data-heavy enterprise workloads.",
+    "deployment": ["GCP", "Vercel"],
+    "flow": ["Vercel UI", "Vertex AI", "Retrieval", "Evaluation"],
+    "docsUrl": "https://cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
+    "source": {
+      "kind": "repository",
+      "label": "Agent Starter Pack repository",
+      "url": "https://github.com/GoogleCloudPlatform/agent-starter-pack"
+    }
+  },
+  {
+    "id": "google-adk-team",
+    "title": "Multi-agent team with ADK",
+    "owner": "Google",
+    "layer": "Orchestration",
+    "summary": "Specialized agents coordinated through Google's Agent Development Kit with deployable samples and managed runtime options.",
+    "bestFor": "Teams standardizing agent roles, tools, sessions, and evaluation on Google Cloud.",
+    "deployment": ["GCP", "Vercel"],
+    "flow": ["Web client", "Coordinator", "Specialists", "Vertex AI"],
+    "docsUrl": "https://cloud.google.com/architecture/ai-ml",
+    "source": {
+      "kind": "repository",
+      "label": "Google ADK samples repository",
+      "url": "https://github.com/google/adk-samples"
+    }
+  },
+  {
+    "id": "railway-worker-plane",
+    "title": "Persistent agent worker plane",
+    "owner": "Railway",
+    "layer": "Runtime",
+    "summary": "Long-running workers, queues, databases, and service-to-service networking behind a separately deployed web experience.",
+    "bestFor": "Background research, ingestion, browser jobs, and workloads that should not live inside a request lifecycle.",
+    "deployment": ["Railway", "Vercel"],
+    "flow": ["Vercel API", "Queue", "Railway worker", "Database"],
+    "docsUrl": "https://docs.railway.com/deployments",
+    "source": {
+      "kind": "repository",
+      "label": "Railway multi-agent reference repository",
+      "url": "https://github.com/railwayapp-templates/multi-agent-system"
+    }
+  },
+  {
+    "id": "openai-agent-service",
+    "title": "Tool-using agent service",
+    "owner": "OpenAI",
+    "layer": "Orchestration",
+    "summary": "Agents, handoffs, guardrails, sessions, human-in-the-loop controls, and tracing composed as a backend service.",
+    "bestFor": "Python agent services that need explicit handoffs and inspectable traces.",
+    "deployment": ["Railway", "Vercel"],
+    "flow": ["Client", "Agent service", "Tools", "Trace"],
+    "docsUrl": "https://openai.github.io/openai-agents-python/",
+    "source": {
+      "kind": "repository",
+      "label": "OpenAI Agents SDK repository",
+      "url": "https://github.com/openai/openai-agents-python"
+    }
+  },
+  {
+    "id": "mcp-tool-plane",
+    "title": "MCP tool and context plane",
+    "owner": "Model Context Protocol",
+    "layer": "Integration",
+    "summary": "A governed boundary for exposing tools and context to agents without coupling every integration to one model provider.",
+    "bestFor": "Shared enterprise tools, GitHub operations, and replaceable model runtimes.",
+    "deployment": ["Railway", "GCP", "Vercel"],
+    "flow": ["Agent", "MCP client", "MCP server", "System of record"],
+    "docsUrl": "https://github.com/modelcontextprotocol/servers",
+    "source": {
+      "kind": "repository",
+      "label": "GitHub MCP Server repository",
+      "url": "https://github.com/github/github-mcp-server"
+    }
+  },
+  {
+    "id": "durable-agent-workflow",
+    "title": "Durable agent workflow",
+    "owner": "Temporal",
+    "layer": "Reliability",
+    "summary": "Retries, timeouts, durable state, signals, and human approvals separated from model calls and web requests.",
+    "bestFor": "Long-running business processes where silent failure is unacceptable.",
+    "deployment": ["Railway", "GCP"],
+    "flow": ["Event", "Workflow", "Activities", "Approval"],
+    "docsUrl": "https://docs.temporal.io/develop/typescript",
+    "source": {
+      "kind": "repository",
+      "label": "Temporal TypeScript samples repository",
+      "url": "https://github.com/temporalio/samples-typescript"
+    }
+  },
+  {
+    "id": "agent-observability",
+    "title": "Agent observability pipeline",
+    "owner": "OpenTelemetry",
+    "layer": "Operations",
+    "summary": "Vendor-neutral traces, metrics, and logs that connect frontend requests to model calls, tools, workers, and failures.",
+    "bestFor": "Cross-cloud systems that need one evidence trail across Vercel, Railway, and GCP.",
+    "deployment": ["Vercel", "Railway", "GCP"],
+    "flow": ["Application", "OTel SDK", "Collector", "Backend"],
+    "docsUrl": "https://opentelemetry.io/docs/languages/js/",
+    "source": {
+      "kind": "repository",
+      "label": "OpenTelemetry JavaScript repository",
+      "url": "https://github.com/open-telemetry/opentelemetry-js"
+    }
+  }
+]

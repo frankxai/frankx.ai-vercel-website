@@ -8,7 +8,7 @@
 | **The Agentic Morning** | A cinematic vlog of Frank briefing his 54+ agent swarm via Claude Code. Showcases the transition from "Managing" to "Orchestrating". | Creator / CEO | **Avg. Session Duration** |
 | **Code vs. Context** | A head-to-head comparison of manual coding vs. using Claude Code with a rich `CLAUDE.md`. Proves the "Context is King" thesis. | Developer | **CTR (Learn More)** |
 | **Suno Vibe Check** | Live reacting to Suno v4.5 outputs based on different "Soul Frequencies". Demonstrates the bridge between tech and emotion. | Musician / Artist | **Share Count** |
-| **The AI Architect's Stack** | High-end screen recording of an Oracle AI Architect's daily toolchain (OCI + local agents + MCP). Pure technical authority. | Architect | **Lead Gen (Consulting)** |
+| **The AI Architect's Stack** | High-end screen recording of a former enterprise AI architect's current public toolchain (local agents + MCP + cloud patterns). Pure technical authority. | Architect | **Lead Gen (Consulting)** |
 | **Conscious Automation** | How to build n8n/Make workflows that don't feel "robotic". Focuses on the ethics and "soul" of automation. | Solopreneur | **Subscription Rate** |
 
 ---
@@ -28,7 +28,7 @@
 *The foundation of the FrankX digital ecosystem.*
 
 ### 1. Technical Authority (The "Rigor" Pillar)
-*   **Focus**: Validating every "vision" with enterprise-grade implementation (Oracle, OCI, Python).
+*   **Focus**: Validating every "vision" with enterprise-grade implementation patterns (cloud architecture, OCI where relevant, Python).
 *   **Execution**: Code walkthroughs, system diagrams, and research summaries.
 *   **KPI**: **Backlink Count** (from industry publications).
 

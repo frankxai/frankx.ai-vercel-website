@@ -3,10 +3,11 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
-import routeIndex from '@/data/route-index.json'
+import { learningPaths } from '@/data/learning-paths'
 
-const BASE_URL = 'https://frankx.ai'
+const BASE_URL = siteConfig.url
 
 // Extract slug from MDX filename
 function getSlugFromFilename(filename: string): string {
@@ -97,6 +98,16 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
+function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: boolean }> {
+  try {
+    const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
+    const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
+    return Array.isArray(raw.routes) ? raw.routes : []
+  } catch {
+    return []
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
@@ -104,7 +115,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -112,6 +126,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Tool pages
@@ -120,6 +136,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/roi-calculator',
     '/tools/strategy-canvas',
     '/tools/builder',
+    '/superpowers',
   ]
 
   // Assessment pages
@@ -219,6 +236,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
+    '/licensing',
   ]
 
   // Strategy and framework pages
@@ -232,8 +250,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/watch', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/watch/shorts', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/rituals', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/dare', priority: 0.9, changeFrequency: 'daily' as const },
-    { url: '/quest', priority: 0.8, changeFrequency: 'weekly' as const },
   ]
 
   // Individual Short detail pages — SEO gold per Short
@@ -316,8 +332,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/founder-playbook',
     '/insights',
     '/thank-you',
-    '/onboarding',
-    '/dashboard',
   ]
 
   // Research hub pages
@@ -544,6 +558,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Learn portal detail pages (/learn/[slug]) — dynamic route, not caught by the
+  // static route-index, so enumerate them explicitly. Recency from heroEyebrow.
+  learningPaths.forEach((path) => {
+    const m = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)
+    const parsed = m ? new Date(m[1]) : null
+    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate
+    entries.push({
+      url: `${BASE_URL}/learn/${path.slug}`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    })
+  })
+
   // Audience landing pages
   audiencePages.forEach(page => {
     entries.push({
@@ -660,50 +688,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Auto-discovery safety net — pull every route from lib/route-enumeration.mjs
-  // (the single source of truth shared with data/route-index.json + the link
-  // checker) and add any that the hand-curated arrays above missed. The
-  // existing entry wins on collision, so manual priority/changeFrequency
-  // settings are preserved.
+  // Auto-discovery safety net — read the generated route index created by
+  // scripts/build-route-index.mjs before next build. Importing the enumerator
+  // directly here makes Turbopack trace broad filesystem reads in the sitemap
+  // route; the generated JSON keeps sitemap coverage without over-bundling.
   const seenUrls = new Set(entries.map((e) => e.url))
-  try {
-    const discovered = (routeIndex as { routes?: Array<{ href: string; type: string }> }).routes ?? []
-    // Heuristic priority + frequency by route type — only used for routes that
-    // weren't already in the hand-curated arrays above.
-    const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
-      core: { priority: 0.8, changeFrequency: 'weekly' },
-      blog: { priority: 0.7, changeFrequency: 'monthly' },
-      workshop: { priority: 0.8, changeFrequency: 'monthly' },
-      product: { priority: 0.8, changeFrequency: 'weekly' },
-      guide: { priority: 0.7, changeFrequency: 'monthly' },
-      library: { priority: 0.7, changeFrequency: 'monthly' },
-      os: { priority: 0.7, changeFrequency: 'monthly' },
-      research: { priority: 0.7, changeFrequency: 'weekly' },
-      newsletter: { priority: 0.75, changeFrequency: 'monthly' },
-      partnership: { priority: 0.6, changeFrequency: 'monthly' },
-      tool: { priority: 0.6, changeFrequency: 'monthly' },
-      community: { priority: 0.6, changeFrequency: 'monthly' },
-      section: { priority: 0.5, changeFrequency: 'monthly' },
-      video: { priority: 0.7, changeFrequency: 'weekly' },
-      static: { priority: 0.4, changeFrequency: 'yearly' },
-      legacy: { priority: 0.3, changeFrequency: 'yearly' },
-    }
-    for (const route of discovered) {
-      const url = `${BASE_URL}${route.href}`
-      if (seenUrls.has(url)) continue
-      seenUrls.add(url)
-      const def = defaults[route.type] ?? defaults.section
-      entries.push({
-        url,
-        lastModified: currentDate,
-        changeFrequency: def.changeFrequency,
-        priority: def.priority,
-      })
-    }
-  } catch (err) {
-    // Don't fail sitemap generation if the enumerator can't load —
-    // the hand-curated arrays above still produce a valid sitemap.
-    console.warn('[sitemap] route-enumeration auto-discovery failed:', (err as Error).message)
+  const discovered = getRouteIndexRoutes()
+  const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
+    core: { priority: 0.8, changeFrequency: 'weekly' },
+    blog: { priority: 0.7, changeFrequency: 'monthly' },
+    workshop: { priority: 0.8, changeFrequency: 'monthly' },
+    product: { priority: 0.8, changeFrequency: 'weekly' },
+    guide: { priority: 0.7, changeFrequency: 'monthly' },
+    library: { priority: 0.7, changeFrequency: 'monthly' },
+    os: { priority: 0.7, changeFrequency: 'monthly' },
+    research: { priority: 0.7, changeFrequency: 'weekly' },
+    newsletter: { priority: 0.75, changeFrequency: 'monthly' },
+    partnership: { priority: 0.6, changeFrequency: 'monthly' },
+    tool: { priority: 0.6, changeFrequency: 'monthly' },
+    community: { priority: 0.6, changeFrequency: 'monthly' },
+    section: { priority: 0.5, changeFrequency: 'monthly' },
+    video: { priority: 0.7, changeFrequency: 'weekly' },
+    static: { priority: 0.4, changeFrequency: 'yearly' },
+    legacy: { priority: 0.3, changeFrequency: 'yearly' },
+  }
+  for (const route of discovered) {
+    if (route.sitemap === false) continue
+    const url = `${BASE_URL}${route.href}`
+    if (seenUrls.has(url)) continue
+    seenUrls.add(url)
+    const def = defaults[route.type] ?? defaults.section
+    entries.push({
+      url,
+      lastModified: currentDate,
+      changeFrequency: def.changeFrequency,
+      priority: def.priority,
+    })
   }
 
   return entries

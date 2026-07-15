@@ -9,7 +9,7 @@ Consider two content operations.
 
 The first is a Fortune 500 technology company's content marketing department. Twenty-five people: a VP of Content, two directors, four senior writers, three junior writers, two editors, three designers, two video producers, a social media manager, an SEO specialist, two project managers, two analytics leads, and an executive assistant. Annual budget: $2.5 million in salaries alone, before tools, office space, software licenses, and agency retainers. Output: roughly fifty articles per month, one quarterly whitepaper, and a weekly newsletter. Good work. Professional. Consistent. Expensive.
 
-The second is a single person working from a home office in the Netherlands. One ex-Oracle AI Architect, now a full-time creator. Monthly tool budget: approximately fifty dollars. Output: thirty articles per month, three book chapters per week, daily songs, weekly product updates, a research hub spanning seventeen domains, and an open-source agent operating system used by over a thousand builders. Also good work. Also professional. Also consistent. Radically cheaper.
+The second is a single person working from a home office in the Netherlands. One former AI architect at Oracle, now a full-time creator. Monthly tool budget: approximately fifty dollars. Output: thirty articles per month, three book chapters per week, daily songs, weekly product updates, a research hub spanning seventeen domains, and an open-source agent operating system used by over a thousand builders. Also good work. Also professional. Also consistent. Radically cheaper.
 
 I am the second operation. And the gap between us is not talent, ambition, or hours worked. The gap is the operating system.
 
@@ -77,7 +77,7 @@ These five layers interact as a cycle, not a sequence. Strategy informs content,
 
 I track everything. Not because I am obsessive about metrics — because systems require measurement. You cannot improve what you do not observe. Here is what the GenCreator operating system produces in my own practice, as of early 2026:
 
-**Content volume.** Ninety-plus blog articles published. Seventeen books written, totaling over 156,000 words. Over 12,000 songs created. Two hundred fifty production pages on frankx.ai. Thirty active newsletter subscribers within the first month of launch. All while holding a full-time AI Architect role at Oracle.
+**Content volume.** Ninety-plus blog articles published. Seventeen books written, totaling over 156,000 words. Over 12,000 songs created. Two hundred fifty production pages on frankx.ai. Thirty active newsletter subscribers within the first month of launch. All while balancing demanding enterprise AI work.
 
 **Production cost.** Claude Pro subscription: twenty dollars per month. Vercel hosting: free tier plus minimal overages. Suno music generation: ten dollars per month. n8n automation on Railway: approximately five dollars per month. Domain registration: fifteen dollars per year. Total monthly operating cost: roughly fifty dollars.
 

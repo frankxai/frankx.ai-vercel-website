@@ -827,7 +827,7 @@ Based on your profile, start with these:
 - [ ] Train team on agent orchestration
 - [ ] Publish first transparency report
 
-[Book AI CoE Diagnostic →](mailto:hello@frankx.ai?subject=AI%20CoE%20Diagnostic)
+[Book AI CoE Diagnostic →](mailto:frank@frankx.ai?subject=AI%20CoE%20Diagnostic)
 ```
 
 ---

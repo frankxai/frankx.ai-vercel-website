@@ -5,7 +5,7 @@
 
 ---
 
-I build AI Centers of Excellence for Fortune 500 companies. That is my day job. At Oracle's EMEA AI Center of Excellence, I design the frameworks that help organizations with thousands of employees, millions of customers, and billions in revenue adopt artificial intelligence at scale.
+I have worked around enterprise AI Centers of Excellence and large-scale adoption programs. In that environment, the work is not just prompts or tools; it is the architecture that helps organizations with thousands of employees adopt artificial intelligence with discipline.
 
 These frameworks are not simple. An enterprise AI CoE has six pillars: Strategy, Governance, Talent, Technology, Data, and Ethics. Each pillar has sub-frameworks. Each sub-framework has processes, tools, metrics, and review cycles. The documentation alone runs to hundreds of pages. The implementation takes months. The investment runs to millions.
 

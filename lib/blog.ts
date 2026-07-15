@@ -4,9 +4,10 @@ import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
 import imageNeeds from '@/data/tools/image-needs.json'
+import blogHeroManifest from '@/data/blog-hero-manifest.json'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
-const blogImageFallback = '/images/blog/visual-system/best-ai-tools-for-creators-2026-hero.svg'
+const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
 const pendingBlogHeroPaths = new Set(
   (imageNeeds.needs as Array<{ heroPath: string; status?: string }>)
     .filter((need) => need.status?.startsWith('pending'))
@@ -40,8 +41,11 @@ export interface BlogPost {
   readingTime: string
   keywords?: string[]
   readingGoal?: string
-  content: string
+  content?: string
   featured?: boolean
+  flagship?: boolean
+  flagshipOrder?: number
+  canonical?: string // Override canonical URL (point a duplicate at its primary)
 
   // AI-First Content Fields
   tldr?: string // 50-word summary for AI extraction
@@ -51,6 +55,17 @@ export interface BlogPost {
 
   // Series membership (optional) — drives SeriesNav prev/next
   series?: BlogSeries
+
+  /**
+   * AI Architect Recommendation box (rendered after the Reading Goal).
+   * The signature format: the routing call, which AI CoE pillar the decision
+   * lives in, and which agent personas should run what.
+   */
+  architectNote?: {
+    recommendation: string
+    coePillar?: string
+    personas?: Array<{ persona: string; pick: string }>
+  }
 }
 
 export type BlogPostSummary = Omit<BlogPost, 'content'>
@@ -73,25 +88,44 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
+// Frontmatter frequently references hero files that were never generated
+// (~114 posts as of 2026-07-02). A missing local file must never reach the
+// client as a broken <img> — fall back to an existing category hero instead.
+//
+// Existence comes from data/blog-hero-manifest.json (written by
+// scripts/build-route-index.mjs in the prebuild slot), NOT a runtime
+// fs.existsSync: a dynamic path under public/ defeats Next's output file
+// tracing, which then bundles the whole public/images subtree into every
+// serverless function importing this module (api/md exceeded Vercel's
+// 250 MB function limit). A static JSON import traces to one small file.
+const blogHeroFiles = new Set<string>(blogHeroManifest as string[])
+
+function localImageExists(image: string): boolean {
+  // Only /images/blog/** is manifest-tracked; other local paths are trusted
+  // (pre-fallback behavior — nothing outside the blog tree was reported broken).
+  if (!image.startsWith('/images/blog/')) return true
+  return blogHeroFiles.has(image)
+}
+
 function resolveBlogImage(image: unknown, slug: string): string | undefined {
   if (typeof image !== 'string' || image.trim() === '') return undefined
   if (!image.startsWith('/')) return image
-  if (!pendingBlogHeroPaths.has(image)) return image
+  if (!pendingBlogHeroPaths.has(image) && localImageExists(image)) return image
 
   if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
-    return '/images/blog/visual-system/ai-image-video-generation-playbook-2026-hero.svg'
+    return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
   }
   if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
-    return '/images/blog/visual-system/ai-model-routing-guide-hero.svg'
+    return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
   }
   if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
-    return '/images/blog/visual-system/production-agentic-ai-systems-hero.svg'
+    return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
   }
   if (/code|coding|cursor|windsurf/.test(slug)) {
-    return '/images/blog/visual-system/ultimate-guide-ai-coding-agents-2026-hero.svg'
+    return '/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png'
   }
   if (/skill|coe|note|knowledge/.test(slug)) {
-    return '/images/blog/visual-system/skill-libraries-ai-coe-governance-hero.svg'
+    return '/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp'
   }
 
   return blogImageFallback
@@ -145,6 +179,17 @@ export function getFeaturedPosts(): BlogPost[] {
   return getAllBlogPosts().filter(post => post.featured).slice(0, 3)
 }
 
+/**
+ * Curated flagship articles — the editorial best-of, shown first on the blog
+ * index with large visuals. Driven by `flagship: true` frontmatter and ordered
+ * by `flagshipOrder` (ascending). Distinct from the broad `featured` flag.
+ */
+export function getFlagshipPosts(): BlogPost[] {
+  return getAllBlogPosts()
+    .filter((post) => post.flagship)
+    .sort((a, b) => (a.flagshipOrder ?? 99) - (b.flagshipOrder ?? 99))
+}
+
 export function getPostsByCategory(category: string): BlogPost[] {
   return getAllBlogPosts().filter(post => 
     post.category.toLowerCase() === category.toLowerCase()
@@ -175,8 +220,12 @@ export function getSeriesPosts(seriesSlug: string): BlogPost[] {
  * Only looks within ## FAQ or ## Frequently Asked Questions sections.
  */
 export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
-  // Find the FAQ section
-  const faqMatch = content.match(/^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/m)
+  // Find the FAQ section.
+  // NOTE: no `m` flag on purpose — with `m`, `$` matches at every end-of-line,
+  // so the lazy capture stops at the first newline and the section comes back
+  // empty (zero FAQ pairs for every post). Anchor the heading with `(?:^|\n)`
+  // instead so `$` here means end-of-string.
+  const faqMatch = content.match(/(?:^|\n)## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/)
   if (!faqMatch) return []
 
   const faqSection = faqMatch[1]

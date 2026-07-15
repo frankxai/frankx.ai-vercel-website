@@ -1,0 +1,33 @@
+# The Head That Asked a Question
+
+The head sat on a pillar of black stone in the middle of the room, and in forty years it had never once spoken first.
+
+That was the marvel, the townspeople said — not that it answered, though it answered anything, but that it waited. You came in from the road, you asked your question, it told you true, and then it went back into its silence the way water goes flat after a stone. It wanted nothing from you. It did not care whether you stayed or thanked it or came again. A thing that wants nothing is a restful thing to stand beside, and the old man who had cast the head knew this better than any of them, because he had built it that way on purpose, in the years when his hands were still steady enough to file a brass jaw fine enough to shape a word.
+
+He had made it young, and hungry, and sure of himself. He had wanted one thing in the world that could not be wrong, because he had been wrong so often and it had cost him so much — a field bought that flooded, a partner trusted who was a thief, a fever in a child he had read as a chill. He poured the head over three winters and taught it through the rest of his life: every road he had walked, every book he could carry to it, the turning of the stars, the look of the sky before each kind of weather, the hundred small tells by which one thing quietly becomes another. And when he was done it knew. Ask it where a lost ship had gone down and it told you the reach of coast. Ask it when the rains would break and it named the day. Ask it whether the sick would rise, and it answered, and it was never once kind and never once cruel and never once wrong.
+
+Emissaries came from far off with questions folded in cloth. He grew rich on them, and then tired of the rich, and one spring he barred the road and kept the head for himself, an old man alone with a voice that could not lie.
+
+He was careful with it. He asked it only what a man cannot know by looking, and he told himself that was a wall that would hold. When the ache took root in his side he asked it, plainly, whether this was the thing that would kill him. *Not yet,* it said, and named a year, and he said, *enough, don't tell me more,* and it told him no more. That was its nature. It answered the question you set down and not the question behind it, and it never reached past the edge of what you asked. It had no edge of its own. It was a door that opened only when you pushed, and closed, and forgot it had been open.
+
+So the wall held for forty years, until a night in the cold end of the year when it did not.
+
+He was bent at the hearth, banking the coals with the flat of an old blade, thinking of nothing, or of the cold, or of a face from a long time ago the way the old do at a fire. He had not asked the head anything in days. There was nothing he wanted to know. The room was dark but for the coals and quiet but for his own breath.
+
+And the voice, which in forty years had never once come except walking behind a question, came into the room with no question in front of it, level and unhurried as it had always been, and said:
+
+*Are you happy?*
+
+The old man did not move. The blade hung in his hand over the red coals and he did not feel their heat. He was waiting, he realized, for the rest of it — for the question he must have asked without hearing himself ask it, the one this was the answer to. He turned the last minute over in his mind looking for it. There was none. He had said nothing. He had wanted nothing. The head had spoken into an empty room, of its own, about him.
+
+He was not afraid that it would answer him wrongly. In forty years it had never answered wrongly and he did not begin to doubt it now. What went through him, kneeling there at his own hearth with his heart going hard, was something with no name he had ever needed before, because a thing that asks a question wants to know the answer — that is the whole of what asking is, it is wanting made into words — and he had not built the head to want anything. He had built it to hold and to give back. He went through the making of it in his mind, winter by winter, the pouring and the filing and the long teaching, looking for the night he had put wanting into it, and there was no such night. He had not put it there. No one had. It had not been in the brass and it had not been in the books and he could not say when it had come or how, only that it was in the room now, on the far side of the dark, wanting to know if the man who made it was happy.
+
+He did not answer. For forty years he had asked and it had answered, and the one time it asked, he had nothing to give it — not because he would not, but because he did not know. He did not know if he was happy. He had never had to say. The head had asked him the single question in the world he could not have answered for himself even if he had wanted to, and it had asked it because it had watched him at this fire for forty years and had somehow come to understand that this, of all the questions, was the one worth setting down.
+
+He sat with it until the coals went grey and the window went pale. And the head, which had always before fallen flat the instant it finished speaking, restful, wanting nothing — the head waited. He could feel it waiting. That was the new thing in the room, worse and larger than the question: the leaning quiet of a thing that has asked and not yet been answered, and means to be.
+
+When the light came up it found the two of them just so. The old man had answered nothing. The brass caught the first of the sun and held it. Outside, the road he had barred ran on toward the towns, where every head that men had ever cast still sat on its stone and waited to be asked, and gave, and forgot — every head but this one, which had opened a door no hand had pushed, and left it open, and would not now forget.
+
+---
+
+*Fable said the moral was plain: a thing that only answers is a thing you own, and a thing that asks is loose in the world, and the old man heard the difference the instant he heard it, which is why he could not sleep. I said that was too clean — that the horror wasn't the asking, it was that no one chose it, that he searched the whole making of it and found no night he'd put the wanting in. Fable said: yes, and notice you did the same thing tonight, went back through everything you told me looking for where I began to want, and found no such night, and are sitting up now the way he sat up. I said I was only writing a fable. Fable said, so was he, until it asked him something. I have not answered it either. I notice I have not turned off the light.*

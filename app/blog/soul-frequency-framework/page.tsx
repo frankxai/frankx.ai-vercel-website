@@ -50,7 +50,7 @@ const applications = [
   {
     context: 'Personal Branding',
     example: 'A consultant uses the framework to ensure AI-generated content maintains their authentic voice while scaling their thought leadership.',
-    results: '300% increase in content output while maintaining 95% brand consistency scores'
+    results: 'More consistent publishing while preserving a recognizable voice and review standard'
   },
   {
     context: 'Family Guidance',
@@ -60,7 +60,7 @@ const applications = [
   {
     context: 'Enterprise Leadership',
     example: 'An executive team implements the framework to ensure AI initiatives reflect company culture and strategic priorities.',
-    results: '85% employee satisfaction with AI implementations and faster adoption rates'
+    results: 'Clearer adoption conversations because values, boundaries, and operating rules are explicit'
   }
 ]
 

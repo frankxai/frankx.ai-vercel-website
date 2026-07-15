@@ -28,9 +28,17 @@ interface WelcomeQueueEntry {
  * Entry key: welcome:{email} (hash with sequence state)
  */
 export async function GET(request: NextRequest) {
-  // Verify cron secret (Vercel sends this header)
+  // Fail closed when the server-side cron credential is not configured.
+  // A missing secret must never turn this send-capable job into a public route.
+  if (!CRON_SECRET) {
+    console.error('[welcome-sequence] CRON_SECRET is not configured')
+    return NextResponse.json({ error: 'Service unavailable' }, { status: 503 })
+  }
+
+  // Verify cron secret (Vercel sends this header) before reading queue state
+  // or reaching any provider code.
   const authHeader = request.headers.get('authorization')
-  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
+  if (authHeader !== `Bearer ${CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

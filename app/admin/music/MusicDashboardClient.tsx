@@ -573,7 +573,7 @@ function DistroKidTab({ data }: { data: DashboardData }) {
             <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-xs shrink-0">4</div>
             <div>
               <p className="font-medium text-white">Week 7: Golden Frequencies Album</p>
-              <p className="text-white/60">9-track healing frequencies album targeting meditation/ambient playlists on Spotify.</p>
+              <p className="text-white/60">9-track meditation-inspired album targeting ambient playlists on Spotify.</p>
             </div>
           </div>
         </div>

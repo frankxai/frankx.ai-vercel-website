@@ -100,7 +100,7 @@ const archetypes = [
   {
     id: 'solution-engineer',
     label: 'Solution Engineer',
-    description: 'The Oracle EMEA bridge story. GitHub, Newsletter, Podcast, LinkedIn, YouTube long-form.',
+    description: 'The former Oracle architecture bridge story. GitHub, Newsletter, Podcast, LinkedIn, YouTube long-form.',
     color: 'text-cyan-400',
     chip: 'bg-cyan-500/10 text-cyan-300 ring-cyan-500/30',
   },

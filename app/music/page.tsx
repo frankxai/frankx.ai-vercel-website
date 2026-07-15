@@ -28,9 +28,11 @@ import {
 } from 'lucide-react'
 import {
   getTopTracks,
+  getLatestTracks,
   getAlbums,
   getAlbumTracks,
   getMusicStats,
+  getPlaylists,
   type Track,
   type Album,
 } from '@/lib/music'
@@ -40,14 +42,18 @@ import {
 // ============================================================================
 
 const topTracks = getTopTracks(6)
+const latestTracks = getLatestTracks(6)
 const albums = getAlbums()
+const playlists = getPlaylists()
 const musicStats = getMusicStats()
+
+const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}K` : String(n))
 
 const stats = [
   { value: `${musicStats.totalTracks}+`, label: 'Public Tracks' },
+  { value: compact(musicStats.totalPlays), label: 'Total Plays' },
   { value: String(musicStats.followers), label: 'Followers' },
-  { value: String(musicStats.totalPlays), label: 'Total Plays' },
-  { value: String(musicStats.albums), label: 'Albums' },
+  { value: String(musicStats.playlists), label: 'Playlists' },
 ]
 
 const visualStoryFrames = [
@@ -289,7 +295,7 @@ function HeroSection() {
             </p>
 
             <p className="text-lg text-white/50 mb-8 max-w-lg leading-relaxed">
-              {musicStats.totalTracks}+ published tracks on Suno AI. From healing frequencies and orchestral epics
+              {musicStats.totalTracks}+ published tracks on Suno AI. From meditation-inspired soundscapes to orchestral epics
               to tech house and hip hop. This page now runs as a visual operating system: narrative assets,
               swarm-owned media pipelines, and platform-ready sales paths.
             </p>
@@ -498,6 +504,137 @@ function FeaturedTracksSection() {
                 )}
               </div>
             </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// LATEST DROPS (data-driven)
+// ============================================================================
+
+const dropDate = (iso?: string) =>
+  iso
+    ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : ''
+
+function LatestDropsSection() {
+  return (
+    <section className="py-20 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Latest Drops</h2>
+          <p className="text-lg text-white/50">Fresh from the Suno studio — newest additions to the catalog</p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {latestTracks.map((track, i) => (
+            <motion.a
+              key={track.id}
+              href={track.sunoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all"
+            >
+              <div className="relative aspect-square overflow-hidden">
+                {track.imageUrl ? (
+                  <Image
+                    src={track.imageUrl}
+                    alt={track.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-violet-500/20" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <span className="absolute left-3 bottom-3 text-[11px] uppercase tracking-[0.16em] px-2.5 py-1 rounded-full bg-black/60 border border-white/20 text-white/80">
+                  {dropDate(track.createdAt)}
+                </span>
+              </div>
+              <div className="p-4 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <h3 className="text-white font-semibold truncate">{track.title}</h3>
+                  <p className="text-xs text-white/40 truncate">
+                    {track.genre?.slice(0, 3).join(' / ') || 'Mixed'}
+                  </p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-white/40 shrink-0 group-hover:text-white/70 transition-colors" />
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// SUNO PLAYLISTS (data-driven)
+// ============================================================================
+
+function PlaylistsSection() {
+  return (
+    <section className="py-20 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Playlists</h2>
+          <p className="text-lg text-white/50">
+            Curated listening lanes on Suno — from training energy to meditation depth
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {playlists.map((playlist, i) => (
+            <motion.a
+              key={playlist.url}
+              href={playlist.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.04 }}
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all"
+            >
+              <div className="relative aspect-square overflow-hidden">
+                {playlist.imageUrl ? (
+                  <Image
+                    src={playlist.imageUrl}
+                    alt={playlist.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="text-white font-semibold text-sm leading-tight mb-1">
+                    {playlist.name}
+                  </h3>
+                  <p className="text-[11px] text-white/50">{playlist.songs} tracks</p>
+                </div>
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>
@@ -904,8 +1041,10 @@ export default function MusicPage() {
       <div className="relative z-10">
         <HeroSection />
         <StatsSection />
-        <VisualStoryframesSection />
+        <LatestDropsSection />
         <FeaturedTracksSection />
+        <PlaylistsSection />
+        <VisualStoryframesSection />
         <SwarmOperatingModelSection />
         <InfoGeniusQueueSection />
         <RevenuePathsSection />

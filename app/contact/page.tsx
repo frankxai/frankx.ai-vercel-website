@@ -1,251 +1,290 @@
-import { ArrowRight, Brain, Calendar, CheckCircle2, Clock, Globe, Mail, MapPin, MessageSquare, Phone, Send, Sparkles, User, Users, Zap } from 'lucide-react'
+import {
+  ArrowRight,
+  BookOpen,
+  Calendar,
+  Code2,
+  FlaskConical,
+  Mail,
+  Workflow,
+} from 'lucide-react'
 import Link from 'next/link'
 
 import { createMetadata } from '@/lib/seo'
+import { MEET_AND_GROW_URL } from '@/lib/cta-links'
+import { INTENTS, type Intent } from '@/lib/contact-intake'
+import { ContactForm } from '@/components/contact/ContactForm'
 
-const contactMethods = [
-  {
-    icon: Mail,
-    title: 'Email Us',
-    description: 'Get a response within 24 hours',
-    contact: 'hello@frankx.ai',
-    href: 'mailto:hello@frankx.ai?subject=FrankX.AI%20Inquiry',
-    preferred: true
-  },
-  {
-    icon: Calendar,
-    title: 'Schedule a Call',
-    description: 'Book a strategic consultation',
-    contact: 'Strategy Session',
-    href: 'mailto:hello@frankx.ai?subject=Strategy%20Session%20Request',
-    preferred: false
-  },
-  {
-    icon: MessageSquare,
-    title: 'Project Discussion',
-    description: 'Discuss your AI transformation needs',
-    contact: 'Project Consultation',
-    href: 'mailto:hello@frankx.ai?subject=Project%20Consultation',
-    preferred: false
-  }
-]
+const SITE_URL = 'https://frankx.ai'
+const CANONICAL_PATH = '/contact'
+const PRIMARY_EMAIL = 'frank@frankx.ai'
 
-const services = [
+const surfaces = [
   {
-    icon: Brain,
-    title: 'AI Strategy & Consulting',
-    description: 'Enterprise AI transformation and strategic implementation',
-    features: ['Strategic roadmapping', 'Risk assessment', 'Governance frameworks', 'Team enablement']
+    icon: Code2,
+    name: 'Hire Frank',
+    body: 'Workshop, sprint, or template pack. Outcome-framed engagements.',
+    href: '/build',
   },
   {
-    icon: Zap,
-    title: 'Product Development',
-    description: 'Custom AI solutions and intelligent system architecture',
-    features: ['System design', 'Technical implementation', 'Integration support', 'Optimization']
+    icon: FlaskConical,
+    name: 'Agentic Builder Lab',
+    body: 'Build-in-public log. The work behind the offers.',
+    href: '/agentic-builder-lab',
   },
   {
-    icon: Users,
-    title: 'Team Training',
-    description: 'AI literacy and capability building for organizations',
-    features: ['Leadership education', 'Technical upskilling', 'Workflow integration', 'Change management']
+    icon: BookOpen,
+    name: 'Agentic AI Center',
+    body: 'Concepts, maturity model, decision frameworks. Start here if you\'re evaluating.',
+    href: '/agentic-ai-center',
   },
   {
-    icon: Globe,
-    title: 'Speaking & Workshops',
-    description: 'Thought leadership and educational presentations',
-    features: ['Conference keynotes', 'Workshop facilitation', 'Team training sessions', 'Industry panels']
-  }
-]
+    icon: Workflow,
+    name: 'BYOK Tools',
+    body: 'The frontier-model tool collection. Bring your own keys.',
+    href: '/lab',
+  },
+] as const
 
 const faqs = [
   {
-    question: 'What types of AI projects do you work on?',
-    answer: 'We specialize in conscious AI implementations including enterprise automation, creative AI systems like Vibe OS, strategic AI consulting, and comprehensive AI transformation programs for organizations of all sizes.'
+    q: 'What\'s the fastest way to start?',
+    a: 'A 20-minute intro call. Frank confirms the shape of the engagement (workshop, sprint, advisory), the team or stack, and whether there\'s a fit. No pitch deck, no proposal until both sides agree on scope.',
   },
   {
-    question: 'How long does a typical engagement last?',
-    answer: 'Engagement timelines vary based on scope. Strategic consultations can be 2-4 weeks, while full AI transformation programs typically run 3-12 months. We always provide detailed timelines during our initial assessment.'
+    q: 'How long do engagements typically run?',
+    a: 'Workshops: 1 day. Implementation sprints: 5–10 working days. Advisory retainers: monthly. Strategy reviews: 2–4 weeks. Full discovery and timeline come out of the intro call, not before.',
   },
   {
-    question: 'Do you offer ongoing support after implementation?',
-    answer: 'Yes, we provide various support options including retainer-based ongoing consulting, team training programs, and technical support packages to ensure your AI systems continue to deliver value.'
+    q: 'What stack do you work with?',
+    a: 'Production builds use Claude Code, Codex, Antigravity 2.0, Gemini API, Vercel, Firebase, and the Oracle Cloud blueprint. Tool choice follows the constraint, not the trend. See the lab for the working stack.',
   },
   {
-    question: 'Can you work with our existing technology stack?',
-    answer: 'Absolutely. We specialize in integrating AI capabilities with existing systems and can work with virtually any technology stack. Our approach focuses on enhancing rather than replacing your current infrastructure.'
-  }
+    q: 'Do you take on existing systems or only greenfield?',
+    a: 'Both. Most sprints integrate with an existing stack — the agentic layer slots in alongside what\'s already in production. Architecture reviews start with what you have.',
+  },
+  {
+    q: 'What about pricing?',
+    a: 'Workshop and sprint price ranges live on /build. Advisory and custom builds are scoped per engagement. Template pack is fixed-price (€149 list, early-access pricing while v1 ships).',
+  },
+  {
+    q: 'Reply time?',
+    a: 'Most replies inside 1–2 working days. Time zones: Madrid (CET/CEST). You get an instant automatic confirmation when your message lands, so you\'re never left wondering if it sent.',
+  },
+] as const
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Frank — FrankX',
+    description: 'How to reach Frank for workshops, sprints, partnerships, and advisory.',
+    url: `${SITE_URL}${CANONICAL_PATH}`,
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Frank',
+      email: PRIMARY_EMAIL,
+      url: SITE_URL,
+      jobTitle: 'AI Architect & Builder',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: `${SITE_URL}${CANONICAL_PATH}` },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
 ]
 
 export const metadata = createMetadata({
-  title: 'Contact FrankX.AI - AI Strategy & Consulting',
-  description: 'Get in touch for AI strategy consulting, enterprise implementations, and conscious AI solutions. Expert guidance for your AI transformation journey.',
-  keywords: ['contact frankx ai', 'ai consulting contact', 'ai strategy consultation', 'enterprise ai help'],
-  path: '/contact',
+  title: 'Contact Frank — FrankX',
+  description:
+    'Direct line to Frank. Workshops, implementation sprints, partnerships, and advisory. One form, instant confirmation, reply within 1–2 working days.',
+  keywords: ['contact frankx', 'hire frank', 'ai workshop booking', 'ai sprint booking', 'frankx partnership'],
+  path: CANONICAL_PATH,
 })
 
-export default function ContactPage() {
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-<main className="px-6 pt-28 pb-20">
-        <div className="mx-auto max-w-7xl space-y-20">
-          {/* Hero Section */}
-          <header className="text-center space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cyan-300">
-              <MessageSquare className="h-5 w-5" />
-              Let's Build Something Extraordinary
-            </div>
-            <h1 className="text-5xl font-bold text-white md:text-6xl xl:text-7xl max-w-4xl mx-auto leading-tight">
-              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                Ready to Transform
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                Your AI Vision?
-              </span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              From strategic AI planning to full-scale implementations, we're here to guide your journey
-              into the intelligence age. Let's discuss how conscious AI can transform your organization.
-            </p>
-          </header>
+function resolveIntent(value: string | string[] | undefined): Intent {
+  const v = Array.isArray(value) ? value[0] : value
+  return (INTENTS as readonly string[]).includes(v ?? '') ? (v as Intent) : 'general'
+}
 
-          {/* Contact Methods */}
-          <section className="grid gap-8 lg:grid-cols-3">
-            {contactMethods.map((method) => (
-              <article key={method.title} className={`rounded-3xl border p-8 backdrop-blur text-center relative ${
-                method.preferred
-                  ? 'border-cyan-400/50 bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent'
-                  : 'border-white/10 bg-white/5'
-              }`}>
-                {method.preferred && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
-                      Recommended
-                    </span>
-                  </div>
-                )}
-                <div className={`w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center ${
-                  method.preferred
-                    ? 'bg-gradient-to-br from-cyan-500/20 to-blue-500/20'
-                    : 'bg-white/10'
-                }`}>
-                  <method.icon className={`w-8 h-8 ${
-                    method.preferred ? 'text-cyan-400' : 'text-white/80'
-                  }`} />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">{method.title}</h3>
-                <p className="text-white/70 mb-6">{method.description}</p>
-                <Link
-                  href={method.href}
-                  className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all duration-300 ${
-                    method.preferred
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)]'
-                      : 'border border-white/20 bg-white/5 text-white/90 hover:bg-white/10'
-                  }`}
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ intent?: string }>
+}) {
+  const params = await searchParams
+  const defaultIntent = resolveIntent(params?.intent)
+
+  return (
+    <main id="main" className="min-h-screen bg-[#06080f] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* ── HERO + FORM ───────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden border-b border-white/10 pt-28 pb-16 sm:pt-32">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(6,182,212,0.15),transparent_40%),radial-gradient(circle_at_82%_24%,rgba(16,185,129,0.14),transparent_38%)]" />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-6">
+          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+            {/* Left: pitch */}
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
+                Contact
+              </p>
+              <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08]">
+                Tell Frank what you're building.
+              </h1>
+              <p className="mt-6 max-w-md text-[17px] md:text-lg leading-relaxed text-slate-300/90">
+                One form, straight to{' '}
+                <a href={`mailto:${PRIMARY_EMAIL}`} className="text-cyan-300 underline-offset-4 hover:underline">
+                  {PRIMARY_EMAIL}
+                </a>
+                . You get an instant confirmation, then a real reply within 1–2
+                working days.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href={MEET_AND_GROW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
                 >
-                  {method.contact}
-                  <Send className="w-4 h-4" />
+                  <Calendar className="h-4 w-4" />
+                  Prefer to book a call?
+                </a>
+              </div>
+
+              <p className="mt-6 text-[12px] text-slate-500">
+                Prefer plain email? Just write to{' '}
+                <a href={`mailto:${PRIMARY_EMAIL}`} className="text-slate-400 underline-offset-4 hover:text-white">
+                  {PRIMARY_EMAIL}
+                </a>
+                . Madrid time (CET/CEST).
+              </p>
+            </div>
+
+            {/* Right: form */}
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur">
+              <ContactForm defaultIntent={defaultIntent} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SURFACES ──────────────────────────────────────────────────── */}
+      <section className="border-b border-white/10 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300/80">
+              Skip the email
+            </p>
+            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+              The answer might already be on the site.
+            </h2>
+            <p className="mt-3 text-base leading-7 text-slate-400">
+              If you’re evaluating a hire, comparing tools, or learning the field — start with these.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {surfaces.map((s) => {
+              const Icon = s.icon
+              return (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="group flex h-full flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-violet-300/40 hover:bg-white/[0.06]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-300/10 text-violet-200">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-semibold text-white">{s.name}</h3>
+                  <p className="text-sm leading-6 text-slate-400">{s.body}</p>
+                  <p className="mt-auto inline-flex items-center gap-1 text-[12px] font-semibold text-violet-300 transition group-hover:gap-1.5">
+                    {s.href}
+                    <ArrowRight className="h-3 w-3" />
+                  </p>
                 </Link>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ───────────────────────────────────────────────────────── */}
+      <section className="border-b border-white/10 py-20">
+        <div className="mx-auto max-w-5xl px-6 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/80">
+              FAQ
+            </p>
+            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+              Before you write.
+            </h2>
+            <p className="mt-3 text-base leading-7 text-slate-400">
+              Most first messages ask one of these. Skim before you send.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {faqs.map((f) => (
+              <article key={f.q} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                <h3 className="text-base font-semibold text-white">{f.q}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{f.a}</p>
               </article>
             ))}
-          </section>
-
-          {/* Services Overview */}
-          <section className="space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">How We Can Help</h2>
-              <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                From strategic planning to technical implementation, we offer comprehensive AI services
-                tailored to your organization's needs and goals.
-              </p>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2">
-              {services.map((service) => (
-                <article key={service.title} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                      <service.icon className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
-                  </div>
-                  <p className="text-white/70 mb-6 leading-relaxed">{service.description}</p>
-                  <ul className="grid grid-cols-2 gap-2">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-white/80 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* Response Times */}
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur text-center">
-            <h2 className="text-2xl font-bold text-white mb-8">Response Times & Availability</h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="space-y-2">
-                <Clock className="w-8 h-8 text-cyan-400 mx-auto" />
-                <h3 className="font-semibold text-white">General Inquiries</h3>
-                <p className="text-white/70 text-sm">24-48 hours</p>
-              </div>
-              <div className="space-y-2">
-                <Zap className="w-8 h-8 text-yellow-400 mx-auto" />
-                <h3 className="font-semibold text-white">Project Consultations</h3>
-                <p className="text-white/70 text-sm">1-2 business days</p>
-              </div>
-              <div className="space-y-2">
-                <Users className="w-8 h-8 text-purple-400 mx-auto" />
-                <h3 className="font-semibold text-white">Enterprise Inquiries</h3>
-                <p className="text-white/70 text-sm">Same business day</p>
-              </div>
-            </div>
-          </section>
-
-          {/* FAQ Section */}
-          <section className="space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">Frequently Asked Questions</h2>
-              <p className="text-xl text-white/70 max-w-2xl mx-auto">
-                Common questions about our services and engagement process.
-              </p>
-            </div>
-            <div className="grid gap-6 lg:grid-cols-2">
-              {faqs.map((faq, index) => (
-                <article key={index} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-                  <h3 className="text-xl font-semibold text-white mb-4">{faq.question}</h3>
-                  <p className="text-white/70 leading-relaxed">{faq.answer}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
-            <h2 className="text-4xl font-bold text-white">Start Your AI Transformation Today</h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Join forward-thinking organizations that are already building their intelligent future with conscious AI.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="mailto:hello@frankx.ai?subject=AI%20Strategy%20Consultation"
-                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
-              >
-                Start the Conversation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                href="/agentic-ai-center"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
-              >
-                Learn About Our Services
-              </Link>
-            </div>
-          </section>
+          </div>
         </div>
-      </main>
-</div>
+      </section>
+
+      {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
+      <section className="py-20">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <Mail className="mx-auto h-6 w-6 text-cyan-300" />
+          <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+            Still scrolling? Just send the message.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-slate-300/90">
+            One front door, instant confirmation, fast reply. Or book the intro and
+            skip straight to the call.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link
+              href="#main"
+              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+            >
+              Back to the form
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={MEET_AND_GROW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              <Calendar className="h-4 w-4" />
+              Book the intro instead
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }

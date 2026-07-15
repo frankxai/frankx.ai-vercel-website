@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import { Resend } from 'resend'
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://frankx.ai'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://www.frankx.ai'
 export const NEWSLETTER_AUDIENCE_ID =
   process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
@@ -28,6 +28,22 @@ export function verifyEmailToken(email: string, purpose: EmailTokenPurpose, toke
   if (!expected || !token || expected.length !== token.length) return false
 
   return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(token))
+}
+
+/**
+ * One-click unsubscribe link for email footers. Falls back to the plain
+ * /unsubscribe page (manual reply-based opt-out, still CAN-SPAM compliant)
+ * when EMAIL_TOKEN_SECRET isn't configured, so a missing env var degrades
+ * gracefully instead of shipping a link that always fails verification.
+ */
+export function buildUnsubscribeUrl(email: string): string {
+  const token = signEmailToken(email, 'unsubscribe')
+  if (!token) return `${SITE_URL}/unsubscribe`
+
+  const url = new URL('/api/unsubscribe', SITE_URL)
+  url.searchParams.set('email', normalizeEmail(email))
+  url.searchParams.set('token', token)
+  return url.toString()
 }
 
 export async function updateResendContact(email: string, unsubscribed: boolean) {

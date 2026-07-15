@@ -1,0 +1,66 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#070807"/>
+  <rect x="46" y="44" width="1108" height="587" rx="56" fill="url(#panel)" stroke="rgba(247,231,192,0.18)" stroke-width="2"/>
+  <circle cx="225" cy="164" r="110" fill="rgba(212,176,110,0.18)"/>
+  <circle cx="994" cy="526" r="150" fill="rgba(18,94,76,0.24)"/>
+  <circle cx="850" cy="138" r="92" fill="rgba(80,120,220,0.11)"/>
+
+  <g filter="url(#soft)">
+    <rect x="92" y="92" width="310" height="491" rx="44" fill="rgba(255,255,255,0.07)" stroke="rgba(247,231,192,0.16)"/>
+    <rect x="126" y="126" width="92" height="92" rx="30" fill="rgba(212,176,110,0.16)" stroke="rgba(247,231,192,0.18)"/>
+    <text x="172" y="184" text-anchor="middle" fill="#F7E7C0" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800">AH</text>
+    <text x="126" y="278" fill="#FFF8EA" font-family="Inter, Arial, sans-serif" font-size="45" font-weight="850">Ahmad</text>
+    <text x="126" y="332" fill="#FFF8EA" font-family="Inter, Arial, sans-serif" font-size="45" font-weight="850">Founder Kit</text>
+    <text x="126" y="384" fill="rgba(255,248,234,0.66)" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="500">Trinity AI, OpenClaw,</text>
+    <text x="126" y="418" fill="rgba(255,248,234,0.66)" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="500">ACOS, media loops,</text>
+    <text x="126" y="452" fill="rgba(255,248,234,0.66)" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="500">and agent roles.</text>
+    <rect x="126" y="505" width="198" height="48" rx="24" fill="#F7E7C0"/>
+    <text x="225" y="536" text-anchor="middle" fill="#0D0D0B" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800">v0.1.0 ZIP</text>
+  </g>
+
+  <g stroke="rgba(212,176,110,0.62)" stroke-width="3" stroke-linecap="round">
+    <path d="M514 197 C591 197 604 270 676 270"/>
+    <path d="M677 270 C744 270 760 196 831 196"/>
+    <path d="M676 270 C748 270 762 379 831 379"/>
+    <path d="M833 379 C910 379 920 292 989 292"/>
+  </g>
+  <g fill="rgba(212,176,110,0.62)">
+    <path d="M675 270 L661 262 L661 278 Z"/>
+    <path d="M830 196 L816 188 L816 204 Z"/>
+    <path d="M830 379 L816 371 L816 387 Z"/>
+    <path d="M988 292 L974 284 L974 300 Z"/>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="474" y="144" width="150" height="106" rx="30" fill="rgba(255,255,255,0.08)" stroke="rgba(247,231,192,0.14)"/>
+    <text x="549" y="187" text-anchor="middle" fill="#F7E7C0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Trinity AI</text>
+    <text x="549" y="219" text-anchor="middle" fill="rgba(255,248,234,0.62)" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">offer map</text>
+
+    <rect x="652" y="216" width="156" height="108" rx="30" fill="rgba(18,94,76,0.30)" stroke="rgba(247,231,192,0.14)"/>
+    <text x="730" y="261" text-anchor="middle" fill="#E6FFF4" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">OpenClaw</text>
+    <text x="730" y="293" text-anchor="middle" fill="rgba(255,248,234,0.62)" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">local lab</text>
+
+    <rect x="830" y="144" width="156" height="108" rx="30" fill="rgba(255,255,255,0.08)" stroke="rgba(247,231,192,0.14)"/>
+    <text x="908" y="189" text-anchor="middle" fill="#F7E7C0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">ACOS</text>
+    <text x="908" y="221" text-anchor="middle" fill="rgba(255,248,234,0.62)" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">workflows</text>
+
+    <rect x="830" y="327" width="156" height="108" rx="30" fill="rgba(255,255,255,0.08)" stroke="rgba(247,231,192,0.14)"/>
+    <text x="908" y="371" text-anchor="middle" fill="#F7E7C0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Media Loop</text>
+    <text x="908" y="403" text-anchor="middle" fill="rgba(255,248,234,0.62)" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">image video posts</text>
+
+    <rect x="988" y="238" width="132" height="108" rx="30" fill="rgba(212,176,110,0.16)" stroke="rgba(247,231,192,0.18)"/>
+    <text x="1054" y="282" text-anchor="middle" fill="#F7E7C0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Proof</text>
+    <text x="1054" y="314" text-anchor="middle" fill="rgba(255,248,234,0.62)" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600">feedback</text>
+  </g>
+
+  <defs>
+    <linearGradient id="panel" x1="46" y1="44" x2="1154" y2="631" gradientUnits="userSpaceOnUse">
+      <stop stop-color="rgba(247,231,192,0.11)"/>
+      <stop offset="0.47" stop-color="rgba(18,94,76,0.14)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.05)"/>
+    </linearGradient>
+    <filter id="soft" x="-40" y="-40" width="1280" height="755" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="32" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+</svg>

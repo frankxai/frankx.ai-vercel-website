@@ -4,6 +4,8 @@ import { MDXContent } from '@/components/blog/MDXContent'
 import Link from 'next/link'
 import HeroImage from '@/components/ui/HeroImage'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import LearnHubSection from '@/components/learn/LearnHubSection'
+import { portalsForGuide } from '@/lib/learn/related-portals'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -64,6 +66,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <MDXContent source={guide.content} />
           </div>
         </div>
+        <LearnHubSection
+          relatedPortals={portalsForGuide(guide.slug)}
+          variant="compact"
+          eyebrow="Keep learning"
+          blurb="Curated videos, official docs, and expert channels for the platforms this guide touches."
+        />
       </main>
     </div>
   )
