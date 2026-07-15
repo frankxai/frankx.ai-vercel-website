@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import {
   ArrowRight,
-  BookOpen,
   CheckCircle2,
   ExternalLink,
   HeartHandshake,
@@ -19,7 +18,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'Ana Cecilia Cancino | Collaboration Hub',
   description:
-    'Dedicated FrankX collaboration hub for Ana: shared principles, Codex plugin updates, tools, and the upcoming Obsidian Second Brain guide.',
+    'Dedicated FrankX collaboration hub for Ana: shared principles, the team workflow, Codex plugin guidance, and public-safe updates.',
   path: '/friends/ana',
   noindex: true,
 })
@@ -63,15 +62,6 @@ const guideUpdates = [
       'Shared workflow, installable Codex plugin, and the starter kit that keep ownership, approval, and handoff explicit.',
     href: anaLinks.teamPlan,
     cta: 'Open the team workflow',
-  },
-  {
-    icon: BookOpen,
-    status: 'Upcoming',
-    title: 'Obsidian Second Brain guide',
-    detail:
-      'How to run a calm second brain with Obsidian: capture, zones, retrieval, and agent-assisted maintenance without drowning in notes.',
-    href: anaLinks.obsidianSecondBrainGuide,
-    cta: 'Preview the guide',
   },
 ] as const
 
@@ -196,11 +186,11 @@ export default function AnaFriendPage() {
               Tools, plugins, and the second-brain path.
             </h2>
             <p className="mt-5 text-base leading-7 text-ana-cream/[0.62]">
-              This page will also host updates for the Codex Plugins, other tools I am building for you, and the upcoming Obsidian Second Brain guide. My Agentic Team will maintain the site and link for you guides to follow to help you get started in building your agentic powered business.
+              This page hosts the shared workflow, Codex plugin guidance, and public-safe updates for Ana and her team. Working records stay in approved private systems.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-3 md:grid-cols-3">
+          <div className="mt-10 grid gap-3 md:grid-cols-2">
             {guideUpdates.map((guide) => {
               const Icon = guide.icon
               return (
@@ -268,7 +258,7 @@ export default function AnaFriendPage() {
               <span className="text-xs font-semibold tracking-[0.08em]">Maintained for you</span>
             </div>
             <p className="mt-5 text-lg leading-7 text-ana-cream/[0.72]">
-              My Agentic Team will keep this hub current: plugin updates, tool notes, and the Obsidian Second Brain guide as it expands.
+              This hub stays current as the shared method, plugin, and team guidance evolve.
             </p>
           </aside>
         </div>

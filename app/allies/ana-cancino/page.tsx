@@ -106,9 +106,10 @@ export default function AnaAllyPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-start sm:justify-between">
           <p className="max-w-2xl text-sm leading-6 text-ana-cream/45">This is Ana’s dedicated operating hub. Its content is not approval to publish Ana-specific work in a blog, newsletter, social post, or another public destination.</p>
           <div className="flex flex-wrap gap-4 text-sm font-semibold">
+            <Link href={anaLinks.friendPage}>Collaboration hub</Link>
             <a href={anaLinks.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5">Ana’s website <ExternalLink className="h-3.5 w-3.5" /></a>
             <a href={anaLinks.kitStart} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5">Start guide <ExternalLink className="h-3.5 w-3.5" /></a>
-            <Link href="/blog/codex-plugins-for-teams">Generic team guide</Link>
+            <Link href={anaLinks.codexPluginsGuide}>Codex Plugins guide</Link>
           </div>
         </div>
       </footer>
