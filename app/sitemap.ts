@@ -6,6 +6,7 @@ import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { learningPaths } from '@/data/learning-paths'
+import { HARDWARE_CATEGORIES } from '@/data/hardware-taxonomy'
 
 const BASE_URL = siteConfig.url
 
@@ -294,6 +295,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Sub-route pages (nested under parent sections)
   const subRoutePages = [
+    // AI Hardware decision routes
+    ...HARDWARE_CATEGORIES.map((category) => ({
+      url: `/ai-hardware/${category.slug}`,
+      priority: 0.75,
+      changeFrequency: 'weekly' as const,
+    })),
+    { url: '/learn/ai-hardware', priority: 0.75, changeFrequency: 'monthly' as const },
+    { url: '/research/ai-hardware', priority: 0.75, changeFrequency: 'weekly' as const },
     // AI Ops sub-routes
     { url: '/ai-ops/architecture', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-ops/patterns', priority: 0.7, changeFrequency: 'monthly' as const },

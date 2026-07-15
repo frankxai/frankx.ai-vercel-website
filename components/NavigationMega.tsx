@@ -116,7 +116,7 @@ const navigation = {
     },
     items: [
       { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI builders' },
-      { name: 'AI Hardware', href: '/ai-hardware', icon: Cpu, description: 'Workstations, model nodes & fleets' },
+      { name: 'AI Hardware', href: '/ai-hardware', icon: Cpu, description: 'Local, cloud & data-center compute' },
       { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
       { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },

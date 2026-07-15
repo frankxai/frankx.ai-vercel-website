@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 825,
+    "total": 827,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 396,
+      "section": 398,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -5262,6 +5262,16 @@
       "type": "core"
     },
     {
+      "href": "/learn/ai-hardware",
+      "title": "AI Hardware",
+      "tags": [
+        "learn",
+        "ai",
+        "hardware"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/lebensbaum",
       "title": "Lebensbaum",
       "tags": [
@@ -7283,6 +7293,16 @@
         "ai",
         "contemplative",
         "practice"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/research/ai-hardware",
+      "title": "AI Hardware",
+      "tags": [
+        "research",
+        "ai",
+        "hardware"
       ],
       "type": "section"
     },

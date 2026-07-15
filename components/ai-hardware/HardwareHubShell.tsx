@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
+  BookOpen,
   Bot,
   Check,
   ChevronDown,
@@ -11,6 +12,7 @@ import {
   Cpu,
   ExternalLink,
   Film,
+  FileSearch,
   Gauge,
   HardDrive,
   Info,
@@ -23,6 +25,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
+import { HARDWARE_CATEGORY_MAP, HARDWARE_DIRECTORY_GROUPS } from '@/data/hardware-taxonomy'
 import {
   HARDWARE_FAQ,
   HARDWARE_PLATFORMS,
@@ -56,6 +59,85 @@ const laneFilters: Array<{ id: 'all' | HardwareLane; label: string }> = [
 
 function formatBudget(value: number) {
   return new Intl.NumberFormat('en-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)
+}
+
+const directoryIcons = {
+  local: Laptop,
+  infrastructure: Server,
+  access: Cloud,
+} as const
+
+function ComputeDirectory() {
+  return (
+    <section id="directory" className="border-y border-white/[0.06] bg-white/[0.015] py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="max-w-3xl">
+            <p className="text-sm font-medium text-cyan-300">AI compute directory</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
+              Own the right machine. Rent the right peaks.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-white/55">
+              AI hardware spans personal devices, physical infrastructure, and the accelerators behind cloud services.
+              We separate what you own from what you rent so purchase, architecture, and operating-cost decisions stay legible.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/learn/ai-hardware" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2.5 text-sm text-white/65 transition-colors hover:border-white/20 hover:text-white">
+              <BookOpen className="h-4 w-4" aria-hidden /> Learn the system
+            </Link>
+            <Link href="/research/ai-hardware" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2.5 text-sm text-white/65 transition-colors hover:border-white/20 hover:text-white">
+              <FileSearch className="h-4 w-4" aria-hidden /> Inspect the evidence
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {HARDWARE_DIRECTORY_GROUPS.map((group) => {
+            const Icon = directoryIcons[group.id]
+            return (
+              <article key={group.id} className="rounded-[1.75rem] border border-white/[0.08] bg-[#0d0d0f] p-5 sm:p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold text-white">{group.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/45">{group.description}</p>
+                  </div>
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.035]">
+                    <Icon className="h-4 w-4 text-cyan-300/70" aria-hidden />
+                  </span>
+                </div>
+                <div className="mt-7 divide-y divide-white/[0.07] border-y border-white/[0.07]">
+                  {group.slugs.map((slug) => {
+                    const category = HARDWARE_CATEGORY_MAP[slug]
+                    return (
+                      <Link key={slug} href={`/ai-hardware/${slug}`} className="group flex items-center justify-between gap-4 py-4">
+                        <span>
+                          <span className="block text-sm font-medium text-white/80 transition-colors group-hover:text-white">{category.shortTitle}</span>
+                          <span className="mt-1 block text-xs leading-5 text-white/35">{category.summary}</span>
+                        </span>
+                        <ArrowRight className="h-4 w-4 shrink-0 text-white/25 transition-transform group-hover:translate-x-0.5 group-hover:text-cyan-300" aria-hidden />
+                      </Link>
+                    )
+                  })}
+                </div>
+              </article>
+            )
+          })}
+        </div>
+
+        <div className="mt-5 grid gap-3 rounded-2xl border border-violet-300/15 bg-violet-300/[0.035] p-5 md:grid-cols-[1fr_auto] md:items-center">
+          <p className="text-sm leading-6 text-white/55">
+            <span className="font-medium text-violet-100">Cloud GPU is rented compute.</span>{' '}
+            Use this hub for rent-versus-buy. Use the Cloud Hub for provider services and the Architecture Hub for deployment patterns.
+          </p>
+          <div className="flex flex-wrap gap-4 text-sm">
+            <Link href="/cloud" className="text-violet-200/80 hover:text-violet-100">Cloud Hub</Link>
+            <Link href="/ai-architecture/multi-cloud-comparison" className="text-violet-200/80 hover:text-violet-100">Multi-cloud comparison</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 function ComputeConstellation({ input }: { input: PlannerInputs }) {
@@ -469,8 +551,8 @@ export default function HardwareHubShell() {
                 Buy compute for the work you actually do.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-white/55 sm:text-xl">
-                Plan an AI workstation, a private model node, or a small fleet without confusing VRAM, unified memory,
-                cloud capacity, and marketing TOPS.
+                Plan owned and rented AI compute—from laptops and workstations to unified-memory nodes, data-center GPUs,
+                edge systems, and cloud capacity—without confusing VRAM, memory pools, and marketing TOPS.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a href="#planner" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-emerald-100">
@@ -478,6 +560,9 @@ export default function HardwareHubShell() {
                 </a>
                 <a href="#compare" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-medium text-white/75 hover:border-white/20 hover:text-white">
                   Compare hardware
+                </a>
+                <a href="#directory" className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-white/50 hover:text-white">
+                  Browse all compute
                 </a>
               </div>
             </div>
@@ -493,6 +578,7 @@ export default function HardwareHubShell() {
           </div>
         </section>
 
+        <ComputeDirectory />
         <Planner />
         <SetupArchetypes />
         <PlatformExplorer />

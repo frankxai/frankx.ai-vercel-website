@@ -23,12 +23,13 @@ Asset provenance: no external visual assets in V1.
 ## Scene sequence
 
 1. Hook: “Buy compute for the work you actually do.”
-2. Mechanism: interactive compute constellation.
-3. Decision: setup planner and recommendation packet.
-4. Proof: comparison table and workload-fit matrix.
-5. Expansion: phased fleet topology and trigger thresholds.
-6. Horizon: NVIDIA, AMD, Apple, Intel/Arm, edge accelerators, and regional supply paths.
-7. Trust: dated sources, methodology, FAQ, affiliate disclosure.
+2. Orientation: three-lane directory for owned compute, physical infrastructure, and rented capacity.
+3. Mechanism: interactive compute constellation.
+4. Decision: setup planner and recommendation packet.
+5. Proof: comparison table and workload-fit matrix.
+6. Expansion: phased fleet topology and trigger thresholds.
+7. Horizon: NVIDIA, AMD, Apple, Intel/Arm, edge accelerators, and regional supply paths.
+8. Trust: dated sources, methodology, FAQ, affiliate disclosure.
 
 ## Motion score
 

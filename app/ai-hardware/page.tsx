@@ -1,5 +1,6 @@
 import HardwareHubShell from '@/components/ai-hardware/HardwareHubShell'
-import { HARDWARE_FAQ, HARDWARE_PLATFORMS, HARDWARE_REVIEWED_AT, SETUP_PROFILES } from '@/data/hardware-intelligence'
+import { HARDWARE_FAQ, HARDWARE_REVIEWED_AT } from '@/data/hardware-intelligence'
+import { HARDWARE_CATEGORIES } from '@/data/hardware-taxonomy'
 import { ldJson } from '@/lib/seo/jsonld'
 
 export default function HardwareIntelligencePage() {
@@ -9,19 +10,19 @@ export default function HardwareIntelligencePage() {
     '@id': 'https://frankx.ai/ai-hardware#hub',
     name: 'FrankX AI Hardware Intelligence',
     url: 'https://frankx.ai/ai-hardware',
-    description: 'Interactive AI workstation, local model node, and fleet planning hub.',
+    description: 'Interactive planning hub for owned local systems, physical AI infrastructure, and rented cloud compute.',
     dateModified: HARDWARE_REVIEWED_AT,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
     mainEntity: {
       '@type': 'ItemList',
-      numberOfItems: HARDWARE_PLATFORMS.length,
-      itemListElement: HARDWARE_PLATFORMS.map((platform, index) => ({
+      numberOfItems: HARDWARE_CATEGORIES.length,
+      itemListElement: HARDWARE_CATEGORIES.map((category, index) => ({
         '@type': 'ListItem',
         position: index + 1,
-        name: platform.name,
-        url: platform.sourceUrl,
+        name: category.title,
+        url: `https://frankx.ai/ai-hardware/${category.slug}`,
       })),
     },
   }

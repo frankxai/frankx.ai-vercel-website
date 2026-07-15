@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'AI Hardware Intelligence — Workstations, Local LLMs & Fleet Planner',
-  description: 'Plan an AI workstation, unified-memory model node, or small AI fleet. Compare NVIDIA, AMD, Apple, edge accelerators, model fit, cloud tradeoffs, and expansion cost.',
+  title: 'AI Hardware Intelligence — Local, Cloud & Data-Center Compute',
+  description: 'Plan AI laptops, workstations, unified-memory nodes, home labs, edge systems, data-center GPUs, or rented cloud compute. Compare what to own, rent, and add next.',
   alternates: { canonical: '/ai-hardware' },
   openGraph: {
-    title: 'AI Hardware Intelligence — Buy the right compute',
-    description: 'An evidence-backed planner for AI workstations, private model nodes, and creator fleets.',
+    title: 'AI Hardware Intelligence — Own, rent, and route the right compute',
+    description: 'An evidence-backed planner for local machines, physical AI infrastructure, rented accelerators, and routed compute fleets.',
     url: 'https://frankx.ai/ai-hardware',
     type: 'website',
   },

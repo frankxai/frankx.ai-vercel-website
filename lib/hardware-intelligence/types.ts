@@ -38,3 +38,30 @@ export type PlannerInputs = {
   alwaysOn: boolean
   team: boolean
 }
+
+export type HardwareCategoryCluster = 'local' | 'infrastructure' | 'access' | 'edge' | 'planning'
+
+export type HardwareRouteLink = {
+  label: string
+  href: string
+  reason: string
+}
+
+export type HardwareCategory = {
+  slug: string
+  cluster: HardwareCategoryCluster
+  title: string
+  shortTitle: string
+  eyebrow: string
+  summary: string
+  definition: string
+  audience: string
+  firstDecision: string
+  chooseWhen: string[]
+  avoidWhen: string[]
+  capabilities: string[]
+  limitations: string[]
+  decisionQuestions: string[]
+  nextRoutes: HardwareRouteLink[]
+  faq: Array<{ question: string; answer: string }>
+}
