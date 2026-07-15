@@ -33,6 +33,20 @@ FrankX is his independent studio for human-first AI systems: creator operating s
 
 Frank's position is simple: AI should help humans create more, think better, and ship work they are proud of. His work is based on public knowledge, personal experience, and independent experimentation, not Oracle endorsement, confidential Oracle material, or private customer information.
 
+## The "Epiphany Story" (Brand Attraction Mechanism)
+
+The central narrative arc that drives brand attraction across all segments is the transition from enterprise architecture to sovereign creator. 
+
+**The Narrative Core:**
+- **The Crucible:** Operating at the highest levels of enterprise AI (Oracle). Understanding the systems, but realizing corporate architecture is ultimately a cage that limits true creative freedom.
+- **The Pivot:** The layoff/departure wasn't a failure — it was the catalyst. It was the moment of applying enterprise-grade intelligence to personal sovereignty.
+- **The Empire:** Use the approved bio language exactly — "helped build a seven-figure business with his brother," "creator of 12,000+ AI songs." Don't loosen this into "built a 7-figure digital business" — that reads as a claim about FrankX/GenCreator revenue specifically, which isn't accurate yet.
+
+**Why this works (register, not a targeting filter — see `CONTENT_VOICE_DNA.md` §14):**
+- **For the creator/aesthetic audience:** it signals high competence, ambition, and freedom without needing to name a demographic in the copy itself.
+- **For Direction Seekers:** it provides a relatable rock-bottom (losing a job) paired with an exact blueprint for how to rebuild using discipline and AI systems.
+- **For Elite Operators:** it demonstrates peer-level enterprise understanding combined with the speed and agility of a modern creator.
+
 ## Site Hero Positioning Block
 
 **Eyebrow:** Former enterprise AI architect. Creator systems builder.

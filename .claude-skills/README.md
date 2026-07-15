@@ -7,11 +7,11 @@
 ## Quick Navigation
 
 - [The Creator's Soulbook](#the-creators-soulbook) (25 skills) - Life Books, 7 Pillars, AI Agents
-- [Technical Skills](#technical-skills) (19 skills) - AI frameworks, development, architecture, devops, security
+- [Technical Skills](#technical-skills) (10 skills) - AI frameworks, development, architecture
 - [Business Skills](#business-skills) (2 skills) - Oracle Cloud, product management
-- [Creative Skills](#creative-skills) (8 skills) - Brand, content, music, social media, book writing, content strategy
+- [Creative Skills](#creative-skills) (7 skills) - Brand, content, music, social media, book writing
 - [Personal Skills](#personal-skills) (4 skills) - Philosophy, fitness, nutrition
-- [Project Skills](#project-skills) (5 skills) - Arcanea, daily execution, content ops, publishing ops, agentic builder lab
+- [Project Skills](#project-skills) (2 skills) - Arcanea, daily execution
 
 ---
 
@@ -153,15 +153,6 @@ Skills use their directory name as identifier:
 | `nextjs-react-expert` | Next.js and React development patterns | Building web applications |
 | `framer-expert` | Framer design and development | Creating Framer sites/prototypes |
 | `ui-ux-design-expert` | UI/UX design, accessibility, design systems | Interface design decisions |
-| `api-design` | REST/GraphQL/RPC patterns, schema design, versioning | Designing or evolving service APIs |
-| `async-python` | asyncio patterns, concurrency, performance | Python concurrency or backend work |
-| `ci-cd-pipeline` | GitHub Actions, deploy gates, release automation | Building or fixing CI workflows |
-| `creator-intelligence` | Creator economy intelligence and patterns | Creator strategy / product fit |
-| `database-migrations` | Schema evolution, zero-downtime migration patterns | Any schema change work |
-| `docker-containers` | Image design, multi-stage builds, runtime ops | Containerizing services |
-| `documentation-generation` | Automated docs from code (TypeDoc, Sphinx, etc.) | Auto-generated API or library docs |
-| `monitoring-observability` | Metrics, logs, traces, SLOs | Adding observability or debugging prod |
-| `security-hardening` | Auth, secrets, OWASP, runtime defense | Security review or hardening work |
 
 **Most Used**: `mcp-architecture`, `claude-sdk`, `nextjs-react-expert`
 
@@ -193,7 +184,6 @@ Skills use their directory name as identifier:
 | `suno-prompt-architect` | Advanced Suno prompt engineering for transformative music | Crafting professional Suno prompts |
 | `social-media-strategy` | Social content strategy and platform optimization | Planning social media content |
 | `video-production-workflow` | Video creation and production workflows | Making videos/tutorials |
-| `content-strategy` | Strategy, calendar, voice consistency for ongoing content | Planning content cadence or audits |
 
 **Most Used**: `frankx-brand`, `golden-age-book-writing`, `suno-prompt-architect`
 
@@ -224,7 +214,6 @@ Skills use their directory name as identifier:
 | `frankx-daily-execution` | Daily workflow using FRANKX system and productivity methods | Daily planning and execution |
 | `daily-content-ops` | Research trending topics, polish drafts, generate social content | Daily content workflow |
 | `daily-publishing-ops` | Full publishing operations cadence with agent handoffs | Publishing and distribution |
-| `agentic-builder-lab` | One build session → MDX log + LinkedIn draft + demo brief + Mermaid diagram + reusable prompt. Voice override: technical authority. Mirrored from ACOS. | Logging a public build for `/agentic-builder-lab` |
 
 **Most Used**: `frankx-daily-execution`, `daily-content-ops`
 
