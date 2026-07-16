@@ -8,7 +8,7 @@ Created and applied a cleaner authority layer for FrankX and related repos. The 
 
 Canonical language now centers on:
 
-- Former AI architect at Oracle.
+- AI Architect & Creator.
 - Enterprise-scale AI and cloud transformation experience.
 - Practical AI systems for entrepreneurs, creators, operators, and high-agency humans.
 - Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
