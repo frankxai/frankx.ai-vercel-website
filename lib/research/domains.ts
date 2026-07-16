@@ -39,11 +39,13 @@ export interface ResearchDomain {
   faq?: ResearchFAQ[]
   relatedDomains: string[]
   relatedBlogPosts: string[]
+  publishedAt?: string
   lastUpdated: string
   sourceCount: number
   status: 'active' | 'emerging' | 'foundational'
   // Research quality fields
   evidenceGrade?: 'A' | 'B' | 'C' | 'D' // A=peer-reviewed, B=industry reports, C=mixed, D=editorial
+  evidenceNote?: string
   limitations?: string[]
   whatWeDontKnow?: string[]
   lastVerified?: string // ISO date
@@ -58,6 +60,95 @@ export const domainCategories: Record<DomainCategory, { label: string; descripti
 }
 
 export const researchDomains: ResearchDomain[] = [
+  {
+    slug: 'intent-architecture',
+    title: 'Intent Architecture',
+    subtitle: 'Governed delegation across agents, humans, tools, and time',
+    description: 'A research synthesis for translating human purpose into bounded, reviewable execution across AI agents, people, tools, and organizational memory.',
+    tldr: 'Intent Architecture is a FrankX synthesis, not a settled academic field. Before delegating work, make seven fields explicit: purpose, end state, context, boundaries, decision rights, evidence, and escalation plus memory. Research on intelligent delegation, mixed-initiative systems, workplace AI, and distributed cognition supports the components; their integration remains an emerging practice.',
+    icon: 'Compass',
+    color: 'cyan',
+    category: 'ai-systems',
+    highlights: [
+      { stat: '1,500', label: 'workers mapped', source: 'WORKBank' },
+      { stat: '885', label: 'product managers studied', source: 'Ulloa et al.' },
+      { stat: '5,172', label: 'customer-support agents in AI-assistance study', source: 'QJE' },
+      { stat: '93', label: 'workers in CollabSkill study', source: 'CollabSkill' },
+    ],
+    sections: [
+      {
+        title: 'From Prompting to Delegation Systems',
+        content: 'A prompt specifies an immediate interaction. A delegation system specifies who may decide, which tools and data may be used, what evidence must return, when a person must be involved, and how the result becomes reusable organizational memory. DeepMind\'s framework for intelligent AI delegation similarly treats authority, responsibility, accountability, role boundaries, intent clarity, and trust as coupled design problems.',
+        items: [
+          { title: 'Purpose', description: 'The outcome and the reason it matters, expressed independently from a preferred implementation.', badge: 'Intent' },
+          { title: 'Boundaries', description: 'Data, tools, budgets, policies, and actions that constrain the execution space.', badge: 'Control' },
+          { title: 'Evidence', description: 'The artifacts, tests, citations, and review signals required before completion can be claimed.', badge: 'Proof' },
+          { title: 'Memory', description: 'What is retained so the next delegation begins with better context and fewer repeated corrections.', badge: 'Learning' },
+        ],
+      },
+      {
+        title: 'The Intent Contract',
+        content: 'The practical unit is a seven-field intent contract: purpose, end state, context, boundaries, decision rights, evidence, and escalation plus memory. This structure adapts ideas from mission command and mixed-initiative interaction to agentic work. It is an engineering synthesis, not a claim that military or human-computer interaction research directly validates every implementation choice.',
+      },
+      {
+        title: 'Lower-Friction Practice, Not an Introvert Advantage',
+        content: 'AI may create a private rehearsal space for specifying requests, revising tone, and building delegation confidence before involving another person. One matched-corpus study found less hedging and politeness in LMSYS help-seeking than in matched Stack Exchange interactions, although platform norms are a confound. In a separate interview study, 17 managers perceived AI role-play as a low-risk, repeatable practice environment. Neither study shows that introverts benefit more than other groups, and introversion must not be conflated with shyness, social anxiety, or evaluation apprehension.',
+      },
+      {
+        title: 'Decision Rights and Human Boundaries',
+        content: 'Useful autonomy is graduated. Agents can draft, recommend, prepare, execute within declared policy, or orchestrate inside explicit limits. Escalation is transversal: it can interrupt any level when consequence, ambiguity, or policy requires a human decision. NIST NCCoE is exploring standards-based approaches to identify, manage, and authorize software and AI agents; the work is active and should not be read as a finalized standard.',
+        items: [
+          { title: 'D0 — Draft', description: 'Produce options or artifacts while a person decides and acts.', badge: 'Review output' },
+          { title: 'D1 — Recommend', description: 'Evaluate options and propose a call while a person chooses.', badge: 'Human chooses' },
+          { title: 'D2 — Prepare', description: 'Complete the work but wait before a consequential action.', badge: 'Approval gate' },
+          { title: 'D3 — Execute within policy', description: 'Act inside explicit limits with logs, receipts, and stop conditions.', badge: 'Guarded' },
+          { title: 'D4 — Orchestrate', description: 'Delegate within a declared budget and policy while a person owns the system.', badge: 'Audit required' },
+        ],
+      },
+      {
+        title: 'Evaluation and Operating Memory',
+        content: 'Agentic delegation should be evaluated as a loop, not a single answer. Measure outcome quality, policy compliance, evidence completeness, escalation quality, reversibility, and the usefulness of retained context. Early workplace benchmarks show large gaps between model capability and dependable occupational execution. One recent collaboration preprint provides preliminary evidence that practical experience is associated with collaboration skill and can shift AI literacy.',
+      },
+    ],
+    keyFindings: [
+      'Delegation quality depends on authority, responsibility, accountability, role boundaries, intent clarity, and trust—not prompt wording alone.',
+      'WORKBank maps 844 tasks across 104 occupations from 1,500 workers, showing that desired automation and feasible delegation vary substantially by task.',
+      'A study of 885 product managers found that identity, accountability, and social dynamics shape whether people delegate work to AI.',
+      'A field study of 5,172 customer-support agents found a 15% average productivity increase from generative AI, with larger gains among less-experienced workers; this is adjacent evidence, not proof of the full Intent Architecture model.',
+      'CollabSkill reports 93 workers across 386 human-agent sessions and identifies practical experience as an important contributor to collaboration skill.',
+      'The claim that AI delegation creates a special opportunity for introverts remains a hypothesis requiring direct comparative study.',
+    ],
+    faq: [
+      { question: 'Is Intent Architecture an established academic discipline?', answer: 'No. Intent Architecture is FrankX\'s synthesis of established and emerging work in delegation, mixed-initiative systems, distributed cognition, workplace AI, organizational design, identity, and agent evaluation. The component ideas have evidence; the integrated framework still needs direct testing.' },
+      { question: 'How is an intent contract different from a prompt?', answer: 'A prompt usually guides one interaction. An intent contract makes seven fields explicit across a longer workflow: purpose, end state, context, boundaries, decision rights, evidence, and escalation plus memory.' },
+      { question: 'Does this research prove that introverts are better at delegating to AI?', answer: 'No. In a small interview study, managers perceived AI role-play as a low-risk, repeatable practice environment. That does not establish skill transfer or a differential benefit for introverts, and introversion is not equivalent to shyness or social anxiety.' },
+      { question: 'When should an agent involve a human?', answer: 'Escalate when a decision is irreversible, high-impact, identity-sensitive, legally or financially consequential, outside declared authority, or too ambiguous to satisfy the agreed evidence standard.' },
+      { question: 'What should teams measure?', answer: 'Track outcome quality, evidence completeness, policy compliance, unnecessary escalations, missed escalations, reversibility, and whether retained memory improves the next run.' },
+    ],
+    relatedDomains: ['multi-agent-systems', 'agentic-life-architecture', 'agentic-evals', 'ai-security', 'ai-agent-config'],
+    relatedBlogPosts: ['/blog/intent-architecture-agentic-delegation', '/blog/multi-agent-orchestration-patterns-2026', '/blog/production-agentic-ai-systems'],
+    publishedAt: '2026-07-16',
+    lastUpdated: '2026-07-16',
+    sourceCount: 16,
+    status: 'emerging',
+    evidenceGrade: 'C',
+    evidenceNote: 'Mixed evidence: peer-reviewed studies, preprints, official sources, doctrine, and editorial synthesis',
+    limitations: [
+      'Several directly relevant studies are recent preprints and have not completed peer review.',
+      'Industry surveys and vendor studies may contain selection, framing, or self-report bias.',
+      'The introvert opportunity is a reasoned hypothesis; current studies do not compare outcomes by introversion.',
+      'Evidence from customer support, product management, and management rehearsal may not generalize to every occupation or high-stakes domain.',
+      'Mission command, agency theory, and distributed cognition are conceptual foundations, not causal validation of this integrated framework.',
+    ],
+    whatWeDontKnow: [
+      'Which intent-contract fields produce the largest independent improvement in task outcomes?',
+      'How should decision-rights levels adapt to domain risk, model capability, and individual expertise?',
+      'Whether private AI rehearsal transfers to better delegation and communication with people over time.',
+      'Whether introversion, social anxiety, role seniority, or prior management experience moderates the value of agent-mediated practice.',
+      'How much operating memory improves performance before accumulated context begins to create anchoring or privacy risk.',
+    ],
+    lastVerified: '2026-07-16',
+  },
   {
     slug: 'enterprise-ai',
     title: 'Enterprise AI Architecture',
