@@ -5,6 +5,7 @@ import { buildModelRows } from '@/lib/llm-hub/rows'
 // Keep the live catalog out of deploy-time prerendering. fetchLivePricing() still
 // uses the Next Data Cache and refreshes the upstream response at most hourly.
 export const dynamic = 'force-dynamic'
+// Intentional Function boundary: external pricing refreshes independently of site deploys.
 
 export async function GET() {
   const live = await fetchLivePricing()
