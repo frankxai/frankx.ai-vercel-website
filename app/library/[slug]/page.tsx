@@ -292,6 +292,9 @@ export default async function ReviewPage({
                 </p>
               )}
               <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-cyan-100/65">
+                <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
+                  Captured: {review.capture.capturedAt}
+                </span>
                 {review.capture.translator && (
                   <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
                     Translation: {review.capture.translator}
@@ -303,6 +306,11 @@ export default async function ReviewPage({
                   </span>
                 )}
               </div>
+              {review.capture.rightsStatus && (
+                <p className="mt-4 border-t border-cyan-400/10 pt-4 text-xs leading-relaxed text-white/45">
+                  {review.capture.rightsStatus}
+                </p>
+              )}
             </div>
             {review.capture.images && review.capture.images.length > 0 && (
               <div className="grid gap-px border-t border-cyan-400/10 bg-cyan-400/10 sm:grid-cols-2">
