@@ -49,3 +49,9 @@ Private partner CRM stays in operator systems (ops-hub / SIS), never unsanitized
 - Draft PR from `agent/hermes/agentic-life-research` (`gh pr create --draft`)  
 - Optional: wire briefs into research brief route if not auto-discovered  
 - Optional: queen report mirror under `starlight/queen/reports/` if ops wants estate receipt  
+
+## Hub cluster expansion
+
+- `/research/agentic-sovereignty`
+- `/research/agentic-evals`
+- Production plan: `docs/research/agentic-life-research-production-plan-2026-07-16.md`
