@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 821,
+    "total": 835,
     "aliases": 38,
     "byType": {
       "core": 21,
@@ -43,7 +43,7 @@
     },
     {
       "href": "/acos",
-      "title": "ACOS \u2014 Agentic Creator OS",
+      "title": "ACOS — Agentic Creator OS",
       "type": "section"
     },
     {
@@ -513,7 +513,7 @@
     },
     {
       "href": "/ai-ops/architecture",
-      "title": "AI Ops \u2014 Architecture",
+      "title": "AI Ops — Architecture",
       "type": "section"
     },
     {
@@ -528,7 +528,7 @@
     },
     {
       "href": "/ai-ops/patterns",
-      "title": "AI Ops \u2014 Patterns",
+      "title": "AI Ops — Patterns",
       "type": "section"
     },
     {
@@ -712,7 +712,7 @@
     {
       "href": "/blog/02-the-soul-frequency-framework",
       "title": "The Creative Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age",
-      "description": "Everyone has a unique creative frequency \u2014 a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
+      "description": "Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
       "tags": [
         "Creativity",
         "Personal Development",
@@ -789,13 +789,13 @@
     {
       "href": "/blog/acos-use-cases-creator-types",
       "title": "ACOS Use Cases: Find Your Creator Type and Ideal Workflow",
-      "description": "Discover which Agentic Creator OS workflows match your creator archetype. Writers, developers, musicians, entrepreneurs, course creators, and agencies\u2014find your path.",
+      "description": "Discover which Agentic Creator OS workflows match your creator archetype. Writers, developers, musicians, entrepreneurs, course creators, and agencies—find your path.",
       "tags": [],
       "type": "blog"
     },
     {
       "href": "/blog/acos-v10-autonomous-intelligence",
-      "title": "ACOS v10: Autonomous Intelligence \u2014 The System That Improves Itself",
+      "title": "ACOS v10: Autonomous Intelligence — The System That Improves Itself",
       "description": "ACOS v10 ships 5 new safety and intelligence systems. Intelligence score jumps from 72 to 93. Here's what changed and why it matters for AI-native creators.",
       "tags": [
         "acos",
@@ -808,7 +808,7 @@
     },
     {
       "href": "/blog/acos-v11-visual-intelligence-site-integrity",
-      "title": "ACOS v11: Visual Intelligence and Site Integrity \u2014 What Changed and Why",
+      "title": "ACOS v11: Visual Intelligence and Site Integrity — What Changed and Why",
       "description": "How 8 broken AI-generated images led to a 5-layer quality enforcement system, a 302-page site integrity audit, and a better way to create at scale.",
       "tags": [
         "ACOS",
@@ -847,7 +847,7 @@
     {
       "href": "/blog/aeo-playbook-get-cited-by-ai-2026",
       "title": "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026",
-      "description": "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini \u2014 with a checklist and the tools that track it.",
+      "description": "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini — with a checklist and the tools that track it.",
       "tags": [
         "AEO",
         "AI Search",
@@ -912,7 +912,7 @@
     {
       "href": "/blog/agentic-creator-os",
       "title": "The Agentic Creator OS: How to Orchestrate AI Like a Studio",
-      "description": "Stop juggling AI tools. Build a system where agents coordinate like a production team\u2014content, dev, design, marketing working together on your projects.",
+      "description": "Stop juggling AI tools. Build a system where agents coordinate like a production team—content, dev, design, marketing working together on your projects.",
       "tags": [],
       "type": "blog"
     },
@@ -932,7 +932,7 @@
     {
       "href": "/blog/agentic-os-family-foundry-launch",
       "title": "The Agentic OS Family: One Architecture, Installed Into Real Businesses",
-      "description": "How a one-day install for a friend's company became agentic-business-os, a public template with a sync channel \u2014 and the Foundry, an application-only install service with priority for sustainable, healthcare, and meaningful businesses.",
+      "description": "How a one-day install for a friend's company became agentic-business-os, a public template with a sync channel — and the Foundry, an application-only install service with priority for sustainable, healthcare, and meaningful businesses.",
       "tags": [
         "agentic-os",
         "business-os",
@@ -986,7 +986,7 @@
     {
       "href": "/blog/ai-agent-memory-persistent-systems",
       "title": "AI Agent Memory: From Chat History to Persistent Systems",
-      "description": "How to give AI agents memory that persists across sessions \u2014 CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time.",
+      "description": "How to give AI agents memory that persists across sessions — CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time.",
       "tags": [
         "AI Memory",
         "Agent Architecture",
@@ -999,7 +999,7 @@
     {
       "href": "/blog/ai-agents-inner-family",
       "title": "AI Agents Need an Inner Family, Not Just a Task List",
-      "description": "Most agent stacks are glorified workflow runners. The next leap is internal governance \u2014 an orchestrator that knows which sub-process is leading, and why.",
+      "description": "Most agent stacks are glorified workflow runners. The next leap is internal governance — an orchestrator that knows which sub-process is leading, and why.",
       "tags": [
         "ai architecture",
         "agentic systems",
@@ -1018,7 +1018,7 @@
     {
       "href": "/blog/ai-architecture-patterns-solo-builders",
       "title": "AI Architecture Patterns for Solo Builders",
-      "description": "The system design decisions that matter when one person builds what teams used to require \u2014 from monolith to agents.",
+      "description": "The system design decisions that matter when one person builds what teams used to require — from monolith to agents.",
       "tags": [
         "Architecture",
         "Solo Builder",
@@ -1068,7 +1068,7 @@
     {
       "href": "/blog/ai-guide-for-families-and-professionals",
       "title": "The Family & Professional's Guide to Thriving with AI (Not Just Surviving It)",
-      "description": "A practical, honest guide for families and working professionals who want to understand AI's real impact and how to navigate it successfully \u2014 without the hype or fear.",
+      "description": "A practical, honest guide for families and working professionals who want to understand AI's real impact and how to navigate it successfully — without the hype or fear.",
       "tags": [
         "AI Education",
         "Family",
@@ -1080,7 +1080,7 @@
     {
       "href": "/blog/ai-health-fitness-athletes-creators-2026",
       "title": "AI for Athletes and Fitness Creators: The 2026 Playbook",
-      "description": "How AI transforms training, nutrition, and recovery \u2014 and why fitness creators who adopt it first will define the next era of online coaching.",
+      "description": "How AI transforms training, nutrition, and recovery — and why fitness creators who adopt it first will define the next era of online coaching.",
       "tags": [
         "Health AI",
         "Fitness",
@@ -1093,7 +1093,7 @@
     {
       "href": "/blog/ai-image-video-generation-playbook-2026",
       "title": "The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost",
-      "description": "Most creators pay twice for AI images \u2014 once for the subscription, again for the API. Here's the decision table: which engine to use, which plan already includes it, and the rare times paying per-call is actually worth it.",
+      "description": "Most creators pay twice for AI images — once for the subscription, again for the API. Here's the decision table: which engine to use, which plan already includes it, and the rare times paying per-call is actually worth it.",
       "tags": [
         "ai image generation",
         "ai video generation",
@@ -1107,7 +1107,7 @@
     {
       "href": "/blog/ai-model-routing-guide",
       "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
-      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks \u2014 with prices, evidence grades, and the persona map. Refreshed every quarter and after every arena round.",
+      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grades, and the persona map. Refreshed every quarter and after every arena round.",
       "tags": [
         "frontier-models",
         "model-routing",
@@ -1134,7 +1134,7 @@
     {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
       "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
-      "description": "Every major AI video tool compared \u2014 quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
+      "description": "Every major AI video tool compared — quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
       "tags": [
         "AI Video",
         "Sora",
@@ -1147,7 +1147,7 @@
     {
       "href": "/blog/ai-workshops-for-students-what-worked",
       "title": "AI Workshops for Students: What Actually Worked",
-      "description": "Lessons from building an AI education system for students \u2014 the tools, the curriculum, and what 2026 learners actually need to know.",
+      "description": "Lessons from building an AI education system for students — the tools, the curriculum, and what 2026 learners actually need to know.",
       "tags": [
         "AI Education",
         "Students",
@@ -1160,7 +1160,7 @@
     {
       "href": "/blog/arcanea-building-worlds-ai-agents",
       "title": "Arcanea: Building Worlds with AI Agents",
-      "description": "How I built a fantasy civilization with 5 Eldrian characters, 10 Gates, and a living world-state \u2014 using Claude Code, Gemini, and agentic workflows.",
+      "description": "How I built a fantasy civilization with 5 Eldrian characters, 10 Gates, and a living world-state — using Claude Code, Gemini, and agentic workflows.",
       "tags": [
         "Arcanea",
         "World Building",
@@ -1173,7 +1173,7 @@
     {
       "href": "/blog/best-ai-affiliate-programs-2026",
       "title": "The Best AI and MCP Affiliate Programs in 2026 (Ranked by What Actually Pays)",
-      "description": "A ranked, economics-first guide to AI and MCP affiliate programs in 2026 \u2014 recurring vs one-time, the honest dead-ends, and the 3-network setup that replaces signing up to 30 sites.",
+      "description": "A ranked, economics-first guide to AI and MCP affiliate programs in 2026 — recurring vs one-time, the honest dead-ends, and the 3-network setup that replaces signing up to 30 sites.",
       "tags": [
         "affiliate marketing",
         "ai tools",
@@ -1187,7 +1187,7 @@
     {
       "href": "/blog/best-ai-browser-2026",
       "title": "Best AI Browser 2026: ChatGPT Atlas vs Perplexity Comet vs Dia",
-      "description": "A current, honest comparison of the 2026 AI browsers \u2014 ChatGPT Atlas, Perplexity Comet (free since March), and Dia \u2014 on agentic browsing, assistant quality, privacy, price, and platform. Plus where Gemini-in-Chrome and Edge Copilot fit.",
+      "description": "A current, honest comparison of the 2026 AI browsers — ChatGPT Atlas, Perplexity Comet (free since March), and Dia — on agentic browsing, assistant quality, privacy, price, and platform. Plus where Gemini-in-Chrome and Edge Copilot fit.",
       "tags": [
         "AI browser",
         "ChatGPT Atlas",
@@ -1201,7 +1201,7 @@
     {
       "href": "/blog/best-ai-coding-tools-for-beginners-2026",
       "title": "Best AI Coding Tool for Beginners 2026: Cursor vs GitHub Copilot vs Replit Agent",
-      "description": "An honest comparison of Cursor, GitHub Copilot, and Replit Agent for people learning to code or shipping their first app \u2014 learning curve, free tiers, real prices, and which one a non-coder can actually use.",
+      "description": "An honest comparison of Cursor, GitHub Copilot, and Replit Agent for people learning to code or shipping their first app — learning curve, free tiers, real prices, and which one a non-coder can actually use.",
       "tags": [
         "AI coding tools",
         "beginners",
@@ -1227,7 +1227,7 @@
     {
       "href": "/blog/best-ai-image-generators-2026",
       "title": "Best AI Image Generators in 2026: GPT Image 2, Nano Banana, Midjourney, FLUX",
-      "description": "Every major AI image tool compared \u2014 quality, text rendering, pricing, and which to use for photorealism, design, and in-pipeline automation.",
+      "description": "Every major AI image tool compared — quality, text rendering, pricing, and which to use for photorealism, design, and in-pipeline automation.",
       "tags": [
         "AI Image Generation",
         "GPT Image",
@@ -1240,7 +1240,7 @@
     {
       "href": "/blog/best-ai-logo-maker-2026",
       "title": "Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft",
-      "description": "A results-first comparison of the best AI logo makers in 2026 \u2014 Looka, Canva, Ideogram, and Recraft \u2014 judged on vector export, brand kit, licensing, and price. Recraft wins for the file you actually own.",
+      "description": "A results-first comparison of the best AI logo makers in 2026 — Looka, Canva, Ideogram, and Recraft — judged on vector export, brand kit, licensing, and price. Recraft wins for the file you actually own.",
       "tags": [
         "AI logo maker",
         "AI design tools",
@@ -1256,7 +1256,7 @@
     {
       "href": "/blog/best-ai-meeting-assistant-2026",
       "title": "Best AI Meeting Assistant 2026: Granola vs Otter vs Fathom vs Fireflies",
-      "description": "A results-first comparison of the four AI meeting notetakers worth your money in 2026 \u2014 Granola, Otter, Fathom, Fireflies \u2014 on accuracy, no-bot vs bot, action items, integrations, privacy, and price.",
+      "description": "A results-first comparison of the four AI meeting notetakers worth your money in 2026 — Granola, Otter, Fathom, Fireflies — on accuracy, no-bot vs bot, action items, integrations, privacy, and price.",
       "tags": [
         "AI meeting assistant",
         "Granola",
@@ -1270,7 +1270,7 @@
     {
       "href": "/blog/best-ai-note-taking-tools-2026",
       "title": "Best AI Note-Taking and Second-Brain Tools 2026: Notion AI vs Mem vs Reflect vs Obsidian",
-      "description": "A results-first comparison of the best AI note-taking and second-brain tools in June 2026 \u2014 Notion AI, Mem, Reflect, Obsidian, and meeting tools Granola and Otter \u2014 scored on AI quality, retrieval, transcription, privacy, and price.",
+      "description": "A results-first comparison of the best AI note-taking and second-brain tools in June 2026 — Notion AI, Mem, Reflect, Obsidian, and meeting tools Granola and Otter — scored on AI quality, retrieval, transcription, privacy, and price.",
       "tags": [
         "second brain",
         "AI note-taking",
@@ -1283,7 +1283,7 @@
     {
       "href": "/blog/best-ai-presentation-maker-2026",
       "title": "Best AI Presentation Maker 2026: Gamma vs Canva vs NotebookLM (and Why Tome Is Gone)",
-      "description": "Gamma, Canva, Beautiful.ai, Plus AI, NotebookLM, and Presentations.ai compared on quality, editability, PPT/Slides export, and price \u2014 plus the Tome shutdown most guides still get wrong.",
+      "description": "Gamma, Canva, Beautiful.ai, Plus AI, NotebookLM, and Presentations.ai compared on quality, editability, PPT/Slides export, and price — plus the Tome shutdown most guides still get wrong.",
       "tags": [
         "AI Presentations",
         "Gamma",
@@ -1296,7 +1296,7 @@
     {
       "href": "/blog/best-ai-product-photography-2026",
       "title": "Best AI Product Photography Tools 2026 for Amazon and Shopify Sellers",
-      "description": "A results-first comparison of the best AI product photography tools in 2026 \u2014 Photoroom, Pebblely, Flair.ai, Claid, plus Nano Banana Pro and GPT Image 2 \u2014 ranked on realism, product accuracy, batch power, and price.",
+      "description": "A results-first comparison of the best AI product photography tools in 2026 — Photoroom, Pebblely, Flair.ai, Claid, plus Nano Banana Pro and GPT Image 2 — ranked on realism, product accuracy, batch power, and price.",
       "tags": [
         "AI product photography",
         "ecommerce",
@@ -1311,7 +1311,7 @@
     {
       "href": "/blog/best-ai-resume-builder-2026",
       "title": "Best AI Resume Builder 2026: Teal vs Rezi vs Kickresume vs Just Using Claude",
-      "description": "An honest comparison of the top AI resume builders in 2026 \u2014 Teal, Rezi, Kickresume, Enhancv \u2014 against the $0 Claude-plus-template route. What ATS optimization actually means, real pricing, and when a paid builder is worth it.",
+      "description": "An honest comparison of the top AI resume builders in 2026 — Teal, Rezi, Kickresume, Enhancv — against the $0 Claude-plus-template route. What ATS optimization actually means, real pricing, and when a paid builder is worth it.",
       "tags": [
         "AI resume builder",
         "ATS optimization",
@@ -1325,7 +1325,7 @@
     {
       "href": "/blog/best-ai-shorts-tiktok-tools-2026",
       "title": "Best AI Tool for YouTube Shorts and TikTok 2026: Opus Clip vs AutoShorts vs Faceless",
-      "description": "The best AI tools for automated YouTube Shorts and TikTok in 2026 \u2014 Opus Clip, AutoShorts, Faceless.so, Submagic, and CapCut compared on automation, quality, scheduling, and price.",
+      "description": "The best AI tools for automated YouTube Shorts and TikTok in 2026 — Opus Clip, AutoShorts, Faceless.so, Submagic, and CapCut compared on automation, quality, scheduling, and price.",
       "tags": [
         "AI Video",
         "YouTube Shorts",
@@ -1338,7 +1338,7 @@
     {
       "href": "/blog/best-ai-superpowers-stack-2026",
       "title": "The AI Superpowers Stack 2026: The Best Tool and MCP for Every Creator Job",
-      "description": "A curated stack \u2014 the single best AI tool and the MCP server that gives an agent that power \u2014 for content, websites, research, image, video, music, automation, coding, and voice.",
+      "description": "A curated stack — the single best AI tool and the MCP server that gives an agent that power — for content, websites, research, image, video, music, automation, coding, and voice.",
       "tags": [
         "AI Tools",
         "MCP",
@@ -1351,7 +1351,7 @@
     {
       "href": "/blog/best-ai-tools-for-creators-2026",
       "title": "The Best AI Tools for Creators in 2026: A GenCreator's Production Stack",
-      "description": "The complete AI creator toolkit \u2014 from Claude Code for development to Suno for music. Every tool battle-tested in daily production use.",
+      "description": "The complete AI creator toolkit — from Claude Code for development to Suno for music. Every tool battle-tested in daily production use.",
       "tags": [
         "ai-tools",
         "creator-stack",
@@ -1365,7 +1365,7 @@
     {
       "href": "/blog/best-ai-video-editor-2026",
       "title": "Best AI Video Editor 2026: CapCut vs Descript vs Premiere AI vs Runway",
-      "description": "The honest June 2026 comparison of the four AI video editors that matter \u2014 CapCut for short-form, Descript for talking-head and podcast video, Premiere with Firefly for pro long-form, Runway for AI-native generation. Picked by job, with verified pricing and a comparison table.",
+      "description": "The honest June 2026 comparison of the four AI video editors that matter — CapCut for short-form, Descript for talking-head and podcast video, Premiere with Firefly for pro long-form, Runway for AI-native generation. Picked by job, with verified pricing and a comparison table.",
       "tags": [
         "ai-video-editor",
         "capcut",
@@ -1408,7 +1408,7 @@
     {
       "href": "/blog/best-cheap-ai-music-generator-2026",
       "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
-      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 \u2014 Suno, Udio, AIVA, Riffusion, Soundraw, Mubert \u2014 on price, free-tier limits, and the one thing that decides whether you can legally sell the output: commercial rights.",
+      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that decides whether you can legally sell the output: commercial rights.",
       "tags": [
         "AI Music",
         "Suno",
@@ -1421,7 +1421,7 @@
     {
       "href": "/blog/best-elevenlabs-alternatives-2026",
       "title": "Best ElevenLabs Alternatives 2026: The Cheapest AI Voice That Still Sounds Human",
-      "description": "ElevenLabs is still the quality benchmark \u2014 but you don't always need it. Verified June 2026 pricing for Fish Audio, Cartesia, Hume, Kokoro, and more, ranked by price-per-character.",
+      "description": "ElevenLabs is still the quality benchmark — but you don't always need it. Verified June 2026 pricing for Fish Audio, Cartesia, Hume, Kokoro, and more, ranked by price-per-character.",
       "tags": [
         "AI Voice",
         "Text to Speech",
@@ -1434,7 +1434,7 @@
     {
       "href": "/blog/best-local-llm-2026",
       "title": "Best Local LLM to Run on Your Own Machine in 2026 (by RAM: 8GB / 16GB / 32GB)",
-      "description": "Pick the right open model for your RAM. Verified params, quant levels, and VRAM for Qwen3, Gemma 3, Llama, and DeepSeek distills across 8GB, 16GB, and 32GB machines \u2014 plus the runner to use.",
+      "description": "Pick the right open model for your RAM. Verified params, quant levels, and VRAM for Qwen3, Gemma 3, Llama, and DeepSeek distills across 8GB, 16GB, and 32GB machines — plus the runner to use.",
       "tags": [
         "local-llm",
         "open-models",
@@ -1447,7 +1447,7 @@
     {
       "href": "/blog/best-no-code-ai-agent-builders-2026",
       "title": "Best No-Code AI Agent Builders 2026: n8n vs Lindy vs Relay vs Make",
-      "description": "A hands-on comparison of the top no-code AI agent builders in 2026 \u2014 n8n, Lindy, Relay.app, Make, Zapier, Gumloop \u2014 judged on ease, power, self-hosting, MCP support, and price.",
+      "description": "A hands-on comparison of the top no-code AI agent builders in 2026 — n8n, Lindy, Relay.app, Make, Zapier, Gumloop — judged on ease, power, self-hosting, MCP support, and price.",
       "tags": [
         "AI agents",
         "no-code",
@@ -1463,7 +1463,7 @@
     {
       "href": "/blog/best-open-local-llms-2026",
       "title": "The Best Open & Local LLMs in 2026: A Self-Host Field Guide",
-      "description": "Which open-weight model for which hardware \u2014 Gemma 4, gpt-oss, Phi-4, Mistral Large 3, Llama 4, DeepSeek V4, and Kimi K2.6 compared by VRAM, license, and use case. When self-hosting beats an API, with verified benchmarks.",
+      "description": "Which open-weight model for which hardware — Gemma 4, gpt-oss, Phi-4, Mistral Large 3, Llama 4, DeepSeek V4, and Kimi K2.6 compared by VRAM, license, and use case. When self-hosting beats an API, with verified benchmarks.",
       "tags": [
         "open-source",
         "local-llm",
@@ -1496,7 +1496,7 @@
     {
       "href": "/blog/building-custom-skills-acos",
       "title": "Building Custom Skills for ACOS: The Complete Developer Guide",
-      "description": "Create your own ACOS skills with auto-activation, progressive disclosure, and real examples. From skill anatomy to publishing\u2014the full tutorial.",
+      "description": "Create your own ACOS skills with auto-activation, progressive disclosure, and real examples. From skill anatomy to publishing—the full tutorial.",
       "tags": [
         "tutorial",
         "claude code",
@@ -1536,7 +1536,7 @@
     {
       "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
       "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
-      "description": "An honest, results-first comparison of the three $20 AI subscriptions \u2014 ChatGPT Plus, Claude Pro, and Google AI Pro \u2014 for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
+      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
       "tags": [
         "AI Assistants",
         "ChatGPT",
@@ -1550,7 +1550,7 @@
     {
       "href": "/blog/cheapest-frontier-model-access-2026",
       "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subscription vs API vs Gateway)",
-      "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro \u2014 subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
+      "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro — subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
       "tags": [
         "AI pricing",
         "GPT-5.5",
@@ -1611,7 +1611,7 @@
     {
       "href": "/blog/claude-code-pricing-explained-2026",
       "title": "Claude Code Pricing Explained 2026: Pro vs Max 5x vs Max 20x vs API (When Each Wins)",
-      "description": "A verified 2026 breakdown of Claude Code pricing \u2014 Pro ($20), Max 5x ($100), Max 20x ($200), and pure API \u2014 with the usage-limit mechanics and a decision table for which plan wins at your usage level.",
+      "description": "A verified 2026 breakdown of Claude Code pricing — Pro ($20), Max 5x ($100), Max 20x ($200), and pure API — with the usage-limit mechanics and a decision table for which plan wins at your usage level.",
       "tags": [
         "Claude Code",
         "AI pricing",
@@ -1624,7 +1624,7 @@
     {
       "href": "/blog/claude-code-skills-2026-the-10-you-need",
       "title": "Claude Code Skills 2026: The 10 You Actually Need",
-      "description": "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products \u2014 with install commands and real examples.",
+      "description": "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples.",
       "tags": [
         "Claude Code",
         "Skills",
@@ -1637,7 +1637,7 @@
     {
       "href": "/blog/claude-fable-5-analysis-2026",
       "title": "Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show",
-      "description": "Anthropic released Claude Fable 5 on June 9, 2026 \u2014 a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro. We ran four first-party eval rounds against Opus 4.8 in Claude Code within 24 hours. Here are the receipts, the pricing math, and the routing guide.",
+      "description": "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro. We ran four first-party eval rounds against Opus 4.8 in Claude Code within 24 hours. Here are the receipts, the pricing math, and the routing guide.",
       "tags": [
         "anthropic",
         "claude-fable-5",
@@ -1652,7 +1652,7 @@
     {
       "href": "/blog/claude-fable-5-prompting-guide",
       "title": "Claude Fable 5 Prompting Guide: Seven Rules from Measured Behavior, Not Vibes",
-      "description": "How to prompt Claude Fable 5, derived from four receipted eval rounds \u2014 constraint stacking that works, the agreeable-execution trap, why output contracts belong in structure, and a system-prompt template for agentic pipelines.",
+      "description": "How to prompt Claude Fable 5, derived from four receipted eval rounds — constraint stacking that works, the agreeable-execution trap, why output contracts belong in structure, and a system-prompt template for agentic pipelines.",
       "tags": [
         "anthropic",
         "claude-fable-5",
@@ -1707,7 +1707,7 @@
     {
       "href": "/blog/conscious-ai-for-entrepreneurs",
       "title": "The Thoughtful Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity",
-      "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits \u2014 without losing quality or ethics.",
+      "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
       "tags": [
         "Entrepreneurship",
         "AI Business",
@@ -1731,7 +1731,7 @@
     {
       "href": "/blog/conscious-ai-integration-operating-system",
       "title": "Agentic AI Integration OS: 7 Layers To Align Teams, Agents, and Trust",
-      "description": "A practical operating system for leaders who want intelligent AI integration\u2014grounded in governance, creativity, and measurable value\u2014across 2025 initiatives.",
+      "description": "A practical operating system for leaders who want intelligent AI integration—grounded in governance, creativity, and measurable value—across 2025 initiatives.",
       "tags": [
         "Agentic AI",
         "AI Integration",
@@ -1752,7 +1752,7 @@
     {
       "href": "/blog/creator-intelligence-systems-2026",
       "title": "Why Every Creator Needs an Intelligence System in 2026",
-      "description": "The creators who thrive in 2026 won't be those with the best tools\u2014they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
+      "description": "The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
       "tags": [
         "creator economy",
         "intelligence systems",
@@ -1792,7 +1792,7 @@
     {
       "href": "/blog/cursor-vs-claude-code-vs-windsurf-2026",
       "title": "Cursor vs Claude Code vs Windsurf in 2026: Which AI Coding Agent for Which Job",
-      "description": "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing \u2014 plus where Copilot and Codex fit.",
+      "description": "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing — plus where Copilot and Codex fit.",
       "tags": [
         "Coding Agents",
         "Claude Code",
@@ -1832,7 +1832,7 @@
     {
       "href": "/blog/design-sprint-week-10-visual-identity-competition",
       "title": "Design Sprint: Three AI Teams Compete to Define frankx.ai's Visual Identity",
-      "description": "How I used three competing AI design teams to build a visual identity strategy for frankx.ai \u2014 with WebGL shaders, glassmorphism hierarchies, and canvas physics. Real components, real code, real competition.",
+      "description": "How I used three competing AI design teams to build a visual identity strategy for frankx.ai — with WebGL shaders, glassmorphism hierarchies, and canvas physics. Real components, real code, real competition.",
       "tags": [
         "design-system",
         "visual-identity",
@@ -1867,7 +1867,7 @@
     {
       "href": "/blog/embodied-creator-os",
       "title": "Your Body Is Part of Your AI Stack",
-      "description": "The disembodied AI ceiling and the embodied creator OS. Why training, sleep, breath, and environment are cognitive infrastructure \u2014 for humans and for the agents we build.",
+      "description": "The disembodied AI ceiling and the embodied creator OS. Why training, sleep, breath, and environment are cognitive infrastructure — for humans and for the agents we build.",
       "tags": [
         "embodied cognition",
         "creator performance",
@@ -1908,7 +1908,7 @@
     {
       "href": "/blog/faceless-youtube-ai-tools-2026",
       "title": "Best AI Tools for a Faceless YouTube Channel in 2026 (Full Stack Under $60/mo)",
-      "description": "The verified best-in-class AI stack for a faceless YouTube channel in June 2026 \u2014 avatar, voice, script, repurposing, editing, music, thumbnails \u2014 with a real budget table that lands under $60/month.",
+      "description": "The verified best-in-class AI stack for a faceless YouTube channel in June 2026 — avatar, voice, script, repurposing, editing, music, thumbnails — with a real budget table that lands under $60/month.",
       "tags": [
         "faceless-youtube",
         "ai-video",
@@ -1946,7 +1946,7 @@
     {
       "href": "/blog/frankx-intelligence-ecosystem-complete-guide",
       "title": "The FrankX Intelligence Ecosystem: How 5 Systems Work Together to Build What Matters",
-      "description": "A complete technical guide to the FrankX creator intelligence stack \u2014 Vibe OS, GenCreator OS, ACOS v10, Starlight Intelligence System v4, and Arcanea. How they interconnect, what each does, and why the whole is greater than the sum of its parts.",
+      "description": "A complete technical guide to the FrankX creator intelligence stack — Vibe OS, GenCreator OS, ACOS v10, Starlight Intelligence System v4, and Arcanea. How they interconnect, what each does, and why the whole is greater than the sum of its parts.",
       "tags": [
         "ecosystem",
         "intelligence systems",
@@ -1988,7 +1988,7 @@
     {
       "href": "/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek",
       "title": "Claude, GPT, Gemini, DeepSeek: Which Model for Which Task?",
-      "description": "Every major frontier model compared \u2014 architecture, capabilities, pricing, and which to use for coding, research, creative work, and enterprise deployment.",
+      "description": "Every major frontier model compared — architecture, capabilities, pricing, and which to use for coding, research, creative work, and enterprise deployment.",
       "tags": [
         "Frontier Models",
         "Claude",
@@ -2017,7 +2017,7 @@
     {
       "href": "/blog/gemini-3-5-pro-analysis-2026",
       "title": "Gemini 3.5 Pro: What We Actually Know Before GA",
-      "description": "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 \u2014 no model card, no benchmarks, no pricing. Here's the verifiable picture: what Flash already proved, what Google has committed to, and what to wait for at GA.",
+      "description": "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 — no model card, no benchmarks, no pricing. Here's the verifiable picture: what Flash already proved, what Google has committed to, and what to wait for at GA.",
       "tags": [
         "google",
         "gemini",
@@ -2045,7 +2045,7 @@
     {
       "href": "/blog/gencreator-3-tier-shipping-system",
       "title": "The 3-Tier Shipping System: How GenCreators Build Creative Momentum",
-      "description": "Full Ship, Quick Ship, Micro Ship \u2014 energy-aware daily output. The system that turns sporadic creation into unstoppable momentum.",
+      "description": "Full Ship, Quick Ship, Micro Ship — energy-aware daily output. The system that turns sporadic creation into unstoppable momentum.",
       "tags": [
         "gencreator",
         "shipping",
@@ -2058,7 +2058,7 @@
     {
       "href": "/blog/gencreator-7-dimensions-complete-guide",
       "title": "The 7 Dimensions of a GenCreator: A Complete Guide to Creative Self-Assessment",
-      "description": "Energy, Mind, Craft, Voice, Capital, Circle, Legacy \u2014 the seven facets that define a complete GenCreator. Score yourself, find your superpower, unlock your growth edge.",
+      "description": "Energy, Mind, Craft, Voice, Capital, Circle, Legacy — the seven facets that define a complete GenCreator. Score yourself, find your superpower, unlock your growth edge.",
       "tags": [
         "gencreator",
         "self-assessment",
@@ -2095,7 +2095,7 @@
     {
       "href": "/blog/golden-age-of-creators-why-now-is-different",
       "title": "The Golden Age of Creators: Why Now Is Different",
-      "description": "The convergence of AI tools, zero distribution costs, and one-person production capability \u2014 why this era rewards creators who build systems.",
+      "description": "The convergence of AI tools, zero distribution costs, and one-person production capability — why this era rewards creators who build systems.",
       "tags": [
         "Golden Age",
         "Creator Economy",
@@ -2121,7 +2121,7 @@
     {
       "href": "/blog/google-ai-pro-compute-limits-ai-credits-may-2026",
       "title": "Compute-Aware AI: Inside Google AI Pro's 2026 Upgrade",
-      "description": "Google AI Pro got smarter on May 20, 2026 \u2014 compute-aware usage in Gemini, AI credits across Flow and Antigravity, and a cleaner base plan. Here's how to build with the new model.",
+      "description": "Google AI Pro got smarter on May 20, 2026 — compute-aware usage in Gemini, AI credits across Flow and Antigravity, and a cleaner base plan. Here's how to build with the new model.",
       "tags": [
         "Google Gemini",
         "AI Pricing",
@@ -2135,7 +2135,7 @@
     {
       "href": "/blog/gpt-5-5-analysis-2026",
       "title": "GPT-5.5 (\"Spud\"): What Actually Changed and Why It Matters",
-      "description": "OpenAI's GPT-5.5 leads GDPval at 84.9%, OSWorld at 78.7%, and Tau2 Telecom at 98% \u2014 at double the price of GPT-5.4. Technical breakdown with verified benchmarks, pricing, and what it means for builders.",
+      "description": "OpenAI's GPT-5.5 leads GDPval at 84.9%, OSWorld at 78.7%, and Tau2 Telecom at 98% — at double the price of GPT-5.4. Technical breakdown with verified benchmarks, pricing, and what it means for builders.",
       "tags": [
         "openai",
         "gpt-5-5",
@@ -2177,7 +2177,7 @@
     {
       "href": "/blog/heygen-vs-synthesia-vs-argil-2026",
       "title": "HeyGen vs Synthesia vs Argil 2026: The Best AI Avatar and Talking-Head Tool",
-      "description": "A results-first comparison of HeyGen, Synthesia, and Argil for 2026 \u2014 avatar realism, custom clones, dubbing, API, and pricing. Which wins corporate training, faceless creator content, and ads.",
+      "description": "A results-first comparison of HeyGen, Synthesia, and Argil for 2026 — avatar realism, custom clones, dubbing, API, and pricing. Which wins corporate training, faceless creator content, and ads.",
       "tags": [
         "AI avatars",
         "HeyGen",
@@ -2191,7 +2191,7 @@
     },
     {
       "href": "/blog/how-to-build-your-soul-md",
-      "title": "How to Build Your soul.md \u2014 A Creator's Operating File",
+      "title": "How to Build Your soul.md — A Creator's Operating File",
       "description": "soul.md is your personal configuration file as a creator. Learn how to build one across 7 dimensions and use it as your creative compass.",
       "tags": [
         "gencreator",
@@ -2231,7 +2231,7 @@
     {
       "href": "/blog/inner-hr-ai-agent",
       "title": "Inner HR: The AI Agent for Your Internal Team",
-      "description": "Most leadership failures are not strategy failures \u2014 they are part-capture failures. An Inner HR agent helps you lead your inner team so you can lead the outer one.",
+      "description": "Most leadership failures are not strategy failures — they are part-capture failures. An Inner HR agent helps you lead your inner team so you can lead the outer one.",
       "tags": [
         "ai agents",
         "leadership",
@@ -2283,7 +2283,7 @@
     {
       "href": "/blog/llama-4-analysis-2026",
       "title": "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack",
-      "description": "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 \u2014 Behemoth never shipped. Verified benchmarks, real VRAM and self-host requirements, how it stacks up against DeepSeek V4, Qwen 3.5, and Kimi K2.6, and what it means for builders.",
+      "description": "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 — Behemoth never shipped. Verified benchmarks, real VRAM and self-host requirements, how it stacks up against DeepSeek V4, Qwen 3.5, and Kimi K2.6, and what it means for builders.",
       "tags": [
         "meta",
         "llama",
@@ -2324,7 +2324,7 @@
     },
     {
       "href": "/blog/mcp-doctor-claude-code-server-optimization",
-      "title": "I Had 18 Broken MCP Servers \u2014 So I Built a Doctor",
+      "title": "I Had 18 Broken MCP Servers — So I Built a Doctor",
       "description": "How a messy Claude Code MCP configuration led to building mcp-doctor, a free open-source tool that diagnoses, optimizes, and manages your MCP server setup.",
       "tags": [
         "claude-code",
@@ -2378,7 +2378,7 @@
     {
       "href": "/blog/meaning-as-operating-system",
       "title": "Meaning as an Operating System: The Future of AI Is Not More Information",
-      "description": "AI generates infinite information. The new scarcity is relevance. A working framework for organizing goals, values, attention, and action into coherence \u2014 and for designing AI agents that know what matters, not just what is true.",
+      "description": "AI generates infinite information. The new scarcity is relevance. A working framework for organizing goals, values, attention, and action into coherence — and for designing AI agents that know what matters, not just what is true.",
       "tags": [
         "meaning",
         "relevance realization",
@@ -2391,7 +2391,7 @@
     {
       "href": "/blog/memory-as-exile-ai",
       "title": "Memory as Exile: Why AI Systems Need Integration Loops",
-      "description": "Long-term memory without integration creates psychological debt inside AI systems. The IFS exile pattern, applied to agent memory architecture \u2014 and why most production stacks are accumulating it without knowing.",
+      "description": "Long-term memory without integration creates psychological debt inside AI systems. The IFS exile pattern, applied to agent memory architecture — and why most production stacks are accumulating it without knowing.",
       "tags": [
         "ai memory",
         "agentic systems",
@@ -2404,7 +2404,7 @@
     {
       "href": "/blog/microsoft-mai-frontier-models-2026",
       "title": "Microsoft's 7 MAI Models: The In-House Frontier Bet",
-      "description": "Microsoft AI launched 7 self-built MAI models \u2014 Thinking-1, Image-2.5, Code-1-Flash and more \u2014 on its own MAIA silicon. What the vendor claims, what's verifiable, and what it means for builders.",
+      "description": "Microsoft AI launched 7 self-built MAI models — Thinking-1, Image-2.5, Code-1-Flash and more — on its own MAIA silicon. What the vendor claims, what's verifiable, and what it means for builders.",
       "tags": [
         "microsoft",
         "mai",
@@ -2457,7 +2457,7 @@
     {
       "href": "/blog/music-as-consciousness-technology",
       "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
-      "description": "After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment\u2014it's creative technology. Here's what three years of daily creation revealed.",
+      "description": "After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment—it's creative technology. Here's what three years of daily creation revealed.",
       "tags": [
         "Music",
         "AI Creativity",
@@ -2484,7 +2484,7 @@
     {
       "href": "/blog/my-100-month-ai-stack-every-tool-i-actually-use",
       "title": "My $100/Month AI Stack: Every Tool I Actually Use",
-      "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products \u2014 with monthly costs broken down.",
+      "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
       "tags": [
         "AI Tools",
         "AI Stack",
@@ -2523,7 +2523,7 @@
     {
       "href": "/blog/no-bad-parts-sovereign-ai",
       "title": "No Bad Parts: What Richard Schwartz Teaches Us About Building Sovereign AI",
-      "description": "Most AI agents are built around one voice, one objective, one persona. Human intelligence is not single-agent \u2014 and the next generation of agentic systems will not be either. The architectural lesson IFS gives AI.",
+      "description": "Most AI agents are built around one voice, one objective, one persona. Human intelligence is not single-agent — and the next generation of agentic systems will not be either. The architectural lesson IFS gives AI.",
       "tags": [
         "ai architecture",
         "agentic systems",
@@ -2552,7 +2552,7 @@
     {
       "href": "/blog/nvidia-gtc-2026-ai-architect-breakdown",
       "title": "NVIDIA GTC 2026: An AI Architect's Breakdown of Vera Rubin, Groq LPUs, and the Agentic Infrastructure Shift",
-      "description": "Seven chips, five racks, one $1 trillion bet. A technical breakdown of NVIDIA GTC 2026 \u2014 Vera Rubin, Groq 3 LPUs, Dynamo, NemoClaw \u2014 and what enterprise AI architects should do next.",
+      "description": "Seven chips, five racks, one $1 trillion bet. A technical breakdown of NVIDIA GTC 2026 — Vera Rubin, Groq 3 LPUs, Dynamo, NemoClaw — and what enterprise AI architects should do next.",
       "tags": [
         "nvidia",
         "gtc 2026",
@@ -2581,7 +2581,7 @@
     {
       "href": "/blog/ollama-local-ai-models-privacy-guide",
       "title": "Running Local AI Models with Ollama: The Privacy Guide",
-      "description": "How to run Llama 4, DeepSeek, and Mistral on your own hardware \u2014 no API keys, no data leaving your machine, full model control.",
+      "description": "How to run Llama 4, DeepSeek, and Mistral on your own hardware — no API keys, no data leaving your machine, full model control.",
       "tags": [
         "Ollama",
         "Local AI",
@@ -2594,7 +2594,7 @@
     {
       "href": "/blog/ollama-vs-lm-studio-vs-jan-2026",
       "title": "Ollama vs LM Studio vs Jan 2026: The Best Way to Run AI Locally",
-      "description": "A tested comparison of the three local-LLM runners in June 2026 \u2014 Ollama, LM Studio, and Jan \u2014 on ease of use, model library, GUI vs CLI, OpenAI-compatible API, hardware support, and privacy.",
+      "description": "A tested comparison of the three local-LLM runners in June 2026 — Ollama, LM Studio, and Jan — on ease of use, model library, GUI vs CLI, OpenAI-compatible API, hardware support, and privacy.",
       "tags": [
         "local LLM",
         "Ollama",
@@ -2663,7 +2663,7 @@
     {
       "href": "/blog/phi-analysis-2026",
       "title": "Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop",
-      "description": "Microsoft's Phi-4 family \u2014 Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.6B), Phi-4-reasoning, and the March 2026 Phi-4-reasoning-vision-15B \u2014 are MIT-licensed, $0 to download, and run on consumer GPUs. Verified benchmarks, VRAM tables, and what the small-model angle means for builders.",
+      "description": "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.6B), Phi-4-reasoning, and the March 2026 Phi-4-reasoning-vision-15B — are MIT-licensed, $0 to download, and run on consumer GPUs. Verified benchmarks, VRAM tables, and what the small-model angle means for builders.",
       "tags": [
         "microsoft",
         "phi",
@@ -2677,7 +2677,7 @@
     {
       "href": "/blog/predictive-mind-reality-models",
       "title": "The Predictive Mind: Why You Don't See Reality, You See Your Model",
-      "description": "Predictive processing and active inference \u2014 Friston, Clark, Seth, Barrett \u2014 give a single framework for perception, emotion, trauma, belief, and AI. Why parts hold predictive models, and why transformation is model updating.",
+      "description": "Predictive processing and active inference — Friston, Clark, Seth, Barrett — give a single framework for perception, emotion, trauma, belief, and AI. Why parts hold predictive models, and why transformation is model updating.",
       "tags": [
         "predictive processing",
         "active inference",
@@ -2768,7 +2768,7 @@
     {
       "href": "/blog/prompt-engineering-2026-what-still-works",
       "title": "Prompt Engineering in 2026: What Still Works",
-      "description": "The prompting techniques that survived the model upgrades \u2014 structured output, chain-of-thought, few-shot, and what to stop doing.",
+      "description": "The prompting techniques that survived the model upgrades — structured output, chain-of-thought, few-shot, and what to stop doing.",
       "tags": [
         "Prompt Engineering",
         "AI Models",
@@ -2801,7 +2801,7 @@
     },
     {
       "href": "/blog/qwen3-max-analysis-2026",
-      "title": "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 \u2014 and Runs for 35 Hours",
+      "title": "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours",
       "description": "Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run. Technical breakdown with sourced benchmarks, what changed vs Qwen3.6, and what it means for builders.",
       "tags": [
         "alibaba",
@@ -2816,7 +2816,7 @@
     {
       "href": "/blog/rag-for-creators-search-your-own-content-with-ai",
       "title": "RAG for Creators: Search Your Own Content with AI",
-      "description": "How to build a retrieval system over your own writing, research, and notes \u2014 so AI assistants can find and cite your past work.",
+      "description": "How to build a retrieval system over your own writing, research, and notes — so AI assistants can find and cite your past work.",
       "tags": [
         "RAG",
         "Vector Search",
@@ -2842,7 +2842,7 @@
     {
       "href": "/blog/reality-architecture-generative-ai-neuroscience",
       "title": "Reality Architecture: Imagination to Product, Faster with AI",
-      "description": "Neuroscience of imagination meets generative AI. The 5-phase framework for turning mental models into shipped products \u2014 at machine speed.",
+      "description": "Neuroscience of imagination meets generative AI. The 5-phase framework for turning mental models into shipped products — at machine speed.",
       "tags": [
         "Reality Architecture",
         "Neuroscience",
@@ -2855,7 +2855,7 @@
     {
       "href": "/blog/science-of-state-change-music",
       "title": "The Science of Using Music to Change Your State",
-      "description": "How tempo, mode, and lyrics create predictable emotional outcomes\u2014backed by peer-reviewed research",
+      "description": "How tempo, mode, and lyrics create predictable emotional outcomes—backed by peer-reviewed research",
       "tags": [
         "music",
         "psychology",
@@ -2894,7 +2894,7 @@
     {
       "href": "/blog/sis-trajectory-learning-how-ai-agents-improve",
       "title": "How the Starlight Intelligence System Learns",
-      "description": "The architecture behind AI agents that get smarter every session \u2014 trajectory learning, pattern recognition, and compound intelligence.",
+      "description": "The architecture behind AI agents that get smarter every session — trajectory learning, pattern recognition, and compound intelligence.",
       "tags": [
         "SIS",
         "AI Learning",
@@ -2907,7 +2907,7 @@
     {
       "href": "/blog/six-primitives-ai-agent",
       "title": "The six primitives of an AI agent",
-      "description": "Every AI agent is made of six primitives \u2014 model, tool, memory, loop, spec, and deploy. Learn them once and every new framework becomes a 30-minute exercise, not a month-long investment.",
+      "description": "Every AI agent is made of six primitives — model, tool, memory, loop, spec, and deploy. Learn them once and every new framework becomes a 30-minute exercise, not a month-long investment.",
       "tags": [
         "AI Agents",
         "Vercel AI SDK",
@@ -2944,7 +2944,7 @@
     {
       "href": "/blog/starlight-intelligence-system-how-ai-agents-learn",
       "title": "How I Built a Learning System for AI Agents",
-      "description": "Inside the Starlight Intelligence System \u2014 a federated behavioral engine that turns raw session data into concrete instructions AI agents actually follow.",
+      "description": "Inside the Starlight Intelligence System — a federated behavioral engine that turns raw session data into concrete instructions AI agents actually follow.",
       "tags": [
         "ai-strategy",
         "automation",
@@ -2956,7 +2956,7 @@
     {
       "href": "/blog/suno-ai-12000-songs-production-lessons",
       "title": "Suno AI After 12,000 Songs: What I Actually Learned",
-      "description": "Production lessons from creating 12K+ AI tracks \u2014 prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
+      "description": "Production lessons from creating 12K+ AI tracks — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
       "tags": [
         "Suno AI",
         "Music Production",
@@ -3010,7 +3010,7 @@
     {
       "href": "/blog/suno-vs-udio-2026",
       "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
-      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio \u2014 and the licensing change that makes one of them risky to release commercially right now.",
+      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
       "tags": [
         "Suno",
         "Udio",
@@ -3064,7 +3064,7 @@
     {
       "href": "/blog/the-great-transition-build-your-own-business",
       "title": "The Great Transition: Why Building Your Own Business Is the Smartest Move You Can Make Right Now",
-      "description": "AI is making white-collar jobs vulnerable at the exact moment it's handing individuals the tools to build real businesses. Here's why the window is open \u2014 and what to do about it.",
+      "description": "AI is making white-collar jobs vulnerable at the exact moment it's handing individuals the tools to build real businesses. Here's why the window is open — and what to do about it.",
       "tags": [
         "entrepreneurship",
         "ai-tools",
@@ -3078,7 +3078,7 @@
     {
       "href": "/blog/the-higher-self-protocol",
       "title": "The Higher Self Protocol: What Happened When I Used AI to Get Closer to God",
-      "description": "A friend told me she wants to become a saint. So I started using AI the way you'd use a good study partner \u2014 to read scripture slowly, sit with hard questions, and show up for a practice. Here is what worked, what was cringe, and what I'd never hand a machine.",
+      "description": "A friend told me she wants to become a saint. So I started using AI the way you'd use a good study partner — to read scripture slowly, sit with hard questions, and show up for a practice. Here is what worked, what was cringe, and what I'd never hand a machine.",
       "tags": [
         "higher-self-protocol",
         "spirituality",
@@ -3129,7 +3129,7 @@
     },
     {
       "href": "/blog/trinity-ai-conscious-operating-system",
-      "title": "Trinity AI \u2014 The Conscious Operating System for Human Potential",
+      "title": "Trinity AI — The Conscious Operating System for Human Potential",
       "description": "Trinity AI is a 5-layer conscious operating system that remembers you, reads your body, and compounds intelligence daily. Built on Claude Agent SDK, Vercel, and sovereign data principles.",
       "tags": [
         "trinity ai",
@@ -3173,7 +3173,7 @@
     {
       "href": "/blog/ultimate-capcut-workflow-2026",
       "title": "The Ultimate CapCut Workflow in 2026: The AI Editing Setup for Short-Form and Faceless Channels",
-      "description": "The verified CapCut workflow for June 2026 \u2014 AI captions, auto-reframe, script-to-video, voiceover, and templates \u2014 plus the fast faceless pipeline, batch repurposing, and a plan table with honest pricing and ToS nuance.",
+      "description": "The verified CapCut workflow for June 2026 — AI captions, auto-reframe, script-to-video, voiceover, and templates — plus the fast faceless pipeline, batch repurposing, and a plan table with honest pricing and ToS nuance.",
       "tags": [
         "capcut",
         "short-form-video",
@@ -3187,7 +3187,7 @@
     {
       "href": "/blog/ultimate-descript-workflow-2026",
       "title": "The Ultimate Descript Workflow in 2026: Edit Video and Audio by Editing Text",
-      "description": "The complete Descript workflow for 2026 \u2014 text-based editing, voice cloning, Studio Sound, one-click filler removal, and the repurposing pipeline that turns one recording into a week of content.",
+      "description": "The complete Descript workflow for 2026 — text-based editing, voice cloning, Studio Sound, one-click filler removal, and the repurposing pipeline that turns one recording into a week of content.",
       "tags": [
         "Descript",
         "video editing",
@@ -3200,7 +3200,7 @@
     {
       "href": "/blog/ultimate-elevenlabs-workflow-2026",
       "title": "The Ultimate ElevenLabs Workflow in 2026: Voice Cloning, Agents, and the Setup That Wins",
-      "description": "The complete ElevenLabs workflow for 2026 \u2014 Eleven v3, instant vs professional voice cloning, the API, conversational agents, and dubbing. Real setups for podcasters, course creators, app builders, and AI architects, with honest ROI math.",
+      "description": "The complete ElevenLabs workflow for 2026 — Eleven v3, instant vs professional voice cloning, the API, conversational agents, and dubbing. Real setups for podcasters, course creators, app builders, and AI architects, with honest ROI math.",
       "tags": [
         "ElevenLabs",
         "AI Voice",
@@ -3214,7 +3214,7 @@
     {
       "href": "/blog/ultimate-gamma-workflow-2026",
       "title": "The Ultimate Gamma Workflow in 2026: From Prompt to Investor-Ready Deck",
-      "description": "A results-first workflow for Gamma in 2026 \u2014 prompt-to-pitch-deck, doc-to-deck, edit-by-chat refinement, and brand-locked templates, plus the real ROI vs. hiring a designer.",
+      "description": "A results-first workflow for Gamma in 2026 — prompt-to-pitch-deck, doc-to-deck, edit-by-chat refinement, and brand-locked templates, plus the real ROI vs. hiring a designer.",
       "tags": [
         "Gamma",
         "AI presentations",
@@ -3242,7 +3242,7 @@
     {
       "href": "/blog/ultimate-heygen-workflow-2026",
       "title": "The Ultimate HeyGen Workflow in 2026: Avatars, Cloning, and the Faceless Video Setup",
-      "description": "The complete 2026 HeyGen workflow \u2014 clone yourself from a 15-second selfie with Avatar V, localize into 175+ languages, automate sales video at scale via the API, and run a faceless channel. Setup, ROI, and who it's for.",
+      "description": "The complete 2026 HeyGen workflow — clone yourself from a 15-second selfie with Avatar V, localize into 175+ languages, automate sales video at scale via the API, and run a faceless channel. Setup, ROI, and who it's for.",
       "tags": [
         "HeyGen",
         "AI avatars",
@@ -3300,7 +3300,7 @@
     {
       "href": "/blog/ultimate-perplexity-workflow-2026",
       "title": "The Ultimate Perplexity Workflow in 2026: Deep Research Setup, Comet, and How to Actually Use It",
-      "description": "The full Perplexity setup that wins in 2026 \u2014 Pro vs free, model routing, Spaces, the free Comet browser, and Deep Research. The discover\u2192ground\u2192reason workflow, citation discipline, and who it's actually for.",
+      "description": "The full Perplexity setup that wins in 2026 — Pro vs free, model routing, Spaces, the free Comet browser, and Deep Research. The discover→ground→reason workflow, citation discipline, and who it's actually for.",
       "tags": [
         "Perplexity",
         "Comet browser",
@@ -3332,7 +3332,7 @@
     {
       "href": "/blog/vercel-ai-sdk-first-agent-stack",
       "title": "Why Vercel AI SDK is the right first-agent stack in 2026",
-      "description": "A straight comparison of Vercel AI SDK, Claude Agent SDK, OpenAI Agents SDK, Google ADK, and no-code options. The central path for your first agent \u2014 and why it isn't a Vercel ad.",
+      "description": "A straight comparison of Vercel AI SDK, Claude Agent SDK, OpenAI Agents SDK, Google ADK, and no-code options. The central path for your first agent — and why it isn't a Vercel ad.",
       "tags": [
         "Vercel AI SDK",
         "AI Agents",
@@ -3345,7 +3345,7 @@
     {
       "href": "/blog/vercel-claude-code-nextjs-deploy-one-session",
       "title": "Vercel + Claude Code: Ship a Next.js Site in One Session",
-      "description": "The deployment pipeline I use daily \u2014 Claude Code builds, Vercel deploys, MCP monitors. From code to production in minutes.",
+      "description": "The deployment pipeline I use daily — Claude Code builds, Vercel deploys, MCP monitors. From code to production in minutes.",
       "tags": [
         "Vercel",
         "Claude Code",
@@ -3378,7 +3378,7 @@
     {
       "href": "/blog/visual-intelligence-system-ai-image-management",
       "title": "How I Built a Visual Intelligence System After Losing Track of 408 Images",
-      "description": "I discovered 82% of my site's images were orphaned, flagship posts used placeholder SVGs, and 3 blog posts showed the same hero twice. Here's the system I built to fix it \u2014 and how you can use it too.",
+      "description": "I discovered 82% of my site's images were orphaned, flagship posts used placeholder SVGs, and 3 blog posts showed the same hero twice. Here's the system I built to fix it — and how you can use it too.",
       "tags": [
         "visual-intelligence",
         "acos",
@@ -3391,7 +3391,7 @@
     {
       "href": "/blog/voice-ai-agents-2026-elevenlabs-hume-audio",
       "title": "Voice AI Agents in 2026: Build Audio-First Experiences",
-      "description": "ElevenLabs, Hume, and the tools turning text into natural speech \u2014 for podcasts, products, and AI assistants that talk.",
+      "description": "ElevenLabs, Hume, and the tools turning text into natural speech — for podcasts, products, and AI assistants that talk.",
       "tags": [
         "Voice AI",
         "ElevenLabs",
@@ -3404,7 +3404,7 @@
     {
       "href": "/blog/what-is-a-gencreator",
       "title": "What Is a GenCreator? The New Breed of AI-Native Creator",
-      "description": "GenCreators use AI as a creative force multiplier. 12 principles, soul.md, daily shipping \u2014 the complete framework for the AI-native creator.",
+      "description": "GenCreators use AI as a creative force multiplier. 12 principles, soul.md, daily shipping — the complete framework for the AI-native creator.",
       "tags": [
         "gencreator",
         "creator-os",
@@ -3417,7 +3417,7 @@
     {
       "href": "/blog/what-is-agentic-ai",
       "title": "What is Agentic AI? The Shift From Tools to Collaborators",
-      "description": "Agentic AI doesn't wait for prompts\u2014it acts. After building production agent systems in enterprise environments, here's what actually matters about autonomous AI.",
+      "description": "Agentic AI doesn't wait for prompts—it acts. After building production agent systems in enterprise environments, here's what actually matters about autonomous AI.",
       "tags": [
         "Agentic AI",
         "AI Architecture",
@@ -3429,7 +3429,7 @@
     {
       "href": "/blog/why-everyone-needs-personal-ai-coe",
       "title": "Why Everyone Needs Their Own AI Center of Excellence",
-      "description": "The same frameworks enterprises pay millions to build \u2014 strategy, governance, talent, technology \u2014 translate directly to personal AI adoption. Here is how to build yours in 4 weeks.",
+      "description": "The same frameworks enterprises pay millions to build — strategy, governance, talent, technology — translate directly to personal AI adoption. Here is how to build yours in 4 weeks.",
       "tags": [
         "AI Architecture",
         "AI CoE",
@@ -4479,13 +4479,8 @@
     },
     {
       "href": "/familie/geschichte/karaganda",
-      "title": "Karaganda \u2014 Stadt in der Steppe",
-      "tags": [
-        "familie",
-        "geschichte",
-        "karaganda"
-      ],
-      "type": "section"
+      "title": "Karaganda — Geschichte",
+      "type": "community"
     },
     {
       "href": "/familie/geschichte/offene-fragen",
@@ -4825,8 +4820,8 @@
     },
     {
       "href": "/guides/agent-card-a2a-spec",
-      "title": "Agent Card (A2A) spec \u2014 the portability contract",
-      "description": "Field-by-field walkthrough of the Google A2A Agent Card \u2014 the JSON document that describes your agent's identity, capabilities, and skills. Used by BCG's enterprise agent playbook and every multi-agent mesh worth shipping.",
+      "title": "Agent Card (A2A) spec — the portability contract",
+      "description": "Field-by-field walkthrough of the Google A2A Agent Card — the JSON document that describes your agent's identity, capabilities, and skills. Used by BCG's enterprise agent playbook and every multi-agent mesh worth shipping.",
       "tags": [
         "AI Agents",
         "A2A",
@@ -4905,7 +4900,7 @@
     },
     {
       "href": "/guides/first-agent-primer",
-      "title": "First Agent Primer \u2014 build, deploy, and share an AI agent in an afternoon",
+      "title": "First Agent Primer — build, deploy, and share an AI agent in an afternoon",
       "description": "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, a Google A2A Agent Card, and three eval cases you can run today.",
       "tags": [
         "AI Agents",
@@ -4946,7 +4941,7 @@
     {
       "href": "/guides/ifs-ai-agent-architecture",
       "title": "IFS as an AI Architecture Pattern",
-      "description": "A practical guide to translating Internal Family Systems role structure into agentic system design \u2014 Self-orchestrator, manager / firefighter / protector parts, exile memory, and integration loops.",
+      "description": "A practical guide to translating Internal Family Systems role structure into agentic system design — Self-orchestrator, manager / firefighter / protector parts, exile memory, and integration loops.",
       "tags": [
         "IFS",
         "AI Architecture",
@@ -4974,7 +4969,7 @@
     },
     {
       "href": "/guides/inner-hr-ai",
-      "title": "Inner HR \u2014 Building an AI System for Inner and Outer Team Alignment",
+      "title": "Inner HR — Building an AI System for Inner and Outer Team Alignment",
       "description": "The leadership layer most agentic stacks skip. A guide to building (or using today) an Inner HR agent that helps people lead their internal team before leading the external one.",
       "tags": [
         "IFS",
@@ -5014,7 +5009,7 @@
     {
       "href": "/guides/modern-guide",
       "title": "The Golden Age of Intelligence: A Modern, Practical Guide",
-      "description": "Clarity, frameworks, and a 90-day plan to capture real value\u2014without the hype",
+      "description": "Clarity, frameworks, and a 90-day plan to capture real value—without the hype",
       "tags": [
         "AI",
         "Strategy",
@@ -5276,7 +5271,7 @@
     },
     {
       "href": "/library/approach",
-      "title": "Library \u2014 Approach",
+      "title": "Library — Approach",
       "type": "library"
     },
     {
@@ -5360,7 +5355,7 @@
     },
     {
       "href": "/library/build",
-      "title": "Library \u2014 Build",
+      "title": "Library — Build",
       "type": "library"
     },
     {
@@ -5471,7 +5466,7 @@
     },
     {
       "href": "/library/quotes",
-      "title": "Library \u2014 Quotes",
+      "title": "Library — Quotes",
       "type": "library"
     },
     {
@@ -6512,37 +6507,101 @@
     },
     {
       "href": "/os/aco",
-      "title": "OS \u2014 ACO",
+      "title": "Agentic Content Officer",
+      "tags": [
+        "aco"
+      ],
       "type": "os"
     },
     {
       "href": "/os/acos",
-      "title": "OS \u2014 ACOS",
+      "title": "ACOS",
+      "tags": [
+        "acos"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/build-first-funnel",
+      "title": "Build First AI Agent Funnel",
+      "tags": [
+        "build",
+        "first",
+        "funnel"
+      ],
       "type": "os"
     },
     {
       "href": "/os/coe-hub",
-      "title": "OS \u2014 CoE Hub",
+      "title": "AI CoE Hub",
+      "tags": [
+        "coe",
+        "hub"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/foundry",
+      "title": "FrankX Foundry",
+      "tags": [
+        "foundry"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/iis",
+      "title": "Investment Intelligence System",
+      "tags": [
+        "iis"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/library-os",
+      "title": "Library OS",
+      "tags": [
+        "library",
+        "os"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/vis",
+      "title": "Visual Intelligence System",
+      "tags": [
+        "vis"
+      ],
       "type": "os"
     },
     {
       "href": "/os/watch",
-      "title": "OS \u2014 Watch",
+      "title": "Watch OS",
+      "tags": [
+        "watch"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/workshops",
+      "title": "Workshop OS",
+      "tags": [
+        "workshops"
+      ],
       "type": "os"
     },
     {
       "href": "/papa",
-      "title": "Papa \u2014 In Memory",
+      "title": "Papa — In Memory",
       "type": "section"
     },
     {
       "href": "/papa/en",
-      "title": "Papa \u2014 English",
+      "title": "Papa — English",
       "type": "section"
     },
     {
       "href": "/papa/en/life",
-      "title": "Papa \u2014 Life",
+      "title": "Papa — Life",
       "type": "section"
     },
     {
@@ -6557,7 +6616,7 @@
     },
     {
       "href": "/papa/leben",
-      "title": "Papa \u2014 Leben",
+      "title": "Papa — Leben",
       "type": "section"
     },
     {
@@ -6717,7 +6776,7 @@
     },
     {
       "href": "/products/agentic-creator-os",
-      "title": "Agentic Creator OS \u2014 Product",
+      "title": "Agentic Creator OS — Product",
       "type": "product"
     },
     {
