@@ -3212,8 +3212,8 @@ export const researchDomains: ResearchDomain[] = [
       'How much temporal graph complexity pays for itself outside CRM/entity-heavy agents',
     ],
     lastVerified: '2026-07-16',
-  },,
-{
+  },
+  {
     slug: 'agentic-sovereignty',
     title: 'Agentic Sovereignty',
     subtitle: 'Ownership, export, privacy classes, and local-core authority',
@@ -3335,8 +3335,8 @@ export const researchDomains: ResearchDomain[] = [
       'Stable best practice for regulated-adjacent personal health/finance agent modules',
     ],
     lastVerified: '2026-07-16',
-  },,
-{
+  },
+  {
     slug: 'agentic-evals',
     title: 'Agentic Evals',
     subtitle: 'Trajectory receipts, swarm proof, and quality that can be replayed',
