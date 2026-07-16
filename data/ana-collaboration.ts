@@ -46,6 +46,10 @@ export const anaLinks = {
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/WHO-READS-WHAT.md',
   installGuide:
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/FORK-AND-INSTALL-CODEX.md',
+  officialPluginStack:
+    'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/OFFICIAL-CODEX-PLUGIN-STACK.md',
+  codexPluginDirectory: 'codex://plugins/install/?marketplace=openai-curated',
+  codexAnaPlugin: 'codex://plugins/ana-hr-operations@ana-business-kit',
   kitRelease:
     'https://github.com/frankxai/ana-ai-business-kit/releases/tag/v1.1.0',
   kitManifest:

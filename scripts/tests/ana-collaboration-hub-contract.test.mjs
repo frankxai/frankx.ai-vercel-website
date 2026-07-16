@@ -37,3 +37,14 @@ test('the generic Codex team article contains no Ana-specific material', async (
   const article = await read('content/blog/codex-plugins-for-teams.mdx')
   assert.doesNotMatch(article, /Ana Cancino|Ana Cecilia|ana-hr-operations|ana-ai-business-kit|Cecilia/i)
 })
+
+test('the Ana install panel links the method to official Codex plugins and team learning', async () => {
+  const component = await read('components/ana/AnaPluginInstall.tsx')
+  const links = await read('data/ana-collaboration.ts')
+
+  assert.match(component, /Choose the team plugin stack/)
+  assert.match(component, /Browse official plugins/)
+  assert.match(links, /OFFICIAL-CODEX-PLUGIN-STACK\.md/)
+  assert.match(links, /codex:\/\/plugins\/install\/\?marketplace=openai-curated/)
+  assert.match(links, /codex:\/\/plugins\/ana-hr-operations@ana-business-kit/)
+})
