@@ -6,6 +6,9 @@ import HeroImage from '@/components/ui/HeroImage'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { portalsForGuide } from '@/lib/learn/related-portals'
+import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
+import { createMetadata } from '@/lib/seo'
+import AgenticObsidianHero from '@/components/guides/AgenticObsidianHero'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -17,15 +20,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const ogImage = guide.image
     ? guide.image
     : `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
-  return {
+  return createMetadata({
     title: guide.title,
     description: guide.description,
-    openGraph: {
-      title: guide.title,
-      description: guide.description,
-      images: [ogImage],
-    }
-  }
+    path: `/guides/${guide.slug}`,
+    keywords: guide.keywords,
+    image: ogImage,
+    type: 'article',
+    publishedTime: guide.date,
+    updatedTime: guide.updated || guide.date,
+    authors: [guide.author],
+  })
 }
 
 export async function generateStaticParams() {
@@ -37,8 +42,25 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const { slug } = await params
   const guide = getGuide(slug)
   if (!guide) return notFound()
+  const canonicalUrl = `https://frankx.ai/guides/${guide.slug}`
+  const schemaImage = guide.image ? new URL(guide.image, canonicalUrl).toString() : undefined
+  const articleSchema = {
+    headline: guide.title,
+    description: guide.description,
+    datePublished: guide.date,
+    dateModified: guide.updated || guide.date,
+    mainEntityOfPage: canonicalUrl,
+    url: canonicalUrl,
+    author: { '@type': 'Person', name: guide.author },
+    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+    ...(schemaImage ? { image: schemaImage } : {}),
+  }
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
+      <JsonLd type="Article" data={articleSchema} id={`guide-article-${guide.slug}`} />
+      {guide.faqs && guide.faqs.length > 0 ? (
+        <FAQPageJsonLd faqs={guide.faqs} id={`guide-faq-${guide.slug}`} />
+      ) : null}
       <main className="pt-28 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <Breadcrumbs
@@ -55,16 +77,35 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <span className="text-slate-600">•</span>
             <span>{guide.author}</span>
           </div>
-          <HeroImage
-            src={guide.image || undefined}
-            title={guide.title}
-            subtitle={guide.description}
-            alt={guide.title}
-            className="mb-10"
-          />
+          {guide.slug === 'agentic-obsidian-second-brain' ? (
+            <AgenticObsidianHero />
+          ) : (
+            <HeroImage
+              src={guide.image || undefined}
+              title={guide.title}
+              subtitle={guide.description}
+              alt={guide.title}
+              className="mb-10"
+            />
+          )}
           <div className="space-y-6 text-base leading-relaxed text-white/75">
             <MDXContent source={guide.content} />
           </div>
+          {guide.faqs && guide.faqs.length > 0 ? (
+            <section className="mt-16 border-t border-white/10 pt-12" aria-labelledby="guide-faq-heading">
+              <h2 id="guide-faq-heading" className="text-3xl font-bold tracking-tight text-white">
+                Frequently asked questions
+              </h2>
+              <div className="mt-8 space-y-8">
+                {guide.faqs.map((faq) => (
+                  <div key={faq.question}>
+                    <h3 className="text-xl font-semibold text-white">{faq.question}</h3>
+                    <p className="mt-3 text-[17px] leading-8 text-white/75">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </div>
         <LearnHubSection
           relatedPortals={portalsForGuide(guide.slug)}

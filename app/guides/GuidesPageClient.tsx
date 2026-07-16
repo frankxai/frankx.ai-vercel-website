@@ -59,7 +59,7 @@ const GUIDE_CATEGORIES = [
     icon: PenTool,
     color: 'from-emerald-500/20 to-teal-500/20',
     iconColor: 'text-emerald-400',
-    slugs: ['ai-writing-system', 'claude-anthropic-guide', 'openai-chatgpt-guide', 'perplexity-ai-guide', 'top-50-ai-prompts']
+    slugs: ['agentic-obsidian-second-brain', 'ai-writing-system', 'claude-anthropic-guide', 'openai-chatgpt-guide', 'perplexity-ai-guide', 'top-50-ai-prompts']
   },
   {
     id: 'audio',
