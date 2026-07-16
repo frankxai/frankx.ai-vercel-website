@@ -14,6 +14,18 @@ export interface BookTheme {
   bodyFont: 'serif' | 'sans';
 }
 
+// ─── Experiment Device (Wonderproof signature) ──────────────────
+
+export interface Experiment {
+  title: string;
+  number: number;
+  hypothesis: string;
+  setup: string;
+  duration: string; // e.g. '24 hours', '3 days'
+  track: string;
+  whatItMeans: string;
+}
+
 // ─── Core Book Types ────────────────────────────────────────────
 
 export interface BookChapter {
@@ -28,6 +40,7 @@ export interface BookChapter {
   epigraph?: { text: string; author: string };
   /** Overrides the "Chapter {number}" badge (e.g. "Prologue", "Epilogue"). */
   label?: string;
+  experiment?: Experiment;
 }
 
 export interface BookConfig {
