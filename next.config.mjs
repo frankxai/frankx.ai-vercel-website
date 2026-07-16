@@ -73,6 +73,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn2.suno.ai',
       },
+      // Public Library media lives in the project Blob store, outside Git.
+      {
+        protocol: 'https',
+        hostname: 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com',
+      },
     ],
   },
   compiler: {
