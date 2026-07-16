@@ -268,25 +268,28 @@ export default async function AskSlugPage({ params }: { params: Promise<{ slug: 
   const personaColor = PERSONA_COLORS[q.persona]
 
   const qaJsonLd = {
-    mainEntity: {
-      '@type': 'Question',
-      name: q.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: q.answer,
-        author: {
-          '@type': 'Person',
-          name: 'Frank X. Riemer',
-          url: 'https://frankx.ai/about',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: q.question,
+        answerCount: 1,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: q.answer,
+          author: {
+            '@type': 'Person',
+            name: 'Frank X. Riemer',
+            url: 'https://frankx.ai/about',
+          },
+          datePublished: q.date,
         },
-        datePublished: q.date,
       },
-    },
+    ],
   }
 
   return (
     <main id="main" className="min-h-screen bg-[#06080f] text-white">
-      <JsonLd type="QAPage" data={qaJsonLd} />
+      <JsonLd type="FAQPage" data={qaJsonLd} />
 
       <article className="mx-auto max-w-3xl px-6 pt-28 pb-24 sm:pt-36">
         <Breadcrumbs
@@ -305,7 +308,7 @@ export default async function AskSlugPage({ params }: { params: Promise<{ slug: 
           <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest ${personaColor}`}>
             {PERSONA_LABELS[q.persona]}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-500">
+          <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-400">
             <Calendar className="h-3 w-3" />
             {new Date(q.date).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' })}
           </span>

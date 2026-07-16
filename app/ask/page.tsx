@@ -70,7 +70,7 @@ export default function AskPage() {
                 Q&amp;A
               </span>
             </span>
-            <span className="text-[11px] text-slate-500 tracking-wider">
+            <span className="text-[11px] text-slate-400 tracking-wider">
               {askQuestions.length} questions answered
             </span>
           </div>
@@ -82,7 +82,7 @@ export default function AskPage() {
           </h1>
           <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-white/70 sm:text-lg">
             Practical answers on AI architecture, Suno music production, creator workflows,
-            and enterprise AI — from an architect who builds these systems daily.
+            and enterprise AI — from an AI Architect who builds these systems daily.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

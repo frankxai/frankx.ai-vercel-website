@@ -184,7 +184,7 @@ In my Agentic Creator OS:
 
 ## The integration layer
 
-Vercel AI SDK v6 handles model routing cleanly via the AI Gateway — you pass a \`"provider/model"\` string (\`"google/gemini-2.5-flash"\`, \`"anthropic/claude-haiku-4-5"\`) and the Gateway handles auth, streaming normalisation, and cost tracking across providers.
+Vercel AI SDK v6 handles model routing cleanly via the AI Gateway — you pass a \`"provider/model"\` string (\`"google/gemini-2.5-flash"\`, \`"anthropic/claude-haiku-4.5"\`) and the Gateway handles auth, streaming normalisation, and cost tracking across providers.
 
 No separate SDK imports per provider. One interface, any model.`,
     category: 'ai-architecture',
@@ -354,7 +354,7 @@ Your pair programmer that lives in the terminal. For solo developers or technica
 **2. Gemini 2.5 Pro + AI Studio (Google)**
 Your research and analysis layer. Grounded generation (real-time search), 1M token context for long documents, multimodal input. AI Studio gives you a free prototyping environment. For content creators who need to stay current: this is your primary tool.
 
-**3. Suno v4**
+**3. Suno v5.5**
 If you produce audio content, video content, or need music for anything: Suno at $10/month produces commercially licensable tracks that sound professional. The ROI on learning good prompting here is exceptional.
 
 **4. Vercel AI SDK v6**
