@@ -114,6 +114,10 @@ const categoryColors: Record<string, string> = {
   Neuroscience: 'bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/25',
   'Inner Work': 'bg-violet-500/10 text-violet-300 border-violet-500/25',
   IFS: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Scaling: 'bg-orange-500/10 text-orange-300 border-orange-500/25',
+  'Business Strategy': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  Leadership: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Platforms: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
 };
 
 function StarRating({ rating }: { rating: number }) {
