@@ -60,7 +60,7 @@ type NavSection = {
   label: string
   icon: LucideIcon
   tagline: string
-  featured: { title: string; description: string; href: string; badge: string }
+  featured: { title: string; description: string; href: string; badge: string; external?: boolean }
   items: NavItem[]
 }
 
@@ -90,15 +90,23 @@ const sections: NavSection[] = [
     key: 'gencreators',
     label: 'GenCreators',
     icon: Flame,
-    tagline: 'Principles, handbook, blueprints',
+    tagline: 'Product + framework for generative creators',
     featured: {
-      title: 'The GenCreator Framework',
-      description: 'The operating system for generative creators.',
-      href: '/gencreator',
-      badge: 'Framework',
+      title: 'GenCreator.AI',
+      description: 'Live product domain — primary conversion for creators who ship.',
+      href: 'https://gencreator.ai',
+      badge: 'Product',
+      external: true,
     },
     items: [
-      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'The complete creator OS' },
+      {
+        name: 'GenCreator.AI',
+        href: 'https://gencreator.ai',
+        icon: Flame,
+        description: 'Live product · primary conversion',
+        external: true,
+      },
+      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'On-site framework (principles → blueprints)' },
       { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
       { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: 'Practical playbook' },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: 'Ship-ready systems' },
@@ -419,14 +427,16 @@ function HomeView({
       <div className="flex-1" />
 
       <div className="pt-6">
-        <Link
-          href="/start"
+        <a
+          href="https://gencreator.ai"
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={onClose}
           className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-5 py-3.5 text-[15px] font-semibold text-slate-900 shadow-lg shadow-emerald-500/20 transition hover:brightness-110 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 min-h-[44px]"
         >
-          Start Here
+          GenCreator.AI
           <ArrowRight className="h-4 w-4" />
-        </Link>
+        </a>
       </div>
     </div>
   )
@@ -457,27 +467,53 @@ function SectionView({
       </button>
 
       {/* Featured card */}
-      <Link
-        href={section.featured.href}
-        onClick={onClose}
-        className="group mb-5 block overflow-hidden rounded-2xl border border-emerald-400/20 bg-gradient-to-br from-emerald-400/10 via-cyan-400/5 to-transparent p-4 transition hover:border-emerald-400/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
-      >
-        <div className="mb-3 flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400/30 to-cyan-400/20 text-emerald-300">
-            <FeaturedIcon className="h-4 w-4" />
+      {section.featured.external ? (
+        <a
+          href={section.featured.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onClose}
+          className="group mb-5 block overflow-hidden rounded-2xl border border-emerald-400/20 bg-gradient-to-br from-emerald-400/10 via-cyan-400/5 to-transparent p-4 transition hover:border-emerald-400/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+        >
+          <div className="mb-3 flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400/30 to-cyan-400/20 text-emerald-300">
+              <FeaturedIcon className="h-4 w-4" />
+            </span>
+            <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
+              {section.featured.badge}
+            </span>
+          </div>
+          <h3 className="text-[16px] font-semibold text-white">{section.featured.title}</h3>
+          <p className="mt-1 text-[13px] leading-snug text-slate-300">
+            {section.featured.description}
+          </p>
+          <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-emerald-300">
+            Open product <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
           </span>
-          <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
-            {section.featured.badge}
+        </a>
+      ) : (
+        <Link
+          href={section.featured.href}
+          onClick={onClose}
+          className="group mb-5 block overflow-hidden rounded-2xl border border-emerald-400/20 bg-gradient-to-br from-emerald-400/10 via-cyan-400/5 to-transparent p-4 transition hover:border-emerald-400/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+        >
+          <div className="mb-3 flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400/30 to-cyan-400/20 text-emerald-300">
+              <FeaturedIcon className="h-4 w-4" />
+            </span>
+            <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
+              {section.featured.badge}
+            </span>
+          </div>
+          <h3 className="text-[16px] font-semibold text-white">{section.featured.title}</h3>
+          <p className="mt-1 text-[13px] leading-snug text-slate-300">
+            {section.featured.description}
+          </p>
+          <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-emerald-300">
+            Open hub <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
           </span>
-        </div>
-        <h3 className="text-[16px] font-semibold text-white">{section.featured.title}</h3>
-        <p className="mt-1 text-[13px] leading-snug text-slate-300">
-          {section.featured.description}
-        </p>
-        <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-emerald-300">
-          Open hub <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-        </span>
-      </Link>
+        </Link>
+      )}
 
       <h2 className="mb-3 text-[12px] font-semibold text-slate-400">
         All in {section.label}

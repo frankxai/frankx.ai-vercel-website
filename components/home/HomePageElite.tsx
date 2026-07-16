@@ -319,23 +319,25 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </div>
             </div>
 
-            {/* CTAs */}
+            {/* CTAs — R1: primary conversion to GenCreator product domain */}
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/ai-architecture"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+              <a
+                href="https://gencreator.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('hero_cta_click', { type: 'primary', destination: 'https://gencreator.ai' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore AI Architecture
+                Open GenCreator.AI
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </a>
 
               <Link
-                href="/ecosystem"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
+                href="/ai-architecture"
+                onClick={() => trackEvent('hero_cta_click', { type: 'secondary', destination: '/ai-architecture' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Map the Ecosystem
+                Explore AI Architecture
               </Link>
             </div>
 
