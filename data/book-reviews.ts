@@ -2,6 +2,564 @@ import type { BookReview } from '@/app/books/types';
 
 export const bookReviews: BookReview[] = [
   {
+    slug: 'e-squared',
+    title: 'E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality',
+    author: 'Pam Grout',
+    coverImage: '/images/library/e-squared.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-06-14',
+    categories: ['Manifestation', 'Self-Development', 'Mindset'],
+    readingTime: '6 min',
+    publicationYear: 2013,
+    tldr: 'Grout reframes manifestation as a lab experiment: nine short, time-boxed tests you run on yourself in 48 hours or less, each designed to give you firsthand evidence that attention and expectation shape what shows up. The pitch is "don\'t believe me, prove it" — treat the universe like a science fair partner and watch for the result.',
+    keyInsights: [
+      'The book\'s frame is empirical, not devotional — you are asked to collect your own evidence rather than adopt a belief on faith',
+      'Each experiment is time-boxed (most 48 hours) with a stated hypothesis and a clear "what counts as a result" condition',
+      'Grout\'s core claim: a "Field of Potentiality" responds to focused attention, so what you expect to notice is disproportionately what you notice',
+      'Expectation is treated as the active ingredient — the experiments manipulate what you look for, then ask you to log what arrives',
+      'The playful tone is deliberate: low stakes and humor lower the resistance that usually sabotages manifestation practice',
+    ],
+    bestFor: [
+      'Skeptics who want to test manifestation claims rather than be told to believe them',
+      'Readers new to law-of-attraction ideas who want a 48-hour on-ramp',
+      'Anyone who finds The Secret too abstract and wants concrete exercises',
+      'Practitioners who learn by doing rather than by reading theory',
+    ],
+    amazonUrl: 'https://www.amazon.com/Squared-Yourself-Energy-Experiments-Reality/dp/1401938906',
+    relatedBook: 'the-wordless-laws',
+    faq: [
+      {
+        q: 'What are the nine experiments in E-Squared?',
+        a: 'Each is a short, self-run test with a hypothesis and a deadline (usually 48 hours). They have nicknames Grout uses throughout — for example the "Dude, Where\'s My Car?" / Park Bench experiment asks the universe for an unmistakable sign or gift within a set window; the Volkswagen Jetta experiment has you fixate on a specific object or symbol to see how often it then appears; the "Dear Abby" experiment asks for guidance on a real question. The common structure matters more than the exact list: state what you expect, set a deadline, then record what actually shows up.',
+      },
+      {
+        q: 'Does E-Squared require any spiritual belief to start?',
+        a: 'No — that is the selling point. Grout asks you to suspend both belief and disbelief and just run the experiment, treating yourself as the test subject. The book argues the evidence should change your mind, not the other way around.',
+      },
+      {
+        q: 'How long does it take to work through the book?',
+        a: 'The reading is short, but the experiments are the point. Most can be completed in 24-48 hours each, so a committed reader can run all nine in a couple of weeks while keeping a results log.',
+      },
+      {
+        q: 'Is E-Squared scientifically rigorous?',
+        a: 'No, and it does not claim peer-reviewed rigor. The "experiments" are personal, uncontrolled, and prone to confirmation bias — you tend to find what you look for. Read it as a structured attention practice and a confidence-builder, not as physics.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'The Secret',
+        author: 'Rhonda Byrne',
+        reason: 'The book Grout is implicitly answering — where The Secret states the law of attraction as doctrine, E-Squared turns the same claim into testable exercises.',
+        url: 'https://www.amazon.com/Secret-Rhonda-Byrne/dp/1582701709',
+      },
+      {
+        title: 'The Wordless Laws',
+        author: 'Frank',
+        reason: 'Grout names her forces openly; The Wordless Laws shows the same twelve forces in action while deliberately never naming them, so the reader excavates them the way Grout asks you to find your own evidence.',
+        url: '/books/the-wordless-laws',
+      },
+      {
+        title: 'Think and Grow Rich',
+        author: 'Napoleon Hill',
+        reason: 'The 1937 source that Grout\'s "thought creates reality" thesis descends from — Hill\'s autosuggestion is the ancestor of her self-run experiments.',
+        url: 'https://www.amazon.com/Think-Grow-Rich-Landmark-Bestseller/dp/1585424331',
+      },
+    ],
+    videos: [
+      {
+        title: 'Pam Grout on E-Squared and proving your thoughts create reality',
+        creator: 'Hay House',
+        url: 'https://www.youtube.com/results?search_query=Pam+Grout+E-Squared+interview',
+        description: 'Grout walks through the premise and a few of the experiments in her own words. Best starting point for the book\'s "test it yourself" spirit.',
+        kind: 'interview',
+      },
+      {
+        title: 'E-Squared by Pam Grout — book summary',
+        creator: 'Various',
+        url: 'https://www.youtube.com/results?search_query=E-Squared+Pam+Grout+summary',
+        description: 'Short summaries that list the nine experiments. Useful as a map before you run them, but the value is in doing the experiments, not watching the recap.',
+        kind: 'summary',
+      },
+    ],
+  },
+  {
+    slug: 'the-secret',
+    title: 'The Secret',
+    author: 'Rhonda Byrne',
+    coverImage: '/images/library/the-secret.jpg',
+    hasCover: false,
+    rating: 3,
+    reviewDate: '2026-06-14',
+    categories: ['Manifestation', 'Self-Development', 'Mindset'],
+    readingTime: '6 min',
+    publicationYear: 2006,
+    tldr: 'Byrne packages the "law of attraction" — like attracts like — into a single three-step loop: ask, believe, receive. The book argues that focused thought, gratitude, and visualization summon matching circumstances, and it became the cultural on-ramp through which millions met manifestation.',
+    keyInsights: [
+      'The law of attraction is stated as the organizing claim: your dominant thoughts and feelings draw matching experiences toward you',
+      'The Ask-Believe-Receive loop is the practical method — name what you want, hold the feeling of already having it, then act as if it is coming',
+      'Gratitude is positioned as the highest-leverage practice for shifting your dominant emotional frequency',
+      'Visualization with felt emotion, not just mental imagery, is presented as the mechanism that makes the "believe" step real',
+      'The book deliberately omits planning, effort, and persistence — a notable contrast with its source, Think and Grow Rich, and the main reason critics push back',
+    ],
+    bestFor: [
+      'Complete newcomers to manifestation who want the simplest possible entry point',
+      'Readers who respond to gratitude and visualization practices',
+      'Anyone tracing the cultural lineage of modern law-of-attraction content',
+      'People who want the idea before the deeper, more demanding source texts',
+    ],
+    amazonUrl: 'https://www.amazon.com/Secret-Rhonda-Byrne/dp/1582701709',
+    relatedBook: 'the-wordless-laws',
+    faq: [
+      {
+        q: 'What is the "secret" in The Secret?',
+        a: 'The law of attraction — the claim that like attracts like, so your thoughts and feelings draw matching circumstances into your life. Byrne presents it as an always-operating law you can use deliberately through the ask-believe-receive process.',
+      },
+      {
+        q: 'What is the Ask-Believe-Receive process?',
+        a: 'Ask: get specific about what you want. Believe: feel and act as if it is already yours, removing doubt. Receive: stay in a matching emotional state (especially gratitude) and take inspired action so you are ready to accept it. The "believe" step is where most of the book\'s practices — visualization, gratitude, affirmation — are aimed.',
+      },
+      {
+        q: 'What are the main criticisms of The Secret?',
+        a: 'Two recur. First, it overstates a real psychological effect (attention and expectation shape behavior and perception) as a literal cosmic law. Second, by dropping the planning and persistence that Hill insisted on, it can imply that wishing replaces work — and at the extreme, that misfortune is the sufferer\'s fault. Read it for the mindset shift, not as a complete operating manual.',
+      },
+      {
+        q: 'How does The Secret relate to Think and Grow Rich?',
+        a: 'It is a direct descendant. Hill\'s 1937 "thoughts become things" is the same core claim, but Hill wrapped it in specialized knowledge, organized planning, and relentless persistence. The Secret keeps the thought-creates-reality engine and removes most of the surrounding machinery.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'Your thoughts become things.',
+        context: 'The compressed restatement of the law of attraction that the book repeats throughout.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Think and Grow Rich',
+        author: 'Napoleon Hill',
+        reason: 'The 1937 source The Secret popularizes — read it for the planning and persistence that Byrne leaves out.',
+        url: 'https://www.amazon.com/Think-Grow-Rich-Landmark-Bestseller/dp/1585424331',
+      },
+      {
+        title: 'E-Squared',
+        author: 'Pam Grout',
+        reason: 'The hands-on antidote to The Secret\'s abstraction — same law of attraction, but reframed as experiments you run and verify in 48 hours.',
+        url: 'https://www.amazon.com/Squared-Yourself-Energy-Experiments-Reality/dp/1401938906',
+      },
+      {
+        title: 'The Wordless Laws',
+        author: 'Frank',
+        reason: 'Restores the depth The Secret strips out — it shows the forces working through a story rather than reducing them to a single slogan.',
+        url: '/books/the-wordless-laws',
+      },
+    ],
+    videos: [
+      {
+        title: 'The Secret (2006) — official documentary',
+        creator: 'Prime Time Productions',
+        url: 'https://www.youtube.com/results?search_query=The+Secret+2006+documentary+Rhonda+Byrne',
+        description: 'The film that launched the phenomenon, featuring the teachers Byrne assembled. The fastest way to absorb the book\'s claim and tone.',
+        kind: 'explainer',
+      },
+      {
+        title: 'The Secret explained and critiqued',
+        creator: 'Various',
+        url: 'https://www.youtube.com/results?search_query=The+Secret+law+of+attraction+critique',
+        description: 'Balanced breakdowns that separate the useful mindset shift from the overstated metaphysics. Worth watching alongside the book to read it critically.',
+        kind: 'explainer',
+      },
+    ],
+  },
+  {
+    slug: 'breath',
+    title: 'Breath: The New Science of a Lost Art',
+    author: 'James Nestor',
+    coverImage: '/images/library/breath.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-06-14',
+    categories: ['Health', 'Science', 'Self-Development'],
+    readingTime: '7 min',
+    publicationYear: 2020,
+    tldr: 'Nestor investigates how modern humans breathe badly — too fast, too much, through the mouth — and what fixing it does to health, sleep, and stress. Part history, part self-experiment, part science reporting, the book makes the case that how you breathe may matter as much as what you eat or how you exercise.',
+    keyInsights: [
+      'Nasal breathing outperforms mouth breathing across the board — filtering, humidifying, and boosting nitric oxide that improves oxygen uptake',
+      'Most people overbreathe; slowing the breath and tolerating slightly higher CO2 improves how efficiently the body delivers oxygen to tissue',
+      'A breathing cadence near 5.5 seconds in and 5.5 seconds out (about 5.5 breaths per minute) repeatedly shows up as a calming, coherence-inducing rhythm',
+      'CO2 tolerance, not raw oxygen intake, is the underappreciated variable — the body releases oxygen in response to carbon dioxide, so chronic over-breathing is counterproductive',
+      'Nestor\'s own clinically supervised experiment plugging his nose for ten days documents how mouth breathing degrades sleep, blood pressure, and well-being',
+    ],
+    bestFor: [
+      'Anyone with poor sleep, snoring, or chronic low-grade stress',
+      'Meditators and athletes who want the physiology behind breath practices',
+      'Readers who like rigorous science journalism with a personal-experiment spine',
+      'Practitioners of manifestation or visualization who need a reliable way to reach a calm state first',
+    ],
+    amazonUrl: 'https://www.amazon.com/Breath-New-Science-Lost-Art/dp/0735213615',
+    relatedBook: 'the-wordless-laws',
+    faq: [
+      {
+        q: 'What is the main argument of Breath?',
+        a: 'That how we breathe is a neglected lever on health, and that most modern humans breathe in ways that harm them — too fast, too shallow, and through the mouth. Nestor argues that relearning slow nasal breathing measurably improves sleep, stress, blood pressure, and athletic performance.',
+      },
+      {
+        q: 'Why does Nestor emphasize nasal over mouth breathing?',
+        a: 'The nose filters, warms, and humidifies air and releases nitric oxide that helps the body absorb oxygen. Mouth breathing skips all of that and is linked in the book to disrupted sleep, dental problems, and elevated stress. His ten-day nose-plugging experiment is the dramatic demonstration of the difference.',
+      },
+      {
+        q: 'What is the ideal breathing rate the book describes?',
+        a: 'Nestor reports that around 5.5 seconds in and 5.5 seconds out — roughly 5.5 breaths per minute — recurs across traditions and lab studies as an optimal, calming cadence. He frames it as a convergence point rather than a one-size-fits-all prescription.',
+      },
+      {
+        q: 'Is Breath a practical how-to or a science book?',
+        a: 'Both, weighted toward reporting. The body of the book is investigation and history; practical techniques (nasal breathing, slow breathing, an appendix of methods) are present but secondary. Read it to understand why breathwork matters, then pair it with a dedicated practice guide.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Breaking the Habit of Being Yourself',
+        author: 'Dr. Joe Dispenza',
+        reason: 'Dispenza\'s meditations require the calm physiological baseline Nestor teaches you how to reach — breath first, mental rehearsal second.',
+        url: 'https://www.amazon.com/Breaking-Habit-Being-Yourself-Create/dp/1401938094',
+      },
+      {
+        title: 'The Wordless Laws',
+        author: 'Frank',
+        reason: 'The breath practices in this series rest on Nestor\'s science — he supplies the physiology behind the calm, attentive state the forces are practiced from.',
+        url: '/books/the-wordless-laws',
+      },
+      {
+        title: 'Atomic Habits',
+        author: 'James Clear',
+        reason: 'Nestor proves breathing is worth changing; Clear supplies the system for making a daily breath practice actually stick.',
+        url: 'https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299',
+      },
+    ],
+    videos: [
+      {
+        title: 'James Nestor on Breath — the new science of a lost art',
+        creator: 'Various',
+        url: 'https://www.youtube.com/results?search_query=James+Nestor+Breath+interview',
+        description: 'Interviews where Nestor recounts the nose-plugging experiment and the core findings on nasal and slow breathing. The best spoken introduction to the book.',
+        kind: 'interview',
+      },
+      {
+        title: 'The science of breathing — Breath explained',
+        creator: 'Various',
+        url: 'https://www.youtube.com/results?search_query=Breath+James+Nestor+nasal+breathing+CO2+tolerance',
+        description: 'Explainers covering the CO2-tolerance and nitric-oxide mechanisms. Helpful for the physiology that the book reports but does not always dwell on.',
+        kind: 'explainer',
+      },
+    ],
+  },
+  {
+    slug: 'the-wordless-laws',
+    title: 'The Wordless Laws',
+    author: 'Frank',
+    coverImage: '/images/library/the-wordless-laws.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-06-14',
+    categories: ['Self-Development', 'Wisdom', 'Manifestation'],
+    readingTime: '6 min',
+    publicationYear: 2026,
+    relatedBook: 'the-wordless-laws',
+    tldr: 'The Wordless Laws shows twelve forces at work without ever naming them — they live in the story, the imagery, and the structure, so the reader discovers each law rather than being handed a list. The concealment is deliberate: a principle you excavate yourself sticks far harder than one you are told. It pairs with a forthcoming Book Two that finally names the forces, turning the pair into a discover-then-confirm sequence.',
+    keyInsights: [
+      'The twelve forces are demonstrated, never labeled — the book withholds the vocabulary so the reader builds the concept firsthand',
+      'Concealment is the teaching device: a law you reconstruct yourself is retained more durably than one delivered as a definition',
+      'It descends openly from the Hill-Byrne lineage but inverts their method — where they name and instruct, this book hides and lets you find',
+      'Structure carries meaning — the sequence of the forces is itself part of the lesson, not just the content of each one',
+      'It is designed as the first half of a pair: Book One is the discovery, Book Two names the forces and confirms what you found',
+    ],
+    bestFor: [
+      'Readers in the Think and Grow Rich / The Secret lineage who want depth over slogans',
+      'Seekers who learn better by discovering a principle than by being told it',
+      'Anyone tired of numbered-list self-help who wants the ideas embodied in a story',
+      'Readers who will appreciate the discover-then-confirm payoff across the two-book arc',
+    ],
+    faq: [
+      {
+        q: 'Why does The Wordless Laws never name its forces?',
+        a: 'Because naming a principle lets the reader file it away without truly absorbing it. By showing each force in action and withholding the label, the book forces you to reconstruct the law yourself — and a concept you build firsthand is held far more durably than one you are handed.',
+      },
+      {
+        q: 'What is the relationship to Book Two?',
+        a: 'The Wordless Laws is the first half of a deliberate pair. Book One is the discovery: you meet the twelve forces unnamed. The forthcoming Book Two names them outright, so the experience becomes discover-then-confirm — you find the law in Book One, then have it named and validated in Book Two.',
+      },
+      {
+        q: 'How does it fit with classics like Think and Grow Rich and The Secret?',
+        a: 'It shares their lineage — the belief that focused inner forces shape outer results — but takes the opposite teaching stance. Hill and Byrne name everything and instruct directly; The Wordless Laws hides the names and lets the reader excavate the same territory through story and structure.',
+      },
+      {
+        q: 'Who should read it first, the classics or this?',
+        a: 'Either order works, but they reinforce each other. Reading the classics first gives you signposts to recognize as the forces appear; reading The Wordless Laws first gives you the discovery experience clean, before any vocabulary frames it.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Think and Grow Rich',
+        author: 'Napoleon Hill',
+        reason: 'The 1937 foundation of the lineage The Wordless Laws belongs to — read it to see the same forces stated openly and named, the inverse of this book\'s method.',
+        url: 'https://www.amazon.com/Think-Grow-Rich-Landmark-Bestseller/dp/1585424331',
+      },
+      {
+        title: 'The Secret',
+        author: 'Rhonda Byrne',
+        reason: 'The modern, fully-named popularization of the same territory — a useful contrast to how The Wordless Laws deliberately withholds the vocabulary.',
+        url: 'https://www.amazon.com/Secret-Rhonda-Byrne/dp/1582701709',
+      },
+      {
+        title: 'E-Squared',
+        author: 'Pam Grout',
+        reason: 'Grout has you prove the forces through experiments; The Wordless Laws has you discover them through story — two routes to the same firsthand conviction.',
+        url: 'https://www.amazon.com/Squared-Yourself-Energy-Experiments-Reality/dp/1401938906',
+      },
+      {
+        title: 'The Book of Secrets',
+        author: 'Frank',
+        reason: 'The craft companion — the same care applied to how the work is made rather than how a life is made. Read both to have the whole shelf.',
+        url: '/books/the-book-of-secrets',
+      },
+    ],
+  },
+  {
+    slug: 'the-book-of-secrets',
+    title: 'The Book of Secrets',
+    author: 'Frank',
+    coverImage: '/images/books/the-book-of-secrets-cover.png',
+    hasCover: true,
+    rating: 5,
+    reviewDate: '2026-07-05',
+    categories: ['Creativity', 'Craft', 'Self-Development'],
+    readingTime: '6 min',
+    publicationYear: 2026,
+    relatedBook: 'the-book-of-secrets',
+    tldr: 'The Book of Secrets names the twelve plain truths every working maker learns too late — the blank page, volume, the taste gap, constraints, stealing, the edit, showing up, standards, finishing, shipping, the long game, and the making itself. It is the craft companion to The Wordless Laws: where that book conceals the forces of how a life is made, this one reveals the forces of how great work is made, openly and at the start, where they can still save you the decade.',
+    keyInsights: [
+      'The secrets of good work are not hidden by anyone — they are simply learned late, usually a decade after the moment they would have helped most',
+      'You beat the blank page only by starting badly; resistance is strongest right before the work that would grow you most',
+      'Quantity produces quality — the masterpiece is found inside the pile, never planned in advance',
+      'Your work disappoints you because your taste outruns your skill, and that gap is the proof you will make it, if you outlast it',
+      'The finished piece was never the point — the real reward is the maker you become by showing up',
+    ],
+    bestFor: [
+      'Writers, builders, designers, musicians — anyone who makes',
+      'Beginners stuck in the gap between the work they imagine and the work their hands produce',
+      'Experienced makers who quit projects at ninety percent',
+      'Readers of The Wordless Laws who want the craft half of the shelf',
+    ],
+    faq: [
+      {
+        q: 'How is The Book of Secrets different from The Wordless Laws?',
+        a: 'They are companion volumes. The Wordless Laws is about how a life is made — the inner forces — and it conceals them, never naming a single one so the reader discovers each. The Book of Secrets is about how great work is made — the craft — and it does the opposite: it names every secret openly and hands you the practice. One is the self; the other is the work.',
+      },
+      {
+        q: 'Does it give a method or a system?',
+        a: 'No. It is twelve true things about how good work actually gets made by the people who make it, told as plainly as possible, each with a practice you can start this week. There is no morning routine and no seven-step framework, because making does not work that way — the difficulty is not a flaw in the process, it is the process.',
+      },
+      {
+        q: 'Who are the secrets drawn from?',
+        a: 'The craft lineage, named faithfully: Steven Pressfield on Resistance and turning pro, the Art & Fear ceramics parable on volume, Ira Glass on the taste gap, Austin Kleon on stealing, Anne Lamott on first drafts, Rick Rubin on the work as a mirror. The book grounds each secret in that lineage without inventing studies or quotes.',
+      },
+      {
+        q: 'Do I need to read the chapters in order?',
+        a: 'It rewards a straight read — the secrets build, the gap sets up volume, finishing sets up shipping — but each chapter also stands alone and can be read the day you need it. The reader lets you land on any secret directly.',
+      },
+    ],
+    continueReading: [
+      { title: 'The War of Art', author: 'Steven Pressfield', reason: 'The book that names Resistance — the force behind the blank page and the ninety-percent graveyard. Read it as the deep version of two of these secrets.', url: 'https://www.amazon.com/War-Art-Through-Creative-Battles/dp/1936891026' },
+      { title: 'Art & Fear', author: 'David Bayles and Ted Orland', reason: 'Source of the ceramics-class parable at the heart of the Secret of Volume, and the clearest short book on why makers actually quit.', url: 'https://www.amazon.com/Art-Fear-Observations-Rewards-Artmaking/dp/0961454733' },
+      { title: 'The Creative Act', author: 'Rick Rubin', reason: 'The contemplative long-form of the Secret of the Making — the work as a mirror, the maker as the real product.', url: 'https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886' },
+      { title: 'The Wordless Laws', author: 'Frank', reason: 'The companion volume — the same care applied to how a life is made rather than how the work is made. Read both to have the whole shelf.', url: '/books/the-wordless-laws' },
+    ],
+  },
+  {
+    slug: 'art-and-fear',
+    title: 'Art & Fear',
+    author: 'David Bayles and Ted Orland',
+    coverImage: '/images/library/art-and-fear.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-05',
+    categories: ['Creativity', 'Craft', 'Art'],
+    readingTime: '5 min',
+    publicationYear: 1993,
+    relatedBook: 'the-book-of-secrets',
+    amazonUrl: 'https://www.amazon.com/Art-Fear-Observations-Rewards-Artmaking/dp/0961454733',
+    tldr: 'A short, unsentimental book about why people stop making art — and why almost none of the reasons are talent. Written by two working artists, it is less about technique than about the fears, doubts, and quiet abandonments that end most creative lives. Its famous ceramics-class parable — the group graded on quantity outproducing the group graded on quality — is the single clearest argument for making a lot before judging yourself.',
+    keyInsights: [
+      'Most people quit art not from lack of talent but from the ordinary fears that accumulate around the work',
+      'The ceramics-class parable: the students told to make many pots produced better work than those told to make one perfect pot, because they learned in the doing',
+      'Quantity is how quality is manufactured — the good piece is found by making many, not by planning one',
+      'The work you make is made by the person you are; your limitations and quirks are not obstacles to your art, they are its material',
+      'Fear of what the work reveals about you is the quiet engine behind most creative blocks',
+    ],
+    bestFor: [
+      'Any artist or maker who has stopped, or is afraid they will',
+      'Perfectionists paralyzed by the pressure to make one great thing',
+      'Teachers and mentors of creative work',
+      'Readers of the Secret of Volume who want the source',
+    ],
+    faq: [
+      {
+        q: 'What is the ceramics-class parable?',
+        a: 'A teacher divides a class: one half is graded purely on the quantity of pots produced, the other on the quality of a single pot. At the end, the best pots come from the quantity group — they learned rapidly through repetition and failure, while the quality group sat theorizing about perfection. It is the book\'s most-quoted illustration of why volume beats precious single attempts.',
+      },
+      {
+        q: 'Is this a how-to book on technique?',
+        a: 'No. It deliberately avoids technique. It is about the psychology and reality of continuing to make art over a life — the doubts, the comparisons, the reasons people stop — which the authors argue matter far more than skill to whether you keep going.',
+      },
+      {
+        q: 'Who is it for?',
+        a: 'Working artists and makers of any kind. It is written by two artists for artists, but its argument — that persistence and volume beat talent and perfectionism — applies to anyone who makes things.',
+      },
+      {
+        q: 'How does it connect to The Book of Secrets?',
+        a: 'It is the direct source of the Secret of Volume and a strong companion to the Secret of Shipping. Where The Book of Secrets states the truth and hands you a practice, Art & Fear sits with the fear underneath it.',
+      },
+    ],
+  },
+  {
+    slug: 'the-creative-act',
+    title: 'The Creative Act: A Way of Being',
+    author: 'Rick Rubin',
+    coverImage: '/images/library/the-creative-act.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-05',
+    categories: ['Creativity', 'Craft', 'Philosophy'],
+    readingTime: '6 min',
+    publicationYear: 2023,
+    relatedBook: 'the-book-of-secrets',
+    amazonUrl: 'https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886',
+    tldr: 'The legendary music producer distills a life of making into a book of short meditations on creativity as a way of living rather than a set of techniques. Rubin treats the artist as a receiver of what is already in the air, and the work as a byproduct of the maker\'s own attention and growth. It is less instruction than orientation — a book to reset how you hold the act of making.',
+    keyInsights: [
+      'Creativity is a way of being, not a skill reserved for professionals — everyone participates in it',
+      'The artist\'s job is largely to notice and to get out of the way, letting the work come through rather than forcing it',
+      'The finished work is a byproduct; the real transformation happens in the maker',
+      'Protect the early, fragile phase of an idea from judgment — criticism belongs later, in the edit',
+      'Detachment from outcome frees the work; making for its own sake tends to produce the better result anyway',
+    ],
+    bestFor: [
+      'Makers who feel creatively blocked or outcome-obsessed',
+      'Anyone who wants a contemplative rather than tactical book on creativity',
+      'Musicians, writers, and artists at any level',
+      'Readers of the Secret of the Making who want the long-form version',
+    ],
+    faq: [
+      {
+        q: 'Is this a book about making music?',
+        a: 'No, despite Rubin\'s career as a producer. It is deliberately medium-agnostic — the meditations apply to any creative work, and to living itself. Music is almost never the explicit subject.',
+      },
+      {
+        q: 'Is it practical or philosophical?',
+        a: 'Mostly philosophical and orienting. It offers few step-by-step techniques; instead it reshapes how you relate to the act of making — attention, patience, non-attachment, trust. Readers wanting tactics should pair it with a more practical craft book.',
+      },
+      {
+        q: 'What is the core idea?',
+        a: 'That creativity is a way of being available to everyone, that the artist receives more than invents, and that the deepest reward of making is who you become in the process rather than what you produce.',
+      },
+      {
+        q: 'How does it relate to The Book of Secrets?',
+        a: 'It is the contemplative twin of the Secret of the Making and the Secret of Showing Up. The Book of Secrets is sharper and more practical; The Creative Act is quieter and more meditative. Read together they cover both the how and the why.',
+      },
+    ],
+  },
+  {
+    slug: 'steal-like-an-artist',
+    title: 'Steal Like an Artist',
+    author: 'Austin Kleon',
+    coverImage: '/images/library/steal-like-an-artist.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-05',
+    categories: ['Creativity', 'Craft', 'Writing'],
+    readingTime: '4 min',
+    publicationYear: 2012,
+    relatedBook: 'the-book-of-secrets',
+    amazonUrl: 'https://www.amazon.com/Steal-Like-Artist-Things-Creative/dp/0761169253',
+    tldr: 'A brief, illustrated manifesto arguing that nothing is original and that the way to find your voice is to collect, combine, and transform your influences rather than wait for a bolt of pure originality. Kleon reframes influence as the raw material of art and gives permission to openly build on what you love — the antidote to the paralysis of trying to be wholly new.',
+    keyInsights: [
+      'Nothing is completely original — every new idea is a remix of prior ones run through a particular person',
+      'Your taste in what to steal is itself your originality; collect from many sources so no single theft shows',
+      'Copy your heroes to learn their moves, then transform what you copied until it becomes yours',
+      'Do the work you want to be known for; the audience finds the maker who makes, not the one who waits',
+      'Creativity is subtraction and combination as much as invention — constraints and influences are fuel, not limits',
+    ],
+    bestFor: [
+      'Beginners afraid their work is derivative',
+      'Anyone paralyzed by the pressure to be original',
+      'Writers, designers, and musicians finding their voice',
+      'Readers of the Secret of Stealing who want the founding manifesto',
+    ],
+    faq: [
+      {
+        q: 'Does "steal" mean plagiarize?',
+        a: 'No — the opposite. Kleon means studying, absorbing, and transforming influences until they become genuinely your own, drawing from many sources rather than copying one. Undigested copying of a single source is the thing the book warns against; honest transformation of many is what it celebrates.',
+      },
+      {
+        q: 'How long is it?',
+        a: 'Short and illustrated — readable in a sitting. It is a manifesto, not a treatise, designed to be re-opened for a jolt of permission rather than studied.',
+      },
+      {
+        q: 'What is the central argument?',
+        a: 'That originality is a myth in the sense people fear it — no one creates from nothing — and that the practical path to a voice is to collect what you love, combine influences no one else has combined the same way, and transform them through your own hand.',
+      },
+      {
+        q: 'How does it connect to The Book of Secrets?',
+        a: 'It is the direct lineage for the Secret of Stealing. The Book of Secrets tells the same truth through story and hands you a practice; Kleon delivers it as a fast, quotable manifesto.',
+      },
+    ],
+  },
+  {
+    slug: 'bird-by-bird',
+    title: 'Bird by Bird: Some Instructions on Writing and Life',
+    author: 'Anne Lamott',
+    coverImage: '/images/library/bird-by-bird.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-05',
+    categories: ['Writing', 'Craft', 'Creativity'],
+    readingTime: '6 min',
+    publicationYear: 1994,
+    relatedBook: 'the-book-of-secrets',
+    amazonUrl: 'https://www.amazon.com/Bird-Some-Instructions-Writing-Life/dp/0385480016',
+    tldr: 'A warm, funny, honest book on writing that doubles as a book on living. Lamott\'s enduring gifts are the permission to write terrible first drafts and the title metaphor — when a task feels overwhelming, you take it bird by bird, one small piece at a time. It is the classic argument that the work is made in revision and that perfectionism is the enemy of finishing.',
+    keyInsights: [
+      'Give yourself permission to write a bad first draft — its only job is to exist so it can be revised',
+      'Take overwhelming work "bird by bird," one small manageable piece at a time, rather than facing the whole at once',
+      'The real writing happens in revision; the first draft is you telling yourself the story',
+      'Perfectionism is a voice of fear that strangles work before it starts — name it and keep going',
+      'Writing is less about the finished product than about paying attention to your life and telling the truth of it',
+    ],
+    bestFor: [
+      'Writers at any stage, especially those blocked by perfectionism',
+      'Anyone overwhelmed by the size of a creative project',
+      'Readers who want craft advice delivered with humor and heart',
+      'Readers of the Secret of the Edit and the Secret of Finishing who want the classic source',
+    ],
+    faq: [
+      {
+        q: 'Where does the title come from?',
+        a: 'From a family story Lamott tells: her brother, overwhelmed by a school report on birds due the next day, was comforted by their father with the advice to take it "bird by bird" — just one at a time. It became her metaphor for facing any overwhelming task in small pieces.',
+      },
+      {
+        q: 'What is the "bad first draft" idea?',
+        a: 'Lamott\'s most quoted permission: that all good writing begins with a messy, imperfect first draft whose only job is to get something down. Trying to write it perfectly the first time is what freezes most writers. You write it badly, then find the good work in revision.',
+      },
+      {
+        q: 'Is it only for writers?',
+        a: 'Its examples are about writing, but its two central ideas — bad first drafts and bird by bird — apply to any creative or overwhelming work. The subtitle, "Some Instructions on Writing and Life," is meant literally.',
+      },
+      {
+        q: 'How does it relate to The Book of Secrets?',
+        a: 'It is the lineage behind the Secret of the Edit and a companion to the Secret of Finishing. The Book of Secrets states the truth and hands you a practice; Lamott sits with you, funny and human, while you do the hard part.',
+      },
+    ],
+  },
+  {
     slug: 'atomic-habits',
     title: 'Atomic Habits',
     author: 'James Clear',
@@ -6241,6 +6799,107 @@ export const bookReviews: BookReview[] = [
       },
     ],
   },
+  {
+    slug: 'tao-te-ching',
+    title: 'Tao Te Ching',
+    author: 'Lao Tzu',
+    coverImage: '/images/library/tao-te-ching-reading-capture.jpg',
+    rating: 5,
+    reviewDate: '2026-07-12',
+    categories: ['Philosophy', 'Spirituality', 'Classic'],
+    readingTime: '6 min',
+    keyInsights: [
+      'The alternative to force is not passivity. It is designing clear conditions, then letting the right action move without unnecessary resistance.',
+      'Yielding is strategic range: revise the plan quickly, preserve the principle, and keep the system capable of absorbing shocks.',
+      'Hollow capacity is productive capacity. Unclaimed attention, recovery, and white space are what let durable work continue.',
+      'Authority compounds more cleanly when proof lives in useful systems and lived artifacts rather than constant self-announcement.',
+      'A small portfolio with a real cadence outperforms an ever-expanding field of intentions. Concentration is what makes a body of work recognisable.',
+    ],
+    bestFor: [
+      'Founders carrying too many concurrent initiatives',
+      'Builders designing systems for endurance, not spectacle',
+      'Creators rebuilding a quieter relationship with visibility',
+      'Anyone who needs a strategic no more than another idea',
+    ],
+    tldr:
+      'The Tao Te Ching is a compact study of non-forcing: create the conditions, remove the excess, and let the essential work move. Its value for builders is not withdrawal from ambition, but ambition with enough internal and operational space to last.',
+    faq: [
+      {
+        q: 'What does the Tao Te Ching mean by yielding?',
+        a: 'It is not surrendering discernment. It is staying adaptable enough to change form without abandoning what matters.',
+      },
+      {
+        q: 'Why is this useful for builders and founders?',
+        a: 'Because most operational waste comes from forcing too many initiatives, decisions, and identities at once. The book makes subtraction a strategic discipline.',
+      },
+      {
+        q: 'Is this page a summary of the entire Tao Te Ching?',
+        a: 'No. It is a source-marked field note from one reading session, built around the passages captured here and their original application to creative and operating systems.',
+      },
+      {
+        q: 'Which translation is referenced here?',
+        a: 'The photographed copy is David Hinton’s translation. Short excerpts are retained only to anchor the public interpretation to the captured pages.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'In yielding is completion. In bent is straight. In hollow is full.',
+        chapter: 'Chapter 22 — David Hinton translation, p. 22',
+        context: 'The operative image is not weakness; it is a system that can flex without losing its centre.',
+      },
+      {
+        text: 'If you aren’t free of yourself, how will you ever become yourself?',
+        chapter: 'Chapter 7 — David Hinton translation, p. 7',
+        context: 'An antidote to building an identity-performance machine instead of a body of useful work.',
+      },
+    ],
+    capture: {
+      kind: 'book-photo',
+      capturedAt: '2026-07-12',
+      edition: 'Tao Te Ching',
+      translator: 'David Hinton',
+      sourcePages: [6, 7, 21, 22],
+      rightsStatus:
+        'Personal reading capture. Public page uses short excerpts and original commentary; readable page photographs remain private source evidence.',
+      publicNote:
+        'A summer reading capture from a personal copy. The public artifact preserves provenance and the applied idea; the private reflection remains outside the public repository.',
+      images: [
+        {
+          src: '/images/library/tao-te-ching-reading-capture.jpg',
+          alt: 'A personal copy of Tao Te Ching by Lao Tzu, translated by David Hinton, held during a reading session.',
+          caption: 'Reading field note — personal copy, David Hinton translation.',
+        },
+      ],
+    },
+    application: {
+      title: 'Tao operating experiment',
+      body:
+        'Turn the reading into a constraint, not a mood: one canonical public domain, one production Library OS, and fewer concurrent promises. Let the systems make the case before the narrative does.',
+      practice: {
+        title: 'Seven days of strategic hollowing',
+        duration: '7 days',
+        instruction:
+          'Before adding one initiative, link, or dependency, remove or decline one that does not strengthen FrankX, Arcanea, or Starlight Intelligence Systems. Protect one recovery block and one uninterrupted build block each day. At the end of the week, keep only what still moves without force.',
+      },
+      connections: [
+        {
+          label: 'The Library OS approach',
+          href: '/library/approach',
+          reason:
+            'The capture-to-publication system is where evidence becomes a durable, useful asset instead of another private fragment.',
+          kind: 'practice',
+        },
+        {
+          label: 'Build your own Library OS',
+          href: '/library/build',
+          reason:
+            'A direct route from one photographed book to a compounding, reader-owned knowledge system on a personal domain.',
+          kind: 'product',
+        },
+      ],
+    },
+  },
+
 ];
 
 // ─── Helper Functions ────────────────────────────────────────────

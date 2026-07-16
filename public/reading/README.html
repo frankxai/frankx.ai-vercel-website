@@ -77,6 +77,16 @@
 <td>Elite creator value prop</td>
 </tr>
 <tr>
+<td>Research</td>
+<td><a href="https://frankx.ai/research">/research</a></td>
+<td>AI research for builders</td>
+</tr>
+<tr>
+<td>Cloud AI</td>
+<td><a href="https://frankx.ai/cloud">/cloud</a></td>
+<td>AI CoE and workload systems</td>
+</tr>
+<tr>
 <td>Products</td>
 <td><a href="https://frankx.ai/products">/products</a></td>
 <td>Digital products &amp; tools</td>
@@ -85,6 +95,11 @@
 <td>Blog</td>
 <td><a href="https://frankx.ai/blog">/blog</a></td>
 <td>AI tutorials &amp; insights</td>
+</tr>
+<tr>
+<td>Books</td>
+<td><a href="https://frankx.ai/books">/books</a></td>
+<td>Books and living systems</td>
 </tr>
 <tr>
 <td>AI Architect</td>
@@ -199,6 +214,59 @@ public/                 # Static assets
 ├── images/             # Optimized images
 └── reading/            # Generated reading site
 </code></pre>
+<h2>Platform Content Architecture</h2>
+<p>The authority platform is driven by typed static registries under <code>data/platform/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>types.ts</code></td>
+<td>Shared content, product, book, cloud, and flow types</td>
+</tr>
+<tr>
+<td><code>research.ts</code></td>
+<td>Research areas, seeded research index, research OS flow</td>
+</tr>
+<tr>
+<td><code>cloud.ts</code></td>
+<td><code>/cloud</code> hub, AI CoE flow, and Cloud AI subpage content</td>
+</tr>
+<tr>
+<td><code>products.ts</code></td>
+<td>Authority offer ladder and platform product catalog</td>
+</tr>
+<tr>
+<td><code>books.ts</code></td>
+<td>Living book/IP projects and book creation engine</td>
+</tr>
+<tr>
+<td><code>blog.ts</code></td>
+<td>Editorial lanes and seeded essay backlog</td>
+</tr>
+<tr>
+<td><code>navigation.ts</code></td>
+<td>Platform nav/footer intent</td>
+</tr>
+</tbody></table>
+<p>Shared UI primitives live in <code>components/platform/platform-ui.tsx</code>.</p>
+<p>Route ownership:</p>
+<ul>
+<li><code>/research</code> combines the existing research-domain registry with the new platform research layer.</li>
+<li><code>/cloud</code> and <code>/cloud/[slug]</code> are driven by <code>data/platform/cloud.ts</code>.</li>
+<li><code>/blog</code> renders existing MDX posts and the seeded platform essay backlog.</li>
+<li><code>/products</code> preserves launch-readiness logic and adds the platform offer ladder.</li>
+<li><code>/books</code> preserves published book routes and adds living book projects.</li>
+</ul>
+<p>Docs:</p>
+<ul>
+<li><code>docs/content-system.md</code></li>
+<li><code>docs/site-map.md</code></li>
+<li><code>docs/sis-swarm-execution.md</code></li>
+</ul>
 <h2>Development</h2>
 <pre><code class="language-bash"># Install
 npm install
@@ -308,7 +376,7 @@ git add -A &amp;&amp; git commit -m &quot;sync: update from dev repo&quot; &amp;
 <p><strong>Frank = Elite Creator + AI Architect</strong></p>
 <ul>
 <li>12,000+ AI songs created</li>
-<li>Oracle AI Architect certified</li>
+<li>Former AI architect at Oracle</li>
 <li>Enterprise-grade systems</li>
 <li>Humble excellence in execution</li>
 </ul>

@@ -15,6 +15,7 @@ import {
   Zap,
   Layers,
   LineChart,
+  Hammer,
 } from 'lucide-react'
 import { FrankXOSHeader } from '@/components/os/FrankXOSHeader'
 import { osModules, osCRM, type OSModule, type ModuleColor, type ModulePhase } from '@/data/os-modules'
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://frankx.ai/os' },
 }
 
-const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart }
+const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart, Hammer }
 
 const COLOR_TOKENS: Record<ModuleColor, { ring: string; text: string; bg: string; glow: string }> = {
   cyan: {
@@ -539,13 +540,13 @@ export default function OSPage() {
       <section className="py-16 border-t border-white/[0.04]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-zinc-500 leading-relaxed">
-            Frank Riemer is an AI Architect at Oracle EMEA AI Center of Excellence. The enterprise
-            6-pillar CoE framework (Strategy, Governance, Talent, Technology, Data, Ethics) used at
-            Fortune 500s scales down to one person. This is what that looks like in practice.
+            Frank Riemer is a former AI architect at Oracle. FrankX adapts enterprise AI architecture
+            patterns (Strategy, Governance, Talent, Technology, Data, Ethics) to one-person and small-team
+            creative systems. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
             <Link
-              href="/ai-coe"
+              href="/ai-architect/ai-coe-hub"
               className="inline-flex items-center gap-1.5 hover:text-zinc-400 transition-colors"
             >
               AI CoE Hub

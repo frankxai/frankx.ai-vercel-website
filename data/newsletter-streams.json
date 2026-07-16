@@ -2,12 +2,12 @@
   "streams": [
     {
       "id": "creation-chronicles",
-      "name": "Creation Chronicles",
-      "tagline": "Inside the build. Every week.",
-      "description": "What shipped, what broke, what's next. Behind-the-scenes of building an AI-powered creator business.",
+      "name": "Signal Loop",
+      "tagline": "One grounded weekly signal from Frank Riemer.",
+      "description": "What I shipped, what I learned, what held up under use, and the systems worth carrying into your week.",
       "cadence": "Weekly (Sunday)",
-      "audience": "Builders, creators, anyone following the journey",
-      "voice": "Personal, behind-the-scenes, studio energy",
+      "audience": "Builders, creators, and thoughtful readers who want clearer human-AI work",
+      "voice": "Personal, grounded, useful, and warm without hype",
       "color": "violet",
       "gradient": "from-violet-500 to-purple-600",
       "accentHex": "#8B5CF6",
@@ -20,8 +20,8 @@
       "streamTags": ["business-building", "creator-economy", "golden-age", "entrepreneurship", "solopreneurship"],
       "sampleTopics": [
         "Weekly shipping report",
-        "Revenue & growth numbers",
-        "Tools and workflows that work",
+        "Systems and workflows that worked",
+        "Creative experiments worth repeating",
         "Lessons from building in public"
       ]
     },
@@ -77,12 +77,12 @@
     },
     {
       "id": "arcanea",
-      "name": "Arcanea Transmissions",
-      "tagline": "Signals from the 10 Gates.",
-      "description": "Lore reveals, chapter drops, gate progressions, and bestiary entries from the Arcanea universe.",
+      "name": "Creative Systems Research",
+      "tagline": "Worldbuilding as a media lab.",
+      "description": "Creative production notes, worldbuilding experiments, visual systems, and media pipeline research.",
       "cadence": "Monthly",
-      "audience": "Arcanea universe followers, worldbuilding enthusiasts",
-      "voice": "Mythological, narrative, immersive",
+      "audience": "Creative technologists, worldbuilders, and media-system builders",
+      "voice": "Narrative, precise, and production-aware",
       "color": "purple",
       "gradient": "from-purple-600 to-indigo-700",
       "accentHex": "#AB47C7",
@@ -92,12 +92,12 @@
       "emailTemplate": "02-bioluminescent-flow",
       "listType": "arcanea",
       "featured": false,
-      "streamTags": ["arcanea", "gates", "worldbuilding", "mythology", "fiction"],
+      "streamTags": ["worldbuilding", "media-systems", "creative-production", "visual-systems", "fiction"],
       "sampleTopics": [
-        "New chapter releases",
-        "Gate lore and mythology",
-        "Character reveals",
-        "Universe expansion notes"
+        "Worldbuilding production notes",
+        "Visual language experiments",
+        "Media pipeline lessons",
+        "Narrative systems research"
       ]
     },
     {
@@ -128,11 +128,11 @@
     {
       "id": "inner-circle",
       "name": "Inner Circle",
-      "tagline": "The signal behind the signal.",
-      "description": "Revenue breakdowns, system architecture deep-dives, early access, and the unfiltered building story.",
+      "tagline": "Private build notes, not open yet.",
+      "description": "A deeper notes layer only if the free letter earns enough trust to justify it.",
       "cadence": "Weekly (Wednesday)",
-      "audience": "Highest-engagement subscribers, potential customers",
-      "voice": "Exclusive, direct, high-signal",
+      "audience": "Readers who want deeper implementation notes after the public letter proves useful",
+      "voice": "Direct, transparent, and high-signal",
       "color": "gold",
       "gradient": "from-amber-400 to-yellow-500",
       "accentHex": "#F59E0B",

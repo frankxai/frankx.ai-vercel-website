@@ -24,6 +24,8 @@ export interface Track {
   relatedProduct?: string
   relatedContent?: string[]
   crossReference?: string
+  imageUrl?: string
+  createdAt?: string
 }
 
 export interface Album {
@@ -80,6 +82,13 @@ export function getTopTracks(n: number = 10): Track[] {
   return [...tracks]
     .filter((t) => t.plays !== undefined)
     .sort((a, b) => (b.plays || 0) - (a.plays || 0))
+    .slice(0, n)
+}
+
+export function getLatestTracks(n: number = 6): Track[] {
+  return [...tracks]
+    .filter((t) => t.createdAt)
+    .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime())
     .slice(0, n)
 }
 
@@ -156,7 +165,7 @@ export function getAlbumAnalytics() {
 
 export function getPlaylistAnalytics() {
   const playlists = musicInventory._playlists
-  return playlists.map((p: { name: string; songs: number; url: string }) => {
+  return playlists.map((p: { name: string; songs: number; url: string; imageUrl?: string | null; plays?: number }) => {
     const playlistTracks = getTracksByPlaylist(p.name)
     const totalPlays = playlistTracks.reduce((sum, t) => sum + (t.plays || 0), 0)
     return { ...p, tracksIndexed: playlistTracks.length, totalPlays }
@@ -180,10 +189,10 @@ export function getMusicStats() {
   const profileStats = musicInventory._profileStats
   return {
     totalTracks: musicInventory._count,
-    indexedTracks: musicInventory._count,
+    indexedTracks: musicInventory._indexedCount,
     followers: profileStats.followers,
-    totalPlays: parseInt(String(profileStats.hooks), 10) || 0,
-    totalLikes: parseInt(String(profileStats.likes), 10) || 0,
+    totalPlays: profileStats.totalPlays,
+    totalLikes: profileStats.totalLikes,
     playlists: musicInventory._playlists.length,
     albums: albums.length,
     profileUrl: musicInventory._sunoProfileUrl,

@@ -414,7 +414,7 @@
           "Quarterly narrative summits"
         ],
         "ctaLabel": "Transform Your Brand",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
+        "ctaHref": "mailto:frank@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
       }
     ],
     "faq": [
@@ -507,7 +507,7 @@
           "Retro + next-step plan"
         ],
         "ctaLabel": "Start Sprint",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Starter%20Studio%20Sprint"
+        "ctaHref": "mailto:frank@frankx.ai?subject=Starter%20Studio%20Sprint"
       },
       {
         "name": "Creator Collective",
@@ -520,7 +520,7 @@
           "Analytics + experimentation kit"
         ],
         "ctaLabel": "Plan Your Build",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Collective%20Program",
+        "ctaHref": "mailto:frank@frankx.ai?subject=Creator%20Collective%20Program",
         "featured": true
       },
       {
@@ -534,7 +534,7 @@
           "Priority agent desk access"
         ],
         "ctaLabel": "Request Residency",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
+        "ctaHref": "mailto:frank@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
@@ -665,7 +665,7 @@
           "Priority agent desk support"
         ],
         "ctaLabel": "Request Residency",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
+        "ctaHref": "mailto:frank@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
@@ -1445,5 +1445,221 @@
     },
     "tags": ["book", "creator-economy", "ai", "golden-age"],
     "pillar": "creator"
+  },
+  {
+    "id": "reality-architect-os",
+    "slug": "reality-architect-os",
+    "name": "Reality Architect OS",
+    "category": "Creator Systems",
+    "badge": "FREE / OSS",
+    "headline": "Own Your Creator Systems Locally",
+    "subheadline": "The forkable public codebase featuring the reality.md memory standard, starter agent templates, and sanitized skill packs.",
+    "promise": "De-risk your creative business by shifting from third-party SaaS dependency to local, sovereign creator intelligence.",
+    "summary": "An open-source starter codebase implementing Move 1 through Move 3 of the Architect's Loop. Includes basic CLI scripts and local-first memory configurations.",
+    "transformation": [
+      "Setup the ~/reality.md person-level memory spec to stop re-explaining context to agents",
+      "Deploy basic local-first CLI tool wrappers for markdown and file system operations",
+      "Configure your first autonomous development agents in a sandboxed directory"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "1", "label": "Memory Spec" },
+        { "number": "15+", "label": "CLI Helpers" },
+        { "number": "0", "label": "Platform Fees" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "EUR",
+      "ctaPrimary": "Fork Repository",
+      "ctaPrimaryHref": "https://github.com/frankxai/realityarchitect",
+      "ctaPrimaryTracking": "ra-os-fork",
+      "ctaSecondary": "Read the Spec",
+      "ctaSecondaryHref": "/standard",
+      "guarantee": {
+        "label": "Open Source Forever",
+        "description": "Fork, remix, and modify. The method is built to be owned locally by the creator."
+      }
+    },
+    "modules": [
+      { "title": "The reality.md Standard", "description": "The canonical eight-section person-level memory standard." },
+      { "title": "Basic ACOS Engine Scripts", "description": "Starter Node.js scripts for basic task routing and workspace indexing." }
+    ],
+    "faq": [
+      { "question": "Do I need coding experience to use this?", "answer": "Basic CLI knowledge is required. You will clone the repo and run commands using node/pnpm." }
+    ],
+    "analyticsId": "reality-architect-os",
+    "delivery": {
+      "methods": ["github"],
+      "requiresEmail": false
+    }
+  },
+  {
+    "id": "system-architect-starter-kit",
+    "slug": "starter-kit",
+    "name": "System Architect Starter Kit",
+    "category": "Creator Systems",
+    "badge": "STARTER KIT",
+    "headline": "Pre-Built Workflow Automations for Fast Shipping",
+    "subheadline": "A premium bundle of ready-to-import n8n pipelines, Content Ops swarms, and ElevenLabs voice scripts.",
+    "promise": "Automate the repetitive overhead of content preparation, audio transcription, and cross-platform formatting in under 30 minutes.",
+    "summary": "Ready-to-use JSON pipelines and automation templates that run content atomization, guest research, and newsletter queueing.",
+    "transformation": [
+      "Import pre-built n8n workflows for video-to-shorts and audio-to-prose transcriptions",
+      "Run the weekly Content Ops swarm to generate X, LinkedIn, and Threads threads",
+      "Deploy custom ElevenLabs scripts for high-fidelity voice cloning and generation"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "8", "label": "n8n Workflows" },
+        { "number": "5", "label": "Voice Scripts" },
+        { "number": "30m", "label": "Setup Time" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 97,
+      "primaryPriceDisplay": "€97",
+      "currency": "EUR",
+      "ctaPrimary": "Get Instant Access",
+      "ctaPrimaryHref": "/checkout/starter-kit",
+      "ctaPrimaryTracking": "starter-kit-purchase",
+      "ctaSecondary": "View Workflows",
+      "ctaSecondaryHref": "/command-center#workflows",
+      "guarantee": {
+        "label": "30-Day Money Back Guarantee",
+        "description": "If you don't save at least 5 hours in your first week, email support for a full refund."
+      }
+    },
+    "modules": [
+      { "title": "Content Ops n8n Workflows", "description": "JSON templates for automatic audio/video ingestion and drafting." },
+      { "title": "Voice Intelligence Pack", "description": "Configured prompt chains and voice synthesis scripts." }
+    ],
+    "faq": [
+      { "question": "Which tools do I need?", "answer": "You need an n8n account (cloud or self-hosted) and access to OpenAI/Anthropic API keys." }
+    ],
+    "analyticsId": "starter-kit",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "System Architect Starter Kit (ZIP)",
+          "blobKey": "products/starter-kit/starter-kit-v1.zip",
+          "format": "zip",
+          "size": "4.2 MB"
+        }
+      ]
+    }
+  },
+  {
+    "id": "command-center-template",
+    "slug": "command-center-template",
+    "name": "The Command Center Template",
+    "category": "Creator Systems",
+    "badge": "CORE TEMPLATE",
+    "headline": "The Ultimate Visual Dashboard for Your Swarm",
+    "subheadline": "A premium Next.js 16 Glassmorphism dashboard app shell + the 5-move Architect's Loop video curriculum.",
+    "promise": "Consolidate your local DPI ledger, Stripe webhook streams, content ops backlog, and HaaStA validation queues into one premium UI.",
+    "summary": "A fully responsive Next.js dashboard shell styled in dark obsidian void with tailwind Accents, pre-wired to read local queue files and display ledger analytics.",
+    "transformation": [
+      "Visualize your G1-G5 gate progression and DPI category distributions dynamically",
+      "Interact with enqueued HaaStA validation requests using visual taste check editors",
+      "Access the full 5-Move curriculum teaching you how to setup ACOS and connect checkout webhooks"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "1", "label": "Command Dashboard" },
+        { "number": "5", "label": "Curriculum Modules" },
+        { "number": "100%", "label": "Local Ownership" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 497,
+      "primaryPriceDisplay": "€497",
+      "currency": "EUR",
+      "ctaPrimary": "Unlock Command Center",
+      "ctaPrimaryHref": "/checkout/command-center",
+      "ctaPrimaryTracking": "cc-template-purchase",
+      "ctaSecondary": "Watch Preview",
+      "ctaSecondaryHref": "/command-center/preview",
+      "guarantee": {
+        "label": "100% Satisfaction Guarantee",
+        "description": "Full setup support included. We will ensure the dashboard runs cleanly in your local development environment."
+      }
+    },
+    "modules": [
+      { "title": "Next.js Dashboard App Shell", "description": "Obisidian-Void dashboard template featuring HaaStA Queue, ledger graphs, and model arena panels." },
+      { "title": "The 5-Move Architect's Loop", "description": "Video curriculum walking you through memory vaults, agent workflows, and closed-loop optimization." }
+    ],
+    "faq": [
+      { "question": "Can I deploy the dashboard to Vercel?", "answer": "Yes. The codebase is standard Next.js 16 and can be deployed privately to your Vercel account with one click." }
+    ],
+    "analyticsId": "command-center-template",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "Command Center Template & Curriculum",
+          "blobKey": "products/command-center/command-center-v1.zip",
+          "format": "zip",
+          "size": "15.8 MB"
+        }
+      ]
+    }
+  },
+  {
+    "id": "founders-circle-guild",
+    "slug": "founders-circle",
+    "name": "Founder's Circle Guild",
+    "category": "Creator Systems",
+    "badge": "HIGH TICKET",
+    "headline": "Elite Swarm Engineering & Strategic Partnership",
+    "subheadline": "Cohort coaching, custom multi-agent architecture designs, and exclusive access to Frank's private master vaults.",
+    "promise": "Co-engineer custom personal agent swarms and automate complex cross-repo deployments alongside an experienced AI Architect.",
+    "summary": "An exclusive, high-ticket membership including monthly live review sessions, emergency operations support, and bespoke MCP tool integrations.",
+    "transformation": [
+      "Architect custom LangGraph/ACOS workflows tailored to your specific audience size and platform",
+      "Verify system safety with expert security audits and custom gate validations",
+      "Receive 1:1 operational consulting sessions to optimize your G3-G5 passive income ladders"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "12", "label": "Max Members" },
+        { "number": "1:1", "label": "Bespoke Consulting" },
+        { "number": "USDC/Stripe", "label": "Secure Payments" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 2997,
+      "primaryPriceDisplay": "€2,997/qtr",
+      "currency": "EUR",
+      "ctaPrimary": "Apply for Membership",
+      "ctaPrimaryHref": "/founders-circle/apply",
+      "ctaPrimaryTracking": "founders-circle-apply",
+      "ctaSecondary": "Book Discovery Call",
+      "ctaSecondaryHref": "/consulting/discovery",
+      "guarantee": {
+        "label": "Bespoke Execution Guarantee",
+        "description": "If your custom swarm isn't operational within 30 days, we work 1:1 with you for free until it is."
+      }
+    },
+    "modules": [
+      { "title": "Bespoke Swarm Design", "description": "Direct systems engineering to map, code, and deploy custom agent operations in your business." },
+      { "title": "Emergency Support & Slack Access", "description": "Priority technical assistance and direct communication with Frank's operations team." }
+    ],
+    "faq": [
+      { "question": "How do applications work?", "answer": "We review your audience size, tech stack, and current DPI targets to ensure we can deliver measurable value before accepting you." }
+    ],
+    "analyticsId": "founders-circle",
+    "delivery": {
+      "methods": ["consulting", "gated"],
+      "requiresEmail": true
+    }
   }
 ]

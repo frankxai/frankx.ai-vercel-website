@@ -1,20 +1,19 @@
 #!/usr/bin/env node
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { existsSync } from 'node:fs';
+import { existsSync, writeFileSync, mkdirSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
 const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
-// AIS emission is optional in any hosted build environment (Vercel, GitHub
-// Actions CI) — the sibling repo only exists on local dev machines.
-const isHostedBuild = Boolean(process.env.VERCEL) || Boolean(process.env.CI);
+
+const isCI = Boolean(process.env.VERCEL || process.env.CI || process.env.GITHUB_ACTIONS);
 
 if (!existsSync(AIS_ROOT)) {
-  if (isHostedBuild) {
+  if (isCI) {
     console.warn(
       `[sync-ais] Agent-Intelligence-System not found at ${AIS_ROOT}; ` +
-      `skipping optional AIS emission during hosted build.`
+      `skipping optional AIS emission during automated build.`
     );
     process.exit(0);
   }
@@ -28,30 +27,68 @@ if (!existsSync(AIS_ROOT)) {
 
 const outDir = resolve(FRANKX_ROOT, 'public');
 
-// Check primary location, then worktree fallback (feature/plan-a-substrate)
-const primaryEmitPath = resolve(AIS_ROOT, 'packages/ais-emit/dist/index.js');
-const worktreeEmitPath = resolve(AIS_ROOT, '.worktrees/plan-a/packages/ais-emit/dist/index.js');
-const aisEmitPath = existsSync(primaryEmitPath) ? primaryEmitPath : existsSync(worktreeEmitPath) ? worktreeEmitPath : null;
+// Find core and emit paths
+const corePathsToTry = [
+  resolve(AIS_ROOT, 'packages/core/dist/index.js'),
+  resolve(AIS_ROOT, 'packages/ais-core/dist/index.js'),
+  resolve(AIS_ROOT, '.worktrees/plan-a/packages/ais-core/dist/index.js')
+];
+const aisCorePath = corePathsToTry.find(p => existsSync(p)) || null;
 
-if (!aisEmitPath) {
+const emitPathsToTry = [
+  resolve(AIS_ROOT, 'packages/emit/dist/index.js'),
+  resolve(AIS_ROOT, 'packages/ais-emit/dist/index.js'),
+  resolve(AIS_ROOT, '.worktrees/plan-a/packages/ais-emit/dist/index.js')
+];
+const aisEmitPath = emitPathsToTry.find(p => existsSync(p)) || null;
+
+if (!aisCorePath || !aisEmitPath) {
   console.error(
-    `[sync-ais] @frankx-ai/ais-emit not built. Run:\n` +
-    `  cd ${AIS_ROOT} && pnpm --filter @frankx-ai/ais-core build && pnpm --filter @frankx-ai/ais-emit build`
+    `[sync-ais] Required packages not built. Run build in Agent-Intelligence-System first.`
   );
   process.exit(1);
 }
 
-const { aisEmit } = await import(new URL(`file://${aisEmitPath.replace(/\\/g, '/')}`))
+// Find profile path
+const profilePathsToTry = [
+  resolve(AIS_ROOT, 'ais-profile.yaml'),
+  resolve(AIS_ROOT, 'packages/core/canonical/ais-profile.yaml'),
+  resolve(AIS_ROOT, 'packages/ais-core/canonical/ais-profile.yaml')
+];
+const profilePath = profilePathsToTry.find(p => existsSync(p)) || null;
 
-// Resolve canonical dir: prefer primary packages location, fall back to worktree
-const primaryCanonical = resolve(AIS_ROOT, 'packages/ais-core/canonical');
-const worktreeCanonical = resolve(AIS_ROOT, '.worktrees/plan-a/packages/ais-core/canonical');
-const canonical = existsSync(primaryCanonical) ? primaryCanonical : worktreeCanonical;
+if (!profilePath) {
+  console.error(`[sync-ais] Profile ais-profile.yaml not found in ${AIS_ROOT}`);
+  process.exit(1);
+}
 
-await aisEmit({
-  canonical,
-  site: 'frankx-ai',
-  outDir,
-});
+// Dynamic import
+const { loadSystemProfile } = await import(new URL(`file://${aisCorePath.replace(/\\/g, '/')}`));
+const { generateLlmsText, generateAgentsJson, generateJsonLd } = await import(new URL(`file://${aisEmitPath.replace(/\\/g, '/')}`));
 
-console.log(`[sync-ais] Emitted to ${outDir}`);
+try {
+  const profile = loadSystemProfile(profilePath);
+  mkdirSync(outDir, { recursive: true });
+
+  writeFileSync(resolve(outDir, 'llms.txt'), generateLlmsText(profile), 'utf8');
+  writeFileSync(resolve(outDir, 'llms-full.txt'), generateLlmsText(profile), 'utf8');
+  writeFileSync(resolve(outDir, 'agents.json'), generateAgentsJson(profile), 'utf8');
+  writeFileSync(resolve(outDir, 'schema-graph.json'), generateJsonLd(profile), 'utf8');
+
+  // Simple sitemap fallback
+  const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://frankx.ai</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>\n`;
+  writeFileSync(resolve(outDir, 'sitemap-extras.xml'), sitemapContent, 'utf8');
+
+  console.log(`[sync-ais] Emitted AIS discovery assets to ${outDir}`);
+} catch (error) {
+  console.error('❌ [sync-ais] Error syncing AIS assets:', error.message);
+  process.exit(1);
+}
+

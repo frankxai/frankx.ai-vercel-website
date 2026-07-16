@@ -101,6 +101,15 @@ const navItems: NavItem[] = [
       { name: 'Methodology', href: '/research/methodology' },
     ],
   },
+  {
+    name: 'Foundry',
+    href: '/foundry',
+    subItems: [
+      { name: 'The Foundry', href: '/foundry' },
+      { name: 'Operating Guide', href: '/foundry/guide' },
+      { name: 'Apply', href: '/foundry#apply' },
+    ],
+  },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]

@@ -25,6 +25,7 @@ const REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
 const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v7.4.1.zip'
 const RELEASES = 'https://github.com/frankxai/Starlight-Intelligence-System/releases'
 const PROTOCOL = 'https://starlightintelligence.org/protocol'
+const KNOWLEDGE_TREE = 'https://starlightintelligence.org/knowledge-tree'
 
 const phases = [
   {
@@ -632,6 +633,25 @@ export default function StarlightIntelligenceSystemPage() {
             >
               <FileCode className="h-4 w-4" />
               Protocol spec
+            </Link>
+          </div>
+
+          {/* Knowledge Tree vertical — open intelligence graph shipped at starlightintelligence.org */}
+          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+            <div className="text-[11px] uppercase tracking-wider text-emerald-300 mb-2 font-semibold">Vertical</div>
+            <h3 className="text-base font-semibold text-white mb-1">Starlight Knowledge Tree</h3>
+            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+              An open intelligence graph for human capability, scientific knowledge, and contribution paths.
+            </p>
+            <Link
+              href={KNOWLEDGE_TREE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+            >
+              <Network className="h-4 w-4" />
+              starlightintelligence.org/knowledge-tree
+              <ArrowRight className="h-3.5 w-3.5 text-slate-500" />
             </Link>
           </div>
         </div>

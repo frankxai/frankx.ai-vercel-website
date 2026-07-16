@@ -1,0 +1,4 @@
+interface:
+  display_name: "EpicWays Client Intelligence"
+  short_description: "Build TheEpicWays client intelligence systems."
+  default_prompt: "Use this skill to design TheEpicWays offers, agents, workshop loops, follow-up systems, and public assets that stay human and approval-aware."

@@ -97,7 +97,7 @@ export default function V3HomePage() {
                     icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
                     className="mx-auto"
                   >
-                    Built by Oracle AI Architect | 500+ Suno Sessions
+                    Former Oracle AI architect · 12,000+ AI music experiments
                   </Pill>
                 </StaggerItem>
 
@@ -121,7 +121,7 @@ export default function V3HomePage() {
                 <StaggerItem>
                   <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
                     Prompt packs, tool recommendations, and n8n/Zapier automations for AI architects.
-                    Plus Suno music workflows and consciousness-first creation systems. Built by an Oracle AI Architect who's created 500+ songs.
+                    Plus Suno music workflows and creator-first systems built from former enterprise AI architecture work and 12,000+ AI music experiments.
                   </p>
                 </StaggerItem>
 
@@ -157,7 +157,7 @@ export default function V3HomePage() {
                         className="inline-flex items-center justify-center rounded-2xl border-2 border-purple-500/50 bg-purple-500/10 px-8 py-4 text-lg font-semibold text-purple-300 transition-all duration-300 hover:-translate-y-1 hover:bg-purple-500/20 hover:border-purple-400"
                       >
                         <Music className="mr-2 h-5 w-5" aria-hidden="true" />
-                        Frank's 500+ Songs
+                        Frank's AI Music Lab
                       </Link>
                     </MagneticHover>
                   </div>
@@ -252,12 +252,12 @@ export default function V3HomePage() {
                   Build Conscious AI Systems
                 </p>
                 <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                  Enterprise-grade architectures for Oracle teams and conscious creators. Design systems that serve both professional excellence and human consciousness evolution.
+                  Enterprise-grade architecture patterns for builders and creator-operators. Design systems that serve professional excellence, human judgment, and trustworthy execution.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Enterprise</span>
                   <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Systems</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Oracle</span>
+                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Governance</span>
                 </div>
                 <div className="flex items-center gap-2 text-cyan-400 font-medium group-hover:gap-3 transition-all">
                   Explore Agentic Creator OS
@@ -336,7 +336,7 @@ export default function V3HomePage() {
             <SectionHeading
               id="social-proof-heading"
               eyebrow="Trusted Results"
-              title="Built by Oracle Architect Experience & Creator Practice"
+              title="Built by Enterprise Architect Experience & Creator Practice"
               description="Real systems, practical workflows, and transparent iteration."
             />
           </div>
@@ -566,7 +566,7 @@ export default function V3HomePage() {
               <h3 className="text-2xl font-bold text-white mb-2">Agentic Creator OS</h3>
               <div className="text-3xl font-bold text-cyan-400 mb-4">Custom</div>
               <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                Oracle-grade AI system architecture for conscious creators. Custom-designed operating systems with enterprise standards and soul-centered design.
+                Enterprise-grade AI system architecture for conscious creators. Custom-designed operating systems with enterprise standards and soul-centered design.
               </p>
               <ul className="space-y-3 mb-8">
                 {[

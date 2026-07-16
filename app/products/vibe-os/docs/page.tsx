@@ -161,7 +161,7 @@ export default function VibeOSDocsPage() {
           <p className="text-sm text-white/50">
             Need help or have questions?{' '}
             <a
-              href="mailto:hello@frankx.ai?subject=Vibe%20OS%20Question"
+              href="mailto:frank@frankx.ai?subject=Vibe%20OS%20Question"
               className="text-cyan-400 underline-offset-4 transition-colors hover:underline"
             >
               Get in touch

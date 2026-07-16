@@ -25,6 +25,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'ai-architect': {
     topics: [TOPICS.newsletter],
   },
+  'operator-scorecard': {
+    topics: [TOPICS.newsletter],
+  },
   'inner-circle': {
     topics: [TOPICS.newsletter, TOPICS['product-updates']],
   },
@@ -86,14 +89,17 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
       downloadUrl: 'https://frankx.ai/api/download?product=5-suno-prompts',
+      recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
     template = ikigaiBrandingEmail({
       recipientName: name || 'Creator',
+      recipientEmail: email,
     })
   } else {
     template = welcomeEmail1({
       recipientName: name || 'Creator',
+      recipientEmail: email,
     })
   }
 

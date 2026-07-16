@@ -69,22 +69,26 @@ ${d.subtitle}
 
   const content = `# FrankX — Comprehensive Site Map (llms-full.txt)
 
-> Personal hub of Frank X. Riemer — AI Architect at Oracle EMEA AI Center of Excellence, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — former AI architect at Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
 This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
 
-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, transformation work). Frank builds AI Center of Excellence frameworks in enterprise environments at Oracle and translates the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) into free personal-scale tooling for creators.
+The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free personal-scale tooling for creators. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
 ## Brand Voice & Editorial Stance
 - **North star:** Elite Creator. AI Architect. Humble Excellence.
-- **Title:** "AI Architect" (never "AI Systems Architect")
+- **Title:** "AI Architect" as the standard public title
 - **Position:** Bridge between enterprise AI and personal creator tooling
 - **Refusal list:** stock-photo people on laptops, generic SaaS hero language ("empower your team", "unlock your potential", "next-level"), spinning loaders >400ms, two equal CTAs, AI-slop phrases ("delve into", "dive deep", "unleash", "harness", "in conclusion")
 
 ## Foundations
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
+- [Frank Riemer](${SITE_URL}/frank-riemer): Canonical founder/entity page for Frank Riemer and FrankX
 - [About Frank](${SITE_URL}/about): Story, identity, work patterns
-- [Start Here](${SITE_URL}/start): Guided entry point for new visitors
+- [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, public proof, editorial boundaries, and contact
+- [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
+- [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, peak-state notes, and trustworthy human-AI work
+- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, environment, and review loops; educational, not medical advice
 - [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer / €7 Pack / €197 Toolkit / €497 Mastery / €997 Architect / €2,997 Founder's Circle)
 - [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort, 10 seats
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production

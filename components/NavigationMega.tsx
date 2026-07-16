@@ -43,7 +43,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-// import MobileNavOverlay from '@/components/MobileNavOverlay'
+import MobileNavOverlay from '@/components/MobileNavOverlay'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
@@ -102,8 +102,6 @@ const navigation = {
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Learn through play' },
       { name: 'Watch', href: '/watch', icon: Play, description: 'Curated video library' },
       { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'NEW · 60-second high-signal insights' },
-      { name: 'Daily Dare', href: '/dare', icon: Flame, description: "NEW · Today's 4-part challenge" },
-      { name: 'The Quest', href: '/quest', icon: Map, description: '30 days, 6 principles of the mind' },
     ],
   },
   build: {
@@ -162,6 +160,8 @@ const navigation = {
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
       { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
@@ -175,7 +175,7 @@ const navigation = {
       },
       {
         label: 'Connect',
-        items: ['About', 'Bio', 'Contact'],
+        items: ['About', 'Bio', 'Media Kit', 'Licensing', 'Contact'],
       },
     ],
   },
@@ -352,17 +352,6 @@ export default function NavigationMega() {
   }, [pathname])
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
-
-  useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
 
@@ -485,14 +474,11 @@ export default function NavigationMega() {
               type="button"
               onClick={openCommandPalette}
               className="flex h-8 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
-              aria-label="Open search (Ctrl+K)"
-              title="Search (Ctrl+K)"
+              aria-label="Open search"
+              title="Search"
             >
               <Search className="h-3.5 w-3.5" />
               <span className="hidden xl:inline text-[11px] font-medium">Search</span>
-              <kbd className="hidden xl:inline-flex items-center gap-0.5 rounded border border-white/10 bg-black/30 px-1 py-0.5 text-[10px] font-mono text-slate-500">
-                <span>⌘</span>K
-              </kbd>
             </button>
             <Link
               href="/start"
@@ -502,19 +488,31 @@ export default function NavigationMega() {
             </Link>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 lg:hidden"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label="Open search"
+              title="Search"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-site-navigation"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </nav>
       </header>
 
-      {/* Mobile nav overlay removed */}
+      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   )
 }

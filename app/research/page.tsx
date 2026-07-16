@@ -23,6 +23,7 @@ import {
   Plug,
   Radar,
   Rocket,
+  Scale,
   Search,
   Shield,
   ShieldCheck,
@@ -32,12 +33,14 @@ import {
 } from 'lucide-react'
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
+import LearnHubSection from '@/components/learn/LearnHubSection'
+import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
   GraduationCap, Heart, Layers, Network, Palette, Plug, Radar, Rocket,
-  Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
+  Scale, Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
 }
 
 // Color utility
@@ -242,7 +245,7 @@ function FeaturedSpotlight() {
   )
 }
 
-const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science']
+const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science', 'policy-systems']
 
 function DomainsGrid() {
   const shouldReduceMotion = useReducedMotion()
@@ -709,6 +712,12 @@ export default function ResearchPage() {
         <DomainsGrid />
         <ResearchTeamSection />
         <MethodologySection />
+        <LearnHubSection
+          relatedPortals={[...MODEL_MAKER_PORTALS]}
+          eyebrow="From research to practice"
+          heading="Learn the tools hands-on"
+          blurb="The research maps the landscape. These portals curate the videos, docs, and expert channels to actually build with each platform."
+        />
         <CTASection />
       </div>
     </main>

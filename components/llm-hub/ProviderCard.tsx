@@ -99,7 +99,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             {models.map((m) => (
               <Link
                 key={m.id}
-                href={`/ai-ops/models-2026#${m.id}`}
+                href={`/llm-hub/${m.id}`}
                 className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-white/60 transition-colors hover:border-white/30 hover:text-white"
               >
                 {m.name}
@@ -107,6 +107,17 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             ))}
           </div>
         </div>
+      ) : null}
+
+      {models.some((m) =>
+        ['claude-fable-5', 'claude-opus-4-8', 'gpt-5-5', 'grok-4-3', 'gemini-3-5-flash', 'gemini-3-5-pro', 'kimi-k2-7-code', 'minimax-m3', 'nemotron-3-ultra'].includes(m.id)
+      ) ? (
+        <Link
+          href="/blog/frontier-model-routing-without-fable-5"
+          className="mb-4 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.05] px-3 py-2 text-xs leading-relaxed text-emerald-200/80 transition-colors hover:border-emerald-400/40 hover:text-emerald-100"
+        >
+          Mentioned in the Frontier Model Freedom routing guide
+        </Link>
       ) : null}
 
       {platforms.length > 0 ? (

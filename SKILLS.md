@@ -28,7 +28,7 @@ frankx-daily-execution    # Daily productivity
 
 ---
 
-## Complete Skills Inventory (52 Skills)
+## Complete Skills Inventory (53 Skills)
 
 ### Technical Skills (10)
 
@@ -73,12 +73,13 @@ frankx-daily-execution    # Daily productivity
 | `gym-training-expert` | `personal/gym-training-expert/` | Fitness optimization |
 | `health-nutrition-expert` | `personal/health-nutrition-expert/` | Nutrition science |
 
-### Project Skills (2)
+### Project Skills (3)
 
 | Skill | Path | Description |
 |-------|------|-------------|
 | `arcanea-lore` | `projects/arcanea-lore/` | Arcanea fantasy world lore |
 | `frankx-daily-execution` | `projects/frankx-daily-execution/` | Daily productivity system |
+| `epicways-client-intelligence` | `projects/epicways-client-intelligence/` | TheEpicWays client-service intelligence, offer loops, agent pack, and liquid UI |
 
 ### Soulbook Skills (25+)
 
@@ -123,8 +124,8 @@ Which skills each agent primarily uses:
 
 | Agent | Primary Skills | Secondary Skills |
 |-------|----------------|------------------|
-| **Claude** | frankx-brand, frankx-content, golden-age-book-writing | soulbook/* |
-| **Codex** | mcp-architecture, claude-sdk, oracle-* | nextjs-react-expert |
+| **Claude** | frankx-brand, frankx-content, golden-age-book-writing | soulbook/*, epicways-client-intelligence |
+| **Codex** | mcp-architecture, claude-sdk, oracle-* | nextjs-react-expert, epicways-client-intelligence |
 | **Gemini** | nextjs-react-expert, ui-ux-design-expert, framer-expert | oracle-database-expert |
 | **OpenCode** | All technical skills | Rapid prototyping |
 
@@ -162,9 +163,10 @@ Which skills each agent primarily uses:
 │   ├── spartan-warrior/
 │   ├── gym-training-expert/
 │   └── health-nutrition-expert/
-├── projects/                    # 2 project skills
+├── projects/                    # 3 project skills
 │   ├── arcanea-lore/
-│   └── frankx-daily-execution/
+│   ├── frankx-daily-execution/
+│   └── epicways-client-intelligence/
 ├── soulbook/                    # Life design system
 │   ├── life-symphony/
 │   ├── golden-path/

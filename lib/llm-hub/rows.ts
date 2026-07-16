@@ -54,7 +54,9 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
         output: livePrice?.outputPer1m ?? staticOutput(m),
         live: Boolean(livePrice),
         modalities: m.modalities || [],
-        capabilities: (o.capability_focus || []) as Capability[],
+        capabilities: ((m.capabilities && m.capabilities.length > 0)
+          ? m.capabilities
+          : o.capability_focus || []) as Capability[],
         tagline: getEditorial(m.id)?.tagline,
       })
     }

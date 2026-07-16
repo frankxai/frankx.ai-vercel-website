@@ -100,7 +100,7 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-xl text-slate-200 max-w-4xl mx-auto leading-relaxed">
-                    AI Architect at Oracle by day, creator by night. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
+                    Former enterprise AI architect, creator by design. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
                   </p>
                 </StaggerItem>
                 <StaggerItem>
@@ -138,7 +138,7 @@ export default function HomePage() {
                   <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 pt-8 text-sm text-white/50">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
-                      <span>AI Architect · Oracle Cloud</span>
+                      <span>Former AI architect · enterprise cloud</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-cyan-400 shrink-0"></div>
@@ -742,7 +742,7 @@ export default function HomePage() {
               <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </Link>
             <Link
-              href="mailto:hello@frankx.ai?subject=Creative%20AI%20Collaboration"
+              href="mailto:frank@frankx.ai?subject=Creative%20AI%20Collaboration"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 px-8 py-4 text-sm font-semibold text-white/85 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/30"
             >
               Request a strategy session
@@ -754,6 +754,5 @@ export default function HomePage() {
     </main>
   )
 }
-
 
 

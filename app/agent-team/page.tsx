@@ -175,7 +175,7 @@ export default function AgentTeamPage() {
       priceDetail: 'Ongoing partnership',
       description:
         'Sustain momentum with weekly co-creation rituals, executive reporting, and rollout support from every agent.',
-      href: 'mailto:hello@frankx.ai?subject=Intelligence%20Retainer',
+      href: 'mailto:frank@frankx.ai?subject=Intelligence%20Retainer',
       ctaLabel: 'Request a proposal',
       schemaPrice: '5000',
       availability: 'https://schema.org/LimitedAvailability',
@@ -584,7 +584,7 @@ export default function AgentTeamPage() {
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
               </Link>
               <Link
-                href="mailto:hello@frankx.ai?subject=Creative%20AI%20Engagement"
+                href="mailto:frank@frankx.ai?subject=Creative%20AI%20Engagement"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white"
               >
                 Email the studio
