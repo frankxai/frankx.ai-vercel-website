@@ -166,7 +166,7 @@ function MetricCard({
 
   return (
     <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl">
-      <div className="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-white/45">
+      <div className="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
         <span>{label}</span>
         <span className="font-mono text-white/30">{Math.round(progress)}%</span>
       </div>
@@ -180,7 +180,7 @@ function MetricCard({
           style={{ width: progress + '%' }}
         />
       </div>
-      <p className="mt-4 text-sm leading-relaxed text-white/45">{detail}</p>
+      <p className="mt-4 text-sm leading-relaxed text-white/40">{detail}</p>
     </div>
   )
 }
@@ -254,12 +254,12 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               </span>
             </h1>
 
-            <p className="mt-9 max-w-2xl text-lg leading-relaxed text-white/62 sm:text-xl">
+            <p className="mt-9 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">
               We have built enough. I gave our agentic team one weekend to turn one existing
               digital product into verified customer revenue.
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3 text-sm text-white/48">
+            <div className="mt-9 flex flex-wrap items-center gap-3 text-sm text-white/50">
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2">1 existing offer</span>
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2">3 independent buyers</span>
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2">€100 gross target</span>
@@ -293,7 +293,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
 
           <div className="relative">
             <div className="absolute -inset-10 -z-10 rounded-full bg-cyan-500/10 blur-3xl" />
-            <div className="overflow-hidden rounded-[2rem] border border-white/12 bg-black/35 p-1 shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
+            <div className="overflow-hidden rounded-[2rem] border border-white/12 bg-black/30 p-1 shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
               <div className="rounded-[1.7rem] border border-white/[0.06] bg-white/[0.035] p-7 sm:p-9">
                 <div className="flex items-center justify-between gap-4">
                   <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/40">Live signal</span>
@@ -306,7 +306,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
                   <div className="font-nums text-[clamp(4rem,11vw,7rem)] font-semibold leading-none tracking-[-0.07em]">
                     €{ledger.actual.grossEur}
                   </div>
-                  <div className="mt-3 text-sm text-white/42">verified gross / €{ledger.target.grossEur} target</div>
+                  <div className="mt-3 text-sm text-white/40">verified gross / €{ledger.target.grossEur} target</div>
                   <div className="mt-7 h-2 overflow-hidden rounded-full bg-white/[0.07]">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-violet-500 via-cyan-400 to-emerald-400"
@@ -317,16 +317,16 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
 
                 <div className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.08]">
                   <div className="bg-[#0b0d12] p-5">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">Customers</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">Customers</div>
                     <div className="mt-2 font-nums text-2xl font-semibold">{ledger.actual.customers} / {ledger.target.customers}</div>
                   </div>
                   <div className="bg-[#0b0d12] p-5">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">Time left</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">Time left</div>
                     <div className="mt-2 font-mono text-sm font-semibold text-cyan-100">{formatCountdown(remaining)}</div>
                   </div>
                 </div>
 
-                <p className="mt-6 flex gap-3 text-xs leading-relaxed text-white/38">
+                <p className="mt-6 flex gap-3 text-xs leading-relaxed text-white/40">
                   <LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300/70" />
                   Numbers move only against verified payments. Buyer identity stays private.
                 </p>
@@ -341,9 +341,9 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-violet-300">The thesis</p>
           <h2 className="mt-6 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
             The constraint is not creation.
-            <span className="block text-white/36">It is commercial contact.</span>
+            <span className="block text-white/30">It is commercial contact.</span>
           </h2>
-          <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-white/52">
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-white/50">
             The estate already contains products, systems and sites. This weekend tests whether
             one existing asset creates enough value for someone to pay now. Building another asset
             would invalidate the experiment.
@@ -358,7 +358,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300">Public scoreboard</p>
               <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Evidence before adjectives.</h2>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-white/42">
+            <p className="max-w-md text-sm leading-relaxed text-white/40">
               Last ledger update: {new Intl.DateTimeFormat('en-GB', {
                 timeZone: 'Europe/Amsterdam',
                 dateStyle: 'medium',
@@ -405,10 +405,10 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               return (
                 <div key={String(label)} className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-5">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
-                    <MetricIcon className="h-5 w-5 text-white/55" />
+                    <MetricIcon className="h-5 w-5 text-white/50" />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-[0.18em] text-white/32">{String(label)}</div>
+                    <div className="text-xs uppercase tracking-[0.18em] text-white/30">{String(label)}</div>
                     <div className="mt-1 font-nums text-xl font-semibold">{String(value)}</div>
                   </div>
                 </div>
@@ -418,13 +418,13 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
         </div>
       </section>
 
-      <section className="border-y border-white/[0.08] bg-[linear-gradient(135deg,rgba(124,58,237,0.08),rgba(34,211,238,0.04),rgba(16,185,129,0.06))] px-6 py-24">
+      <section id="offer" className="scroll-mt-24 border-y border-white/[0.08] bg-[linear-gradient(135deg,rgba(124,58,237,0.08),rgba(34,211,238,0.04),rgba(16,185,129,0.06))] px-6 py-24">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-300">The existing offer</p>
             <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl">
               ACOS
-              <span className="block text-white/35">Creator Kit</span>
+              <span className="block text-white/30">Creator Kit</span>
             </h2>
             <p className="mt-7 max-w-md text-base leading-relaxed text-white/50">
               The Agentic Creator OS code remains MIT-licensed and free. The $47 product sells
@@ -449,9 +449,9 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               ['04', 'The commercial test', 'Your purchase becomes part of a transparent launch case study. Your identity is never published without permission.'],
             ].map(([number, title, detail]) => (
               <article key={number} className="group rounded-3xl border border-white/10 bg-[#090b10]/80 p-7 transition hover:-translate-y-1 hover:border-cyan-300/25">
-                <div className="font-mono text-xs text-cyan-300/55">{number}</div>
+                <div className="font-mono text-xs text-cyan-300/50">{number}</div>
                 <h3 className="mt-8 text-xl font-semibold">{title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-white/45">{detail}</p>
+                <p className="mt-4 text-sm leading-relaxed text-white/40">{detail}</p>
               </article>
             ))}
           </div>
@@ -465,7 +465,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
             <h2 className="max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-6xl">
               Four days. One irreversible learning loop.
             </h2>
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-white/35">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-white/30">
               <Clock3 className="h-4 w-4" />
               Amsterdam time
             </div>
@@ -476,7 +476,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               <article key={item.day} className="min-h-80 bg-[#090a0e] p-7">
                 <div className="font-mono text-xs tracking-[0.22em] text-white/30">{item.day}</div>
                 <div className={'mt-14 text-sm font-semibold uppercase tracking-[0.24em] ' + item.accent}>{item.label}</div>
-                <p className="mt-5 text-sm leading-7 text-white/48">{item.detail}</p>
+                <p className="mt-5 text-sm leading-7 text-white/50">{item.detail}</p>
               </article>
             ))}
           </div>
@@ -490,7 +490,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300">Agentic team</p>
               <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
                 Agents execute.
-                <span className="block text-white/35">Frank remains accountable.</span>
+                <span className="block text-white/30">Frank remains accountable.</span>
               </h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -501,9 +501,9 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
                       <h3 className="font-semibold">{name}</h3>
                       <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-cyan-200/50">{role}</p>
                     </div>
-                    <Icon className="h-5 w-5 text-white/35" />
+                    <Icon className="h-5 w-5 text-white/30" />
                   </div>
-                  <p className="mt-5 text-sm leading-relaxed text-white/43">{detail}</p>
+                  <p className="mt-5 text-sm leading-relaxed text-white/40">{detail}</p>
                 </article>
               ))}
             </div>
@@ -520,7 +520,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               {rules.map((rule) => (
                 <div key={rule} className="flex gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.022] p-5">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
-                  <p className="text-sm leading-relaxed text-white/52">{rule}</p>
+                  <p className="text-sm leading-relaxed text-white/50">{rule}</p>
                 </div>
               ))}
             </div>
@@ -541,7 +541,7 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
                     }).format(new Date(update.at))}
                   </time>
                   <h3 className="mt-2 text-lg font-semibold">{update.label}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/45">{update.detail}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/40">{update.detail}</p>
                 </article>
               ))}
             </div>
@@ -565,8 +565,8 @@ export default function ChallengeExperience({ ledger }: { ledger: ChallengeLedge
               'Publish the evidence—including failure.',
               'Decide Monday: scale, reposition or kill.',
             ].map((step, index) => (
-              <div key={step} className="flex gap-3 rounded-xl border border-white/[0.08] bg-black/20 p-4 text-sm text-white/55">
-                <span className="font-mono text-cyan-200/45">{String(index + 1).padStart(2, '0')}</span>
+              <div key={step} className="flex gap-3 rounded-xl border border-white/[0.08] bg-black/20 p-4 text-sm text-white/50">
+                <span className="font-mono text-cyan-200/40">{String(index + 1).padStart(2, '0')}</span>
                 <span>{step}</span>
               </div>
             ))}
