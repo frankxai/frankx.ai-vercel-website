@@ -10,6 +10,8 @@
 export type SourceType =
   | 'industry-report'
   | 'journal'
+  | 'conference'
+  | 'book'
   | 'blog'
   | 'official'
   | 'news'
@@ -27,6 +29,8 @@ export interface ResearchSource {
 export const sourceTypeLabels: Record<SourceType, string> = {
   'industry-report': 'Industry Report',
   journal: 'Peer-Reviewed',
+  conference: 'Peer-Reviewed Conference',
+  book: 'Scholarly Book',
   blog: 'Blog / Analysis',
   official: 'Official Docs',
   news: 'News',
@@ -39,6 +43,25 @@ export const sourceTypeLabels: Record<SourceType, string> = {
  * Each domain slug maps to an array of validated sources.
  */
 export const domainSources: Record<string, ResearchSource[]> = {
+  'intent-architecture': [
+    { name: 'DeepMind', title: 'Intelligent AI Delegation', url: 'https://arxiv.org/abs/2602.11865', date: '2026', type: 'preprint' },
+    { name: 'Ulloa et al.', title: 'Product Manager Practices for Delegating Work to Generative AI: “Accountability must not be delegated to non-human actors”', url: 'https://dl.acm.org/doi/10.1145/3786583.3786849', date: '2026', type: 'conference' },
+    { name: 'WORKBank', title: 'Future of Work with AI Agents: Auditing Automation and Augmentation Potential across the U.S. Workforce', url: 'https://arxiv.org/abs/2506.06576', date: '2025', type: 'preprint' },
+    { name: 'CollabSkill', title: 'CollabSkill: Evaluating Human-Agent Collaboration On Real-World Tasks', url: 'https://arxiv.org/abs/2606.09833', date: '2026', type: 'preprint' },
+    { name: 'Microsoft WorkLab', title: 'Agents, Human Agency, and the Opportunity for Every Organization', url: 'https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization', date: '2026', type: 'industry-report' },
+    { name: 'PLOS ONE', title: 'Social friction vs. cognitive efficiency: A comparative analysis of help-seeking behaviors in human communities and generative AI', url: 'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0348441', date: '2026', type: 'journal' },
+    { name: 'CommCoach', title: 'How Managers Perceive AI-Assisted Conversational Training for Workplace Communication', url: 'https://arxiv.org/abs/2505.14452', date: '2025', type: 'preprint' },
+    { name: 'QJE', title: 'Generative AI at Work', url: 'https://academic.oup.com/qje/article/140/2/889/7990658', date: '2025', type: 'journal' },
+    { name: 'JobBench', title: 'JobBench: Aligning Agent Work With Human Will', url: 'https://arxiv.org/abs/2605.26329', date: '2026', type: 'benchmark' },
+    { name: 'NIST NCCoE', title: 'Software and AI Agent Identity and Authorization', url: 'https://www.nccoe.nist.gov/projects/software-and-ai-agent-identity-and-authorization', date: '2026', type: 'official' },
+    { name: 'US Army', title: 'ADP 6-0: Mission Command', url: 'https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN34403-ADP_6-0-000-WEB-3.pdf', date: '2019', type: 'official' },
+    { name: 'Horvitz', title: 'Principles of Mixed-Initiative User Interfaces', url: 'https://dl.acm.org/doi/10.1145/302979.303030', date: '1999', type: 'conference' },
+    { name: 'Hutchins', title: 'Cognition in the Wild', url: 'https://mitpress.mit.edu/9780262581462/cognition-in-the-wild/', date: '1995', type: 'book' },
+    { name: 'Jensen and Meckling', title: 'Theory of the Firm: Managerial Behavior, Agency Costs and Ownership Structure', url: 'https://doi.org/10.1016/0304-405X%2876%2990026-X', date: '1976', type: 'journal' },
+    { name: 'Mathieu et al.', title: 'The Influence of Shared Mental Models on Team Process and Performance', url: 'https://doi.org/10.1037/0021-9010.85.2.273', date: '2000', type: 'journal' },
+    { name: 'Anthropic', title: 'Towards Understanding Sycophancy in Language Models', url: 'https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models', date: '2023', type: 'preprint' },
+  ],
+
   'enterprise-ai': [
     { name: 'MarketsAndMarkets', title: 'AI Agents Market Size — $7.84B to $52.62B by 2030', url: 'https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-56997845.html', type: 'industry-report' },
     { name: 'Gartner', title: 'Predicts 40% of Enterprise Apps Will Feature AI Agents by 2026', url: 'https://www.gartner.com/en/newsroom/press-releases/2024-10-21-gartner-says-by-2028-33-percent-of-enterprise-software-applications-will-include-agentic-ai', type: 'industry-report' },
