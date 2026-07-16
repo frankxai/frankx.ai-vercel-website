@@ -5,7 +5,7 @@ const blitzscalingReview: BookReview = {
   slug: 'blitzscaling',
   title: 'Blitzscaling: The Lightning-Fast Path to Building Massively Valuable Companies',
   author: 'Reid Hoffman and Chris Yeh',
-  coverImage: '/images/library/blitzscaling-cover.webp',
+  coverImage: 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/images/library/blitzscaling/cover.webp',
   hasCover: true,
   rating: 5,
   reviewDate: '2026-07-16',
@@ -46,21 +46,25 @@ const blitzscalingReview: BookReview = {
     capturedAt: '2026-07-16',
     sourcePages: [83, 152],
     rightsStatus:
-      'Personal reading capture. The public page uses two short excerpts, original commentary, and obscured derivatives of the photographed pages; readable originals remain private.',
+      'Personal reading capture. The public page uses two short excerpts, original commentary, and sharp editorial crops with surrounding text masked; full readable photographs remain private.',
     publicNote:
-      'A field note from two pages selected during a personal reading session. The public artifact keeps the page references and operating synthesis while the full readable scans stay outside the repository.',
+      'A field note from two pages selected during a personal reading session. The cited lines stay crisp, the surrounding page is masked, and the full readable photographs stay private and outside Git.',
     images: [
       {
-        src: '/images/library/blitzscaling-page-83-source.webp',
-        alt: 'Obscured editorial treatment of page 83 from a personal copy of Blitzscaling.',
+        src: 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/images/library/blitzscaling/page-83-evidence.webp',
+        width: 1000,
+        height: 1280,
+        alt: 'Sharp editorial crop of page 83 from a personal copy of Blitzscaling, with surrounding text masked.',
         caption:
-          'Page 83 · Business Model Innovation · public derivative; the readable source remains private.',
+          'Page 83 · Business Model Innovation · cited passage stays sharp; surrounding text is masked.',
       },
       {
-        src: '/images/library/blitzscaling-page-152-source.webp',
-        alt: 'Obscured editorial treatment of page 152 from a personal copy of Blitzscaling.',
+        src: 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/images/library/blitzscaling/page-152-evidence.webp',
+        width: 1100,
+        height: 715,
+        alt: 'Sharp editorial crop of page 152 from a personal copy of Blitzscaling, with surrounding text masked.',
         caption:
-          'Page 152 · Contributors to Managers to Executives · public derivative; the readable source remains private.',
+          'Page 152 · Contributors to Managers to Executives · cited passage stays sharp; surrounding text is masked.',
       },
     ],
   },

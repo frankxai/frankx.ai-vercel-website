@@ -2,15 +2,19 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-reviews';
+import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
 
 const SITE_URL = 'https://frankx.ai';
 
-export function generateStaticParams() {
-  return getAllReviewSlugs().map((slug) => ({ slug }));
+function absoluteUrl(src?: string) {
+  if (!src) return undefined;
+  if (/^https?:\/\//.test(src)) return src;
+  return `${SITE_URL}${src.startsWith('/') ? '' : '/'}${src}`;
 }
+
+// Review pages are resolved on demand. Avoid enumerating the whole library on every deploy.
 
 function truncate(text: string, limit = 158) {
   if (text.length <= limit) return text;
@@ -34,10 +38,8 @@ export async function generateMetadata({
   const description = reviewDescription(review);
   const canonical = `${SITE_URL}/library/${review.slug}`;
   const ogImage = review.hasCover
-    ? `${SITE_URL}${review.coverImage}`
-    : review.capture?.images?.[0]?.src
-      ? `${SITE_URL}${review.capture.images[0].src}`
-      : undefined;
+    ? absoluteUrl(review.coverImage)
+    : absoluteUrl(review.capture?.images?.[0]?.src);
 
   return {
     title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
@@ -93,10 +95,8 @@ function JsonLd({ review }: { review: BookReview }) {
   const description = reviewDescription(review);
   const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
   const imageUrl = review.hasCover
-    ? `${SITE_URL}${review.coverImage}`
-    : review.capture?.images?.[0]?.src
-      ? `${SITE_URL}${review.capture.images[0].src}`
-      : undefined;
+    ? absoluteUrl(review.coverImage)
+    : absoluteUrl(review.capture?.images?.[0]?.src);
 
   const graph: Array<Record<string, unknown>> = [
     {
@@ -319,8 +319,8 @@ export default async function ReviewPage({
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={960}
-                      height={1280}
+                      width={image.width ?? 960}
+                      height={image.height ?? 1280}
                       className="h-auto w-full object-cover"
                     />
                     {image.caption && (

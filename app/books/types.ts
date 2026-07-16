@@ -103,6 +103,8 @@ export interface BookVideo {
 export interface LibraryCaptureImage {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
   caption?: string;
 }
 
@@ -153,7 +155,7 @@ export interface BookReview {
   tldr?: string; // 1–2 sentence answer block for AEO / summary cards
   faq?: Array<{ q: string; a: string }>; // curated Q&A for FAQPage schema
   publicationYear?: number;
-  hasCover?: boolean; // true if coverImage file ships in /public/images/library/
+  hasCover?: boolean; // true when coverImage resolves to approved public media
   quotes?: BookQuote[]; // curated memorable quotes
   chapters?: BookChapterSummary[]; // chapter-by-chapter breakdown
   continueReading?: RelatedReadingItem[]; // external related books
