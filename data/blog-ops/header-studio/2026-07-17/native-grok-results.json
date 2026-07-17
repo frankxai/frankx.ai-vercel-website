@@ -1,0 +1,182 @@
+{
+  "batchId": "frankx-blog-header-studio-2026-07-17",
+  "renderedAt": "2026-07-17T05:15:46.751010+00:00",
+  "range": [
+    2,
+    20
+  ],
+  "mode": "sequential-native-grok",
+  "results": [
+    {
+      "id": "02-model-routing",
+      "slug": "ai-model-routing-guide",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\02-model-routing.png",
+      "bytes": 952925,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with native Imagine from your art direction and write only that PNG to the path you specified.Generating the 16:9 master with native Imagine from your art direction.Converting the render to PNG and writing it only to the requested path.**Done.** One 16:9 master was generated with native Imagine and saved only as:\n\n`public/images/blog/header-studio-2026-07-17/02-model-routing.png` (~953 KB PNG)\n\nNo other files were created or modified.\n\n"
+    },
+    {
+      "id": "03-creator-os",
+      "slug": "agentic-creator-os-complete-guide",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\03-creator-os.png",
+      "bytes": 1464252,
+      "exitCode": 0,
+      "tail": "Generating the single 16:9 editorial hero, then placing it at the requested path only.Converting the generated image to PNG and saving it only at the specified path.Done. One 16:9 editorial master is at:\n\n`public/images/blog/header-studio-2026-07-17/03-creator-os.png` (~1.4 MB)\n\nOnly that image file was written; no source, article, frontmatter, or other assets were changed.\n\n"
+    },
+    {
+      "id": "04-production-agents",
+      "slug": "production-agentic-ai-systems",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\04-production-agents.png",
+      "bytes": 988754,
+      "exitCode": 0,
+      "tail": "I'll generate a single 16:9 editorial hero with Grok Imagine, then place only that PNG at the path you specified.Generating the 16:9 editorial bridge hero, then copying it to the target path only.Converting the render to PNG and writing it only to the specified path.Done. One 16:9 master is at:\n\n`public/images/blog/header-studio-2026-07-17/04-production-agents.png`\n\nValid PNG (~989 KB). Nothing else was changed.\n\n"
+    },
+    {
+      "id": "05-memory-native",
+      "slug": "memory-native-agent-architecture-2026",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\05-memory-native.png",
+      "bytes": 953900,
+      "exitCode": 0,
+      "tail": "Generating the single 16:9 editorial hero with native Imagine, then placing it at the requested path only.Converting the generated image to PNG and saving only that file at the requested path.**Done.** One 16:9 master is saved only at:\n\n`public/images/blog/header-studio-2026-07-17/05-memory-native.png` (~954 KB)\n\nNo source, article, frontmatter, prompt, or other asset files were changed.\n\n"
+    },
+    {
+      "id": "06-research-intelligence",
+      "slug": "building-research-intelligence-system",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\06-research-intelligence.png",
+      "bytes": 1202355,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with native Imagine and place only that PNG at the path you specified.Generating the 16:9 editorial hero plate now.Converting the render to PNG and writing it only to the requested path.Done. One 16:9 Imagine render is saved only as:\n\n`public/images/blog/header-studio-2026-07-17/06-research-intelligence.png` (~1.2 MB)\n\nNo source code, articles, frontmatter, prompts, or other assets were touched.\n\n"
+    },
+    {
+      "id": "07-ai-image-video",
+      "slug": "ai-image-video-generation-playbook-2026",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\07-ai-image-video.png",
+      "bytes": 796412,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with native Imagine, then place only that PNG at the path you specified.Generating the 16:9 master from your art direction, then saving only that PNG to the target path.Converting the render to PNG and writing it only to the specified path.**Done.** One 16:9 master is at:\n\n`public/images/blog/header-studio-2026-07-17/07-ai-image-video.png` (~796 KB)\n\nOnly that PNG was written. No source, article, frontmatter, or other assets were changed.\n\n"
+    },
+    {
+      "id": "08-hybrid-image-video",
+      "slug": "hybrid-image-video-pipelines-cinematic-brands-2026",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\08-hybrid-image-video.png",
+      "bytes": 884781,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with Imagine from your art direction, then place only that PNG at the path you specified.Generating the 16:9 editorial hero now.Converting the render to PNG and writing it only to the requested path.Done. One 16:9 master is saved as:\n\n`public/images/blog/header-studio-2026-07-17/08-hybrid-image-video.png`  \n(~885 KB PNG, valid signature)\n\nOnly that image file was created. No source, article, frontmatter, or other assets were touched.\n\n"
+    },
+    {
+      "id": "09-frontier-models",
+      "slug": "frontier-model-landscape-2026-claude-gpt-gemini-deepseek",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\09-frontier-models.png",
+      "bytes": 476147,
+      "exitCode": 0,
+      "tail": "Generating the 16:9 editorial hero with native Imagine, then saving only that PNG to the requested path.Converting the generated image to PNG and writing it only to the requested path.Done. One 16:9 master is saved at:\n\n`public/images/blog/header-studio-2026-07-17/09-frontier-models.png`  \n(~476 KB, valid PNG signature)\n\nNo other files were created or modified.\n\n"
+    },
+    {
+      "id": "10-claude-code-mastery",
+      "slug": "claude-code-mastery-top-resources",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\10-claude-code-mastery.png",
+      "bytes": 884469,
+      "exitCode": 0,
+      "tail": "I'll load the native Imagine skill, generate one 16:9 editorial hero from your art direction, and place only that PNG at the path you specified.Generating the single 16:9 editorial hero from your art direction.Copying the render to the requested PNG path.Done. One 16:9 Imagine master is saved at:\n\n`public/images/blog/header-studio-2026-07-17/10-claude-code-mastery.png` (~884 KB PNG)\n\nNo other files were created or modified.\n\n"
+    },
+    {
+      "id": "11-custom-skills",
+      "slug": "building-custom-skills-acos",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\11-custom-skills.png",
+      "bytes": 951876,
+      "exitCode": 0,
+      "tail": "I'll generate a single 16:9 editorial hero with Grok Imagine and place the PNG only at the path you specified.Generating the 16:9 editorial hero now, then copying it to the target path only.Converting the render to PNG and saving it only at the requested path.Done. Generated one 16:9 Imagine master and saved only:\n\n`public/images/blog/header-studio-2026-07-17/11-custom-skills.png`  \n(~952 KB, valid PNG)\n\nNo source, article, frontmatter, prompts, or other assets were touched.\n\n"
+    },
+    {
+      "id": "12-agentic-workflows",
+      "slug": "agentic-workflows-save-hours",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\12-agentic-workflows.png",
+      "bytes": 500351,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with Imagine and place only that PNG at the path you specified.Generating the 16:9 editorial hero now.Converting the render to PNG and writing it only to the requested path.**Done.** One 16:9 master is at:\n\n`public/images/blog/header-studio-2026-07-17/12-agentic-workflows.png`\n\n(~489 KB, valid PNG). No other files were changed.\n\n"
+    },
+    {
+      "id": "13-n8n-workflows",
+      "slug": "n8n-automation-ai-creators-9-workflows",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\13-n8n-workflows.png",
+      "bytes": 803153,
+      "exitCode": 0,
+      "tail": "Generating one 16:9 editorial hero with native image gen and saving it only at the specified path.Generating the 16:9 editorial hero now.Converting the render to PNG and writing it only to the requested path.Done. One 16:9 editorial hero was generated and saved only at:\n\n`public/images/blog/header-studio-2026-07-17/13-n8n-workflows.png`\n\n(~784 KiB valid PNG). No source, article, frontmatter, or other assets were touched.\n\n"
+    },
+    {
+      "id": "14-seo-aeo",
+      "slug": "seo-aeo-optimization-acos",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\14-seo-aeo.png",
+      "bytes": 463199,
+      "exitCode": 0,
+      "tail": "I'll load the imagine skill and generate the single 16:9 editorial hero PNG at the path you specified.Generating the 16:9 editorial hero, then placing the PNG at the requested path.Converting the generated image to PNG and saving it at the exact path you specified.Done. One 16:9 editorial hero was generated with native Imagine and saved only here:\n\n`public/images/blog/header-studio-2026-07-17/14-seo-aeo.png` (~452 KB PNG)\n\nNo source, article, frontmatter, prompt, or other asset files were modified.\n\n"
+    },
+    {
+      "id": "15-creator-intelligence",
+      "slug": "creator-intelligence-systems-2026",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\15-creator-intelligence.png",
+      "bytes": 954875,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with native Imagine, then place the PNG only at the path you specified.Generating the 16:9 master with native Imagine from your art direction.Converting the generated master to PNG and saving only at the requested path.**Done.** One 16:9 Imagine master is saved as a PNG:\n\n`public/images/blog/header-studio-2026-07-17/15-creator-intelligence.png` (~933 KB)\n\nNo source code, articles, frontmatter, prompts, or other assets were changed.\n\n"
+    },
+    {
+      "id": "16-ship-daily",
+      "slug": "ship-daily-compound-creator",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\16-ship-daily.png",
+      "bytes": 819280,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with native Imagine and place only that PNG at the path you specified.Generating the single 16:9 editorial hero now.Converting the render to PNG and writing it to the requested path only.Done. One 16:9 master is at:\n\n`public/images/blog/header-studio-2026-07-17/16-ship-daily.png` (~800 KB PNG)\n\nNo source, article, frontmatter, prompt, or other asset files were touched.\n\n"
+    },
+    {
+      "id": "17-ai-architecture-solo",
+      "slug": "ai-architecture-patterns-solo-builders",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\17-ai-architecture-solo.png",
+      "bytes": 911540,
+      "exitCode": 1,
+      "tail": "I'll generate one 16:9 editorial hero with native Imagine and write only that PNG to the path you specified.Generating the 16:9 editorial hero now, then placing only that PNG at the specified path.Converting the generated image to PNG and writing it only to the requested path.The first render included scale figures and a ruler, which violate the art direction. Editing to remove them while keeping the architectural model.\n\nMax turns reached\nError: max turns reached\n"
+    },
+    {
+      "id": "18-ultimate-coding-agent",
+      "slug": "ultimate-ai-coding-agent-setup-acos-claude-code-mcp",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\18-ultimate-coding-agent.png",
+      "bytes": 1306988,
+      "exitCode": 0,
+      "tail": "I'll generate one 16:9 editorial hero with Grok Imagine and save only that PNG to the path you specified.Generating the 16:9 editorial hero, then saving it only to the specified path.Converting the render to PNG and writing it only to the requested path.**Done.** One 16:9 master is saved at:\n\n`public/images/blog/header-studio-2026-07-17/18-ultimate-coding-agent.png` (~1.3 MB)\n\nNo other files were modified.\n\n"
+    },
+    {
+      "id": "19-genai-tool-router",
+      "slug": "genai-tool-router-image-video-agents-2026",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\19-genai-tool-router.png",
+      "bytes": 1195922,
+      "exitCode": 0,
+      "tail": "Generating one 16:9 editorial hero with the given art direction, then saving only that PNG to the specified path.Generating the 16:9 editorial hero with your art direction.Converting the generated image to PNG and writing it to the exact target path.Done. One 16:9 editorial master is saved at:\n\n`public/images/blog/header-studio-2026-07-17/19-genai-tool-router.png`\n\n(~1.2 MB PNG). No other files were changed.\n\n"
+    },
+    {
+      "id": "20-golden-age-creators",
+      "slug": "golden-age-of-creators-why-now-is-different",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.worktrees\\agent-hermes-accelerator\\public\\images\\blog\\header-studio-2026-07-17\\20-golden-age-creators.png",
+      "bytes": 853517,
+      "exitCode": 0,
+      "tail": "Generating one 16:9 editorial hero with native Imagine, then saving only that PNG at the path you specified.Generating the 16:9 editorial hero now and placing only that PNG at the target path.Converting the generated image to PNG and saving it only at the requested path.**Done.** One 16:9 master (1280\u00d7720 PNG) is at:\n\n`public/images/blog/header-studio-2026-07-17/20-golden-age-creators.png`\n\nNo other files were created or modified.\n\n"
+    }
+  ]
+}

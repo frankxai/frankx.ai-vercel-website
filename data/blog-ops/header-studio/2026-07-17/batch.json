@@ -1,0 +1,153 @@
+{
+  "batchId": "frankx-blog-header-studio-2026-07-17",
+  "status": "native-grok-sequential",
+  "purpose": "Twenty distinct editorial header plates for high-value FrankX articles. All generated assets are background plates only; exact article titles are applied deterministically by the site or social template.",
+  "qualityBar": {
+    "master": "1280x720 16:9 raster from native Grok Imagine; use deterministic responsive crops from this approved source.",
+    "share": "Thumbnail-readable tension in one second; no generated text/logos/UI; story-critical content sits within the center 56% width, avoids top 12% and bottom 22%.",
+    "palette": "Near-black #0a0a0b, restrained emerald #10b981 and cyan #06b6d4; amber only where the subject is human meaning, craft, or soul.",
+    "exclusions": ["readable text", "letters", "logos", "app UI", "robots", "human figures", "purple gradient soup", "generic glowing brain", "floating holographic dashboards", "stock imagery"]
+  },
+  "jobs": [
+    {
+      "id": "01-agentic-roadmap",
+      "slug": "agentic-ai-roadmap-2026",
+      "readerPromise": "See which agentic systems are becoming operational rather than speculative.",
+      "metaphor": "A luminous transit interchange where independent tracks become one reliable route.",
+      "prompt": "Editorial hero plate for FrankX: a precise physical transit interchange built from matte graphite rails and brushed aluminum, several luminous emerald and cyan paths converge into one clear forward route, a single amber signal at the decision point, deep void background, low angled cinematic product-photography perspective, tactile machining marks, quiet confidence, high contrast thumbnail silhouette, 16:9 landscape. No readable text, letters, logos, app UI, robots, people, purple gradients, floating dashboards, glowing brain imagery. Leave clean dark negative space at top and lower edge for deterministic headline overlay."
+    },
+    {
+      "id": "02-model-routing",
+      "slug": "ai-model-routing-guide",
+      "readerPromise": "Choose the right model by task instead of paying for a single default.",
+      "metaphor": "A museum-grade switchboard that routes energy through the smallest necessary path.",
+      "prompt": "Editorial hero plate for FrankX: a museum-grade analog routing instrument, one elegant rotating selector routes cyan, emerald, and soft amber light through distinct machined channels, graphite housing, visible physical logic, not a screen, near-black studio background, macro-to-medium cinematic composition, restrained materials and deliberate engineering, one-second clarity at thumbnail size, 16:9 landscape. No text, letters, logos, UI, robots, people, holograms, purple gradient, glowing brain. Preserve clean dark safe zones above and below."
+    },
+    {
+      "id": "03-creator-os",
+      "slug": "agentic-creator-os-complete-guide",
+      "readerPromise": "Turn scattered tools into a compounding creator operating system.",
+      "metaphor": "A field desk where small crafted components click into one working whole.",
+      "prompt": "Editorial hero plate for FrankX: an immaculate black walnut and graphite field desk seen from a cinematic three-quarter angle, five distinct tactile tools arranged as an interlocking operating system around a single emerald-lit core object, paper texture, brass fasteners, cyan reflection only, intentional empty space, premium magazine art direction, 16:9 landscape. No humans, text, letters, logos, screens, app UI, robots, purple neon, generic abstract wallpaper. Keep headline-safe negative space top and bottom."
+    },
+    {
+      "id": "04-production-agents",
+      "slug": "production-agentic-ai-systems",
+      "readerPromise": "Design agents that survive contact with production.",
+      "metaphor": "A load-tested bridge carrying light through a storm without spectacle.",
+      "prompt": "Editorial hero plate for FrankX: a minimal engineered bridge of dark steel and translucent composite spanning a deep black ravine, thin emerald and cyan maintenance lights reveal structural redundancy, a contained storm beyond, no fantasy, no city, cinematic wide lens, tactile real materials, resilience rather than chaos, 16:9 landscape. No people, text, letters, logos, robots, screens, dashboards, purple gradients. Leave calm dark safe zones for typography overlay."
+    },
+    {
+      "id": "05-memory-native",
+      "slug": "memory-native-agent-architecture-2026",
+      "readerPromise": "Give agents durable memory without turning context into clutter.",
+      "metaphor": "A quiet archive where one illuminated thread connects relevant objects.",
+      "prompt": "Editorial hero plate for FrankX: a dark physical archive of numbered but blank-edge drawers and mineral glass memory capsules, one thin cyan filament links only four chosen capsules while the rest recede into shadow, emerald glow reflected in graphite surfaces, intimate cinematic macro depth, evidence of selective recall, 16:9 landscape. No visible numbers, words, letters, logos, people, robots, screens, purple gradient, brain imagery. Preserve blank dark overlay zones."
+    },
+    {
+      "id": "06-research-intelligence",
+      "slug": "building-research-intelligence-system",
+      "readerPromise": "Build research that compounds into decisions rather than saved links.",
+      "metaphor": "A lens array focusing many weak signals into one clear point.",
+      "prompt": "Editorial hero plate for FrankX: a sculptural array of precision glass lenses and black anodized rings on a near-black table, scattered faint cyan signals pass through and resolve into one sharp emerald point of light, quiet laboratory atmosphere, premium scientific editorial photography, 16:9 landscape, clear visual hierarchy. No text, letters, logos, people, robots, UI, floating charts, purple gradient. Keep upper and lower safe zones empty and dark."
+    },
+    {
+      "id": "07-ai-image-video",
+      "slug": "ai-image-video-generation-playbook-2026",
+      "readerPromise": "Build a serious image-to-video production pipeline instead of chasing tools.",
+      "metaphor": "A still frame becoming motion through an optical shutter sequence.",
+      "prompt": "Editorial hero plate for FrankX: a cinematic optical shutter mechanism in graphite and smoked glass, one still luminous frame passes through a sequence of physical apertures and becomes a graceful trail of three controlled motion frames, emerald-cyan highlights, studio-black background, premium film craft aesthetic, 16:9 landscape. No text, logos, UI, people, robots, floating holograms, purple gradient. Header-safe darkness at top and bottom."
+    },
+    {
+      "id": "08-hybrid-image-video",
+      "slug": "hybrid-image-video-pipelines-cinematic-brands-2026",
+      "readerPromise": "Combine still craft and motion systems into a coherent brand pipeline.",
+      "metaphor": "A contact sheet unfolding into a single ribbon of cinematic light.",
+      "prompt": "Editorial hero plate for FrankX: physical unmarked contact-sheet frames on a black cutting table transition into one elegant luminous cyan-and-emerald ribbon, optical film grain, brushed metal tools, premium editorial cinematic craft, restrained composition, 16:9 landscape. No readable type, letters, logos, people, robots, UI, purple gradient, generic AI effects. Leave deliberate dark whitespace for title overlay."
+    },
+    {
+      "id": "09-frontier-models",
+      "slug": "frontier-model-landscape-2026-claude-gpt-gemini-deepseek",
+      "readerPromise": "Understand the frontier model landscape through capabilities, not hype.",
+      "metaphor": "Four distinct mineral instruments measured against the same star chart.",
+      "prompt": "Editorial hero plate for FrankX: four distinct precision mineral-and-metal instruments aligned on a matte black survey table, each emits a different restrained cyan, emerald, silver, or amber calibration beam toward one distant point, not branded, no visible chart labels, premium scientific editorial art direction, 16:9 landscape. No text, logos, people, robots, UI, purple gradients, glowing brain. Strong thumbnail silhouette and clean overlay zones."
+    },
+    {
+      "id": "10-claude-code-mastery",
+      "slug": "claude-code-mastery-top-resources",
+      "readerPromise": "Move from coding assistant novelty to reliable terminal-first practice.",
+      "metaphor": "A beautifully kept mechanical workbench ready before the work begins.",
+      "prompt": "Editorial hero plate for FrankX: a nocturnal developer workbench without screens, black keyboard silhouette, folded terminal-green drafting paper with no legible marks, graphite notebook, elegant cable routing, one cyan task light and one emerald status light, human craft without showing a person, luxury technical magazine photography, 16:9 landscape. No readable words, logos, UI, robots, people, purple gradient. Reserve dark headline space."
+    },
+    {
+      "id": "11-custom-skills",
+      "slug": "building-custom-skills-acos",
+      "readerPromise": "Package repeatable judgment so agents improve instead of starting over.",
+      "metaphor": "A hand-finished modular library whose pieces lock into a durable tool.",
+      "prompt": "Editorial hero plate for FrankX: a set of finely machined graphite modules with unique tactile surfaces interlocking into a compact emerald-lit knowledge instrument, small cyan alignment guides, precise shadows, premium industrial design photography, 16:9 landscape. No text, letters, logos, UI, robots, people, purple gradient, generic circuitry wallpaper. Keep compositional negative space for title."
+    },
+    {
+      "id": "12-agentic-workflows",
+      "slug": "agentic-workflows-save-hours",
+      "readerPromise": "Replace repeated manual loops with reliable workflows that save time.",
+      "metaphor": "A sequence of physical domino mechanisms that resolves into calm.",
+      "prompt": "Editorial hero plate for FrankX: a refined kinetic sequence of black ceramic and brushed aluminum mechanisms, the first cyan-lit action triggers a clean chain that ends in one stable emerald object, frozen at the decisive middle moment, void-black studio, editorial precision, 16:9 landscape. No people, text, logos, UI, robots, floating dashboards, purple gradients. Leave lower and top darkness for copy overlay."
+    },
+    {
+      "id": "13-n8n-workflows",
+      "slug": "n8n-automation-ai-creators-9-workflows",
+      "readerPromise": "See concrete automations creators can put into service this week.",
+      "metaphor": "Nine colored threads become one intentional delivery path.",
+      "prompt": "Editorial hero plate for FrankX: nine distinct fine threads of emerald, cyan, silver, and one restrained amber travel through a black aluminum loom and emerge as one immaculate finished line, material realism, close cinematic view, operational calm rather than complexity, 16:9 landscape. No text, letters, logos, app UI, robots, people, purple neon, generic data streams. Include dark safe zones for headline overlay."
+    },
+    {
+      "id": "14-seo-aeo",
+      "slug": "seo-aeo-optimization-acos",
+      "readerPromise": "Build content architecture that humans and AI answer engines can find.",
+      "metaphor": "A signal beacon that is visible because its structure is clear.",
+      "prompt": "Editorial hero plate for FrankX: a minimalist architectural signal beacon made from black stone, smoked glass, and thin emerald-cyan light planes, one focused beam travels through a dark atmospheric field toward a distant reflective surface, visual clarity and discoverability, luxury editorial architecture photography, 16:9 landscape. No text, symbols, logos, people, robots, screens, purple gradients. Preserve safe dark margins."
+    },
+    {
+      "id": "15-creator-intelligence",
+      "slug": "creator-intelligence-systems-2026",
+      "readerPromise": "Build the intelligence layer that compounds a creator business.",
+      "metaphor": "A private observatory where scattered signals form a useful constellation.",
+      "prompt": "Editorial hero plate for FrankX: a refined private observatory interior with a dark circular table, unlabelled brass instruments, a single suspended constellation of tiny emerald and cyan points connected by very thin filaments, one amber glint for human judgment, cinematic intimacy, 16:9 landscape. No text, logos, people, robots, UI, purple galaxy gradient, generic starfield wallpaper. Clean negative space for title."
+    },
+    {
+      "id": "16-ship-daily",
+      "slug": "ship-daily-compound-creator",
+      "readerPromise": "Turn daily publishing into a compounding practice instead of a content treadmill.",
+      "metaphor": "Twenty-one small crafted marks accumulating into a strong horizon line.",
+      "prompt": "Editorial hero plate for FrankX: a dark artisan studio surface with a deliberate row of small blank physical markers gradually building toward one luminous emerald horizon form, subtle cyan reflections, tactile paper, stone, and metal, quietly motivational premium editorial art direction, 16:9 landscape. No digits, words, text, logos, people, robots, purple gradient. Leave title-safe dark space."
+    },
+    {
+      "id": "17-ai-architecture-solo",
+      "slug": "ai-architecture-patterns-solo-builders",
+      "readerPromise": "Use architecture patterns that let a solo builder operate above their headcount.",
+      "metaphor": "A compact architectural model that creates leverage through structure.",
+      "prompt": "Editorial hero plate for FrankX: a compact black architectural model of connected rooms and bridges on a matte table, one small emerald-lit core supports several cyan-lit extensions without clutter, strong scale and shadow, architectural magazine quality, 16:9 landscape. No text, logos, people, robots, UI, purple gradients, generic circuit boards. Maintain clean safe zones for copy."
+    },
+    {
+      "id": "18-ultimate-coding-agent",
+      "slug": "ultimate-ai-coding-agent-setup-acos-claude-code-mcp",
+      "readerPromise": "Assemble an AI coding setup that is fast, inspectable, and safe to evolve.",
+      "metaphor": "A precision flight case opening to reveal a disciplined tool system.",
+      "prompt": "Editorial hero plate for FrankX: an open precision flight case in graphite foam holding elegant unbranded coding instruments, a central emerald calibration tool, cyan edge light, meticulous cable and hardware organization, no screen interfaces, cinematic product photography, 16:9 landscape. No text, logos, people, robots, UI, holograms, purple gradients. Dark negative space for deterministic headline overlay."
+    },
+    {
+      "id": "19-genai-tool-router",
+      "slug": "genai-tool-router-image-video-agents-2026",
+      "readerPromise": "Route image, video, and agent tools by outcome rather than trend.",
+      "metaphor": "A gallery of three physical media paths meeting one decisive export gate.",
+      "prompt": "Editorial hero plate for FrankX: three distinct physical media pathways—smoked glass film strip, graphite mechanical relay, and mineral light prism—converge at one elegant black export gate illuminated emerald and cyan, no screens, no labels, high-end editorial product design, 16:9 landscape. No text, logos, people, robots, UI, purple gradient, generic abstract networks. Leave clean top/bottom safe zones."
+    },
+    {
+      "id": "20-golden-age-creators",
+      "slug": "golden-age-of-creators-why-now-is-different",
+      "readerPromise": "Recognize the current creative window and build work that lasts beyond it.",
+      "metaphor": "A dawn-lit workshop where a new instrument is tuned before the world wakes.",
+      "prompt": "Editorial hero plate for FrankX: a quiet pre-dawn creative workshop with a single unbranded sculptural instrument on a dark stone table, a warm restrained amber dawn edge meets cyan and emerald technical reflections, deep void beyond the window, emotional but not sentimental, premium magazine cover art direction, 16:9 landscape. No people, text, letters, logos, UI, robots, purple gradients, stock-photo tropes. Preserve clean dark header safe zones."
+    }
+  ]
+}
