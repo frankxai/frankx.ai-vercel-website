@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 821,
+    "total": 835,
     "aliases": 38,
     "byType": {
       "core": 21,
@@ -8074,6 +8074,149 @@
         "strategy"
       ],
       "type": "section"
+    },
+    {
+      "href": "/ask",
+      "title": "Ask FrankX",
+      "description": "Practical Q&A on AI architecture, music production, and creator workflows",
+      "type": "core",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture",
+        "music-production",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/what-is-a-multi-agent-system",
+      "title": "What is a multi-agent AI system?",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/how-to-write-suno-prompts",
+      "title": "How to write Suno prompts for professional tracks",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
+    },
+    {
+      "href": "/ask/ai-for-solo-creators",
+      "title": "AI for solo creators without becoming a content farm",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/claude-and-gemini-together",
+      "title": "Using Claude and Gemini together in one system",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/ai-music-workflow-end-to-end",
+      "title": "Complete AI music production workflow 2026",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
+    },
+    {
+      "href": "/ask/adding-ai-without-losing-voice",
+      "title": "Adding AI without losing your creative voice",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/automation-vs-augmentation",
+      "title": "Automation vs augmentation: which to choose",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/best-ai-stack-2026",
+      "title": "Best AI tech stack for creators in 2026",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/how-to-write-claude-md",
+      "title": "How to write a CLAUDE.md that works",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/enterprise-ai-adoption-strategy",
+      "title": "Enterprise AI adoption strategy framework",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "enterprise-ai"
+      ]
+    },
+    {
+      "href": "/ask/ai-content-engine-setup",
+      "title": "Setting up an AI content engine",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/agentic-creator-os-explained",
+      "title": "What is the Agentic Creator OS (ACOS)?",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/how-do-i-get-chorus-to-lift",
+      "title": "How to get chorus lift in AI music",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
     }
   ],
   "aliases": {
