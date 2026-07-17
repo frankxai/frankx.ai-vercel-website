@@ -40,7 +40,7 @@
           "name": "LLM Service",
           "type": "ai-service",
           "description": "Generates answers from retrieved context",
-          "cloudService": "Claude / GPT-4 / OCI GenAI"
+          "cloudService": "Claude / GPT-4 / OCI Enterprise AI"
         }
       ],
       "flows": [
@@ -183,7 +183,7 @@
       "Customer support knowledge base"
     ],
     "createdAt": "2026-01-01T00:00:00Z",
-    "updatedAt": "2026-01-16T00:00:00Z",
+    "updatedAt": "2026-07-17",
     "publishedAt": "2026-01-10T00:00:00Z",
     "metaDescription": "Build a production-grade enterprise RAG platform for document Q&A with source citations",
     "keywords": [
@@ -2906,7 +2906,7 @@
       "Developer productivity agents on Vercel"
     ],
     "createdAt": "2026-04-10T00:00:00Z",
-    "updatedAt": "2026-04-10T00:00:00Z",
+    "updatedAt": "2026-07-17",
     "publishedAt": "2026-04-10T00:00:00Z",
     "metaDescription": "Deploy Claude Agent SDK agents to production on Vercel with Sandbox for secure code execution. Stream via SSE, scale on Edge.",
     "keywords": [
@@ -2917,6 +2917,9 @@
       "mcp",
       "sse streaming",
       "anthropic api"
+    ],
+    "relatedPatterns": [
+      "vercel-eve-agent"
     ]
   },
   {
@@ -3354,7 +3357,7 @@
       "oci"
     ],
     "technologies": [
-      "Vercel AI SDK 6",
+      "Vercel AI SDK 7",
       "Pinecone",
       "Turbopuffer",
       "pgvector",
@@ -3419,7 +3422,7 @@
       ]
     },
     "createdAt": "2026-06-27T00:00:00.000Z",
-    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-07-17",
     "publishedAt": "2026-06-27T00:00:00.000Z",
     "metaDescription": "Agentic RAG: retrieval that reasons about whether, what, and when to retrieve — the 2026 production default. Architecture, code, and when to use it.",
     "keywords": [
@@ -4048,15 +4051,15 @@
   {
     "id": "vercel-ai-sdk6-agent",
     "slug": "vercel-ai-sdk6-agent",
-    "title": "Agent on Vercel AI SDK 6 + AI Gateway",
-    "subtitle": "A first-class Agent with tool approval, on Fluid compute and a durable workflow",
+    "title": "Agent on Vercel AI SDK 7 + AI Gateway",
+    "subtitle": "A first-class Agent with tool approval, on Fluid compute and a durable WorkflowAgent",
     "category": "multi-agent-orchestration",
     "status": "published",
     "difficulty": "intermediate",
     "maturity": "production",
-    "overview": "Vercel AI SDK 6 (GA late 2025) ships a first-class Agent abstraction with tool-execution approval, MCP support, and DevTools. Paired with AI Gateway (one endpoint across providers) on Fluid compute and the Workflow SDK for durable steps, it is the fastest path to a production web-native agent.",
+    "overview": "Vercel AI SDK 7 (GA June 2026; v6 remains patched) ships a first-class Agent abstraction with tool-execution approval, MCP support, and a durable WorkflowAgent built on the Workflow SDK. Paired with AI Gateway (one endpoint across providers) on Fluid compute, it is the fastest path to a production web-native agent.",
     "problem": "Web agents hit serverless timeouts on multi-step loops, lock you to one model provider, and ship tool calls with no human gate on risky actions.",
-    "solution": "Use the SDK 6 Agent for the loop, route models through AI Gateway for failover and observability, run on Fluid compute for long timeouts, and make each step a durable Workflow step so completed work never re-runs.",
+    "solution": "Use the SDK 7 Agent for the loop, route models through AI Gateway for failover and observability, run on Fluid compute for long timeouts, and use WorkflowAgent so completed steps never re-run. The v6 code below still runs (v6 is maintained); SDK 7 folds the durable-workflow wrapping into WorkflowAgent.",
     "architecture": {
       "diagramType": "svg",
       "components": [
@@ -4183,14 +4186,15 @@
         "title": "Agent with a gated tool (AI SDK 6)",
         "language": "typescript",
         "filename": "app/api/agent/route.ts",
-        "description": "Risky tools require approval before they execute.",
+        "description": "Risky tools require approval before they execute. Shown against the maintained v6 API; SDK 7 stabilizes the Agent import and adds WorkflowAgent for the durable loop.",
         "code": "import { Experimental_Agent as Agent, tool, stepCountIs } from 'ai'\nimport { gateway } from '@ai-sdk/gateway'\nimport { z } from 'zod'\n\nconst agent = new Agent({\n  model: gateway('anthropic/claude-sonnet-4-5'),\n  stopWhen: stepCountIs(10),\n  tools: {\n    refund: tool({\n      description: 'Issue a refund (requires approval)',\n      inputSchema: z.object({ orderId: z.string(), amount: z.number() }),\n      needsApproval: true,\n      execute: async ({ orderId, amount }) => issueRefund(orderId, amount),\n    }),\n  },\n})\n\nexport async function POST(req: Request) {\n  const { messages } = await req.json()\n  return agent.respond({ messages })\n}"
       }
     ],
     "relatedPatterns": [
       "mcp-as-architecture",
       "context-engineering-mvc",
-      "claude-agent-sdk-vercel"
+      "claude-agent-sdk-vercel",
+      "vercel-eve-agent"
     ],
     "cloudProviders": [
       "multi-cloud",
@@ -4200,10 +4204,10 @@
       "oci"
     ],
     "technologies": [
-      "Vercel AI SDK 6",
+      "Vercel AI SDK 7",
       "AI Gateway",
       "Fluid compute",
-      "Workflow SDK",
+      "WorkflowAgent",
       "MCP"
     ],
     "estimatedCost": {
@@ -4263,7 +4267,7 @@
       ]
     },
     "createdAt": "2026-06-27T00:00:00.000Z",
-    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-07-17",
     "publishedAt": "2026-06-27T00:00:00.000Z",
     "metaDescription": "Build a production web agent on Vercel AI SDK 6 with tool approval, AI Gateway failover, Fluid compute, and durable Workflow steps. Architecture and code.",
     "keywords": [
@@ -4432,7 +4436,7 @@
     "technologies": [
       "Vercel AI Gateway",
       "Cloudflare AI Gateway",
-      "Vercel AI SDK 6",
+      "Vercel AI SDK 7",
       "Langfuse",
       "Helicone"
     ],
@@ -4466,7 +4470,7 @@
       ]
     },
     "createdAt": "2026-06-27T00:00:00.000Z",
-    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-07-17",
     "publishedAt": "2026-06-27T00:00:00.000Z",
     "metaDescription": "LLM gateway and multi-provider routing in 2026: one endpoint for failover, caching, budgets, and spend observability. Architecture, code, and verdict.",
     "keywords": [
@@ -4485,6 +4489,454 @@
         "value": "50%",
         "label": "discount on cached input tokens — OpenAI automatic prompt caching"
       }
+    ]
+  },
+  {
+    "id": "vercel-eve-agent",
+    "slug": "vercel-eve-agent",
+    "title": "Production Agent on Vercel eve",
+    "subtitle": "An agent as a directory — durable sessions, AI Gateway models, plain vercel deploy",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "emerging",
+    "overview": "eve is Vercel’s open-source agent framework (public preview June 2026, MIT). An agent is a directory of TypeScript and Markdown files — instructions and skills in Markdown, tools as typed functions, the model resolved through AI Gateway — and every conversation runs as a durable, checkpointed workflow that survives crashes and deploys. It deploys like any Vercel project and shows up in Agent Runs observability.",
+    "problem": "Hand-rolled agent services scatter the same concerns — session durability, model routing, tool wiring, auth, scheduling — across bespoke code, and a redeploy or crash mid-conversation loses the run.",
+    "solution": "Define the agent declaratively as a directory: Markdown for instructions and skills, defineTool for typed tools (tool name from filename), model via AI Gateway, plus auth, channels, and schedule config. eve runs each session as a durable workflow with checkpointing, exposes it over an SSE session API, and deploys with plain vercel deploy — the platform owns durability and observability so the agent code stays declarative.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "dir",
+          "name": "Agent directory",
+          "type": "compute",
+          "description": "TypeScript + Markdown: instructions, skills, tools, auth, schedule",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "runtime",
+          "name": "eve runtime",
+          "type": "compute",
+          "description": "Durable, checkpointed session workflows; survives crash and deploy",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "gateway",
+          "name": "AI Gateway",
+          "type": "networking",
+          "description": "Model resolution across providers",
+          "affiliateId": "vercel"
+        },
+        {
+          "id": "session",
+          "name": "Session API",
+          "type": "networking",
+          "description": "/eve/v1/session + SSE stream to any client"
+        },
+        {
+          "id": "obs",
+          "name": "Agent Runs",
+          "type": "monitoring",
+          "description": "Per-run observability in the Vercel dashboard",
+          "affiliateId": "vercel"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "dir",
+          "to": "runtime",
+          "label": "defines",
+          "dataType": "config"
+        },
+        {
+          "id": "f2",
+          "from": "runtime",
+          "to": "gateway",
+          "label": "model call",
+          "protocol": "HTTPS"
+        },
+        {
+          "id": "f3",
+          "from": "session",
+          "to": "runtime",
+          "label": "messages",
+          "protocol": "SSE"
+        },
+        {
+          "id": "f4",
+          "from": "runtime",
+          "to": "obs",
+          "label": "run traces",
+          "dataType": "telemetry"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Scaffold and run locally",
+        "description": "Initialize the agent directory and get one skill + one tool working.",
+        "tasks": [
+          "npx eve@latest init",
+          "Write instructions + one skill in Markdown",
+          "Add one typed tool with defineTool"
+        ],
+        "deliverables": [
+          "Agent running locally with one tool"
+        ],
+        "estimatedDuration": "1-2 days"
+      },
+      {
+        "phase": 2,
+        "title": "Wire model + sessions",
+        "description": "Resolve the model through AI Gateway and drive the agent over the session API.",
+        "tasks": [
+          "Configure the model via AI Gateway",
+          "Connect a client to /eve/v1/session over SSE",
+          "Verify a session resumes after a redeploy"
+        ],
+        "deliverables": [
+          "Durable session surviving a deploy"
+        ],
+        "estimatedDuration": "2-3 days"
+      },
+      {
+        "phase": 3,
+        "title": "Ship and observe",
+        "description": "Deploy and put real traffic behind observability.",
+        "tasks": [
+          "vercel deploy",
+          "Review runs in Agent Runs",
+          "Add auth + schedule config as needed"
+        ],
+        "deliverables": [
+          "Deployed agent with per-run traces"
+        ],
+        "estimatedDuration": "1-2 days"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "eve-layout",
+        "title": "An agent is a directory",
+        "language": "bash",
+        "filename": "my-agent/",
+        "description": "The verified surface, not pseudocode: scaffold with init, then the directory itself is the agent — Markdown for instructions and skills, typed tools, config for model, auth, channels, schedule.",
+        "code": "npx eve@latest init\n\nmy-agent/\n├─ instructions.md      # who the agent is\n├─ skills/              # Markdown skills\n├─ tools/               # defineTool() — tool name from filename\n└─ config               # model (via AI Gateway), auth, channels, schedule\n\n# every conversation = durable, checkpointed workflow\n# client attaches via /eve/v1/session (SSE)\n# ship it like any Vercel project:\nvercel deploy"
+      }
+    ],
+    "relatedPatterns": [
+      "vercel-ai-sdk6-agent",
+      "claude-agent-sdk-vercel",
+      "durable-agent-runtime",
+      "mcp-as-architecture"
+    ],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
+    "technologies": [
+      "Vercel eve",
+      "AI Gateway",
+      "Workflow-backed sessions",
+      "SSE",
+      "Markdown skills"
+    ],
+    "estimatedCost": {
+      "monthly": 250,
+      "annual": 3000,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "LLM inference (via Gateway)",
+          "amount": 180,
+          "percentage": 72
+        },
+        {
+          "category": "Compute + sessions",
+          "amount": 50,
+          "percentage": 20
+        },
+        {
+          "category": "Observability",
+          "amount": 20,
+          "percentage": 8
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of July 2026",
+        "Low-traffic single agent; framework itself is MIT/free",
+        "Varies with model and session volume"
+      ]
+    },
+    "timeToImplement": "1 week",
+    "useCases": [
+      "Customer-facing chat agents",
+      "Scheduled/background agents",
+      "Internal copilots behind company auth",
+      "Agents reachable from multiple channels"
+    ],
+    "whenToUse": [
+      "You are on Vercel and want the platform to own session durability",
+      "You want agents defined declaratively (Markdown skills + typed tools), not framework glue code",
+      "You want one deploy path for app and agent"
+    ],
+    "whenNotToUse": [
+      "You need a stable, GA runtime today — eve is public preview (June 2026)",
+      "A Python-first stack (use a Python framework or a managed harness)",
+      "Hard multi-cloud portability requirements for the runtime itself"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Durable checkpointed sessions out of the box",
+        "Declarative agent definition, minimal glue code",
+        "MIT open source; deploys like any Vercel project"
+      ],
+      "cons": [
+        "Public preview — APIs can change",
+        "Runtime is Vercel-shaped even though the framework is open source",
+        "Young ecosystem versus older frameworks"
+      ]
+    },
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-17",
+    "publishedAt": "2026-07-17",
+    "metaDescription": "Production agent architecture on Vercel eve: agents as directories with Markdown skills, durable checkpointed sessions, AI Gateway model routing, and plain vercel deploy.",
+    "keywords": [
+      "vercel eve",
+      "eve agent framework",
+      "durable agent sessions",
+      "ai gateway",
+      "open source agent framework",
+      "agent as directory"
+    ]
+  },
+  {
+    "id": "durable-agent-runtime",
+    "slug": "durable-agent-runtime",
+    "title": "Durable Agent Runtime",
+    "subtitle": "Checkpointed execution + suspend-for-approval — the pattern every major platform just shipped",
+    "category": "llm-ops",
+    "status": "published",
+    "difficulty": "advanced",
+    "maturity": "emerging",
+    "overview": "In mid-2026 every major vendor converged on the same primitive: agent runs as durable, checkpointed workflows that can suspend for approval and resume after crash or deploy. Vercel ships it as eve sessions and AI SDK 7’s WorkflowAgent, AWS as the Bedrock AgentCore harness, Microsoft as Foundry hosted agents, Google as the ADK 2.0 workflow runtime — and the MCP 2026-07-28 spec adds a Tasks extension for long-running work. This blueprint is the vendor-neutral shape of that pattern.",
+    "problem": "A multi-step agent run that lives in process memory dies with the process: timeouts, deploys, and crashes lose completed work, retries re-execute side effects, and there is nowhere to pause a risky action for a human without holding a connection open.",
+    "solution": "Model the agent loop as a workflow of idempotent steps with externalized state. Checkpoint after every step so a resume replays decisions, not side effects. Make approval a first-class suspended state — the run parks durably until a human (or policy) releases it. Pick the enforcement point per stack: a managed harness (AgentCore, Foundry hosted agents), a framework runtime (eve, WorkflowAgent, ADK), or a workflow engine you already run — the shape is the same.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "loop",
+          "name": "Agent loop",
+          "type": "ai-service",
+          "description": "Plan/act steps, each one a workflow step"
+        },
+        {
+          "id": "store",
+          "name": "Checkpoint store",
+          "type": "database",
+          "description": "Externalized run state; completed steps never re-run"
+        },
+        {
+          "id": "gate",
+          "name": "Approval gate",
+          "type": "security",
+          "description": "Suspended state for risky actions; resumes on human/policy release"
+        },
+        {
+          "id": "exec",
+          "name": "Step executor",
+          "type": "compute",
+          "description": "Idempotent side effects with replay protection"
+        },
+        {
+          "id": "obs",
+          "name": "Run observability",
+          "type": "monitoring",
+          "description": "Per-step traces, resume/replay audit"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "loop",
+          "to": "store",
+          "label": "checkpoint",
+          "dataType": "state"
+        },
+        {
+          "id": "f2",
+          "from": "loop",
+          "to": "gate",
+          "label": "risky action",
+          "dataType": "pending-approval"
+        },
+        {
+          "id": "f3",
+          "from": "gate",
+          "to": "loop",
+          "label": "resume",
+          "dataType": "decision"
+        },
+        {
+          "id": "f4",
+          "from": "loop",
+          "to": "exec",
+          "label": "execute step",
+          "protocol": "internal"
+        },
+        {
+          "id": "f5",
+          "from": "exec",
+          "to": "obs",
+          "label": "trace",
+          "dataType": "telemetry"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Externalize the loop state",
+        "description": "Break the agent loop into steps whose state lives outside the process.",
+        "tasks": [
+          "Define step boundaries (one tool call or decision per step)",
+          "Persist a checkpoint after each step",
+          "Prove a kill-and-resume completes without re-running side effects"
+        ],
+        "deliverables": [
+          "Resumable single-agent run"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 2,
+        "title": "Suspend-for-approval",
+        "description": "Make human approval a durable state, not an open connection.",
+        "tasks": [
+          "Mark risky tools as approval-gated",
+          "Park the run in a suspended state with a pending-approval object",
+          "Resume on approve/reject with full audit"
+        ],
+        "deliverables": [
+          "Runs that wait days for approval at zero cost"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 3,
+        "title": "Pick the enforcement point",
+        "description": "Adopt the platform primitive instead of maintaining your own, where it fits.",
+        "tasks": [
+          "Map the pattern to your stack (eve / WorkflowAgent / AgentCore harness / Foundry hosted agents / ADK runtime)",
+          "Migrate checkpointing to the platform primitive",
+          "Keep the approval gate portable at the boundary"
+        ],
+        "deliverables": [
+          "Managed durability with a portable approval contract"
+        ],
+        "estimatedDuration": "1-2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "durable-shape",
+        "title": "The shape every durable runtime implements",
+        "language": "typescript",
+        "filename": "pattern.ts",
+        "description": "Pattern sketch, not a vendor API — names differ per platform (eve sessions, WorkflowAgent, AgentCore harness, Foundry hosted agents, ADK runtime); the contract is the same.",
+        "code": "// One step = one checkpointed unit. Replay resumes decisions, not side effects.\nfor (;;) {\n  const state = await checkpoints.load(runId)          // externalized, never in-process only\n  const step = await plan(state)                        // model decides next action\n  if (step.done) break\n\n  if (step.risky) {\n    await checkpoints.suspend(runId, pendingApproval(step)) // durable parked state\n    return                                                  // resumes on approve — hours or days later\n  }\n\n  const result = await execute(step, { idempotencyKey: `${runId}:${state.n}` })\n  await checkpoints.save(runId, advance(state, result)) // completed steps never re-run\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "vercel-eve-agent",
+      "vercel-ai-sdk6-agent",
+      "multi-agent-code-assistant",
+      "mcp-as-architecture"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "oci"
+    ],
+    "technologies": [
+      "Checkpointed workflows",
+      "Vercel eve / AI SDK 7 WorkflowAgent",
+      "Bedrock AgentCore harness",
+      "Microsoft Foundry hosted agents",
+      "Google ADK 2.0 runtime"
+    ],
+    "estimatedCost": {
+      "monthly": 200,
+      "annual": 2400,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "LLM inference",
+          "amount": 150,
+          "percentage": 75
+        },
+        {
+          "category": "Checkpoint store + compute",
+          "amount": 35,
+          "percentage": 18
+        },
+        {
+          "category": "Observability",
+          "amount": 15,
+          "percentage": 7
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of July 2026",
+        "Managed-harness pricing varies by vendor; several charge only for underlying resources",
+        "Dominated by inference, not durability infrastructure"
+      ]
+    },
+    "timeToImplement": "2-4 weeks",
+    "useCases": [
+      "Long-running agent jobs (migrations, research, batch ops)",
+      "Approval-gated actions (spend, deploys, comms)",
+      "Agents that must survive deploys mid-run",
+      "Scheduled agents with exactly-once side effects"
+    ],
+    "whenToUse": [
+      "Runs outlive a request/process lifetime",
+      "Risky steps need approval without holding connections open",
+      "Retries must never repeat side effects"
+    ],
+    "whenNotToUse": [
+      "Single-shot request/response LLM calls — durability is overhead",
+      "Pure read-only agents where replay is harmless",
+      "Latency-critical paths where checkpoint writes dominate"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Runs survive crashes, deploys, and days-long approvals",
+        "Exactly-once side effects via idempotent steps",
+        "Every major platform now ships this as a managed primitive"
+      ],
+      "cons": [
+        "Step decomposition is real design work",
+        "Checkpoint storage and write latency overhead",
+        "Managed harnesses trade portability for convenience"
+      ]
+    },
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-17",
+    "publishedAt": "2026-07-17",
+    "metaDescription": "The durable agent runtime pattern: checkpointed execution, suspend-for-approval, and exactly-once side effects — mapped across Vercel eve, AI SDK 7 WorkflowAgent, Bedrock AgentCore harness, Microsoft Foundry hosted agents, and Google ADK 2.0.",
+    "keywords": [
+      "durable agent runtime",
+      "checkpointed agent execution",
+      "suspend for approval",
+      "agentcore harness",
+      "workflowagent",
+      "foundry hosted agents",
+      "durable execution ai agents"
     ]
   }
 ]
