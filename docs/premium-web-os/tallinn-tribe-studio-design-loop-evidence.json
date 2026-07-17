@@ -1,0 +1,142 @@
+{
+  "version": "2026-07-14",
+  "task": "Replace the private Tallinn planning surface with a public tribe and session amplification studio, add two durable aliases, and make workshop provenance honest.",
+  "surface": "FrankX public experience routes and workshop index",
+  "audience": "Speakers, coaches, tribe leads, venue hosts, and attendees gathering in Tallinn around Mindvalley U 2026.",
+  "first_read": "An independent FrankX studio that helps a live room create a useful artifact and a stronger afterlife.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "MOTION_TASTE_RUBRIC.md",
+    "VISUAL_QA_GATE.md",
+    "_intelligence/quality-gates.md"
+  ],
+  "references": [
+    {
+      "label": "Mindvalley U official 2026 page",
+      "source": "https://www.mindvalley.com/u",
+      "reason": "Current event facts, official imagery, community scale, and typographic reference without copying the page system."
+    },
+    {
+      "label": "Mindvalley U official FAQ",
+      "source": "https://www.mindvalley.com/u/faq",
+      "reason": "Official speaker, agenda, venue, and attendee boundaries; the FrankX page sends official-event questions here."
+    },
+    {
+      "label": "FrankX GlowCard",
+      "source": "components/ui/glow-card.tsx",
+      "reason": "Proven liquid material and cursor-light behavior, reused selectively for interactive choices."
+    },
+    {
+      "label": "FrankX Ikigai & Branding workshop",
+      "source": "/workshops/ikigai-branding",
+      "reason": "The one workshop Frank identifies as personally built and delivered; anchors honest workshop provenance."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "FrankX obsidian material, large editorial type, rounded CTA language, and restrained tech-spectrum light",
+      "Artifact-led session logic and independent-event disclosure",
+      "Existing consent-based unified intake pipeline"
+    ],
+    "avoid": [
+      "Private collaborator, accommodation, budget, scheduling, or demand-gate details",
+      "Generic workshop card walls and false delivery claims",
+      "Mindvalley font copying, imitation, or implied affiliation",
+      "Decorative scroll choreography and unearned 3D"
+    ],
+    "signature": "A live session-amplifier that turns visitor role and desired outcome into an inspectable before / in-room / after plan.",
+    "system": [
+      "Poppins display, Inter body, JetBrains Mono for compact readouts",
+      "Obsidian foundation with cyan and emerald signal roles plus one restrained amber bridge accent",
+      "Official images remain remote, unedited, attributed, linked, and visually subordinate to the FrankX product loop",
+      "React state plus CSS transitions; no Track B scroll runtime",
+      "All information remains visible under reduced motion"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "product-capture",
+    "provenance": "source-cited",
+    "why_premium": "The primary visual is a real interactive planning loop rendered in the page. Official Mindvalley share assets provide secondary, source-linked event context rather than decorative filler.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-git-agen-3fc012-starlight-intelligence.vercel.app/experiences/tallinn-2026",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Vercel preview inspected with cloud-browser full-page captures at 1440 x 1000 and 390 x 844 CSS pixels, plus a dedicated 390-pixel interest-form capture. Hierarchy, image framing, responsive stacking, field legibility, and CTA flow passed."
+    },
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-git-agen-3fc012-starlight-intelligence.vercel.app/workshops",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Full-page 1440-pixel cloud-browser capture confirmed the delivered-foundation versus studio-architecture distinction is visually dominant and every undeveloped format carries a Studio draft label."
+    },
+    {
+      "path_or_url": "https://a.storyblok.com/f/60579/1920x1080/5eaf944304/1a_fbshare_invite_1920x1080.jpg",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Official Mindvalley U 2026 Tallinn Open Graph/share image; date and city text are legible and accurate."
+    },
+    {
+      "path_or_url": "https://a.storyblok.com/f/60579/1176x880/d5a0662b15/04-01-mvu.webp",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Official Tallinn 2024 community image; may only appear with a 2024 caption and official-source link."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Primary page artifact is Tier C interactive UI; official source-cited images are secondary event context."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Inspected full-page Vercel-preview captures at 2880 x 14658 output pixels for desktop and 780 x 25628 output pixels for mobile, plus a 780 x 1688 conversion-form capture and a 2880 x 9038 workshop-index capture."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "Desktop and mobile captures show no clipping, horizontal overflow, overlap, broken images, or unreadable controls. Animation-disabled capture preserves every section and conversion action."
+    },
+    {
+      "name": "privacy-boundary",
+      "status": "pass",
+      "evidence": "Preview HTML and source scans contain no collaborator name, hotel, private budget, travel, or internal demand-gate details. Both legacy public aliases canonicalize to the sanitized public studio."
+    },
+    {
+      "name": "motion-purpose",
+      "status": "pass",
+      "evidence": "Motion is limited to role/outcome state emphasis and card affordance; no decorative scroll scene."
+    },
+    {
+      "name": "remote-build-and-runtime",
+      "status": "pass",
+      "evidence": "Vercel preview compiled, type-checked, generated routes, and reached READY. Runtime error clusters are empty; observed requests were successful, with one unrelated Vercel flags probe returning 400."
+    },
+    {
+      "name": "route-and-form-contract",
+      "status": "pass",
+      "evidence": "Canonical route, both requested aliases, a format detail route, and /workshops return 200 with correct canonicals. The unified /api/intake honeypot path returns a safe success without storing or emailing data."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "Premium composition, truthful provenance, privacy boundary, responsive conversion flow, remote build, and runtime checks passed. Two points remain reserved for a post-merge keyboard-only production smoke and a real operator-confirmed intake delivery using non-test contact details."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "Official images are source-hosted share assets, not an explicit general-use license; keep usage to attributed linked previews.",
+    "The current public Git history still contains the retired internal planning even after the public tree is sanitized.",
+    "Local browser automation remained held by the machine safety floor, so visual QA used a cloud browser against the Vercel preview; a keyboard-only production smoke remains advisable after merge."
+  ]
+}

@@ -59,6 +59,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
+      // Official Mindvalley event imagery used with adjacent source attribution.
+      {
+        protocol: 'https',
+        hostname: 'a.storyblok.com',
+      },
       // Suno track covers and playlist art (music inventory imageUrl fields)
       {
         protocol: 'https',
@@ -67,6 +72,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn2.suno.ai',
+      },
+      // Public Library media lives in the project Blob store, outside Git.
+      {
+        protocol: 'https',
+        hostname: 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com',
       },
     ],
   },

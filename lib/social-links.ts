@@ -110,16 +110,6 @@ export const socialLinks = {
 } as const
 
 /**
- * Verified public profiles for people featured on FrankX collaboration pages.
- * Kept separate from Frank's own canonical identity while remaining centralized.
- */
-export const ALLY_SOCIAL_LINKS = {
-  anaCancino: {
-    linkedin: 'https://www.linkedin.com/in/ana-cancino-/',
-  },
-} as const
-
-/**
  * Social @-handles (not URLs) — used for metadata cards (Twitter `creator`, etc.).
  */
 export const socialHandles = {

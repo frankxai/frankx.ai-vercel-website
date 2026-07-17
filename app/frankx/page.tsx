@@ -169,9 +169,9 @@ export default function FrankXPage() {
 
               <div className="space-y-5 max-w-lg">
                 <p className="text-xl text-white/60 leading-relaxed">
-                  <span className="text-white font-semibold">Frank</span> is an enterprise AI architect,
-                  prolific music creator, and systems builder based in Amsterdam.
-                  By day, production AI at Oracle scale. By night, 12,000+ songs and counting.
+                  <span className="text-white font-semibold">Frank</span> is an AI Architect & Creator
+                  based in Amsterdam. Building Music OS, GenCreator System, and tools
+                  for creators worldwide. 12,000+ songs and counting.
                 </p>
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400 font-bold">

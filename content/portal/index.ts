@@ -1,7 +1,6 @@
 import type { PortalPartner } from './types'
 import { estefania } from './estefania'
 import { ahmad } from './ahmad'
-import { ana } from './ana'
 import { jojo } from './jojo'
 import { arrow } from './arrow'
 import { anthropic } from './anthropic'
@@ -16,7 +15,6 @@ import { anthropic } from './anthropic'
 const registry: Record<string, PortalPartner> = {
   [estefania.slug]: estefania,
   [ahmad.slug]: ahmad,
-  [ana.slug]: ana,
   [jojo.slug]: jojo,
   [arrow.slug]: arrow,
   [anthropic.slug]: anthropic,

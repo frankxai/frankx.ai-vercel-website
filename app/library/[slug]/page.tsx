@@ -2,15 +2,19 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-reviews';
+import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
 
 const SITE_URL = 'https://frankx.ai';
 
-export function generateStaticParams() {
-  return getAllReviewSlugs().map((slug) => ({ slug }));
+function absoluteUrl(src?: string) {
+  if (!src) return undefined;
+  if (/^https?:\/\//.test(src)) return src;
+  return `${SITE_URL}${src.startsWith('/') ? '' : '/'}${src}`;
 }
+
+// Review pages are resolved on demand. Avoid enumerating the whole library on every deploy.
 
 function truncate(text: string, limit = 158) {
   if (text.length <= limit) return text;
@@ -34,10 +38,8 @@ export async function generateMetadata({
   const description = reviewDescription(review);
   const canonical = `${SITE_URL}/library/${review.slug}`;
   const ogImage = review.hasCover
-    ? `${SITE_URL}${review.coverImage}`
-    : review.capture?.images?.[0]?.src
-      ? `${SITE_URL}${review.capture.images[0].src}`
-      : undefined;
+    ? absoluteUrl(review.coverImage)
+    : absoluteUrl(review.capture?.images?.[0]?.src);
 
   return {
     title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
@@ -93,10 +95,8 @@ function JsonLd({ review }: { review: BookReview }) {
   const description = reviewDescription(review);
   const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
   const imageUrl = review.hasCover
-    ? `${SITE_URL}${review.coverImage}`
-    : review.capture?.images?.[0]?.src
-      ? `${SITE_URL}${review.capture.images[0].src}`
-      : undefined;
+    ? absoluteUrl(review.coverImage)
+    : absoluteUrl(review.capture?.images?.[0]?.src);
 
   const graph: Array<Record<string, unknown>> = [
     {
@@ -292,6 +292,9 @@ export default async function ReviewPage({
                 </p>
               )}
               <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-cyan-100/65">
+                <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
+                  Captured: {review.capture.capturedAt}
+                </span>
                 {review.capture.translator && (
                   <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
                     Translation: {review.capture.translator}
@@ -303,6 +306,11 @@ export default async function ReviewPage({
                   </span>
                 )}
               </div>
+              {review.capture.rightsStatus && (
+                <p className="mt-4 border-t border-cyan-400/10 pt-4 text-xs leading-relaxed text-white/45">
+                  {review.capture.rightsStatus}
+                </p>
+              )}
             </div>
             {review.capture.images && review.capture.images.length > 0 && (
               <div className="grid gap-px border-t border-cyan-400/10 bg-cyan-400/10 sm:grid-cols-2">
@@ -311,8 +319,8 @@ export default async function ReviewPage({
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={960}
-                      height={1280}
+                      width={image.width ?? 960}
+                      height={image.height ?? 1280}
                       className="h-auto w-full object-cover"
                     />
                     {image.caption && (

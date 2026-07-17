@@ -1,5 +1,3 @@
-import { ALLY_SOCIAL_LINKS } from '@/lib/social-links'
-
 export type AnaWorkflowStage = {
   id:
     | 'board'
@@ -20,18 +18,25 @@ export type AnaWorkflowStage = {
   output: string
 }
 
+/**
+ * Public review links for the Ana collaboration surfaces.
+ * Private client records never live in these routes.
+ */
 export const anaLinks = {
+  // friends/ana = public collaboration hub + guides
+  // allies/ana-cancino = workflow + plugin install deep-dive
   friendPage: '/friends/ana',
+  canonicalHub: '/friends/ana',
   teamPlan: '/allies/ana-cancino',
   privateWorkspace: '/portal/ana',
-  kitDownload: '/downloads/ana-ai-business-kit',
-  tallinnFoundry: '/experiences/tallinn-2026',
-  ceciliaRoom: '/alliance/cecilia',
+  kitDownload: '/allies/ana-cancino#install',
+  ceciliaRoom: '/allies/ana-cancino',
   architectureAtlas: '/ai-architecture',
+  codexPluginsGuide: '/blog/codex-plugins-for-teams',
   website: 'https://www.anaceciliacancino.com/',
+  linkedin: 'https://www.linkedin.com/in/ana-cancino-/',
   workWithMe: 'https://www.anaceciliacancino.com/work-with-me',
   research: 'https://www.anaceciliacancino.com/research',
-  linkedin: ALLY_SOCIAL_LINKS.anaCancino.linkedin,
   kitRepo: 'https://github.com/frankxai/ana-ai-business-kit',
   kitStart:
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-ANA.md',
@@ -39,6 +44,12 @@ export const anaLinks = {
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/START-HERE-TEAM.md',
   kitReadingMap:
     'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/WHO-READS-WHAT.md',
+  installGuide:
+    'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/FORK-AND-INSTALL-CODEX.md',
+  officialPluginStack:
+    'https://github.com/frankxai/ana-ai-business-kit/blob/main/docs/OFFICIAL-CODEX-PLUGIN-STACK.md',
+  codexPluginDirectory: 'codex://plugins/install/?marketplace=openai-curated',
+  codexAnaPlugin: 'codex://plugins/ana-hr-operations@ana-business-kit',
   kitRelease:
     'https://github.com/frankxai/ana-ai-business-kit/releases/tag/v1.1.0',
   kitManifest:

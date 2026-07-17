@@ -428,9 +428,9 @@ export default function SuperpowersPage() {
                             {cat.deepDive && (
                               <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 flex flex-col justify-between md:col-span-2">
                                 <div className="flex items-start gap-2.5 mb-3">
-                                  <FileText className="w-4 h-4 text-purple-400 mt-0.5" />
+                                  <FileText className="w-4 h-4 text-emerald-400 mt-0.5" />
                                   <div>
-                                    <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400 block">DEEP DIVE REPORT</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block">FULL REPORT</span>
                                     <p className="text-xs text-slate-300">Read our fully verified 2026 playbook on this cluster workflow.</p>
                                   </div>
                                 </div>
