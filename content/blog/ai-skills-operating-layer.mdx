@@ -81,6 +81,8 @@ One is prompting.
 
 The other is a system.
 
+<Diagram src="/images/infographics/skill-anatomy.svg" alt="Anatomy of a skill: a SKILL.md file with frontmatter and body, plus references, scripts, assets, and evals folders, loaded by progressive disclosure" caption="A skill is a self-contained folder loaded in three levels — metadata, then body, then resources." />
+
 ## Why This Matters for Founders
 
 Founders repeat the same context constantly.
@@ -143,9 +145,11 @@ That is where an AI Center of Excellence becomes useful.
 
 Not as a blocker. As the operating system for safe compounding.
 
-## The FrankX Standard
+## The Agent Skill Standard
 
-The standard I use:
+Naming a standard after a person is branding, not a standard. So this work is published as an open spec — the **Agent Skill Standard** — that I steward rather than own. It builds directly on Anthropic's Agent Skills format and adds the layers that make a skill trustworthy in production.
+
+The readiness test:
 
 > A skill is ready when it can produce the intended result repeatedly, under representative conditions, with clear boundaries, visible assumptions, and a maintained owner.
 
@@ -164,6 +168,12 @@ That means every serious skill should include:
 - governance metadata
 
 If that sounds like software, good. Skills are lightweight software for operating knowledge.
+
+The standard also defines maturity levels, so a team can see exactly where a skill sits and what it needs next — from an ad-hoc prompt (L0) to a governed, composed, attested capability (L5).
+
+<Diagram src="/images/infographics/skill-maturity-ladder.svg" alt="The Skill Maturity Model: six levels from L0 Prompt to L5 Composed and attested capability" caption="The Skill Maturity Model — L0 Prompt to L5 Composed. Most teams live at L0–L1; durable capability starts at L3." />
+
+The full specification, maturity model, and conformance validator are open source in the [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard).
 
 ## The Bigger Shift
 
@@ -224,7 +234,9 @@ Use owners, versions, risk tiers, evaluations, security review for sensitive wor
 
 ## Related Reading
 
-- [The FrankX Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [The Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance)
 - [Building Custom Skills for ACOS](/blog/building-custom-skills-acos)
 - [Why Everyone Needs Their Own AI Center of Excellence](/blog/why-everyone-needs-personal-ai-coe)
 - [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)
+- [Agent Skill Standard (open spec)](https://github.com/frankxai/claude-skills-library/tree/main/standard)
