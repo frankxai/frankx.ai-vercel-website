@@ -23,9 +23,21 @@ keywords:
   - gemini 3.5 pro ga june 2026
   - google deepmind gemini 3.5
   - best ai model 2026
-image: "/images/blog/gemini-3-5-pro-analysis-2026-hero.svg"
+image: "/images/blog/generated/gemini-3-5-pro-analysis-2026-premium-hero.png"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Don't put a preview model in your AI Center of Excellence routing table: Gemini 3.5 Pro has no model card, no benchmarks, and no pricing, and everything circulating about it is a vendor-stated target. Deploy Gemini 3.5 Flash today — it already leads the prior Pro tier on agentic coding at $1.50/$9 — and re-evaluate Pro at GA against two specific numbers, ARC-AGI-2 and SWE-bench Pro. Budget for Google's context-length pricing tiers either way; the headline rate is not the rate your long prompts pay. Pay for Pro only if your workload provably hits Flash's hard-reasoning ceiling or needs the targeted 2M window."
+  coePillar: "Technology · model routing + Governance · vendor risk"
+  personas:
+    - persona: "Multimodal ingest agents"
+      pick: "Gemini 3.5 Flash today; reassess Pro at GA"
+    - persona: "Agentic mid-tier / tool-use fleets"
+      pick: "Gemini 3.5 Flash (83.6% MCP Atlas at $1.50/$9)"
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — Opus 4.8 as the value pick"
+    - persona: "Long-context repo agents"
+      pick: "Gemini 3.5 Pro at GA, if the 2M window is confirmed"
 ---
 
 # Gemini 3.5 Pro: What We Actually Know Before GA
@@ -33,6 +45,8 @@ schema: ["Article", "FAQPage"]
 **TL;DR**: As of June 5, 2026, Gemini 3.5 Pro is **not generally available**. Google announced it at I/O on May 19, 2026, but it remains in limited Vertex AI preview for select enterprise customers — no model card, no published benchmarks, no pricing tier. The model ID is `gemini-3.5-pro`. Google has positioned it as its strongest agentic and coding model, targeting a 2M-token context window and "Deep Think" reasoning. Sundar Pichai told the I/O audience to "give us until next month." So this is an honest pre-GA brief: what Gemini 3.5 Flash already proved, what Google has actually committed to, and what numbers to wait for. Where a figure isn't confirmed, I say so.
 
 ---
+
+<LearnHubCallout slug="gemini-mastery" blurb="Building with Google AI? Get the hands-on path in the" label="Gemini & Google AI Mastery portal." />
 
 ## Is Gemini 3.5 Pro Released Yet?
 
@@ -211,4 +225,4 @@ ARC-AGI-2 and SWE-bench Pro — the two areas where Gemini has historically trai
 
 ---
 
-*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI. Written June 5, 2026, while Gemini 3.5 Pro is still in preview. Verified figures are sourced to Google's GA releases, model cards, and independent trackers; everything about 3.5 Pro itself is marked as preview-stage and will be updated when the GA model card lands.*
+*Analysis by Frank — former Oracle AI architect building agentic systems independently and making music with AI. Written June 5, 2026, while Gemini 3.5 Pro is still in preview. Verified figures are sourced to Google's GA releases, model cards, and independent trackers; everything about 3.5 Pro itself is marked as preview-stage and will be updated when the GA model card lands.*

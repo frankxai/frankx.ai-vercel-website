@@ -311,7 +311,6 @@ export default function AssessmentPage() {
             src="/images/soulbook/hero-assessment.png"
             alt="Soulbook assessment background"
             fill
-            sizes="100vw"
             className="object-cover opacity-20"
             quality={80}
           />
@@ -386,7 +385,6 @@ export default function AssessmentPage() {
           src="/images/soulbook/hero-assessment.png"
           alt="Soulbook assessment background"
           fill
-          sizes="100vw"
           className="object-cover opacity-15"
           quality={80}
         />

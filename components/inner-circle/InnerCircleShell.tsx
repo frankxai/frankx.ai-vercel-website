@@ -51,7 +51,7 @@ const MEMBERSHIP_TIERS = [
   },
   {
     name: 'Inner Circle',
-    price: 'Pricing announces May 27',
+    price: '$119/mo or $999/yr',
     description: 'Full access to vault, labs, and direct agent support. Founding-member cohort capped at 100.',
     popular: true,
     features: [
@@ -421,7 +421,7 @@ export default function InnerCircleShell() {
               href="#signup"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#AB47C7]/40 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AB47C7]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              Join the Waitlist — June 1 2026
+              Join the Waitlist
               <ArrowRight className="h-4 w-4" />
             </Link>
             <span className="text-xs text-white/60">
@@ -447,7 +447,7 @@ export default function InnerCircleShell() {
               href="#signup"
               className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/50 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AB47C7]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              Join the Waitlist — June 1 2026
+              Join the Waitlist
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
@@ -596,6 +596,28 @@ export default function InnerCircleShell() {
               <PricingCard key={tier.name} tier={tier} index={index} />
             ))}
           </div>
+
+          {/* Foundry cross-link — the install path for founders */}
+          <div className="mx-auto mb-12 max-w-3xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 sm:p-8">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-2">
+              Building a business?
+            </p>
+            <h3 className="text-xl font-bold text-white mb-2">
+              The Foundry installs an operating system instead.
+            </h3>
+            <p className="text-sm text-white/60 mb-4">
+              Alliance-grade depth for one company: a complete agentic business OS — site, harness,
+              gates, memory — derived for your brand and owned by your team. Evaluated
+              applications only.
+            </p>
+            <Link
+              href="/foundry"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              Learn about the Foundry <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
         </div>
       </section>
 

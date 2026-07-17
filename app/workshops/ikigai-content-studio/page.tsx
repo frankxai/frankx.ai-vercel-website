@@ -16,7 +16,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
 import { IntakeForm } from '@/components/workshops/IntakeForm'
 import { ModuleAccordion } from '@/components/workshops/ModuleAccordion'
-import { CourseSchema } from '@/components/workshops/CourseSchema'
+import { WorkshopProvenanceNotice } from '@/components/workshops/WorkshopProvenanceNotice'
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const WORKSHOP_SLUG = 'ikigai-content-studio'
@@ -26,10 +26,8 @@ export default function IkigaiContentStudioPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <CourseSchema workshop={workshop} />
-
       {/* Hero */}
-      <section className="relative pt-28 pb-20 lg:pb-28 overflow-hidden">
+      <section className="relative pt-28 pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.05] to-transparent" />
         <div className="absolute top-24 left-1/3 w-[500px] h-[500px] bg-violet-500/[0.06] rounded-full blur-[140px]" />
 
@@ -65,29 +63,31 @@ export default function IkigaiContentStudioPage() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-3">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
               {workshop.title}
             </h1>
-            <p className="text-[17px] leading-relaxed text-white/80 mb-6 max-w-2xl">
+            <p className="text-lg text-zinc-400 mb-6 max-w-2xl">
               {workshop.subtitle}.
             </p>
 
-            <p className="text-[15px] leading-relaxed text-white/60 max-w-3xl mb-8">
+            <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
               {workshop.overview}
             </p>
+
+            <WorkshopProvenanceNotice />
 
             {/* Primary CTA */}
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#intake"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 transition-all"
               >
                 <Send className="w-4 h-4" />
                 Request a conversation
               </a>
               <Link
                 href="/workshops/ikigai-branding"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-300 hover:text-violet-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full px-2 py-1"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-300 hover:text-violet-200 transition-colors"
               >
                 Try the self-serve wizard
                 <ArrowRight className="w-4 h-4" />
@@ -144,8 +144,8 @@ export default function IkigaiContentStudioPage() {
       {/* Agenda */}
       <section className="pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-3">Agenda</h2>
-          <p className="text-[17px] leading-relaxed text-white/80 mb-6 max-w-2xl">
+          <h2 className="text-2xl font-bold text-white mb-2">Agenda</h2>
+          <p className="text-sm text-zinc-500 mb-6 max-w-2xl">
             Five modules. The second half of the session is hands-on — every attendee
             ships something visible before leaving.
           </p>
@@ -164,10 +164,10 @@ export default function IkigaiContentStudioPage() {
             <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-2">
               Book this workshop
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Request a conversation
             </h2>
-            <p className="text-[17px] leading-relaxed text-white/80 mt-3 max-w-2xl">
+            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
               Tell Frank about your team and context. Dates, pricing, and format are
               scoped on a short first call. Reply within 48h.
             </p>
@@ -198,16 +198,6 @@ export default function IkigaiContentStudioPage() {
                   compact
                 />
               </div>
-              <p className="text-xs text-zinc-500 mt-5">
-                Or{' '}
-                <Link
-                  href="/inner-circle"
-                  className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
-                >
-                  reserve a seat in the Inner Circle
-                </Link>{' '}
-                for first access to private cohorts and founder pricing.
-              </p>
             </div>
           </GlowCard>
 

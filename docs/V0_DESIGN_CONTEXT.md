@@ -8,7 +8,7 @@
 ## 1. CORE IDENTITY
 
 ### Who is FrankX?
-- **Frank** = Oracle AI Architect + musician-technologist with 500+ AI-generated songs
+- **Frank** = AI Architect & Creator + musician-technologist with 12,000+ AI-generated songs
 - **NOT** a generic tech guru—a creator who bridges enterprise expertise with artistic expression
 - **Mission**: Transform creators and students from tech-overwhelmed to AI-empowered
 
@@ -23,7 +23,7 @@
 - **Prohibited phrases**: "Delve," "Unlock potential," "In today's landscape," "Game-changer," "Let's dive in"
 - **Required tone**: Visionary but grounded. Engineering truth. Verbs like "Architect," "Deploy," "Scale," "Build," "Ship"
 - **Personal**: Uses "I" and shares real creator journey
-- **Technical but accessible**: Oracle-level knowledge made simple for creators
+- **Technical but accessible**: enterprise AI knowledge made simple for creators
 
 ---
 

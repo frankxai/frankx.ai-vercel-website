@@ -15,13 +15,13 @@ const BEATS: Beat[] = [
   },
   {
     Icon: Users,
-    label: '7,000+ audience',
-    body: 'EMEA-weighted network across Oracle, NVIDIA, Anthropic, founder circles. Posts on coding-agent CoE patterns clear 100+ engagements.',
+    label: 'Builder audience',
+    body: 'Focused public channels across the site, newsletter, GitHub, and LinkedIn for coding-agent CoE patterns and creator systems.',
   },
   {
     Icon: Mic2,
     label: 'Keynote-tier delivery',
-    body: 'Co-architect of the Oracle × NVIDIA partner event 2025. Workshop forcing functions across DOAG, Madrid, NLDigital.',
+    body: 'Workshop and speaking formats across AI architecture, creator systems, and human-centered agent workflows.',
   },
   {
     Icon: Cpu,

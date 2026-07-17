@@ -11,6 +11,15 @@
  * Verified-vs-vendor-claimed distinctions are called out where it matters.
  */
 
+export interface ArchitectRecommendation {
+  /** The routing call, written as a working AI Architect's recommendation. */
+  call: string
+  /** Which AI Center of Excellence pillar this decision lives in. */
+  coePillar?: string
+  /** Per-agent-persona routing: which model each persona class should run. */
+  personas?: Array<{ persona: string; pick: string }>
+}
+
 export interface Comparison {
   slug: string
   /** Registry model ids, [a, b]. */
@@ -28,6 +37,8 @@ export interface Comparison {
   /** "Pick B if…" bullets. */
   pickSecond: string[]
   keywords: string[]
+  /** Optional AI Architect Recommendation box (rendered above the analysis). */
+  architect?: ArchitectRecommendation
 }
 
 export const COMPARISONS: Comparison[] = [
@@ -65,6 +76,16 @@ export const COMPARISONS: Comparison[] = [
       'should i upgrade to fable 5',
       'best claude model 2026',
     ],
+    architect: {
+      call: 'Run both, routed by task shape. In an AI Center of Excellence this is not an either/or — Fable 5 becomes the execution layer (agents whose outputs feed schemas, tools, and other agents), Opus 4.8 the judgment layer (review gates, ambiguous specs, human-read prose) at half the price. Our four receipted rounds support exactly this split and nothing stronger.',
+      coePillar: 'Technology · model routing',
+      personas: [
+        { persona: 'Pipeline & coding agents', pick: 'Fable 5' },
+        { persona: 'Reviewer / judgment agents', pick: 'Opus 4.8' },
+        { persona: 'Research & synthesis agents', pick: 'Opus 4.8 (1M ctx at $5/$25)' },
+        { persona: 'Bulk fan-out workers', pick: 'Haiku-tier — neither flagship' },
+      ],
+    },
   },
   {
     slug: 'claude-fable-5-vs-gpt-5-5',
@@ -97,6 +118,225 @@ export const COMPARISONS: Comparison[] = [
       'swe bench pro fable 5',
       'anthropic vs openai 2026',
     ],
+    architect: {
+      call: 'Split by autonomy surface. Coding agents that live in a repo route to Fable 5; agents that drive a desktop, a terminal session, or a customer workflow route to GPT-5.5. If you only fund one lane, fund the one your product actually ships — and receipt your own round before committing, because this comparison currently rests on vendor figures from both labs.',
+      coePillar: 'Technology · model routing',
+      personas: [
+        { persona: 'Pipeline & coding agents', pick: 'Fable 5' },
+        { persona: 'Computer-use / desktop agents', pick: 'GPT-5.5' },
+        { persona: 'Customer-workflow agents', pick: 'GPT-5.5 (Tau2 98%)' },
+        { persona: 'Voice-first agents', pick: 'GPT-5.5 (native voice)' },
+      ],
+    },
+  },
+  {
+    slug: 'claude-fable-5-vs-gemini-3-5-pro',
+    models: ['claude-fable-5', 'gemini-3-5-pro'],
+    title: 'Claude Fable 5 vs Gemini 3.5 Pro',
+    description:
+      'Claude Fable 5 vs Gemini 3.5 Pro: Fable 5 is GA with launch benchmarks; Gemini 3.5 Pro is still Vertex-preview-only with no model card. The honest June 2026 state.',
+    verdict:
+      'Not yet a fair fight: Fable 5 is generally available with published numbers; Gemini 3.5 Pro remains a limited Vertex preview with no model card, benchmarks, or pricing. Today, Fable 5 wins by forfeit \u2014 revisit at Gemini GA.',
+    analysis: [
+      'This page exists because the search query exists \u2014 and most answers to it will pretend both models are shipping. They are not. Claude Fable 5 went GA on June 9, 2026 with launch benchmarks (95.0% SWE-Bench Verified, ~80% SWE-Bench Pro, vendor-claimed). Gemini 3.5 Pro was announced at I/O on May 19 but as of mid-June remains a limited Vertex preview: no model card, no benchmarks, no public pricing.',
+      'The circulating cross-lab figure puts the GA Gemini generation (3.1 Pro) at 54.2% SWE-Bench Pro \u2014 roughly 26 points behind Fable 5\u2019s launch number. If agentic coding is the workload, the gap today is generational. Google\u2019s GA answer right now is Gemini 3.5 Flash at $1.5/$9: a budget-and-speed pick, not a flagship duel.',
+      'What would change this verdict: Gemini 3.5 Pro shipping GA with a model card that closes the agentic-coding gap, or pricing that undercuts hard enough to win the cost-per-outcome math. We will re-run this page when that happens \u2014 it is a living comparison, not a hot take.',
+    ],
+    pickFirst: [
+      'You need a GA flagship with published agentic-coding numbers today',
+      'Long-horizon coding agents (SWE-Bench Verified 95%, vendor-claimed)',
+      'You operate in Claude Code, where Fable 5 is the default',
+    ],
+    pickSecond: [
+      'You are already deep in Vertex AI and can wait for GA',
+      'Your workload is multimodal-first (Gemini\u2019s historical strength)',
+      'Budget tier now: Gemini 3.5 Flash at $1.5/$9 covers volume work',
+    ],
+    keywords: [
+      'claude fable 5 vs gemini 3.5 pro',
+      'fable 5 vs gemini',
+      'gemini 3.5 pro benchmarks',
+      'gemini 3.5 pro release date',
+      'best ai model 2026',
+      'anthropic vs google 2026',
+    ],
+    architect: {
+      call: 'Do not architect against a preview. Route agentic coding to Fable 5 now, keep Gemini 3.5 Flash in the budget lane if you are Vertex-committed, and put a calendar gate on Gemini 3.5 Pro GA \u2014 re-evaluate the week it ships a model card, not before. An AI CoE makes routing decisions on published artifacts, not announcements.',
+      coePillar: 'Technology \u00b7 model routing + Strategy \u00b7 vendor timing',
+      personas: [
+        { persona: 'Pipeline & coding agents', pick: 'Fable 5' },
+        { persona: 'Multimodal ingest agents', pick: 'Gemini 3.5 Flash (GA today)' },
+        { persona: 'Bulk fan-out workers', pick: 'Gemini 3.5 Flash or Haiku-tier' },
+      ],
+    },
+  },
+  {
+    slug: 'claude-fable-5-vs-grok-4-3',
+    models: ['claude-fable-5', 'grok-4-3'],
+    title: 'Claude Fable 5 vs Grok 4.3',
+    description:
+      'Claude Fable 5 vs Grok 4.3: the agentic ceiling at $10/$50 against intelligence-per-dollar at $1.25/$2.50 \u2014 a 20\u00d7 output-price gap. Which to route where in 2026.',
+    verdict:
+      'Different products. Fable 5 is the agentic-coding ceiling; Grok 4.3 is the cheapest credible frontier intelligence with the fastest throughput in its class. The 20\u00d7 output-price gap means most stacks should run both \u2014 at different tiers.',
+    analysis: [
+      'The price gap is the story: Fable 5 at $10/$50 per million tokens against Grok 4.3 at $1.25/$2.50 \u2014 twenty times cheaper on output. Grok 4.3 is not a benchmark leader (AA Intelligence Index 53, about 8 points below Opus 4.8 and further below Fable-class), but it pairs credible frontier intelligence with 181 tokens/sec throughput, the fastest in its class.',
+      'Fable 5 justifies its premium exactly where Grok cannot follow: 95.0% SWE-Bench Verified and ~80% SWE-Bench Pro (vendor-claimed) on long-horizon agentic coding. No circulating Grok 4.3 figure is in that conversation. For correctness-critical pipelines \u2014 code that ships, outputs that feed tools \u2014 the cost of an error dwarfs the cost of the tokens.',
+      'The honest routing math: if a task is error-tolerant and volume-heavy (drafting, classification, summarization at scale, exploratory generation), Grok 4.3\u2019s intelligence-per-dollar wins outright. If a task is error-expensive and agentic, Fable 5\u2019s premium is cheaper than the rework. Match the model to the task\u2019s cost-of-error, not to the leaderboard.',
+    ],
+    pickFirst: [
+      'Agentic coding where wrong outputs cost more than tokens',
+      'Strict output contracts feeding schemas and tools',
+      'Long-horizon multi-step tasks (the lead reportedly widens)',
+    ],
+    pickSecond: [
+      'High-volume, error-tolerant generation \u2014 20\u00d7 cheaper output',
+      'Latency-sensitive products (fastest throughput in class)',
+      'Real-time X/social data integration is part of the workload',
+    ],
+    keywords: [
+      'claude fable 5 vs grok 4.3',
+      'fable 5 vs grok',
+      'grok 4.3 price comparison',
+      'cheapest frontier ai model 2026',
+      'anthropic vs xai 2026',
+      'intelligence per dollar llm',
+    ],
+    architect: {
+      call: 'Two-tier routing: Fable 5 as the execution ceiling for error-expensive agentic work, Grok 4.3 as the volume floor for error-tolerant generation. The 20\u00d7 price gap funds the whole second tier for free if it diverts even a third of your token volume. This is the Strategy-pillar conversation: cost-of-error budgeting, not model loyalty.',
+      coePillar: 'Technology \u00b7 model routing + Strategy \u00b7 cost-of-error budgeting',
+      personas: [
+        { persona: 'Pipeline & coding agents', pick: 'Fable 5' },
+        { persona: 'Bulk fan-out workers', pick: 'Grok 4.3' },
+        { persona: 'Real-time / social-signal agents', pick: 'Grok 4.3' },
+        { persona: 'Reviewer / judgment agents', pick: 'Opus 4.8 (see the Fable-vs-Opus page)' },
+      ],
+    },
+  },
+  {
+    slug: 'claude-fable-5-vs-deepseek-v4',
+    models: ['claude-fable-5', 'deepseek-v4'],
+    title: 'Claude Fable 5 vs DeepSeek V4',
+    description:
+      'Claude Fable 5 vs DeepSeek V4: the closed agentic ceiling vs the MIT-licensed open-weight price floor. SWE-Bench Verified 95% vs 80.6%, $10/$50 vs $1.74/$3.48.',
+    verdict:
+      'Fable 5 owns the ceiling; DeepSeek V4 owns the open-weight floor \u2014 80.6% SWE-Bench Verified under MIT at a tenth of the cost. If sovereignty or self-hosting is a requirement, DeepSeek wins by default; if peak agentic capability is, Fable 5 does.',
+    analysis: [
+      'DeepSeek V4 is the strongest argument that frontier-adjacent is cheap now: 80.6% SWE-Bench Verified (independently corroborated), AA Index 52, MIT license, $1.74/$3.48 hosted or self-host for the cost of your own GPUs. Fable 5\u2019s launch numbers sit a full tier above \u2014 95.0% Verified, ~80% on the harder SWE-Bench Pro (vendor-claimed) \u2014 at roughly 10\u00d7 the hosted price.',
+      'The 14-point Verified gap understates the practical difference on long-horizon work: SWE-Bench Pro is the contamination-resistant benchmark, and no circulating DeepSeek V4 Pro figure approaches Fable 5\u2019s ~80%. For repo-scale agentic coding the tiers are real.',
+      'But the decision is rarely benchmarks-first. DeepSeek V4 is the only model on this page you can run inside your own perimeter, fine-tune, and never send a customer token off-box. For regulated workloads, data-sovereignty requirements, or genuine cost floors, that property beats 14 points. The CoE question is which constraint binds: capability or control.',
+    ],
+    pickFirst: [
+      'Peak agentic-coding capability is the binding constraint',
+      'Hosted convenience with strict output discipline',
+      'Long-horizon tasks where the Pro-benchmark tier gap shows',
+    ],
+    pickSecond: [
+      'Data sovereignty / self-hosting is non-negotiable (MIT license)',
+      'Cost floor for frontier-adjacent coding (80.6% Verified at ~10\u00d7 less)',
+      'Fine-tuning on proprietary code is part of the plan',
+    ],
+    keywords: [
+      'claude fable 5 vs deepseek v4',
+      'fable 5 vs deepseek',
+      'deepseek v4 swe bench',
+      'best open weight coding model 2026',
+      'self hosted llm coding 2026',
+      'mit license llm',
+    ],
+    architect: {
+      call: 'Decide on the Governance pillar first: if any workload cannot leave your perimeter, DeepSeek V4 is your on-prem lane and the only question is sizing. Everything else routes by capability tier \u2014 Fable 5 for the agentic ceiling, DeepSeek hosted as the budget coding lane. Most mature CoEs end up running both: sovereignty lane + ceiling lane.',
+      coePillar: 'Governance \u00b7 data sovereignty + Technology \u00b7 model routing',
+      personas: [
+        { persona: 'Pipeline & coding agents (cloud)', pick: 'Fable 5' },
+        { persona: 'Sovereign / on-prem stacks', pick: 'DeepSeek V4 (MIT)' },
+        { persona: 'Budget coding lane', pick: 'DeepSeek V4 hosted' },
+        { persona: 'Fine-tuned domain agents', pick: 'DeepSeek V4' },
+      ],
+    },
+  },
+  {
+    slug: 'claude-fable-5-vs-kimi-k2-6',
+    models: ['claude-fable-5', 'kimi-k2-6'],
+    title: 'Claude Fable 5 vs Kimi K2.6',
+    description:
+      'Claude Fable 5 vs Kimi K2.6: the new agentic ceiling vs the best open-weights model on the neutral AA index. SWE-Bench Pro ~80% vs 58.6%, $10/$50 vs $0.60/$2.50.',
+    verdict:
+      'Kimi K2.6 is the best open-weights model on the neutral index and matches GPT-5.5 on SWE-Bench Pro \u2014 at $0.60/$2.50. Fable 5 still clears it by a full tier on agentic coding. Ceiling vs best-value-open: route accordingly.',
+    analysis: [
+      'Kimi K2.6 earned its position: AA Intelligence Index 54 (best open weights, ahead of DeepSeek V4), 80.2% SWE-Bench Verified, and 58.6% SWE-Bench Pro \u2014 dead even with GPT-5.5\u2019s Pro figure \u2014 at $0.60/$2.50 per million tokens. That makes it arguably the best value in frontier-adjacent AI right now.',
+      'Fable 5\u2019s launch numbers clear it by a tier: ~80% SWE-Bench Pro (vendor-claimed) is 21 points up, the same gap it holds over GPT-5.5. The 262K context window is also a real constraint against Fable 5\u2019s 1M for long-horizon, many-file agent sessions.',
+      'The honest framing: Kimi K2.6 at one-twentieth the output price does most of what most teams need from a coding model. Fable 5 exists for the work where most is not enough \u2014 contamination-resistant hard tasks, long horizons, strict output contracts. Pay the 20\u00d7 only where that distinction is real in your pipeline.',
+    ],
+    pickFirst: [
+      'The hardest tier of agentic coding (Pro-benchmark gap is 21 points)',
+      '1M-context agent sessions across many files',
+      'Strict output contracts in production pipelines',
+    ],
+    pickSecond: [
+      'Best open-weights value: GPT-5.5-level SWE-Bench Pro at $0.60/$2.50',
+      'Self-hosting with the strongest neutral-index open model',
+      'High-volume coding assistance where ceiling capability is not binding',
+    ],
+    keywords: [
+      'claude fable 5 vs kimi k2.6',
+      'fable 5 vs kimi',
+      'kimi k2.6 benchmarks',
+      'best open weights model 2026',
+      'moonshot kimi vs claude',
+      'cheapest coding llm 2026',
+    ],
+    architect: {
+      call: 'Kimi K2.6 is the strongest open-weights default for the coding-volume lane \u2014 GPT-5.5-level Pro scores at commodity prices. Reserve Fable 5 for the agent paths where task length or output discipline binds. If your CoE runs a two-lane coding stack, this is the cheapest credible second lane on the market.',
+      coePillar: 'Technology \u00b7 model routing + Strategy \u00b7 vendor diversification',
+      personas: [
+        { persona: 'Pipeline & coding agents (ceiling)', pick: 'Fable 5' },
+        { persona: 'Coding-volume lane', pick: 'Kimi K2.6' },
+        { persona: 'Sovereign / self-hosted stacks', pick: 'Kimi K2.6 or DeepSeek V4' },
+        { persona: 'Long-context repo agents', pick: 'Fable 5 (1M vs 262K)' },
+      ],
+    },
+  },
+  {
+    slug: 'claude-fable-5-vs-qwen3-7-max',
+    models: ['claude-fable-5', 'qwen3-7-max'],
+    title: 'Claude Fable 5 vs Qwen3.7-Max',
+    description:
+      'Claude Fable 5 vs Qwen3.7-Max: the agentic ceiling vs the strongest API-only value play. SWE-Bench Pro ~80% vs 60.6%, $10/$50 vs $2.50/$7.50, both 1M context.',
+    verdict:
+      'Qwen3.7-Max leads its peer group (Kimi, DeepSeek) on hard agentic coding and matches Fable 5 on context \u2014 at a quarter of the price. Fable 5 keeps a ~19-point SWE-Bench Pro lead. Value leader vs ceiling, both closed.',
+    analysis: [
+      'Qwen3.7-Max broke the open-weight Qwen association \u2014 it is closed and API-only \u2014 and used the move to lead its peer group: AA Index 56.6 (above Kimi K2.6 and DeepSeek V4), 60.6% SWE-Bench Pro, 80.4% Verified, 1M context at $2.50/$7.50.',
+      'Against Fable 5 the shape repeats from every page in this series: a ~19-point SWE-Bench Pro gap (vendor-claimed on the Fable side) for a 4\u00d7 price difference. Qwen3.7-Max\u2019s distinction is that, unlike Kimi or DeepSeek, it concedes nothing on context window \u2014 both run 1M \u2014 so long-horizon sessions are a fair fight on memory, just not on the benchmark tier.',
+      'Where Qwen fits: the high-volume agentic mid-tier \u2014 real tool-use workloads that need better-than-open-weights reliability without flagship pricing. Where it does not: the hardest contamination-resistant tier, and any stack with a procurement allergy to API-only Chinese-lab models \u2014 a Governance-pillar question your CoE should answer explicitly rather than by default.',
+    ],
+    pickFirst: [
+      'The hardest agentic-coding tier (~19-point Pro gap)',
+      'Strict output contracts and long-horizon execution',
+      'Claude Code-native operation',
+    ],
+    pickSecond: [
+      'Strongest value in the agentic mid-tier ($2.50/$7.50, AA 56.6)',
+      '1M-context work without flagship pricing',
+      'High-volume tool-use agents where the Pro tier gap is not binding',
+    ],
+    keywords: [
+      'claude fable 5 vs qwen3.7 max',
+      'fable 5 vs qwen',
+      'qwen3.7 max benchmarks',
+      'qwen 3.7 max vs claude',
+      'best value agentic llm 2026',
+      'alibaba qwen vs anthropic',
+    ],
+    architect: {
+      call: 'Qwen3.7-Max is the mid-tier I would pressure-test first for agent fleets: peer-group-leading agentic scores, 1M context, a quarter of flagship cost. Gate it through your Governance pillar first (API-only, Chinese lab \u2014 decide explicitly), then route volume agentic work to it and keep Fable 5 for the ceiling paths.',
+      coePillar: 'Technology \u00b7 model routing + Governance \u00b7 vendor risk',
+      personas: [
+        { persona: 'Pipeline & coding agents (ceiling)', pick: 'Fable 5' },
+        { persona: 'Agentic mid-tier / tool-use fleets', pick: 'Qwen3.7-Max' },
+        { persona: 'Long-context agents on a budget', pick: 'Qwen3.7-Max (1M at $2.50/$7.50)' },
+        { persona: 'Regulated / vendor-risk-sensitive stacks', pick: 'Fable 5 or DeepSeek V4 self-hosted' },
+      ],
+    },
   },
 
   // ─────────────────────────────────────────────────────────────────────────

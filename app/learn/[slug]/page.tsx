@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { notFound, useParams } from 'next/navigation'
 import { useState } from 'react'
 import {
   ArrowRight,
@@ -18,13 +18,13 @@ import {
   ExternalLink,
   CheckCircle,
   Target,
+  Layers,
   Rocket,
+  RefreshCw,
   AlertTriangle,
   FlaskConical,
-  RefreshCw,
-  HelpCircle,
   Users,
-  Layers,
+  HelpCircle,
 } from 'lucide-react'
 import { learningPaths, type VideoResource, type PortalAnnouncement } from '@/data/learning-paths'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
@@ -43,8 +43,10 @@ const colorMap: Record<string, { bg: string; text: string; border: string; gradi
   cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20', gradientFrom: 'from-cyan-500/10' },
   amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20', gradientFrom: 'from-amber-500/10' },
   violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20', gradientFrom: 'from-violet-500/10' },
-  sky: { bg: 'bg-sky-500', text: 'text-sky-400', border: 'border-sky-500/20', gradientFrom: 'from-sky-500/15' },
+  sky: { bg: 'bg-sky-500', text: 'text-sky-400', border: 'border-sky-500/20', gradientFrom: 'from-sky-500/10' },
 }
+
+const defaultColors = colorMap.emerald
 
 const playButtonBgMap: Record<string, string> = {
   emerald: 'bg-emerald-500/80 group-hover:bg-emerald-500',
@@ -61,9 +63,9 @@ const announcementTagStyles: Record<PortalAnnouncement['tag'], { bg: string; tex
   Research: { bg: 'bg-violet-500/10', text: 'text-violet-400', icon: FlaskConical },
 }
 
-// Lightweight FAQ answer renderer — converts [label](href) into anchor tags
-// and escapes everything else. Kept tiny on purpose: the FAQ schema gets the
-// raw text via FAQPageJsonLd, so this is purely the visual rendering.
+// Lightweight FAQ answer renderer — converts [label](href) into anchor tags and
+// escapes everything else. Kept tiny on purpose: FAQPageJsonLd gets the raw
+// text, so this is purely the visual rendering.
 function renderFaqAnswer(answer: string): string {
   const escape = (s: string) =>
     s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -75,9 +77,7 @@ function renderFaqAnswer(answer: string): string {
     parts.push(escape(answer.slice(lastIndex, match.index)))
     const label = escape(match[1])
     const href = match[2].replace(/"/g, '&quot;')
-    parts.push(
-      `<a href="${href}" class="text-sky-400 hover:underline">${label}</a>`,
-    )
+    parts.push(`<a href="${href}" class="text-sky-400 hover:underline">${label}</a>`)
     lastIndex = match.index + match[0].length
   }
   parts.push(escape(answer.slice(lastIndex)))
@@ -86,7 +86,7 @@ function renderFaqAnswer(answer: string): string {
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const colors = colorMap[color]
+  const colors = colorMap[color] || defaultColors
   const playBtnClasses = playButtonBgMap[color] || playButtonBgMap.emerald
 
   return (
@@ -104,7 +104,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
         ) : (
           <>
             <Image
-              src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+              src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -124,21 +124,20 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
                 {video.level}
               </span>
             </div>
-            <div className="absolute bottom-4 right-4 px-2 py-1 rounded bg-black/70 text-white text-sm">
-              {video.duration}
-            </div>
+            {/* Only show a real duration — the "See YouTube" placeholder read as unfinished. */}
+            {video.duration && video.duration !== 'See YouTube' && (
+              <div className="absolute bottom-4 right-4 px-2 py-1 rounded bg-black/70 text-white text-sm">
+                {video.duration}
+              </div>
+            )}
           </>
         )}
       </div>
 
       {/* Info */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2">
-          {video.title}
-        </h3>
-        <p className="text-white/60 mb-4">
-          {video.description}
-        </p>
+        <h3 className="text-xl font-bold text-white mb-2">{video.title}</h3>
+        <p className="text-white/60 mb-4">{video.description}</p>
         <div className="flex items-center justify-between">
           <a
             href={video.creatorChannel}
@@ -157,6 +156,35 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
             ))}
           </div>
         </div>
+
+        {/* Video-intelligence enrichment — the indexable substance + the take */}
+        {((video.keyTakeaways && video.keyTakeaways.length > 0) || video.architectNote) && (
+          <div className="mt-4 pt-4 border-t border-white/10 space-y-4">
+            {video.keyTakeaways && video.keyTakeaways.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-2">
+                  Key takeaways
+                </p>
+                <ul className="space-y-1.5">
+                  {video.keyTakeaways.map((takeaway, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-white/70">
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-white/30" />
+                      {takeaway}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {video.architectNote && (
+              <div className={`rounded-xl border ${colors.border} bg-white/[0.02] p-3`}>
+                <p className={`text-xs font-semibold uppercase tracking-wider ${colors.text} mb-1`}>
+                  The AI Architect&apos;s take
+                </p>
+                <p className="text-sm text-white/70 leading-relaxed">{video.architectNote}</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -168,38 +196,43 @@ export default function LearningPathPage() {
 
   const path = learningPaths.find((p) => p.slug === slug)
 
+  // Unknown slug → real 404 (matches the /learn/[slug] hardening in #219),
+  // not an inline error page.
   if (!path) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0b] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Path not found</h1>
-          <Link href="/learn" className="text-emerald-400 hover:text-emerald-300">
-            Back to Learning Paths
-          </Link>
-        </div>
-      </div>
-    )
+    notFound()
   }
 
   const Icon = iconMap[path.icon] || BookOpen
-  const colors = colorMap[path.color]
+  // Fallback color guards against a portal declaring a color not in colorMap —
+  // otherwise `colors.gradientFrom` throws (the 500 #219 fixed).
+  const colors = colorMap[path.color] || defaultColors
+
+  // Recency signal for AI answer engines: parse the "Updated <Month DD, YYYY>"
+  // heroEyebrow into an ISO date. This is the strongest freshness cue we have.
+  const eyebrowDate = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)?.[1]
+  const parsedDate = eyebrowDate ? new Date(eyebrowDate) : null
+  const dateModified = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate.toISOString() : undefined
+  const heroThumb = path.videos[0]
+    ? `https://img.youtube.com/vi/${path.videos[0].youtubeId}/maxresdefault.jpg`
+    : undefined
+  // Entity coverage — the tools this portal actually teaches, as named Things.
+  const aboutEntities = (path.ecosystem ?? []).slice(0, 8).map((t) => ({ '@type': 'Thing', name: t.name }))
 
   const courseSchema = {
     name: path.title,
     description: path.description,
     provider: { '@type': 'Organization', name: 'FrankX.AI', url: 'https://frankx.ai' },
     url: `https://frankx.ai/learn/${path.slug}`,
+    ...(heroThumb ? { image: heroThumb } : {}),
+    ...(dateModified ? { dateModified } : {}),
+    ...(aboutEntities.length > 0 ? { about: aboutEntities } : {}),
     educationalLevel:
       path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
     learningResourceType: 'Course',
     timeRequired: `PT${path.estimatedHours}H`,
     inLanguage: 'en',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'Online',
-      courseWorkload: `PT${path.estimatedHours}H`,
-    },
+    hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Online', courseWorkload: `PT${path.estimatedHours}H` },
   }
 
   const videoListSchema = {
@@ -208,14 +241,16 @@ export default function LearningPathPage() {
     itemListElement: path.videos.map((video, index) => ({
       '@type': 'ListItem',
       position: index + 1,
+      // uploadDate intentionally omitted — we don't know each video's real
+      // publish date, and a fabricated one is worse SEO than its absence
+      // (Google tolerates a missing recommended field, not a wrong one).
       item: {
         '@type': 'VideoObject',
         name: video.title,
         description: video.description,
-        thumbnailUrl: `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`,
+        thumbnailUrl: `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`,
         contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
         embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
-        uploadDate: '2026-01-01',
       },
     })),
   }
@@ -224,7 +259,7 @@ export default function LearningPathPage() {
     <div className="min-h-screen bg-[#0a0a0b]">
       <JsonLd type="Course" data={courseSchema} id={`json-ld-course-${path.slug}`} />
       <JsonLd type="ItemList" data={videoListSchema} id={`json-ld-videos-${path.slug}`} />
-      {path.faqs && path.faqs.length > 0 && (
+      {path.faqs && path.faqs.length > 0 && path.emitFaqSchema !== false && (
         <FAQPageJsonLd faqs={path.faqs} id={`json-ld-faq-${path.slug}`} />
       )}
 
@@ -258,13 +293,9 @@ export default function LearningPathPage() {
                 {path.difficulty} path
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4">
-                {path.title}
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{path.title}</h1>
 
-              <p className="text-[17px] leading-relaxed text-white/80 mb-8">
-                {path.description}
-              </p>
+              <p className="text-xl text-white/60 mb-8">{path.description}</p>
 
               {/* Stats */}
               <div className="flex items-center gap-6 text-white/50">
@@ -298,7 +329,7 @@ export default function LearningPathPage() {
         </div>
       </section>
 
-      {/* Long Intro */}
+      {/* Long intro */}
       {path.longIntro && (
         <section className="max-w-4xl mx-auto px-6 pb-12">
           <div className="prose prose-invert prose-lg max-w-none text-white/70 leading-relaxed">
@@ -311,9 +342,28 @@ export default function LearningPathPage() {
         </section>
       )}
 
+      {/* The AI Architect's Distillation — the unique, citable synthesis */}
+      {path.distillation && (
+        <section id="distillation" className="max-w-4xl mx-auto px-6 pb-16">
+          <div className={`rounded-2xl border ${colors.border} bg-white/[0.02] p-6 md:p-8`}>
+            <div className="flex items-center gap-3 mb-5">
+              <Sparkles className={`w-5 h-5 ${colors.text}`} />
+              <h2 className="text-xl md:text-2xl font-bold text-white">The AI Architect&apos;s Distillation</h2>
+            </div>
+            <div className="prose prose-invert max-w-none text-white/75 leading-relaxed">
+              {path.distillation.split('\n\n').map((paragraph, i) => (
+                <p key={i} className="mb-4">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Videos */}
       <section id="videos" className="max-w-6xl mx-auto px-6 pb-16">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-8">Course Videos</h2>
+        <h2 className="text-2xl font-bold text-white mb-8">Course Videos</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {path.videos.map((video, i) => (
@@ -321,7 +371,7 @@ export default function LearningPathPage() {
               key={video.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: Math.min(i, 4) * 0.1 }}
             >
               <VideoPlayer video={video} color={path.color} />
             </motion.div>
@@ -329,7 +379,7 @@ export default function LearningPathPage() {
         </div>
       </section>
 
-      {/* Ecosystem Grid */}
+      {/* Ecosystem grid */}
       {path.ecosystem && path.ecosystem.length > 0 && (
         <section id="ecosystem" className="max-w-6xl mx-auto px-6 pb-16">
           <div className="flex items-center gap-3 mb-8">
@@ -337,7 +387,7 @@ export default function LearningPathPage() {
             <h2 className="text-2xl font-bold text-white">The Ecosystem</h2>
           </div>
           <p className="text-white/50 mb-8 max-w-2xl">
-            Every tool you need to ship — with the official Google product page for each.
+            Every tool you need to ship — each linked to its official product page.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {path.ecosystem.map((tool) => (
@@ -346,7 +396,7 @@ export default function LearningPathPage() {
                 href={tool.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group block p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all`}
+                className="group block p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <span className={`text-xs font-medium px-2 py-0.5 rounded ${colors.text} bg-white/5`}>
@@ -369,16 +419,13 @@ export default function LearningPathPage() {
         </section>
       )}
 
-      {/* Announcements Timeline */}
+      {/* Announcements timeline */}
       {path.announcements && path.announcements.length > 0 && (
         <section id="announcements" className="max-w-4xl mx-auto px-6 pb-16">
           <div className="flex items-center gap-3 mb-8">
             <Rocket className={`w-6 h-6 ${colors.text}`} />
             <h2 className="text-2xl font-bold text-white">What just shipped</h2>
           </div>
-          <p className="text-white/50 mb-8">
-            Direct from Google — launches, updates, and deprecations to know about.
-          </p>
           <ol className="relative border-l border-white/10 pl-6 space-y-6">
             {path.announcements.map((item, i) => {
               const tagStyle = announcementTagStyles[item.tag]
@@ -388,9 +435,7 @@ export default function LearningPathPage() {
                   <span className={`absolute -left-[31px] top-1 w-3 h-3 rounded-full ${colors.bg}`} />
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="text-xs font-mono text-white/40">{item.date}</span>
-                    <span
-                      className={`inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded ${tagStyle.bg} ${tagStyle.text}`}
-                    >
+                    <span className={`inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded ${tagStyle.bg} ${tagStyle.text}`}>
                       <TagIcon className="w-3 h-3" />
                       {item.tag}
                     </span>
@@ -403,7 +448,7 @@ export default function LearningPathPage() {
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-1 text-xs ${colors.text} hover:underline`}
                   >
-                    Read on Google
+                    Read the source
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </li>
@@ -420,9 +465,6 @@ export default function LearningPathPage() {
             <Users className={`w-6 h-6 ${colors.text}`} />
             <h2 className="text-2xl font-bold text-white">Who to follow</h2>
           </div>
-          <p className="text-white/50 mb-8 max-w-2xl">
-            Official Google channels and the sharpest independent voices in the Gemini ecosystem.
-          </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {path.experts.map((expert) => (
               <a
@@ -433,9 +475,7 @@ export default function LearningPathPage() {
                 className="group block p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                    {expert.name}
-                  </h3>
+                  <h3 className="text-lg font-semibold text-white">{expert.name}</h3>
                   {expert.isOfficial && (
                     <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded ${colors.text} bg-white/5`}>
                       Official
@@ -461,9 +501,6 @@ export default function LearningPathPage() {
             <HelpCircle className={`w-6 h-6 ${colors.text}`} />
             <h2 className="text-2xl font-bold text-white">FAQ</h2>
           </div>
-          <p className="text-white/50 mb-8">
-            Quick answers for AI search and quick scanning. Each Q&amp;A is also emitted as FAQ structured data.
-          </p>
           <div className="space-y-3">
             {path.faqs.map((faq, i) => (
               <details
@@ -504,7 +541,7 @@ export default function LearningPathPage() {
                 <div className="flex items-center gap-3">
                   <BookOpen className={`w-5 h-5 ${colors.text}`} />
                   <span className="text-white font-medium">
-                    {guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide'}
+                    {guide.includes('blog') ? 'Related Article' : guide.includes('learn') ? 'Learning Portal' : guide.includes('product') ? 'Product' : 'Guide'}
                   </span>
                 </div>
                 <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
@@ -516,24 +553,24 @@ export default function LearningPathPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-2xl border ${colors.border} backdrop-blur-xl p-8 md:p-12 text-center`}>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
+        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-3xl border ${colors.border} p-8 md:p-12 text-center`}>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             {path.ctaTitle || 'Ready for Hands-On Practice?'}
           </h2>
-          <p className="text-[17px] leading-relaxed text-white/80 mb-8 max-w-xl mx-auto">
+          <p className="text-white/60 mb-8 max-w-xl mx-auto">
             {path.ctaBody || 'These free videos give you the foundation. Our guides take you deeper with practical exercises.'}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/guides"
-              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-full hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
+              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-xl hover:opacity-90 transition-opacity`}
             >
               Explore Guides
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-full hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-xl hover:bg-white/5 transition-colors"
             >
               More Learning Paths
             </Link>

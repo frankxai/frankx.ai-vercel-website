@@ -449,7 +449,7 @@ export default function InnerCirclePage() {
               Ready to Level Up Your AI Game?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 text-balance">
-              Founder cohort is forming. Reserve your invite and we will be in touch when the next seat opens.
+              Join 47 elite builders already inside. Only 53 spots remaining.
             </p>
             <Button
               size="lg"
@@ -458,7 +458,7 @@ export default function InnerCirclePage() {
                 background: 'linear-gradient(135deg, #AB47C7 0%, #43BFE3 100%)',
               }}
             >
-              Reserve your invite
+              Claim Your Spot Now
             </Button>
           </motion.div>
         </div>

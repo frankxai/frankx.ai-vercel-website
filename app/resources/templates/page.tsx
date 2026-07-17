@@ -4,14 +4,14 @@ import { Download, ExternalLink, FileText, Users, Zap } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX Template Library - Production AI Systems',
-  description: 'Download proven templates for AI implementation, agent governance, and operational workflows. Enterprise-grade systems made accessible.',
+  title: 'FrankX Template Library - Soul-Aligned AI Systems',
+  description: 'Download proven templates for conscious AI implementation, agent governance, and transformation rituals. Enterprise-grade systems made accessible.',
   keywords: [
     'ai templates',
     'agent governance templates',
-    'ai governance framework',
+    'conscious ai framework',
     'oracle ai architecture',
-    'ai workflow templates'
+    'transformation rituals'
   ],
   path: '/resources/templates'
 })
@@ -20,12 +20,12 @@ const templateCategories = [
   {
     id: 'ai-governance',
     title: 'AI Governance & Strategy',
-    description: 'Enterprise-grade frameworks for production AI implementation',
+    description: 'Enterprise-grade frameworks for conscious AI implementation',
     icon: FileText,
     templates: [
       {
-        title: 'AI Governance Playbook',
-        description: 'Complete framework for implementing governed AI systems in enterprise environments',
+        title: 'Conscious AI Governance Playbook',
+        description: 'Complete framework for implementing soul-aligned AI systems in enterprise environments',
         downloadUrl: '/templates/governance-overview.html',
         type: 'PDF Guide',
         pages: 24
@@ -39,7 +39,7 @@ const templateCategories = [
       },
       {
         title: 'AI Strategy Canvas',
-        description: 'Visual planning tool for aligning AI initiatives with business strategy',
+        description: 'Visual planning tool for aligning AI initiatives with consciousness evolution',
         downloadUrl: '/tools/strategy-canvas',
         type: 'PDF Canvas',
         pages: 1
@@ -48,13 +48,13 @@ const templateCategories = [
   },
   {
     id: 'transformation-rituals',
-    title: 'Daily Operating Practices',
-    description: 'Repeatable workflows for running AI systems day to day',
+    title: 'Transformation Rituals',
+    description: 'Daily practices for AI-human consciousness evolution',
     icon: Zap,
     templates: [
       {
         title: 'Daily Intelligence Operations Ritual',
-        description: 'Complete workflow for maintaining production AI systems',
+        description: 'Complete workflow for maintaining conscious AI systems',
         downloadUrl: '/templates/coe-checklist.html',
         type: 'Markdown Guide',
         pages: 8
@@ -97,7 +97,7 @@ const templateCategories = [
       },
       {
         title: 'Community AI Ritual Template',
-        description: 'Framework for recurring group AI practice sessions',
+        description: 'Framework for group consciousness evolution practices',
         downloadUrl: '/pdf-templates/5-suno-prompts.html',
         type: 'Markdown Template',
         pages: 5
@@ -118,8 +118,8 @@ export default function TemplatesPage() {
               FrankX Template Library
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed">
-              Enterprise-grade systems made accessible. Download proven frameworks for AI implementation,
-              agent governance, and team adoption.
+              Enterprise-grade systems made accessible. Download proven frameworks for conscious AI implementation,
+              transformation rituals, and soul-aligned technology adoption.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
@@ -127,7 +127,7 @@ export default function TemplatesPage() {
                 📋 Enterprise Ready
               </div>
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                🎯 Production-Tested
+                🌟 Consciousness Aligned
               </div>
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
                 🚀 Immediately Actionable

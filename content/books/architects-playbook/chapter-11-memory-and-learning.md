@@ -38,9 +38,9 @@ Here is the actual structure of my primary CLAUDE.md memory:
 
 ## Brand Positioning
 Frank = Top Creator. Top AI Architect. Humble.
-- Ex-Oracle AI Architect (EMEA AI Center of Excellence)
+- AI Architect & Creator
 - 12,000+ AI songs, music production, generative art
-- Title: "AI Architect" (never "AI Systems Architect")
+- Title: "AI Architect"
 
 ## Agent Profiles
 ### 1. Technical Architect
@@ -107,7 +107,7 @@ For this, I use a separate MEMORY.md file managed by Claude Code's auto-memory f
 
 ## Frank's Real Name & Title (PERMANENT — CRITICAL)
 - **Frank Riemer** — NOT "Frank Guzman" or any other name
-- **Title**: "AI Architect" — NOT "AI Systems Architect"
+- **Title**: "AI Architect"
 - NEVER use "Frank Guzman" anywhere — corrected across 11 files
 ```
 
@@ -266,7 +266,7 @@ The identity layer is the bedrock. It answers: who am I working for, and what ar
 
 ```
 CLAUDE.md (project root):
-├── Brand positioning: Frank Riemer, Ex-Oracle AI Architect (EMEA AI CoE)
+├── Brand positioning: Frank Riemer, AI Architect & Creator
 ├── Voice guidelines: Confident, precise, technical authority
 ├── Agent profiles: 6 defined agents with triggers and skills
 ├── Content standards: Every claim verifiable, no filler

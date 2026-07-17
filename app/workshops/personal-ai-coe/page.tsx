@@ -16,7 +16,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
 import { IntakeForm } from '@/components/workshops/IntakeForm'
 import { ModuleAccordion } from '@/components/workshops/ModuleAccordion'
-import { CourseSchema } from '@/components/workshops/CourseSchema'
+import { WorkshopProvenanceNotice } from '@/components/workshops/WorkshopProvenanceNotice'
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const WORKSHOP_SLUG = 'personal-ai-coe'
@@ -26,10 +26,8 @@ export default function PersonalAICoEPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <CourseSchema workshop={workshop} />
-
       {/* Hero */}
-      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-amber-500/[0.05] to-transparent" />
         <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/[0.06] rounded-full blur-[140px]" />
 
@@ -65,28 +63,30 @@ export default function PersonalAICoEPage() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
               {workshop.title}
             </h1>
-            <p className="text-[17px] md:text-xl text-zinc-300/90 mb-6 max-w-2xl leading-relaxed">
+            <p className="text-lg text-zinc-400 mb-6 max-w-2xl">
               {workshop.subtitle}
             </p>
 
-            <p className="text-[15px] text-zinc-400 leading-relaxed max-w-3xl mb-8">
+            <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
               {workshop.overview}
             </p>
+
+            <WorkshopProvenanceNotice />
 
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#intake"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all"
               >
                 <Send className="w-4 h-4" />
                 Request a conversation
               </a>
               <Link
                 href="/acos"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-300 hover:text-amber-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-full px-2 py-1"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-300 hover:text-amber-200 transition-colors"
               >
                 Explore ACOS
                 <ArrowRight className="w-4 h-4" />
@@ -223,16 +223,6 @@ export default function PersonalAICoEPage() {
                   compact
                 />
               </div>
-              <p className="text-xs text-zinc-500 mt-5">
-                Or{' '}
-                <Link
-                  href="/inner-circle"
-                  className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
-                >
-                  reserve a seat in the Inner Circle
-                </Link>{' '}
-                for first access to workshop dates and founder pricing.
-              </p>
             </div>
           </GlowCard>
 

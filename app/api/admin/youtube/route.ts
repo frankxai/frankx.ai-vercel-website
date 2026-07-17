@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import { writesUnavailable } from '@/lib/vercel-guard'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
 
@@ -34,6 +35,9 @@ export async function GET(req: NextRequest) {
 // POST /api/admin/youtube
 // body: { type: 'annotation' | 'clip' | 'video', data: ... }
 export async function POST(req: NextRequest) {
+  const blocked = writesUnavailable()
+  if (blocked) return blocked
+
   const body = await req.json()
   const { type, data } = body
 
@@ -96,6 +100,9 @@ export async function POST(req: NextRequest) {
 // DELETE /api/admin/youtube
 // body: { type: 'clip', id: string }
 export async function DELETE(req: NextRequest) {
+  const blocked = writesUnavailable()
+  if (blocked) return blocked
+
   const body = await req.json()
   const { type, id } = body
 

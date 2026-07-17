@@ -11,7 +11,7 @@ const stats = [
   {
     label: 'Enterprise AI',
     value: '4+ years',
-    sublabel: 'Oracle AI Architect',
+    sublabel: 'Former AI Architect',
     icon: Brain,
     element: 'water' as const,
   },
@@ -89,7 +89,7 @@ export function GlassCathedralHero() {
         <p className="text-base text-white/35 max-w-lg mx-auto mb-16 leading-relaxed">
           AI architecture, creative systems, and open tools.
           <br className="hidden sm:block" />
-          Battle-tested at enterprise scale. Documented here.
+          Built from enterprise practice. Documented here.
         </p>
 
         {/* Crystal stat cards — 3 across */}

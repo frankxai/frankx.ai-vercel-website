@@ -19,6 +19,7 @@ export interface ModelEntry {
   context_window_beta?: number
   max_output_tokens?: number
   modalities?: string[]
+  capabilities?: Capability[]
   pricing?: {
     input_per_1m?: number
     output_per_1m?: number
@@ -77,6 +78,10 @@ const RAW = registry as unknown as RawRegistry & {
   models: Record<string, ModelEntry>
 }
 
+function rawModels(): Record<string, ModelEntry> {
+  return RAW.models as Record<string, ModelEntry>
+}
+
 /**
  * Canonicalize a model so its `id` is the registry KEY (the routing slug),
  * preserving the provider-facing versioned id as `apiId`. This keeps slugs,
@@ -89,9 +94,10 @@ function normaliseModel(key: string, raw: ModelEntry): ModelEntry {
 
 export function getModel(idOrKey: string | undefined): ModelEntry | undefined {
   if (!idOrKey) return undefined
-  if (RAW.models[idOrKey]) return normaliseModel(idOrKey, RAW.models[idOrKey])
+  const models = rawModels()
+  if (models[idOrKey]) return normaliseModel(idOrKey, models[idOrKey])
   // Fallback: match by the provider-facing versioned id.
-  const found = Object.entries(RAW.models).find(([, m]) => m.id === idOrKey)
+  const found = Object.entries(models).find(([, m]) => m.id === idOrKey)
   return found ? normaliseModel(found[0], found[1]) : undefined
 }
 
@@ -101,7 +107,7 @@ export function getPlatform(id: string | undefined): AgenticPlatformEntry | unde
 }
 
 export function getAllModels(): ModelEntry[] {
-  return Object.entries(RAW.models).map(([key, m]) => normaliseModel(key, m))
+  return Object.entries(rawModels()).map(([key, m]) => normaliseModel(key, m))
 }
 
 export function getAllPlatforms(): AgenticPlatformEntry[] {
@@ -121,8 +127,9 @@ function normaliseOrg(key: string, raw: OrganizationEntry): OrganizationEntry {
 export function getProviders(): ProviderJoin[] {
   return Object.entries(RAW.organizations).map(([key, raw]) => {
     const org = normaliseOrg(key, raw as OrganizationEntry)
+    const modelsById = rawModels()
     const models = org.models
-      .map((mid) => (RAW.models[mid] ? normaliseModel(mid, RAW.models[mid]) : undefined))
+      .map((mid) => (modelsById[mid] ? normaliseModel(mid, modelsById[mid]) : undefined))
       .filter((m): m is ModelEntry => Boolean(m))
     const platforms = (org.agentic_platforms || [])
       .map((pid) => (RAW.agentic_platforms || {})[pid])

@@ -1,0 +1,12 @@
+logs/
+sessions/
+data/
+metrics/*.json
+learning/current-session-id
+swarm/messages/
+swarm/patterns/
+swarm/consensus/
+swarm/handoffs/
+swarm/agents.json
+swarm/stats.json
+*.tmp

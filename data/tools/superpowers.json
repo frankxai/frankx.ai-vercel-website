@@ -1,0 +1,132 @@
+{
+  "_comment": "Curated AI-tools + MCP-servers directory, organized by creator/AI-architect SUPERPOWER (use case). Source of truth for the /superpowers surface + the best-ai-superpowers-stack article. Researched + web-verified June 2026. 'best' = top pick. affiliate = tool maps to data/affiliate/programs.json (recurring payer). Re-verify terms before relying.",
+  "updatedAt": "2026-06-06",
+  "note": "Two easy mis-shelvings: sandcastles.ai = research/ideation (NOT a generator); qme.ai = an MCP memory connector (NOT a tool you 'use' standalone). Cursor has a ~40-tool MCP ceiling — curate MCPs per project, never load all 15 at once.",
+  "superpowers": [
+    {
+      "id": "content-creation",
+      "label": "Content creation (write · repurpose · social)",
+      "tools": [
+        { "name": "Claude", "best": true, "for": "structured, reasoned long-form", "affiliate": false },
+        { "name": "Opus Clip", "for": "long video → social shorts (auto moments + captions + reframe)", "price": "~$19/mo", "affiliate": true },
+        { "name": "Jasper", "for": "on-brand marketing at scale", "affiliate": true },
+        { "name": "Typefully / Buffer", "for": "social scheduling + thread writing", "affiliate": false }
+      ],
+      "mcp": [{ "name": "Notion MCP", "best": true, "unlocks": "semantic search + write to your content workspace" }, { "name": "Slack MCP", "unlocks": "distribution / notify" }]
+    },
+    {
+      "id": "website-building",
+      "label": "Website / app building",
+      "tools": [
+        { "name": "v0 (Vercel)", "best": true, "for": "Next.js teams, production React components", "affiliate": false },
+        { "name": "Lovable", "for": "non-tech full SaaS MVP (Supabase + auth + GitHub sync)", "affiliate": false },
+        { "name": "Bolt.new", "for": "fast throwaway prototypes", "affiliate": false },
+        { "name": "Replit Agent", "for": "all-in-one DB + host + deploy, code-visible", "affiliate": false },
+        { "name": "Framer / Webflow", "for": "designer-led marketing sites", "affiliate": false }
+      ],
+      "mcp": [{ "name": "Vercel MCP", "best": true, "unlocks": "deployments, env vars, build logs, create projects" }, { "name": "Framer MCP", "unlocks": "design → site from the editor" }]
+    },
+    {
+      "id": "research",
+      "label": "Research & knowledge",
+      "tools": [
+        { "name": "Perplexity (Deep Research)", "best": true, "for": "real-time web discovery, current data, speed", "affiliate": true },
+        { "name": "NotebookLM", "for": "deep analysis of YOUR uploaded docs; audio/video overviews", "affiliate": false },
+        { "name": "Claude", "for": "reasoning/synthesis over sources", "affiliate": false },
+        { "name": "sandcastles.ai", "for": "short-form video OUTLIER mining + script ideation (research, not generation)", "price": "$39–499/mo", "affiliate": false }
+      ],
+      "mcp": [{ "name": "Brave Search MCP", "best": true, "unlocks": "independent web index, no Google tracking" }, { "name": "Fetch MCP", "unlocks": "pull any URL → markdown into context" }, { "name": "Context7", "unlocks": "live version-specific docs" }],
+      "proMove": "Chain Perplexity (discover) → NotebookLM (ground) → Claude (reason) for 3–5× more reliable research than any single tool."
+    },
+    {
+      "id": "image",
+      "label": "Image generation",
+      "tools": [
+        { "name": "Nano Banana Pro / NB2 (Gemini 3 Pro Image)", "best": true, "for": "overall leader, speed (~3–5s, ~$0.067/img)", "affiliate": false },
+        { "name": "GPT Image 2", "for": "photorealism + best text rendering", "affiliate": false },
+        { "name": "FLUX.2", "for": "best-value pro-grade, self-hostable", "affiliate": false },
+        { "name": "Midjourney V8", "for": "pure aesthetic / art direction (no API)", "affiliate": false }
+      ],
+      "mcp": [{ "name": "fal.ai", "unlocks": "batch image API (FLUX, etc.)" }],
+      "deepDive": "/blog/best-ai-image-generators-2026"
+    },
+    {
+      "id": "video",
+      "label": "Video generation",
+      "tools": [
+        { "name": "Veo 3.1", "best": true, "for": "all-rounder — prompt adherence, native audio, 4K", "affiliate": false },
+        { "name": "Kling 3.0", "for": "cinematic multi-shot, character consistency, value", "affiliate": false },
+        { "name": "Higgsfield", "for": "access layer — 30+ models in one place + Soul ID character identity", "affiliate": true },
+        { "name": "Seedance 2.0", "for": "build from your own image/video/audio refs", "affiliate": false }
+      ],
+      "mcp": [{ "name": "Higgsfield MCP", "best": true, "unlocks": "Claude Code → Kling/Veo/Runway + Soul ID" }],
+      "deepDive": "/blog/ai-video-generation-2026-sora-runway-kling-veo"
+    },
+    {
+      "id": "music",
+      "label": "Music",
+      "tools": [
+        { "name": "Suno (v4.5+)", "best": true, "for": "full songs, vocals, commercial quality, broadest genre control", "affiliate": true },
+        { "name": "Udio", "for": "audiophile fidelity, fine section editing", "affiliate": false }
+      ],
+      "mcp": [],
+      "deepDive": "/blog/suno-prompt-engineering-complete-guide"
+    },
+    {
+      "id": "automation",
+      "label": "Automation / agents",
+      "tools": [
+        { "name": "n8n", "best": true, "for": "self-host, dev-grade, ~70 AI/LangChain nodes — the agent action backend", "affiliate": false },
+        { "name": "Zapier", "for": "widest reach (8,000+ apps)", "affiliate": false },
+        { "name": "Make", "for": "visual workflows (3,000+ apps)", "affiliate": false },
+        { "name": "Lindy", "for": "no-code business agents in minutes", "affiliate": false }
+      ],
+      "mcp": [{ "name": "n8n MCP Server Trigger", "best": true, "unlocks": "expose any workflow as a callable agent tool — separates reasoning (LLM) from action (workflows)" }, { "name": "Zapier MCP", "unlocks": "its 8,000-app catalog to Claude" }, { "name": "Composio", "unlocks": "one connector → thousands of app tools" }]
+    },
+    {
+      "id": "coding",
+      "label": "Coding (agents)",
+      "tools": [
+        { "name": "Claude Code", "best": true, "for": "canonical agentic coding (deep MCP + skills)", "affiliate": false },
+        { "name": "Cursor", "for": "IDE-native (~40-tool MCP ceiling — curate per project)", "affiliate": false },
+        { "name": "Codex / Antigravity", "for": "OpenAI stack / Google's agent-first dev platform", "affiliate": false }
+      ],
+      "mcp": [{ "name": "Context7", "best": true, "unlocks": "live version-specific docs (#1 MCP of 2026)" }, { "name": "GitHub MCP", "unlocks": "repos, PRs, issues, code search" }, { "name": "Filesystem MCP", "unlocks": "secure scoped file access" }, { "name": "Playwright MCP", "unlocks": "browser automation via a11y tree" }]
+    },
+    {
+      "id": "voice",
+      "label": "Voice / audio",
+      "tools": [
+        { "name": "ElevenLabs", "best": true, "for": "the voice engine — TTS, cloning, dubbing, conversational agents, dev API", "affiliate": true },
+        { "name": "Descript", "for": "fastest record → publish; text-based editing, captions, clips", "affiliate": true }
+      ],
+      "mcp": [],
+      "rule": "ElevenLabs if you're buying a voice; Descript if you're buying an editing workflow."
+    },
+    {
+      "id": "memory",
+      "label": "Memory / creative intelligence (MCP)",
+      "tools": [
+        { "name": "qme.ai", "for": "MCP connector — drop a video/link/voice-note in Claude → it watches + stores in a compounding 2nd brain. Overlaps FrankX VIS + SIS/AgentDB.", "price": "waitlist-gated", "affiliate": false }
+      ],
+      "mcp": [{ "name": "Qme AI MCP", "unlocks": "multimodal capture + persistent creative memory inside Claude" }]
+    }
+  ],
+  "mustKnowMcp": [
+    { "name": "Context7", "unlocks": "live version-specific docs (#1 MCP 2026)", "trust": "community" },
+    { "name": "Filesystem", "unlocks": "secure scoped file read/write", "trust": "official" },
+    { "name": "GitHub", "unlocks": "repos, PRs, issues, code search", "trust": "official" },
+    { "name": "Playwright", "unlocks": "browser automation via a11y tree", "trust": "microsoft" },
+    { "name": "Brave Search", "unlocks": "independent web search, no tracking", "trust": "vendor" },
+    { "name": "Fetch", "unlocks": "any URL → clean markdown", "trust": "official" },
+    { "name": "Notion", "unlocks": "semantic search + write your workspace", "trust": "official" },
+    { "name": "Slack", "unlocks": "read/post/schedule messages, canvases", "trust": "official" },
+    { "name": "Postgres / Supabase", "unlocks": "query + manage your DB from the agent", "trust": "official" },
+    { "name": "Stripe", "unlocks": "customers, subs, invoices, payment links (remote OAuth)", "trust": "official" },
+    { "name": "Vercel", "unlocks": "deployments, env, logs, projects", "trust": "official" },
+    { "name": "Figma", "unlocks": "Dev-Mode design context, tokens, FigJam diagrams", "trust": "official" },
+    { "name": "Higgsfield", "unlocks": "cinematic video gen + Soul ID", "trust": "vendor" },
+    { "name": "n8n (Server Trigger)", "unlocks": "expose any workflow as an agent tool", "trust": "official" },
+    { "name": "Linear", "unlocks": "issues, projects, cycles — agent planning", "trust": "official" }
+  ]
+}

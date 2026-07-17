@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   listActivePartners,
   listStrategicAlignment,
   listOpenConversations,
-  listPartners,
 } from '@/content/partnerships'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { SovereignNodeBand } from '@/components/partnerships/SovereignNodeBand'
@@ -15,17 +14,16 @@ import {
   MotionHero,
   MotionHeroItem,
 } from '@/components/partnerships/MotionLayer'
-import JsonLd from '@/components/seo/JsonLd'
 import type { Partner } from '@/content/partnerships/types'
 
 export const metadata = createMetadata({
   title: 'Partnerships — Sovereign-node AI Architect collaborations | FrankX',
   description:
-    'Active strategic conversations and operating alignments with Anthropic, Vercel, NVIDIA, Google, Arrow, and the infrastructure behind the practice. Peer-architect collaboration from Amsterdam.',
+    'Active strategic conversations and operating alignments with Anthropic, Vercel, NVIDIA, Google, Arrow, and the infrastructure behind the practice. Peer-architect collaboration from Amsterdam, EMEA reach.',
   path: '/partnerships',
 })
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 const TIER_LABEL: Record<Partner['tier'], string> = {
   distribution: 'Distribution',
@@ -42,7 +40,9 @@ export default function PartnershipsHubPage() {
   const conversations = listOpenConversations()
   const all = [...active, ...strategicAlignment, ...conversations]
 
-  const breadcrumbData = {
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
     itemListElement: [
       {
         '@type': 'ListItem',
@@ -59,7 +59,9 @@ export default function PartnershipsHubPage() {
     ],
   }
 
-  const collectionData = {
+  const collectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
     name: 'FrankX partnerships',
     description:
       'How Frank Riemer collaborates with strategic partners — active proposals, strategic alignments, and the infrastructure behind the practice.',
@@ -71,12 +73,16 @@ export default function PartnershipsHubPage() {
     })),
   }
 
-  const partnersWithLogos = listPartners().filter((p) => p.partnerLogoUrl)
-
   return (
     <>
-      <JsonLd type="BreadcrumbList" data={breadcrumbData} />
-      <JsonLd type="CollectionPage" data={collectionData} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
+      />
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
@@ -114,34 +120,6 @@ export default function PartnershipsHubPage() {
                 coding-agent-native AI CoE practice from Amsterdam.
               </p>
             </MotionHeroItem>
-            {partnersWithLogos.length > 0 ? (
-              <MotionHeroItem delay={0.3}>
-                <div className="mt-12 pt-8 border-t border-white/[0.06]">
-                  <p className="text-[10px] tracking-[0.25em] uppercase text-white/30 font-medium mb-5">
-                    Operating with
-                  </p>
-                  <ul className="flex flex-wrap items-center gap-x-8 gap-y-5">
-                    {partnersWithLogos.map((p) => (
-                      <li key={p.slug}>
-                        <Link
-                          href={`/partnerships/${p.slug}`}
-                          className="group inline-flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 rounded"
-                          aria-label={`${p.name} partnership`}
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={p.partnerLogoUrl}
-                            alt={`${p.name} logo`}
-                            className="h-5 w-auto"
-                            loading="eager"
-                          />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </MotionHeroItem>
-            ) : null}
           </MotionHero>
         </div>
       </section>
@@ -271,8 +249,8 @@ export default function PartnershipsHubPage() {
             </h2>
             <p className="text-base text-zinc-300 leading-[1.7]">
               The daily build stack. The models in delivery. The clouds and
-              silicon the practice ships on — today and across the years of
-              enterprise AI architecture that anchor it.
+              silicon the practice ships on — today and through the former
+              Oracle EMEA AI CoE work that informs it.
             </p>
           </MotionItem>
 
@@ -303,7 +281,7 @@ export default function PartnershipsHubPage() {
                 <li>Claude (Anthropic) &mdash; primary reasoning + agent work</li>
                 <li>Gemini (Google) &mdash; multi-modal + ADK</li>
                 <li>Codex / GPT (OpenAI) &mdash; comparison + workshop track</li>
-                <li>Llama (Meta), Cohere, Grok (xAI), Mistral &mdash; enterprise-tested</li>
+                <li>Llama (Meta), Cohere, Grok (xAI), Mistral &mdash; from CoE work</li>
               </ul>
             </MotionItem>
 
@@ -315,7 +293,7 @@ export default function PartnershipsHubPage() {
                 Where the workloads land.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>Oracle Cloud Infrastructure &mdash; enterprise deployment target</li>
+                <li>Oracle Cloud Infrastructure &mdash; EMEA AI CoE delivery</li>
                 <li>OCI Generative AI &mdash; production patterns</li>
                 <li>Oracle Database 23ai &mdash; vector + agent integration</li>
                 <li>Vercel &mdash; every public surface</li>
@@ -330,9 +308,9 @@ export default function PartnershipsHubPage() {
                 Where the GPU + accelerator narrative anchors.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>NVIDIA &mdash; NIM hands-on, accelerator stack</li>
-                <li>GPU + accelerator architecture &mdash; battle-tested at enterprise scale</li>
-                <li>Multi-cloud AI deployment patterns</li>
+                <li>NVIDIA &mdash; Munich EBC contacts, NIM hands-on</li>
+                <li>Co-architect of the Oracle &times; NVIDIA partner event 2025</li>
+                <li>Oracle &times; NVIDIA AI accelerator pack EMEA delivery</li>
               </ul>
             </MotionItem>
           </div>
@@ -390,16 +368,6 @@ export default function PartnershipsHubPage() {
               Book Meet &amp; Grow
               <ArrowUpRight className="w-4 h-4" aria-hidden />
             </Link>
-            <p className="mt-6 text-[11px] text-zinc-500">
-              Not a strategic-partner conversation?{' '}
-              <Link
-                href="/inner-circle"
-                className="text-emerald-300 hover:text-emerald-200 underline underline-offset-4"
-              >
-                Reserve a seat in the Inner Circle
-              </Link>{' '}
-              for the operator-tier wait list.
-            </p>
           </MotionItem>
         </div>
       </MotionSection>

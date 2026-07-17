@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Frontier model routing system</title>
+  <desc id="desc">A dark technical diagram showing multiple frontier model lanes routed through a central evidence ledger.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#071012"/>
+      <stop offset="0.55" stop-color="#0B0B10"/>
+      <stop offset="1" stop-color="#14120A"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#F3D27A"/>
+      <stop offset="1" stop-color="#D4AF37"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <path d="M0 160h1600M0 320h1600M0 480h1600M0 640h1600M0 800h1600M160 0v900M320 0v900M480 0v900M640 0v900M800 0v900M960 0v900M1120 0v900M1280 0v900M1440 0v900" stroke="#ffffff" stroke-opacity="0.045"/>
+  <circle cx="800" cy="450" r="150" fill="#D4AF37" fill-opacity="0.05" stroke="#D4AF37" stroke-opacity="0.35"/>
+  <circle cx="800" cy="450" r="88" fill="#111315" stroke="url(#gold)" stroke-width="2" filter="url(#glow)"/>
+  <text x="800" y="430" text-anchor="middle" fill="#F8E6B0" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">STarlight</text>
+  <text x="800" y="462" text-anchor="middle" fill="#ffffff" fill-opacity="0.82" font-family="Inter, Arial, sans-serif" font-size="18">Routing Ledger</text>
+  <text x="800" y="491" text-anchor="middle" fill="#ffffff" fill-opacity="0.45" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">model / cost / fallback / receipt</text>
+  <g fill="none" stroke-width="2">
+    <path d="M475 220C610 250 650 340 712 404" stroke="#F3D27A" stroke-opacity="0.68"/>
+    <path d="M1125 220C990 250 950 340 888 404" stroke="#67E8F9" stroke-opacity="0.65"/>
+    <path d="M350 520C500 515 610 492 710 463" stroke="#A78BFA" stroke-opacity="0.62"/>
+    <path d="M1250 520C1100 515 990 492 890 463" stroke="#34D399" stroke-opacity="0.62"/>
+    <path d="M540 700C640 650 685 560 748 500" stroke="#FB923C" stroke-opacity="0.6"/>
+    <path d="M1060 700C960 650 915 560 852 500" stroke="#60A5FA" stroke-opacity="0.6"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(255 160)">
+      <rect width="330" height="118" rx="18" fill="#FFFFFF" fill-opacity="0.045" stroke="#F3D27A" stroke-opacity="0.3"/>
+      <text x="24" y="38" fill="#F3D27A" font-size="18" font-weight="700">Fable 5</text>
+      <text x="24" y="68" fill="#fff" fill-opacity="0.78" font-size="16">strict contracts / agentic ceiling</text>
+      <text x="24" y="95" fill="#fff" fill-opacity="0.42" font-size="13">premium lane, receipt required</text>
+    </g>
+    <g transform="translate(1015 160)">
+      <rect width="330" height="118" rx="18" fill="#FFFFFF" fill-opacity="0.045" stroke="#67E8F9" stroke-opacity="0.3"/>
+      <text x="24" y="38" fill="#67E8F9" font-size="18" font-weight="700">Grok 4.3</text>
+      <text x="24" y="68" fill="#fff" fill-opacity="0.78" font-size="16">fast frontier / volume lane</text>
+      <text x="24" y="95" fill="#fff" fill-opacity="0.42" font-size="13">great candidate, verify in-harness</text>
+    </g>
+    <g transform="translate(165 470)">
+      <rect width="330" height="118" rx="18" fill="#FFFFFF" fill-opacity="0.045" stroke="#A78BFA" stroke-opacity="0.3"/>
+      <text x="24" y="38" fill="#C4B5FD" font-size="18" font-weight="700">Opus 4.8</text>
+      <text x="24" y="68" fill="#fff" fill-opacity="0.78" font-size="16">judgment / review / craft</text>
+      <text x="24" y="95" fill="#fff" fill-opacity="0.42" font-size="13">governance and ambiguity lane</text>
+    </g>
+    <g transform="translate(1105 470)">
+      <rect width="330" height="118" rx="18" fill="#FFFFFF" fill-opacity="0.045" stroke="#34D399" stroke-opacity="0.3"/>
+      <text x="24" y="38" fill="#6EE7B7" font-size="18" font-weight="700">Gemini 3.5 Flash</text>
+      <text x="24" y="68" fill="#fff" fill-opacity="0.78" font-size="16">Antigravity / agent runtime</text>
+      <text x="24" y="95" fill="#fff" fill-opacity="0.42" font-size="13">official GA Google workhorse</text>
+    </g>
+    <g transform="translate(310 650)">
+      <rect width="330" height="118" rx="18" fill="#FFFFFF" fill-opacity="0.045" stroke="#FB923C" stroke-opacity="0.3"/>
+      <text x="24" y="38" fill="#FDBA74" font-size="18" font-weight="700">Kilo alternatives</text>
+      <text x="24" y="68" fill="#fff" fill-opacity="0.78" font-size="16">GPT / Kimi / MiniMax / Nemotron</text>
+      <text x="24" y="95" fill="#fff" fill-opacity="0.42" font-size="13">source-labeled, not blindly adopted</text>
+    </g>
+    <g transform="translate(960 650)">
+      <rect width="330" height="118" rx="18" fill="#FFFFFF" fill-opacity="0.045" stroke="#60A5FA" stroke-opacity="0.3"/>
+      <text x="24" y="38" fill="#93C5FD" font-size="18" font-weight="700">Open / sovereign</text>
+      <text x="24" y="68" fill="#fff" fill-opacity="0.78" font-size="16">own the weights when needed</text>
+      <text x="24" y="95" fill="#fff" fill-opacity="0.42" font-size="13">governance is a routing constraint</text>
+    </g>
+  </g>
+  <text x="90" y="92" fill="#F8E6B0" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="800">You need a model routing system.</text>
+  <text x="94" y="132" fill="#fff" fill-opacity="0.62" font-family="Inter, Arial, sans-serif" font-size="22">Not a single frontier dependency.</text>
+</svg>

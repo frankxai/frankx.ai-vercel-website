@@ -3,13 +3,30 @@ import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
+import imageNeeds from '@/data/tools/image-needs.json'
+import blogHeroManifest from '@/data/blog-hero-manifest.json'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
+const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
+const pendingBlogHeroPaths = new Set(
+  (imageNeeds.needs as Array<{ heroPath: string; status?: string }>)
+    .filter((need) => need.status?.startsWith('pending'))
+    .map((need) => need.heroPath)
+)
 
 // FAQ item for AI-extractable structured content
 export interface FAQItem {
   q: string
   a: string
+}
+
+// Multi-part series membership. Articles sharing a series.slug are linked
+// together (prev/next nav + "Part N of M") by SeriesNav.
+export interface BlogSeries {
+  slug: string // stable series id, e.g. "higher-self-protocol"
+  title: string // display title, e.g. "The Higher Self Protocol"
+  part: number // 1-based position of this article in the series
+  total: number // total parts planned (for "Part N of M")
 }
 
 export interface BlogPost {
@@ -24,7 +41,7 @@ export interface BlogPost {
   readingTime: string
   keywords?: string[]
   readingGoal?: string
-  content: string
+  content?: string
   featured?: boolean
   flagship?: boolean
   flagshipOrder?: number
@@ -35,7 +52,23 @@ export interface BlogPost {
   faq?: FAQItem[] // Question-answer pairs for FAQPage schema
   schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
   lastUpdated?: string // Freshness signal for search engines
+
+  // Series membership (optional) — drives SeriesNav prev/next
+  series?: BlogSeries
+
+  /**
+   * AI Architect Recommendation box (rendered after the Reading Goal).
+   * The signature format: the routing call, which AI CoE pillar the decision
+   * lives in, and which agent personas should run what.
+   */
+  architectNote?: {
+    recommendation: string
+    coePillar?: string
+    personas?: Array<{ persona: string; pick: string }>
+  }
 }
+
+export type BlogPostSummary = Omit<BlogPost, 'content'>
 
 // Normalize frontmatter field variants to canonical BlogPost fields
 function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
@@ -55,6 +88,62 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   return normalized
 }
 
+// Frontmatter frequently references hero files that were never generated
+// (~114 posts as of 2026-07-02). A missing local file must never reach the
+// client as a broken <img> — fall back to an existing category hero instead.
+//
+// Existence comes from data/blog-hero-manifest.json (written by
+// scripts/build-route-index.mjs in the prebuild slot), NOT a runtime
+// fs.existsSync: a dynamic path under public/ defeats Next's output file
+// tracing, which then bundles the whole public/images subtree into every
+// serverless function importing this module (api/md exceeded Vercel's
+// 250 MB function limit). A static JSON import traces to one small file.
+const blogHeroFiles = new Set<string>(blogHeroManifest as string[])
+
+function localImageExists(image: string): boolean {
+  // Only /images/blog/** is manifest-tracked; other local paths are trusted
+  // (pre-fallback behavior — nothing outside the blog tree was reported broken).
+  if (!image.startsWith('/images/blog/')) return true
+  return blogHeroFiles.has(image)
+}
+
+function resolveBlogImage(image: unknown, slug: string): string | undefined {
+  if (typeof image !== 'string' || image.trim() === '') return undefined
+  if (!image.startsWith('/')) return image
+  if (!pendingBlogHeroPaths.has(image) && localImageExists(image)) return image
+
+  if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
+    return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
+  }
+  if (/claude|chatgpt|gemini|gpt|grok|llm|model|frontier|local/.test(slug)) {
+    return '/images/blog/editorial/headers/ai-model-routing-guide-hero.webp'
+  }
+  if (/agent|workflow|automation|n8n|builder|production/.test(slug)) {
+    return '/images/blog/generated/production-agentic-ai-systems-premium-hero.png'
+  }
+  if (/code|coding|cursor|windsurf/.test(slug)) {
+    return '/images/blog/generated/ultimate-guide-ai-coding-agents-2026-premium-hero.png'
+  }
+  if (/skill|coe|note|knowledge/.test(slug)) {
+    return '/images/blog/editorial/headers/skill-libraries-ai-coe-governance-hero.webp'
+  }
+
+  return blogImageFallback
+}
+
+function buildBlogPost(slug: string, data: Record<string, any>, content: string): BlogPost {
+  const normalized = normalizeFrontmatter(data)
+  const readTime = readingTime(content)
+
+  return {
+    slug,
+    content,
+    readingTime: readTime.text,
+    ...normalized,
+    image: resolveBlogImage(normalized.image, slug),
+  } as BlogPost
+}
+
 export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
@@ -64,19 +153,15 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       const fullPath = path.join(blogDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
-      const readTime = readingTime(content)
-
-      return {
-        slug,
-        content,
-        readingTime: readTime.text,
-        ...normalizeFrontmatter(data),
-      } as BlogPost
+      return buildBlogPost(slug, data, content)
     })
 
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 })
 
+export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
+  return getAllBlogPosts().map(({ content: _content, ...post }) => post)
+})
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
   try {
@@ -84,14 +169,7 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
 
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
-    const readTime = readingTime(content)
-
-    return {
-      slug,
-      content,
-      readingTime: readTime.text,
-      ...normalizeFrontmatter(data),
-    } as BlogPost
+    return buildBlogPost(slug, data, content)
   } catch {
     return null
   }
@@ -122,6 +200,16 @@ export function getPostsByTag(tag: string): BlogPost[] {
   return getAllBlogPosts().filter(post =>
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
+}
+
+/**
+ * Return every published post in a series, ordered by part number.
+ * Used by SeriesNav to resolve prev/next and the "Part N of M" rail.
+ */
+export function getSeriesPosts(seriesSlug: string): BlogPost[] {
+  return getAllBlogPosts()
+    .filter(post => post.series?.slug === seriesSlug)
+    .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0))
 }
 
 /**
@@ -168,4 +256,3 @@ export function extractFAQFromContent(content: string): { question: string; answ
 
   return faqs
 }
-

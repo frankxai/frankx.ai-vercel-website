@@ -116,9 +116,28 @@ Frozen choices. Don't relitigate without explicit cause.
 - **Inter for body, Poppins for display ≥18px.** This pairing is solved. Do not propose alternatives.
 - **`rounded-full` primary CTAs.** This is the recognizable FrankX button shape. Don't square them.
 - **The eyebrow pattern.** 11px / 0.25em tracking / 60% alpha / above the h2. This is the section-opener fingerprint of the brand.
-- **No animations on text.** Type does not slide in, fade in, or scale in. It's already there. Page-load motion is reserved for hero imagery and accent elements.
+- **No animations on text.** Type does not slide in, fade in, or scale in. It's already there. Page-load motion is reserved for hero imagery and accent elements — with one governed exception, see below.
 - **No light-on-light.** White cards on white pages happen on other brands. Not this one.
 - **The two-spectrum rule.** A page picks tech (emerald) *or* soul (amber). Bridge spectrum is a third tier for the worlds where they meet — not a license to mix.
+
+---
+
+## Motion: the earned scroll set-piece
+
+Most motion on this brand is quiet — a hero fades up, a card lifts on hover, a number counts once. That's Framer Motion territory, and it stays that way for 95% of what ships.
+
+But long-scroll cinema (see "Reference points" — Apple's Pro pages, Linear's landing) earns its motion budget differently: one section per flagship page where the *scroll itself* is the choreography. A pinned panel that reveals as you scroll through it. A hero video scrubbed frame-by-frame to your finger. Depth layers drifting at different speeds. That's a different tool — GSAP `ScrollTrigger` bridged to Lenis smooth-scroll, not Framer — and it's governed, not free, because unearned scroll tricks are exactly the kind of thing that makes a page feel like a demo instead of a product.
+
+**The primitives:** `components/motion/SmoothScroll.tsx` (Lenis↔GSAP ticker bridge, wraps the page) and `components/motion/ScrollScene.tsx` (a scoped `ScrollTrigger` timeline for pin/scrub/parallax work). Both are no-ops under `prefers-reduced-motion: reduce` by design — the reduced-motion reader gets the real page, not a broken half-animation.
+
+**The bar.** A scroll set-piece ships only when it clears all four:
+
+1. **It demonstrates, not decorates.** It shows the product or the idea unfolding — a system assembling, a feature loop, a narrative beat. Never motion for its own sake.
+2. **It holds the performance budget.** 60fps under scroll (`transform`/`opacity` only — never `width`, `height`, `top`, `left` in a scrubbed tween), LCP under 2.5s, hero video under 4MB.
+3. **It degrades on purpose.** Under reduced-motion, the static composition still tells the whole story — the scrubbed video shows its poster, the scroll reveal shows all its content.
+4. **There is exactly one per page.** One pinned or scrubbed moment. A second one turns cinema into a tech demo.
+
+Miss any of the four — cut it. This is the same restraint test as everything else on this brand; scroll choreography doesn't get a pass from it, it gets held to it more precisely because it's louder.
 
 ---
 

@@ -23,9 +23,21 @@ keywords:
   - gemma 4 12b multimodal
   - best open weight model 2026
   - gemma 4 model sizes
-image: "/images/blog/gemma-3-analysis-2026-hero.svg"
+image: "/images/blog/gemma-3-analysis-2026-hero-v9.jpg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Gemma 4 is the self-hosted tier of your AI Center of Excellence: the 31B is the strongest open model that fits on a single 24GB GPU (~18GB at Q4), now under plain Apache 2.0, which removes the legal review that stalled prior Gemma adoptions. Route privacy-bound work and high-volume agent loops here — the 26B A4B MoE plus vLLM batching is a fundamentally different cost curve than per-call API billing. Do not make it compete at the frontier; Fable 5 ($10/$50, the current agentic ceiling) or DeepSeek V4 carry the hardest work. Before committing, run your own eval against Qwen 3.5, which narrowly out-reasons it — Gemma 4 wins on package, not on every score."
+  coePillar: "Technology · model routing + Governance · data sovereignty"
+  personas:
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "Gemma 4 31B — max open quality on one GPU, Apache 2.0"
+    - persona: "Agentic mid-tier / tool-use fleets"
+      pick: "Gemma 4 26B A4B (~4B active) — MoE throughput at $0 per token"
+    - persona: "Multimodal ingest agents"
+      pick: "Gemma 4 12B — encoder-free vision + native audio on a 16GB laptop"
+    - persona: "Fine-tuned domain agents"
+      pick: "Gemma 4 (base + it checkpoints, Unsloth tooling, no disclosure obligation)"
 ---
 
 # Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU
@@ -172,5 +184,5 @@ The 1452 LMArena Elo is human-preference data and the most trustworthy single nu
 
 ---
 
-*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI.
+*Analysis by Frank — former Oracle AI architect building agentic systems independently and making music with AI.
 Published June 5, 2026 with specs and benchmarks validated against Google DeepMind's official announcement and model card, the HuggingFace launch post, LMArena, and independent self-host guides. Vendor-claimed figures are marked as such.*

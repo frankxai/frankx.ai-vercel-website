@@ -131,6 +131,27 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
               {cmp.verdict}
             </p>
           </div>
+
+          {cmp.architect && (
+            <div className="mt-4 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-400">AI Architect Recommendation</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/75">{cmp.architect.call}</p>
+              {cmp.architect.coePillar && (
+                <p className="mt-3 text-xs text-white/40">
+                  AI CoE pillar: <span className="text-white/65">{cmp.architect.coePillar}</span>
+                </p>
+              )}
+              {cmp.architect.personas?.length ? (
+                <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
+                  {cmp.architect.personas.map((p) => (
+                    <li key={p.persona} className="text-xs leading-relaxed text-white/55">
+                      <span className="font-medium text-white/80">{p.persona}:</span> {p.pick}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          )}
         </header>
 
         {/* Spec table */}

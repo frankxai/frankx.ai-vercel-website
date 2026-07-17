@@ -7,7 +7,7 @@
 | Domain | Evidence |
 |--------|----------|
 | Music | 12,000+ AI-generated songs through systematic production |
-| Enterprise | Oracle AI Architect, Fortune 500 client systems |
+| Enterprise | AI Architect & Creator, enterprise AI/cloud systems |
 | Products | ACOS (Agentic Creator Operating System), forkable templates, shipped tools |
 | Architecture | Systems processing millions of transactions in production |
 | Builder Output | Daily creation across music, code, content, and products |
@@ -16,10 +16,10 @@ The work speaks. Everything else is context.
 
 ## Professional Credentials
 
-### Current Position
-**Senior AI Architect at Oracle Corporation**
-- Leading AI Center of Excellence customer projects
-- Architecting enterprise-scale AI solutions for Fortune 500
+### Former Role
+**Former AI Architect at Oracle**
+- Worked around enterprise AI/cloud transformation and production architecture patterns
+- Translates enterprise-scale AI lessons into independent creator and entrepreneur systems
 - Designing multi-agent systems and agentic orchestration
 - Production-grade system design, not proof-of-concepts
 
@@ -33,7 +33,7 @@ The work speaks. Everything else is context.
 ### Measurable Outcomes
 - Designed AI systems processing millions of transactions
 - Reduced operational costs by 40% through intelligent automation
-- Led digital transformation for multi-billion dollar enterprises
+- Worked around enterprise-scale AI/cloud transformation environments
 - Built AI solutions serving 100,000+ users
 - Architected systems that run in production, not just demos
 
@@ -128,7 +128,7 @@ What makes this combination unique:
 ## The Credibility Stack
 
 ### Level 1: Technical Architecture
-- Oracle AI Architect (current)
+- AI Architect & Creator
 - Enterprise system designer
 - Production-grade understanding
 - Architecture-level expertise

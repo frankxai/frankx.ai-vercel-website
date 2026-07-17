@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { getAllBlogPosts, getFlagshipPosts } from '@/lib/blog'
+import { getAllBlogPostSummaries } from '@/lib/blog'
 import { createMetadata } from '@/lib/seo'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import BlogPageClient from './BlogPageClient'
@@ -61,9 +61,9 @@ function BlogSkeleton() {
 }
 
 export default function BlogPage() {
-  const allPosts = getAllBlogPosts()
-  const flagshipPosts = getFlagshipPosts()
+  const allPosts = getAllBlogPostSummaries()
   const categories = Array.from(new Set(allPosts.map((post) => post.category))).sort()
+  const tags = Array.from(new Set(allPosts.flatMap((post) => (post.tags || []).map((tag) => tag.trim())))).sort()
 
   return (
     <>
@@ -71,8 +71,8 @@ export default function BlogPage() {
       <Suspense fallback={<BlogSkeleton />}>
         <BlogPageClient
           posts={allPosts}
-          flagshipPosts={flagshipPosts}
           categories={categories}
+          tags={tags}
         />
       </Suspense>
     </>

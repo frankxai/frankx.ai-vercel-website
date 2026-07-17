@@ -24,14 +24,14 @@ export default function FoundersCirclePage() {
           <p className="text-xs font-medium text-rose-400 uppercase tracking-[0.18em] mb-6">
             Founder's Circle
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-8 leading-[1.05]">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-8 leading-[1.05]">
             For founders whose problem is judgment, not artifacts.
           </h1>
-          <p className="text-[17px] leading-relaxed text-white/80 mb-5 max-w-2xl">
+          <p className="text-lg text-zinc-300 leading-relaxed mb-5 max-w-2xl">
             Most builders need templates. The Toolkit and Architect tiers are for them — and
             they are excellent. Some operators have a different problem.
           </p>
-          <p className="text-[17px] leading-relaxed text-white/80 mb-10 max-w-2xl">
+          <p className="text-lg text-zinc-300 leading-relaxed mb-10 max-w-2xl">
             Their decisions cost or earn millions. Their time is the constraint, not their
             budget. They have read the books and built the prototypes. What they need is a
             second brain who has shipped enterprise AI systems and can give them the
@@ -41,31 +41,31 @@ export default function FoundersCirclePage() {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               href="/founders-circle/apply"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-base font-semibold bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 transition-colors"
             >
               Apply for the Circle
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href="mailto:frank@frankx.ai?subject=Founder%27s%20Circle%20inquiry"
+              href="mailto:circle@frankx.ai?subject=Founder%27s%20Circle%20inquiry"
               className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
             >
-              Or email frank@frankx.ai
+              Or email circle@frankx.ai
             </a>
           </div>
 
           <p className="text-xs text-zinc-500 mt-8 max-w-xl">
             10 seats per quarter. €2,997 per quarter. Real scarcity — that's how many
-            quarterly retainer seats fit in Frank's calendar without diluting his Oracle work
-            and FrankX building. Application form takes 8 minutes; reply within 5 business days.
+            quarterly retainer seats fit in Frank's calendar without diluting FrankX building
+            and existing commitments. Application form takes 8 minutes; reply within 5 business days.
           </p>
         </div>
       </section>
 
       {/* What you get — deliberately spartan */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-8 tracking-tight">
+          <h2 className="text-2xl font-semibold text-white mb-8 tracking-tight">
             What's in a quarter
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -125,9 +125,9 @@ export default function FoundersCirclePage() {
       </section>
 
       {/* The honest bar — who this is for */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 tracking-tight">
+          <h2 className="text-2xl font-semibold text-white mb-6 tracking-tight">
             Who the Circle is genuinely for
           </h2>
           <div className="space-y-4">
@@ -172,15 +172,16 @@ export default function FoundersCirclePage() {
             About Frank
           </h2>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-            Frank Riemer is a former AI Architect from Oracle's EMEA AI Center of Excellence,
-            where he built AI Center of Excellence frameworks for enterprise customers.
-            He realized the same 6-pillar architecture (Strategy, Governance, Talent,
-            Technology, Data, Ethics) translates directly to personal use — at 1/5000th the
-            cost. On frankx.ai he makes the same enterprise-grade frameworks available openly.
+            Frank Riemer is an AI Architect & Creator who has built AI Center of
+            Excellence frameworks for enterprise customers. He realized the same 6-pillar
+            architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translates
+            directly to personal use — at 1/5000th the cost. On frankx.ai he makes
+            enterprise-grade frameworks available openly.
           </p>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-            Founder's Circle does not involve Oracle proprietary materials. Frank's prior
-            Oracle work shaped the frameworks but is not part of what is delivered here.
+            Founder's Circle is a separate FrankX offering. It does not involve Oracle
+            proprietary materials. Where the work overlaps with confidentiality or partner
+            obligations, the work is referred upstream rather than serviced in the Circle.
           </p>
           <p className="text-sm text-zinc-400 leading-relaxed">
             All work in the Circle is done under FrankX (Frank's separate Dutch BV).
@@ -207,30 +208,30 @@ export default function FoundersCirclePage() {
       </section>
 
       {/* Apply CTA — bottom restate */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.04] p-8 text-center">
             <p className="text-xs font-medium text-rose-400 uppercase tracking-[0.18em] mb-3">
               Q2 2026 · 10 seats
             </p>
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">
+            <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">
               Apply for the next quarter
             </h3>
-            <p className="text-[17px] text-zinc-300 max-w-lg mx-auto leading-relaxed mb-6">
+            <p className="text-sm text-zinc-300 max-w-lg mx-auto leading-relaxed mb-6">
               The application takes 8 minutes. We reply within 5 business days. If a current
               quarter is full, you'll be offered the next one.
             </p>
             <Link
               href="/founders-circle/apply"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-base font-semibold bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 transition-colors"
             >
               Start the application
               <ArrowRight className="w-4 h-4" />
             </Link>
             <p className="text-xs text-zinc-500 mt-5">
               Or email{' '}
-              <a href="mailto:frank@frankx.ai" className="hover:text-zinc-300 underline">
-                frank@frankx.ai
+              <a href="mailto:circle@frankx.ai" className="hover:text-zinc-300 underline">
+                circle@frankx.ai
               </a>{' '}
               — Frank reads this directly.
             </p>

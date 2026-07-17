@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'FrankX',
     images: [
       {
-        url: '/images/library/library-collection-hero.jpg',
+        url: '/hero-homepage.png',
         width: 1200,
         height: 630,
         alt: 'FrankX Library — book reviews and key insights',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'The Library | FrankX',
     description: 'Key insights from the books that matter most.',
-    images: ['/images/library/library-collection-hero.jpg'],
+    images: ['/hero-homepage.png'],
   },
 };
 
@@ -114,6 +114,13 @@ const categoryColors: Record<string, string> = {
   Neuroscience: 'bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/25',
   'Inner Work': 'bg-violet-500/10 text-violet-300 border-violet-500/25',
   IFS: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Music: 'bg-pink-500/10 text-pink-300 border-pink-500/25',
+  'Rockstar Energy': 'bg-orange-500/10 text-orange-300 border-orange-500/25',
+  Scenes: 'bg-sky-500/10 text-sky-300 border-sky-500/25',
+  Scaling: 'bg-orange-500/10 text-orange-300 border-orange-500/25',
+  'Business Strategy': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  Leadership: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Platforms: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
 };
 
 function StarRating({ rating }: { rating: number }) {
@@ -143,23 +150,23 @@ export default function LibraryPage() {
     <div className="min-h-screen bg-[#0a0a0b]">
       <CollectionJsonLd />
       {/* Hero */}
-      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 px-6">
+      <section className="relative pt-32 pb-20 px-6">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
-          <p className="text-amber-400/80 text-xs sm:text-sm tracking-[0.2em] uppercase mb-4">
+          <p className="text-amber-400/80 text-sm tracking-[0.2em] uppercase mb-4">
             Curated Insights
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             The{' '}
             <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">
               Library
             </span>
           </h1>
-          <p className="text-[17px] md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
             Key insights from the books that shaped our thinking. Not summaries — the ideas
             that changed how we build, create, and live. Each review connects back to our own
             books.
@@ -181,7 +188,7 @@ export default function LibraryPage() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/library/quotes"
-              className="inline-flex items-center gap-2 text-sm text-rose-300/80 hover:text-rose-200 transition-colors border border-rose-500/20 rounded-full px-4 py-2 bg-rose-500/5 hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 text-sm text-rose-300/80 hover:text-rose-200 transition-colors border border-rose-500/20 rounded-full px-4 py-2 bg-rose-500/5 hover:bg-rose-500/10"
             >
               Browse all quotes
               <svg
@@ -201,7 +208,7 @@ export default function LibraryPage() {
             </Link>
             <Link
               href="/library/approach"
-              className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10"
             >
               How this library is built
               <svg
@@ -223,6 +230,37 @@ export default function LibraryPage() {
         </div>
       </section>
 
+      {/* Featured Collection — Rockstar Energy */}
+      <section className="max-w-6xl mx-auto px-6 pb-12">
+        <Link
+          href="/library/rockstar-energy"
+          className="group block rounded-2xl border border-orange-500/[0.18] bg-gradient-to-br from-orange-500/[0.06] via-rose-500/[0.03] to-transparent p-6 sm:p-7 transition-all hover:border-orange-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-orange-300/80 mb-2">
+                Featured Collection
+              </p>
+              <h2 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-orange-200 transition-colors">
+                Rockstar Energy &amp; Mindset
+              </h2>
+              <p className="text-sm text-white/60 leading-relaxed mt-2 max-w-2xl">
+                Eight books, Eno&apos;s <span className="italic">scenius</span>, and a watch list —
+                a study path in taste, scenes, persona, and the artist&apos;s inner state. The
+                question running through all of it: what makes people feel reality is more alive
+                around them?
+              </p>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 px-4 py-2 text-sm font-medium text-orange-200 transition-colors group-hover:bg-orange-500/20">
+              Enter the collection
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+          </div>
+        </Link>
+      </section>
+
       {/* Reviews Grid */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -230,6 +268,13 @@ export default function LibraryPage() {
             const relatedBook = review.relatedBook
               ? booksRegistry.find((b) => b.slug === review.relatedBook)
               : null;
+
+            const previewImage = review.hasCover
+              ? {
+                  src: review.coverImage,
+                  alt: `${review.title} by ${review.author} — book cover`,
+                }
+              : review.capture?.images?.[0];
 
             return (
               <Link
@@ -240,11 +285,11 @@ export default function LibraryPage() {
                 <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
-                    {review.hasCover ? (
+                    {previewImage ? (
                       <div className="w-16 h-24 rounded-lg border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
                         <Image
-                          src={review.coverImage}
-                          alt={`${review.title} by ${review.author} — book cover`}
+                          src={previewImage.src}
+                          alt={previewImage.alt}
                           width={128}
                           height={192}
                           className="w-full h-full object-cover"
@@ -271,6 +316,15 @@ export default function LibraryPage() {
                   <p className="text-sm text-white/60 leading-relaxed mb-4 line-clamp-2">
                     {review.keyInsights[0]}
                   </p>
+
+                  {/* Provenance badge */}
+                  {review.capture && (
+                    <div className="mb-4 -mt-2">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-200/80 border border-cyan-500/15">
+                        Source-backed
+                      </span>
+                    </div>
+                  )}
 
                   {/* Deep-dive badge */}
                   {(review.chapters?.length || review.quotes?.length) && (
@@ -386,17 +440,17 @@ export default function LibraryPage() {
 
       {/* Our Books CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-32">
-        <div className="rounded-3xl border border-amber-500/10 bg-amber-500/[0.03] backdrop-blur-xl p-10 lg:p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-3">
+        <div className="rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-10 text-center">
+          <h2 className="text-2xl font-bold text-white mb-3">
             Inspired by the best. Built from experience.
           </h2>
-          <p className="text-[17px] text-white/60 max-w-xl mx-auto mb-8 leading-relaxed">
+          <p className="text-white/50 max-w-xl mx-auto mb-6">
             These books shaped our thinking. Our own six books distill those ideas into
             actionable frameworks built from lived experience.
           </p>
           <Link
             href="/books"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors"
           >
             Explore Our Books
             <svg

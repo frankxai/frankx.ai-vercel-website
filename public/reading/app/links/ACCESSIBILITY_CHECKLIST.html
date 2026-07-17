@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
+  <meta name="date" content="2026-06-22" />
   <title>FrankX Links Page - Accessibility Checklist</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
@@ -42,7 +42,7 @@
 <body>
   <header>
     <div class="title">FrankX Links Page - Accessibility Checklist</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,7 +51,7 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><a href="../index.html#app">app</a> / <a href="index.html#app%2Flinks">links</a> / <span>ACCESSIBILITY_CHECKLIST.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
       <h1>FrankX Links Page - Accessibility Checklist</h1>
 <p><strong>WCAG AAA Compliance Verification</strong></p>
 <p><em>Last Reviewed: 2026-01-14</em>
@@ -230,12 +230,9 @@ focus-visible:ring-offset-2
 - Borders: 3:1 minimum ✅
 </code></pre>
 <h3>Animation Respect</h3>
-<pre><code class="language-tsx">// TODO: Add prefers-reduced-motion support
-@media (prefers-reduced-motion: reduce) {
-  .animate-pulse {
-    animation: none;
-  }
-}
+<pre><code class="language-tsx">- [x] Add prefers-reduced-motion support
+  - Implemented using Framer Motion&#39;s `useReducedMotion` hook.
+  - Animations are simplified or disabled when reduction is requested.
 </code></pre>
 <p><strong>ACTION ITEM</strong>: Add <code>prefers-reduced-motion</code> media query support</p>
 <hr>

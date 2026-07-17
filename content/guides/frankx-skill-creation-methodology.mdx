@@ -1,0 +1,479 @@
+---
+title: "The Skill Creation Methodology"
+description: "The authoring method behind the Agent Skill Standard: turn repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises."
+date: "2026-06-15"
+author: "Frank"
+category: "AI Architecture"
+tags: ["ai-skills", "ai-coe", "agentic-systems", "skillforge", "operating-knowledge"]
+image: "/images/blog/building-custom-skills-hero-v2.png"
+---
+
+# The Skill Creation Methodology
+
+This guide is a field method for building AI skills that actually compound. It is the authoring method behind the **[Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard)** — an open specification I steward rather than brand, so the practice belongs to the ecosystem, not to one name.
+
+It is built with gratitude for the people and teams moving this space forward: Anthropic for making Agent Skills concrete, the open-source builders publishing working examples, the AI teams stress-testing these ideas in production, and the operators turning raw model capability into useful work.
+
+The move here is additive. We do not need to subtract from the work already done. We can stand on it, learn from it, and raise the operating standard.
+
+Anthropic's Agent Skills gave the ecosystem a clean primitive: a folder with a `SKILL.md` file, metadata, instructions, and optional references, scripts, and assets. The official repository and documentation show the anatomy. The deeper opportunity is to turn that primitive into a full skill creation methodology: one that supports solo builders, startup teams, and enterprise AI Centers of Excellence.
+
+That is what this guide covers.
+
+## The Core Thesis
+
+The next AI advantage is not better prompting.
+
+It is the ability to convert repeatable work into reusable, evaluated, governed operating knowledge.
+
+Prompts are useful. They are also fragile. They live in chats, docs, bookmarks, private memory, and half-remembered workflows. A skill is different. A skill packages a workflow so an AI agent can recognize when to use it, load the right context, run deterministic checks, follow a quality standard, and produce a result that a team can trust.
+
+The method treats skills as **operating knowledge units**.
+
+Each skill should answer:
+
+- What repeatable work does this encode?
+- Who benefits from the output?
+- When should the agent use it?
+- What references matter?
+- What steps must not be skipped?
+- What should be verified by code instead of language?
+- What quality bar does the output need to meet?
+- What risk does this introduce?
+- Who owns it?
+- How do we know it still works?
+
+If those answers are missing, the asset is not yet a real skill. It is a prompt with a folder around it.
+
+## The Five Layers
+
+The method has five layers. Each one is a checkpoint a skill must clear before it earns the next maturity level in the standard.
+
+<Diagram src="/images/infographics/skill-five-layers.svg" alt="The five layers of a skill: Intent, Knowledge, Execution, Evaluation, Governance" caption="The five layers — Intent, Knowledge, Execution, Evaluation, Governance. Skip one and the skill stays fragile." />
+
+### 1. Intent
+
+Start with the work, not the file structure.
+
+The first question is not "What should the `SKILL.md` say?" The first question is "Which workflow deserves to become reusable?"
+
+Good candidates are:
+
+- frequent
+- valuable
+- context-heavy
+- teachable
+- easy to evaluate
+- painful when done inconsistently
+
+Poor candidates are:
+
+- vague
+- rarely used
+- dependent on hidden judgment
+- too broad to test
+- risky without clear approval gates
+
+Example of a weak intent:
+
+> Help with content.
+
+Example of a strong intent:
+
+> Turn a research brief into a founder-grade blog post with a clear thesis, practical examples, internal links, source notes, and a final quality checklist.
+
+The second version can become a skill. The first version is an aspiration.
+
+### 2. Knowledge
+
+Every useful skill carries knowledge the agent should not have to rediscover.
+
+That knowledge may include:
+
+- style guides
+- templates
+- pricing rules
+- evaluation rubrics
+- examples of good work
+- examples of bad work
+- customer language
+- product constraints
+- compliance language
+- architecture patterns
+- team preferences
+- decision rules
+
+The main `SKILL.md` should not become a giant knowledge dump. Use progressive disclosure:
+
+- Put routing and workflow instructions in `SKILL.md`.
+- Put deeper references in `references/`.
+- Put reusable templates in `assets/`.
+- Put deterministic checks in `scripts/`.
+
+The skill should feel like a smart onboarding guide for a new teammate: clear enough to act, structured enough to scale, and humble enough to know when to look up the source material.
+
+### 3. Execution
+
+A skill must tell the agent what to do.
+
+Not "be strategic."
+
+Not "write high quality output."
+
+Actual steps:
+
+1. Read the brief.
+2. Validate required inputs.
+3. Load the relevant reference file.
+4. Draft the output in the approved structure.
+5. Run the checklist.
+6. Mark assumptions.
+7. Return the result with next actions.
+
+For deterministic work, use scripts:
+
+- validate required fields
+- parse a document
+- compare schemas
+- check word count
+- scan for banned phrases
+- verify links
+- calculate metrics
+- inspect a repository
+- generate a report
+
+Language models are excellent at synthesis. They should not be asked to manually perform every repeatable check that code can perform better.
+
+### 4. Evaluation
+
+Skills need proof.
+
+At minimum, create three evaluation scenarios:
+
+- a clean success case
+- an incomplete input case
+- a misuse or boundary case
+
+For serious use, evaluate:
+
+- trigger accuracy
+- false positives
+- step adherence
+- reference loading
+- script usage
+- output quality
+- policy compliance
+- coexistence with other skills
+- regression across versions
+
+The quality bar is simple: a skill is not ready because it worked once. It is ready when it works repeatedly against representative tasks.
+
+### 5. Governance
+
+Skills are operational artifacts. They deserve ownership.
+
+Every shared skill should have:
+
+- name
+- purpose
+- owner
+- version
+- status
+- risk tier
+- intended users
+- required tools
+- allowed data
+- evaluation set
+- last reviewed date
+- rollback version
+
+For a founder, this can be a simple table.
+
+For a startup, this should live in the repo.
+
+For an enterprise, this belongs in the AI Center of Excellence operating model.
+
+## The Maturity Model
+
+The five layers tell you what to build. The maturity model tells you where a skill stands today and what it needs next. The Agent Skill Standard defines six levels.
+
+<Diagram src="/images/infographics/skill-maturity-ladder.svg" alt="The Skill Maturity Model: six levels from L0 Prompt to L5 Composed and attested capability" caption="The Skill Maturity Model — each level adds one guarantee the level below it lacked." />
+
+| Level | Name | What it adds |
+| --- | --- | --- |
+| L0 | Prompt | An ad-hoc instruction. Useful, not reusable. |
+| L1 | Documented | A valid `SKILL.md` with a name, a description full of trigger language, and one narrow job. |
+| L2 | Referenced | Progressive disclosure: `references/`, `scripts/`, and `assets/` instead of one giant file. |
+| L3 | Evaluated | At least three eval scenarios — success, incomplete input, and a misuse boundary. |
+| L4 | Governed | A registry entry: owner, version, status, risk tier, allowed data, review date, rollback. |
+| L5 | Composed | Safe composition with other skills, plus attestation and a clear sovereignty boundary. |
+
+Most teams live at L0 and L1. Durable capability starts at L3, because that is where a skill stops depending on luck. Treat the jump from L1 to L3 as the real work.
+
+## The Skillforge Canvas
+
+Use this canvas before writing the skill.
+
+| Field | Question |
+| --- | --- |
+| Workflow | What repeatable work are we encoding? |
+| User | Who will use or benefit from it? |
+| Trigger | What should cause the skill to load? |
+| Inputs | What must the agent know before acting? |
+| References | Which files, policies, examples, or templates matter? |
+| Procedure | What steps must happen in order? |
+| Scripts | What should code validate or generate? |
+| Output | What does the finished artifact look like? |
+| Quality bar | What must be true before delivery? |
+| Risk tier | What can go wrong? |
+| Owner | Who maintains this? |
+| Evals | How do we test it? |
+
+If the canvas is weak, the skill will be weak.
+
+## Folder Standard
+
+Recommended structure:
+
+```text
+skill-name/
+  SKILL.md
+  references/
+    style-guide.md
+    examples.md
+    policy.md
+  scripts/
+    validate-inputs.py
+    check-output.py
+  assets/
+    template.md
+  evals/
+    scenarios.md
+```
+
+Not every skill needs every folder. But every important skill needs the discipline behind them.
+
+Use `references/` when the content is too detailed or situational for the main file.
+
+Use `scripts/` when an operation should be deterministic.
+
+Use `assets/` when there is a reusable template or source artifact.
+
+Use `evals/` when the skill will be shared or maintained over time.
+
+## The `SKILL.md` Standard
+
+<Diagram src="/images/infographics/skill-anatomy.svg" alt="Anatomy of a skill: a SKILL.md file with frontmatter and body, plus references, scripts, assets, and evals folders, loaded by progressive disclosure" caption="The skill folder and the three loading levels of progressive disclosure." />
+
+A strong `SKILL.md` has this shape:
+
+```markdown
+---
+name: customer-discovery-synthesis
+description: Synthesizes customer interviews into patterns, objections, jobs-to-be-done, risks, and product implications. Use when the user provides interview notes, call transcripts, discovery notes, or asks for customer research synthesis.
+---
+
+# Customer Discovery Synthesis
+
+## Purpose
+
+Turn raw customer conversations into actionable product and go-to-market intelligence.
+
+## Required Inputs
+
+- At least one interview note, transcript, or call summary
+- Target customer segment if known
+- Current product or offer context if relevant
+
+## Workflow
+
+1. Read the source material.
+2. Extract direct customer language.
+3. Cluster pain points and desired outcomes.
+4. Separate evidence from interpretation.
+5. Identify objections, buying triggers, and unresolved questions.
+6. Produce the output using the approved structure.
+7. Run the quality checklist before returning.
+
+## Output Structure
+
+- Executive summary
+- Customer language
+- Pain patterns
+- Desired outcomes
+- Objections
+- Product implications
+- Sales implications
+- Follow-up questions
+
+## Quality Checklist
+
+- No invented quotes
+- Claims tied to source evidence
+- Assumptions marked clearly
+- Recommendations separated from observations
+- Follow-up questions are specific
+```
+
+The description matters because it is the routing layer. The body matters because it is the operating procedure.
+
+## Risk Tiers
+
+Use a simple risk model.
+
+| Tier | Skill Type | Example | Standard |
+| --- | --- | --- | --- |
+| 0 | Personal productivity | Summarize notes | Personal review |
+| 1 | Internal low-risk | Draft internal docs | Owner review |
+| 2 | Business workflow | Proposal, PRD, support analysis | Registry + evals |
+| 3 | Sensitive workflow | Legal, HR, finance, customer data | Formal review + approval gates |
+| 4 | Operational action | Production, billing, security response | Strict controls + logging |
+
+Do not over-govern simple work.
+
+Do not under-govern sensitive work.
+
+The craft is matching friction to risk.
+
+<Diagram src="/images/infographics/skill-risk-tiers.svg" alt="Risk tiers as a pyramid from T0 personal productivity to T4 operational action, with the review each tier requires" caption="Risk tiers — the controls scale with possible harm, not with how impressive the skill looks." />
+
+## The Conformance Bar
+
+A skill conforms to the standard when:
+
+- it has a narrow job
+- it has explicit trigger language
+- it names required inputs
+- it separates evidence from interpretation
+- it uses references instead of relying on memory
+- it uses scripts for deterministic checks
+- it has real examples
+- it includes anti-patterns
+- it has a quality checklist
+- it can be evaluated
+- it has an owner
+
+A skill is weak when:
+
+- it tries to cover a whole department
+- it says "use best practices" without defining them
+- it hides important knowledge in vague language
+- it cannot be tested
+- it has no data boundary
+- it creates outputs nobody reviews
+- it depends on the agent guessing the real workflow
+
+## How This Connects to an AI CoE
+
+An AI Center of Excellence should not only govern models and tools. It should govern reusable operating knowledge.
+
+For skills, the CoE should maintain:
+
+- a skill registry
+- role-based skill bundles
+- naming standards
+- evaluation requirements
+- risk tiers
+- approval paths
+- deployment rules
+- version history
+- deprecation rules
+
+The CoE should also prevent the common failure mode: becoming a bottleneck.
+
+The right model is central standards, federated execution. The CoE sets the operating system. Teams ship within it.
+
+## Startup Version
+
+For a startup, keep this lightweight:
+
+- one shared `skills/` repository
+- one owner per skill
+- three eval scenarios per skill
+- one monthly review
+- risk tiers only for sensitive work
+- a simple registry table
+
+The first startup skills should come from recurring leverage:
+
+- customer discovery synthesis
+- PRD builder
+- release note writer
+- sales proposal builder
+- support escalation analyst
+- investor update generator
+- weekly operating review
+
+## Enterprise Version
+
+For an enterprise, skills become part of AI operating governance.
+
+Add:
+
+- security review for third-party skills
+- source control and signed commits
+- version pinning
+- rollback plan
+- cross-surface distribution management
+- audit logs where tools are involved
+- legal/privacy review for sensitive workflows
+- coexistence tests for active skill bundles
+
+Enterprises should also design role-based bundles:
+
+- sales
+- engineering
+- support
+- legal
+- finance
+- HR
+- executive operations
+
+The goal is not to activate every skill for everyone. The goal is to make the right operating knowledge available to the right people at the right moment.
+
+## The Book Perspective
+
+This guide is the seed of a larger book.
+
+Working title:
+
+> Operating Knowledge: How to Build AI Skills, Agents, and Centers of Excellence That Compound
+
+Possible structure:
+
+1. The end of prompt chaos
+2. Skills as operating knowledge
+3. The anatomy of a useful skill
+4. Progressive disclosure and context design
+5. Scripts, references, and deterministic checks
+6. Evaluation as the new craft
+7. Skill libraries for founders
+8. Skill registries for startups
+9. AI CoE governance for enterprises
+10. Security and semantic supply-chain risk
+11. Role-based bundles and agent teams
+12. The future: self-improving operating systems
+
+The book should not be another tool guide. It should be a standard for how serious builders turn AI into durable capability.
+
+## What To Read Next
+
+- [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer)
+- [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance)
+- [Building Custom Skills for ACOS](/blog/building-custom-skills-acos)
+- [Why Everyone Needs Their Own AI Center of Excellence](/blog/why-everyone-needs-personal-ai-coe)
+- [Agent Card A2A Spec](/guides/agent-card-a2a-spec)
+- [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)
+- [Agent Skill Standard (open spec)](https://github.com/frankxai/claude-skills-library/tree/main/standard)
+- [Research Hub](/research)
+
+## Source Base
+
+- [Anthropic Agent Skills engineering post](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+- [Anthropic Skills repository](https://github.com/anthropics/skills)
+- [Claude Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- [Claude Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+- [Claude Skills for enterprise](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise)
+- [Microsoft AI Center of Excellence guidance](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai/center-of-excellence)
+- [AWS enterprise generative AI scaling guidance](https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-enterprise-ready-gen-ai-platform/best-practices.html)
+- [IBM AI Center of Excellence overview](https://www.ibm.com/think/topics/ai-center-of-excellence)

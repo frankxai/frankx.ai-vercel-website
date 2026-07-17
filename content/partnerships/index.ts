@@ -1,6 +1,5 @@
 import type { Partner } from './types'
 import { arrow } from './arrow'
-import { kyndryl } from './kyndryl'
 import { nvidia } from './_placeholders/nvidia'
 import { anthropic } from './_placeholders/anthropic'
 import { vercel } from './_placeholders/vercel'
@@ -14,7 +13,6 @@ import { google } from './_placeholders/google'
  */
 const registry: Record<string, Partner> = {
   [arrow.slug]: arrow,
-  [kyndryl.slug]: kyndryl,
   [nvidia.slug]: nvidia,
   [anthropic.slug]: anthropic,
   [vercel.slug]: vercel,

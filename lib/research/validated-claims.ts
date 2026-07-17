@@ -48,7 +48,7 @@ export interface ValidatedClaim {
     name: string;
     url?: string;
     date?: string;
-    type?: 'journal' | 'preprint' | 'news' | 'report' | 'official';
+    type?: 'journal' | 'conference' | 'preprint' | 'news' | 'report' | 'official';
   }[];
   validatedDate: string; // ISO date
   confidence: ConfidenceLevel;
@@ -171,6 +171,7 @@ export function getConsensusColor(consensus: ConsensusLevel): string {
  * Map domain slugs to claim category keywords for cross-referencing.
  */
 const domainCategoryMap: Record<string, string[]> = {
+  'intent-architecture': ['Intent Architecture'],
   'enterprise-ai': ['Market Size', 'Enterprise Adoption'],
   'multi-agent-systems': ['Framework Adoption', 'Enterprise Adoption'],
   'production-patterns': ['Production Patterns', 'Oracle OCI'],
@@ -209,6 +210,72 @@ export function getClaimCountForDomain(slug: string): number {
 // ============================================
 
 export const validatedClaims: Record<string, ValidatedClaim> = {
+  // Intent Architecture
+  'intent-workbank-sample': {
+    id: 'intent-workbank-sample',
+    claim: 'Scope of the WORKBank occupational-task study',
+    value: '1,500 workers · 844 tasks · 104 occupations',
+    sources: [
+      { name: 'WORKBank', url: 'https://arxiv.org/abs/2506.06576', date: '2025', type: 'preprint' }
+    ],
+    validatedDate: '2026-07-16',
+    confidence: 'medium-high',
+    category: 'Intent Architecture',
+    crossRefCount: 1,
+    evidenceQuality: 'preprint',
+    consensusLevel: 'preliminary',
+    limitations: ['Preprint findings combine worker preferences with AI-expert capability assessments and may not generalize across labor markets.'],
+    replicationStatus: 'single-study'
+  },
+  'intent-pm-delegation-sample': {
+    id: 'intent-pm-delegation-sample',
+    claim: 'Product managers included in the mixed-methods AI delegation study',
+    value: '885 product managers',
+    sources: [
+      { name: 'Ulloa et al.', url: 'https://dl.acm.org/doi/10.1145/3786583.3786849', date: '2026', type: 'conference' }
+    ],
+    validatedDate: '2026-07-16',
+    confidence: 'medium-high',
+    category: 'Intent Architecture',
+    crossRefCount: 1,
+    evidenceQuality: 'observational',
+    consensusLevel: 'emerging',
+    limitations: ['The study concerns one profession and reports delegation behavior and attitudes rather than causal effects of an intent-contract framework.'],
+    replicationStatus: 'single-study'
+  },
+  'intent-qje-productivity': {
+    id: 'intent-qje-productivity',
+    claim: 'Average productivity increase associated with generative-AI assistance in customer support',
+    value: '15% average productivity increase · 5,172 customer-support workers',
+    sources: [
+      { name: 'Quarterly Journal of Economics', url: 'https://academic.oup.com/qje/article/140/2/889/7990658', date: '2025', type: 'journal' }
+    ],
+    validatedDate: '2026-07-16',
+    confidence: 'high',
+    category: 'Intent Architecture',
+    crossRefCount: 1,
+    evidenceQuality: 'observational',
+    consensusLevel: 'emerging',
+    limitations: ['The field study measures AI assistance in customer support, not autonomous agents or the complete Intent Architecture framework.'],
+    replicationStatus: 'single-study'
+  },
+  'intent-collabskill-sample': {
+    id: 'intent-collabskill-sample',
+    claim: 'Scope of the CollabSkill human-agent collaboration study',
+    value: '93 workers · 386 sessions',
+    sources: [
+      { name: 'CollabSkill', url: 'https://arxiv.org/abs/2606.09833', date: '2026', type: 'preprint' }
+    ],
+    validatedDate: '2026-07-16',
+    confidence: 'medium',
+    category: 'Intent Architecture',
+    crossRefCount: 1,
+    evidenceQuality: 'preprint',
+    consensusLevel: 'preliminary',
+    limitations: ['The study is a recent preprint and does not establish long-term transfer from agent practice to human delegation skill.'],
+    replicationStatus: 'single-study'
+  },
+
   // Market Size & Growth
   'market-size-2025': {
     id: 'market-size-2025',

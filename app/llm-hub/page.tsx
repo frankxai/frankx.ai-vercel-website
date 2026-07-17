@@ -6,6 +6,7 @@ import { AgenticPlatformPill } from '@/components/llm-hub/AgenticPlatformPill'
 import { ModelExplorer } from '@/components/llm-hub/ModelExplorer'
 import { DecisionMatrix } from '@/components/llm-hub/DecisionMatrix'
 import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
+import { TaskRoutingPlayground } from '@/components/research/TaskRoutingPlayground'
 import { getAllPlatforms, getProviders } from '@/lib/llm-hub/registry'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
@@ -154,10 +155,22 @@ export default async function LlmHubPage() {
                 <FileJson className="h-4 w-4" /> Sources &amp; provenance
               </Link>
               <Link
-                href="/blog/google-io-26-cloud-innovations-gemini-3-5-omni-antigravity"
+                href="/blog/frontier-model-routing-without-fable-5"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >
-                <Zap className="h-4 w-4" /> Google I/O ’26 decoded
+                <Zap className="h-4 w-4" /> Frontier routing guide
+              </Link>
+              <Link
+                href="/research/model-arena"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
+              >
+                <Code2 className="h-4 w-4" /> Model Arena receipts
+              </Link>
+              <Link
+                href="/research/visual-catalog"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
+              >
+                <Compass className="h-4 w-4" /> Visual Catalog
               </Link>
               <a
                 href="/llm-hub.json"
@@ -185,7 +198,13 @@ export default async function LlmHubPage() {
                 The fastest path from “which model?” to an answer. One dominant constraint → a recommendation.
               </p>
             </div>
-            <DecisionMatrix />
+            <div className="grid gap-8">
+              <TaskRoutingPlayground />
+              <div className="mt-6">
+                <h3 className="text-base font-semibold text-white/80 mb-3">Curated Routing Table</h3>
+                <DecisionMatrix />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -318,24 +337,24 @@ export default async function LlmHubPage() {
             <h2 className="mb-6 text-2xl font-bold">Related research & analysis</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <RelatedLink
-                href="/research/frontier-llm-landscape-2026"
+                href="/blog/frontier-model-routing-without-fable-5"
                 label="Research"
-                title="Frontier LLM Landscape 2026"
-                description="Methodology, evidence grades, and what we don’t yet know"
+                title="Frontier Model Freedom Guide"
+                description="Fable 5, Kilo Code, Grok 4.3, Gemini 3.5, and fallback routing"
                 accent="#06b6d4"
               />
               <RelatedLink
-                href="/ai-ops/models-2026"
+                href="/research/model-arena"
                 label="Arena"
-                title="Frontier Model Benchmark Arena"
-                description="Head-to-head benchmark radar, pricing, and ACOS routing"
+                title="Starlight Model Arena"
+                description="Open JSON receipts for routing claims and model behavior"
                 accent="#10b981"
               />
               <RelatedLink
-                href="/blog/google-io-26-cloud-innovations-gemini-3-5-omni-antigravity"
+                href="/blog/ai-model-routing-guide"
                 label="Blog"
-                title="Google I/O ’26: Cloud Innovations Decoded"
-                description="Gemini 3.5 Flash, Omni, Antigravity 2.0 in production context"
+                title="AI Model Routing Guide"
+                description="Which model to use by task, constraint, and evidence grade"
                 accent="#a855f7"
               />
             </div>

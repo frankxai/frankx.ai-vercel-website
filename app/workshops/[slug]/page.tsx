@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getAllWorkshopSlugs, getWorkshopBySlug, type Workshop } from '@/data/workshops'
+import { getAllWorkshopSlugs, getWorkshopBySlug } from '@/data/workshops'
 import { siteConfig } from '@/lib/seo'
-import { socialLinks } from '@/lib/social-links'
 import WorkshopClient from './WorkshopClient'
 
 const SITE_URL = siteConfig.url
@@ -27,8 +26,13 @@ export async function generateMetadata(
   }
 
   const url = `${SITE_URL}/workshops/${workshop.slug}`
-  const title = `${workshop.title} · FrankX Workshops`
-  const description = workshop.subtitle || workshop.overview.slice(0, 160)
+  const title = `${workshop.title} · FrankX Workshop Studio`
+  const provenanceLead = {
+    'delivered-personal': 'Personally developed and delivered workshop.',
+    'delivered-studio-assisted': 'Delivered workshop with a studio-assisted architecture.',
+    'studio-draft': 'Studio architecture to tailor and pilot.',
+  }[workshop.provenance]
+  const description = `${provenanceLead} ${workshop.subtitle || workshop.overview.slice(0, 120)}`
 
   return {
     title,
@@ -42,11 +46,7 @@ export async function generateMetadata(
       type: 'article',
       images: [
         {
-          // Static fallback while /api/og dynamic generation is debugged.
-          // Live-verified 2026-05-26: /api/og returns 200 + 0 bytes on Next 16
-          // even on Fluid Compute. Static hero ensures social-share unfurls
-          // render rather than blanking.
-          url: `${SITE_URL}/hero-homepage.png`,
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(workshop.title)}&subtitle=${encodeURIComponent(workshop.subtitle)}`,
           width: 1200,
           height: 630,
           alt: workshop.title,
@@ -70,59 +70,7 @@ export async function generateMetadata(
   }
 }
 
-function totalMinutes(workshop: Workshop): number {
-  return workshop.modules.reduce((sum, m) => {
-    const match = m.duration.match(/(\d+)/)
-    return sum + (match ? parseInt(match[1], 10) : 0)
-  }, 0)
-}
-
-function CourseJsonLd({ workshop }: { workshop: Workshop }) {
-  const minutes = totalMinutes(workshop)
-  const courseLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: workshop.title,
-    description: workshop.overview,
-    url: `${SITE_URL}/workshops/${workshop.slug}`,
-    provider: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: SITE_URL,
-      jobTitle: 'AI Architect',
-      sameAs: [socialLinks.linkedin, socialLinks.github],
-    },
-    educationalLevel: workshop.difficulty,
-    timeRequired: `PT${minutes}M`,
-    numberOfCredits: workshop.moduleCount,
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'mixed',
-      courseWorkload: workshop.duration,
-      instructor: {
-        '@type': 'Person',
-        name: 'Frank Riemer',
-        url: SITE_URL,
-      },
-    },
-    teaches: workshop.objectives,
-    coursePrerequisites: workshop.prerequisites,
-    audience: {
-      '@type': 'Audience',
-      audienceType: workshop.audience,
-    },
-    inLanguage: 'en',
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(courseLd) }}
-    />
-  )
-}
-
-function BreadcrumbJsonLd({ workshop }: { workshop: Workshop }) {
+function BreadcrumbJsonLd({ workshop }: { workshop: NonNullable<ReturnType<typeof getWorkshopBySlug>> }) {
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -152,7 +100,6 @@ export default async function WorkshopDetailPage(
 
   return (
     <>
-      <CourseJsonLd workshop={workshop} />
       <BreadcrumbJsonLd workshop={workshop} />
       <WorkshopClient workshop={workshop} />
     </>

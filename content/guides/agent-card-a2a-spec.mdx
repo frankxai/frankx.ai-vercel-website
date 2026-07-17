@@ -4,7 +4,7 @@ description: "Field-by-field walkthrough of the Google A2A Agent Card — the JS
 date: "2026-04-24"
 author: "Frank"
 category: "AI Agents"
-tags: ["AI Agents", "A2A", "Agent Card", "Interoperability", "Internal Agent Spec"]
+tags: ["AI Agents", "A2A", "Agent Card", "Interoperability", "Oracle OAS"]
 ---
 
 # The Agent Card
@@ -70,7 +70,7 @@ This is a valid A2A Agent Card. Every field is either required or strongly recom
 Human-readable name. One line, no branding fluff.
 
 **Good:** `"First Agent — Research Assistant"`, `"Acme Support Triage"`, `"Invoice OCR Agent"`
-**Bad:** `"AI-Powered Revolutionary Research Platform™"`, `"agent-47"` {/* ai-slop-allow */}
+**Bad:** `"AI-Powered Next-Gen Research Platform™"`, `"agent-47"`
 
 ### `description` (required)
 
@@ -279,20 +279,20 @@ If it parses, you're good.
 
 ---
 
-## The internal-spec connection
+## The Oracle Open Agent Specification connection
 
-The Agent Card is one half of the portability story. The other half is an **internal agent specification** — a framework-agnostic YAML or JSON document that describes the agent's **internals** (tools, memory stores, workflows, model routing, observability), not just its external interface.
+The Agent Card is one half of the portability story. The other half is the [Oracle Open Agent Specification (OAS)](https://docs.oracle.com/) — a framework-agnostic YAML/JSON spec that describes **the agent's internals** (tools, memory, workflows), not just its external interface.
 
-Several enterprise teams maintain this pattern under different names. The shape is consistent:
+Relationship:
 
 - **Agent Card** = external contract. What callers see. Fields: name, description, skills, capabilities.
-- **Internal spec** = developer definition. What teams maintain. Fields: tools, memory stores, workflows, model routing, observability.
+- **OAS** = internal definition. What developers maintain. Fields: tools, memory stores, workflows, model routing, observability.
 
-In practice: your Agent Card is a **subset** of what an internal spec contains. Generate the Agent Card from the internal spec and both stay in sync.
+In practice: your Agent Card is a **subset** of what an OAS file contains. Generate the Agent Card from the OAS file and both stay in sync.
 
-This is especially valuable for enterprise deployments where one team owns the internal definition and another team consumes the Agent Card. Same pattern as OpenAPI generating client libraries across languages.
+This is especially valuable for enterprise deployments where one team owns the OAS definition and another team consumes the Agent Card. It's the same pattern as OpenAPI specs generating client libraries across languages.
 
-The [enterprise branch of the workshop (B6)](/workshops/build-first-ai-agent) covers the internal-spec pattern in depth. For your first agent, the Card alone is enough.
+The [enterprise branch of the workshop (B6)](/workshops/build-first-ai-agent) covers OAS in depth. For your first agent, the Card alone is enough.
 
 ---
 

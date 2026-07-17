@@ -741,7 +741,7 @@ export default function ACOSLandingPage() {
               },
               {
                 question: "What's included in the lifetime updates?",
-                answer: "You get all future skills, agents, features, and system improvements at no additional cost. As AI evolves, ACOS evolves with it—and you're always on the latest version."
+                answer: "You get the current ACOS release and included improvements covered by your license. As AI evolves, ACOS evolves with it, with update scope described at purchase time."
               },
               {
                 question: "Can I get a refund if it's not for me?",

@@ -41,7 +41,7 @@ Associated with releasing guilt and fear — two emotions that often intensify d
 Perhaps the most widely discussed healing frequency. Standard concert pitch is 440 Hz, but 432 Hz is mathematically consistent with the patterns found in nature — the spiral of shells, the arrangement of sunflower seeds, the orbital periods of planets. Many listeners report that music tuned to 432 Hz feels warmer, clearer, and more calming. It is sometimes called the "heartbeat of the earth."
 
 **528 Hz — Love Frequency**
-Known as the "miracle tone." Research by Dr. Leonard Horowitz associates this frequency with DNA repair and transformation. It is the frequency used by genetic biochemists to repair damaged DNA. Whether or not you accept the science, the subjective experience is consistent: 528 Hz feels like being held.
+Known in Solfeggio-inspired music culture as the "miracle tone." I use it here as an aesthetic reference for warmth, tenderness, and reflective listening rather than as a biological claim. The subjective experience is the point: 528 Hz-style ambience can feel like being held.
 
 **639 Hz — Connection**
 The frequency of harmonizing relationships. In grief, we often feel disconnected — from others, from ourselves, from the person we've lost. This frequency is used to bridge that gap, to restore the sense of being in relationship even across the boundary of death.

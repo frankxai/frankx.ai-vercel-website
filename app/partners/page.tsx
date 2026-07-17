@@ -92,7 +92,7 @@ const partners: Partner[] = [
     url: 'https://oracle.com',
     kind: 'strategic',
     description:
-      'Oracle is Frank\'s employer. Oracle Agent Development Kit and Open Agent Specification are taught in the enterprise branch of the First AI Agent workshop. Not a revshare relationship — this is strategic positioning that flows through Frank\'s AI Architect role.',
+      'Oracle Agent Development Kit and Open Agent Specification are covered in the enterprise branch of the First AI Agent workshop as public learning material. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.',
     usedIn: [
       '/workshops/build-first-ai-agent (enterprise branch)',
       '/ai-architecture',
@@ -288,20 +288,29 @@ export default function PartnersPage() {
                       Where you\'ll see it
                     </p>
                     <ul className="flex flex-wrap gap-2">
-                      {p.usedIn.map((u, i) => (
-                        <li
-                          key={i}
-                          className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs text-zinc-400 bg-white/[0.03] border border-white/[0.06]"
-                        >
-                          {u.startsWith('/') ? (
-                            <Link href={u} className="hover:text-cyan-400">
-                              {u}
-                            </Link>
-                          ) : (
-                            u
-                          )}
-                        </li>
-                      ))}
+                      {p.usedIn.map((u, i) => {
+                        // Entries like "/workshops/build-first-ai-agent (no-code branch)"
+                        // carry an annotation after the path — link only the path,
+                        // render the rest as plain text.
+                        const pathMatch = u.startsWith('/') ? u.match(/^(\/\S+)(.*)$/) : null
+                        return (
+                          <li
+                            key={i}
+                            className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs text-zinc-400 bg-white/[0.03] border border-white/[0.06]"
+                          >
+                            {pathMatch ? (
+                              <>
+                                <Link href={pathMatch[1]} className="hover:text-cyan-400">
+                                  {pathMatch[1]}
+                                </Link>
+                                {pathMatch[2] && <span>&nbsp;{pathMatch[2].trim()}</span>}
+                              </>
+                            ) : (
+                              u
+                            )}
+                          </li>
+                        )
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -415,7 +424,7 @@ export default function PartnersPage() {
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-zinc-400 leading-relaxed">
               Partnership status evolves. If a partnership ends or changes kind, this
-              page is updated within 48 hours. Last updated: 2026-06-02.
+              page is updated within 48 hours. Last updated: 2026-05-08.
             </p>
           </div>
         </div>

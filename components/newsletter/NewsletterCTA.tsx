@@ -9,7 +9,7 @@ export default function NewsletterCTA() {
   return (
     <>
       {/* How it works — Aurora accented */}
-      <section className="relative border-t border-white/5 py-20 lg:py-28 overflow-hidden">
+      <section className="relative border-t border-white/5 py-16 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute top-0 right-0 h-56 w-72 rounded-full bg-cyan-500/[0.05] blur-[120px]" />
           <div className="absolute bottom-0 left-0 h-48 w-60 rounded-full bg-violet-500/[0.04] blur-[100px]" />
@@ -21,11 +21,11 @@ export default function NewsletterCTA() {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+            <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
               How it works
             </h2>
-            <p className="text-[17px] leading-relaxed text-white/80">
-              Each stream is independent. Subscribe to what matters.
+            <p className="text-slate-400">
+              Start with the main letter. Add deeper streams only when they matter.
             </p>
           </motion.div>
 
@@ -33,18 +33,18 @@ export default function NewsletterCTA() {
             {[
               {
                 step: '01',
-                title: 'Pick your streams',
-                desc: 'Choose one or all. Each has its own cadence and content type.',
+                title: 'Join Signal Loop',
+                desc: 'The main weekly note carries the clearest AI, creative, and performance signal.',
               },
               {
                 step: '02',
-                title: 'Get curated content',
-                desc: 'Not repurposed blog posts. Original insights crafted for each stream.',
+                title: 'Read what held up',
+                desc: 'Systems, experiments, and stories are shared only after they survive real use.',
               },
               {
                 step: '03',
                 title: 'Stay in control',
-                desc: 'Manage each stream independently. Unsubscribe from one without losing others.',
+                desc: 'No pressure loops. Leave any time, or add deeper streams when they earn your attention.',
               },
             ].map((item, i) => (
               <motion.div
@@ -53,7 +53,7 @@ export default function NewsletterCTA() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6"
+                className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6"
               >
                 <div className="mb-3 text-2xl font-bold text-white/10">
                   {item.step}
@@ -67,7 +67,7 @@ export default function NewsletterCTA() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 lg:py-28">
+      <section className="py-16">
         <div className="mx-auto max-w-3xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,28 +82,28 @@ export default function NewsletterCTA() {
             <div className="relative mx-auto mb-6">
               <FrankOmega variant="pixar-blue" size="sm" glow rounded />
             </div>
-            <h2 className="relative mb-3 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
-              Not sure which stream?
+            <h2 className="relative mb-3 text-2xl font-bold text-white sm:text-3xl">
+              Start with one clear signal
             </h2>
-            <p className="relative mx-auto mb-4 max-w-md text-[17px] leading-relaxed text-white/80">
-              Start with Creation Chronicles — it covers everything and
-              you&apos;ll see what resonates.
+            <p className="relative mx-auto mb-4 max-w-md text-slate-400">
+              Signal Loop is the main letter from Frank. It covers the systems,
+              experiments, and decisions most likely to help you think and ship.
             </p>
             <p className="relative mx-auto mb-8 max-w-sm text-xs text-blue-400/60 italic">
-              &ldquo;I&apos;ll be in your inbox. No fluff. Just the signal.&rdquo; — FRANK-Ω
+              &ldquo;No tricks. Just the signal that survived the week.&rdquo; — Frank
             </p>
             <div className="relative flex flex-wrap justify-center gap-4">
               <a
                 href="#creation-chronicles"
-                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5"
               >
                 <Mail className="h-4 w-4" />
-                Start with the main stream
+                Start with Signal Loop
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <Link
                 href="/blog"
-                className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/5"
               >
                 Read the blog first
               </Link>

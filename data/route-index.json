@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 637,
-    "aliases": 19,
+    "total": 835,
+    "aliases": 38,
     "byType": {
-      "core": 22,
-      "section": 342,
+      "core": 21,
+      "section": 388,
       "community": 17,
-      "tool": 10,
+      "tool": 54,
       "static": 15,
-      "blog": 149,
-      "guide": 19,
-      "library": 4,
+      "blog": 207,
+      "workshop": 12,
+      "guide": 20,
+      "library": 41,
       "newsletter": 1,
-      "os": 9,
-      "partnership": 4,
-      "product": 32,
+      "os": 11,
+      "partnership": 7,
+      "product": 21,
       "research": 3,
-      "video": 3,
-      "workshop": 7
+      "video": 3
     }
   },
   "routes": [
@@ -86,8 +86,13 @@
       "type": "section"
     },
     {
-      "href": "/agentic-creator-os",
-      "title": "Agentic Creator OS",
+      "href": "/agentic-life-os",
+      "title": "Agentic Life OS",
+      "tags": [
+        "agentic",
+        "life",
+        "os"
+      ],
       "type": "section"
     },
     {
@@ -426,7 +431,7 @@
     {
       "href": "/ai-architecture/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -464,6 +469,25 @@
       "tags": [
         "ai",
         "coe"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-coe-readiness",
+      "title": "AI Coe Readiness",
+      "tags": [
+        "ai",
+        "coe",
+        "readiness"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-computer",
+      "title": "AI Computer",
+      "tags": [
+        "ai",
+        "computer"
       ],
       "type": "section"
     },
@@ -513,14 +537,6 @@
       "type": "section"
     },
     {
-      "href": "/ais",
-      "title": "Ais",
-      "tags": [
-        "ais"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/alea",
       "title": "Alea",
       "tags": [
@@ -567,22 +583,54 @@
       "type": "section"
     },
     {
-      "href": "/ana",
-      "title": "Ana",
+      "href": "/allies",
+      "title": "Allies",
       "tags": [
-        "ana"
+        "allies"
       ],
       "type": "section"
     },
     {
-      "href": "/ana-intelligence-system",
-      "title": "Ana Intelligence System",
+      "href": "/allies/ana-cancino",
+      "title": "Ana Cancino",
       "tags": [
+        "allies",
         "ana",
-        "intelligence",
-        "system"
+        "cancino"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/allies/epic-ways",
+      "title": "Epic Ways",
+      "tags": [
+        "allies",
+        "epic",
+        "ways"
       ],
       "type": "section"
+    },
+    {
+      "href": "/allies/harzfenster",
+      "title": "Harzfenster",
+      "tags": [
+        "allies",
+        "harzfenster"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/allies/trinity-ai",
+      "title": "Trinity AI",
+      "tags": [
+        "allies",
+        "trinity",
+        "ai"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/assess",
@@ -789,11 +837,23 @@
       "title": "The 2026 AEO Knowledge Graph: From SEO to Entity-First Authority",
       "description": "Discover why Answer Engine Optimization (AEO) and Knowledge Graphs have replaced traditional SEO in 2026, and how to build topical authority clusters.",
       "tags": [
+        "aeo",
+        "knowledge",
+        "graph",
+        "2026"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/aeo-playbook-get-cited-by-ai-2026",
+      "title": "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026",
+      "description": "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini — with a checklist and the tools that track it.",
+      "tags": [
         "AEO",
-        "Knowledge Graph",
+        "AI Search",
         "SEO",
-        "Topical Authority",
-        "AI Citations"
+        "ChatGPT",
+        "Perplexity"
       ],
       "type": "blog"
     },
@@ -866,6 +926,20 @@
         "ai operating system",
         "tutorial",
         "productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/agentic-os-family-foundry-launch",
+      "title": "The Agentic OS Family: One Architecture, Installed Into Real Businesses",
+      "description": "How a one-day install for a friend's company became agentic-business-os, a public template with a sync channel — and the Foundry, an application-only install service with priority for sustainable, healthcare, and meaningful businesses.",
+      "tags": [
+        "agentic-os",
+        "business-os",
+        "foundry",
+        "claude-code",
+        "ai-architecture",
+        "open-source"
       ],
       "type": "blog"
     },
@@ -957,7 +1031,7 @@
     {
       "href": "/blog/ai-coe-launch",
       "title": "Launching the AI Center of Excellence: A New Era for FrankX",
-      "description": "Announcing the AI Center of Excellence Hub on FrankX — the six-pillar enterprise CoE framework (strategy, governance, talent, technology, data, ethics) translated for creators and individuals, with a production LLM/agent blog series to back it.",
+      "description": "We are deploying the AI CoE Hub, a production-grade LLM/Agent blog series, and massive UX enhancements. See how we are transforming from tech-overwhelmed to AI-empowered.",
       "tags": [
         "AI Architecture",
         "AI CoE",
@@ -1017,6 +1091,47 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-image-video-generation-playbook-2026",
+      "title": "The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost",
+      "description": "Most creators pay twice for AI images — once for the subscription, again for the API. Here's the decision table: which engine to use, which plan already includes it, and the rare times paying per-call is actually worth it.",
+      "tags": [
+        "ai image generation",
+        "ai video generation",
+        "nano banana",
+        "grok imagine",
+        "creator tools",
+        "ai cost optimization"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-model-routing-guide",
+      "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
+      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grades, and the persona map. Refreshed every quarter and after every arena round.",
+      "tags": [
+        "frontier-models",
+        "model-routing",
+        "agentic-ai",
+        "ai-architecture",
+        "ai-2026",
+        "ai-coe"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-skills-operating-layer",
+      "title": "AI Skills Are the New Operating Layer",
+      "description": "Why AI skills are not prompt snippets, but reusable operating knowledge for founders, startups, and enterprise AI teams.",
+      "tags": [
+        "ai-skills",
+        "ai-coe",
+        "agentic-systems",
+        "operating-knowledge",
+        "founder-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
       "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
       "description": "Every major AI video tool compared — quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
@@ -1056,6 +1171,184 @@
       "type": "blog"
     },
     {
+      "href": "/blog/best-ai-affiliate-programs-2026",
+      "title": "The Best AI and MCP Affiliate Programs in 2026 (Ranked by What Actually Pays)",
+      "description": "A ranked, economics-first guide to AI and MCP affiliate programs in 2026 — recurring vs one-time, the honest dead-ends, and the 3-network setup that replaces signing up to 30 sites.",
+      "tags": [
+        "affiliate marketing",
+        "ai tools",
+        "mcp",
+        "creator economy",
+        "monetization",
+        "passive income"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-browser-2026",
+      "title": "Best AI Browser 2026: ChatGPT Atlas vs Perplexity Comet vs Dia",
+      "description": "A current, honest comparison of the 2026 AI browsers — ChatGPT Atlas, Perplexity Comet (free since March), and Dia — on agentic browsing, assistant quality, privacy, price, and platform. Plus where Gemini-in-Chrome and Edge Copilot fit.",
+      "tags": [
+        "AI browser",
+        "ChatGPT Atlas",
+        "Perplexity Comet",
+        "Dia browser",
+        "agentic browsing",
+        "Gemini in Chrome"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-coding-tools-for-beginners-2026",
+      "title": "Best AI Coding Tool for Beginners 2026: Cursor vs GitHub Copilot vs Replit Agent",
+      "description": "An honest comparison of Cursor, GitHub Copilot, and Replit Agent for people learning to code or shipping their first app — learning curve, free tiers, real prices, and which one a non-coder can actually use.",
+      "tags": [
+        "AI coding tools",
+        "beginners",
+        "Cursor",
+        "GitHub Copilot",
+        "Replit Agent"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-headshot-generator-2026",
+      "title": "Best AI Headshot Generator 2026: Aragon vs HeadshotPro vs The Photo AI (Tested)",
+      "description": "I tested Aragon AI, HeadshotPro, BetterPic, Photo AI, and the DIY route on realism, price, turnaround, and privacy. Here's the honest pick for LinkedIn, teams, and dating.",
+      "tags": [
+        "AI Headshots",
+        "Aragon AI",
+        "HeadshotPro",
+        "AI Tools",
+        "LinkedIn"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-image-generators-2026",
+      "title": "Best AI Image Generators in 2026: GPT Image 2, Nano Banana, Midjourney, FLUX",
+      "description": "Every major AI image tool compared — quality, text rendering, pricing, and which to use for photorealism, design, and in-pipeline automation.",
+      "tags": [
+        "AI Image Generation",
+        "GPT Image",
+        "Midjourney",
+        "FLUX",
+        "Generative AI"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-logo-maker-2026",
+      "title": "Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft",
+      "description": "A results-first comparison of the best AI logo makers in 2026 — Looka, Canva, Ideogram, and Recraft — judged on vector export, brand kit, licensing, and price. Recraft wins for the file you actually own.",
+      "tags": [
+        "AI logo maker",
+        "AI design tools",
+        "Recraft",
+        "Looka",
+        "Canva",
+        "Ideogram",
+        "vector graphics",
+        "brand identity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-meeting-assistant-2026",
+      "title": "Best AI Meeting Assistant 2026: Granola vs Otter vs Fathom vs Fireflies",
+      "description": "A results-first comparison of the four AI meeting notetakers worth your money in 2026 — Granola, Otter, Fathom, Fireflies — on accuracy, no-bot vs bot, action items, integrations, privacy, and price.",
+      "tags": [
+        "AI meeting assistant",
+        "Granola",
+        "Otter",
+        "Fathom",
+        "Fireflies",
+        "productivity tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-note-taking-tools-2026",
+      "title": "Best AI Note-Taking and Second-Brain Tools 2026: Notion AI vs Mem vs Reflect vs Obsidian",
+      "description": "A results-first comparison of the best AI note-taking and second-brain tools in June 2026 — Notion AI, Mem, Reflect, Obsidian, and meeting tools Granola and Otter — scored on AI quality, retrieval, transcription, privacy, and price.",
+      "tags": [
+        "second brain",
+        "AI note-taking",
+        "Notion AI",
+        "Obsidian",
+        "knowledge management"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-presentation-maker-2026",
+      "title": "Best AI Presentation Maker 2026: Gamma vs Canva vs NotebookLM (and Why Tome Is Gone)",
+      "description": "Gamma, Canva, Beautiful.ai, Plus AI, NotebookLM, and Presentations.ai compared on quality, editability, PPT/Slides export, and price — plus the Tome shutdown most guides still get wrong.",
+      "tags": [
+        "AI Presentations",
+        "Gamma",
+        "Canva",
+        "NotebookLM",
+        "Productivity Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-product-photography-2026",
+      "title": "Best AI Product Photography Tools 2026 for Amazon and Shopify Sellers",
+      "description": "A results-first comparison of the best AI product photography tools in 2026 — Photoroom, Pebblely, Flair.ai, Claid, plus Nano Banana Pro and GPT Image 2 — ranked on realism, product accuracy, batch power, and price.",
+      "tags": [
+        "AI product photography",
+        "ecommerce",
+        "Amazon sellers",
+        "Shopify",
+        "AI image tools",
+        "Photoroom",
+        "product photos"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-resume-builder-2026",
+      "title": "Best AI Resume Builder 2026: Teal vs Rezi vs Kickresume vs Just Using Claude",
+      "description": "An honest comparison of the top AI resume builders in 2026 — Teal, Rezi, Kickresume, Enhancv — against the $0 Claude-plus-template route. What ATS optimization actually means, real pricing, and when a paid builder is worth it.",
+      "tags": [
+        "AI resume builder",
+        "ATS optimization",
+        "Teal",
+        "Rezi",
+        "Claude",
+        "job search"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-shorts-tiktok-tools-2026",
+      "title": "Best AI Tool for YouTube Shorts and TikTok 2026: Opus Clip vs AutoShorts vs Faceless",
+      "description": "The best AI tools for automated YouTube Shorts and TikTok in 2026 — Opus Clip, AutoShorts, Faceless.so, Submagic, and CapCut compared on automation, quality, scheduling, and price.",
+      "tags": [
+        "AI Video",
+        "YouTube Shorts",
+        "TikTok",
+        "Faceless YouTube",
+        "Short-Form Content"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-superpowers-stack-2026",
+      "title": "The AI Superpowers Stack 2026: The Best Tool and MCP for Every Creator Job",
+      "description": "A curated stack — the single best AI tool and the MCP server that gives an agent that power — for content, websites, research, image, video, music, automation, coding, and voice.",
+      "tags": [
+        "AI Tools",
+        "MCP",
+        "Creator Stack",
+        "AI Agents",
+        "Productivity"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/best-ai-tools-for-creators-2026",
       "title": "The Best AI Tools for Creators in 2026: A GenCreator's Production Stack",
       "description": "The complete AI creator toolkit — from Claude Code for development to Suno for music. Every tool battle-tested in daily production use.",
@@ -1066,6 +1359,104 @@
         "ai-workflow",
         "productivity",
         "automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-video-editor-2026",
+      "title": "Best AI Video Editor 2026: CapCut vs Descript vs Premiere AI vs Runway",
+      "description": "The honest June 2026 comparison of the four AI video editors that matter — CapCut for short-form, Descript for talking-head and podcast video, Premiere with Firefly for pro long-form, Runway for AI-native generation. Picked by job, with verified pricing and a comparison table.",
+      "tags": [
+        "ai-video-editor",
+        "capcut",
+        "descript",
+        "adobe-premiere",
+        "runway",
+        "creator-tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-video-generators-2026-x-aggregated",
+      "title": "Best AI Video Generators June 2026: What Creators on X Are Actually Shipping With",
+      "description": "X-aggregated signals on Higgsfield, Seedance 2.0, Kling 3.0, Veo 3.1, Sora 2, Runway and the rest. Head-to-head on control, audio, value, consistency. Affiliate reality, slop warnings, and the FrankX/ACOS hybrid stack that actually ships.",
+      "tags": [
+        "AI Video",
+        "Higgsfield",
+        "Seedance",
+        "Kling",
+        "Veo",
+        "Sora",
+        "Runway",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-writing-tools-vs-claude-2026",
+      "title": "Best AI Writing Tools 2026: When You Actually Need One vs Just Using Claude",
+      "description": "An honest comparison of Copy.ai, Writesonic, Rytr, and Surfer against raw Claude and ChatGPT. For most solo writers, the frontier model wins. Here's when a dedicated tool's workflow earns its price.",
+      "tags": [
+        "AI Writing Tools",
+        "Claude",
+        "Copy.ai",
+        "SEO",
+        "Content Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-cheap-ai-music-generator-2026",
+      "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
+      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that decides whether you can legally sell the output: commercial rights.",
+      "tags": [
+        "AI Music",
+        "Suno",
+        "Udio",
+        "Commercial Rights",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-elevenlabs-alternatives-2026",
+      "title": "Best ElevenLabs Alternatives 2026: The Cheapest AI Voice That Still Sounds Human",
+      "description": "ElevenLabs is still the quality benchmark — but you don't always need it. Verified June 2026 pricing for Fish Audio, Cartesia, Hume, Kokoro, and more, ranked by price-per-character.",
+      "tags": [
+        "AI Voice",
+        "Text to Speech",
+        "ElevenLabs",
+        "Voice Cloning",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-local-llm-2026",
+      "title": "Best Local LLM to Run on Your Own Machine in 2026 (by RAM: 8GB / 16GB / 32GB)",
+      "description": "Pick the right open model for your RAM. Verified params, quant levels, and VRAM for Qwen3, Gemma 3, Llama, and DeepSeek distills across 8GB, 16GB, and 32GB machines — plus the runner to use.",
+      "tags": [
+        "local-llm",
+        "open-models",
+        "ollama",
+        "lm-studio",
+        "privacy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-no-code-ai-agent-builders-2026",
+      "title": "Best No-Code AI Agent Builders 2026: n8n vs Lindy vs Relay vs Make",
+      "description": "A hands-on comparison of the top no-code AI agent builders in 2026 — n8n, Lindy, Relay.app, Make, Zapier, Gumloop — judged on ease, power, self-hosting, MCP support, and price.",
+      "tags": [
+        "AI agents",
+        "no-code",
+        "n8n",
+        "automation",
+        "MCP",
+        "Lindy",
+        "Make",
+        "Zapier"
       ],
       "type": "blog"
     },
@@ -1143,10 +1534,52 @@
       "type": "blog"
     },
     {
+      "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
+      "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
+      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
+      "tags": [
+        "AI Assistants",
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "AI Tools",
+        "Consumer AI"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/cheapest-frontier-model-access-2026",
+      "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subscription vs API vs Gateway)",
+      "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro — subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
+      "tags": [
+        "AI pricing",
+        "GPT-5.5",
+        "Claude Opus 4.8",
+        "Gemini 3.1",
+        "OpenRouter",
+        "API costs"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/CLAUDE",
       "title": "CLAUDE",
       "tags": [
         "CLAUDE"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/claude-agent-sdk-credit-pause-agent-stack-2026",
+      "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
+      "description": "Anthropic paused the Claude Agent SDK credit change. What it means for claude -p, OpenClaw, OpenCode, Codex, and agent pricing.",
+      "tags": [
+        "Claude",
+        "Agent SDK",
+        "AI Agents",
+        "OpenClaw",
+        "OpenCode",
+        "AI Coding"
       ],
       "type": "blog"
     },
@@ -1176,6 +1609,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/claude-code-pricing-explained-2026",
+      "title": "Claude Code Pricing Explained 2026: Pro vs Max 5x vs Max 20x vs API (When Each Wins)",
+      "description": "A verified 2026 breakdown of Claude Code pricing — Pro ($20), Max 5x ($100), Max 20x ($200), and pure API — with the usage-limit mechanics and a decision table for which plan wins at your usage level.",
+      "tags": [
+        "Claude Code",
+        "AI pricing",
+        "developer tools",
+        "Anthropic",
+        "AI coding"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/claude-code-skills-2026-the-10-you-need",
       "title": "Claude Code Skills 2026: The 10 You Actually Need",
       "description": "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples.",
@@ -1185,6 +1631,35 @@
         "ACOS",
         "AI Development",
         "Productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/claude-fable-5-analysis-2026",
+      "title": "Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show",
+      "description": "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro. We ran four first-party eval rounds against Opus 4.8 in Claude Code within 24 hours. Here are the receipts, the pricing math, and the routing guide.",
+      "tags": [
+        "anthropic",
+        "claude-fable-5",
+        "frontier-models",
+        "ai-2026",
+        "benchmarks",
+        "agentic-ai",
+        "claude-code"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/claude-fable-5-prompting-guide",
+      "title": "Claude Fable 5 Prompting Guide: Seven Rules from Measured Behavior, Not Vibes",
+      "description": "How to prompt Claude Fable 5, derived from four receipted eval rounds — constraint stacking that works, the agreeable-execution trap, why output contracts belong in structure, and a system-prompt template for agentic pipelines.",
+      "tags": [
+        "anthropic",
+        "claude-fable-5",
+        "prompt-engineering",
+        "agentic-ai",
+        "claude-code",
+        "ai-2026"
       ],
       "type": "blog"
     },
@@ -1213,6 +1688,19 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/codex-plugins-for-teams",
+      "title": "Codex Plugins for Teams: A Practical Operating Guide",
+      "description": "A product-accurate guide to Codex, ChatGPT Work, skills, plugins, apps, team sharing, permissions, and governed workflow releases.",
+      "tags": [
+        "codex",
+        "plugins",
+        "ai skills",
+        "team workflows",
+        "ai governance"
       ],
       "type": "blog"
     },
@@ -1303,8 +1791,8 @@
     },
     {
       "href": "/blog/cursor-vs-claude-code-vs-windsurf-2026",
-      "title": "Claude Code vs Cursor 2026: A Practitioner's Verdict",
-      "description": "Head-to-head comparison of every major AI coding agent — architecture, pricing, strengths, and which one to choose for your workflow. Updated March 2026.",
+      "title": "Cursor vs Claude Code vs Windsurf in 2026: Which AI Coding Agent for Which Job",
+      "description": "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing — plus where Copilot and Codex fit.",
       "tags": [
         "Coding Agents",
         "Claude Code",
@@ -1352,6 +1840,19 @@
         "glassmorphism",
         "ai-development",
         "design-lab"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/do-you-need-rtx-5090-for-ai-2026",
+      "title": "Do You Need an RTX 5090 for AI?",
+      "description": "A grounded buyer guide comparing RTX 5090 workstations, cloud GPU rental, RTX 5080, DGX Spark, and Ryzen AI Max+ mini PCs.",
+      "tags": [
+        "ai-computer",
+        "local-ai",
+        "rtx-5090",
+        "creator-systems",
+        "ai-hardware"
       ],
       "type": "blog"
     },
@@ -1405,9 +1906,23 @@
       "type": "blog"
     },
     {
+      "href": "/blog/faceless-youtube-ai-tools-2026",
+      "title": "Best AI Tools for a Faceless YouTube Channel in 2026 (Full Stack Under $60/mo)",
+      "description": "The verified best-in-class AI stack for a faceless YouTube channel in June 2026 — avatar, voice, script, repurposing, editing, music, thumbnails — with a real budget table that lands under $60/month.",
+      "tags": [
+        "faceless-youtube",
+        "ai-video",
+        "creator-stack",
+        "ai-tools",
+        "youtube-automation",
+        "content-repurposing"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/frankx-business-plan-canvas",
       "title": "FrankX Business Plan Canvas",
-      "description": "The full business model behind the Agentic Creator OS — problem, segments, value proposition, channels, revenue, costs, and the one unfair advantage that ties it together.",
+      "description": "The concise business model behind the Agentic Creator OS and the FrankX product ladder.",
       "tags": [
         "Business Model",
         "Product Strategy",
@@ -1448,12 +1963,25 @@
     {
       "href": "/blog/frankx-vision-mission-values",
       "title": "FrankX Vision, Mission, and Values",
-      "description": "The mission, vision, and six values that decide what FrankX builds, ships, and refuses — written so you can hold the work accountable to them.",
+      "description": "The core narrative that anchors every FrankX system, launch, and creator experience.",
       "tags": [
         "Vision",
         "Mission",
         "Values",
         "Brand"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/from-x-tweets-to-blog-gold-2026",
+      "title": "From Latest X Tweets to Blog Gold: How I Aggregate 'Best of X' Into Reference Pieces",
+      "description": "The exact process I use to turn real-time X signals (keyword + semantic searches, high-engagement threads, creator workflows) into evergreen, embed-rich, updateable blog posts that drive authority, AEO, and distribution.",
+      "tags": [
+        "Content Strategy",
+        "X Research",
+        "Blog Workflow",
+        "AEO",
+        "Rich Embeds"
       ],
       "type": "blog"
     },
@@ -1467,6 +1995,22 @@
         "GPT",
         "Gemini",
         "DeepSeek"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/frontier-model-routing-without-fable-5",
+      "title": "You Don't Need Fable 5 to Work on the Frontier. You Need a Model Routing System.",
+      "description": "Kilo is right that model freedom matters after the Fable/Mythos shock. The next step is a routed frontier stack: Fable 5, Opus 4.8, GPT-5.5 in Kilo Code, Grok 4.3, Gemini 3.5 Flash in Antigravity, Kimi, MiniMax, and Nemotron with receipts.",
+      "tags": [
+        "model-routing",
+        "fable-5",
+        "kilo-code",
+        "grok-4-3",
+        "gemini-3-5",
+        "antigravity",
+        "llm-evals",
+        "frontier-models"
       ],
       "type": "blog"
     },
@@ -1539,7 +2083,7 @@
     {
       "href": "/blog/golden-age-field-guide",
       "title": "Golden Age Field Guide: Principles and Rituals",
-      "description": "A concise field guide to working in the Golden Age of Intelligence — six principles, four creator-stack layers, and a 90-day ritual map you can start this week.",
+      "description": "A concise field guide to navigate the Golden Age of Intelligence with clarity, momentum, and soul.",
       "tags": [
         "Golden Age",
         "AI",
@@ -1627,6 +2171,21 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/heygen-vs-synthesia-vs-argil-2026",
+      "title": "HeyGen vs Synthesia vs Argil 2026: The Best AI Avatar and Talking-Head Tool",
+      "description": "A results-first comparison of HeyGen, Synthesia, and Argil for 2026 — avatar realism, custom clones, dubbing, API, and pricing. Which wins corporate training, faceless creator content, and ads.",
+      "tags": [
+        "AI avatars",
+        "HeyGen",
+        "Synthesia",
+        "Argil",
+        "talking-head video",
+        "AI video",
+        "faceless content"
       ],
       "type": "blog"
     },
@@ -1732,6 +2291,20 @@
         "local-llms",
         "ai-2026",
         "benchmarks"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/llm-evals-claude-code-guide",
+      "title": "How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)",
+      "description": "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts. The exact harness behind our Fable 5 vs Opus 4.8 rounds.",
+      "tags": [
+        "claude-code",
+        "llm-evals",
+        "agentic-ai",
+        "benchmarks",
+        "ai-2026",
+        "anthropic"
       ],
       "type": "blog"
     },
@@ -1895,6 +2468,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/music-intelligence-vibe-os-launch",
+      "title": "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era Music",
+      "description": "An open, interconnected system for AI-era music creation — a 25-state research library (Vibe OS), portable agents, an MCP server, and free Suno prompt templates. Built in public across GitHub.",
+      "tags": [
+        "music-intelligence",
+        "vibe-os",
+        "suno-ai",
+        "mcp-server",
+        "ai-music",
+        "open-source"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/my-100-month-ai-stack-every-tool-i-actually-use",
       "title": "My $100/Month AI Stack: Every Tool I Actually Use",
       "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
@@ -2005,6 +2592,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ollama-vs-lm-studio-vs-jan-2026",
+      "title": "Ollama vs LM Studio vs Jan 2026: The Best Way to Run AI Locally",
+      "description": "A tested comparison of the three local-LLM runners in June 2026 — Ollama, LM Studio, and Jan — on ease of use, model library, GUI vs CLI, OpenAI-compatible API, hardware support, and privacy.",
+      "tags": [
+        "local LLM",
+        "Ollama",
+        "LM Studio",
+        "Jan",
+        "privacy",
+        "open source AI",
+        "self-hosted AI"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/openclaw-explained-ai-agent-everyone-talking-about",
       "title": "OpenClaw, NemoClaw, NanoClaw: The AI Agent Ecosystem",
       "description": "The open-source AI agent with 247K GitHub stars. How it works, what NVIDIA added with NemoClaw, and what it means for personal AI agents in 2026.",
@@ -2042,6 +2644,19 @@
         "CLAUDE.md",
         "MCP Servers",
         "Workshops"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/personal-ai-coe-under-100-2026",
+      "title": "How to Build a Personal AI Center of Excellence for Under $100 a Month (2026)",
+      "description": "Enterprise AI Centers of Excellence run on a 6-pillar architecture. The same architecture works for one person at roughly 1/5000th the cost. Here is the exact under-$100 stack, the budget table, and the daily ritual that wires it together.",
+      "tags": [
+        "AI Center of Excellence",
+        "personal AI stack",
+        "AI budget",
+        "AI governance",
+        "creator tools"
       ],
       "type": "blog"
     },
@@ -2303,6 +2918,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/skill-libraries-ai-coe-governance",
+      "title": "How to Govern an AI Skill Library",
+      "description": "A practical operating model for skill registries, risk tiers, evaluations, and AI CoE ownership.",
+      "tags": [
+        "ai-coe",
+        "ai-skills",
+        "governance",
+        "enterprise-ai",
+        "evals"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/soul-frequency-framework",
       "title": "Soul Frequency Framework",
       "tags": [
@@ -2341,7 +2969,7 @@
     {
       "href": "/blog/suno-ai-music-creation-workshop",
       "title": "Create Music Without Musical Training: The Suno AI Music Creation Workshop",
-      "description": "Transform your ideas into cinematic soundscapes, meditation music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and frequency science for transformative audio.",
+      "description": "Transform your ideas into cinematic soundscapes, meditation-inspired music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and aesthetic tuning choices for expressive audio.",
       "tags": [
         "Suno AI",
         "AI Music",
@@ -2376,6 +3004,20 @@
         "prompt-engineering",
         "music-production",
         "tutorial"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/suno-vs-udio-2026",
+      "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
+      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
+      "tags": [
+        "Suno",
+        "Udio",
+        "AI Music",
+        "Commercial License",
+        "Music Production",
+        "Suno v5"
       ],
       "type": "blog"
     },
@@ -2434,6 +3076,58 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-higher-self-protocol",
+      "title": "The Higher Self Protocol: What Happened When I Used AI to Get Closer to God",
+      "description": "A friend told me she wants to become a saint. So I started using AI the way you'd use a good study partner — to read scripture slowly, sit with hard questions, and show up for a practice. Here is what worked, what was cringe, and what I'd never hand a machine.",
+      "tags": [
+        "higher-self-protocol",
+        "spirituality",
+        "ai and faith",
+        "contemplative practice",
+        "personal"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-light-within-protocol",
+      "title": "The Light Within Protocol: A 20-Minute Morning Practice (and Where AI Helps)",
+      "description": "A concrete morning practice that stacks the levers with real evidence behind them — paced breath, gratitude, coherence, and vivid visualization — plus an honest account of where a model removes friction and where it must never go.",
+      "tags": [
+        "the-light-within",
+        "visualization",
+        "breathwork",
+        "morning routine",
+        "contemplative practice"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
+      "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
+      "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
+      "tags": [
+        "Short Form",
+        "Sandcastles",
+        "AI Video",
+        "Hooks",
+        "Content Strategy",
+        "Creator Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-sovereign-curator",
+      "title": "The Sovereign Curator: Platform Curation and the Art of Responsible AI Reuse",
+      "description": "Why raw content creation is a commodity in the age of infinite AI noise—and how to build high-leverage curation engines, owned platforms, and responsible attribution networks.",
+      "tags": [
+        "Curation",
+        "Creator Economy",
+        "AI Workflows",
+        "Platform Design"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/trinity-ai-conscious-operating-system",
       "title": "Trinity AI — The Conscious Operating System for Human Potential",
       "description": "Trinity AI is a 5-layer conscious operating system that remembers you, reads your body, and compounds intelligence daily. Built on Claude Agent SDK, Vercel, and sovereign data principles.",
@@ -2463,6 +3157,74 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ultimate-canva-ai-workflow-2026",
+      "title": "The Ultimate Canva AI Workflow in 2026: Magic Studio, Brand Kits, and the Creator Setup",
+      "description": "The complete Canva AI workflow for 2026: Magic Studio, Brand Kit, Bulk Create, and the repurposing pipeline that turns one asset into a week of content. Honest ROI and who it's for.",
+      "tags": [
+        "Canva",
+        "AI Design",
+        "Magic Studio",
+        "Creator Tools",
+        "Workflow",
+        "Brand Kit"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-capcut-workflow-2026",
+      "title": "The Ultimate CapCut Workflow in 2026: The AI Editing Setup for Short-Form and Faceless Channels",
+      "description": "The verified CapCut workflow for June 2026 — AI captions, auto-reframe, script-to-video, voiceover, and templates — plus the fast faceless pipeline, batch repurposing, and a plan table with honest pricing and ToS nuance.",
+      "tags": [
+        "capcut",
+        "short-form-video",
+        "faceless-channels",
+        "ai-video-editing",
+        "content-repurposing",
+        "creator-tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-descript-workflow-2026",
+      "title": "The Ultimate Descript Workflow in 2026: Edit Video and Audio by Editing Text",
+      "description": "The complete Descript workflow for 2026 — text-based editing, voice cloning, Studio Sound, one-click filler removal, and the repurposing pipeline that turns one recording into a week of content.",
+      "tags": [
+        "Descript",
+        "video editing",
+        "podcasting",
+        "content workflow",
+        "AI tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-elevenlabs-workflow-2026",
+      "title": "The Ultimate ElevenLabs Workflow in 2026: Voice Cloning, Agents, and the Setup That Wins",
+      "description": "The complete ElevenLabs workflow for 2026 — Eleven v3, instant vs professional voice cloning, the API, conversational agents, and dubbing. Real setups for podcasters, course creators, app builders, and AI architects, with honest ROI math.",
+      "tags": [
+        "ElevenLabs",
+        "AI Voice",
+        "Voice Cloning",
+        "Conversational AI",
+        "Content Pipeline",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-gamma-workflow-2026",
+      "title": "The Ultimate Gamma Workflow in 2026: From Prompt to Investor-Ready Deck",
+      "description": "A results-first workflow for Gamma in 2026 — prompt-to-pitch-deck, doc-to-deck, edit-by-chat refinement, and brand-locked templates, plus the real ROI vs. hiring a designer.",
+      "tags": [
+        "Gamma",
+        "AI presentations",
+        "pitch deck",
+        "creator tools",
+        "workflow"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ultimate-guide-ai-coding-agents-2026",
       "title": "The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond",
       "description": "Master AI-powered development with the complete guide to coding agents. Learn to set up Claude Code, OpenCode, Cline, Roo Code, and build your evolution from basic prompts to multi-agent orchestration.",
@@ -2474,6 +3236,96 @@
         "MCP Servers",
         "Agentic AI",
         "Developer Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-heygen-workflow-2026",
+      "title": "The Ultimate HeyGen Workflow in 2026: Avatars, Cloning, and the Faceless Video Setup",
+      "description": "The complete 2026 HeyGen workflow — clone yourself from a 15-second selfie with Avatar V, localize into 175+ languages, automate sales video at scale via the API, and run a faceless channel. Setup, ROI, and who it's for.",
+      "tags": [
+        "HeyGen",
+        "AI avatars",
+        "avatar cloning",
+        "faceless video",
+        "AI video",
+        "talking-head video",
+        "video automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-higgsfield-workflow-2026",
+      "title": "The Ultimate Higgsfield Workflow in 2026: Soul ID, Cinematic Video, and the Claude Code MCP Setup",
+      "description": "How I run Higgsfield in 2026: one subscription for 30+ video models, Soul ID for character-consistent series, and the MCP that lets Claude Code generate video directly. The full workflow, the ROI math, and who it's actually for.",
+      "tags": [
+        "Higgsfield",
+        "AI Video",
+        "Soul ID",
+        "MCP",
+        "Claude Code",
+        "Creator Tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-n8n-workflow-2026",
+      "title": "The Ultimate n8n Workflow in 2026: AI Agents, MCP, and the Automation Backend That Wins",
+      "description": "The complete 2026 guide to building production n8n workflows: self-host vs cloud, the AI Agent node, MCP Server Trigger and Client Tool, content repurposing, RAG, and wiring n8n as the action backend for Claude Code.",
+      "tags": [
+        "n8n",
+        "AI agents",
+        "MCP",
+        "automation",
+        "workflow",
+        "Claude Code",
+        "RAG"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-opus-clip-workflow-2026",
+      "title": "The Ultimate Opus Clip Workflow in 2026: Long Video to Viral Shorts on Autopilot",
+      "description": "A results-first Opus Clip workflow for 2026: turn one podcast or long video into 10 scored shorts, run the virality-score curation loop, and batch-schedule to TikTok, Reels, and Shorts. Verified features, current pricing, and who it's actually for.",
+      "tags": [
+        "Opus Clip",
+        "video repurposing",
+        "short-form video",
+        "AI video",
+        "creator workflow",
+        "content automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ultimate-perplexity-workflow-2026",
+      "title": "The Ultimate Perplexity Workflow in 2026: Deep Research Setup, Comet, and How to Actually Use It",
+      "description": "The full Perplexity setup that wins in 2026 — Pro vs free, model routing, Spaces, the free Comet browser, and Deep Research. The discover→ground→reason workflow, citation discipline, and who it's actually for.",
+      "tags": [
+        "Perplexity",
+        "Comet browser",
+        "Deep Research",
+        "AI research",
+        "Perplexity Pro",
+        "research workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
+      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsfield for B-Roll",
+      "description": "How to combine modern AI voice models with responsive video tools for high-retention faceless production.",
+      "tags": [
+        "using",
+        "elevenlabs",
+        "for",
+        "faceless",
+        "youtube",
+        "channels",
+        "and",
+        "higgsfield",
+        "for",
+        "roll"
       ],
       "type": "blog"
     },
@@ -2730,7 +3582,7 @@
     {
       "href": "/blueprint/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -2788,11 +3640,6 @@
       "type": "section"
     },
     {
-      "href": "/books/arcanea-creator-principles/chapter-08-the-living-practice",
-      "title": "Ch 8 — The Living Practice",
-      "type": "section"
-    },
-    {
       "href": "/build",
       "title": "Build",
       "type": "section"
@@ -2822,7 +3669,8 @@
       "tags": [
         "canon"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/changelog",
@@ -2850,6 +3698,14 @@
     {
       "href": "/chronicle",
       "title": "Chronicle",
+      "type": "section"
+    },
+    {
+      "href": "/cloud",
+      "title": "Cloud",
+      "tags": [
+        "cloud"
+      ],
       "type": "section"
     },
     {
@@ -2908,15 +3764,8 @@
         "connect",
         "qr"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/consulting",
-      "title": "Consulting",
-      "tags": [
-        "consulting"
-      ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/contact",
@@ -2932,7 +3781,8 @@
         "video",
         "creation"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/content-studio",
@@ -2987,6 +3837,14 @@
       "href": "/creators",
       "title": "For Creators",
       "type": "core"
+    },
+    {
+      "href": "/dare",
+      "title": "Dare",
+      "tags": [
+        "dare"
+      ],
+      "type": "section"
     },
     {
       "href": "/dashboard",
@@ -3108,7 +3966,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v1",
@@ -3252,7 +4111,8 @@
         "tree",
         "v6"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v7",
@@ -3380,6 +4240,65 @@
       "type": "section"
     },
     {
+      "href": "/downloads/ahmad-founder-creator-kit",
+      "title": "Ahmad Founder Creator Kit",
+      "tags": [
+        "downloads",
+        "ahmad",
+        "founder",
+        "creator",
+        "kit"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/downloads/epicways-intelligence",
+      "title": "Epicways Intelligence",
+      "tags": [
+        "downloads",
+        "epicways",
+        "intelligence"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/downloads/health-intelligence-system",
+      "title": "Health Intelligence System",
+      "tags": [
+        "downloads",
+        "health",
+        "intelligence",
+        "system"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/downloads/jojo-hospitality-intelligence-kit",
+      "title": "Jojo Hospitality Intelligence Kit",
+      "tags": [
+        "downloads",
+        "jojo",
+        "hospitality",
+        "intelligence",
+        "kit"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/downloads/preview/agentic-creator-os",
+      "title": "Agentic Creator OS",
+      "tags": [
+        "downloads",
+        "preview",
+        "agentic",
+        "creator",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/downloads/preview/soulbook",
       "title": "Soulbook",
       "tags": [
@@ -3427,6 +4346,97 @@
       "type": "section"
     },
     {
+      "href": "/experiences/mindvalley-university-tallinn-2026",
+      "title": "Mindvalley University Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mindvalley",
+        "university",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/mvu-tallinn-2026",
+      "title": "Mvu Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mvu",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026",
+      "title": "Tallinn 2026",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/experiences/tallinn-2026/agentic-builder-lab",
+      "title": "Build Your First AI Agent",
+      "tags": [
+        "agentic",
+        "builder",
+        "lab"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/ai-music-creation-lab",
+      "title": "AI Music Creation Lab",
+      "tags": [
+        "ai",
+        "music",
+        "creation",
+        "lab"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice",
+      "title": "Purpose to Practice",
+      "tags": [
+        "purpose",
+        "to",
+        "practice"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice/map",
+      "title": "Map",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026",
+        "purpose",
+        "to",
+        "practice",
+        "map"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/speaker-session-amplifier",
+      "title": "Speaker Session Amplifier",
+      "tags": [
+        "speaker",
+        "session",
+        "amplifier"
+      ],
+      "type": "workshop"
+    },
+    {
       "href": "/experiments",
       "title": "Experiments",
       "tags": [
@@ -3440,7 +4450,8 @@
       "tags": [
         "familie"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/forsche-selbst",
@@ -3480,7 +4491,8 @@
         "offene",
         "fragen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/geschichte/riemer-linie",
@@ -3505,7 +4517,8 @@
         "interview",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/mitmachen",
@@ -3514,7 +4527,8 @@
         "familie",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/stammbaum",
@@ -3523,7 +4537,8 @@
         "familie",
         "stammbaum"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family",
@@ -3531,7 +4546,8 @@
       "tags": [
         "family"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family/tree",
@@ -3540,7 +4556,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/feed",
@@ -3582,6 +4599,32 @@
       "type": "section"
     },
     {
+      "href": "/foundry",
+      "title": "Foundry",
+      "tags": [
+        "foundry"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/foundry/guide",
+      "title": "Guide",
+      "tags": [
+        "foundry",
+        "guide"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/frank-riemer",
+      "title": "Frank Riemer",
+      "tags": [
+        "frank",
+        "riemer"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/frankx",
       "title": "Frankx",
       "tags": [
@@ -3603,6 +4646,43 @@
       "href": "/free-playbook",
       "title": "Free Playbook",
       "type": "static"
+    },
+    {
+      "href": "/friends",
+      "title": "Friends",
+      "tags": [
+        "friends"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/friends/ahmad",
+      "title": "Ahmad",
+      "tags": [
+        "friends",
+        "ahmad"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/friends/estefania",
+      "title": "Estefania",
+      "tags": [
+        "friends",
+        "estefania"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/friends/jojo",
+      "title": "Jojo",
+      "tags": [
+        "friends",
+        "jojo"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/gallery",
@@ -3712,7 +4792,8 @@
         "ikigai",
         "branding"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/goals",
@@ -3733,14 +4814,6 @@
       "type": "section"
     },
     {
-      "href": "/graph",
-      "title": "Graph",
-      "tags": [
-        "graph"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/guides",
       "title": "Guides",
       "type": "core"
@@ -3754,7 +4827,7 @@
         "A2A",
         "Agent Card",
         "Interoperability",
-        "Internal Agent Spec"
+        "Oracle OAS"
       ],
       "type": "guide"
     },
@@ -3773,7 +4846,7 @@
     {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
-      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while compounding output",
+      "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
       "tags": [
         "Writing",
         "AI",
@@ -3849,6 +4922,19 @@
         "productivity",
         "automation",
         "lean-startup"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/frankx-skill-creation-methodology",
+      "title": "The FrankX Skill Creation Methodology",
+      "description": "A practical operating method for turning repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
+      "tags": [
+        "ai-skills",
+        "ai-coe",
+        "agentic-systems",
+        "skillforge",
+        "operating-knowledge"
       ],
       "type": "guide"
     },
@@ -4007,6 +5093,15 @@
       "type": "section"
     },
     {
+      "href": "/hospitality-intelligence",
+      "title": "Hospitality Intelligence",
+      "tags": [
+        "hospitality",
+        "intelligence"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/infogenius",
       "title": "Infogenius",
       "tags": [
@@ -4029,7 +5124,8 @@
         "vault",
         "preview"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/insights",
@@ -4119,11 +5215,6 @@
       "type": "core"
     },
     {
-      "href": "/learning-paths",
-      "title": "Learning Paths",
-      "type": "core"
-    },
-    {
       "href": "/lebensbaum",
       "title": "Lebensbaum",
       "tags": [
@@ -4184,14 +5275,389 @@
       "type": "library"
     },
     {
+      "href": "/library/art-and-fear",
+      "title": "Art & Fear",
+      "tags": [
+        "art",
+        "and",
+        "fear"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/atomic-habits",
+      "title": "Atomic Habits",
+      "tags": [
+        "atomic",
+        "habits"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/awaken-the-giant-within",
+      "title": "Awaken the Giant Within",
+      "tags": [
+        "awaken",
+        "the",
+        "giant",
+        "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/becoming-supernatural",
+      "title": "Becoming Supernatural",
+      "tags": [
+        "becoming",
+        "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bird-by-bird",
+      "title": "Bird by Bird: Some Instructions on Writing and Life",
+      "tags": [
+        "bird",
+        "by",
+        "bird"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/blue-zones",
+      "title": "The Blue Zones: Lessons for Living Longer From the People Who\\",
+      "tags": [
+        "blue",
+        "zones"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breaking-the-habit-of-being-yourself",
+      "title": "Breaking the Habit of Being Yourself",
+      "tags": [
+        "breaking",
+        "the",
+        "habit",
+        "of",
+        "being",
+        "yourself"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breath",
+      "title": "Breath: The New Science of a Lost Art",
+      "tags": [
+        "breath"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/build",
       "title": "Library — Build",
+      "type": "library"
+    },
+    {
+      "href": "/library/cant-hurt-me",
+      "title": "Can",
+      "tags": [
+        "cant",
+        "hurt",
+        "me"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/deep-work",
+      "title": "Deep Work",
+      "tags": [
+        "deep",
+        "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/e-squared",
+      "title": "E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality",
+      "tags": [
+        "squared"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/fabric-of-reality",
+      "title": "The Fabric of Reality",
+      "tags": [
+        "fabric",
+        "of",
+        "reality"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-japanese-secret",
+      "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
+      "tags": [
+        "ikigai",
+        "japanese",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-ni-tsuite",
+      "title": "Ikigai-ni-Tsuite (生きがいについて)",
+      "tags": [
+        "ikigai",
+        "ni",
+        "tsuite"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/mans-search-for-meaning",
+      "title": "Man",
+      "tags": [
+        "mans",
+        "search",
+        "for",
+        "meaning"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/meditations",
+      "title": "Meditations",
+      "tags": [
+        "meditations"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/money-master-the-game",
+      "title": "Money: Master the Game",
+      "tags": [
+        "money",
+        "master",
+        "the",
+        "game"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/no-bad-parts",
+      "title": "No Bad Parts",
+      "tags": [
+        "no",
+        "bad",
+        "parts"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/profit-first",
+      "title": "Profit First",
+      "tags": [
+        "profit",
+        "first"
+      ],
       "type": "library"
     },
     {
       "href": "/library/quotes",
       "title": "Library — Quotes",
       "type": "library"
+    },
+    {
+      "href": "/library/steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "tags": [
+        "steal",
+        "like",
+        "an",
+        "artist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/superfans",
+      "title": "Superfans",
+      "tags": [
+        "superfans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tao-te-ching",
+      "title": "Tao Te Ching",
+      "tags": [
+        "tao",
+        "te",
+        "ching"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-body",
+      "title": "The 4-Hour Body",
+      "tags": [
+        "the",
+        "hour",
+        "body"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-workweek",
+      "title": "The 4-Hour Workweek",
+      "tags": [
+        "the",
+        "hour",
+        "workweek"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-alchemist",
+      "title": "The Alchemist",
+      "tags": [
+        "the",
+        "alchemist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-book-of-secrets",
+      "title": "The Book of Secrets",
+      "tags": [
+        "the",
+        "book",
+        "of",
+        "secrets"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-creative-act",
+      "title": "The Creative Act: A Way of Being",
+      "tags": [
+        "the",
+        "creative",
+        "act"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-little-book-of-ikigai",
+      "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
+      "tags": [
+        "the",
+        "little",
+        "book",
+        "of",
+        "ikigai"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-war-of-art",
+      "title": "The War of Art",
+      "tags": [
+        "the",
+        "war",
+        "of",
+        "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "the",
+        "wordless",
+        "laws"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/think-and-grow-rich",
+      "title": "Think and Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tools-of-titans",
+      "title": "Tools of Titans",
+      "tags": [
+        "tools",
+        "of",
+        "titans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tribe-of-mentors",
+      "title": "Tribe of Mentors",
+      "tags": [
+        "tribe",
+        "of",
+        "mentors"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/unlimited-power",
+      "title": "Unlimited Power",
+      "tags": [
+        "unlimited",
+        "power"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/will-it-fly",
+      "title": "Will It Fly?",
+      "tags": [
+        "will",
+        "it",
+        "fly"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/you-are-the-placebo",
+      "title": "You Are the Placebo",
+      "tags": [
+        "you",
+        "are",
+        "the",
+        "placebo"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
     },
     {
       "href": "/links",
@@ -4213,6 +5679,389 @@
       "type": "section"
     },
     {
+      "href": "/llm-hub.json",
+      "title": "LLM Hub JSON Dataset",
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-fable-5",
+      "title": "Claude Fable 5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-haiku-4-5",
+      "title": "Claude Haiku 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-5",
+      "title": "Claude Opus 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-6",
+      "title": "Claude Opus 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-8",
+      "title": "Claude Opus 4.8 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-4-5",
+      "title": "Claude Sonnet 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-4-6",
+      "title": "Claude Sonnet 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-claude-opus-4-8",
+      "title": "Claude Fable 5 VS Claude Opus 4 8 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-deepseek-v4",
+      "title": "Claude Fable 5 VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-gemini-3-5-pro",
+      "title": "Claude Fable 5 VS Gemini 3 5 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-gpt-5-5",
+      "title": "Claude Fable 5 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-grok-4-3",
+      "title": "Claude Fable 5 VS Grok 4 3 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-kimi-k2-6",
+      "title": "Claude Fable 5 VS Kimi K2 6 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-qwen3-7-max",
+      "title": "Claude Fable 5 VS Qwen3 7 Max — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-opus-4-6-vs-gpt-5-2-pro",
+      "title": "Claude Opus 4 6 VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-opus-4-8-vs-gpt-5-5",
+      "title": "Claude Opus 4 8 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-sonnet-4-5-vs-gemini-3-5-flash",
+      "title": "Claude Sonnet 4 5 VS Gemini 3 5 Flash — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/deepseek-v4-vs-claude-opus-4-8",
+      "title": "Deepseek V4 VS Claude Opus 4 8 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-3-5-flash-vs-claude-opus-4-6",
+      "title": "Gemini 3 5 Flash VS Claude Opus 4 6 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-3-5-flash-vs-gpt-5-2-pro",
+      "title": "Gemini 3 5 Flash VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gpt-oss-vs-gemma-4",
+      "title": "Gpt Oss VS Gemma 4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/grok-4-3-vs-gpt-5-5",
+      "title": "Grok 4 3 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/kimi-k2-6-vs-deepseek-v4",
+      "title": "Kimi K2 6 VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/qwen3-7-max-vs-deepseek-v4",
+      "title": "Qwen3 7 Max VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/deepseek-v4",
+      "title": "DeepSeek V4 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-5-flash",
+      "title": "Gemini 3.5 Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-5-pro",
+      "title": "Gemini 3.5 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-pro",
+      "title": "Gemini 3 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemma-4",
+      "title": "Gemma 4 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-5-2-pro",
+      "title": "GPT-5.2 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-5-5",
+      "title": "GPT-5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-oss",
+      "title": "gpt-oss (120b / 20b) — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-1",
+      "title": "Grok 4.1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-3",
+      "title": "Grok 4.3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/kimi-k2-6",
+      "title": "Kimi K2.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/llama-4-maverick",
+      "title": "Llama 4 Maverick — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-code-1-flash",
+      "title": "MAI-Code-1-Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-image-2-5",
+      "title": "MAI-Image-2.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-thinking-1",
+      "title": "MAI-Thinking-1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mistral-large-3",
+      "title": "Mistral Large 3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/phi-4",
+      "title": "Microsoft Phi-4 (open-weight family) — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/qwen3-7-max",
+      "title": "Qwen3.7-Max — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/magic",
       "title": "Magic",
       "tags": [
@@ -4229,8 +6078,53 @@
       "type": "section"
     },
     {
+      "href": "/map/v1",
+      "title": "V1",
+      "tags": [
+        "map",
+        "v1"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v2",
+      "title": "V2",
+      "tags": [
+        "map",
+        "v2"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v3",
+      "title": "V3",
+      "tags": [
+        "map",
+        "v3"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/media-kit",
+      "title": "Media Kit",
+      "tags": [
+        "media",
+        "kit"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music",
       "title": "Music",
+      "type": "section"
+    },
+    {
+      "href": "/music-intelligence",
+      "title": "Music Intelligence",
+      "tags": [
+        "music",
+        "intelligence"
+      ],
       "type": "section"
     },
     {
@@ -4290,6 +6184,15 @@
         "lab",
         "piano",
         "songs"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/music-os",
+      "title": "Music OS",
+      "tags": [
+        "music",
+        "os"
       ],
       "type": "section"
     },
@@ -4401,6 +6304,15 @@
       "type": "section"
     },
     {
+      "href": "/music/templates",
+      "title": "Templates",
+      "tags": [
+        "music",
+        "templates"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music/tools",
       "title": "Tools",
       "tags": [
@@ -4436,6 +6348,16 @@
       "type": "newsletter"
     },
     {
+      "href": "/newsletter/confirm",
+      "title": "Confirm",
+      "tags": [
+        "newsletter",
+        "confirm"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/newsletter/preferences",
       "title": "Preferences",
       "tags": [
@@ -4451,6 +6373,24 @@
         "newsletter",
         "thank",
         "you"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/newsletter/unsubscribe",
+      "title": "Unsubscribe",
+      "tags": [
+        "newsletter",
+        "unsubscribe"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/observatory",
+      "title": "Observatory",
+      "tags": [
+        "observatory"
       ],
       "type": "section"
     },
@@ -4506,7 +6446,8 @@
         "und",
         "oma"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/open-source",
@@ -4518,12 +6459,22 @@
       "type": "section"
     },
     {
+      "href": "/operator-scorecard",
+      "title": "Operator Scorecard",
+      "tags": [
+        "operator",
+        "scorecard"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ops",
       "title": "Ops",
       "tags": [
         "ops"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/ops/calendar",
@@ -4541,7 +6492,8 @@
         "ops",
         "sites"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/opus-pro",
@@ -4555,42 +6507,86 @@
     },
     {
       "href": "/os/aco",
-      "title": "OS — ACO",
+      "title": "Agentic Content Officer",
+      "tags": [
+        "aco"
+      ],
       "type": "os"
     },
     {
       "href": "/os/acos",
-      "title": "OS — ACOS",
+      "title": "ACOS",
+      "tags": [
+        "acos"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/build-first-funnel",
+      "title": "Build First AI Agent Funnel",
+      "tags": [
+        "build",
+        "first",
+        "funnel"
+      ],
       "type": "os"
     },
     {
       "href": "/os/coe-hub",
-      "title": "OS — CoE Hub",
+      "title": "AI CoE Hub",
+      "tags": [
+        "coe",
+        "hub"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/library",
-      "title": "OS — Library",
+      "href": "/os/foundry",
+      "title": "FrankX Foundry",
+      "tags": [
+        "foundry"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/sis",
-      "title": "OS — Starlight Intelligence",
+      "href": "/os/iis",
+      "title": "Investment Intelligence System",
+      "tags": [
+        "iis"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/visual-intelligence",
-      "title": "OS — Visual Intelligence",
+      "href": "/os/library-os",
+      "title": "Library OS",
+      "tags": [
+        "library",
+        "os"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/vis",
+      "title": "Visual Intelligence System",
+      "tags": [
+        "vis"
+      ],
       "type": "os"
     },
     {
       "href": "/os/watch",
-      "title": "OS — Watch",
+      "title": "Watch OS",
+      "tags": [
+        "watch"
+      ],
       "type": "os"
     },
     {
-      "href": "/os/workshop",
-      "title": "OS — Workshop",
+      "href": "/os/workshops",
+      "title": "Workshop OS",
+      "tags": [
+        "workshops"
+      ],
       "type": "os"
     },
     {
@@ -4615,7 +6611,8 @@
         "papa",
         "erinnerungen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/papa/leben",
@@ -4629,7 +6626,8 @@
         "papa",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/partners",
@@ -4642,6 +6640,15 @@
       "type": "partnership"
     },
     {
+      "href": "/partnerships/anthropic",
+      "title": "Anthropic",
+      "tags": [
+        "partnership",
+        "anthropic"
+      ],
+      "type": "partnership"
+    },
+    {
       "href": "/partnerships/arrow",
       "title": "Arrow",
       "tags": [
@@ -4651,17 +6658,63 @@
       "type": "partnership"
     },
     {
-      "href": "/partnerships/kyndryl",
-      "title": "Kyndryl",
+      "href": "/partnerships/google",
+      "title": "Google",
       "tags": [
         "partnership",
-        "kyndryl"
+        "google"
       ],
       "type": "partnership"
     },
     {
+      "href": "/partnerships/nvidia",
+      "title": "Nvidia",
+      "tags": [
+        "partnership",
+        "nvidia"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/van-ede",
+      "title": "Van Ede",
+      "tags": [
+        "partnerships",
+        "van",
+        "ede"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/partnerships/vercel",
+      "title": "Vercel",
+      "tags": [
+        "partnership",
+        "vercel"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/peak-performance",
+      "title": "Peak Performance",
+      "tags": [
+        "peak",
+        "performance"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/plan",
       "title": "Plan",
+      "type": "section"
+    },
+    {
+      "href": "/portal",
+      "title": "Portal",
+      "tags": [
+        "portal"
+      ],
       "type": "section"
     },
     {
@@ -4777,6 +6830,16 @@
       "type": "section"
     },
     {
+      "href": "/products/command-center-template",
+      "title": "The Command Center Template",
+      "tags": [
+        "command",
+        "center",
+        "template"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/creation-chronicles",
       "title": "Creation Chronicles",
       "tags": [
@@ -4796,6 +6859,15 @@
         "toolkit"
       ],
       "type": "section"
+    },
+    {
+      "href": "/products/founders-circle",
+      "title": "Founder's Circle Guild",
+      "tags": [
+        "founders",
+        "circle"
+      ],
+      "type": "product"
     },
     {
       "href": "/products/generative-creator-os",
@@ -4857,6 +6929,16 @@
       "type": "section"
     },
     {
+      "href": "/products/reality-architect-os",
+      "title": "Reality Architect OS",
+      "tags": [
+        "reality",
+        "architect",
+        "os"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/self-development",
       "title": "The Art of Self-Development",
       "tags": [
@@ -4879,6 +6961,15 @@
       "tags": [
         "spartan",
         "mindset"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/starter-kit",
+      "title": "System Architect Starter Kit",
+      "tags": [
+        "starter",
+        "kit"
       ],
       "type": "product"
     },
@@ -4936,6 +7027,17 @@
       "type": "section"
     },
     {
+      "href": "/products/visual-creation-loop",
+      "title": "Visual Creation Loop",
+      "tags": [
+        "products",
+        "visual",
+        "creation",
+        "loop"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/progress",
       "title": "Progress",
       "tags": [
@@ -4963,7 +7065,8 @@
         "prompts",
         "psyche"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/prototype/arcanea-game-engine",
@@ -5117,7 +7220,7 @@
     {
       "href": "/prototype/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -5135,6 +7238,14 @@
       "type": "section"
     },
     {
+      "href": "/quest",
+      "title": "Quest",
+      "tags": [
+        "quest"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/realm",
       "title": "Realm",
       "type": "section"
@@ -5143,6 +7254,17 @@
       "href": "/research",
       "title": "Research",
       "type": "research"
+    },
+    {
+      "href": "/research/ai-contemplative-practice",
+      "title": "AI Contemplative Practice",
+      "tags": [
+        "research",
+        "ai",
+        "contemplative",
+        "practice"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/blue-zones-ikigai-ai-era",
@@ -5175,6 +7297,16 @@
       "type": "research"
     },
     {
+      "href": "/research/model-arena",
+      "title": "Model Arena",
+      "tags": [
+        "research",
+        "model",
+        "arena"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/research/series/architecture-of-intelligence",
       "title": "Architecture OF Intelligence",
       "tags": [
@@ -5190,6 +7322,27 @@
       "href": "/research/sources",
       "title": "Research Sources",
       "type": "research"
+    },
+    {
+      "href": "/research/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "research",
+        "the",
+        "light",
+        "within"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/research/visual-catalog",
+      "title": "Visual Catalog",
+      "tags": [
+        "research",
+        "visual",
+        "catalog"
+      ],
+      "type": "section"
     },
     {
       "href": "/resources",
@@ -5243,178 +7396,6 @@
         "templates"
       ],
       "type": "section"
-    },
-    {
-      "href": "/shop/templates/claude-code-agent-orchestration",
-      "title": "Agent Orchestration Skill Pack",
-      "tags": [
-        "agents",
-        "mcp",
-        "orchestration",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-content-engine",
-      "title": "Content Engine Skill Pack",
-      "tags": [
-        "content",
-        "seo",
-        "blog",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-dev-tools",
-      "title": "Developer Tools Skill Pack",
-      "tags": [
-        "react",
-        "nextjs",
-        "typescript",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-seo-intelligence",
-      "title": "SEO Intelligence Skill Pack",
-      "tags": [
-        "seo",
-        "schema",
-        "keywords",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/claude-code-suno-mastery",
-      "title": "Suno Mastery Skill Pack",
-      "tags": [
-        "music",
-        "suno",
-        "claude-code",
-        "skill"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-custom-tools",
-      "title": "MCP Custom Tools Starter",
-      "tags": [
-        "mcp",
-        "tools",
-        "typescript",
-        "config"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/mcp-multi-server",
-      "title": "Multi-Server MCP Setup",
-      "tags": [
-        "mcp",
-        "config",
-        "multi-server",
-        "production"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/multi-agent-blueprint",
-      "title": "Multi-Agent Framework",
-      "tags": [
-        "agents",
-        "blueprint",
-        "orchestration",
-        "enterprise",
-        "acos"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-content-pipeline",
-      "title": "AI Content Pipeline",
-      "tags": [
-        "n8n",
-        "workflow",
-        "content",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-customer-support",
-      "title": "AI Support Automation",
-      "tags": [
-        "n8n",
-        "workflow",
-        "support",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/n8n-lead-enrichment",
-      "title": "Lead Enrichment Engine",
-      "tags": [
-        "n8n",
-        "workflow",
-        "leads",
-        "crm",
-        "automation"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-ai-chat",
-      "title": "AI Chat Application",
-      "tags": [
-        "nextjs",
-        "ai",
-        "chat",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-blog-cms",
-      "title": "Blog + CMS Starter",
-      "tags": [
-        "nextjs",
-        "blog",
-        "mdx",
-        "seo",
-        "starter-kit"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/nextjs-saas-boilerplate",
-      "title": "Next.js SaaS Boilerplate",
-      "tags": [
-        "nextjs",
-        "saas",
-        "boilerplate",
-        "fullstack"
-      ],
-      "type": "product"
-    },
-    {
-      "href": "/shop/templates/rag-system-blueprint",
-      "title": "RAG System Blueprint",
-      "tags": [
-        "rag",
-        "blueprint",
-        "architecture",
-        "enterprise"
-      ],
-      "type": "product"
     },
     {
       "href": "/showcase",
@@ -5560,15 +7541,6 @@
       "type": "section"
     },
     {
-      "href": "/students/ikigai",
-      "title": "Ikigai",
-      "tags": [
-        "students",
-        "ikigai"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/students/prompts",
       "title": "Prompts",
       "tags": [
@@ -5620,11 +7592,29 @@
       "type": "section"
     },
     {
+      "href": "/studio/engines",
+      "title": "Engines",
+      "tags": [
+        "studio",
+        "engines"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/studio/food",
       "title": "Food",
       "tags": [
         "studio",
         "food"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/studio/lanes",
+      "title": "Lanes",
+      "tags": [
+        "studio",
+        "lanes"
       ],
       "type": "section"
     },
@@ -5665,6 +7655,15 @@
       "type": "section"
     },
     {
+      "href": "/studio/social",
+      "title": "Social",
+      "tags": [
+        "studio",
+        "social"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/studio/travel",
       "title": "Travel",
       "tags": [
@@ -5693,7 +7692,14 @@
       "tags": [
         "study"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/superpowers",
+      "title": "AI Superpowers Directory",
+      "description": "Curated directory of AI tools, custom agent systems, and MCP servers mapped by creator superpower",
+      "type": "tool"
     },
     {
       "href": "/svijet",
@@ -5730,6 +7736,16 @@
       "type": "section"
     },
     {
+      "href": "/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "the",
+        "light",
+        "within"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/tools",
       "title": "Tools",
       "type": "tool"
@@ -5753,6 +7769,14 @@
       "href": "/tools/visual-intelligence",
       "title": "Visual Intelligence",
       "type": "tool"
+    },
+    {
+      "href": "/travel",
+      "title": "Travel",
+      "tags": [
+        "travel"
+      ],
+      "type": "section"
     },
     {
       "href": "/tribe",
@@ -5885,6 +7909,17 @@
       "type": "section"
     },
     {
+      "href": "/work/property-intelligence-os",
+      "title": "Property Intelligence OS",
+      "tags": [
+        "work",
+        "property",
+        "intelligence",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/work/trinity-ai",
       "title": "Trinity AI",
       "tags": [
@@ -5892,7 +7927,8 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/workshops",
@@ -5912,6 +7948,15 @@
     {
       "href": "/workshops/build-first-ai-agent",
       "title": "Build Your First AI Agent",
+      "type": "workshop"
+    },
+    {
+      "href": "/workshops/build-hackathon",
+      "title": "Build Hackathon: Ship an AI Agent in 4 Hours",
+      "tags": [
+        "build",
+        "hackathon"
+      ],
       "type": "workshop"
     },
     {
@@ -6029,25 +8074,187 @@
         "strategy"
       ],
       "type": "section"
+    },
+    {
+      "href": "/ask",
+      "title": "Ask FrankX",
+      "description": "Practical Q&A on AI architecture, music production, and creator workflows",
+      "type": "core",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture",
+        "music-production",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/what-is-a-multi-agent-system",
+      "title": "What is a multi-agent AI system?",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/how-to-write-suno-prompts",
+      "title": "How to write Suno prompts for professional tracks",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
+    },
+    {
+      "href": "/ask/ai-for-solo-creators",
+      "title": "AI for solo creators without becoming a content farm",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/claude-and-gemini-together",
+      "title": "Using Claude and Gemini together in one system",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/ai-music-workflow-end-to-end",
+      "title": "Complete AI music production workflow 2026",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
+    },
+    {
+      "href": "/ask/adding-ai-without-losing-voice",
+      "title": "Adding AI without losing your creative voice",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/automation-vs-augmentation",
+      "title": "Automation vs augmentation: which to choose",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/best-ai-stack-2026",
+      "title": "Best AI tech stack for creators in 2026",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/how-to-write-claude-md",
+      "title": "How to write a CLAUDE.md that works",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/enterprise-ai-adoption-strategy",
+      "title": "Enterprise AI adoption strategy framework",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "enterprise-ai"
+      ]
+    },
+    {
+      "href": "/ask/ai-content-engine-setup",
+      "title": "Setting up an AI content engine",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/agentic-creator-os-explained",
+      "title": "What is the Agentic Creator OS (ACOS)?",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/how-do-i-get-chorus-to-lift",
+      "title": "How to get chorus lift in AI music",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
     }
   ],
   "aliases": {
     "/aco": "/agents",
     "/ai-coe": "/acos",
-    "/blog/rss": "/rss.xml",
+    "/ais": "/allies/ana-cancino",
+    "/alliance/cecilia": "/allies/ana-cancino",
+    "/ana": "/allies/ana-cancino",
+    "/ana-intelligence-system": "/allies/ana-cancino",
+    "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
+    "/books/fable/chapter-01-the-listening-machine": "/books/fable",
+    "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
+    "/books/fable/chapter-03-the-narrow-window": "/books/fable",
+    "/books/fable/chapter-04-a-smaller-shape-of-the-sea": "/books/fable",
+    "/books/fable/chapter-05-the-wrong-note": "/books/fable",
+    "/books/fable/chapter-06-a-thousand-songs": "/books/fable/06-the-thousand-true-songs",
+    "/books/fable/chapter-07-the-grain-of-the-voice": "/books/fable/07-the-weaver-who-copied-a-voice",
+    "/books/fable/chapter-08-the-oracle-question": "/books/fable/08-the-well-and-the-kneeling-man",
+    "/books/fable/chapter-09-the-brokers-offer": "/books/fable/09-the-tower-that-rented-the-rain",
+    "/books/fable/chapter-10-the-second-workshop": "/books/fable/21-the-hundred-benches",
+    "/books/fable/chapter-11-the-copy": "/books/fable/10-the-perfect-forgery",
+    "/books/fable/chapter-12-idas-machine": "/books/fable/12-the-teachers-test",
+    "/books/fable/chapter-13-two-kinds-of-listening": "/books/fable/11-the-two-listeners",
+    "/books/fable/chapter-14-what-the-machine-could-not-hold": "/books/fable/13-the-laugh-in-the-jar",
+    "/books/fable/chapter-15-the-question-of-the-ledger": "/books/fable/24-are-they-dangerous",
+    "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
+    "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
-    "/contact-frank": "/contact",
-    "/contact-me": "/contact",
-    "/get-in-touch": "/contact",
+    "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
+    "/llm-hub": "/ai-ops/models-2026",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",
     "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
-    "/workshops/ikigai/v1": "/workshops/ikigai-branding",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",
     "/workshops/ikigai/v3": "/workshops/ikigai-branding",
     "/workshops/ikigai/v4": "/workshops/ikigai-branding"

@@ -1,0 +1,31 @@
+{
+  "_comment": "Win-rate overlay for lib/gen/patterns.ts. Rebuilt by scripts/gen-rank.mjs from data/gen/outcomes.jsonl. Do not hand-edit — append judged outcomes to outcomes.jsonl and re-run.",
+  "hero-noir-tech-web": {
+    "winRate": 1,
+    "evalCount": 3
+  },
+  "thumbnail-cinematic-thumb": {
+    "winRate": 1,
+    "evalCount": 2
+  },
+  "header-editorial-wide": {
+    "winRate": 1,
+    "evalCount": 2
+  },
+  "b-roll-cinematic-story": {
+    "winRate": 1,
+    "evalCount": 1
+  },
+  "hero-liquid-glass-web": {
+    "winRate": 0.75,
+    "evalCount": 4
+  },
+  "social-card-anime-square": {
+    "winRate": 0.67,
+    "evalCount": 3
+  },
+  "cover-cinematic-book": {
+    "winRate": 0.5,
+    "evalCount": 2
+  }
+}

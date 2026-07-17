@@ -5,10 +5,8 @@ import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 /**
  * NVIDIA — silicon-tier strategic alignment.
  *
- * Working reality is verifiable today: co-architecture of the Oracle x NVIDIA
- * partner event 2025, Munich EBC contacts, NIM hands-on from the Oracle EMEA
- * AI CoE practice, and active participation in the Oracle x NVIDIA AI
- * accelerator pack wave moving through EMEA channel.
+ * Working reality is limited to public, non-confidential AI architecture
+ * practice, GPU-aware reference patterns, and open-source agentic systems.
  *
  * Proposal tier is a peer-architect shape — not a claim of formal NVIDIA
  * partnership and not a claim of NVIDIA Inception membership. Inception is
@@ -26,32 +24,32 @@ export const nvidia: Partner = {
   status: 'strategic-alignment',
   lastUpdated: '2026-05-16',
 
-  title: 'AI Architect — NVIDIA-aligned EMEA AI CoE practice',
+  title: 'AI Architect — GPU-aware AI CoE practice',
   tagline:
     'Silicon-aware AI CoE methodology for the EMEA accelerator wave.',
   subTagline:
-    'Co-architect of the Oracle × NVIDIA partner event 2025. Munich EBC bridge already warm. The conversation is the formal Inception + EMEA event lane.',
+    'Public, independent alignment proposal for GPU-aware agent workloads, creator infrastructure, and enterprise AI education.',
 
-  contextWindow: `GPU and accelerator infrastructure is the silicon layer of the AI CoE practice I run inside Oracle EMEA. NIM, NeMo, and the NVIDIA AI Enterprise stack are quietly becoming default ingredients in every multi-cloud reference architecture an AI Architect ships in this region. The Oracle x NVIDIA AI accelerator pack wave is moving through EMEA channel right now, and the bridge from GPU infrastructure to agent workloads is where the methodology earns its keep.
+  contextWindow: `GPU and accelerator infrastructure is the silicon layer of modern AI architecture. NIM, NeMo, and the NVIDIA AI Enterprise stack are useful public reference points for builders who need to connect model infrastructure, agent workloads, and deployment discipline.
 
-The proof is already on the record. Co-architect of the Oracle x NVIDIA partner event 2025. Munich EBC contacts active from that work. NIM hands-on exposure threaded through the CoE practice. A 7,000-strong EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks who already saw the joint go-to-market shape we practiced last year.
+The public proof is the open body of work: AI architecture writing, agentic creator systems, and reference implementations that translate cloud and model infrastructure into working creator/operator patterns.
 
-The strategic alignment is about the EMEA agent plus accelerator distribution wave — and about being a referenceable, NVIDIA-aligned independent voice in it.`,
+The strategic alignment is about GPU-aware agent systems and independent education for builders who want to understand where accelerated infrastructure changes the operating model.`,
 
   workingReality: [
     {
-      label: 'Oracle x NVIDIA partner event 2025 — co-architect',
+      label: 'GPU-aware AI architecture practice',
       detail:
-        'Co-architected the Oracle x NVIDIA partner event 2025 from the Oracle EMEA AI CoE side. The shape of joint EMEA go-to-market is something we practiced together on the record.',
+        'Public architecture work focused on how accelerated compute, model serving, and agent workloads fit into practical AI systems.',
       evidence: {
-        label: 'Event reference (URL pending)',
-        href: '#nvidia-event-todo',
+        label: 'AI Architecture hub',
+        href: '/ai-architecture',
       },
     },
     {
-      label: 'Munich EBC contacts + NIM hands-on',
+      label: 'NIM and agent workload learning track',
       detail:
-        'Munich Executive Briefing Center contacts active from the partner-event work. NIM microservices threaded through Oracle EMEA AI CoE reference architectures. The relationship is real, not aspirational.',
+        'NIM and related NVIDIA tooling are treated as public infrastructure references for understanding the bridge from GPU services to agentic applications.',
     },
     {
       label: 'AI CoE methodology — GPU infrastructure to agent workloads',
@@ -59,17 +57,16 @@ The strategic alignment is about the EMEA agent plus accelerator distribution wa
         'The CoE methodology bridges accelerated compute and agent workloads cleanly. GPU-aware reference architectures, NIM-pattern deployment shapes, agent harnesses that respect the silicon. The bridge is the practice.',
     },
     {
-      label: 'Oracle x NVIDIA AI accelerator pack wave — EMEA enablement',
+      label: 'Independent education and reference implementation',
       detail:
-        'Active participation in the Oracle x NVIDIA AI accelerator pack wave moving through EMEA channel. Enablement content, reference architectures, and partner-facing material that lands the pack inside real deployments.',
+        'FrankX turns public architecture knowledge into explainers, workshops, and open-source patterns that builders can inspect and adapt.',
     },
   ],
 
   proofPoints: [
     {
-      label: 'Oracle x NVIDIA partner event 2025',
-      href: '#nvidia-event-todo',
-      metric: 'Reference URL — Frank fills',
+      label: 'AI Architecture hub',
+      href: '/ai-architecture',
     },
     {
       label: 'ACOS — open agentic creator OS',
@@ -103,9 +100,9 @@ The strategic alignment is about the EMEA agent plus accelerator distribution wa
       metric: 'On the record',
     },
     {
-      title: 'Munich EBC bridge — warm contacts, not stranger outreach',
-      body: 'Munich Executive Briefing Center relationships active from the 2025 event. A briefing scheduled here is a continuation, not a cold start.',
-      metric: 'EBC access',
+      title: 'Briefing-ready architecture material',
+      body: 'GPU-aware reference architecture material can be packaged for a serious briefing without relying on private relationship claims.',
+      metric: 'Briefing-ready',
     },
     {
       title: 'GPU-to-agent CoE methodology',
@@ -113,9 +110,9 @@ The strategic alignment is about the EMEA agent plus accelerator distribution wa
       metric: 'Practice',
     },
     {
-      title: 'EMEA AI audience funnel',
-      body: 'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. Posts about AI CoE patterns regularly clear 100-plus engagements among the exact EMEA audience NVIDIA enables through partners.',
-      metric: '7,000+ followers',
+      title: 'Public builder distribution',
+      body: 'FrankX publishes AI CoE patterns, GPU-aware architecture notes, and agent workflows through the public site, GitHub, newsletter, and LinkedIn.',
+      metric: 'Public channels',
     },
     {
       title: 'Open-source body of work running on accelerated infrastructure',
@@ -259,23 +256,23 @@ The strategic alignment is about the EMEA agent plus accelerator distribution wa
   programStatus: 'NVIDIA Inception — nominee pathway',
 
   alreadyShared: [
-    'Co-architect of the Oracle × NVIDIA partner event 2025 from the Oracle EMEA AI CoE side.',
-    'Munich EBC contacts active from the CoE work — the bridge is warm, not cold outreach.',
-    'NIM hands-on practice threaded through Oracle EMEA AI CoE reference architectures.',
+    'GPU-aware AI architecture material is being developed as public, non-confidential reference content.',
+    'NIM and accelerated-infrastructure patterns are treated as public learning references for agent workloads.',
+    'The briefing package should stand on public artifacts, not private relationship claims.',
     'GPU-to-agent CoE methodology productized inside the AI Architect Academy curriculum.',
-    'Oracle × NVIDIA AI accelerator pack content stream ready to publish on /research.',
-    '7,000+ EMEA AI architect audience overlapping the NVIDIA developer community across Oracle, NVIDIA, Anthropic, and founder networks.',
+    'Accelerated-infrastructure content can publish through /research once source material is verified.',
+    'Public builder channels across the site, newsletter, GitHub, and LinkedIn are the distribution surface.',
   ],
 
   formalizationAsk:
-    "What's left to formalize. Munich EBC bridge is already warm from 2025. The CoE methodology is productized. The audience is engaged. The conversation is Inception membership, recurring EBC briefings, joint EMEA event slots, and accelerator-pack content sponsorship.",
+    "What's left to formalize. The CoE methodology is productized and public. The conversation is Inception pathway clarity, possible briefing surfaces, event slots, and verified accelerator-infrastructure content sponsorship.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/nvidia.svg',
   // ogImagePath: '/images/partnerships/nvidia-og.png', // TODO: generate, falls back to site default
 
   seo: {
-    title: 'FrankX × NVIDIA — NVIDIA-Aligned EMEA AI CoE Practice | FrankX',
+    title: 'FrankX × NVIDIA — GPU-Aware AI CoE Practice | FrankX',
     description:
       'Co-architect of the Oracle × NVIDIA 2025 partner event. Munich EBC bridge, NIM hands-on practice, GPU-to-agent CoE methodology for the EMEA accelerator channel.',
   },

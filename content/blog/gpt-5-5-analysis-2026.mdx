@@ -23,9 +23,21 @@ keywords:
   - gpt-5.5 osworld
   - openai spud model
   - best ai model 2026
-image: "/images/blog/gpt-5-5-analysis-2026-hero.svg"
+image: "/images/blog/gpt-5-5-analysis-2026-hero-v10.jpg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "In an AI Center of Excellence routing table, GPT-5.5 earns the terminal-agent and customer-workflow slots — its Terminal-Bench edge and the 98% Tau2 Telecom score are the durable leads — not the default-everything slot. The price doubled to $5/$30, and the token-efficiency offset is conditional: it pays off on output-heavy agentic loops, not on input-heavy long-context retrieval, so measure tokens-to-completion before migrating volume. For deep coding it trails on SWE-bench Pro (58.6% vs Opus 4.8's 69.2%, with Fable 5 now above both), and the reported ~258K effective context window in Codex means you validate the long-context promise in your own harness before budgeting on it."
+  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting"
+  personas:
+    - persona: "Computer-use / desktop agents"
+      pick: "GPT-5.5"
+    - persona: "Customer-workflow agents"
+      pick: "GPT-5.5 (Tau2 Telecom 98%)"
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — Opus 4.8 as the value pick"
+    - persona: "Voice-first agents"
+      pick: "gpt-realtime-2 (not GPT-5.5 itself)"
 ---
 
 # GPT-5.5 ("Spud"): What Actually Changed and Why It Matters
@@ -33,6 +45,8 @@ schema: ["Article", "FAQPage"]
 **TL;DR**: OpenAI released GPT-5.5 (internal codename "Spud") on April 23, 2026 as its new flagship. The headline numbers are agentic: 84.9% on GDPval (knowledge work across 44 occupations), 78.7% on OSWorld-Verified (autonomous computer use), and 98.0% on Tau2 Telecom (customer-service workflows) without prompt tuning. Long-context reasoning at 512K–1M tokens jumped from 36.6% on GPT-5.4 to 74.0%. The catch: pricing doubled to $5/$30 per million tokens, and it's a drop-in API replacement for GPT-5.4. Here's what actually matters for builders.
 
 ---
+
+<LearnHubCallout slug="chatgpt-mastery" blurb="GPT-5.5 powers ChatGPT and Codex today — go hands-on in the" label="ChatGPT & OpenAI Mastery portal." />
 
 ## What is GPT-5.5?
 
@@ -182,4 +196,4 @@ Be cautious. Reported SWE-bench Verified figures for GPT-5.5 range from about 82
 
 ---
 
-*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently and making music with AI. Published June 5, 2026 with benchmarks cross-referenced against OpenAI's announcement and independent coverage; vendor-claimed figures flagged where they could not be independently verified.*
+*Analysis by Frank — former Oracle AI architect building agentic systems independently and making music with AI. Published June 5, 2026 with benchmarks cross-referenced against OpenAI's announcement and independent coverage; vendor-claimed figures flagged where they could not be independently verified.*

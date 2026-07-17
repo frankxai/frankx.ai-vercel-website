@@ -17,7 +17,7 @@ import { getLivePatterns } from '@/lib/prompt-hub/fetch-library'
 import type { Category, Lane, Pattern } from '@/lib/prompt-hub/types'
 
 export const metadata: Metadata = {
-  title: 'Prompt Library — 98 patterns evaluated, attributed, lab-tagged | FrankX',
+  title: 'Prompt Library — 130+ patterns evaluated, attributed, lab-tagged | FrankX',
   description:
     'Live OSS prompt corpus. Every pattern in the frankxai/prompt-library repo, ranked, attributed, and lab-tagged. Filter by Claude / GPT / Gemini / OSS lane, by category, or search across titles.',
   alternates: { canonical: 'https://www.frankx.ai/prompt-library' },
@@ -115,9 +115,10 @@ export default async function PromptLibraryPage(props: {
         {/* Header */}
         <header className="mb-12">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400/80">
-            Live corpus · {snapshot.patterns.length} patterns · cached 1h
+            Live corpus · {snapshot.patterns.length}{' '}
+            {snapshot.patterns.length === 1 ? 'pattern' : 'patterns'} · cached 1h
           </p>
-          <h1 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl">
             The Prompt Library
           </h1>
           <p className="max-w-3xl text-lg leading-relaxed text-slate-300">
@@ -164,35 +165,9 @@ export default async function PromptLibraryPage(props: {
 
         {/* Grid */}
         {pageItems.length === 0 ? (
-          <div
-            role="status"
-            aria-live="polite"
-            className="mx-auto max-w-xl rounded-2xl border border-slate-800 bg-slate-900/40 p-12 text-center backdrop-blur-sm"
-          >
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-7 w-7 text-emerald-300"
-                aria-hidden="true"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </div>
-            <h2 className="mb-2 text-xl font-semibold tracking-tight text-white">No patterns match those filters</h2>
-            <p className="mb-6 text-sm leading-relaxed text-slate-400">
-              Try a broader lane, a different category, or a shorter search term.
-            </p>
-            <Link
-              href="/prompt-library"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300 transition hover:bg-emerald-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-            >
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-10 text-center">
+            <p className="mb-3 text-base text-slate-300">No patterns match the current filters.</p>
+            <Link href="/prompt-library" className="text-sm font-medium text-emerald-400 hover:text-emerald-300">
               Reset filters →
             </Link>
           </div>
@@ -213,20 +188,18 @@ export default async function PromptLibraryPage(props: {
             {page > 1 && (
               <Link
                 href={buildPageUrl({ ...params, page: String(page - 1) })}
-                rel="prev"
-                className="rounded-full border border-slate-800 bg-slate-900/40 px-4 py-2 text-slate-300 transition hover:border-emerald-500/40 hover:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="rounded-md border border-slate-800 bg-slate-900/40 px-3 py-2 text-slate-300 hover:border-emerald-500/40 hover:text-emerald-300"
               >
                 ← Previous
               </Link>
             )}
-            <span className="px-3 py-2 text-slate-500" aria-live="polite">
+            <span className="px-3 py-2 text-slate-500">
               Page {page} of {totalPages}
             </span>
             {page < totalPages && (
               <Link
                 href={buildPageUrl({ ...params, page: String(page + 1) })}
-                rel="next"
-                className="rounded-full border border-slate-800 bg-slate-900/40 px-4 py-2 text-slate-300 transition hover:border-emerald-500/40 hover:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="rounded-md border border-slate-800 bg-slate-900/40 px-3 py-2 text-slate-300 hover:border-emerald-500/40 hover:text-emerald-300"
               >
                 Next →
               </Link>
@@ -270,7 +243,7 @@ function PatternCard({ pattern }: { pattern: Pattern }) {
   return (
     <Link
       href={`/prompt-library/${fm.id}`}
-      className="group flex h-full flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:bg-slate-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      className="group flex h-full flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-5 transition hover:border-emerald-500/40 hover:bg-slate-900/60"
     >
       <div className="mb-3 flex items-start justify-between gap-3">
         <h3 className="text-lg font-semibold leading-snug text-white">
@@ -407,7 +380,7 @@ function FilterRow<T extends string>({
       <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
         {label}
       </div>
-      <div role="group" aria-label={`Filter by ${label.toLowerCase()}`} className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2">
         {options.map((opt) => {
           const isActive = opt.id === activeId
           const next: Record<string, string | undefined> = {
@@ -419,12 +392,10 @@ function FilterRow<T extends string>({
             <Link
               key={opt.id}
               href={buildPageUrl(next)}
-              aria-current={isActive ? 'true' : undefined}
               className={
-                'rounded-full border px-3 py-1 text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ' +
-                (isActive
-                  ? 'border-emerald-500/60 bg-emerald-500/15 font-medium text-emerald-300'
-                  : 'border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700 hover:text-slate-200')
+                isActive
+                  ? 'rounded-full border border-emerald-500/60 bg-emerald-500/15 px-3 py-1 text-sm font-medium text-emerald-300'
+                  : 'rounded-full border border-slate-800 bg-slate-900/40 px-3 py-1 text-sm text-slate-400 hover:border-slate-700 hover:text-slate-200'
               }
             >
               {opt.label}
@@ -464,8 +435,7 @@ function SearchForm({
           type="search"
           defaultValue={currentQuery}
           placeholder="e.g. extract_wisdom, summarize, claude"
-          aria-label="Search prompt patterns"
-          className="w-full rounded-md border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 transition focus:border-emerald-500/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          className="w-full rounded-md border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
         />
       </div>
       {currentLane !== 'all' && <input type="hidden" name="lane" value={currentLane} />}
@@ -474,7 +444,7 @@ function SearchForm({
       )}
       <button
         type="submit"
-        className="rounded-full border border-emerald-500/40 bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-300 transition hover:bg-emerald-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+        className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300 hover:bg-emerald-500/20"
       >
         Search
       </button>

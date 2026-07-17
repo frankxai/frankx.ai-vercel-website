@@ -163,6 +163,8 @@ export function QuoteShareToolbar() {
     }
     document.addEventListener('selectionchange', onSelectionChange);
     return () => document.removeEventListener('selectionchange', onSelectionChange);
+    // Intentionally keyed on isTouch/hasNativeShare; inline helpers are stable in practice.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTouch, hasNativeShare]);
 
   // Tap-to-share (touch devices)
@@ -181,6 +183,8 @@ export function QuoteShareToolbar() {
     }
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
+    // Intentionally keyed on isTouch/hasNativeShare; showToolbarForElement is stable in practice.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTouch, hasNativeShare]);
 
   // Inject "Tap to share" affordance into each figure on touch devices
@@ -228,6 +232,8 @@ export function QuoteShareToolbar() {
     }
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
+    // Intentionally keyed on hasNativeShare; showToolbarForElement is stable in practice.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasNativeShare]);
 
   // Escape dismisses
@@ -252,6 +258,8 @@ export function QuoteShareToolbar() {
     }
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
+    // Intentionally keyed on intent/position/hasNativeShare; toolbarWidthEstimate is stable in practice.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [intent, position, hasNativeShare]);
 
   async function onCopy() {

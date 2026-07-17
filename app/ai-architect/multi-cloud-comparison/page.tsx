@@ -188,7 +188,7 @@ const cloudProviders = {
     tagline: 'Enterprise Integration Champion',
     color: 'from-blue-600 to-indigo-600',
     pricing: 'Premium',
-    description: 'Enterprise-ready cloud with native Microsoft ecosystem integration',
+    description: 'Enterprise-ready cloud with seamless Microsoft ecosystem integration',
     strengths: ['Microsoft ecosystem', 'Enterprise compliance', 'Hybrid cloud', '.NET excellence'],
     weaknesses: ['Complex pricing', 'Steeper learning curve', 'Less startup-friendly'],
     aiServices: ['Azure OpenAI', 'Cognitive Services', 'ML Studio', 'Form Recognizer'],
@@ -395,7 +395,7 @@ function CloudProviderTabs() {
         >
           {/* Overview card */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-violet-500/5 blur-2xl opacity-50 rounded-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-emerald-500/5 blur-2xl opacity-50 rounded-3xl" />
             <div className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-8">
               <div className="flex items-start justify-between mb-6">
                 <div>
@@ -474,7 +474,7 @@ function CloudProviderTabs() {
             {/* Database */}
             <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Database className="w-5 h-5 text-violet-400" />
+                <Database className="w-5 h-5 text-emerald-300" />
                 <h4 className="text-lg font-semibold text-white">Database</h4>
               </div>
               <div className="space-y-2 text-sm text-white/70">
@@ -625,8 +625,8 @@ function DecisionFramework() {
           {/* Enterprise-Focused */}
           <div className="group bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:bg-white/[0.05] transition-all">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-violet-500/10 rounded-xl">
-                <Shield className="w-6 h-6 text-violet-400" />
+              <div className="p-3 bg-emerald-600/10 rounded-xl">
+                <Shield className="w-6 h-6 text-emerald-500" />
               </div>
               <h3 className="text-xl font-bold text-white">Enterprise-Focused</h3>
             </div>
@@ -652,7 +652,7 @@ function DecisionFramework() {
               <h3 className="text-xl font-bold text-white">Innovation-Focused</h3>
             </div>
             <p className="text-white/70 mb-4">
-              Frontier AI models, rapid experimentation
+              Cutting-edge AI, rapid experimentation
             </p>
             <div className="space-y-2">
               <p className="text-sm text-white/60">

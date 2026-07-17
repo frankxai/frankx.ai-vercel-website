@@ -1,0 +1,135 @@
+{
+  "task": "Build a premium FrankX work subpage for Property Intelligence OS",
+  "route": "/work/property-intelligence-os",
+  "brand": "FrankX",
+  "skills": [
+    "premium-web-os",
+    "motion-media-producer"
+  ],
+  "phase_1_research": {
+    "standards_loaded": [
+      "_intelligence/README.md",
+      "_intelligence/operating-system.md",
+      "_intelligence/taste.md",
+      "_intelligence/design.md",
+      "_intelligence/motion.md",
+      "_intelligence/brand-worlds.md",
+      "_intelligence/quality-gates.md",
+      "_intelligence/adoption/activation-contract.md",
+      "design-agent-standards/DESIGN.md",
+      "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+      "design-agent-standards/ULTIMATE_AGENTIC_LOOPS.md",
+      "design-agent-standards/RED_TEAM_CHECKLIST.md",
+      "frankx.ai-vercel-website/design.md",
+      "frankx.ai-vercel-website/taste.md",
+      "starlight-design-intelligence/brand-packs/frankx"
+    ],
+    "references_translated": [
+      "Vercel and Linear restraint, density, and dark technical clarity",
+      "Top agency pattern: one strong first-viewport object, no copied references",
+      "FrankX brand pack: black glass, graphite, signal lines, direct commercial copy"
+    ],
+    "failure_modes": [
+      "generic SaaS AI hero",
+      "unknown-rights imagery",
+      "decorative motion",
+      "claims of automation beyond owner approval",
+      "mobile text overlap"
+    ]
+  },
+  "phase_2_concept": {
+    "dominant_visual_idea": "Owner command surface for one property with renter, listing, support, and approval states.",
+    "motion_job": "Reveal operating surfaces and signal liveness without making motion essential.",
+    "asset_strategy": "No generated images. Use UI evidence as the visual artifact."
+  },
+  "phase_3_generate": {
+    "artifacts": [
+      "app/work/property-intelligence-os/page.tsx",
+      "app/work/page.tsx",
+      "components/work/PropertyExperiencePreview.tsx",
+      "docs/premium-web-os/property-intelligence-work-scene-brief.md"
+    ]
+  },
+  "phase_4_critic": {
+    "initial_score_estimate": 27,
+    "max_score": 30,
+    "notes": [
+      "Strong first read and specific product mechanism.",
+      "No external asset risk.",
+      "Motion is scoped and reduced-motion aware.",
+      "Desktop and mobile screenshot inspection passed without text overlap or horizontal overflow."
+    ]
+  },
+  "phase_5_iterations": [
+    {
+      "change": "Renamed the link-map eyebrow to Related FrankX surfaces to make the cross-site relationship explicit.",
+      "reason": "The user asked for the page to link to the broader FrankX estate and example experience."
+    },
+    {
+      "change": "Moved the full Property Intelligence OS experience from /work to /work/property-intelligence-os and restored /work as the engagement hub with a featured-system entry link.",
+      "reason": "The work hub should index systems and engagements; the full property OS experience needs its own canonical subpage."
+    }
+  ],
+  "phase_6_verification": {
+    "commands": [
+      "npx eslint app/work/page.tsx app/work/property-intelligence-os/page.tsx components/work/PropertyExperiencePreview.tsx --max-warnings=0",
+      "npm run type-check",
+      "CI=1 PUPPETEER_SKIP_DOWNLOAD=1 npm run build",
+      "gitleaks dir app/work --redact --no-banner --exit-code 1",
+      "gitleaks dir components/work --redact --no-banner --exit-code 1",
+      "gitleaks dir docs/premium-web-os --redact --no-banner --exit-code 1"
+    ],
+    "screenshots": [
+      "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/desktop-top.png",
+      "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/desktop-full.png",
+      "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/mobile-top.png",
+      "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-qa/mobile-full.png"
+    ],
+    "local_qa": {
+      "url": "http://127.0.0.1:3290/work/property-intelligence-os",
+      "captured_at": "2026-06-30T15:14:44.586Z",
+      "checks": [
+        "hero present",
+        "example experience present",
+        "related FrankX surfaces present",
+        "Kleinanzeigen, ImmoScout24, and Immowelt present",
+        "no horizontal overflow on 1440px desktop or 390px mobile"
+      ]
+    },
+    "live_qa": {
+      "url": "https://frankx.ai/work/property-intelligence-os",
+      "captured_at": "2026-06-30T19:26:06.898Z",
+      "screenshots": [
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-route-fix/live-hub-desktop.png",
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-route-fix/live-subpage-desktop.png",
+        "C:/Users/frank/starlight/repos/.codex-artifacts/property-work-route-fix/live-subpage-mobile.png"
+      ],
+      "checks": [
+        "HTTP 200 on https://frankx.ai/work",
+        "/work keeps the original work hub headline",
+        "/work links to /work/property-intelligence-os",
+        "/work does not contain the Property Intelligence OS hero",
+        "HTTP 200 on https://frankx.ai/work/property-intelligence-os",
+        "/work/property-intelligence-os contains the Property Intelligence OS hero",
+        "Kleinanzeigen, ImmoScout24, and Immowelt present",
+        "Renter portal copy present",
+        "no horizontal overflow on 1440px desktop or 390px mobile",
+        "no browser console issues on checked live routes"
+      ]
+    },
+    "deployment": {
+      "commit": "46f8e8173f7a4afc97585b39ed14675feae02c57",
+      "preview": {
+        "id": "dpl_BVQPQSPqrPNMZ2vGQWokdFYF6RG4",
+        "state": "READY",
+        "url": "https://frankx-ai-vercel-website-6djkpbrc3-starlight-intelligence.vercel.app"
+      },
+      "production": {
+        "id": "dpl_xEkVyRrMWUkpPEAuu2e6RrYdnaAy",
+        "state": "READY",
+        "url": "https://frankx.ai/work/property-intelligence-os"
+      }
+    },
+    "status": "live_verified"
+  }
+}

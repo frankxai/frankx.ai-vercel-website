@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 export default function LegalPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      <div className="max-w-3xl mx-auto px-6 py-20 lg:py-28">
+      <div className="max-w-3xl mx-auto px-6 py-24">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-10 text-sm"
+          className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 text-sm"
         >
           &larr; Back to Home
         </Link>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-12">Legal Information</h1>
+        <h1 className="text-4xl font-bold mb-8">Legal Information</h1>
 
         <div className="space-y-8">
           {/* Quick Links */}
@@ -49,6 +49,13 @@ export default function LegalPage() {
             >
               <h3 className="text-lg font-semibold mb-2">Refund Policy</h3>
               <p className="text-white/60 text-sm">Refund and cancellation policy for EU consumers.</p>
+            </Link>
+            <Link
+              href="/licensing"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+            >
+              <h3 className="text-lg font-semibold mb-2">Licensing</h3>
+              <p className="text-white/60 text-sm">Commercial licensing for music, research, templates, and methodology.</p>
             </Link>
           </section>
 

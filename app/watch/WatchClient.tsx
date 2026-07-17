@@ -100,10 +100,10 @@ export default function WatchClient({
       <WatchHero stats={stats} />
 
       {/* Editor's Picks */}
-      <section className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Editor&apos;s Picks</h2>
-          <span className="text-xs text-white/40 uppercase tracking-wider">
+      <section className="max-w-7xl mx-auto px-6 mb-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">Editor&apos;s Picks</h2>
+          <span className="text-xs text-white/30 uppercase tracking-wider">
             Curated favorites
           </span>
         </div>
@@ -115,10 +115,10 @@ export default function WatchClient({
 
       {/* Watchlists */}
       {watchlists.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Watchlists</h2>
-            <span className="text-xs text-white/40 uppercase tracking-wider">
+        <section className="max-w-7xl mx-auto px-6 mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">Watchlists</h2>
+            <span className="text-xs text-white/30 uppercase tracking-wider">
               {watchlists.length} curated lists
             </span>
           </div>
@@ -142,14 +142,14 @@ export default function WatchClient({
         const featured = sectionVideos.filter((v) => v.featured)
         const display = featured.length >= 4 ? featured.slice(0, 8) : sectionVideos.slice(0, 8)
         return (
-          <section key={section.id} className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-2 h-10 rounded-full" style={{ backgroundColor: section.color }} />
+          <section key={section.id} className="max-w-7xl mx-auto px-6 mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-2 h-8 rounded-full" style={{ backgroundColor: section.color }} />
               <div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">{section.title}</h2>
-                <p className="text-[17px] leading-relaxed text-white/60 mt-1">{section.subtitle}</p>
+                <h2 className="text-2xl font-bold">{section.title}</h2>
+                <p className="text-xs text-white/40">{section.subtitle}</p>
               </div>
-              <span className="ml-auto text-xs text-white/40 uppercase tracking-wider">{sectionVideos.length} videos</span>
+              <span className="ml-auto text-xs text-white/30">{sectionVideos.length} videos</span>
             </div>
             <VideoCarousel
               videos={display}
@@ -160,10 +160,10 @@ export default function WatchClient({
       })}
 
       {/* Full Catalog */}
-      <section id="catalog" className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">Full Catalog</h2>
-          <span className="text-xs text-white/40 uppercase tracking-wider">{filteredVideos.length} videos</span>
+      <section id="catalog" className="max-w-7xl mx-auto px-6 pb-32">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">Full Catalog</h2>
+          <span className="text-xs text-white/30">{filteredVideos.length} videos</span>
         </div>
 
         <CatalogFilters
@@ -194,7 +194,7 @@ export default function WatchClient({
 
         {filteredVideos.length === 0 && (
           <div className="text-center py-24">
-            <p className="text-white/40 text-xl">No videos match your filters.</p>
+            <p className="text-white/30 text-xl">No videos match your filters.</p>
             <button
               onClick={() => {
                 setSearchQuery('')
@@ -202,7 +202,7 @@ export default function WatchClient({
                 setSelectedPersona('all')
                 setSelectedLevel('all')
               }}
-              className="mt-4 text-emerald-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] rounded-md"
+              className="mt-4 text-emerald-400 hover:underline"
             >
               Clear all filters
             </button>
@@ -213,7 +213,7 @@ export default function WatchClient({
           <div className="text-center mt-12">
             <button
               onClick={() => setShowAllCatalog(true)}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/10 text-white hover:bg-white/10 transition-all font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all font-medium"
             >
               Show all {filteredVideos.length} videos
             </button>

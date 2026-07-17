@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import {
   Sparkles,
@@ -19,7 +19,8 @@ import {
   Zap,
   Hash,
   FileText,
-  Download
+  Download,
+  Send
 } from 'lucide-react';
 
 interface Tweet {
@@ -90,12 +91,10 @@ export default function ContentStudioPage() {
   const [toast, setToast] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [includeHashtags, setIncludeHashtags] = useState(true);
+  const [distributingId, setDistributingId] = useState<string | null>(null);
+  const [postizConfigured, setPostizConfigured] = useState(false);
 
-  useEffect(() => {
-    loadContent();
-  }, []);
-
-  const loadContent = async () => {
+  const loadContent = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch('/api/content-studio/content');
@@ -107,6 +106,32 @@ export default function ContentStudioPage() {
       console.error('Failed to load content:', error);
     } finally {
       setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadContent();
+    fetch('/api/content-studio/distribute')
+      .then((res) => res.json())
+      .then((data) => setPostizConfigured(Boolean(data.configured)))
+      .catch(() => setPostizConfigured(false));
+  }, [loadContent]);
+
+  const sendToPostiz = async (item: ContentItem) => {
+    setDistributingId(item.id);
+    try {
+      const res = await fetch('/api/content-studio/distribute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: item.id }),
+      });
+      const data = await res.json();
+      setToast(res.ok ? 'Draft sent to Postiz — publish it from there.' : data.message || 'Postiz request failed.');
+    } catch (error) {
+      console.error('Failed to send to Postiz:', error);
+      setToast('Postiz request failed — check the console.');
+    } finally {
+      setDistributingId(null);
     }
   };
 
@@ -332,6 +357,18 @@ export default function ContentStudioPage() {
                         <ExternalLink className="w-4 h-4" />
                         Open {item.platform === 'linkedin' ? 'LinkedIn' : 'Twitter'}
                       </button>
+
+                      {postizConfigured && (
+                        <button
+                          onClick={() => sendToPostiz(item)}
+                          disabled={distributingId === item.id}
+                          title="Creates a draft in Postiz — you still publish it from there"
+                          className="px-4 py-2 rounded-xl font-medium text-sm bg-slate-700/60 hover:bg-slate-600 text-white transition-all flex items-center gap-2 disabled:opacity-50"
+                        >
+                          <Send className={`w-4 h-4 ${distributingId === item.id ? 'animate-pulse' : ''}`} />
+                          {distributingId === item.id ? 'Sending…' : 'Send to Postiz'}
+                        </button>
+                      )}
 
                       <button
                         onClick={() => setExpandedId(isExpanded ? null : item.id)}

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="The Agentic OS family: substrate, operating systems, and the Foundry service layer">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0b"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="120" y="0" width="960" height="1" fill="url(#edge)"/>
+
+  <!-- Eyebrow -->
+  <text x="100" y="92" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" letter-spacing="6" fill="#10b981" opacity="0.75">THE AGENTIC OS FAMILY</text>
+
+  <!-- Title -->
+  <text x="100" y="150" font-family="Poppins, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff" letter-spacing="-0.5">One architecture. Installed into real businesses.</text>
+
+  <!-- Layer 2 — service -->
+  <rect x="100" y="200" width="1000" height="92" rx="20" fill="#111113" stroke="#ffffff" stroke-opacity="0.10"/>
+  <text x="130" y="238" font-family="JetBrains Mono, monospace" font-size="13" fill="#8a8a8c">LAYER 2 · SERVICE</text>
+  <text x="130" y="270" font-family="Poppins, Arial, sans-serif" font-size="24" font-weight="600" fill="#ffffff">FrankX Foundry</text>
+  <text x="1070" y="258" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="15" fill="#a9a9aa">evaluate · forge · stay connected</text>
+
+  <!-- Layer 1 — OS family -->
+  <rect x="100" y="312" width="1000" height="148" rx="20" fill="#111113" stroke="#10b981" stroke-opacity="0.35"/>
+  <text x="130" y="350" font-family="JetBrains Mono, monospace" font-size="13" fill="#34d399">LAYER 1 · OPERATING SYSTEMS</text>
+
+  <g font-family="JetBrains Mono, monospace" font-size="14">
+    <rect x="130" y="372" width="180" height="60" rx="12" fill="#1a1a1f" stroke="#10b981" stroke-opacity="0.5"/>
+    <text x="220" y="398" text-anchor="middle" fill="#ffffff">creator-os</text>
+    <text x="220" y="420" text-anchor="middle" font-size="11" fill="#34d399">live</text>
+
+    <rect x="322" y="372" width="190" height="60" rx="12" fill="#1a1a1f" stroke="#10b981" stroke-opacity="0.5"/>
+    <text x="417" y="398" text-anchor="middle" fill="#ffffff">business-os</text>
+    <text x="417" y="420" text-anchor="middle" font-size="11" fill="#34d399">live</text>
+
+    <rect x="524" y="372" width="170" height="60" rx="12" fill="#1a1a1f" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="609" y="398" text-anchor="middle" fill="#a9a9aa">family-os</text>
+    <text x="609" y="420" text-anchor="middle" font-size="11" fill="#787878">in development</text>
+
+    <rect x="706" y="372" width="170" height="60" rx="12" fill="#1a1a1f" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="791" y="398" text-anchor="middle" fill="#a9a9aa">health-os</text>
+    <text x="791" y="420" text-anchor="middle" font-size="11" fill="#787878">in development</text>
+
+    <rect x="888" y="372" width="182" height="60" rx="12" fill="#1a1a1f" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="979" y="398" text-anchor="middle" fill="#a9a9aa">investor-os</text>
+    <text x="979" y="420" text-anchor="middle" font-size="11" fill="#787878">in development</text>
+  </g>
+
+  <!-- Layer 0 — substrate -->
+  <rect x="100" y="480" width="1000" height="92" rx="20" fill="#111113" stroke="#06b6d4" stroke-opacity="0.30"/>
+  <text x="130" y="518" font-family="JetBrains Mono, monospace" font-size="13" fill="#22d3ee" opacity="0.8">LAYER 0 · SUBSTRATE</text>
+  <text x="130" y="550" font-family="Poppins, Arial, sans-serif" font-size="22" font-weight="600" fill="#ffffff">Starlight Intelligence System</text>
+  <text x="1070" y="538" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="15" fill="#a9a9aa">memory · decisions · protocol</text>
+
+  <!-- Footer mark -->
+  <text x="1100" y="608" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#535354">frankx.ai/foundry</text>
+</svg>

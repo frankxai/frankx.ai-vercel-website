@@ -103,6 +103,8 @@ export default function WorkHubPage() {
         </div>
       </section>
 
+      <FeaturedSystemsSection />
+
       {/* Empty state — first substrate engagement is private until consent */}
       {isEmpty ? (
         <EmptyHubExplainer />
@@ -201,6 +203,72 @@ export default function WorkHubPage() {
         </div>
       </section>
     </>
+  )
+}
+
+function FeaturedSystemsSection() {
+  return (
+    <section
+      aria-labelledby="featured-systems-heading"
+      className="border-t border-white/5 py-14 lg:py-16"
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="mb-6">
+          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
+            Featured systems
+          </p>
+          <h2
+            id="featured-systems-heading"
+            className="text-2xl sm:text-3xl font-semibold text-white tracking-tight"
+          >
+            Current build surfaces that sit under the work hub.
+          </h2>
+        </div>
+        <Link
+          href="/work/property-intelligence-os"
+          className="group block rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.045] p-5 transition-colors hover:border-emerald-300/35 hover:bg-emerald-400/[0.07] focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+        >
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <div className="mb-3 flex items-center gap-2">
+                <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-emerald-200">
+                  Property Intelligence OS
+                </span>
+                <ArrowUpRight
+                  className="h-4 w-4 text-emerald-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </div>
+              <p className="text-lg font-semibold text-white">
+                Rental-property operating system, renter portal, listing
+                studio, and owner approval workflow.
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                The premium example experience now lives on its own work
+                subpage, with the hub remaining the broader engagement index.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-2 text-left md:min-w-[320px]">
+              {[
+                ['4 repos', 'template stack'],
+                ['9 roles', 'agent team'],
+                ['4 channels', 'listing flow'],
+              ].map(([value, label]) => (
+                <div
+                  key={value}
+                  className="rounded-xl border border-white/10 bg-black/20 p-3"
+                >
+                  <p className="text-sm font-semibold text-white">{value}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-zinc-500">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Link>
+      </div>
+    </section>
   )
 }
 

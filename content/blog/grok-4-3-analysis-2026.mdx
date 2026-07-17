@@ -23,9 +23,23 @@ keywords:
   - xai grok 4.3 api
   - grok 4.3 voice cloning
   - best ai model 2026
-image: "/images/blog/grok-4-3-analysis-2026-hero.svg"
+image: "/images/blog/grok-4-3-analysis-2026-hero-v9.jpg"
 featured: true
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Grok 4.3 fills the cheap-tier slot in an AI Center of Excellence routing layer, not the frontier slot: route the 80% of traffic that doesn't need top-shelf reasoning here — classification, extraction, summarization, agentic tool loops — and the 10x output savings versus Opus 4.8 compounds daily. Its 181 tok/s throughput also makes it the latency pick for agents making dozens of calls per task. Keep premium models on the work where the 8-point Intelligence Index gap shows, watch the 200K-token pricing cliff in your context assembly, and don't trust recycled Grok 4.x coding benchmarks — no independent SWE-bench number exists for 4.3."
+  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting"
+  personas:
+    - persona: "Bulk fan-out workers"
+      pick: "Grok 4.3"
+    - persona: "Agentic mid-tier / tool-use fleets"
+      pick: "Grok 4.3 (181 tok/s, $1.25/$2.50)"
+    - persona: "Voice-first agents"
+      pick: "Grok 4.3 (Custom Voices + real-time endpoint)"
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — coding claims for Grok 4.3 are unverified"
+    - persona: "Reviewer / judgment agents"
+      pick: "Opus 4.8"
 ---
 
 # Grok 4.3: xAI Trades the Crown for the Price Tag
@@ -195,4 +209,4 @@ The Intelligence Index scores, GDPval-AA Elo, pricing, and throughput figures tr
 
 ---
 
-*Analysis by Frank — former Oracle AI architect who helped build Oracle's AI Center of Excellence, now building agentic systems independently. Published June 5, 2026 with benchmarks from Artificial Analysis and xAI launch materials; vendor-claimed figures are labeled as such, and numbers I could not verify were left out.*
+*Analysis by Frank — former Oracle AI architect building agentic systems independently. Published June 5, 2026 with benchmarks from Artificial Analysis and xAI launch materials; vendor-claimed figures are labeled as such, and numbers I could not verify were left out.*

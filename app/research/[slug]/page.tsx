@@ -5,6 +5,8 @@ import { getSourcesForDomain } from '@/lib/research/sources'
 import { getClaimCountForDomain } from '@/lib/research/validated-claims'
 import { getBlogPost } from '@/lib/blog'
 import ResearchDomainPage from './ResearchDomainPage'
+import LearnHubSection from '@/components/learn/LearnHubSection'
+import { portalsForResearch } from '@/lib/learn/related-portals'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -96,7 +98,7 @@ export default async function Page({ params }: PageProps) {
       url: 'https://frankx.ai',
     },
     dateModified: domain.lastUpdated,
-    datePublished: '2026-01-27',
+    datePublished: domain.publishedAt ?? '2026-01-27',
     mainEntityOfPage: `https://frankx.ai/research/${domain.slug}`,
     about: domain.keyFindings.slice(0, 3).join('. '),
     keywords: [domain.title, ...domain.highlights.map(h => h.label)].join(', '),
@@ -142,6 +144,15 @@ export default async function Page({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: faqLd }}
       />
       <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} blogPostTitles={blogPostTitles} />
+      <div className="bg-[#0a0a0b] pb-16">
+        <LearnHubSection
+          relatedPortals={portalsForResearch(domain.slug)}
+          variant="compact"
+          eyebrow="From research to practice"
+          heading="Learn these tools hands-on"
+          blurb="The research maps the landscape. These portals curate the videos, docs, and experts to actually build with the platforms it covers."
+        />
+      </div>
     </>
   )
 }

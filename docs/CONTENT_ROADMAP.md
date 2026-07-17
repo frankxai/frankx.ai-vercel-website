@@ -1,7 +1,7 @@
 # FrankX Marketing Site Content & Build Roadmap
 
 ## 1. Vision & Positioning Anchors
-- Primary audience: Oracle ecosystem technologists evolving into agentic AI creators; secondary: music facilitators seeking AI-assisted transformation tools.
+- Primary audience: technical operators evolving into agentic AI creators; secondary: music facilitators seeking AI-assisted transformation tools.
 - Core value pillars to keep visible across site: `Enterprise AI Expertise`, `Purpose-Driven Creation`, `Music Frequency Labs`, `Template & Systems Factory`.
 - Always connect offers back to the value ladder (Creator Readiness Assessment ? Creator Intelligence System ? Flagship Labs).
 
@@ -20,7 +20,7 @@
 - **Creator OS templates** (under `Templates/08-Development-Code/` and `Templates/16-Notion-Templates/`) ? Build product cards on `/templates` with download CTA + preview modals.
 
 ## 4. New SEO Article Concepts (Net-New Content)
-- "Oracle AI Architect�s Guide to System-Aligned Automation" (2500 words, schema `Article`, includes checklist download).
+- "AI Architect's Guide to System-Aligned Automation" (2500 words, schema `Article`, includes checklist download).
 - "How Suno + Next.js Power Interactive Music Funnels" (technical case study; cross-link to `app/music-lab`).
 - "Model Context Protocol Stack for GenCreators" (rank for `MCP automations`, `Claude Codex workflows`).
 - Create these in `/content/blog/YY-mcp-...md` with metadata fields `keywords`, `ctaSlug`.

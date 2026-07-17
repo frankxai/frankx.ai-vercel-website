@@ -66,8 +66,8 @@
 ## Positioning
 
 Frank is:
-- Oracle AI Architect
-- Musician/Creator (500+ Suno songs)
+- AI Architect & Creator
+- Musician/Creator (12,000+ Suno songs)
 - Co-creator of diverse AI solutions
 
 Products:

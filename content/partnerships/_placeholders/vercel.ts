@@ -16,7 +16,7 @@ export const vercel: Partner = {
   name: 'Vercel',
   shortName: 'Vercel',
   tier: 'tooling',
-  status: 'strategic-alignment',
+  status: 'active',
   lastUpdated: '2026-05-16',
 
   title: 'AI Architect — Next-on-Vercel AI CoE practice',
@@ -90,7 +90,7 @@ Vercel Partner Program — application is in flight. This page is the conversati
     },
     {
       label: 'ai-coe — the AI CoE blueprint in public, deployed on Vercel',
-      href: '/ai-coe',
+      href: '/ai-architect/ai-coe-hub',
     },
   ],
 

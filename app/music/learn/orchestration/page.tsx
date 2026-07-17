@@ -258,7 +258,7 @@ export default function OrchestrationPage() {
         <motion.section {...fadeUp} className="mb-16">
           <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-violet-500/5 to-indigo-500/5 p-8 text-center">
             <h2 className="text-2xl font-bold text-white">Frank&apos;s Orchestral Compositions</h2>
-            <p className="mt-3 text-white/45">AI-generated orchestral music — from cinematic scores to neoclassical healing frequencies.</p>
+            <p className="mt-3 text-white/45">AI-generated orchestral music — from cinematic scores to neoclassical meditation-inspired soundscapes.</p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <a href="https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25" target="_blank" rel="noopener noreferrer" className="rounded-full bg-violet-500/20 px-6 py-2.5 text-sm font-medium text-violet-400 transition hover:bg-violet-500/30">
                 Arcanean Choir 🎻
@@ -296,7 +296,7 @@ export default function OrchestrationPage() {
           <Link href="/music/learn/violin" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">🎻 Violin</Link>
           <Link href="/music/learn/theory" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">📐 Theory</Link>
           <Link href="/music/create" className="rounded-full border border-white/10 px-6 py-3 text-sm text-emerald-400/60 transition hover:border-emerald-500/30 hover:text-emerald-400">🤖 Create with AI</Link>
-          <Link href="/music/learn" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">← Academy</Link>
+          <Link href="/music/learn" className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80">← Learning map</Link>
         </div>
       </div>
     </div>

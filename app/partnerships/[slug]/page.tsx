@@ -128,7 +128,7 @@ export default async function PartnershipPage({
         partner={partner}
         secondaryCta={
           isProposalTier
-            ? { label: 'View the methodology', href: '/ai-coe' }
+            ? { label: 'View the methodology', href: '/ai-architect/ai-coe-hub' }
             : undefined
         }
       />

@@ -1,0 +1,38 @@
+{
+  "week": "2026-W25",
+  "generatedAt": "2026-06-15T18:00:00Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-06-08T00:00:00Z",
+  "windowEnd": "2026-06-15T00:00:00Z",
+  "metrics": {
+    "count_total": 133,
+    "count_production": 27,
+    "count_preview": 106,
+    "count_skipped": 11,
+    "count_error": 22,
+    "count_ready": 100,
+    "duration_p50_seconds": 431,
+    "duration_p95_seconds": 494,
+    "duration_max_seconds": 502,
+    "total_build_minutes": 718,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 14,
+    "ready_deploys_total": 100,
+    "duration_note": "14/100 READY deploys sampled via get_deployment; total_build_minutes extrapolated as avg(430.6s) × 100 = 718 min"
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "+94",
+    "count_total": "+71",
+    "total_build_minutes": "+461.5",
+    "prior_week": "2026-W23",
+    "note": "W24 snapshot missing (skipped week); comparing vs W23 (2026-06-01 snapshot)"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=22 (threshold ≥2 → RED): 22 build failures across week. PR#177 (6 errors: lockfile + @types/three); PR#176 (4 errors: sitemap 804MB→300MB cap + lockfile drift; fixed by final sitemap lambda fix); PR#173 Travel hub (3 errors: lockfile + merge conflict); PR#162 LLM hub polish (3 errors: MDX + JSON-LD refactor); 3 production errors: dpl_E45U docs push while MDX broken, dpl_B2Cy + dpl_59zx main pushes hitting sitemap 804MB cap before fix. Second half of week near error-free after MDX hotfix (#160) + sitemap fix (#176).",
+    "duration_p50=431s (>360s → RED, was 337s W23): Build times elevated. 39 READY book-of-secrets content builds today averaged ~449s (4 Lambda nodes); typical code builds 369-502s (7 nodes). p50 crossed the 360s RED threshold.",
+    "count_total=133 (+114% vs W23=62, >+30% → RED): High deploy velocity from PR#180 book-of-secrets (39 preview builds in 33 min today). Also 5 active feature PRs + 8+ hotfixes during the week.",
+    "total_build_minutes=718 (+180% vs W23=256.5, >+30% → RED): Combined effect of 2.2× deploy count (100 vs 45 READY) and 26% higher avg build time (431s vs 342s). Main driver is today's book-of-secrets PR#180 burst (39 sequential builds)."
+  ]
+}

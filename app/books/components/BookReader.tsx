@@ -8,6 +8,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import BookProgress from './BookProgress';
 import BookTOC from './BookTOC';
 import BookChapterNav from './BookChapterNav';
+import ExperimentCard from './ExperimentCard';
 import type { BookChapter, BookTheme, TOCItem } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 
@@ -43,9 +44,12 @@ export default function BookReader({
       const level = match[1].length;
       const text = match[2].trim();
       if (
+        level === 1 ||
         text.toLowerCase().includes('chapter') ||
         text.toLowerCase().includes('source') ||
-        text.toLowerCase().includes('end chapter')
+        text.toLowerCase().includes('end chapter') ||
+        text.toLowerCase().startsWith('prolog') ||
+        text.toLowerCase().startsWith('epilog')
       ) continue;
       const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
       items.push({ id, text, level });
@@ -138,7 +142,7 @@ export default function BookReader({
                 <span className="font-medium text-sm">{bookTitle}</span>
               </Link>
               <div className="flex items-center gap-4 text-sm text-white/40">
-                <span>Ch. {chapter.number}</span>
+                <span>{chapter.label ?? `Ch. ${chapter.number}`}</span>
                 <span>{chapter.readingTime}</span>
               </div>
             </div>
@@ -150,9 +154,8 @@ export default function BookReader({
           <div className="relative w-full h-[40vh] sm:h-[50vh] overflow-hidden">
             <Image
               src={chapter.image}
-              alt={`Chapter ${chapter.number}: ${chapter.title}`}
+              alt={`${chapter.label ?? `Chapter ${chapter.number}`}: ${chapter.title}`}
               fill
-              sizes="100vw"
               className="object-cover"
               priority
               quality={90}
@@ -161,7 +164,7 @@ export default function BookReader({
             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
               <div className="max-w-3xl mx-auto">
                 <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${tc.badgeBg} backdrop-blur-sm ${tc.badgeText} text-sm font-medium border ${tc.badgeBorder} mb-4`}>
-                  Chapter {chapter.number}
+                  {chapter.label ?? `Chapter ${chapter.number}`}
                 </div>
                 <h1 className={`${fontClass} text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight`}>
                   {chapter.title}
@@ -188,7 +191,7 @@ export default function BookReader({
                     </blockquote>
                   )}
                   <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${tc.badgeBg} ${tc.badgeText} text-sm font-medium border ${tc.badgeBorder}`}>
-                    Chapter {chapter.number}
+                    {chapter.label ?? `Chapter ${chapter.number}`}
                   </div>
                   <h1 className={`${fontClass} text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight`}>
                     {chapter.title}
@@ -315,6 +318,17 @@ export default function BookReader({
                   background: rgba(255,255,255,0.06); height: 1px;
                 }
               `}</style>
+
+              {chapter.experiment && (
+                <div className="mt-12">
+                  <ExperimentCard
+                    experiment={chapter.experiment}
+                    borderClass={tc.borderPrimary}
+                    bookSlug={bookSlug}
+                    chapterSlug={chapter.slug}
+                  />
+                </div>
+              )}
 
               <BookChapterNav
                 bookSlug={bookSlug}

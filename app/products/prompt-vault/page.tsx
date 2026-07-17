@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
 import {
   Check,
   ArrowRight,
@@ -205,7 +204,7 @@ export default function PromptVaultPage() {
             <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
               <span className="flex items-center gap-1.5">
                 <Brain className="h-4 w-4 text-[#8B5CF6]" />
-                Ex-Oracle AI Architect
+                AI Architect & Creator
               </span>
               <span className="text-white/20">|</span>
               <span className="flex items-center gap-1.5">
@@ -218,6 +217,9 @@ export default function PromptVaultPage() {
                 40+ agents built
               </span>
             </div>
+            <p className="mb-8 text-xs text-slate-600">
+              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+            </p>
 
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
@@ -391,20 +393,22 @@ export default function PromptVaultPage() {
               <div className="mb-6 flex flex-col items-center gap-4">
                 <div className="flex items-baseline gap-3">
                   <span className="text-5xl font-bold text-white">€19</span>
-                  <span className="text-slate-500">one-time, when the vault ships</span>
+                  <span className="text-slate-500">one-time</span>
                 </div>
-                <Link
-                  href="/inner-circle"
+                <a
+                  href="https://frankxai.gumroad.com/l/prompt-vault"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
                 >
                   <Euro className="h-6 w-6" />
-                  Reserve your copy
+                  Buy Now — Instant Download
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
+                </a>
               </div>
 
               <p className="text-sm text-slate-500">
-                Inner Circle wait list · founder pricing on launch · PDF + Markdown · Commercial license included
+                PDF + Markdown files · Commercial license included · All future updates free
               </p>
             </div>
           </div>
