@@ -18,6 +18,7 @@ import {
   ServerCog,
   ShieldCheck,
 } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
 import {
   agenticLifeMarketRegistry,
   averageCoverage,
@@ -120,6 +121,10 @@ const executionLanes = [
   },
 ]
 
+function trackObservatory(action: string, details: Record<string, string | number | boolean> = {}) {
+  trackEvent('agentic_life_observatory', { action, ...details })
+}
+
 function scoreTone(score: number) {
   if (score === 3) return 'bg-emerald-400'
   if (score === 2) return 'bg-cyan-400'
@@ -145,7 +150,7 @@ function Score({ system, axis }: ScoreProps) {
           <span key={step} className={`h-1.5 flex-1 rounded-full ${step <= score ? scoreTone(score) : 'bg-white/[0.06]'}`} />
         ))}
       </div>
-      <span className="text-[10px] text-white/35">{axisLabels[axis]}</span>
+      <span className="text-[10px] text-white/55">{axisLabels[axis]}</span>
     </div>
   )
 }
@@ -167,7 +172,7 @@ export function AgenticLifeObservatory() {
       .filter((system) => category === 'all' || system.category === category)
       .filter((system) => {
         if (!normalizedQuery) return true
-        return [system.name, system.organization, system.summary, system.nextAction, system.category]
+        return [system.name, system.organization, system.summary, system.risk, system.nextAction, system.category]
           .join(' ')
           .toLowerCase()
           .includes(normalizedQuery)
@@ -206,7 +211,7 @@ export function AgenticLifeObservatory() {
           <div className="mx-auto max-w-7xl">
             <Link
               href="/research"
-              className="mb-10 inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              className="mb-10 inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             >
               <ArrowLeft className="h-4 w-4" />
               Research Hub
@@ -226,12 +231,14 @@ export function AgenticLifeObservatory() {
                 <div className="mt-9 flex flex-wrap gap-3">
                   <a
                     href="#market-map"
+                    onClick={() => trackObservatory('market_map_open')}
                     className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#0a0a0b] transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                   >
                     Inspect the market map <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
                     href="/research/agentic-life-observatory/registry.json"
+                    onClick={() => trackObservatory('registry_json_open')}
                     className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-white/75 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                   >
                     <FileJson className="h-4 w-4" /> Agent JSON
@@ -240,22 +247,22 @@ export function AgenticLifeObservatory() {
               </div>
 
               <div className="border-l border-white/10 pl-6 lg:pl-8">
-                <p className="mb-5 text-xs uppercase tracking-[0.2em] text-white/35">Current registry</p>
+                <p className="mb-5 text-xs uppercase tracking-[0.2em] text-white/55">Current registry</p>
                 <dl className="grid grid-cols-2 gap-x-6 gap-y-7">
                   <div>
-                    <dt className="text-xs text-white/35">Systems</dt>
+                    <dt className="text-xs text-white/55">Systems</dt>
                     <dd className="mt-1 text-3xl font-semibold tracking-tight">{agenticLifeMarketRegistry.systems.length}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs text-white/35">Categories</dt>
+                    <dt className="text-xs text-white/55">Categories</dt>
                     <dd className="mt-1 text-3xl font-semibold tracking-tight">{categories.length}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs text-white/35">Coverage</dt>
+                    <dt className="text-xs text-white/55">Coverage</dt>
                     <dd className="mt-1 text-3xl font-semibold tracking-tight">{averageCoverage(agenticLifeMarketRegistry.systems)}%</dd>
                   </div>
                   <div>
-                    <dt className="text-xs text-white/35">Axes</dt>
+                    <dt className="text-xs text-white/55">Axes</dt>
                     <dd className="mt-1 text-3xl font-semibold tracking-tight">{coverageAxes.length}</dd>
                   </div>
                 </dl>
@@ -279,11 +286,11 @@ export function AgenticLifeObservatory() {
                 <li key={step.title} className="bg-[#0d0d0f] p-6 lg:min-h-64">
                   <div className="mb-8 flex items-center justify-between">
                     <step.icon className="h-5 w-5 text-emerald-400" />
-                    <span className="font-mono text-xs text-white/25">{step.phase}</span>
+                    <span className="font-mono text-xs text-white/55">{step.phase}</span>
                   </div>
                   <h3 className="text-xl font-semibold">{step.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/48">{step.action}</p>
-                  <div className="mt-7 inline-flex items-center gap-2 border-t border-white/[0.08] pt-4 text-xs text-white/35">
+                  <div className="mt-7 inline-flex items-center gap-2 border-t border-white/[0.08] pt-4 text-xs text-white/55">
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                     {step.receipt}
                   </div>
@@ -303,7 +310,7 @@ export function AgenticLifeObservatory() {
                   Scores run from 0 to 3 across the five structural failure modes. They are directional editorial assessments, not certifications.
                 </p>
               </div>
-              <div className="font-mono text-xs text-white/35">
+              <div className="font-mono text-xs text-white/55">
                 {filteredSystems.length} of {agenticLifeMarketRegistry.systems.length} systems · {averageCoverage(filteredSystems)}% coverage
               </div>
             </div>
@@ -312,20 +319,26 @@ export function AgenticLifeObservatory() {
               <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_14rem]">
                 <label className="relative block">
                   <span className="sr-only">Search systems</span>
-                  <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+                  <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/55" />
                   <input
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
+                    onBlur={() => {
+                      if (query.trim()) trackObservatory('search_applied', { result_count: filteredSystems.length })
+                    }}
                     placeholder="Search systems, organizations, risks, or next actions"
-                    className="h-11 w-full rounded-xl border border-white/[0.08] bg-black/20 pl-10 pr-4 text-sm text-white outline-none transition-colors placeholder:text-white/25 focus:border-emerald-400/50 focus:ring-2 focus:ring-emerald-400/15"
+                    className="h-11 w-full rounded-xl border border-white/[0.08] bg-black/20 pl-10 pr-4 text-sm text-white outline-none transition-colors placeholder:text-white/55 focus:border-emerald-400/50 focus:ring-2 focus:ring-emerald-400/15"
                   />
                 </label>
                 <label className="relative block">
                   <span className="sr-only">Filter by category</span>
-                  <Filter className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+                  <Filter className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/55" />
                   <select
                     value={category}
-                    onChange={(event) => setCategory(event.target.value)}
+                    onChange={(event) => {
+                      setCategory(event.target.value)
+                      trackObservatory('filter_category', { category: event.target.value })
+                    }}
                     className="h-11 w-full appearance-none rounded-xl border border-white/[0.08] bg-[#101012] pl-10 pr-4 text-sm text-white/70 outline-none focus:border-emerald-400/50 focus:ring-2 focus:ring-emerald-400/15"
                   >
                     <option value="all">All categories</option>
@@ -339,7 +352,10 @@ export function AgenticLifeObservatory() {
               <div className="mt-3 flex flex-wrap gap-2" aria-label="Filter by strategic role">
                 <button
                   type="button"
-                  onClick={() => setRole('all')}
+                  onClick={() => {
+                    setRole('all')
+                    trackObservatory('filter_role', { role: 'all' })
+                  }}
                   aria-pressed={role === 'all'}
                   className={`rounded-full border px-3 py-1.5 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${role === 'all' ? 'border-white/30 bg-white text-black' : 'border-white/10 text-white/55 hover:border-white/25 hover:text-white'}`}
                 >
@@ -349,7 +365,10 @@ export function AgenticLifeObservatory() {
                   <button
                     key={item}
                     type="button"
-                    onClick={() => setRole(item)}
+                    onClick={() => {
+                      setRole(item)
+                      trackObservatory('filter_role', { role: item })
+                    }}
                     aria-pressed={role === item}
                     className={`rounded-full border px-3 py-1.5 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${role === item ? roleStyles[item] : 'border-white/10 text-white/55 hover:border-white/25 hover:text-white'}`}
                   >
@@ -360,7 +379,7 @@ export function AgenticLifeObservatory() {
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d0d0f]">
-              <div className="hidden grid-cols-[minmax(15rem,1.5fr)_7rem_minmax(18rem,1fr)_5rem] gap-6 border-b border-white/[0.08] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/28 lg:grid">
+              <div className="hidden grid-cols-[minmax(15rem,1.5fr)_7rem_minmax(18rem,1fr)_5rem] gap-6 border-b border-white/[0.08] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55 lg:grid">
                 <span>System</span>
                 <span>Role</span>
                 <span>Failure-mode coverage</span>
@@ -369,8 +388,8 @@ export function AgenticLifeObservatory() {
 
               {filteredSystems.length === 0 ? (
                 <div className="px-6 py-20 text-center">
-                  <CircleDot className="mx-auto h-5 w-5 text-white/25" />
-                  <p className="mt-3 text-sm text-white/45">No systems match this filter.</p>
+                  <CircleDot className="mx-auto h-5 w-5 text-white/55" />
+                  <p className="mt-3 text-sm text-white/60">No systems match this filter.</p>
                 </div>
               ) : (
                 <div className="divide-y divide-white/[0.065]">
@@ -379,18 +398,23 @@ export function AgenticLifeObservatory() {
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
                           <h3 className="font-semibold text-white">{system.name}</h3>
-                          <span className="text-[10px] uppercase tracking-wider text-white/25">{categoryLabels[system.category] ?? system.category}</span>
+                          <span className="text-[10px] uppercase tracking-wider text-white/55">{categoryLabels[system.category] ?? system.category}</span>
                         </div>
-                        <p className="mt-1 text-xs text-white/32">{system.organization}</p>
+                        <p className="mt-1 text-xs text-white/55">{system.organization}</p>
                         <p className="mt-3 text-sm leading-relaxed text-white/48">{system.summary}</p>
-                        <details className="group mt-3">
-                          <summary className="cursor-pointer list-none text-xs text-white/35 transition-colors hover:text-white/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+                        <details
+                          className="group mt-3"
+                          onToggle={(event) => {
+                            if (event.currentTarget.open) trackObservatory('decision_detail_open', { system_id: system.id })
+                          }}
+                        >
+                          <summary className="cursor-pointer list-none text-xs text-white/55 transition-colors hover:text-white/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
                             Decision detail <span className="ml-1 group-open:hidden">+</span><span className="ml-1 hidden group-open:inline">−</span>
                           </summary>
                           <div className="mt-3 space-y-2 border-l border-white/10 pl-3 text-xs leading-relaxed">
                             <p className="text-white/48"><span className="text-white/75">Next:</span> {system.nextAction}</p>
-                            <p className="text-white/42"><span className="text-amber-300/80">Risk:</span> {system.risk}</p>
-                            <p className="text-white/30">{system.deployment.join(' · ')} · {system.license}</p>
+                            <p className="text-white/55"><span className="text-amber-300/80">Risk:</span> {system.risk}</p>
+                            <p className="text-white/55">{system.deployment.join(' · ')} · {system.license}</p>
                           </div>
                         </details>
                       </div>
@@ -399,7 +423,7 @@ export function AgenticLifeObservatory() {
                         <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-medium ${roleStyles[system.strategicRole]}`}>
                           {roleLabels[system.strategicRole]}
                         </span>
-                        <p className="mt-2 font-mono text-[10px] text-white/25">{system.integrationStatus}</p>
+                        <p className="mt-2 font-mono text-[10px] text-white/55">{system.integrationStatus}</p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-5">
@@ -412,8 +436,9 @@ export function AgenticLifeObservatory() {
                             href={system.repoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => trackObservatory('source_open', { system_id: system.id, source_type: 'repository' })}
                             title={`${system.name} repository`}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/45 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                           >
                             <GitBranch className="h-4 w-4" />
                             <span className="sr-only">{system.name} repository</span>
@@ -423,8 +448,9 @@ export function AgenticLifeObservatory() {
                           href={system.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => trackObservatory('source_open', { system_id: system.id, source_type: 'primary' })}
                           title={`${system.name} primary source`}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/45 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                         >
                           <ArrowUpRight className="h-4 w-4" />
                           <span className="sr-only">{system.name} primary source</span>
@@ -451,7 +477,7 @@ export function AgenticLifeObservatory() {
                 <div key={lane.horizon} className="border-t border-white/12 pt-5">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400">{lane.horizon}</span>
-                    <span className="font-mono text-xs text-white/20">0{index + 1}</span>
+                    <span className="font-mono text-xs text-white/55">0{index + 1}</span>
                   </div>
                   <h3 className="mt-5 text-xl font-semibold">{lane.title}</h3>
                   <ul className="mt-5 space-y-3">
@@ -476,7 +502,7 @@ export function AgenticLifeObservatory() {
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/50">
                 Each score asks whether public evidence shows the system addressing one structural failure mode. A 3 means core to the product. A 0 means not evident. It does not certify security, performance, or fitness for your data.
               </p>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/40">
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/55">
                 Refresh claims from primary sources. Test adapters with private workloads. Keep consequential actions human-gated.
               </p>
             </div>
@@ -485,7 +511,7 @@ export function AgenticLifeObservatory() {
               {coverageAxes.map((axis) => (
                 <div key={axis} className="grid gap-2 border-b border-white/[0.08] pb-5 sm:grid-cols-[8rem_1fr]">
                   <dt className="font-mono text-xs uppercase tracking-wider text-white/60">{axisLabels[axis]}</dt>
-                  <dd className="text-sm leading-relaxed text-white/42">{agenticLifeMarketRegistry.methodology.axes[axis]}</dd>
+                  <dd className="text-sm leading-relaxed text-white/55">{agenticLifeMarketRegistry.methodology.axes[axis]}</dd>
                 </div>
               ))}
             </dl>
