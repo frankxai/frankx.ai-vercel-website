@@ -8413,6 +8413,1078 @@ export const bookReviews: BookReview[] = [
       },
     ],
   },
+  {
+    slug: 'our-band-could-be-your-life',
+    title: 'Our Band Could Be Your Life',
+    author: 'Michael Azerrad',
+    coverImage: '/images/library/our-band-could-be-your-life.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-15',
+    categories: ['Music', 'Scenes', 'Rockstar Energy', 'Creativity'],
+    readingTime: '8 min',
+    publicationYear: 2001,
+    amazonUrl: 'https://www.amazon.com/s?k=Our+Band+Could+Be+Your+Life+Azerrad',
+    tldr:
+      'Thirteen American underground bands, 1981–1991, told one chapter each — Black Flag, the Minutemen, Hüsker Dü, Sonic Youth, Big Black, Fugazi, and more. The through-line is not the music but the infrastructure: how bands with no mainstream traction built their own labels, booking networks, and press before anyone gave them permission, and in doing so laid the tracks the 1990s ran on.',
+    keyInsights: [
+      'DIY infrastructure is the real product — SST, Dischord, and K Records organized whole regional scenes, not just record catalogs.',
+      'Touring is network-building: nonstop self-booked tours physically wired together the club-and-audience circuit every later band inherited.',
+      'The recurring fork is control vs. reach — take outside money and lose the former, or keep it and stay small. Nearly every chapter turns on that choice.',
+      'Influence routinely outruns sales — the Minutemen, Mission of Burma, and Beat Happening barely sold and reshaped everything after them.',
+      '“Jam econo” is a life philosophy, not a budget: minimize overhead, maximize output, answer only to your own standard.',
+    ],
+    bestFor: [
+      'Builders who want a playbook for making something before permission arrives',
+      'Musicians and creators studying how scenes actually organize',
+      'Anyone who liked Please Kill Me or Meet Me in the Bathroom',
+      'Operators who value owning distribution over renting reach',
+    ],
+    faq: [
+      {
+        q: 'What is Our Band Could Be Your Life about?',
+        a: 'It is a narrative history of 13 American underground rock bands between 1981 and 1991 who built their own touring, label, and press infrastructure with little mainstream success — the groundwork the 1990s alternative-rock breakthrough was built on.',
+      },
+      {
+        q: 'Which bands does it cover?',
+        a: 'Black Flag, the Minutemen, Mission of Burma, Minor Threat, Hüsker Dü, the Replacements, Sonic Youth, Butthole Surfers, Big Black, Dinosaur Jr, Fugazi, Mudhoney, and Beat Happening — one chapter each, in that order.',
+      },
+      {
+        q: 'Is it a how-to guide or a history?',
+        a: 'It reads as history, but its relentless documentation of how each band built a label, a tour circuit, and an audience from nothing functions as an accidental playbook for scene-formation.',
+      },
+      {
+        q: 'Where does the title come from?',
+        a: 'It is a line from the Minutemen\'s “History Lesson — Part II” (Double Nickels on the Dime, 1984). The whole ethos of the book is in that sentence: the band is not a distant spectacle, it could be your own life.',
+      },
+      {
+        q: 'Who is it for?',
+        a: 'Anyone interested in music history, DIY business models, or how small, under-resourced groups build lasting cultural influence without institutional backing.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'Our band could be your life.',
+        chapter: 'The Minutemen',
+        context: 'The Mike Watt lyric (“History Lesson — Part II”) the book takes its title from — the band as something you could live, not just watch.',
+      },
+      {
+        text: 'You could jam econo with your rock group — you could jam econo on your job, in your buying habits, in your whole way of living.',
+        chapter: 'The Minutemen',
+        context: 'Azerrad on the Minutemen\'s “jam econo” ethic as a philosophy of living, not merely a touring budget.',
+      },
+      {
+        text: 'The greatest thing about punk rock for me, as an outsider, was that the concept that you had to be allowed in was no longer valid. You could be operating in a vacuum, you could be as fucked up an individual as you cared to be, and if you did something of worth, all these external conditions were immaterial.',
+        chapter: 'Big Black',
+        context: 'Steve Albini on punk removing gatekeeping as a precondition for making something that matters.',
+      },
+      {
+        text: 'You don\'t get anywhere by pretending to be a big shot. You accomplish things by working within your means, and by keeping as much control of your own existence as possible.',
+        chapter: 'Big Black',
+        context: 'Steve Albini on Big Black\'s self-sufficient touring economics — discipline as the engine of independence.',
+      },
+      {
+        text: 'It was like our record could have been a hobo pissing in the forest for all the impact it had.',
+        chapter: 'Fugazi',
+        context: 'Guy Picciotto on Steady Diet of Nothing (1991) landing without a ripple — just before Nirvana broke the mainstream open.',
+      },
+      {
+        text: 'Personal purifying is the beginning of everything. Once you get your own shit together, once you get your own mind together, it makes life for you and the people around you so much more agreeable and understandable.',
+        chapter: 'Fugazi',
+        context: 'Ian MacKaye on self-discipline as the precondition for a functioning collective ethic — the line from straight edge to Dischord to Fugazi\'s $5 all-ages shows.',
+      },
+      {
+        text: 'Implicit in Beat Happening\'s music was a dare: If you saw them and said, “Even I could do better than that,” then the burden was on you to prove it. If you did, you had yourself a band, and if you didn\'t, you had to shut up.',
+        chapter: 'Beat Happening',
+        context: 'Azerrad on Beat Happening\'s deliberate amateurism as a democratizing challenge to hardcore machismo.',
+      },
+      {
+        text: 'I looked at it like it was the punk Lennon and McCartney.',
+        chapter: 'Hüsker Dü',
+        context: 'Bassist Greg Norton on the Bob Mould / Grant Hart songwriting rivalry that both built and eventually broke the band.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Black Flag',
+        keyIdea: 'Build the infrastructure — the label, the van, the work ethic — before you have an audience big enough to justify it.',
+        summary: 'Greg Ginn founded Black Flag and SST Records at once, treating the label as an extension of the band\'s refusal to wait for permission. Punishing self-booked national tours built hardcore\'s cross-country circuit almost single-handedly. A long legal fight with a distributor nearly bankrupted them, and later, sludgier records pushed even their own audience toward hostility.',
+      },
+      {
+        number: 2,
+        title: 'The Minutemen',
+        keyIdea: '“Jam econo” turns a touring budget into a governing philosophy: minimal overhead, maximal output, no masters but your own standard.',
+        summary: 'D. Boon, Mike Watt, and George Hurley fused punk, funk, jazz, and spoken word into short, dense songs that ignored hardcore orthodoxy. Their economic discipline became an ethic Azerrad frames as applicable to any creative life. Double Nickels on the Dime (1984) is the peak; Boon\'s death in a 1985 van accident ended the band and became one of the book\'s recurring warnings about the physical cost of endless touring.',
+      },
+      {
+        number: 3,
+        title: 'Mission of Burma',
+        keyIdea: 'A band can end at its creative peak and still outlive its own lifetime through what it influences.',
+        summary: 'Boston\'s Mission of Burma built a dense, art-damaged sound (Vs., 1981) that anticipated post-punk and alt-rock by a decade. The band dissolved in 1983 when Roger Miller\'s tinnitus made performing untenable — a rare case of a band undone by health rather than money or ego — while its influence far outran its brief lifespan and tiny sales.',
+      },
+      {
+        number: 4,
+        title: 'Minor Threat',
+        keyIdea: 'A three-year band can define a subculture\'s entire code of conduct.',
+        summary: 'Ian MacKaye and Jeff Nelson distilled DC hardcore into fast, disciplined songs and, via “Straight Edge,” named a whole ethic. Their Dischord Records became the template for a band-run label that released only music the founders believed in. The rigor MacKaye built here — no drugs, no major-label temptation, low ticket prices — became the direct blueprint for Fugazi.',
+      },
+      {
+        number: 5,
+        title: 'Hüsker Dü',
+        keyIdea: 'Melody smuggled inside hardcore speed pulled the underground toward the mainstream — and internal rivalry broke the band that got there first.',
+        summary: 'Bob Mould, Grant Hart, and Greg Norton evolved from thrash into melodic guitar rock, peaking with the concept double album Zen Arcade (1984). They became the first hardcore-descended band to sign to a major, proving credibility and ambition weren\'t automatically incompatible — before the songwriting rivalry that powered them curdled into the conflict that ended them in 1988.',
+      },
+      {
+        number: 6,
+        title: 'The Replacements',
+        keyIdea: 'Talent and self-sabotage can occupy the same band at the same time.',
+        summary: 'Paul Westerberg\'s Minneapolis band moved from Twin/Tone to Sire on the strength of Let It Be and Tim, some of the best songwriting the scene produced. Their reputation for drunken, shambolic shows — including a notorious SNL appearance — repeatedly torched the wider success within reach. Azerrad uses them as the clearest study of how the same defiance that built credibility could repel the breakthrough.',
+      },
+      {
+        number: 7,
+        title: 'Sonic Youth',
+        keyIdea: 'The scene\'s connective tissue: an art-noise band that used its position to vouch for the next generation.',
+        summary: 'Thurston Moore, Kim Gordon, Lee Ranaldo, and Steve Shelley brought alternate tunings and no-wave abstraction into a band that still worked as rock. Their move from SST to Geffen, and their advocacy for Nirvana inside Geffen\'s system, made them the direct bridge between the underground and the alt-rock explosion that followed.',
+      },
+      {
+        number: 8,
+        title: 'Butthole Surfers',
+        keyIdea: 'Chaos itself can be the infrastructure — an unbookable live show as a business model.',
+        summary: 'Gibby Haynes and Paul Leary built a reputation on gleefully disorienting live performances layered over psychedelic noise-punk. Constant low-budget touring spread their name well ahead of any radio. Later legal and financial disputes became a pointed coda on how underground-era business informality turns costly once real money arrives.',
+      },
+      {
+        number: 9,
+        title: 'Big Black',
+        keyIdea: 'Discipline and confrontation are not opposites — Big Black funded uncompromising noise with relentless business discipline.',
+        summary: 'Steve Albini paired a drum machine with abrasive guitar and deliberately provocative material, refusing to soften for appeal. He ran the finances so strictly the band, by his account, never lost money on a tour. It split by design at its peak (Songs About Fucking, 1987) rather than let success dictate the trajectory; Albini became one of the era\'s most influential engineers.',
+      },
+      {
+        number: 10,
+        title: 'Dinosaur Jr',
+        keyIdea: 'Turning punk\'s DIY ethic loose on classic-rock guitar heroics created a template for 90s alt-rock.',
+        summary: 'J Mascis, Lou Barlow, and Murph merged hardcore\'s volume with unapologetic guitar soloing on You\'re Living All Over Me (1987) — unfashionable in punk circles at the time. Barlow\'s acrimonious mid-tour firing became one of the book\'s sharper examples of creative-control disputes fracturing a band from within.',
+      },
+      {
+        number: 11,
+        title: 'Fugazi',
+        keyIdea: 'The most extreme version of the DIY ethic: $5 shows, no gouging, no major-label option ever seriously entertained.',
+        summary: 'MacKaye, Picciotto, Joe Lally, and Brendan Canty took Dischord\'s ethic to its logical extreme — low-priced all-ages shows, total control through their own label, no leverage of credibility into a crossover. Azerrad treats Fugazi as proof-of-concept that the infrastructure built across the prior decade could sustain a band entirely on its own terms.',
+      },
+      {
+        number: 12,
+        title: 'Mudhoney',
+        keyIdea: 'The band that helped invent the sound the industry would brand and sell as “grunge” — without ever fully cashing in on it.',
+        summary: 'Mark Arm and Steve Turner\'s Sub Pop singles — “Touch Me I\'m Sick,” the Superfuzz Bigmuff EP — became foundational grunge documents. Unlike peers who broke through to mass audiences, Mudhoney stayed tied to the indie infrastructure, the book\'s clearest illustration of influence decoupled from sales.',
+      },
+      {
+        number: 13,
+        title: 'Beat Happening',
+        keyIdea: 'Deliberate amateurism as a political statement — anyone can start a band, and that is the point.',
+        summary: 'Calvin Johnson, Heather Lewis, and Bret Lunsford stripped rock to bare, minimalist pop as a rebuttal to hardcore machismo. Johnson\'s K Records became the hub of an entire Pacific Northwest scene. Azerrad closes on Beat Happening as the purest case of outsized influence relative to sales — the scene\'s real product was infrastructure, not hits.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Please Kill Me',
+        author: 'Legs McNeil & Gillian McCain',
+        reason: 'The generation before this one. Read Please Kill Me for punk\'s birth, then Our Band for what the next wave built on top of it.',
+        url: 'https://www.amazon.com/s?k=Please+Kill+Me+Legs+McNeil',
+      },
+      {
+        title: 'Meet Me in the Bathroom',
+        author: 'Lizzy Goodman',
+        reason: 'The same story one generation later — the early-2000s NYC scene inheriting the circuit these bands laid down.',
+        url: 'https://www.amazon.com/s?k=Meet+Me+in+the+Bathroom+Lizzy+Goodman',
+      },
+      {
+        title: 'Girl in a Band',
+        author: 'Kim Gordon',
+        reason: 'Sonic Youth from the inside — the single-band memoir behind one of this book\'s pivotal chapters.',
+        url: 'https://www.amazon.com/s?k=Girl+in+a+Band+Kim+Gordon',
+      },
+    ],
+    videos: [
+      {
+        title: 'Instrument — the Fugazi documentary',
+        creator: 'Jem Cohen',
+        url: 'https://www.youtube.com/results?search_query=Instrument+Fugazi+documentary+Jem+Cohen',
+        description: 'Jem Cohen\'s decade-spanning film of Fugazi (1987–98) — the DIY ethic of the book\'s standout chapter, on screen.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Michael Azerrad on Our Band Could Be Your Life',
+        creator: 'Kreative Kontrol (Vish Khanna)',
+        url: 'https://www.youtube.com/results?search_query=Michael+Azerrad+Our+Band+Could+Be+Your+Life+interview',
+        description: 'Azerrad on why he wrote the book — sparked by a rock history that jumped straight from Talking Heads to Nirvana, skipping the entire scene in between.',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
+    slug: 'cant-stop-wont-stop',
+    title: 'Can’t Stop Won’t Stop',
+    author: 'Jeff Chang',
+    coverImage: '/images/library/cant-stop-wont-stop.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-15',
+    categories: ['Music', 'Scenes', 'Anthropology', 'Creativity'],
+    readingTime: '8 min',
+    publicationYear: 2005,
+    amazonUrl: 'https://www.amazon.com/s?k=Cant+Stop+Wont+Stop+Jeff+Chang',
+    tldr:
+      'The definitive history of how hip-hop culture formed — not as a music story but as a social one. Chang reads the four elements (DJing, MCing, graffiti, breaking) against the specific policy and geography that made them necessary: a South Bronx hollowed out by highway construction, arson, and disinvestment. Winner of the American Book Award, with an introduction by DJ Kool Herc.',
+    keyInsights: [
+      'Scenes emerge from constraint — hip-hop\'s origin condition is economic abandonment, not a single inventive spark.',
+      'The block party, not the studio, is the point of origin — Kool Herc\'s looped break gave a generation without institutions a self-made public space.',
+      'Culture can carry political energy that formal politics drops — hip-hop is the vessel that moved post-civil-rights force into cultural form.',
+      'Aesthetics are politics: graffiti and breaking let written-off youth claim identity and territory through visibility instead of violence.',
+      'Local constraint produces regional form — gangsta rap is not a betrayal of the roots but the same mechanism running in a different city.',
+    ],
+    bestFor: [
+      'Anyone studying how a whole culture ignites from specific conditions',
+      'Creators who want the story past rock — hip-hop as the modern scenius',
+      'Readers of urban history, policy, and cultural formation',
+      'Builders interested in self-authored culture under constraint',
+    ],
+    faq: [
+      {
+        q: 'What is Can’t Stop Won’t Stop about?',
+        a: 'It is a history of the “hip-hop generation” — how the culture and its four elements formed in the South Bronx of the 1970s and spread outward, told against the policy and geography that produced it, through to the culture wars of the 1990s.',
+      },
+      {
+        q: 'What does “hip-hop generation” mean?',
+        a: 'Chang defines membership by participation, not birth year: it begins after Kool Herc and Afrika Bambaataa, includes “anyone who is down,” and ends “when the next generation tells us it\'s over.”',
+      },
+      {
+        q: 'Is it only about the music?',
+        a: 'No. It covers the whole culture — DJing, MCing, graffiti, and breaking — and reads all of it against urban policy, race, and economics. The music is one element among four.',
+      },
+      {
+        q: 'How is the book structured?',
+        a: 'In four “Loops” rather than a straight timeline: Babylon Is Burning (1968–77), Planet Rock (1975–86), The Message (1984–92), and Stakes Is High (1992–2001), across 18 numbered chapters.',
+      },
+      {
+        q: 'Who is it for?',
+        a: 'Readers interested in the crossover of music, policy, and cultural formation — and anyone studying what makes a scene feel more alive, answered here in terms of constraint, geography, and self-authored identity.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'When does the Hip Hop Generation begin? After DJ Kool Herc and Afrika Bambaataa. Whom does it include? Anyone who is down. When does it end? When the next generation tells us it\'s over.',
+        chapter: 'Prelude',
+        context: 'Chang\'s working definition — membership by participation, not by birth year.',
+      },
+      {
+        text: 'If blues culture had developed under the conditions of oppressive, forced labor, hip-hop culture would arise from the conditions of no work.',
+        chapter: 'Necropolis: The Bronx and the Politics of Abandonment',
+        context: 'The book\'s central causal claim — deindustrialization and mass Bronx unemployment, not slavery-era labor, is hip-hop\'s originating condition.',
+      },
+      {
+        text: 'Generations are fictions. The act of determining a group of people by imposing a beginning and ending date around them is a way to impose a narrative.',
+        chapter: 'Prelude',
+        context: 'Chang opens by admitting the category itself is a constructed narrative, not a natural fact.',
+      },
+      {
+        text: 'It describes the turn from politics to culture, the process of entropy and reconstruction.',
+        chapter: 'Prelude',
+        context: 'The thesis in one line — hip-hop as the vessel that carried post-civil-rights political energy into cultural form.',
+      },
+      {
+        text: 'Hip-hop is the voice of this generation. Even if you didn\'t grow up in the Bronx in the \'70s, hip-hop is there for you.',
+        chapter: 'Introduction (DJ Kool Herc)',
+        context: 'From Kool Herc\'s own introductory essay — the culture\'s founding figure framing its reach.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Necropolis — The Bronx and the Politics of Abandonment',
+        keyIdea: 'Hip-hop was born from a manufactured collapse — highway construction, landlord arson, and “planned shrinkage” hollowed out the South Bronx first.',
+        summary: 'Chang opens with the borough\'s physical destruction: the Cross-Bronx Expressway, white flight, and municipal disinvestment gutted the South Bronx through the 1970s, driving youth unemployment near 80% in some tracts. The origin condition is economic abandonment, not a single spark — setting the book\'s method of reading a culture against the policy that made it necessary.',
+      },
+      {
+        number: 4,
+        title: 'Making a Name — How DJ Kool Herc Started Hip-Hop',
+        keyIdea: 'The block party, not the studio, is the actual point of origin — a Jamaican sound-system sensibility transplanted into a burned-out Bronx.',
+        summary: 'Chang traces Clive Campbell\'s (Kool Herc\'s) 1973 back-to-school party and his “merry-go-round” technique of looping a record\'s instrumental break. It was a technical and social innovation at once: an extended rhythm for dancers, and a self-made public space for a generation without institutions.',
+      },
+      {
+        number: 5,
+        title: 'Soul Salvation — The Mystery and Faith of Afrika Bambaataa',
+        keyIdea: 'Bambaataa converted a Bronx gang structure into the Zulu Nation — hip-hop\'s first organized institution and its explicit ethic of unity.',
+        summary: 'The chapter follows Bambaataa\'s transformation from Black Spades warlord to DJ-philosopher, founding the Zulu Nation around “peace, unity, love, and having fun.” His planet-spanning record collection and organizing framework are treated as evidence the culture was consciously building an alternative social order, not just a party circuit.',
+      },
+      {
+        number: 6,
+        title: 'Furious Styles — The Evolution of Style in the Seven-Mile World',
+        keyIdea: 'Graffiti and breaking let the dispossessed claim territory and identity through visibility rather than violence.',
+        summary: 'Chang covers aerosol writing and b-boying as the visual and kinetic elements alongside DJing and MCing — competitive status systems that substituted for, and sometimes escalated alongside, gang conflict. Style itself became political assertion for kids the city had written off.',
+      },
+      {
+        number: 9,
+        title: '1982 — Rapture in Reagan’s America',
+        keyIdea: 'Grandmaster Flash\'s “The Message” turned the block-party sound into direct social reportage just as Reagan-era cuts deepened urban abandonment.',
+        summary: 'Chang sets 1982 as a hinge: hip-hop\'s biggest crossover single to date doubled as reportage on ghetto conditions, arriving alongside cuts to federal urban aid. The political voice was not imposed from outside — it grew from the same conditions that produced the culture.',
+      },
+      {
+        number: 10,
+        title: 'End of Innocence — The Fall of the Old School',
+        keyIdea: 'Run-DMC and Def Jam professionalized and commercialized the culture, ending the era when it was largely self-contained within the Bronx scene.',
+        summary: 'The mid-1980s shift from park-jam DJs and local labels to Russell Simmons and Rick Rubin\'s Def Jam machine — and Run-DMC\'s crossover to rock audiences — is treated as a loss as much as a gain: the old-school built a culture they then lost control of as it became an industry.',
+      },
+      {
+        number: 13,
+        title: 'Follow for Now — Post-Civil-Rights Black Leadership',
+        keyIdea: 'Public Enemy tried to make hip-hop a vehicle for explicit political leadership at the exact moment such leadership was contested and unstable.',
+        summary: 'The chapter follows Public Enemy\'s rise and controversies as Chuck D positioned the group as a political voice, using its trajectory to ask whether a pop-cultural act could actually carry the weight of leadership in a post-civil-rights vacuum.',
+      },
+      {
+        number: 14,
+        title: 'The Culture Assassins — Geography, Generation and Gangsta Rap',
+        keyIdea: 'N.W.A relocated hip-hop\'s center of gravity to Los Angeles and rewired its politics around geography and disillusionment.',
+        summary: 'Chang covers N.W.A\'s emergence from Compton and South Central, positioning gangsta rap as a response to different local conditions — occupation-style policing, gang geography — than the Bronx\'s. Not a betrayal of the roots but a regional variant of the same mechanism: local constraint producing new form.',
+      },
+      {
+        number: 16,
+        title: 'All in the Same Gang — The War on Youth and the Quest for Unity',
+        keyIdea: 'The early-90s gang truce and the backlash against rap lyrics both showed how thoroughly the culture had become a proxy battleground in America\'s culture wars.',
+        summary: 'Set against the L.A. uprising and its aftermath, the chapter follows attempts at cross-gang unity alongside censorship fights. Chang closes the arc opened in chapter one: a culture built from abandonment is now publicly blamed for the conditions that produced it.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'The Rap Year Book',
+        author: 'Shea Serrano',
+        reason: 'Where Chang gives you the sociology, Serrano gives you the songs — one defining rap track per year, argued and illustrated. A lively companion after the history.',
+        url: 'https://www.amazon.com/s?k=The+Rap+Year+Book+Shea+Serrano',
+      },
+      {
+        title: 'Please Kill Me',
+        author: 'Legs McNeil & Gillian McCain',
+        reason: 'A different genre, the same lesson: a scene forms around a place, a moment, and a refusal of permission.',
+        url: 'https://www.amazon.com/s?k=Please+Kill+Me+Legs+McNeil',
+      },
+      {
+        title: 'Our Band Could Be Your Life',
+        author: 'Michael Azerrad',
+        reason: 'The parallel story in the underground rock world — self-built infrastructure as the engine of a scene.',
+        url: 'https://www.amazon.com/s?k=Our+Band+Could+Be+Your+Life+Azerrad',
+      },
+    ],
+    videos: [
+      {
+        title: 'Jeff Chang on the Hip-Hop Generation',
+        creator: 'Author talk',
+        url: 'https://www.youtube.com/results?search_query=Jeff+Chang+Cant+Stop+Wont+Stop+talk',
+        description: 'Chang lays out the book\'s central thesis — hip-hop as the cultural form that carried a generation\'s political energy.',
+        kind: 'talk',
+      },
+      {
+        title: 'Can’t Stop Won’t Stop — author event',
+        creator: 'Zinn Education Project',
+        url: 'https://www.youtube.com/results?search_query=Jeff+Chang+Cant+Stop+Wont+Stop+Zinn+Education+Project',
+        description: 'Chang and Davey D on the culture\'s history and how to teach it — useful context for the book\'s policy-and-geography argument.',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
+    slug: 'm-train',
+    title: 'M Train',
+    author: 'Patti Smith',
+    coverImage: '/images/library/m-train.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-07-15',
+    categories: ['Memoir', 'Creativity', 'Inner Work'],
+    readingTime: '7 min',
+    publicationYear: 2015,
+    amazonUrl: 'https://www.amazon.com/s?k=M+Train+Patti+Smith',
+    relatedBook: 'love-and-poetry',
+    tldr:
+      'Patti Smith\'s second memoir is Just Kids turned inward: not a career narrative but a map of a creative consciousness at rest and at work. Organized around cafés, objects, journeys, reading, and grief for her late husband Fred “Sonic” Smith, it argues that presence is built from small repeated acts — the same table, the same coffee, the same attention — not from big moments.',
+    keyInsights: [
+      'Ritual is the real creative infrastructure — the same café table and order, not inspiration, is what sustains the work.',
+      'Grief is metabolized sideways, through objects and errands, and folded directly into the writing rather than staged as a scene.',
+      'Reading is a form of travel and inhabitation — a novel\'s well can be as real to an interior life as any place you\'ve stood.',
+      'Small, seemingly trivial things carry as much weight as the big subjects — a coat, a bean, a detective show.',
+      'A real creative life is organized by recurring obsessions, not chronology — which is why the book refuses linear structure.',
+    ],
+    bestFor: [
+      'Anyone who loved Just Kids more for its voice than its plot',
+      'Writers building a practice around ritual and attention',
+      'Readers drawn to interior, essayistic memoir',
+      'Creators metabolizing loss into work',
+    ],
+    faq: [
+      {
+        q: 'What is M Train about?',
+        a: 'It is a meditative, non-chronological memoir of Patti Smith\'s daily life — cafés, coffee, travel, reading, and grief for her late husband Fred “Sonic” Smith — rather than a career narrative.',
+      },
+      {
+        q: 'How does it relate to Just Kids?',
+        a: 'Just Kids covers her early New York years with Robert Mapplethorpe through the mid-1970s. M Train picks up after — her marriage, the move to Detroit, Fred\'s death in 1994, and her later solitary routines. Same author, different register: memory instead of narrative arc.',
+      },
+      {
+        q: 'Is it a music memoir?',
+        a: 'No. Music and the CBGB-era scene are almost entirely absent. The book is about reading, café rituals, dreams, and mourning — not her recording career.',
+      },
+      {
+        q: 'What does the title mean?',
+        a: 'Not the subway. “M Train” names the wandering mind-train of Smith\'s thinking, which she follows station to station, café to café, memory to memory — and connects to the chapter “Mu,” the Zen term for nothingness.',
+      },
+      {
+        q: 'Who is it for?',
+        a: 'Readers who want interior, essayistic memoir, and anyone interested in how a working writer structures ordinary days around small fixed rituals.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'It\'s not so easy writing about nothing.',
+        chapter: 'Opening',
+        context: 'The book\'s first line, spoken by a dream-figure — the koan the whole memoir tries to answer.',
+      },
+      {
+        text: 'Nothing can be truly replicated. Not a love, not a jewel, not a single line.',
+        context: 'Smith on why a duplicate never carries the charge of the lost original.',
+      },
+      {
+        text: 'All I needed for the mind was to be led to new stations. All I needed for the heart was to visit a place of greater storms.',
+        context: 'The clearest statement of why she travels — for the mind\'s associations, not sightseeing.',
+      },
+      {
+        text: 'In my way of thinking, anything is possible. Life is at the bottom of things and belief at the top, while the creative impulse, dwelling in the center, informs all.',
+      },
+      {
+        text: 'One afternoon while crossing the street I noticed I was crying. But I could not identify the source of my tears. The dark stone in my heart pulsed quietly, igniting like a coal in a hearth.',
+        context: 'Grief in M Train rarely announces itself as a scene; it surfaces sideways, mid-errand.',
+      },
+      {
+        text: 'My table, flanked by the coffee machine and the front window, affords me a sense of privacy, where I withdraw into my own atmosphere.',
+        chapter: 'Café ’Ino',
+        context: 'The daily ritual — same table, same silence — that structures her writing life.',
+      },
+      {
+        text: 'The transformation of the heart is a wondrous thing, no matter how you land there.',
+      },
+      {
+        text: 'I believe in midnight and the hour of noon. But what else do I believe in? Sometimes everything. Sometimes nothing. It fluctuates like light flitting over a pond. I believe in life, which one day each of us shall lose.',
+        chapter: 'The Hour of Noon',
+      },
+      {
+        text: 'I\'m going to remember everything and then I\'m going to write it all down. An aria to a coat. A requiem for a café.',
+        chapter: 'The Hour of Noon',
+        context: 'The closing lines, naming the book\'s two central objects of mourning — the black coat and Café ’Ino.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Café ’Ino',
+        keyIdea: 'Ritual repetition — the same table, order, and silence — is the actual engine of a writing life, not inspiration.',
+        summary: 'Smith describes her daily habit at a small Greenwich Village café: black coffee, brown toast, olive oil, always the same corner table. It establishes the book\'s method — thinking through small unbroken routines — and previews a real loss, since Café ’Ino closed for good in 2013.',
+      },
+      {
+        number: 2,
+        title: 'Changing Channels',
+        keyIdea: 'A restless mind metabolizes grief and ideas through ordinary distractions, not grand subjects.',
+        summary: 'Smith surveys her mementos, her devotion to television detective series, and an invitation to address a society devoted to the polar scientist Alfred Wegener. Her mind moves associatively between the trivial and the profound, introducing the continental-drift motif — slow, invisible change — that recurs.',
+      },
+      {
+        number: 3,
+        title: 'Hill of Beans',
+        keyIdea: 'An unanswered childhood question can lodge for a lifetime and still be worth chasing down.',
+        summary: 'Triggered by a line from a Davy Crockett film, Smith recalls being told as a child she\'d never amount to “a hill of beans.” Decades later she stands in a grocery aisle cataloguing bean varieties, trying literally to price the phrase — a small, comic meditation on how memory holds the unresolved.',
+      },
+      {
+        number: 4,
+        title: 'Clock with No Hands',
+        keyIdea: 'A marriage can run on its own private time, outside the culture\'s clock — and that is what makes it feel eternal in hindsight.',
+        summary: 'Recounts Smith\'s early marriage to Fred “Sonic” Smith in Detroit — a bar with a clock stripped of its hands, Fred\'s pursuit of a pilot\'s license. Their shared life is framed as governed by a private clock; after his death, she reads that discipline of shared time as a kind of miracle.',
+      },
+      {
+        number: 5,
+        title: 'The Well',
+        keyIdea: 'A novel can become as real and load-bearing to an interior life as a place you have lived.',
+        summary: 'Centers on Smith\'s absorption in Murakami\'s The Wind-Up Bird Chronicle, especially its symbolic well, which she treats as a real destination reached by thinking your way in — tying reading-as-pilgrimage to the book\'s claim that imagined and physical travel carry equal weight.',
+      },
+      {
+        number: 6,
+        title: 'Vecchia Zimarra',
+        keyIdea: 'A given object — here, a coat — can absorb enough meaning to become part of a person\'s identity.',
+        summary: 'Named for the Puccini aria about an old coat, the chapter follows the black overcoat Smith receives on her fifty-seventh birthday, which becomes inseparable from her solitary rounds. It braids opera, ritual, and object into a meditation on devotion and impermanence — and its eventual loss echoes in the book\'s final line.',
+      },
+      {
+        number: 7,
+        title: 'Mu',
+        keyIdea: '“Nothingness” is not absence — it is a working concept, a way of refusing a question that can\'t be answered directly.',
+        summary: 'Titled after the Zen term for negation used in koan practice, this chapter follows Smith\'s pilgrimage to Japan. It makes explicit the philosophy announced in the opening line about “writing about nothing,” tying travel, reading obsession, and Buddhist thought into one argument about productive absence.',
+      },
+      {
+        number: 8,
+        title: 'Road to Larache',
+        keyIdea: 'Visiting a writer\'s grave can complete a private promise made decades earlier.',
+        summary: 'Smith travels to Larache, Morocco, to Jean Genet\'s grave, depositing stones carried since a visit to the penal site Genet wrote about. She recalls meeting Paul Bowles in Tangier, framing pilgrimage to dead writers as a recurring form of conversation and repayment.',
+      },
+      {
+        number: 9,
+        title: 'The Hour of Noon',
+        keyIdea: 'Facing mortality directly is compatible with refusing to stop making things.',
+        summary: 'The closing chapter weighs what Smith does and doesn\'t believe in, against Nietzsche\'s eternal recurrence. She commits to continued writing, closing the arc from ritual and grief to a stated intention to keep working — ending on the aria/requiem line that names the coat and the café.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'The prequel in spirit — the making-of-an-artist story that M Train answers years later, from the far side of loss.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'The Wind-Up Bird Chronicle',
+        author: 'Haruki Murakami',
+        reason: 'The novel that took over Smith\'s imagination and structures M Train\'s central chapters. Read it to walk into the well yourself.',
+        url: 'https://www.amazon.com/s?k=The+Wind-Up+Bird+Chronicle+Murakami',
+      },
+      {
+        title: 'The Year of Magical Thinking',
+        author: 'Joan Didion',
+        reason: 'The other essential modern memoir of grief and the writing mind — colder and more forensic where Smith is warm and associative.',
+        url: 'https://www.amazon.com/s?k=The+Year+of+Magical+Thinking+Didion',
+      },
+    ],
+    videos: [
+      {
+        title: 'In “M Train,” Patti Smith journeys to where art comes from',
+        creator: 'PBS NewsHour',
+        url: 'https://www.youtube.com/results?search_query=Patti+Smith+M+Train+PBS+NewsHour',
+        description: 'Jeffrey Brown interviews Smith on ritual, grief, and where the work actually comes from.',
+        kind: 'interview',
+      },
+      {
+        title: 'Patti Smith reads from M Train',
+        creator: 'Book event',
+        url: 'https://www.youtube.com/results?search_query=Patti+Smith+M+Train+reading',
+        description: 'Smith reading the book in her own voice — the clearest way to hear its cadence before you read it.',
+        kind: 'talk',
+      },
+    ],
+  },
+  {
+    slug: 'chronicles-volume-one',
+    title: 'Chronicles: Volume One',
+    author: 'Bob Dylan',
+    coverImage: '/images/library/chronicles-volume-one.jpg',
+    hasCover: false,
+    rating: 5,
+    reviewDate: '2026-07-15',
+    categories: ['Memoir', 'Music', 'Creativity', 'Craft'],
+    readingTime: '7 min',
+    publicationYear: 2004,
+    amazonUrl: 'https://www.amazon.com/s?k=Chronicles+Volume+One+Bob+Dylan',
+    relatedBook: 'imagination',
+    tldr:
+      'Dylan\'s memoir is built around three pivotal windows, not a whole life: arriving in Greenwich Village\'s folk scene in the winter of 1961, making New Morning (1970) amid the backlash of being cast as “spokesman of a generation,” and the 1989 New Orleans sessions that became Oh Mercy. It skips the mid-60s peak entirely in favor of vivid, close-focus prose on craft, influence, and the deliberate construction of an identity.',
+    keyInsights: [
+      'Every “original” voice is built by absorbing a tradition completely before breaking from it — Dylan built himself from Guthrie, Robert Johnson, and the folk canon.',
+      'Identity is a construction, not a discovery — even the name was chosen and revised like a piece of writing.',
+      'The Village folk scene worked as an apprenticeship system — mentors, competition, and a shared repertoire did the training.',
+      'Protecting the work meant actively resisting the audience\'s demand to be a symbol — he sabotaged his own image more than once to get his life back.',
+      'Reinvention was survival, not strategy — each disappearance was a forced or chosen reset, never a marketing move.',
+    ],
+    bestFor: [
+      'Anyone studying how an artist actually builds a voice and a public identity',
+      'Writers and musicians interested in reinvention and mystique as craft',
+      'Readers who want prose, not tour gossip',
+      'Creators wary of being flattened into a symbol',
+    ],
+    faq: [
+      {
+        q: 'What is Chronicles: Volume One about?',
+        a: 'Bob Dylan\'s own account of a few pivotal periods — arriving in New York in 1961, making New Morning around 1970, and recording Oh Mercy in New Orleans in 1989 — told in vivid, impressionistic prose rather than a straight timeline.',
+      },
+      {
+        q: 'Is it a full autobiography?',
+        a: 'No. It is selective and deliberately non-linear — it skips his best-known mid-60s years (going electric, Blonde on Blonde, the 1966 motorcycle accident) entirely and jumps between decades by chapter.',
+      },
+      {
+        q: 'Does it explain the meaning of his famous songs?',
+        a: 'Not really. Dylan is far more interested in the scenes, people, and reading that shaped him than in decoding lyrics — the book is about formation, not exegesis.',
+      },
+      {
+        q: 'Is there a Volume Two?',
+        a: 'Not yet. Dylan announced it in 2004 as the first of a planned multi-volume memoir, and no second volume has appeared in the two decades since.',
+      },
+      {
+        q: 'Who is this book for?',
+        a: 'Readers interested in how an artist builds a voice and a public identity — musicians, writers, and anyone studying reinvention and mystique as craft, not just fans looking for tour stories.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'Folk music was a reality of a more brilliant dimension. It exceeded all human understanding, and if it called out to you, you could disappear and be sucked into it.',
+        chapter: 'Markin’ Up the Score',
+        context: 'Dylan on why Greenwich Village folk music felt like a truer world than the one outside it.',
+      },
+      {
+        text: 'Most of the other performers tried to put themselves across, rather than the song, but I didn\'t care about doing that. With me, it was about putting the song across.',
+        chapter: 'Markin’ Up the Score',
+        context: 'His early performing philosophy — subordinate the self to the material — the seed of the later mystique.',
+      },
+      {
+        text: 'It wasn\'t money or love that I was looking for. I had a heightened sense of awareness, was set in my ways, impractical and a visionary to boot.',
+        chapter: 'Markin’ Up the Score',
+      },
+      {
+        text: 'You can write a song anywhere, in a railroad compartment, on a boat, on horseback — it helps to be moving. Sometimes people who have the greatest talent for writing songs never write any because they are not moving.',
+        context: 'Dylan on motion as a condition of the work.',
+      },
+      {
+        text: 'I felt like a piece of meat that someone had thrown to the dogs.',
+        chapter: 'New Morning',
+        context: 'On being pursued and consumed by the press after being crowned “conscience of a generation.”',
+      },
+      {
+        text: 'There was a missing person inside of myself and I needed to find him.',
+        chapter: 'Oh Mercy',
+        context: 'His late-80s creative and identity crisis, before the Oh Mercy sessions.',
+      },
+      {
+        text: 'There are a lot of places I like, but I like New Orleans better. There\'s a thousand different angles at any moment.',
+        chapter: 'Oh Mercy',
+        context: 'A direct answer to the study question — a place that made reality feel more alive to him.',
+      },
+      {
+        text: 'When Johnson started singing, he seemed like a guy who could have sprung from the head of Zeus in full armor.',
+        chapter: 'River of Ice',
+        context: 'Dylan on first hearing Robert Johnson — one of the foundational absorptions before he built his own voice.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'Markin’ Up the Score',
+        keyIdea: 'Arriving in Greenwich Village in the dead of winter 1961, Dylan didn\'t find folk music — he disappeared into it.',
+        summary: 'Dylan lands in New York in January 1961 chasing Woody Guthrie and finds a scene of clubs, coffeehouses, and mentors (Dave Van Ronk, Mike Seeger). He lays out his early definition of folk performance — subordinating himself to the song — and his relationship with Suze Rotolo opens him to art and theater, including a Brecht/Weill production that becomes a songwriting revelation.',
+      },
+      {
+        number: 2,
+        title: 'The Lost Land',
+        keyIdea: 'The city itself — its books, apartments, and strangers — was as much his education as the folk clubs were.',
+        summary: 'Living in a cold-water walk-up with colorful housemates, Dylan reads voraciously — history, poetry, old periodicals — and feels his “consciousness beginning to change and stretch.” This is where the book\'s central claim takes shape: identity and songwriting are built by absorption, not invention.',
+      },
+      {
+        number: 3,
+        title: 'New Morning',
+        keyIdea: 'Fame turned him into public property, and he spent years trying to give it back.',
+        summary: 'Set around 1970, after his records made him, in the press\'s words, the “conscience of a generation” — a role he never sought and resented. Hounded by fans and activists and worried for his family, he deliberately records a housebroken-sounding country album to shake off the mantle; a commission from Archibald MacLeish becomes, instead, the seed of the New Morning sessions.',
+      },
+      {
+        number: 4,
+        title: 'Oh Mercy',
+        keyIdea: 'A creative crisis — and a literal hand injury — forced a reckoning with what kind of artist he still wanted to be.',
+        summary: 'After a grueling tour leaves Dylan disconnected from his own catalog, an accident sidelines him but resets him as a “new performer.” A burst of songwriting leads, via a Bono introduction, to producer Daniel Lanois and a studio in New Orleans. The sessions are tense — Lanois pushing reinvention, Dylan resisting — but the chapter closes with him crediting Lanois and content with the record.',
+      },
+      {
+        number: 5,
+        title: 'River of Ice',
+        keyIdea: 'Everything he became in New York, he\'d already started building alone in Minnesota.',
+        summary: 'The final chapter loops back to Dylan\'s childhood in Duluth and Hibbing and his self-directed apprenticeship in records — Woody Guthrie, Robert Johnson, Hank Williams. It is the origin story placed deliberately out of order: the raw material the earlier chapters show him shaping into a public self.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'The same Greenwich Village mythos from the next generation — apprenticeship, poverty, and the making of an artistic self.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'The Creative Act',
+        author: 'Rick Rubin',
+        reason: 'Where Dylan shows reinvention in practice, Rubin gives the underlying theory — receptivity, absorption, and getting out of the work\'s way.',
+        url: 'https://www.amazon.com/s?k=The+Creative+Act+Rick+Rubin',
+      },
+      {
+        title: 'Life',
+        author: 'Keith Richards',
+        reason: 'The other great musician\'s memoir of absorbing American roots music whole — the blues to Dylan\'s folk — and building a life around it.',
+        url: 'https://www.amazon.com/s?k=Life+Keith+Richards',
+      },
+    ],
+    videos: [
+      {
+        title: 'No Direction Home: Bob Dylan',
+        creator: 'Martin Scorsese',
+        url: 'https://www.youtube.com/results?search_query=No+Direction+Home+Bob+Dylan+Scorsese',
+        description: 'Scorsese\'s documentary covers the same 1961–66 arc Chronicles revisits — the folk-scene apprenticeship and the break from it.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Bob Dylan — Chronicles interviews',
+        creator: 'Career-spanning',
+        url: 'https://www.youtube.com/results?search_query=Bob+Dylan+Chronicles+2004+interview',
+        description: 'Period interviews around the book\'s release, where Dylan discusses memory, identity, and why he wrote it non-linearly.',
+        kind: 'interview',
+      },
+    ],
+  },
+  {
+    slug: 'girl-in-a-band',
+    title: 'Girl in a Band',
+    author: 'Kim Gordon',
+    coverImage: '/images/library/girl-in-a-band.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-07-15',
+    categories: ['Memoir', 'Music', 'Scenes', 'Creativity'],
+    readingTime: '7 min',
+    publicationYear: 2015,
+    amazonUrl: 'https://www.amazon.com/s?k=Girl+in+a+Band+Kim+Gordon',
+    tldr:
+      'Kim Gordon co-founded Sonic Youth in 1981 as a visual artist first, and Girl in a Band reads that way: art-school thinking applied to a rock band, a clear-eyed lens on the No Wave / downtown-NYC scene, and — bookending it all — the 2011 collapse of her thirty-year marriage to Thurston Moore. Structured as short, fragmentary chapters that open at the end and work backward.',
+    keyInsights: [
+      'She entered music as a conceptual artist first — the band was an extension of gallery-world thinking, not a rock-and-roll ambition.',
+      'No Wave\'s contempt for craft was itself an art-context permission structure — “I could do that” was an aesthetic argument, not a technical one.',
+      'Being “the girl in the band” made her both hyper-visible and structurally sidelined — art coded male and free, craft coded female and contained.',
+      'Collaboration with Moore built the band\'s sound and her adult identity in the same act — which is why its rupture reads as total, not partial, loss.',
+      'Reinvention after rupture is not a comeback arc — the book frames becoming “someone else entirely” as survival, not triumph.',
+    ],
+    bestFor: [
+      'Readers of the 80s–90s NYC art-and-music crossover',
+      'Anyone studying women\'s experience inside male-coded scenes',
+      'Visual artists who think in concepts before craft',
+      'Creators rebuilding an identity after a rupture',
+    ],
+    faq: [
+      {
+        q: 'What is Girl in a Band about?',
+        a: 'Kim Gordon\'s 2015 memoir covering her California childhood, her path from visual art into New York\'s No Wave scene, co-founding Sonic Youth in 1981, and the end of her 30-year marriage to bandmate Thurston Moore in 2011.',
+      },
+      {
+        q: 'Who is Kim Gordon and what is Sonic Youth?',
+        a: 'Gordon is a visual artist, bassist, vocalist, and co-founder of Sonic Youth — the influential experimental rock band she formed with Thurston Moore and Lee Ranaldo in 1981, which released landmark albums including Daydream Nation (1988) before disbanding in 2011.',
+      },
+      {
+        q: 'Is the book mainly about the divorce?',
+        a: 'The divorce bookends and threads through it — it opens and closes there — but the bulk is a chronological account of her art background, the downtown scene, and the band\'s three-decade run.',
+      },
+      {
+        q: 'Does it cover the art world in depth?',
+        a: 'Yes. Gordon frames her entire music career through her identity as a conceptual and visual artist first — art school, the Mike Kelley / Dan Graham circle, and No Wave as an art-scene phenomenon before it was a music genre.',
+      },
+      {
+        q: 'Who is this book for?',
+        a: 'Readers interested in the NYC underground art-and-music crossover, women\'s experience inside male-coded rock scenes, and what makes a performance feel alive — Gordon\'s recurring answer is risk, vulnerability, and refusing polish.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'People pay money to see others believe in themselves.',
+        context: 'Gordon\'s definition of what a live performance actually sells (a line she first wrote for Artforum, quoted in the book).',
+      },
+      {
+        text: 'The only really good performance is one where you make yourself vulnerable while pushing beyond your familiar comfort zone. I liken it to having an intense, hyper-real dream, where you step off a cliff but don\'t fall to your death.',
+        context: 'Her working theory of stage risk.',
+      },
+      {
+        text: 'In general, though, women aren\'t really allowed to be kick-ass. It\'s like the famous distinction between art and craft: Art, and wildness, and pushing against the edges, is a male thing. Craft, and control, and polish, is for women. Culturally we don\'t allow women to be as free as they would like, because that is frightening.',
+        context: 'Her core argument on the gendered double standard in rock.',
+      },
+      {
+        text: 'In retrospect, that\'s why I joined a band, so I could be inside that male dynamic, not staring in through a closed window but looking out.',
+        context: 'Her reason for choosing music over pure visual art.',
+      },
+      {
+        text: 'Brilliant, manipulative, sadistic, arrogant, almost unbearably articulate.',
+        context: 'Her description of older brother Keller, later diagnosed with paranoid schizophrenia — the person she names as the single greatest shaping force on who she became.',
+      },
+      {
+        text: 'Like most new moms, I found that no matter how just and shared you expect the experience to be, or how equal the man thinks parenting should be, it isn\'t. It can\'t be. Most child-raising falls on women\'s shoulders.',
+        context: 'On motherhood exposing uneven domestic labor even in an ostensibly progressive partnership.',
+      },
+      {
+        text: 'I never wanted to be a housewife. I never wanted to be anything other than who I was.',
+      },
+      {
+        text: 'I know, it sounds like I\'m someone else entirely now, and I guess I am.',
+        chapter: 'Closing',
+        context: 'The book\'s last line — identity as something rebuilt, not preserved.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'The End',
+        keyIdea: 'The book begins at its own ending, refusing a triumphant rock narrative.',
+        summary: 'Gordon opens with Sonic Youth\'s final show, in São Paulo in November 2011, performing beside a husband she now knows has been unfaithful — folding thirty years of work into the same frame as its heartbreak. The chapter sets the method: memoir as autopsy, working backward from collapse.',
+      },
+      {
+        number: 2,
+        title: 'Rochester and Los Angeles',
+        keyIdea: 'Gordon\'s flat affect and observational distance were built long before she picked up a bass.',
+        summary: 'Born in Rochester, she moved to Los Angeles at five when her father took a UCLA professorship. These chapters establish an intellectual household and early exposure to jazz and abstract sound — the observational remove that later became a stage persona.',
+      },
+      {
+        number: 3,
+        title: 'Keller',
+        keyIdea: 'A brother\'s psychological cruelty taught her to disappear inside herself, and that withdrawal became her stage presence.',
+        summary: 'Gordon describes her older brother Keller as brilliant and sadistic, whose taunting went past ordinary sibling conflict until she “turned off entirely.” He had a psychotic break and was later diagnosed with paranoid schizophrenia. She names him as the single greatest force shaping who she became.',
+      },
+      {
+        number: 4,
+        title: 'Art School',
+        keyIdea: 'She entered music as a visual artist, not a musician.',
+        summary: 'After Otis Art Institute, Gordon connected with the CalArts / Mike Kelley conceptual circle before moving to New York still identifying primarily as a visual and conceptual artist. Her account treats the band as an extension of art practice rather than a separate calling.',
+      },
+      {
+        number: 5,
+        title: 'No Wave New York',
+        keyIdea: 'No Wave\'s anti-craft aggression gave her permission to make dissonant, untrained music.',
+        summary: 'Drawn into downtown venues and acts like Glenn Branca and Theoretical Girls, Gordon found a scene free of musical convention — which convinced her she could make sound the way she made art. It is also where she met Thurston Moore.',
+      },
+      {
+        number: 6,
+        title: 'Forming Sonic Youth',
+        keyIdea: 'Sonic Youth was assembled inside an art scene, not a rock scene, and that origin shaped its sound.',
+        summary: 'Gordon, Moore, and Lee Ranaldo formed the band in 1981, playing their first show at Noise Fest at the White Columns art space. The early identity is inseparable from the No Wave / art-world milieu it came from — alternate tunings and abstraction inside a band that still worked as rock.',
+      },
+      {
+        number: 7,
+        title: 'Daydream Nation and the Nirvana Years',
+        keyIdea: 'The commercial and cultural peak came bundled with a recognition she hadn\'t sought.',
+        summary: 'Sonic Youth released Daydream Nation in 1988, and the band\'s run put them touring alongside Nirvana. Gordon describes an immediate kinship with Kurt Cobain, framing his death in the same period as the launch of her X-Girl clothing line — success and loss arriving together.',
+      },
+      {
+        number: 8,
+        title: 'Motherhood and X-Girl',
+        keyIdea: 'Motherhood exposed how unevenly domestic labor falls, even in a progressive partnership.',
+        summary: 'Daughter Coco\'s birth and the 1993 launch of X-Girl run in parallel with Gordon\'s account of gendered parenting labor. She holds identity — “I never wanted to be anything other than who I was” — against the pull toward a more conventional maternal role.',
+      },
+      {
+        number: 9,
+        title: 'The Marriage Unravels',
+        keyIdea: 'The end was not a single betrayal but a year-long pattern that finally forced the decision she\'d avoided.',
+        summary: 'Gordon describes a slow accumulation of evidence after telling Moore she had a right to look, given his claim of having nothing to hide. The affair had been underway for over a year; its discovery forced the end of both marriage and band — the decision Moore, in her account, wouldn\'t make himself.',
+      },
+      {
+        number: 10,
+        title: 'Aftermath and Reinvention',
+        keyIdea: 'Survival meant becoming someone she didn\'t fully recognize, and accepting that as the cost of continuing.',
+        summary: 'The book closes past the divorce and the band\'s dissolution, with Gordon assessing who she is on the other side of both. Her last line — “someone else entirely now” — is the thesis: identity as something rebuilt, not preserved.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Just Kids',
+        author: 'Patti Smith',
+        reason: 'The other essential woman\'s memoir of the NYC art-and-music underground — devotion and ascent where Gordon gives rupture and clarity.',
+        url: 'https://www.amazon.com/s?k=Just+Kids+Patti+Smith',
+      },
+      {
+        title: 'Our Band Could Be Your Life',
+        author: 'Michael Azerrad',
+        reason: 'The scene around Sonic Youth, band by band — read the chapter on them, then this memoir from the inside.',
+        url: 'https://www.amazon.com/s?k=Our+Band+Could+Be+Your+Life+Azerrad',
+      },
+      {
+        title: 'Meet Me in the Bathroom',
+        author: 'Lizzy Goodman',
+        reason: 'The NYC scene that came next, on the same downtown map — the future recognizing itself again.',
+        url: 'https://www.amazon.com/s?k=Meet+Me+in+the+Bathroom+Lizzy+Goodman',
+      },
+    ],
+    videos: [
+      {
+        title: 'Kim Gordon on Life After Sonic Youth (Fresh Air)',
+        creator: 'NPR Fresh Air',
+        url: 'https://www.youtube.com/results?search_query=Kim+Gordon+Fresh+Air+Girl+in+a+Band',
+        description: 'Terry Gross interviews Gordon on the band, the divorce, and being a woman in the scene — the book\'s core themes in her own voice.',
+        kind: 'interview',
+      },
+      {
+        title: '1991: The Year Punk Broke',
+        creator: 'Dave Markey',
+        url: 'https://www.youtube.com/results?search_query=1991+The+Year+Punk+Broke+Sonic+Youth',
+        description: 'The Sonic Youth / Nirvana tour film from the Daydream Nation-era chapters — the scene in motion.',
+        kind: 'explainer',
+      },
+    ],
+  },
+  {
+    slug: 'beastie-boys-book',
+    title: 'Beastie Boys Book',
+    author: 'Michael Diamond & Adam Horovitz',
+    coverImage: '/images/library/beastie-boys-book.jpg',
+    hasCover: false,
+    rating: 4,
+    reviewDate: '2026-07-15',
+    categories: ['Memoir', 'Music', 'Scenes', 'Creativity'],
+    readingTime: '8 min',
+    publicationYear: 2018,
+    amazonUrl: 'https://www.amazon.com/s?k=Beastie+Boys+Book',
+    tldr:
+      'Mike D and Ad-Rock\'s sprawling, multi-format memoir of three NYC kids who moved from hardcore punk to hip-hop to genre-melting art-pop — told through alternating chapters, guest essays, a cookbook, mixtapes, and a graphic novel. Underneath the play it is an elegy for the late Adam “MCA” Yauch and an argument that friendship, not ambition, was the actual engine.',
+    keyInsights: [
+      'Friendship, not ambition, was the engine — the band existed because three specific people stayed close, and it ended when one of them died.',
+      'Reinvention across genres worked because they treated each shift as outgrowing a room, not abandoning an identity.',
+      'Building G-Son, their own studio, was the moment they stopped renting their creative means and started owning them.',
+      'Growing past an early persona required public, specific apology — not vague “growth” — for the frat-boy image and its blind spots.',
+      'The scene and the city were identity infrastructure: CBGB, Def Jam, then LA and G-Son each shaped what the band became next.',
+    ],
+    bestFor: [
+      'Anyone studying long-running creative partnerships',
+      'Creators reinventing across mediums or genres',
+      'Fans of NYC music-scene history with a sense of humor',
+      'Builders who value owning their means of production',
+    ],
+    faq: [
+      {
+        q: 'What is Beastie Boys Book about?',
+        a: 'Michael Diamond and Adam Horovitz\'s joint memoir of the Beastie Boys — from their NYC hardcore-punk teens through Def Jam stardom, self-produced reinvention, Adam Yauch\'s activism, and Yauch\'s death in 2012.',
+      },
+      {
+        q: 'Who are the Beastie Boys?',
+        a: 'A New York trio — Mike D, Ad-Rock, and MCA (Adam Yauch) — who began as a hardcore punk band, became the first hip-hop act to hit #1 with Licensed to Ill (1986), and built a decades-long catalog (Paul\'s Boutique, Check Your Head, Ill Communication, Hello Nasty) before Yauch\'s death.',
+      },
+      {
+        q: 'Why the unusual format — essays, cookbook, mixtapes, guest chapters?',
+        a: 'It mirrors the band\'s own aesthetic: genre-mixing, collage-based, collaborative, unwilling to sit in one format. Contributors include Amy Poehler, Colson Whitehead, Spike Jonze, Wes Anderson, Kate Schellenbach, and chef Roy Choi.',
+      },
+      {
+        q: 'Is it about MCA (Adam Yauch)?',
+        a: 'It is centered on the whole band but functions as an extended tribute to Yauch, who died of cancer in 2012. The book is explicit that the band didn\'t break up — his death ended it.',
+      },
+      {
+        q: 'Who is it for?',
+        a: 'Beastie Boys fans, hip-hop and NYC-scene readers, and anyone studying creative partnerships, band reinvention, or how friendship functions as the actual infrastructure of collaborative work.',
+      },
+    ],
+    quotes: [
+      {
+        text: 'Hardcore is about limits — shorter, simpler, more speed, more volume — whereas breakbeats and hip hop are all about the limitless.',
+        chapter: 'The Turn to Hip-Hop',
+        context: 'Mike D on the hinge moment where the band\'s hardcore roots gave way to hip-hop.',
+      },
+      {
+        text: 'We just assumed that because Licensed to Ill sold a billion copies, Paul\'s Boutique would do the same. But, like, it didn\'t.',
+        chapter: 'Paul’s Boutique',
+        context: 'Ad-Rock on the record\'s commercial flop on release — before its later reappraisal as a classic.',
+      },
+      {
+        text: 'We got so caught up with making fun of that rock-star persona that we became that persona. Became what we hated.',
+        chapter: 'Licensed to Ill',
+        context: 'Ad-Rock on the frat-boy image that made the debut a hit — and that they spent years disowning.',
+      },
+      {
+        text: 'At a certain point pretty early on, enough crazy stuff had already happened that we realized that all we do have, before this started and after it ends, is the three of us.',
+        context: 'On the trio\'s bond as the one constant beneath the reinventions.',
+      },
+      {
+        text: 'This was our last album because Adam got cancer and died. If that hadn\'t happened, we would probably be making a new record as you read this.',
+        chapter: 'Losing Adam Yauch',
+        context: 'Ad-Rock on why Hot Sauce Committee Part Two was the final Beastie Boys record — no breakup, only loss.',
+      },
+      {
+        text: 'A good path to creating something mediocre is having rigid rules for what you\'re making and how you\'re making it.',
+        context: 'Ad-Rock on why the band kept dissolving its own formulas.',
+      },
+    ],
+    chapters: [
+      {
+        number: 1,
+        title: 'NYC Roots',
+        keyIdea: 'Three different corners of the city produced the same restless kids.',
+        summary: 'Diamond, Horovitz, and Yauch grew up in different NYC milieus before hardcore punk pulled them into the same rooms. The book frames the city itself — its subways, apartments, and all-ages venues — as a co-author of the band\'s identity.',
+      },
+      {
+        number: 2,
+        title: 'Hardcore Punk Beginnings',
+        keyIdea: 'The band started as noise before it was music.',
+        summary: 'Formed in 1981, the group played matinees at CBGB alongside Bad Brains and the Misfits, with Kate Schellenbach on drums. The book treats this scene as the source of the trio\'s speed, humor, and DIY instinct — and Schellenbach\'s later departure is addressed directly, including in a chapter she authors herself.',
+      },
+      {
+        number: 3,
+        title: 'The Turn to Hip-Hop',
+        keyIdea: 'Rap offered what hardcore\'s rules couldn\'t — room to improvise.',
+        summary: 'The band pivots from hardcore\'s limits to hip-hop\'s limitless, crossing paths with Rick Rubin and Russell Simmons and signing to the fledgling Def Jam. The shift is framed less as abandoning punk than as outgrowing its constraints.',
+      },
+      {
+        number: 4,
+        title: 'Licensed to Ill and the Def Jam Fallout',
+        keyIdea: 'Fame handed them a persona they had to spend years disowning.',
+        summary: 'The 1986 debut became the first hip-hop album to hit #1, but the memoir is unsparing about the frat-boy caricature that made it a hit — including a direct apology for the album\'s original working title and the racial double standard behind MTV\'s embrace of “Fight for Your Right.” The cycle ends in a messy break from Def Jam.',
+      },
+      {
+        number: 5,
+        title: 'Moving to LA and Paul’s Boutique',
+        keyIdea: 'The commercial flop that time turned into the masterpiece.',
+        summary: 'Relocating to Los Angeles and working with the Dust Brothers, the band makes 1989\'s dense, sample-collage Paul\'s Boutique — which underperforms against inflated expectations before its slow rehabilitation into a hip-hop touchstone.',
+      },
+      {
+        number: 6,
+        title: 'Building G-Son — Check Your Head',
+        keyIdea: 'Owning the room changes what you\'re allowed to make.',
+        summary: 'The band converts a former ballroom into G-Son Studios — basketball hoop, half-pipe, and all — and starts playing their own instruments again. 1992\'s Check Your Head documents that self-built, self-produced turn, folding punk, funk, and jazz into the sound on their own terms.',
+      },
+      {
+        number: 7,
+        title: 'Ill Communication and the Tibetan Freedom Concert',
+        keyIdea: 'Yauch\'s activism pulled the whole band outward.',
+        summary: '1994\'s Ill Communication (including “Sabotage”) extends the G-Son era, while Yauch\'s travels in Nepal and India and his conversion to Buddhism lead him to found the Tibetan Freedom Concert series in 1996. His activism becomes inseparable from the band\'s maturing identity.',
+      },
+      {
+        number: 8,
+        title: 'Growing Up in Public',
+        keyIdea: 'Maturity meant reckoning with who they\'d been, not just who they\'d become.',
+        summary: 'Later albums and guest material — including Ada Calhoun\'s essay on the band\'s early sexism — track the members aging into fatherhood, restraint, and public accountability for earlier missteps.',
+      },
+      {
+        number: 9,
+        title: 'Losing Adam Yauch',
+        keyIdea: 'A band can\'t survive the death of one-third of itself — and this book is the proof of how much that third mattered.',
+        summary: 'Yauch\'s cancer diagnosis and death in 2012 end the band mid-sentence — Hot Sauce Committee Part Two becomes the final album by circumstance, not choice. The closing material treats the whole memoir as an extended act of grief and tribute: there was no breakup, only loss.',
+      },
+    ],
+    continueReading: [
+      {
+        title: 'Girl in a Band',
+        author: 'Kim Gordon',
+        reason: 'The same downtown NYC scene from a very different vantage — art-world remove where the Beasties bring joy and motion.',
+        url: 'https://www.amazon.com/s?k=Girl+in+a+Band+Kim+Gordon',
+      },
+      {
+        title: 'Can’t Stop Won’t Stop',
+        author: 'Jeff Chang',
+        reason: 'The hip-hop history the Beasties came up inside — Def Jam, the crossover, and the culture they crossed into.',
+        url: 'https://www.amazon.com/s?k=Cant+Stop+Wont+Stop+Jeff+Chang',
+      },
+      {
+        title: 'Life',
+        author: 'Keith Richards',
+        reason: 'Another band memoir where brotherhood is the real subject — the friendship beneath the music, and what it costs.',
+        url: 'https://www.amazon.com/s?k=Life+Keith+Richards',
+      },
+    ],
+    videos: [
+      {
+        title: 'Beastie Boys Story',
+        creator: 'Spike Jonze (Apple TV+)',
+        url: 'https://www.youtube.com/results?search_query=Beastie+Boys+Story+Spike+Jonze+trailer',
+        description: 'The Spike Jonze-directed live documentary adapted from the book — Mike D and Ad-Rock telling the story on stage.',
+        kind: 'explainer',
+      },
+      {
+        title: 'Mike D & Ad-Rock — Beastie Boys Book interviews',
+        creator: '2018 book tour',
+        url: 'https://www.youtube.com/results?search_query=Beastie+Boys+Book+Mike+D+Ad-Rock+interview+2018',
+        description: 'Book-tour conversations on the band\'s reinventions, MCA, and why they wrote it the way they did.',
+        kind: 'interview',
+      },
+    ],
+  },
 ];
 
 // ─── Helper Functions ────────────────────────────────────────────
