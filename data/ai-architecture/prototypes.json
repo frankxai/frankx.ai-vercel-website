@@ -127,9 +127,9 @@
       }
     ],
     "relatedPatterns": [
-      "rag-production",
-      "vector-database-selection",
-      "ai-gateway"
+      "agentic-rag",
+      "graphrag-knowledge-graph",
+      "llm-gateway-routing"
     ],
     "cloudProviders": [
       "aws",
@@ -261,8 +261,7 @@
     ],
     "codeExamples": [],
     "relatedPatterns": [
-      "multi-agent-orchestration",
-      "mcp-server-architecture"
+      "mcp-as-architecture"
     ],
     "cloudProviders": [
       "multi-cloud"
@@ -438,9 +437,9 @@
       }
     ],
     "relatedPatterns": [
-      "ai-gateway",
-      "mcp-server-architecture",
-      "llmops"
+      "llm-gateway-routing",
+      "mcp-as-architecture",
+      "context-engineering-mvc"
     ],
     "cloudProviders": [
       "multi-cloud"
@@ -652,9 +651,9 @@
       }
     ],
     "relatedPatterns": [
-      "multi-agent-orchestration",
-      "rag-production",
-      "ai-gateway"
+      "multi-agent-code-assistant",
+      "agentic-rag",
+      "llm-gateway-routing"
     ],
     "cloudProviders": [
       "multi-cloud"
@@ -933,9 +932,8 @@
       }
     ],
     "relatedPatterns": [
-      "security-governance",
-      "multi-agent-orchestration",
-      "observability"
+      "multi-agent-code-assistant",
+      "llm-gateway-routing"
     ],
     "cloudProviders": [
       "aws",
