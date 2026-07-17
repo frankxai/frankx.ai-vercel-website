@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Generative Model Registry — multimodal (image, video, audio, voice, embedding, world). Source of truth for /models. Text LLMs live in model-registry.json (/llm-hub).",
   "_version": "1.0.0",
-  "_updated": "2026-05-29",
+  "_updated": "2026-07-17",
   "_maintainer": "FrankX Intelligence Pipeline (/new-gen-model)",
   "_note": "Multimodal models price per image/second/minute, not per token. We use pricing_note + access[] instead of token pricing. Vendor figures pending independent reproduction; verify with provider.",
 
@@ -53,6 +53,7 @@
   "organizations": {
     "google": { "name": "Google DeepMind", "url": "https://deepmind.google", "accent_color": "#4285F4" },
     "openai": { "name": "OpenAI", "url": "https://openai.com", "accent_color": "#10b981" },
+    "meta": { "name": "Meta (Superintelligence Labs)", "url": "https://ai.meta.com", "accent_color": "#0668E1" },
     "black-forest-labs": { "name": "Black Forest Labs", "url": "https://blackforestlabs.ai", "accent_color": "#111827" },
     "midjourney": { "name": "Midjourney", "url": "https://midjourney.com", "accent_color": "#6d28d9" },
     "ideogram": { "name": "Ideogram", "url": "https://ideogram.ai", "accent_color": "#ef4444" },
@@ -117,6 +118,22 @@
       ],
       "highlight": "Best complex-instruction following",
       "sources": ["https://till-freitag.com/en/blog/ai-image-generation-models-2026"]
+    },
+    "muse-image": {
+      "name": "Muse Image",
+      "category": "image",
+      "organization": "meta",
+      "released": "2026-07",
+      "status": "ga",
+      "io": "text + image → image",
+      "license": "proprietary",
+      "tagline": "Meta's first Superintelligence Labs image model — agentic generation with clean in-image text.",
+      "best_for": ["Legible text inside images (guides, infographics)", "Photo blending and multi-image editing", "Free everyday generation across Meta surfaces"],
+      "watch_out": "Consumer surfaces first (Meta AI, WhatsApp, IG Stories US) — no standalone developer API at launch.",
+      "pricing_note": "Free via Meta AI / meta.ai / IG Stories (US) / WhatsApp (limited); Meta One subscription above free limits",
+      "access": [{ "name": "Meta AI", "url": "https://ai.meta.com" }],
+      "highlight": "#2 text-to-image + editing (behind GPT Image 2)",
+      "sources": ["https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/", "https://techcrunch.com/2026/07/07/meta-rolls-out-muse-a-new-ai-image-generator/", "https://www.axios.com/2026/07/07/ai-meta-image-generator"]
     },
     "flux-2": {
       "name": "FLUX 2",
@@ -213,7 +230,7 @@
       "tagline": "Precise object-level editing and brand consistency inside the Gemini stack.",
       "best_for": ["Object-level edits (swap, resize, recolor)", "Brand-consistent iterations", "Grounded, educational visuals"],
       "watch_out": "Best as an editor/iterator; for cinematic hero stills pair with Imagen 4.",
-      "pricing_note": "Per-image via Gemini API (Flash Image tiers)",
+      "pricing_note": "Per-image via Gemini API (Flash Image tiers; Nano Banana 2 Lite is the fastest/cheapest tier, Jul 2026)",
       "access": [{ "name": "Gemini API / AI Studio", "url": "https://aistudio.google.com" }],
       "highlight": "Best precise editing",
       "frankx_note": "FrankX default for grounded infographics + brand iterations via the nb-image pipeline.",
@@ -266,22 +283,39 @@
       "best_for": ["Highest visual fidelity", "4K / 60fps output", "Lip-sync and longer clips"],
       "pricing_note": "Credit-based subscription",
       "access": [{ "name": "Kling AI", "url": "https://klingai.com" }],
-      "highlight": "Top raw fidelity (4K/60fps)",
-      "sources": ["https://www.atlascloud.ai/blog/guides/best-ai-video-generation-models-2026"]
+      "highlight": "Arena leader — top text-to-video Elo (Jul 2026)",
+      "sources": ["https://www.atlascloud.ai/blog/guides/best-ai-video-generation-models-2026", "https://llm-stats.com/leaderboards/best-ai-for-video-generation"]
+    },
+    "seedance-2-5": {
+      "name": "Seedance 2.5",
+      "category": "video",
+      "organization": "bytedance",
+      "released": "2026-06",
+      "status": "ga",
+      "io": "text / image / audio / 3D refs → video",
+      "license": "proprietary",
+      "tagline": "Native 4K 30-second clips with synchronized audio from up to 50 reference inputs.",
+      "best_for": ["Long single-shot clips (30s native)", "Native 4K + 10-bit color", "Reference-heavy workflows (up to 50 multimodal inputs)"],
+      "watch_out": "API reached BytePlus mid-July 2026 — Western access still routes through BytePlus / Volcengine partners.",
+      "pricing_note": "Credit-based via BytePlus / Volcengine",
+      "access": [{ "name": "BytePlus", "url": "https://www.byteplus.com" }, { "name": "Volcengine", "url": "https://www.volcengine.com" }],
+      "highlight": "30s native 4K + synced audio",
+      "sources": ["https://thenextweb.com/news/bytedance-seedance-2-5-ai-video-4k-30-seconds", "https://www.atlascloud.ai/blog/guides/seedance-2-5-release-date-4k-workflow-guide"]
     },
     "seedance-2": {
       "name": "Seedance 2.0",
       "category": "video",
       "organization": "bytedance",
       "released": "2026",
-      "status": "ga",
+      "status": "legacy",
       "io": "text / image → video",
       "license": "proprietary",
-      "tagline": "Top of the Artificial Analysis video leaderboard for raw quality.",
+      "tagline": "Former Artificial Analysis leaderboard leader — superseded by Seedance 2.5.",
       "best_for": ["Benchmark-leading fidelity", "Short-form social video", "Fast iteration"],
+      "watch_out": "Superseded by Seedance 2.5 (announced June 23, 2026) — start new work on 2.5.",
       "pricing_note": "Credit-based via Volcengine / partners",
       "access": [{ "name": "Volcengine", "url": "https://www.volcengine.com" }],
-      "highlight": "#1 Artificial Analysis (raw quality)",
+      "highlight": "Superseded by Seedance 2.5",
       "sources": ["https://www.atlascloud.ai/blog/guides/best-ai-video-generation-models-2026"]
     },
     "runway-gen-4-5": {
@@ -387,7 +421,7 @@
       "license": "proprietary",
       "tagline": "The quality and ecosystem leader — turns an idea into a finished song.",
       "best_for": ["Full songs with vocals", "Genre breadth", "Fast idea → finished track"],
-      "watch_out": "Litigation-active on training data; prefer Udio/ElevenLabs for client-facing commercial work.",
+      "watch_out": "Litigation-active with Sony and UMG (discovery ongoing as of July 2026); prefer Udio/ElevenLabs for client-facing commercial work.",
       "pricing_note": "Free tier + Pro/Premier subscription",
       "access": [{ "name": "Suno", "url": "https://suno.com" }],
       "highlight": "#1 audio quality (ELO ~1293)",
@@ -401,16 +435,16 @@
       "released": "2026",
       "status": "ga",
       "io": "text / lyrics → song",
-      "license": "proprietary (UMG-licensed path)",
+      "license": "proprietary (licensed: UMG, Warner, Merlin, Kobalt)",
       "tagline": "The most musically-minded tool with the cleanest licensing story.",
-      "best_for": ["Stem downloads + key control", "Audio-to-audio remixing", "Commercial-safe music (UMG path)"],
-      "pricing_note": "Free tier + subscription",
+      "best_for": ["Stem downloads + key control", "Audio-to-audio remixing", "Commercial-safe music (licensed path)"],
+      "pricing_note": "Free tier + subscription (Pro: 6,000 monthly credits)",
       "access": [{ "name": "Udio", "url": "https://udio.com" }],
       "highlight": "Musicality + licensing",
       "sources": ["https://www.chartlex.com/blog/marketing/ai-music-generator-comparison-2026"]
     },
     "elevenlabs-music": {
-      "name": "ElevenLabs Music",
+      "name": "ElevenLabs Music (v2)",
       "category": "audio",
       "organization": "elevenlabs",
       "released": "2026",
@@ -418,8 +452,8 @@
       "io": "text → song",
       "license": "proprietary (licensed training)",
       "tagline": "Licensed-trained music with leading vocal realism — built for commercial use.",
-      "best_for": ["Commercial / client-facing music", "Vocal realism", "Brand-safe licensing"],
-      "pricing_note": "Subscription / API credits",
+      "best_for": ["Commercial / client-facing music", "Vocal realism + mid-track style shifts (v2)", "Brand-safe licensing"],
+      "pricing_note": "Subscription / API credits — v1/v2 API pricing cut up to 50% (Jul 2026); commercial use from $6/mo Starter",
       "access": [{ "name": "ElevenLabs", "url": "https://elevenlabs.io" }],
       "highlight": "Licensed + vocal realism",
       "sources": ["https://decrypt.co/369237/elevenlabs-stability-ai-new-music-models-suno"]
@@ -625,5 +659,5 @@
     }
   },
 
-  "last_updated": "2026-05-29"
+  "last_updated": "2026-07-17"
 }

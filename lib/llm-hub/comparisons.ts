@@ -134,11 +134,11 @@ export const COMPARISONS: Comparison[] = [
     models: ['claude-fable-5', 'gemini-3-5-pro'],
     title: 'Claude Fable 5 vs Gemini 3.5 Pro',
     description:
-      'Claude Fable 5 vs Gemini 3.5 Pro: Fable 5 is GA with launch benchmarks; Gemini 3.5 Pro is still Vertex-preview-only with no model card. The honest June 2026 state.',
+      'Claude Fable 5 vs Gemini 3.5 Pro: Fable 5 is GA with launch benchmarks; Gemini 3.5 Pro is still Vertex-preview-only with no model card. The honest July 2026 state.',
     verdict:
       'Not yet a fair fight: Fable 5 is generally available with published numbers; Gemini 3.5 Pro remains a limited Vertex preview with no model card, benchmarks, or pricing. Today, Fable 5 wins by forfeit \u2014 revisit at Gemini GA.',
     analysis: [
-      'This page exists because the search query exists \u2014 and most answers to it will pretend both models are shipping. They are not. Claude Fable 5 went GA on June 9, 2026 with launch benchmarks (95.0% SWE-Bench Verified, ~80% SWE-Bench Pro, vendor-claimed). Gemini 3.5 Pro was announced at I/O on May 19 but as of mid-June remains a limited Vertex preview: no model card, no benchmarks, no public pricing.',
+      'This page exists because the search query exists \u2014 and most answers to it will pretend both models are shipping. They are not. Claude Fable 5 went GA on June 9, 2026 with launch benchmarks (95.0% SWE-Bench Verified, ~80% SWE-Bench Pro, vendor-claimed). Gemini 3.5 Pro was announced at I/O on May 19 but as of mid-July remains a limited Vertex preview — GA slipped from June to July, with no model card, no benchmarks, and no public pricing.',
       'The circulating cross-lab figure puts the GA Gemini generation (3.1 Pro) at 54.2% SWE-Bench Pro \u2014 roughly 26 points behind Fable 5\u2019s launch number. If agentic coding is the workload, the gap today is generational. Google\u2019s GA answer right now is Gemini 3.5 Flash at $1.5/$9: a budget-and-speed pick, not a flagship duel.',
       'What would change this verdict: Gemini 3.5 Pro shipping GA with a model card that closes the agentic-coding gap, or pricing that undercuts hard enough to win the cost-per-outcome math. We will re-run this page when that happens \u2014 it is a living comparison, not a hot take.',
     ],
