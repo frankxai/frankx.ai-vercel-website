@@ -408,7 +408,7 @@ export const domainSources: Record<string, ResearchSource[]> = {
   'agentic-life-architecture': [
     { name: 'FrankX', title: 'Agentic Operating System Standard (public)', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
     { name: 'FrankX', title: 'Agentic Architecture Field Guide', url: 'https://github.com/frankxai/agentic-architecture-field-guide', type: 'official' },
-    { name: 'FrankX', title: 'Agentic Life OS', url: 'https://github.com/frankxai/agentic-life-os', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Creator Skills', url: 'https://github.com/frankxai/agentic-creator-skills', type: 'official' },
     { name: 'FrankX', title: 'Agentic Creator OS (ACOS)', url: 'https://github.com/frankxai/agentic-creator-os', type: 'official' },
     { name: 'FrankX', title: 'Starlight Intelligence System', url: 'https://github.com/frankxai/Starlight-Intelligence-System', type: 'official' },
     { name: 'FrankX', title: 'Starlight Memory — sovereign provider contract', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
@@ -481,6 +481,29 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'arXiv', title: 'MAESTRO multi-agent evaluation suite', url: 'https://arxiv.org/html/2601.00481v1', type: 'preprint' },
     { name: 'Goodeye Labs', title: 'Top AI Agent Evaluation Tools 2026', url: 'https://www.goodeyelabs.com/articles/top-ai-agent-evaluation-tools-2026', type: 'blog' },
     { name: 'Latitude', title: 'Agent-first evaluation comparison guide', url: 'https://latitude.so/blog/agent-first-comparison-guide-vs-braintrust', type: 'blog' },
+  ],
+
+  'agentic-life-observatory': [
+    { name: 'FrankX', title: 'Agentic Operating System Standard', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Architecture Field Guide', url: 'https://github.com/frankxai/agentic-architecture-field-guide', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Memory', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Evals', url: 'https://github.com/frankxai/starlight-evals', type: 'official' },
+    { name: 'Nous Research', title: 'Hermes Agent Documentation', url: 'https://hermes-agent.nousresearch.com/docs', type: 'official' },
+    { name: 'Model Context Protocol', title: 'Model Context Protocol Documentation', url: 'https://modelcontextprotocol.io/', type: 'official' },
+    { name: 'A2A Project', title: 'Agent2Agent Protocol Documentation', url: 'https://a2a-protocol.org/latest/', type: 'official' },
+    { name: 'Mem0', title: 'Mem0 Documentation', url: 'https://docs.mem0.ai/', type: 'official' },
+    { name: 'Zep', title: 'Graphiti Documentation', url: 'https://help.getzep.com/graphiti/graphiti/overview', type: 'official' },
+    { name: 'Letta', title: 'Letta Documentation', url: 'https://docs.letta.com/', type: 'official' },
+    { name: 'LangChain', title: 'LangGraph Overview', url: 'https://docs.langchain.com/oss/python/langgraph/overview', type: 'official' },
+    { name: 'OpenAI', title: 'OpenAI Agents SDK', url: 'https://openai.github.io/openai-agents-python/', type: 'official' },
+    { name: 'Google', title: 'Agent Development Kit Documentation', url: 'https://google.github.io/adk-docs/', type: 'official' },
+    { name: 'OpenFang', title: 'OpenFang Agent Operating System', url: 'https://github.com/RightNow-AI/openfang', type: 'official' },
+    { name: 'n8n', title: 'n8n Documentation', url: 'https://docs.n8n.io/', type: 'official' },
+    { name: 'Braintrust', title: 'Braintrust Documentation', url: 'https://www.braintrust.dev/docs', type: 'official' },
+    { name: 'Arize AI', title: 'Phoenix Documentation', url: 'https://arize.com/docs/phoenix', type: 'official' },
+    { name: 'Langfuse', title: 'Langfuse Documentation', url: 'https://langfuse.com/docs', type: 'official' },
+    { name: 'Confident AI', title: 'DeepEval Documentation', url: 'https://deepeval.com/docs/getting-started', type: 'official' },
+    { name: 'Ragas', title: 'Ragas Documentation', url: 'https://docs.ragas.io/', type: 'official' },
   ],
 
   'model-arena': [
