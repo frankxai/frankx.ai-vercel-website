@@ -38,7 +38,7 @@ Here is the actual structure of my primary CLAUDE.md memory:
 
 ## Brand Positioning
 Frank = Top Creator. Top AI Architect. Humble.
-- Former AI architect at Oracle
+- AI Architect & Creator
 - 12,000+ AI songs, music production, generative art
 - Title: "AI Architect"
 
@@ -266,7 +266,7 @@ The identity layer is the bedrock. It answers: who am I working for, and what ar
 
 ```
 CLAUDE.md (project root):
-├── Brand positioning: Frank Riemer, former AI architect at Oracle
+├── Brand positioning: Frank Riemer, AI Architect & Creator
 ├── Voice guidelines: Confident, precise, technical authority
 ├── Agent profiles: 6 defined agents with triggers and skills
 ├── Content standards: Every claim verifiable, no filler

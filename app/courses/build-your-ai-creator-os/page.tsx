@@ -90,7 +90,7 @@ export default function BuildYourAICreatorOSPage() {
               </p>
 
               <p className="text-sm text-white/40 mb-2">
-                By Frank Riemer, former AI architect at Oracle
+                By Frank Riemer, AI Architect & Creator
               </p>
               <p className="text-xs text-white/30 mb-10">
                 Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.

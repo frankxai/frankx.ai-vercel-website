@@ -14,7 +14,7 @@ FrankX.AI is the personal and professional brand hub for Frank Riemer, an AI Arc
 ## Core Identity
 
 ### The Dual Identity
-- **Enterprise Credibility**: former AI architect at Oracle
+- **Enterprise Credibility**: AI Architect & Creator
 - **By Night**: Creator of 12,000+ songs with Suno AI
 
 ### Core Message

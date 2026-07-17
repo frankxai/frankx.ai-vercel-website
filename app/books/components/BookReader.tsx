@@ -8,6 +8,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import BookProgress from './BookProgress';
 import BookTOC from './BookTOC';
 import BookChapterNav from './BookChapterNav';
+import ExperimentCard from './ExperimentCard';
 import type { BookChapter, BookTheme, TOCItem } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 
@@ -317,6 +318,17 @@ export default function BookReader({
                   background: rgba(255,255,255,0.06); height: 1px;
                 }
               `}</style>
+
+              {chapter.experiment && (
+                <div className="mt-12">
+                  <ExperimentCard
+                    experiment={chapter.experiment}
+                    borderClass={tc.borderPrimary}
+                    bookSlug={bookSlug}
+                    chapterSlug={chapter.slug}
+                  />
+                </div>
+              )}
 
               <BookChapterNav
                 bookSlug={bookSlug}

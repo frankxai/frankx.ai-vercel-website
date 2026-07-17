@@ -73,7 +73,7 @@ const primaryPaths = [
 ]
 
 const proofPoints = [
-  'Former AI architect at Oracle',
+  'AI Architect & Creator',
   '12,000+ AI songs produced with Suno',
   'FrankX systems documented in public',
   'Independent, evidence-led, and human-led',
@@ -167,7 +167,7 @@ export default function StartPage() {
             without losing the human signal.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/38">
-            Former AI architect at Oracle. Independent project. Not affiliated with, endorsed by,
+            AI Architect & Creator. Independent project. Not affiliated with, endorsed by,
             or sponsored by Oracle.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -88,7 +88,7 @@ Tokens from `design.md`; judgment from `taste.md`; **the answer is usually less.
 
 ## Brand voice
 
-**Frank = Top Creator. Top AI Architect. Humble.** Former AI architect at Oracle; 12,000+ AI songs; helped build a seven-figure business; ships products, code, content. The narrative: he has seen enterprise-scale AI/cloud work up close and now translates that clarity into practical AI systems for creators, entrepreneurs, and operators (ACOS = personal AI CoE; GenCreator = creator CoE; Prompt Library = the tools; Research Hub = the knowledge). Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+**Frank = Top Creator. Top AI Architect. Humble.** AI Architect & Creator; 12,000+ AI songs; helped build a seven-figure business; ships products, code, content. The narrative: he has seen enterprise-scale AI/cloud work up close and now translates that clarity into practical AI systems for creators, entrepreneurs, and operators (ACOS = personal AI CoE; GenCreator = creator CoE; Prompt Library = the tools; Research Hub = the knowledge). Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
 - **DO:** lead with results · precise technical language · show don't tell · confident but understated · let the work speak.
 - **DON'T:** spiritual language · grandiose claims · over-explaining philosophy · self-help-guru tone.

@@ -12,8 +12,8 @@ export interface MouseGlowOptions {
 }
 
 export interface MouseGlowResult<TContainer extends HTMLElement, TGlow extends HTMLElement> {
-  cardRef: React.RefObject<TContainer>
-  glowRef: React.RefObject<TGlow>
+  cardRef: React.MutableRefObject<TContainer | null>
+  glowRef: React.MutableRefObject<TGlow | null>
   handlers: {
     onMouseMove: (e: React.MouseEvent<TContainer>) => void
     onMouseLeave: () => void
@@ -39,8 +39,8 @@ export function useMouseGlow<
   radius = 400,
   opacity = 0.12,
 }: MouseGlowOptions = {}): MouseGlowResult<TContainer, TGlow> {
-  const cardRef = useRef<TContainer>(null!)
-  const glowRef = useRef<TGlow>(null!)
+  const cardRef = useRef<TContainer | null>(null)
+  const glowRef = useRef<TGlow | null>(null)
   const rafId = useRef<number>(0)
 
   const applyGlow = useCallback(

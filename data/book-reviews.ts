@@ -9485,6 +9485,96 @@ export const bookReviews: BookReview[] = [
       },
     ],
   },
+  {
+    slug: 'the-power-of-eight',
+    title: 'The Power of Eight',
+    author: 'Lynne McTaggart',
+    publicationYear: 2017,
+    coverImage: '/images/library/power-of-eight-cover.jpg',
+    hasCover: false,
+    amazonUrl: 'https://www.amazon.com/Power-Eight-Harnessing-Miraculous-Energies/dp/1501115650',
+    categories: ['Human Potential', 'Group Dynamics', 'Intention Research'],
+    reviewDate: '2026-06-22',
+    rating: 4,
+    readingTime: '6 min',
+    tldr: 'McTaggart ran thousands of controlled intention experiments online and in live groups, finding that small groups of eight people focusing a healing intention for ten minutes show measurable physiological effects in the target — and unexpected healing effects in the senders. The evidence is preliminary but the documentation is unusually rigorous for the genre.',
+    bestFor: ['Readers interested in the science of group intention, healing research, and the social amplification of attention.'],
+    keyInsights: [
+      'Small groups of eight people directing a shared intention for a fixed period produced measurable changes in the target person\'s physiological markers in a series of documented trials across multiple countries.',
+      'A surprising finding: participants in the sending group consistently reported their own unexpected healings — suggesting that focused altruistic intention has a measurable feedback effect on the sender.',
+      'McTaggart\'s Intention Experiments (the online large-scale version) included peer-reviewed studies on plant growth, water contamination, and PTSD symptoms in veterans — not all replicated, but some published in peer-reviewed journals.',
+      'The mechanism McTaggart proposes — quantum field entanglement between sender and receiver — remains contested. The documented effects themselves are the stronger empirical claim.',
+      'Group coherence amplifies individual signal: the same intention expressed by eight people in rapport appears to outperform the same intention expressed by eight people without social connection.',
+    ],
+    faq: [
+      {
+        q: 'Is there peer-reviewed evidence for intention experiments?',
+        a: 'Some. McTaggart collaborated with researchers including Gary Schwartz at the University of Arizona and published results from several plant studies and a PTSD trial. Not all studies have been independently replicated. The book presents the evidence honestly with methodology sections rather than hiding study design.',
+      },
+      {
+        q: 'What is the Power of Eight format in practice?',
+        a: 'Eight participants sit in a circle. One person states a specific, concrete healing intention for a person or situation outside the group. The group focuses together for ten minutes in silence or with gentle guidance. Results are documented in a standardized form. McTaggart\'s most documented finding is the boomerang effect on senders.',
+      },
+      {
+        q: 'How does this relate to Wonderproof?',
+        a: 'Chapter 7 of Wonderproof (The Field of Others) draws on McTaggart\'s group coherence research as evidence that attention is not purely individual — shared focus produces measurable effects that solo practice does not.',
+      },
+      {
+        q: 'Is The Intention Experiment (2007) a better starting point?',
+        a: 'The Intention Experiment covers the earlier science more systematically. The Power of Eight is more personal and documents the group format with more case studies. Read The Intention Experiment for the science foundation, The Power of Eight for the practice format.',
+      },
+      {
+        q: 'What are the limitations of the research?',
+        a: 'Sample sizes are small in most studies. Independent replication is limited. The theoretical framework (quantum entanglement as mechanism) goes beyond what the data supports. The documented phenomena are interesting; the explanation is speculative.',
+      },
+    ],
+    relatedBook: 'wonderproof',
+  },
+  {
+    slug: 'altered-traits',
+    title: 'Altered Traits',
+    author: 'Daniel Goleman and Richard Davidson',
+    publicationYear: 2017,
+    coverImage: '/images/library/altered-traits-cover.jpg',
+    hasCover: false,
+    amazonUrl: 'https://www.amazon.com/Altered-Traits-Science-Reveals-Meditation/dp/0399184384',
+    categories: ['Neuroscience', 'Meditation', 'Human Potential'],
+    reviewDate: '2026-06-22',
+    rating: 5,
+    readingTime: '7 min',
+    tldr: 'A methodical audit of meditation research by two scientists who have studied it for 50 years combined. Goleman and Davidson separate what the data actually shows (reduced amygdala reactivity, sustained attention gains, structural brain changes with long practice) from overclaimed benefits, and define what "deep practice" looks like compared to the light doses most apps deliver.',
+    bestFor: ['Anyone who wants to know what meditation actually does — and does not do — based on rigorous evidence rather than marketing claims.'],
+    keyInsights: [
+      'Most meditation studies use doses of 5–20 minutes and measure self-reported wellbeing. These produce small, real effects. The large effects — structural brain changes, reduced cortisol reactivity, sustained attentional control — require years of intensive practice, not months of app use.',
+      'The "altered traits" framing is precise: lasting change in baseline personality, reactivity, and cognition requires practice deep enough to alter neural structure — not just regular sessions that produce temporary states.',
+      'Amygdala reactivity — the speed and intensity of the stress response — is measurably reduced in long-term practitioners in well-controlled lab studies, including during novel stressors they have not encountered before.',
+      'Richard Davidson\'s lab studies on attention (with practitioners averaging 44,000 hours of lifetime practice) found response accuracy and alertness at age 60+ matching people decades younger — a structural finding, not self-report.',
+      'Goleman and Davidson\'s honest assessment: the field is contaminated by "McMindfulness" research that studies insufficient doses and overstates outcomes. Their meta-analysis strips these out, leaving a smaller but more credible evidence base.',
+    ],
+    faq: [
+      {
+        q: 'Does meditation actually change the brain?',
+        a: 'Yes, with meaningful practice. Studies show increased cortical thickness in areas linked to attention and interoception, and reduced amygdala gray matter density in long-term practitioners. These structural changes are dose-dependent — apps delivering 10 minutes per day are unlikely to produce them.',
+      },
+      {
+        q: 'What does the evidence say about stress reduction?',
+        a: 'MBSR (Mindfulness-Based Stress Reduction) has the most replicated evidence: 8-week programs show real reductions in subjective stress, anxiety, and inflammatory markers. The effect size is moderate, not dramatic. For sustained cortisol reduction at baseline, the evidence points to deep, long-term practice.',
+      },
+      {
+        q: 'How does this relate to the Wonderproof framework?',
+        a: 'Chapter 4 (The Attention Experiment) draws on Amishi Jha\'s work, which Goleman and Davidson also cite as among the better-controlled studies. Altered Traits provides the broader scientific context for what attention training can and cannot produce at different dose levels.',
+      },
+      {
+        q: 'Is the book accessible without a science background?',
+        a: 'Yes. Goleman and Davidson write for intelligent general readers. They explain study design, effect sizes, and why they discount certain studies without requiring statistical background. The most technical sections are clearly signposted.',
+      },
+      {
+        q: 'What is the main criticism of popular mindfulness claims?',
+        a: 'That studies typically use self-selected populations, insufficient practice doses, and outcome measures prone to expectation effects (self-report). Goleman and Davidson apply stringent inclusion criteria to their review and are explicit when they cannot find solid evidence for widely promoted claims.',
+      },
+    ],
+    relatedBook: 'wonderproof',
+  },
 ];
 
 // ─── Helper Functions ────────────────────────────────────────────

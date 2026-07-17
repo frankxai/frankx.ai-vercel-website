@@ -366,7 +366,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Frank',
-  jobTitle: 'Creator and former AI architect at Oracle',
+  jobTitle: 'AI Architect & Creator',
   offers: [
     { '@type': 'Offer', name: 'Vibe OS', url: '...' },
     // ... additional products

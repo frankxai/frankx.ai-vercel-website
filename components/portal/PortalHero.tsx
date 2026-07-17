@@ -20,7 +20,7 @@ const STATUS_LABEL: Record<PortalStatus, string> = {
 }
 
 // Tech spectrum (emerald) is default; soul/bridge lean amber, matching how
-// /allies treats Ana/Ahmad. See design.md §3 + lib/design-system.ts.
+// /allies uses the same measured display language. See design.md §3 + lib/design-system.ts.
 const ACCENT_STYLES: Record<
   PortalAccent,
   { badge: string; glowA: string; glowB: string; cta: string }

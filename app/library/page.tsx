@@ -117,6 +117,10 @@ const categoryColors: Record<string, string> = {
   Music: 'bg-pink-500/10 text-pink-300 border-pink-500/25',
   'Rockstar Energy': 'bg-orange-500/10 text-orange-300 border-orange-500/25',
   Scenes: 'bg-sky-500/10 text-sky-300 border-sky-500/25',
+  Scaling: 'bg-orange-500/10 text-orange-300 border-orange-500/25',
+  'Business Strategy': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  Leadership: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Platforms: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
 };
 
 function StarRating({ rating }: { rating: number }) {

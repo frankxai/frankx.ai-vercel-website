@@ -1,0 +1,20 @@
+## CONCEPT
+Carousel hook-slide background for the "repair in public" audit campaign: a healthy signal breaking apart — the visual metaphor for silent production rot on a site that looks fine.
+
+## COMPOSITION
+Portrait. A single thin horizontal signal line at the lower third, fracturing into broken, offset segments toward the right edge. Faint grid of dim console tick marks. Large empty center-left area reserved for bold typography set later in Canva. Vignette toward edges.
+
+## SCENE
+Near-black glass surface with subtle graphite texture, an abstract intelligence-console material world — no objects, no environment storytelling.
+
+## LIGHTING
+Cinematic rim light from top right, high contrast, deep blacks preserved.
+
+## PALETTE
+Void black (#0a0a0b) base, graphite grays, the signal line rendered in cyan (#06b6d4) fading to emerald (#10b981) at the fracture point — no amber, no gold. (v2 Tech-spectrum correction, 2026-07-04.)
+
+## MOOD
+Quiet power, precision, controlled alarm. Premium editorial, not sci-fi.
+
+## STYLE REFERENCES
+FrankX brand world: black glass, brushed metal, signal lines. No text, no logos, no people, no neon-hacker cliché, no soft SaaS gradients.
