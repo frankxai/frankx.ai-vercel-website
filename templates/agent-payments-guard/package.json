@@ -1,0 +1,28 @@
+{
+  "name": "ai-arch-template-agent-payments-guard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fail-closed, verify-only payments-governance MCP server. Verifies Ed25519-signed mandates and operator spend caps, produces verdicts and pending-approval objects. No transfer tool exists, by design. UNAUDITED — not for live funds.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "agent-payments-guard": "dist/src/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "start:http": "node dist/src/index.js --http",
+    "test": "tsc && node --test dist/test/guard.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
