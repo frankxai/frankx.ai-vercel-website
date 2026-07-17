@@ -1,0 +1,76 @@
+{
+  "at": "2026-07-16T03:37:33.035Z",
+  "book": "hope",
+  "results": [
+    {
+      "n": 1,
+      "id": "clothbound",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v01-clothbound.jpg",
+      "bytes": 3516341
+    },
+    {
+      "n": 2,
+      "id": "symbol",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v02-symbol.jpg",
+      "bytes": 2485443
+    },
+    {
+      "n": 3,
+      "id": "conceptual",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v03-conceptual.jpg",
+      "bytes": 2322124
+    },
+    {
+      "n": 4,
+      "id": "atmospheric",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v04-atmospheric.jpg",
+      "bytes": 2480854
+    },
+    {
+      "n": 5,
+      "id": "poster",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v05-poster.jpg",
+      "bytes": 2430184
+    },
+    {
+      "n": 6,
+      "id": "lettering",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v06-lettering.jpg",
+      "bytes": 2847856
+    },
+    {
+      "n": 7,
+      "id": "generative",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v07-generative.jpg",
+      "bytes": 2853891
+    },
+    {
+      "n": 8,
+      "id": "quiet-white",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v08-quiet-white.jpg",
+      "bytes": 2531344
+    },
+    {
+      "n": 9,
+      "id": "rebel",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v09-rebel.jpg",
+      "bytes": 2771586
+    },
+    {
+      "n": 10,
+      "id": "liquid-inlay",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hope\\v10-liquid-inlay.jpg",
+      "bytes": 2523584
+    }
+  ]
+}

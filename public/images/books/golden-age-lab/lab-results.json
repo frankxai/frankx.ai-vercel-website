@@ -1,0 +1,55 @@
+{
+  "at": "2026-07-16T02:21:33.924Z",
+  "results": [
+    {
+      "n": 6,
+      "id": "v06-hische-lettering-art",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\golden-age-lab\\gai-v06-hische-lettering-art.jpg",
+      "model": "gemini-3.1-flash-image-preview",
+      "mimeType": "image/jpeg",
+      "bytes": 2784678,
+      "source": "process.env.GEMINI_API_KEY"
+    },
+    {
+      "n": 7,
+      "id": "v07-pak-generative-minimal",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\golden-age-lab\\gai-v07-pak-generative-minimal.jpg",
+      "model": "gemini-3.1-flash-image-preview",
+      "mimeType": "image/jpeg",
+      "bytes": 2801135,
+      "source": "process.env.GEMINI_API_KEY"
+    },
+    {
+      "n": 8,
+      "id": "v08-hara-white-quiet-luxury",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\golden-age-lab\\gai-v08-hara-white-quiet-luxury.jpg",
+      "model": "gemini-3.1-flash-image-preview",
+      "mimeType": "image/jpeg",
+      "bytes": 2772921,
+      "source": "process.env.GEMINI_API_KEY"
+    },
+    {
+      "n": 9,
+      "id": "v09-rebel-offwhite-experimental",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\golden-age-lab\\gai-v09-rebel-offwhite-experimental.jpg",
+      "model": "gemini-3.1-flash-image-preview",
+      "mimeType": "image/jpeg",
+      "bytes": 2155540,
+      "source": "process.env.GEMINI_API_KEY"
+    },
+    {
+      "n": 10,
+      "id": "v10-liquid-couture-inlay",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\golden-age-lab\\gai-v10-liquid-couture-inlay.jpg",
+      "model": "gemini-3.1-flash-image-preview",
+      "mimeType": "image/jpeg",
+      "bytes": 2703188,
+      "source": "process.env.GEMINI_API_KEY"
+    }
+  ]
+}

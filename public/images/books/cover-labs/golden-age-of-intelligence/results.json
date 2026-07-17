@@ -1,0 +1,76 @@
+{
+  "at": "2026-07-16T03:57:23.445Z",
+  "book": "golden-age-of-intelligence",
+  "results": [
+    {
+      "n": 1,
+      "id": "clothbound",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v01-clothbound.jpg",
+      "bytes": 3240892
+    },
+    {
+      "n": 2,
+      "id": "symbol",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v02-symbol.jpg",
+      "bytes": 3042611
+    },
+    {
+      "n": 3,
+      "id": "conceptual",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v03-conceptual.jpg",
+      "bytes": 2623172
+    },
+    {
+      "n": 4,
+      "id": "atmospheric",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v04-atmospheric.jpg",
+      "bytes": 2642485
+    },
+    {
+      "n": 5,
+      "id": "poster",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v05-poster.jpg",
+      "bytes": 2430993
+    },
+    {
+      "n": 6,
+      "id": "lettering",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v06-lettering.jpg",
+      "bytes": 2847180
+    },
+    {
+      "n": 7,
+      "id": "generative",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v07-generative.jpg",
+      "bytes": 2552849
+    },
+    {
+      "n": 8,
+      "id": "quiet-white",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v08-quiet-white.jpg",
+      "bytes": 2840189
+    },
+    {
+      "n": 9,
+      "id": "rebel",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v09-rebel.jpg",
+      "bytes": 2537271
+    },
+    {
+      "n": 10,
+      "id": "liquid-inlay",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\golden-age-of-intelligence\\v10-liquid-inlay.jpg",
+      "bytes": 2462268
+    }
+  ]
+}

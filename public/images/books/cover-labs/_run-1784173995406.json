@@ -1,0 +1,81 @@
+{
+  "at": "2026-07-16T03:53:15.406Z",
+  "allResults": [
+    {
+      "slug": "arcanea-creator-principles",
+      "resultsPath": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\results.json",
+      "results": [
+        {
+          "n": 1,
+          "id": "clothbound",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v01-clothbound.jpg",
+          "bytes": 2901731
+        },
+        {
+          "n": 2,
+          "id": "symbol",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v02-symbol.jpg",
+          "bytes": 2379442
+        },
+        {
+          "n": 3,
+          "id": "conceptual",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v03-conceptual.jpg",
+          "bytes": 2788091
+        },
+        {
+          "n": 4,
+          "id": "atmospheric",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v04-atmospheric.jpg",
+          "bytes": 2692677
+        },
+        {
+          "n": 5,
+          "id": "poster",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v05-poster.jpg",
+          "bytes": 2302013
+        },
+        {
+          "n": 6,
+          "id": "lettering",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v06-lettering.jpg",
+          "bytes": 2804101
+        },
+        {
+          "n": 7,
+          "id": "generative",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v07-generative.jpg",
+          "bytes": 2475374
+        },
+        {
+          "n": 8,
+          "id": "quiet-white",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v08-quiet-white.jpg",
+          "bytes": 2788320
+        },
+        {
+          "n": 9,
+          "id": "rebel",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v09-rebel.jpg",
+          "bytes": 2558770
+        },
+        {
+          "n": 10,
+          "id": "liquid-inlay",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-creator-principles\\v10-liquid-inlay.jpg",
+          "bytes": 3265306
+        }
+      ]
+    }
+  ]
+}

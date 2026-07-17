@@ -1,0 +1,3209 @@
+[
+  {
+    "file": "content/blog/01-ai-doesnt-have-to-be-soulless.mdx",
+    "slug": "01-ai-doesnt-have-to-be-soulless",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/02-the-soul-frequency-framework.mdx",
+    "slug": "02-the-soul-frequency-framework",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/08-golden-age-of-intelligence.mdx",
+    "slug": "08-golden-age-of-intelligence",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/30-minute-creator-os-quick-start.mdx",
+    "slug": "30-minute-creator-os-quick-start",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-enterprise-deployment-guide.mdx",
+    "slug": "acos-enterprise-deployment-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-hooks-system-quality-gates.mdx",
+    "slug": "acos-hooks-system-quality-gates",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-philosophy-technology-amplifies.mdx",
+    "slug": "acos-philosophy-technology-amplifies",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-use-cases-creator-types.mdx",
+    "slug": "acos-use-cases-creator-types",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-v10-autonomous-intelligence.mdx",
+    "slug": "acos-v10-autonomous-intelligence",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-v11-visual-intelligence-site-integrity.mdx",
+    "slug": "acos-v11-visual-intelligence-site-integrity",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat: add social cockpit dashboard, downloads, and newsletters",
+    "last_date": "2026-06-18 13:49:32 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat: add social cockpit dashboard, downloads, and newsletters",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/acos-zero-to-production-quickstart.mdx",
+    "slug": "acos-zero-to-production-quickstart",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/aeo-knowledge-graph-2026.mdx",
+    "slug": "aeo-knowledge-graph-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/aeo-playbook-get-cited-by-ai-2026.mdx",
+    "slug": "aeo-playbook-get-cited-by-ai-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/agent-family-architecture.mdx",
+    "slug": "agent-family-architecture",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)"
+    ]
+  },
+  {
+    "file": "content/blog/agent-feed-privacy-first-ai-transparency.mdx",
+    "slug": "agent-feed-privacy-first-ai-transparency",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium visual expansion batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync "
+    ]
+  },
+  {
+    "file": "content/blog/agentic-ai-roadmap-2025.mdx",
+    "slug": "agentic-ai-roadmap-2025",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact rewrite (#194)",
+    "last_date": "2026-07-01 13:10:12 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact re",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "fix: /qr 404 redirect + consolidate emails to frank@frankx.ai + /contact voice (",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/agentic-ai-roadmap-2026.mdx",
+    "slug": "agentic-ai-roadmap-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact re",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): expand premium generated hero batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/agentic-creator-os-complete-guide.mdx",
+    "slug": "agentic-creator-os-complete-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/agentic-creator-os.mdx",
+    "slug": "agentic-creator-os",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/agentic-os-family-foundry-launch.mdx",
+    "slug": "agentic-os-family-foundry-launch",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system",
+      "feat(visual): NB Pro cinematic hero for Foundry launch post",
+      "feat(foundry): FrankX Foundry hub \u2014 the service layer of the Agentic OS family ("
+    ]
+  },
+  {
+    "file": "content/blog/agentic-seo-publishing-masterplan.mdx",
+    "slug": "agentic-seo-publishing-masterplan",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/agentic-workflows-save-hours.mdx",
+    "slug": "agentic-workflows-save-hours",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/agi-2026-opportunities-students-creators.mdx",
+    "slug": "agi-2026-opportunities-students-creators",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-agent-memory-persistent-systems.mdx",
+    "slug": "ai-agent-memory-persistent-systems",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-agents-inner-family.mdx",
+    "slug": "ai-agents-inner-family",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-agents-transform-due-diligence.mdx",
+    "slug": "ai-agents-transform-due-diligence",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): expand premium generated hero batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol"
+    ]
+  },
+  {
+    "file": "content/blog/ai-architecture-patterns-solo-builders.mdx",
+    "slug": "ai-architecture-patterns-solo-builders",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-coe-launch.mdx",
+    "slug": "ai-coe-launch",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-doesnt-have-to-be-soulless.mdx",
+    "slug": "ai-doesnt-have-to-be-soulless",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-engineering-without-hype-willison.mdx",
+    "slug": "ai-engineering-without-hype-willison",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-guide-for-families-and-professionals.mdx",
+    "slug": "ai-guide-for-families-and-professionals",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-health-fitness-athletes-creators-2026.mdx",
+    "slug": "ai-health-fitness-athletes-creators-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ai-image-video-generation-playbook-2026.mdx",
+    "slug": "ai-image-video-generation-playbook-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): expand premium generated hero batch",
+      "feat(blog): launch visual operating system",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links "
+    ]
+  },
+  {
+    "file": "content/blog/ai-model-routing-guide.mdx",
+    "slug": "ai-model-routing-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium generated hero images",
+      "feat(blog): launch visual operating system",
+      "feat(foundry): FrankX Foundry hub \u2014 the service layer of the Agentic OS family ("
+    ]
+  },
+  {
+    "file": "content/blog/ai-skills-operating-layer.mdx",
+    "slug": "ai-skills-operating-layer",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add premium visual expansion batch",
+    "last_date": "2026-06-17 15:05:28 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add premium visual expansion batch",
+      "feat(blog): launch visual operating system",
+      "publish ai skills methodology content"
+    ]
+  },
+  {
+    "file": "content/blog/ai-video-generation-2026-sora-runway-kling-veo.mdx",
+    "slug": "ai-video-generation-2026-sora-runway-kling-veo",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): sync June 2026 AI video generators and observatory catalog from Fran",
+      "feat(blog): expand premium generated hero batch",
+      "fix(blog): refresh #1-traffic AI video post to June 2026 facts"
+    ]
+  },
+  {
+    "file": "content/blog/ai-workshops-for-students-what-worked.mdx",
+    "slug": "ai-workshops-for-students-what-worked",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/arcanea-building-worlds-ai-agents.mdx",
+    "slug": "arcanea-building-worlds-ai-agents",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-affiliate-programs-2026.mdx",
+    "slug": "best-ai-affiliate-programs-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: add Best AI & MCP Affiliate Programs 2026 (ranked by real economics)"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-browser-2026.mdx",
+    "slug": "best-ai-browser-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-coding-tools-for-beginners-2026.mdx",
+    "slug": "best-ai-coding-tools-for-beginners-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-headshot-generator-2026.mdx",
+    "slug": "best-ai-headshot-generator-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links "
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-image-generators-2026.mdx",
+    "slug": "best-ai-image-generators-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "content: refresh stale model facts + add Best AI Image Generators 2026"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-logo-maker-2026.mdx",
+    "slug": "best-ai-logo-maker-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links "
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-meeting-assistant-2026.mdx",
+    "slug": "best-ai-meeting-assistant-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-note-taking-tools-2026.mdx",
+    "slug": "best-ai-note-taking-tools-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-presentation-maker-2026.mdx",
+    "slug": "best-ai-presentation-maker-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-product-photography-2026.mdx",
+    "slug": "best-ai-product-photography-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links "
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-resume-builder-2026.mdx",
+    "slug": "best-ai-resume-builder-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links "
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-shorts-tiktok-tools-2026.mdx",
+    "slug": "best-ai-shorts-tiktok-tools-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-superpowers-stack-2026.mdx",
+    "slug": "best-ai-superpowers-stack-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: add The AI Superpowers Stack 2026 (best tool + MCP per creator job)"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-tools-for-creators-2026.mdx",
+    "slug": "best-ai-tools-for-creators-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat: sync latest changes and fix build conflicts"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-video-editor-2026.mdx",
+    "slug": "best-ai-video-editor-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-video-generators-2026-x-aggregated.mdx",
+    "slug": "best-ai-video-generators-2026-x-aggregated",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): sync June 2026 AI video generators and observatory catalog from Fran"
+    ]
+  },
+  {
+    "file": "content/blog/best-ai-writing-tools-vs-claude-2026.mdx",
+    "slug": "best-ai-writing-tools-vs-claude-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "fix(media): prevent stale blog and book image failures",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links "
+    ]
+  },
+  {
+    "file": "content/blog/best-cheap-ai-music-generator-2026.mdx",
+    "slug": "best-cheap-ai-music-generator-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch B \u2014 3 refreshed winners + 5 new (Ollama, cheap music, coding-begi"
+    ]
+  },
+  {
+    "file": "content/blog/best-elevenlabs-alternatives-2026.mdx",
+    "slug": "best-elevenlabs-alternatives-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/best-local-llm-2026.mdx",
+    "slug": "best-local-llm-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/best-no-code-ai-agent-builders-2026.mdx",
+    "slug": "best-no-code-ai-agent-builders-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): expand premium generated hero batch",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/best-open-local-llms-2026.mdx",
+    "slug": "best-open-local-llms-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add raster editorial visual system",
+    "last_date": "2026-06-23 03:25:37 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): expand premium generated hero batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "June 2026 frontier model refresh \u2014 Phase 3 (open & local) (#157)"
+    ]
+  },
+  {
+    "file": "content/blog/brand-evolution-from-consciousness-to-systems.mdx",
+    "slug": "brand-evolution-from-consciousness-to-systems",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/build-your-own-jarvis-claude-code.mdx",
+    "slug": "build-your-own-jarvis-claude-code",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium visual expansion batch",
+      "content: Batch B \u2014 3 refreshed winners + 5 new (Ollama, cheap music, coding-begi",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/building-custom-skills-acos.mdx",
+    "slug": "building-custom-skills-acos",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts"
+    ]
+  },
+  {
+    "file": "content/blog/building-deal-flow-pipelines-ai.mdx",
+    "slug": "building-deal-flow-pipelines-ai",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat: sync latest changes and fix build conflicts",
+    "last_date": "2026-06-12 00:59:30 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/building-research-intelligence-system.mdx",
+    "slug": "building-research-intelligence-system",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium visual expansion batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol"
+    ]
+  },
+  {
+    "file": "content/blog/chatgpt-vs-claude-vs-gemini-2026.mdx",
+    "slug": "chatgpt-vs-claude-vs-gemini-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac"
+    ]
+  },
+  {
+    "file": "content/blog/cheapest-frontier-model-access-2026.mdx",
+    "slug": "cheapest-frontier-model-access-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac"
+    ]
+  },
+  {
+    "file": "content/blog/claude-agent-sdk-credit-pause-agent-stack-2026.mdx",
+    "slug": "claude-agent-sdk-credit-pause-agent-stack-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add premium generated hero images",
+    "last_date": "2026-06-17 04:10:34 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add premium generated hero images",
+      "feat(blog): launch visual operating system",
+      "feat(blog): publish Claude Agent SDK pricing pause analysis"
+    ]
+  },
+  {
+    "file": "content/blog/claude-code-2-1-mcp-revolution.mdx",
+    "slug": "claude-code-2-1-mcp-revolution",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/claude-code-mastery-top-resources.mdx",
+    "slug": "claude-code-mastery-top-resources",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium visual expansion batch",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync "
+    ]
+  },
+  {
+    "file": "content/blog/claude-code-pricing-explained-2026.mdx",
+    "slug": "claude-code-pricing-explained-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/claude-code-skills-2026-the-10-you-need.mdx",
+    "slug": "claude-code-skills-2026-the-10-you-need",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium visual expansion batch",
+      "feat(blog): launch visual operating system",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/claude-fable-5-analysis-2026.mdx",
+    "slug": "claude-fable-5-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Add Sonnet 5 to Model Arena, purge internal jargon leaked into public copy",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium visual expansion batch"
+    ]
+  },
+  {
+    "file": "content/blog/claude-fable-5-prompting-guide.mdx",
+    "slug": "claude-fable-5-prompting-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "Add Sonnet 5 to Model Arena, purge internal jargon leaked into public copy",
+    "last_date": "2026-07-01 03:21:17 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Add Sonnet 5 to Model Arena, purge internal jargon leaked into public copy",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/claude-opus-4-6-analysis-2026.mdx",
+    "slug": "claude-opus-4-6-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac"
+    ]
+  },
+  {
+    "file": "content/blog/claude-opus-4-8-analysis-2026.mdx",
+    "slug": "claude-opus-4-8-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac"
+    ]
+  },
+  {
+    "file": "content/blog/conscious-ai-for-entrepreneurs.mdx",
+    "slug": "conscious-ai-for-entrepreneurs",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/conscious-ai-framework.mdx",
+    "slug": "conscious-ai-framework",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/conscious-ai-integration-operating-system.mdx",
+    "slug": "conscious-ai-integration-operating-system",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact rewrite (#194)",
+    "last_date": "2026-07-01 13:10:12 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact re",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "fix: /qr 404 redirect + consolidate emails to frank@frankx.ai + /contact voice ("
+    ]
+  },
+  {
+    "file": "content/blog/creator-intelligence-systems-2026.mdx",
+    "slug": "creator-intelligence-systems-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/creators-ai-toolkit-workshop.mdx",
+    "slug": "creators-ai-toolkit-workshop",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/creators-life-architecture-guide.mdx",
+    "slug": "creators-life-architecture-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/cursor-vs-claude-code-vs-windsurf-2026.mdx",
+    "slug": "cursor-vs-claude-code-vs-windsurf-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/deepseek-r1-open-weight-reasoning-analysis.mdx",
+    "slug": "deepseek-r1-open-weight-reasoning-analysis",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/deepseek-v4-analysis-2026.mdx",
+    "slug": "deepseek-v4-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/design-sprint-week-10-visual-identity-competition.mdx",
+    "slug": "design-sprint-week-10-visual-identity-competition",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/embodied-creator-os.mdx",
+    "slug": "embodied-creator-os",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/enterprise-agent-roadmap.mdx",
+    "slug": "enterprise-agent-roadmap",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/eu-inc-28th-regime-european-startups.mdx",
+    "slug": "eu-inc-28th-regime-european-startups",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/faceless-youtube-ai-tools-2026.mdx",
+    "slug": "faceless-youtube-ai-tools-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "fix(blog): escape MDX-breaking '<$60' blocking all production builds (#160)"
+    ]
+  },
+  {
+    "file": "content/blog/frankx-business-plan-canvas.mdx",
+    "slug": "frankx-business-plan-canvas",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/frankx-intelligence-atlas-volume-1.mdx",
+    "slug": "frankx-intelligence-atlas-volume-1",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact rewrite (#194)",
+    "last_date": "2026-07-01 13:10:12 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact re",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium visual expansion batch",
+      "feat: sync latest changes and fix build conflicts",
+      "fix: /qr 404 redirect + consolidate emails to frank@frankx.ai + /contact voice ("
+    ]
+  },
+  {
+    "file": "content/blog/frankx-intelligence-ecosystem-complete-guide.mdx",
+    "slug": "frankx-intelligence-ecosystem-complete-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/frankx-vision-mission-values.mdx",
+    "slug": "frankx-vision-mission-values",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync "
+    ]
+  },
+  {
+    "file": "content/blog/from-x-tweets-to-blog-gold-2026.mdx",
+    "slug": "from-x-tweets-to-blog-gold-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): sync June 2026 AI video generators and observatory catalog from Fran"
+    ]
+  },
+  {
+    "file": "content/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek.mdx",
+    "slug": "frontier-model-landscape-2026-claude-gpt-gemini-deepseek",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac",
+      "content: refresh stale model facts + add Best AI Image Generators 2026"
+    ]
+  },
+  {
+    "file": "content/blog/frontier-model-routing-without-fable-5.mdx",
+    "slug": "frontier-model-routing-without-fable-5",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add native premium hero images",
+    "last_date": "2026-06-23 04:39:46 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat: add social cockpit dashboard, downloads, and newsletters"
+    ]
+  },
+  {
+    "file": "content/blog/gemini-3-5-pro-analysis-2026.mdx",
+    "slug": "gemini-3-5-pro-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety"
+    ]
+  },
+  {
+    "file": "content/blog/gemma-3-analysis-2026.mdx",
+    "slug": "gemma-3-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac"
+    ]
+  },
+  {
+    "file": "content/blog/gencreator-3-tier-shipping-system.mdx",
+    "slug": "gencreator-3-tier-shipping-system",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/gencreator-7-dimensions-complete-guide.mdx",
+    "slug": "gencreator-7-dimensions-complete-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/getting-started-agentic-creator-os.mdx",
+    "slug": "getting-started-agentic-creator-os",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/golden-age-field-guide.mdx",
+    "slug": "golden-age-field-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts"
+    ]
+  },
+  {
+    "file": "content/blog/golden-age-of-creators-why-now-is-different.mdx",
+    "slug": "golden-age-of-creators-why-now-is-different",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/golden-age-of-intelligence.mdx",
+    "slug": "golden-age-of-intelligence",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)"
+    ]
+  },
+  {
+    "file": "content/blog/google-ai-pro-compute-limits-ai-credits-may-2026.mdx",
+    "slug": "google-ai-pro-compute-limits-ai-credits-may-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): Compute-Aware AI \u2014 Google AI Pro 2026 Upgrade (#95)",
+    "last_date": "2026-05-25 10:37:16 +0200",
+    "recent_commits": 1,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): Compute-Aware AI \u2014 Google AI Pro 2026 Upgrade (#95)"
+    ]
+  },
+  {
+    "file": "content/blog/gpt-5-5-analysis-2026.mdx",
+    "slug": "gpt-5-5-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/gpt-oss-analysis-2026.mdx",
+    "slug": "gpt-oss-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch"
+    ]
+  },
+  {
+    "file": "content/blog/grok-4-3-analysis-2026.mdx",
+    "slug": "grok-4-3-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts"
+    ]
+  },
+  {
+    "file": "content/blog/heygen-vs-synthesia-vs-argil-2026.mdx",
+    "slug": "heygen-vs-synthesia-vs-argil-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/how-to-build-your-soul-md.mdx",
+    "slug": "how-to-build-your-soul-md",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/how-to-write-claude-md-that-works.mdx",
+    "slug": "how-to-write-claude-md-that-works",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium visual expansion batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/iacos-investment-research-os.mdx",
+    "slug": "iacos-investment-research-os",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/inner-hr-ai-agent.mdx",
+    "slug": "inner-hr-ai-agent",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/intelligence-revolution-2025.mdx",
+    "slug": "intelligence-revolution-2025",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact rewrite (#194)",
+    "last_date": "2026-07-01 13:10:12 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact re",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "fix: /qr 404 redirect + consolidate emails to frank@frankx.ai + /contact voice (",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/karpathys-ai-vision-deep-dive.mdx",
+    "slug": "karpathys-ai-vision-deep-dive",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/kimi-k2-analysis-2026.mdx",
+    "slug": "kimi-k2-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts"
+    ]
+  },
+  {
+    "file": "content/blog/llama-4-analysis-2026.mdx",
+    "slug": "llama-4-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/llm-evals-claude-code-guide.mdx",
+    "slug": "llm-evals-claude-code-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "Add Sonnet 5 to Model Arena, purge internal jargon leaked into public copy",
+    "last_date": "2026-07-01 03:21:17 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Add Sonnet 5 to Model Arena, purge internal jargon leaked into public copy",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/magnifica-humanitas-benevolent-future-arcanea.mdx",
+    "slug": "magnifica-humanitas-benevolent-future-arcanea",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add raster editorial visual system",
+    "last_date": "2026-06-23 03:25:37 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(blog): Magnifica Humanitas \u2014 benevolent-future post + FAQ-schema fix (#97)"
+    ]
+  },
+  {
+    "file": "content/blog/mcp-doctor-claude-code-server-optimization.mdx",
+    "slug": "mcp-doctor-claude-code-server-optimization",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium visual expansion batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync "
+    ]
+  },
+  {
+    "file": "content/blog/mcp-ecosystem-2026-clawhub-smithery-guide.mdx",
+    "slug": "mcp-ecosystem-2026-clawhub-smithery-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol"
+    ]
+  },
+  {
+    "file": "content/blog/mcp-server-architecture-workshop.mdx",
+    "slug": "mcp-server-architecture-workshop",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium visual expansion batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol"
+    ]
+  },
+  {
+    "file": "content/blog/mcp-server-integration-guide.mdx",
+    "slug": "mcp-server-integration-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium visual expansion batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/meaning-as-operating-system.mdx",
+    "slug": "meaning-as-operating-system",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/memory-as-exile-ai.mdx",
+    "slug": "memory-as-exile-ai",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/microsoft-mai-frontier-models-2026.mdx",
+    "slug": "microsoft-mai-frontier-models-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph (#246)",
+    "last_date": "2026-07-08 01:11:35 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(learn): excellence pass \u2014 freshness dates + deepen the SEO interlink graph ",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac",
+      "Add Microsoft MAI models to arena + launch article (#149)"
+    ]
+  },
+  {
+    "file": "content/blog/misinformation-guardian-hackathon-build-log-2026.mdx",
+    "slug": "misinformation-guardian-hackathon-build-log-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat: sync latest changes and fix build conflicts",
+    "last_date": "2026-06-12 00:59:30 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat: sync latest changes and fix build conflicts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/mistral-large-3-analysis-2026.mdx",
+    "slug": "mistral-large-3-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac"
+    ]
+  },
+  {
+    "file": "content/blog/multi-agent-orchestration-patterns-2026.mdx",
+    "slug": "multi-agent-orchestration-patterns-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium generated hero images",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol"
+    ]
+  },
+  {
+    "file": "content/blog/music-as-consciousness-technology.mdx",
+    "slug": "music-as-consciousness-technology",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/my-100-month-ai-stack-every-tool-i-actually-use.mdx",
+    "slug": "my-100-month-ai-stack-every-tool-i-actually-use",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/n8n-automation-ai-creators-9-workflows.mdx",
+    "slug": "n8n-automation-ai-creators-9-workflows",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/no-bad-parts-ai-debugging.mdx",
+    "slug": "no-bad-parts-ai-debugging",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat: sync latest changes and fix build conflicts",
+    "last_date": "2026-06-12 00:59:30 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/no-bad-parts-sovereign-ai.mdx",
+    "slug": "no-bad-parts-sovereign-ai",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/nvidia-ces-2026-physical-ai-revolution.mdx",
+    "slug": "nvidia-ces-2026-physical-ai-revolution",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/nvidia-gtc-2026-ai-architect-breakdown.mdx",
+    "slug": "nvidia-gtc-2026-ai-architect-breakdown",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/observability-stack-multi-agent-systems-2026.mdx",
+    "slug": "observability-stack-multi-agent-systems-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ollama-local-ai-models-privacy-guide.mdx",
+    "slug": "ollama-local-ai-models-privacy-guide",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ollama-vs-lm-studio-vs-jan-2026.mdx",
+    "slug": "ollama-vs-lm-studio-vs-jan-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch B \u2014 3 refreshed winners + 5 new (Ollama, cheap music, coding-begi"
+    ]
+  },
+  {
+    "file": "content/blog/openclaw-explained-ai-agent-everyone-talking-about.mdx",
+    "slug": "openclaw-explained-ai-agent-everyone-talking-about",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium generated hero images",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/oracle-genai-agents-vs-langgraph-crewai-2026.mdx",
+    "slug": "oracle-genai-agents-vs-langgraph-crewai-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/personal-ai-assistant-setup-workshop.mdx",
+    "slug": "personal-ai-assistant-setup-workshop",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/personal-ai-coe-under-100-2026.mdx",
+    "slug": "personal-ai-coe-under-100-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch A \u2014 10 articles (2 pillar cornerstones + 3 tool pillars + 5 compa"
+    ]
+  },
+  {
+    "file": "content/blog/phi-analysis-2026.mdx",
+    "slug": "phi-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat(blog): prompting guide + evals tutorial + routing pillar + architectNote ac",
+      "June 2026 frontier model refresh \u2014 Phase 3 (open & local) (#157)"
+    ]
+  },
+  {
+    "file": "content/blog/predictive-mind-reality-models.mdx",
+    "slug": "predictive-mind-reality-models",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/production-agent-patterns-7-pillars.mdx",
+    "slug": "production-agent-patterns-7-pillars",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): expand premium generated hero batch",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol"
+    ]
+  },
+  {
+    "file": "content/blog/production-agent-patterns-aws-bedrock.mdx",
+    "slug": "production-agent-patterns-aws-bedrock",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/production-agentic-ai-systems.mdx",
+    "slug": "production-agentic-ai-systems",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact rewrite (#194)",
+    "last_date": "2026-07-01 13:10:12 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(email): canonicalize all contact addresses to frank@frankx.ai + /contact re",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add premium generated hero images",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts"
+    ]
+  },
+  {
+    "file": "content/blog/production-llm-agents-oci-part-1-architecture.mdx",
+    "slug": "production-llm-agents-oci-part-1-architecture",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/production-llm-agents-oci-part-2-agent-patterns.mdx",
+    "slug": "production-llm-agents-oci-part-2-agent-patterns",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/production-llm-agents-oci-part-3-operating-model.mdx",
+    "slug": "production-llm-agents-oci-part-3-operating-model",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/prompt-engineering-2026-what-still-works.mdx",
+    "slug": "prompt-engineering-2026-what-still-works",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "content: Batch B \u2014 3 refreshed winners + 5 new (Ollama, cheap music, coding-begi",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/prompt-engineering-mastery-workshop.mdx",
+    "slug": "prompt-engineering-mastery-workshop",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/props-to-the-builders-of-this-era.mdx",
+    "slug": "props-to-the-builders-of-this-era",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/qwen3-max-analysis-2026.mdx",
+    "slug": "qwen3-max-analysis-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system"
+    ]
+  },
+  {
+    "file": "content/blog/rag-for-creators-search-your-own-content-with-ai.mdx",
+    "slug": "rag-for-creators-search-your-own-content-with-ai",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/reader-first-golden-age.mdx",
+    "slug": "reader-first-golden-age",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/reality-architecture-generative-ai-neuroscience.mdx",
+    "slug": "reality-architecture-generative-ai-neuroscience",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/science-of-state-change-music.mdx",
+    "slug": "science-of-state-change-music",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/seo-aeo-optimization-acos.mdx",
+    "slug": "seo-aeo-optimization-acos",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ship-daily-compound-creator.mdx",
+    "slug": "ship-daily-compound-creator",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/sis-trajectory-learning-how-ai-agents-improve.mdx",
+    "slug": "sis-trajectory-learning-how-ai-agents-improve",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat: sync latest changes and fix build conflicts",
+    "last_date": "2026-06-12 00:59:30 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/six-primitives-ai-agent.mdx",
+    "slug": "six-primitives-ai-agent",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/skill-libraries-ai-coe-governance.mdx",
+    "slug": "skill-libraries-ai-coe-governance",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add native premium hero images",
+    "last_date": "2026-06-23 04:39:46 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): launch visual operating system",
+      "publish ai skills methodology content"
+    ]
+  },
+  {
+    "file": "content/blog/soul-frequency-framework.mdx",
+    "slug": "soul-frequency-framework",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): add native premium hero images",
+    "last_date": "2026-06-23 04:39:46 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): add native premium hero images",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/starlight-intelligence-system-how-ai-agents-learn.mdx",
+    "slug": "starlight-intelligence-system-how-ai-agents-learn",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat: sync latest changes and fix build conflicts",
+      "fix(golden-age): kill live 500 on /golden-age/<chapter> (NoSSR wrapper) (#141)",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/suno-ai-12000-songs-production-lessons.mdx",
+    "slug": "suno-ai-12000-songs-production-lessons",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/suno-ai-music-creation-workshop.mdx",
+    "slug": "suno-ai-music-creation-workshop",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/suno-music-production-workflow.mdx",
+    "slug": "suno-music-production-workflow",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/suno-prompt-engineering-complete-guide.mdx",
+    "slug": "suno-prompt-engineering-complete-guide",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add verified third visual mini batch",
+      "content: Batch B \u2014 3 refreshed winners + 5 new (Ollama, cheap music, coding-begi",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/suno-vs-udio-2026.mdx",
+    "slug": "suno-vs-udio-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: ship 10 AI-tool comparison articles (AEO-structured, June 2026 verified"
+    ]
+  },
+  {
+    "file": "content/blog/swarm-intelligence-multi-agent-orchestration.mdx",
+    "slug": "swarm-intelligence-multi-agent-orchestration",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/terminal-first-ai-workflow-claude-code.mdx",
+    "slug": "terminal-first-ai-workflow-claude-code",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/the-creative-os.mdx",
+    "slug": "the-creative-os",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat: sync latest changes and fix build conflicts",
+    "last_date": "2026-06-12 00:59:30 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat: sync latest changes and fix build conflicts",
+      "feat(overnight-polish): 20+ commits \u2014 link sweep + 4 cherry-picks + Tier-1/2 pol",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/the-great-transition-build-your-own-business.mdx",
+    "slug": "the-great-transition-build-your-own-business",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add verified third visual mini batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(acos): Pillar 9 + 10 agent architecture (20 agents) + blog excellence sync "
+    ]
+  },
+  {
+    "file": "content/blog/the-higher-self-protocol.mdx",
+    "slug": "the-higher-self-protocol",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "Add second premium blog visual batch",
+    "last_date": "2026-06-17 19:41:09 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Add second premium blog visual batch",
+      "feat(blog): launch visual operating system",
+      "feat(blog): The Higher Self Protocol series + deploy/build hardening (#176)"
+    ]
+  },
+  {
+    "file": "content/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026.mdx",
+    "slug": "the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): sync June 2026 AI video generators and observatory catalog from Fran"
+    ]
+  },
+  {
+    "file": "content/blog/the-sovereign-curator.mdx",
+    "slug": "the-sovereign-curator",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(sync): sync drifted files from dev to production repo",
+    "last_date": "2026-07-15 06:05:19 +0200",
+    "recent_commits": 1,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(sync): sync drifted files from dev to production repo"
+    ]
+  },
+  {
+    "file": "content/blog/trinity-ai-conscious-operating-system.mdx",
+    "slug": "trinity-ai-conscious-operating-system",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#106)",
+    "last_date": "2026-06-02 00:53:14 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp.mdx",
+    "slug": "ultimate-ai-coding-agent-setup-acos-claude-code-mcp",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-canva-ai-workflow-2026.mdx",
+    "slug": "ultimate-canva-ai-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: 6 ultimate-workflow pillars (Perplexity, ElevenLabs, Higgsfield, CapCut"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-capcut-workflow-2026.mdx",
+    "slug": "ultimate-capcut-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: 6 ultimate-workflow pillars (Perplexity, ElevenLabs, Higgsfield, CapCut"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-descript-workflow-2026.mdx",
+    "slug": "ultimate-descript-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch B \u2014 3 refreshed winners + 5 new (Ollama, cheap music, coding-begi"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-elevenlabs-workflow-2026.mdx",
+    "slug": "ultimate-elevenlabs-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: 6 ultimate-workflow pillars (Perplexity, ElevenLabs, Higgsfield, CapCut"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-gamma-workflow-2026.mdx",
+    "slug": "ultimate-gamma-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: 6 ultimate-workflow pillars (Perplexity, ElevenLabs, Higgsfield, CapCut"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-guide-ai-coding-agents-2026.mdx",
+    "slug": "ultimate-guide-ai-coding-agents-2026",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add premium generated hero images",
+      "feat(blog): launch visual operating system",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-heygen-workflow-2026.mdx",
+    "slug": "ultimate-heygen-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch A \u2014 10 articles (2 pillar cornerstones + 3 tool pillars + 5 compa"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-higgsfield-workflow-2026.mdx",
+    "slug": "ultimate-higgsfield-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: 6 ultimate-workflow pillars (Perplexity, ElevenLabs, Higgsfield, CapCut"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-n8n-workflow-2026.mdx",
+    "slug": "ultimate-n8n-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch A \u2014 10 articles (2 pillar cornerstones + 3 tool pillars + 5 compa"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-opus-clip-workflow-2026.mdx",
+    "slug": "ultimate-opus-clip-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: Batch A \u2014 10 articles (2 pillar cornerstones + 3 tool pillars + 5 compa"
+    ]
+  },
+  {
+    "file": "content/blog/ultimate-perplexity-workflow-2026.mdx",
+    "slug": "ultimate-perplexity-workflow-2026",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(blog): resolve missing and mismatched header images for top-ranking posts (#226)",
+    "last_date": "2026-07-04 13:11:57 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): resolve missing and mismatched header images for top-ranking posts (",
+      "Humanize FrankX brand experience (#205)",
+      "feat(content): close GenCreator.ai traffic loop (R1/ARC-204) \u2014 add inline links ",
+      "content: 6 ultimate-workflow pillars (Perplexity, ElevenLabs, Higgsfield, CapCut"
+    ]
+  },
+  {
+    "file": "content/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll.mdx",
+    "slug": "using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "fix(blog): strip markdown links from article title and fix carousel image 404s",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety"
+    ]
+  },
+  {
+    "file": "content/blog/vercel-ai-sdk-first-agent-stack.mdx",
+    "slug": "vercel-ai-sdk-first-agent-stack",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat(blog): add raster editorial visual system",
+      "feat(blog): add premium visual expansion batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/vercel-claude-code-nextjs-deploy-one-session.mdx",
+    "slug": "vercel-claude-code-nextjs-deploy-one-session",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "feat(blog): add raster editorial visual system",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/vibe-os-creative-soul.mdx",
+    "slug": "vibe-os-creative-soul",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/vibe-os-platform-introduction.mdx",
+    "slug": "vibe-os-platform-introduction",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+    "last_date": "2026-06-25 15:10:19 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(blog): sync batch 22 premium heroes and resolve metadata type-safety",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#",
+      "feat(learn): Gemini & Google AI Mastery portal + CI green-up (#90)",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/visual-intelligence-system-ai-image-management.mdx",
+    "slug": "visual-intelligence-system-ai-image-management",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 4,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "fix(content): add author to visual intelligence article",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/voice-ai-agents-2026-elevenlabs-hume-audio.mdx",
+    "slug": "voice-ai-agents-2026-elevenlabs-hume-audio",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+    "last_date": "2026-06-12 03:06:11 +0200",
+    "recent_commits": 2,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(affiliate): wire ElevenLabs affiliate link into 8 recommending posts",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/what-is-a-gencreator.mdx",
+    "slug": "what-is-a-gencreator",
+    "last_author": "Frank",
+    "last_email": "friemerx@gmail.com",
+    "last_subject": "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM Hub",
+    "last_date": "2026-06-26 13:39:11 +0200",
+    "recent_commits": 3,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/what-is-agentic-ai.mdx",
+    "slug": "what-is-agentic-ai",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 aliases + Codex gate fixes",
+    "last_date": "2026-05-23 11:59:53 +0200",
+    "recent_commits": 1,
+    "agent_hint": "codex",
+    "history_subjects": [
+      "feat(routing): smart-404 follow-ups \u2014 sitemap auto-discovery + merge:gate + 5 al"
+    ]
+  },
+  {
+    "file": "content/blog/why-everyone-needs-personal-ai-coe.mdx",
+    "slug": "why-everyone-needs-personal-ai-coe",
+    "last_author": "Frank",
+    "last_email": "132689939+frankxai@users.noreply.github.com",
+    "last_subject": "Humanize FrankX brand experience (#205)",
+    "last_date": "2026-06-27 13:43:50 +0200",
+    "recent_commits": 5,
+    "agent_hint": "frank-or-human",
+    "history_subjects": [
+      "Humanize FrankX brand experience (#205)",
+      "feat(arena-hub): elevate Model Arena 3D WebGL, Task Routing Playground, and LLM ",
+      "Add second premium blog visual batch",
+      "feat: sync latest changes and fix build conflicts",
+      "Blog excellence: flagship showcase + premium cinematic heroes + content fixes (#"
+    ]
+  }
+]

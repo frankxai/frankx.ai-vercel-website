@@ -20,6 +20,8 @@ Twenty years on, the sister ran a ward and had quietly become the kind of person
 
 We are taught that the rare and precious thing is *possibility*. Keep your options open. Don't foreclose. Stay flexible. And there is a season in a young life when that is good advice. But it is advice with a hidden expiration date, and almost no one is told when the date arrives.
 
+I know the folder because I kept one after Magdeburg and after Oracle — business plans, product ideas, music projects, half-started books, agent systems that could become anything. Talent was not the bottleneck. Decision was. The first day I wrote one sentence at the top of a page — *build the living studio and the systems my family can inherit* — the week reorganized. The other doors did not vanish; they simply stopped getting the same voltage. That is the whole mechanism in miniature.
+
 Here is the mechanism, and it is so simple it sounds like nothing.
 
 A life does not organize itself around what you *could* do. It organizes itself around what you have *decided* to do — and only around that. Until a decision is made, you are not a current; you are a puddle. Water in a puddle has every direction available to it and travels in none. The same water in a channel — narrower, more constrained, robbed of all those lovely options — actually goes somewhere, and on the way it cuts canyons.

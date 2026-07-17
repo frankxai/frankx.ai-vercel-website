@@ -1,0 +1,81 @@
+{
+  "at": "2026-07-16T03:21:38.331Z",
+  "allResults": [
+    {
+      "slug": "the-wordless-laws-book-two",
+      "resultsPath": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\results.json",
+      "results": [
+        {
+          "n": 1,
+          "id": "clothbound",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v01-clothbound.jpg",
+          "bytes": 2966388
+        },
+        {
+          "n": 2,
+          "id": "symbol",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v02-symbol.jpg",
+          "bytes": 2229365
+        },
+        {
+          "n": 3,
+          "id": "conceptual",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v03-conceptual.jpg",
+          "bytes": 2140771
+        },
+        {
+          "n": 4,
+          "id": "atmospheric",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v04-atmospheric.jpg",
+          "bytes": 2332543
+        },
+        {
+          "n": 5,
+          "id": "poster",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v05-poster.jpg",
+          "bytes": 2139152
+        },
+        {
+          "n": 6,
+          "id": "lettering",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v06-lettering.jpg",
+          "bytes": 2527316
+        },
+        {
+          "n": 7,
+          "id": "generative",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v07-generative.jpg",
+          "bytes": 2615791
+        },
+        {
+          "n": 8,
+          "id": "quiet-white",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v08-quiet-white.jpg",
+          "bytes": 2181849
+        },
+        {
+          "n": 9,
+          "id": "rebel",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v09-rebel.jpg",
+          "bytes": 2304881
+        },
+        {
+          "n": 10,
+          "id": "liquid-inlay",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-wordless-laws-book-two\\v10-liquid-inlay.jpg",
+          "bytes": 2367350
+        }
+      ]
+    }
+  ]
+}

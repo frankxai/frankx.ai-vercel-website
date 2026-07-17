@@ -1,0 +1,81 @@
+{
+  "at": "2026-07-16T03:33:36.261Z",
+  "allResults": [
+    {
+      "slug": "spartan-mindset",
+      "resultsPath": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\results.json",
+      "results": [
+        {
+          "n": 1,
+          "id": "clothbound",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v01-clothbound.jpg",
+          "bytes": 2985626
+        },
+        {
+          "n": 2,
+          "id": "symbol",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v02-symbol.jpg",
+          "bytes": 1985353
+        },
+        {
+          "n": 3,
+          "id": "conceptual",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v03-conceptual.jpg",
+          "bytes": 2408050
+        },
+        {
+          "n": 4,
+          "id": "atmospheric",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v04-atmospheric.jpg",
+          "bytes": 2838939
+        },
+        {
+          "n": 5,
+          "id": "poster",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v05-poster.jpg",
+          "bytes": 2187283
+        },
+        {
+          "n": 6,
+          "id": "lettering",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v06-lettering.jpg",
+          "bytes": 2475251
+        },
+        {
+          "n": 7,
+          "id": "generative",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v07-generative.jpg",
+          "bytes": 2209539
+        },
+        {
+          "n": 8,
+          "id": "quiet-white",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v08-quiet-white.jpg",
+          "bytes": 2138743
+        },
+        {
+          "n": 9,
+          "id": "rebel",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v09-rebel.jpg",
+          "bytes": 2107100
+        },
+        {
+          "n": 10,
+          "id": "liquid-inlay",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\spartan-mindset\\v10-liquid-inlay.jpg",
+          "bytes": 2249990
+        }
+      ]
+    }
+  ]
+}

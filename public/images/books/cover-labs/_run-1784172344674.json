@@ -1,0 +1,81 @@
+{
+  "at": "2026-07-16T03:25:44.674Z",
+  "allResults": [
+    {
+      "slug": "the-book-of-secrets",
+      "resultsPath": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\results.json",
+      "results": [
+        {
+          "n": 1,
+          "id": "clothbound",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v01-clothbound.jpg",
+          "bytes": 2866357
+        },
+        {
+          "n": 2,
+          "id": "symbol",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v02-symbol.jpg",
+          "bytes": 2233174
+        },
+        {
+          "n": 3,
+          "id": "conceptual",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v03-conceptual.jpg",
+          "bytes": 2096648
+        },
+        {
+          "n": 4,
+          "id": "atmospheric",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v04-atmospheric.jpg",
+          "bytes": 2559157
+        },
+        {
+          "n": 5,
+          "id": "poster",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v05-poster.jpg",
+          "bytes": 2403735
+        },
+        {
+          "n": 6,
+          "id": "lettering",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v06-lettering.jpg",
+          "bytes": 2733271
+        },
+        {
+          "n": 7,
+          "id": "generative",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v07-generative.jpg",
+          "bytes": 2512191
+        },
+        {
+          "n": 8,
+          "id": "quiet-white",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v08-quiet-white.jpg",
+          "bytes": 2710882
+        },
+        {
+          "n": 9,
+          "id": "rebel",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v09-rebel.jpg",
+          "bytes": 2348624
+        },
+        {
+          "n": 10,
+          "id": "liquid-inlay",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\the-book-of-secrets\\v10-liquid-inlay.jpg",
+          "bytes": 2378685
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "at": "2026-07-16T03:39:30.454Z",
+  "allResults": [
+    {
+      "slug": "hoffnung",
+      "resultsPath": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\results.json",
+      "results": [
+        {
+          "n": 1,
+          "id": "clothbound",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v01-clothbound.jpg",
+          "bytes": 3128890
+        },
+        {
+          "n": 2,
+          "id": "symbol",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v02-symbol.jpg",
+          "bytes": 2378899
+        },
+        {
+          "n": 3,
+          "id": "conceptual",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v03-conceptual.jpg",
+          "bytes": 2699376
+        },
+        {
+          "n": 4,
+          "id": "atmospheric",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v04-atmospheric.jpg",
+          "bytes": 2378210
+        },
+        {
+          "n": 5,
+          "id": "poster",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v05-poster.jpg",
+          "bytes": 2506856
+        },
+        {
+          "n": 6,
+          "id": "lettering",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v06-lettering.jpg",
+          "bytes": 2552564
+        },
+        {
+          "n": 7,
+          "id": "generative",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v07-generative.jpg",
+          "bytes": 2320986
+        },
+        {
+          "n": 8,
+          "id": "quiet-white",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v08-quiet-white.jpg",
+          "bytes": 2677124
+        },
+        {
+          "n": 9,
+          "id": "rebel",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v09-rebel.jpg",
+          "bytes": 2308727
+        },
+        {
+          "n": 10,
+          "id": "liquid-inlay",
+          "status": "ok",
+          "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\hoffnung\\v10-liquid-inlay.jpg",
+          "bytes": 2959656
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "at": "2026-07-16T03:43:23.803Z",
+  "book": "manifestation",
+  "results": [
+    {
+      "n": 1,
+      "id": "clothbound",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v01-clothbound.jpg",
+      "bytes": 2980574
+    },
+    {
+      "n": 2,
+      "id": "symbol",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v02-symbol.jpg",
+      "bytes": 2312248
+    },
+    {
+      "n": 3,
+      "id": "conceptual",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v03-conceptual.jpg",
+      "bytes": 2501673
+    },
+    {
+      "n": 4,
+      "id": "atmospheric",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v04-atmospheric.jpg",
+      "bytes": 2520397
+    },
+    {
+      "n": 5,
+      "id": "poster",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v05-poster.jpg",
+      "bytes": 2215593
+    },
+    {
+      "n": 6,
+      "id": "lettering",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v06-lettering.jpg",
+      "bytes": 2623135
+    },
+    {
+      "n": 7,
+      "id": "generative",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v07-generative.jpg",
+      "bytes": 2033969
+    },
+    {
+      "n": 8,
+      "id": "quiet-white",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v08-quiet-white.jpg",
+      "bytes": 2341075
+    },
+    {
+      "n": 9,
+      "id": "rebel",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v09-rebel.jpg",
+      "bytes": 2423806
+    },
+    {
+      "n": 10,
+      "id": "liquid-inlay",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\manifestation\\v10-liquid-inlay.jpg",
+      "bytes": 2322426
+    }
+  ]
+}

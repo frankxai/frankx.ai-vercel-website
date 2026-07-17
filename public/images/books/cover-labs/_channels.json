@@ -1,0 +1,74 @@
+{
+  "channels": [
+    {
+      "n": 1,
+      "id": "clothbound",
+      "school": "Coralie Bickford-Smith clothbound craft",
+      "pattern": "fine linen cloth weave, almost invisible embossed micro-motif",
+      "energy": "museum trust luxury"
+    },
+    {
+      "n": 2,
+      "id": "symbol",
+      "school": "Peter Mendelsund modernist symbol",
+      "pattern": "pure void field, no busy texture",
+      "energy": "one mark = whole thesis"
+    },
+    {
+      "n": 3,
+      "id": "conceptual",
+      "school": "Chip Kidd conceptual hierarchy",
+      "pattern": "vast negative space as concept",
+      "energy": "smart scale surprise"
+    },
+    {
+      "n": 4,
+      "id": "atmospheric",
+      "school": "Rodrigo Corral atmospheric literary",
+      "pattern": "soft weather band / fog grain / dawn wash",
+      "energy": "adult literary gravitas"
+    },
+    {
+      "n": 5,
+      "id": "poster",
+      "school": "Olly Moss graphic poster",
+      "pattern": "flat limited palette blocks",
+      "energy": "collectible icon"
+    },
+    {
+      "n": 6,
+      "id": "lettering",
+      "school": "Jessica Hische lettering craft",
+      "pattern": "paper field supporting custom letterforms",
+      "energy": "gift craft"
+    },
+    {
+      "n": 7,
+      "id": "generative",
+      "school": "Pak / Art Blocks refined generative",
+      "pattern": "parametric hairline structure on pure black",
+      "energy": "collector minimal wealth"
+    },
+    {
+      "n": 8,
+      "id": "quiet-white",
+      "school": "Kenya Hara quiet white / paper craft",
+      "pattern": "warm ivory paper tooth, huge margins",
+      "energy": "intellectual calm"
+    },
+    {
+      "n": 9,
+      "id": "rebel",
+      "school": "experimental modern / refined street-luxury type",
+      "pattern": "crop marks, industrial stamp geometry",
+      "energy": "founder rebel attention"
+    },
+    {
+      "n": 10,
+      "id": "liquid-inlay",
+      "school": "digital couture liquid metal craftsman inlay",
+      "pattern": "deep lacquer void with micro-filigree around ONE object",
+      "energy": "desire flagship"
+    }
+  ]
+}

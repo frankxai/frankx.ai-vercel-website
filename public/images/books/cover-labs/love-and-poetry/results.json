@@ -1,0 +1,76 @@
+{
+  "at": "2026-07-16T03:29:37.967Z",
+  "book": "love-and-poetry",
+  "results": [
+    {
+      "n": 1,
+      "id": "clothbound",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v01-clothbound.jpg",
+      "bytes": 2703174
+    },
+    {
+      "n": 2,
+      "id": "symbol",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v02-symbol.jpg",
+      "bytes": 2298852
+    },
+    {
+      "n": 3,
+      "id": "conceptual",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v03-conceptual.jpg",
+      "bytes": 2163740
+    },
+    {
+      "n": 4,
+      "id": "atmospheric",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v04-atmospheric.jpg",
+      "bytes": 2320212
+    },
+    {
+      "n": 5,
+      "id": "poster",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v05-poster.jpg",
+      "bytes": 2150737
+    },
+    {
+      "n": 6,
+      "id": "lettering",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v06-lettering.jpg",
+      "bytes": 2762181
+    },
+    {
+      "n": 7,
+      "id": "generative",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v07-generative.jpg",
+      "bytes": 2466711
+    },
+    {
+      "n": 8,
+      "id": "quiet-white",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v08-quiet-white.jpg",
+      "bytes": 2537709
+    },
+    {
+      "n": 9,
+      "id": "rebel",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v09-rebel.jpg",
+      "bytes": 2529693
+    },
+    {
+      "n": 10,
+      "id": "liquid-inlay",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\love-and-poetry\\v10-liquid-inlay.jpg",
+      "bytes": 2903255
+    }
+  ]
+}

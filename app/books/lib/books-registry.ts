@@ -733,7 +733,7 @@ export const booksRegistry: BookConfig[] = [
       'frank riemer',
       'personal growth',
     ],
-    coverImage: '/images/books/the-wordless-laws-cover.png',
+    coverImage: '/images/books/the-wordless-laws-cover.jpg',
     theme: {
       id: 'the-wordless-laws',
       name: 'The Wordless Laws',
@@ -784,7 +784,7 @@ export const booksRegistry: BookConfig[] = [
       'frank riemer',
       'experiments',
     ],
-    coverImage: '/images/books/the-wordless-laws-book-two-cover.png',
+    coverImage: '/images/books/the-wordless-laws-book-two-cover.jpg',
     theme: {
       id: 'the-wordless-laws-book-two',
       name: 'The Wordless Laws, Book Two',

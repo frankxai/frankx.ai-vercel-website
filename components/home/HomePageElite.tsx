@@ -746,7 +746,11 @@ function BooksShowcase({ books }: { books: BookData[] }) {
               Books &amp; Writing
             </h2>
             <p className="text-base text-white/50 max-w-lg">
-              Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
+              Flagship series, craft manuals, and field books for an agentic life. Start with{' '}
+              <Link href="/books/series/the-wordless-laws" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-amber-400/60">
+                The Wordless Laws
+              </Link>
+              — free online.
             </p>
           </div>
           <Link

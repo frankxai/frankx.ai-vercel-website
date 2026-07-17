@@ -5,7 +5,7 @@ date: "2026-03-21"
 author: "FrankX"
 category: "Intelligence Dispatches"
 tags: ["DeepSeek", "Open Source AI", "Reasoning", "AI Models", "MoE"]
-image: "/images/blog/deepseek-r1-open-weight-reasoning-analysis-hero-v10.jpg"
+image: "/images/blog/deepseek-r1-open-weight-reasoning-analysis-hero-v11.jpg"
 featured: false
 keywords:
   [
@@ -30,6 +30,13 @@ architectNote:
       pick: "DeepSeek V3/V4 — structured extraction at roughly 1/10th closed-API cost"
     - persona: "Pipeline & coding agents"
       pick: "Fable 5 — R1 drops constraints and lags on multi-step tool use"
+dateModified: "2026-07-15"
+opsAuthoringAgent: hermes
+opsReviewingAgent: pending
+opsHeroProvider: nano-banana
+opsHeroPromptPath: data/blog-ops/prompt-log/deepseek-r1-open-weight-reasoning-analysis.md
+opsVisualStatus: generated-awaiting-qa
+imageAlt: "Premium cinematic hero for deepseek-r1-open-weight-reasoning-analysis"
 ---
 
 **TL;DR: DeepSeek R1 produces explicit chain-of-thought reasoning traces — visible, auditable, fine-tunable. V3 uses a 671B parameter MoE architecture with only 37B active per forward pass, achieving near-GPT-4o performance at a fraction of the cost. The open-weight nature means you can self-host, fine-tune on proprietary data, and run inference without per-token API fees. The tradeoff: no managed API, no SLA, and tool-use consistency lags closed models. For cost-sensitive production and research, DeepSeek changed the calculation permanently.**

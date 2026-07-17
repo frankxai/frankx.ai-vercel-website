@@ -7,16 +7,17 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Books | FrankX',
   description:
-    'Six books on love, discipline, creativity, self-development, imagination, and manifestation. Read free online or download as PDF and EPUB.',
+    'A living library: flagship intelligence books, The Wordless Laws series, craft manuals, poetry, and open experiments. Read free online or download as PDF and EPUB.',
   openGraph: {
     title: 'The FrankX Library',
-    description: 'Six books. One voice. No filler.',
+    description: 'One voice. Multiple series. Free to read.',
     type: 'website',
   },
 };
 
 export default function BooksHubPage() {
   const books = getPublishedBooks();
+  const count = books.length;
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
@@ -33,7 +34,7 @@ export default function BooksHubPage() {
             </p>
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
               <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-                Six Books.
+                {count} Books.
               </span>
               <br />
               <span className="bg-gradient-to-r from-rose-300 via-amber-200 to-violet-300 bg-clip-text text-transparent">
@@ -41,8 +42,8 @@ export default function BooksHubPage() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-white/40 max-w-xl mx-auto leading-relaxed">
-              Love, discipline, creativity, growth, imagination, and the architecture of reality.
-              Every chapter free to read online.
+              Intelligence, practice, craft, poetry, and a beautiful agentic future — written in series,
+              free to read online.
             </p>
           </div>
         </div>

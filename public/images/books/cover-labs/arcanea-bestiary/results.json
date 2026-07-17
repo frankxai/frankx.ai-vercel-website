@@ -1,0 +1,76 @@
+{
+  "at": "2026-07-16T03:51:17.334Z",
+  "book": "arcanea-bestiary",
+  "results": [
+    {
+      "n": 1,
+      "id": "clothbound",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v01-clothbound.jpg",
+      "bytes": 2732691
+    },
+    {
+      "n": 2,
+      "id": "symbol",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v02-symbol.jpg",
+      "bytes": 2220054
+    },
+    {
+      "n": 3,
+      "id": "conceptual",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v03-conceptual.jpg",
+      "bytes": 2677796
+    },
+    {
+      "n": 4,
+      "id": "atmospheric",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v04-atmospheric.jpg",
+      "bytes": 2638844
+    },
+    {
+      "n": 5,
+      "id": "poster",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v05-poster.jpg",
+      "bytes": 2425692
+    },
+    {
+      "n": 6,
+      "id": "lettering",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v06-lettering.jpg",
+      "bytes": 2323957
+    },
+    {
+      "n": 7,
+      "id": "generative",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v07-generative.jpg",
+      "bytes": 3215444
+    },
+    {
+      "n": 8,
+      "id": "quiet-white",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v08-quiet-white.jpg",
+      "bytes": 2732548
+    },
+    {
+      "n": 9,
+      "id": "rebel",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v09-rebel.jpg",
+      "bytes": 2529664
+    },
+    {
+      "n": 10,
+      "id": "liquid-inlay",
+      "status": "ok",
+      "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\books\\cover-labs\\arcanea-bestiary\\v10-liquid-inlay.jpg",
+      "bytes": 2321402
+    }
+  ]
+}

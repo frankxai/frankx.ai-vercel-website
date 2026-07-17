@@ -1,0 +1,100 @@
+---
+title: "Memory-Native Agent Architecture (2026)"
+description: "How to design agents that remember: short-term run state, long-term hub memory, evaluation loops, and failure recovery without context collapse."
+date: "2026-07-15"
+author: "Frank"
+category: "AI & Systems"
+tags: ["Memory", "Agent Architecture", "Starlight", "ACOS", "RAG", "Orchestration"]
+keywords:
+  [
+    "memory native agents 2026",
+    "agent memory architecture",
+    "long term agent memory",
+    "agent context management",
+  ]
+image: "/images/blog/memory-native-agent-architecture-2026-hero.jpg"
+featured: true
+dateModified: "2026-07-15"
+opsAuthoringAgent: hermes-acos-swarm
+opsVisualStatus: prompts-ready
+opsPreviewBatch: "overnight-10-2026-07-15"
+---
+
+**TL;DR**: Memory is the difference between a clever chat and a compounding system. Separate run memory, project memory, brand memory, and evaluation memory. Wire retrieval with citations. Refuse silent amnesia.
+
+**Hero visual prompt:** Layered memory architecture — short-term stream, project vault, brand canon, evaluation ledger — glowing links, deep navy + conscious-purple glass, Spartan Sage.
+
+---
+
+## Why context windows are not memory
+
+A long context is a temporary desk. Memory is a filing system with write policies.
+
+Without structure:
+
+- Agents re-research the same sources
+- Brand voice drifts
+- Failures repeat
+- You cannot audit why a claim shipped
+
+## Four memory stores
+
+| Store | Contents | Write policy | Read pattern |
+|-------|----------|--------------|--------------|
+| Run memory | tool calls, scratch notes | ephemeral per job | always |
+| Project memory | campaign facts, decisions | durable, versioned | by project |
+| Brand memory | voice, banned phrases, personas, gravity wells | human-approved | every public draft |
+| Evaluation memory | scores, failures, winning patterns | after each gate | continuous improvement |
+
+## Design rules that keep systems honest
+
+1. **Declarative facts, not task logs** — “User prefers concise technical posts” beats “Fixed post #42.”  
+2. **Skills for procedures** — workflows live in ACOS skills; memory is not a junk drawer.  
+3. **Citations for external claims** — no unsourced authority theater.  
+4. **TTL for temporary context** — overnight drafts expire if not promoted.  
+5. **Human approval for money and external sends** — fail closed.
+
+## Architecture sketch
+
+```
+User brief
+  → router
+  → specialist agents
+  → shared memory bus
+  → quality gates (voice, claims, scores)
+  → artifact store
+  → learning writeback (evaluation memory)
+```
+
+Starlight SIS + ACOS implement this as: short session context, durable vaults, and skill-level procedures.
+
+## Failure recovery pattern
+
+When an agent fails:
+
+1. Capture the failure mode in evaluation memory  
+2. Do not auto-retry blindly  
+3. Route to a different model or human  
+4. Patch the skill if the failure repeats twice
+
+## AEO: What is memory-native agent architecture?
+
+It is an agent system designed around explicit memory stores and writeback loops so work compounds across sessions — not a single context window that forgets yesterday’s decisions.
+
+## Implementation checklist (one week)
+
+- Day 1: separate run vs brand memory  
+- Day 2: add citation requirement for hub facts  
+- Day 3: scoreboard for voice/strategy scores  
+- Day 4: writeback of failed prompts  
+- Day 5: human review queue for high-risk outputs
+
+## Links
+
+[Multi-agent orchestration](/blog/multi-agent-orchestration-patterns-2026) · [Hybrid multi-plane architecture](/blog/hybrid-multi-plane-architecture-creator-coe-2026) · Starlight SIS · ACOS · Research Hub
+
+**Motion concept:** 20s layers stacking with writeback pulse. Placeholder: `/videos/blog/memory-native-architecture-2026.mp4`
+
+---
+
+**Stage**: preview · **Audience**: AI architects, CoE builders

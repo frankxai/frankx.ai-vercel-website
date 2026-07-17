@@ -1,7 +1,7 @@
 import HomePageElite from '@/components/home/HomePageElite'
-import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { bookReviews } from '@/data/book-reviews'
+import { homepageFeaturedBooks } from '@/data/homepage-featured-books'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 import { getAllBlogPosts } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -139,17 +139,13 @@ export default function Page() {
       date: post.date,
     }))
 
-  const books = getPublishedBooks()
-    .filter(
-      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
-    )
-    .slice(0, 6)
-    .map((book) => ({
-      slug: book.slug,
-      title: book.title,
-      subtitle: book.subtitle,
-      coverImage: book.coverImage,
-    }))
+  // Curated showcase — never blind registry.slice (that buried The Wordless Laws series).
+  const books = homepageFeaturedBooks.map((book) => ({
+    slug: book.slug,
+    title: book.title,
+    subtitle: book.subtitle,
+    coverImage: book.coverImage,
+  }))
 
   const libraryBooks = bookReviews
     .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)

@@ -57,6 +57,26 @@ export default async function BookLandingPage({ params }: PageProps) {
   }, 0);
   const fontClass = book.theme.headingFont === 'serif' ? 'font-serif' : 'font-sans';
 
+  // Series companions (Wordless Laws pair and similar)
+  const seriesCompanions: Record<string, { slug: string; label: string; blurb: string; seriesHref?: string }> = {
+    'the-wordless-laws': {
+      slug: 'the-wordless-laws-book-two',
+      label: 'Continue with Book Two: The Practice',
+      blurb:
+        'Book One showed twelve forces and refused to name them. Book Two names every force and hands you practices and experiments.',
+      seriesHref: '/books/series/the-wordless-laws',
+    },
+    'the-wordless-laws-book-two': {
+      slug: 'the-wordless-laws',
+      label: 'Start with Book One (concealed)',
+      blurb:
+        'Read the wordless volume first if you want discovery before names — twelve forces through story only.',
+      seriesHref: '/books/series/the-wordless-laws',
+    },
+  };
+  const companion = seriesCompanions[bookSlug];
+  const companionBook = companion ? getBookBySlug(companion.slug) : undefined;
+
   return (
     <>
       <JsonLd
@@ -208,6 +228,39 @@ export default async function BookLandingPage({ params }: PageProps) {
             ))}
           </div>
         </section>
+
+        {/* Series companion */}
+        {companion && companionBook && (
+          <section className="max-w-4xl mx-auto px-6 pb-8 space-y-4">
+            {companion.seriesHref && (
+              <Link
+                href={companion.seriesHref}
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-400/70 hover:text-amber-300 transition-colors"
+              >
+                The Wordless Laws · Full series overview
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </Link>
+            )}
+            <Link
+              href={`/books/${companion.slug}`}
+              className="group block rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/15 transition-all p-6 sm:p-8"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-amber-400/60 mb-2">
+                The Wordless Laws · Series
+              </p>
+              <h2 className={`${fontClass} text-2xl font-bold text-white group-hover:text-white/90 mb-2`}>
+                {companion.label}
+              </h2>
+              <p className="text-white/50 text-sm sm:text-base max-w-2xl leading-relaxed">
+                {companion.blurb}
+              </p>
+              <span className="inline-flex items-center gap-2 mt-4 text-sm text-white/40 group-hover:text-emerald-400 transition-colors">
+                Open {companionBook.title}
+                <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </Link>
+          </section>
+        )}
 
         {/* PDF Download Gate */}
         <section className="max-w-xl mx-auto px-6 pb-16">

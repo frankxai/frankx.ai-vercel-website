@@ -14,16 +14,26 @@ You learned that nothing begins until one thing is chosen completely, and that t
 
 You will notice these twelve are not really twelve. They lean on each other. The decision means little without the picture; the picture dissolves without the leap; the leap is reckless without the deeper knowing; the knowing sleeps unless you first stop forcing it. Pull any thread and the others move. This was never a list. It was one law, seen from twelve windows. What that one law is, the book will go on declining to name, because the naming is yours, and because a truth you arrive at yourself is the only kind you will actually live by.
 
+---
+
+I will not pretend the writing of this book was pure solitude.
+
+I draft with agents. I revise with agents. I publish with systems I built so my family and the people I love can build after me. None of that exempts me from the laws. If anything, the machines make the first law louder: without a total decision, a swarm of tools only multiplies the folder. Nineteen half-finished lives, now with better typography. The third mind is real — human and human, human and model — but only when someone has chosen the star. That is why this series exists as two books: recognition first, usable naming second. Tools without recognition become decoration. Naming without recognition becomes slogans.
+
+---
+
 Here is what to do with what you now see.
 
 Do not try to hold all twelve at once. No one can. Take one. Take the one that made you most uncomfortable — discomfort is the body recognizing a truth it has been avoiding — and live inside it for a week. Run its single practice. Watch what the week does. Then take another. A life is not changed by the chapter you underline hardest. It is changed by the one law you actually move into and inhabit until it becomes the way you breathe.
 
-And keep the book. Not because you will reread it the way you read it the first time, but because you are not finished with it — you have only met it at the level you could meet today. Come back in a year. You will find chapters that say nothing to you now suddenly speaking plainly, because you will have grown the eyes for them. That is the nature of these laws. They do not change. You do. And as you change, more of what was always written on the wall — in that script you had not yet learned to read — becomes legible.
+When three laws have rearranged something concrete — a decision closed, a sentence rewritten, a gift given in advance — open **Book Two: The Practice**. There the names wait, with tradition, science, and experiments short enough to run before your skepticism invents a delay. Do not skip there to feel efficient. Discovery first. Naming second. That order is itself one of the laws.
+
+And keep this book. Not because you will reread it the way you read it the first time, but because you are not finished with it — you have only met it at the level you could meet today. Come back in a year. You will find chapters that say nothing to you now suddenly speaking plainly, because you will have grown the eyes for them. That is the nature of these laws. They do not change. You do. And as you change, more of what was always written on the wall — in that script you had not yet learned to read — becomes legible.
 
 You came to these pages able to read one script. You leave able to read another. The wall has not changed. It says exactly what it has always said, to everyone, in every age, in plain sight, asking nothing but to be seen.
 
 Now you can see it.
 
-Go and build something only you could build. The laws will be wherever you go — they have nowhere else to be. They were never in the book.
+Go and build something only you could build — a company, a song, a household, an intelligence system that serves the people you love. The laws will be wherever you go — they have nowhere else to be. They were never in the book.
 
 They were in the reader the whole time.
