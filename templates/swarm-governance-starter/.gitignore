@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.governance/
+.guard-data/
+*.log
+.env
+.env.local
+.DS_Store

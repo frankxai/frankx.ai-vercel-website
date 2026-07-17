@@ -116,6 +116,25 @@ const templates: Template[] = [
     includesOCI: false,
     deployable: false,
   },
+  {
+    id: 'swarm-governance-starter',
+    dir: 'swarm-governance-starter',
+    title: 'Swarm Governance Starter',
+    subtitle: 'Routing decides what agents do — this decides what they are allowed to do',
+    icon: Users,
+    color: 'violet',
+    features: [
+      'Deny-by-default per-role IAM (tools + path globs)',
+      'Three-tier escalation: autonomous / coordinator / human',
+      'Fail-closed: unknown actions always reach a human',
+      'Append-only decision ledger',
+      'Plugs into Agent Payments Guard for spend caps',
+      'No LLM calls — dry-run the whole ladder, no API key',
+    ],
+    techStack: ['TypeScript', 'zod', 'MCP SDK'],
+    includesOCI: false,
+    deployable: false,
+  },
 ]
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
