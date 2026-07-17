@@ -1,0 +1,21 @@
+{
+  "councilId": "frankx-hero-reset-2026-07-17",
+  "status": "in_review",
+  "storageMode": "BOUNDED",
+  "freeGiB": 91.9,
+  "renderPolicy": "Three single source-frame territory tests were permitted; no further rendering until the red-team resolves the only viable concept.",
+  "seats": [
+    {"id": "chair", "role": "editorial-strategy", "owner": "Hermes", "state": "active"},
+    {"id": "culture", "role": "cultural-editorial-director", "owner": "Claude Opus", "state": "complete"},
+    {"id": "systems", "role": "visual-systems-critic", "owner": "Codex", "state": "complete"},
+    {"id": "material", "role": "image-material-director", "owner": "Grok", "state": "complete"},
+    {"id": "redteam", "role": "independent-creative-red-team", "owner": "Hermes delegation", "state": "running"},
+    {"id": "character", "role": "FRANK-Ω-character-steward", "owner": "Hermes", "state": "active"}
+  ],
+  "artifacts": {
+    "charter": "COUNCIL_CHARTER.md",
+    "brief": "COUNCIL_BRIEF.md",
+    "rawReviews": "raw/",
+    "synthesis": "COUNCIL_SYNTHESIS.md"
+  }
+}
