@@ -114,6 +114,9 @@ const categoryColors: Record<string, string> = {
   Neuroscience: 'bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/25',
   'Inner Work': 'bg-violet-500/10 text-violet-300 border-violet-500/25',
   IFS: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Music: 'bg-pink-500/10 text-pink-300 border-pink-500/25',
+  'Rockstar Energy': 'bg-orange-500/10 text-orange-300 border-orange-500/25',
+  Scenes: 'bg-sky-500/10 text-sky-300 border-sky-500/25',
   Scaling: 'bg-orange-500/10 text-orange-300 border-orange-500/25',
   'Business Strategy': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
   Leadership: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
@@ -225,6 +228,37 @@ export default function LibraryPage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* Featured Collection — Rockstar Energy */}
+      <section className="max-w-6xl mx-auto px-6 pb-12">
+        <Link
+          href="/library/rockstar-energy"
+          className="group block rounded-2xl border border-orange-500/[0.18] bg-gradient-to-br from-orange-500/[0.06] via-rose-500/[0.03] to-transparent p-6 sm:p-7 transition-all hover:border-orange-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-orange-300/80 mb-2">
+                Featured Collection
+              </p>
+              <h2 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-orange-200 transition-colors">
+                Rockstar Energy &amp; Mindset
+              </h2>
+              <p className="text-sm text-white/60 leading-relaxed mt-2 max-w-2xl">
+                Eight books, Eno&apos;s <span className="italic">scenius</span>, and a watch list —
+                a study path in taste, scenes, persona, and the artist&apos;s inner state. The
+                question running through all of it: what makes people feel reality is more alive
+                around them?
+              </p>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 px-4 py-2 text-sm font-medium text-orange-200 transition-colors group-hover:bg-orange-500/20">
+              Enter the collection
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+          </div>
+        </Link>
       </section>
 
       {/* Reviews Grid */}
