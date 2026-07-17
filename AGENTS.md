@@ -1,4 +1,4 @@
-﻿# FrankX â€” AGENTS.md
+# FrankX â€” AGENTS.md
 
 **Repo:** `frankxai/FrankX` (private dev + content authoring)
 **Branch (default):** `main` Â· **Active feature:** `feature/prompt-hub`
@@ -87,6 +87,14 @@ Multiple agents (Claude, Grok, Gemini, Codex, Cursor, Cline) work this repo in p
 
 ## 5. The merge gate â€” what must pass before `main`
 
+### Public/private content gate
+
+- Public content must follow `C:\Users\frank\.starlight\policies\public-private-content-boundary.md`.
+- A client or partner hub is a route-scoped permission boundary. Material approved for that hub must not be reused in blogs, newsletters, social posts, screenshots, diagrams, marketplace copy, or other public routes without a separate consent record for that surface.
+- Before publishing, scan copy, frontmatter, code blocks, filenames, alt text, captions, metadata, links, and public assets for names and identifying operational details.
+- If named-entity consent is absent, use a generic or fictional example and remove identifying repositories, packages, plugins, skills, versions, commands, workflows, roadmaps, and orphaned assets.
+- Named or client-adjacent public releases require an independent privacy verifier and a post-deploy scan of live HTML and direct asset URLs.
+
 ```bash
 npm run merge:gate
 # = npm run type-check
@@ -130,11 +138,13 @@ Every operating decision composes into one of six layers. Full doctrine in `CLAU
 
 The weekly cadence walks all six. Skipping L4 produces the LLM-slop output the site refuses to ship. Skipping L6 produces a one-way street.
 
+**The automated spine.** 7 always-on cloud routines (CCR) walk this loop without Frank's machine on — daily research pulse, Sunday fan-out, Friday newsletter, Saturday hub audit, monthly dependency audit, weekly Vercel cost watch. `docs/ops/SCHEDULED-ROUTINES.md` is the fleet's source of truth for every scheduled automation: read it before creating, changing, or reasoning about one, and add a table row in the same change. **Durable-output-sink law:** every routine must leave a PR, a committed file, or a Slack DM — never report-only into run-history. Agents cannot toggle web-UI-created routines (API rejects it); those are Frank's to manage at https://claude.ai/code/routines.
+
 ---
 
 ## 5c. Antigravity-Native Swarm Orchestration (added 2026-05-29)
 
-Antigravity natively federalizes and runs ACOS's 99+ specialized agents as dynamic subagents using native tool definitions. 
+Antigravity natively federalizes and runs ACOS's 99+ specialized agents as dynamic subagents using native tool definitions.
 
 **Operating Protocol:**
 1. **Discovery:** Load agent parameters dynamically from the registry cache `.antigravity/agents-registry.json` or by running `node scripts/lib/acos-agy-registry.mjs <agent-name>`.
@@ -239,3 +249,37 @@ For any site, app, landing page, dashboard, visual identity, brand, motion, medi
 
 When motion, scroll, generated media, GIF/video, or premium polish matters, route through the Motion Design Studio plugin/skills and verify the result visually.
 
+
+<!-- PREMIUM-WEB-OS:START -->
+## Premium Intelligence Web OS Adoption
+
+This repo participates in the Starlight Premium Intelligence Web OS.
+
+For any website, app, landing page, dashboard, brand surface, visual asset, motion system, 3D/WebGL scene, generated media, or public-facing UI work:
+
+- Read the estate OS first: `C:\Users\frank\starlight\repos\_intelligence\README.md`.
+- Use the activation contract: `C:\Users\frank\starlight\repos\_intelligence\adoption\activation-contract.md`.
+- Treat `C:\Users\frank\starlight\repos\_intelligence\` as the source of truth for premium web taste, design, motion, WebGL, copy, assets, and quality gates.
+- Use `/pwo` or the `premium-web-os` skill for full builds; use `/mad` for a design council pass.
+- Use `/pwo review-pr` before absorbing another agent's PR or branch.
+- Use `/pwo absorb-assets` before using external, generated, scientific, audio, video, or 3D assets.
+- Use `/pwo motion-score` before shipping cinematic scroll, sound-paired motion, or complex choreography.
+- Build static composition first, add Track A local motion second, add Track B GSAP/Lenis scroll only when earned, and add 3D only with fallback and reduced-motion behavior.
+- Use VIS through `C:\Users\frank\starlight\repos\visual-intelligence` for asset provenance, curation packets, rights, and publication records.
+- Use `C:\Users\frank\starlight\repos\_intelligence\visual-worlds\neural-cosmos.md` for neuroscience, cerebrum, spine, electron, signal, or golden spiral direction.
+- Do not copy reference sites or agencies. Deconstruct principles and create original execution.
+- Do not ship without responsive, accessibility, performance, reduced-motion, and visual QA checks appropriate to the change.
+
+Repo-local instructions remain authoritative when stricter.
+<!-- PREMIUM-WEB-OS:END -->
+
+<!-- STARLIGHT-REPO-CONTRACT:START -->
+## Starlight repository contract
+
+Contract: `starlight.repo_profile.v2` · Team: `frankx-product-revenue-team` · Priority: `tier-0`
+- Work only in assigned paths and preserve unrelated dirty files.
+- Read `SYSTEM.md`, `SCHEMA.md`, and `SKILLS.md` before architectural changes.
+- Use the smallest 3–5 role team and an independent verifier for release-affecting work.
+- Required handoff: artifacts, checks, verifier verdict, risks, approvals, rollback, and next bounded action.
+- Human-gated actions: DNS, secrets, billing, spend, migrations, destructive operations, permissions, legal/IP, brand identity, external sends, and high-risk production changes.
+<!-- STARLIGHT-REPO-CONTRACT:END -->

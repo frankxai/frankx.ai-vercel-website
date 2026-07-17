@@ -70,6 +70,7 @@ const NAV_COLUMNS = [
       { label: 'Foundry', href: '/foundry', accent: 'emerald' },
       { label: "Founder's Circle", href: '/founders-circle', accent: 'rose' },
       { label: 'Coaching', href: '/coaching' },
+      { label: 'Licensing', href: '/licensing' },
       { label: 'Newsletter', href: '/newsletter' },
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/contact' },
@@ -152,11 +153,11 @@ export default function Footer() {
             </p>
             {/* Email — direct contact signal */}
             <a
-              href="mailto:hello@frankx.ai"
+              href="mailto:frank@frankx.ai"
               className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white transition-colors"
             >
               <Mail className="w-3 h-3" />
-              hello@frankx.ai
+              frank@frankx.ai
             </a>
             {/* Social links */}
             <nav aria-label="Social profiles" className="mt-4 sm:mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
@@ -226,6 +227,8 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             <span className="text-white/20" aria-hidden>·</span>
             <Link href="/legal" className="hover:text-white transition-colors">Legal</Link>
+            <span className="text-white/20" aria-hidden>·</span>
+            <Link href="/licensing" className="hover:text-white transition-colors">Licensing</Link>
             <span className="text-white/20" aria-hidden>·</span>
             <a href="/rss.xml" className="hover:text-white transition-colors" aria-label="RSS feed">RSS</a>
           </nav>

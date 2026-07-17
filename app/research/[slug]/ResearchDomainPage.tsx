@@ -423,7 +423,8 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                         Grade {domain.evidenceGrade}
                       </span>
                       <span className="text-[10px] text-white/20">
-                        {domain.evidenceGrade === 'A' ? '(Peer-reviewed / meta-analyses)' :
+                        {domain.evidenceNote ? `(${domain.evidenceNote})` :
+                         domain.evidenceGrade === 'A' ? '(Peer-reviewed / meta-analyses)' :
                          domain.evidenceGrade === 'B' ? '(Industry reports from credible firms)' :
                          domain.evidenceGrade === 'C' ? '(Mixed sources — industry + editorial)' :
                          '(Mostly editorial / opinion-based)'}

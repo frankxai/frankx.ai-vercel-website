@@ -370,7 +370,7 @@ export default function AIEvolutionPage() {
               custom={3}
               className="mt-4 text-base text-slate-500"
             >
-              By Frank Riemer, former AI architect at Oracle
+              By Frank Riemer, AI Architect & Creator
             </motion.p>
             <motion.p
               variants={fadeUp}

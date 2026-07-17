@@ -13,8 +13,9 @@
  *   - Files that legitimately discuss these phrases (taste.md, CLAUDE.md,
  *     AGENTS.md, design-lab brand demos, audit docs, the content scripts)
  *     are excluded — see ALLOW_FILES below.
- *   - Lines ending with "// ai-slop-allow" or matching `<!-- ai-slop-allow -->`
- *     are allowed (for legitimate quotation in editorial context).
+ *   - Lines ending with "// ai-slop-allow", the MDX inline allow marker, or matching
+ *     `<!-- ai-slop-allow -->` are allowed (for legitimate quotation in editorial context).
+ *     Prefer the JSX block-comment form inside MDX (HTML comments break MDX JSX parsing).
  *
  * Refs: taste.md § "What we refuse" + § "The sound of the brand"
  *       docs/ops/2026-05-06-DESIGN-COPY-AUDIT.md (P0 #3)
@@ -118,7 +119,7 @@ function isAllowed(relPath) {
 }
 
 function lineAllowed(line) {
-  return /\/\/\s*ai-slop-allow|<!--\s*ai-slop-allow\s*-->/.test(line)
+  return /\/\/\s*ai-slop-allow|\{\/\*\s*ai-slop-allow\s*\*\/\}|<!--\s*ai-slop-allow\s*-->/.test(line)
 }
 
 async function* walk(dir) {

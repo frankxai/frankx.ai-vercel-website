@@ -87,7 +87,7 @@ export function EmailSignup({
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+            className="min-w-0 flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
           />
           <button
             type="submit"

@@ -1,54 +1,46 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
 import {
   ArrowRight,
-  Brain,
-  Music2,
-  Zap,
-  ImageIcon,
-  Sparkles,
   Clock,
   BookOpen,
   Play,
-  ExternalLink,
   GraduationCap,
 } from 'lucide-react'
-import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
+import {
+  learningPaths,
+  featuredCreators,
+  type LearningPath,
+  type LearningPathCategory,
+} from '@/data/learning-paths'
+import { iconMap, colorMap } from '@/lib/learn/portal-display'
 
-const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
-  brain: Brain,
-  music: Music2,
-  zap: Zap,
-  image: ImageIcon,
-  sparkles: Sparkles,
-}
-
-const colorMap: Record<string, string> = {
-  emerald: 'from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-400',
-  cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
-  amber: 'from-amber-500/20 to-amber-500/5 border-amber-500/20 text-amber-400',
-  violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
-  sky: 'from-sky-500/20 to-blue-500/5 border-sky-500/20 text-sky-400',
-}
-
-const playButtonBgMap: Record<string, string> = {
-  emerald: 'bg-emerald-500/80 group-hover:bg-emerald-500',
-  cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
-  amber: 'bg-amber-500/80 group-hover:bg-amber-500',
-  violet: 'bg-violet-500/80 group-hover:bg-violet-500',
-  sky: 'bg-sky-500/80 group-hover:bg-sky-500',
-}
-
+// Genuinely not-yet-built portals. AWS Bedrock, Azure AI Foundry, Oracle OCI
+// GenAI, and ChatGPT already shipped — they must not appear here as "coming".
 const upcomingPortals: string[] = [
   'Suno AI Music',
-  'Midjourney Visual Art',
-  'ChatGPT for Productivity',
+  'Midjourney',
   'NotebookLM Deep Work',
 ]
+
+const categoryLabels: Record<LearningPathCategory, { title: string; blurb: string }> = {
+  'model-maker': {
+    title: 'Frontier model makers',
+    blurb: "The labs that ship the models themselves — Anthropic, Google, OpenAI.",
+  },
+  cloud: {
+    title: 'Cloud AI surfaces',
+    blurb: 'Managed model gateways on AWS, Azure, and Oracle Cloud — where production runs.',
+  },
+  consumer: {
+    title: 'Consumer & creative tools',
+    blurb: 'Specialist products for music, video, image, and research workflows.',
+  },
+}
+
+const CATEGORY_ORDER: LearningPathCategory[] = ['model-maker', 'cloud', 'consumer']
 
 function PathCard({ path }: { path: LearningPath }) {
   const Icon = iconMap[path.icon] || BookOpen
@@ -57,7 +49,7 @@ function PathCard({ path }: { path: LearningPath }) {
   return (
     <Link
       href={`/learn/${path.slug}`}
-      className={`group relative block p-6 rounded-2xl border bg-gradient-to-br ${colors} hover:border-white/20 transition-all hover:-translate-y-1`}
+      className={`group relative block p-6 rounded-2xl border bg-gradient-to-br ${colors} hover:border-white/20 transition-all hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
     >
       <div className="flex items-start justify-between mb-4">
         <div className={`p-3 rounded-xl bg-white/5`}>
@@ -91,79 +83,13 @@ function PathCard({ path }: { path: LearningPath }) {
   )
 }
 
-function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: string }) {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const playBtnClasses = playButtonBgMap[pathColor] || playButtonBgMap.emerald
-
-  return (
-    <div className="bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden">
-      {/* Video Thumbnail / Player */}
-      <div className="relative aspect-video bg-black/50">
-        {isPlaying ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-            className="absolute inset-0 w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title={video.title}
-          />
-        ) : (
-          <>
-            <Image
-              src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
-              alt={video.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover"
-            />
-            <button
-              onClick={() => setIsPlaying(true)}
-              className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/30 transition-colors group"
-            >
-              <div className={`p-4 rounded-full transition-colors ${playBtnClasses}`}>
-                <Play className="w-8 h-8 text-white fill-white" />
-              </div>
-            </button>
-            <div className="absolute bottom-2 right-2 px-2 py-1 rounded bg-black/70 text-white text-xs">
-              {video.duration}
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Video Info */}
-      <div className="p-4">
-        <div className="flex items-center gap-2 mb-2">
-          <span className={`text-xs px-2 py-0.5 rounded-full bg-white/10 capitalize text-white/60`}>
-            {video.level}
-          </span>
-        </div>
-        <h4 className="font-semibold text-white mb-1 line-clamp-2">
-          {video.title}
-        </h4>
-        <p className="text-sm text-white/50 mb-3 line-clamp-2">
-          {video.description}
-        </p>
-        <a
-          href={video.creatorChannel}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors"
-        >
-          {video.creator}
-          <ExternalLink className="w-3 h-3" />
-        </a>
-      </div>
-    </div>
-  )
-}
 
 export default function LearnShell() {
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-violet-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-cyan-500/10" />
 
         <div className="relative max-w-6xl mx-auto px-6">
           <motion.div
@@ -188,47 +114,64 @@ export default function LearnShell() {
               official launches, the sharpest expert walkthroughs, and the structure to move
               from first prompt to production.
             </p>
+            <p className="mt-5 text-sm text-white/50">
+              Pick a portal · watch the free path · ship the first project. No account, no cost.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Learning Paths Grid */}
+      {/* Learning Paths Grid — grouped by category (required field on every portal). */}
       <section className="max-w-6xl mx-auto px-6 pb-12">
-        <div className="grid md:grid-cols-2 gap-6">
-          {learningPaths.map((path, i) => (
-            <motion.div
-              key={path.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <PathCard path={path} />
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Coming Soon */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <p className="text-sm font-semibold text-white mb-1">More portals in build</p>
-              <p className="text-sm text-white/50">
-                Same depth, same curation. Subscribe to the newsletter to be notified when each lands.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {upcomingPortals.map((portal) => (
-                <span
-                  key={portal}
-                  className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 text-white/60 border border-white/5"
-                >
-                  {portal}
-                </span>
-              ))}
-            </div>
-          </div>
+        <div className="space-y-12">
+          {CATEGORY_ORDER.map((cat) => {
+            const inCat = learningPaths.filter((p) => p.category === cat)
+            // Skip an empty category entirely UNLESS it's consumer — the only
+            // one with a known roadmap roster (upcomingPortals are all consumer).
+            // This stops the in-build chips showing under the wrong header if a
+            // model-maker/cloud category ever empties.
+            if (inCat.length === 0 && cat !== 'consumer') return null
+            const meta = categoryLabels[cat]
+            return (
+              <div key={cat}>
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold text-white mb-1">{meta.title}</h2>
+                  <p className="text-sm text-white/50">{meta.blurb}</p>
+                </div>
+                {inCat.length > 0 ? (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {inCat.map((path, i) => (
+                      <motion.div
+                        key={path.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: Math.min(i, 4) * 0.05 }}
+                      >
+                        <PathCard path={path} />
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  // Visible in-build state — a roadmap signal, not a dead gap.
+                  <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-6">
+                    <p className="text-sm text-white/50 mb-3">
+                      In build — {upcomingPortals.length} portals, same depth and curation.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {upcomingPortals.map((portal) => (
+                        <span
+                          key={portal}
+                          className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 text-white/60 border border-white/5"
+                        >
+                          {portal}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </section>
 
@@ -246,7 +189,7 @@ export default function LearnShell() {
               href={creator.channel}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all text-center"
+              className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <h3 className="font-semibold text-white mb-1">{creator.name}</h3>
               <p className="text-xs text-white/50 mb-2">{creator.specialty}</p>
@@ -258,7 +201,7 @@ export default function LearnShell() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl bg-gradient-to-br from-emerald-500/10 to-violet-500/10 p-8 md:p-12 text-center">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
             Want Structured Guidance?
           </h2>

@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BookOpen,
   Calendar,
-  CheckCircle2,
   Code2,
   FlaskConical,
   Mail,
@@ -12,37 +11,12 @@ import Link from 'next/link'
 
 import { createMetadata } from '@/lib/seo'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
+import { INTENTS, type Intent } from '@/lib/contact-intake'
+import { ContactForm } from '@/components/contact/ContactForm'
 
 const SITE_URL = 'https://frankx.ai'
 const CANONICAL_PATH = '/contact'
 const PRIMARY_EMAIL = 'frank@frankx.ai'
-
-const intents = [
-  {
-    label: 'Workshop or sprint',
-    subject: 'Workshop or sprint — first call',
-    description: '1-day agent workshop, 5–10 day implementation sprint, or hands-on team build.',
-    href: `mailto:${PRIMARY_EMAIL}?subject=${encodeURIComponent('Workshop or sprint — first call')}`,
-  },
-  {
-    label: 'Partnership',
-    subject: 'Partnership inquiry',
-    description: 'Co-build, co-market, infrastructure or platform partnerships.',
-    href: `mailto:${PRIMARY_EMAIL}?subject=${encodeURIComponent('Partnership inquiry')}`,
-  },
-  {
-    label: 'Press or speaking',
-    subject: 'Press / speaking',
-    description: 'Quotes, interviews, keynotes, workshop bookings.',
-    href: `mailto:${PRIMARY_EMAIL}?subject=${encodeURIComponent('Press / speaking')}`,
-  },
-  {
-    label: 'Something else',
-    subject: 'FrankX — general inquiry',
-    description: 'Anything that doesn\'t fit the buckets above. Plain email works.',
-    href: `mailto:${PRIMARY_EMAIL}?subject=${encodeURIComponent('FrankX — general inquiry')}`,
-  },
-] as const
 
 const surfaces = [
   {
@@ -94,7 +68,7 @@ const faqs = [
   },
   {
     q: 'Reply time?',
-    a: 'Most replies inside 1–2 working days. Time zones: Madrid (CET/CEST). Long-form decisions or technical reviews can take a few days more.',
+    a: 'Most replies inside 1–2 working days. Time zones: Madrid (CET/CEST). You get an instant automatic confirmation when your message lands, so you\'re never left wondering if it sent.',
   },
 ] as const
 
@@ -135,12 +109,24 @@ const jsonLd = [
 export const metadata = createMetadata({
   title: 'Contact Frank — FrankX',
   description:
-    'Direct line to Frank. Workshops, implementation sprints, partnerships, and advisory. One email, intents below.',
+    'Direct line to Frank. Workshops, implementation sprints, partnerships, and advisory. One form, instant confirmation, reply within 1–2 working days.',
   keywords: ['contact frankx', 'hire frank', 'ai workshop booking', 'ai sprint booking', 'frankx partnership'],
   path: CANONICAL_PATH,
 })
 
-export default function ContactPage() {
+function resolveIntent(value: string | string[] | undefined): Intent {
+  const v = Array.isArray(value) ? value[0] : value
+  return (INTENTS as readonly string[]).includes(v ?? '') ? (v as Intent) : 'general'
+}
+
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ intent?: string }>
+}) {
+  const params = await searchParams
+  const defaultIntent = resolveIntent(params?.intent)
+
   return (
     <main id="main" className="min-h-screen bg-[#06080f] text-white">
       <script
@@ -148,86 +134,57 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ── HERO ──────────────────────────────────────────────────────── */}
+      {/* ── HERO + FORM ───────────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-white/10 pt-28 pb-16 sm:pt-32">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(6,182,212,0.15),transparent_38%),radial-gradient(circle_at_82%_24%,rgba(16,185,129,0.14),transparent_36%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(6,182,212,0.15),transparent_40%),radial-gradient(circle_at_82%_24%,rgba(16,185,129,0.14),transparent_38%)]" />
         </div>
 
-        <div className="relative mx-auto max-w-4xl px-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
-            Contact
-          </p>
-          <h1 className="mt-5 max-w-3xl text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08]">
-            One inbox. Direct line.
-          </h1>
-          <p className="mt-6 max-w-2xl text-[17px] md:text-lg leading-relaxed text-slate-300/90">
-            Workshops, implementation sprints, partnerships, advisory. Everything routes to{' '}
-            <a href={`mailto:${PRIMARY_EMAIL}`} className="text-cyan-300 underline-offset-4 hover:underline">
-              {PRIMARY_EMAIL}
-            </a>
-            . Pick an intent below to prefill the subject line, or just write.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href={`mailto:${PRIMARY_EMAIL}`}
-              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
-            >
-              <Mail className="h-4 w-4" />
-              Email Frank
-            </a>
-            <a
-              href={MEET_AND_GROW_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
-            >
-              <Calendar className="h-4 w-4" />
-              Book a 20-min intro
-            </a>
-          </div>
-
-          <p className="mt-5 text-[12px] text-slate-500">
-            Most replies within 1–2 working days. Madrid time (CET/CEST).
-          </p>
-        </div>
-      </section>
-
-      {/* ── INTENTS ───────────────────────────────────────────────────── */}
-      <section className="border-b border-white/10 py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300/80">
-              Prefilled subjects
-            </p>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              Pick the intent. Same inbox.
-            </h2>
-            <p className="mt-3 text-base leading-7 text-slate-400">
-              Saves a second on both sides. The subject line tells Frank how to route the reply.
-            </p>
-          </div>
-
-          <ul className="mt-10 grid gap-4 md:grid-cols-2">
-            {intents.map((i) => (
-              <li key={i.label}>
-                <a
-                  href={i.href}
-                  className="group flex h-full flex-col gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-cyan-300/40 hover:bg-white/[0.06]"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-base font-semibold text-white">{i.label}</h3>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-cyan-300" />
-                  </div>
-                  <p className="text-sm leading-6 text-slate-400">{i.description}</p>
-                  <p className="mt-1 text-[11px] font-mono text-slate-500">
-                    subject: {i.subject}
-                  </p>
+        <div className="relative mx-auto max-w-6xl px-6">
+          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+            {/* Left: pitch */}
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
+                Contact
+              </p>
+              <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08]">
+                Tell Frank what you're building.
+              </h1>
+              <p className="mt-6 max-w-md text-[17px] md:text-lg leading-relaxed text-slate-300/90">
+                One form, straight to{' '}
+                <a href={`mailto:${PRIMARY_EMAIL}`} className="text-cyan-300 underline-offset-4 hover:underline">
+                  {PRIMARY_EMAIL}
                 </a>
-              </li>
-            ))}
-          </ul>
+                . You get an instant confirmation, then a real reply within 1–2
+                working days.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href={MEET_AND_GROW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06080f]"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Prefer to book a call?
+                </a>
+              </div>
+
+              <p className="mt-6 text-[12px] text-slate-500">
+                Prefer plain email? Just write to{' '}
+                <a href={`mailto:${PRIMARY_EMAIL}`} className="text-slate-400 underline-offset-4 hover:text-white">
+                  {PRIMARY_EMAIL}
+                </a>
+                . Madrid time (CET/CEST).
+              </p>
+            </div>
+
+            {/* Right: form */}
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur">
+              <ContactForm defaultIntent={defaultIntent} />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -282,7 +239,7 @@ export default function ContactPage() {
               Before you write.
             </h2>
             <p className="mt-3 text-base leading-7 text-slate-400">
-              Most first emails ask one of these. Skim before you hit send.
+              Most first messages ask one of these. Skim before you send.
             </p>
           </div>
 
@@ -300,21 +257,22 @@ export default function ContactPage() {
       {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <CheckCircle2 className="mx-auto h-6 w-6 text-emerald-300" />
+          <Mail className="mx-auto h-6 w-6 text-cyan-300" />
           <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-            Send the email. Frank will reply.
+            Still scrolling? Just send the message.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-slate-300/90">
-            One inbox is intentional. Less routing, less noise, faster reply.
+            One front door, instant confirmation, fast reply. Or book the intro and
+            skip straight to the call.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a
-              href={`mailto:${PRIMARY_EMAIL}`}
+            <Link
+              href="#main"
               className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
             >
-              <Mail className="h-4 w-4" />
-              {PRIMARY_EMAIL}
-            </a>
+              Back to the form
+              <ArrowRight className="h-4 w-4" />
+            </Link>
             <a
               href={MEET_AND_GROW_URL}
               target="_blank"

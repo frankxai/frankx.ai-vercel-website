@@ -20,11 +20,11 @@ import CopyableBio from './CopyableBio';
 // or copy the length that fits.
 
 const ONE_LINE =
-  'Frank Riemer is a former AI architect at Oracle, founder of FrankX, and creator of 12,000+ AI songs.';
+  'Frank Riemer is an AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs.';
 
-const SHORT_BIO = `Frank Riemer is a former AI architect at Oracle, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is an AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
 
-const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and former AI architect at Oracle. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
+const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
 He is a prolific AI music creator — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
 
@@ -112,7 +112,7 @@ const SELECTED_WORK = [
 // ─── Press / Quick facts ────────────────────────────────────────────────
 
 const QUICK_FACTS = [
-  ['Role', 'Former AI architect at Oracle'],
+  ['Role', 'AI Architect & Creator'],
   ['Based', 'Amsterdam, Netherlands'],
   ['Languages', 'English, German, Russian'],
   ['Songs released', '12,000+ via Suno'],
@@ -123,7 +123,7 @@ const QUICK_FACTS = [
 export const metadata = createMetadata({
   title: 'Bio · Frank Riemer | FrankX',
   description:
-    'Press bio, speaker topics, and media kit for Frank Riemer — former AI architect at Oracle, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+    'Press bio, speaker topics, and media kit for Frank Riemer — AI Architect & Creator, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
   path: '/bio',
   keywords: [
     'Frank Riemer bio',

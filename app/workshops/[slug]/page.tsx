@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getAllWorkshopSlugs, getWorkshopBySlug, type Workshop } from '@/data/workshops'
+import { getAllWorkshopSlugs, getWorkshopBySlug } from '@/data/workshops'
 import { siteConfig } from '@/lib/seo'
-import { socialLinks } from '@/lib/social-links'
 import WorkshopClient from './WorkshopClient'
 
 const SITE_URL = siteConfig.url
@@ -27,8 +26,13 @@ export async function generateMetadata(
   }
 
   const url = `${SITE_URL}/workshops/${workshop.slug}`
-  const title = `${workshop.title} · FrankX Workshops`
-  const description = workshop.subtitle || workshop.overview.slice(0, 160)
+  const title = `${workshop.title} · FrankX Workshop Studio`
+  const provenanceLead = {
+    'delivered-personal': 'Personally developed and delivered workshop.',
+    'delivered-studio-assisted': 'Delivered workshop with a studio-assisted architecture.',
+    'studio-draft': 'Studio architecture to tailor and pilot.',
+  }[workshop.provenance]
+  const description = `${provenanceLead} ${workshop.subtitle || workshop.overview.slice(0, 120)}`
 
   return {
     title,
@@ -66,99 +70,7 @@ export async function generateMetadata(
   }
 }
 
-function totalMinutes(workshop: Workshop): number {
-  return workshop.modules.reduce((sum, m) => {
-    const match = m.duration.match(/(\d+)/)
-    return sum + (match ? parseInt(match[1], 10) : 0)
-  }, 0)
-}
-
-function CourseJsonLd({ workshop }: { workshop: Workshop }) {
-  const minutes = totalMinutes(workshop)
-  const courseLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: workshop.title,
-    description: workshop.overview,
-    url: `${SITE_URL}/workshops/${workshop.slug}`,
-    provider: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: SITE_URL,
-      jobTitle: 'AI Architect',
-      sameAs: [socialLinks.linkedin, socialLinks.github],
-    },
-    educationalLevel: workshop.difficulty,
-    timeRequired: `PT${minutes}M`,
-    numberOfCredits: workshop.moduleCount,
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'mixed',
-      courseWorkload: workshop.duration,
-      instructor: {
-        '@type': 'Person',
-        name: 'Frank Riemer',
-        url: SITE_URL,
-      },
-    },
-    teaches: workshop.objectives,
-    coursePrerequisites: workshop.prerequisites,
-    audience: {
-      '@type': 'Audience',
-      audienceType: workshop.audience,
-    },
-    inLanguage: 'en',
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(courseLd) }}
-    />
-  )
-}
-
-function EventJsonLd({ workshop }: { workshop: Workshop }) {
-  // Generic Event schema — for workshops without a specific scheduled date,
-  // we describe the format rather than a concrete instance.
-  const eventLd = {
-    '@context': 'https://schema.org',
-    '@type': 'EducationEvent',
-    name: workshop.title,
-    description: workshop.subtitle,
-    url: `${SITE_URL}/workshops/${workshop.slug}`,
-    eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
-    location: {
-      '@type': 'VirtualLocation',
-      url: `${SITE_URL}/workshops/${workshop.slug}`,
-    },
-    organizer: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: SITE_URL,
-    },
-    performer: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-    },
-    audience: {
-      '@type': 'EducationalAudience',
-      audienceType: workshop.audience,
-    },
-    teaches: workshop.objectives,
-    inLanguage: 'en',
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(eventLd) }}
-    />
-  )
-}
-
-function BreadcrumbJsonLd({ workshop }: { workshop: Workshop }) {
+function BreadcrumbJsonLd({ workshop }: { workshop: NonNullable<ReturnType<typeof getWorkshopBySlug>> }) {
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -188,8 +100,6 @@ export default async function WorkshopDetailPage(
 
   return (
     <>
-      <CourseJsonLd workshop={workshop} />
-      <EventJsonLd workshop={workshop} />
       <BreadcrumbJsonLd workshop={workshop} />
       <WorkshopClient workshop={workshop} />
     </>

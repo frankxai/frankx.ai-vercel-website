@@ -1,6 +1,6 @@
 ---
-title: "The FrankX Skill Creation Methodology"
-description: "A practical operating method for turning repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises."
+title: "The Skill Creation Methodology"
+description: "The authoring method behind the Agent Skill Standard: turn repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises."
 date: "2026-06-15"
 author: "Frank"
 category: "AI Architecture"
@@ -8,9 +8,9 @@ tags: ["ai-skills", "ai-coe", "agentic-systems", "skillforge", "operating-knowle
 image: "/images/blog/building-custom-skills-hero-v2.png"
 ---
 
-# The FrankX Skill Creation Methodology
+# The Skill Creation Methodology
 
-This guide is a field method for building AI skills that actually compound.
+This guide is a field method for building AI skills that actually compound. It is the authoring method behind the **[Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard)** — an open specification I steward rather than brand, so the practice belongs to the ecosystem, not to one name.
 
 It is built with gratitude for the people and teams moving this space forward: Anthropic for making Agent Skills concrete, the open-source builders publishing working examples, the AI teams stress-testing these ideas in production, and the operators turning raw model capability into useful work.
 
@@ -28,7 +28,7 @@ It is the ability to convert repeatable work into reusable, evaluated, governed 
 
 Prompts are useful. They are also fragile. They live in chats, docs, bookmarks, private memory, and half-remembered workflows. A skill is different. A skill packages a workflow so an AI agent can recognize when to use it, load the right context, run deterministic checks, follow a quality standard, and produce a result that a team can trust.
 
-The FrankX method treats skills as **operating knowledge units**.
+The method treats skills as **operating knowledge units**.
 
 Each skill should answer:
 
@@ -47,7 +47,9 @@ If those answers are missing, the asset is not yet a real skill. It is a prompt 
 
 ## The Five Layers
 
-The FrankX Skill Creation Method has five layers.
+The method has five layers. Each one is a checkpoint a skill must clear before it earns the next maturity level in the standard.
+
+<Diagram src="/images/infographics/skill-five-layers.svg" alt="The five layers of a skill: Intent, Knowledge, Execution, Evaluation, Governance" caption="The five layers — Intent, Knowledge, Execution, Evaluation, Governance. Skip one and the skill stays fragile." />
 
 ### 1. Intent
 
@@ -191,6 +193,23 @@ For a startup, this should live in the repo.
 
 For an enterprise, this belongs in the AI Center of Excellence operating model.
 
+## The Maturity Model
+
+The five layers tell you what to build. The maturity model tells you where a skill stands today and what it needs next. The Agent Skill Standard defines six levels.
+
+<Diagram src="/images/infographics/skill-maturity-ladder.svg" alt="The Skill Maturity Model: six levels from L0 Prompt to L5 Composed and attested capability" caption="The Skill Maturity Model — each level adds one guarantee the level below it lacked." />
+
+| Level | Name | What it adds |
+| --- | --- | --- |
+| L0 | Prompt | An ad-hoc instruction. Useful, not reusable. |
+| L1 | Documented | A valid `SKILL.md` with a name, a description full of trigger language, and one narrow job. |
+| L2 | Referenced | Progressive disclosure: `references/`, `scripts/`, and `assets/` instead of one giant file. |
+| L3 | Evaluated | At least three eval scenarios — success, incomplete input, and a misuse boundary. |
+| L4 | Governed | A registry entry: owner, version, status, risk tier, allowed data, review date, rollback. |
+| L5 | Composed | Safe composition with other skills, plus attestation and a clear sovereignty boundary. |
+
+Most teams live at L0 and L1. Durable capability starts at L3, because that is where a skill stops depending on luck. Treat the jump from L1 to L3 as the real work.
+
 ## The Skillforge Canvas
 
 Use this canvas before writing the skill.
@@ -243,6 +262,8 @@ Use `assets/` when there is a reusable template or source artifact.
 Use `evals/` when the skill will be shared or maintained over time.
 
 ## The `SKILL.md` Standard
+
+<Diagram src="/images/infographics/skill-anatomy.svg" alt="Anatomy of a skill: a SKILL.md file with frontmatter and body, plus references, scripts, assets, and evals folders, loaded by progressive disclosure" caption="The skill folder and the three loading levels of progressive disclosure." />
 
 A strong `SKILL.md` has this shape:
 
@@ -314,9 +335,11 @@ Do not under-govern sensitive work.
 
 The craft is matching friction to risk.
 
-## The FrankX Quality Bar
+<Diagram src="/images/infographics/skill-risk-tiers.svg" alt="Risk tiers as a pyramid from T0 personal productivity to T4 operational action, with the review each tier requires" caption="Risk tiers — the controls scale with possible harm, not with how impressive the skill looks." />
 
-A skill is strong when:
+## The Conformance Bar
+
+A skill conforms to the standard when:
 
 - it has a narrow job
 - it has explicit trigger language
@@ -435,10 +458,13 @@ The book should not be another tool guide. It should be a standard for how serio
 
 ## What To Read Next
 
+- [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer)
+- [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance)
 - [Building Custom Skills for ACOS](/blog/building-custom-skills-acos)
 - [Why Everyone Needs Their Own AI Center of Excellence](/blog/why-everyone-needs-personal-ai-coe)
 - [Agent Card A2A Spec](/guides/agent-card-a2a-spec)
 - [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)
+- [Agent Skill Standard (open spec)](https://github.com/frankxai/claude-skills-library/tree/main/standard)
 - [Research Hub](/research)
 
 ## Source Base

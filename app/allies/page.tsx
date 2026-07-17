@@ -49,6 +49,7 @@ const activeNodes = [
     href: "/allies/epic-ways",
     friendHref: "/friends/estefania",
     downloadHref: "/downloads/epicways-intelligence",
+    portalHref: "/portal/estefania",
     description:
       "Estefania Badra's leadership, communication, training, consulting, and event-experience company, now framed as a client-intelligence system for better service before, during, and after the room.",
     visitorUse:
@@ -62,24 +63,12 @@ const activeNodes = [
     href: "/allies/trinity-ai",
     friendHref: "/friends/ahmad",
     downloadHref: "/downloads/ahmad-founder-creator-kit",
+    portalHref: "/portal/ahmad",
     description:
       "Ahmad Hashem's Trinity AI and creator-founder context framed as a practical startup system with local AI lab guidance, ACOS/OpenClaw install paths, media loops, and agent roles.",
     visitorUse:
       "Download a founder creator kit and see how public story, private AI tools, content, offers, and feedback can become a working startup rhythm.",
     tags: ["Trinity AI", "OpenClaw", "Creator OS", "Agent swarms"],
-  },
-  {
-    title: "Ana AI Business Kit",
-    status: "Noindex draft",
-    color: "amber" as GlowColor,
-    href: "/allies/ana-cancino",
-    friendHref: "/friends/ana",
-    downloadHref: "/downloads/ana-ai-business-kit",
-    description:
-      "Ana Cecilia Cancino's HR, psychology, self-knowledge, research, and AI companion work organized into an offer system, client loop, and travel-friendly business engine.",
-    visitorUse:
-      "Download a starter kit and see how her existing offers become repeatable sessions, circles, workshops, and aftercare.",
-    tags: ["HR", "Psychology", "Self-knowledge", "Offers"],
   },
   {
     title: "Harzfenster Hospitality Intelligence",
@@ -88,6 +77,7 @@ const activeNodes = [
     href: "/allies/harzfenster",
     friendHref: "/friends/jojo",
     downloadHref: "/downloads/jojo-hospitality-intelligence-kit",
+    portalHref: "/portal/jojo",
     description:
       "Jojo Steingrüber's Harzfenster and Hotel Görtler context organized as an approval-based hospitality intelligence pilot for bookings, service briefings, hotel handoffs, review learning, and team enablement.",
     visitorUse:
@@ -289,6 +279,12 @@ export default function AlliesPage() {
                     className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-200/10 px-4 py-2.5 text-sm font-bold text-emerald-50 transition hover:border-emerald-100/40 hover:bg-emerald-200/15"
                   >
                     Download kit
+                  </Link>
+                  <Link
+                    href={node.portalHref}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.045] px-4 py-2.5 text-sm font-bold text-white transition hover:border-white/40 hover:bg-white/10"
+                  >
+                    Partner portal
                   </Link>
                 </div>
               </GlowCard>

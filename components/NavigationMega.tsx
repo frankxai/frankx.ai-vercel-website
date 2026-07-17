@@ -43,7 +43,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-// import MobileNavOverlay from '@/components/MobileNavOverlay'
+import MobileNavOverlay from '@/components/MobileNavOverlay'
 
 // Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
@@ -78,7 +78,7 @@ const navigation = {
       { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
       { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters: identity to legacy' },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '130+ curated prompts' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
     ],
@@ -161,6 +161,7 @@ const navigation = {
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
       { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
       { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
@@ -174,7 +175,7 @@ const navigation = {
       },
       {
         label: 'Connect',
-        items: ['About', 'Bio', 'Media Kit', 'Contact'],
+        items: ['About', 'Bio', 'Media Kit', 'Licensing', 'Contact'],
       },
     ],
   },
@@ -351,17 +352,6 @@ export default function NavigationMega() {
   }, [pathname])
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
-
-  useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
 
@@ -502,7 +492,7 @@ export default function NavigationMega() {
             <button
               type="button"
               onClick={openCommandPalette}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
               aria-label="Open search"
               title="Search"
             >
@@ -511,9 +501,10 @@ export default function NavigationMega() {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
+              aria-controls="mobile-site-navigation"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -521,7 +512,7 @@ export default function NavigationMega() {
         </nav>
       </header>
 
-      {/* Mobile nav overlay removed */}
+      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   )
 }

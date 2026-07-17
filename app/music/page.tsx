@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -28,26 +28,33 @@ import {
 } from 'lucide-react'
 import {
   getTopTracks,
+  getLatestTracks,
   getAlbums,
   getAlbumTracks,
   getMusicStats,
+  getPlaylists,
   type Track,
   type Album,
 } from '@/lib/music'
+import { SunoTrackCTA } from '@/components/music/SunoTrackCTA'
 
 // ============================================================================
 // DATA FROM LIB
 // ============================================================================
 
 const topTracks = getTopTracks(6)
+const latestTracks = getLatestTracks(6)
 const albums = getAlbums()
+const playlists = getPlaylists()
 const musicStats = getMusicStats()
+
+const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}K` : String(n))
 
 const stats = [
   { value: `${musicStats.totalTracks}+`, label: 'Public Tracks' },
+  { value: compact(musicStats.totalPlays), label: 'Total Plays' },
   { value: String(musicStats.followers), label: 'Followers' },
-  { value: String(musicStats.totalPlays), label: 'Total Plays' },
-  { value: String(musicStats.albums), label: 'Albums' },
+  { value: String(musicStats.playlists), label: 'Playlists' },
 ]
 
 const visualStoryFrames = [
@@ -173,7 +180,6 @@ const infoGeniusPromptQueue = [
     audience: 'college',
     ratio: '16:9',
     previewImage: '/images/music/infogenius/music-revenue-flywheel-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
     prompt:
       'Create a 16:9 Dark Premium 3D infographic showing a music revenue flywheel: discovery content -> track release -> marketplace packaging -> licensing/product sales -> audience growth -> next release. Use navy background, chrome connectors, cyan highlights, and clear labels.',
   },
@@ -183,7 +189,6 @@ const infoGeniusPromptQueue = [
     audience: 'expert',
     ratio: '16:9',
     previewImage: '/images/music/infogenius/platform-content-atomization-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
     prompt:
       'Create a technical systems map of one track being atomized into website hero, Suno cover, YouTube short, Instagram reel, LinkedIn carousel, and X thread visual. Include arrows, timing layers, and role tags for each swarm.',
   },
@@ -193,7 +198,6 @@ const infoGeniusPromptQueue = [
     audience: 'college',
     ratio: '16:9',
     previewImage: '/images/music/infogenius/sub-agent-swarm-topology-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
     prompt:
       'Create a cyberpunk HUD architecture diagram with 5 swarms: Visual Narrative, Catalog Intelligence, Marketplace Packaging, Public Platform, and Performance Steering. Show orchestration node, memory bus, and KPI feedback loop.',
   },
@@ -203,7 +207,6 @@ const infoGeniusPromptQueue = [
     audience: 'highschool',
     ratio: '3:4',
     previewImage: '/images/music/infogenius/music-catalog-universe-poster-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
     prompt:
       'Create a cinematic poster of a digital music universe with genre constellations, waveform rivers, and album planets. Include subtle labels for meditation, cinematic, tech house, and hip hop clusters.',
   },
@@ -213,41 +216,56 @@ const infoGeniusPromptQueue = [
 // BACKGROUND
 // ============================================================================
 
+const backgroundOrbs = [
+  {
+    className: 'absolute top-0 -right-[20%] w-[60%] h-[60%]',
+    color: 'rgba(16, 185, 129, 0.08)', // emerald — tech spectrum
+    shape: 'ellipse',
+    spread: '70%',
+    blur: 100,
+    animate: { x: [0, -50, 0], y: [0, 30, 0] },
+    duration: 25,
+  },
+  {
+    className: 'absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%]',
+    color: 'rgba(6, 182, 212, 0.06)', // cyan — tech spectrum
+    shape: 'ellipse',
+    spread: '70%',
+    blur: 100,
+    animate: { x: [0, 40, 0], y: [0, -20, 0] },
+    duration: 30,
+  },
+  {
+    className: 'absolute top-[25%] left-[20%] w-[35%] h-[35%]',
+    color: 'rgba(245, 158, 11, 0.07)', // amber — soul spectrum accent
+    shape: 'circle',
+    spread: '72%',
+    blur: 80,
+    animate: { x: [0, 20, 0], y: [0, -25, 0] },
+    duration: 22,
+  },
+]
+
 function MusicBackground() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-[#0a0a0b]" />
       <div className="absolute inset-0 opacity-[0.25] [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.18)_1px,transparent_0)] [background-size:24px_24px]" />
 
-      <motion.div
-        className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-        animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      <motion.div
-        className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.06) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-        animate={{ x: [0, 40, 0], y: [0, -20, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      <motion.div
-        className="absolute top-[25%] left-[20%] w-[35%] h-[35%]"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, transparent 72%)',
-          filter: 'blur(80px)',
-        }}
-        animate={{ x: [0, 20, 0], y: [0, -25, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-      />
+      {backgroundOrbs.map((orb, i) => (
+        <motion.div
+          key={i}
+          className={orb.className}
+          style={{
+            background: `radial-gradient(${orb.shape} at center, ${orb.color} 0%, transparent ${orb.spread})`,
+            filter: `blur(${orb.blur}px)`,
+          }}
+          animate={shouldReduceMotion ? undefined : orb.animate}
+          transition={{ duration: orb.duration, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      ))}
     </div>
   )
 }
@@ -279,7 +297,7 @@ function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               <span className="text-white">Architecting Music</span>
               <br />
-              <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-amber-400 bg-clip-text text-transparent">
                 for AI Worlds
               </span>
             </h1>
@@ -314,7 +332,7 @@ function HeroSection() {
               </Link>
               <Link
                 href="/infogenius"
-                className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-7 py-4 rounded-full font-semibold transition-all hover:bg-violet-500/10"
+                className="inline-flex items-center gap-3 border border-amber-500/40 text-amber-200 px-7 py-4 rounded-full font-semibold transition-all hover:bg-amber-500/10"
               >
                 <Radar className="w-4 h-4" />
                 Generate Visuals with InfoGenius
@@ -328,7 +346,7 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/10 blur-3xl opacity-50" />
+              <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-amber-500/10 blur-3xl opacity-50" />
               <div className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-4 overflow-hidden">
                 <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-3 px-2">Now Playing</p>
                 {heroTrack?.sunoId && (
@@ -466,38 +484,149 @@ function FeaturedTracksSection() {
               transition={{ delay: i * 0.1 }}
               className="group"
             >
-              <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-4 hover:border-white/20 transition-all">
-                <div className="flex items-center justify-between mb-3 px-2">
-                  <div>
-                    <h3 className="font-semibold text-white">{track.title}</h3>
-                    <p className="text-sm text-white/40">
-                      {track.genre?.join(' / ') || 'Mixed'}
-                      {track.plays ? ` · ${track.plays} plays` : ''}
-                    </p>
-                  </div>
-                  {track.sunoId && (
-                    <a
-                      href={`https://suno.com/song/${track.sunoId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 text-white/60" />
-                    </a>
-                  )}
-                </div>
-                {track.sunoId && (
-                  <iframe
-                    src={`https://suno.com/embed/${track.sunoId}`}
-                    className="w-full aspect-[2/1] rounded-xl"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write"
-                    loading="lazy"
-                    title={track.title}
-                  />
-                )}
-              </div>
+              {track.sunoId && (
+                <SunoTrackCTA
+                  sunoId={track.sunoId}
+                  title={track.title}
+                  genre={
+                    (track.genre?.join(' / ') || 'Mixed') +
+                    (track.plays ? ` · ${track.plays} plays` : '')
+                  }
+                  className="my-0 h-full"
+                />
+              )}
             </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// LATEST DROPS (data-driven)
+// ============================================================================
+
+const dropDate = (iso?: string) =>
+  iso
+    ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : ''
+
+function LatestDropsSection() {
+  return (
+    <section className="py-20 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Latest Drops</h2>
+          <p className="text-lg text-white/50">Fresh from the Suno studio — newest additions to the catalog</p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {latestTracks.map((track, i) => (
+            <motion.a
+              key={track.id}
+              href={track.sunoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all"
+            >
+              <div className="relative aspect-square overflow-hidden">
+                {track.imageUrl ? (
+                  <Image
+                    src={track.imageUrl}
+                    alt={track.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-amber-500/20" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <span className="absolute left-3 bottom-3 text-[11px] uppercase tracking-[0.16em] px-2.5 py-1 rounded-full bg-black/60 border border-white/20 text-white/80">
+                  {dropDate(track.createdAt)}
+                </span>
+              </div>
+              <div className="p-4 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <h3 className="text-white font-semibold truncate">{track.title}</h3>
+                  <p className="text-xs text-white/40 truncate">
+                    {track.genre?.slice(0, 3).join(' / ') || 'Mixed'}
+                  </p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-white/40 shrink-0 group-hover:text-white/70 transition-colors" />
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// SUNO PLAYLISTS (data-driven)
+// ============================================================================
+
+function PlaylistsSection() {
+  return (
+    <section className="py-20 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Playlists</h2>
+          <p className="text-lg text-white/50">
+            Curated listening lanes on Suno — from training energy to meditation depth
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {playlists.map((playlist, i) => (
+            <motion.a
+              key={playlist.url}
+              href={playlist.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.04 }}
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all"
+            >
+              <div className="relative aspect-square overflow-hidden">
+                {playlist.imageUrl ? (
+                  <Image
+                    src={playlist.imageUrl}
+                    alt={playlist.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="text-white font-semibold text-sm leading-tight mb-1">
+                    {playlist.name}
+                  </h3>
+                  <p className="text-[11px] text-white/50">{playlist.songs} tracks</p>
+                </div>
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>
@@ -519,7 +648,7 @@ function SwarmOperatingModelSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-violet-300/80 mb-4">Agentically Steered</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80 mb-4">Agentically Steered</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Sub-Agent Swarms and Asset Ownership</h2>
           <p className="text-lg text-white/50 max-w-3xl">
             Each swarm owns a clear output lane so visual content, distribution, and monetization run as one
@@ -623,9 +752,6 @@ function InfoGeniusQueueSection() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <span className="absolute left-3 bottom-3 text-[10px] uppercase tracking-[0.14em] px-2.5 py-1 rounded-full bg-black/60 border border-white/20 text-white/75">
-                  Placeholder Visual
-                </span>
               </div>
 
               <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -640,7 +766,6 @@ function InfoGeniusQueueSection() {
                 </span>
               </div>
               <h3 className="text-white font-semibold mb-3">{item.asset}</h3>
-              <p className="text-xs text-amber-300/85 mb-3">{item.status}</p>
               <p className="text-sm text-white/55 leading-relaxed">{item.prompt}</p>
             </motion.article>
           ))}
@@ -880,7 +1005,7 @@ function CTASection() {
             </Link>
             <Link
               href="/infogenius"
-              className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-violet-500/10"
+              className="inline-flex items-center gap-3 border border-amber-500/40 text-amber-200 px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-amber-500/10"
             >
               <Radar className="w-4 h-4" />
               Open InfoGenius
@@ -904,8 +1029,10 @@ export default function MusicPage() {
       <div className="relative z-10">
         <HeroSection />
         <StatsSection />
-        <VisualStoryframesSection />
+        <LatestDropsSection />
         <FeaturedTracksSection />
+        <PlaylistsSection />
+        <VisualStoryframesSection />
         <SwarmOperatingModelSection />
         <InfoGeniusQueueSection />
         <RevenuePathsSection />
