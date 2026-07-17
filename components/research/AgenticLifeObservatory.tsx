@@ -127,7 +127,12 @@ function scoreTone(score: number) {
   return 'bg-white/[0.08]'
 }
 
-function Score({ system, axis }: { system: AgenticLifeSystem; axis: keyof AgenticLifeSystem['scores'] }) {
+interface ScoreProps {
+  system: AgenticLifeSystem
+  axis: keyof AgenticLifeSystem['scores']
+}
+
+function Score({ system, axis }: ScoreProps) {
   const score = system.scores[axis]
   return (
     <div
@@ -145,7 +150,7 @@ function Score({ system, axis }: { system: AgenticLifeSystem; axis: keyof Agenti
   )
 }
 
-export default function AgenticLifeObservatory() {
+export function AgenticLifeObservatory() {
   const [role, setRole] = useState<StrategicRole | 'all'>('all')
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
@@ -157,7 +162,7 @@ export default function AgenticLifeObservatory() {
 
   const filteredSystems = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
-    return [...agenticLifeMarketRegistry.systems]
+    return agenticLifeMarketRegistry.systems
       .filter((system) => role === 'all' || system.strategicRole === role)
       .filter((system) => category === 'all' || system.category === category)
       .filter((system) => {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import AgenticLifeObservatory from '@/components/research/AgenticLifeObservatory'
+import { AgenticLifeObservatory } from '@/components/research/AgenticLifeObservatory'
 import { agenticLifeMarketRegistry } from '@/lib/research/agentic-life-market'
+import { SITE_CONFIG } from '@/lib/schema-builders'
 import { ldJson } from '@/lib/seo/jsonld'
 
 export const metadata: Metadata = {
@@ -40,9 +41,10 @@ export default function AgenticLifeObservatoryPage() {
     dateModified: agenticLifeMarketRegistry.lastVerified,
     creator: {
       '@type': 'Person',
-      name: 'Frank Riemer',
-      url: 'https://frankx.ai/frank-riemer',
+      name: SITE_CONFIG.author.name,
+      url: SITE_CONFIG.author.url,
       jobTitle: 'AI Architect',
+      sameAs: SITE_CONFIG.author.sameAs,
     },
     distribution: {
       '@type': 'DataDownload',
