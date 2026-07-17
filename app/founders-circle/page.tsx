@@ -172,7 +172,7 @@ export default function FoundersCirclePage() {
             About Frank
           </h2>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-            Frank Riemer is a former AI architect at Oracle who has built AI Center of
+            Frank Riemer is an AI Architect & Creator who has built AI Center of
             Excellence frameworks for enterprise customers. He realized the same 6-pillar
             architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translates
             directly to personal use — at 1/5000th the cost. On frankx.ai he makes

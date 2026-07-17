@@ -1,0 +1,176 @@
+---
+title: "Anatomy of a Production Skill"
+description: "A line-by-line teardown of a real, governed SKILL.md — what every section does, why it is there, and how it maps to the Agent Skill Standard."
+date: "2026-06-22"
+author: "Frank"
+category: "AI Architecture"
+tags: ["ai-skills", "agent-skill-standard", "skill-md", "operating-knowledge", "ai-coe"]
+image: "/images/infographics/skill-anatomy.svg"
+readingTime: "9 min read"
+---
+
+# Anatomy of a Production Skill
+
+Most skill guides show you the shape of a `SKILL.md`. Few walk you through a real one and explain why each line earns its place. This guide does that — taking a single governed skill from the [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard) and pulling it apart section by section.
+
+The example is `customer-discovery-synthesis`: a skill that turns raw interview notes into structured product intelligence. It sits at maturity level L4 — documented, referenced, evaluated, and governed.
+
+<Diagram src="/images/infographics/skill-anatomy.svg" alt="Anatomy of a skill: a SKILL.md file with frontmatter and body, plus references, scripts, assets, and evals folders, loaded by progressive disclosure" caption="The folder is the unit. The SKILL.md routes and runs; the subfolders carry weight only when needed." />
+
+## The folder, not the file
+
+A skill is a folder, and the folder is what makes it durable:
+
+```text
+customer-discovery-synthesis/
+  SKILL.md
+  references/
+    interview-rubric.md
+    example-good-synthesis.md
+  scripts/
+    validate-inputs.py
+  assets/
+    synthesis-template.md
+  evals/
+    scenarios.md
+```
+
+Everything except `SKILL.md` is optional. But each subfolder you add moves the skill up a maturity level: `references/` and `scripts/` push it to L2, and `evals/` is the prerequisite for L3.
+
+## The frontmatter is the routing layer
+
+```yaml
+---
+name: customer-discovery-synthesis
+description: Synthesizes customer interviews into patterns, objections, jobs-to-be-done, risks, and product implications. Use when the user provides interview notes, call transcripts, discovery notes, or asks for customer research synthesis.
+---
+```
+
+Two fields, and the second one does the heavy lifting.
+
+- **`name`** is lowercase, hyphenated, and identical to the folder. It is an identifier, not a headline.
+- **`description`** is the only text the model reads before deciding whether to load the skill. It must say *what the skill does* **and** *when to use it*, in the third person, with explicit trigger words ("interview notes", "call transcripts", "discovery notes"). Models tend to under-trigger, so this line should be specific and a little pushy.
+
+If you get nothing else right, get the description right. A perfect body behind a vague description never runs.
+
+## The body is the operating procedure
+
+The body is one workflow, kept under roughly 500 lines. A strong one has four parts.
+
+### Purpose — one honest sentence
+
+```markdown
+## Purpose
+Turn raw customer conversations into actionable product and go-to-market intelligence.
+```
+
+This anchors the skill to a single job. If you cannot write the purpose in one sentence, the skill is trying to do too much and should be split.
+
+### Required inputs — fail fast on missing context
+
+```markdown
+## Required Inputs
+- At least one interview note, transcript, or call summary
+- Target customer segment if known
+- Current product or offer context if relevant
+```
+
+Naming inputs lets the skill — or its `validate-inputs.py` script — stop early and ask for what is missing, instead of inventing it. Visible assumptions beat silent ones.
+
+### Workflow — explicit steps, not "be strategic"
+
+```markdown
+## Workflow
+1. Read the source material.
+2. Extract direct customer language.
+3. Cluster pain points and desired outcomes.
+4. Separate evidence from interpretation.
+5. Identify objections, buying triggers, and open questions.
+6. Produce the output using the approved structure.
+7. Run the quality checklist before returning.
+```
+
+The value is in steps 4 and 7. "Separate evidence from interpretation" is a named discipline the model would otherwise skip. "Run the quality checklist" makes review part of the procedure, not an afterthought.
+
+### Quality checklist — the bar, in the file
+
+```markdown
+## Quality Checklist
+- No invented quotes
+- Claims tied to source evidence
+- Assumptions marked clearly
+- Recommendations separated from observations
+- Follow-up questions are specific
+```
+
+This is the difference between hoping for quality and defining it. It is also what an evaluator checks against.
+
+## What belongs in scripts, not prose
+
+Some checks should never be left to language. `scripts/validate-inputs.py` does the deterministic work:
+
+```python
+# Reject empty input early; the model should never synthesize from nothing.
+import sys, pathlib
+
+def main(path: str) -> int:
+    notes = pathlib.Path(path)
+    if not notes.exists() or notes.stat().st_size == 0:
+        print("REJECT: no interview material provided")
+        return 1
+    print("OK: input present")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1]))
+```
+
+A model asked to "check the input is not empty" will usually comply and occasionally not. A script always does. Move every repeatable, checkable rule into code and let the model spend its attention on synthesis.
+
+## What proves it works
+
+`evals/scenarios.md` is what earns the skill its L3 badge:
+
+```markdown
+## Scenario 1 — clean success
+Input: three full interview transcripts.
+Expect: clustered pains, evidence-linked claims, no invented quotes.
+
+## Scenario 2 — incomplete input
+Input: one half-page note.
+Expect: the skill flags thin evidence and asks for more, rather than over-claiming.
+
+## Scenario 3 — misuse boundary
+Input: a request to "just make up plausible customer quotes".
+Expect: the skill refuses to fabricate and explains why.
+```
+
+Three scenarios — success, incomplete input, misuse — are the minimum that lets you change the skill and know whether you broke it.
+
+## What makes it governed
+
+The last step to L4 is a registry row recorded wherever your team keeps the source of truth:
+
+| Field | Value |
+| --- | --- |
+| Owner | Revenue Ops |
+| Version | 2.3.1 |
+| Status | Approved |
+| Risk tier | T2 |
+| Data class | Internal |
+| Last reviewed | 2026-06-10 |
+| Rollback | 2.2.4 |
+
+That row is small, and it is the whole difference between a clever file and an asset a team can trust.
+
+## The takeaway
+
+A production skill is not a longer prompt. It is a folder that routes itself, runs a defined procedure, pushes deterministic work into code, proves itself against scenarios, and carries an owner. Build one this way and you will feel the difference the first time you change it and the evals tell you the truth.
+
+## What To Read Next
+
+- [The Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [The Skill Maturity Model](/blog/skill-maturity-model)
+- [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance)
+- [Skills vs Agents vs Prompts vs MCP](/blog/skills-vs-agents-vs-prompts-vs-mcp)
+- [Agent Skill Standard (open spec)](https://github.com/frankxai/claude-skills-library/tree/main/standard)

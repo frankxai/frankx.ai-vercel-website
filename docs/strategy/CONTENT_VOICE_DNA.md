@@ -310,5 +310,19 @@ Before publishing, every piece must pass:
 
 ---
 
+## 14. The Interconnected Universe & Narrative Depth
+
+FrankX, Arcanea, Starlight, and GenCreator are related but distinct brands (see `brand-matrix.md`). A crossover reference should feel like an honest aside, not a mandatory beat in every piece — and it must never invent lore that doesn't exist in Arcanea's own canon.
+
+### Real Mentors, Not Invented Mythology
+Ground "who taught Frank this" in things that actually happened:
+- **Enterprise mentors:** real lessons from Oracle-scale systems work — redundancy, load-balancing, the cost of bad design. Describe the lesson, not a mystical title.
+- **Arcanea references:** only when it's true and adds signal (e.g. Arcanea's Guardian/Gate system inspired a naming convention or a design principle). Never fabricate a quote and attribute it to Arcanea canon — check `_intelligence/brand-worlds.md` or the Arcanea repo first. If unsure, don't reference it.
+
+### Brand Crossovers — sparingly, never as a sales-page reveal
+Per `brand-matrix.md`'s cross-brand rules ("no ghost-writing across brands," "GenCreator ≠ FrankX"): a crossover mention is a single honest sentence, not a framing device. Skip it entirely if it doesn't survive the Content Quality Filter in section 12 (real number, actually said aloud, non-try-hard).
+
+---
+
 *"Does this help someone build their own system, or just use someone else's?"*
 *— The FrankX content filter*

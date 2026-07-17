@@ -125,7 +125,7 @@ A good skill file has four sections:
 ```markdown
 ## Context
 You are writing content for frankx.ai, the personal website of Frank Riemer,
-Former AI architect at Oracle. The site covers AI
+AI Architect & Creator. The site covers AI
 architecture, creative AI production, agent systems, and the Personal AI
 Center of Excellence framework. Target audience: creators, developers,
 and professionals exploring AI-augmented workflows.

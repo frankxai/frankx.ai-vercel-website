@@ -70,7 +70,7 @@ export const linksPageSchema = {
       {
         '@type': 'Occupation',
         name: 'AI Architect',
-        description: 'Former AI architect at Oracle; independent FrankX builder',
+        description: 'AI Architect & Creator; independent FrankX builder',
       },
       {
         '@type': 'Occupation',

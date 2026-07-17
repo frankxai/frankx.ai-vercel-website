@@ -66,7 +66,7 @@
 ## Positioning
 
 Frank is:
-- Former AI architect at Oracle
+- AI Architect & Creator
 - Musician/Creator (12,000+ Suno songs)
 - Co-creator of diverse AI solutions
 

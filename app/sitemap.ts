@@ -351,6 +351,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/library/approach', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/library/build', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/library/quotes', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/library/rockstar-energy', priority: 0.8, changeFrequency: 'monthly' as const },
   ]
 
   // Library OS — individual book deep-dives (dynamic from book-reviews registry)

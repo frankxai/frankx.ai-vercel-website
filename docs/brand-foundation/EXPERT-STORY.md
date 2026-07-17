@@ -7,7 +7,7 @@
 | Domain | Evidence |
 |--------|----------|
 | Music | 12,000+ AI-generated songs through systematic production |
-| Enterprise | Former AI architect at Oracle, enterprise AI/cloud systems |
+| Enterprise | AI Architect & Creator, enterprise AI/cloud systems |
 | Products | ACOS (Agentic Creator Operating System), forkable templates, shipped tools |
 | Architecture | Systems processing millions of transactions in production |
 | Builder Output | Daily creation across music, code, content, and products |
@@ -17,7 +17,7 @@ The work speaks. Everything else is context.
 ## Professional Credentials
 
 ### Former Role
-**Former AI architect at Oracle**
+**Former AI Architect at Oracle**
 - Worked around enterprise AI/cloud transformation and production architecture patterns
 - Translates enterprise-scale AI lessons into independent creator and entrepreneur systems
 - Designing multi-agent systems and agentic orchestration
@@ -128,7 +128,7 @@ What makes this combination unique:
 ## The Credibility Stack
 
 ### Level 1: Technical Architecture
-- Former AI architect at Oracle
+- AI Architect & Creator
 - Enterprise system designer
 - Production-grade understanding
 - Architecture-level expertise

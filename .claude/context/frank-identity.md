@@ -35,7 +35,7 @@ When they're old enough to explore, they'll find:
 
 ## Professional
 
-- **Professional Background:** Former AI architect at Oracle
+- **Professional Background:** AI Architect & Creator
 - **Focus Areas:**
   - Enterprise AI systems
   - Multi-agent orchestration
@@ -48,7 +48,7 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
 ## Creative
 
-- **Music:** 500+ AI-generated songs via Suno
+- **Music:** 12,000+ AI-generated songs via Suno
 - **Writing:** Blog articles on AI, consciousness, creativity
 - **Building:** Digital products, courses, templates
 

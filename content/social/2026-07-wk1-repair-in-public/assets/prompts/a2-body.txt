@@ -1,0 +1,20 @@
+## CONCEPT
+Quiet body-slide background for the audit carousel — the calm variant of the hook slide's world, so slides 2–6 read as the same object with the volume turned down.
+
+## COMPOSITION
+Portrait. One hairline luminous signal trace running vertically along the left margin. Very faint dim grid. Generous empty negative space across the center and right for text set later in Canva. No focal object.
+
+## SCENE
+Near-black glass panel with subtle graphite texture and slight depth, abstract material world only.
+
+## LIGHTING
+Soft, even, barely-there sheen across the glass; deep blacks.
+
+## PALETTE
+Void black (#0a0a0b) base, graphite grays, faint cool cyan-white grid, the hairline trace in dim cyan (#06b6d4) — no warm tones, no amber. (v2 Tech-spectrum correction; matches the cyan hairline carousel.html uses on body slides.)
+
+## MOOD
+Quiet, premium, architectural restraint.
+
+## STYLE REFERENCES
+FrankX brand world: black glass, signal lines. No text, no logos, no people.
