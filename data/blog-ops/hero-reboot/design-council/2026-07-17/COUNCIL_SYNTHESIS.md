@@ -1,33 +1,34 @@
-# Council Synthesis — Provisional
+# Council Synthesis — Final for This Reset Cycle
 
-**Status:** awaiting the delegated independent red-team memo; no production approval.
+**Status:** council complete · no production integration approved
 
-## What the three active council seats agree on
+## The decisive finding
 
-1. **Kill the original FRANK-Ω scene family.** The common grammar—human at desk + small glossy mascot + warm lamp + blue-black room + dead-left title field—reads as generic AI companion advertising.
-2. **Stop treating FRANK-Ω as an editorial scene prop.** The official character has graphic authority only at self-contained digital-twin scale. Beside a real adult, he becomes a desk toy.
-3. **The image needs a concrete thesis before detail.** A polished prop does not become a meaningful editorial visual just because it has a strong palette.
-4. **One register per hero.** Commit to editorial cover, technical proof plate, or studio artifact; do not blend photoreal lifestyle, cute 3D character, and fake information design.
-5. **Deterministic typography must be part of the composition.** A dark empty side is not a type system.
+The FRANK-Ω source pilots and the three xAI source-frame territory tests do **not** establish a final FrankX hero family. The council rejects mascot-first scene construction, generated lifestyle substitutes, generic dark-AI cinema, and type-safe voids as the governing grammar.
 
-## Three source-frame tests run
+## What advances
 
-| Test | Article | Result | Why |
+| Article class | Approved direction | Evidence route | Character posture |
 |---|---|---|---|
-| The Compounding Sheet | ACOS | **REJECT** | Attractive material arrangement, but the source contains pseudo-writing/ruler marks and reads as a drafting desk—not a compounding operating system. |
-| The Constraint Ledger | Production Architecture | **ITERATE** | Four gates plus withheld action survive at 320px. It is the strongest candidate but still risks reading as luxury AI hardware rather than a decision framework. |
-| Threshold Capacity | Golden Age | **REJECT** | Has honest human atmosphere but resolves to a staged room, empty title wall, and generic artifact rail. |
+| Technical architecture / governance | **Decision Instrument** | Deterministic SVG/HTML/Figma-style editorial diagram with exact copy and real article model | FRANK-Ω absent |
+| Creator systems / practice | **Working Session** | Real human working evidence, actual artifacts, composed annotation; no synthetic lifestyle stand-in | optional only when assistant relationship is the subject and role is necessary |
+| Culture / thesis essays | **Thesis Cover** | Verified documentary/commissioned source or Frank-owned proof artifacts plus title-led editorial cover | FRANK-Ω absent |
 
-## Current chair decision
+## Proven decision instrument
 
-**Do not ship any of the three.** That is deliberate quality control, not indecision.
+`concept-boards/decision-instrument-production.svg` is the council-approved **concept-board path** for *Enterprise Agentic Architecture: Decision Framework for Production*. It makes the article's actual claim visible: most teams should stop at Tier 2 before buying unnecessary complexity.
 
-The only concept worth further work is **The Constraint Ledger**, because a reader can understand *constraints before action* in the image without needing a mascot or a dashboard. Its next version must become less hardware-adjacent and more clearly an editorial decision plate before it is promoted.
+## Kept as rejection evidence
 
-## FRANK-Ω decision
+- `assets/01-the-compounding-sheet-acos.png` — reject
+- `assets/02-the-constraint-ledger-production.png` — iterate only; superseded by deterministic Decision Instrument
+- `assets/03-threshold-capacity-golden-age.png` — reject
+- all original FRANK-Ω pilots — retire from flagship-hero consideration
 
-For these three articles, the council's honest answer is **no FRANK-Ω scene role**. He belongs in his native graphic portrait register, brand/product-facing editorial moments, or a separate cover system where his silhouette is full-scale. He does not improve the articles when reduced to a friendly prop.
+## Non-negotiable next gates
 
-## Quality boundary
-
-The native Grok path produced `1280×720` review frames. It has not produced a 2K+ master in this run, so even an accepted concept would still require a high-resolution acquisition pass before production.
+- no production mapping, frontmatter, deployment, social post, or batch rendering;
+- source real creator evidence before ACOS/Golden Age hero work;
+- build responsive variants as new compositions;
+- run visual QA at full, card, and mobile sizes;
+- obtain Frank’s approval before any integration.

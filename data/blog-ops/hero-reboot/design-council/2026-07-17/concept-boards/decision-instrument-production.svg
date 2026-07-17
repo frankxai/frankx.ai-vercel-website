@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Enterprise Agentic Architecture: Decision Framework for Production</title>
+  <desc id="desc">A deterministic FrankX editorial concept board showing four maturity tiers from Solo to Platform, with an explicit boundary that most teams should stop at Tier 2.</desc>
+  <rect width="1200" height="630" fill="#0a0a0b"/>
+  <rect x="56" y="55" width="2" height="520" fill="#10b981"/>
+  <text x="82" y="79" fill="#67e8f9" font-family="JetBrains Mono, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="3">INTELLIGENCE DISPATCH · 2026</text>
+  <text x="82" y="147" fill="#f5f5f4" font-family="Poppins, Arial, sans-serif" font-size="49" font-weight="700" letter-spacing="-1.8">Enterprise Agentic</text>
+  <text x="82" y="203" fill="#f5f5f4" font-family="Poppins, Arial, sans-serif" font-size="49" font-weight="700" letter-spacing="-1.8">Architecture</text>
+  <text x="84" y="235" fill="#a8a29e" font-family="JetBrains Mono, Consolas, monospace" font-size="13" letter-spacing="1.4">DECISION FRAMEWORK FOR PRODUCTION</text>
+  <line x1="82" y1="278" x2="504" y2="278" stroke="#292524" stroke-width="1"/>
+  <text x="82" y="326" fill="#f5f5f4" font-family="Poppins, Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="-.2">Do not hire a symphony</text>
+  <text x="82" y="356" fill="#d6d3d1" font-family="Poppins, Arial, sans-serif" font-size="22" letter-spacing="-.2">when you just need a DJ.</text>
+  <text x="82" y="419" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="14" font-weight="700" letter-spacing="1.2">THE RECOMMENDATION</text>
+  <text x="82" y="451" fill="#f5f5f4" font-family="Poppins, Arial, sans-serif" font-size="20" font-weight="700">Most teams should stop at Tier 2.</text>
+  <text x="82" y="487" fill="#a8a29e" font-family="Poppins, Arial, sans-serif" font-size="15">Choose the maturity your work can actually support.</text>
+  <text x="82" y="546" fill="#78716c" font-family="JetBrains Mono, Consolas, monospace" font-size="11" letter-spacing="1.2">FRANKX.AI · HUMAN JUDGMENT BEFORE AUTOMATION</text>
+
+  <rect x="565" y="55" width="579" height="520" fill="#101112" stroke="#292524" stroke-width="1"/>
+  <text x="602" y="92" fill="#a8a29e" font-family="JetBrains Mono, Consolas, monospace" font-size="11" letter-spacing="2">SELECT THE SMALLEST TRUE SYSTEM</text>
+  <line x1="602" y1="111" x2="1106" y2="111" stroke="#292524" stroke-width="1"/>
+
+  <line x1="647" y1="156" x2="647" y2="474" stroke="#10b981" stroke-width="2"/>
+  <circle cx="647" cy="174" r="7" fill="#10b981"/>
+  <circle cx="647" cy="268" r="7" fill="#10b981"/>
+  <circle cx="647" cy="362" r="7" fill="#0a0a0b" stroke="#78716c" stroke-width="2"/>
+  <circle cx="647" cy="456" r="7" fill="#0a0a0b" stroke="#78716c" stroke-width="2"/>
+
+  <g font-family="Poppins, Arial, sans-serif">
+    <rect x="682" y="137" width="380" height="73" fill="#141716" stroke="#3f3f46" stroke-width="1"/>
+    <text x="706" y="165" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="11" font-weight="700" letter-spacing="2">TIER 01</text>
+    <text x="706" y="192" fill="#f5f5f4" font-size="21" font-weight="700">Solo</text>
+    <text x="852" y="192" fill="#a8a29e" font-size="14">Simple API calls · predictable work</text>
+
+    <rect x="682" y="231" width="424" height="73" fill="#102019" stroke="#10b981" stroke-width="1"/>
+    <text x="706" y="259" fill="#67e8f9" font-family="JetBrains Mono, Consolas, monospace" font-size="11" font-weight="700" letter-spacing="2">TIER 02</text>
+    <text x="706" y="286" fill="#f5f5f4" font-size="21" font-weight="700">Autonomous</text>
+    <text x="872" y="286" fill="#d6d3d1" font-size="14">State · retries · quality gates</text>
+    <rect x="1000" y="244" width="88" height="25" rx="12.5" fill="#10b981"/>
+    <text x="1013" y="261" fill="#062d22" font-family="JetBrains Mono, Consolas, monospace" font-size="10" font-weight="700" letter-spacing=".8">STOP HERE</text>
+
+    <rect x="682" y="325" width="380" height="73" fill="#111112" stroke="#3f3f46" stroke-width="1"/>
+    <text x="706" y="353" fill="#78716c" font-family="JetBrains Mono, Consolas, monospace" font-size="11" font-weight="700" letter-spacing="2">TIER 03</text>
+    <text x="706" y="380" fill="#d6d3d1" font-size="21" font-weight="700">Ensemble</text>
+    <text x="862" y="380" fill="#78716c" font-size="14">Routing · handoffs · isolation</text>
+
+    <rect x="682" y="419" width="380" height="73" fill="#111112" stroke="#3f3f46" stroke-width="1"/>
+    <text x="706" y="447" fill="#78716c" font-family="JetBrains Mono, Consolas, monospace" font-size="11" font-weight="700" letter-spacing="2">TIER 04</text>
+    <text x="706" y="474" fill="#d6d3d1" font-size="21" font-weight="700">Platform</text>
+    <text x="862" y="474" fill="#78716c" font-size="14">Multi-tenant · governance · cost</text>
+  </g>
+  <text x="602" y="536" fill="#78716c" font-family="JetBrains Mono, Consolas, monospace" font-size="10" letter-spacing="1.5">COMPLEXITY IS NOT A STATUS SYMBOL</text>
+</svg>

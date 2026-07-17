@@ -1,16 +1,16 @@
 {
   "councilId": "frankx-hero-reset-2026-07-17",
-  "status": "in_review",
+  "status": "complete",
   "storageMode": "BOUNDED",
-  "freeGiB": 91.9,
-  "renderPolicy": "Three single source-frame territory tests were permitted; no further rendering until the red-team resolves the only viable concept.",
+  "freeGiB": 92.0,
+  "renderPolicy": "xAI source-frame tests are closed as evidence. Technical visual work advances through deterministic decision instruments; no batch rendering without real-source evidence and approval.",
   "seats": [
-    {"id": "chair", "role": "editorial-strategy", "owner": "Hermes", "state": "active"},
+    {"id": "chair", "role": "editorial-strategy", "owner": "Hermes", "state": "complete"},
     {"id": "culture", "role": "cultural-editorial-director", "owner": "Claude Opus", "state": "complete"},
     {"id": "systems", "role": "visual-systems-critic", "owner": "Codex", "state": "complete"},
     {"id": "material", "role": "image-material-director", "owner": "Grok", "state": "complete"},
-    {"id": "redteam", "role": "independent-creative-red-team", "owner": "Hermes delegation", "state": "running"},
-    {"id": "character", "role": "FRANK-Ω-character-steward", "owner": "Hermes", "state": "active"}
+    {"id": "redteam", "role": "independent-creative-red-team", "owner": "Hermes delegation", "state": "complete"},
+    {"id": "character", "role": "FRANK-Ω-character-steward", "owner": "Hermes", "state": "complete"}
   ],
   "artifacts": {
     "charter": "COUNCIL_CHARTER.md",
