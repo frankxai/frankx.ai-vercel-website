@@ -4938,5 +4938,702 @@
       "foundry hosted agents",
       "durable execution ai agents"
     ]
+  },
+  {
+    "id": "multimodal-content-pipeline",
+    "slug": "multimodal-content-pipeline",
+    "title": "Multimodal Content Pipeline",
+    "subtitle": "Brief → image → video → post, with reference-locked consistency across every asset",
+    "category": "creator-media",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "production",
+    "overview": "The production shape of generative media in mid-2026: one brief fans out to images and image-to-video through an aggregator API, with brand and character consistency enforced by reference conditioning rather than fine-tuning. As of July 2026 the current engines are gpt-image-2, Nano Banana 2 (gemini-3.1-flash-image), FLUX.2, and Seedream 4.5 for image; Veo 3.1, Kling 3.0, Seedance, and Runway Gen-4.5 for video — routed through one mux instead of five vendor SDKs.",
+    "problem": "Creators wire one vendor SDK per model, lose character and brand consistency between the image stage and the video stage, and rebuild the whole pipeline every time a model generation rotates — which in this space is every few weeks (Sora’s API sunsets September 2026; three OpenAI image models retire December 2026).",
+    "solution": "Route every generation call through an aggregator (fal.ai and Replicate carry the current catalogs; Higgsfield adds a persistent character layer reachable over MCP), so models are config, not code. Enforce consistency with reference images at generation time — current engines accept between 8 and 50 references natively — reserving LoRA fine-tunes for the FLUX open-weight line where they are actually supported. Chain image output into image-to-video, then finish with upscale/reframe post steps per destination format.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "brief",
+          "name": "Brief + brand lock",
+          "type": "compute",
+          "description": "Prompt, brand tokens, and the reference-image set that travels with every call"
+        },
+        {
+          "id": "mux",
+          "name": "Aggregator API",
+          "type": "networking",
+          "description": "One endpoint over the current image/video catalogs — models are config, not code"
+        },
+        {
+          "id": "image",
+          "name": "Image stage",
+          "type": "ai-service",
+          "description": "Current-generation text-to-image with multi-reference conditioning"
+        },
+        {
+          "id": "video",
+          "name": "Image-to-video stage",
+          "type": "ai-service",
+          "description": "I2V with reference consistency and native audio where supported"
+        },
+        {
+          "id": "character",
+          "name": "Character layer",
+          "type": "ai-service",
+          "description": "Persistent identity (trained once) or per-call reference sets"
+        },
+        {
+          "id": "post",
+          "name": "Post + delivery",
+          "type": "compute",
+          "description": "Upscale, reframe per platform aspect, asset registry"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "brief",
+          "to": "mux",
+          "label": "prompt + refs",
+          "dataType": "brief"
+        },
+        {
+          "id": "f2",
+          "from": "mux",
+          "to": "image",
+          "label": "generate",
+          "protocol": "HTTPS"
+        },
+        {
+          "id": "f3",
+          "from": "image",
+          "to": "video",
+          "label": "I2V",
+          "dataType": "frames"
+        },
+        {
+          "id": "f4",
+          "from": "character",
+          "to": "image",
+          "label": "identity refs",
+          "dataType": "references"
+        },
+        {
+          "id": "f5",
+          "from": "character",
+          "to": "video",
+          "label": "identity refs",
+          "dataType": "references"
+        },
+        {
+          "id": "f6",
+          "from": "video",
+          "to": "post",
+          "label": "master",
+          "dataType": "media"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Mux + image stage",
+        "description": "Stand up aggregator routing and a reference-conditioned image stage.",
+        "tasks": [
+          "Pick the aggregator and register the current image models as config",
+          "Build the brief schema: prompt + brand tokens + reference set",
+          "Generate a consistent 5-asset set from one brief"
+        ],
+        "deliverables": [
+          "Reference-locked image sets from one brief"
+        ],
+        "estimatedDuration": "3-5 days"
+      },
+      {
+        "phase": 2,
+        "title": "Image-to-video chain",
+        "description": "Feed image output into I2V with the same reference set.",
+        "tasks": [
+          "Wire I2V with reference passthrough",
+          "Handle async job lifecycle (generation is minutes, not seconds)",
+          "Add native-audio and duration options per engine"
+        ],
+        "deliverables": [
+          "Brief → image → video in one run"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 3,
+        "title": "Consistency + post",
+        "description": "Lock identity across the set and finish per destination.",
+        "tasks": [
+          "Adopt persistent character IDs or standardize the per-call reference set",
+          "Add upscale + per-platform reframe steps",
+          "Register outputs in an asset index with the brief that produced them"
+        ],
+        "deliverables": [
+          "Platform-ready, brand-consistent asset sets"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "pipeline-shape",
+        "title": "The pipeline shape (aggregator-routed)",
+        "language": "typescript",
+        "filename": "pipeline.ts",
+        "description": "Pattern sketch — model ids are config so generation rotations are a one-line change, not a rewrite. The Vercel AI SDK ships this natively as experimental_generateImage / experimental_generateVideo; aggregator SDKs expose the same shape.",
+        "code": "const MODELS = {\n  image: 'flux-2-pro',          // or gpt-image-2 / gemini-3.1-flash-image / seedream-4.5\n  video: 'kling-3.0-i2v',       // or veo-3.1 / seedance — never a retired engine\n}\n\nasync function run(brief: Brief) {\n  const image = await mux.generate({\n    model: MODELS.image,\n    prompt: brief.prompt,\n    references: brief.referenceSet,   // consistency at generation time, no fine-tune\n  })\n  const video = await mux.generate({\n    model: MODELS.video,\n    image,\n    references: brief.referenceSet,   // same identity travels into the video stage\n  })\n  return post(video, brief.destinations) // upscale + reframe per platform\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "creator-content-factory",
+      "ai-music-production-pipeline",
+      "durable-agent-runtime",
+      "llm-gateway-routing"
+    ],
+    "cloudProviders": [
+      "multi-cloud",
+      "gcp"
+    ],
+    "technologies": [
+      "fal.ai / Replicate",
+      "gpt-image-2",
+      "Nano Banana 2",
+      "FLUX.2",
+      "Veo 3.1",
+      "Kling 3.0",
+      "Higgsfield MCP"
+    ],
+    "estimatedCost": {
+      "monthly": 300,
+      "annual": 3600,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "Video generation",
+          "amount": 200,
+          "percentage": 67
+        },
+        {
+          "category": "Image generation",
+          "amount": 70,
+          "percentage": 23
+        },
+        {
+          "category": "Post (upscale/reframe) + storage",
+          "amount": 30,
+          "percentage": 10
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of July 2026",
+        "A few hundred images + tens of short videos monthly",
+        "Video dominates cost; per-second pricing varies widely by engine"
+      ]
+    },
+    "timeToImplement": "2-3 weeks",
+    "useCases": [
+      "Brand-consistent social asset sets",
+      "Product visuals to short-form video",
+      "Episodic character content",
+      "Campaign variants across platforms"
+    ],
+    "whenToUse": [
+      "You ship recurring visual content and consistency between assets matters",
+      "You want model churn to be a config change, not a rewrite",
+      "Character or brand identity must hold across image AND video"
+    ],
+    "whenNotToUse": [
+      "One-off hero assets — a taste-driven manual tool run is cheaper than a pipeline",
+      "Hard real-time generation needs (video jobs run minutes)",
+      "Fully open-weight/self-host-only constraints (then build on the FLUX line + ComfyUI instead)"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Model churn isolated to config — survives engine retirements",
+        "Reference conditioning gives consistency without training cost",
+        "One aggregator bill and one integration surface"
+      ],
+      "cons": [
+        "Aggregator adds a margin on top of model pricing",
+        "Async job handling is real engineering",
+        "Preview-tier engines can change pricing and limits under you"
+      ]
+    },
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-17",
+    "publishedAt": "2026-07-17",
+    "metaDescription": "Production multimodal content pipeline architecture: brief to image to video through an aggregator API, with reference-conditioned character and brand consistency across gpt-image-2, Nano Banana 2, FLUX.2, Veo 3.1, and Kling 3.0.",
+    "keywords": [
+      "multimodal content pipeline",
+      "ai image to video pipeline",
+      "character consistency ai",
+      "reference conditioning",
+      "fal.ai architecture",
+      "ai content generation architecture"
+    ]
+  },
+  {
+    "id": "creator-content-factory",
+    "slug": "creator-content-factory",
+    "title": "Creator Content Factory",
+    "subtitle": "Single capture, many ships — one recording becomes a post, clips, images, and threads",
+    "category": "creator-media",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "production",
+    "overview": "The factory pattern for solo creators and small teams: capture once (a recording, a draft, a build session), classify it, then fan out to per-format producers — long-form post, platform-native social variants, short clips, and supporting visuals — with a quality gate before anything ships. Agents draft and produce; a human approves the publish step.",
+    "problem": "Creators produce one artifact per unit of effort. The capture (a talk, a build log, a voice memo) contains five publishable assets, but manual repurposing costs more than creating, so it never happens — and when automation is bolted on, off-brand output ships unreviewed.",
+    "solution": "Split the factory into intake → classification → producers → gate → publish. Intake normalizes any capture into a transcript + metadata. A classifier routes it and proposes producer runs. Producers are per-format workers: article draft, social variants under each platform’s constraints, clip selection from timestamps, supporting images via the multimodal pipeline. A brand/claims gate checks every artifact, and the publish step stays human-approved — the factory drafts everything and ships nothing on its own.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "intake",
+          "name": "Intake",
+          "type": "compute",
+          "description": "Any capture → transcript + metadata (one door in)"
+        },
+        {
+          "id": "classify",
+          "name": "Classifier",
+          "type": "ai-service",
+          "description": "Routes the capture; proposes producer dispatches"
+        },
+        {
+          "id": "producers",
+          "name": "Producers",
+          "type": "ai-service",
+          "description": "Per-format workers: post, social variants, clips, visuals"
+        },
+        {
+          "id": "media",
+          "name": "Media stage",
+          "type": "ai-service",
+          "description": "Images/video via the multimodal pipeline; music stays human-in-the-loop or uses a licensed API"
+        },
+        {
+          "id": "gate",
+          "name": "Brand + claims gate",
+          "type": "security",
+          "description": "Voice, claims, and platform-fit checks; fails closed"
+        },
+        {
+          "id": "publish",
+          "name": "Human publish",
+          "type": "compute",
+          "description": "Approval queue — drafts ship only on human release"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "intake",
+          "to": "classify",
+          "label": "transcript",
+          "dataType": "text"
+        },
+        {
+          "id": "f2",
+          "from": "classify",
+          "to": "producers",
+          "label": "dispatch",
+          "dataType": "plan"
+        },
+        {
+          "id": "f3",
+          "from": "producers",
+          "to": "media",
+          "label": "asset briefs",
+          "dataType": "brief"
+        },
+        {
+          "id": "f4",
+          "from": "producers",
+          "to": "gate",
+          "label": "drafts",
+          "dataType": "artifacts"
+        },
+        {
+          "id": "f5",
+          "from": "media",
+          "to": "gate",
+          "label": "assets",
+          "dataType": "media"
+        },
+        {
+          "id": "f6",
+          "from": "gate",
+          "to": "publish",
+          "label": "approved queue",
+          "dataType": "artifacts"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "One door in",
+        "description": "Normalize every capture into the same intake shape.",
+        "tasks": [
+          "Define the intake schema (source, transcript, metadata)",
+          "Wire transcription for audio/video captures",
+          "Build the classifier with a fixed bucket vocabulary"
+        ],
+        "deliverables": [
+          "Any capture lands classified with proposed producer runs"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 2,
+        "title": "Producers + media",
+        "description": "Stand up the per-format workers.",
+        "tasks": [
+          "Article + social-variant producers with per-platform constraints",
+          "Clip selection from transcript timestamps",
+          "Supporting visuals through the multimodal pipeline with the brand reference set"
+        ],
+        "deliverables": [
+          "One capture fans out to 4-5 draft artifacts"
+        ],
+        "estimatedDuration": "1-2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Gate + approval queue",
+        "description": "Nothing ships itself.",
+        "tasks": [
+          "Brand-voice and claims checks that fail closed",
+          "Approval queue with per-artifact accept/edit/reject",
+          "Publish adapters per destination, fired only on human release"
+        ],
+        "deliverables": [
+          "A reviewed queue where publishing is one human click"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "factory-shape",
+        "title": "The factory contract",
+        "language": "typescript",
+        "filename": "factory.ts",
+        "description": "Pattern sketch — the load-bearing rule is at the end: producers draft, gates check, only a human publishes.",
+        "code": "const capture = await intake(source)              // one door in: transcript + metadata\nconst plan = await classify(capture)              // fixed vocabulary, proposes producers\n\nconst drafts = await Promise.all(\n  plan.producers.map((p) => produce(p, capture))  // post, variants, clips, visuals\n)\n\nconst checked = await Promise.all(drafts.map(gate)) // brand + claims, fails closed\nawait queue.add(checked.filter((d) => d.pass))\n\n// There is no auto-publish path. The queue is drained by a human."
+      }
+    ],
+    "relatedPatterns": [
+      "multimodal-content-pipeline",
+      "ai-music-production-pipeline",
+      "multi-agent-code-assistant",
+      "context-engineering-mvc"
+    ],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
+    "technologies": [
+      "Transcription",
+      "LLM producers",
+      "Multimodal pipeline",
+      "Brand/claims gate",
+      "Approval queue"
+    ],
+    "estimatedCost": {
+      "monthly": 150,
+      "annual": 1800,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "LLM drafting + classification",
+          "amount": 80,
+          "percentage": 53
+        },
+        {
+          "category": "Media generation",
+          "amount": 50,
+          "percentage": 33
+        },
+        {
+          "category": "Transcription + storage",
+          "amount": 20,
+          "percentage": 14
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of July 2026",
+        "A few captures weekly, 4-5 artifacts each",
+        "Media stage dominates when video variants are heavy"
+      ]
+    },
+    "timeToImplement": "3-4 weeks",
+    "useCases": [
+      "Build-in-public content from work sessions",
+      "Podcast/talk repurposing",
+      "Newsletter + social from one weekly capture",
+      "Course content fan-out"
+    ],
+    "whenToUse": [
+      "You create consistently and repurposing is the bottleneck",
+      "Brand voice matters enough to justify a gate",
+      "You want drafts automated and publishing human"
+    ],
+    "whenNotToUse": [
+      "Publishing volume is too low to amortize the pipeline",
+      "You want full auto-publish — this pattern deliberately refuses that",
+      "Your content is primarily real-time/live"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "One capture yields a multiple of shippable drafts",
+        "The gate makes automation compatible with a real brand voice",
+        "Human publish keeps platform and reputation risk owned"
+      ],
+      "cons": [
+        "Per-platform producers need maintenance as formats change",
+        "A weak classifier misroutes and erodes trust in the queue",
+        "Approval queues back up without an operating cadence"
+      ]
+    },
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-17",
+    "publishedAt": "2026-07-17",
+    "metaDescription": "Creator content factory architecture: single-capture-many-ships with intake, classification, per-format producers, a fail-closed brand gate, and human-approved publishing.",
+    "keywords": [
+      "creator content factory",
+      "content repurposing pipeline",
+      "single capture many ships",
+      "ai content workflow",
+      "content automation architecture",
+      "creator os"
+    ]
+  },
+  {
+    "id": "ai-music-production-pipeline",
+    "slug": "ai-music-production-pipeline",
+    "title": "AI Music Production Pipeline",
+    "subtitle": "Prompt architecture → generation → mastering gate → release, with licensing as a design input",
+    "category": "creator-media",
+    "status": "published",
+    "difficulty": "intermediate",
+    "maturity": "emerging",
+    "overview": "The architecture of a repeatable AI music practice, at catalog scale. As of July 2026 the engine landscape splits on one axis that shapes the whole design: Suno (v5.5) leads on quality but has no official API — so it stays a human-in-the-loop stage — while ElevenLabs Music is the only major generator with a GA API including section inpainting and stems, Lyria 3 sits in public preview, and Stable Audio 2.5 offers fully-licensed training data. The pipeline treats generation as one swappable stage between prompt architecture upstream and a mastering/release gate downstream.",
+    "problem": "A music catalog built ad-hoc produces inconsistent loudness, untracked prompts (so wins cannot be repeated), unclear commercial standing per track, and a release backlog — the generation step is fast, but everything around it is manual chaos.",
+    "solution": "Structure four stages. Prompt architecture: versioned style/prompt patterns so successful generations are reproducible, not lucky. Generation: engine-per-track config — API engines run automated, no-API engines (Suno) run as a human-in-the-loop batch step; record engine + prompt + license class per track. Mastering gate: loudness targeting (about -14 LUFS for streaming) and QC that fails closed before any track advances. Release: metadata, artwork via the multimodal pipeline, and distribution as an approval-gated queue — commercial standing decided per track from its recorded license class, not assumed.",
+    "architecture": {
+      "diagramType": "svg",
+      "components": [
+        {
+          "id": "prompts",
+          "name": "Prompt architecture",
+          "type": "compute",
+          "description": "Versioned style patterns; wins are reproducible"
+        },
+        {
+          "id": "gen",
+          "name": "Generation stage",
+          "type": "ai-service",
+          "description": "API engines automated; no-API engines human-in-the-loop"
+        },
+        {
+          "id": "license",
+          "name": "License ledger",
+          "type": "security",
+          "description": "Engine, prompt, and license class recorded per track"
+        },
+        {
+          "id": "master",
+          "name": "Mastering gate",
+          "type": "compute",
+          "description": "Loudness targeting + QC; fails closed"
+        },
+        {
+          "id": "release",
+          "name": "Release queue",
+          "type": "compute",
+          "description": "Metadata, artwork, human-approved distribution"
+        }
+      ],
+      "flows": [
+        {
+          "id": "f1",
+          "from": "prompts",
+          "to": "gen",
+          "label": "pattern",
+          "dataType": "prompt"
+        },
+        {
+          "id": "f2",
+          "from": "gen",
+          "to": "license",
+          "label": "provenance",
+          "dataType": "record"
+        },
+        {
+          "id": "f3",
+          "from": "gen",
+          "to": "master",
+          "label": "track",
+          "dataType": "audio"
+        },
+        {
+          "id": "f4",
+          "from": "master",
+          "to": "release",
+          "label": "mastered",
+          "dataType": "audio"
+        },
+        {
+          "id": "f5",
+          "from": "license",
+          "to": "release",
+          "label": "license class",
+          "dataType": "record"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Prompt architecture + provenance",
+        "description": "Make generations reproducible and tracked before scaling volume.",
+        "tasks": [
+          "Version prompt/style patterns in files, not chat history",
+          "Record engine + prompt + date + license class per track",
+          "Define the license classes your engines actually grant"
+        ],
+        "deliverables": [
+          "Every track traceable to its pattern and standing"
+        ],
+        "estimatedDuration": "3-5 days"
+      },
+      {
+        "phase": 2,
+        "title": "Generation lanes",
+        "description": "Split automated and human-in-the-loop engines explicitly.",
+        "tasks": [
+          "Automate API engines (editing/inpainting where supported)",
+          "Run no-API engines as scheduled human batch sessions",
+          "Keep engine choice per-track config"
+        ],
+        "deliverables": [
+          "Two working lanes with one output shape"
+        ],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 3,
+        "title": "Mastering gate + release",
+        "description": "Nothing releases unmastered or unlicensed.",
+        "tasks": [
+          "Loudness/QC gate (about -14 LUFS streaming target) that fails closed",
+          "Artwork via the multimodal pipeline with brand refs",
+          "Approval-gated distribution queue"
+        ],
+        "deliverables": [
+          "A release path where every shipped track passed both gates"
+        ],
+        "estimatedDuration": "1 week"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "music-shape",
+        "title": "The per-track record that makes the catalog operable",
+        "language": "typescript",
+        "filename": "track.ts",
+        "description": "Pattern sketch — the ledger entry is the load-bearing piece: without provenance per track, licensing and repeatability both collapse at catalog scale.",
+        "code": "type Track = {\n  id: string\n  pattern: string          // versioned prompt pattern that produced it\n  engine: string           // per-track config — engines rotate, records don't\n  lane: 'api' | 'human'    // automated vs human-in-the-loop generation\n  licenseClass: string     // what this engine's terms actually grant\n  master: { lufs: number; passed: boolean } // gate result, fails closed\n  released: boolean        // only ever set by the approval queue\n}"
+      }
+    ],
+    "relatedPatterns": [
+      "multimodal-content-pipeline",
+      "creator-content-factory"
+    ],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
+    "technologies": [
+      "Suno (human-in-the-loop)",
+      "ElevenLabs Music API",
+      "Lyria 3",
+      "Stable Audio 2.5",
+      "Loudness QC",
+      "Distribution queue"
+    ],
+    "estimatedCost": {
+      "monthly": 100,
+      "annual": 1200,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "Generation (subscriptions + API)",
+          "amount": 60,
+          "percentage": 60
+        },
+        {
+          "category": "Mastering/QC compute",
+          "amount": 15,
+          "percentage": 15
+        },
+        {
+          "category": "Distribution + storage",
+          "amount": 25,
+          "percentage": 25
+        }
+      ],
+      "assumptions": [
+        "Illustrative as of July 2026",
+        "Tens of tracks monthly",
+        "Engine mix shifts cost between subscription and per-call"
+      ]
+    },
+    "timeToImplement": "2-3 weeks",
+    "useCases": [
+      "Catalog building at volume",
+      "Background/production music for content",
+      "Release-ready singles pipeline",
+      "Sync-licensing preparation"
+    ],
+    "whenToUse": [
+      "You generate music repeatedly and the catalog is growing",
+      "Commercial use is on the table, so per-track standing matters",
+      "Quality consistency (loudness, QC) across releases matters"
+    ],
+    "whenNotToUse": [
+      "Occasional personal-use tracks — the pipeline is overhead",
+      "You need a fully-automated Suno lane today (no official API exists as of July 2026)",
+      "Your rights posture requires licensed-training-data engines only — then constrain the engine config to those, or skip generation entirely"
+    ],
+    "tradeoffs": {
+      "pros": [
+        "Wins become repeatable via versioned patterns",
+        "License standing is a recorded fact, not a guess",
+        "The mastering gate makes catalog quality uniform"
+      ],
+      "cons": [
+        "The best-known engine stays human-in-the-loop (no official API)",
+        "Music-rights terms shift; the ledger needs re-review at terms changes",
+        "Loudness QC needs real audio tooling, not just API calls"
+      ]
+    },
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-17",
+    "publishedAt": "2026-07-17",
+    "metaDescription": "AI music production pipeline architecture: versioned prompt patterns, engine-per-track generation lanes (API vs human-in-the-loop), a fail-closed mastering gate, and license-aware release — across Suno, ElevenLabs Music, Lyria 3, and Stable Audio 2.5.",
+    "keywords": [
+      "ai music production pipeline",
+      "suno workflow architecture",
+      "elevenlabs music api",
+      "ai music catalog",
+      "music generation architecture",
+      "ai music licensing"
+    ]
   }
 ]
