@@ -248,6 +248,70 @@ export function OfficialArchitectureAtlas() {
 
       <section className="border-t border-white/[0.06] py-20">
         <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-emerald-300">Built to be checked</p>
+          <h2 className="mt-3 max-w-2xl font-display text-2xl font-bold text-white sm:text-3xl">
+            Every number here is generated or sourced — never trusted.
+          </h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                label: 'Methodology',
+                title: 'How numbers earn a place',
+                body: 'Sourcing, dating, and retirement rules — plus how to challenge any figure by PR.',
+                href: '/ai-architecture/methodology',
+                external: false,
+                destination: 'methodology',
+              },
+              {
+                label: 'Dataset',
+                title: 'Cost & reliability ledger',
+                body: 'Every borrowed stat with its denominator, failure definition, source, and confidence.',
+                href: '/ai-architecture/data',
+                external: false,
+                destination: 'dataset',
+              },
+              {
+                label: 'Benchmarks',
+                title: 'First-party benchmark spine',
+                body: 'Retrieval miss, runaway-loop cost, context eviction — harnesses, raw output, reproducible offline.',
+                href: 'https://github.com/frankxai/frankx.ai-vercel-website/tree/main/benchmarks',
+                external: true,
+                destination: 'benchmarks',
+              },
+            ].map((item) => (
+              <div key={item.label} className="border-l border-white/10 pl-5">
+                <p className="font-mono text-xs text-slate-500">{item.label}</p>
+                <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{item.body}</p>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => trackEvent('ai_architecture_cta_opened', { destination: item.destination, placement: 'credibility' })}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200"
+                  >
+                    Run it yourself
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={() => trackEvent('ai_architecture_cta_opened', { destination: item.destination, placement: 'credibility' })}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200"
+                  >
+                    Read it
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
           <div className="glass-emerald grid gap-8 rounded-[2rem] p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
             <div>
               <GitBranch className="h-6 w-6 text-emerald-300" aria-hidden="true" />
