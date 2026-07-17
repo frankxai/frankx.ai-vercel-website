@@ -19,7 +19,7 @@ faq:
   - q: "When should I just use naive RAG?"
     a: "When your corpus is small, your queries map cleanly to dense embeddings, and you have not yet seen a recall failure. Naive RAG is the right default for a prototype. Ship it, watch it fail, then climb the ladder against the specific failure you observed."
   - q: "Do I need a graph database for GraphRAG?"
-    a: "Often, but not always. GraphRAG needs an entity-and-relationship structure to traverse. A property graph (Neo4j, Kuzu) is the natural home, but you can build lighter graphs on top of a relational store or even precompute community summaries offline. The cost is in extraction and maintenance, not the storage engine."
+    a: "Often, but not always. GraphRAG needs an entity-and-relationship structure to traverse. A property graph database (Neo4j, Memgraph, or FalkorDB) is the natural home, but you can build lighter graphs on top of a relational store or even precompute community summaries offline. The cost is in extraction and maintenance, not the storage engine."
 ---
 
 **TL;DR**: Treat retrieval as a ladder, not a menu. Start with naive RAG. Climb to hybrid+rerank when recall hurts. Climb to agentic RAG when a single query cannot answer the question. Only reach GraphRAG when the answer requires traversing connected entities — contracts, case law, org graphs. Most production systems stop at hybrid+rerank or agentic. The discipline is simple: earn each rung with a failure you have actually seen.
@@ -82,7 +82,7 @@ Naive and hybrid both assume a fixed shape: one query in, one set of chunks out,
 
 This is the rung to climb when questions are compositional or span sources — "find the contract for Acme, then tell me if its termination clause conflicts with our standard SLA." No single query returns that; the agent has to fetch, read, then fetch again.
 
-With Vercel AI SDK 6, retrieval is just a tool the model can call inside `streamText`. The loop comes for free — the model calls the tool, sees results, and decides whether to call it again before composing the answer:
+With the Vercel AI SDK (v6+), retrieval is just a tool the model can call inside `streamText`. The loop comes for free — the model calls the tool, sees results, and decides whether to call it again before composing the answer:
 
 ```ts
 import { streamText, tool } from 'ai'
@@ -91,7 +91,7 @@ import { z } from 'zod'
 import { hybridSearch } from './retrieval' // BM25 + dense + rerank from rung 2
 
 const result = streamText({
-  model: openai('gpt-5.1'),
+  model: openai('gpt-5.5'),
   // The agent loops over tool calls until it has enough to answer.
   stopWhen: ({ steps }) => steps.length >= 5,
   tools: {
@@ -166,7 +166,7 @@ When your corpus is small, your queries map cleanly to dense embeddings, and you
 
 ### Do I need a graph database for GraphRAG?
 
-Often, but not always. GraphRAG needs an entity-and-relationship structure to traverse. A property graph (Neo4j, Kuzu) is the natural home, but you can build lighter graphs on top of a relational store or even precompute community summaries offline. The cost is in extraction and maintenance, not the storage engine.
+Often, but not always. GraphRAG needs an entity-and-relationship structure to traverse. A property graph database (Neo4j, Memgraph, or FalkorDB) is the natural home, but you can build lighter graphs on top of a relational store or even precompute community summaries offline. The cost is in extraction and maintenance, not the storage engine.
 
 ---
 

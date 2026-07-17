@@ -17,9 +17,9 @@ faq:
   - q: "Why model each external system as its own MCP server?"
     a: "Isolation. When the billing API and the search index are separate MCP servers, a failure or slowdown in one returns a contained error the agent can handle, instead of taking down a monolithic tool layer. It also lets you version, secure, and scale each integration independently."
   - q: "Is MCP production-ready in 2026?"
-    a: "As of mid-2026, MCP is under Linux Foundation governance and is supported as a first-class integration by the major cloud agent runtimes and several SDKs including Vercel AI SDK 6. It has a stable transport story and an enterprise security layer. It is a reasonable foundation to build on, with the usual caveat to verify each runtime's current support level yourself."
+    a: "As of mid-2026, MCP is under Linux Foundation governance and is supported as a first-class integration by the major cloud agent runtimes and several SDKs including the Vercel AI SDK. It has a stable transport story and a vendor-contributed enterprise authorization extension; observability standardization is on the 2026 roadmap. It is a reasonable foundation to build on, with the usual caveat to verify each runtime's current support level yourself."
   - q: "Do all cloud agent runtimes support MCP the same way?"
-    a: "No. Support varies. AWS Bedrock AgentCore and Oracle OCI Enterprise AI Agents are GA, Azure AI Foundry Agent Service is GA while its Foundry Memory layer is still preview, and Google's Vertex ADK exposes MCP through its tool interface. Always confirm the current GA/preview status of the specific runtime and feature you depend on."
+    a: "No. Support varies. AWS Bedrock AgentCore and Oracle OCI Enterprise AI Agents are GA, Microsoft Foundry Agent Service (formerly Azure AI Foundry) is GA while its Memory layer is still preview, and Google's Vertex ADK exposes MCP through its tool interface. Always confirm the current GA/preview status of the specific runtime and feature you depend on."
 ---
 
 **TL;DR**: Stop treating the Model Context Protocol as a plugin format. Model each external system — every API, database, and SaaS — as its own MCP server, and you turn integrations into isolation boundaries: a failing tool returns a contained error instead of cascading through your agent. MCP is the universal port between a model and the world; A2A is the protocol between agents. Under Linux Foundation governance as of mid-2026, MCP is a stable architectural primitive you can design around.
@@ -116,7 +116,7 @@ Architecting around MCP means knowing how each runtime exposes it. Here is the p
 | Runtime | Status | Tool / MCP story | Memory note |
 | --- | --- | --- | --- |
 | **AWS Bedrock AgentCore** | GA | Managed agent runtime with MCP-compatible tool integration; AgentCore Gateway exposes tools to agents | AgentCore Memory is GA (short + long-term) |
-| **Azure AI Foundry Agent Service** | GA | First-class tool and MCP integration in the Foundry Agent Service | **Foundry Memory is preview, not GA** — do not assume Bedrock-parity managed memory |
+| **Microsoft Foundry Agent Service** (formerly Azure AI Foundry) | GA | First-class tool and MCP integration in the Foundry Agent Service | **Memory in Foundry Agent Service is preview, not GA** — do not assume Bedrock-parity managed memory |
 | **Google Vertex AI (ADK)** | GA (ADK) | Agent Development Kit exposes tools, including MCP, through its tool interface | Agent Engine Sessions / Memory Bank for state |
 | **Oracle OCI Enterprise AI Agents** | GA | OpenAI Responses-compatible API surface; tool calling via that compatibility layer | Pairs with Database 26ai AI Vector Search for retrieval/memory |
 
@@ -128,9 +128,9 @@ Two things to take from this table. First, **GA is not uniform** — Azure's age
 
 ## Governance: why this is safe to build on
 
-A protocol you architect around needs to outlive any single vendor. As of mid-2026 MCP sits under **Linux Foundation governance** (through the AI infrastructure foundation that took stewardship in late 2025), with an enterprise layer covering identity, approval workflows, and observability contributed by multiple vendors.
+A protocol you architect around needs to outlive any single vendor. As of mid-2026 MCP sits under **Linux Foundation governance** (through the Agentic AI Foundation, which took stewardship in December 2025), with a vendor-contributed enterprise authorization extension covering identity-provider-managed access and approval policy; observability standardization is on the 2026 roadmap.
 
-That governance is the difference between adopting a clever convention and adopting a standard. It is why "build the MCP server once, use it from any agent framework" is a real architectural guarantee rather than a hope — the same server in the code sketch above works whether the agent runs on Bedrock, Foundry, Vertex, OCI, or a local Vercel AI SDK 6 process.
+That governance is the difference between adopting a clever convention and adopting a standard. It is why "build the MCP server once, use it from any agent framework" is a real architectural guarantee rather than a hope — the same server in the code sketch above works whether the agent runs on Bedrock, Foundry, Vertex, OCI, or a local Vercel AI SDK process.
 
 ---
 
@@ -162,11 +162,11 @@ Isolation. When the billing API and the search index are separate MCP servers, a
 
 ### Is MCP production-ready in 2026?
 
-As of mid-2026, MCP is under Linux Foundation governance and is supported as a first-class integration by the major cloud agent runtimes and several SDKs including Vercel AI SDK 6. It has a stable transport story and an enterprise security layer. It is a reasonable foundation to build on, with the usual caveat to verify each runtime's current support level yourself.
+As of mid-2026, MCP is under Linux Foundation governance and is supported as a first-class integration by the major cloud agent runtimes and several SDKs including the Vercel AI SDK. It has a stable transport story and a vendor-contributed enterprise authorization extension; observability standardization is on the 2026 roadmap. It is a reasonable foundation to build on, with the usual caveat to verify each runtime's current support level yourself.
 
 ### Do all cloud agent runtimes support MCP the same way?
 
-No. Support varies. AWS Bedrock AgentCore and Oracle OCI Enterprise AI Agents are GA, Azure AI Foundry Agent Service is GA while its Foundry Memory layer is still preview, and Google's Vertex ADK exposes MCP through its tool interface. Always confirm the current GA/preview status of the specific runtime and feature you depend on.
+No. Support varies. AWS Bedrock AgentCore and Oracle OCI Enterprise AI Agents are GA, Microsoft Foundry Agent Service (formerly Azure AI Foundry) is GA while its Memory layer is still preview, and Google's Vertex ADK exposes MCP through its tool interface. Always confirm the current GA/preview status of the specific runtime and feature you depend on.
 
 ---
 
