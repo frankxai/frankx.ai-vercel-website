@@ -42,6 +42,12 @@ const BOOKS = [
   { slug: 'please-kill-me', title: 'Please Kill Me', author: 'Legs McNeil Gillian McCain', isbn: '9780802142641' },
   { slug: 'popism', title: 'POPism The Warhol Sixties', author: 'Andy Warhol Pat Hackett', isbn: '9780156031110' },
   { slug: 'miles-the-autobiography', title: 'Miles The Autobiography', author: 'Miles Davis Quincy Troupe', isbn: '9780671725822' },
+  { slug: 'our-band-could-be-your-life', title: 'Our Band Could Be Your Life', author: 'Michael Azerrad', isbn: '9780316787536' },
+  { slug: 'cant-stop-wont-stop', title: 'Cant Stop Wont Stop History of the Hip-Hop Generation', author: 'Jeff Chang', isbn: '9780312425791' },
+  { slug: 'm-train', title: 'M Train', author: 'Patti Smith', isbn: '9781101910573' },
+  { slug: 'chronicles-volume-one', title: 'Chronicles Volume One', author: 'Bob Dylan', isbn: '9780743244589' },
+  { slug: 'girl-in-a-band', title: 'Girl in a Band', author: 'Kim Gordon', isbn: '9780062295897' },
+  { slug: 'beastie-boys-book', title: 'Beastie Boys Book', author: 'Michael Diamond Adam Horovitz', isbn: '9780812995541' },
 ];
 
 const args = process.argv.slice(2);

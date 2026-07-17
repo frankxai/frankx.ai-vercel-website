@@ -12,7 +12,7 @@ const STUDY_QUESTION =
 export const metadata: Metadata = {
   title: 'Rockstar Energy & Mindset — A Reading Path | FrankX Library',
   description:
-    'Eight books, Brian Eno’s concept of scenius, and a watch list — a study path in taste, scenes, persona, and the artist’s inner state. Keith Richards, Patti Smith, Rick Rubin, David Byrne, Miles Davis, Andy Warhol, and the scenes that made them.',
+    'A reading path in taste, scenes, persona, and the artist’s inner state — deep-dive book reviews, Brian Eno’s concept of scenius, and a watch list. Keith Richards, Patti Smith, Rick Rubin, David Byrne, Miles Davis, Andy Warhol, Bob Dylan, Kim Gordon, Jeff Chang, and the scenes that made them.',
   keywords: [
     'rockstar energy',
     'rockstar mindset',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Rockstar Energy & Mindset — A Reading Path',
     description:
-      'Eight books, the concept of scenius, and a watch list. A study path in taste, scenes, persona, and the artist’s inner state.',
+      'A reading path of book deep-dives, the concept of scenius, and a watch list — in taste, scenes, persona, and the artist’s inner state.',
     type: 'website',
     url: PAGE_URL,
     siteName: 'FrankX Library',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Rockstar Energy & Mindset — A Reading Path',
-    description: 'Eight books, scenius, and a watch list. Taste, scenes, persona, inner state.',
+    description: 'Book deep-dives, scenius, and a watch list. Taste, scenes, persona, inner state.',
     images: ['/images/library/library-collection-hero.jpg'],
   },
 };
@@ -59,7 +59,7 @@ type StackEntry = {
   title: string;
   author: string;
   year: number;
-  tier: 'core' | 'archetype';
+  tier: 'core' | 'archetype' | 'expansion';
   why: string;
 };
 
@@ -127,6 +127,54 @@ const STACK: StackEntry[] = [
     year: 1989,
     tier: 'archetype',
     why: 'Cool, originality, style as a weapon. Six decades of reinvention — bebop to cool to modal to fusion — from a man who refused to repeat a success even once.',
+  },
+  {
+    slug: 'our-band-could-be-your-life',
+    title: 'Our Band Could Be Your Life',
+    author: 'Michael Azerrad',
+    year: 2001,
+    tier: 'expansion',
+    why: 'The DIY scene bible. Thirteen American underground bands who built their own labels, tours, and press before permission — proof that self-made infrastructure, not luck, is how a scene outlasts its moment.',
+  },
+  {
+    slug: 'cant-stop-wont-stop',
+    title: 'Can’t Stop Won’t Stop',
+    author: 'Jeff Chang',
+    year: 2005,
+    tier: 'expansion',
+    why: 'How a whole culture ignites from constraint. The Bronx, the block party, and the four elements — hip-hop as the clearest modern case study in scenius, and proof the thesis reaches far past rock.',
+  },
+  {
+    slug: 'm-train',
+    title: 'M Train',
+    author: 'Patti Smith',
+    year: 2015,
+    tier: 'expansion',
+    why: 'Just Kids turned inward. The daily texture of a creative life — café, ritual, grief, attention — and how presence is built from small repeated acts, not big moments.',
+  },
+  {
+    slug: 'chronicles-volume-one',
+    title: 'Chronicles: Volume One',
+    author: 'Bob Dylan',
+    year: 2004,
+    tier: 'expansion',
+    why: 'Reinvention and mystique from the inside. How Dylan absorbed a tradition whole, then broke from it — identity as something you build, protect, and refuse to over-explain.',
+  },
+  {
+    slug: 'girl-in-a-band',
+    title: 'Girl in a Band',
+    author: 'Kim Gordon',
+    year: 2015,
+    tier: 'expansion',
+    why: 'Art-school thinking applied to music, and a clear-eyed lens on the downtown scene. How the No Wave / NYC context became the material — and what collaboration costs when it ends.',
+  },
+  {
+    slug: 'beastie-boys-book',
+    title: 'Beastie Boys Book',
+    author: 'Michael Diamond & Adam Horovitz',
+    year: 2018,
+    tier: 'expansion',
+    why: 'Friendship as the engine. Three kids who moved from hardcore to hip-hop to art-pop by owning their own studio and outgrowing every persona — joy treated as a creative discipline.',
   },
 ];
 
@@ -213,7 +261,7 @@ function JsonLd() {
         '@type': 'CollectionPage',
         name: 'Rockstar Energy & Mindset — A Reading Path',
         description:
-          'Eight books, the concept of scenius, and a watch list. A study path in taste, scenes, persona, and the artist’s inner state.',
+          'A reading path of book deep-dives, the concept of scenius, and a watch list. Taste, scenes, persona, and the artist’s inner state.',
         url: PAGE_URL,
         isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
         about: STUDY_QUESTION,
@@ -305,6 +353,7 @@ function BookCard({ entry, index }: { entry: StackEntry; index: number }) {
 export default function RockstarEnergyPage() {
   const coreBooks = STACK.filter((b) => b.tier === 'core');
   const archetypeBooks = STACK.filter((b) => b.tier === 'archetype');
+  const expansionBooks = STACK.filter((b) => b.tier === 'expansion');
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -336,8 +385,8 @@ export default function RockstarEnergyPage() {
             </span>
           </h1>
           <p className="text-[17px] md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Not a genre playlist — a study path. Eight books, one concept, and a watch list, on
-            how taste, scenes, persona, and inner state combine into the thing we call presence.
+            Not a genre playlist — a study path. A stack of books, one concept, and a watch list,
+            on how taste, scenes, persona, and inner state combine into the thing we call presence.
             Read for the architecture behind the myth, not the myth itself.
           </p>
         </div>
@@ -423,6 +472,24 @@ export default function RockstarEnergyPage() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {archetypeBooks.map((entry) => (
+            <BookCard key={entry.slug} entry={entry} index={STACK.indexOf(entry)} />
+          ))}
+        </div>
+      </section>
+
+      {/* The books — expansion: voice, genre & reinvention */}
+      <section className="max-w-5xl mx-auto px-6 pb-20">
+        <div className="flex items-center gap-3 mb-2">
+          <span className="w-8 h-px bg-orange-500/50" />
+          <h2 className="text-xl font-semibold text-white">Go deeper — voice, genre &amp; reinvention</h2>
+        </div>
+        <p className="text-sm text-white/40 mb-8 ml-11">
+          The same thesis, wider aperture — the DIY underground, hip-hop’s birth, the creative
+          interior, and reinvention across folk, No Wave, and art-pop. Scenes and selves, beyond
+          rock.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {expansionBooks.map((entry) => (
             <BookCard key={entry.slug} entry={entry} index={STACK.indexOf(entry)} />
           ))}
         </div>
