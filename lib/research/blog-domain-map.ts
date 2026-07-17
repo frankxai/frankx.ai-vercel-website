@@ -44,6 +44,8 @@ export const blogDomainMap: Record<string, string[]> = {
   'suno-prompt-engineering-complete-guide': ['prompt-engineering', 'ai-creative-tools'],
   'building-custom-skills-acos': ['coding-assistants', 'production-patterns'],
   'agent-feed-privacy-first-ai-transparency': ['enterprise-ai', 'ai-security'],
+  'manifestation-reality-architect-ai-vibe': ['manifestation-law-of-attraction-ai-systems', 'ai-neuroscience', 'ai-creative-tools'],
+  'reality-architecture-generative-ai-neuroscience': ['manifestation-law-of-attraction-ai-systems', 'ai-neuroscience', 'ai-creative-tools'],
 }
 
 export function getRelatedDomainsForBlog(slug: string): string[] {

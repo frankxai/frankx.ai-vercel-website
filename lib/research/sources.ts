@@ -43,6 +43,17 @@ export const sourceTypeLabels: Record<SourceType, string> = {
  * Each domain slug maps to an array of validated sources.
  */
 export const domainSources: Record<string, ResearchSource[]> = {
+  'manifestation-law-of-attraction-ai-systems': [
+    { name: 'Pascual-Leone et al.', title: 'Modulation of muscle responses evoked by TMS during mental practice (motor imagery)', url: 'https://pubmed.ncbi.nlm.nih.gov/7500130/', date: '1995', type: 'journal' },
+    { name: 'Ranganathan et al.', title: 'From mental power to muscle power — gaining strength by using the mind', url: 'https://pubmed.ncbi.nlm.nih.gov/14998709/', date: '2004', type: 'journal' },
+    { name: 'Corbetta & Shulman', title: 'Control of goal-directed and stimulus-driven attention in the brain', url: 'https://pubmed.ncbi.nlm.nih.gov/11994752/', date: '2002', type: 'journal' },
+    { name: 'Russell', title: 'A circumplex model of affect (valence × arousal)', url: 'https://psycnet.apa.org/record/1981-25062-001', date: '1980', type: 'journal' },
+    { name: 'Oettingen & Mayer', title: 'The motivating function of thinking about the future: positive fantasies vs. expectations', url: 'https://pubmed.ncbi.nlm.nih.gov/12416921/', date: '2002', type: 'journal' },
+    { name: 'Locke & Latham', title: 'Building a practically useful theory of goal setting and task motivation', url: 'https://psycnet.apa.org/record/2002-15790-003', date: '2002', type: 'journal' },
+    { name: 'Juslin & Västfjäll', title: 'Emotional responses to music: the need to consider underlying mechanisms', url: 'https://pubmed.ncbi.nlm.nih.gov/18926045/', date: '2008', type: 'journal' },
+    { name: 'Karageorghis & Priest', title: 'Music in the exercise domain: a review and synthesis', url: 'https://pubmed.ncbi.nlm.nih.gov/23667771/', date: '2012', type: 'journal' },
+    { name: 'Vibe OS', title: 'The Science of State Change — music psychology + frequency methodology', url: 'https://github.com/frankxai/vibe-os', type: 'official' },
+  ],
   'intent-architecture': [
     { name: 'DeepMind', title: 'Intelligent AI Delegation', url: 'https://arxiv.org/abs/2602.11865', date: '2026', type: 'preprint' },
     { name: 'Ulloa et al.', title: 'Product Manager Practices for Delegating Work to Generative AI: “Accountability must not be delegated to non-human actors”', url: 'https://dl.acm.org/doi/10.1145/3786583.3786849', date: '2026', type: 'conference' },
